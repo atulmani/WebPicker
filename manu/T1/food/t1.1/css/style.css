@@ -4,10 +4,17 @@ body{
   font-family: 'Roboto Condensed';
   /*background-color:red;*/
 }
-
+img{
+border-radius:8px ;
+  width:100% ;
+  }
 
 /********** class selectors ************/
-
+.p1{
+  font-size: 1.5rem ;
+  text-align: center;
+  padding: 1.5rem 0rem 1.5rem 0rem;
+}
 /********** id selectors ************/
 #third-line{
   background-color: green;
