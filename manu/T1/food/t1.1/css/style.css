@@ -13,7 +13,13 @@ border-radius:8px ;
 .p1{
   font-size: 1.5rem ;
   text-align: center;
-  padding: 1.5rem 0rem 1.5rem 0rem;
+  padding: 1.5rem 0 1.5rem 0;
+}
+.h1-1{
+  font-size: 0.9rem ;
+  text-align: center ;
+  padding: 0 0 0 0;
+  font-family: 'noto sans';
 }
 /********** id selectors ************/
 #third-line{
