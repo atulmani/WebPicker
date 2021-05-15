@@ -1,0 +1,36 @@
+/*************** tag selecter **************/
+
+body{
+  background-color: #f7f3e9;
+  font-family:Oswald;
+
+}
+
+
+/*************** class selecter **************/
+.top-bar {
+    position: relative;
+    height: 35px;
+    background: #343148;
+}
+.top-bar .top-bar-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.div1{
+ font-size: 24px;
+ color: black;
+ background-color: #eee;
+}
+
+.p1{
+
+
+}
+
+
+
+
+
+/*************** id selecter **************/
