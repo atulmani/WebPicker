@@ -2,10 +2,13 @@
 
 body{
   background-color: #f7f3e9;
-  font-family:Oswald;
+  font-family:Arsenal;
 
 }
+hr{
+  width:83%;
 
+}
 
 /*************** class selecter **************/
 .top-bar {
@@ -24,9 +27,18 @@ body{
  background-color: #eee;
 }
 
-.p1{
+.footer-text{
+  font-size: 16px;
+  color: black;
 
+}
 
+.fa {
+  padding: 20px;
+  font-size: 40px;
+  width:100px;
+  text-align: center;
+  text-decoration: none;
 }
 
 
