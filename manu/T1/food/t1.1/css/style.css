@@ -3,11 +3,13 @@ body{
 
   font-family: 'Roboto Condensed';
   /*background-color:red;*/
+  margin: 0;
 }
 img{
 border-radius:8px ;
   width:100% ;
   }
+
 
 /********** class selectors ************/
 .p1{
@@ -23,5 +25,5 @@ border-radius:8px ;
 }
 /********** id selectors ************/
 #third-line{
-  background-color: green;
+  background-color: blue;
 }
