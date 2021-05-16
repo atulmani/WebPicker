@@ -3,12 +3,11 @@ body{
 
   font-family: 'Roboto Condensed';
   /*background-color:red;*/
-  margin: 0;
 }
 img{
 border-radius:8px ;
   width:100% ;
-  }
+}
 
 
 /********** class selectors ************/
@@ -23,7 +22,56 @@ border-radius:8px ;
   padding: 0 0 0 0;
   font-family: 'noto sans';
 }
+.heading{
+  padding: 0 0 0 0;
+}
+.mybutton {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.button5 {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+}
+.button5:hover {
+  background-color: #555555;
+  color: white;
+}
+.div{
+  text-align: center;
+}
+.aboutus-content{
+transition: .5s ease;
+opacity: 1;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+-ms-transform: translate(-50%, -50%);
+text-align: center;
+}
+.aboutus-content:hover{
+opacity:0.5;
+background-color: #ddd;
+}
 /********** id selectors ************/
 #third-line{
   background-color: blue;
+}
+#img-col{
+  margin: 50px 0 50px 0;
+}
+#p-heading{
+  padding: 0 0 0 0;
 }
