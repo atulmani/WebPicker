@@ -2,28 +2,70 @@
 body{
 
   font-family: 'Roboto Condensed';
-  /*background-color:red;*/
 }
 img{
 border-radius:8px ;
-  /*width:100% ;*/
 }
 
 
 /********** class selectors ************/
+
+/************** Navbar ************/
+
+.mynavbar{
+  border-radius:0 0 0 0 ;
+  background-color: #1b0c07;
+  margin: 0 15px;
+  color: white;
+}
+
+.navbar-brand{
+  color: white;
+}
+
+.navbar-brand:hover{
+  color: #aaa;
+}
+
+.nav-link{
+  color: white;
+}
+
+.nav-link:hover{
+  color: #aaa;
+}
+
 .time-phone-row{
   background-color: #1b0c07 ;
   margin: 55px 0.1px 0 0.1px ;
-  border-radius: 8px 8px 0 0 ;
+  /*border-radius: 8px 8px 0 0 ;*/
   text-align: center ;
   color: white;
   font-size: 0.8rem;
   padding: 6px;
 }
 
-.mynavbar{
-  border-radius:0 0 8px 8px ;
+.time-icon{
+  text-align:right;
 }
+
+.phone-icon{
+  text-align:left;
+}
+
+/************** Navbar ending ************/
+
+/************** Banner ************/
+
+.heading-img{
+  width:100%;
+  border-radius: 0 0 8px 8px ;
+}
+
+/************** Banner ending ************/
+
+
+/************** Below banner content ************/
 
 .p1{
   font-size: 1.5rem ;
@@ -35,7 +77,13 @@ border-radius:8px ;
   text-align: center ;
   padding: 0 0 0 0;
   font-family: 'noto sans';
+  color: #1b0c07;
 }
+
+/************** Below banner content ending ************/
+
+
+/************** Favorite ************/
 
 .favorite-div{
   background-color:#f0f5f5 ;
@@ -43,7 +91,10 @@ border-radius:8px ;
    padding: 40px 20px 50px 20px;
    border-radius: 8px ;
  }
-
+.heading-content{
+  color: #1b0c07;
+  text-align: center;
+}
 .favorite-row{
   text-align: center ;
   }
@@ -66,99 +117,36 @@ border-radius:8px ;
   }
 
 .favorite-textcontent{
-
+  font-size: 0.9rem ;
+  font-family: 'noto sans';
+  padding: 0 0 0 0 ;
+  text-align: center ;
+  color:grey ;
 }
 
-.heading{
-  padding: 0 0 0 0;
-}
-.mybutton {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 8px 16px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  border-radius: 8px;
-}
-.button5 {
-  background-color: white;
-  color: black;
-  border: 2px solid #555555;
-}
-.button5:hover {
-  background-color: #555555;
-  color: white;
-/*  font-size:20px;
-  padding:10px 18px;
-  transition: all 1s ease-in;*/
-}
-.div{
-  text-align: center;
-}
-.aboutus-content{
-transition: .5s ease;
-opacity: 1;
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
--ms-transform: translate(-50%, -50%);
-text-align: center;
-}
-.aboutus-content:hover{
-opacity:0.5;
-background-color: #fff;
-}
+.favorite-col2{
+  background-color:#eee ;
+  padding:20px ;
+   border-radius: 0 ;
+  }
 
-.footer-heading{
-  font-size:1.2em;
-  padding: 50px 0 0 0;
-}
-
-.footer-content{
-  font-size:0.9em;
-  color: grey;
-}
-
-.gallery-img{
-  width:250px;
-  height: 250px;
-  transition: all 0.7s ease-in;
-}
-.gallery-img:hover{
-  width:300px;
-  height: 300px;
-  transition: all 0.7s ease-in-out ;
-  opacity: 0.8;
-}
-.footer-social .fa{
-  color:white;
-  border-radius:50px;
-  margin:15px 5px;
-  width:40px;
-  height: 40px;
-  line-height: 40px;
-  font-size: 18px;
-  border: 2px solid white;
-  transition: all 0.3s ease-out;
-  background: #000;
-}
-.footer-social .fa:hover{
-  background: #444;
-  font-size: 20px;
-  width:50px;
-  height: 50px;
-  line-height: 50px;
-    transition: all 0.3s ease-in;
+.favorite-col3{
+  background-color:#eee ;
+  padding:20px ;
+  border-radius: 0 0 20px 0 ;
 }
 
 
+/************** Favorite ending ************/
+
+
+/************** Order ************/
+
+.order-div{
+  text-align: center ;
+  padding: 40px 20px 50px 20px;
+  border-radius: 8px ;
+}
 
 .container1 {
   position: relative;
@@ -167,9 +155,7 @@ background-color: #fff;
 
 .image1 {
   opacity: 1;
-  /*display: block;*/
   width: 100%;
-  /*height: auto;*/
   transition:all .5s ease-out;
   backface-visibility: hidden;
   margin: 10px 0 10px 0 ;
@@ -195,20 +181,142 @@ background-color: #fff;
   opacity: 1;
 }
 
-.text {
-  background-color: #04AA6D;
-  color: white;
-  font-size: 16px;
-  padding: 16px 32px;
-  cursor: hand;
+
+/************** Order ending ************/
+
+
+/************** Gallery ************/
+
+.gallery-div{
+  background-color:#f0f5f5 ;
+  text-align: center ;
+  border-radius: 8px ;
 }
+
+.gallery-img{
+  width:250px;
+  height: 250px;
+  transition: all 0.7s ease-in;
+  margin:10px;
+}
+
+.gallery-img:hover{
+  width:300px;
+  height: 300px;
+  transition: all 0.7s ease-in-out ;
+  opacity: 0.8;
+}
+
+
+/************** Gallery ending ************/
+
+
+/************** About us ************/
+
+.aboutus-content{
+transition: .5s ease;
+opacity: 1;
+position: relative;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+-ms-transform: translate(-50%, -50%);
+text-align: center;
+width: 80%;
+}
+
+.mybutton {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.button5 {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+}
+.button5:hover {
+  background-color: #555555;
+  color: white;
+}
+
+.aboutus-img{
+ width:100%;
+}
+
+/************** About us ending ************/
+
+
+
+/************** Footer ************/
+
+.footer-div{
+  text-align: center;;
+}
+
+.footer-heading{
+  font-size:1.2em;
+  padding: 50px 0 0 0;
+  color: #1b0c07;
+}
+
+.footer-content{
+  font-size:0.9em;
+  color: grey;
+}
+
+.footer-social .fa{
+  color:white;
+  border-radius:50px;
+  margin:15px 5px;
+  width:40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  border: 2px solid white;
+  transition: all 0.3s ease-out;
+  background: #1b0c07;
+}
+.footer-social .fa:hover{
+  background: #444;
+  font-size: 20px;
+  width:50px;
+  height: 50px;
+  line-height: 50px;
+    transition: all 0.3s ease-in;
+}
+
+
+.footer-end{
+  background-color:#1b0c07 ;
+  height: 80px ;
+}
+
+.footer-end-content{
+  font-size:0.8em ;
+  color:white ;
+}
+
+
+/************** Footer ending ************/
+
+
+/*class ending*/
+
+
 /********** id selectors ************/
 #third-line{
   background-color: blue;
 }
 #img-col{
   margin: 50px 0 50px 0;
-}
-#p-heading{
-  padding: 0 0 0 0;
 }
