@@ -12,11 +12,37 @@ border-radius:8px ;
 
 /************** Navbar ************/
 
+@media (max-width: 500px) {
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 91.5%;
+    /* margin-left: 150px; */
+    /* margin: 0 0.1rem 0 0.1px; */
+  }
+}
+
+@media (min-width: 800px) {
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 98%;
+  /* margin-left: 150px; */
+  /* margin: 0 0.1rem 0 0.1px; */
+}
+}
+
+
+.sticky + .content {
+  padding-top: 260px;
+}
+
 .mynavbar{
   border-radius:0 0 0 0 ;
   background-color: #1b0c07;
-  margin: 0 15px;
+  margin: 0 0px;
   color: white;
+
 }
 
 .navbar-brand{
@@ -36,13 +62,15 @@ border-radius:8px ;
   color: #aaa;
 }
 
+
 .time-phone-row{
   background-color: #1b0c07 ;
-  margin: 55px 0.1px 0 0.1px ;
+  margin: 0 0.1px 0 0.1px ;
   text-align: center ;
   color: white;
   font-size: 0.8rem;
   padding: 6px;
+  z-index: 1;
 }
 
 .time-icon{
