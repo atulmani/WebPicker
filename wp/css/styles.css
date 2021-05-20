@@ -1,0 +1,15 @@
+/********************* TAG Selectors ************************/
+body{
+  margin: 0;
+  font-family: Montserrat;
+  font-size: 1rem;
+}
+
+/********************* CLASS Selectors **********************/
+.card{
+  margin: 4% 0;
+}
+
+
+
+/********************* ID Selectors **********************/
