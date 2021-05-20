@@ -1,15 +1,247 @@
-/********************* TAG Selectors ************************/
+
+
+/* Color Palette - Details
+
+Palette#: 226650 from Colorhunt
+
+Colors:
+- Red: #ff4646
+- Light Red: #ff8585
+- Light Orange: #ffb396
+- Yellow: #fff5c0;
+
+*/
+
+
+
+/**** tag selectors *****/
+
 body{
   margin: 0;
   font-family: Montserrat;
-  font-size: 1rem;
+
+
+}
+h1{
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1.5;
 }
 
-/********************* CLASS Selectors **********************/
+h2{
+
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+h3{
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+
+/**** id selectors *****/
+
+
+/**** class selectors *****/
+.mynavbar{
+  background-color:#333;
+  padding-top: 0;
+  padding-left: 10%;
+  padding-right: 10%;
+
+}
+.logo-img{
+  width: 40%;
+}
+
+@media (max-width: 1028px) {
+  .mynavbar{
+    background-color:#333;
+    padding-top: 10px;
+    padding-left: 0;
+    padding-right: 0;
+
+  }
+  .logo-img{
+    width: 40%;
+    padding-left: 10px;
+  }
+}
+
+
+
+/*
+.mynavbar{
+  background-color:#333;
+  padding-top: 40px;
+  padding-left: 15%;
+  padding-right: 15%;
+} */
+
+
 .card{
   margin: 4% 0;
 }
 
 
+.container-fluid
+{
+  padding: 3% 10%;
+}
 
-/********************* ID Selectors **********************/
+/* .navbar{
+  padding:0 0 4.5rem;
+}
+
+.navbar-brand{
+  font-family: Ubuntu;
+  font-size: 2.5rem;
+  font-weight: bold;
+} */
+
+.navbar-brand-name{
+font-family: 'Great Vibes', cursive;
+font-size: 3rem;
+color: white;
+}
+
+ .nav-item{
+  padding: 0 4px;
+}
+
+.nav-link{
+font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+  font-weight:0;
+  letter-spacing: 4;
+  margin-left: 10px;
+}
+
+
+
+.download-button{
+  margin: 5% 3% 5% 0;
+}
+
+#title{
+  /* background-color: #ff4c68; */
+  /* background-color: #ff1616; */
+  background-color: #ff4646;
+  color: white;
+  min-height: 660px;
+}
+
+.title-image{
+  width: 40%;
+  transform: rotate(0deg);
+  position: absolute;
+  right: 15%;
+}
+
+#banner-carousel{
+  padding-top:80px;
+}
+
+@media (max-width: 1028px) {
+  #title{
+    text-align: center;
+  }
+  .title-image{
+    width: 70%;
+    transform: rotate(0deg);
+    position: static;
+    /* right: 30%; */
+
+  }
+  #banner-carousel{
+    padding-top:0;
+  }
+}
+
+/* Features Section */
+#features{
+  padding: 3% 15% 7%;
+  background-color: #fff;
+  position: relative;
+
+}
+.feature-box{
+  text-align: center;
+  padding: 5%;
+}
+.feature-box p{
+  color: #8f8f8f;
+  font-weight: 600;
+}
+
+.feature-icons{
+  color: #ef8172;
+  margin-bottom: 1rem;
+}
+
+.feature-icons:hover{
+  color: #ff4c68;
+}
+
+/* Testimonials */
+#testimonials{
+  text-align: center;
+  background-color: #ef8172;
+  color: #fff;
+}
+
+.testimonials-image{
+  width: 25%;
+  border-radius: 100%;
+  margin: 20px;
+}
+
+.testimonials-carousel-item{
+  padding: 7% 15%;
+}
+
+#press{
+  padding: 3% 15%;
+  text-align: center;
+  background-color: #ef8172;
+}
+
+.press-logo{
+  width: 20%;
+  margin: 20px 15px 50px;
+}
+
+/* Pricing section */
+#pricing{
+  padding: 25px;
+  text-align: center;
+}
+
+.pricing-column{
+  padding: 3% 3%;
+}
+
+/* footer section */
+#cta{
+  background-color: #ff4c68;
+  color: white;
+  text-align: center;
+  padding: 7% 15%;
+}
+
+.cta-heading{
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+#footer{
+  padding: 7% 15%;
+  text-align: center;
+}
+
+.social-icons{
+  margin: 20px 10px;
+}
