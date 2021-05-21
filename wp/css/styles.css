@@ -37,7 +37,7 @@ h2{
 
 h3{
   font-weight: bold;
-  font-size: 0.8rem;
+  font-size: 1.4rem;
 }
 
 
@@ -65,26 +65,10 @@ h3{
 
   }
   .logo-img{
-    width: 40%;
+    width: 30%;
     padding-left: 10px;
   }
 }
-
-
-
-/*
-.mynavbar{
-  background-color:#333;
-  padding-top: 40px;
-  padding-left: 15%;
-  padding-right: 15%;
-} */
-
-
-.card{
-  margin: 4% 0;
-}
-
 
 .container-fluid
 {
@@ -94,18 +78,9 @@ h3{
 /* .navbar{
   padding:0 0 4.5rem;
 }
+ */
 
-.navbar-brand{
-  font-family: Ubuntu;
-  font-size: 2.5rem;
-  font-weight: bold;
-} */
 
-.navbar-brand-name{
-font-family: 'Great Vibes', cursive;
-font-size: 3rem;
-color: white;
-}
 
  .nav-item{
   padding: 0 4px;
@@ -126,8 +101,6 @@ font-family: 'Great Vibes', cursive;
 }
 
 #title{
-  /* background-color: #ff4c68; */
-  /* background-color: #ff1616; */
   background-color: #ff4646;
   color: white;
   min-height: 660px;
@@ -135,9 +108,9 @@ font-family: 'Great Vibes', cursive;
 
 .title-image{
   width: 40%;
-  transform: rotate(0deg);
+  transform: rotate(25deg);
   position: absolute;
-  right: 15%;
+  right: 25%;
 }
 
 #banner-carousel{
@@ -162,14 +135,14 @@ font-family: 'Great Vibes', cursive;
 
 /* Features Section */
 #features{
-  padding: 3% 15% 7%;
+  padding: 5% 10% 5%;
   background-color: #fff;
   position: relative;
 
 }
 .feature-box{
   text-align: center;
-  padding: 5%;
+  padding: 5% ;
 }
 .feature-box p{
   color: #8f8f8f;
@@ -177,12 +150,12 @@ font-family: 'Great Vibes', cursive;
 }
 
 .feature-icons{
-  color: #ef8172;
+  color: #ff4646;
   margin-bottom: 1rem;
 }
 
 .feature-icons:hover{
-  color: #ff4c68;
+  color: #ff8585;
 }
 
 /* Testimonials */
@@ -215,12 +188,31 @@ font-family: 'Great Vibes', cursive;
 
 /* Pricing section */
 #pricing{
-  padding: 25px;
+  padding: 5% 5%;
   text-align: center;
 }
 
 .pricing-column{
-  padding: 3% 3%;
+  padding: 2% 2%;
+}
+
+.pricing-column .btn{
+  background-color:#ff4646;
+  color:#fff;
+}
+
+.card{
+  /* border-color: #fff5c0; */
+  border: 2px solid #fff5c0;
+}
+.card-header{
+  background-color: #fff5c0;
+  color: #ff4646;
+  /* - Red: #ff4646
+  - Light Red: #ff8585
+  - Light Orange: #ffb396
+  - Yellow: #fff5c0; */
+
 }
 
 /* footer section */
