@@ -12,16 +12,41 @@ border-radius:8px ;
 
 /************** Navbar ************/
 
+@media (max-width: 500px) {
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 91.5%;
+    /* margin-left: 150px; */
+    /* margin: 0 0.1rem 0 0.1px; */
+  }
+}
+
+@media (min-width: 800px) {
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 98%;
+  /* margin-left: 150px; */
+  /* margin: 0 0.1rem 0 0.1px; */
+}
+}
+
+
+.sticky + .content {
+  padding-top: 260px;
+}
+
 .mynavbar{
   border-radius:0 0 0 0 ;
-  background-color: #1b0c07;
-  margin: 0 15px;
+  background-color: #d99632; /*color changed*/
   color: white;
+
 }
 
 .navbar-brand{
   color: white;
-  font-size: 1.8rem;
+  font-size: 1.7rem;
 }
 
 .navbar-brand:hover{
@@ -36,23 +61,24 @@ border-radius:8px ;
   color: #aaa;
 }
 
-.sub-heading-row{
-  background-color: #1b0c07 ;
-  margin: 55px 0.1px 0 0.1px ;
-  /*text-align: center ;*/
+
+
+.time-phone-row{
+  background-color: #d99632 ;
+  margin: 0 0.1px 0 0.1px ;
   color: white;
-  padding: 10px 0 10px 0;
+  font-size: 1.3rem;
+  padding-bottom:  6px;
+  z-index: 1;
 }
 
-.sub-heading{
-  font-size: 1rem ;
-  color: white ;
-  }
-
-.sub-heading:hover{
-  color: #aaa;
+.time-icon{
+  text-align:right;
 }
 
+.phone-icon{
+  text-align:left;
+}
 
 /************** Navbar ending ************/
 
@@ -60,7 +86,7 @@ border-radius:8px ;
 
 .heading-img{
   width:100%;
-  border-radius: 0 0 8px 8px ;
+  border-radius: 0 0 0 0 ;
 }
 
 /************** Banner ending ************/
@@ -312,22 +338,3 @@ width: 80%;
 
 
 /*class ending (index.html)*/
-
-
-/*class starting (about.html)*/
-
-.aboutus-text-para{
-  margin: 0 15%;
-  padding: 10px 0;
-}
-
-
-
-
-/********** id selectors ************/
-#third-line{
-  background-color: blue;
-}
-#img-col{
-  margin: 50px 0 50px 0;
-}
