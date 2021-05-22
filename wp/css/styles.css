@@ -369,7 +369,15 @@ font-family: 'Great Vibes', cursive;
   min-height: 660px;
 }
 
-.title-image {
+.title-image-laptop {
+  width: 40%;
+  transform: rotate(25deg);
+  position: absolute;
+  right: 25%;
+}
+
+.title-image-mobile {
+  display: none;
   width: 40%;
   transform: rotate(25deg);
   position: absolute;
@@ -385,8 +393,16 @@ font-family: 'Great Vibes', cursive;
     text-align: center;
   }
 
-  .title-image {
-    width: 70%;
+  .title-image-laptop {
+    display: none;
+    /* width: 70%;
+    transform: rotate(0deg);
+    position: static; */
+  }
+
+  .title-image-mobile {
+    display: block;
+    width: 100%;
     transform: rotate(0deg);
     position: static;
     /* right: 30%; */
