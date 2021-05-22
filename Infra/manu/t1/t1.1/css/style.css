@@ -239,8 +239,8 @@ border-radius:8px ;
 /************** Gallery ************/
 
 .gallery-div{
-  background-color:#f0f5f5 ;
   text-align: center ;
+  padding: 40px 20px 50px 20px;
   border-radius: 8px ;
 }
 
