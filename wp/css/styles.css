@@ -3,7 +3,7 @@
 Palette#: 226650 from Colorhunt
 
 Colors:
-- Red: #ff4646
+- Red: #ff4646 or #ff4c68
 - Light Red: #ff8585
 - Light Orange: #ffb396
 - Yellow: #fff5c0;
@@ -57,7 +57,7 @@ h4 {
   transition: all 1.2s ease-in-out;
   opacity: 1;
   top: 0px;
-  background-color: #ddd;
+  background-color: #eee;
 }
 
 @media only screen and (max-width: 766px) {
@@ -117,7 +117,7 @@ h4 {
   width: 250px;
   font-size: 2.6rem;
   font-weight: 400;
-  color: #ff4646;
+  color: #ff4c68;
   float: left;
   padding-left: 6px;
   display: block;
@@ -142,7 +142,7 @@ h4 {
 }
 
 .header_menu {
-  color: #ff4646;
+  color: #ff4c68;
   font-size: 1.8rem;
   font-weight: lighter;
   padding-left: 40px;
@@ -154,7 +154,7 @@ h4 {
 
 .social-icon-header_menu {
   text-align: center;
-  color: #ff4646;
+  color: #ff4c68;
 }
 
 .sticky .social-icon-header_menu {
@@ -162,7 +162,7 @@ h4 {
   color: #fff5c0;
 }
 
-@media only screen and (max-width: 766px) {
+@media (max-width: 766px) {
   .logo {
     float: left;
     margin-top: -20px;
@@ -201,7 +201,7 @@ h4 {
     float: none;
     font-size: 2rem;
     font-weight: 400;
-    color: #ff4646;
+    color: #ff4c68;
     margin-left: 0;
     margin-top: 0;
   }
@@ -222,7 +222,7 @@ nav {
   /* width: 85%;  */
 }
 
-@media only screen and (max-width: 766px) {
+@media (max-width: 766px) {
   nav {
     width: 100%;
   }
@@ -232,7 +232,7 @@ nav ul {
   padding-left: 480px;
 }
 
-@media only screen and (max-width: 766px) {
+@media (max-width: 766px) {
   nav ul {
     /* padding-top: 0px; */
     margin-bottom: 22px;
@@ -245,7 +245,7 @@ nav ul li {
   display: inline-block;
 }
 
-@media only screen and (max-width: 766px) {
+@media (max-width: 766px) {
   nav ul li {
     width: 100%;
     padding: 7px 0;
@@ -275,21 +275,21 @@ nav ul li a:hover, nav ul li a:focus {
   right: 22px;
   top: 22px;
   width: 30px;
-  transition: all 200ms ease-in;
+  transition: all 1.2s ease-in-out;
 }
 
-@media only screen and (max-width: 766px) {
+/* @media (max-width: 1700px) { */
   .mobile-toggle {
     display: block;
   }
-}
+/* } */
 
 .mobile-toggle span {
   width: 30px;
   height: 4px;
   margin-bottom: 6px;
   border-radius: 1000px;
-  background: #ff4646;
+  background: #ff4c68;
   display: block;
 }
 
@@ -364,7 +364,7 @@ font-family: 'Great Vibes', cursive;
 }
 
 #title {
-  background-color: #ff4646;
+  background-color: #ff4c68;
   color: white;
   min-height: 660px;
 }
@@ -415,7 +415,7 @@ font-family: 'Great Vibes', cursive;
 }
 
 .feature-icons {
-  color: #ff4646;
+  color: #ff4c68;
   margin-bottom: 1rem;
 }
 
@@ -462,7 +462,7 @@ font-family: 'Great Vibes', cursive;
 }
 
 .pricing-column .btn {
-  background-color: #ff4646;
+  background-color: #ff4c68;
   color: #fff;
 }
 
@@ -473,7 +473,7 @@ font-family: 'Great Vibes', cursive;
 
 .card-header {
   background-color: #fff5c0;
-  color: #ff4646;
+  color: #ff4c68;
   /* - Red: #ff4646
   - Light Red: #ff8585
   - Light Orange: #ffb396
