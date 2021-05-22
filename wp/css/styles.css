@@ -155,11 +155,13 @@ h4 {
 .social-icon-header_menu {
   text-align: center;
   color: #ff4c68;
+
 }
 
 .sticky .social-icon-header_menu {
   text-align: center;
   color: #fff5c0;
+  padding-bottom: 50px;
 }
 
 @media (max-width: 766px) {
