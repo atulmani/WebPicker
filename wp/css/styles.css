@@ -54,7 +54,7 @@ h4 {
   padding: 0 10%;
   background: none;
   overflow: hidden;
-  transition: all 1.2s ease-in-out;
+  transition: all 1s ease-in-out;
   opacity: 1;
   top: 0px;
   background-color: #eee;
@@ -275,7 +275,7 @@ nav ul li a:hover, nav ul li a:focus {
   right: 22px;
   top: 22px;
   width: 30px;
-  transition: all 1.2s ease-in-out;
+  transition: all 1s ease-in-out;
 }
 
 /* @media (max-width: 1700px) { */
