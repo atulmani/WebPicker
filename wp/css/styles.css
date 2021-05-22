@@ -54,7 +54,7 @@ h4 {
   padding: 0 10%;
   background: none;
   overflow: hidden;
-  transition: all 1.2s ease-in-out;
+  transition: all 1s ease-in-out;
   opacity: 1;
   top: 0px;
   background-color: #eee;
@@ -275,7 +275,7 @@ nav ul li a:hover, nav ul li a:focus {
   right: 22px;
   top: 22px;
   width: 30px;
-  transition: all 1.2s ease-in-out;
+  transition: all 1s ease-in-out;
 }
 
 /* @media (max-width: 1700px) { */
@@ -369,7 +369,15 @@ font-family: 'Great Vibes', cursive;
   min-height: 660px;
 }
 
-.title-image {
+.title-image-laptop {
+  width: 40%;
+  transform: rotate(25deg);
+  position: absolute;
+  right: 25%;
+}
+
+.title-image-mobile {
+  display: none;
   width: 40%;
   transform: rotate(25deg);
   position: absolute;
@@ -385,8 +393,16 @@ font-family: 'Great Vibes', cursive;
     text-align: center;
   }
 
-  .title-image {
-    width: 70%;
+  .title-image-laptop {
+    display: none;
+    /* width: 70%;
+    transform: rotate(0deg);
+    position: static; */
+  }
+
+  .title-image-mobile {
+    display: block;
+    width: 100%;
     transform: rotate(0deg);
     position: static;
     /* right: 30%; */
