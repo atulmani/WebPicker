@@ -17,7 +17,7 @@ body {
 
 h1 {
   font-weight: 800;
-  font-size: 2rem;
+  font-size: 2.5rem;
   line-height: 1.5;
 }
 
@@ -29,7 +29,7 @@ h2 {
 
 h3 {
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 }
 
 h4 {
@@ -68,7 +68,8 @@ h4 {
 }
 
 .open-nav {
-  max-height: 400px !important;
+  max-height: 600px !important;
+  padding-bottom: 10px;
 }
 
 .open-nav .mobile-toggle {
@@ -161,7 +162,6 @@ h4 {
 .sticky .social-icon-header_menu {
   text-align: center;
   color: #fff5c0;
-  padding-bottom: 50px;
 }
 
 @media (max-width: 766px) {
@@ -231,13 +231,13 @@ nav {
 }
 
 nav ul {
-  padding-left: 480px;
+  /* padding-left: 480px; */
 }
 
 @media (max-width: 766px) {
   nav ul {
     /* padding-top: 0px; */
-    margin-bottom: 22px;
+    /* margin-bottom: 2px; */
     padding-left: 0;
     width: 100%;
   }
@@ -486,16 +486,22 @@ font-family: 'Great Vibes', cursive;
 
 .card {
   /* border-color: #fff5c0; */
-  border: 2px solid #fff5c0;
+  /* border: 2px solid #fff5c0; */
+  border: 1px solid #aaa;
 }
 
 .card-header {
-  background-color: #fff5c0;
-  color: #ff4c68;
+  /* background-color: #fff5c0; */
+  background-color: #444;
+  color: #fff5c0;
   /* - Red: #ff4646
   - Light Red: #ff8585
   - Light Orange: #ffb396
   - Yellow: #fff5c0; */
+}
+
+.card-body{
+  text-align: left;
 }
 
 /* footer section */
