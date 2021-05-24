@@ -9,6 +9,12 @@ body {
   font-family: 'Titillium Web', 'sans-serif';
 }
 
+.container-fluid{
+margin: 0;
+padding: 0;
+width: 100%;
+
+}
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
@@ -27,25 +33,36 @@ opacity: 0.9;
 /* Carousel base class */
 .carousel {
   margin-bottom: 4rem;
+  margin-right: 0rem;
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
   bottom: 3rem;
   z-index: 10;
+
+}
+
+.carousel-indicators li{
+ background: #fb3640;
+ width: 15px;
+ height: 0px;
+
 }
 
 /* Declare heights because of positioning of img element */
 .carousel-item {
   height: 32rem;
-  background-color: #777;
+  /* background-color: #777; */
+
 }
 .carousel-item > img {
   position: absolute;
   top: 0;
   left: 0;
-  min-width: 100%;
   height: 32rem;
+  width: 100%;
 }
+
 
 
 /******Heading
@@ -92,7 +109,7 @@ opacity: 0.9;
     margin-bottom: 1.25rem;
     font-size: 1.25rem;
     line-height: 1.4;
-  }
+    }
 
   .featurette-heading {
     font-size: 50px;
@@ -222,6 +239,12 @@ input[type=submit]:hover {
     position:absolute;
 }
 
+#map{
+    
+    width: 100%;
+    height: 370px;
+}
+
 /*****Footer***/
 
 
@@ -259,4 +282,15 @@ input[type=submit]:hover {
   height: 50px;
   line-height: 50px;
   transition: all 0.3s ease-in;
+}
+
+
+
+/***************************************************AboutUs***********************************************************************/
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #542e71;
+  color: white;
 }
