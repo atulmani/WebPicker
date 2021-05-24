@@ -10,6 +10,12 @@ border-radius:8px ;
 
 /********** class selectors ************/
 
+.container-fluid{
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
 /************** Navbar ************/
 .large{
   width: 100% ;
@@ -41,7 +47,7 @@ border-radius:8px ;
   .sticky {
     position: fixed;
     top: 0;
-    width: 91.5%;
+    width: 100%;
     /* margin-left: 150px; */
     /* margin: 0 0.1rem 0 0.1px; */
   }
@@ -51,7 +57,7 @@ border-radius:8px ;
 .sticky {
   position: fixed;
   top: 0;
-  width: 98%;
+  width: 100%;
   /* margin-left: 150px; */
   /* margin: 0 0.1rem 0 0.1px; */
 }
@@ -131,6 +137,21 @@ border-radius:8px ;
   color: #1b0c07;
 }
 
+.has-details{
+  font-size: 4rem;
+  color: #1b0c07;
+  padding: 20px 0;
+}
+
+.link-has{
+  color:grey ;
+  font-size: 1.3rem ;
+}
+
+.link-has:hover{
+  color: #1b0c07;
+}
+
 /************** Below banner content ending ************/
 
 
@@ -138,8 +159,9 @@ border-radius:8px ;
 
 .favorite-div{
   background-color:#f0f5f5 ;
+  /* background-color: red; */
    text-align: center ;
-   padding: 40px 20px 50px 20px;
+   /* padding: 40px 20px 50px 20px; */
    border-radius: 8px ;
  }
 
@@ -153,15 +175,16 @@ border-radius:8px ;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  padding: 30px;
+  /* padding: 30px; */
 }
 
 .favorite-row .card{
-  position: relative;
+  /* position: relative; */
   max-width: 300px;
+  /* width: 230px; */
   height: 240px;
   background: #fff;
-  margin: 30px 10px;
+  margin: 30px 0px;
   padding: 20px 15px;
   display: flex;
   flex-direction: column;
@@ -189,7 +212,7 @@ border-radius:8px ;
 }
 
 .favorite-row .card .content{
-  position: relative;
+  /* position: relative; */
   margin-top: -120px;
   padding: 10px 15px;
   text-align: center;
@@ -197,6 +220,16 @@ border-radius:8px ;
   visibility: hidden;
   opacity: 0;
   transition: 0.4s ease-in-out;
+}
+
+.favorite-row .card .content .content-heading{
+  font-size:1.6rem;
+  font-weight: bold;
+}
+
+.favorite-row .card .content .content-heading-subheading{
+  font-size:0.8rem;
+  color:#888;
 }
 
 .favorite-row .card:hover .content{
@@ -244,6 +277,35 @@ border-radius:8px ;
 }
 
 
+.favorite-row .card .image1 {
+  opacity: 0.4;
+  width: 100%;
+  transition:all .5s ease-out;
+  backface-visibility: hidden;
+  margin: 10px 0 10px 0 ;
+}
+
+.favorite-row .card .middle {
+  transition:all .5s ease-in;
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  cursor: hand;
+}
+
+.favorite-row .card .container1:hover .image1 {
+  opacity:1;
+}
+
+.favorite-row .card .container1:hover .middle {
+  opacity: 0;
+}
+
+
 /************** Favorite ending ************/
 
 
@@ -281,7 +343,7 @@ border-radius:8px ;
 }
 
 .container1:hover .image1 {
-  opacity: 0.3;
+  opacity:0.3;
 }
 
 .container1:hover .middle {
@@ -418,3 +480,9 @@ width: 80%;
 
 
 /*class ending (index.html)*/
+
+
+#map{
+    width: 100%;
+    height: 550px;
+}
