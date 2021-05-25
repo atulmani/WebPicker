@@ -1,0 +1,518 @@
+/********** tag selectors ************/
+body{
+
+  font-family: 'Roboto Condensed';
+  /* background-color: #feddbe; */
+}
+img{
+border-radius:8px ;
+}
+
+
+/********** class selectors ************/
+
+.container-fluid{
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/************** Navbar ************/
+.large{
+  width: 100% ;
+  border-radius: 0 0 0 0 ;
+}
+.small{
+  width: 0 ;
+  display: none;
+  border-radius: 0 0 0 0 ;
+}
+
+@media (max-width: 1080px) {
+  .large{
+    width: 0 ;
+    display: none;
+    border-radius: 0 0 0 0 ;
+  }
+  .small{
+    width: 100% ;
+    display: block;
+    border-radius: 0 0 0 0 ;
+  }
+}
+
+
+
+
+@media (max-width: 500px) {
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    /* margin-left: 150px; */
+    /* margin: 0 0.1rem 0 0.1px; */
+  }
+}
+
+@media (min-width: 800px) {
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  /* margin-left: 150px; */
+  /* margin: 0 0.1rem 0 0.1px; */
+}
+}
+
+
+.sticky + .content {
+  padding-top: 260px;
+}
+
+.mynavbar{
+  border-radius:0 0 0 0 ;
+  background-color: #185adb; /*color changed*/
+  color: white;
+
+}
+
+.navbar-brand{
+  color: white;
+  font-size: 1.7rem;
+}
+
+.navbar-brand:hover{
+  color: #aaa;
+}
+
+.nav-link{
+  color: white;
+}
+
+.nav-link:hover{
+  color: #aaa;
+}
+
+
+.time-phone-row{
+  background-color: #185adb ; /*color changed*/
+  margin: 0 0.1px 0 0.1px ;
+  color: white;
+  font-size: 1.3rem;
+  padding-bottom:  6px;
+  z-index: 1;
+}
+
+.time-icon{
+  text-align:right;
+}
+
+.phone-icon{
+  text-align:left;
+}
+
+/************** Navbar ending ************/
+
+/************** Banner ************/
+
+.heading-img{
+  width:100%;
+  border-radius: 0 0 0 0 ;
+}
+
+/************** Banner ending ************/
+
+
+/************** Below banner content ************/
+
+.p1{
+  font-size: 1.5rem ;
+  text-align: center;
+  padding: 1.5rem 0 1.5rem 0;
+  color: #0a1931; /* change color */
+}
+.h1-1{
+  font-size: 0.9rem ;
+  text-align: center ;
+  padding: 0 0 0 0;
+  font-family: 'noto sans';
+  color: #0a1931; /* change color */
+}
+
+.has-details{
+  font-size: 4rem;
+  color: #0a1931; /*change color*/
+  padding: 20px 0;
+}
+
+.link-has{
+  color:grey ;
+  font-size: 1.3rem ;
+}
+
+.link-has:hover{
+  color: #0a1931; /*change color*/
+}
+
+/************** Below banner content ending ************/
+
+
+/************** Favorite ************/
+
+.favorite-div{
+  background-color:#feddbe ; /* change color*/
+   text-align: center ;
+   /* padding: 40px 20px 50px 20px; */
+   border-radius: 8px ;
+ }
+
+.heading-content{
+  color: #0a1931;
+  text-align: center;
+}
+.favorite-row{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #feddbe; /* change color*/
+  /* padding: 30px; */
+}
+
+
+
+.favorite-row .card{
+  /* position: relative; */
+  max-width: 300px;
+  /* width: 230px; */
+  height: 240px;
+  background: #fff;
+  margin: 30px 0;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 10px rgba(0,0,0,0.2);
+  transition: 0.5s ease-in-out;
+}
+
+.favorite-row .card:hover{
+  height: 420px;
+}
+
+.favorite-row .card .imgBx{
+  position: relative;
+  height: 260px;
+  width: 260px;
+  top: -60px;
+  left: 3px;
+  /* z-index: 1;  */
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.favorite-row .card .imgBx img{
+  max-width: 100%;
+  border-radius: 4px;
+}
+
+.favorite-row .card .content{
+  /* position: relative; */
+  margin-top: -120px;
+  padding: 10px 15px;
+  text-align: center;
+  color: #111;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.4s ease-in-out;
+}
+
+.favorite-row .card .content .content-heading{
+  font-size:1.6rem;
+  font-weight: bold;
+}
+
+.favorite-row .card .content .content-heading-subheading{
+  font-size:0.8rem;
+  color:#888;
+}
+
+.favorite-row .card:hover .content{
+  visibility: visible;
+  opacity: 1;
+  margin-top: -45px;
+  transition-delay: 0.2s;
+}
+
+.favorite-col1{
+  background-color: #feddbe; /*change color */
+  padding:20px ;
+  border-radius: 20px 0 0 0;
+}
+
+.favorite-img1{
+  margin: 10px 0 10px 0 ;
+  width:100%;
+}
+
+.favorite-textheading{
+  font-size: 1.5rem ;
+   text-align: center ;
+   font-family: 'PT sans' ;
+  }
+
+.favorite-textcontent{
+  font-size: 0.9rem ;
+  font-family: 'noto sans';
+  padding: 0 0 0 0 ;
+  text-align: center ;
+  color:grey ;
+}
+
+.favorite-col2{
+  background-color: #feddbe; /*change color */
+  padding:20px ;
+   border-radius: 0 ;
+  }
+
+.favorite-col3{
+  background-color: #feddbe; /*change color */
+  padding:20px ;
+  border-radius: 0 0 20px 0 ;
+}
+
+
+.favorite-row .card .image1 {
+  opacity: 0.4;
+  width: 100%;
+  transition:all .5s ease-out;
+  backface-visibility: hidden;
+  margin: 10px 0 10px 0 ;
+}
+
+.favorite-row .card .middle {
+  transition:all .5s ease-in;
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  cursor: hand;
+}
+
+.favorite-row .card .container1:hover .image1 {
+  opacity:1;
+}
+
+.favorite-row .card .container1:hover .middle {
+  opacity: 0;
+}
+
+
+/************** Favorite ending ************/
+
+
+/************** Order ************/
+
+.order-div{
+  text-align: center ;
+  padding: 40px 20px 50px 20px;
+  border-radius: 8px ;
+}
+
+.container1 {
+  position: relative;
+  width: 100%;
+}
+
+.image1 {
+  opacity: 1;
+  width: 100%;
+  transition:all .5s ease-out;
+  backface-visibility: hidden;
+  margin: 10px 0 10px 0 ;
+}
+
+.middle {
+  transition:all .5s ease-in;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  cursor: hand;
+}
+
+.container1:hover .image1 {
+  opacity:0.3;
+}
+
+.container1:hover .middle {
+  opacity: 1;
+}
+
+
+.image2 {
+  opacity: 1;
+  width: 100%;
+  transition:all .5s ease-out;
+  backface-visibility: hidden;
+  margin: 10px 0 10px 0 ;
+}
+
+.container1:hover .image2 {
+  opacity:0.5;
+}
+
+
+
+
+/************** Order ending ************/
+
+
+/************** Gallery ************/
+
+.gallery-div{
+  text-align: center ;
+  padding: 40px 20px 50px 20px;
+  border-radius: 8px ;
+}
+
+.gallery-img{
+  width:250px;
+  height: 250px;
+  transition: all 0.7s ease-in;
+  margin:10px;
+}
+
+.gallery-img:hover{
+  width:300px;
+  height: 300px;
+  transition: all 0.7s ease-in-out ;
+  opacity: 0.8;
+}
+
+
+/************** Gallery ending ************/
+
+
+/************** About us ************/
+
+.aboutus-content{
+transition: .5s ease;
+opacity: 1;
+position: relative;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+-ms-transform: translate(-50%, -50%);
+text-align: center;
+width: 80%;
+}
+
+.mybutton {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.button5 {
+  background-color: #feddbe;
+  color: black;
+  border: 2px solid #555555;
+}
+.button5:hover {
+  background-color: #555555;
+  color: white;
+  border: 2px solid #555555;
+}
+
+.button5-project {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+}
+.button5-project:hover {
+  background-color: #555555;
+  color: white;
+}
+
+.aboutus-img{
+ width:100%;
+}
+
+/************** About us ending ************/
+
+
+
+/************** Footer ************/
+
+.footer-div{
+  text-align: center;;
+}
+
+.footer-heading{
+  font-size:1.2em;
+  padding: 50px 0 0 0;
+  color: #1b0c07;
+}
+
+.footer-content{
+  font-size:0.9em;
+  color: grey;
+}
+
+.footer-social .fa{
+  color:white;
+  border-radius:50px;
+  margin:15px 5px;
+  width:40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  border: 2px solid white;
+  transition: all 0.3s ease-out;
+  background: #1b0c07;
+}
+.footer-social .fa:hover{
+  background: #444;
+  font-size: 20px;
+  width:50px;
+  height: 50px;
+  line-height: 50px;
+    transition: all 0.3s ease-in;
+}
+
+
+.footer-end{
+  background-color:#185adb ; /* change color*/
+  height: 80px ;
+}
+
+.footer-end-content{
+  font-size:0.8em ;
+  color:white ;
+}
+
+
+/************** Footer ending ************/
+
+
+/*class ending (index.html)*/
+
+
+#map{
+    width: 100%;
+    height: 550px;
+}
