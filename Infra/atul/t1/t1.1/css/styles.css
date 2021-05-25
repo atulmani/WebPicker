@@ -1,0 +1,178 @@
+/********** tag selectors ************/
+body{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat';
+}
+
+h2{
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+h3{
+  font-size: 2rem;
+  font-weight: bold;
+}
+h4{
+  font-size: 1.5rem;
+  font-weight:normal;
+}
+h5{
+  font-size: 1rem;
+  font-weight:normal;
+}
+h6{
+  font-size: 0.8rem;
+  font-weight:normal;
+}
+
+
+/********** class selectors ************/
+.container-fluid{
+  width: 100%;
+  /* margin: 0; */
+  /* padding-left: 0;
+  padding-right: 0; */
+}
+.mynavbar{
+  border-radius:0 0 0 0 ;
+  background-color: #161d65; /*color changed*/
+  color: white;
+
+}
+
+.navbar-brand{
+  color: white;
+  font-size: 1.7rem;
+}
+
+.navbar-brand:hover{
+  color: #aaa;
+}
+
+.nav-link{
+  color: white;
+}
+
+.nav-link:hover{
+  color: #aaa;
+}
+
+.large{
+  width: 100% ;
+  border-radius: 0 0 0 0 ;
+}
+.small{
+  width: 0px ;
+  display: none;
+  border-radius: 0 0 0 0 ;
+}
+
+@media (max-width: 1080px) {
+  .large{
+    width: 0% ;
+    display: none;
+    border-radius: 0 0 0 0 ;
+  }
+  .small{
+    width: 100% ;
+    display: block;
+    border-radius: 0 0 0 0 ;
+  }
+}
+
+.sector-content-area{
+  margin: 16px;
+  padding:16px;
+  height: 250px;
+  font-size: 1rem;
+  font-weight: lighter;
+  color: #161d65;
+  line-height: 1.8;
+  border-radius: 8px;
+  background-color:#f6f6f6;
+}
+
+.sector-content-heading{
+  font-size:1.5rem;
+  font-weight:bold;
+  /* color:#161d65 */
+}
+
+.statistics-content-area{
+  padding:26px;
+  background-color:#f6f6f6;
+  border-radius:8px;
+}
+
+.statistics-content-heading{
+   /* color:#888; */
+   color:#ff7b54;
+}
+
+.statistics-content-number{
+  font-size:3rem;
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+
+.portfolio-card-text{
+  color:#888;
+  font-size:normal;
+  font-weight:lighter;
+  text-align:left;
+}
+
+.portfolio-card-text-heading{
+  font-weight: bold;
+}
+
+
+@media (max-width: 768px) {
+    .carousel-inner .carousel-item > div {
+        display: none;
+    }
+    .carousel-inner .carousel-item > div:first-child {
+        display: block;
+    }
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+    display: flex;
+}
+
+/* display 3 */
+@media (min-width: 768px) {
+
+    .carousel-inner .carousel-item-right.active,
+    .carousel-inner .carousel-item-next {
+      transform: translateX(33.333%);
+    }
+
+    .carousel-inner .carousel-item-left.active,
+    .carousel-inner .carousel-item-prev {
+      transform: translateX(-33.333%);
+    }
+}
+
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left{
+  transform: translateX(0);
+}
+
+.social .fab{
+    color: white;
+    border-radius: 50px;
+    margin: 15px 5px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    border: 2px solid white;
+    transition: all 0.5s ease-in;
+    background: #000;
+}
