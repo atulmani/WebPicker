@@ -113,7 +113,7 @@ border-radius:8px ;
 /************** Favorite ************/
 
 .favorite-div{
-  background-color:#f0f5f5 ;
+  background-color:#f4cca4 ; /*change-theme*/
    text-align: center ;
    padding: 40px 20px 50px 20px;
    border-radius: 8px ;
@@ -215,7 +215,7 @@ border-radius:8px ;
 /************** Gallery ************/
 
 .gallery-div{
-  background-color:#f0f5f5 ;
+  background-color:#f4cca4 ; /*change-theme*/
   text-align: center ;
   border-radius: 8px ;
 }
@@ -316,7 +316,7 @@ width: 80%;
   font-size: 18px;
   border: 2px solid white;
   transition: all 0.3s ease-out;
-  background: #1b0c07;
+  background: #d99632; /*change color*/
 }
 .footer-social .fa:hover{
   background: #444;
@@ -328,8 +328,9 @@ width: 80%;
 }
 
 
+
 .footer-end{
-  background-color:#1b0c07 ;
+  background-color:#d99632 ; /*change color*/
   height: 80px ;
 }
 
