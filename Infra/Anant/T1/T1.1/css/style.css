@@ -21,8 +21,8 @@ width: 100%;
 .navbar {
 background:#fb3640;
 font-family: 'Titillium Web', 'sans-serif';
-background-image: linear-gradient(to top, rgba(255,0,0,0), rgba(255,0,0,1));
-opacity: 0.9;
+/* background-image: linear-gradient(to top, rgba(255,0,0,0), rgba(255,0,0,1)); */
+opacity: 1;
 }
 
 .navbar .li .nav-link{
@@ -31,10 +31,11 @@ opacity: 0.9;
 
 
 /* Carousel base class */
-.carousel {
+/* .carousel {
   margin-bottom: 4rem;
   margin-right: 0rem;
-}
+  padding-top: 5.9rem;
+} */
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
   bottom: 3rem;
@@ -50,9 +51,9 @@ opacity: 0.9;
 }
 
 /* Declare heights because of positioning of img element */
-.carousel-item {
+/* .carousel-item {
   height: 32rem;
-  /* background-color: #777; */
+  background-color: #777;
 
 }
 .carousel-item > img {
@@ -61,7 +62,7 @@ opacity: 0.9;
   left: 0;
   height: 32rem;
   width: 100%;
-}
+} */
 
 
 
@@ -80,8 +81,8 @@ opacity: 0.9;
   font-weight: 400;
 }
 .marketing .col-lg-4 p {
-  margin-right: .75rem;
-  margin-left: .75rem;
+  margin-right: .0rem;
+  margin-left: .0rem;
 }
 
 
@@ -172,7 +173,17 @@ opacity: 0.9;
 
 /*****Testimonials***/
 
+.Testmonials{
+background-color: #fdca40;
+padding: 20px;
+border-radius: 20px;
+/* border-style:dotted; */
+opacity: 0.9;
+background-image: linear-gradient(to top, rgba(255,0,0,0), rgba(0,0,0,0));
+border-color: #fdca40;
+box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .25);
 
+}
 
 /**** contact form*****/
 
@@ -240,25 +251,28 @@ input[type=submit]:hover {
 }
 
 #map{
-    
+
     width: 100%;
-    height: 370px;
+    height: 390px;
+    border-radius: 3px;
 }
 
 /*****Footer***/
 
 
-.container .footer-background{
-  background:#fb3640;
-  background-image: linear-gradient(to Bottom, rgba(0,0,0,100), rgba(0,0,0,255));
-
+.footer-background{
+  background-color:#fb3640;
+  background-image: linear-gradient(to Bottom, rgba(0,0,0,0), rgba(0,0,0,0));
+  opacity: 1;
+  color: #fff;
+  text-align: center;
 }
-.footer-container{
+/* .footer-container{
   border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 0px;
-
-}
+  background:#fb3640;
+  background-image: linear-gradient(to top, rgba(0,0,0,0), rgba(255,0,0,1));
+  opacity: 0.9;
+} */
 
 .footer-social .fa{
   color:white;
@@ -293,4 +307,41 @@ input[type=submit]:hover {
   text-align: center;
   background-color: #542e71;
   color: white;
+}
+
+
+
+
+@media (max-width: 768px) {
+    .carousel-inner .carousel-item > div {
+        display: none;
+    }
+    .carousel-inner .carousel-item > div:first-child {
+        display: block;
+    }
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+    display: flex;
+}
+
+/* display 3 */
+@media (min-width: 768px) {
+
+    .carousel-inner .carousel-item-right.active,
+    .carousel-inner .carousel-item-next {
+      transform: translateX(33.333%);
+    }
+
+    .carousel-inner .carousel-item-left.active,
+    .carousel-inner .carousel-item-prev {
+      transform: translateX(-33.333%);
+    }
+}
+
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left{
+  transform: translateX(0);
 }

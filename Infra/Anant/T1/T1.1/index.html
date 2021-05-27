@@ -42,12 +42,11 @@
   <!--stylesheet--->
   <link rel="stylesheet" href="./css/style.css">
 
-
 </head>
 
 <body class="container-fluid">
   <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top nav-justified">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top nav-justified nav-collapse">
       <a style="font-size:40px; " class="navbar-brand" href="#">HAS</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -55,16 +54,16 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item divider">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="./index.html">Home</a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="./index.html#Our Recent Works">Projects</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./About.html">AboutUs</a>
+            <a class="nav-link" href="./about.html">AboutUs</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="#Contact">Contact</a>
+            <a class="nav-link" href="./index.html#Contact">Contact</a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="./gallery.html">Gallery</a>
@@ -72,487 +71,554 @@
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item ">
-            <a class="nav-link" href="#"><i class="fa fa-volume-control-phone" aria-hidden="true"> 9921073429</i></a>
+            <a class="nav-link" href="tel:9921073429"><i class="fa fa-volume-control-phone" aria-hidden="true"> 9921073429</i></a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="#"><i class="fa fa-envelope" aria-hidden="true">HAS@gmail.com</i></a>
+            <a class="nav-link" href="mailto:HAS@gmail.com"><i class="fa fa-envelope" aria-hidden="true">HAS@gmail.com</i></a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./index.html#Contact"><button class="btn my-2 my-sm-0" style="background:#fdca40; color:#fff;" type="submit">Get free quote</button></a>
+            <a class="nav-link" href="./index.html#Contact">
+              <button class="btn  btn-warning " style=" width: 120px; color:#fff;" type="submit">Get quote</button>
+            </a>
           </li>
         </ul>
-        <!---<h1 style="font-size:0.8rem; color: #fff; position: absolute; margin-left:30%;">
-          <i class="fa fa-phone" aria-hidden="true">Call</i>
-          <a href="tel:+4733378901">+4733378901</a>
-        </h1>---->
-
       </div>
     </nav>
   </header>
 
-  <main role="main">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class="first-slide" src="./img/7.png" alt="First slide">
-          <div class="container">
-            <div class="carousel-caption text-left">
-              <h1>Building the future. Restoring the past</h1>
-              <p>Let us work. You order</p>
-              <p><a class="btn btn-lg btn-warning" href="./index.html#Contact" role="button">Contact Us today</a></p>
-            </div>
-          </div>
+  <!-- <main role="main"> -->
+  <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000" data-pause="false" style="padding-top:86px;">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="./img/7.png" width="100%" height="auto" alt="First slide">
+        <!-- <div class="container"> -->
+        <div class="carousel-caption text-left">
+          <h1>Building the future. Restoring the past</h1>
+          <p>Let us work. You order</p>
+          <p><a class="btn btn-lg btn-warning" href="./index.html#Contact" role="button">Contact Us today</a></p>
         </div>
-        <div class="carousel-item">
-          <img class="second-slide" src="./img/8.png" alt="Second slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>From up to down it’s made up of best quality</h1>
-              <p>We trust our building material. Top Quality services Guaranteed</p>
-              <!--<p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>--->
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img class="third-slide" src="./img/9.png" alt="Third slide">
-          <div class="container">
-            <div class="carousel-caption text-right">
-              <h1>You construct a dream. We will construct them to reality</h1>
-              <p>Because we know how important this is for you</p>
-              <p><a class="btn btn-lg btn-warning" href="./gallery.html" role="button">Veiw Our Works</a></p>
-            </div>
-          </div>
-        </div>
+        <!-- </div> -->
       </div>
-      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-    <!----Our recent Projects---->
-
-    <!---Recent Projects----->
-
-
-
-    <!-- START THE FEATURETTES -->
-
-    <div id="Services">
-      <center>
-        <a style="color:#fb3640;font-size:2.8em"> Our Services </a>
-      </center>
-    </div>
-    <br>
-    <div class="container">
-      <div class="row featurette no-gutters">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Road Construction <span class="text-muted"></span></h2>
-          <p class="lead">The most common modes of construction are Earth road method, Gravel road, bituminous road; water bound macadam and concrete cement <method class=""></method></p>
+      <div class="carousel-item">
+        <img src="./img/8.png" width="100%" alt="Second slide">
+        <!-- <div class="container"> -->
+        <div class="carousel-caption">
+          <h1>From up to down it’s made up of best quality</h1>
+          <p>We trust our building material. Top Quality services Guaranteed</p>
+          <!--<p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>--->
         </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-fluid mx-auto img-thumbnail" src=./img/5.png data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
+        <!-- </div> -->
       </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette no-gutters">
-        <div class="col-md-7 order-md-2">
-          <h2 class="featurette-heading">Mall Construction <span class="text-muted"></span></h2>
-          <p class="lead">Our Design-Build delivery system is a great fit for mall construction projects because it emphasizes close collaboration between customers and our design and construction teams. It’s a faster method where communication is streamlined. That helps us adapt to design changes and deliver spaces that match customers’ up-to-date visions and expectations.</p>
+      <div class="carousel-item">
+        <img src="./img/9.png" width="100%" alt="Third slide">
+        <!-- <div class="container"> -->
+        <div class="carousel-caption text-right">
+          <h1>You construct a dream. We will construct them to reality</h1>
+          <p>Because we know how important this is for you</p>
+          <p><a class="btn btn-lg btn-warning" href="./gallery.html" role="button">Veiw Our Works</a></p>
         </div>
-        <div class="col-md-5 order-md-1">
-          <img class="featurette-image img-fluid mx-auto img-thumbnail" src=./img/6.png data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette no-gutters">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Industry Development <span class="text-muted"></span></h2>
-          <p class="lead">use ways that are affordable but effective, then there are chances that you can control the expenses to suit your budget</p>
-        </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-fluid mx-auto img-thumbnail" src=./img/12.png data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette no-gutters">
-        <div class="col-md-7 order-md-2">
-          <h2 class="featurette-heading" >Office setup <span class="text-muted"></span></h2>
-          <p class="lead">A well-designed office is a happy office that promotes collaboration while reducing distractions. Improve productivity and performance in the office by making some necessary design changes.</p>
-        </div>
-        <div class="col-md-5 order-md-1">
-          <img class="featurette-image img-fluid mx-auto img-thumbnail" src=./img/13.png data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-      </div>
-
-    </div>
-
-    <hr class="featurette-divider">
-    <!-- /END THE FEATURETTES -->
-
-
-    <!---- Project & customer count---->
-    <div id="Achievements">
-      <center>
-        <a style="color:#fb3640;font-size:2.8em"> Achievements <i class="fa fa-trophy" aria-hidden="true"></i></a>
-      </center>
-    </div>
-    <br>
-
-    <div class="container">
-      <div class="row no-gutters">
-        <div class="four col-md-3">
-          <div class="counter-box colored"> <i class="fa fa-thumbs-o-up"></i> <span class="counter">2147</span>
-            <p>Happy Customers</p>
-          </div>
-        </div>
-        <div class="four col-md-3">
-          <div class="counter-box colored"> <i class="fa fa-group"></i> <span class="counter">3275</span>
-            <p>Total Projects</p>
-          </div>
-        </div>
-        <div class="four col-md-3">
-          <div class="counter-box colored"> <i class="fa fa-shopping-cart"></i> <span class="counter">289</span>
-            <p>Awards</p>
-          </div>
-        </div>
-        <div class="four col-md-3 ">
-          <div class="counter-box colored"> <i class="fa fa-user"></i> <span class="counter">1563</span>
-            <p>Team</p>
-          </div>
-        </div>
+        <!-- </div> -->
       </div>
     </div>
-    <br><br>
-    <hr>
-    <br>
-
-
-    <!-- /.container -->
-
-    <!-- Marketing messaging and featurettes
-      ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
-    <div id="Our Recent Works">
-      <center>
-        <a style="color:#fb3640;font-size:2.8em">Our Recent Works <i class="fa fa-building-o" aria-hidden="true"></i></i></a>
-      </center>
-    </div>
-    <br>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-md-12">
-
-
-      <div id="myCarousel1" class="carousel slide" data-ride="carousel" data-interval="3000" data-pause="false">
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-
-             <div class="carousel-item active">
-                  <div class="row">
-                        <div class="col-lg-4" style="padding:16px;" >
-                          <img class="" width="100%"  src="./img/22.png" alt="" style="border-radius:8px;">
-                        </div>
-                        <div class="col-lg-4" style="padding:16px;">
-                          <img class="" width="100%"  src="./img/14.png" alt="" style="border-radius:8px;">
-                        </div>
-                        <div class="col-lg-4" style="padding:16px;">
-                          <img class="" width="100%"  src="./img/15.png" alt="" style="border-radius:8px;">
-                        </div>
-
-               </div>
-             </div>
-
-
-              <div class="carousel-item">
-                <div class="row">
-                         <div class="col-lg-4" style="padding:16px;" >
-                           <img class="" width="100%"  src="./img/23.png" alt="" style="border-radius:8px;">
-                         </div>
-                         <div class="col-lg-4" style="padding:16px;">
-                           <img class="" width="100%"  src="./img/25.png" alt="" style="border-radius:8px;">
-                         </div>
-                         <div class="col-lg-4" style="padding:16px;">
-                           <img class="" width="100%"  src="./img/24.png" alt="" style="border-radius:8px;">
-                         </div>
-
-                </div>
-              </div>
-            </div>
-
-
-
-
-    <a class="carousel-control-prev" href="#myCarousel1" role="button" data-slide="prev">
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#myCarousel1" role="button" data-slide="next">
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
+  </div>
+
+  <!-- Servies -->
+  <br><br>
+  <div id="Services">
+    <center>
+      <a style="color:#fb3640;font-size:2.8em"> Our Services </a>
+    </center>
+  </div>
+  <br><br>
+  <div class="container">
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Road Construction <span class="text-muted"></span></h2>
+        <p class="lead">The most common modes of construction are Earth road method, Gravel road, bituminous road; water bound macadam and concrete cement <method class=""></method>
+        </p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-fluid mx-auto img-thumbnail" src=./img/5.png data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">Mall Construction <span class="text-muted"></span></h2>
+        <p class="lead">Our Design-Build delivery system is a great fit for mall construction projects because it emphasizes close collaboration between customers and our design and construction teams. It’s a faster method where communication is
+          streamlined. That helps us adapt to design changes and deliver spaces that match customers’ up-to-date visions and expectations.</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img class="featurette-image img-fluid mx-auto img-thumbnail" src=./img/6.png data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Industry Development <span class="text-muted"></span></h2>
+        <p class="lead">use ways that are affordable but effective, then there are chances that you can control the expenses to suit your budget</p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-fluid mx-auto img-thumbnail" src=./img/12.png data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">Office setup <span class="text-muted"></span></h2>
+        <p class="lead">A well-designed office is a happy office that promotes collaboration while reducing distractions. Improve productivity and performance in the office by making some necessary design changes.</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img class="featurette-image img-fluid mx-auto img-thumbnail" src=./img/13.png data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+      </div>
     </div>
 
   </div>
 
-</div>
-    </div>
+  <hr class="featurette-divider">
+  <!-- /END THE FEATURETTES -->
 
+  <br><br>
+  <!---- Project & customer count---->
+  <div id="Achievements">
+    <center>
+      <a style="color:#fb3640;font-size:2.8em"> Achievements <i class="fa fa-trophy" aria-hidden="true"></i></a>
+    </center>
+  </div>
+  <br><br>
 
-    <!---<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            </ol>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="single-box">
-                      <div class="image-area">
-                        <img src="./img/17.png" alt="">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="single-box">
-                      <div class="image-area">
-                        <img src="./img/17.png" alt="">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="single-box">
-                      <div class="image-area">
-                        <img src="./img/17.png" alt="">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="single-box">
-                      <div class="image-area">
-                        <img src="./img/17.png" alt="">
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>
-
-    </div>
-
-
-  </div>---->
-
-
-
-    <!---<div class="row">
-
-  <div class="Column-lg-4">
-
-
-    <div class="carousel slide" data-ride="carousel">
-      <div class="carousel-item">
-        <img class="First-slide" src=./img/17.png alt="First-slide" style="width:100%">
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="four col-md-3">
+        <div class="counter-box colored"> <i class="fa fa-thumbs-o-up"></i> <span class="counter">2147</span>
+          <p>Happy Customers</p>
+        </div>
       </div>
-      <div class="carousel-item">
-        <img class="Second-slide" src=./img/16.png alt="Second-slide" style="width:100%">
+      <div class="four col-md-3">
+        <div class="counter-box colored"> <i class="fa fa-group"></i> <span class="counter">3275</span>
+          <p>Total Projects</p>
+        </div>
       </div>
-      <div class="carousel-item">
-        <img class="third-slide" src=./img/15.png alt="third-slide" style="width:100%">
+      <div class="four col-md-3">
+        <div class="counter-box colored"> <i class="fa fa-shopping-cart"></i> <span class="counter">289</span>
+          <p>Awards</p>
+        </div>
       </div>
-      <div class="col-lg-4">
-        <img class="img-responsive img-rounded" src=./img/14.png alt="Mountains" style="width:100%">
+      <div class="four col-md-3 ">
+        <div class="counter-box colored"> <i class="fa fa-user"></i> <span class="counter">1563</span>
+          <p>Team</p>
+        </div>
       </div>
     </div>
+  </div>
+  <br><br>
+  <hr>
+  <br>
+  <br>
+
+
+  <!-- /.container -->
+
+  <!-- Marketing messaging and featurettes
+      ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div id="Our Recent Works">
+    <br><br><br><br>
+    <center>
+      <a style="color:#fb3640;font-size:2.8em">Our Recent Works <i class="fa fa-building-o" aria-hidden="true"></i></i></a>
+    </center>
+  </div>
+  <br><br>
+
+  <div class="container">
+    <div class="row">
+
+      <div id="myCarousel1" class="carousel slide" data-ride="carousel" data-interval="3000" data-pause="false">
+        <!-- <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol> -->
+        <div class="carousel-inner">
+
+          <div class="carousel-item active">
+            <div class="col-md-4">
+              <img class="" width="100%" src="./img/22.png" alt="" style="border-radius:8px;">
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="col-md-4">
+              <img class="" width="100%" src="./img/14.png" alt="" style="border-radius:8px;">
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="col-md-4">
+              <img class="" width="100%" src="./img/15.png" alt="" style="border-radius:8px;">
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="col-md-4">
+              <img class="" width="100%" src="./img/23.png" alt="" style="border-radius:8px;">
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="col-md-4">
+              <img class="" width="100%" src="./img/25.png" alt="" style="border-radius:8px;">
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="col-md-4">
+              <img class="" width="100%" src="./img/24.png" alt="" style="border-radius:8px;">
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel1" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel1" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
-  </div>---->
-    <br>
-    <hr>
-    <br>
 
-    <!----our Clients--->
-    <div id="Our Clients">
-      <center>
-        <a style="color:#fb3640;font-size:2.8em"> Our Clients </a>
-      </center>
-      <marquee behavior="alternate">
+    </div>
 
-      <img src="img/27.png" width="150px" height="auto" alt="" style="margin:20px;" >
+  </div>
+  <br><br><br><br>
+  <hr>
+  <br>
+
+
+
+  <!--Testmonials start--->
+  <div id="Customer Speak">
+    <center>
+      <a style="color:#fb3640;font-size:2.8em"> Customer Speak <i class="fa fa-comments" aria-hidden="true"></i></a>
+    </center>
+  </div>
+  <br><br>
+
+
+  <div class="container marketing">
+    <div class="row no-gutters">
+      <div class="col-lg-4 col-md-4" style="padding:25px;">
+        <div class="Testmonials ">
+          <img class="rounded-circle" src="./img/18.png" alt="Generic placeholder image" width="80" height="80">
+          <h2 style="color:#542e71; font-size:18px;">Anant Pandey</h2>
+          <p style="color:#542e71;font-size:10px;"> [Managing Director, Atom & co.]</p>
+          <p style="color:gray; font-family:Georgia; font-size:12px;">"The Support i received was through </br> and timely and my issues was addressed </br> with single instruction. </br> Awesome Work !!" </p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4" style="padding:25px;">
+        <div class="Testmonials">
+          <img class="rounded-circle" src="./img/20.png" width="80" height="80">
+          <h2 style="color:#542e71;font-size:18px">John Miller</h2>
+          <p style="color:#542e71;font-size:10px;"> [Managing Director, Pepsico]</p>
+          <p style="color:gray; font-family:Georgia; font-size:12px;">"The Support i received was through </br> and timely and my issues was addressed </br> with single instruction. </br> Awesome Work !!" </p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4" style="padding:25px;">
+        <div class="Testmonials">
+          <img class="rounded-circle" src="./img/21.png" alt="Generic placeholder image" width="80" height="80">
+          <h2 style="color:#542e71;font-size:18px">Will Smith</h2>
+          <p style="color:#542e71;font-size:10px;"> [Managing Director, ITC & co.]</p>
+          <p style="color:gray; font-family:Georgia; font-size:12px;">"The Support i received was through </br> and timely and my issues was addressed </br> with single instruction. </br> Awesome Work !!" </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <hr>
+  <br>
+
+  <!--Testmonials end--->
+
+  <!----our Clients--->
+  <div id="Our Clients">
+    <center>
+      <a style="color:#fb3640;font-size:2.8em"> Our Clients </a>
+    </center> <br><br>
+    <marquee behavior="alternate">
+
+      <img src="img/27.png" width="150px" height="auto" alt="" style="margin:20px;">
       <img src="img/28.png" width="150px" height="auto" alt="" style="margin:20px;">
       <img src="img/29.png" width="150px" height="auto" alt="" style="margin:20px;">
       <img src="img/30.png" width="150px" height="auto" alt="" style="margin:20px;">
 
-      </marquee>
+    </marquee>
 
-    </div>
-    <br>
-    <hr>
-    <br>
+  </div>
+  <br>
+  <hr>
+  <br><br>
 
+  <div id="Contact">
+    <br /><br /><br />
+    <center>
+      <a style="color:#fb3640;font-size:2.8em"> How to reach us.... <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+    </center>
+  </div>
+  <br>
 
-    <!--Testmonials start--->
-    <div id="Customer Speak">
-      <center>
-        <a style="color:#fb3640;font-size:2.8em"> Customer Speak <i class="fa fa-comments" aria-hidden="true"></i></a>
-      </center>
-    </div>
-    <br>
+  <!--contactform-->
+  <div class="container contactform Testmonials">
+    <div class="row no-gutters ">
+      <div class="col-lg-4" style="padding:20px;">
+        <form action="">
 
+          <input type="text" id="fname" name="name" placeholder="Your name..">
+          <input type="text" id="FNo" name="phone" placeholder="Your phone number..">
+          <textarea id="subject" name="subject" placeholder="Your query...." style="height:200px"></textarea>
 
-    <div class="container marketing">
-      <div class="row no-gutters">
-        <div class="col-lg-4">
-          <img class="rounded-circle" src="./img/18.png" alt="Generic placeholder image" width="80" height="80">
-          <h2 style="color:#542e71; font-size:18px;">Anant Pandey</h2>
-          <p style="color:#542e71;font-size:10px;"> [Managing Director, Atom & co.]</p>
-          <p style="color:gray; font-family:Georgia;">"The Support i received was through and timely and my issues was addressed with single instruction. Awesome Work !!" </p>
-        </div>
-        <div class="col-lg-4">
-          <img class="rounded-circle" src="./img/20.png" width="80" height="80">
-          <h2 style="color:#542e71;font-size:18px">John Miller</h2>
-          <p style="color:#542e71;font-size:10px;"> [Managing Director, Pepsico & co.]</p>
-          <p style="color:gray; font-family:Georgia;">"The Support i received was through and timely and my issues was addressed with single instruction. Awesome Work !!"</p>
-        </div>
-        <div class="col-lg-4">
-          <img class="rounded-circle" src="./img/21.png" alt="Generic placeholder image" width="80" height="80">
-          <h2 style="color:#542e71;font-size:18px">Will Smith</h2>
-          <p style="color:#542e71;font-size:10px;"> [Managing Director, ITC & co.]</p>
-          <p style="color:gray; font-family:Georgia;">"The Support i received was through and timely and my issues was addressed with single instruction. Awesome Work !!"</p>
+          <input type="submit" value="Send" align="center">
+
+        </form>
+      </div>
+
+      <div class="col-lg-4  " style="text-align:center;padding:20px;">
+
+        <address style="color:black;">
+          <i class="fa fa-address-card" aria-hidden="true"></i><br>
+          <a>HAS Constructions</a><br>
+
+          Box 564, Disneyland<br>
+          USA <br><br>
+          <i class="fa fa-envelope" aria-hidden="true"></i><br>
+          <a href="mailto:Has@gmail.com">Has@gmail.com</a><br><br>
+
+          <i class="fa fa-phone-square" aria-hidden="true"></i><br>
+          <a href="tel:9921073429">+91-9921073429</a><br>
+
+        </address>
+      </div>
+
+      <div class="col-lg-4">
+        <div id="map-section Testmonials">
+
+          <section id="map">
+
+          </section>
         </div>
       </div>
+
     </div>
+  </div><br>
+
+  <!-- FOOTER -->
+  <div class="footer-background">
     <br>
-    <hr>
-    <!--Testmonials end--->
+    <h1><strong>HAS</strong>
 
-    <div id="Contact">
-      <br /><br /><br /><br><br>
-      <center>
-        <a style="color:#fb3640;font-size:2.8em"> How to reach us.... <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-      </center>
-    </div>
-    <br>
-
-    <!--contactform-->
-    <div class="container contactform">
-      <div class="row no-gutters">
-        <div class="col-lg-4" style="padding-right:8px;">
-          <form action="">
-
-            <input type="text" id="fname" name="name" placeholder="Your name..">
-            <input type="text" id="FNo" name="phone" placeholder="Your phone number..">
-            <textarea id="subject" name="subject" placeholder="Your query...." style="height:200px"></textarea>
-
-            <input type="submit" value="Send">
-
-          </form>
-        </div>
-
-        <div class="col-lg-4 v-divider" style="text-align:center;">
-
-          <address style="color:black;">
-            <i class="fa fa-address-card" aria-hidden="true"></i><br>
-            <a>HAS Constructions</a><br>
-
-            Box 564, Disneyland<br>
-            USA <br><br>
-            <i class="fa fa-envelope" aria-hidden="true"></i><br>
-            <a href="Has@gmail.com">Has@gmail.com</a><br><br>
-
-            <i class="fa fa-phone-square" aria-hidden="true"></i><br>
-            <a href="9921073429">+91-9921073429</a><br>
-
-          </address>
-        </div>
-
-        <div class="col-lg-4 v-divider" style="padding-left:8px;">
-            <div id="map-section">
-
-              <section id="map">
-
-              </section>
-            </div>
-          </div>
-
+    </h1>
+    <p>
+      CONSTRUCTION PROJECT MANAGEMENT CONSORTIUM
+    </p>
+    <span>
+      <div class="footer-social" style="text-align:center;">
+        <a href="https://twitter.com/?lang=en" target="_blank"><i class="fa fa-twitter wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.8s"></i></a>
+        <a href="https://www.youtube.com/" target="_blank"><i class="fa fa-youtube wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.8s"></i></a>
+        <a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.8s"></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.8s"></i></a>
+        <a href="https://www.linkedin.com/" target="_blank"><i class="fa fa-linkedin wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.8s"></i></a>
       </div>
-    </div><br>
-
-    <!-- FOOTER -->
-    <div class="footer-background" style="background-color:#0a1931;">
-      <span>
-        <div class="footer-social" style="text-align:center;">
-          <a href="https://twitter.com/?lang=en" target="_blank"><i class="fa fa-twitter wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.8s"></i></a>
-          <a href="https://www.youtube.com/" target="_blank"><i class="fa fa-youtube wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.8s"></i></a>
-          <a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.8s"></i></a>
-          <a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.8s"></i></a>
-          <a href="https://www.linkedin.com/" target="_blank"><i class="fa fa-linkedin wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.8s"></i></a>
-        </div>
-      </span>
-      <span>
-        <p style="text-align:Center;">&copy; 2017-2018 Company, Inc. &middot; <a href="./terms.html">Terms & Conditions</p>
-      </span>
-    </div>
+    </span>
+    <span>
+      <p style="text-align:Center;">&copy; 2017-2018 Company, Inc. &middot; <a style="color:#fff" href="./terms.html">Terms & Conditions</p>
+    </span><br>
+  </div>
   </main>
 
 
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
-       <script type="text/javascript">
-           // When the window has finished loading create our google map below
-           google.maps.event.addDomListener(window, 'load', init);
+  <script type="text/javascript">
+    // When the window has finished loading create our google map below
+    google.maps.event.addDomListener(window, 'load', init);
 
-           function init() {
-               // Basic options for a simple Google Map
-               // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-               var mapOptions = {
-                   // How zoomed in you want the map to start at (always required)
-                   zoom: 11,
+    function init() {
+      // Basic options for a simple Google Map
+      // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+      var mapOptions = {
+        // How zoomed in you want the map to start at (always required)
+        zoom: 11,
 
-                   // The latitude and longitude to center the map (always required)
-                   center: new google.maps.LatLng(27.225542,78.0004593), // New York
+        // The latitude and longitude to center the map (always required)
+        center: new google.maps.LatLng(27.225542, 78.0004593), // New York
 
-                   // How you would like to style the map.
-                   // This is where you would paste any style found on Snazzy Maps.
-                   styles: [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#000000"},{"lightness":40}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#000000"},{"lightness":16}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":17},{"weight":1.2}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":21}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":16}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":19}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":17}]}]
-               };
+        // How you would like to style the map.
+        // This is where you would paste any style found on Snazzy Maps.
+        styles: [{
+          "featureType": "all",
+          "elementType": "labels.text.fill",
+          "stylers": [{
+            "saturation": 36
+          }, {
+            "color": "#000000"
+          }, {
+            "lightness": 40
+          }]
+        }, {
+          "featureType": "all",
+          "elementType": "labels.text.stroke",
+          "stylers": [{
+            "visibility": "on"
+          }, {
+            "color": "#000000"
+          }, {
+            "lightness": 16
+          }]
+        }, {
+          "featureType": "all",
+          "elementType": "labels.icon",
+          "stylers": [{
+            "visibility": "off"
+          }]
+        }, {
+          "featureType": "administrative",
+          "elementType": "geometry.fill",
+          "stylers": [{
+            "color": "#000000"
+          }, {
+            "lightness": 20
+          }]
+        }, {
+          "featureType": "administrative",
+          "elementType": "geometry.stroke",
+          "stylers": [{
+            "color": "#000000"
+          }, {
+            "lightness": 17
+          }, {
+            "weight": 1.2
+          }]
+        }, {
+          "featureType": "landscape",
+          "elementType": "geometry",
+          "stylers": [{
+            "color": "#000000"
+          }, {
+            "lightness": 20
+          }]
+        }, {
+          "featureType": "poi",
+          "elementType": "geometry",
+          "stylers": [{
+            "color": "#000000"
+          }, {
+            "lightness": 21
+          }]
+        }, {
+          "featureType": "road.highway",
+          "elementType": "geometry.fill",
+          "stylers": [{
+            "color": "#000000"
+          }, {
+            "lightness": 17
+          }]
+        }, {
+          "featureType": "road.highway",
+          "elementType": "geometry.stroke",
+          "stylers": [{
+            "color": "#000000"
+          }, {
+            "lightness": 29
+          }, {
+            "weight": 0.2
+          }]
+        }, {
+          "featureType": "road.arterial",
+          "elementType": "geometry",
+          "stylers": [{
+            "color": "#000000"
+          }, {
+            "lightness": 18
+          }]
+        }, {
+          "featureType": "road.local",
+          "elementType": "geometry",
+          "stylers": [{
+            "color": "#000000"
+          }, {
+            "lightness": 16
+          }]
+        }, {
+          "featureType": "transit",
+          "elementType": "geometry",
+          "stylers": [{
+            "color": "#000000"
+          }, {
+            "lightness": 19
+          }]
+        }, {
+          "featureType": "water",
+          "elementType": "geometry",
+          "stylers": [{
+            "color": "#000000"
+          }, {
+            "lightness": 17
+          }]
+        }]
+      };
 
-               // Get the HTML DOM element that will contain your map
-               // We are using a div with id="map" seen below in the <body>
-               var mapElement = document.getElementById('map');
+      // Get the HTML DOM element that will contain your map
+      // We are using a div with id="map" seen below in the <body>
+      var mapElement = document.getElementById('map');
 
-               // Create the Google Map using our element and options defined above
-               var map = new google.maps.Map(mapElement, mapOptions);
+      // Create the Google Map using our element and options defined above
+      var map = new google.maps.Map(mapElement, mapOptions);
 
-               // Let's also add a marker while we're at it
-               var marker = new google.maps.Marker({
-                   position: new google.maps.LatLng(27.225542,78.0004593),
-                   map: map,
-                   title: 'manu'
-               });
-           }
-       </script>
+      // Let's also add a marker while we're at it
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(27.225542, 78.0004593),
+        map: map,
+        title: 'manu'
+      });
+    }
+  </script>
 
+  <script type="text/javascript">
+    //   $('#recipeCarousel').carousel({
+    //   interval: 1000
+    // })
+
+    $('.carousel .carousel-item').each(function() {
+      var minPerSlide = 3;
+      var next = $(this).next();
+      if (!next.length) {
+        next = $(this).siblings(':first');
+      }
+      next.children(':first-child').clone().appendTo($(this));
+
+      for (var i = 0; i < minPerSlide; i++) {
+        next = next.next();
+        if (!next.length) {
+          next = $(this).siblings(':first');
+        }
+
+        next.children(':first-child').clone().appendTo($(this));
+      }
+    });
+  </script>
 
 </body>
 
