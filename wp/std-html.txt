@@ -44,12 +44,15 @@
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
+      <!-- <span>
+       <i class="fa fa-reorder fa-2x " style="color:#1638A0;" ></i>
+     </span> -->
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <span class="navbar-text">
         <h5><strong> CONSTRUCTION PROJECT MANAGEMENT CONSORTIUM</strong></h5>
       </span>
-      <ul class="navbar-nav ml-auto ">
+      <ul class="nav navbar-nav ml-auto ">
         <li class="nav-item">
           <a class="nav-link" href="#banner">Home</a>
         </li>
@@ -252,6 +255,15 @@
     })
   </script>
   <!-- Collapse Navbar toggle menu after clicking on menu items - End  -->
+
+  <!-- Menu's nav-link highlighted those are active -->
+  <script>
+    $(".nav .nav-link").on("click", function() {
+      $(".nav").find(".active").removeClass("active");
+      $(this).addClass("active");
+    });
+  </script>
+
 
   <!-- Javascript to Populate Map - Start  -->
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
