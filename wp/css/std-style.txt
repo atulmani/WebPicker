@@ -52,8 +52,13 @@ h6{
 
 /* navbar start */
 .navbar{
-  border-radius:0 0 0 0 ;
-  background-color: #161d65; /*color changed*/
+  background-color: #fefefe; /*color changed*/
+  border-top: 0;
+  border-bottom: 1px;
+  border-left: 0;
+  border-right: 0;
+  border-style: solid;
+  border-color: #1638A0;
 }
 
 .navbar-brand{
@@ -72,17 +77,28 @@ h6{
 }
 
 .nav-item{
-  padding-left: 12px;
+  width: 140px;
+  /* padding-left: 20px; */
   line-height: 2;
 }
+
 .nav-link{
-  color: white;
-  font-size: 1.2rem;
+  /* color: white; */
+  color:#1638A0;
+  font-size: 1rem;
+  text-align: center;
   font-weight: bold;
 }
 
 .nav-link:hover{
   color: #aaa;
+}
+
+.nav .active{
+  color: #161d65;
+  font-size: 1.1rem;
+  background-color:#ededed;
+  margin-top: 0px;
 }
 
 .navbar-toggler{
