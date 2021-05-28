@@ -264,6 +264,19 @@
     });
   </script>
 
+  <!-- fixed-top or sticky-top navbar background change on windows scrolling - start  -->
+  <script type="text/javascript">
+    $(window).scroll(function(){
+        var scroll = $(window).scrollTop();
+        if(scroll < 70){
+            $('.sticky-top').removeClass("sticky");
+        } else{
+            $('.sticky-top').addClass("sticky");
+        }
+    });
+  </script>
+  <!-- fixed-top or sticky-top navbar background change on windows scrolling - end  -->
+
 
   <!-- Javascript to Populate Map - Start  -->
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
