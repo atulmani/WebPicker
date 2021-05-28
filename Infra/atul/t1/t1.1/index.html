@@ -40,8 +40,8 @@
 <body>
 
   <div style="text-align:right; padding:20px; background-color:#1638A0; color:#fefefe; ">
-    <span style="padding-right:50px;""><i class="fa fa-phone" style="color:fefefe;"></i> +91 982 275 2885</span>
-    <span style="padding-right:50px;" class="large" ><i class="fa fa-envelope" style="color:#fefefe;"></i> contact@has.com</span>
+    <span style="padding-right:50px;""><i class=" fa fa-phone" style="color:fefefe;"></i> +91 982 275 2885</span>
+    <span style="padding-right:50px;" class="large"><i class="fa fa-envelope" style="color:#fefefe;"></i> contact@has.com</span>
     <span style="padding-left:25px; padding-right:25px;background-color:#ff7b54; color:white; " class="btn btn-warning" type="button"><strong>Call Now!</strong> </span>
     <!-- <span style="padding-left:25px; padding-right:25px;" class="btn btn-warning small" type="button"><strong>Call Now!</strong> </span> -->
   </div>
@@ -51,10 +51,10 @@
       <h2> HAS</h2>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-      <span class="navbar-toggler-icon"></span>
-      <!-- <span>
-       <i class="fa fa-reorder fa-1x " style="color:#1638A0;" ></i>
-   </span> -->
+        <span class="navbar-toggler-icon"></span>
+        <!-- <span>
+         <i class="fa fa-reorder fa-2x " style="color:#1638A0;" ></i>
+       </span> -->
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <span class="navbar-text" style="padding-left:20px;">
@@ -81,7 +81,6 @@
 
     </div>
   </nav>
-
 
 
   <!-- Banner Section - Start -->
@@ -501,13 +500,29 @@
     $(document).on('click', function() {
       $('.collapse').collapse('hide');
     });
-
-    $(".nav .nav-link").on("click", function(){
-       $(".nav").find(".active").removeClass("active");
-       $(this).addClass("active");
-    });
-
   </script>
+
+  <!-- Menu's nav-link highlighted those are active -->
+  <script>
+    $(".nav .nav-link").on("click", function() {
+      $(".nav").find(".active").removeClass("active");
+      $(this).addClass("active");
+    });
+  </script>
+
+
+  <!-- fixed-top or sticky-top navbar background change on windows scrolling - start  -->
+  <script type="text/javascript">
+    $(window).scroll(function(){
+        var scroll = $(window).scrollTop();
+        if(scroll < 70){
+            $('.sticky-top').removeClass("sticky");
+        } else{
+            $('.sticky-top').addClass("sticky");
+        }
+    });
+  </script>
+  <!-- fixed-top or sticky-top navbar background change on windows scrolling - end  -->
 
   <!-- Javascript to Populate Map - Start  -->
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
@@ -682,6 +697,8 @@
       })
     })
   </script>
+
+
 
   <!-- Owl Carousel Javascript  -->
   <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
