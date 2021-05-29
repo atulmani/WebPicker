@@ -176,6 +176,7 @@ h6{
   line-height: 1.8;
   border-radius: 8px;
   background-color:#f6f6f6;
+
 }
 
 .sector-content-heading{
@@ -188,6 +189,7 @@ h6{
   padding:26px;
   background-color:#f6f6f6;
   border-radius:8px;
+  background-color:rgb(255,255,255,0.9);
 }
 
 .statistics-content-heading{
