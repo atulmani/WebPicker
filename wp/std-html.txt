@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
   <!-- Your Own Style -->
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/test-style.css">
 
 </head>
 
@@ -119,6 +119,76 @@
   </section>
   <!-- Banner Section - End -->
 
+
+  <!-- Statistics Section - Start -->
+
+  <section id="statistics" style="text-align:center; font-size:2rem; font-weight:bolder; line-height:2; color:#161d65;background-image: url('img/bg-statistics1.png'); background-repeat: no-repeat;  background-attachment: fixed;  background-position: center; ">
+
+
+      <!-- <div style="background-image: url('img/bg1.png'); background-repeat: no-repeat;  background-attachment: fixed;  background-position: center; "> -->
+<br /><br /><br />
+  <div class="container"  >
+    <div style="text-align:center;">
+      <h3 style="color:#161d65;">STATISTICS</h3>
+      <hr style="border-top: 6px solid #ff7b54; width:60px; " />
+      <!-- <h4 style="color:#888;">HAS services help clients to build their dream</h4> -->
+    </div>
+
+      <div class="row no-gutters">
+        <div class="col-lg-3 col-md-6" style="padding:16px;">
+          <div class="statistics-content-area">
+            <i class="fa fa-signal" style="color:#ff7b54;"></i>
+            <div class="statistics-content-number">
+              100+
+            </div>
+            <div class="statistics-content-heading">
+              PROJECTS
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" style="padding:16px;">
+          <div class="statistics-content-area">
+            <i class="fa fa-users" style="color:#ff7b54;"></i>
+            <div class="statistics-content-number">
+              30+
+            </div>
+            <div class="statistics-content-heading">
+              CLIENTS
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" style="padding:16px; ">
+          <div class="statistics-content-area">
+            <i class="fa fa-user-plus" style="color:#ff7b54;"></i>
+            <div class="statistics-content-number">
+              20+
+            </div>
+            <div class="statistics-content-heading">
+              TEAM
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" style="padding:16px;">
+          <div class="statistics-content-area">
+            <i class="fa fa-trophy" style="color:#ff7b54;"></i>
+            <div class="statistics-content-number">
+              10+
+            </div>
+            <div class="statistics-content-heading">
+              AWARDS
+            </div>
+          </div>
+        </div>
+
+      </div>
+<br /><br /><br />
+    </div>
+
+    <!-- </div> -->
+
+  </section>
+
+  <!-- Statistics Section - end -->
 
   <!-- Owl Carousel - Start -->
   <section id="portfolio">
