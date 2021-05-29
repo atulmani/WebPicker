@@ -156,6 +156,36 @@ h6{
   }
 }
 
+.statistics-content-area{
+  padding:26px;
+  background-color:#f6f6f6;
+  border-radius:8px;
+  background-color:rgb(255,255,255,0.9);
+}
+
+.statistics-content-heading{
+   /* color:#888; */
+   color:#ff7b54;
+}
+
+.statistics-content-number{
+  font-size:3rem;
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+
+.portfolio-card-text{
+  color:#888;
+  font-size:normal;
+  font-weight:lighter;
+  text-align:left;
+}
+
+.portfolio-card-text-heading{
+  font-weight: bold;
+}
+
 /* Footer Section - Start */
 #map {
   width: 100%;
