@@ -119,6 +119,14 @@ h6{
   }
 }
 
+.heading{
+  text-align: center;
+  padding: 10% 0;
+  font-size: 2.5rem;
+}
+
+
+
 /* Footer Section - Start */
 #map {
   width: 100%;
