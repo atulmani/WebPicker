@@ -592,6 +592,7 @@ font-family: 'Great Vibes', cursive;
 /* Designs - Start */
 #designs .item {
   border: 1px solid #fff5c0;
+  transition: all 1s ease-in-out;
 }
 
 .post-slide{
@@ -651,8 +652,8 @@ font-family: 'Great Vibes', cursive;
     top: 0;
     left: 0;
     opacity: 0;
-    background: rgba(0,0,0,0.6);
-    transition: opacity 0.40s linear 0s;
+    /* background: rgba(0,0,0,0.6); */
+    /* transition: opacity 0.90s linear 0s; */
 }
 
 .post-slide:hover .post-img:before{
@@ -660,7 +661,7 @@ font-family: 'Great Vibes', cursive;
 }
 
 .post-slide-banner:hover .post-img:before{
-    opacity: 0;
+    opacity: 1;
 }
 
 .post-slide .post-img img{
@@ -701,7 +702,7 @@ font-family: 'Great Vibes', cursive;
 
 
 .post-slide .post-content{
-    padding: 40px 0;
+    padding: 10px 0 0 0;
     position: relative;
 }
 
@@ -742,6 +743,21 @@ font-family: 'Great Vibes', cursive;
 
 .post-slide .description{
   color: white;
+}
+
+.post-slide .post-content .viewbtn{
+    /* display: block; */
+    opacity: 0;
+    /* transition: all 3s ease-in-out; */
+}
+
+
+
+.item:hover .viewbtn{
+    /* display: block; */
+    opacity: 1;
+    transition: all 0.6s ease-in-out;
+    /* transition: all 0.1s ease-in-out; */
 }
 
 /* Designs End */
