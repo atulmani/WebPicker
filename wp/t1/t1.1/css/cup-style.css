@@ -125,10 +125,10 @@ body{
   height: 30px;
   background: #fff;
   border-radius: 50%;
-  animation: flame 5s linear infinite;
+  animation: flame 6s linear infinite;
   opacity: 0;
-  filter: blur(2px);
-  animation-delay: calc(var(--i) * -0.5s );
+  filter: blur(3px);
+  animation-delay: calc(var(--i) * -0.3s );
 }
 
 
@@ -139,14 +139,25 @@ body{
   }
   15%{
     opacity: 1;
+    transform: translateY(-60px) scaleX(2);
   }
-  50%{
-    transform: translateY(-75px) scaleX(5);
-  }
-  80%{
+  30%{
     opacity: 1;
+    transform: translateY(-120px) scaleX(4);
+  }
+  45%{
+    opacity: 1;
+    transform: translateY(-180px) scaleX(8);
+  }
+  60%{
+    opacity: 1;
+    transform: translateY(-240px) scaleX(8);
+  }
+  75%{
+    opacity: 1;
+    transform: translateY(-300px) scaleX(4);
   }
   100%{
-    transform: translateY(-235px) scaleX(2);
+    transform: translateY(-340px) scaleX(1);
   }
 }
