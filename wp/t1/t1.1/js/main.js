@@ -112,8 +112,8 @@ $(function () {
       loop: true,
       autoplay: true,
       smartSpeed:3000,
-      autoplayTimeout: 3500,
-      autoplayHoverPause: false,
+      autoplayTimeout: 8500,
+      autoplayHoverPause: true,
       nav:false,
       // dots:true,
       responsive: {
@@ -124,7 +124,7 @@ $(function () {
           items: 2
         },
         1000: {
-          items: 3
+          items: 4
         }
       }
     });

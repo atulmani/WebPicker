@@ -15,6 +15,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Montserrat;
+  font-size:16px;
 }
 
 h1 {
@@ -60,7 +61,7 @@ h6 {
 /* Customized Nav Bar - Start */
 .main_header {
   position: fixed;
-  max-height: 80px;
+  max-height: 52px;
   z-index: 999;
   width: 100%;
   padding: 0 10%;
@@ -97,44 +98,44 @@ h6 {
 
 .logo {
   float: left;
-  margin-top: 2px;
-  width: 110px;
+  margin-top: 6px;
+  width: 60px;
   height: auto;
 }
 
 .logo-opposite {
   display: none;
   float: left;
-  margin-top: 2px;
-  width: 110px;
+  margin-top: 6px;
+  width: 60px;
   height: auto;
 }
 
 .sticky .logo {
   display: none;
   float: left;
-  margin-top: 2px;
-  width: 110px;
+  margin-top: 6px;
+  width: 60px;
   height: auto;
 }
 
 .sticky .logo-opposite {
   display: block;
   float: left;
-  margin-top: 2px;
-  width: 110px;
+  margin-top: 6px;
+  width: 60px;
   height: auto;
 }
 
 .logo-name {
   width: 250px;
-  font-size: 2.6rem;
+  font-size: 1.4rem;
   font-weight: 400;
   color: #ff4c68;
   float: left;
   padding-left: 6px;
   display: block;
-  margin-top: 20px;
+  margin-top: 18px;
   line-height: 1;
   margin-bottom: 0px;
   font-family: 'Great Vibes', cursive;
@@ -142,13 +143,13 @@ h6 {
 
 .sticky .logo-name {
   width: 250px;
-  font-size: 2.6rem;
+  font-size: 1.4rem;
   font-weight: 400;
   color: #fff5c0;
   float: left;
   padding-left: 6px;
   display: block;
-  margin-top: 20px;
+  margin-top: 18px;
   line-height: 1;
   margin-bottom: 0px;
   font-family: 'Great Vibes', cursive;
@@ -156,7 +157,7 @@ h6 {
 
 .header_menu {
   color: #ff4c68;
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   font-weight: lighter;
   padding-left: 40px;
 }
@@ -180,7 +181,7 @@ h6 {
   .logo {
     float: left;
     margin-top: -20px;
-    width: 100px;
+    width: 70px;
     height: auto;
     margin-left: -35px;
   }
@@ -189,7 +190,7 @@ h6 {
     display: none;
     float: left;
     margin-top: -22px;
-    width: 100px;
+    width: 70px;
     height: auto;
     margin-left: -35px;
   }
@@ -198,7 +199,7 @@ h6 {
     display: none;
     float: left;
     margin-top: -20px;
-    width: 100px;
+    width: 70px;
     height: auto;
     margin-left: -35px;
   }
@@ -206,32 +207,32 @@ h6 {
   .sticky .logo-opposite {
     float: left;
     margin-top: -22px;
-    width: 100px;
+    width: 70px;
     height: auto;
     margin-left: -35px;
   }
 
   .logo-name {
     float: none;
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 400;
     color: #ff4c68;
-    margin-left: 0;
-    margin-top: 0;
+    /* margin-left: 0; */
+    margin-top: -6px;
   }
 
   .sticky .logo-name {
     float: none;
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 400;
     color: #fff5c0;
-    margin-left: 0;
-    margin-top: 0;
+    /* margin-left: 0; */
+    margin-top: -6px;
   }
 }
 
 nav {
-  padding-top: 20px;
+  padding-top: 10px;
   float: right;
   /* width: 85%;  */
 }
@@ -279,15 +280,16 @@ nav ul a.active {
 nav ul li a:hover, nav ul li a:focus {
   text-decoration: none;
   font-weight: bold;
+  font-size:1.5rem;
 }
 
 .mobile-toggle {
   display: none;
   cursor: pointer;
-  font-size: 20px;
+  /* font-size: 20px; */
   position: absolute;
   right: 22px;
-  top: 22px;
+  top: 14px;
   width: 30px;
   transition: all 1s ease-in-out;
 }
@@ -592,6 +594,7 @@ font-family: 'Great Vibes', cursive;
 /* Designs - Start */
 #designs .item {
   border: 1px solid #fff5c0;
+  transition: all 1s ease-in-out;
 }
 
 .post-slide{
@@ -651,8 +654,8 @@ font-family: 'Great Vibes', cursive;
     top: 0;
     left: 0;
     opacity: 0;
-    background: rgba(0,0,0,0.6);
-    transition: opacity 0.40s linear 0s;
+    /* background: rgba(0,0,0,0.6); */
+    /* transition: opacity 0.90s linear 0s; */
 }
 
 .post-slide:hover .post-img:before{
@@ -660,7 +663,7 @@ font-family: 'Great Vibes', cursive;
 }
 
 .post-slide-banner:hover .post-img:before{
-    opacity: 0;
+    opacity: 1;
 }
 
 .post-slide .post-img img{
@@ -701,7 +704,7 @@ font-family: 'Great Vibes', cursive;
 
 
 .post-slide .post-content{
-    padding: 40px 0;
+    padding: 10px 0 0 0;
     position: relative;
 }
 
@@ -742,6 +745,21 @@ font-family: 'Great Vibes', cursive;
 
 .post-slide .description{
   color: white;
+}
+
+.post-slide .post-content .viewbtn{
+    /* display: block; */
+    opacity: 0;
+    /* transition: all 3s ease-in-out; */
+}
+
+
+
+.item:hover .viewbtn{
+    /* display: block; */
+    opacity: 1;
+    transition: all 0.6s ease-in-out;
+    /* transition: all 0.1s ease-in-out; */
 }
 
 /* Designs End */
