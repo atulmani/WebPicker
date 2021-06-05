@@ -214,7 +214,7 @@ h6 {
     font-size: 1.6rem;
     font-weight: 400;
     color: #ff4c68;
-    margin-left: 40;
+    /* margin-left: 40; */
     margin-top: -8px;
     text-align: center;
   }
@@ -698,9 +698,10 @@ font-family: 'Great Vibes', cursive;
   font-size: 0.7rem;
 }
 
-.WebPicker-Font {
+.webpicker-footer-text {
   font-family: 'Great Vibes', cursive;
   font-size: 0.9rem;
+  padding-left: 6px;
 }
 
 /* Carousel - Start */
