@@ -46,153 +46,6 @@ $(document).on('click', function() {
     });
    // fixed-top or sticky-top navbar background change on windows scrolling - end
 
-   // Javascript to Populate Map - Start
-   // <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
-
-     // When the window has finished loading create our google map below
-     google.maps.event.addDomListener(window, 'load', init);
-
-     function init() {
-       // Basic options for a simple Google Map
-       // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-       var mapOptions = {
-         // How zoomed in you want the map to start at (always required)
-         zoom: 11,
-
-         // The latitude and longitude to center the map (always required)
-         center: new google.maps.LatLng(18.5967323, 73.7011654), // New York
-
-         // How you would like to style the map.
-         // This is where you would paste any style found on Snazzy Maps.
-         styles: [{
-           "featureType": "all",
-           "elementType": "labels.text.fill",
-           "stylers": [{
-             "saturation": 36
-           }, {
-             "color": "#000000"
-           }, {
-             "lightness": 40
-           }]
-         }, {
-           "featureType": "all",
-           "elementType": "labels.text.stroke",
-           "stylers": [{
-             "visibility": "on"
-           }, {
-             "color": "#000000"
-           }, {
-             "lightness": 16
-           }]
-         }, {
-           "featureType": "all",
-           "elementType": "labels.icon",
-           "stylers": [{
-             "visibility": "off"
-           }]
-         }, {
-           "featureType": "administrative",
-           "elementType": "geometry.fill",
-           "stylers": [{
-             "color": "#000000"
-           }, {
-             "lightness": 20
-           }]
-         }, {
-           "featureType": "administrative",
-           "elementType": "geometry.stroke",
-           "stylers": [{
-             "color": "#000000"
-           }, {
-             "lightness": 17
-           }, {
-             "weight": 1.2
-           }]
-         }, {
-           "featureType": "landscape",
-           "elementType": "geometry",
-           "stylers": [{
-             "color": "#000000"
-           }, {
-             "lightness": 20
-           }]
-         }, {
-           "featureType": "poi",
-           "elementType": "geometry",
-           "stylers": [{
-             "color": "#000000"
-           }, {
-             "lightness": 21
-           }]
-         }, {
-           "featureType": "road.highway",
-           "elementType": "geometry.fill",
-           "stylers": [{
-             "color": "#000000"
-           }, {
-             "lightness": 17
-           }]
-         }, {
-           "featureType": "road.highway",
-           "elementType": "geometry.stroke",
-           "stylers": [{
-             "color": "#000000"
-           }, {
-             "lightness": 29
-           }, {
-             "weight": 0.2
-           }]
-         }, {
-           "featureType": "road.arterial",
-           "elementType": "geometry",
-           "stylers": [{
-             "color": "#000000"
-           }, {
-             "lightness": 18
-           }]
-         }, {
-           "featureType": "road.local",
-           "elementType": "geometry",
-           "stylers": [{
-             "color": "#000000"
-           }, {
-             "lightness": 16
-           }]
-         }, {
-           "featureType": "transit",
-           "elementType": "geometry",
-           "stylers": [{
-             "color": "#000000"
-           }, {
-             "lightness": 19
-           }]
-         }, {
-           "featureType": "water",
-           "elementType": "geometry",
-           "stylers": [{
-             "color": "#000000"
-           }, {
-             "lightness": 17
-           }]
-         }]
-       };
-
-       // Get the HTML DOM element that will contain your map
-       // We are using a div with id="map" seen below in the <body>
-       var mapElement = document.getElementById('map');
-
-       // Create the Google Map using our element and options defined above
-       var map = new google.maps.Map(mapElement, mapOptions);
-
-       // Let's also add a marker while we're at it
-       var marker = new google.maps.Marker({
-         position: new google.maps.LatLng(18.5967323, 73.7011654),
-         map: map,
-         title: 'WebPicker'
-       });
-     };
-
-   // Javascript to Populate Map - End
 
 
 // jQuery(document).ready(function(){
@@ -448,3 +301,150 @@ $('nav a').click(function(event) {
 
 new WOW().init();
 });
+
+
+  // map - start
+
+  // When the window has finished loading create our google map below
+  google.maps.event.addDomListener(window, 'load', init);
+
+  function init() {
+    // Basic options for a simple Google Map
+    // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+    var mapOptions = {
+      // How zoomed in you want the map to start at (always required)
+      zoom: 11,
+
+      // The latitude and longitude to center the map (always required)
+      center: new google.maps.LatLng(18.5967323, 73.7011654), // New York
+
+      // How you would like to style the map.
+      // This is where you would paste any style found on Snazzy Maps.
+      styles: [{
+        "featureType": "all",
+        "elementType": "labels.text.fill",
+        "stylers": [{
+          "saturation": 36
+        }, {
+          "color": "#000000"
+        }, {
+          "lightness": 40
+        }]
+      }, {
+        "featureType": "all",
+        "elementType": "labels.text.stroke",
+        "stylers": [{
+          "visibility": "on"
+        }, {
+          "color": "#000000"
+        }, {
+          "lightness": 16
+        }]
+      }, {
+        "featureType": "all",
+        "elementType": "labels.icon",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "administrative",
+        "elementType": "geometry.fill",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 20
+        }]
+      }, {
+        "featureType": "administrative",
+        "elementType": "geometry.stroke",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 17
+        }, {
+          "weight": 1.2
+        }]
+      }, {
+        "featureType": "landscape",
+        "elementType": "geometry",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 20
+        }]
+      }, {
+        "featureType": "poi",
+        "elementType": "geometry",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 21
+        }]
+      }, {
+        "featureType": "road.highway",
+        "elementType": "geometry.fill",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 17
+        }]
+      }, {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 29
+        }, {
+          "weight": 0.2
+        }]
+      }, {
+        "featureType": "road.arterial",
+        "elementType": "geometry",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 18
+        }]
+      }, {
+        "featureType": "road.local",
+        "elementType": "geometry",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 16
+        }]
+      }, {
+        "featureType": "transit",
+        "elementType": "geometry",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 19
+        }]
+      }, {
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 17
+        }]
+      }]
+    };
+
+    // Get the HTML DOM element that will contain your map
+    // We are using a div with id="map" seen below in the <body>
+    var mapElement = document.getElementById('map');
+
+    // Create the Google Map using our element and options defined above
+    var map = new google.maps.Map(mapElement, mapOptions);
+
+    // Let's also add a marker while we're at it
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(18.5967323, 73.7011654),
+      map: map,
+      title: 'WebPicker'
+    });
+  }
+// map - end
