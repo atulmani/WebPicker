@@ -108,7 +108,7 @@ $(function () {
   $(document).ready(function() {
     var owl = $('#designs-list');
     owl.owlCarousel({
-      margin: 80,
+      margin: 20,
       loop: true,
       autoplay: true,
       smartSpeed:3000,
