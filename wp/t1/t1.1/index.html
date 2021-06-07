@@ -3,8 +3,8 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Web Picker - YOU DREAM WE DESIGN <br /> Website design & development <br />we design your dream website, choose your website design template, we will setup your dream website for you">
-  <meta name="keywords" content="website design and development">
+  <meta name="description" content="WebPicker - YOU DREAM WE DESIGN <br /> Website design & development <br />we design your dream website, choose your website design template, we will setup your dream website for you">
+  <meta name="keywords" content="website design and development in India Service Provider for Website Design and Development Pune, Bangalore, PAN India">
   <meta name="author" content="Web Picker">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -295,7 +295,9 @@
                     <a href=""><img src="img/team/sa.jpeg" alt=""></a>
                   </span>
                   <div style="padding-bottom:10px; " >
-                    <a href="../../../Infra/manu/t1/t1.1/index.html" class="viewbtn" >
+                    <input id="1" type="hidden" name="" value="https://atulmani.github.io/WebPicker/Infra/manu/t1/t1.1/index.html">
+                    <a href="site.html" onclick="getSiteURL(document.getElementById('1').value);" class="viewbtn" >
+                    <!-- <a href="../../../Infra/manu/t1/t1.1/index.html" class="viewbtn" > -->
                       <button type="button" class="btn btn-light">
                           <span> View </span>
                           <i class="fad fa-angle-double-right"></i>
@@ -341,7 +343,9 @@
                     <a href=""><img src="img/team/sa.jpeg" alt=""></a>
                   </span>
                   <div style="padding-bottom:10px; " >
-                    <a href="../../../Food/tushar/t1/t1.1/index.html" class="viewbtn" >
+                    <input id="2" type="hidden" name="" value="https://atulmani.github.io/WebPicker/Food/tushar/t1/t1.1/index.html">
+                    <a href="site.html" onclick="getSiteURL(document.getElementById('2').value);" class="viewbtn" >
+                    <!-- <a href="../../../Food/tushar/t1/t1.1/index.html" class="viewbtn" > -->
                       <button type="button" class="btn btn-light">
                           <span> View </span>
                           <i class="fad fa-angle-double-right"></i>
@@ -389,7 +393,9 @@
                     <a href=""><img src="img/team/at.png" alt=""></a>
                   </span>
                   <div style="padding-bottom:10px; " >
-                    <a href="../../../Education/atul/t1/t1.1/index.html" class="viewbtn" >
+                    <input id="3" type="hidden" name="" value="https://atulmani.github.io/WebPicker/Education/atul/t1/t1.1/index.html">
+                    <a href="site.html" onclick="getSiteURL(document.getElementById('3').value);" class="viewbtn" >
+                    <!-- <a href="../../../Education/atul/t1/t1.1/index.html" class="viewbtn" > -->
                       <button type="button" class="btn btn-light">
                           <span> View </span>
                           <i class="fad fa-angle-double-right"></i>
@@ -437,7 +443,9 @@
                     <a href=""><img src="img/team/at.png" alt=""></a>
                   </span>
                   <div style="padding-bottom:10px; " >
-                    <a href="../../../Infra/atul/t1/t1.1/index.html" class="viewbtn" >
+                    <input id="4" type="hidden" name="" value="https://atulmani.github.io/WebPicker/Infra/atul/t1/t1.1/index.html">
+                    <a href="site.html" onclick="getSiteURL(document.getElementById('4').value);" class="viewbtn" >
+                    <!-- <a href="../../../Infra/atul/t1/t1.1/index.html" class="viewbtn" > -->
                       <button type="button" class="btn btn-light">
                           <span> View </span>
                           <i class="fad fa-angle-double-right"></i>
@@ -485,7 +493,9 @@
                     <a href=""><img src="img/team/at.png" alt=""></a>
                   </span>
                   <div style="padding-bottom:10px; " >
-                    <a href="../../../Food/manu/t2/t2.1/index.html" class="viewbtn" >
+                    <input id="5" type="hidden" name="" value="https://atulmani.github.io/WebPicker/Food/manu/t2/t2.1/index.html">
+                    <a href="site.html" onclick="getSiteURL(document.getElementById('5').value);" class="viewbtn" >
+                    <!-- <a href="../../../Food/manu/t2/t2.1/index.html" class="viewbtn" > -->
                       <button type="button" class="btn btn-light">
                           <span> View </span>
                           <i class="fad fa-angle-double-right"></i>
@@ -533,7 +543,9 @@
                     <a href=""><img src="img/team/at.png" alt=""></a>
                   </span>
                   <div style="padding-bottom:10px; " >
-                    <a href="../../../Infra/anant/t1/t1.2/index.html" class="viewbtn" >
+                    <input id="6" type="hidden" name="" value="https://atulmani.github.io/WebPicker/Infra/anant/t1/t1.2/index.html">
+                    <a href="site.html" onclick="getSiteURL(document.getElementById('6').value);" class="viewbtn" >
+                    <!-- <a href="../../../Infra/anant/t1/t1.2/index.html" class="viewbtn" > -->
                       <button type="button" class="btn btn-light">
                           <span> View </span>
                           <i class="fad fa-angle-double-right"></i>
@@ -805,6 +817,15 @@
 
   <script src="js/main.js"></script>
 
+  <!-- To get Site URL from document and save it into local storage to use in site.html - start -->
+  <script type="text/javascript">
+    function getSiteURL(siteURL){
+         // alert(siteURL); //just for information
+       localStorage.setItem("siteURL",siteURL);
+        // alert(siteURL); //just for information
+    }
+  </script>
+  <!-- To get Site URL from document and save it into local storage to use in site.html - end -->
   <!-- Owl Carousel Javascript  -->
   <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
