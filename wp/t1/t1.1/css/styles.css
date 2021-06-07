@@ -810,6 +810,16 @@ font-family: 'Great Vibes', cursive;
   }
 }
 
+.site-heading-after {
+  content: "";
+  width: 30px;
+  display: block;
+  /* margin-top: 10px; */
+  border-bottom: 4px solid #ff4c68;
+  /* border-bottom: 4px solid #444; */
+  margin-left: 47%;
+}
+
 
 
 
