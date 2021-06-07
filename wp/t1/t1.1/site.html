@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Web Picker - YOU DREAM WE DESIGN <br /> Website design & development <br />we design your dream website, choose your website design template, we will setup your dream website for you">
+  <meta name="description" content="WebPicker - YOU DREAM WE DESIGN <br /> Website design & development <br />we design your dream website, choose your website design template, we will setup your dream website for you">
   <meta name="keywords" content="website design and development">
   <meta name="author" content="Web Picker">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,6 +35,7 @@
 
   <link rel="stylesheet" href="css/styles.css">
 
+  <!-- To set the Site URL into iframe source from local storage to show the website link - start -->
   <script type="text/javascript">
     function getSiteURL(){
         // alert("started_2");
@@ -43,6 +44,7 @@
          // alert(siteURL);
     }
   </script>
+  <!-- To set the Site URL into iframe source from local storage to show the website link - end -->
 
 </head>
 
@@ -91,18 +93,23 @@
     <a href="index.html#header" ><img src="./img/logo.png" class="logo-site" /></a>
     <a href="index.html#header"><img src="./img/logo-opposite.png" class="logo-opposite-site"/></a>
     <p class="site-category-link-p">
-    <a href="#" class="site-category-link"> <i class="fa fa-home"></i></a> |
-    <a href="#" class="site-category-link">Popular</a> |
+    <a href="index.html" class="site-category-link"> <i class="fa fa-home"></i></a>
+    |
+    <a href="designs.html" class="site-category-link">Designs</a>
+    |
+    <a href="index.html#pricing" class="site-category-link">Pricing</a>
+    |
+    <a href="index.html#footer" class="site-category-link">Contacts</a>
+
+    <!-- <a href="#" class="site-category-link">Popular</a> |
     <a href="#" class="site-category-link">Warm</a> |
     <a href="#" class="site-category-link">Cool</a> |
     <a href="#" class="site-category-link">Bright</a> |
-    <a href="#" class="site-category-link">Dark</a>
+    <a href="#" class="site-category-link">Dark</a> -->
   </p>
   </div>
 
   <div class="" style="padding-top:48px" >
-    <!-- <iframe allow="autoplay; encrypted-media" frameborder="0" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src="https://atulmani.github.io/WebPicker/Education/dolu/t1/t1.1/index.html" title="W3Schools Free Online Web Tutorials"  > -->
-  <!-- <iframe width="100%" height="800px" allow="autoplay; encrypted-media" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen src="https://atulmani.github.io/WebPicker/Education/dolu/t1/t1.1/index.html" title="W3Schools Free Online Web Tutorials"  > -->
     <iframe id="siteURLID" width="100%" height="800px" allow="autoplay; encrypted-media" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen src="" title="W3Schools Free Online Web Tutorials"  >
     </iframe>
   </div>
