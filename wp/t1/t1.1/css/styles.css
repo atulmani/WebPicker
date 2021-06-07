@@ -734,8 +734,15 @@ font-family: 'Great Vibes', cursive;
 
 /* Site page style - Start */
 .site-category-link-p{
-  font-size: 0.7rem;
+  font-size: 1.2rem;
+  /* font-weight: bold; */
   margin-top: 14px;
+  color:#ff4c68;
+  font-family: 'Great Vibes', cursive;
+}
+
+.site-category-link{
+  color:#ff4c68;
 }
 
 .logo-site {
@@ -805,8 +812,9 @@ font-family: 'Great Vibes', cursive;
   }
 
   .site-category-link-p{
-    font-size: 0.7rem;
+    font-size: 1rem;
     margin-top: -10px;
+    font-family: 'Great Vibes', cursive;
   }
 }
 
