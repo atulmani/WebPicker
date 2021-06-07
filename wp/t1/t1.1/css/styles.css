@@ -731,3 +731,104 @@ font-family: 'Great Vibes', cursive;
   padding: 18px;
 }
 /* Designs page style - End */
+
+/* Site page style - Start */
+.site-category-link-p{
+  font-size: 1.2rem;
+  /* font-weight: bold; */
+  margin-top: 14px;
+  color:#ff4c68;
+  font-family: 'Great Vibes', cursive;
+}
+
+.site-category-link{
+  color:#ff4c68;
+}
+
+.logo-site {
+  float: left;
+  margin-top: 3px;
+  width: 60px;
+  height: auto;
+}
+
+.logo-opposite-site {
+  display: none;
+  float: left;
+  margin-top: 3px;
+  width: 60px;
+  height: auto;
+}
+
+.sticky .logo-site {
+  display: none;
+  float: left;
+  margin-top: 3px;
+  width: 60px;
+  height: auto;
+}
+
+.sticky .logo-opposite-site {
+  display: block;
+  float: left;
+  margin-top: 3px;
+  width: 60px;
+  height: auto;
+}
+
+@media (max-width: 766px) {
+  .logo-site {
+    float: left;
+    margin-top: -22px;
+    width: 60px;
+    height: auto;
+    margin-left: -35px;
+  }
+
+  .sticky .logo-site {
+    display: none;
+    float: left;
+    margin-top: -22px;
+    width: 60px;
+    height: auto;
+    margin-left: -35px;
+  }
+
+  .logo-opposite-site {
+    display: none;
+    float: left;
+    margin-top: -22px;
+    width: 60px;
+    height: auto;
+    margin-left: -35px;
+  }
+
+  .sticky .logo-opposite-site {
+    float: left;
+    margin-top: -22px;
+    width: 60px;
+    height: auto;
+    margin-left: -35px;
+  }
+
+  .site-category-link-p{
+    font-size: 1rem;
+    margin-top: -10px;
+    font-family: 'Great Vibes', cursive;
+  }
+}
+
+.site-heading-after {
+  content: "";
+  width: 30px;
+  display: block;
+  /* margin-top: 10px; */
+  border-bottom: 4px solid #ff4c68;
+  /* border-bottom: 4px solid #444; */
+  margin-left: 47%;
+}
+
+
+
+
+/* Site page style - End */
