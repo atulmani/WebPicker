@@ -35,9 +35,20 @@
 
   <link rel="stylesheet" href="css/styles.css">
 
+  <script type="text/javascript">
+    function getSiteURL(){
+        // alert("started_2");
+        var siteURL = localStorage.getItem("siteURL");
+        document.getElementById("siteURLID").src = siteURL;
+         // alert(siteURL);
+    }
+  </script>
+
 </head>
 
-<body>
+<body onload="getSiteURL()">
+
+
 
   <!-- Customized Navbar - Start -->
   <!-- <section id="header">
@@ -91,7 +102,8 @@
 
   <div class="" style="padding-top:48px" >
     <!-- <iframe allow="autoplay; encrypted-media" frameborder="0" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src="https://atulmani.github.io/WebPicker/Education/dolu/t1/t1.1/index.html" title="W3Schools Free Online Web Tutorials"  > -->
-  <iframe width="100%" height="800px" allow="autoplay; encrypted-media" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen src="https://atulmani.github.io/WebPicker/Education/dolu/t1/t1.1/index.html" title="W3Schools Free Online Web Tutorials"  >
+  <!-- <iframe width="100%" height="800px" allow="autoplay; encrypted-media" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen src="https://atulmani.github.io/WebPicker/Education/dolu/t1/t1.1/index.html" title="W3Schools Free Online Web Tutorials"  > -->
+    <iframe id="siteURLID" width="100%" height="800px" allow="autoplay; encrypted-media" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen src="" title="W3Schools Free Online Web Tutorials"  >
     </iframe>
   </div>
 
@@ -150,8 +162,6 @@
       <span class="webpicker-footer-text"> Web Picker</span>
     </p>
   </div>
-
-
 
   <!-- Jquery order should be higher from normal javascript  -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
