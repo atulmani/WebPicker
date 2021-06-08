@@ -1,13 +1,37 @@
+// Ristrict mouse right click - start
+document.addEventListener("contextmenu", function(e){
+    e.preventDefault();
+}, false);
+
+// With jQuery
+$(document).on({
+    "contextmenu": function(e) {
+        console.log("ctx menu button:", e.which);
+
+        // Stop the context menu
+        e.preventDefault();
+    },
+    "mousedown": function(e) {
+        console.log("normal mouse down:", e.which);
+    },
+    "mouseup": function(e) {
+        console.log("normal mouse up:", e.which);
+    }
+});
+
+// Ristrict mouse right click - end
+
+
 jQuery(document).ready(function(){
-    
+
     $('#videolink').magnificPopup({
         type:'inline',
         midClick:true
-        
+
     });
-    
- 
-    
+
+
+
 });
 
 $(function () {
@@ -18,11 +42,11 @@ $(function () {
         loop: true,
         autoplayHoverPause: true,
         nav: true,
-        dots: false,         
-        responsive: {            
+        dots: false,
+        responsive: {
             0: {
                 items: 1
-            },             
+            },
             480: {
                 items: 2
             }
@@ -46,10 +70,10 @@ $(function () {
     }, {
         offset: 'bottom-in-view'
     });
-    
-    
-}); 
- 
+
+
+});
+
 
    $(function () {
 
@@ -57,8 +81,8 @@ $(function () {
         animation: 'slide'
     });
 
-          
-    
+
+
      $('.gallery').magnificPopup({
         delegate: '.popimg',
         type: 'image',
@@ -90,7 +114,7 @@ $(function () {
 
     });
 
-}); 
+});
 
   $(document).ready(function(){
       $("#testimonial-slider").owlCarousel({
@@ -100,8 +124,8 @@ $(function () {
           itemsTablet:[768,1],
           pagination:true,
           autoPlay:false
-          
-      });     
+
+      });
      $('.count').counterUp({
                 delay: 10,
                 time: 4000
@@ -120,23 +144,23 @@ $(function(){
         autoplayHoverPause:true,
         nav:false,
         dots:false,
-        
+
         responsive:{
             0:{
                 items:2
             },
-            
+
              480:{
                 items:3
             },
-            
+
              768:{
                 items:6
             }
-         
+
         }
     });
-  
+
     $("#news-slider").owlCarousel({
         items:3,
         itemsDesktop:[1199,3],
@@ -160,8 +184,8 @@ $(function(){
 
 
     });
-   
- 
+
+
 });
 
 jQuery(document).ready(function(){
@@ -174,7 +198,7 @@ jQuery(document).ready(function(){
     }
 });
 
- 
+
 $('.mobile-toggle').click(function() {
     if ($('.main_header').hasClass('open-nav')) {
         $('.main_header').removeClass('open-nav');
@@ -182,10 +206,10 @@ $('.mobile-toggle').click(function() {
         $('.main_header').addClass('open-nav');
     }
 });
-    
-    
-    
-    
+
+
+
+
 
 $('.main_header li a').click(function() {
     if ($('.main_header').hasClass('open-nav')) {
@@ -194,7 +218,7 @@ $('.main_header li a').click(function() {
     }
 });
 
- 
+
 $('nav a').click(function(event) {
     var id = $(this).attr("href");
     var offset = 0;
@@ -204,15 +228,6 @@ $('nav a').click(function(event) {
     }, 600);
     event.preventDefault();
 });
-  
+
 new WOW().init();
 });
-
-
-
-
-
-
-
-
-
