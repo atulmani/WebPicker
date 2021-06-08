@@ -3,32 +3,33 @@ body{
   width: 100%;
   margin: 0;
   padding: 0;
+  font-size:1rem;
   font-family: 'Montserrat';
 }
 
 h1{
-  font-size: 3rem;
+  font-size: 1.8rem;
   font-weight: bold;
 }
 
 h2{
-  font-size: 2.5rem;
+  font-size: 1.6rem;
   font-weight: bold;
 }
 h3{
-  font-size: 2rem;
+  font-size: 1.4rem;
   font-weight: bold;
 }
 h4{
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight:normal;
 }
 h5{
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   font-weight:normal;
 }
 h6{
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight:normal;
 }
 
@@ -50,12 +51,12 @@ h6{
   border-style: solid;
   border-color: #1638A0;
   /* border: 0 0 5px 0 solid #1638A0; */
-}
+  }
 
 .navbar-brand{
   /* color: white; */
   color:#1638A0;
-  font-size: 1.7rem;
+  font-size: 1.6rem;
 }
 
 .navbar-brand:hover{
@@ -68,15 +69,15 @@ h6{
 }
 
 .nav-item{
-  width: 120px;
+  width: 80px;
   /* margin-left: 10px; */
-  line-height: 2;
+  line-height: 1.2;
 }
 
 .nav-link{
   /* color: white; */
   color:#1638A0;
-  font-size: 1rem;
+  font-size: 0.8rem;
   padding: 10px 0 0 0;
   text-align: center;
   font-weight: bold;
