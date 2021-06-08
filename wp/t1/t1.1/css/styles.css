@@ -745,6 +745,10 @@ font-family: 'Great Vibes', cursive;
   color:#ff4c68;
 }
 
+.sticky .site-category-link{
+  color:#fff5c0;
+}
+
 .logo-site {
   float: left;
   margin-top: 3px;
