@@ -16,7 +16,7 @@ body{
   margin: 0;
   padding: 0;
   font-family: 'Montserrat';
-  background-color: #f7cac9;
+  /* background-color: #f7cac9; */
 }
 
 h1{
@@ -40,10 +40,40 @@ h5{
   font-size: 1.2rem;
   font-weight:normal;
 }
-h6{
+/* h6{
   font-size: 0.8rem;
   font-weight:normal;
-}
+} */
+
+h6 {
+       font-family: sans-serif;
+       margin: 100px auto;
+       color: #228B22;
+       text-align: center;
+       font-size: 30px;
+       max-width: 600px;
+       position: relative;
+     }
+     h6:before {
+       content: "";
+       display: block;
+       width: 130px;
+       height: 5px;
+       background: #191970;
+       left: 0;
+       top: 50%;
+       position: absolute;
+     }
+     h6:after {
+       content: "";
+       display: block;
+       width: 130px;
+       height: 5px;
+       background: #191970;
+       right: 0;
+       top: 50%;
+       position: absolute;
+     }
 
 
 /********** class selectors ************/
@@ -58,6 +88,7 @@ h6{
   border-left: 0;
   border-right: 0;
   border-bottom: 0;
+  padding: 1% 5% ;
 }
 
 .navbar-brand{
@@ -97,7 +128,7 @@ h6{
   color: #343148;
   font-size: 1.1rem;
   background-color:#ededed;
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 .navbar-toggler{
@@ -108,10 +139,10 @@ h6{
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
-/* .sticky {
-  background-color: #161d65 !important;
-  transition: all 0.9s ease-in-out;
-} */
+.sticky {
+  background-color: #343148 !important;
+  transition: all 0.5s linear;
+}
 
 .sticky .nav-link, .sticky .navbar-brand, .sticky .navbar-text {
   color: white;
@@ -124,6 +155,16 @@ h6{
   margin-top: 0px;
   border-radius: 2px;
 }
+
+.yooga-oo{
+  color: #343148;
+}
+
+.sticky .yooga-oo{
+  color: #fff;
+  transition: all 0.5s linear;
+}
+
 
 .sticky .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
@@ -151,6 +192,58 @@ h6{
     width: 100% ;
     display: block;
     border-radius: 0 0 0 0 ;
+  }
+}
+
+.heading1{
+  padding: 30% 0 0 8%;
+  font-size: 4.5rem;
+  color: #343148;
+}
+
+@media (max-width: 1080px){
+  .heading1{
+    padding: 25% 0 0 6%;
+    font-size: 2rem;
+    color: #343148;
+  }
+}
+
+.mybutton {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 16px 1px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.3rem;
+  margin: 4px 0 4px 8%;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-family: 'Baloo Tammudu 2'
+  /* border-radius: 8px; */
+}
+.button5 {
+  background-color: #343148 ;
+  color: #f7cac9;
+  /* border: 2px solid #555555; */
+}
+.button5:hover {
+  background-color: #fff;
+  color: #343148;
+}
+
+.heading-content{
+  padding: 3% 8%;
+  color: #343148;
+}
+
+@media (max-width: 1080px){
+  .heading-content{
+    padding: 3% 8%;
+    color: #343148;
+    font-size: 0.8rem;
   }
 }
 
