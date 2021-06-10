@@ -362,6 +362,11 @@ nav ul li a:hover, nav ul li a:focus {
     width: 30%;
     padding-left: 10px;
   }
+
+  .social-icons {
+    margin: 20px 10px;
+    color:#ff4c68;
+  }
 }
 
 .banner-section {
