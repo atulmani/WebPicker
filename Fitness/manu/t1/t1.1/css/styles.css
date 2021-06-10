@@ -22,6 +22,7 @@ body{
 h1{
   font-size: 3rem;
   font-weight: bold;
+  color: #343148;
 }
 
 h2{
@@ -47,19 +48,19 @@ h5{
 
 h6 {
        font-family: sans-serif;
-       margin: 100px auto;
-       color: #228B22;
+       margin-top: 40px;
+       color: #888;
        text-align: center;
-       font-size: 30px;
-       max-width: 600px;
+       font-size: 1rem;
+       max-width: 185px;
        position: relative;
      }
      h6:before {
        content: "";
        display: block;
-       width: 130px;
-       height: 5px;
-       background: #191970;
+       width: 30px;
+       height: 2px;
+       background: #f7cac9;
        left: 0;
        top: 50%;
        position: absolute;
@@ -67,13 +68,73 @@ h6 {
      h6:after {
        content: "";
        display: block;
-       width: 130px;
-       height: 5px;
-       background: #191970;
+       width: 30px;
+       height: 2px;
+       background: #f7cac9;
        right: 0;
        top: 50%;
        position: absolute;
      }
+
+.h6-wwd{
+  font-family: sans-serif;
+  margin: 40px 0 20px 45%;
+  color: #888;
+  text-align: center;
+  font-size: 1rem;
+  max-width: 185px;
+  position: relative;
+}
+.h6-wwd:before {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: #f7cac9;
+  left: 0;
+  top: 50%;
+  position: absolute;
+}
+.h6-wwd:after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: #f7cac9;
+  right: 0;
+  top: 50%;
+  position: absolute;
+}
+
+.h6-wwd1{
+  font-family: sans-serif;
+  margin: 40px 0 20px 80px;
+  color: #888;
+  text-align: center;
+  font-size: 1rem;
+  max-width: 185px;
+  position: relative;
+}
+.h6-wwd1:before {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: #f7cac9;
+  left: 0;
+  top: 50%;
+  position: absolute;
+}
+.h6-wwd1:after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: #f7cac9;
+  right: 0;
+  top: 50%;
+  position: absolute;
+}
 
 
 /********** class selectors ************/
@@ -83,7 +144,8 @@ h6 {
 
 /* navbar start */
 .navbar{
-  background-color: rgba(0,0,0,0.1); /*color changed*/
+  background-color: rgba(0,0,0,0.1); /*color changed */
+  /* background-color: #f7cac9; */
   border-top: 0;
   border-left: 0;
   border-right: 0;
@@ -131,12 +193,8 @@ h6 {
   margin-top: 0;
 }
 
-.navbar-toggler{
-  border: 1px solid #ffff00;
-}
-
 .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(52,49,72, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
 .sticky {
@@ -195,6 +253,19 @@ h6 {
   }
 }
 
+.banner{
+  background-color:#f7cac9 ;
+  margin-top: -80px ;
+}
+
+@media (max-width: 1080px){
+  .banner{
+    background-color:#f7cac9 ;
+    margin-top: -90% ;
+  }
+}
+
+
 .heading1{
   padding: 30% 0 0 8%;
   font-size: 4.5rem;
@@ -203,7 +274,7 @@ h6 {
 
 @media (max-width: 1080px){
   .heading1{
-    padding: 25% 0 0 6%;
+    padding: 110% 0 0 6%;
     font-size: 2rem;
     color: #343148;
   }
@@ -218,7 +289,7 @@ h6 {
   text-decoration: none;
   display: inline-block;
   font-size: 1.3rem;
-  margin: 4px 0 4px 8%;
+  margin: 4px 0 4px 0;
   transition-duration: 0.4s;
   cursor: pointer;
   font-family: 'Baloo Tammudu 2'
@@ -234,6 +305,17 @@ h6 {
   color: #343148;
 }
 
+.button6 {
+  background-color: #343148 ;
+  color: #f7cac9;
+  /* border: 2px solid #555555; */
+}
+.button6:hover {
+  background-color: #f7cac9;
+  color: #343148;
+}
+
+
 .heading-content{
   padding: 3% 8%;
   color: #343148;
@@ -245,6 +327,71 @@ h6 {
     color: #343148;
     font-size: 0.8rem;
   }
+}
+
+.about-content{
+  padding: 5% 10% 0 0;
+  font-family: 'Baloo Tammudu 2';
+  font-size: 1rem;
+}
+
+.card-content{
+  font-family: 'Baloo Tammudu 2';
+  font-size: 1rem;
+}
+
+.card{
+  text-align: center;
+  width: 100%;
+}
+
+.card:hover{
+  background-color: #343148;
+  transition: all 0.2s linear;
+}
+
+.card:hover .card-heading{
+  color: #f7cac9;
+  transition: all 0.2s linear;
+}
+
+.card:hover .card-content{
+  color: #fff;
+  transition: all 0.2s linear;
+}
+
+.card-img{
+  width:25% ;
+  background-color: #f7cac9 ;
+  border-radius:50% ;
+}
+
+.card-heading{
+  padding: 30px 0 20px 0;
+}
+
+.shedule-plus{
+  background-color: #f7cac9 ;
+  font-size: 2rem ;
+  color: #343148;
+  padding: 10px 20px;
+  text-align: right;
+  /* border: 1px solid yellow; */
+  border-radius: 50%;
+}
+
+.shedule-card-box{
+  max-width: 290px ;
+  /* border: 1px solid red ; */
+  text-align: left;
+  margin-left: 30px;
+  border-radius: 14px;
+  /* height: 40px; */
+  box-shadow: 0 3px rgba(0,0,0,0.2);
+  margin-top:-20px;
+  z-index: 999;
+  background-color: #fff;
+  position: relative;
 }
 
 .statistics-content-area{
