@@ -26,10 +26,16 @@
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="./css/styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/venobox/1.9.3/venobox.css" integrity="sha512-QNXKinXDUMic9CFhTKRcc6oVgQctTz1ctZ0enkJrPKwA2aOeYbXxBjDqneUMlor7kGPp+qzbyN6jQrMO+ZsGsA==" crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
 
   <!-- Vendor JS Files -->
-  <!-- <script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ==" crossorigin="anonymous"
     referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"
@@ -40,22 +46,9 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <!-- Vendor CSS Files -->
-  <!-- <link href="./vendor/animate.css/animate.min.css" rel="stylesheet"> -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-
-  <!-- <link href="./vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet"> -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/venobox/1.9.3/venobox.css" integrity="sha512-QNXKinXDUMic9CFhTKRcc6oVgQctTz1ctZ0enkJrPKwA2aOeYbXxBjDqneUMlor7kGPp+qzbyN6jQrMO+ZsGsA==" crossorigin="anonymous"
-    referrerpolicy="no-referrer" />
-  <!-- <link href="./vendor/aos/aos.css" rel="stylesheet"> -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-
-  <!-- Template Main JS File -->
-  <script src="js/main.js"></script>
-
 </head>
 
-<body>
+<body >
   <div id="topbar" class="d-flex align-items-center fixed-top">
     <div class="container d-flex">
       <div class="contact-info mr-auto">
@@ -70,21 +63,23 @@
     <div class="container d-flex align-items-center">
 
       <h1 class="logo mr-auto"><a href="index.html">Little Bird</a></h1>
-      <nav class="nav-menu d-none d-lg-block">
+      <nav id = "navbar" class="nav-menu d-none d-lg-block mobile-nav-toggle">
         <ul>
           <li class="active"><a href="index.html"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#menu">Menu</a></li>
           <li><a href="#specials">Specials</a></li>
           <li><a href="#events">Events</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
           <li><a href="#gallery">Gallery</a></li>
           <li><a href="#chefs">Chefs</a></li>
           <li><a href="#contact">Contact</a></li>
           <li class="book-a-table text-center"><a href="#book-a-table">Book a table</a></li>
         </ul>
+        <span class = "mobile-nav mobile-nav-close mobile-nav-toggle"><i class="fa fa-close"></i></span>
       </nav><!-- .nav-menu -->
-
     </div>
+    <button type="button" class="mobile-nav-toggle d-lg-none"><i class="fa fa-bars"></i></button>
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
@@ -93,7 +88,7 @@
       <div class="row">
         <div class="col-lg-8">
           <h1>Welcome to <span>Little Bird</span></h1>
-          <h2>Delivering great food for more than 18 years!</h2>
+          <h2>Delivering great food for more than two decades!</h2>
 
           <div class="btns">
             <a href="#menu" class="btn-menu animated fadeInUp scrollto">Our Menu</a>
@@ -101,7 +96,7 @@
           </div>
         </div>
         <div class="col-lg-4 d-flex align-items-center justify-content-center" data-aos="zoom-in" data-aos-delay="200">
-          <a href="https://www.youtube.com/watch?v=GlrxcuEDyF8" class="venobox play-btn" data-vbtype="video" data-autoplay="true"></a>
+          <a href="https://www.youtube.com/watch?v=C0mwQjfsIZ8" class="venobox play-btn" data-vbtype="video" data-autoplay="true"></a>
         </div>
       </div>
     </div>
@@ -189,8 +184,8 @@
             <ul id="menu-flters">
               <li data-filter="*" class="filter-active">All</li>
               <li data-filter=".filter-starters">Starters</li>
-              <li data-filter=".filter-salads">Salads</li>
-              <li data-filter=".filter-specialty">Specialty</li>
+              <li data-filter=".filter-salads">Main Course</li>
+              <li data-filter=".filter-specialty">Specials</li>
             </ul>
           </div>
         </div>
@@ -200,7 +195,7 @@
           <div class="col-lg-6 menu-item filter-starters">
             <img src="./img/menu/lobster-bisque.jpg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Lobster Bisque</a><span>$5.95</span>
+              <a href="#">Lobster Bisque</a><span>₹395</span>
             </div>
             <div class="menu-ingredients">
               Lobster tails, white wine, heavy cream, tomato paste, lobster
@@ -210,7 +205,7 @@
           <div class="col-lg-6 menu-item filter-specialty">
             <img src="./img/menu/bread-barrel.jpg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Italian Ribollita</a><span>$6.95</span>
+              <a href="#">Italian Ribollita</a><span>₹450</span>
             </div>
             <div class="menu-ingredients">
               bread, cannellini beans, lacinato kale, cabbage, carrot, beans, chard, celery, potatoes, onion.
@@ -220,7 +215,7 @@
           <div class="col-lg-6 menu-item filter-starters">
             <img src="./img/menu/cake.jpg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Crab Cake</a><span>$7.95</span>
+              <a href="#">Crab Cake</a><span>₹585</span>
             </div>
             <div class="menu-ingredients">
               A delicate crab cake served on a toasted roll with lettuce and tartar sauce
@@ -230,7 +225,7 @@
           <div class="col-lg-6 menu-item filter-salads">
             <img src="./img/menu/caesar.jpg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Veg. Caesar Salad</a><span>$8.95</span>
+              <a href="#">Veg. Caesar Salad</a><span>₹695</span>
             </div>
             <div class="menu-ingredients">
               Green Romaine lettuce , Cucumber ,Cherry tomatoes , Fried Bread Cubes (Croutons) , Mayonnaise, English Mustard Sauce , Lemon juice ,Black pepper corns, Parmesan cheese
@@ -240,7 +235,7 @@
           <div class="col-lg-6 menu-item filter-specialty">
             <img src="./img/menu/tuscan-grilled.jpg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Tuscan Grilled</a><span>$9.95</span>
+              <a href="#">Tuscan Grilled</a><span>₹495</span>
             </div>
             <div class="menu-ingredients">
               Grilled chicken with provolone, artichoke hearts, and roasted red pesto
@@ -250,7 +245,7 @@
           <div class="col-lg-6 menu-item filter-starters">
             <img src="./img/menu/mozzarella.jpg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Mozzarella Stick</a><span>$4.95</span>
+              <a href="#">Mozzarella Stick</a><span>₹175</span>
             </div>
             <div class="menu-ingredients">
               breadcrumbs, eggs , milk , mozzarella cheese,
@@ -260,7 +255,7 @@
           <div class="col-lg-6 menu-item filter-salads">
             <img src="./img/menu/greek-salad.jpg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Greek Salad</a><span>$9.95</span>
+              <a href="#">Greek Salad</a><span>₹285</span>
             </div>
             <div class="menu-ingredients">
               Fresh spinach, crisp romaine, tomatoes, and Greek olives
@@ -270,7 +265,7 @@
           <div class="col-lg-6 menu-item filter-salads">
             <img src="./img/menu/spinach-salad.jpg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Spinach Salad</a><span>$9.95</span>
+              <a href="#">Spinach Salad</a><span>₹255</span>
             </div>
             <div class="menu-ingredients">
               Fresh spinach with mushrooms, hard boiled egg, and warm bacon vinaigrette
@@ -280,7 +275,7 @@
           <div class="col-lg-6 menu-item filter-specialty">
             <img src="./img/menu/lobster-roll.jpg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Lobster Roll</a><span>$12.95</span>
+              <a href="#">Lobster Roll</a><span>₹150</span>
             </div>
             <div class="menu-ingredients">
               Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
@@ -411,7 +406,7 @@
             <div class="col-lg-6 pt-4 pt-lg-0 content">
               <h3>Birthday Parties</h3>
               <div class="price">
-                <p><span>$189</span></p>
+                <p><span>₹4999</span></p>
               </div>
               <p class="font-italic">
                 Some of our most beloved dishes include:
@@ -422,7 +417,7 @@
                 <li><i class="fa fa-check-circle" aria-hidden="true"></i> Spaghetti alla Pomodoro and more!</li>
               </ul>
               <p>
-                We have made quite a name for ourselves when it comes time for a birthday celebration. Come in on your birthday and get any pasta specialty dinner valued up $15.95 for free, (please show I.D.) this includes our famous salad, garlic
+                We have made quite a name for ourselves when it comes time for a birthday celebration. Come in on your birthday and get any pasta specialty dinner valued up ₹495 for free, (please show I.D.) this includes our famous salad, garlic
                 rolls and a birthday dessert.
               </p>
             </div>
@@ -435,7 +430,7 @@
             <div class="col-lg-6 pt-4 pt-lg-0 content">
               <h3>Private Parties</h3>
               <div class="price">
-                <p><span>$290</span></p>
+                <p><span>₹4299</span></p>
               </div>
               <!-- <p class="font-italic">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -460,7 +455,7 @@
             <div class="col-lg-6 pt-4 pt-lg-0 content">
               <h3>Custom Parties</h3>
               <div class="price">
-                <p><span>$99</span></p>
+                <p><span>₹5099</span></p>
               </div>
               <!-- <p class="font-italic">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -491,7 +486,7 @@
           <p>Book a Table</p>
         </div>
 
-        <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+        <form action="#" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
           <div class="form-row">
             <div class="col-lg-4 col-md-6 form-group">
               <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
@@ -553,7 +548,7 @@
               <i class="bx bxs-quote-alt-right quote-icon-right"></i>
             </p>
             <img src="./img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-            <h3>Saul Goodman</h3>
+            <h3>Sach Goodman</h3>
             <h4>Ceo &amp; Founder</h4>
           </div>
 
@@ -567,28 +562,8 @@
               <i class="bx bxs-quote-alt-right quote-icon-right"></i>
             </p>
             <img src="./img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-            <h3>Sara Wilsson</h3>
-            <h4>Designer</h4>
-          </div>
-
-          <div class="testimonial-item">
-            <p>
-              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              "We recently hosted a dinner for our team of 25 people for the Master Builders Awards night at our home.
-
-              From our first point of call, I experienced nothing but professionalism and a feeling like, our event was just as important to them as it was to us.
-
-              We found the menu package options to be not only affordable but also 5 star quality. A testament to Shaka who oversaw the process including the menu choice, putting together the package and ensuring all catering items were ready to go
-              on the day. She sourced extra large tablecloths to fit our enormous tables and provided a few ‘extras’ that we had not considered, and without hesitation. A very dedicated manager.
-
-              On the evening, everything went smoothly and professionally.
-
-              I highly recommend Ochre Restaurant and Catering to anyone organising a small or large event.”
-              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-            </p>
-            <img src="./img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-            <h3>Jena Karlis</h3>
-            <h4>Store Owner</h4>
+            <h3>Sara Kundra</h3>
+            <h4>Consultant</h4>
           </div>
 
           <div class="testimonial-item">
@@ -599,19 +574,20 @@
               <i class="bx bxs-quote-alt-right quote-icon-right"></i>
             </p>
             <img src="./img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-            <h3>Matt Brandon</h3>
-            <h4>Freelancer</h4>
+            <h3>Matt Demon</h3>
+            <h4>Architect</h4>
           </div>
 
           <div class="testimonial-item">
             <p>
               <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              “We had the best time. Thanks so much for catering. The service was absolutely fantastic and so was all the food! We can’t thank you enough!!!! All the staff did such a great job!! We had compliments about it all night! Thanks for making our night perfect!”
+              “We had the best time. Thanks so much for catering. The service was absolutely fantastic and so was all the food! We can’t thank you enough!!!! All the staff did such a great job!! We had compliments about it all night! Thanks for
+              making our night perfect!”
               <i class="bx bxs-quote-alt-right quote-icon-right"></i>
             </p>
             <img src="./img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-            <h3>John Larson</h3>
-            <h4>Entrepreneur</h4>
+            <h3>John Stroll</h3>
+            <h4>Civil Engineer</h4>
           </div>
 
         </div>
@@ -718,7 +694,7 @@
               <img src="./img/chefs/chefs-1.jpg" class="img-fluid" alt="">
               <div class="member-info">
                 <div class="member-info-content">
-                  <h4>Walter White</h4>
+                  <h4>Vedant Sehgal</h4>
                   <span>Master Chef</span>
                 </div>
                 <div class="social">
@@ -736,7 +712,7 @@
               <img src="./img/chefs/chefs-2.jpg" class="img-fluid" alt="">
               <div class="member-info">
                 <div class="member-info-content">
-                  <h4>Sarah Jhonson</h4>
+                  <h4>Mamta Pandey</h4>
                   <span>Patissier</span>
                 </div>
                 <div class="social">
@@ -754,7 +730,7 @@
               <img src="./img/chefs/chefs-3.jpg" class="img-fluid" alt="">
               <div class="member-info">
                 <div class="member-info-content">
-                  <h4>William Anderson</h4>
+                  <h4>Diwan Sahab</h4>
                   <span>Cook</span>
                 </div>
                 <div class="social">
@@ -890,9 +866,9 @@
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#about">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#events">Services</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
             </ul>
@@ -904,8 +880,8 @@
               <li><i class="bx bx-chevron-right"></i> <a href="#">Catering</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">DineIn</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Take Away</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home Delivery</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Events</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#contact">Home Delivery</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#events">Events</a></li>
             </ul>
           </div>
 
@@ -938,6 +914,20 @@
 
   <!-- <div id="preloader"></div> -->
   <a href="#" class="back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+  <!-- Template Main JS File -->
+  <script src="./js/main.js"></script>
+
+  <!-- Vendor JS Files -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ==" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/venobox/1.9.3/venobox.min.js" integrity="sha512-zBTnX97k269iewUwROiWwO82A6uXO4lcjq0Z4xnvO+qAblC/RMQRUu8fQVKtSFhPNKD5Xzh9PMoZG7+LnmH1Hg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 
 </html>

@@ -183,6 +183,34 @@ h6{
   text-align: left;
 }
 
+.after-aboutus-content{
+  height:100vh ;
+  color: #123456 ;
+}
+
+.footer-text{
+  text-align: center;
+  font-size:0.8rem;
+}
+
+.footer-text-bf{
+  text-align: center;
+  font-size:0.8rem;
+  color: #cb8b2b;
+}
+
+.footer-content{
+  text-align: center;
+  font-size:0.7rem;
+}
+
+.footer-content-webpicker{
+  text-align: center;
+  font-size:0.7rem;
+  color: #ff4c68;
+}
+
+
 /* Footer Section - Start */
 #map {
   width: 100%;
