@@ -46,7 +46,8 @@
   <script type="text/javascript">
     function sendEmail() {
       Email.send({
-        Host: "smtpout.secureserver.net",
+        // Host: "smtpout.secureserver.net",
+        Host:"smtpout.asia.secureserver.net",
         Username: "contact@webpicker.in",
         Password: "Admin@123#",
         To: 'atulmani@gmail.com',
@@ -64,8 +65,8 @@
 
 <body>
 
-  <section id="emailsend" >
-
+  <section id="emailsend" style="text-align:center;" >
+    <br /><br /><br />
     <form method="post">
    <input type="button" value="Send Email"
        onclick="sendEmail()" />
