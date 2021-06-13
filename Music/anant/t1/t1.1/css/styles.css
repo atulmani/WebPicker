@@ -1,0 +1,321 @@
+/* Color Palette - Details
+
+Palette#: 226650 from Colorhunt
+
+Reference Colors:
+- Red: #c06014 - main header & footer color
+- Light Red: #ff8585 - support colors
+- Light Orange: #ffb396 - support colors
+- Yellow: #fff5c0- support colors
+
+*/
+
+/********** tag selectors ************/
+body{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Prompt', 'sans-serif';
+  background-color: #f3f4ed;
+
+  }
+
+h1{
+  font-size: 2rem;
+  font-weight: bold;
+  color: #c06014;
+  text-align: center;
+
+}
+
+h2{
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+h3{
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+h4{
+  font-size: 1rem;
+  font-weight:normal;
+}
+h5{
+  font-size: 0.8rem;
+  font-weight:normal;
+}
+h6{
+  font-size: 0.6rem;
+  font-weight:normal;
+}
+
+p{
+  font-size: 0.8rem;
+  color: #424642;
+}
+
+
+/********** class selectors ************/
+.container-fluid{
+  width: 100%;
+}
+
+/*TOP scroll*/
+#myBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: #c06014; /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 10px; /* Some padding */
+  border-radius: 20px; /* Rounded corners */
+  font-size: 18px; /* Increase font size */
+}
+
+#myBtn:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+/*banner*/
+.bg-img {
+  /* The image used */
+  background-image: url("img/Banner5.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment:fixed;
+
+  /* Needed to position the navbar */
+  /* position: relative; */
+}
+
+/* navbar start */
+.navbar{
+  border-radius:0 0 0 0 ;
+  overflow:hidden;
+   /*color changed*/
+   background-color: rgba(66, 70, 66, 0.8);
+}
+
+.navbar-brand{
+  color: #fff;
+  font-size: 1.9rem;
+  padding-left: 12px;
+  letter-spacing: 1px;
+}
+
+.navbar-brand:hover{
+  color: #aaa;
+}
+
+.navbar-text{
+  color:#fff;
+  padding-left: 0px;
+  letter-spacing: 2px;
+
+}
+
+.nav-item{
+  padding-left: 12px;
+  line-height: 2;
+}
+.nav-link {
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-display:
+}
+
+.nav-link:hover{
+  color: #424642;
+}
+
+.nav .active{
+  color: #fff;
+  font-size: 1rem;
+  background-color:#fdca40;
+  margin-top: 0px;
+  border-radius: 3px;
+}
+
+.navbar-toggler{
+  border: 1px solid #fff;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(192,96,20)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/* navbar end */
+
+.large{
+  width: 100% ;
+  border-radius: 0 0 0 0 ;
+}
+.small{
+  width: 0px ;
+  display: none;
+  border-radius: 0 0 0 0 ;
+}
+
+@media (max-width: 1080px) {
+  .large{
+    width: 0% ;
+    display: none;
+    border-radius: 0 0 0 0 ;
+  }
+  .small{
+    width: 100% ;
+    display: block;
+    border-radius: 0 0 0 0 ;
+  }
+}
+
+/**** why us****/
+
+.div-column{
+
+  /* border: 1px solid #333; */
+  box-shadow: 5px 5px 5px #444;
+  padding: 8px 12px;
+  /* margin-top: 60px;
+  margin-bottom: 60px; */
+  background-color:  rgba(194, 98, 20, 0.8);
+  text-align: center;
+  position: relative;
+  }
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #008CBA;
+  overflow: hidden;
+  width: 0;
+  height: 100%;
+  transition: .5s ease;
+}
+
+.div-column:hover .overlay {
+  width: 100%;
+}
+
+
+/****Button****/
+
+
+.btn-join {
+  text-decoration: none;
+  border: 0px solid #c06014;
+  color: transparent;
+  padding: 20px 100px;
+  margin-left: 0px;
+  font-size: 14px;
+  /* font-family: sans-serif; */
+  letter-spacing: 5px;
+  transition: all 0.5s;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  z-index:1;
+
+}
+.btn-join:before {
+  content: "Book Demo Class";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background: rgba(192, 96, 20, 1);
+  font-size: 14px;
+  top: 0;
+  left: 100%;
+  /* font-family: sans-serif; */
+  letter-spacing: 5px;
+  transition: all 1s;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transform: scale(0) rotatey(0);
+  opacity: 0;
+}
+.btn-join:hover:before {
+  transform: scale(1) rotatey(360deg);
+  left: 0;
+  opacity: 1;
+}
+.btn-join:after {
+  content: "Book Demo Class";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background: rgba(192, 96, 20, 1);
+  font-size: 14px;
+  top: 0;
+  left: 0;
+  /* font-family: sans-serif; */
+  letter-spacing: 5px;
+  transition: all 1s;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transform: scale(1) rotatey(0);
+  opacity: 1;
+}
+.btn-join:hover:after {
+  transform: scale(0) rotatey(360deg);
+  left: -100%;
+  opacity: 0;
+}
+
+/**** Event start*****/
+
+
+
+
+/**** Event End*****/
+/* Footer Section - Start */
+#map {
+  width: 100%;
+  height: 250px;
+}
+
+#footer{
+  background-color:rgba(66, 70, 66, 0.8);
+  text-align:center;
+  color:#c06014;
+}
+
+.social .fa{
+    color: #424642;
+    /* border-radius: 50px; */
+    /* margin: 15px 5px; */
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    border: 1px solid #c06014;
+    transition: all 0.3s ease-out;
+    /* background: #424642; */
+}
+
+.social .fa:hover{
+  background: #c06014;
+  font-size: 20px;
+  padding-left: 0px;
+  width:50px;
+  height: 50px;
+  line-height: 50px;
+  transition: all 0.3s ease-in;
+}
+
+
+/* Footer Section - End */
