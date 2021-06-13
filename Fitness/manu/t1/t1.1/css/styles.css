@@ -315,6 +315,15 @@ h6 {
   color: #343148;
 }
 
+.button7 {
+  background-color: #343148 ;
+  color: #f7cac9;
+  /* border: 2px solid #555555; */
+}
+.button7:hover {
+  background-color: #f7cac9;
+  color: #343148;
+}
 
 .heading-content{
   padding: 3% 8%;
@@ -438,6 +447,49 @@ h6 {
 
 .breathing{
   text-align: left ;
+}
+
+.offers-text{
+  font-size: 2.8rem;
+  font-weight: bolder;
+}
+
+.offers-tl{
+  font-size: 3.2rem;
+  color: #ff0000;
+  font-weight: bolder;
+}
+
+.pricing-card-header{
+  background-color: #f7cac9;
+}
+
+.pricing-card-content{
+  color: #888;
+}
+
+.card:hover .pricing-card-content{
+  color: #eee;
+  transition: all 0.5s linear;
+}
+
+.card hr{
+  border-bottom: 1px solid #ddd;
+  border-top:0;
+  border-left: 0 ;
+  border-right:0 ;
+}
+
+
+ .card:hover hr{
+  background-color: #ccc;
+  transition: all 0.5s linear;
+}
+
+.card:hover .button7{
+  background-color: #f7cac9;
+  color: #343148;
+  transition: all 0.5s linear;
 }
 
 /* .wwd-card1:hover .breathing{
@@ -571,5 +623,6 @@ h6 {
   transform-origin: top;
   transition: .5s;
 }
+
 
 /* Footer Section - End */
