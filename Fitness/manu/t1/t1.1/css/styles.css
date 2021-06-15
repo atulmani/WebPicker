@@ -473,6 +473,26 @@ h6 {
   transition: all 0.5s linear;
 }
 
+.pricing-rp{
+  font-size: 1.3rem;
+  position: relative;
+  top: -20px;
+  font-weight: bold;
+  color: #343148;
+}
+
+.pricing-price{
+  font-size: 3rem;
+  font-weight: bold;
+  color: #343148;
+}
+
+.pricing-week{
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #343148;
+}
+
 .card hr{
   border-bottom: 1px solid #ddd;
   border-top:0;
