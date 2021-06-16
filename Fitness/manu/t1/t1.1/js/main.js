@@ -207,6 +207,32 @@ $(function () {
       });
     });
 
+    $(document).ready(function() {
+      var owl = $('#clients-list1');
+      owl.owlCarousel({
+        margin: 80,
+        nav: true,
+        loop: true,
+        autoplay: true,
+        smartSpeed:3000,
+        autoplayTimeout: 4000,
+        autoplayHoverPause: false,
+        nav:false,
+        // dots:true,
+        responsive: {
+          0: {
+            items: 1
+          },
+          600: {
+            items: 2
+          },
+          1024: {
+            items: 3
+          }
+        }
+      });
+    });
+
 // $(function(){
 //     $("#clients-list").owlCarousel({
 //        items:6,
