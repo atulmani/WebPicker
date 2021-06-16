@@ -136,6 +136,66 @@ h6 {
   position: absolute;
 }
 
+.h6-wwd-trainers{
+  font-family: sans-serif;
+  margin: 40px 0 20px 43%;
+  color: #444;
+  text-align: center;
+  font-size: 1rem;
+  max-width: 185px;
+  position: relative;
+}
+  .h6-wwd-trainers:before {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: #343148;
+  left: 0;
+  top: 50%;
+  position: absolute;
+}
+  .h6-wwd-trainers:after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: #343148;
+  right: 0;
+  top: 50%;
+  position: absolute;
+}
+
+.h6-wwd-trainers1{
+  font-family: sans-serif;
+  margin: 40px 0 20px 85px;
+  color: #444;
+  text-align: center;
+  font-size: 1rem;
+  max-width: 185px;
+  position: relative;
+}
+.h6-wwd-trainers1:before {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: #343148;
+  left: 0;
+  top: 50%;
+  position: absolute;
+}
+.h6-wwd-trainers1:after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: #343148;
+  right: 0;
+  top: 50%;
+  position: absolute;
+}
+
 
 /********** class selectors ************/
 .container-fluid{
@@ -399,6 +459,10 @@ h6 {
   border-radius: 50%;
 }
 
+.classes-name{
+  padding:0 0 0 10px;
+  font-size: 0.8rem;
+}
 
 .shedule-card-box{
   max-width: 280px ;
@@ -547,9 +611,27 @@ h6 {
   color: #ccc;
 }
 
-/* .wwd-card1:hover .breathing{
-  color: #fff;
-} */
+.trainers-card{
+  display: block;
+  border: 1px solid #343148;
+  border-radius: 5px;
+}
+
+.trainers-name{
+  font-weight: bold;
+  color: #343148;
+  padding: 20px 0 5px 0;
+}
+
+.trainers-yoga{
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.trainers-row{
+  padding: 5% 7%;
+  text-align: center;
+}
 
 /* Footer Section - Start */
 #map {
