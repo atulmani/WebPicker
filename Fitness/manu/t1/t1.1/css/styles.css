@@ -210,7 +210,7 @@ h6 {
   border-left: 0;
   border-right: 0;
   border-bottom: 0;
-  padding: 1% 5% ;
+  padding: 1% 0 ;
 }
 
 .navbar-brand{
@@ -321,7 +321,7 @@ h6 {
 @media (max-width: 1080px){
   .banner{
     background-color:#f7cac9 ;
-    margin-top: -90% ;
+    margin-top: -130% ;
   }
 }
 
@@ -334,7 +334,7 @@ h6 {
 
 @media (max-width: 1080px){
   .heading1{
-    padding: 110% 0 0 6%;
+    padding: 150% 0 0 6%;
     font-size: 2rem;
     color: #343148;
   }
@@ -613,7 +613,7 @@ h6 {
 
 .trainers-card{
   display: block;
-  border: 1px solid #343148;
+  /* border: 1px solid #343148; */
   border-radius: 5px;
 }
 
@@ -631,6 +631,43 @@ h6 {
 .trainers-row{
   padding: 5% 7%;
   text-align: center;
+}
+
+.container1 {
+  position: relative;
+  width: 100%;
+}
+
+.image1 {
+  opacity: 1;
+  /* width: 100%; */
+  transition:all .5s linear;
+  backface-visibility: hidden;
+  /* margin: 10px 0 10px 0 ; */
+  border-radius: 12px;
+}
+
+.middle {
+  transition:all .5s ease-in;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  cursor: hand;
+}
+
+.container1:hover .image1 {
+  transform: scale(1) rotateY(360deg) ;
+  filter: brightness(100);
+  opacity: 0.7;
+  transition: .5s linear;
+}
+
+.container1:hover .middle {
+  opacity: 1;
 }
 
 /* Footer Section - Start */
