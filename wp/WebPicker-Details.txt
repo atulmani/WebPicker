@@ -1,0 +1,93 @@
+To Do:
+- Upload new design into Insta & FB 22-Jun
+- Dolu both website in prod
+- Check Google Analytics
+- Canonicalization
+- Branding in Canva - Mugs, TShirts, Stikers for Laptops etc. 
+- Whatsapp green tick business account for tplive & webpicker
+- 
+
+
+Hi, 
+Today we are launching "WebPicker", a service provider of website design & development. 
+You can check more details on following link's:
+- Website : http://WebPicker.in
+-Our Story & Leadership: 
+http://webpicker.in/about.html
+-Instagram: 
+https://www.instagram.com/webpicker.in/
+-Facebook: 
+https://www.facebook.com/WebPicker-101044708888104/
+-Email: connect@webpicker.in
+-Whatsapp: +91 853 064 2886
+
+We are looking for your wishes to grow this business. 🙏
+
+Regards,
+WebPicker Team
+
+WebPicker Details
+
+
+-------------------------- Github ----------------------------------
+- login: atulmani@gmail.com/Admin@123#
+
+
+-------------------------- GoDaddy Details --------------------------
+Domain: WebPicker.in - 182.50.135.95 | Asia
+Plesk Login: ph17825687081 / Admin@123#
+Hosting: Windows Server
+Email: connect@webpicker.in/Admin@123#
+
+---------------------------- Google ----------------------------------
+- Google Seach Console Training
+https://www.youtube.com/watch?v=WCboOImUuBk&list=PLKoqnv2vTMUOnQn-lNDfT38X9gA_CHxTo
+
+- Google Search Console - 
+https://search.google.com/search-console?resource_id=https%3A%2F%2Fwww.webpicker.in%2F
+
+- Check Website Speed by Google PageSpeed Insight
+https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fwebpicker.in&tab=desktop
+
+
+----------------------------- SEO Trainings & Details ---------------------------
+- SEO Trainings
+https://www.youtube.com/watch?v=Qs0_Qu22v4M
+
+- How to create Sitemap
+https://www.sitemaps.org/protocol.html
+
+- robots.txt 
+all files
+Allow: / 
+or one directory
+Allow: /img
+or individual files
+Allow: /index.html
+Allow: /designs.html
+Allow: /about.html
+Allow: /pricing.html
+
+
+
+---------------------------- Social Media ----------------------------
+Social Media
+- Facebook: 
+    8484966096/Admin@123# or tplive@tournamentplanner.in/Admin@123#    
+   then Business Page is WebPicker
+   https://www.facebook.com/WebPicker-101044708888104
+
+- Facebook Business Suite:  
+    https://www.templatemonster.com/website-templates.php                           
+    https://business.facebook.com/latest/home?asset_id=101044708888104&business_id=101046608887914&nav_ref=redirect_biz_inbox
+	Messenger:
+
+- Instagram
+    username: webpicker.in/Admin@123#
+	
+---------------------------- Marketing ----------------------------
+- mailChamp
+  Email: connect@webpicker.in
+  User Name: connect@webpicker.in
+  Pwd: Admin@123#
+  

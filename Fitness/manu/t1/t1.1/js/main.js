@@ -1,25 +1,25 @@
 // // Ristrict mouse right click - start
-// document.addEventListener("contextmenu", function(e){
-//     e.preventDefault();
-// }, false);
-//
-// // With jQuery
-// $(document).on({
-//     "contextmenu": function(e) {
-//         console.log("ctx menu button:", e.which);
-//
-//         // Stop the context menu
-//         e.preventDefault();
-//     },
-//     "mousedown": function(e) {
-//         console.log("normal mouse down:", e.which);
-//     },
-//     "mouseup": function(e) {
-//         console.log("normal mouse up:", e.which);
-//     }
-// });
-//
-// // Ristrict mouse right click - end
+document.addEventListener("contextmenu", function(e){
+    e.preventDefault();
+}, false);
+
+// With jQuery
+$(document).on({
+    "contextmenu": function(e) {
+        console.log("ctx menu button:", e.which);
+
+        // Stop the context menu
+        e.preventDefault();
+    },
+    "mousedown": function(e) {
+        console.log("normal mouse down:", e.which);
+    },
+    "mouseup": function(e) {
+        console.log("normal mouse up:", e.which);
+    }
+});
+
+// Ristrict mouse right click - end
 
 // Collapse Navbar toggle menu after clicking on menu items - Start
 $(document).on('click', function() {
@@ -183,6 +183,32 @@ $(function () {
 
     $(document).ready(function() {
       var owl = $('#clients-list');
+      owl.owlCarousel({
+        margin: 80,
+        nav: true,
+        loop: true,
+        autoplay: true,
+        smartSpeed:3000,
+        autoplayTimeout: 4000,
+        autoplayHoverPause: false,
+        nav:false,
+        // dots:true,
+        responsive: {
+          0: {
+            items: 1
+          },
+          600: {
+            items: 2
+          },
+          1024: {
+            items: 3
+          }
+        }
+      });
+    });
+
+    $(document).ready(function() {
+      var owl = $('#clients-list1');
       owl.owlCarousel({
         margin: 80,
         nav: true,
