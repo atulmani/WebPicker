@@ -56,6 +56,29 @@ h6 {
 /**** id selectors *****/
 /**** class selectors *****/
 
+.large{
+  width: 100% ;
+  border-radius: 0 0 0 0 ;
+}
+.small{
+  width: 0px ;
+  display: none;
+  border-radius: 0 0 0 0 ;
+}
+
+@media (max-width: 850px) {
+  .large{
+    width: 0% ;
+    display: none;
+    border-radius: 0 0 0 0 ;
+  }
+  .small{
+    width: 100% ;
+    display: block;
+    border-radius: 0 0 0 0 ;
+  }
+}
+
 /* Customized Nav Bar - Start */
 .main_header {
   position: fixed;
@@ -668,20 +691,51 @@ font-family: 'Great Vibes', cursive;
   color: #fff;
 }
 
+.pricing-internal-header{
+  background-color: #888;
+  padding: 10px 0 10px 10px;
+  font-weight: bold;
+  color: #fff;
+
+}
+
+.digitalmarketing-pricing-internal-header{
+  background-color:#ff4c68;
+  /* background-color: #777; */
+  color:#fff;
+  font-size:1.1rem;
+  font-weight:bold;
+}
+
+.digitl-marketing-items{
+  text-align:left;
+  font-size:0.7rem;
+  font-weight:600;
+  color:#8f8f8f;
+  padding: 8px 0 8px 8px;
+}
+
+.digital-marketing-items-border{
+  border:1px solid #ccc;
+
+}
+
+.vertical-text{
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  /* background-color:red; */
+  font-weight: bold;
+}
+
 .card {
-  /* border-color: #fff5c0; */
-  /* border: 2px solid #fff5c0; */
   border: 1px solid #aaa;
 }
 
 .card-header {
   /* background-color: #fff5c0; */
   background-color: #444;
+  /* background-color: #fff; */
   color: #fff5c0;
-  /* - Red: #ff4646
-  - Light Red: #ff8585
-  - Light Orange: #ffb396
-  - Yellow: #fff5c0; */
 }
 
 .card-body {
