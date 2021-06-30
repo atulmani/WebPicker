@@ -88,8 +88,8 @@ border:none;
 
 .btnclass:hover{
   background-color:#7E4432;
-  text-decoration:underline;
-  color:white;
+  /* text-decoration:underline; */
+  color:#DAA520;
 }
 .navbar-brand{
   color: #d6d5db;
@@ -97,10 +97,18 @@ border:none;
   padding-left: 12px;
 }
 #designbutton:hover{
-  text-decoration:undeline;
+  text-decoration:none;
+
 
 }
-
+.mylink{
+  color:#DAA520;
+  font-weight:700;
+}
+.mylink:hover{
+  color:#DAA520;
+  font-weight:700
+}
 .navbar-brand:hover{
   color: #aaa;
 }
