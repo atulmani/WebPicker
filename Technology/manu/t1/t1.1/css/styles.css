@@ -12,8 +12,9 @@ Reference Colors:
 
 /********** tag selectors ************/
 
-.content-full{
+.contentfull{
   display: none;
+  /* display:block; */
 }
 
 .loader{
