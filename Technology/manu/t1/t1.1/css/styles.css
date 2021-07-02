@@ -12,6 +12,45 @@ Reference Colors:
 
 /********** tag selectors ************/
 
+.content-full{
+  display: none;
+}
+
+.loader{
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: radial-gradient(#fff5c0, #ff4c68);
+  position: absolute;
+}
+.loader div{
+  font-family:"Great Vibes";
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid black; */
+  width: 100%;
+  height: 100vh;
+}
+.tag-line{
+  position: relative;
+  top: 25px;
+  left: 120px;
+}
+.tag-line span{
+  font-size: 2rem;
+
+}
+.web-small{
+  position: relative;
+  top: 110px;
+  left: 8px;
+}
+.loader-mobile{
+  top: -35px;
+}
+
 *{
   margin:0;
   padding:0;
