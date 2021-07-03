@@ -1,0 +1,59 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.header{
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(#ff4c68,#fff5c0)
+}
+.hero{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50% , -50%);
+  color: #fff;
+  text-align: center;
+}
+h1{
+  font-size: 60px;
+  letter-spacing: 10px;
+  font-family: 'Dosis', sans-serif;
+  font-weight: bold;
+}
+hr{
+  width: 50%;
+  margin: 30px auto;
+  border: 1px solid #fff;
+}
+p{
+  font-size: 15px;
+  margin-bottom: 30px;
+}
+#launch{
+  font-size: 40px;
+  word-spacing: 20px;
+  font-family: 'Dosis', sans-serif;
+  background: linear-gradient(to right, rgba(72, 198, 239, 0.5),rgba(111, 134, 214, 0.5));
+}
+
+.custom-shape-divider-bottom-1625319555 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1625319555 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 132px;
+}
+
+.custom-shape-divider-bottom-1625319555 .shape-fill {
+    fill: #FFFFFF;
+}
