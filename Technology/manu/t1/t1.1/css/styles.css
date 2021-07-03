@@ -108,7 +108,6 @@ body{
   margin: 0;
   padding: 0;
   font-family: 'Montserrat';
-  background: #141416;
 }
 
 h1{
@@ -145,8 +144,8 @@ h6{
 
 /* navbar start */
 .navbar{
-  background-color: transparent; /*color changed*/
-  padding: 0 5%;
+  background-color: rgba(20,20,22,0.5); /*color changed*/
+  padding: 1% 5%;
 }
 
 .navbar-brand{
@@ -397,14 +396,39 @@ tr{
   border-radius: 30px;
 }
 
+.vision-row1{
+  padding: 8% 7% ;
+}
 .vision-col1{
-  padding: 10% 0 0 10% ;
+  border: 1px solid #1d4151;
+  padding: 10px;
 }
 .vision-col1-background{
   background: radial-gradient(#87e5ff, #27a2c4);
   opacity: 0.7;
-  height: 700px;
+  height: 705px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: #141416;
 }
+.vision-col2{
+  border: 1px solid #1d4151;
+  padding: 10%;
+  height: 725px;
+  position: relative;
+}
+.vision-col2 p{
+  position: relative;
+  top: calc(50% - 300px);
+  color: #fff;
+  padding-bottom: 50px;
+}
+.button-vision{
+  width: 100%;
+}
+
 
 
 
