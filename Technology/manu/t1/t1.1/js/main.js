@@ -22,6 +22,21 @@
 // Ristrict mouse right click - end
 
 // loader page
+$(window).on('load',function(){
+  // setTimeout(function(){ alert("before"); }, 1000);
+  // setTimeout(8000);
+  $('.loader').fadeOut(1500);
+  $('.contentfull').fadeIn(1500);
+  // setTimeout(function(){ alert("after"); }, 3000);
+});
+
+
+// scroll animation
+
+AOS.init({
+  duration: 1500,
+  offset: 80,
+});
 
 
 // Collapse Navbar toggle menu after clicking on menu items - Start
