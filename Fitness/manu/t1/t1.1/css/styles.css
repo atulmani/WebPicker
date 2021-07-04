@@ -11,6 +11,29 @@ Reference Colors:
 */
 
 /********** tag selectors ************/
+
+.custom-shape-divider-bottom-1625320070 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1625320070 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 222px;
+}
+
+.custom-shape-divider-bottom-1625320070 .shape-fill {
+    /* fill: #F7CAC9; */
+    fill: #ffffff;
+}
+
 body{
   width: 100%;
   margin: 0;
@@ -314,8 +337,8 @@ h6 {
 }
 
 .banner{
-  background-color:#f7cac9 ;
-  margin-top: -80px ;
+  background-color: #f7cac9 ;
+  margin-top: -140px ;
 }
 
 @media (max-width: 1080px){
