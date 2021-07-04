@@ -25,8 +25,8 @@
 $(window).on('load',function(){
   // setTimeout(function(){ alert("before"); }, 1000);
   // setTimeout(8000);
-  $('.loader').fadeOut(1500);
-  $('.contentfull').fadeIn(1500);
+  $('.loader').fadeOut(150000);
+  $('.contentfull').fadeIn(20000);
   // setTimeout(function(){ alert("after"); }, 3000);
 });
 
