@@ -22,7 +22,8 @@ body{
   width: 100%;
   margin: 0;
   padding: 0;
-  font-family: 'Montserrat';
+  /* font-family: 'Poppins', sans-serif; */
+  font-family: 'Ubuntu', sans-serif;
 }
 
 h1{
@@ -57,12 +58,196 @@ h6{
   width: 100%;
 }
 
+.hero{
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  background: #112d42;
+}
+.hero::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: #03a9f4;
+}
+
+.hero .container{
+  position: relative;
+  min-height: 550px;
+  display: flex;
+  z-index: 999;
+}
+
+.hero .container .contact-info{
+  position: absolute;
+  top: 40px;
+  width: 350px;
+  height: calc(100% - 80px);
+  background: #0f3959;
+  z-index: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0px 20px 20px rgba(0,0,0,0.2);
+}
+
+.hero .container .contact-info h2{
+  color: #fff;
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+.hero .container .contact-info .info{
+  position: relative;
+  margin: 20px 0;
+}
+.hero .container .contact-info .info li{
+  position: relative;
+  list-style: none;
+  display: flex;
+  margin: 20px 0;
+  cursor: pointer;
+  align-items: flex-start;
+}
+.hero .container .contact-info li span:nth-child(1){
+  width: 30px;
+  min-width: 30px;
+}
+.hero .container .contact-info li span:nth-child(1) i{
+  padding: 0 10px;
+  filter: invert(1);
+  opacity: 0.7;
+  font-size: 1.3rem;
+}
+
+.hero .container .contact-info li span:nth-child(2){
+  color: #fff;
+  margin-left: 10px;
+  font-weight: 300px;
+  opacity: 0.7;
+}
+.hero .container .contact-info li:hover span:nth-child(1) i,
+.hero .container .contact-info li:hover span:nth-child(2){
+  opacity: 1;
+}
+.hero .container .contact-info .sci{
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+}
+.hero .container .contact-info .sci li{
+  list-style: none;
+}
+.hero .container .contact-info .sci li a{
+  text-decoration: none;
+  color: #fff;
+  opacity: 0.5;
+  font-size: 1.2rem;
+}
+.hero .container .contact-info .sci li:hover a{
+  opacity: 1;
+}
+
+.contact-form{
+  position: relative;
+  padding: 70px 30px 0 250px;
+  background: #fff;
+  margin-left: 150px;
+  width: calc(100% - 150px);
+  box-shadow: 0px 20px 20px rgba(0,0,0,0.5);
+}
+
+.contact-form h2{
+  color: #0f3959;
+  font-size: 1.7rem;
+  font-weight: 500px;
+}
+
+.contact-form .form-box{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  flex-wrap: wrap;
+}
+
+.input-box{
+  position: relative;
+  margin: 0 0 35px 0;
+  width: 100%;
+}
+
+.input-box input{
+  width: 90%;
+  outline: none;
+  padding: 5px 0;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #112d42;
+  border: none;
+  border-bottom: 1px solid #777;
+}
+
+.input-box textarea{
+  width: 100%;
+  min-height: 120px;
+  resize: none;
+  outline: none;
+  padding: 5px 0;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #112d42;
+  border: none;
+  border-bottom: 1px solid #777;
+}
+.input-box span{
+  position: absolute;
+  left: 0;
+  color: #333;
+  transition: all 0.3s linear;
+  pointer-events: none;
+}
+
+.input-box input:focus ~ span,
+.input-box textarea:focus ~ span,
+.input-box input:valid ~ span{
+  transform: translateY(-20px);
+  font-size: 12px;
+  font-weight: 400px;
+  letter-spacing: 1px;
+  color: #ff4c68;
+}
+.input-box textarea:valid ~ span{
+  transform: translateY(-20px);
+}
+
+.button-submit{
+  color: #fff;
+  position: relative;
+  cursor: pointer;
+  background: #0f3959;
+  border: 0px;
+  width: 150px;
+  padding: 12px;
+}
+
+
+
+
+
+
 .large{
   width: 100% ;
   border-radius: 0 0 0 0 ;
 }
 .small{
-  width: 0px ;
+  width: 0% ;
   display: none;
   border-radius: 0 0 0 0 ;
 }
