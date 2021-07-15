@@ -77,7 +77,7 @@
       </div>
       <div class="contact-form">
         <h2>Send a Message</h2>
-        <div class="form-box">
+        <form action="success.html" class="form-box">
           <div class="row no-gutters">
             <div class="col-lg-6 col-md-6 col-sm-12 col-sm-12 spacing">
               <div class="input-box">
@@ -99,7 +99,9 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-sm-12">
               <div class="input-box">
-                <input type="number" name="" required value="">
+                <input maxlength="10" type="number" name=""
+                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                 required value="">
                 <span>Mobile Number</span>
               </div>
             </div>
@@ -109,11 +111,11 @@
                 <span>Write your message here...</span>
               </div>
               <div class="">
-                <input class="button-submit" type="submit" name="Send" value="Send">
+                <a href=""><input class="button-submit" type="submit" name="Send" value="Send"></a>
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </section>
