@@ -89,8 +89,8 @@ h6{
 
 .nav-link{
   /* color: white; */
-  color:#019738;
-  font-size: 0.9rem;
+  color:#00C348;
+  font-size: 0.8rem;
   text-align: center;
   font-weight: 600;
   margin: 0 20px;
@@ -102,7 +102,7 @@ h6{
 
 .nav .active{
   color: #019738;
-  font-size: 1.1rem;
+  /* font-size: 1.1rem; */
   background-color:#ededed;
   margin-top: 0px;
 }
@@ -125,7 +125,7 @@ h6{
 
 .sticky .nav .active{
   color: #019738;
-  font-size: 1.1rem;
+  /* font-size: 1.1rem; */
   background-color:#ededed;
   margin-top: 0px;
   border-radius: 2px;
@@ -201,7 +201,7 @@ h6{
 .hero{
   height: 100%;
   position: relative;
-  /* top: calc(50% - 200px); */
+  top: 40px;
   padding: 0 10%;
 }
 
@@ -232,14 +232,12 @@ h6{
 }
 .button5 {
   padding-right: 20px;
-  background: #019738;
+  background: #00C348;
   color: #fff;
   border: 2px solid rgba(255,255,255,0.5);
 }
 .button5:hover {
-  border: 2px solid rgba(255,255,255,0.5);
-  color: white;
-  background: #019738;
+
 }
 
 .register-arrow{
@@ -249,6 +247,65 @@ h6{
 .button5:hover .register-arrow{
   transform: translateX(10px);
 }
+
+.hero-image{
+  position: relative;
+  top: -300px;
+  left: 57%;
+}
+.img-div{
+  text-align: center;
+}
+.custom-shape-divider-bottom-1626609895 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1626609895 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+}
+
+.custom-shape-divider-bottom-1626609895 .shape-fill {
+    fill: #00C34833;
+}
+.card-degrees{
+  background: #00C348;
+  height: 200px;
+  text-align: center;
+  transition: all 0.5s ease-in-out;
+}
+.card-degrees:hover{
+  animation: degreeCard 1s linear infinite;
+}
+@keyframes degreeCard {
+  0%{
+    transform: rotate(0deg);
+  }
+  25%{
+    transform: rotate(-10deg);
+  }
+  75%{
+    transform: rotate(10deg);
+  }
+  100%{
+    transform: rotate(00deg);
+  }
+}
+.card-degrees div{
+  position: relative;
+  top: calc(50% - 40px);
+}
+
+
+
 
 
 /* Footer Section - Start */
