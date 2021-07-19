@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+
+<div style="display:flex;">
+  <div id="0" style="padding:0 20px;" >All</div> |
+  <div id="1" style="padding:0 20px;">First</div> |
+  <div id="2" style="padding:0 20px;">Second</div> |
+  <div id="3" style="padding:0 20px;">Third</div>
+
+  </div>
+
+  <br />
+
+  <h1>ITEMS</h1>
+
+ <div class="all" style="width:50%; height:100px;background-color:red;">
+    This seciton to show all items.
+ </div>
+
+ <div class="first" style="display: none;width:50%; height:100px;background-color:green;">
+    This section to show the items belog to only first menu.
+ </div>
+
+ <div class="second" style="display: none;width:50%; height:100px;background-color:blue;">
+    This section to show the items belog to only first menu.
+ </div>
+
+ <div class="third" style="display: none;width:50%; height:100px;background-color:yellow;">
+    This section to show the items belog to only first menu.
+ </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#0').click(function() {
+        hideall();
+        // $('.all').toggle("slide");
+        $('.all').show("slide");
+      });
+      $('#1').click(function() {
+        hideall();
+        $('.first').show("slide");
+      });
+      $('#2').click(function() {
+        hideall();
+        $('.second').show("slide");
+      });
+      $('#3').click(function() {
+        hideall();
+        $('.third').show("slide");
+      });
+  });
+
+  function hideall(){
+    $('.all').hide();
+    $('.first').hide();
+    $('.second').hide();
+    $('.third').hide();
+  };
+  </script>
+
+</body>
+
+</html>

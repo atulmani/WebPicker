@@ -1,0 +1,336 @@
+/* Color Palette - Details
+
+Palette#: 226650 from Colorhunt
+
+Reference Colors:
+- Red: #161d65 - main header & footer color
+- Light Red: #ff8585 - support colors
+- Light Orange: #ffb396 - support colors
+- Yellow: #fff5c0- support colors
+
+*/
+
+/********** tag selectors ************/
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+body{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat';
+}
+
+h1{
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+
+h2{
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+h3{
+  font-size: 2rem;
+  font-weight: bold;
+}
+h4{
+  font-size: 1.5rem;
+  font-weight:normal;
+}
+h5{
+  font-size: 1.2rem;
+  font-weight:normal;
+}
+h6{
+  font-size: 0.8rem;
+  font-weight:normal;
+}
+
+
+/********** class selectors ************/
+.container-fluid{
+  width: 100%;
+}
+
+/* navbar start */
+.navbar{
+  background-color: #fefefe; /*color changed*/
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 0;
+  border-right: 0;
+  border-style: solid;
+  /* border-color: #019738; */
+}
+
+.navbar-brand{
+  color: white;
+  font-size: 1.5rem;
+  padding-left: 12px;
+}
+
+.navbar-brand:hover{
+  color: #aaa;
+}
+
+.navbar-text{
+  color:white;
+  padding-left: 12px;
+}
+
+.nav-item{
+  line-height: 2;
+}
+
+.nav-link{
+  /* color: white; */
+  color:#00C348;
+  font-size: 0.8rem;
+  text-align: center;
+  font-weight: 600;
+  margin: 0 20px;
+}
+
+.nav-link:hover{
+  color: #aaa;
+}
+
+.nav .active{
+  color: #019738;
+  /* font-size: 1.1rem; */
+  background-color:#ededed;
+  margin-top: 0px;
+}
+
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(1,151,56, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+
+.sticky {
+  /* background-color: #161d65 !important; */
+  /* transition: background-color 200ms linear; */
+  transition: all 0.9s ease-in-out;
+}
+
+.sticky .nav-link, .sticky .navbar-brand, .sticky .navbar-text {
+  /* color: white; */
+}
+
+.sticky .nav .active{
+  color: #019738;
+  /* font-size: 1.1rem; */
+  background-color:#ededed;
+  margin-top: 0px;
+  border-radius: 2px;
+}
+
+
+
+/* navbar end */
+
+.large{
+  width: 100% ;
+  border-radius: 0 0 0 0 ;
+}
+.small{
+  width: 0px ;
+  display: none;
+  border-radius: 0 0 0 0 ;
+}
+
+@media (max-width: 1080px) {
+  .large{
+    width: 0% ;
+    display: none;
+    border-radius: 0 0 0 0 ;
+  }
+  .small{
+    width: 100% ;
+    display: block;
+    border-radius: 0 0 0 0 ;
+  }
+}
+
+.before-nav{
+  width: 100%;
+  padding: 8px;
+  position: relative;
+  display: flex;
+  background: #00C348;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.before-nav-information{
+  word-spacing: 10px;
+  padding-left: 2%;
+}
+.before-nav-information span{
+  font-size: 0.9rem;
+}
+
+.before-nav-information a{
+  color: #fff;
+  text-decoration: none;
+}
+
+.before-nav-information a:hover{
+  color: #000;
+}
+
+.icons{
+  word-spacing: 20px;
+  padding-right: 2%;
+}
+.icons a{
+  color: #fff;
+  text-decoration: none;
+}
+
+.icons a:hover{
+  color: #000;
+}
+
+.hero{
+  height: 100%;
+  position: relative;
+  top: 40px;
+  padding: 0 10%;
+}
+
+.hero .heading{
+  position: relative;
+  color: #000;
+}
+.hero .paragraph{
+  color: #888;
+  padding: 0 0;
+  line-height: 1.4;
+  letter-spacing: 1.2;
+}
+.mybutton {
+  background-color: #019738; /* Green */
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 30px;
+}
+.button5 {
+  padding-right: 20px;
+  background: #00C348;
+  color: #fff;
+  border: 2px solid rgba(255,255,255,0.5);
+}
+.button5:hover {
+
+}
+
+.register-arrow{
+  padding-left: 10px;
+  transition: all 0.4s linear;
+}
+.button5:hover .register-arrow{
+  transform: translateX(10px);
+}
+
+.hero-image{
+  position: relative;
+  top: -300px;
+  left: 57%;
+}
+.img-div{
+  text-align: center;
+}
+.custom-shape-divider-bottom-1626609895 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1626609895 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+}
+
+.custom-shape-divider-bottom-1626609895 .shape-fill {
+    fill: #00C34833;
+}
+.card-degrees{
+  background: #00C348;
+  height: 200px;
+  text-align: center;
+  transition: all 0.5s ease-in-out;
+}
+.card-degrees:hover{
+  animation: degreeCard 1s linear infinite;
+}
+@keyframes degreeCard {
+  0%{
+    transform: rotate(0deg);
+  }
+  25%{
+    transform: rotate(-10deg);
+  }
+  75%{
+    transform: rotate(10deg);
+  }
+  100%{
+    transform: rotate(00deg);
+  }
+}
+.card-degrees div{
+  position: relative;
+  top: calc(50% - 40px);
+}
+
+
+
+
+
+/* Footer Section - Start */
+#map {
+  width: 100%;
+  height: 550px;
+}
+
+#footer{
+  background-color:#161d65;
+  text-align:center;
+  color:white;
+}
+
+.social .fa{
+    color: white;
+    border-radius: 50px;
+    margin: 15px 5px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    border: 2px solid white;
+    transition: all 0.5s ease-in;
+    background: #000;
+}
+
+/* Footer Section - End */
