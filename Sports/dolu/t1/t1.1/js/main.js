@@ -163,7 +163,7 @@ $(function () {
       autoplay: true,
       smartSpeed:3000,
       autoplayTimeout: 8500,
-      autoplayHoverPause: true,
+      autoplayHoverPause: false,
       nav:false,
       // dots:true,
       responsive: {

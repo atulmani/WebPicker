@@ -91,12 +91,12 @@ h6 {
   display: flex;
   flex-direction: column;
   font-size: 1.5rem;
-  color: rgb(0, 0, 0);
+  color: #fff;
 }
 
 .icon-right {
   text-decoration: none;
-  color: rgb(0, 0, 0);
+  color: #fff;
   padding: 8% 50px;
   position: relative;
   top: 200px;
@@ -172,10 +172,10 @@ h6 {
 
 .nav-link {
   /* color: white; */
-  color: rgb(0, 0, 0);
+  color: #fff;
   font-size: 1rem;
   text-align: center;
-  font-weight: bold;
+  font-weight: 1000;
 }
 
 .nav-link:hover {
