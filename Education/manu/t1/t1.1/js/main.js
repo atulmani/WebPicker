@@ -182,7 +182,7 @@ $(function () {
 
 
     $(document).ready(function() {
-      var owl = $('#clients-list');
+      var owl = $('#notice-board-carousel');
       owl.owlCarousel({
         margin: 80,
         nav: true,
@@ -198,10 +198,10 @@ $(function () {
             items: 2
           },
           600: {
-            items: 3
+            items: 2
           },
           1024: {
-            items: 4
+            items: 2
           }
         }
       });
