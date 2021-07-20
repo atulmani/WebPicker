@@ -276,10 +276,31 @@ h6{
 .custom-shape-divider-bottom-1626609895 .shape-fill {
     fill: #00C34833;
 }
+
+.degree-coloum13{
+  top: -30px;
+}
+
+.degree-coloum24{
+  top: 30px;
+}
+
+@media (max-width: 1080px) {
+  .degree-coloum13{
+    top: 0;
+  }
+
+  .degree-coloum24{
+    top: 0;
+  }
+}
+
+
 .card-degrees{
   background: #00C348;
   height: 200px;
   text-align: center;
+  border-radius: 15px 30px;
   transition: all 0.5s ease-in-out;
 }
 .card-degrees:hover{
@@ -304,6 +325,28 @@ h6{
   top: calc(50% - 40px);
 }
 
+.our-campus-heading{
+  width: 100%;
+  text-align: center;
+}
+
+.our-campus-heading hr{
+  background: #fff;
+  width: 180px;
+  position: relative;
+  left: calc(50% - 90px);
+}
+
+
+
+.notice-board{
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  box-shadow: 5px 5px 8px 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
 
 
 
@@ -318,6 +361,10 @@ h6{
   background-color:#161d65;
   text-align:center;
   color:white;
+}
+
+#our-campus{
+  background: #00c348;
 }
 
 .social .fa{
