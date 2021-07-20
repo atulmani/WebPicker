@@ -215,6 +215,7 @@ h6{
   line-height: 1.4;
   letter-spacing: 1.2;
 }
+
 .mybutton {
   background-color: #019738; /* Green */
   border: none;
@@ -239,12 +240,23 @@ h6{
 .button5:hover {
 
 }
+.button6 {
+  font-size: 12px;
+  padding-right: 10px;
+  background: #00C348;
+  color: #fff;
+  border: 2px solid rgba(255,255,255,0.5);
+}
+.button6:hover {
+
+}
 
 .register-arrow{
   padding-left: 10px;
   transition: all 0.4s linear;
 }
-.button5:hover .register-arrow{
+.button5:hover .register-arrow,
+.button6:hover .register-arrow{
   transform: translateX(10px);
 }
 
@@ -331,12 +343,15 @@ h6{
 }
 
 .our-campus-heading hr{
-  background: #fff;
+  background: #00c348;
   width: 180px;
   position: relative;
   left: calc(50% - 90px);
 }
 
+.notice-board-col{
+  /* background: red; */
+}
 
 
 .notice-board{
@@ -345,8 +360,30 @@ h6{
   background: #fff;
   box-shadow: 5px 5px 8px 10px rgba(0,0,0,0.1);
   text-align: center;
+  border-radius: 15px 30px;
+  border: 0px solid #00c348;
+  /* padding: 8px; */
 }
 
+/* Carousel - Start */
+.owl-dots .owl-dot span {
+  background-color: #aaa !important;
+  width: 12px;
+  height: 12px;
+  margin: 8px;
+}
+
+.owl-dots .active span {
+  background-color: #00c348 !important;
+}
+
+#notice-board-carousel .owl-dots .owl-dot span:hover, {
+  background-color: #ff0000 !important;
+}
+
+
+
+/* Carousel - End */
 
 
 
@@ -364,7 +401,7 @@ h6{
 }
 
 #our-campus{
-  background: #00c348;
+  /* background: #00c348; */
 }
 
 .social .fa{
