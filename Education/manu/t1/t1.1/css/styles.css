@@ -289,28 +289,9 @@ h6{
     fill: #00C34833;
 }
 
-.degree-coloum13{
-  top: -30px;
-}
-
-.degree-coloum24{
-  top: 30px;
-}
-
-@media (max-width: 1080px) {
-  .degree-coloum13{
-    top: 0;
-  }
-
-  .degree-coloum24{
-    top: 0;
-  }
-}
-
-
 .card-degrees{
   background: #00C348;
-  height: 200px;
+  height: 180px;
   text-align: center;
   border-radius: 15px 30px;
   transition: all 0.5s ease-in-out;
@@ -342,23 +323,20 @@ h6{
   text-align: center;
 }
 
-.our-campus-heading hr{
+/* .our-campus-heading hr{
   background: #00c348;
   width: 180px;
   position: relative;
   left: calc(50% - 90px);
-}
+} */
 
-.notice-board-col{
-  /* background: red; */
-}
 
 
 .notice-board{
   width: 100%;
   height: 100%;
   background: #fff;
-  box-shadow: 5px 5px 8px 10px rgba(0,0,0,0.1);
+  /* box-shadow: 5px 5px 8px 10px rgba(0,0,0,0.1); */
   text-align: center;
   border-radius: 15px 30px;
   border: 0px solid #00c348;
@@ -381,10 +359,37 @@ h6{
   background-color: #ff0000 !important;
 }
 
+#gallery-carousel .item{
+  text-align: center;
+}
+
 
 
 /* Carousel - End */
 
+.gallery-container{
+  padding: 0 5%;
+}
+
+#gallery-carousel .item img{
+  transition: all 0.5s linear;
+}
+
+#gallery-carousel .item:hover img{
+  transform: scale(1.1);
+}
+
+#partners{
+  background: #00c348;
+}
+
+#partners-carousel .item img{
+  filter: brightness(1);
+}
+
+#partners-carousel .item:hover img{
+  filter: brightness(0);
+}
 
 
 
@@ -395,7 +400,7 @@ h6{
 }
 
 #footer{
-  background-color:#161d65;
+  background-color:#00c348;
   text-align:center;
   color:white;
 }
@@ -404,8 +409,8 @@ h6{
   /* background: #00c348; */
 }
 
-.social .fa{
-    color: white;
+.social .fab{
+    color: #fff;
     border-radius: 50px;
     margin: 15px 5px;
     width: 50px;
@@ -415,6 +420,10 @@ h6{
     border: 2px solid white;
     transition: all 0.5s ease-in;
     background: #000;
+}
+
+.social .fab:hover{
+  transform: rotate(360deg) scale(1.1);
 }
 
 /* Footer Section - End */
