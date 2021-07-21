@@ -155,43 +155,17 @@ $(function () {
   //           });
   // });
 
-  $(document).ready(function() {
-    var owl = $('#designs-list');
-    owl.owlCarousel({
-      margin: 20,
-      loop: true,
-      autoplay: true,
-      smartSpeed:3000,
-      autoplayTimeout: 8500,
-      autoplayHoverPause: true,
-      nav:false,
-      // dots:true,
-      responsive: {
-        0: {
-          items: 1
-        },
-        600: {
-          items: 2
-        },
-        1000: {
-          items: 4
-        }
-      }
-    });
-  });
-
 
     $(document).ready(function() {
       var owl = $('#notice-board-carousel');
       owl.owlCarousel({
         margin: 80,
-        nav: true,
+        nav: false,
         loop: true,
         autoplay: true,
         smartSpeed:3000,
         autoplayTimeout: 4000,
         autoplayHoverPause: false,
-        nav:false,
         // dots:true,
         responsive: {
           0: {
@@ -207,57 +181,58 @@ $(function () {
       });
     });
 
-// $(function(){
-//     $("#clients-list").owlCarousel({
-//        items:6,
-//         autoPlay:false,
-//         smartSpeed:700,
-//         loop:true,
-//         autoplayHoverPause:true,
-//         nav:false,
-//         dots:false,
-//
-//         responsive:{
-//             0:{
-//                 items:3
-//             },
-//
-//              480:{
-//                 items:3
-//             },
-//
-//              768:{
-//                 items:6
-//             }
-//         }
-//     });
-
-    // $("#news-slider").owlCarousel({
-    //     items:3,
-    //     itemsDesktop:[1199,3],
-    //     itemsDesktopSmall:[1000,2],
-    //     itemsMobile:[600,1],
-    //     pagination:false,
-    //     navigationText:false,
-    //     autoPlay:true
-    //
-    //
-    // });
-
-    // $("#banner-slider").owlCarousel({
-    //     items: 1,
-    //     itemsDesktop: [1199, 1],
-    //     itemsDesktopSmall: [1000, 1],
-    //     itemsMobile: [600, 1],
-    //     pagination: false,
-    //     navigationText: false,
-    //     autoPlay: true
-    //
-    //
-    // });
+    $(document).ready(function() {
+      var owl = $('#gallery-carousel');
+      owl.owlCarousel({
+        margin: 20,
+        loop: true,
+        autoplay: true,
+        smartSpeed:3000,
+        autoplayTimeout: 8500,
+        autoplayHoverPause: false,
+        nav:false,
+        // dots:true,
+        responsive: {
+          0: {
+            items: 1
+          },
+          600: {
+            items: 2
+          },
+          1000: {
+            items: 4
+          }
+        }
+      });
+    });
 
 
-// });
+    $(document).ready(function() {
+      var owl = $('#partners-carousel');
+      owl.owlCarousel({
+        margin: 20,
+        loop: true,
+        autoplay: true,
+        smartSpeed:3000,
+        autoplayTimeout: 3000,
+        autoplayHoverPause: false,
+        nav:false,
+        dots:false,
+        responsive: {
+          0: {
+            items: 2
+          },
+          600: {
+            items: 4
+          },
+          1000: {
+            items: 6
+          }
+        }
+      });
+    });
+
+
 
 jQuery(document).ready(function(){
    $(window).scroll(function() {
