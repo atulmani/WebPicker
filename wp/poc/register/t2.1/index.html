@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="WebPicker - A Website Design & Development platform">
+    <meta name="keywords" content="website design and development">
+    <meta name="author" content="Web Picker">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>register-t2.1 - Index </title>
+
+    <link rel="shortcut icon" href="">
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!-- Your Own Style -->
+    <link rel="stylesheet" href="css/styles.css">
+
+  </head>
+  <body>
+    <!-- contact form -->
+    <br>
+
+    <div class="container">
+      <div class="alert">
+        Your message has been sent
+      </div>
+      <div class="row no-gutters">
+        <div class="col-md-6">
+            <div style="background-color:yellow;" class="animated bounceInLeft" >
+              <form id="contactForm">
+                <table width="100%" cellpadding="5px" style="color:black; background-color:#fff; " >
+                  <tr>
+                    <td colspan="2" align="center" >
+                      <div style="font-size:1.4rem;font-weight:800;color:#ff4c68; ">
+                        Firebase Firestore Demo
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span>First Name</span><br>
+                      <input type="text" id="fName" name="fName" maxlength="20" value=""  required placeholder="Enter your first name" style="width:100%;">
+                    </td>
+                    <td>
+                      <span>Last Name</span><br>
+                      <input type="text" id="lName" name="lName" maxlength="20" required value="" placeholder="Enter your last name" style="width:100%;" >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span>Phone no</span><br>
+                      <input type="text" id="phone" name="phone" maxlength="20" required value="" placeholder="Enter your phone no" style="width:100%;">
+                    </td>
+                    <td>
+                      <span>Email Id</span><br>
+                      <input type="text" id="email" name="email" maxlength="20" required value="" placeholder="Enter your email id" style="width:100%;">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" >
+                      <span>Message</span>
+                      <br>
+                      <textarea type="text" id="message" name="message" value="" rows="5" placeholder="Write your message here..." style="width:100%;" ></textarea>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" >
+                      <a href="">
+                        <input class="register-form-button-submit" type="submit" name="Submit" value="Send" style="width:50%;"></a>
+                    </td>
+                  </tr>
+                </table>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <ul id="contactMessageList" >
+
+            </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-database.js"></script>
+<!-- <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script> -->
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<!-- <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script> -->
+
+    <script type="text/javascript" src="js/main.js" >
+
+    </script>
+  </body>
+</html>
