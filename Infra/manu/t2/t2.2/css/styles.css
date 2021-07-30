@@ -60,7 +60,7 @@ h6 {
 
 /* navbar start */
 .navbar {
-  background-color: #161623;
+  background-color: rgba(0,0,0,0.9);
   /*color changed*/
   border-top: 0;
   border-bottom: 0;
@@ -110,9 +110,6 @@ h6 {
   margin-top: 0px;
 }
 
-.navbar-toggler {
-  border: 1px solid #ffff00;
-}
 
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
@@ -198,17 +195,30 @@ h6 {
   padding: 6% 0;
 }
 
-.hero h1{
+.hero .heading{
   font-size: 3.7rem;
 }
-
-.hero h3{
+.hero .text{
   font-weight: 500;
 }
-
-.hero h5{
+.hero .para{
   padding-top: 20px;
   color: #777;
+}
+
+@media (max-width: 1080px) {
+  .hero .heading{
+    font-size: 3rem;
+  }
+  .hero .text{
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+  .hero .para{
+    font-size: 1rem;
+    padding-top: 20px;
+    color: #777;
+  }
 }
 
 .hero a{
@@ -243,19 +253,172 @@ h6 {
   transform: scale(1.1);
 }
 
+.addvertisment{
+  background: #000;
+}
+
+.addvertisment .container .content{
+  text-align: center;
+}
+
+.addvertisment .container .content .heading{
+  color: #fff;
+}
+.addvertisment .container .content .text{
+  color: #fff;
+}
+.addvertisment .container .content .para{
+  color: #888;
+}
+
+@media (max-width: 1080px) {
+  .addvertisment .container .content .heading{
+    font-size: 2rem;
+    color: #fff;
+  }
+  .addvertisment .container .content .text{
+    font-size: 1rem;
+    color: #fff;
+  }
+  .addvertisment .container .content .para{
+    font-size: 0.8rem;
+    color: #888;
+  }
+}
+
+.add{
+  background: radial-gradient(#abdbee,#cfe8e2);
+}
+.add .add-content{
+  text-align: center;
+}
+
+.all-adds{
+  background: #000;
+  text-align: center;
+  padding: 20px 10px;
+}
+.all-adds .product-heading{
+  color: #fff;
+}
+.all-adds .product-specifications{
+  color: #fff;
+}
+
+.all-addsno3{
+  background: #eee;
+  text-align: center;
+  padding: 20px 10px;
+}
+
 /* Footer Section - Start */
-#map {
-  width: 100%;
-  height: 550px;
+/**** contact form*****/
+
+/* Style inputs with type="text", select elements and textareas */
+input[type=text], select, textarea {
+  width: 100%; /* Full width */
+  height: 30%;
+  padding: 8px; /* Some padding */
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 5px; /* Add a top margin */
+  margin-bottom: 10px; /* Bottom margin */
+  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+  background-color: #fb3640;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+.e-mail{
+  color: #000;
+  text-decoration: none;
+}
+
+.e-mail:hover{
+  color: #000;
+  text-decoration: none;
+}
+
+/* Add a background color and some padding around the form */
+.contactform {
+  border-radius: 5px;
+  background-color: #efefef;
+  padding: 10px;
+  transition: 0.7;
+  opacity: 0.9;
+  background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0));
+}
+
+.v-divider{
+ border-left:1px solid #eee;
+
+}
+
+/* googleMap*/
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
+.map-responsive{
+    overflow:hidden;
+    padding-bottom:56%;
+    position:relative;
+    height:0;
+}
+.map-responsive iframe{
+    left:10px;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+
+#map{
+
+    width: 100%;
+    height: 390px;
+    border-radius: 3px;
 }
 
 #footer {
-  background-color: #161d65;
+  background-color: rgba(0,0,0,0.9);
   text-align: center;
   color: white;
 }
 
-.social .fa {
+#footer a{
+  font-size: 0.8rem;
+  color: #fff;
+  opacity: 0.9;
+}
+
+#footer a:hover{
+  opacity: 1;
+}
+#footer h4{
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.build-with-us{
+  transition: 0.5s;
+}
+
+.build-with-us:hover .fas{
+  transform: translateX(20px);
+}
+
+.social .fab {
   color: white;
   border-radius: 50px;
   margin: 15px 5px;
@@ -266,6 +429,10 @@ h6 {
   border: 2px solid white;
   transition: all 0.5s ease-in;
   background: #000;
+}
+
+.social .fab:hover{
+  transform: rotate(360deg) scale(1.1);
 }
 
 /* Footer Section - End */
