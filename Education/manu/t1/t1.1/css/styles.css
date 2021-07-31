@@ -215,6 +215,7 @@ h6{
   line-height: 1.4;
   letter-spacing: 1.2;
 }
+
 .mybutton {
   background-color: #019738; /* Green */
   border: none;
@@ -239,12 +240,25 @@ h6{
 .button5:hover {
 
 }
+.button6 {
+  margin-top: 15px;
+  font-size: 11px;
+  padding-right: 10px;
+  background: #00C348;
+  color: #fff;
+  border: 2px solid rgba(255,255,255,0.5);
+}
+.button6:hover {
+  background: #fff;
+  color: #00C348;
+}
 
 .register-arrow{
   padding-left: 10px;
   transition: all 0.4s linear;
 }
-.button5:hover .register-arrow{
+.button5:hover .register-arrow,
+.button6:hover .register-arrow{
   transform: translateX(10px);
 }
 
@@ -277,34 +291,16 @@ h6{
     fill: #00C34833;
 }
 
-.degree-coloum13{
-  top: -30px;
-}
-
-.degree-coloum24{
-  top: 30px;
-}
-
-@media (max-width: 1080px) {
-  .degree-coloum13{
-    top: 0;
-  }
-
-  .degree-coloum24{
-    top: 0;
-  }
-}
-
-
 .card-degrees{
   background: #00C348;
-  height: 200px;
+  height: 130px;
   text-align: center;
-  border-radius: 15px 30px;
+  border-radius:8px;
   transition: all 0.5s ease-in-out;
 }
 .card-degrees:hover{
-  animation: degreeCard 1s linear infinite;
+  /* animation: degreeCard 1s linear infinite; */
+  transform: rotate(10deg);
 }
 @keyframes degreeCard {
   0%{
@@ -320,6 +316,23 @@ h6{
     transform: rotate(00deg);
   }
 }
+
+.degreeCard-row{
+  position: relative;
+  top: calc(50% - 180px);
+}
+
+@media (max-width: 1080px) {
+  .degreeCard-row{
+    position: relative;
+    top: 0;
+  }
+}
+
+.degreeCard-row tr td{
+  padding: 10px;
+}
+
 .card-degrees div{
   position: relative;
   top: calc(50% - 40px);
@@ -328,13 +341,14 @@ h6{
 .our-campus-heading{
   width: 100%;
   text-align: center;
+  color: #000;
 }
 
 .our-campus-heading hr{
-  background: #fff;
-  width: 180px;
+  background: #00c348;
+  width: 80px;
   position: relative;
-  left: calc(50% - 90px);
+  left: calc(50% - 40px);
 }
 
 
@@ -343,32 +357,146 @@ h6{
   width: 100%;
   height: 100%;
   background: #fff;
-  box-shadow: 5px 5px 8px 10px rgba(0,0,0,0.1);
+  /* box-shadow: 5px 5px 8px 10px rgba(0,0,0,0.1); */
+  text-align: center;
+  border-radius: 8px;
+  border: 0px solid #00c348;
+  /* padding: 8px; */
+}
+
+/* Carousel - Start */
+.owl-dots .owl-dot span {
+  background-color: #aaa !important;
+  width: 12px;
+  height: 12px;
+  margin: 8px;
+}
+
+.owl-dots .active span {
+  background-color: #00c348 !important;
+}
+
+#notice-board-carousel .owl-dots .owl-dot span:hover, {
+  background-color: #ff0000 !important;
+}
+
+#gallery-carousel .item{
   text-align: center;
 }
 
+#gallery-carousel .item h6{
+  line-height: 1.6;
+  letter-spacing: 2px;
+}
 
+
+
+/* Carousel - End */
+
+.gallery-container{
+  padding: 0 5%;
+}
+
+#gallery-carousel .item img{
+  transition: all 0.5s linear;
+}
+
+#gallery-carousel .item:hover img{
+  transform: scale(1.05);
+}
+
+#partners{
+  background: #00c348;
+}
+
+#partners-carousel .item img{
+  filter: brightness(1);
+}
+
+#partners-carousel .item:hover img{
+  filter: brightness(0);
+}
 
 
 
 /* Footer Section - Start */
-#map {
-  width: 100%;
-  height: 550px;
+/* Style inputs with type="text", select elements and textareas */
+input[type=text], select, textarea {
+  width: 100%; /* Full width */
+  height: 30%;
+  padding: 8px; /* Some padding */
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 5px; /* Add a top margin */
+  margin-bottom: 10px; /* Bottom margin */
+  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+
+/* Add a background color and some padding around the form */
+.contactform {
+  background-color: #00c348;
+  padding: 10px;
+  transition: 0.7;
+  opacity: 1;
+}
+
+.contact-datas-color{
+  font-size: 1.5rem;
+  color: #fff;
+  transition: all 0.5s linear;
+}
+
+.datasOfContact:hover .contact-datas-color{
+  transform: rotateY(360deg);
+  color: #00c348;
+}
+
+.v-divider{
+ border-left:1px solid #eee;
+
+}
+
+/* googleMap*/
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
+.map-responsive{
+    overflow:hidden;
+    padding-bottom:56%;
+    position:relative;
+    height:0;
+}
+.map-responsive iframe{
+    left:10px;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+
+#map{
+
+    width: 100%;
+    height: 390px;
+    border-radius: 3px;
 }
 
 #footer{
-  background-color:#161d65;
+  background-color:#00c348;
   text-align:center;
   color:white;
 }
 
 #our-campus{
-  background: #00c348;
+  /* background: #00c348; */
 }
 
-.social .fa{
-    color: white;
+.social .fab{
+    color: #fff;
     border-radius: 50px;
     margin: 15px 5px;
     width: 50px;
@@ -378,6 +506,10 @@ h6{
     border: 2px solid white;
     transition: all 0.5s ease-in;
     background: #000;
+}
+
+.social .fab:hover{
+  transform: rotate(360deg) scale(1.1);
 }
 
 /* Footer Section - End */
