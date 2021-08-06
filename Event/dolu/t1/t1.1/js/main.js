@@ -194,6 +194,7 @@ $(document).ready(function() {
       autoplay: true,
       smartSpeed:3000,
       autoplayTimeout: 3500,
+      autoplayHoverPause: true,
       nav:false,
       // dots:true,
       stagePadding: 70,
