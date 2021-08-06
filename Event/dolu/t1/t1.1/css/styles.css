@@ -512,8 +512,11 @@ h6{
   top: 0;
 }
 #floatingInputValue.form-control{
-  
-}
 
+}
+.bardown ul li a{
+  text-decoration: none;
+  color:#fff;
+}
 
 /* Footer Section - End */
