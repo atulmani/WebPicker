@@ -19,6 +19,9 @@
     rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
 
 
   <!-- Font Awesome cdn file -->
@@ -41,7 +44,7 @@
 <body>
   <!-- Navbar - Start -->
   <nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container">
+    <div class="container-fluid">
       <a class="navbar-brand" href="#banner">
         <h2>HAS</h2>
       </a>
@@ -54,24 +57,27 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="nav navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#banner">Home</a>
+            <a class="nav-link" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#sectors">Services</a>
+            <a class="nav-link" href="#services">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#portfolio">Portfolio</a>
+            <a class="nav-link" href="#WhyToUse">Why Us</a>
             <!-- <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#one">One</a></li>  -->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#aboutus">About us</a>
+            <a class="nav-link" href="#hiw">How We Work</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#contactus">Contact us</a>
+            <a class="nav-link" href="#progects">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#thanks">Contact Us</a>
           </li>
         </ul>
         <div class="nav-divider">
-        <a href="" style="padding-right: 10px; "><button class="mybutton button5"> LET'S BUILD <i class="fas fa-arrow-right"></i> </button></a>
+          <a href="" style="padding-right: 10px; "><button class="mybutton button5"> LET'S BUILD <i class="fas fa-arrow-right"></i> </button></a>
         </div>
         <span class="nav-mobile-no"> <i class="fas fa-phone"></i> 85306 - 42886 </span>
       </div>
@@ -80,13 +86,48 @@
 
   <div class="small navbar-bottom-mobile">
     <ul>
-      <li> <span><i class="fas fa-home"></i></span> <br> Home </li>
-      <li> <span> <i class="fas fa-user"></i></span> <br> About </li>
-      <li> <span><i class="fas fa-tasks"></i></span> <br> Progects </li>
-      <li> <span><i class="fas fa-id-badge"></i></span> <br> Contact Us </li>
-      <li> <span><i class="fas fa-list"></i></span> <br> More </li>
-    </ul>
+      <a type="button">
+        <span><i class="fas fa-home"></i></span> <br> <span> Home </span>
+      </a>
+      <a type="button">
+        <span><i class="fas fa-user"></i></span> <br> <span> About </span>
+      </a>
+      <a type="button">
+        <span><i class="fas fa-tasks"></i></span> <br> <span> Progects </span>
+      </a>
+      <a type="button">
+        <span><i class="fas fa-id-badge"></i></span> <br> <span> Contact Us </span>
+      </a>
+
+      <!-- Toggler/collapsibe Button -->
+      <a type="button" data-toggle="collapse" data-target="#collapsibleNavbar1">
+        <span><i class="fas fa-list"></i></span> <br> <span> More </span>
+      </a>
+
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse more-button-links" id="collapsibleNavbar1">
+        <ul class="">
+          <li class="">
+            <a class="" href="#">Home</a>
+          </li>
+          <li class="">
+            <a class="" href="#">Services</a>
+          </li>
+          <li class="">
+            <a class="" href="#">Portfolio</a>
+          </li>
+          <li class="">
+            <a class="" href="#">About Us</a>
+          </li>
+          <li class="">
+            <a class="" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+
   </div>
+
+
   <!-- Navbar - End -->
 
   <!-- Banner Section - Start -->
@@ -144,7 +185,7 @@
               <h5>Safe Transaction</h5>
             </td>
           </tr>
-        </table>
+        </table> <br>
 
         <a href=""><button class="mybutton button5"> LET'S BUILD <i class="fas fa-arrow-right"></i> </button></a>
       </div>
@@ -155,34 +196,719 @@
 
   <!-- Services - start -->
   <section id="services">
+    <br><br><br>
+    <div class="large">
+      <div class="services-container"><br>
+        <div class="service-circle"></div>
+        <div class="services-heading">
+          <h2>What We Serve</h2><br>
+          <p>We shape our buildings; thereafter, they shape us.</p>
+        </div>
+        <div class="row no-gutters">
+          <div class="col-lg-3 col-md-6 col-sm-12" style="padding: 10px;">
+            <div class="services-cards">
+              <img class="" width="100%" src="./img/3.png">
+              <h5 class="services-details">Mall Construction</h5>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12" style="padding: 10px;">
+            <div class="services-cards">
+              <img class="" width="100%" src="./img/5.png">
+              <h5 class="services-details">Office setup</h5>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12" style="padding: 10px;">
+            <div class="services-cards">
+              <img class="" width="100%" src="./img/4.png">
+              <h5 class="services-details">Road Construction</h5>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12" style="padding: 10px;">
+            <div class="services-cards">
+              <img class="" width="100%" src="./img/6.png">
+              <h5 class="services-details">House Construction</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="small">
+      <div class="container"><br><br>
+        <div class="service-circle"></div>
+        <div class="service-circle2"></div>
+        <div class="services-heading" style="text-align: center;">
+          <h2>What We Serve</h2><br>
+          <p>We shape our buildings; thereafter, they shape us.</p>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-md-offset-1">
+            <div id="services-owl-carousel" class="owl-carousel owl-theme">
+              <div class="item">
+                <!-- <div class="card card-body"> -->
+                <div class="services-cards">
+                  <img class="" width="100%" src="./img/3.png">
+                  <h5 class="services-details">Mall Construction</h5>
+                </div>
+                <!-- </div> -->
+              </div>
+              <div class="item">
+                <!-- <div class="card card-body"> -->
+                <div class="services-cards">
+                  <img class="" width="100%" src="./img/5.png">
+                  <h5 class="services-details">Office setup</h5>
+                </div>
+                <!-- </div> -->
+              </div>
+              <div class="item">
+                <!-- <div class="card card-body"> -->
+                <div class="services-cards">
+                  <img class="" width="100%" src="./img/4.png">
+                  <h5 class="services-details">Road Construction</h5>
+                </div>
+                <!-- </div> -->
+              </div>
+              <div class="item">
+                <!-- <div class="card card-body"> -->
+                <div class="services-cards">
+                  <img class="" width="100%" src="./img/6.png">
+                  <h5 class="services-details">House Construction</h5>
+                </div>
+                <!-- </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br><br><br>
+  </section>
+  <br><br><br><br>
+  <!-- Services - end -->
 
+  <!-- why to use - start -->
+  <section id="WhyToUse">
+    <br>
+    <div class="services-container">
+      <div class="large">
+        <div class="service-circle3"></div>
+        <div class="services-heading">
+          <h2>Why HAS Construction?</h2><br>
+          <p>We shape our buildings; thereafter, they shape us.</p>
+        </div><br><br><br>
+        <div class="row no-gutters">
+          <div class="col-lg-4 col-md-4 col-sm-12" style="padding: 20px;">
+            <div class="whc-card">
+              <img src="./img/save-transaction.svg" width="100%" height="200px" alt=""><br><br>
+              <h6>Save Money and Effort</h6>
+              <p>With transaction alerts, you can know what your money is doing 24/7.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12" style="padding: 20px;">
+            <div class="whc-card">
+              <img src="./img/time.svg" width="100%" height="200px" alt=""><br><br>
+              <h6>No Delay</h6>
+              <p>With transaction alerts, you can know what your money is doing 24/7.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12" style="padding: 20px;">
+            <div class="whc-card">
+              <img src="./img/sale.svg" width="100%" height="200px" alt=""><br><br>
+              <h6>Get The Best Price</h6>
+              <p>With transaction alerts, you can know what your money is doing 24/7.</p>
+            </div>
+          </div>
+        </div><br>
+        <div class="" style="width: 100%; text-align: center;">
+          <a href="" style="padding-right: 10px; "><button class="mybutton button6"> LET'S BUILD <i class="fas fa-arrow-right"></i> </button></a>
+        </div>
+      </div>
+
+      <div class="small">
+        <div class="service-circle4"></div>
+        <div class="services-heading" style="text-align: center;">
+          <h2>Why HAS Constuction?</h2><br>
+          <p>We shape our buildings; thereafter, they shape us.</p>
+        </div><br>
+        <div class="row">
+          <div class="col-md-12 col-md-offset-1">
+            <div id="whc-owl-carousel" class="owl-carousel owl-theme">
+              <div class="item">
+                <!-- <div class="card card-body"> -->
+                <div class="whc-card">
+                  <img src="./img/save-transaction.svg" width="100%" height="200px" alt=""><br><br>
+                  <h6>Save Money and Effort</h6>
+                  <p>With transaction alerts, you can know what your money is doing 24/7.</p>
+                </div>
+                <!-- </div> -->
+              </div>
+              <div class="item">
+                <!-- <div class="card card-body"> -->
+                <div class="whc-card">
+                  <img src="./img/choose.svg" width="100%" height="200px" alt=""><br><br>
+                  <h6>We Choose the Best</h6>
+                  <p>With transaction alerts, you can know what your money is doing 24/7.</p>
+                </div>
+                <!-- </div> -->
+              </div>
+              <div class="item">
+                <!-- <div class="card card-body"> -->
+                <div class="whc-card">
+                  <img src="./img/time.svg" width="100%" height="200px" alt=""><br><br>
+                  <h6>No Delay</h6>
+                  <p>With transaction alerts, you can know what your money is doing 24/7.</p>
+                </div>
+                <!-- </div> -->
+              </div>
+              <div class="item">
+                <!-- <div class="card card-body"> -->
+                <div class="whc-card">
+                  <img src="./img/sale.svg" width="100%" height="200px" alt=""><br><br>
+                  <h6>Get The Best Price</h6>
+                  <p>With transaction alerts, you can know what your money is doing 24/7.</p>
+                </div>
+                <!-- </div> -->
+              </div>
+            </div>
+          </div>
+        </div><br><br>
+        <div class="" style="width: 100%; text-align: center;">
+          <a href="" style="padding-right: 10px; "><button class="mybutton button6"> LET'S BUILD <i class="fas fa-arrow-right"></i> </button></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br><br><br><br><br>
+
+  <!-- why to use - end -->
+
+  <!-- how it works - start -->
+  <section id="hiw"><br><br>
+    <div class="container">
+      <div class="circle"></div>
+      <div class="service-circle2 small"></div>
+      <div class="hiw-heading">
+        <h2>How It Works</h2><br>
+        <p>We shape our buildings; thereafter, they shape us.</p>
+      </div>
+      <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="30000" data-pause="false">
+
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+          <div class="lines">
+            <li data-target="#myCarousel" data-slide-to="0" class="active">1</li>
+          </div>
+          <div class="lines">
+            <li data-target="#myCarousel" data-slide-to="1">2</li>
+          </div>
+          <div class="lines">
+            <li data-target="#myCarousel" data-slide-to="2">3</li>
+          </div>
+          <div class="lines">
+            <li data-target="#myCarousel" data-slide-to="3">4</li>
+          </div>
+          <div class="lines">
+            <li data-target="#myCarousel" data-slide-to="4">5</li>
+          </div>
+          <div class="lines">
+            <li data-target="#myCarousel" data-slide-to="5">6</li>
+          </div>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+          <div class="carousel-item active" style="padding: 10px;">
+            <div class="hiw-items">
+              <div class="large">
+                <img src="./img/contact.svg" width="600px" height="350px" class="" alt="">
+              </div><br>
+              <div class="small">
+                <img src="./img/contact.svg" width="100%" height="300px" class="" alt="">
+              </div><br>
+
+              <div class="hiw-content">
+                <div class="">
+                  <h5>01 Raise a request</h5>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Consequuntur voluptate in saepe a eos ratione libero esse rerum exercitationem
+                    quae qui reiciendis</p>
+                </div>
+              </div>
+            </div><br><br>
+          </div>
+          <div class="carousel-item" style="padding: 10px;">
+            <div class="hiw-items">
+              <div class="large">
+                <img src="./img/meet.svg" width="600px" height="350px" class="" alt="">
+              </div><br>
+              <div class="small">
+                <img src="./img/meet.svg" width="100%" height="300px" class="" alt="">
+              </div><br>
+
+              <div class="hiw-content">
+                <div class="">
+                  <h5>02 Meet Our Experts</h5>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Consequuntur voluptate in saepe a eos ratione libero esse rerum exercitationem
+                    quae qui reiciendis</p>
+                </div>
+              </div>
+            </div><br><br>
+          </div>
+          <div class="carousel-item" style="padding: 10px;">
+            <div class="hiw-items">
+              <div class="large">
+                <img src="./img/book.svg" width="600px" height="350px" class="" alt="">
+              </div><br>
+              <div class="small">
+                <img src="./img/book.svg" width="100%" height="300px" class="" alt="">
+              </div><br>
+
+              <div class="hiw-content">
+                <div class="">
+                  <h5>03 Book With US</h5>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Consequuntur voluptate in saepe a eos ratione libero esse rerum exercitationem
+                    quae qui reiciendis</p>
+                </div>
+              </div>
+            </div><br><br>
+          </div>
+          <div class="carousel-item" style="padding: 10px;">
+            <div class="hiw-items">
+              <div class="large">
+                <img src="./img/design.svg" width="600px" height="350px" class="" alt="">
+              </div><br>
+              <div class="small">
+                <img src="./img/design.svg" width="100%" height="300px" class="" alt="">
+              </div><br>
+
+              <div class="hiw-content">
+                <div class="">
+                  <h5>04 Get the Designs</h5>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Consequuntur voluptate in saepe a eos ratione libero esse rerum exercitationem
+                    quae qui reiciendis</p>
+                </div>
+              </div>
+            </div><br><br>
+          </div>
+          <div class="carousel-item" style="padding: 10px;">
+            <div class="hiw-items">
+              <div class="large">
+                <img src="./img/report.svg" width="600px" height="350px" class="" alt="">
+              </div><br>
+              <div class="small">
+                <img src="./img/report.svg" width="100%" height="300px" class="" alt="">
+              </div><br>
+
+              <div class="hiw-content">
+                <div class="">
+                  <h5>05 Track The progress</h5>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Consequuntur voluptate in saepe a eos ratione libero esse rerum exercitationem
+                    quae qui reiciendis</p>
+                </div>
+              </div>
+            </div><br><br>
+          </div>
+          <div class="carousel-item" style="padding: 10px;">
+            <div class="hiw-items">
+              <div class="large">
+                <img src="./img/settle.svg" width="600px" height="350px" class="" alt="">
+              </div><br>
+              <div class="small">
+                <img src="./img/settle.svg" width="100%" height="300px" class="" alt="">
+              </div><br>
+
+              <div class="hiw-content">
+                <div class="">
+                  <h5>06 Settle In</h5>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Consequuntur voluptate in saepe a eos ratione libero esse rerum exercitationem
+                    quae qui reiciendis</p>
+                </div>
+              </div>
+            </div><br><br>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Services - end -->
+  <!-- how it works - end -->
+
+  <!-- Progects - start -->
+  <section id="progects">
+    <br><br><br>
+    <div class="services-container">
+      <div class="large">
+        <div class="service-circle3"></div>
+        <div class="services-heading">
+          <h2>Our Projects</h2><br>
+          <p>We shape our buildings; thereafter, they shape us.</p>
+        </div><br>
+      </div>
+      <div class="small">
+        <div class="service-circle4"></div>
+        <div class="services-heading" style="text-align: center;">
+          <h2>Our Projects</h2><br>
+          <p>We shape our buildings; thereafter, they shape us.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-md-offset-1">
+          <div id="progects-owl-carousel" class="owl-carousel owl-theme">
+            <div class="item">
+              <!-- <div class="card card-body"> -->
+              <div class="progects-card">
+                <div class="">
+                  <img src="./img/7.png" alt="">
+                  <h5>Park</h5>
+                  <p>A-504, Hight Mont
+                    Hinjewadi, Phase-II
+                    Pune (India) - 411057</p>
+                </div>
+              </div>
+              <!-- </div> -->
+            </div>
+            <div class="item">
+              <!-- <div class="card card-body"> -->
+              <div class="progects-card">
+                <div class="">
+                  <img src="./img/8.png" alt="">
+                  <h5>Park</h5>
+                  <p>A-504, Hight Mont
+                    Hinjewadi, Phase-II
+                    Pune (India) - 411057</p>
+                </div>
+              </div>
+              <!-- </div> -->
+            </div>
+            <div class="item">
+              <!-- <div class="card card-body"> -->
+              <div class="progects-card">
+                <div class="">
+                  <img src="./img/9.png" alt="">
+                  <h5>House</h5>
+                  <p>A-504, Hight Mont
+                    Hinjewadi, Phase-II
+                    Pune (India) - 411057</p>
+                </div>
+              </div>
+              <!-- </div> -->
+            </div>
+            <div class="item">
+              <!-- <div class="card card-body"> -->
+              <div class="progects-card">
+                <div class="">
+                  <img src="./img/10.png" alt="">
+                  <h5>House</h5>
+                  <p>A-504, Hight Mont
+                    Hinjewadi, Phase-II
+                    Pune (India) - 411057</p>
+                </div>
+              </div>
+              <!-- </div> -->
+            </div>
+            <div class="item">
+              <!-- <div class="card card-body"> -->
+              <div class="progects-card">
+                <div class="">
+                  <img src="./img/11.png" alt="">
+                  <h5>On-Going</h5>
+                  <p>A-504, Hight Mont
+                    Hinjewadi, Phase-II
+                    Pune (India) - 411057</p>
+                </div>
+              </div>
+            </div>
+            <!-- </div> -->
+            <div class="item">
+              <!-- <div class="card card-body"> -->
+              <div class="progects-card">
+                <div class="">
+                  <img src="./img/14.png" alt="">
+                  <h5>Bridge</h5>
+                  <p>A-504, Hight Mont
+                    Hinjewadi, Phase-II
+                    Pune (India) - 411057</p>
+                </div>
+              </div>
+              <!-- </div> -->
+            </div>
+            <div class="item">
+              <!-- <div class="card card-body"> -->
+              <div class="progects-card">
+                <div class="">
+                  <img src="./img/13.png" alt="">
+                  <h5>Road</h5>
+                  <p>A-504, Hight Mont
+                    Hinjewadi, Phase-II
+                    Pune (India) - 411057</p>
+                </div>
+              </div>
+              <!-- </div> -->
+            </div>
+            <div class="item">
+              <!-- <div class="card card-body"> -->
+              <div class="progects-card">
+                <div class="">
+                  <img src="./img/12.png" alt="">
+                  <h5>On-Going</h5>
+                  <p>A-504, Hight Mont
+                    Hinjewadi, Phase-II
+                    Pune (India) - 411057</p>
+                </div>
+              </div>
+              <!-- </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <br /><br />
+    </div>
+  </section>
+  <!-- progects - end -->
+
+  <!-- testimonial - Start -->
+  <section id="testimonial">
+    <br><br>
+    <div class="services-container">
+    <div class="large">
+    <div class="service-circle"></div>
+    <div class="services-heading">
+      <h2>Testimonial</h2><br>
+      <p>We shape our buildings; thereafter, they shape us.</p>
+    </div>
+    </div>
+    <div class="small">
+      <div class="service-circle4"></div>
+      <div class="services-heading" style="text-align: center;">
+        <h2>Testimonial</h2><br>
+        <p>We shape our buildings; thereafter, they shape us.</p>
+      </div><br>
+    </div>
+
+      <div class="row">
+        <div class="col-md-12 col-md-offset-1">
+          <div id="clients-list" class="owl-carousel owl-theme">
+            <div class="item">
+              <!-- <div class="card card-body"> -->
+              <div class="testimonial-card">
+                <img src="./img/15.png" class="clients-card-img" alt=""> <br>
+                <h3 class="clients-card-colun">"</h3>
+                <p class="clients-card-content">She is with us since we started our YOOGA classes.
+                  There is a great relationship between out clientsand the trainers and all our staff.</p>
+                  <h3 class="clients-card-name"> Shilpa Rani </h3>
+              </div>
+              <!-- </div> -->
+            </div>
+            <div class="item">
+              <!-- <div class="card card-body"> -->
+              <div class="testimonial-card">
+                <img src="./img/16.png" class="clients-card-img" alt=""> <br>
+                <h3 class="clients-card-colun">"</h3>
+                <p class="clients-card-content">She is with us since we started our YOOGA classes.
+                  There is a great relationship between out clientsand the trainers and all our staff.</p>
+                  <h3 class="clients-card-name"> Shilpa Rani </h3>
+              </div>
+              <!-- </div> -->
+            </div>
+            <div class="item">
+              <!-- <div class="card card-body"> -->
+              <div class="testimonial-card">
+                <img src="./img/17.png" class="clients-card-img" alt=""> <br>
+                <h3 class="clients-card-colun">"</h3>
+                <p class="clients-card-content">She is with us since we started our YOOGA classes.
+                  There is a great relationship between out clientsand the trainers and all our staff.</p>
+                  <h3 class="clients-card-name"> Shilpa Rani </h3>
+              </div>
+              <!-- </div> -->
+            </div>
+            <div class="item">
+              <!-- <div class="card card-body"> -->
+              <div class="testimonial-card">
+                <img src="./img/18.png" class="clients-card-img" alt=""> <br>
+                <h3 class="clients-card-colun">"</h3>
+                <p class="clients-card-content">She is with us since we started our YOOGA classes.
+                  There is a great relationship between out clientsand the trainers and all our staff.</p>
+                  <h3 class="clients-card-name"> Shilpa Rani </h3>
+              </div>
+              <!-- </div> -->
+            </div>
+            <div class="item">
+              <!-- <div class="card card-body"> -->
+              <div class="testimonial-card">
+                <img src="./img/19.png" class="clients-card-img" alt=""> <br>
+                <h3 class="clients-card-colun">"</h3>
+                <p class="clients-card-content">She is with us since we started our YOOGA classes.
+                  There is a great relationship between out clientsand the trainers and all our staff.</p>
+                  <h3 class="clients-card-name"> Shilpa Rani </h3>
+              </div>
+            </div>
+            <!-- </div> -->
+            <div class="item">
+              <!-- <div class="card card-body"> -->
+              <div class="testimonial-card">
+                <img src="./img/20.png" class="clients-card-img" alt=""> <br>
+                <h3 class="clients-card-colun">"</h3>
+                <p class="clients-card-content">She is with us since we started our YOOGA classes.
+                  There is a great relationship between out clientsand the trainers and all our staff.</p>
+                  <h3 class="clients-card-name"> Shilpa Rani </h3>
+              </div>
+              <!-- </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    <br /><br />
+    </div>
+
+  </section>
+  <br><br><br>
+
+  <!-- testimonial - end -->
+
+  <!-- Thanks - start -->
+  <section id="thanks">
+    <div class="container-fluid">
+      <div class="large">
+        <div class="service-circle5"></div>
+      </div>
+      <div class="small">
+        <div class="service-circle4"></div>
+      </div>
+    <div class="row no-gutters">
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="thanks-container">
+          <div class="large">
+            <div class="services-heading">
+              <h2>Thank You for <br> Choosing Us</h2><br>
+            </div><br>
+          </div>
+          <div class="small">
+            <div class="services-heading" style="text-align: center;">
+              <h2>Thank You for Choosing Us</h2><br>
+            </div>
+          </div>
+          <table class="qualities-table2">
+            <tr>
+              <td> <span><i class="fas fa-laptop-house"></i> 100+ </span>
+                <h5>House we build</h5>
+              </td>
+              <td> <span><i class="fas fa-check-square"></i> 50+ </span>
+                <h5>checking of Quality</h5>
+              </td>
+              <td> <span><i class="fas fa-rupee-sign"></i> 100% </span>
+                <h5>Safe Transaction</h5>
+              </td>
+            </tr>
+          </table><br><br>
+
+          <a href=""><button class="mybutton button5"> LET'S BUILD <i class="fas fa-arrow-right"></i> </button></a>
+      </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="thanks-svg-div">
+          <img src="./img/thanks.svg" width="100%" alt="">
+        </div>
+      </div>
+    </div>
+</div>
+</section><br><br>
+
+  <!-- thanks - end -->
 
 
 
   <!-- Map Section - Start -->
-  <section id="map">
+  <!-- <section id="map">
 
-  </section>
+  </section> -->
   <!-- Map Section - End -->
 
   <!-- Footer Section - Start -->
   <section id="footer">
     <br /><br />
-    <div>
-      <h2>WebPicker</h2>
-      <h5>YOU DREAM WE DESIGN</h5>
 
-      <div class="social">
-        <a href=""><i class="fa fa-facebook"></i></a>
-        <a href=""><i class="fa fa-twitter"></i></a>
-        <a href=""><i class="fa fa-instagram"></i></a>
-        <a href=""><i class="fa fa-linkedin"></i></a>
+    <div class="row no-gutters" style="text-align: center;">
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="links-sitemaps">
+          <h5>SITEMAPS</h5>
+        <ul class="">
+          <li class="">
+            <a class="" href="#">Home</a>
+          </li>
+          <li class="">
+            <a class="" href="#services">Services</a>
+          </li>
+          <li class="">
+            <a class="" href="#WhyToUse">Why Us</a>
+            <!-- <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#one">One</a></li>  -->
+          </li>
+          <li class="">
+            <a class="" href="#hiw">How We Work</a>
+          </li>
+          <li class="">
+            <a class="" href="#progects">Projects</a>
+          </li>
+          <li class="">
+            <a class="" href="#thanks">Contact Us</a>
+          </li>
+        </ul>
+        </div>
       </div>
-      <br />
-      <h6>© 2021 WebPicker. All Rights Reserved</h6>
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="links-sitemaps">
+          <h5>OTHERS</h5>
+        <ul class="">
+          <li class="">
+            <a class="" href="">Jion us officialy</a>
+          </li>
+          <li class="">
+            <a class="" href="">Refer a friend</a>
+          </li>
+          <li class="">
+            <a class="" href="">Channel Partner</a>
+          </li>
+        </ul>
+      </div><br><br>
+
+        <div class="links-sitemaps">
+          <h5>INFORMATION</h5>
+        <ul class="">
+          <li class="">
+            <a class="" href="">Terms & Conditions</a>
+          </li>
+          <li class="">
+            <a class="" href="">Privacy & Policy</a>
+          </li>
+          <li class="">
+            <a class="" href="">FAQ's</a>
+          </li>
+        </ul>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="footer-last">
+          <h3>HAS</h3>
+          <h6>CONSTRUCTION PROJECT MANAGEMENT CONSORTIUM</h6><br>
+          <hr><br>
+          <h5 class="git">Get in Touch</h5>
+          <a href="" class="footer-no">+91 853 064 2886</a>
+          <a href="" class="footer-email">connect@webpicker.in</a><br><br>
+          <hr>
+          <div class="social">
+            <a href=""><i class="fab fa-facebook-f"></i></a>
+            <a href=""><i class="fab fa-twitter"></i></a>
+            <a href=""><i class="fab fa-instagram"></i></a>
+            <a href=""><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="Copyright">
+        <h6> © Copyright 2021 Web Picker</h6>
+      </div>
     </div>
 
     <br /><br />
