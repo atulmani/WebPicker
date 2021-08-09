@@ -10,11 +10,6 @@ Reference Colors:
 
 */
 /********** tag selectors ************/
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 body {
   width: 100%;
@@ -26,7 +21,7 @@ body {
 h1 {
   font-size: 3rem;
   font-weight: bold;
-}
+  }
 
 h2 {
   font-size: 2.5rem;
@@ -53,9 +48,15 @@ h6 {
   font-weight: normal;
 }
 
+
 /********** class selectors ************/
 .container-fluid {
   width: 100%;
+}
+
+.container{
+
+    width: 100%;
 }
 
 /* navbar start */
@@ -73,7 +74,7 @@ h6 {
 .navbar-brand {
   color: #aaa;
   font-size: 1.7rem;
-  padding-left: 12px;
+  padding-left:0px;
 }
 
 .navbar-brand:hover {
@@ -82,21 +83,22 @@ h6 {
 
 .navbar-text {
   color: white;
-  padding-left: 12px;
+  padding-left: 4px;
 }
 
 .nav-item {
   width: 140px;
   /* padding-left: 20px; */
   line-height: 2;
+text-align: right;
 }
 
 .nav-link {
   /* color: white; */
   color: #aaa;
-  font-size: 0.9rem;
-  text-align: center;
-  font-weight: bold;
+  font-size: 1.3 rem;
+  text-align: left;
+
 }
 
 .nav-link:hover {
@@ -104,15 +106,15 @@ h6 {
 }
 
 .nav .active {
-  color: #E32F2F;
+  color: #fff;
   /* font-size: 1rem; */
-  background-color: #ededed;
+  /* background-color: #ededed; */
   margin-top: 0px;
 }
 
 
 .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
 .sticky {
@@ -160,6 +162,11 @@ h6 {
     border-radius: 0 0 0 0;
   }
 }
+.row{
+  /* width: 100%;
+  margin: 0;
+   */
+}
 
 .swiper-container {
   width: 100%;
@@ -171,17 +178,20 @@ h6 {
   background-position: center;
   background-size: cover;
   width: 250px;
-  height: 380px;
+  height: 420px;
   text-align: center;
+  box-shadow: 0px 0px 30px 0px  #eee;
+
 }
 
 .swiper-slide h5{
-  padding-top: 10px;
+  padding-top: 15px;
   font-weight: bold;
 }
 
 .swiper-slide p{
   color:#888;
+  font-size: 15px;
 }
 
 .swiper-slide img {
@@ -255,6 +265,7 @@ h6 {
 
 .addvertisment{
   background: #000;
+  width:100%;
 }
 
 .addvertisment .container .content{
@@ -286,6 +297,11 @@ h6 {
   }
 }
 
+.item{
+box-shadow:;
+
+}
+
 .add{
   background: radial-gradient(#abdbee,#cfe8e2);
 }
@@ -294,15 +310,21 @@ h6 {
 }
 
 .all-adds{
-  background: #000;
+  background: #eee;
   text-align: center;
   padding: 20px 10px;
+  box-shadow: 0px 0px 5px 0px #abdbee ;
+  border-top: 4px solid #abdbee ;
+  /* border-left: 1px solid #abdbee ;
+  border-right: 1px solid #abdbee ;
+  border-bottom: 1px solid #abdbee ; */
+
 }
 .all-adds .product-heading{
-  color: #fff;
+  color: #000;
 }
 .all-adds .product-specifications{
-  color: #fff;
+  color: #000;
 }
 
 .all-addsno3{
@@ -311,20 +333,85 @@ h6 {
   padding: 20px 10px;
 }
 
+.checked {
+  color: orange;
+}
+
+.btn-design{
+text-align:center;
+position:relative;
+transform: translateY(0px);
+
+}
+
 /* Footer Section - Start */
 /**** contact form*****/
 
+.form-control{
+background-color: #D9E4EC;
+
+border-radius: 0;
+box-sizing: border-box;
+border-bottom: 5px solid #637E90;
+
+
+}
+
+
+/*Testmonials*/
+.testimonial-1 {
+    background: #D9E4EC;
+    padding: 14px;
+    color: #000
+    opacity:0.5;
+    box-shadow: 10px  #D9E4EC;
+    position: relative;
+}
+
+.col-md-4 {
+    margin-top: 25px
+}
+
+.name {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: -3px
+}
+
+.place {
+    font-size: 13px;
+    color: #988c8c
+}
+
+.place-2 {
+    font-size: 13px;
+    color: #ffffff
+}
+
+@media (min-width: 1080px) {
+  .testimonial-2  {
+    width: 100%;
+    /* display: none; */
+    border-radius: 0 0 0 0;
+    padding-left: 20%;
+    padding-Right:20%;
+    padding-bottom: 10%
+  }
+}
+
+
+
 /* Style inputs with type="text", select elements and textareas */
-input[type=text], select, textarea {
+/*input[type=text], select, textarea {
   width: 100%; /* Full width */
-  height: 30%;
-  padding: 8px; /* Some padding */
-  border: 1px solid #ccc; /* Gray border */
-  border-radius: 4px; /* Rounded borders */
-  box-sizing: border-box; /* Make sure that padding and width stays in place */
-  margin-top: 5px; /* Add a top margin */
-  margin-bottom: 10px; /* Bottom margin */
-  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+  /* height: 30%;/* Full width */ */
+  /* padding: 8px; /* Some padding */ */
+  /* border: 1px solid #ccc; /* Gray border */ */
+  /* border-radius: 4px; /* Rounded borders */ */
+  /* box-sizing: border-box; /* Make sure that padding and width stays in place */ */
+  /* margin-top: 5px; /* Add a top margin */ */
+  /* margin-bottom: 10px; /* Bottom margin */ */
+  /* resize: vertical; /* Allow the user to vertically resize the textarea (not horizontally) */ */
 }
 
 /* Style the submit button with a specific background color etc */
