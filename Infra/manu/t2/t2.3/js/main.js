@@ -156,16 +156,20 @@ $(function () {
   // });
 
   $(document).ready(function() {
-    var owl = $('#designs-list');
+    var owl = $('#whc-owl-carousel');
     owl.owlCarousel({
-      margin: 20,
-      loop: true,
-      autoplay: true,
-      smartSpeed:3000,
-      autoplayTimeout: 8500,
-      autoplayHoverPause: true,
+      stagePadding: 30,
+      margin: 10,
+      nav: true,
+      loop: false,
+      autoplay: false,
+      // smartSpeed:3000,
+      // autoplayTimeout: 4000,
+      autoplayHoverPause: false,
+      autoWidth:false,
       nav:false,
-      // dots:true,
+      dots:false,
+      rtl: true,
       responsive: {
         0: {
           items: 1
@@ -182,26 +186,86 @@ $(function () {
 
 
     $(document).ready(function() {
-      var owl = $('#clients-list');
+      var owl = $('#services-owl-carousel');
       owl.owlCarousel({
-        margin: 80,
+        stagePadding: 30,
+        margin: 10,
+        nav: true,
+        loop: false,
+        autoplay: false,
+        // smartSpeed:3000,
+        // autoplayTimeout: 4000,
+        autoplayHoverPause: false,
+        autoWidth:false,
+        nav:false,
+        dots:false,
+        responsive: {
+          0: {
+            items: 1,
+          },
+          600: {
+            items: 2
+          },
+          1024: {
+            items: 4
+          }
+        }
+      });
+    });
+
+
+    $(document).ready(function() {
+      var owl = $('#progects-owl-carousel');
+      owl.owlCarousel({
+        margin: 10,
         nav: true,
         loop: true,
         autoplay: true,
         smartSpeed:3000,
         autoplayTimeout: 4000,
         autoplayHoverPause: false,
-        nav:false,
-        // dots:true,
+        autoWidth:false,
+        nav:true,
+        dots:true,
         responsive: {
           0: {
-            items: 2
+            items: 1,
           },
           600: {
-            items: 3
+            items: 2,
           },
           1024: {
-            items: 4
+            items: 3,
+            stagePadding: 50,
+          }
+        }
+      });
+    });
+
+
+    $(document).ready(function() {
+      var owl = $('#clients-list');
+      owl.owlCarousel({
+        margin: 10,
+        nav: true,
+        loop: true,
+        autoplay: true,
+        smartSpeed:3000,
+        autoplayTimeout: 4000,
+        autoplayHoverPause: false,
+        autoWidth:false,
+        nav:true,
+        dots:true,
+        responsive: {
+          0: {
+            items: 1,
+          },
+          600: {
+            items: 2,
+          },
+          1024: {
+            items: 4,
+            stagePadding: 50,
           }
         }
       });
