@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "247978042866",
+    "project_id": "ads4-f3d81",
+    "storage_bucket": "ads4-f3d81.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247978042866:android:a5dfd969aaa16800b9b76b",
+        "android_client_info": {
+          "package_name": "com.webpicker.com.ads4"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "247978042866-361aknb4nage1tvidb5vm54nhki3nlh7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXXx7nzd-6CdD3-sHwBQTVVWgL_bgcKdU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "247978042866-361aknb4nage1tvidb5vm54nhki3nlh7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
