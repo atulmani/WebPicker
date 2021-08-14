@@ -58,7 +58,7 @@ $(document).on('click', function() {
 // });
 
 // $(function () {
-//     $("#team-members").owlCarousel({
+//     $("#projects").owlCarousel({
 //         items: 2,
 //         autoplay: true,
 //         smartSpeed: 700,
@@ -139,29 +139,29 @@ $(function () {
 
 });
 
-  // $(document).ready(function(){
-  //     $("#testimonial-slider").owlCarousel({
-  //        items:1,
-  //         itemsDesktop:[1000,1],
-  //         itemsDesktopSmall:[979,1],
-  //         itemsTablet:[768,1],
-  //         pagination:true,
-  //         autoPlay:false
-  //
-  //     });
-  //    $('.count').counterUp({
-  //               delay: 10,
-  //               time: 4000
-  //           });
-  // });
+  $(document).ready(function(){
+      $("#testimonial-slider").owlCarousel({
+         items:1,
+          itemsDesktop:[1000,1],
+          itemsDesktopSmall:[979,1],
+          itemsTablet:[768,1],
+          pagination:true,
+          autoPlay:false
+
+      });
+     $('.count').counterUp({
+                delay: 10,
+                time: 4000
+            });
+  });
 
   $(document).ready(function() {
-    var owl = $('#designs-list');
+    var owl = $('#projects');
     owl.owlCarousel({
       margin: 20,
       loop: true,
       autoplay: true,
-      smartSpeed:3000,
+      smartSpeed:1000,
       autoplayTimeout: 8500,
       autoplayHoverPause: true,
       nav:false,
@@ -174,7 +174,7 @@ $(function () {
           items: 2
         },
         1000: {
-          items: 4
+          items: 2
         }
       }
     });
@@ -195,13 +195,13 @@ $(function () {
         // dots:true,
         responsive: {
           0: {
-            items: 2
+            items: 1
           },
           600: {
-            items: 3
+            items: 1
           },
           1024: {
-            items: 4
+            items: 1
           }
         }
       });

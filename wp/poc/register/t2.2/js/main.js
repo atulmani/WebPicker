@@ -2,12 +2,12 @@
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 var firebaseConfig = {
   apiKey: "AIzaSyCa_pWRLz6kjW6wbm84L0sPS1H4iZwpziI",
-  authDomain: "webpicker-786c6.firebaseapp.com",
+  // authDomain: "webpicker-786c6.firebaseapp.com",
   // databaseURL: "https://webpicker-786c6-default-rtdb.firebaseio.com",
   databaseURL: "https://webpicker-786c6.firebaseio.com",
   projectId: "webpicker-786c6",
-  storageBucket: "webpicker-786c6.appspot.com",
-  messagingSenderId: "517324220054",
+  // storageBucket: "webpicker-786c6.appspot.com",
+  // messagingSenderId: "517324220054",
   appId: "1:517324220054:web:e7e281a20b5e2d7b3a44b7",
   measurementId: "G-GJCEDPVJQL"
 };
@@ -56,7 +56,7 @@ firebase.initializeApp(firebaseConfig);
 
   //Realtime database listener
   // db.collection('ContactFormMessages').onSnapshot(snapshot => {
-  db.collection('ContactFormMessages').orderBy('FirstName').onSnapshot(snapshot => {
+  db.collection('ContactFormMessages').orderBy('Phone', 'desc').onSnapshot(snapshot => {
     let changes = snapshot.docChanges();
     // console.log(changes);
     changes.forEach (change => {
