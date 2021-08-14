@@ -104,7 +104,7 @@ text-align: right;
   /* color: white; */
   color: #CBCDCB;
   font-size: 0.95rem;
-  text-align: left;
+  text-align: right;
   letter-spacing: 0.3px;
   font-weight: 400;
   text-shadow: 0.2px 0.4px #CBCDCB;
@@ -365,12 +365,13 @@ padding-bottom: 50px;
 .all-adds{
   background: #F5F5F7;
   text-align: center;
-  padding: 20px 50px;
-  box-shadow: 0px 0px 5px 0px #abdbee ;
-  border-top: 4px solid #abdbee ;
+  padding: 5px 20px;
+  box-shadow: 0px 0px 5px 0px #F5F5F7 ;
+  border-top: 4px solid #F5F5F7 ;
   /* border-left: 1px solid #abdbee ;
   border-right: 1px solid #abdbee ;
   border-bottom: 1px solid #abdbee ; */
+
 
 }
 .all-adds .product-heading{
@@ -401,11 +402,11 @@ transform: translateY(0px);
 /**** contact form*****/
 
 .form-control{
-background-color: #D9E4EC;
-
+background-color: #F5F5F7;
 border-radius: 0;
 box-sizing: border-box;
-border-bottom: 5px solid #637E90;
+border-bottom: 5px solid #eee;
+border-radius: 2px;
 
 
 }
