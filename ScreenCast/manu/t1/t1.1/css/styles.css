@@ -386,7 +386,7 @@ input:valid .input-field i{
   }
 
   .panels-container{
-    z-index: 10;
+    /* z-index: 10; */
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 2fr 1fr;
   }
