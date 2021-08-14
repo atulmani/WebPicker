@@ -474,6 +474,15 @@ input:valid .input-field i{
     bottom: 28%;
     left: 50%;
   }
+
+  .signin-signup{
+    background: rgba(0,0,0,0.5);
+    border-radius: 50px;
+  }
+
+  .title{
+    color: #fff;
+  }
 }
 
 
