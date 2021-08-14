@@ -1,23 +1,23 @@
-// // // Ristrict mouse right click - start
-// document.addEventListener("contextmenu", function(e){
-//     e.preventDefault();
-// }, false);
-//
-// // // With jQuery
-// $(document).on({
-//     "contextmenu": function(e) {
-//         console.log("ctx menu button:", e.which);
-//
-//         // Stop the context menu
-//         e.preventDefault();
-//     },
-//     "mousedown": function(e) {
-//         console.log("normal mouse down:", e.which);
-//     },
-//     "mouseup": function(e) {
-//         console.log("normal mouse up:", e.which);
-//     }
-// });
+// // Ristrict mouse right click - start
+document.addEventListener("contextmenu", function(e){
+    e.preventDefault();
+}, false);
+
+// // With jQuery
+$(document).on({
+    "contextmenu": function(e) {
+        console.log("ctx menu button:", e.which);
+
+        // Stop the context menu
+        e.preventDefault();
+    },
+    "mousedown": function(e) {
+        console.log("normal mouse down:", e.which);
+    },
+    "mouseup": function(e) {
+        console.log("normal mouse up:", e.which);
+    }
+});
 
 // Ristrict mouse right click - end
 
