@@ -3,9 +3,5 @@ Disallow: /nogooglebot/
 
 User-agent: *
 Allow: /index.html
-Allow: /designs.html
-Allow: /about.html
-Allow: /pricing.html
-
-
-Sitemap: http://www.example.com/sitemap.xml
+Allow: /designs/index.html
+Allow: /about/index.html
