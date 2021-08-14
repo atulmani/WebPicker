@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="WebPicker - A Website Design & Development platform">
+  <meta name="keywords" content="website design and development">
+  <meta name="author" content="Web Picker">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>DigiAds-manu-t1.1 - Sign Up </title>
+
+  <link rel="shortcut icon" href="img/logo.png">
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome cdn file -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <!-- Owl Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+  <!-- Bootstrap css -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+  <!-- Your Own Style -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script type="text/javascript">
+
+
+  </script>
+
+</head>
+
+<body>
+  <div class="full-content">
+    <div class="forms-container">
+      <div class="signin-signup">
+        <form class="signin-form" action="" method="">
+          <h2 class="title">Sign in</h2>
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input type="email" placeholder="Email" required name="" value="">
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" maxlength="30" placeholder="Password" required name="" value="">
+          </div>
+          <input type="submit" name="" value="Login" class="btn solid">
+          <p class="social-text">Or Sign in with social platforms</p>
+          <div class="social-media">
+            <a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </form>
+
+        <form class="signup-form" action="" method="">
+          <h2 class="title">Sign up</h2>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input id="fullname" type="text" maxlength="30" required placeholder="Full Name" name="" value="">
+          </div>
+          <div class="input-field">
+            <i class="fas fa-phone"></i>
+            <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="10" type="number" placeholder="Phone No." required name="" value="">
+          </div>
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input type="email" placeholder="Email" required name="" value="">
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" maxlength="30" placeholder="Password" required name="" value="">
+          </div>
+          <input type="submit" name="" value="Register" class="btn solid">
+          <p class="social-text">Or Sign up with social platforms</p>
+          <div class="social-media">
+            <a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="panels-container">
+      <div class="panel left-panel">
+        <div class="content">
+          <h3>New Here ?</h3>
+          <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem a aliquid corrupti eum tempora facere eligendi nobis nulla quasi ut? </p>
+          <button type="" name="" class="btn transparent" id="signup_btn">Sign up</button>
+        </div>
+
+        <img src="./img/signin.svg" class="image" alt="">
+      </div>
+
+
+      <div class="panel right-panel">
+        <div class="content">
+          <h3>One of us ?</h3>
+          <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem a aliquid corrupti eum tempora facere eligendi nobis nulla quasi ut? </p>
+          <button type="" name="" class="btn transparent" id="signin_btn">Sign in</button>
+        </div>
+
+        <img src="./img/register.svg" class="image" alt="">
+      </div>
+    </div>
+  </div>
+
+  <!-- Jquery order should be higher from normal javascript  -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+  <!-- Owl Carousel JQuery -->
+  <!-- <script src="js/jquery.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Javascript to Populate Map - Start  -->
+  <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script> -->
+
+  <script src="js/login.js"></script>
+
+  <!-- Owl Carousel Javascript  -->
+  <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
