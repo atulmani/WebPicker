@@ -18,6 +18,7 @@ Reference Colors:
   box-sizing: border-box;
 }
 
+
 body{
   width: 100%;
   margin: 0;
@@ -487,6 +488,7 @@ h6{
 .firstbox ul li{
   list-style-type:none;
 }
+
 .textheadright{
 
   color:#889;
@@ -518,5 +520,42 @@ h6{
   text-decoration: none;
   color:#fff !important;
 }
+
+.orderborder{
+  border: 2px solid #000;
+  font-family: 'Oswald', sans-serif;
+  border-radius: 10px;
+
+}
+/* .borderfortop{
+  border-top: 2px solid #000;
+
+} */
+.heightwidth{
+  width:35%;
+  padding-top: 0.5%;
+}
+
+.step3-checkoutbox{
+  font-family: 'Oswald', sans-serif;
+  padding: 1%;
+  border-radius: 10px;
+}
+
+.new{
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 2%;
+}
+
+
+
+
+
+
+
+
+
+
 
 /* Footer Section - End */
