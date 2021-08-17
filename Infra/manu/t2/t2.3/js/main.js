@@ -21,6 +21,7 @@
 
 // Ristrict mouse right click - end
 
+
 // Collapse Navbar toggle menu after clicking on menu items - Start
 $(document).on('click', function() {
   $('.collapse').collapse('hide');
