@@ -21,17 +21,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome cdn file -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-  <!-- Owl Stylesheets -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-
   <!-- Bootstrap css -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
 
   <!-- Your Own Style -->
   <link rel="stylesheet" href="../css/styles.css">
@@ -91,80 +84,104 @@
     <div style="padding:2% 2% 0 2%;" class="col-lg-8">
       <img style="width:100%;border-radius:10px;" src="../img/pager3.jpg" alt=""><br><br>
       <img style="width:100%;border-radius:10px;" src="../img/pager4.jpg" alt="">
-
-
-
     </div>
 
     <div style="padding: 2% 2% 0 2%;" class="col-lg-4">
       <!-- checkout strat -->
       <div style="border: 2px solid #889; " class="firstbox">
-        <h4 style="font-weight:1000; font-size:1.2rem;">CHECKOUT</h4>
-        <hr>
+    <h4 style="font-weight:1000; font-size:1.2rem;">CHECKOUT</h4>
+    <hr>
 
-      <form class="row g-3">
-        <div class="col-md-6">
-          <label for="inputEmail4" class="form-label">Email</label>
-          <input type="email" class="form-control" id="inputEmail4">
-        </div>
-        <div class="col-md-6">
-          <label for="inputPassword4" class="form-label">Phone no.</label>
-          <input type="password" class="form-control" id="inputPassword4">
-        </div>
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">First name</label>
-    <input type="email" class="form-control" id="inputEmail4">
-  </div>
-  <div class="col-md-6">
-    <label for="inputPassword4" class="form-label">Last Name</label>
-    <input type="password" class="form-control" id="inputPassword4">
-  </div>
-  <div class="col-12">
-    <label for="inputAddress" class="form-label">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-  </div><br>
-
-  <div class="col-md-6">
-    <label for="inputCity" class="form-label">City</label>
-    <input type="text" class="form-control" id="inputCity">
-  </div>
-  <div class="col-md-6">
-    <label for="inputCity" class="form-label">State</label>
-    <input type="text" class="form-control" id="inputCity">
-
-  </div>
-
-  <div class="col-md-12">
-    <br>
-  Select Category
-  <br>
+  <form class="row g-3">
+    <div class="col-md-6">
+      <label for="inputEmail4" class="form-label">Email</label>
+      <input type="email" class="form-control" id="inputEmail4">
+    </div>
+    <div class="col-md-6">
+      <label for="inputPassword4" class="form-label">Phone no.</label>
+      <input type="password" class="form-control" id="inputPassword4">
+    </div>
+<div class="col-md-6">
+<label for="inputEmail4" class="form-label">First name</label>
+<input type="email" class="form-control" id="inputEmail4">
 </div>
-  <div class="col-md-12">
-    <ul>
-      <li><input type="radio"  id="inputEmail4">
-      <label for="inputEmail4" class="form-label">Category 1 ( Rs. 500/-)</label> </li>
-      <li><input type="radio"  id="inputEmail4">
-      <label for="inputEmail4" class="form-label">Category 1 ( Rs. 500/-)</label> </li>
-      <li><input type="radio"  id="inputEmail4">
-      <label for="inputEmail4" class="form-label">Category 1 ( Rs. 500/-)</label> </li>
-      <li><input type="radio"  id="inputEmail4">
-      <label for="inputEmail4" class="form-label">Category 1 ( Rs. 500/-)</label> </li>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Bootstrap Datetimepicker</h1>
+        </div>
+          <div class="form-group">
+              <div class="input-group date" id="datetimepicker">
+                  <input type="text" class="form-control">
+                  <div class="input-group-addon input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                  </div>
+              </div>
+          </div>
+    </div>
+</div>
+
+<div class="col-12">
+<label for="inputAddress" class="form-label">Address</label>
+<input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+</div><br>
+
+<div class="col-md-6">
+<label for="inputCity" class="form-label">City</label>
+<input type="text" class="form-control" id="inputCity">
+</div>
+<div class="col-md-6">
+<label for="inputCity" class="form-label">State</label>
+<input type="text" class="form-control" id="inputCity">
+
+</div>
+
+<div class="col-md-12">
+<br>
+Select Category
+<br>
+</div>
+<div class="col-md-12">
+<ul>
+  <li><input type="radio"  id="inputEmail4">
+  <label for="inputEmail4" class="form-label">Category 1 ( Rs. 500/-)</label> </li>
+  <li><input type="radio"  id="inputEmail4">
+  <label for="inputEmail4" class="form-label">Category 1 ( Rs. 500/-)</label> </li>
+  <li><input type="radio"  id="inputEmail4">
+  <label for="inputEmail4" class="form-label">Category 1 ( Rs. 500/-)</label> </li>
+  <li><input type="radio"  id="inputEmail4">
+  <label for="inputEmail4" class="form-label">Category 1 ( Rs. 500/-)</label> </li>
 
 
-    </ul>
-  </div>
-
-
-  <div class="col-12">
-    <button style="background-color:#ff4c68;color:#fff;" type="submit" class="btn">Checkout <i class="fas fa-angle-double-right"></i></button>
-  </div>
+</ul>
+</div>
 </form>
-</div><br><br>
+
+<div class="dropdown">
+<button  type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+  Dropdown button
+</button>
+<div class="dropdown-menu">
+  <a class="dropdown-item" href="#">1</a>
+  <a class="dropdown-item" href="#">2</a>
+  <a class="dropdown-item" href="#">3</a>
+  <a class="dropdown-item" href="#">4</a>
+  <a class="dropdown-item" href="#">5</a>
+  <a class="dropdown-item" href="#">6</a>
+  <a class="dropdown-item" href="#">7</a>
+  <a class="dropdown-item" href="#">8</a>
+  <a class="dropdown-item" href="#">9</a>
+  <a class="dropdown-item" href="#">10</a>
+</div>
+</div><br>
 
 
+<div class="col-lg-12">
+<span style="padding-left:66%;"><a href="#"><button style="background-color:#ff4c68;color:#fff;" type="submit" class="btn">Checkout <i class="fas fa-angle-double-right"></i></button></a></span>
+</div>
 
-
-
+</div>
     </div>
     <div class="row no-gutters">
       <div style="padding-left:2%;font-family: 'Oswald', sans-serif;" class="col-lg-8">
@@ -275,68 +292,37 @@
 
 
   <!-- Banner Section - End -->
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- Footer Section - Start -->
-
-
-  <!-- Footer Section - end -->
-
-  <!-- WebPicker Facebook Messenger Chat Plugin Code - Start -->
-    <div id="fb-root"></div>
-
-    <!-- Your Chat Plugin code -->
-    <div id="fb-customer-chat" class="fb-customerchat">
-    </div>
-
-    <script>
-      var chatbox = document.getElementById('fb-customer-chat');
-      chatbox.setAttribute("page_id", "101044708888104");
-      chatbox.setAttribute("attribution", "biz_inbox");
-      window.fbAsyncInit = function() {
-        FB.init({
-          xfbml            : true,
-          version          : 'v11.0'
+  <!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+<script src="../js/bootstrap-datetimepicker.min.js"></script>
+<script>
+    $(function () {
+        $.extend(true, $.fn.datetimepicker.defaults, {
+            icons: {
+                time: 'far fa-clock',
+                date: 'far fa-calendar',
+                up: 'fas fa-arrow-up',
+                down: 'fas fa-arrow-down',
+                previous: 'fas fa-chevron-left',
+                next: 'fas fa-chevron-right',
+                today: 'far fa-calendar-check-o',
+                clear: 'far fa-trash',
+                close: 'far fa-times'
+            }
         });
-      };
-
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
+    });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker').datetimepicker();
+        });
     </script>
 
-  <!-- Jquery order should be higher from normal javascript  -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
-  <!-- Owl Carousel JQuery -->
-  <!-- <script src="js/jquery.min.js"></script> -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-  <!-- Javascript to Populate Map - Start  -->
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
-
-  <script src="js/main.js"></script>
-
-  <!-- Owl Carousel Javascript  -->
-  <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
 </html>
