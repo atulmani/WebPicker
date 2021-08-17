@@ -8,7 +8,7 @@
   <meta name="author" content="Web Picker">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Event-dolu-t1.1 - Index</title>
+  <title>https://atulmani.github.io/WebPicker/Event/dolu/t1/t1.1/index.html</title>
 
   <link rel="shortcut icon" href="img/logo.png">
 
@@ -122,6 +122,30 @@
     </div>
   </section>
 
+
+
+  <section id="firebasedata" style="background-color:#fff;text-align: left;">
+
+    <br /><br />
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 col-md-offset-1">
+          <div id="firebase-event-list" class="owl-carousel owl-theme">
+              <div class="item">
+                <div class='post-content'>
+                  <h3 class='post-title'>Event Name</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+<hr><hr>
+
+
   <section id="designs" style="background-color:#fff;text-align: left;">
 
     <br /><br />
@@ -130,7 +154,7 @@
         <div class="col-md-12 col-md-offset-1">
           <div id="event-list" class="owl-carousel owl-theme">
             <!-- 1st Item -->
-            <a style="text-decoration:none;" href="./Events/EventDetails.html">
+            <!-- <a style="text-decoration:none;" href="./Events/EventDetails.html">
               <div class="item">
                 <div class="post-slide">
 
@@ -138,22 +162,25 @@
                     <img style="border-radius:5%;" src="./img/card1.png" alt="" width="100%">
                   </div>
                   <div class="post-content">
-                    <h3 class="post-title">
-                      CONSTRUCTION | POPULAR
+                    <h3 class="post-title" id='homepage_eventname'>
+
                     </h3>
                     <p class="description">
-                      <span style="letter-spacing:1px;"><span style="font-weight:bold">Venue</span>: Online </span>
+                      <span style="font-weight:bold">Venue: </span>
+                      <span style="letter-spacing:1px;" id='homepage_eventvenue'></span>
                       <br>
-                      <span style="letter-spacing:1px;line-height:30px;"><span style="font-weight:bold">Date</span>: Sept'21 - 29 Sep'21 </span>
+                      <span style="font-weight:bold">Date: </span>
+                      <span style="letter-spacing:1px;line-height:30px;"  id='homepage_eventdate'>
+                      </span>
                       <br>
                       <span style="letter-spacing:1px;line-height:14px;"><span style="font-weight:bold">Price</span>: ₹ 4999 </span>
                     </p>
                   </div>
                 </div>
               </div>
-            </a>
+            </a> -->
             <!-- 2nd Item -->
-            <a style="text-decoration:none;" href="./Events/EventDetails.html">
+            <!-- <a style="text-decoration:none;" href="./Events/EventDetails.html">
               <div class="item">
                 <div class="post-slide">
 
@@ -174,9 +201,9 @@
                   </div>
                 </div>
               </div>
-            </a>
+            </a> -->
             <!-- 3rd item -->
-            <a style="text-decoration:none;" href="./Events/EventDetails.html">
+            <!-- <a style="text-decoration:none;" href="./Events/EventDetails.html">
               <div class="item">
                 <div class="post-slide">
 
@@ -197,9 +224,9 @@
                   </div>
                 </div>
               </div>
-            </a>
+            </a> -->
             <!-- 4th item -->
-            <a style="text-decoration:none;" href="./Events/EventDetails.html">
+            <!-- <a style="text-decoration:none;" href="./Events/EventDetails.html">
               <div class="item">
                 <div class="post-slide">
 
@@ -220,9 +247,9 @@
                   </div>
                 </div>
               </div>
-            </a>
+            </a> -->
             <!-- 5th item -->
-            <a style="text-decoration:none;" href="./Events/EventDetails.html">
+            <!-- <a style="text-decoration:none;" href="./Events/EventDetails.html">
               <div class="item">
                 <div class="post-slide">
 
@@ -243,9 +270,9 @@
                   </div>
                 </div>
               </div>
-            </a>
+            </a> -->
             <!-- 6th item -->
-            <a style="text-decoration:none;" href="./Events/EventDetails.html">
+            <!-- <a style="text-decoration:none;" href="./Events/EventDetails.html">
               <div class="item">
                 <div class="post-slide">
 
@@ -266,7 +293,7 @@
                   </div>
                 </div>
               </div>
-            </a>
+            </a> -->
           </div>
         </div>
       </div>
@@ -412,7 +439,9 @@
 
   <!-- Javascript to Populate Map - Start  -->
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
-
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+  <script src="js/firebase.js"></script>
   <script src="js/main.js"></script>
 
   <!-- Owl Carousel Javascript  -->
