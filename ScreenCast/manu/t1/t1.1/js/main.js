@@ -167,7 +167,7 @@ $(document).ready(function() {
       loop: true,
       autoplay: true,
       smartSpeed:4000,
-      autoplayTimeout: 4000,
+      autoplayTimeout: 5000,
       autoplayHoverPause: false,
       nav: false,
       dots: false,
@@ -256,8 +256,8 @@ $(document).ready(function() {
     autoplayTimeout: 4000,
     autoplayHoverPause: false,
     autoWidth: false,
-    nav: true,
-    dots: true,
+    nav: false,
+    dots: false,
     responsive: {
       0: {
         items: 1,
@@ -285,8 +285,8 @@ $(document).ready(function() {
     autoplayTimeout: 4000,
     autoplayHoverPause: false,
     autoWidth: false,
-    nav: true,
-    dots: true,
+    nav: false,
+    dots: false,
     responsive: {
       0: {
         items: 1,
