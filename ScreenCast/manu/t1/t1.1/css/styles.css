@@ -23,6 +23,7 @@ body{
   margin: 0;
   padding: 0;
   font-family: 'Marcellus SC', serif;
+  color: #603F8B;
 }
 
 body input{
@@ -97,7 +98,7 @@ h6{
   width: 2000px;
   height: 2000px;
   border-radius: 50%;
-  background: linear-gradient(-45deg , #4481eb, #04befe);
+  background: linear-gradient(-45deg , #603F8B, #A16AE8);
   top: -10%;
   right: 48%;
   transform: translateY(-50%);
@@ -164,7 +165,7 @@ input:valid .input-field i{
 
 .title{
   font-size: 2.2rem;
-  color: #444;
+  /* color: #444; */
   margin-bottom: 10px;
 }
 
@@ -236,22 +237,24 @@ input:valid .input-field i{
 .social-icon{
   height: 45px;
   width: 45px;
-  border: 1px solid #333;
+  /* border: 1px solid #603F8B; */
   margin: 0 0.45rem;
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  color: #333;
+  color: #fff;
+  background: #FD49A0;
   font-size: 1.1rem;
   border-radius: 50%;
   transition: 0.3s;
 }
 
 .social-icon:hover{
-  color: #4481eb;
-  border-color: #4481eb;
+  color: #FD49A0;
+  border: 1px solid #FD49A0;
   text-decoration: none;
+  background: none;
 }
 
 .image{
@@ -495,7 +498,7 @@ input:valid .input-field i{
 @media (max-width: 1080px) {
   .navbar-bottom-mobile{
     /* overflow: hidden; */
-    background-color: #333;
+    background-color: #A16AE8;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -670,22 +673,24 @@ input:valid .input-field i{
   /* Green */
   border: none;
   color: #fff;
-  padding: 5px 25px 5px 16px;
+  padding: 8px 25px 8px 16px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
   font-weight: bold;
   border-radius: 16px 0 16px 16px;
+  /* border-radius: 16px; */
 }
 
 .button5 {
   margin-top: 5%;
   background: #FD49A0;
   box-shadow: 5px 20px 15px rgba(0,0,0,0.2);
+  border: 1px solid #fff;
 }
 
 .button5:hover {
@@ -732,8 +737,8 @@ input:valid .input-field i{
 }
 
 #services{
-  background: #ddcef0;
-  height: 80vh;
+  background: rgba(161,106,232,0.3);
+  height: 70vh;
   overflow-x: hidden;
 }
 
@@ -741,9 +746,9 @@ input:valid .input-field i{
   padding: 0 7%;
 }
 
-.services-heading{
+/* .services-heading{
   font-family: 'Marcellus SC', serif;
-}
+} */
 
 .service-circle{
   width: 10px;
@@ -814,7 +819,7 @@ input:valid .input-field i{
 } */
 
 .hiw-heading{
-  font-family: 'Marcellus SC', serif;
+  /* font-family: 'Marcellus SC', serif; */
   text-align: center;
 }
 
@@ -1002,7 +1007,7 @@ input:valid .input-field i{
 }
 
 #testimonial{
-  background: #ddcef0;
+  background: rgba(161,106,232,0.3);
   overflow-x: hidden;
 }
 
@@ -1027,7 +1032,7 @@ input:valid .input-field i{
 
 .clients-card-name{
   font-size: 1.3rem;
-  font-family: 'Baloo Tammudu 2';
+  /* font-family: 'Baloo Tammudu 2'; */
   position: relative;
   top: -50px;
 }
@@ -1066,12 +1071,16 @@ input:valid .input-field i{
 
 .qualities-table2 tr td{
   border: none;
-  border-right: 2px solid rgba(0,0,0,0.2);
+  border-right: 1px solid #603F8B;
   padding: 10px;
 }
 
+.qualities-table2 tr td:nth-child(3){
+  border-right: none;
+}
+
 .qualities-table2 tr td span{
-  color: #f1b529;
+  color: #FD49A0;
   font-size: 1.5rem;
   font-weight: 500;
 }
@@ -1119,13 +1128,13 @@ input:valid .input-field i{
 }
 
 .links-sitemaps ul li a{
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,1);
   font-size: 0.8rem;
   padding-top: 10px;
 }
 
 .links-sitemaps ul li a:hover{
-  color: rgba(255,255,255,1);
+  color: rgba(255,255,255,0.7);
   font-size: 0.8rem;
   padding-top: 10px;
 }
@@ -1148,6 +1157,7 @@ input:valid .input-field i{
 
 .footer-last hr{
   background: rgba(255,255,255,0.5);
+  /* background: #603F8B; */
   width: 100%;
 }
 
@@ -1180,7 +1190,8 @@ input:valid .input-field i{
 }
 
 .social .fab {
-  color: rgba(255,255,255,0.7);
+  /* color: rgba(255,255,255,0.7); */
+  color: #603F8B;
   border: 1px dashed transparent;
   width: 40px;
   height: 40px;
@@ -1189,7 +1200,7 @@ input:valid .input-field i{
 
 .social .fab:hover {
   color: rgba(255,255,255,1);
-  border: 1px dashed #4481eb;
+  border: 1px dashed #603F8B;
 }
 
 .Copyright{
