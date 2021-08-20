@@ -465,7 +465,7 @@ input:valid .input-field i{
   }
 
   .panel .content{
-    padding: 0.5rem 1rem;
+    padding: 0.7rem 1rem;
   }
 
   .full-content::before{
@@ -1212,6 +1212,95 @@ input:valid .input-field i{
 /* Footer Section - End */
 
 
+/* dashboard.html */
+
+.fixed-side-nav{
+
+}
+
+.navbar-dashboard {
+  /* background: rgba(0,0,0,0.1); */
+  box-shadow: 10px 0 20px rgba(0,0,0,0.1);
+  height: 91vh;
+  padding-left: 10px;
+  border-radius: 0 20px 0 0;
+}
+
+.nav-all-items-dashboard{
+  display: grid;
+  grid-row: 1fr;
+  text-align: left;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.nav-all-items-dashboard li{
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 26px 0 0 26px;
+}
+
+.nav-all-items-dashboard li:hover{
+  background: #A16AE8;
+}
+
+.nav-all-items-dashboard li:hover a{
+  color: #fff;
+}
+
+.nav-all-items-dashboard li a{
+  text-decoration: none;
+  color: #603F8B;
+}
+
+.dashboard-content-row{
+  padding: 2% 3%;
+}
+
+.dashboard-card{
+  width: 100%;
+  box-shadow: 10px 0px 20px rgba(0,0,0,0.2);
+  padding: 20px;
+}
+
+.number-one{
+  font-size: 2rem;
+  color: #000;
+}
+
+.number-two-positive{
+  color: green;
+  padding-left: 20px;
+  position: relative;
+  top: -15px;
+}
+
+.arrow-positive{
+  color: green;
+  padding-left: 5px;
+  position: relative;
+  top: -15px;
+}
+
+.number-two-negative{
+  color: red;
+  padding-left: 20px;
+  position: relative;
+  top: -15px;
+}
+
+.arrow-negative{
+  color: red;
+  padding-left: 5px;
+  position: relative;
+  top: -15px;
+}
+
+.dashboard-card p{
+  color: rgba(0,0,0,0.5);
+  padding-top: 10px;
+  text-align: center;
+}
 
 
 
