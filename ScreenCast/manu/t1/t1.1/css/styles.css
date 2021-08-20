@@ -1284,23 +1284,24 @@ input:valid .input-field i{
 
 .number-two-negative{
   color: red;
-  padding-left: 20px;
   position: relative;
-  top: -15px;
+  left: -38px;
+  top: 5px;
 }
 
 .arrow-negative{
   color: red;
   padding-left: 5px;
   position: relative;
-  top: -15px;
+  left: -38px;
+  top: 5px;
 }
 
-.dashboard-card p{
+/* .dashboard-card p{
   color: rgba(0,0,0,0.5);
   padding-top: 10px;
   text-align: center;
-}
+} */
 
 
 
