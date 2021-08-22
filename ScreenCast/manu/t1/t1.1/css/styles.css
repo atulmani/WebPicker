@@ -1458,6 +1458,48 @@ input[type=number] {
 }
 
 
+/* tp_imagebased.html */
+
+.input-image-div{
+  min-height: 200px;
+  width: 100%;
+  padding: 7%;
+}
+
+.input-image{
+  min-width: 50%;
+  min-height: 200px;
+  border: 1px solid #ddd;
+}
+
+.image-name-input span:nth-child(1){
+  position: relative;
+  left: 10px;
+  color: rgba(96,63,139,0.8);
+}
+
+.image-name-input span:nth-child(2){
+  position: relative;
+  left: 10px;
+  font-size: 2rem;
+  color: rgba(96,63,139,0.3);
+}
+
+.image-name-input input{
+  position: relative;
+  border-color: rgba(0,0,0,0.2);
+  background: none;
+  outline: none;
+  width: 350px;
+  padding: 10px 10px 10px 120px;
+  border-radius: 25px;
+  left: -110px;
+  z-index: 5;
+  color: #444;
+}
+
+
+
 
 
 
