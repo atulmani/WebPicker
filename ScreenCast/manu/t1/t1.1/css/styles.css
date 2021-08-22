@@ -719,12 +719,25 @@ input:valid .input-field i{
   background: #A16AE8;
 }
 
-#banner-list .item img{
-  transition: .5s linear;
+.owl-item .banner-item img {
+  opacity: 0.5;
+  transition: 3s;
+  transform: scale(0.86);
+}
+.owl-item.active.center .banner-item img {
+  opacity: 1;
+  transform: scale(1.18);
+  transition: 3s;
 }
 
-#banner-list .item img:hover{
-  transform: scale(1.03);
+.owl-nav{
+  position: absolute;
+  font-size: 7rem;
+}
+
+.owl-prev{
+  left: 0;
+  top: -60px;
 }
 
 .heading{
@@ -1302,6 +1315,156 @@ input:valid .input-field i{
   padding-top: 10px;
   text-align: center;
 } */
+
+
+
+/* create ads form */
+
+
+
+
+.wave{
+  position: absolute;
+  left: 28%;
+}
+
+.ad-form{
+  padding: 5% 7%;
+  background: transparent;
+}
+
+.ad-form hr{
+  background: #603F8B;
+  position: relative;
+  top: -10px;
+  width: 10%;
+}
+
+.input-box{
+  position: relative;
+  margin: 0 0 35px 0;
+  width: 100%;
+}
+
+.input-box input{
+  width: 90%;
+  outline: none;
+  padding: 5px 0;
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: #112d42;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.input-box span{
+  position: absolute;
+  left: 0;
+  color: #333;
+  transition: all 0.3s linear;
+  pointer-events: none;
+  font-size: 1.1rem;
+}
+
+.input-box input:focus ~ span,
+.input-box input:valid ~ span{
+  transform: translateY(-20px);
+  font-weight: 400px;
+  color: #FD49A0;
+  font-size: 0.9rem;
+}
+
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.mobile-img{
+  position: relative;
+  top: 5%;
+  left: -20%;
+}
+
+@media (max-width: 1080px) {
+  .mobile-img{
+    position: relative;
+    top: initial;
+    left: initial;
+    text-align: center;
+    padding-top: 20px;
+  }
+}
+
+
+/* selecttemplate.html */
+
+.select-tp-heading{
+  padding: 10px 0 0 3%;
+}
+
+.select-tp-content-row{
+  padding-left: 3%;
+}
+
+.select-tp-card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-shadow: 10px 0px 20px rgba(0,0,0,0.2);
+  padding: 3px 20px;
+  cursor: pointer;
+}
+
+.select-tp-card-text-ads{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-shadow: 10px 0px 20px rgba(0,0,0,0.2);
+  padding: 20px;
+  cursor: pointer;
+  height: 80px;
+  color: #603F8B;
+  text-decoration: none;
+}
+
+.select-tp-card-text-ads:hover{
+  color: #603F8B;
+  text-decoration: none;
+}
+
+.select-tp-content-col .active{
+  background: #FD49A0;
+  color: #fff;
+  border-radius: 16px 0 16px 16px;
+}
+
+.text-ads{
+  border: 1px solid #ccc;
+  min-height: 400px;
+  width: 100%;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+
+
+
+
+
+
+
+
 
 
 
