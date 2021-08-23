@@ -172,16 +172,19 @@ $(document).ready(function() {
     autoplayHoverPause: false,
     nav: false,
     dots: false,
-    stagePadding: 100,
+    // stagePadding: 100,
     responsive: {
       0: {
-        items: 1
+        items: 1,
+        stagePadding: 50
       },
       600: {
-        items: 2
+        items: 2,
+        stagePadding: 50
       },
       1000: {
-        items: 3
+        items: 3,
+        stagePadding: 80
       }
     }
   });
