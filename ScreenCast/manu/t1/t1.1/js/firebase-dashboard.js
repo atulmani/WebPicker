@@ -7,7 +7,7 @@ auth.onAuthStateChanged(firebaseUser => {
     console.log("User has been logged in");
   }else {
     console.log('not logged in');
-    window.location.href = "../signup.html";
+    window.location.href = "../login";
   }
 });
 
@@ -15,7 +15,7 @@ const btnLogout = document.getElementById ('btnLogout');
 
 btnLogout.addEventListener('click', e => {
   auth.signOut();
-  window.location.href = "../signup.html";
+  window.location.href = "../login";
   console.log('Successfully Logged Out');
 });
 
