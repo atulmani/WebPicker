@@ -1479,6 +1479,14 @@ input[type=number] {
   padding: 20px;
 }
 
+.image-ads{
+  border: 1px solid #ccc;
+  min-height: 400px;
+  width: 100%;
+  border-radius: 16px;
+  padding: 20px;
+}
+
 
 /* tp_imagebased.html */
 
