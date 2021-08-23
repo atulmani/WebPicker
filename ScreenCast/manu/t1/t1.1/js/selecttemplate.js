@@ -1,4 +1,6 @@
   $(document).ready(function(){
+    hideall();
+    $('.text-ads').show("slide");
     $('#1').click(function() {
       hideall();
       // $('.all').toggle("slide");
@@ -6,7 +8,7 @@
     });
     $('#2').click(function() {
       hideall();
-      $('.first').show("slide");
+      $('.image-ads').show("slide");
     });
     $('#3').click(function() {
       hideall();
@@ -20,7 +22,7 @@
 
 function hideall(){
   $('.text-ads').hide();
-  $('.first').hide();
+  $('.image-ads').hide();
   $('.second').hide();
   $('.third').hide();
 };
