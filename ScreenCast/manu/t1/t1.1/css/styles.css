@@ -126,7 +126,7 @@ h6{
   transition: 1s .7s ease-in-out;
 }
 
-form{
+.form{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -138,11 +138,20 @@ form{
   transition: 0.2s 0.7s ease-in-out;
 }
 
-form.signin-form{
+/* form.signin-form{
+  z-index: 2;
+} */
+
+.signin-form{
   z-index: 2;
 }
 
-form.signup-form{
+/* form.signup-form{
+  z-index: 1;
+  opacity: 0;
+} */
+
+.signup-form{
   z-index: 1;
   opacity: 0;
 }
@@ -350,16 +359,25 @@ input:valid .input-field i{
   left: 25%;
 }
 
-.full-content.sign-up-mode form.signin-form{
+/* .full-content.sign-up-mode form.signin-form{
+  z-index: 1;
+  opacity: 0;
+} */
+
+.full-content.sign-up-mode .signin-form{
   z-index: 1;
   opacity: 0;
 }
 
-.full-content.sign-up-mode form.signup-form{
+/* .full-content.sign-up-mode form.signup-form{
+  z-index: 2;
+  opacity: 1;
+} */
+
+.full-content.sign-up-mode .signup-form{
   z-index: 2;
   opacity: 1;
 }
-
 
 /* tablet */
 
@@ -456,7 +474,11 @@ input:valid .input-field i{
 /* mobile */
 
 @media (max-width: 570px) {
-  form{
+  /* form{
+    padding: 0 1.5rem;
+  } */
+
+  .form{
     padding: 0 1.5rem;
   }
 
