@@ -133,18 +133,20 @@
   <div class="full-content">
     <div class="forms-container">
       <div class="signin-signup">
-        <form class="signin-form" action="./admin/dashboard.html" method="">
+        <!-- <form class="signin-form" action="./admin/dashboard.html" method=""> -->
+        <div class="form signin-form">
           <h2 class="title">Sign in</h2>
           <div class="input-field">
             <i class="fas fa-envelope"></i>
-            <input type="email" placeholder="Email" required name="" value="atulmani@gmail.com">
+            <input id="txtEmail_Signin" type="email" placeholder="Email" required name="" value="atulmani@gmail.com">
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" maxlength="30" placeholder="Password" required name="" value="1234567">
+            <input id="txtPass_Signin" type="password" maxlength="30" placeholder="Password" required name="" value="1234567">
           </div>
           <!-- <input type="submit" name="" value="Login" class="btn solid"> -->
-          <a href=""><button class="mybutton button5"> LOGIN <i class="fas fa-arrow-right"></i> </button></a>
+
+          <button id="btnSignin" class="mybutton button5"> LOGIN <i class="fas fa-arrow-right"></i> </button>
           <p class="social-text">Or Sign in with social platforms</p>
           <div class="social-media">
             <a href="#" class="social-icon">
@@ -154,34 +156,40 @@
               <i class="fab fa-twitter"></i>
             </a>
             <a href="#" class="social-icon">
-              <i class="fab fa-google"></i>
+                <!-- <input id="googleSignInButton" type="button" name="Google Sign in">Google Sign in </input> -->
+
+                <!-- <br> -->
+               <i class="fab fa-google"></i>
             </a>
             <a href="#" class="social-icon">
               <i class="fab fa-linkedin-in"></i>
             </a>
           </div>
-        </form>
+        <!-- </form> -->
+        </div>
 
-        <form class="signup-form" action="./admin/dashboard.html"  method="">
+        <!-- <form class="signup-form" action="./admin/dashboard.html"  method=""> -->
+        <div class="form signup-form">
+
           <h2 class="title">Sign up</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input id="fullname" type="text" maxlength="30" required placeholder="Full Name" name="" value="Atul Tripathi">
+            <input id="txtFullname_Signup" type="text" maxlength="30" required placeholder="Full Name" name="" value="Atul Tripathi">
           </div>
           <div class="input-field">
             <i class="fas fa-phone"></i>
-            <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="10" type="number" placeholder="Phone No." required name="" value="9822752885">
+            <input id="txtPhone_Signup" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="10" type="number" placeholder="Phone No." required name="" value="9822752885">
           </div>
           <div class="input-field">
             <i class="fas fa-envelope"></i>
-            <input type="email" placeholder="Email" required name="" value="atulmani@gmail.com">
+            <input id="txtEmail_Signup" type="email" placeholder="Email" required name="" value="atulmani@gmail.com">
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" maxlength="30" placeholder="Password" required name="" value="1234567">
+            <input id="txtPass_Signup" type="password" maxlength="30" placeholder="Password" required name="" value="1234567">
           </div>
           <!-- <input type="submit" name="" value="Register" class="btn solid"> -->
-          <a href=""><button class="mybutton button5"> REGISTER <i class="fas fa-arrow-right"></i> </button></a>
+          <button id="btnSignup" class="mybutton button5"> REGISTER <i class="fas fa-arrow-right"></i> </button>
           <p class="social-text">Or Sign up with social platforms</p>
           <div class="social-media">
             <a href="#" class="social-icon">
@@ -197,7 +205,8 @@
               <i class="fab fa-linkedin-in"></i>
             </a>
           </div>
-        </form>
+        <!-- </form> -->
+      </div>
       </div>
     </div>
 
@@ -326,7 +335,14 @@
   <!-- Javascript to Populate Map - Start  -->
   <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script> -->
 
-  <script src="js/login.js"></script>
+  <!-- Firebase Services -->
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+
+  <script src="js/firebase.js"></script>
+  <script src="js/firebase-signup.js"></script>
+  <script src="js/signup.js"></script>
 
   <!-- Owl Carousel Javascript  -->
   <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
