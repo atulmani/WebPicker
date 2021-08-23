@@ -745,11 +745,19 @@ input:valid .input-field i{
   opacity: 0.5;
   transition: 3s;
   transform: scale(0.86);
+  border-radius: 6px;
 }
-.owl-item.active.center .banner-item img {
+.owl-item.center .banner-item img {
   opacity: 1;
   transform: scale(1.18);
   transition: 3s;
+  border-radius: 6px;
+}
+.owl-item.active.center .banner-item img {
+  opacity: 1;
+  transform: scale(1.16);
+  transition: 3s;
+  border-radius: 6px;
 }
 
 .owl-nav{
