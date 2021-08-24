@@ -79,9 +79,9 @@
             <a class="nav-link" href="#thanks">Contact Us</a>
           </li>
         </ul>
-        <div class="nav-divider">
+        <!-- <div class="nav-divider">
           <a href="signup.html" style="padding-right: 10px; "><button class="mybutton button5">Login<i class="fas fa-arrow-right"></i> </button></a>
-        </div>
+        </div> -->
 
       </div>
     </div>
@@ -95,7 +95,7 @@
       <a type="button">
         <span><i class="fas fa-tasks"></i></span> <br> <span> About </span>
       </a>
-      <a type="button" href="signup.html">
+      <a type="button" href="#">
         <span><i class="fas fa-user"></i></span> <br> <span> Login </span>
       </a>
       <a type="button">
@@ -142,9 +142,13 @@
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input id="txtPass_Signin" type="password" maxlength="30" placeholder="Password" required name="" value="1234567">
+            <input id="txtPass_Signin" type="password" maxlength="30" placeholder="Password" required name="" value="1234567"/>
+            <i class="fa fa-eye-slash" id="toggleLoginEye"></i>
           </div>
-          <!-- <input type="submit" name="" value="Login" class="btn solid"> -->
+
+          <div id='errorMessage_Login' class="" style="text-align: center; color:Red; font-size: 1.1rem; font-weight: bold; display:none;" >
+            <br>
+          </div>
 
           <button id="btnSignin" class="mybutton button5"> LOGIN <i class="fas fa-arrow-right"></i> </button>
           <p class="social-text">Or Sign in with social platforms</p>
@@ -187,8 +191,11 @@
           <div class="input-field">
             <i class="fas fa-lock"></i>
             <input id="txtPass_Signup" type="password" maxlength="30" placeholder="Password" required name="" value="1234567">
+            <i class="fa fa-eye-slash" id="toggleSignupEye"></i>
           </div>
-          <!-- <input type="submit" name="" value="Register" class="btn solid"> -->
+          <div id='errorMessage_Signup' class="" style="text-align: center; color:Red; font-size: 1.1rem; font-weight: bold; display:none;" >
+            <br>
+          </div>
           <button id="btnSignup" class="mybutton button5"> REGISTER <i class="fas fa-arrow-right"></i> </button>
           <p class="social-text">Or Sign up with social platforms</p>
           <div class="social-media">
@@ -341,8 +348,8 @@
   <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
 
   <script src="../js/firebase.js"></script>
-  <script src="../js/firebase-signup.js"></script>
-  <script src="../js/signup.js"></script>
+  <script src="../js/firebase-login.js"></script>
+  <script src="../js/login.js"></script>
 
   <!-- Owl Carousel Javascript  -->
   <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
