@@ -1,39 +1,87 @@
-
 //*********** Sign in - Email & Password - Starts ************
 
-const btnSignin = document.getElementById ('btnSignin');
-const btnSignup = document.getElementById ('btnSignup');
+const btnSignin = document.getElementById('btnSignin');
+const btnSignup = document.getElementById('btnSignup');
 // const btnLogout = document.getElementById ('btnLogout');
+
+function checkRegisterFormValidation() {
+  var bStatus = true;
+  const txtFullName = document.getElementById('txtFullname_Signup');
+  const txtPhoneNo = document.getElementById('txtPhone_Signup');
+  const email = document.getElementById('txtEmail_Signup');
+  const pass = document.getElementById('txtPass_Signup');
+
+  if (txtPhoneNo.value != null || txtFullName.value != null || email.value !== null || pass.value != null) {
+    bStatus = true;
+  } else bStatus = false;
+};
 
 //Add Sign-up addEventListener
 btnSignup.addEventListener('click', e => {
-  const txtFullName = document.getElementById ('txtFullname_Signup');
-  const txtPhoneNo = document.getElementById ('txtPhone_Signup');;
-  const email = document.getElementById ('txtEmail_Signup');
-  // alert('Email: '+ email.value);
-  const pass = document.getElementById ('txtPass_Signup');
-  // alert('Pass: '+pass.value);
+  e.preventDefault();
+  // var bStatus = checkRegisterFormValidation ();
+  // console.log('bStatus: ' + bStatus);
 
-  console.log ('Signup starts');
-  //Sign in
-  const promise = auth.createUserWithEmailAndPassword(email.value, pass.value);
-  promise.then(function(firebaseUser) {
-       // Success
-       console.log("Logged in User");
-       window.location.href = "../admin/dashboard.html";
-   })
-   .catch(function (error){
-     // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
+  const txtFullName = document.getElementById('txtFullname_Signup');
+  const txtPhoneNo = document.getElementById('txtPhone_Signup');
+  const email = document.getElementById('txtEmail_Signup');
+  // alert('Email: ' + email.value);
+  const pass = document.getElementById('txtPass_Signup');
+  // alert('Pass: ' + pass.value);
 
-      console.log(errorMessage);
-      document.getElementById('errorMessage_Signup').innerHTML = errorMessage + ' Please use anyother email address to Register';
-      document.getElementById('errorMessage_Signup').style.display='block';
+  if (txtPhoneNo.value == '' || txtFullName.value == '' || email.value === '' || pass.value == '') {
+    document.getElementById('errorMessage_Signup').innerHTML = 'All fields are mandatory for registration';
+    document.getElementById('errorMessage_Signup').style.display = 'block';
+  } else {
 
-    });
+    console.log('Signup starts');
+    //Sig]n in
+    const promise = auth.createUserWithEmailAndPassword(email.value, pass.value);
+    promise.then(function(firebaseUser) {
+        // Success
+        console.log("Logged in User");
+        window.location.href = "../admin/dashboard.html";
 
-  console.log ('Signup ends');
+        //Update Display Name & Phone
+        // const user = auth.currentUser;
+        // firebaseUser.updateProfile({
+        //   displayName: txtFullName.value;
+        // });
+
+         // const user = firebaseUser.currentUser;
+        //
+
+        // alert('Current User: '+ firebaseUser.currentUser);
+        // alert('uid: ' + user.uid);
+        // alert('displayName: ' + user.displayName);
+
+          // firebaseUser.updateProfile({
+          //   displayName: "Jane Q. User",
+          //   photoURL: "https://example.com/jane-q-user/profile.jpg"
+          // }).then(() => {
+          //   // Update successful
+          //   // ...
+          //   alert('Updated displayName Successfully');
+          // }).catch((error) => {
+          //   // An error occurred
+          //   // ...
+          // });
+
+      })
+      .catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+        console.log(errorMessage);
+        document.getElementById('errorMessage_Signup').innerHTML = errorMessage + ' Please use anyother email address to Register';
+        document.getElementById('errorMessage_Signup').style.display = 'block';
+
+      });
+
+    console.log('Signup ends');
+
+  }
 
 });
 
@@ -50,34 +98,37 @@ btnSignup.addEventListener('click', e => {
 //Add Sign-in / Login addEventListener
 btnSignin.addEventListener('click', e => {
   //Get email & pass
-  const email = document.getElementById ('txtEmail_Signin');
-  const pass = document.getElementById ('txtPass_Signin');
+  const email = document.getElementById('txtEmail_Signin');
+  const pass = document.getElementById('txtPass_Signin');
 
   //Sign in
-  const promise = auth.signInWithEmailAndPassword(email.value, pass.value);
-  promise.then(function(firebaseUser) {
-       // Success
-       console.log("Logged in User");
-       window.location.href = "../admin/dashboard.html";
-   })
-   .catch(function (error){
-     // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      if (errorCode === 'auth/wrong-password') {
-        console.log('Wrong password.');
-        document.getElementById('errorMessage_Login').innerHTML = errorMessage + ' Please use password eye to cross check the password you enter.';
-        document.getElementById('errorMessage_Login').style.display='block';
-      } else {
-        console.log(errorMessage);
-        document.getElementById('errorMessage_Login').innerHTML = errorMessage;
-        document.getElementById('errorMessage_Login').style.display='block';
-      }
-      console.log(error);
-   });
-  // .catch(e => console.log(e.message)
+  auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then(() => {
+      const promise = auth.signInWithEmailAndPassword(email.value, pass.value);
+      promise.then(function(firebaseUser) {
+          // Success
+          console.log("Logged in User");
+          window.location.href = "../admin/dashboard.html";
+        })
+        .catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          if (errorCode === 'auth/wrong-password') {
+            console.log('Wrong password.');
+            document.getElementById('errorMessage_Login').innerHTML = errorMessage + ' Please use password eye to cross check the password you enter.';
+            document.getElementById('errorMessage_Login').style.display = 'block';
+          } else {
+            console.log(errorMessage);
+            document.getElementById('errorMessage_Login').innerHTML = errorMessage;
+            document.getElementById('errorMessage_Login').style.display = 'block';
+          }
+          console.log(error);
+        });
+      // .catch(e => console.log(e.message)
 
-  // );
+      // );
+    });
 
 });
 //
@@ -189,7 +240,7 @@ function onSignIn(googleUser) {
     if (!isUserEqual(googleUser, firebaseUser)) {
       // Build Firebase credential with the Google ID token.
       var credential = firebase.auth.GoogleAuthProvider.credential(
-          googleUser.getAuthResponse().id_token);
+        googleUser.getAuthResponse().id_token);
 
       // Sign in with credential from the Google user.
       // [START auth_google_signin_credential]
@@ -217,7 +268,7 @@ function isUserEqual(googleUser, firebaseUser) {
     var providerData = firebaseUser.providerData;
     for (var i = 0; i < providerData.length; i++) {
       if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
-          providerData[i].uid === googleUser.getBasicProfile().getId()) {
+        providerData[i].uid === googleUser.getBasicProfile().getId()) {
         // We don't need to reauth the Firebase connection.
         return true;
       }
