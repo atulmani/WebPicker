@@ -22,6 +22,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
 
+  <script src="https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js"> </script>
+
 
   <!-- Font Awesome cdn file -->
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
@@ -39,6 +41,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+  <!--- Pageload--->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#contact").modal('show');
+    },2000);
+    // setTimeout(function() {
+    //   $('#myModal').modal();
+    // }, 2000);
+  </script>
   <!-- Your Own Style -->
   <link rel="stylesheet" href="css/styles.css">
 
@@ -71,7 +83,7 @@
             <a class="nav-link" href="#country">COUNTRIES</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="" data-toggle="modal" data-target="#contact" >UNIVERSITIES</a>
+            <a class="nav-link" href="" data-toggle="modal" data-target="#contact">UNIVERSITIES</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="modal" data-target="#contact" href="#progects">CONTACT</a>
@@ -270,7 +282,7 @@
             <div class="service-card">
               <i class="fas fa-paper-plane fa-3x"></i>
               <h4>VISA</h4>
-              <p>Adhering to embassy guidlines<br> for successfull visa  <br> stamping</p>
+              <p>Adhering to embassy guidlines<br> for successfull visa <br> stamping</p>
             </div><br>
             <div class="service-card">
               <i class="fas fa-plane-departure fa-3x"></i>
@@ -493,7 +505,7 @@
   <!-- testimonial - end -->
   <!---contact--->
   <div class="" id="">
-    <div class="modal" id="contact" style="background:#1C4670;opacity:0.8;">
+    <div class="modal fade" id="contact" style="background:#1C4670;opacity:0.8;">
       <div class="modal-dialog modal-lg">
         <div class="modal-content" style="margin-top:10%;">
           <div class="modal-header" style="background:#EAEAE0;color:#000;">
@@ -521,15 +533,16 @@
 
               </div>
               <div class="col-lg-6">
-                <form class="" action="index.html" method="post">
+                <form id="contactform" class="" action="index.html" method="post">
 
 
-                  <input data-aos="fade-up ease-in-out" type="name" class="form-control" id="first_name" aria-describedby="emailHelp" placeholder="First Name">
-                  <input data-aos="fade-up ease-in-out" type="name" class="form-control" id="first_name" aria-describedby="emailHelp" placeholder="Last Name">
-                  <input data-aos="fade-up ease-in-out" type="email" class="form-control" id="email" placeholder="Email">
-                  <input data-aos="fade-up ease-in-out" type="Phone" class="form-control" id="phone" placeholder="Phone">
-                  <input data-aos="fade-up ease-in-out" type="textarea" maxlength="800" class="form-control" id="text" style="height:70px;" placeholder="Type your Message ...">
-                  <button class="btn btn-dark btn-lg" type="button" name="button">Send</button>
+                  <input data-aos="fade-up ease-in-out" type="name" required class="form-control" id="first_name" aria-describedby="emailHelp" placeholder="First Name" value="">
+                  <input data-aos="fade-up ease-in-out" type="name" required class="form-control" id="first_name" aria-describedby="emailHelp" placeholder="Last Name">
+                  <input data-aos="fade-up ease-in-out" type="email" required class="form-control" id="email" placeholder="Email">
+                  <input data-aos="fade-up ease-in-out" type="number" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required class="form-control" id="phone"
+                    placeholder="Phone">
+                  <input data-aos="fade-up ease-in-out" type="textarea" required maxlength="800" class="form-control" id="text" style="height:70px;" placeholder="Type your Message ...">
+                  <button class="btn btn-dark btn-lg" type="submit" name="button">Send</button>
 
                 </form>
 
@@ -601,8 +614,8 @@
           </div>
           <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
             <div class="panel-body px-3 mb-4">
-              <a href=""data-toggle="modal" data-target="#contact">Join us</a><br><br>
-              <a href=""data-toggle="modal" data-target="#contact">Refer a Friend</a><br><br>
+              <a href="" data-toggle="modal" data-target="#contact">Join us</a><br><br>
+              <a href="" data-toggle="modal" data-target="#contact">Refer a Friend</a><br><br>
               <a href="" data-toggle="modal" data-target="#contact">Partners</a><br><br>
             </div>
           </div>
@@ -634,8 +647,9 @@
         <h4 style="font-weight: normal;">For Admissions <i class="fas fa-phone"> + 91 9667939760 </i></h4><br>
       </a>
       <h3 style="text-shadow: 0.5px 1px #fff;">ISHAN OVERSEAS</h3>
-      <h4>Education & Consultants</h4> <hr style="background:#fff;" />
-      <p <i class="fas fa-map-marked-alt"></i>  OPT Tower, S-508, 1st floor, School Block -2, Shakarpur,Delhi, INDIA, 110092</p>
+      <h4>Education & Consultants</h4>
+      <hr style="background:#fff;" />
+      <p <i class="fas fa-map-marked-alt"></i> OPT Tower, S-508, 1st floor, School Block -2, Shakarpur,Delhi, INDIA, 110092</p>
       <p><i class="fas fa-phone-volume"></i></span> +91 9667939760 / 9999820187 </p>
       <p><a href="mailto:admission.ishanoverseas@gmail.com"><i class="fas fa-envelope-open-text"></i> admission.ishanoverseas@gmail.com</a></p>
       <div class="social">
@@ -687,8 +701,9 @@
             <h4 style="font-weight: normal;">For Admissions <i class="fas fa-phone"> + 91 9667939760 </i></h4>
           </a><br>
           <h3 style="text-shadow: 0.5px 1px #fff;">ISHAN OVERSEAS</h3>
-          <h4>Education & Consultants</h4> <hr style="background:#fff;" />
-          <p <i class="fas fa-map-marked-alt"></i>  OPT Tower, S-508, 1st floor, School Block -2, Shakarpur,Delhi, INDIA, 110092</p>
+          <h4>Education & Consultants</h4>
+          <hr style="background:#fff;" />
+          <p <i class="fas fa-map-marked-alt"></i> OPT Tower, S-508, 1st floor, School Block -2, Shakarpur,Delhi, INDIA, 110092</p>
           <p><i class="fas fa-phone-volume"></i></span> +91 9667939760 / 9999820187 </p>
           <p><a href="mailto:admission.ishanoverseas@gmail.com"><i class="fas fa-envelope-open-text"></i> admission.ishanoverseas@gmail.com</a></p>
 
@@ -720,9 +735,9 @@
   <div id="fb-root"></div>
 
   <!-- Your Chat Plugin code -->
-  <div id="fb-customer-chat" class="fb-customerchat">
-  </div>
+  <div id="fb-customer-chat" class="fb-customerchat" page_id="<PAGE_ID>">
 
+  </div>
 
 
 
