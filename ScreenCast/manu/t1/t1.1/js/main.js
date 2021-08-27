@@ -306,6 +306,31 @@ $(document).ready(function() {
   });
 });
 
+$(document).ready(function() {
+  var owl = $('#partners-carousel');
+  owl.owlCarousel({
+    margin: 20,
+    loop: true,
+    autoplay: true,
+    smartSpeed: 3000,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: false,
+    nav: false,
+    dots: false,
+    responsive: {
+      0: {
+        items: 2
+      },
+      600: {
+        items: 4
+      },
+      1000: {
+        items: 6
+      }
+    }
+  });
+});
+
 // $(function(){
 //     $("#clients-list").owlCarousel({
 //        items:6,
@@ -415,7 +440,7 @@ function init() {
     zoom: 11,
 
     // The latitude and longitude to center the map (always required)
-    center: new google.maps.LatLng(18.5967323, 73.7011654), // New York
+    center: new google.maps.LatLng(18.5976717, 73.7005571), // New York
 
     // How you would like to style the map.
     // This is where you would paste any style found on Snazzy Maps.
@@ -541,7 +566,7 @@ function init() {
 
   // Let's also add a marker while we're at it
   var marker = new google.maps.Marker({
-    position: new google.maps.LatLng(18.5967323, 73.7011654),
+    position: new google.maps.LatLng(18.5976717, 73.7005571),
     map: map,
     title: 'WebPicker'
   });
