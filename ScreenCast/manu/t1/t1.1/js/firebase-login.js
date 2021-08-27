@@ -2,87 +2,86 @@
 
 const btnSignin = document.getElementById('btnSignin');
 const btnSignup = document.getElementById('btnSignup');
-// const btnLogout = document.getElementById ('btnLogout');
 
-function checkRegisterFormValidation() {
-  var bStatus = true;
-  const txtFullName = document.getElementById('txtFullname_Signup');
-  const txtPhoneNo = document.getElementById('txtPhone_Signup');
-  const email = document.getElementById('txtEmail_Signup');
-  const pass = document.getElementById('txtPass_Signup');
-
-  if (txtPhoneNo.value != null || txtFullName.value != null || email.value !== null || pass.value != null) {
-    bStatus = true;
-  } else bStatus = false;
+//Save users data into Users DB Collection
+function setUsersProfileData(user){
+  db.collection('Users')
+  .doc(user.uid)
+  .set({
+      uid: user.uid,
+      displayName: user.displayName,
+      EmailID: user.email,
+      Phone: document.getElementById('txtPhone_Signup').value,
+      DateOfBirth: '',
+      Address: '',
+      IDType: '',
+      IDNo: '',
+      Status: 'ACTIVE',
+      CreatedTimestamp: (new Date()).toString(),
+      UpdatedTimestamp: ''
+  })
+  .then(() => {
+        // updated
+        console.log ('Users data saved successfully');
+        window.location.href = "../admin/dashboard.html";
+      })
+      .catch((error) => {
+        // An error occurred
+        // console.log(error.message);
+        document.getElementById('errorMessage_Signup').innerHTML = error.message;
+        document.getElementById('errorMessage_Signup').style.display = 'block';
+      });
 };
+
 
 //Add Sign-up addEventListener
 btnSignup.addEventListener('click', e => {
-  e.preventDefault();
-  // var bStatus = checkRegisterFormValidation ();
-  // console.log('bStatus: ' + bStatus);
+  e.preventDefault(); //Prevent to refresh the page
 
   const txtFullName = document.getElementById('txtFullname_Signup');
   const txtPhoneNo = document.getElementById('txtPhone_Signup');
   const email = document.getElementById('txtEmail_Signup');
-  // alert('Email: ' + email.value);
   const pass = document.getElementById('txtPass_Signup');
-  // alert('Pass: ' + pass.value);
 
+  //All fields are mandatory while registration
   if (txtPhoneNo.value == '' || txtFullName.value == '' || email.value === '' || pass.value == '') {
     document.getElementById('errorMessage_Signup').innerHTML = 'All fields are mandatory for registration';
     document.getElementById('errorMessage_Signup').style.display = 'block';
   } else {
-
-    console.log('Signup starts');
-    //Sig]n in
+    // console.log('Signup starts');
+    //Sig]n in with email id & pass
     const promise = auth.createUserWithEmailAndPassword(email.value, pass.value);
     promise.then(function(firebaseUser) {
         // Success
         console.log("Logged in User");
-        window.location.href = "../admin/dashboard.html";
 
-        //Update Display Name & Phone
-        // const user = auth.currentUser;
-        // firebaseUser.updateProfile({
-        //   displayName: txtFullName.value;
-        // });
-
-         // const user = firebaseUser.currentUser;
-        //
-
-        // alert('Current User: '+ firebaseUser.currentUser);
-        // alert('uid: ' + user.uid);
-        // alert('displayName: ' + user.displayName);
-
-          // firebaseUser.updateProfile({
-          //   displayName: "Jane Q. User",
-          //   photoURL: "https://example.com/jane-q-user/profile.jpg"
-          // }).then(() => {
-          //   // Update successful
-          //   // ...
-          //   alert('Updated displayName Successfully');
-          // }).catch((error) => {
-          //   // An error occurred
-          //   // ...
-          // });
-
+          //Update Display name for User Profile in firebase system
+          auth.currentUser.updateProfile({
+            displayName: txtFullName.value,
+            // phoneNumber: txtPhoneNo.value,
+            photoURL: ""
+            // photoURL: "https://example.com/jane-q-user/profile.jpg"
+          }).then(() => {
+            // Update successful
+            //Save the Users registration data in Users db Collection
+            setUsersProfileData (auth.currentUser);
+          }).catch((error) => {
+            // An error occurred
+            document.getElementById('errorMessage_Signup').innerHTML = error.message;
+            document.getElementById('errorMessage_Signup').style.display = 'block';
+          });
       })
       .catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-
-        console.log(errorMessage);
+        // console.log(errorMessage);
         document.getElementById('errorMessage_Signup').innerHTML = errorMessage + ' Please use anyother email address to Register';
         document.getElementById('errorMessage_Signup').style.display = 'block';
 
       });
-
-    console.log('Signup ends');
-
+    // console.log('Signup ends');
   }
-
 });
 
 //Add a realtime Listerner
@@ -101,7 +100,9 @@ btnSignin.addEventListener('click', e => {
   const email = document.getElementById('txtEmail_Signin');
   const pass = document.getElementById('txtPass_Signin');
 
-  //Sign in
+  //Sign in with user registered email id & pass with session based in single browser
+  //User will sign-out as soon as user will close to browser window or move to new browser table2
+  //anyway User will signout as soon as User will press signout / logout button anywhere in the application
   auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
     .then(() => {
       const promise = auth.signInWithEmailAndPassword(email.value, pass.value);
