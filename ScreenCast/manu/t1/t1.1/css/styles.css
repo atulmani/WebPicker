@@ -673,7 +673,30 @@ input:valid .input-field i{
 }
 
 /* navbar end */
+.large {
+  width: 100%;
+  border-radius: 0 0 0 0;
+}
 
+.small {
+  width: 0px;
+  display: none;
+  border-radius: 0 0 0 0;
+}
+
+@media (max-width: 1080px) {
+  .large {
+    width: 0%;
+    display: none;
+    border-radius: 0 0 0 0;
+  }
+
+  .small {
+    width: 100%;
+    display: block;
+    border-radius: 0 0 0 0;
+  }
+}
 
 .mybutton {
   background-color: #4CAF50;
@@ -1170,7 +1193,7 @@ input:valid .input-field i{
 /* Footer Section - Start */
 #map {
   width: 100%;
-  height: 100%;
+  height: 550px;
 }
 
 #footer {
@@ -1282,25 +1305,26 @@ input:valid .input-field i{
 }
 
 .dashboard-content-row{
-  padding: 2% 3%;
+  padding: 8px 3%;
 }
 
 .dashboard-card{
   width: 100%;
   box-shadow: 10px 0px 20px rgba(0,0,0,0.2);
-  padding: 20px;
+  padding: 15px;
 }
 
 .number-one{
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #000;
 }
 
 .number-two-positive{
   color: green;
-  padding-left: 20px;
+  padding-left: 5px;
   position: relative;
   top: -15px;
+  font-size: 0.8rem;
 }
 
 .arrow-positive{
@@ -1308,21 +1332,29 @@ input:valid .input-field i{
   padding-left: 5px;
   position: relative;
   top: -15px;
+  font-size: 0.8rem;
 }
 
 .number-two-negative{
   color: red;
   position: relative;
-  left: -38px;
+  left: -34px;
   top: 5px;
+  font-size: 0.8rem;
 }
 
 .arrow-negative{
   color: red;
-  padding-left: 5px;
+  padding-left:5px;
   position: relative;
-  left: -38px;
+  left: -34px;
   top: 5px;
+  font-size: 0.8rem;
+}
+
+.dashboard-card-button{
+  position: relative;
+  left: -15px;
 }
 
 /* .dashboard-card p{
@@ -1332,9 +1364,10 @@ input:valid .input-field i{
 } */
 
 
-/* dashboard.html */
 
-/* create ads form - start */
+/* create ads form */
+
+
 
 
 .wave{
@@ -1418,8 +1451,6 @@ input[type=number] {
   }
 }
 
-/* create ads form - end*/
-
 
 /* selecttemplate.html */
 
@@ -1481,8 +1512,6 @@ input[type=number] {
   padding: 20px;
 }
 
-/* selecttemplate.html */
-
 
 /* tp_imagebased.html */
 
@@ -1524,7 +1553,15 @@ input[type=number] {
   color: #444;
 }
 
-/* tp_imagebased.html */
+.alert{
+  text-align: center;
+  padding: 10px;
+  background: #79c879;
+  color: #fff;
+  font-weight: bold;
+  display: none;
+}
+
 
 /* contact page - start */
 
@@ -1747,58 +1784,6 @@ input[type=number] {
   text-align: center;
 }
 
-
-
-
-
-
-
 /* contact page - end */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* finish */
