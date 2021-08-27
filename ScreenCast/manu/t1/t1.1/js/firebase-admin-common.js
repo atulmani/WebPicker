@@ -1,12 +1,20 @@
 // ********** Firebase Services - Starts ************
 //A realtime Listerner
 auth.onAuthStateChanged(firebaseUser => {
-  if(firebaseUser) {
-    console.log(firebaseUser);
-    console.log("User has been logged in with UID: " + firebaseUser.uid);
-    console.log("User Display Name: " + firebaseUser.displayName);
-  }else {
-    console.log('User has been logged out');
+  try {
+    if (firebaseUser) {
+      // console.log(firebaseUser);
+      console.log('User: ' + firebaseUser.email + ' is logged-In');
+      // console.log("UID: " + firebaseUser.uid);
+      // console.log("Display Name: " + firebaseUser.displayName);
+      // console.log("Email ID: " + firebaseUser.email);
+      // document.getElementById('displayName').innerHTML = firebaseUser.displayName;
+    } else {
+      console.log('User has been logged out');
+      window.location.href = "../login";
+    }
+  } catch (error) {
+    console.log(error.message);
     window.location.href = "../login";
   }
 });
@@ -17,7 +25,7 @@ btnLogout.addEventListener('click', e => {
   auth.signOut().then(() => {
     // Sign-out successful.
     window.location.href = "../login";
-    console.log('Successfully Logged Out');
+    // console.log('Successfully Logged Out');
   }).catch((error) => {
     // An error happened.
     console.log('Error: ' + error.message);
