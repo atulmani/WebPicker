@@ -1786,4 +1786,85 @@ input[type=number] {
 
 /* contact page - end */
 
+/* faq page - start */
+
+.faq-lottie-img{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.accordion{
+  width: 100%;
+  border: 2px solid #603F8B;
+  padding: 10px 5px;
+  cursor: pointer;
+  border-radius: 50px;
+  display: flex;
+  margin: 10px 0;
+  align-items: center;
+  /* transition: all .5s ease-in; */
+}
+
+.accordion .faq-icon{
+  margin: 0 10px 0 0;
+  width: 30px;
+  height: 30px;
+  background: #603F8B;
+  border-radius: 50%;
+  float: left;
+  transition: all 5s 0s linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.accordion .faq-icon img{
+  width: 12px;
+  height: 12px;
+}
+
+.accordion h5{
+  margin: auto 0;
+}
+
+.panel{
+  padding: 0 15px;
+  border-left: 1px solid #603F8B;
+  margin-left: 25px;
+  font-size: 0.8rem;
+  text-align: justify;
+  overflow: hidden;
+  max-height: 0;
+  transition: all 5s 0s linear;
+  /* transition: flex 1s ease-in-out; */
+}
+
+
+/* faq page - end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* finish */
