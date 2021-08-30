@@ -555,10 +555,10 @@ input:valid .input-field i{
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(253,73,160,0.90);
+    background: rgba(96,63,139,0.95);
     z-index: 50;
     text-align: center;
-    height: 90%;
+    height: 92.5%;
   }
 
   .more-button-links ul{
@@ -574,7 +574,7 @@ input:valid .input-field i{
   }
 
   .more-button-links ul li a{
-    color: #000;
+    color: #fff;
   }
 }
 
