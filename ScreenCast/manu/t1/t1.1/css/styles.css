@@ -789,9 +789,10 @@ input:valid .input-field i{
 
 #services{
   background: rgba(161,106,232,0.3);
-  height: 70vh;
+  height: 80vh;
   overflow-x: hidden;
 }
+
 
 .services-container{
   padding: 0 7%;
