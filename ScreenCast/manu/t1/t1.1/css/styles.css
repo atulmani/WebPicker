@@ -3,9 +3,9 @@
 Palette#: 226650 from Colorhunt
 
 Reference Colors:
-- Red: #161d65 - main header & footer color
-- Light Red: #ff8585 - support colors
-- Light Orange: #ffb396 - support colors
+- Dark: #603F8B - main header & footer color
+- Light : #A16AE8 - support colors
+- Pink: #FD49A0 - support colors
 - Yellow: #fff5c0- support colors
 
 */
@@ -555,9 +555,10 @@ input:valid .input-field i{
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(241,181,41,0.8);
+    background: rgba(253,73,160,0.90);
     z-index: 50;
     text-align: center;
+    height: 90%;
   }
 
   .more-button-links ul{
@@ -619,7 +620,7 @@ input:valid .input-field i{
     justify-content: center;
     align-items: center;
   }
-}
+  }
 
 .nav-link {
   /* color: white; */
@@ -789,10 +790,9 @@ input:valid .input-field i{
 
 #services{
   background: rgba(161,106,232,0.3);
-  height: 80vh;
+  height: 70vh;
   overflow-x: hidden;
 }
-
 
 .services-container{
   padding: 0 7%;
