@@ -43,7 +43,7 @@
   <script>
     $(document).ready(function() {
       $("#contact").modal('show');
-    }, 2000);
+    },2000);
     // setTimeout(function() {
     //   $('#myModal').modal();
     // }, 2000);
@@ -54,42 +54,11 @@
 </head>
 
 <body>
-  <div class="navbar navbar-expand-lg large" style="background:#1C4670;">
-    <div class="">
-      <a class="navbar-text" href="#">enquiry</a>
-    </div>
-    <ul class="nav navbar-nav navbar-right ml-auto">
-      <li class="">
-        <a class="navbar-text" href="mailto:admission.ishanoverseas@gmail.com"> <i class="fas fa-inbox "></i> Mail Us: admission.ishanoverseas@gmail.com</a>
-      </li>
-      <li class="">
-        <a class="navbar-text" href="tel:9667939760"><i class="fas fa-phone-alt"></i> Call Us : +91 9667939760</a>
-      </li>
-      <!-- <li class="nav-item">
-      <a class="nav-link" href="#WhyToUse">COURSES</a>
-    </li> -->
-      <li class="">
-        <a class="navbar-text" href="#country"><i class="fab fa-whatsapp"></i> +91 9667939760</a>
-      </li>
-    </ul>
-  </div>
 
-  <div class="navbar navbar-expand-lg small" style="background:#1C4670;">
-    <ul class="nav navbar-nav navbar-right ml-auto">
-      <li class="">
-        <a class="navbar-text" href="mailto:admission.ishanoverseas@gmail.com"> <i class="fas fa-inbox"></i> Mail Us: admission.ishanoverseas@gmail.com</a>
-      </li>
-      <li class="">
-        <a class="navbar-text" href="tel:9667939760"><i class="fas fa-phone-alt"></i>Call Us : +91 9667939760</a>
-      </li>
-    </ul>
-  </div>
-
-
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#banner">
-        <img src="./img/logo.png" style="width:80px" alt="">
+        <img src="./img/logo.png" style="width:70px" alt="">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
@@ -104,31 +73,24 @@
           <li class="nav-item">
             <a class="nav-link" href="#about">ABOUT</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#WhyToUse">ADMISSION PROCESS</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#country">UNIVERSITIES</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#country">OUR SERVICES</a>
-          </li>
           <!-- <li class="nav-item">
-            <a class="nav-link" href="" data-toggle="modal" data-target="#contact">UNIVERSITIES</a>
+            <a class="nav-link" href="#WhyToUse">COURSES</a>
           </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="#progects">GALLERY</a>
+            <a class="nav-link" href="#country">COUNTRIES</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#thanks">BLOG</a>
+            <a class="nav-link" href="" data-toggle="modal" data-target="#contact">UNIVERSITIES</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#thanks">CONTACT US</a>
+            <a class="nav-link" data-toggle="modal" data-target="#contact" href="#progects">CONTACT</a>
           </li>
-
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#thanks">GALLERY</a>
+          </li> -->
         </ul>
 
-        <!-- <div class="nav-divider">
+        <div class="nav-divider">
           <a href="" data-toggle="modal" data-target="#contact" style="padding: 10px 5px; "><button class="mybutton button5"> APPLY HERE <i class="fas fa-arrow-right"></i> </button></a>
         </div><br>
         <div class="nav-divider">
@@ -136,7 +98,7 @@
         </div><br>
         <span class="nav-mobile-no">
           <a class="" style="padding: 10px 5px; " href="./img/broucher.docx">Broucher <i class="fas fa-download"></i></a>
-        </span> -->
+        </span>
       </div>
     </div>
   </nav>
@@ -184,9 +146,6 @@
 
   </div>
 
-
-
-
   <!-- Banner Section - Start -->
 
   <section id="banner">
@@ -202,21 +161,20 @@
       <!-- The slideshow -->
       <div class="carousel-inner">
         <div class="carousel-item active">
-
           <img src="./img/banner1.png" class="large" alt="Construction">
-          <img src="./img/banner1.png" class="small" alt="Construction">
+          <img src="./img/bannerM1.png" class="small" alt="Construction">
         </div>
         <div class="carousel-item">
           <img src="./img/banner2.png" class="large" alt="Construction">
-          <img src="./img/banner2.png" class="small" alt="Construction">
+          <img src="./img/bannerM2.png" class="small" alt="Construction">
         </div>
         <div class="carousel-item">
           <img src="./img/banner1.png" class="large" alt="Construction">
-          <img src="./img/banner1.png" class="small" alt="Construction">
+          <img src="./img/bannerM1.png" class="small" alt="Construction">
         </div>
         <div class="carousel-item">
           <img src="./img/banner2.png" class="large" alt="Construction">
-          <img src="./img/banner2.png" class="small" alt="Construction">
+          <img src="./img/bannerM2.png" class="small" alt="Construction">
         </div>
       </div>
 
@@ -229,116 +187,12 @@
       </a>
 
     </div>
-
   </section>
 
-<div class="container large" style="margin-top:-400px;justify-content:right;">
 
-    <form id="contactform" class="form1" action="./img/broucher.docx""  method="post">
-        <h4> <strong>START YOUR</strong></h4>
-        <h6> <strong>Medical Career with ISHAN</strong></h6>
-        <input data-aos="fade-up ease-in-out" type="name" required class="form-control" id="first_name" aria-describedby="emailHelp" placeholder="Your Name" value="">
-        <input data-aos="fade-up ease-in-out" type="email" required class="form-control" id="email" placeholder="Your email">
-        <input data-aos="fade-up ease-in-out" type="number" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required class="form-control" id="phone"
-          placeholder="Your Phone">
-          <div class="d-grid gap-2" style="text-align:center;">
-            <button class="btn btn-warning btn-block" type="submit" ><h6><strong>GET FREE-PROSPECTUS</strong></h6></button>
-          </div><br>
-        <h6> <strong>Get your Free-Propectus and E-Brochures in pdf to download</strong></h6>
-      </form>
-</div>
-
-<div class="container small" style="">
-
-    <form id="contactform" class="form1" method="post">
-        <h4> <strong>START YOUR</strong></h4>
-        <h6> <strong>Medical Career with ISHAN</strong></h6>
-        <input data-aos="fade-up ease-in-out" type="name" required class="form-control" id="first_name" aria-describedby="emailHelp" placeholder="Your Name" value="">
-
-        <input data-aos="fade-up ease-in-out" type="email" required class="form-control" id="email" placeholder="Your email">
-        <input data-aos="fade-up ease-in-out" type="number" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required class="form-control" id="phone"
-          placeholder="Your Phone">
-          <div class="d-grid gap-2" style="text-align:center;">
-            <button class="btn btn-warning btn-block" type="submit" action="./img/broucher.docx"><h6><strong>GET FREE-PROSPECTUS</strong></h6></button>
-          </div><br>
-        <h6> <strong>Get your Free-Propectus and E-Brochures in pdf to download</strong></h6>
-      </form>
-
-</div>
-  <br><br><br><br><br>
-  <section id="about">
-    <div class="container" width="100%">
-      <div class="container">
-        <div class="" style="text-align:center;">
-          <h3 style="color:#161d65;"> <span style="color:#1DC690;"> About</span> Ishan Overseas</h3>
-          <!-- <hr style="border-top: 6px solid #ff7b54; " /> -->
-          <!-- <h4 style="color:#888;">HAS has a large portfolio</h4> -->
-        </div>
-        <p>Ishan Education is a group of educational consultants that helps medical students to step ahead in the field of Medical Science by providing the best help for MBBS admission in abroad in reputed Universities that are well known for their
-          Medical Studies in foreign countries. We are one of the authentic agencies in the field of consulting MBBS universities to students from all across the world since 30 years. For those who wish to pursue <strong> MBBS FROM ABROAD</strong>,
-          we help them by
-          sending them to their desired medical Universities in the country of their choice.<br><br>
-          provides a wide range of prestigious Govt. Universities. PSP Education believes in helping students to opt for the best universities to do MBBS FROM ABROAD in well developed countries like Russia, Kazakhstan, Kyrgyzstan, Tajikistan,
-          Ukraine, Armenia, Georgia, China etc. These countries have good reputations in terms of medical institutions that are among the best and have been recognized by World Health Organisation (WHO), National Medical Commission (NMC) and
-          world-wide accreditations.<br><br>
-          We provide MBBS consultancy for more than ten countries which include topmost Universities where students can complete their MBBS from Russia, China, Kazakhstan, Georgia, Tajikistan, Kyrgyzstan from more than 30 Universities. PSP Education
-          will guide you through the whole admission process and in such a way we will guide you to choose the best universities abroad.Helped more than 10000+ students in 7+ Countries from 30+ Universities.
-        </p>
-
-      </div><br>
-      <div class="container">
-        <div class="" style="text-align:center;">
-          <h3 style="color:#161d65;"> <span style="color:#1DC690;"> Our</span> Vission & Mission</h3>
-          <!-- <hr style="border-top: 6px solid #ff7b54; " /> -->
-          <!-- <h4 style="color:#888;">HAS has a large portfolio</h4> -->
-        </div>
-        <p>Our vision is to give feathers to your dreams and turning them into reality with a very friendly approach and for that, we aim at giving free counseling, guidance and support to the students who are seeking to pursue MBBS FROM
-          ABROAD.<br><br>
-          Our mission is to provide true and the best educational guidance to students seeking MBBS FROM ABROAD at unbeatable and pretty much affordable costs in TOP UNIVERSITIES which are truely and 100% recognized by both Indian and International
-          accreditation and registered bodies.We provide MBBS consultancy for more than ten countries which include topmost Universities where students can complete their MBBS from Russia, China, Kazakhstan, Georgia, Tajikistan, Kyrgyzstan from more
-          than 30 Universities. PSP Education will guide you through the whole admission process and in such a way we will guide you to choose the best universities abroad.Helped more than 10000+ students in 7+ Countries from 30+ Universities.
-        </p>
-      </div>
-    </div>
-    </div>
-
-  </section>
-  <section id="Achievements" style="background:#F4F7F0; background-position:right; background-size:cover;background-attachment:fixed; background-repeat: no-repeat;"><br><br><br><br><br>
+  <section id="Achievements" style="background-image:url(img/43.png); background-position:right; background-size:cover;background-attachment:fixed; background-repeat: no-repeat;">
     <div class="container">
-      <div class="" style="text-align:center;">
-        <h3 style="color:#278AB0;">OUR STUDENTS</h3>
-        <!-- <hr style="border-top: 6px solid #ff7b54; " /> -->
-        <!-- <h4 style="color:#888;">HAS has a large portfolio</h4> -->
-      </div><br><br>
-      <div class="row no-gutters" style="text-align:center;">
-        <div class="col-md-3">
-          <div class="circle">
-            <h1 style="color:#278AB0;" class="">9+</h1>
-            <p><strong>Countries</strong></p>
-          </div>
-        </div><br>
-        <div class="col-md-3">
-          <div class="circle">
-            <h1 style="color:#1DC690;" class="">36+</h1>
-            <p><strong>Universities</strong></p>
-          </div>
-        </div><br>
-        <div class="col-md-3">
-          <div class="circle">
-            <h1 style="color:#FEC84D;" class="">10000+</h1>
-            <p><strong>Students Counselled</strong></p>
-          </div>
-        </div><br>
-        <div class="col-md-3">
-          <div class="circle">
-            <h1 style="color:#000;" class="">7000+</h1>
-            <p><strong>Student Enrolled</strong></p>
-          </div>
-        </div>
-
-
-      </div>
-      <!-- <div class="row no-gutters">
+      <div class="row no-gutters">
         <div class="four col-md-3">
           <div class="counter-box colored"> <span class="counter">2000+</span>
             <p>Medical Student</p>
@@ -359,105 +213,96 @@
             <p>Branches All over India</p>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
-    <br><br><br><br><br>
+    <br><br>
+    <hr>
+    <br>
+    <br>
 
   </section>
   <!--About--->
   <br><br>
 
-  <!--career--->
-  <section>
-    <div style="text-align:center;">
-      <h3 style="color:#161d65;"> WE CATER RIGHT DIRECTION TO YOUR CAREER<span style="color:#1DC690;"> - STUDY MBBS FROM ABROAD</span></h3>
-      <!-- <hr style="border-top: 6px solid #ff7b54; width:60px; " /> -->
-      <!-- <h4 style="color:#888;">HAS has a large portfolio</h4> -->
-    </div><br><br>
-    <div class="container" style="text-align:center;">
+  <section id="about">
+    <div class="container" width="100%">
 
-      <div class="row" style="">
-        <div class="col-md-3 ">
-          <div class="card1"><br>
-            <img src="./img/career1.png" alt=""><br><br>
-            <p><strong>Professional Counselling</strong></p>
-            <p>We provide professional guidance to the career seekers with respect to their career choice and future prospects. Our team regularly updates its knowledge base so that no formal or casual ineffectiveness may manifest in the ongoing
-              application process.</p>
-          </div>
-        </div><br>
-        <div class="col-md-3">
-          <div class="card1"><br>
-            <img src="./img/career2.png" alt=""><br><br>
-            <p><strong>Information Provision</strong></p>
-            <p>Being a concerned MBBS Abroad Consultant, we keep a close watch on study environment, registration and other formalities to keep the admission process live.</p>
-          </div>
-        </div><br>
-        <div class="col-md-3">
-          <div class="card1"><br>
-            <img src="./img/career3.png" alt=""><br><br>
-            <p><strong>Complete Assistance</strong></p>
-            <p>As a new member in the troupe, we arrange everything for you; right from the visa application to travel to logistics and accommodation. Assistance in India and Abroad throughout the course is provided.</p>
-          </div>
-        </div><br>
-        <div class="col-md-3">
-          <div class="card1"><br>
-            <img src="./img/career4.png" alt=""><br><br>
-            <p><strong>Application Process</strong></p>
-            <p>Our dedicated team is one-of-its-kind engaged in organizing all the application requirements for the MBBS PROGRAM being conducted in foreign countries like Russia, Kazakhstan, China, Ukraine, Kyrgyzstan, and some European countries.
-              Just reach our help desk and process will be smoothly initiated.</p>
-          </div>
-        </div><br>
-      </div>
-  </section>
 
-  <!--opportunity-->
+      <div class="row no-gutters">
+        <div class="col-lg-4" style="">
+          <div style="">
+            <h3 style="color:#161d65;">ISHAN OVERSEAS</h3>
+            <hr style="border-top: 6px solid #ff7b54; " />
+            <!-- <h4 style="color:#888;">HAS has a large portfolio</h4> -->
+          </div>
+          <p>Ishan Education is a group of educational consultants that helps medical students to step ahead in the field of Medical Science by providing the best help for MBBS admission in abroad in reputed Universities that are well known for their
+            Medical Studies in foreign countries. We are one of the authentic agencies in the field of consulting MBBS universities to students from all across the world since 30 years. For those who wish to pursue MBBS FROM ABROAD, we help them by
+            sending them to their desired medical Universities in the country of their choice.
+          </p>
 
-  <section style="background:#F4F7F0;"><br><br><br><br>
-    <div class="container">
-      <div style="text-align:center;">
-        <h3 style="color:#161d65;">EXPLORE THE<span style="color:#1DC690;"> OPPORTUNITIES</span></h3>
-        <!-- <hr style="border-top: 6px solid #ff7b54; width:60px; " /> -->
-        <!-- <h4 style="color:#888;">HAS has a large portfolio</h4> -->
-        <p>Ishan Education is an extensive search engine for the students, parents and education industry players who are seeking information about MBBS FROM ABROAD.
-        </p>
-      </div>
-      <div class="row">
-        <div class="col-lg-4 box">
-          <img class="mid-img" src="./img/opp1.png" alt="">
-          <h6>DIRECT ADMISSION IN PRESTIGIOUS UNIVERSITIES</h6>
-          <p>Choose the unversity of your choice for the admission among the prestigious one to initiate you career </p>
+          <a href="#">read more...</a>
+
         </div>
-        <div class="col-lg-4 box">
-          <img class="mid-img" src="./img/opp2.png" alt="">
-          <h6>EXPERT CONSULTATION</h6>
-          <p>Expert teams helps picking right opportunity with right supervision. </p>
-        </div>
-        <div class="col-lg-4 box">
-          <img class="mid-img" src="./img/opp3.png" alt="">
-          <h6>MBBS AFFORDABLE FEES</h6>
-          <p>Keep best education in mind without affecting the pocket of the career seeker, we have designed the list of the institues which charge affordable fees. </p>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-lg-4 box">
-          <img class="mid-img" src="./img/opp4.png" alt="">
-          <h6>SEAMLESS PAPER WORK</h6>
-          <p>All the Important and official paperwork will be taken care form our end.So that you can focus on your goals.</p>
-        </div>
-        <div class="col-lg-4 box">
-          <img class="mid-img" src="./img/opp5.png" alt="">
-          <h6>BEST UNIVERSITIES OPTION</h6>
-          <p>MBBS admission in abroad gets easy when best university options are provided. We closely keeps watch on the updated list of universities to foster you with better option.</p>
-        </div>
-        <div class="col-lg-4 box">
-          <img class="mid-img" src="./img/opp6.png" alt="">
-          <h6>GUARANTEED ADMISSION</h6>
-          <p>PSP education provides guaranteed admission to sudents in their desire universities.</p>
+        <div class="col-lg-4 large" style="padding-top:5%">
+          <img src="./img/about.png" style="padding-left:60%" alt="">
         </div>
       </div>
     </div>
-    <br><br><br><br>
+
+  </section><br><br><br>
+
+  <!--services--->
+  <section id="services">
+    <div style="text-align:center;">
+      <h3 style="color:#161d65;"><span style="color:#1C4670;">OUR SERVICES</span></h3>
+      <!-- <hr style="border-top: 6px solid #ff7b54; width:60px; " /> -->
+      <!-- <h4 style="color:#888;">HAS has a large portfolio</h4> -->
+    </div><br><br>
+    <div class="" style="background:#278AB0;color:#EAEAE0;text-align:center"><br><br>
+
+
+      <div class="container" style="padding:40px;">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="service-card">
+              <i class="far fa-handshake fa-3x"></i>
+              <h4>COUNSELLING</h4>
+              <p>We will introduce and advice <br> you the best universities <br> in the world</p>
+            </div><br>
+            <div class="service-card">
+              <i class="fas fa-toolbox fa-3x"></i>
+              <h4>ADMISSIONS</h4>
+              <p>Ensure Proper documentation <br> to secure your seat<br> without any issues</p>
+            </div><br>
+          </div>
+          <div class="col-lg-4">
+            <div class="service-card">
+              <i class="fas fa-paper-plane fa-3x"></i>
+              <h4>VISA</h4>
+              <p>Adhering to embassy guidlines<br> for successfull visa <br> stamping</p>
+            </div><br>
+            <div class="service-card">
+              <i class="fas fa-plane-departure fa-3x"></i>
+              <h4>FLIGHT</h4>
+              <p>Assistance to fly economically <br> and ensure a hassle free journey <br> with lots of guidence</p>
+            </div><br>
+          </div>
+          <div class="col-lg-4">
+            <div class="service-card">
+              <i class="fas fa-taxi fa-3x"></i>
+              <h4>AIRPORT PICK-UP</h4>
+              <p>Our representative will welcome you<br> at the airport and <br>setup things</p>
+            </div><br>
+            <div class="service-card">
+              <i class="fas fa-hotel fa-3x"></i>
+              <h4>ACCOMODATIONS</h4>
+              <p>Booking you stay<br>in government or <br> private hostel</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
   </section>
 
   <!---connect--->
@@ -466,12 +311,13 @@
     <h4 style="padding:20px;"> Do you want to connect with our experts? Get in touch! <button data-toggle="modal" data-target="#contact" class="btn btn-outline-light btn-lg " type="button" name="button">Click here</button> </h4>
   </div>
 
+
   <!--countries--->
   <section id="country">
 
     <br /><br /><br />
     <div style="text-align:center;">
-      <h3 style="color:#161d65;">POPULAR COUNTRIES TO <span style="color:#1DC690;">STUDY MBBS FROM ABROAD</span></h3>
+      <h3 style="color:#161d65;">POPULAR COUNTRIES TO <span style="color:#1DC690;">STUDY ABROAD</span></h3>
       <!-- <hr style="border-top: 6px solid #ff7b54; width:60px; " /> -->
       <h4 style="color:#888;">High quality Education</h4>
       <h6>( Low Package Fee approved by WHI, NMC & MCI )</h6>
@@ -556,179 +402,99 @@
   </section>
 
 
-
-  <!--services--->
-  <section id="services">
-    <div class="container">
-      <div class="" style="background:#1C4670;text-align:center;color:#fff;padding:15px;">
-        <h4><strong><br> GET A MEDICAL DEGREE FROM TOP UNIVERSITY ACROSS THE WORLD</strong></h4>
-      </div><br><br>
-
-      <div style="text-align:center;">
-        <h3 style="color:#161d65;">OUR<span style="color:#1DC690;"> SERVICES</span></h3><br><br>
-        <p style="font-size:14px;"><strong>Explore our set of services provided to make it easy for you to get admission to study MBBS in China, Russia, Ukraine, etc. Put your learning and <br> knowledge in the right direction with our guidance and
-            serve humanity. We aid in making true your dream in this realm and put simply your every effort.
-          </strong></p>
-        <!-- <hr style="border-top: 6px solid #ff7b54; width:60px; " /> -->
-        <!-- <h4 style="color:#888;">HAS has a large portfolio</h4> -->
-      </div><br><br>
-      <!--  <div class="" style="background:#278AB0;color:#EAEAE0;text-align:center"><br><br>
-
-
-      <div class="container" style="padding:40px;">
-        <div class="row no-gutters">
-          <div class="col-lg-4">
-            <div class="service-card">
-              <i class="far fa-handshake fa-3x"></i>
-              <h4>COUNSELLING</h4>
-              <p>We will introduce and advice <br> you the best universities <br> in the world</p>
-            </div><br>
-            <div class="service-card">
-              <i class="fas fa-toolbox fa-3x"></i>
-              <h4>ADMISSIONS</h4>
-              <p>Ensure Proper documentation <br> to secure your seat<br> without any issues</p>
-            </div><br>
-          </div>
-          <div class="col-lg-4">
-            <div class="service-card">
-              <i class="fas fa-paper-plane fa-3x"></i>
-              <h4>VISA</h4>
-              <p>Adhering to embassy guidlines<br> for successfull visa <br> stamping</p>
-            </div><br>
-            <div class="service-card">
-              <i class="fas fa-plane-departure fa-3x"></i>
-              <h4>FLIGHT</h4>
-              <p>Assistance to fly economically <br> and ensure a hassle free journey <br> with lots of guidence</p>
-            </div><br>
-          </div>
-          <div class="col-lg-4">
-            <div class="service-card">
-              <i class="fas fa-taxi fa-3x"></i>
-              <h4>AIRPORT PICK-UP</h4>
-              <p>Our representative will welcome you<br> at the airport and <br>setup things</p>
-            </div><br>
-            <div class="service-card">
-              <i class="fas fa-hotel fa-3x"></i>
-              <h4>ACCOMODATIONS</h4>
-              <p>Booking you stay<br>in government or <br> private hostel</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div> -->
-      <div class="row">
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <div class="item-holder">
-            <div class="icon-box">
-              <i class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i>
-            </div>
-            <a href="">
-              <h6>Free Counselling</h6>
-            </a>
-            <p><strong>Career Oriented Counselling:</strong> With understanding, experienced and helpful counselors, the candidate gets the right environment to think productively.</p>
-            <p><strong>Course Counselling and Application Process:</strong> Based on the career choice of the candidate, our counselors cater to the required information.</p>
-            <p><strong>Visa Guidance:</strong> Ball comes in our court now, and we deliver our services swiftly.</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <div class="item-holder">
-            <div class="icon-box">
-              <i class="fa fa-university fa-3x" aria-hidden="true"></i>
-            </div>
-            <a href="">
-              <h6>University Selection</h6>
-            </a>
-            <p><strong>International Student Recruitment:</strong> Settling our candidate righteously is our mission and motto as well. For this, we conduct a series of trial interviews so that candidates may not hesitate while facing true events of
-              the interview.</p>
-            <p><strong>Branding:</strong> Our candidates are our brand ambassadors, and we inculcate human values in them making them more accountable for their every act as an MBBS student.</p>
-          </div>
-        </div>
-        <div style="clear:both;"></div>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <div class="item-holder">
-            <div class="icon-box">
-              <i class="fa fa-file-text-o fa-3x" aria-hidden="true"></i>
-            </div>
-            <a href="">
-              <h6>Documentation Assistance</h6>
-            </a>
-            <p><strong>University Application:</strong> The candidate is open to select any location where he is interested to pursue the MBBS course.</p>
-            <p><strong>Accommodation Booking:</strong> According to the choice of the candidate and availability, the accommodation will be made available to the candidate.</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <div class="item-holder">
-            <div class="icon-box">
-              <i class="fa fa-paper-plane-o fa-3x" aria-hidden="true"></i>
-            </div>
-            <a href="">
-              <h6>Pre-Departure Guidance</h6>
-            </a>
-            <p><strong>International Student Fairs:</strong> To keep our candidates informed, we make arrangements for international student fairs.</p>
-            <p><strong>Airport Pickup:</strong> Our team members will be in the airport for any kind of assistance.</p>
-            <p>Every year, PSP Education conducts SOBRANIYE, a get together of students and parents before the departure...</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
   <!-- testimonial - Start -->
-  <section id="testimonial" style="background-image: url(img/test1.png);background-color:#1C4670;background-blend-mode: darken; background-position:right; background-size:cover;background-attachment:fixed; background-repeat: no-repeat;">
+  <section id="testimonial">
     <br><br>
-    <div class="container">
-      <div class="">
-        <div class="" style="text-align: center;">
-          <h2 style="color:#fff;"> Students <span style="color:#1DC690;"> Testimonial </span></h2><br>
-          <!-- <p>We shape our buildings; thereafter, they shape us.</p> -->
+    <div class="services-container">
+      <div class="large">
+        <div class="service-circle"></div>
+        <div class="services-heading">
+          <h2>Testimonial</h2><br>
+          <p>We shape our buildings; thereafter, they shape us.</p>
         </div>
       </div>
+      <div class="small">
+        <div class="service-circle4"></div>
+        <div class="services-heading" style="text-align: center;">
+          <h2>Testimonial</h2><br>
+          <p>We shape our buildings;thereafter, they shape us..</p>
+        </div><br>
+      </div>
+
       <div class="row">
-        <div class="col-lg-3">
-          <!-- <div class="card card-body"> -->
-          <div class="testimonial-card">
-            <img src="./img/15.png" class="clients-card-img" alt=""> <br>
-            <h3 class="clients-card-colun">"</h3>
-            <p class="clients-card-content">Thanks Ishan Overseas, for helping me to achieve success in my life by providing admission in top medical University.</p>
-            <h3 class="clients-card-name"> Lovely Singh </h3>
+        <div class="col-md-12 col-md-offset-1">
+          <div id="clients-list" class="owl-carousel owl-theme">
+            <div class="item">
+              <!-- <div class="card card-body"> -->
+              <div class="testimonial-card">
+                <img src="./img/15.png" class="clients-card-img" alt=""> <br>
+                <h3 class="clients-card-colun">"</h3>
+                <p class="clients-card-content">She is with us since we started our YOOGA classes.
+                  There is a great relationship between out clientsand the trainers and all our staff.</p>
+                <h3 class="clients-card-name"> Lovely Singh </h3>
+              </div>
+              <!-- </div> -->
+            </div>
+            <div class="item">
+              <!-- <div class="card card-body"> -->
+              <div class="testimonial-card">
+                <img src="./img/16.png" class="clients-card-img" alt=""> <br>
+                <h3 class="clients-card-colun">"</h3>
+                <p class="clients-card-content">She is with us since we started our YOOGA classes.
+                  There is a great relationship between out clientsand the trainers and all our staff.</p>
+                <h3 class="clients-card-name"> Vishal </h3>
+              </div>
+              <!-- </div> -->
+            </div>
+            <div class="item">
+              <!-- <div class="card card-body"> -->
+              <div class="testimonial-card">
+                <img src="./img/17.png" class="clients-card-img" alt=""> <br>
+                <h3 class="clients-card-colun">"</h3>
+                <p class="clients-card-content">She is with us since we started our YOOGA classes.
+                  There is a great relationship between out clientsand the trainers and all our staff.</p>
+                <h3 class="clients-card-name"> Purushottam </h3>
+              </div>
+              <!-- </div> -->
+            </div>
+            <div class="item">
+              <!-- <div class="card card-body"> -->
+              <div class="testimonial-card">
+                <img src="./img/18.png" class="clients-card-img" alt=""> <br>
+                <h3 class="clients-card-colun">"</h3>
+                <p class="clients-card-content">She is with us since we started our YOOGA classes.
+                  There is a great relationship between out clientsand the trainers and all our staff.</p>
+                <h3 class="clients-card-name"> Shilpa Rani </h3>
+              </div>
+              <!-- </div> -->
+            </div>
+            <div class="item">
+              <!-- <div class="card card-body"> -->
+              <div class="testimonial-card">
+                <img src="./img/19.png" class="clients-card-img" alt=""> <br>
+                <h3 class="clients-card-colun">"</h3>
+                <p class="clients-card-content">She is with us since we started our YOOGA classes.
+                  There is a great relationship between out clientsand the trainers and all our staff.</p>
+                <h3 class="clients-card-name"> Shilpa Rani </h3>
+              </div>
+            </div>
+            <!-- </div> -->
+            <div class="item">
+              <!-- <div class="card card-body"> -->
+              <div class="testimonial-card">
+                <img src="./img/20.png" class="clients-card-img" alt=""> <br>
+                <h3 class="clients-card-colun">"</h3>
+                <p class="clients-card-content">She is with us since we started our YOOGA classes.
+                  There is a great relationship between out clientsand the trainers and all our staff.</p>
+                <h3 class="clients-card-name"> Shilpa Rani </h3>
+              </div>
+              <!-- </div> -->
+            </div>
           </div>
-          <!-- </div> -->
-        </div>
-        <div class="col-lg-3">
-          <!-- <div class="card card-body"> -->
-          <div class="testimonial-card">
-            <img src="./img/16.png" class="clients-card-img" alt=""> <br>
-            <h3 class="clients-card-colun">"</h3>
-            <p class="clients-card-content">Thanks Ishan Overseas, for helping me to achieve success in my life by providing admission in top medical University.</p>
-            <h3 class="clients-card-name"> Vishal </h3>
-          </div>
-          <!-- </div> -->
-        </div>
-        <div class="col-lg-3">
-          <!-- <div class="card card-body"> -->
-          <div class="testimonial-card">
-            <img src="./img/17.png" class="clients-card-img" alt=""> <br>
-            <h3 class="clients-card-colun">"</h3>
-            <p class="clients-card-content">Thanks Ishan Overseas, for helping me to achieve success in my life by providing admission in top medical University.</p>
-            <h3 class="clients-card-name"> Purushottam </h3>
-          </div>
-          <!-- </div> -->
-        </div>
-        <div class="col-lg-3">
-          <!-- <div class="card card-body"> -->
-          <div class="testimonial-card">
-            <img src="./img/18.png" class="clients-card-img" alt=""> <br>
-            <h3 class="clients-card-colun">"</h3>
-            <p class="clients-card-content">Thanks Ishan Overseas, for helping me to achieve success in my life by providing admission in top medical University.</p>
-            <h3 class="clients-card-name"> Shilpa Rani </h3>
-          </div>
-          <!-- </div> -->
         </div>
       </div>
       <br /><br />
-    </div> -->
+    </div>
 
   </section>
   <br><br><br>
@@ -736,10 +502,10 @@
   <!-- testimonial - end -->
   <!---contact--->
   <div class="" id="">
-    <div class="modal fade" id="contact" style="background:rgba(28, 70, 112, 0.9);">
+    <div class="modal fade" id="contact" style="background:#1C4670;opacity:0.8;">
       <div class="modal-dialog modal-lg">
         <div class="modal-content" style="margin-top:10%;">
-          <div class="modal-header" style="background:#FBBC54;color:#1C4670;">
+          <div class="modal-header" style="background:#EAEAE0;color:#000;">
             <h4 style=""> <strong>Contact Us</strong> for Admissions</h4>
 
             <button class="close btn btn-warning" type="button" name="button" data-dismiss="modal">&times;</button>
@@ -773,7 +539,7 @@
                   <input data-aos="fade-up ease-in-out" type="number" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required class="form-control" id="phone"
                     placeholder="Phone">
                   <input data-aos="fade-up ease-in-out" type="textarea" required maxlength="800" class="form-control" id="text" style="height:70px;" placeholder="Type your Message ...">
-                  <button class="btn btn-warning btn-lg btn-block" type="submit" name="button">Send</button>
+                  <button class="btn btn-dark btn-lg" type="submit" name="button">Send</button>
 
                 </form>
 
@@ -946,7 +712,6 @@
             <a href=""><i class="fab fa-linkedin-in"></i></a>
           </div>
         </div>
-
       </div>
 
       <div style="width:100%; text-align:center; padding: 20px 0;" class="">
@@ -958,39 +723,38 @@
   </section>
 
 
-  <a href="https://wa.me/+919667939760"><i id="myBtn" href="" class="fa fa-whatsapp fa-3x" title="" onclick="" aria-hidden="true"></i></a>
+  <a href="https://wa.me/+919667939760"><i id="myBtn" href="" class="fa fa-whatsapp fa-5x" title="" onclick="" aria-hidden="true"></i></a>
 
 
   <!-- Footer Section - end -->
 
   <!-- Messenger Chat Plugin Code -->
-  <div id="fb-root"></div>
+    <div id="fb-root"></div>
 
-  <!-- Your Chat Plugin code -->
-  <div id="fb-customer-chat" class="fb-customerchat" minimize="false">
-  </div>
+    <!-- Your Chat Plugin code -->
+    <div id="fb-customer-chat" class="fb-customerchat" minimize="false">
+    </div>
 
-  <script>
-    var chatbox = document.getElementById('fb-customer-chat');
-    chatbox.setAttribute("page_id", "155813461134550");
-    chatbox.setAttribute("attribution", "biz_inbox");
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "155813461134550");
+      chatbox.setAttribute("attribution", "biz_inbox");
 
-    window.fbAsyncInit = function() {
-      FB.init({
-        xfbml: true,
-        version: 'v11.0'
-      });
-    };
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v11.0'
+        });
+      };
 
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
 
   <!-- Jquery order should be higher from normal javascript  -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
