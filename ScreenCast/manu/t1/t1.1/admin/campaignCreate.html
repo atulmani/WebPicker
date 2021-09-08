@@ -78,16 +78,16 @@
 
     <div class="small navbar-bottom-mobile">
       <ul>
-        <a type="button" href="../">
+        <a type="button" href="dashboard.html">
           <span><i class="fas fa-home"></i></span> <br> <span> Dashboard </span>
         </a>
-        <a type="button"  href="../ourstory">
+        <a type="button"  href="campaignList.html">
           <span><i class="fas fa-tasks"></i></span> <br> <span> Campaigns </span>
         </a>
         <a type="button" href="../login">
           <span><i class="fas fa-user"></i></span> <br> <span> Logout </span>
         </a>
-        <a type="button"  href="../contacts">
+        <a type="button"  href="#">
           <span><i class="fas fa-id-badge"></i></span> <br> <span> Devices </span>
         </a>
         <a type="button" data-toggle="collapse" data-target="#collapsibleNavbar1">
@@ -98,19 +98,19 @@
         <div class="collapse navbar-collapse more-button-links" id="collapsibleNavbar1">
           <ul class="">
             <li class="">
-              <a class="" href="../">Home</a>
+              <a class="" href="dashboard.html">Dashboard</a>
             </li>
             <li class="">
-              <a class="" href="../">Services</a>
+              <a class="" href="campaignList.html">Campaigns</a>
             </li>
             <li class="">
               <a class="" href="../login">Logout</a>
             </li>
             <li class="">
-              <a class="" href="ourstory">About Us</a>
+              <a class="" href="#">Devices</a>
             </li>
             <li class="">
-              <a class="" href="../contacts">Contact</a>
+              <a class="" href="#">More</a>
             </li>
           </ul>
         </div>
@@ -129,22 +129,22 @@
                     <a class="" href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
                   </li>
                   <li class="">
-                    <a class="" href="tp_selecttemplate.html"><i class="fas fa-clone"></i> Campaigns</a>
+                    <a class="" href="campaignList.html"><i class="fas fa-clone"></i> Campaigns</a>
                   </li>
                   <li class="">
                     <a class="" href="#"><i class="fas fa-bezier-curve"></i> Devices </a>
                   </li>
                   <li class="">
-                    <a class="" href="#thanks"><i class="fas fa-cogs"></i> Mapping</a>
+                    <a class="" href="#"><i class="fas fa-cogs"></i> Mapping</a>
                   </li>
                   <li class="">
-                    <a class="" href="#thanks"><i class="fas fa-rupee-sign"></i> Billing</a>
+                    <a class="" href="#"><i class="fas fa-rupee-sign"></i> Billing</a>
                   </li>
                   <li class="">
                     <a class="" href="profile.html"><i class="fas fa-user"></i> Profile</a>
                   </li>
                   <li class="">
-                    <a id='lnkLogout' class="" href="#thanks"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    <a id='lnkLogout' class="" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
                   </li>
                 </ul>
               </div>
@@ -157,7 +157,62 @@
 
       <!-- content - starts -->
 
+      <div class="col-lg-10 col-md-10 col-sm-12" style="overflow: hidden;">
+        <img src="../img/9.png" class="wave large" width="70%" alt="">
+        <div class="row no-gutters">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <h3 class="select-tp-heading">Create Campaign</h3>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <a href="campaignList.html"> <button id='btnCampaignList' class="mybutton button5">Campaign List<i class="fas fa-arrow-right"></i> </button></a>
+          </div>
+        </div>
+        <div class="row no-gutters">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <form id='createEditCampaignForm' class="" style="padding-left:20px" >
+              <label for="status">Status:</label>
+              <strong><label id='status'></label></strong><br>
 
+              <label for="idtype">Organisation:</label><br>
+              <select id="organisation" name="organisation">
+                <option value="Org1">Org1</option>
+                <option value="Org2">Org2</option>
+              </select><br><br>
+
+              <label for="idtype">Brand:</label><br>
+              <select id="brand" name="brand">
+                <option value="Brand1">Brand1</option>
+                <option value="Brand2">Brand2</option>
+              </select><br><br>
+
+
+              <label for="name">Campaign Name:</label><br>
+              <input type="text" id="campaignName" name="campaignName" value=""><br><br>
+
+              <label for="campaignType">Campaign Type:</label><br>
+              <select id="campaignType" name="campaignType">
+                <option value="PAN">Text Based</option>
+                <option value="Aadhaar">Image Based</option>
+                <option value="Aadhaar">Video Based</option>
+                <option value="Aadhaar">Text & Image</option>
+                <option value="Aadhaar">Text & Video</option>
+                <option value="Aadhaar">Image & Video</option>
+              </select><br><br>
+
+              <label for="idtype">Campaign Frequency:</label><br>
+              <select id="idtype" name="idtype">
+                <option value="PAN">PAN No</option>
+                <option value="Aadhaar">Aadhaar No</option>
+              </select><br><br>
+
+              <div class="alert">
+                Data has been saved successfully
+              </div>
+
+              <input id='btnNext' type="button" value="Next ->">
+            </form>
+        </div>
+      </div>
 
       <!-- content - ends -->
 
@@ -269,8 +324,8 @@
         <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
 
-        <script src="../js/firebase.js"></script>
-        <script src="../js/firebase-admin-common.js"></script>
+        <!-- <script src="../js/firebase.js"></script> -->
+        <!-- <script src="../js/firebase-admin-common.js"></script> -->
         <!-- <script src="../js/firebase-dashboard.js"></script> -->
         <!-- <script src="../js/dashboard.js"></script> -->
         <!-- <script src="../js/main.js"></script> -->
