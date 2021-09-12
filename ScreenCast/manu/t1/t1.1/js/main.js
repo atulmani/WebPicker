@@ -191,6 +191,37 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+  var owl = $('#banner-ads-list');
+  owl.owlCarousel({
+    margin: 0,
+    loop: true,
+    center: true,
+    autoplay: true,
+    smartSpeed: 3000,
+    autoplayTimeout: 4000,
+    autoplayHoverPause: false,
+    nav: false,
+    dots: false,
+    // stagePadding: 100,
+    responsive: {
+      0: {
+        items: 1,
+        stagePadding: 0
+      },
+      600: {
+        items: 2,
+        stagePadding: 0
+      },
+      1000: {
+        items: 2,
+        stagePadding: 0
+      }
+    }
+  });
+});
+
+
+$(document).ready(function() {
   var owl = $('#whc-owl-carousel');
   owl.owlCarousel({
     stagePadding: 30,
