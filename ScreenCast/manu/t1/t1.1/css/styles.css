@@ -4,7 +4,7 @@ Palette#: 226650 from Colorhunt
 
 Reference Colors:
 - Dark: #603F8B - main header & footer color
-- Light : #A16AE8 - support colors
+  - Light : #A16AE8 - support colors
 - Pink: #FD49A0 - support colors
 - Yellow: #fff5c0- support colors
 
@@ -581,12 +581,12 @@ input:valid .input-field i{
 
 .navbar-brand {
   color: #4481eb;
-  font-size: 1.7rem;
-  padding-left: 12px;
+  font-size: 1.5rem;
+  padding-left: 0px;
 }
 
 .logo{
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   font-weight: 500;
   color: #fff;
 }
