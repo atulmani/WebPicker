@@ -38,7 +38,7 @@ lnkLogout.addEventListener('click', e => {
     console.log('ImageName: ' + ImgName);
     console.log('Storage: ' + firebase.storage());
 
-    var uploadTask = storage.ref('Images/'+ImgName+".png").put(files[0]);
+    var uploadTask = storage.ref('Videos/'+ImgName+".mp4").put(files[0]);
 
     //Progress of the image upload into storageBucket
     uploadTask.on('state_changed', function(snapshot){
@@ -61,7 +61,7 @@ lnkLogout.addEventListener('click', e => {
         //   Link: ImgUrl
         // });
 
-        db.collection("Images").add({
+        db.collection("Videos").add({
             UserID: auth.currentUser.uid,
             CorporateID: '10000',
             AdsID: '1',
@@ -90,7 +90,7 @@ lnkLogout.addEventListener('click', e => {
     // document.getElementById('retrieve').onclick = function(){
     //   ImgName = document.getElementById('namebox').value;
     //
-    //   firebase.firestore().collection('Images').orderBy('Timestamp').onSnapshot(snapshot => {
+    //   firebase.firestore().collection('Videos').orderBy('Timestamp').onSnapshot(snapshot => {
     //     let changes = snapshot.docChanges();
     //     // console.log(changes);
     //     changes.forEach (change => {
