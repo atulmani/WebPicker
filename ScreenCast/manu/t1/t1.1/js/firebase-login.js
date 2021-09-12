@@ -5,7 +5,7 @@ const btnSignup = document.getElementById('btnSignup');
 
 //Save users data into Users DB Collection
 function setUsersProfileData(user){
-  db.collection('Users')
+  db.collection('UserList')
   .doc(user.uid)
   .set({
       uid: user.uid,
@@ -22,7 +22,7 @@ function setUsersProfileData(user){
   })
   .then(() => {
         // updated
-        console.log ('Users data saved successfully');
+        console.log ('Data saved successfully');
         window.location.href = "../admin/dashboard.html";
       })
       .catch((error) => {
