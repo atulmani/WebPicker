@@ -1844,4 +1844,308 @@ input[type=number] {
 
 /* faq page - end */
 
+/* Create Campaign - start */
+
+.multi-step-form-container{
+  /* width: 330px; */
+  width: 100%;
+  background: linear-gradient(#A16AE8,#603F8B);
+  border-radius: 8px;
+  text-align: center;
+  padding: 20px;
+  /* margin-left:15px; */
+}
+
+.multi-step-form-container header{
+  font-size: 35px;
+  font-weight: 600;
+  margin: 0 0 30px 0;
+  color: #fff;
+}
+
+.multi-step-form-container .multi-step-form-outer{
+  width: 100%;
+  overflow: hidden;
+  /* background: red; */
+}
+
+.multi-step-form-outer .multi-step-form{
+  display: flex;
+  width: 400%;
+  transition: 2s;
+}
+
+.multi-step-form-outer .multi-step-form .steps-page{
+  position: relative;
+  width: 100%;
+  transition: 0.5s;
+}
+
+.steps-page .multi-step-title{
+  text-align: left;
+  font-size: 25px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.steps-page .multi-step-fields{
+  height: 45px;
+  width: 100%;
+  margin: 45px 0;
+  /* display: flex; */
+  position: relative;
+}
+
+.steps-page .multi-step-fields:last-child{
+  height: 45px;
+  width: 100%;
+  margin: 0 0;
+  /* display: flex; */
+  position: relative;
+}
+
+.steps-page .multi-step-fields .lable{
+  position: absolute;
+  top: -30px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.steps-page .multi-step-fields input,
+.steps-page .multi-step-fields select{
+  position: relative;
+  left: -20px;
+  height: 100%;
+  width: 88%;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  font-size: 18px;
+  padding-left: 15px;
+  color: rgba(0,0,0,0.7);
+  outline: none;
+}
+
+.steps-page .multi-step-fields.btns{
+  width: 100%;
+}
+
+.multi-step-form-container .progress-bar-count{
+  display: flex;
+  margin: 20px 0;
+  color: #fff;
+}
+
+.progress-bar-count .step{
+  position: relative;
+  width: 100%;
+  text-align: center;
+  transition: 0.5s;
+}
+
+.progress-bar-count .step p{
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.progress-bar-count .step .bullet{
+  position: relative;
+  width: 25px;
+  height: 25px;
+  border: 2px solid #fff;
+  display: inline-block;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+  cursor: pointer;
+}
+.progress-bar-count .step:last-child .bullet::before,
+.progress-bar-count .step:last-child .bullet::after{
+  display: none;
+}
+.progress-bar-count .step .bullet::before,
+.progress-bar-count .step .bullet::after{
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  right: -230px;
+  height: 3px;
+  width: 1000%;
+  background: rgba(255,255,255,0.9);
+  border-radius: 5px;
+}
+.progress-bar-count .step .bullet::after{
+  background: #FD49A0;
+  transform: scaleX(0);
+  transform-origin: left;
+  /* animation: line-color 0.3s linear forwards; */
+}
+
+@keyframes line-color {
+  100%{
+    transform: scaleX(1);
+  }
+}
+
+.progress-bar-count .step span{
+  font-size: 13px;
+  font-weight: lighter;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.progress-bar-count .step .check{
+  position: absolute;
+  left: 50%;
+  top: 72%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  display: none;
+  color: #603F8B;
+}
+
+/* Create Campaign - end */
+
+/* Details Campaign - start */
+
+.campaign-details-section{
+  width: 100%;
+  box-shadow: 0 0 10px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.first-section-col-1 img{
+  border-radius: 50%;
+}
+
+.first-section-col-2 h4{
+  font-size: 2rem;
+}
+
+.first-section-col-2 p{
+  font-size: 0.9rem;
+  color: rgba(96,63,139,0.6);
+}
+
+.first-section-col-2 span{
+  font-size: 1rem;
+  color: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.2);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+
+.head-text{
+  position: relative;
+  top: 10px;
+}
+
+.second-section-row{
+  background: rgba(0,0,0,0.2);
+  padding: 0 5px;
+}
+
+.second-section-row div p{
+  position: relative;
+  top: 5px;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.small-img-row{
+  display: flex;
+  justify-content: space-between;
+}
+.small-img-col{
+  flex-basis: 24%;
+  cursor: pointer;
+}
+
+#ProductImg{
+  padding: 2px;
+}
+
+.second-section-small-img{
+  padding: 2px;
+}
+
+.play-btn{
+  width: 15%;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  display: none;
+  opacity: 80%;
+}
+
+.video-player{
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  background: rgba(0,0,0,0.5);
+}
+
+.video-player video{
+  position: relative;
+  left: 30%;
+}
+
+.video-player video:focus{
+  outline: none;
+}
+
+.close-btn{
+  position: absolute;
+  top: 10px;
+  right: 31%;
+  cursor: pointer;
+  width: 4%;
+}
+
+.campaign-running-summary{
+  padding-left: 50px;
+}
+
+.Campaign-Running-Summary-first-row{
+  width: 50%;
+  background:rgba(0,0,0,0.2);
+  padding: 5px;
+  border: 1px solid rgba(0,0,0,0.3);
+  border-bottom: none;
+}
+
+.Campaign-Running-Summary-second-row{
+  width: 50%;
+  background:rgba(0,0,0,0.1);
+  padding: 10px;
+  border: 1px solid rgba(0,0,0,0.3);
+  border-top: none;
+}
+
+.Campaign-Running-Summary-first-row div p{
+  line-height: 16px;
+  position: relative;
+  top: 5px;
+}
+/* .campaign-running-summary-table{
+  background: rgba(0,0,0,0.2);
+}
+
+.campaign-running-summary-table .campaign-running-summary-td{
+  padding: 10px;
+} */
+
+
+/* Details Campaign - end */
+
+
+
 /* finish */
