@@ -9,11 +9,11 @@ auth.onAuthStateChanged(firebaseUser => {
 
     } else {
       // console.log('User has been logged out');
-      // window.location.href = "../login";
+       window.location.href = "../login";
     }
   } catch (error) {
     console.log(error.message);
-    // window.location.href = "../login";
+    window.location.href = "../login";
   }
 });
 
@@ -38,7 +38,7 @@ function GetProfileData (user)
         {
           if (option.value === doc.data().IDType)
           {
-              option.selected = true;              
+              option.selected = true;
           }
         }
 
