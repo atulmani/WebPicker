@@ -173,14 +173,25 @@
               <label for="status">Status:</label>
               <strong><label id='status'></label></strong><br>
 
-              <label for="name">Ads Name:</label><br>
+              <label for="name">Campaign Name:</label><br>
               <input type="text" id="txtName" name="content" value=""><br><br>
 
-              <label for="name">Content:</label><br>
-              <input type="text" id="txtContent" name="content" value=""><br><br>
+              <label>Media Type:</label><br>
+              <!-- <input type="text" id="ddMediaType" name="content" value=""> -->
+              <select id="ddMediaType" name="ddMediaType">
+                <option value="TEXT">Text</option>
+                <option value="IMAGE">Image</option>
+                <option value="VIDEO">Video</option>
+                <option value="MIXED_IMAGE_TEXT">Mixed (Image + Text)</option>
+                <option value="MIXED_VIDEO_TEXT">Mixed (Video + Text)</option>
+              </select>
+              <br><br>
 
-              <label for="name">Upload Images:</label><br>
-              <input type="text" id="uploadImages" name="uploadImages" value=""><br><br>
+              <label for="name">Mapped Device Count</label><br>
+              <input type="text" id="txtMappedDeviceCount" name="uploadImages" value=""><br><br>
+
+              <label for="name">Schedules</label><br>
+              <input type="text" id="txtSchedules" name="uploadImages" value=""><br><br>
 
               <div class="alert">
                 Data has been saved successfully
@@ -193,6 +204,7 @@
         </div>
       </div>
       </div>
+    </div>
 
 
       <!-- content - ends -->
@@ -307,7 +319,7 @@
 
         <script src="../js/firebase.js"></script>
         <script src="../js/firebase-admin-common.js"></script>
-        <script src="../js/firebase-ads.js"></script>
+        <script src="../js/firebase-adsCreate.js"></script>
         <!-- <script src="../js/dashboard.js"></script> -->
         <!-- <script src="../js/main.js"></script> -->
 
