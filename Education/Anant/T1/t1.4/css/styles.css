@@ -1,0 +1,822 @@
+body{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+h1{
+  font-size: 3rem;
+  /* font-weight: bold; */
+}
+
+h2{
+  font-size: 2.5rem;
+  /* font-weight: bold; */
+}
+h3{
+  font-size: 2rem;
+  /* font-weight: bold; */
+}
+h4{
+  font-size: 1.5rem;
+  font-weight:normal;
+}
+h5{
+  font-size: 1.2rem;
+  font-weight:normal;
+}
+h6{
+  font-size: 0.8rem;
+  font-weight:normal;
+}
+
+
+
+
+.large {
+  width: 100%;
+  border-radius: 0 0 0 0;
+}
+
+.small {
+  width: 0px;
+  display: none;
+  border-radius: 0 0 0 0;
+}
+
+@media (max-width: 1080px) {
+  .large {
+    width: 0%;
+    display: none;
+    border-radius: 0 0 0 0;
+  }
+
+  .small {
+    width: 100%;
+    display: block;
+    border-radius: 0 0 0 0;
+  }
+}
+
+
+/* navbar start */
+.navbar {
+  background-color: #fefefe;/*color changed*/
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 0;
+  border-right: 0;
+  border-style: solid;
+  border-color: #1638A0;
+
+}
+
+@media (max-width: 1080px) {
+  .navbar-bottom-mobile{
+    /* overflow: hidden; */
+    background-color: #1C4670;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+    height: 50px;
+  }
+
+  .navbar-bottom-mobile ul{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 10px 0 10px;
+    text-align: center;
+  }
+
+  .navbar-bottom-mobile ul a span{
+    color: #fff;
+  }
+
+  .more-button-links{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(241,181,41,0.8);
+    z-index: 50;
+    text-align: center;
+  }
+
+  .more-button-links ul{
+    position: relative;
+    top: calc(50% - 140px);
+    display: list-item;
+  }
+
+  .more-button-links ul li{
+    list-style:none;
+    font-size: 1.5rem;
+    line-height: 2.5;
+  }
+
+  .more-button-links ul li a{
+    color: #000;
+  }
+}
+
+
+.navbar-brand {
+  color: #f1b529;
+  font-size: 1.7rem;
+  padding-left: 0px;
+}
+
+/* @media (max-width: 1080px) {
+  .navbar-brand {
+    width: 100%;
+    text-align: center;
+  }
+} */
+
+.navbar-brand:hover {
+  color: #1C4670;
+}
+
+.navbar-text {
+  color: white;
+  padding-left: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.nav-item {
+  width: auto;
+  padding: 0;
+  line-height: 2;
+}
+
+@media (max-width: 1080px) {
+  .nav-item {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+  }
+}
+
+.nav-link {
+  /* color: white; */
+  color: #000;
+  padding: 10px 0;
+  margin: 0 0px;
+  font-size: 0.8rem;
+  text-align: center;
+  letter-spacing: 0.5px;
+  /* font-weight: 500; */
+  /* text-shadow: 0.5px 1px black; */
+}
+
+.nav-link:hover {
+  color: #1C4670;
+  transition: ease-in-out 0.5s ;
+  background-color: #eee;
+}
+
+.nav .active {
+  color: #1C4670;
+  font-size: 1rem;
+  background-color: #ededed;
+  margin-top: 0px;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.sticky {
+  /* background-color: #161d65 !important; */
+  /* transition: background-color 200ms linear; */
+  transition: all 0.9s ease-in-out;
+}
+
+.sticky .nav-link, .sticky .navbar-brand, .sticky .navbar-text {
+  /* color: white; */
+}
+
+.sticky .nav .active {
+  color: #f1b529;
+  font-size: 1rem;
+  background-color: #ededed;
+  margin-top: 0px;
+  border-radius: 2px;
+}
+
+.sticky .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.nav-divider{
+  border: none;
+  border-right: 2px solid #ccc;
+}
+
+.nav-mobile-no{
+  font-size: 1.3rem;
+ padding: 0 0 0 10px;
+}
+
+
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: #eee;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+.form1{
+position: relative;
+justify-content: right;
+background-color:rgba(234, 234, 224, 0.7);
+padding-top: 20px;
+padding-left: 20px;
+padding-right: 50px;
+opacity: 1;
+/* padding-left: 65px; */
+width:50%;
+color: #000;
+/* height:50%; */
+/* border-radius: 30px 0px 30px 0; */
+border: 1px solid #FBBC54;
+}
+
+@media (max-width: 1080px) {
+ .form1  {
+width:100%;
+padding: 20px;
+margin-top: 20px;
+
+  }
+
+
+}
+
+.form1 .form-control{
+
+opacity: 1 !important;
+font-size: 12px;
+
+
+}
+
+.mybutton {
+  background-color: #4CAF50;
+  /* Green */
+  border: none;
+  color: white;
+  padding: 10px 25px 10px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 0 0 15px 0;
+}
+
+.button5 {
+  margin-top: 0%;
+  background: #1DC690;
+  box-shadow: 5px 20px 15px rgba(0,0,0,0.2);
+}
+
+.button5:hover {
+
+}
+
+
+/*****counterboxcircle****/
+.circle{
+border-top: solid 3px #1C4670;
+border-left: solid 3px #1C4670;
+border-bottom:solid 3px #1DC690;
+border-right:solid 3px #1DC690;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: auto;
+padding-top: 50px;
+}
+
+
+
+
+/***** Counter box*** Achievements No of completed projects***/
+
+.counter-box {
+    display: block;
+    background:#278AB0;
+    padding: 0px;
+    text-align: center;
+    color: black;
+    border: none;
+    border-right: 2px solid #fff;
+    margin-top: 40px;
+
+}
+@media (min-width: 1080px) {
+  .counter-box {
+    margin-top: -30px;
+    display: block;
+    background:#278AB0;
+    padding: 60px;
+    text-align: center;
+    color: black;
+    border: none;
+    border-right: 2px solid #fff;
+  }
+
+}
+
+.counter-box p {
+    margin: 5px 0 0;
+    padding-top:20px;
+    color: #278AB0;
+    font-size: 15px;
+    font-weight: 500
+
+}
+
+.counter-box i {
+    font-size: 30px;
+    margin: 0 0 15px;
+    color: #278AB0;
+}
+
+.counter {
+    display: block;
+    font-size: 50px;
+    font-weight: 700;
+    color: #666;
+    line-height: 28px
+
+}
+
+.counter-box.colored {
+    /* background: #fdca40; */
+    padding: 40px;
+
+}
+
+.counter-box.colored p,
+.counter-box.colored i,
+.counter-box.colored .counter {
+    color: #fff;
+    /* color: #444; */
+}
+
+/**End *** Counter box***/
+
+/****career****/
+
+.card1{
+border-radius: 3px;
+box-shadow: 0 0 30px #ccc!important;
+padding: 2%;
+font-size: 0.9rem;
+height: 370px !important;
+
+
+}
+
+.box{
+box-shadow: 1px 2px 2px 2px #278AB0!important;
+padding: 20px;
+transition: 0.5s;
+height: 406px;
+text-align: center;
+}
+
+.box h6{
+/* font-weight: bold; */
+color: #1C4670;
+font-size: 18px;
+
+}
+
+.box .mid-img{
+width:100%;
+margin-bottom: 20px;
+}
+
+
+
+
+
+
+/****country****/
+
+.card{
+  text-align:center;
+}
+
+.image-fluid{
+width: 200%;
+
+}
+
+/**Services***/
+
+.service-card{
+
+  border-right: 2px solid #1DC690;
+  /* border-left: 2px solid #1DC690; */
+  border-radius: 10px;
+  box-shadow: 2px 2px 0px #1DC690;
+
+}
+
+.service-card h4{
+
+font-weight: bold;
+color:#1DC690;
+
+}
+
+/***Testimonial***/
+
+#testimonial{
+  background: #EAEAE0;
+  overflow-x: hidden;
+}
+
+.testimonial-card{
+  text-align: center;
+  padding: 8%;
+  background: #EAEAE0;
+  padding-bottom: 0;
+  border-radius: 3px;
+}
+
+.services-container{
+  padding: 0 7%;
+}
+
+.services-heading{
+  /* font-family: 'Marcellus SC', serif; */
+  color: #1C4670;
+}
+
+.service-circle{
+  width: 10px;
+  height: 15px;
+  background: #1DC690;
+  transform: translateX(10px) rotate(5deg);
+}
+
+.service-circle2{
+  width: 10px;
+  height: 15px;
+  background: #1C4670;
+  transform: translateX(-10px) translateY(-10px) rotate(-15deg);
+  float: right;
+}
+
+.service-circle3{
+  width: 10px;
+  height: 80px;
+  background: #1DC690;
+  transform: translateX(90px) translateY(-10px) rotate(50deg);
+  float: right;
+}
+
+.service-circle4{
+  width: 10px;
+  height: 80px;
+  background: #1DC690;
+  transform: translateX(10px) translateY(-10px) rotate(50deg);
+  float: right;
+}
+
+.service-circle5{
+  width: 10px;
+  height: 80px;
+  background: #1DC690;
+  transform: translateX(0px) translateY(-10px) rotate(50deg);
+  float: right;
+}
+
+.services-details{
+  background: #000;
+  border: none;
+  border-top: 5px solid #fff;
+  padding: 10px;
+  color: #fff;
+  transition: all 0.3s linear;
+}
+
+.services-cards:hover .services-details{
+  background: #fff;
+  border: none;
+  border-bottom: 5px solid #000;
+  color: #000;
+}
+
+.services-cards img{
+  transition: all 0.3s linear;
+}
+
+.services-cards:hover img{
+  transform: scale(1.02);
+}
+
+.clients-card-img{
+  border-radius: 50%;
+  width:100%;
+  padding: 10%;
+  border: 1px solid #aaa;
+}
+
+.clients-card-content{
+  font-size: 0.9rem;
+  color: rgba(0,0,0,0.7);
+  position: relative;
+  top: -40px;
+}
+
+.clients-card-name{
+  font-size: 1.2rem;
+  font-family: 'Baloo Tammudu 2';
+  position: relative;
+  top: -50px;
+  color: #1C4670;
+}
+
+.clients-card-colun{
+  text-align: left;
+  font-size: 3rem;
+  color: #1DC690;
+}
+
+.form-control{
+padding: 10px;
+background-color: #fff;
+margin:10px 0;
+color: #000
+border: 1px solid #fff;
+}
+
+.form-control:focus,.form-control:valid {
+
+background-color: #fff;
+color: #000;
+
+}
+
+.item-holder {
+      position: relative;
+      padding-left: 85px;
+      margin-bottom: 50px;
+  }
+
+.item-holder p {
+    font-size: 14px;
+    line-height: 26px;
+    font-weight: 400;
+    color: #848484;
+    font-family: 'Raleway',sans-serif;
+}
+
+.item-holder h6 {
+    font-size: 20px;
+    line-height: 32px;
+    font-weight: 400;
+    color: #222222;
+    padding-bottom: 12px;
+    font-family: 'Roboto',sans-serif;
+}
+
+.icon-box{
+  position: absolute;
+      left: 0px;
+      top: 12px;
+      color: #1C4670;
+  }
+
+}
+
+  /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+
+/**footer***/
+#footer {
+  background-color: #1C4670;
+  text-align: center;
+  color: #fff;
+  }
+
+.align-left{
+text-align:left;
+}
+
+@media (max-width: 1080px) {
+  .align-left{
+  text-align:center;
+
+}
+
+  }
+
+#footer a{
+  font-size: 0.8rem;
+  color: #fff;
+  font-weight: bold;
+  /* opacity: 0.9; */
+}
+
+#footer a:hover{
+  opacity: 1;
+}
+#footer h4{
+  font-weight: 950;
+  font-size: 1rem;
+  text-shadow: 0px 1px #4C5355;
+
+}
+
+.build-with-us{
+  transition: 0.5s;
+}
+
+.build-with-us:hover .fas{
+  transform: translateX(20px);
+}
+
+.social .fab {
+  color: white;
+  border-radius: 50px;
+  margin: 15px 5px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 20px;
+  border: 2px solid white;
+  transition: all 0.5s ease-in;
+  background: #1DC690;
+}
+
+.social .fab:hover{
+  transform: rotate(360deg) scale(1.1);
+}
+
+.accordion-section .panel-default > .panel-heading {
+    border: 0;
+      padding-top: 20px;
+    background-color: #1C4670;
+      padding: 0;
+      /* opacity : 0.7; */
+    /* background: rgba(28, 70, 112, 0.7); */
+background-blend-mode: lighten;
+
+    /* box-shadow:0px 5px 8px; */
+    transition: all 1s ease-in-out;
+    color: #000;
+    /* position: relative;
+transform: translateY(-30px); */
+    /* width:100px; */
+
+}
+.accordion-section .panel-default > .panel-heading:hover{
+/* background-color: #1C4670; */
+/* -webkit-transition: all 2s ease-in-out;
+transition: all 2s ease-out; */
+}
+
+.accordion-section .panel-default .panel-title a {
+    /* display: block; */
+    font-size: 10px;
+      /* color: #1C4670; */
+      padding: 0;
+      font-weight: normal;
+      /* text-align:justify All; */
+
+
+         }
+
+.accordion-section .panel-default .panel-title a:hover {
+    /* display: block; */
+    /* font-style: italic; */
+    /* font-size: 1rem; */
+      /* color: #fff; */
+}
+
+.accordion-section .panel-default .panel-title a:after {
+    /* font-family: 'FontAwesome'; */
+    font-style: normal;
+    font-size: 1rem;
+    content:"-";
+    /* color: #1DC690; */
+    float:right;
+
+
+}
+.accordion-section .panel-default .panel-title a.collapsed:after {
+    content: "+";
+    /* margin-left: 20px; */
+
+}
+.accordion-section .panel-default .panel-body {
+    font-size: 0.5rem;
+    background:none;
+    color: #fff;
+    padding: 0px;
+    opacity:0.9;
+}
+
+
+/* Footer Section - End */
+
+/*whatsapp*/
+#myBtn {
+  display:grid; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 80px; /* Place the button at the bottom of the page */
+  left: 30px; /* Place the button 30px from the right */
+  z-index: 999; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: #25D366;
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 10px; /* Some padding */
+  border-radius: 10px; /* Rounded corners*/
+  font-size: 40px; /* Increase font size */
+  box-shadow: 0px 15px 10px #000;
+transition: all 1s ease-in-out;
+
+}
+
+#myBtn:hover {
+  /* background-color: #1C4670; /* Add a dark-grey background on hover */ */
+  color: black; /* Text color */
+}

@@ -161,30 +161,65 @@ $(function() {
 // });
 
 $(document).ready(function() {
-    var owl = $('#banner-list');
-        owl.owlCarousel({
-      margin: 10,
-      loop: true,
-      autoplay: true,
-      smartSpeed:4000,
-      autoplayTimeout: 5000,
-      autoplayHoverPause: false,
-      nav: false,
-      dots: false,
-      stagePadding: 50,
-      responsive: {
-        0: {
-          items: 1
-        },
-        600: {
-          items: 2
-        },
-        1000: {
-          items: 3
-        }
+  var owl = $('#banner-list');
+  owl.owlCarousel({
+    margin: 10,
+    loop: true,
+    center: true,
+    autoplay: true,
+    smartSpeed: 3000,
+    autoplayTimeout: 4000,
+    autoplayHoverPause: false,
+    nav: false,
+    dots: false,
+    // stagePadding: 100,
+    responsive: {
+      0: {
+        items: 1,
+        stagePadding: 50
+      },
+      600: {
+        items: 2,
+        stagePadding: 50
+      },
+      1000: {
+        items: 3,
+        stagePadding: 80
       }
-    });
+    }
   });
+});
+
+$(document).ready(function() {
+  var owl = $('#banner-ads-list');
+  owl.owlCarousel({
+    margin: 0,
+    loop: true,
+    center: true,
+    autoplay: true,
+    smartSpeed: 3000,
+    autoplayTimeout: 4000,
+    autoplayHoverPause: false,
+    nav: false,
+    dots: false,
+    // stagePadding: 100,
+    responsive: {
+      0: {
+        items: 1,
+        stagePadding: 0
+      },
+      600: {
+        items: 2,
+        stagePadding: 0
+      },
+      1000: {
+        items: 2,
+        stagePadding: 0
+      }
+    }
+  });
+});
+
 
 $(document).ready(function() {
   var owl = $('#whc-owl-carousel');
@@ -301,6 +336,33 @@ $(document).ready(function() {
     }
   });
 });
+
+
+$(document).ready(function() {
+  var owl = $('#partners-carousel');
+  owl.owlCarousel({
+    margin: 20,
+    loop: true,
+    autoplay: true,
+    smartSpeed: 3000,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: false,
+    nav: false,
+    dots: false,
+    responsive: {
+      0: {
+        items: 2
+      },
+      600: {
+        items: 4
+      },
+      1000: {
+        items: 6
+      }
+    }
+  });
+});
+
 
 // $(function(){
 //     $("#clients-list").owlCarousel({
