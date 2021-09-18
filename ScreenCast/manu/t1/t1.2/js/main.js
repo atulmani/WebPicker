@@ -324,13 +324,13 @@ $(document).ready(function() {
     dots: false,
     responsive: {
       0: {
-        items: 1,
+        items: 3,
       },
       600: {
-        items: 2,
+        items: 3,
       },
       1024: {
-        items: 4,
+        items: 3,
         stagePadding: 50,
       }
     }
@@ -354,10 +354,10 @@ $(document).ready(function() {
         items: 2
       },
       600: {
-        items: 4
+        items: 3
       },
       1000: {
-        items: 6
+        items: 5
       }
     }
   });
