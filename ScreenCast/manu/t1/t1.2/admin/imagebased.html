@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <style media="screen">
+        img{ height: 200px; width:200px; border: 2px solid black;}
+    </style>
+    <input id="namebox" type="text" name="" value="">
+    <img id="myimg" src="" alt=""><label id="UpProgress"></label> <br><br>
+    <button id="select" type="button" name="button">Select Image</button>
+    <button id="upload" type="button" name="button">Upload Image</button>
+    <button id="retrieve" type="button" name="button">Retrieve Image</button>
+
+      <!-- The core Firebase JS SDK is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-storage.js"></script>
+
+      <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+      <!-- <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script> -->
+
+      <script type="text/javascript" src="../js/firebase.js"></script>
+
+
+      <script type="text/javascript">
+        var ImgName, ImgURL;
+        var files = [];
+        var reader;
+
+        //************ Select File ****************
+        document.getElementById("select").onclick = function(e) {
+          var input = document.createElement('input');
+          input.type = 'file';
+
+          input.onchange = e => {
+          files = e.target.files;
+          reader = new FileReader();
+          reader.onload = function(){
+            document.getElementById("myimg").src = reader.result;
+            }
+            reader.readAsDataURL (files[0]);
+
+          }
+          input.click();
+        }
+
+        //************ File Upload to Cloud Storage  ****************
+        document.getElementById('upload').onclick = function() {
+          ImgName = document.getElementById('namebox').value;
+          var uploadTask = firebase.storage().ref('Images/'+ImgName+".png").put(files[0]);
+
+          //Progress of the image upload into storageBucket
+          uploadTask.on('state_changed', function(snapshot){
+            // var progress = (snapshot.byteTransferred / snapshot.totalBytes) * 100;
+            // document.getElementById('UpProgress').innerHTML = 'Upload'+progress+'%';
+          },
+
+          function(error) {
+              alert ('error in saving the image');
+            },
+
+            function() {
+              uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
+                ImgUrl = url;
+
+                alert ('ImgUrl: ' + ImgUrl );
+
+              // firebase.firestore().ref('Pictures/'+ImgName).set({
+              //   Name: ImgName,
+              //   Link: ImgUrl
+              // });
+
+              firebase.firestore().collection("Images").add({
+                  ImageName: ImgName,
+                  ImageURL: ImgUrl,
+                  Timestamp: (new Date()).toString()
+                })
+                .then((docRef) => {
+                  console.log("Image added successful");
+                })
+                .catch((error) => {
+                  console.error("Error adding image: ", error);
+                });
+
+
+
+
+              alert('image added successful');
+            }
+          );
+          } );
+        }
+
+        //************ Retrive image from storage & url from db  ****************
+          document.getElementById('retrieve').onclick = function(){
+            ImgName = document.getElementById('namebox').value;
+
+            firebase.firestore().collection('Images').orderBy('Timestamp').onSnapshot(snapshot => {
+              let changes = snapshot.docChanges();
+              // console.log(changes);
+              changes.forEach (change => {
+                // console.log(change.doc.data());
+                if (change.type == 'added') {
+                  var imageURL = change.doc.data().ImageURL;
+                }
+                else if (change.type == 'removed') {
+                  let li = contactMessageList.querySelector('[data-id=' + change.doc.id + ']');
+                  dataListList.removeChild(li);
+                }
+              })
+            })
+
+          }
+
+      </script>
+
+  </body>
+</html>
