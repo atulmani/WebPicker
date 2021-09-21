@@ -50,6 +50,30 @@ $(window).scroll(function() {
 // fixed-top or sticky-top navbar background change on windows scrolling - end
 
 
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function ddIndustries() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function ddFeatures() {
+  document.getElementById("myDropdown1").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
 
 // jQuery(document).ready(function(){
 //
@@ -463,7 +487,7 @@ jQuery(document).ready(function() {
 // map - start
 
 // When the window has finished loading create our google map below
-google.maps.event.addDomListener(window, 'load', init);
+// google.maps.event.addDomListener(window, 'load', init);
 
 function init() {
   // Basic options for a simple Google Map
