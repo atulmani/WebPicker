@@ -3,12 +3,12 @@
 function saveMessage() {
   console.log('Contactus Starts');
 
-  db.collection('ContactusMessageList').get().then((snapshot) => {
-    count = snapshot.size;
-    // console.log('No of document3: ' + count);
+  // db.collection('ContactusMessageList').get().then((snapshot) => {
+  //   count = snapshot.size;
+  //   console.log('No of document3: ' + count);
     db.collection('ContactusMessageList')
       .add({
-        ID: count + 1,
+        // ID: count + 1,
         Organization: document.getElementById('txtOrganization').value,
         Name: document.getElementById('txtName').value,
         Phone: document.getElementById('txtPhone').value,
@@ -20,7 +20,7 @@ function saveMessage() {
       .then(() => {
         // updated
         console.log('Request has been submitted successfully');
-        // window.location.href = "dashboard.html";
+        window.location.href = "../thankyou/index.html";
         // console.log('Client Registrations Completed Successfully');
         document.getElementById('errorMessage').style.display = 'none';
       })
@@ -32,7 +32,7 @@ function saveMessage() {
         console.log('Error while submitting your request');
       });
 
-  });
+  // });
 
   // Show alert
   document.querySelector('.alert').style.display = 'block';
@@ -60,8 +60,9 @@ btnSave.addEventListener('click', e => {
 
   //All fields are mandatory while registration
   if (txtOrganization.value == '' || txtName.value == '' ||
-      txtPhone.value == '' || txtEmail.value == '' ||
-      txtMessage.value == '' ) {
+    txtPhone.value == '' || txtEmail.value == '' ||
+    txtMessage.value == '') {
+    console.log('All fields are mandatory');
     document.getElementById('errorMessage').innerHTML = 'All fields are mandatory';
     document.getElementById('errorMessage').style.display = 'block';
   } else {
