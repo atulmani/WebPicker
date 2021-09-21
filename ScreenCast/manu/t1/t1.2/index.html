@@ -3,24 +3,16 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Hyper Digital Cloud Advertising - WE CAST YOUR ADs | A Cloud based Advertisment Platform">
-  <meta name="keywords" content="Hyper Digital Advertising | Digital Advertisement Platform | Cloud Based Advertising | Hyper Digital Cloud Agency | Digital Cloud Company | ">
-  <meta name="author" content="Web Picker">
+  <meta name="author" content="WebPicker">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Hyper Digital Cloud Advertising - WE CAST YOUR ADs</title>
+  <meta name="description" content="Segmented Audience Engagement Solutions | Services for DOOH & Outdoor, Transportation, Government, Education,
+	Corporate Communication, Grocery and many more..">
+  <meta name="keywords" content="DOOH Digital Out-of-home Outdoor Digital Advertising | Digital Advertisement Platform | Cloud Based Advertising | Hyper Digital Cloud Agency | Digital Cloud Company | ">
+  <title>Hyper Cloud Advertising | AI Powered Cloud Based Content Management Solutions for
+    Hyperlocal & Digital Out-of-home Advertising</title>
 
   <link rel="shortcut icon" href="img/logo.png">
-
-  <!-- Google fonts -->
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-
-
 
   <!-- Font Awesome cdn file -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -44,7 +36,7 @@
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <img src="img/logo.png" width="40px" alt="" style="margin-top: -10px;" >
+        <img src="img/logo.png" width="40px" alt="" style="margin-top: -10px;">
         <span class="logo">Hyper Cloud</span><span class="logo"></span>
         <!-- <span class="logo2"> Advertising</span> -->
       </a>
@@ -60,10 +52,36 @@
             <a class="nav-link" href="#"><i class="fas fa-home"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#services">Services</a>
+            <!-- <a class="nav-link" href="#services">Services</a> -->
+            <div class="dropdown">
+              <button onclick="ddIndustries()" class="dropbtn">Industries
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div id="myDropdown" class="dropdown-content">
+                <a href="#IndustriesWeServe">DOOH & OUTDOOR</a>
+                <a href="#IndustriesWeServe">TRANSPORTATION</a>
+                <a href="#IndustriesWeServe">GOVERNMENT</a>
+                <a href="#government">EDUCATION</a>
+                <a href="#government">CORPORATE COMMUNICATION</a>
+                <a href="#government">GROCERY</a>
+              </div>
+            </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#WhyToUse">Features</a>
+            <!-- <a class="nav-link" href="#WhyToUse">Features</a> -->
+            <div class="dropdown">
+              <button onclick="ddFeatures()" class="dropbtn">Features
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div id="myDropdown1" class="dropdown-content">
+                <a href="#WhyToUse">SECURED CLOUD BASED</a>
+                <a href="#WhyToUse">FAST AND NO LAGS</a>
+                <a href="#WhyToUse">AI-POWERED</a>
+                <a href="#aipowered">SEAMLESS INTEGRATION</a>
+                <a href="#aipowered">ADs ANALYTICS</a>
+                <a href="#aipowered">EASY TO CUSTOMIZE</a>
+              </div>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="contacts">Contact us</a>
@@ -91,13 +109,13 @@
       <a type="button" href="#">
         <span><i class="fas fa-home"></i></span> <br> <span> Home </span>
       </a>
-      <a type="button" href="#">
-        <span><i class="fas fa-tasks"></i></span> <br> <span> About </span>
+      <a type="button" href="#WhyToUse">
+        <span><i class="fas fa-tasks"></i></span> <br> <span> Services </span>
       </a>
       <!-- <a type="button" href="login">
         <span><i class="fas fa-user"></i></span> <br> <span> Login </span>
       </a> -->
-      <a type="button"  href="contacts" >
+      <a type="button" href="contacts">
         <span><i class="fas fa-id-badge"></i></span> <br> <span> Contact Us </span>
       </a>
       <a type="button" data-toggle="collapse" data-target="#collapsibleNavbar1">
@@ -111,13 +129,13 @@
             <a class="" href="#">Home</a>
           </li>
           <li class="">
-            <a class="" href="#Services">Services</a>
+            <a class="" href="#IndustriesWeServe">Industries</a>
           </li>
           <!-- <li class="">
             <a class="" href="login">Login</a>
           </li> -->
           <li class="">
-            <a class="" href="#">About Us</a>
+            <a class="" href="#WhyToUse">Services</a>
           </li>
           <li class="">
             <a class="" href="contacts">Contact</a>
@@ -175,13 +193,186 @@
 
   <!-- Banner Section - End -->
 
+  <section id="IndustriesWeServe">
+    <br><br><br />
+    <div class="services-container">
+      <div class="large">
+        <div class="service-circle2"></div>
+        <div class="services-heading">
+          <h2 class="heading">Industries For Which We Serve <i class="far fa-play-circle"></i></h2>
+          <p class="heading" style="color: rgba(0,0,0,0.7);">
+            We shape brands; thereafter, they shape world</p>
+        </div><br><br><br>
+        <div class="row no-gutters">
+          <div class="col-lg-4 col-md-4 col-sm-12" style="padding: 20px;">
+            <div class="whc-card">
+              <img src="./img/tmp1/1.png" alt=""><br><br>
+              <h6>DOOH & OUTDOOR</h6>
+              <p>Outdoor digital offers an opportunity and benefit for businesses
+                </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12" style="padding: 20px;">
+            <div class="whc-card">
+              <img src="./img/tmp1/2.png" width="70%" height="200px" alt=""><br><br>
+              <h6>TRANSPORTATION</h6>
+              <p>Enhance the passenger experience with transportation digital
+                technologies</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12" style="padding: 20px;">
+            <div class="whc-card">
+              <img src="./img/tmp1/3.png" width="80%" height="200px" alt=""><br><br>
+              <h6 id='government'>GOVERNMENT</h6>
+              <p>Optimized communication by government using digital technologies</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12" style="padding: 20px;">
+            <div class="whc-card">
+              <img src="./img/tmp1/4.png" width="70%" height="200px" alt=""><br><br>
+              <h6>EDUCATION</h6>
+              <p>Scalable, stable, flexible and easy to use cloud base digital platform </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12" style="padding: 20px;">
+            <div class="whc-card">
+              <img src="./img/tmp1/5.png" width="70%" height="200px" alt=""><br><br>
+              <h6>CORPORATE COMMUNICATION</h6>
+              <p>Corporate communications across departments and team </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12" style="padding: 20px;">
+            <div class="whc-card">
+              <img src="./img/tmp1/6.png" width="70%" height="200px" alt=""><br><br>
+              <h6>AGRICULTURE</h6>
+              <p>Digital technology solution for agriculture & farming </p>
+            </div>
+          </div>
+        </div><br>
+        <div class="" style="width: 100%; text-align: center;">
+          <a href="contacts"><button class="mybutton button5"> LET'S CREATE ADs <i class="fas fa-arrow-right"></i> </button></a>
+        </div>
+      </div>
+
+      <div class="small">
+        <div class="service-circle4"></div>
+        <div class="services-heading" style="text-align: center;">
+          <h2 class="heading">Why Hyper Cloud Advertising? <i class="far fa-play-circle"></i></h2><br>
+          <p>We shape brands; thereafter, they shape world</p>
+        </div><br>
+        <div class="row">
+          <div class="col-md-12 col-md-offset-1">
+            <div id="whc-owl-carousel" class="owl-carousel owl-theme">
+              <div class="item">
+                <!-- <div class="card card-body"> -->
+                <div class="whc-card">
+                  <img src="./img/secure-1.svg" width="100%" height="200px" alt=""><br><br>
+                  <h6>SECURED CLOUD BASED</h6>
+                  <p>With transaction alerts, you can know what your money is doing 24/7.</p>
+                </div>
+                <!-- </div> -->
+              </div>
+              <div class="item">
+                <!-- <div class="card card-body"> -->
+                <div class="whc-card">
+                  <img src="./img/time-1.svg" width="100%" height="200px" alt=""><br><br>
+                  <h6>FAST AND NO LAGS</h6>
+                  <p>With transaction alerts, you can know what your money is doing 24/7.</p>
+                </div>
+                <!-- </div> -->
+              </div>
+              <div class="item">
+                <!-- <div class="card card-body"> -->
+                <div class="whc-card">
+                  <img src="./img/ai_powerd-1.svg" width="100%" height="200px" alt=""><br><br>
+                  <h6>AI-POWERED</h6>
+                  <p>With transaction alerts, you can know what your money is doing 24/7.</p>
+                </div>
+                <!-- </div> -->
+              </div>
+              <div class="item">
+                <!-- <div class="card card-body"> -->
+                <div class="whc-card">
+                  <img src="./img/seamless-1.svg" width="100%" height="200px" alt=""><br><br>
+                  <h6>SEAMLESS INTEGRATION</h6>
+                  <p>With transaction alerts, you can know what your money is doing 24/7.</p>
+                </div>
+                <!-- </div> -->
+              </div>
+              <div class="item">
+                <!-- <div class="card card-body"> -->
+                <div class="whc-card">
+                  <img src="./img/analytics-1.svg" width="100%" height="200px" alt=""><br><br>
+                  <h6>ADs ANALYTICS</h6>
+                  <p>With transaction alerts, you can know what your money is doing 24/7.</p>
+                </div>
+                <!-- </div> -->
+              </div>
+              <div class="item">
+                <!-- <div class="card card-body"> -->
+                <div class="whc-card">
+                  <img src="./img/customize-1.svg" width="100%" height="200px" alt=""><br><br>
+                  <h6>EASY TO CUSTOMIZE</h6>
+                  <p>With transaction alerts, you can know what your money is doing 24/7.</p>
+                </div>
+                <!-- </div> -->
+              </div>
+            </div>
+          </div>
+        </div><br><br>
+        <div class="" style="width: 100%; text-align: center;">
+          <a href="contacts"><button class="mybutton button5"> LET'S CREATE ADs <i class="fas fa-arrow-right"></i> </button></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br><br><br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <!-- how it works - start -->
   <section id="hiw"><br><br>
     <div class="container">
       <div class="circle"></div>
       <div class="service-circle2 small"></div>
       <div class="hiw-heading">
-        <h4 class="heading" style="text-align: center;">How It Works <i class="far fa-play-circle"></i></h4>
+        <h2 class="heading" style="text-align: center;">How It Works <i class="far fa-play-circle"></i></h2>
         <p class="heading" style="color: rgba(0,0,0,0.7);text-align:center;">We shape brands; thereafter, they shape world</p>
       </div>
       <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="4000" smart-speed="4000" data-pause="false">
@@ -225,7 +416,7 @@
                   <p>If you would like to access our services, please contact with us
                     using any mode of communication like whatsapp, phone, email or
                     contact form here.
-                    </p>
+                  </p>
                 </div>
               </div>
             </div><br><br>
@@ -334,13 +525,13 @@
 
 
   <!-- Services - start -->
-  <section id="services">
+  <section id="services" >
     <br><br>
     <div class="large">
       <div class="services-container"><br>
         <div class="service-circle3"></div>
         <div class="services-heading">
-          <h4 class="heading">What We Serve <i class="far fa-play-circle"></i></h4>
+          <h2 class="heading">Industries For Which We Serve <i class="far fa-play-circle"></i></h2>
           <p class="heading" style="color: rgba(0,0,0,0.7);">We shape brands; thereafter, they shape world</p>
         </div>
         <div class="row no-gutters">
@@ -430,7 +621,7 @@
       <div class="large">
         <div class="service-circle2"></div>
         <div class="services-heading">
-          <h4 class="heading">Why Hyper Cloud Advertising? <i class="far fa-play-circle"></i></h4>
+          <h2 class="heading">Why Hyper Cloud Advertising? <i class="far fa-play-circle"></i></h2>
           <p class="heading" style="color: rgba(0,0,0,0.7);">
             We shape brands; thereafter, they shape world</p>
         </div><br><br><br>
@@ -452,7 +643,7 @@
           <div class="col-lg-4 col-md-4 col-sm-12" style="padding: 20px;">
             <div class="whc-card">
               <img src="./img/ai_powerd-1.svg" width="80%" height="200px" alt=""><br><br>
-              <h6>AI-POWERED</h6>
+              <h6 id='aipowered'>AI-POWERED</h6>
               <p>With transaction alerts, you can know what your money is doing 24/7.</p>
             </div>
           </div>
@@ -486,7 +677,7 @@
       <div class="small">
         <div class="service-circle4"></div>
         <div class="services-heading" style="text-align: center;">
-          <h2 class="heading" >Why Hyper Cloud Advertising? <i class="far fa-play-circle"></i></h2><br>
+          <h2 class="heading">Why Hyper Cloud Advertising? <i class="far fa-play-circle"></i></h2><br>
           <p>We shape brands; thereafter, they shape world</p>
         </div><br>
         <div class="row">
@@ -567,14 +758,14 @@
         <div class="service-circle3"></div>
         <div class="services-heading">
           <h2>Our Projects</h2><br>
-          <p>We shape our buildings; thereafter, they shape us.</p>
+          <p>We shape brands; thereafter, they shape world</p>
         </div><br>
       </div>
       <div class="small">
         <div class="service-circle4"></div>
         <div class="services-heading" style="text-align: center;">
           <h2>Our Projects</h2><br>
-          <p>We shape our buildings; thereafter, they shape us.</p>
+          <p>We shape brands; thereafter, they shape world</p>
         </div>
       </div>
       <div class="row">
@@ -700,15 +891,15 @@
       <div class="large">
         <div class="service-circle"></div>
         <div class="services-heading">
-          <h4 class="heading">Team <i class="far fa-play-circle"></i></h4>
-          <p class="heading" style="color: rgba(0,0,0,0.7);">We shape our buildings; thereafter, they shape us.</p>
+          <h2 class="heading">Team <i class="far fa-play-circle"></i></h2>
+          <p class="heading" style="color: rgba(0,0,0,0.7);">We shape brands; thereafter, they shape world</p>
         </div>
       </div>
       <div class="small">
         <div class="service-circle4"></div>
         <div class="services-heading" style="text-align: center;">
-          <h2 class="heading" >Team <i class="far fa-play-circle"></i></h2><br>
-          <p>We shape brands; thereafter, they shape world.</p>
+          <h2 class="heading">Team <i class="far fa-play-circle"></i></h2><br>
+          <p>We shape brands; thereafter, they shape world</p>
         </div><br>
       </div>
 
@@ -896,7 +1087,7 @@
               <a class="" href="#">Home</a>
             </li>
             <li class="">
-              <a class="" href="#services">Services</a>
+              <a class="" href="#IndustriesWeServe">Services</a>
             </li>
             <li class="">
               <a class="" href="#WhyToUse">Why Us</a>
@@ -954,9 +1145,9 @@
               </td>
               <td style="text-align: left;padding-left: 10px;">
                 <div class="footer-last-heading">
-                <h3>Hyper Cloud</h3>
-                <span class="footer-ads">Advertising</span>
-              </div>
+                  <h3>Hyper Cloud</h3>
+                  <span class="footer-ads">Advertising</span>
+                </div>
               </td>
             </tr>
           </table>
@@ -965,7 +1156,7 @@
           <h5 class="git">Get in Touch</h5>
           <a href="" class="footer-no">+91 915 255 2222</a>
           <br>
-          <a href="" class="footer-email">connect@hypercloudadvertising.com</a><br><br>
+          <a href="" class="footer-email">Connect@HyperCloudAdvertising.com</a><br><br>
           <hr>
           <div class="social">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
