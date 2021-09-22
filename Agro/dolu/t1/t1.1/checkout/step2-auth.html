@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <meta charset="utf-8">
+ <meta name="description" content="WebPicker - A Website Design & Development platform">
+ <meta name="keywords" content="website design and development">
+ <meta name="author" content="Web Picker">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <title>Agro-dolu-t1.1 - Step2-checkout </title>
+
+ <link rel="shortcut icon" href="../img/logo.png">
+ <!-- Google fonts -->
+ <link rel="preconnect" href="https://fonts.gstatic.com">
+ <link
+   href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+   rel="stylesheet">
+ <link rel="preconnect" href="https://fonts.gstatic.com">
+ <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+
+
+ <!-- Bootstrap css and font awesome -->
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+ <link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
+
+ <!-- Your Own Style -->
+ <link rel="stylesheet" href="../css/styles.css">
+
+</head>
+
+<body>
+ <!-- Navbar - Start -->
+ <nav class="navbar navbar-expand-lg sticky-top ">
+   <a class="navbar-brand" href="#banner">
+     <img style="width:50px;" src="../img/logo.png" alt="">
+   </a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+     <span class="navbar-toggler-icon"></span>
+     <!-- <span>
+      <i class="fa fa-reorder fa-2x " style="color:#1638A0;" ></i>
+    </span> -->
+   </button>
+   <div class="collapse navbar-collapse" id="collapsibleNavbar">
+     <span class="navbar-text">
+       <h5><strong> Crop Queens</strong></h5>
+     </span>
+     <ul class="nav navbar-nav ml-auto ">
+       <li class="nav-item">
+         <a class="nav-link" href="#banner">Home</a>
+       </li>
+       <li class="nav-item">
+         <a class="nav-link" href="#sectors">Services</a>
+       </li>
+       <li class="nav-item">
+         <a class="nav-link" href="#portfolio">Portfolio</a>
+         <!-- <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#one">One</a></li>  -->
+       </li>
+       <li class="nav-item">
+         <a class="nav-link" href="#aboutus">About us</a>
+       </li>
+       <li class="nav-item">
+         <a class="nav-link" href="#contactus">Contact us</a>
+       </li>
+     </ul>
+
+   </div>
+ </nav>
+ <div class="small bardown">
+   <ul>
+     <li><a href="../index.html"> <span> <i style="color:#fbe25f;" class="fas fa-home"></i></span> <br> Home</a> </li>
+     <li><a href="../Events/index.html"> <span> <i style="color:#fbe25f;" class="far fa-calendar-alt"></i></span> <br> Events </a></li>
+     <li><a href="./Order/coustomerInfo.html;"> <span> <i style="color:#fbe25f;" class="far fa-comment-dots"></i></span> <br> Inbox </a> </li>
+     <li><a href=""> <span> <i style="color:#fbe25f;" class="fas fa-users"></i></span> <br> Clubs </a> </li>
+     <li><a href=""> <span> <i style="color:#fbe25f;" class="fas fa-list"></i></span> <br> More </a> </li>
+   </ul>
+ </div>
+ <!-- Navbar - End -->
+
+ <!-- Banner Section - Start -->
+ <div class="row no-gutters">
+   <div style="padding:2% 2% 0 2%;" class="col-lg-8">
+     <img id="event-image" style="width:100%;border-radius:10px;" src="../img/PR1.png" alt=""><br><br>
+     <img style="width:100%;border-radius:10px;" src="../img/pager4.jpg" alt="">
+   </div>
+
+   <div style="padding: 2% 2% 0 2%;" class="col-lg-4">
+     <!-- checkout strat -->
+     <div style="border: 2px solid #889; " class="firstbox">
+   <h4 style="font-weight:1000; font-size:1.2rem;color:#4b7d59;">CHECKOUT</h4>
+   <hr>
+
+ <form class="row g-3">
+   <div class="col-md-12">
+     <label style="color:#4b7d59;" for="inputEmail4" class="form-label">Email</label>
+     <input type="email" class="form-control" readonly id="participantEmail" value="">
+   </div>
+   <div class="col-md-6">
+     <label style="color:#4b7d59;" for="inputPassword4" class="form-label">First name</label>
+     <input type="text" class="form-control" id="fName">
+   </div>
+<div class="col-md-6">
+<label style="color:#4b7d59;" for="inputEmail4" class="form-label">Last name</label>
+<input type="text" class="form-control" id="lName">
+</div>
+<div class="col-md-6">
+<label style="color:#4b7d59;" for="inputEmail4" class="form-label">Phone no.</label>
+<input type="text" class="form-control" id="phone">
+</div>
+<div class="col-md-6">
+<label for="inputPassword4" class="form-label">Date of Birth</label>
+<div class="form-group">
+<div class="input-group date datetimepicker11">
+<input type="text" class="form-control" readonly >
+<div class="input-group-addon input-group-prepend">
+<span class="input-group-text"><i class="fas fa-calendar"></i></span>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-12">
+<label style="color:#4b7d59;" for="inputAddress" class="form-label">Address</label>
+<input type="text" class="form-control" id="address" placeholder="1234 Main St">
+</div><br>
+
+<div class="col-md-6">
+<label style="color:#4b7d59;" for="inputCity" class="form-label">City</label>
+<input type="text" class="form-control" id="city">
+</div>
+<div class="col-md-6">
+<label style="color:#4b7d59;" for="inputCity" class="form-label">State</label>
+<input type="text" class="form-control" id="state">
+
+</div>
+
+<div style="color:#4b7d59;" class="col-md-12">
+<br>
+Select Category
+<br>
+</div>
+<div class="col-md-12">
+<ul>
+ <li><input type="radio"  id="inputEmail4">
+ <label style="color:#4b7d59;" for="inputEmail4" class="form-label">Category 1 ( Rs. 500/-)</label> </li>
+ <li><input type="radio"  id="inputEmail4">
+ <label style="color:#4b7d59;" for="inputEmail4" class="form-label">Category 2 ( Rs. 500/-)</label> </li>
+ <li><input type="radio"  id="inputEmail4">
+ <label style="color:#4b7d59;" for="inputEmail4" class="form-label">Category 3 ( Rs. 500/-)</label> </li>
+ <li><input type="radio"  id="inputEmail4">
+ <label style="color:#4b7d59;" for="inputEmail4" class="form-label">Category 4 ( Rs. 500/-)</label> </li>
+
+
+</ul>
+</div>
+</form>
+
+<div class="dropdown">
+<button style="background-color:#fbe25f;color:#fff;"  type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+ Select no. of tickets
+</button>
+<div class="dropdown-menu">
+ <a class="dropdown-item" href="#">1</a>
+ <a class="dropdown-item" href="#">2</a>
+ <a class="dropdown-item" href="#">3</a>
+ <a class="dropdown-item" href="#">4</a>
+ <a class="dropdown-item" href="#">5</a>
+ <a class="dropdown-item" href="#">6</a>
+ <a class="dropdown-item" href="#">7</a>
+ <a class="dropdown-item" href="#">8</a>
+ <a class="dropdown-item" href="#">9</a>
+ <a class="dropdown-item" href="#">10</a>
+</div>
+</div><br>
+
+
+<div class="col-lg-12">
+<span style="padding-left:66%;"> <a href="step3-checkout.html">
+ <button id="btnCheckout" style="background-color:#fbe25f;color:#fff;" type="submit" class="btn">Checkout <i class="fas fa-angle-double-right"></i></button></a></span>
+</div>
+
+</div>
+   </div>
+   <div class="row no-gutters">
+     <div style="padding-left:2%;font-family: 'Oswald', sans-serif;" class="col-lg-8">
+       <div style="font-family: 'Baloo 2', cursive;" class="">
+         <h3 style="color:#fbe25f;">About the event</h3><hr style="background-color:#fbe25f;">
+
+         <p style="font-weight:300;color:#4b7d59;">Teleport to your virtual island of Casa BACARDÍ
+           Bring home some Caribbean vibes and get grooving to your favourite beats at a music experience like never before.
+           Casa BACARDÍ is a whole new virtual world on Sansar, with an epic stage for your favourite artists to perform on, games to play with your friends, hang out with them, play cocktail games and meet new people. Enjoy all of this and more from
+           the comfort of your home along with your favourite BACARDÍ Cocktails.You can even design your own look & express yourselves through your avatar before you land on Casa BACARDÍ Island. Festival fashion doesn’t go away, you know?Find
+           liberation from the real world on a virtual Caribbean island. Teleport to Casa BACARDÍ this Rum Month.<br>
+
+           You can even design your own look & express yourselves through your avatar before you land on Casa BACARDÍ Island. Festival fashion doesn’t go away, you know?
+
+
+
+           Find liberation from the real world on a virtual Caribbean island. Teleport to Casa BACARDÍ this Rum Month.
+
+           Book your tickets now!
+
+           THE ARTIST LINEUP -
+
+           Tesher
+
+           The international social media music scene is blowing up and Tesher is at the forefront. A rapper, singer, songwriter with a modern fusion sound that’s infectious and bound to draw you in and get you moving.
+
+           Divine and Gully Gang:
+
+           Your hip-hop star from the ‘gully’ who paved the way for generations of rappers to come. His lyrical complexity and relatable storytelling will draw you in, and get you moving. He’ll be joined by the one and only Gully Gang.
+
+           MC Altaf:
+
+           He may be young, but he’s a formidable force on the mic. With equal doses of lyrical flair, topical ingenuity and razor-sharp delivery, MC Altaf has blazed a trail in the ever-growing Indian hip-hop scene.
+
+           Tsumyoki with Kidd Mange:
+
+           Hailing from Goa, Tsumyoki is here with a flow that’s unbreakable and a voice that charms. His emotive and evocative expression shines through in his music, and his sonic energy aims to heal people that can relate to the stories he’s
+           telling.
+
+           Kidd Mange is one of Goa's top MCs at the head of the Goa rap movement. Preferring to rap over old school boom bap type beats, he has explored genres from trap and pop to afrofusion, Lo-fi and indie. And now he's coming to Casa BACARDÍ to
+           drop some verses that will get you in that Caribbean mood.
+
+           Natasha Diggs:
+
+           She’s an internationally renowned DJ keeping alive the analog DJing tradition. Her record collection only adds to the soundscapes she creates. From New York to Tokyo and Sydney, she’s known for keeping the party moving and grooving. And now
+           she’s coming to Casa BACARDÍ.
+
+           Gauriwho:
+
+           Gauriwho brings a feeling of oneness to the dance floor. With work spanning from afrobeat rhythms to progressive glitch trance, she’ll take you on an organic adventure through the body, mind and soul.
+
+           Your host Tanmay Bhat:
+
+           There are few names that come to mind when you think of the top Indian comedians. But one constant is always Tanmay Bhat. From his work with AIB to his solo projects, he has made quite the name in the country and the world at large. And
+           now, he's here to tickle your funny bone once more as the host to the Casa BACARDÍ stage! </p>
+
+       </div>
+
+
+     </div>
+     <div style="padding: 2% 2% 0 2%;" class="col-lg-4">
+       <div style="border: 2px solid #889; " class="firstbox">
+         <h4 id="eventName" style="font-weight:1000; font-size:1.2rem;">YOUNG SHUTTLER SUB JUNIOR RANKING DISTRICT CHAMPIONSHIP MAR'2021</h4>
+         <hr>
+         <ul>
+           <li><i style="color:#fbe25f;" class="far fa-bookmark"></i> <span id="organiser-name" class="textheadleft">By: Champion sports</span></li>
+           <li><i style="color:#fbe25f;" class="far fa-calendar"></i> <span id="event-time" class="textheadleft">20 Aug | 6PM</span> </li>
+           <li><i style="color:#fbe25f;" class="fab fa-google-play"></i> <span id="venue" class="textheadleft">Online</span> </li>
+           <li><i style="color:#fbe25f;" class="fas fa-rupee-sign"></i> <span class="textheadleft">99 onwards</span>
+             <span style="padding-left:20%;"> <a href="#">
+             <button style="background-color:#fbe25f;color:#fff; font-size:0.8rem;" type="button" name="button" class="btn"> BUY NOW <i class="fas fa-angle-double-right"></i></button> </a> </span> </li>
+         </ul>
+
+       </div><br><br>
+       <div style="border: 2px solid #889;" class="secbox">
+         <h4 style="font-weight:1000;">Event Guide</h4>
+         <hr>
+         <ul>
+           <li><i class="fas fa-play-circle"></i> <span class="textheadleft">Digital Event : <span class="textheadright">Online</span> </span> </li>
+           <li><i class="fab fa-app-store"></i> <span class="textheadleft">For Age(s) : <span class="textheadright">21+</span> </span> </li>
+           <li><i class="fas fa-language"></i> <span class="textheadleft">Language : <span class="textheadright">Hinglish</span> </span> </li>
+           <li><i class="fas fa-headset"></i> <span class="textheadleft">Live Performance : <span class="textheadright">Enjoy a unique </span> </span></li>
+         </ul>
+       </div><br><br>
+       <div style="border: 2px solid #889;" class="thirdbox">
+         <ul>
+           <li> <span> Have a question? <span style="padding-left:30%;"><a href="#"><button style="background-color:#fbe25f;color:#fff;  text-align:center; font-size:0.7rem;" type="button" name="button" class="btn"> ASK NOW <i class="fas fa-angle-double-right"></i></button></a></span></span><br> <span style="color:#889; font-size:0.74rem">Ask the organiser anything!</span>
+             <br>
+             <span style="font-size:0.9rem;">Email: sanidhyapandeyatulmani@gmail.com</span><br>
+             <span style="font-size:0.9rem;">Contact: +91 7355545608, +91 998765432, +91 6645622319</span>
+
+            </li>
+
+         </ul>
+
+       </div><br><br>
+
+
+
+
+
+
+     </div>
+
+   </div>
+
+ </div>
+ <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+ <script src="../js/firebase.js"></script>
+ <!-- <script src="../js/step1-auth.js"></script> -->
+
+
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+ <script src="../js/bootstrap-datetimepicker.min.js"></script>
+ <!-- <script src="../js/main.js"></script> -->
+ <script>
+     $(function () {
+         $.extend(true, $.fn.datetimepicker.defaults, {
+             icons: {
+                 time: 'far fa-clock',
+                 date: 'far fa-calendar',
+                 up: 'fas fa-arrow-up',
+                 down: 'fas fa-arrow-down',
+                 previous: 'fas fa-chevron-left',
+                 next: 'fas fa-chevron-right',
+                 today: 'far fa-calendar-check-o',
+                 clear: 'far fa-trash',
+                 close: 'far fa-times'
+             }
+         });
+     });
+     </script>
+     <script type="text/javascript">
+     $(function () {
+             $('.datetimepicker11').datetimepicker({
+               format: 'YYYY-MM-DD',
+               ignoreReadonly: true
+             });
+         });
+     </script>
+
+</body>
+</html>
