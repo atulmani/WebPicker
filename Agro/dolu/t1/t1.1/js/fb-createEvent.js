@@ -2,7 +2,7 @@
 const profileLogo = document.getElementById('profileLogo');
 const profileLogoDropdown = document.getElementById('profileLogoDropdown');
 const profileLogoTriangle = document.getElementById('profileLogoTriangle');
-// const fullContent = document.getElementById('fullContent');
+const fullContent = document.getElementById('fullContent');
 // const navbar = document.getElementById('navbar');
 
 
@@ -14,14 +14,14 @@ function profileDropdownShow()
   profileLogoTriangle.style.visibility = "visible";
 }
 
-// fullContent.addEventListener('click', profileDropdownHide, false);
-// // navbar.addEventListener('click', profileDropdownHide, false);
-//
-// function profileDropdownHide()
-// {
-//   profileLogoDropdown.style.visibility = "hidden";
-//   profileLogoTriangle.style.visibility = "hidden";
-// }
+fullContent.addEventListener('click', profileDropdownHide, false);
+// navbar.addEventListener('click', profileDropdownHide, false);
+
+function profileDropdownHide()
+{
+  profileLogoDropdown.style.visibility = "hidden";
+  profileLogoTriangle.style.visibility = "hidden";
+}
 
 
 
@@ -48,6 +48,46 @@ auth.onAuthStateChanged(firebaseUser => {
   }
 });
 
+
+//************* Update Event - Starts ******************
+
+// var url = location.href;
+let eventDocUrl = new URL(location.href);
+// console.log ('URL: ' + eventDocUrl);
+let searchParams = new URLSearchParams(eventDocUrl.search);
+var docID = searchParams.get('id');
+var eventid = searchParams.get('eventid');
+console.log('Document ID: ' + docID);
+console.log('Event ID: ' + eventid);
+
+const snapshot = db.collection('Events').doc(docID);
+snapshot.get().then(async (doc) => {
+    if (doc.exists) {
+      // console.log('Document id:' + doc.id);
+      document.getElementById("eventname").value = doc.data().EventName;
+      document.getElementById("eventmode").value = doc.data().EventMode;
+      document.getElementById("eventstartdate").value = doc.data().EventStartDate;
+      document.getElementById("eventenddate").value = doc.data().EventEndDate;
+      document.getElementById("eventOrganisationName").value = doc.data().EventOrganisationName;
+      document.getElementById("organisationEmail").value = doc.data().OrganiserEmail;
+      document.getElementById("eventorganisationPhone").value = doc.data().EventorganiserPhone;
+      document.getElementById("eventprice").value = doc.data().Price;
+    }
+  });
+
+
+
+// if(docID != null || docID === "")
+// {
+//   console.log('Update Customer');
+// }
+// else
+// {
+//   console.log('Create New Customer');
+// }
+
+//************* Update Event - Ends ******************
+
 var docCount;
 db.collection('Events').get().then((snapshot) => {
   docCount = snapshot.size;
@@ -57,11 +97,13 @@ db.collection('Events').get().then((snapshot) => {
   });
 
   const eventForm = document.getElementById('eventForm');
+  const createEventConformation = document.getElementById('createEventConformation');
 
 
   eventForm.addEventListener('submit', (e) => {
     e.preventDefault();
     createEvent();
+    createEventConformation.style.display = 'block';
   });
 
   function createEvent() {
@@ -174,3 +216,81 @@ function GetProfileData (user)
     // document.getElementById('errorMessage_Signup').style.display = 'block';
   });
 };
+//**************************INSERT Image into Storage & get image url on ui *****************************//
+
+
+var ImgName, ImgURL;
+var files = [];
+var reader;
+
+//************ Select File ****************
+document.getElementById("select").onclick = function(e) {
+  // alert('camera button click');
+  // document.getElementById("uploadImg").style.display = 'block';
+  var input = document.createElement('input');
+  input.type = 'file';
+
+  input.onchange = e => {
+    files = e.target.files;
+    reader = new FileReader();
+    reader.onload = function() {
+      document.getElementById("myimg").src = reader.result;
+    }
+    reader.readAsDataURL(files[0]);
+
+  }
+  input.click();
+}
+
+//************ File Upload to Cloud Storage  ****************
+document.getElementById('upload').onclick = function() {
+  // ImgName = document.getElementById('namebox').value;
+  ImgName = '2' + '.png';
+  console.log('Image Name: ' + ImgName);
+  var uploadTask = firebase.storage().ref('EventImages/' + ImgName).put(files[0]);
+
+  //Progress of the image upload into storageBucket
+  uploadTask.on('state_changed', function(snapshot) {
+      // var progress = (snapshot.byteTransferred / snapshot.totalBytes) * 100;
+      // document.getElementById('UpProgress').innerHTML = 'Upload'+progress+'%';
+    },
+
+    function(error) {
+      alert('error in saving the image');
+    },
+
+    function() {
+      uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
+        ImgUrl = url;
+        alert('ImgUrl: ' + ImgUrl);
+        // document.getElementById('namebox').value = ImgUrl;
+
+        // firebase.firestore().collection("UserProfilePhotoURLs").add({
+        //     UserEmail: auth.currentUser.email,
+        //     ImageName: ImgName,
+        //     ImageURL: ImgUrl,
+        //     Timestamp: (new Date()).toString()
+        //   })
+        //   .then((docRef) => {
+        //     console.log("Image added successful");
+        //   })
+        //   .catch((error) => {
+        //     console.error("Error adding image: ", error);
+        //   });
+
+        // firebase.firestore().collection("Events").doc(auth.currentUser.uid).update({
+        //     // UserEmail: auth.currentUser.email,
+        //     ImageName: ImgName,
+        //     ImageURL: ImgUrl
+        //     // Timestamp: (new Date()).toString()
+        //   })
+        //   .then((docRef) => {
+        //     console.log("Image added successful");
+        //   })
+        //   .catch((error) => {
+        //     console.error("Error adding image: ", error);
+        //   });
+
+      });
+    });
+}
