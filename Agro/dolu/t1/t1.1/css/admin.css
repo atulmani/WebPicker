@@ -387,4 +387,53 @@ input[type=number] {
 
 /* dashboard page - end */
 
+/* Create Events - start */
+.finger-line{
+  padding-top: 10px;
+  color: #6ea23f;
+}
+
+.finger-line span:nth-child(2){
+  font-size: 1.5rem;
+  margin-right: 20px;
+  position: relative;
+  top: 3px;
+  animation: fingerMovment 1s infinite;
+}
+
+.finger-line span:nth-child(3) a{
+  color:#fde834;
+}
+
+@keyframes fingerMovment {
+  0%,100%{
+    left: 0;
+  }
+  50%{
+    left: 10px;
+  }
+}
+
+
+
+/* Create Events - end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* admin - end */
