@@ -137,8 +137,8 @@
                   <input type="text" class="form-control" placeholder="" id="eventmode">
                 </div>
 
-                <div style="display:none;" class="col-md-6">
-                  <label for="inputPassword4"  class="form-label">Start Date</label>
+                <div class="col-md-6" style="display:none;">
+                  <label for="inputPassword4" class="form-label">Start Date</label>
                   <div class="form-group">
                     <div class="input-group date datetimepicker11">
                       <input id="eventstartdate" type="text" class="form-control" readonly>
@@ -149,8 +149,8 @@
                   </div>
                 </div>
 
-                <div style="display:none;" class="col-md-6">
-                  <label for="inputPassword4"  class="form-label">End Date</label>
+                <div class="col-md-6" style="display:none;">
+                  <label for="inputPassword4" class="form-label">End Date</label>
                   <div class="form-group">
                     <div class="input-group date datetimepicker11">
                       <input id="eventenddate" type="text" class="form-control" readonly>
@@ -163,7 +163,7 @@
 
 
 
-                <div style="display:none;" class="col-md-6">
+                <div class="col-md-6" style="display:none;">
                   <label for="inputCity" class="form-label">Price</label>
                   <input type="text" class="form-control" id="eventprice">
                 </div>
@@ -178,12 +178,19 @@
                     <input id="createEvent" style="background-color:#fbe25f; color:#6ea23f; margin-top:20px;" class="btn" type="submit" name="submit" value="save">
                   </a>
                 </div>
+                <div class="col-md-12">
+                  <div id="createEventConformation" class="finger-line" style="display: none;">
+                    <span>Congrats! Your event is succsessfully created</span>
+                    <span><i class="fas fa-hand-point-right"></i></span>
+                    <span> <a href="allEvents.html">Click Here</a> </span>
+                  </div>
+                </div>
               </form>
             </div>
           </div>
 
-  <div style="padding:1.5%;display: none;" class="col-lg-6">
-          <div style="border:2px solid #889;" class="firstbox">
+  <div style="padding:1.5%;" class="col-lg-6">
+          <div style="border:2px solid #889;display:none;" class="firstbox">
             <style media="screen">
               img {
                 height: 200px;
