@@ -187,12 +187,12 @@ $(function() {
 $(document).ready(function() {
   var owl = $('#banner-list');
   owl.owlCarousel({
-    margin: 10,
+    margin: 0,
     loop: true,
     // center: true,
     autoplay: true,
     smartSpeed: 3000,
-    autoplayTimeout: 4000,
+    autoplayTimeout: 5500,
     autoplayHoverPause: false,
     nav: false,
     dots: false,
@@ -200,11 +200,11 @@ $(document).ready(function() {
     responsive: {
       0: {
         items: 1,
-        stagePadding: 50
+        // stagePadding: 50
       },
       600: {
         items: 1,
-        stagePadding: 50
+        // stagePadding: 50
       },
       1000: {
         items: 1,
@@ -239,6 +239,35 @@ $(document).ready(function() {
       1000: {
         items: 2,
         stagePadding: 0
+      }
+    }
+  });
+});
+
+$(document).ready(function() {
+  var owl = $('#industries-owl-carousel');
+  owl.owlCarousel({
+    stagePadding: 30,
+    margin: 10,
+    nav: true,
+    loop: false,
+    autoplay: false,
+    // smartSpeed:3000,
+    // autoplayTimeout: 4000,
+    autoplayHoverPause: false,
+    autoWidth: false,
+    nav: false,
+    dots: false,
+    rtl: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 2
+      },
+      1000: {
+        items: 4
       }
     }
   });
