@@ -180,6 +180,35 @@ $(function () {
     });
   });
 
+
+
+    $(document).ready(function() {
+      var owl = $('#event-list-admin');
+      owl.owlCarousel({
+        margin: 20,
+        // loop: true,
+        // autoplay: false,
+        smartSpeed:3000,
+        autoplayTimeout: 8500,
+        autoplayHoverPause: true,
+        nav:false,
+        // dots:true,
+        responsive: {
+          0: {
+            items: 1
+          },
+          600: {
+            items: 2
+          },
+          1000: {
+            items: 4
+          }
+        }
+      });
+    });
+
+
+
   $(document).ready(function() {
     var owl = $('#featuredProduct-list');
     owl.owlCarousel({

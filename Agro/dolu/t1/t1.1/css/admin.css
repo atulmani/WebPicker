@@ -1,0 +1,439 @@
+
+/* Color Palette - Details
+
+Palette#: 226650 from Colorhunt
+
+Colors:
+- Red:  #4b7d59
+- Light Red: #ff8585
+- Light Orange: #ffb396
+- Yellow: #fff5c0;
+
+*/
+
+
+
+/* admin - start */
+/* login page - start */
+
+.main_header{
+  height: 55px;
+}
+
+.login-full-content{
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:  #4b7d59;
+}
+
+.login-form{
+  width: 350px;
+  text-align: center;
+  background: #fff;
+  padding: 20px;
+}
+
+.login-form h2{
+  padding-bottom: 30px;
+}
+
+.login-form button{
+  margin-top: 20px;
+}
+
+.login-form .input-feilds{
+  padding: 20px 0;
+}
+
+.login-form .input-feilds input{
+  width: 90%;
+  outline: none;
+  letter-spacing: 2px;
+}
+
+
+/* login page - end */
+
+/* profile page - start */
+
+.main_header div div .content{
+  display: flex;
+}
+
+.profile-logo {
+  display: flex;
+  background: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  right: 40px;
+}
+
+@media (max-width: 1080px) {
+  .profile-logo {
+    position: absolute;
+    right: 10px;
+    top: 2px;
+  }
+}
+
+.profile-logo i{
+  width: 1px;
+  height: 1px;
+  margin-top: 15px;
+}
+
+.profile-logo img{
+  width: 40px;
+  height: 25px;
+  margin-top: 12px;
+  text-align: left;
+}
+
+.profile-full-content{
+  width: 100%;
+  /* height: 100vh; */
+  /* background: #4b7d59; */
+  margin-top: 55px;
+}
+
+.side-nav{
+  width: 100%;
+  height: 100vh;
+  /* background: #fff; */
+  border-radius: 0 16px 0 0;
+  box-shadow: 0 -30px 30px rgba(0,0,0,0.2);
+}
+
+.side-nav-menu{
+  padding-top: 40px;
+  width: 100%;
+  height: 100%;
+  /* background: yellow; */
+}
+
+.side-nav-menu a{
+  width: 100%;
+  color:  #4b7d59;
+}
+
+.side-nav-menu a div{
+  width: 100%;
+  padding: 10px;
+  transition: 0.3s;
+}
+
+.side-nav-menu a div i{
+  width: 20px;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.side-nav-menu a:hover,
+.side-nav-menu a div:hover{
+  text-decoration: none;
+  background:  #4b7d59;
+  color: #fff;
+}
+
+.profile-main-content{
+  padding: 5%;
+}
+
+.profile-pic-col{
+  display: block;
+}
+
+.profile-pic{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eee;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+@media (max-width: 850px) {
+  .profile-pic{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-bottom: 20px;
+  }
+}
+
+.camera-icon{
+  float: right;
+}
+
+.upload-icon{
+  position: relative;
+  left: 10.5%;
+  display: none;
+}
+
+.camera-icon i{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background: #34baeb;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+}
+
+.change-image{
+  display: none;
+  text-align: center;
+  position: relative;
+  top: 40px;
+  left: 65%;
+  width: 50%;
+  transition: 0.3s;
+}
+
+.change-image h5{
+  margin-top: 5px;
+  background: #333;
+  padding: 10px 0;
+  color: #ddd;
+  font-size: 1rem;
+}
+
+.triangle{
+  width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 20px solid #333;
+  position: relative;
+  float: right;
+  top: -5%;
+  left: -5px;
+  margin-bottom: 10px;
+  display: none;
+  transition: 0.3s;
+}
+
+.profile-form-fields input{
+  width: 90%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  margin: 20px 0;
+  outline: none;
+  background: none;
+  padding-right: 40px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.profile-form-fields input:focus ~ .name,
+.profile-form-fields input:valid ~ .name{
+  position: relative;
+  top: -65px;
+  font-size: 0.9rem;
+  color:  #4b7d59;
+}
+
+.profile-form-fields .name{
+  position: relative;
+  top: -45px;
+  color: rgba(0,0,0,0.5);
+  transition: 0.3s;
+  z-index: -1;
+}
+
+.profile-form-fields .edit{
+  position: relative;
+  top: -55px;
+  right: 40px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background: #34baeb;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+}
+
+.Change-email-password .email-edit input{
+  width: 100%;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.Change-email-password .email{
+  color: rgba(0,0,0,0.5);
+  font-size: 0.9rem;
+}
+
+.Change-email-password{
+  margin-top: 35px;
+}
+
+@media (max-width: 850px) {
+  .Change-email-password{
+    margin-top: 80px;
+  }
+}
+
+.Change-email-password a{
+  font-size: 0.7rem;
+}
+
+.alert {
+  text-align: center;
+  padding: 10px;
+  background: #79c879;
+  color: #fff;
+  font-weight: bold;
+  display: none;
+}
+
+.user-name{
+  position: absolute;
+  top: 15px;
+  right: 8%;
+  font-weight: bold;
+}
+
+.user-name span:nth-child(1){
+  padding-right: 2px;
+  font-weight: normal;
+}
+
+@media (max-width: 850px) {
+  .user-name{
+    display: none;
+  }
+}
+
+.profile-logo-dropdown{
+  background: #efefef;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 10%;
+  right: 2%;
+  z-index: 999;
+  visibility: hidden;
+  animation: dropdown 0.5s forwards;
+}
+
+@keyframes dropdown {
+  0%{
+    transform: translateY(0);
+  }
+  100%{
+    transform: translateY(1);
+  }
+}
+
+.profile-logo-dropdown a{
+  padding: 10px;
+  color:  #4b7d59;
+}
+
+.profile-logo-dropdown a:hover{
+  background:  #4b7d59;
+  color: #fff;
+}
+
+.profile-dropdown-triangle{
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid #efefef;
+  position: absolute;
+  right: 4%;
+  visibility: hidden;
+}
+
+/* profile page - end */
+
+/* dashboard page - start */
+
+.dashboard-card{
+  padding: 20px;
+  box-shadow: 1px 1px 20px rgba(0,0,0,0.2);
+  color:  #4b7d59;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* dashboard page - end */
+
+/* Create Events - start */
+.finger-line{
+  padding-top: 10px;
+  color: #6ea23f;
+}
+
+.finger-line span:nth-child(2){
+  font-size: 1.5rem;
+  margin-right: 20px;
+  position: relative;
+  top: 3px;
+  animation: fingerMovment 1s infinite;
+}
+
+.finger-line span:nth-child(3) a{
+  color:#fde834;
+}
+
+@keyframes fingerMovment {
+  0%,100%{
+    left: 0;
+  }
+  50%{
+    left: 10px;
+  }
+}
+
+
+
+/* Create Events - end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* admin - end */

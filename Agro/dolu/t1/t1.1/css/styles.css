@@ -22,7 +22,7 @@ body{
   width: 100%;
   margin: 0;
   padding: 0;
-  font-family: 'Montserrat';
+  font-family: 'Baloo 2', cursive;
 }
 
 h1{
@@ -191,8 +191,26 @@ h6{
 
 }
 
+.add-event{
+  width: 100%;
+  height: 100%;
+  border: 1px solid #aaa;
+  /* background: rgba(0,0,0,0.1); */
+  box-shadow: 0 1px 30px 1px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  color: #6ea23f;
+}
+
+.add-event a h4{
+  padding-top: 10px;
+}
+
 .post-slide {
-  margin: 0 10px;
+  margin:10px;
 }
 
 .post-slide-banner {
@@ -454,5 +472,95 @@ h6{
 }
 .footer-li{
   padding:0 5%;
+}
+.f-product-item{
+/* padding-right: 40px; */
+/* margin: 0.5%; */
+}
+.secbox{
+  font-family: 'Baloo 2', cursive;
+  padding: 3%;
+  border-radius: 10px;
+
+}
+
+.secbox ul li{
+  list-style-type:none;
+}
+.secbox ul li i{
+  color:#fde834;
+  font-size:1.1rem;
+}
+.textheadleft{
+  padding-left :1%;
+  color:#4b7d59;
+}
+.firstbox{
+  font-family: 'Baloo 2', cursive;
+  padding: 3%;
+  border-radius: 10px;
+}
+.firstbox ul li{
+  list-style-type:none;
+}
+
+.textheadright{
+
+  color:#889;
+  padding-left:1%
+}
+.firstsbox{
+  font-family: 'Baloo 2', cursive;
+
+}
+.thirdbox{
+    font-family: 'Baloo 2', cursive;
+    padding: 3%;
+    border-radius: 10px;
+}
+.thirdbox ul li{
+  list-style-type:none;
+}
+
+.bardown{
+  background-color:#4b7d59;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index:100;
+  height: 50px;
+  font-family: 'Baloo 2', cursive;
+  border-top:1px solid;
+
+}
+.bardown ul{
+  display: flex;
+  flex-direction:row;
+  /* justify-content: center; */
+  justify-content: space-between;
+  overflow: auto;
+  align-items: center;
+  padding: 0 10px;
+  text-align: center;
+
+
+}
+.bardown ul li{
+  list-style-type: none;
+  /* padding-top: 1px; */
+  font-size: 0.8rem;
+  color:#fbe25f;
+}
+.bardown ul li span{
+  font-size: 1rem;
+}
+.bardown ul li a{
+  color:#fbe25f;
+}
+.step3-checkoutbox{
+  font-family: 'Baloo 2', cursive;
+  padding: 1%;
+  border-radius: 10px;
+  color:#4b7d59
 }
 /* Footer Section - End */

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="WebPicker - A Website Design & Development platform">
+  <meta name="keywords" content="website design and development">
+  <meta name="author" content="Web Picker">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Agro-dolu-t1.1 - Step3-checkout</title>
+
+  <link rel="shortcut icon" href="../img/logo.png">
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+
+
+  <!-- Bootstrap css and font awesome -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+<link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
+
+<!-- Your Own Style -->
+<link rel="stylesheet" href="../css/styles.css">
+
+
+
+
+
+</head>
+
+<body>
+  <!-- Navbar - Start -->
+  <nav class="navbar navbar-expand-lg sticky-top ">
+    <a class="navbar-brand" href="#banner">
+      <img style="width:50px;" src="../img/logo.png" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+      <!-- <span>
+       <i class="fa fa-reorder fa-2x " style="color:#1638A0;" ></i>
+     </span> -->
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <span class="navbar-text">
+        <h5><strong> Crop Queens</strong></h5>
+      </span>
+      <ul class="nav navbar-nav ml-auto ">
+        <li class="nav-item">
+          <a class="nav-link" href="#banner">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#sectors">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#portfolio">Portfolio</a>
+          <!-- <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#one">One</a></li>  -->
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#aboutus">About us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#contactus">Contact us</a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+  <div class="small bardown">
+    <ul>
+      <li><a href="../index.html"> <span> <i style="color:#fbe25f;" class="fas fa-home"></i></span> <br> Home</a> </li>
+      <li><a href="../Events/index.html"> <span> <i style="color:#fbe25f;" class="far fa-calendar-alt"></i></span> <br> Events </a></li>
+      <li><a href="./Order/coustomerInfo.html;"> <span> <i style="color:#fbe25f;" class="far fa-comment-dots"></i></span> <br> Inbox </a> </li>
+      <li><a href=""> <span> <i style="color:#fbe25f;" class="fas fa-users"></i></span> <br> Clubs </a> </li>
+      <li><a href=""> <span> <i style="color:#fbe25f;" class="fas fa-list"></i></span> <br> More </a> </li>
+    </ul>
+  </div>
+  <!-- Navbar - End -->
+
+  <!-- Banner Section - Start -->
+  <div class="row no-gutters">
+
+    <div style="padding:2% 2%;" class="col-lg-8">
+      <!-- checkout strat -->
+      <div style="border: 2px solid #889; " class="step3-checkoutbox">
+        <!-- 1st participant -->
+
+        <h4 style="font-weight:1000; font-size:1.2rem;">1st Participants Details</h4>
+        <hr>
+
+      <form class="row g-3">
+
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">First name</label>
+    <input type="email" class="form-control" id="inputEmail4">
+  </div>
+
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Last Name</label>
+    <input type="password" class="form-control" id="inputPassword4">
+  </div>
+
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Date of Birth</label>
+    <div class="form-group">
+      <div class="input-group date datetimepicker11">
+        <input type="text" class="form-control" readonly >
+      <div class="input-group-addon input-group-prepend">
+        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+    </div>
+  </div>
+ </div>
+</div>
+
+</form><hr style="background-color:#000;">
+
+  <!-- 2nd participant -->
+  <h4 style="font-weight:1000; font-size:1.2rem;">2nd Participants Details</h4>
+  <hr>
+
+  <form class="row g-3">
+
+  <div class="col-md-6">
+  <label for="inputEmail4" class="form-label">First name</label>
+  <input type="email" class="form-control" id="inputEmail4">
+  </div>
+
+  <div class="col-md-6">
+  <label for="inputPassword4" class="form-label">Last Name</label>
+  <input type="password" class="form-control" id="inputPassword4">
+  </div>
+
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Date of Birth</label>
+    <div class="form-group">
+      <div class="input-group date datetimepicker11">
+        <input type="text" class="form-control" readonly >
+      <div class="input-group-addon input-group-prepend">
+        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+    </div>
+  </div>
+ </div>
+</div>
+
+</form><hr style="background-color:#000;">
+
+<!-- 3rd participant -->
+<h4 style="font-weight:1000; font-size:1.2rem;">3rd Participants Details</h4>
+<hr>
+
+<form class="row g-3">
+
+<div class="col-md-6">
+<label for="inputEmail4" class="form-label">First name</label>
+<input type="email" class="form-control" id="inputEmail4">
+</div>
+
+<div class="col-md-6">
+<label for="inputPassword4" class="form-label">Last Name</label>
+<input type="password" class="form-control" id="inputPassword4">
+</div>
+
+<div class="col-md-6">
+<label for="inputPassword4" class="form-label">Date of Birth</label>
+<div class="form-group">
+<div class="input-group date datetimepicker11">
+<input type="text" class="form-control" readonly >
+<div class="input-group-addon input-group-prepend">
+<span class="input-group-text"><i class="fas fa-calendar"></i></span>
+</div>
+</div>
+</div>
+</div>
+
+</form><hr style="background-color:#000;">
+
+
+  <div class="col-lg-12">
+    <span style="padding:0 0 0 40%;"><a href="#"><button style="background-color:#fbe25f;color:#fff;" type="submit" class="btn">Done <i class="fas fa-check"></i></button></a></span>
+  </div>
+
+</div><br><br><br><br>
+
+
+
+
+
+    </div>
+    <div style="padding:2%" class="col-lg-4">
+      <div style="border: 2px solid #889; " class="firstbox">
+        <h4 style="font-weight:1000; font-size:1.2rem;color:#fbe25f;"> EVENT NAME: YOUNG SHUTTLER SUB JUNIOR RANKING DISTRICT CHAMPIONSHIP MAR'2021</h4>
+        <hr>
+        <div class="row no-gutters">
+          <div class="col-lg-12">
+             <ul>
+              <li> <span style="font-weight:200" class="textheadleft"> Category cost</span>:<span style="position: relative;float: right;">Rs 500</span></li>
+              <li> <span style="font-weight:200" class="textheadleft"> No. Of Tickets</span>: <span style="position: relative;float: right;">4</span></li>
+              <li> <span style="font-weight:600" class="textheadleft"> Total:</span> <span style="position: relative;float: right;font-weight:600">Rs 2000</span></li><hr>
+              <li> <span style="font-weight:200" class="textheadleft"> Tax And GST(2%)</span> <span style="position: relative;float: right;">Rs 12</span></li>
+              <li> <span style="font-weight:200" class="textheadleft"> Other Taxes(2%)</span> <span style="position: relative;float: right;">Rs 15.67</span></li><hr>
+              <li> <span style="font-weight:600" class="textheadleft"> Total Amount:</span><span style="position: relative;float: right;font-weight:600">Rs 2300</span></li><br>
+              <li> <span style="position: relative;float: right;"> <a href="../Checkout/step1-auth.html"> <button style="background-color:#fbe25f;color:#fff; font-size:0.8rem;" type="button" name="button" class="btn"> PAY <i class="fas fa-angle-double-right"></i></button> </a> </span> </li>
+            </ul>
+
+          </div>
+
+
+        </div>
+        <!-- <ul>
+
+
+          <li> <span style="font-weight:600" class="textheadleft"> Category cost</span>: <span style="padding-left:56%;">Rs 500</span></li>
+          <li> <span style="font-weight:600" class="textheadleft"> No. Of Tickets</span>: <span style="padding-left:60%;">4</span></li>
+          <li> <span style="font-weight:600" class="textheadleft"> Total:        </span> <span style="padding-left:67%;">Rs2000</span></li>
+          <li> <span style="font-weight:600" class="textheadleft"> Tax And GST</span>:2% <span style="padding-left:52%;">Rs12</span></li>
+          <li> <span style="font-weight:600" class="textheadleft"> Other Taxes</span>:2% <span style="padding-left:53%;">Rs15.67</span></li>
+          <li> <span style="font-weight:600" class="textheadleft"> Total Amount</span>: <span style="padding-left:56%;">Rs 2300</span></li><br>
+          <li> <span style="padding-left:68%;"> <a href="../Checkout/step1-auth.html"> <button style="background-color:#fbe25f;color:#fff; font-size:0.8rem;" type="button" name="button" class="btn"> PAY <i class="fas fa-angle-double-right"></i></button> </a> </span> </li>
+        </ul> -->
+
+      </div><br><br><br>
+
+    </div>
+
+    </div>
+
+
+  <!-- Banner Section - End -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+  <script src="../js/bootstrap-datetimepicker.min.js"></script>
+  <!-- <script src="../js/main.js"></script> -->
+  <script>
+      $(function () {
+          $.extend(true, $.fn.datetimepicker.defaults, {
+              icons: {
+                  time: 'far fa-clock',
+                  date: 'far fa-calendar',
+                  up: 'fas fa-arrow-up',
+                  down: 'fas fa-arrow-down',
+                  previous: 'fas fa-chevron-left',
+                  next: 'fas fa-chevron-right',
+                  today: 'far fa-calendar-check-o',
+                  clear: 'far fa-trash',
+                  close: 'far fa-times'
+              }
+          });
+      });
+      </script>
+      <script type="text/javascript">
+      $(function () {
+              $('.datetimepicker11').datetimepicker({
+                format: 'YYYY-MM-DD',
+                ignoreReadonly: true
+              });
+          });
+      </script>
+
+</body>
+</html>
