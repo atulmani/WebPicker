@@ -96,7 +96,7 @@ function GetProfileData(user) {
 
 //**************************SELECT/GET DATA*****************************//
 
-db.collection("Events").onSnapshot(snapshot => {
+db.collection("Events").orderBy('CreatedTimestamp','desc').onSnapshot(snapshot => {
   let changes = snapshot.docChanges();
   // alert('Snapsize from Homepage: ' + snapshot.size);
   // console.log(changes);
