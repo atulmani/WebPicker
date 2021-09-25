@@ -414,6 +414,13 @@ input[type=number] {
   }
 }
 
+.form-control{
+  font-size: 0.8rem;
+}
+
+.form-label{
+  color: #6ea23f;
+}
 
 
 /* Create Events - end */
