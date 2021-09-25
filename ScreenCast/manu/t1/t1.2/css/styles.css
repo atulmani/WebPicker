@@ -1003,8 +1003,8 @@ input:valid .input-field i {
     position: relative;
     width: 700px;
     height: 130px;
-    background: #eee;
-    border: 1px dashed #f1b529;
+    background: #034687;
+    border: 1px dashed #603F8B;
     padding: 10px;
   }
 }
@@ -1107,6 +1107,10 @@ input:valid .input-field i {
   }
 }
 
+#IndustriesWeServe {
+  overflow-x: hidden;
+}
+
 #WhyToUse {
   overflow-x: hidden;
 }
@@ -1184,32 +1188,35 @@ input:valid .input-field i {
   position: relative;
   top: -50px;
   font-size: 0.9rem;
+  width: 110%;
+  /* background-color: #E10032; */
+  text-align: center;
 }
 
 .clients-card-colun {
   text-align: left;
   font-size: 5rem;
-  color: #f1b529;
+  color: #E10032;
 }
 
-#progects {
+#projects {
   overflow-x: hidden;
   display: none;
 }
 
-.progects-card {
+.projects-card {
   padding: 20px;
 }
 
-.progects-card div {
+.projects-card div {
   box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.2);
 }
 
-.progects-card div h5 {
+.projects-card div h5 {
   padding: 10px 10px 0 10px;
 }
 
-.progects-card div p {
+.projects-card div p {
   padding: 0 10px 10px 10px;
   color: rgba(0, 0, 0, 0.5);
 }
@@ -1415,7 +1422,12 @@ input:valid .input-field i {
 }
 
 .nav-all-items-dashboard li:hover {
-  background: #A16AE8;
+  background: #E10032;
+}
+
+.nav-item-highlight
+{
+  background: #E10032;
 }
 
 .nav-all-items-dashboard li:hover a {

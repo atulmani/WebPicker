@@ -38,6 +38,7 @@
 
   <!-- Your Own Style -->
   <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/admin.css">
 
 </head>
 
@@ -168,159 +169,200 @@
       </div>
       <hr>
       <div class="row no-gutters dashboard-content-row">
-        <div class="col-lg-12 col-md-12 col-sm-12" style="padding: 4px;">
-          <form id='profileForm' class="">
-            <label for="status">Status:</label>
-            <strong><label id='status'></label></strong><br>
-
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name" value=""><br><br>
-
-            <label for="mobile">Mobile:</label><br>
-            <input type="number" id="mobile" name="mobile" value=""><br><br>
-
-            <label for="idtype">ID Type:</label><br>
-            <select id="idtype" name="idtype">
-              <option value="PAN">PAN No</option>
-              <option value="Aadhaar">Aadhaar No</option>
-            </select><br><br>
-
-            <label for="idno">ID No:</label><br>
-            <input type="text" id="idno" name="idno" value=""><br><br>
-
-            <label for="address">Address:</label><br>
-            <input type="text" id="address" name="address" value=""><br><br>
-
-            <div class="alert">
-              Data has been saved successfully
+        <div class="col-lg-3 col-md-3 col-sm-12">
+          <div id="cameraIcon" class="camera-icon"><br>
+            <i class="fas fa-camera"></i>
+          </div>
+          <div class="profile-pic">
+            <img src="../img/logo.png" style="width: 200px; height: 200px;border-radius: 50%;" alt="">
+          </div>
+          <div id="changeImage" class="change-image">
+            <!-- <h5>Change Image</h5> -->
+          </div>
+          <div id="changeImageTriangle" class="triangle"></div>
+          <div class="Change-email-password">
+            <div class="email-edit"><br>
+              <h6>Last Visited</h6>
+              <input type="email" id="profileEmail" style="border:none;background:none;" readonly class="email" name="" value="atultripathi@gmail.com">
             </div>
+            <div class="row no-gutters">
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <!-- <a href="">Change Email</a> -->
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <a id="btnChangePassword" href="#">Change Password</a>
+                <div id="btnChangePasswordmessage" style="display: none;" class="">
+                  <h5>You will recieve a email.</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-12" style="padding: 4px;"><br>
+          <label for="status">Status:</label>
+          <strong><label id='status'></label></strong><br>
+          <div id='profileForm' class="row no-gutters">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <label for="name">Name:</label><br>
+              <input type="text" id="name" name="name" value=""><br><br><br>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <label for="mobile">Mobile:</label><br>
+              <input type="number" id="mobile" name="mobile" value=""><br><br><br>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <label for="idtype">ID Type:</label><br>
+              <select id="idtype" name="idtype">
+                <option value="PAN">PAN No</option>
+                <option value="Aadhaar">Aadhaar No</option>
+              </select><br><br><br>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <label for="idno">ID No:</label><br>
+              <input type="text" id="idno" name="idno" value=""><br><br><br>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <label for="address">Address:</label><br>
+              <input type="text" id="address" name="address" value=""><br><br><br>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
 
-            <input id='btnSave' type="button" value="Save">
-          </form>
+            </div>
+            <div class="row no-gutters">
+            <div class="col-lg-12 col-md-12 col-sm-6">
+              <div class="alert">
+                Data has been saved successfully
+              </div>
+
+              <!-- <input id='btnSave' type="button" value="Save"> -->
+              <button id='btnSave' class="mybutton button5">Logout<i class="fas fa-arrow-right"></i> </button>
+            </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    </div>
+  </div>
 
-    <!-- Content - Ends -->
+  <!-- Content - Ends -->
 
 
-    <br><br><br>
-    <!-- Footer Section - Start -->
-    <section id="footer">
-      <br /><br />
+  <br><br><br>
+  <!-- Footer Section - Start -->
+  <section id="footer">
+    <br /><br />
 
-      <div class="row no-gutters" style="text-align: center;">
-        <div class="col-lg-4 col-md-4 col-sm-12">
-          <div class="links-sitemaps">
-            <h5>SITEMAPS</h5>
-            <ul class="">
-              <li class="">
-                <a class="" href="#">Home</a>
-              </li>
-              <li class="">
-                <a class="" href="#services">Services</a>
-              </li>
-              <li class="">
-                <a class="" href="#WhyToUse">Why Us</a>
-                <!-- <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#one">One</a></li>  -->
-              </li>
-              <li class="">
-                <a class="" href="#hiw">How We Work</a>
-              </li>
-              <li class="">
-                <a class="" href="#progects">Projects</a>
-              </li>
-              <li class="">
-                <a class="" href="#thanks">Contact Us</a>
-              </li>
-            </ul>
-          </div>
+    <div class="row no-gutters" style="text-align: center;">
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="links-sitemaps">
+          <h5>SITEMAPS</h5>
+          <ul class="">
+            <li class="">
+              <a class="" href="#">Home</a>
+            </li>
+            <li class="">
+              <a class="" href="#services">Services</a>
+            </li>
+            <li class="">
+              <a class="" href="#WhyToUse">Why Us</a>
+              <!-- <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#one">One</a></li>  -->
+            </li>
+            <li class="">
+              <a class="" href="#hiw">How We Work</a>
+            </li>
+            <li class="">
+              <a class="" href="#progects">Projects</a>
+            </li>
+            <li class="">
+              <a class="" href="#thanks">Contact Us</a>
+            </li>
+          </ul>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-12">
-          <div class="links-sitemaps">
-            <h5>OTHERS</h5>
-            <ul class="">
-              <li class="">
-                <a class="" href="">Jion us officialy</a>
-              </li>
-              <li class="">
-                <a class="" href="">Refer a friend</a>
-              </li>
-              <li class="">
-                <a class="" href="">Channel Partner</a>
-              </li>
-            </ul>
-          </div><br><br>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="links-sitemaps">
+          <h5>OTHERS</h5>
+          <ul class="">
+            <li class="">
+              <a class="" href="">Jion us officialy</a>
+            </li>
+            <li class="">
+              <a class="" href="">Refer a friend</a>
+            </li>
+            <li class="">
+              <a class="" href="">Channel Partner</a>
+            </li>
+          </ul>
+        </div><br><br>
 
-          <div class="links-sitemaps">
-            <h5>INFORMATION</h5>
-            <ul class="">
-              <li class="">
-                <a class="" href="">Terms & Conditions</a>
-              </li>
-              <li class="">
-                <a class="" href="">Privacy & Policy</a>
-              </li>
-              <li class="">
-                <a class="" href="">FAQ's</a>
-              </li>
-            </ul>
-          </div>
+        <div class="links-sitemaps">
+          <h5>INFORMATION</h5>
+          <ul class="">
+            <li class="">
+              <a class="" href="">Terms & Conditions</a>
+            </li>
+            <li class="">
+              <a class="" href="">Privacy & Policy</a>
+            </li>
+            <li class="">
+              <a class="" href="">FAQ's</a>
+            </li>
+          </ul>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-12">
-          <div class="footer-last">
-            <h3>ScreenCast</h3>
-            <h6>WE CREATE YOUR ADS</h6><br>
-            <br>
-            <h5 class="git">Get in Touch</h5>
-            <a href="" class="footer-no">+91 853 064 2886</a>
-            <a href="" class="footer-email">connect@webpicker.in</a><br><br>
-            <hr>
-            <div class="social">
-              <a href=""><i class="fab fa-facebook-f"></i></a>
-              <a href=""><i class="fab fa-twitter"></i></a>
-              <a href=""><i class="fab fa-instagram"></i></a>
-              <a href=""><i class="fab fa-linkedin-in"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="Copyright">
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="footer-last">
+          <h3>ScreenCast</h3>
+          <h6>WE CREATE YOUR ADS</h6><br>
+          <br>
+          <h5 class="git">Get in Touch</h5>
+          <a href="" class="footer-no">+91 853 064 2886</a>
+          <a href="" class="footer-email">connect@webpicker.in</a><br><br>
           <hr>
-          <h6> © Copyright 2021 Web Picker</h6>
+          <div class="social">
+            <a href=""><i class="fab fa-facebook-f"></i></a>
+            <a href=""><i class="fab fa-twitter"></i></a>
+            <a href=""><i class="fab fa-instagram"></i></a>
+            <a href=""><i class="fab fa-linkedin-in"></i></a>
+          </div>
         </div>
       </div>
+      <div class="Copyright">
+        <hr>
+        <h6> © Copyright 2021 Web Picker</h6>
+      </div>
+    </div>
 
-      <br>
-    </section>
+    <br>
+  </section>
 
-    <!-- Footer Section - end -->
+  <!-- Footer Section - end -->
 
-    <!-- Jquery order should be higher from normal javascript  -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <!-- Jquery order should be higher from normal javascript  -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
-    <!-- Owl Carousel JQuery -->
-    <!-- <script src="js/jquery.min.js"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Owl Carousel JQuery -->
+  <!-- <script src="js/jquery.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <!-- Javascript to Populate Map - Start  -->
-    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script> -->
+  <!-- Javascript to Populate Map - Start  -->
+  <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script> -->
 
-    <!-- Firebase Services -->
-    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+  <!-- Firebase Services -->
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
 
-    <script src="../js/firebase.js"></script>
-    <script src="../js/firebase-admin-common.js"></script>
-    <script src="../js/firebase-profile.js"></script>
-    <!-- <script src="../js/main.js"></script> -->
+  <script src="../js/firebase.js"></script>
+  <script src="../js/firebase-admin-common.js"></script>
+  <script src="../js/firebase-profile.js"></script>
+  <!-- <script src="../js/main.js"></script> -->
 
-    <!-- Owl Carousel Javascript  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+  <!-- Owl Carousel Javascript  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
 </body>
