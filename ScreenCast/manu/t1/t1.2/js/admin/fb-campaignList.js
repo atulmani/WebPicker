@@ -90,7 +90,7 @@ function renderList(doc, count) {
   row.appendChild(cell2);
 
   var cell3 = document.createElement("td");
-  cell3.innerHTML = "<a href='campaignReg.html?id=" + doc.id +"'>" + Campaign_Name + "</a>";
+  cell3.innerHTML = "<a href='campaignDetails.html?id=" + doc.id +"'>" + Campaign_Name + "</a>";
   row.appendChild(cell3);
 
   var cell4 = document.createElement("td");
