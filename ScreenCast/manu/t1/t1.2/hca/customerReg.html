@@ -18,6 +18,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
+  <!-- Owl Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
   <!-- Bootstrap css -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
@@ -37,64 +42,34 @@
         <!-- <span class="logo2"> Advertising</span> -->
       </a>
       <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-          <span class="navbar-toggler-icon"></span>
-          <span>
-         <i class="fa fa-reorder fa-2x " style="color:#1638A0;" ></i>
-       </span>
-        </button> -->
+        <span class="navbar-toggler-icon"></span>
+        <span>
+       <i class="fa fa-reorder fa-2x " style="color:#1638A0;" ></i>
+     </span>
+      </button> -->
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="nav navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="../#"><i class="fas fa-home"></i></a>
           </li>
-          <li class="nav-item">
-            <!-- <a class="nav-link" href="#services">Services</a> -->
-            <div class="dropdown">
-              <button onclick="ddIndustries()" class="dropbtn">Industries
-                <i class="fa fa-caret-down"></i>
-              </button>
-              <div id="myDropdown" class="dropdown-content">
-                <a href="../#IndustriesWeServe">DOOH & OUTDOOR</a>
-                <a href="../#IndustriesWeServe">TRANSPORTATION</a>
-                <a href="../#IndustriesWeServe">GOVERNMENT</a>
-                <a href="../#government">EDUCATION</a>
-                <a href="../#government">CORPORATE COMMUNICATION</a>
-                <a href="../#government">GROCERY</a>
-              </div>
-            </div>
-          </li>
-          <li class="nav-item">
-            <!-- <a class="nav-link" href="#WhyToUse">Features</a> -->
-            <div class="dropdown">
-              <button onclick="ddFeatures()" class="dropbtn">Features
-                <i class="fa fa-caret-down"></i>
-              </button>
-              <div id="myDropdown1" class="dropdown-content">
-                <a href="../#WhyToUse">SECURED CLOUD BASED</a>
-                <a href="../#WhyToUse">FAST AND NO LAGS</a>
-                <a href="../#WhyToUse">AI-POWERED</a>
-                <a href="../#aipowered">SEAMLESS INTEGRATION</a>
-                <a href="../#aipowered">ADs ANALYTICS</a>
-                <a href="../#aipowered">EASY TO CUSTOMIZE</a>
-              </div>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact us</a>
+
+          <li>
+            <!-- <a class="nav-link" href="../">Logout</a> -->
+            <button id='btnLogout' type='button' class="mybutton button5">Logout<i class="fas fa-arrow-right"></i> </button>
           </li>
           <!-- <li class="nav-item">
-              <a class="nav-link" href="#hiw">How We Work</a>
-            </li> -->
+            <a class="nav-link" href="#hiw">How We Work</a>
+          </li> -->
           <!-- <li class="nav-item">
-              <a class="nav-link" href="#progects">Projects</a>
-            </li> -->
+            <a class="nav-link" href="#progects">Projects</a>
+          </li> -->
           <!-- <li class="nav-item">
-              <a class="nav-link" href="contacts">Contact Us</a>
-            </li> -->
+            <a class="nav-link" href="contacts">Contact Us</a>
+          </li> -->
         </ul>
         <!-- <div class="nav-divider">
-            <a href="contacts" style="padding-right: 10px; "><button class="mybutton button5">Connect<i class="fas fa-arrow-right"></i> </button></a>
-          </div> -->
+          <a href="contacts" style="padding-right: 10px; "><button class="mybutton button5">Connect<i class="fas fa-arrow-right"></i> </button></a>
+        </div> -->
 
       </div>
     </div>
@@ -109,8 +84,8 @@
         <span><i class="fas fa-tasks"></i></span> <br> <span> Services </span>
       </a>
       <!-- <a type="button" href="login">
-          <span><i class="fas fa-user"></i></span> <br> <span> Login </span>
-        </a> -->
+        <span><i class="fas fa-user"></i></span> <br> <span> Login </span>
+      </a> -->
       <a type="button" href="#">
         <span><i class="fas fa-id-badge"></i></span> <br> <span> Contact Us </span>
       </a>
@@ -128,8 +103,8 @@
             <a class="" href="../#IndustriesWeServe">Industries</a>
           </li>
           <!-- <li class="">
-              <a class="" href="login">Login</a>
-            </li> -->
+            <a class="" href="login">Login</a>
+          </li> -->
           <li class="">
             <a class="" href="../#WhyToUse">Services</a>
           </li>
@@ -153,8 +128,8 @@
                 <li class="">
                   <a class="" href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
                 </li>
-                <li class="">
-                  <a class="" href="customerList.html"><i class="fas fa-clone"></i> Customers</a>
+                <li class="nav-item-highlight">
+                  <a style='color: #fff;' href="customerList.html"><i class="fas fa-clone"></i> Customers</a>
                 </li>
                 <li class="">
                   <a class="" href="campaignList.html"><i class="fas fa-clone"></i> Campaigns</a>
@@ -169,7 +144,7 @@
                   <a class="" href="#"><i class="fas fa-rupee-sign"></i> Billing</a>
                 </li>
                 <li class="">
-                  <a class="" href="profile.html"><i class="fas fa-user"></i> Profile</a>
+                  <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
                 </li>
                 <li class="">
                   <a id='lnkLogout' class="" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -184,57 +159,77 @@
     <!-- Side navigation - ends -->
 
     <!-- content - starts -->
-
-    <div class="col-lg-10 col-md-10 col-sm-12" style="overflow: hidden;">
-      <!-- <img src="../img/9.png" class="wave large" width="70%" alt=""> -->
+    <div class="col-lg-10 col-md-10 col-sm-12">
       <div class="row no-gutters">
-        <div class="col-lg-6 col-md-6 col-sm-6">
-          <h3 class="select-tp-heading">Customer</h3>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6">
-          <a href="customerList.html"> <button id='btnCustomerList' class="mybutton button5">Customer List<i class="fas fa-arrow-right"></i> </button></a>
-        </div>
+        <h4 class="select-tp-heading">Customer</h4>
       </div>
-      <div class="row no-gutters">
-        <div class="col-lg-12 col-md-12 col-sm-12">
-          <center>
-            <div id='loading' class="loader"></div>
-          </center>
-          <form id='adsForm' class="" style="padding-left:20px">
-
-            <label for="status">Status:</label>
-            <strong><label id='status'></label></strong><br>
-
-            <label for="name">Customer Name:</label><br>
-            <input type="text" id="txtName" name="content" maxlength="60" required value="" style="font-family:Ubuntu; font-size:1rem;"><br><br>
-
-            <label>Customer Contact:</label><br>
-            <input type="number" id="txtContact" name="content" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required value="" style="font-family:Ubuntu; font-size:1rem;">
-            <br><br>
-
-            <label for="name">Email Address:</label><br>
-            <input type="email" id="txtEmail" name="" maxlength="50" required value="" style="font-family:Ubuntu; font-size:1rem;"><br><br>
-
-            <label for="name">Customer Address:</label><br>
-            <input type="text" id="txtAddress" name="uploadImages" maxlength="100" required value="" style="font-family:Ubuntu; font-size:1rem;"><br><br>
-
-            <div class="alert">
-              Data has been saved successfully
+      <hr>
+      <center>
+        <div id='loading' class="loader"></div>
+      </center>
+      <div class="row no-gutters dashboard-content-row">
+        <div class="col-lg-9 col-md-9 col-sm-12" style="padding: 4px;"><br>
+          <!-- <label for="status">Status:</label> -->
+          <!-- <strong><label id='status'></label></strong><br> -->
+          <div id='profileForm' class="row no-gutters">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <label for="name">Organization Short Name <span style='font-size:0.7rem; font-weight: lighter;'> (use for display purpose)</span></label><br>
+              <input type="text" id="txtOrgDisplayName" maxlength="60" required class='input-text' placeholder="Enter Organization Short Name"><br><br>
             </div>
-            <div id='errorMessage' class="" style="text-align: center; color:Red; font-size: 0.9rem; font-weight: bold; display:none;">
-              <br>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <label for="name">Organization Full Name</label><br>
+              <input type="text" id="txtOrgName" maxlength="60" required class='input-text' placeholder="Enter Organization Name"><br><br>
             </div>
-            <input id='btnSave' type="button" value="Register ">
-          </form>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <label for="mobile">Primary Email <span style='font-size:0.7rem; font-weight: lighter;'> (use this for login)</span></label><br>
+              <input type="email" id="txtEmail" maxlength="50" required class='input-text' placeholder="Enter Email id"><br><br>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <label for="mobile">Primary Mobile</label><br>
+              <input type="number" id="txtContact" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required class='input-text' placeholder="Enter mobile no">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <label for="mobile">Additional Emails <span style='font-size:0.7rem; font-weight: lighter;'> (use semicolon to add more than one email)</span></label><br>
+              <input type="email" id="txtAdditionalEmail" maxlength="50" class='input-text' placeholder="Optional field"><br><br>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <label for="mobile">Additional Contacts <span style='font-size:0.7rem; font-weight: lighter;'> (use semicolon to add more than one contact) </span></label><br>
+              <input type="text" id="txtAdditionalContact" maxlength="60" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class='input-text' placeholder="Optional field"><br><br>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <label for="address">Organization Address</label><br>
+              <input type="text" id="txtOrgAddress" maxlength="100" class='input-text' placeholder="Optional field"><br><br>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <label for="name">Contact Person Name</label><br>
+              <input type="text" id="txtContactPersonName" maxlength="60" class='input-text' placeholder="Optional field"><br><br>
+            </div>
+
+
+            <div class="row no-gutters">
+
+              <div class="col-lg-12 col-md-12 col-sm-6">
+                <div class="alert">
+                  Data has been saved successfully
+                </div>
+                <div id='errorMessage' class="" style="text-align: center; color:Red; font-size: 0.9rem; font-weight: bold; display:none;">
+                  <br>
+                </div>
+                <br>
+                <button id='btnRegister' type='button' class="mybutton button5">Register<i class="fas fa-arrow-right"></i> </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
+  <br><br><br><br>
 
   <!-- content - ends -->
 
-  <br><br><br>
   <!-- Footer Section - Start -->
   <section id="footer">
     <br /><br />
@@ -336,9 +331,15 @@
 
 
   <!-- Footer Section - end -->
-
   <!-- Jquery order should be higher from normal javascript  -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+  <!-- Owl Carousel JQuery -->
+  <!-- <script src="js/jquery.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Javascript to Populate Map - Start  -->
+  <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script> -->
 
   <!-- Firebase Services -->
   <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
@@ -350,6 +351,9 @@
   <script src="../js/hca/fb-customerReg.js"></script>
   <!-- <script src="../js/dashboard.js"></script> -->
   <!-- <script src="../js/main.js"></script> -->
+
+  <!-- Owl Carousel Javascript  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
 
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
