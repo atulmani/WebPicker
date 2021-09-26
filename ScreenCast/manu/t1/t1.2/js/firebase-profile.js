@@ -22,15 +22,17 @@ function GetProfileData (user)
 {
   // const ref = db.collection("Users").doc(user.uid);
 
-  const snapshot = db.collection('Users').doc(user.uid);
+  const snapshot = db.collection('UserList').doc(user.uid);
   snapshot.get().then( async ( doc ) => {
     if ( doc.exists ) {
       // let blogPost = doc.data();
         console.log ('User UID: ' + user.uid);
         console.log ('Document ref id: ' + doc.data().uid);
         console.log('Display Name: '+ doc.data().displayName);
+        console.log('Email: '+ doc.data().EmailID);
 
         document.getElementById('status').innerHTML = doc.data().Status;
+        document.getElementById('lblEmail').innerHTML = doc.data().EmailID;
         document.getElementById('name').value = doc.data().displayName;
         document.getElementById('mobile').value = doc.data().Phone;
 
@@ -46,14 +48,15 @@ function GetProfileData (user)
         document.getElementById('address').value = doc.data().Address;
 
     }
+    document.getElementById('loading').style.display = 'none';
   })
   .catch((error) => {
     // An error occurred
     console.log(error.message);
-    // document.getElementById('errorMessage_Signup').innerHTML = error.message;
-    // document.getElementById('errorMessage_Signup').style.display = 'block';
+    // document.getElementById('errorMessage').innerHTML = error.message;
+    // document.getElementById('errorMessage').style.display = 'block';
   });
-};
+}
 
 //Save users data into Users DB Collection
 function setUsersProfileData(user){
@@ -61,7 +64,7 @@ function setUsersProfileData(user){
   var select = document.getElementById('idtype');
   var idtype = select.options[select.selectedIndex].value;
 
-  db.collection('Users')
+  db.collection('UserList')
   .doc(user.uid)
   .update({
       // uid: user.uid,
@@ -94,8 +97,8 @@ function setUsersProfileData(user){
       .catch((error) => {
         // An error occurred
         // console.log(error.message);
-        document.getElementById('errorMessage_Signup').innerHTML = error.message;
-        document.getElementById('errorMessage_Signup').style.display = 'block';
+        document.getElementById('errorMessage').innerHTML = error.message;
+        document.getElementById('errorMessage').style.display = 'block';
       });
 };
 
@@ -118,8 +121,8 @@ btnSave.addEventListener('click', e => {
     setUsersProfileData (auth.currentUser);
   }).catch((error) => {
     // An error occurred
-    document.getElementById('errorMessage_Signup').innerHTML = error.message;
-    document.getElementById('errorMessage_Signup').style.display = 'block';
+    document.getElementById('errorMessage').innerHTML = error.message;
+    document.getElementById('errorMessage').style.display = 'block';
   });
 
 });
