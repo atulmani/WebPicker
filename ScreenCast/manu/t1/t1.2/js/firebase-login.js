@@ -1,3 +1,4 @@
+
 //*********** Sign in - Email & Password - Starts ************
 
 const btnSignin = document.getElementById('btnSignin');
@@ -109,7 +110,9 @@ btnSignin.addEventListener('click', e => {
       promise.then(function(firebaseUser) {
           // Success
           console.log("Logged in User");
-          window.location.href = "../admin/dashboard.html";
+
+          redirectToDashboard();
+
         })
         .catch(function(error) {
           // Handle Errors here.
@@ -118,6 +121,9 @@ btnSignin.addEventListener('click', e => {
           if (errorCode === 'auth/wrong-password') {
             console.log('Wrong password.');
             document.getElementById('errorMessage_Login').innerHTML = errorMessage + ' Please use password eye to cross check the password you enter.';
+            document.getElementById('errorMessage_Login').style.display = 'block';
+          } else if (errorCode === 'auth/ERROR_EMAIL_ALREADY_IN_USE') {
+            document.getElementById('errorMessage_Login').innerHTML = errorMessage + 'Please use differnt email id for your registration.' ;
             document.getElementById('errorMessage_Login').style.display = 'block';
           } else {
             console.log(errorMessage);
@@ -132,6 +138,15 @@ btnSignin.addEventListener('click', e => {
     });
 
 });
+
+function redirectToDashboard()
+{
+  
+  window.location.href = "../admin/dashboard.html";
+
+}
+
+
 //
 // btnLogout.addEventListener('click', e => {
 //   auth.signOut();
