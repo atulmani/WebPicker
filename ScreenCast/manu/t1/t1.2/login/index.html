@@ -3,26 +3,17 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Hyper Digital Cloud Advertising - WE CAST YOUR ADs | A Cloud based Advertisment Platform">
-  <meta name="keywords" content="Hyper Digital Advertising | Digital Advertisement Platform | Cloud Based Advertising | Hyper Digital Cloud Agency | Digital Cloud Company | ">
   <meta name="author" content="Web Picker">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Hyper Digital Cloud Advertising - WE CAST YOUR ADs</title>
+  <meta name="description" content="Segmented Audience Engagement Solutions | Services for DOOH & Outdoor, Transportation, Government, Education,
+	Corporate Communication, Argiculture and many more..">
+  <meta name="keywords" content="DOOH Digital Out-of-home Outdoor Digital Advertising | Digital Advertisement Platform | Cloud Based Advertising | Hyper Digital Cloud Agency | Digital Cloud Company | ">
+
+  <title>Hyper Cloud Advertising | AI Powered Cloud Based Content Management Solutions for
+    Hyperlocal & Digital Out-of-home Advertising</title>
 
   <link rel="shortcut icon" href="../img/logo.png">
-
-  <!-- Google fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
-    rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
-
 
   <!-- Font Awesome cdn file -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -41,13 +32,14 @@
 
 </head>
 
-
 <body>
   <!-- Navbar - Start -->
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#banner">
-        <span class="logo">Hyper Cloud Advertising</span><span class="logo"></span>
+      <a class="navbar-brand" href="../#">
+        <img src="../img/logo.png" width="40px" alt="" style="margin-top: -10px;">
+        <span class="logo">Hyper Cloud</span><span class="logo"></span>
+        <!-- <span class="logo2"> Advertising</span> -->
       </a>
       <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
@@ -58,26 +50,55 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="nav navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="../"><i class="fas fa-home"></i></a>
+            <a class="nav-link" href="../#"><i class="fas fa-home"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../#services">Features</a>
+            <!-- <a class="nav-link" href="#services">Services</a> -->
+            <div class="dropdown">
+              <button onclick="ddIndustries()" class="dropbtn">Industries
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div id="myDropdown" class="dropdown-content">
+                <a href="../#IndustriesWeServe">DOOH & OUTDOOR</a>
+                <a href="../#IndustriesWeServe">TRANSPORTATION</a>
+                <a href="../#IndustriesWeServe">GOVERNMENT</a>
+                <a href="../#government">EDUCATION</a>
+                <a href="../#government">CORPORATE COMMUNICATION</a>
+                <a href="../#government">GROCERY</a>
+              </div>
+            </div>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="#WhyToUse">Why Us</a>
-          </li> -->
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="#WhyToUse">Features</a> -->
+            <div class="dropdown">
+              <button onclick="ddFeatures()" class="dropbtn">Features
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div id="myDropdown1" class="dropdown-content">
+                <a href="../#WhyToUse">SECURED CLOUD BASED</a>
+                <a href="../#WhyToUse">FAST AND NO LAGS</a>
+                <a href="../#WhyToUse">AI-POWERED</a>
+                <a href="../#aipowered">SEAMLESS INTEGRATION</a>
+                <a href="../#aipowered">ADs ANALYTICS</a>
+                <a href="../#aipowered">EASY TO CUSTOMIZE</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact us</a>
+          </li>
           <!-- <li class="nav-item">
             <a class="nav-link" href="#hiw">How We Work</a>
           </li> -->
           <!-- <li class="nav-item">
             <a class="nav-link" href="#progects">Projects</a>
           </li> -->
-          <li class="nav-item">
-            <a class="nav-link" href="../contacts">Contact Us</a>
-          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="contacts">Contact Us</a>
+          </li> -->
         </ul>
         <!-- <div class="nav-divider">
-          <a href="signup.html" style="padding-right: 10px; "><button class="mybutton button5">Login<i class="fas fa-arrow-right"></i> </button></a>
+          <a href="contacts" style="padding-right: 10px; "><button class="mybutton button5">Connect<i class="fas fa-arrow-right"></i> </button></a>
         </div> -->
 
       </div>
@@ -86,16 +107,16 @@
 
   <div class="small navbar-bottom-mobile">
     <ul>
-      <a type="button" href="../">
+      <a type="button" href="../#">
         <span><i class="fas fa-home"></i></span> <br> <span> Home </span>
       </a>
-      <a type="button" href="../">
-        <span><i class="fas fa-tasks"></i></span> <br> <span> About </span>
+      <a type="button" href="../#WhyToUse">
+        <span><i class="fas fa-tasks"></i></span> <br> <span> Services </span>
       </a>
-      <a type="button" href="#">
+      <!-- <a type="button" href="login">
         <span><i class="fas fa-user"></i></span> <br> <span> Login </span>
-      </a>
-      <a type="button" href="../contacts" >
+      </a> -->
+      <a type="button" href="#">
         <span><i class="fas fa-id-badge"></i></span> <br> <span> Contact Us </span>
       </a>
       <a type="button" data-toggle="collapse" data-target="#collapsibleNavbar1">
@@ -106,27 +127,29 @@
       <div class="collapse navbar-collapse more-button-links" id="collapsibleNavbar1">
         <ul class="">
           <li class="">
-            <a class="" href="../">Home</a>
+            <a class="" href="../#">Home</a>
           </li>
           <li class="">
-            <a class="" href="../#Services">Services</a>
+            <a class="" href="../#IndustriesWeServe">Industries</a>
+          </li>
+          <!-- <li class="">
+            <a class="" href="login">Login</a>
+          </li> -->
+          <li class="">
+            <a class="" href="../#WhyToUse">Services</a>
           </li>
           <li class="">
-            <a class="" href="#">Login</a>
-          </li>
-          <li class="">
-            <a class="" href="../">About Us</a>
-          </li>
-          <li class="">
-            <a class="" href="../contacts">Contact</a>
+            <a class="" href="#">Contact</a>
           </li>
         </ul>
       </div>
 
   </div>
-
+  <!-- Navbar - End -->
 
   <!-- Navbar - End -->
+
+
   <div class="full-content">
     <div class="forms-container">
       <div class="signin-signup">
@@ -217,10 +240,10 @@
       <div class="panel left-panel">
         <div class="content">
           <h3>New Here ?</h3>
-          <p> Request you to please register with us to start your subscription
-            to stream your Ads on your devices. </p>
+          <p> Request you to please connect with us to start your journey! </p>
           <!-- <button type="" name="" class="btn transparent" id="signup_btn">Sign up</button> -->
-          <button class="mybutton button5" id="signup_btn"> Sign up <i class="fas fa-arrow-right"></i> </button>
+          <!-- <button class="mybutton button5" id="signup_btn"> Sign up <i class="fas fa-arrow-right"></i> </button> -->
+          <a href="../contacts"> <button class="mybutton button5" id="signup_btn"> Contact us <i class="fas fa-arrow-right"></i> </button></a>
         </div>
 
         <img src="../img/signin.svg" class="image" alt="">
@@ -251,10 +274,10 @@
           <h5>SITEMAPS</h5>
           <ul class="">
             <li class="">
-              <a class="" href="../">Home</a>
+              <a class="" href="../#">Home</a>
             </li>
             <li class="">
-              <a class="" href="../#services">Services</a>
+              <a class="" href="../#IndustriesWeServe">Services</a>
             </li>
             <li class="">
               <a class="" href="../#WhyToUse">Why Us</a>
@@ -264,10 +287,10 @@
               <a class="" href="../#hiw">How We Work</a>
             </li>
             <li class="">
-              <a class="" href="../">Projects</a>
+              <a class="" href="../#">Projects</a>
             </li>
             <li class="">
-              <a class="" href="../contacts">Contact Us</a>
+              <a class="" href="#">Contact Us</a>
             </li>
           </ul>
         </div>
@@ -277,13 +300,13 @@
           <h5>OTHERS</h5>
           <ul class="">
             <li class="">
-              <a class="" href="../">Jion us officialy</a>
+              <a class="" href="../#">Jion us officialy</a>
             </li>
             <li class="">
-              <a class="" href="../">Refer a friend</a>
+              <a class="" href="../#">Refer a friend</a>
             </li>
             <li class="">
-              <a class="" href="../">Channel Partner</a>
+              <a class="" href="../#">Channel Partner</a>
             </li>
           </ul>
         </div><br><br>
@@ -292,42 +315,52 @@
           <h5>INFORMATION</h5>
           <ul class="">
             <li class="">
-              <a class="" href="../">Terms & Conditions</a>
+              <a class="" href="../#">Terms & Conditions</a>
             </li>
             <li class="">
-              <a class="" href="../">Privacy & Policy</a>
+              <a class="" href="../#">Privacy & Policy</a>
             </li>
             <li class="">
-              <a class="" href="../faq">FAQ's</a>
+              <a class="" href="../#">FAQ's</a>
             </li>
           </ul>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="footer-last">
-          <h3>Hyper Cloud Advertising</h3>
+          <table style="width: 100%;">
+            <tr>
+              <td style="width: 40%;text-align: right;">
+                <img src="../img/logo.png" width="55px" alt="">
+              </td>
+              <td style="text-align: left;padding-left: 10px;">
+                <div class="footer-last-heading">
+                  <h3>Hyper Cloud</h3>
+                  <span class="footer-ads">Advertising</span>
+                </div>
+              </td>
+            </tr>
+          </table>
           <h6>WE CAST YOUR ADs</h6><br>
           <br>
           <h5 class="git">Get in Touch</h5>
           <a href="" class="footer-no">+91 915 255 2222</a>
           <br>
-          <a href="" class="footer-email">connect@hypercloudadvertising.com</a><br><br>
+          <a href="" class="footer-email">Connect@HyperCloudAdvertising.com</a><br><br>
           <hr>
           <div class="social">
-            <a href=""><i class="fab fa-facebook-f"></i></a>
-            <a href=""><i class="fab fa-twitter"></i></a>
-            <a href=""><i class="fab fa-instagram"></i></a>
-            <a href=""><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
           </div>
         </div>
       </div>
       <div class="Copyright">
-        <hr>
         <h6>Design & Developed By <a style='decoration:none;color:white;' href="https://webpicker.in"> Web Picker </a></h6>
       </div>
     </div>
 
-    <br>
   </section>
 
   <!-- Footer Section - end -->
@@ -337,7 +370,7 @@
 
   <!-- Owl Carousel JQuery -->
   <!-- <script src="js/jquery.min.js"></script> -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 
   <!-- Javascript to Populate Map - Start  -->
   <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script> -->
@@ -352,10 +385,9 @@
   <script src="../js/login.js"></script>
 
   <!-- Owl Carousel Javascript  -->
-  <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script> -->
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
