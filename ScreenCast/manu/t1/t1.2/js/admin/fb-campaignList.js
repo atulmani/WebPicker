@@ -21,13 +21,13 @@ auth.onAuthStateChanged(firebaseUser => {
 
 // ****************** Starts - GetData **********************
 
-const table = document.getElementById('customerList');
+const table = document.getElementById('campaignList');
 // const tbody = document.getElementById('');
 let tbody = document.createElement('tbody');
 
 // db.collection('WebAds').orderBy('Updated_Timestamp', 'desc').onSnapshot(snapshot => {
   // db.collection('WebAds').onSnapshot(snapshot => {
-db.collection('CustomerList').orderBy('Created_Timestamp', 'desc').get().then((snapshot) => {
+db.collection('CampaignList').orderBy('Created_Timestamp', 'desc').get().then((snapshot) => {
   let changes = snapshot.docChanges();
   // console.log(changes);
   try {
@@ -60,12 +60,11 @@ db.collection('CustomerList').orderBy('Created_Timestamp', 'desc').get().then((s
 
 function renderList(doc, count) {
   // var ID = doc.data().ID;
-  var Customer_ID = doc.data().Customer_ID;
-  var Customer_Name = doc.data().Customer_Name;
-  var Customer_Contact = doc.data().Customer_Contact;
-  var Customer_Email = doc.data().Customer_Email;
-  var Customer_Address = doc.data().Customer_Address;
-  var User_Count = doc.data().User_Count;
+  var Campaign_ID = doc.data().Campaign_ID;
+  var Campaign_Name = doc.data().Campaign_Name;
+  var Organization_Name = doc.data().Organization_Name;
+  var Brand = doc.data().Brand;
+  var Device_List = '8';
   var Status = doc.data().Status;
   var Created_By = doc.data().Created_By;
   var Created_Timestamp = doc.data().Created_Timestamp;
@@ -87,32 +86,28 @@ function renderList(doc, count) {
   // var count = 1;
 
   var cell2 = document.createElement("td");
-  cell2.innerHTML = Customer_ID;
+  cell2.innerHTML = Campaign_ID;
   row.appendChild(cell2);
 
   var cell3 = document.createElement("td");
-  cell3.innerHTML = "<a href='customerReg.html?id=" + doc.id +"'>" + Customer_Name + "</a>";
+  cell3.innerHTML = "<a href='campaignDetails.html?id=" + doc.id +"'>" + Campaign_Name + "</a>";
   row.appendChild(cell3);
 
   var cell4 = document.createElement("td");
-  cell4.innerHTML = Customer_Contact;
+  cell4.innerHTML = Organization_Name;
   row.appendChild(cell4);
 
   var cell5 = document.createElement("td");
-  cell5.innerHTML = Customer_Email;
+  cell5.innerHTML = Brand;
   row.appendChild(cell5);
 
   var cell6 = document.createElement("td");
-  cell6.innerHTML = Customer_Address;
+  cell6.innerHTML = Device_List;
   row.appendChild(cell6);
 
   var cell7 = document.createElement("td");
-  cell7.innerHTML = User_Count;
+  cell7.innerHTML = Status;
   row.appendChild(cell7);
-
-  var cell8 = document.createElement("td");
-  cell8.innerHTML = Status;
-  row.appendChild(cell8);
 
   var options = {
     weekday: 'short',
@@ -125,12 +120,11 @@ function renderList(doc, count) {
   var formattedTime = ut.toLocaleTimeString("en-US");
   var formattedTimeStamp = formattedDate + ' ' + formattedTime;
 
-  var cell9 = document.createElement("td");
-  cell9.innerHTML = Updated_By + '<br>' + formattedTimeStamp;
-  row.appendChild(cell9);
+  var cell8 = document.createElement("td");
+  cell8.innerHTML = Updated_By + '<br>' + formattedTimeStamp;
+  row.appendChild(cell8);
 
   tbody.appendChild(row);
-
 };
 
 // ****************** Ends - GetData **********************
