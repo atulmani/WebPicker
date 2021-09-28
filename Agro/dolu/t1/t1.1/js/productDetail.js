@@ -1,3 +1,13 @@
+//
+// const booking = document.getElementById("booking");
+//
+// booking.addEventListener('click', myfnc, false);
+// // console.log('myfncworks');
+// function myfnc() {
+//   alert('hello');
+//   console.log('myfncworks');
+//   window.location.href = "../checkout/step1-auth.htmlid=" + docID  + "&eventid=" + eventid +"
+// }
 
 //************* Populate Event Data - Starts ******************
 
@@ -9,6 +19,18 @@ var docID = searchParams.get('id');
 var eventid = searchParams.get('eventid');
 console.log('Document ID: ' + docID);
 console.log('Event ID: ' + eventid);
+
+
+const booking = document.getElementById("booking");
+
+booking.addEventListener('click', myfnc, false);
+// console.log('myfncworks');
+function myfnc() {
+  alert('hello');
+  console.log('myfncworks');
+  window.location.href = "../checkout/step1-auth.html?id=" + docID + "&eventid=" + eventid ;
+}
+
 
 if (docID != null) {
   // document.getElementById('optionalFields').style.display = 'block';
