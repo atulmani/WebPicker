@@ -119,7 +119,6 @@
     <!-- Side navigation - starts -->
     <div class="row no-gutters">
       <div class="col-lg-2 col-md-2 col-sm-12">
-
         <div class="fixed-side-nav">
           <nav class="navbar-dashboard navbar-expand-lg">
             <div class="" >
@@ -129,9 +128,7 @@
             <hr>
             <div class="">
               <div class="collapse navbar-collapse" id="collapsibleNavbar1">
-
                 <ul class="nav navbar-nav ml-auto nav-all-items-dashboard">
-
                   <li class="">
                     <a class="" href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
                   </li>
@@ -164,191 +161,180 @@
 
     <!-- content - starts -->
 
-    <div class="col-lg-10 col-md-10 col-sm-12">
+    <div class="col-lg-10 col-md-10 col-sm-12" style="overflow: hidden;">
       <!-- <img src="../img/9.png" class="wave large" width="70%" alt=""> -->
       <!-- <div class="row no-gutters">
         <div class="col-lg-6 col-md-6 col-sm-6">
-          <h3 class="select-tp-heading">Campaign Details</h3>
+          <h3 class="select-tp-heading">Create Campaign</h3>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6">
-          <a href="campaignList.html"> <button id='btnCampaignList' class="mybutton button5">Campaign List<i class="fas fa-arrow-right"></i> </button></a>
+
         </div>
       </div> -->
+      <!-- <img src="../img/9.png" class="wave large" width="70%" alt=""> -->
       <div class="row no-gutters">
           <div class="col-lg-6 col-md-6 col-sm-6">
-            <h4 class="select-tp-heading">Campaign Details</h4>
+            <h4 class="select-tp-heading">Create Campaign</h4>
         </div>
           <div class="col-lg-6 col-md-6 col-sm-6">
             <a href="campaignList.html"> <button id='btnCampaignList' class="mybutton button5" style="margin-top:16px;" >Campaigns List<i class="fas fa-arrow-right" ></i> </button></a>
           </div>
         </div>
         <hr>
-        <!-- <center>
+        <center>
           <div id='loading' class="loader"></div>
-        </center> -->
-      <div class="container">
-        <div class="row no-gutters">
-          <div class="col-lg-12 col-md-12 col-sm-12"><br><br>
-            <div class="campaign-details-section">
+        </center>
+        <div class="row no-gutters dashboard-content-row">
+          <div class="col-lg-9 col-md-9 col-sm-12" style="padding: 4px;"><br>
+            <!-- <label for="status">Status:</label> -->
+            <!-- <strong><label id='status'></label></strong><br> -->
+            <div id='profileForm' class="row no-gutters">
+              <div class="col-lg-6 col-md-6 col-sm-6">
+                <label for="name">Name of the Campaign</label><br>
+                <input type="text" id="txtCampaignName" maxlength="60" required class='input-text' placeholder="Enter Campaign Name"><br><br>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6">
+              </div>
               <div class="row no-gutters">
-                <!-- <div class="col-lg-3 col-md-5 col-sm-12">
-                  <div class="first-section-col-1">
-                    <img src="../img/customers/usha/usha.png" width="70%" alt="">
+
+                <div class="col-lg-12 col-md-12 col-sm-6">
+                  <div class="alert">
+                    Data has been saved successfully
                   </div>
-                </div> -->
-                <div class="col-lg-9 col-md-7 col-sm-12">
-                  <div class="first-section-col-2">
-                    <h4>Campaign 2021 Jan-Dec (Chennai)</h4>
-                    <p>Organisation : Usha Electricals</p>
-                    <p>Brand : Electricals & Cooking Appliances </p>
-                    <p>Created Date : 01/JAN/2021</p>
-                    <hr>
-                    <span>Festival</span>
+                  <div id='errorMessage' class="" style="text-align: center; color:Red; font-size: 0.9rem; font-weight: bold; display:none;">
+                    <br>
                   </div>
+                  <br>
+                  <button id='btnRegister' type='button' class="mybutton button5">Register<i class="fas fa-arrow-right"></i> </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="container">
-        <div class="row no-gutters">
-          <div class="col-lg-12 col-md-12 col-sm-12"><br><br>
-            <div class="campaign-details-section">
-              <div class="row no-gutters">
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                  <h5 class="head-text">Media</h5>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                  <button id='upload' style="margin: 0;float: right;" class="mybutton button5">Upload<i class="fas fa-arrow-right"></i> </button>
-                </div>
-              </div>
-              <hr>
-              <div class="row no-gutters second-section-row">
-                <div class="col-lg-2 col-md-2 col-sm-6">
-                  <p>Media Type</p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-6">
-                  <p>Mix Content</p>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                  <p>Video/Image</p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-6">
-                  <p>Media Size</p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-6">
-                  <p>Play Logs</p>
-                </div>
-              </div>
-              <div class="row no-gutters">
-                <div class="col-lg-4 col-md-4 col-sm-12">
 
+        <!-- <hr> -->
+        <br><br>
+
+      <div class="row no-gutters" style="display:none;" >
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="multi-step-form-container">
+            <!-- <header>Create Form</header> -->
+            <div class="progress-bar-count" id="ProgressBar">
+              <div class="step">
+                <p id="ProgressBarName">Name</p>
+                <div class="bullet" id="ProgressBarName1div">
+                  <span id="ProgressBarName1">1</span>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-12">
-                  <img src="../img/customers/usha/1.jpg" width="100%" id="ProductImg" alt="">
-                  <div class="small-img-row">
-                    <div class="small-img-col">
-                      <img src="../img/customers/usha/1.jpg" width="100%" alt="" class="second-section-small-img">
+                <div class="check fas fa-check" id="ProgressBarNameCheck"></div>
+              </div>
+              <div class="step">
+                <p id="ProgressBarConatct">Contact</p>
+                <div class="bullet" id="ProgressBarConatct2div">
+                  <span id="ProgressBarConatct2">2</span>
+                </div>
+                <div class="check fas fa-check" id="ProgressBarConatctCheck"></div>
+              </div>
+              <div class="step">
+                <p id="ProgressBarBirth">Birth</p>
+                <div class="bullet" id="ProgressBarBirth3div">
+                  <span id="ProgressBarBirth3">3</span>
+                </div>
+                <div class="check fas fa-check" id="ProgressBarBirthCheck"></div>
+              </div>
+              <div class="step">
+                <p id="ProgressBarLogin">Login</p>
+                <div class="bullet" id="ProgressBarLogin4div">
+                  <span id="ProgressBarLogin4">4</span>
+                </div>
+                <div class="check fas fa-check" id="ProgressBarLoginCheck"></div>
+              </div>
+            </div>
+            <div class="multi-step-form-outer">
+              <div class="multi-step-form">
+                <div class="steps-page" id="MultiStepForm1">
+                  <div class="multi-step-title">Basic Info:</div>
+                  <div class="multi-step-fields">
+                    <div class="lable">First Name</div>
+                    <input type="text" name="" maxlength="20" required value="">
+                  </div>
+                  <div class="multi-step-fields">
+                    <div class="lable">Last Name</div>
+                    <input type="text" name="" maxlength="20" required value="">
+                  </div>
+                  <div class="multi-step-fields">
+                    <button class="mybutton button5 next" id="btnNext1">Next<i class="fas fa-arrow-right"></i> </button>
+                  </div>
+                </div>
+
+
+                <div class="steps-page" id="MultiStepForm2">
+                  <div class="multi-step-title">Contact Info:</div>
+                  <div class="multi-step-fields">
+                    <div class="lable">Email Address</div>
+                    <input type="email" name="" maxlength="20" required value="">
+                  </div>
+                  <div class="multi-step-fields">
+                    <div class="lable">Phone Number</div>
+                    <input maxlength="10" type="number" name="" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required value="">
+                  </div>
+                  <div class="row no-gutters">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                      <button class="mybutton button5 prev" id="btnPrev1">Previous<i class="fas fa-arrow-right"></i> </button>
                     </div>
-                    <div class="small-img-col">
-                      <img src="../img/customers/usha/2.jpg" width="100%" alt="" class="second-section-small-img">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                      <button class="mybutton button5 next" id="btnNext2">Next<i class="fas fa-arrow-right"></i> </button>
                     </div>
-                    <div class="small-img-col">
-                      <img src="../img/customers/usha/3.jpg" width="100%" alt="" class="second-section-small-img">
-                      <img src="../img/playbtn.png" onclick="playVideo('../img/1.mp4')" class="play-btn" id="playbtn" alt="">
-                    </div>
-                    <div class="small-img-col">
-                      <img src="../img/customers/usha/4.jpg" width="100%" alt="" class="second-section-small-img">
+                    <div class="multi-step-fields btns">
                     </div>
                   </div>
                 </div>
-                <div class="video-player" id="videoPlayer">
-                  <video width="40%" controls autoplay id="myVideo">
-                    <source src="../img/1.mp4" type="video/mp4">
-                  </video>
-                  <img src="../img/closebtn.png" class="close-btn" onclick="stopVideo()" alt="">
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12">
 
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row no-gutters">
-          <div class="col-lg-12 col-md-12 col-sm-12"><br><br>
-            <div class="campaign-details-section">
-              <div class="row no-gutters">
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                  <h5 class="head-text">Sheduled</h5>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                  <!-- <button id='upload' style="margin: 0;float: right;" class="mybutton button5">Upload<i class="fas fa-arrow-right"></i> </button> -->
-                </div>
-              </div>
-              <hr>
-              <div class="first-section-col-2">
-                <h5 style="padding: 10px 0;">Duratioon</h5>
-                <span>10:00 am - 11:00 am</span>
-                <span>10:00 am - 11:00 am</span>
-                <span>10:00 am - 11:00 am</span>
-                <span>10:00 am - 11:00 am</span>
-                <span>10:00 am - 11:00 am</span>
-                <span>10:00 am - 11:00 am</span><br><br>
-                <span>10:00 am - 11:00 am</span>
-                <span>10:00 am - 11:00 am</span>
-                <span>10:00 am - 11:00 am</span>
-                <span>10:00 am - 11:00 am</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="container">
-        <div class="row no-gutters">
-          <div class="col-lg-12 col-md-12 col-sm-12"><br><br>
-            <div class="campaign-details-section">
-              <div class="row no-gutters">
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                  <span class="head-text">Payout: </span>
-                  <span class="head-text"> 0</span>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                  <button id='published' style="margin: 0;float: right;" class="mybutton button5">Published<i class="fas fa-arrow-right"></i> </button>
-                </div>
-              </div><br>
-              <div class="Campaign-Running-Summary">
-                <p>Campaign Running Summary</p>
-                <div class="row no-gutters Campaign-Running-Summary-first-row">
-                  <div class="col-lg-4 col-md-4 col-sm-6" style="padding: 0 10px;">
-                    <p>Price (Per Day)</p>
+                <div class="steps-page" id="MultiStepForm3">
+                  <div class="multi-step-title">Date of Birth:</div>
+                  <div class="multi-step-fields">
+                    <div class="lable">Date</div>
+                    <input type="text" name="" maxlength="20" required value="">
                   </div>
-                  <div class="col-lg-4 col-md-4 col-sm-6" style="padding: 0 10px;">
-                    <p>No Of Day(s)</p>
+                  <div class="multi-step-fields">
+                    <div class="lable">Gender</div>
+                    <select class="gender-selection" name="">
+                      <option>Male</option>
+                      <option>Female</option>
+                      <option>Other</option>
+                    </select>
                   </div>
-                  <div class="col-lg-4 col-md-4 col-sm-6" style="padding: 0 10px;">
-                    <p>Total Price</p>
+                  <div class="multi-step-fields btns">
+                    <div class="row no-gutters">
+                      <div class="col-lg-6 col-md-6 col-sm-12">
+                        <button class="mybutton button5 prev" id="btnPrev2">Previous<i class="fas fa-arrow-right"></i> </button>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-12">
+                        <button class="mybutton button5 next" id="btnNext3">Next<i class="fas fa-arrow-right"></i> </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="Campaign-Running-Summary">
-                <div class="row no-gutters Campaign-Running-Summary-second-row">
-                  <div class="col-lg-4 col-md-4 col-sm-6" style="padding: 0 10px;">
-                    <small>0 Rs.</small>
+                <div class="steps-page" id="MultiStepForm4">
+                  <div class="multi-step-title">Login Details:</div>
+                  <div class="multi-step-fields">
+                    <div class="lable">Username</div>
+                    <input type="text" name="" maxlength="20" required value="">
                   </div>
-                  <div class="col-lg-4 col-md-4 col-sm-6" style="padding: 0 10px;">
-                    <small>Running every day as per:</small>
+                  <div class="multi-step-fields">
+                    <div class="lable">Password</div>
+                    <input type="password" name="" maxlength="20" required value="">
                   </div>
-                  <div class="col-lg-4 col-md-4 col-sm-6" style="padding: 0 20px;">
-                    <small>0</small>
+                  <div class="multi-step-fields btns">
+                    <div class="row no-gutters">
+                      <div class="col-lg-6 col-md-6 col-sm-12">
+                        <button class="mybutton button5 prev" id="btnPrev3">Previous<i class="fas fa-arrow-right"></i> </button>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-12">
+                        <button class="mybutton button5 next" id="Submit">Submit<i class="fas fa-arrow-right"></i> </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -356,71 +342,9 @@
           </div>
         </div>
       </div>
-
-      <div class="container">
-        <div class="row no-gutters">
-          <div class="col-lg-12 col-md-12 col-sm-12"><br><br>
-            <div class="campaign-details-section">
-              <div class="row no-gutters">
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                  <!-- <span class="head-text">Payout: </span>
-                  <span class="head-text"> 0</span> -->
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                  <!-- <button id='published' style="margin: 0;float: right;" class="mybutton button5">Published<i class="fas fa-arrow-right"></i> </button> -->
-                </div>
-              </div>
-              <div class="Campaign-Running-Summary">
-                <p>Campaign Running on Folowing shop(s)</p>
-                <div class="row no-gutters Campaign-Running-Summary-first-row" style="width: 100%;">
-                  <div class="col-lg-3 col-md-4 col-sm-6" style="padding: 0 10px;">
-                    <p>Shop Now</p>
-                  </div>
-                  <div class="col-lg-2 col-md-4 col-sm-6" style="padding: 0 10px;">
-                    <p>No Of Day(s)</p>
-                  </div>
-                  <div class="col-lg-2 col-md-4 col-sm-6" style="padding: 0 10px;">
-                    <p>Total Price</p>
-                  </div>
-                  <div class="col-lg-2 col-md-4 col-sm-6" style="padding: 0 10px;">
-                    <p>Total Price</p>
-                  </div>
-                  <div class="col-lg-3 col-md-4 col-sm-6" style="padding: 0 10px;">
-                    <p>Total Price</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="Campaign-Running-Summary">
-                <div class="row no-gutters Campaign-Running-Summary-second-row" style="width: 100%;">
-                  <div class="col-lg-3 col-md-4 col-sm-6" style="padding: 0 10px;">
-                    <small>0 Rs.</small>
-                  </div>
-                  <div class="col-lg-2 col-md-4 col-sm-6" style="padding: 0 10px;">
-                    <small>Running every day as per:</small>
-                  </div>
-                  <div class="col-lg-2 col-md-4 col-sm-6" style="padding: 0 20px;">
-                    <small>0</small>
-                  </div>
-                  <div class="col-lg-2 col-md-4 col-sm-6" style="padding: 0 20px;">
-                    <small>0</small>
-                  </div>
-                  <div class="col-lg-3 col-md-4 col-sm-6" style="padding: 0 20px;">
-                    <small>0</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-
-
     </div>
   </div>
+
 
   <!-- content - ends -->
 
@@ -543,7 +467,7 @@
 
   <script src="../js/firebase.js"></script>
   <script src="../js/firebase-admin-common.js"></script>
-  <script src="../js/admin/fb-campaignDetails.js"></script>
+  <script src="../js/admin/fb-campaignReg.js"></script>
   <!-- <script src="../js/dashboard.js"></script> -->
   <!-- <script src="../js/main.js"></script> -->
 

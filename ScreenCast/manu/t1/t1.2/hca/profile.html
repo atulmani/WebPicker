@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <head>
   <meta charset="utf-8">
   <meta name="author" content="Web Picker">
@@ -52,10 +51,40 @@
           <li class="nav-item">
             <a class="nav-link" href="../#"><i class="fas fa-home"></i></a>
           </li>
-
-          <li>
-            <!-- <a class="nav-link" href="../">Logout</a> -->
-            <button id='btnLogout' type='button' class="mybutton button5">Logout<i class="fas fa-arrow-right"></i> </button>
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="#services">Services</a> -->
+            <div class="dropdown">
+              <button onclick="ddIndustries()" class="dropbtn">Industries
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div id="myDropdown" class="dropdown-content">
+                <a href="../#IndustriesWeServe">DOOH & OUTDOOR</a>
+                <a href="../#IndustriesWeServe">TRANSPORTATION</a>
+                <a href="../#IndustriesWeServe">GOVERNMENT</a>
+                <a href="../#government">EDUCATION</a>
+                <a href="../#government">CORPORATE COMMUNICATION</a>
+                <a href="../#government">GROCERY</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="#WhyToUse">Features</a> -->
+            <div class="dropdown">
+              <button onclick="ddFeatures()" class="dropbtn">Features
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div id="myDropdown1" class="dropdown-content">
+                <a href="../#WhyToUse">SECURED CLOUD BASED</a>
+                <a href="../#WhyToUse">FAST AND NO LAGS</a>
+                <a href="../#WhyToUse">AI-POWERED</a>
+                <a href="../#aipowered">SEAMLESS INTEGRATION</a>
+                <a href="../#aipowered">ADs ANALYTICS</a>
+                <a href="../#aipowered">EASY TO CUSTOMIZE</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact us</a>
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link" href="#hiw">How We Work</a>
@@ -128,8 +157,8 @@
                 <li class="">
                   <a class="" href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
                 </li>
-                <li class="nav-item-highlight">
-                  <a style='color: #fff;' href="customerList.html"><i class="fas fa-clone"></i> Customers</a>
+                <li class="">
+                  <a href="customerList.html"><i class="fas fa-clone"></i> Customers</a>
                 </li>
                 <li class="">
                   <a class="" href="campaignList.html"><i class="fas fa-clone"></i> Campaigns</a>
@@ -143,8 +172,8 @@
                 <li class="">
                   <a class="" href="#"><i class="fas fa-rupee-sign"></i> Billing</a>
                 </li>
-                <li class="">
-                  <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+                <li class="nav-item-highlight">
+                  <a style='color: #fff;' href="profile.html"><i class="fas fa-user"></i> Profile</a>
                 </li>
                 <li class="">
                   <a id='lnkLogout' class="" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -161,64 +190,90 @@
     <!-- content - starts -->
     <div class="col-lg-10 col-md-10 col-sm-12">
       <div class="row no-gutters">
-        <h4 class="select-tp-heading">Customer</h4>
+        <div style="padding-left:40px;padding-top: 8px;">
+          Hey!
+          <strong><span id='displayName'> </span></strong>
+          <span style="padding-left: 10px"> You have great profile!!!</span>
+        </div>
       </div>
       <hr>
-      <center>
-        <div id='loading' class="loader"></div>
-      </center>
+
+                <center>
+                  <div id='loading' class="loader"></div>
+                </center>
       <div class="row no-gutters dashboard-content-row">
+        <div class="col-lg-3 col-md-3 col-sm-12">
+          <div id="cameraIcon" class="camera-icon"><br>
+            <i class="fas fa-camera"></i>
+          </div>
+          <div class="profile-pic">
+            <img src="../img/logo.png" style="width: 200px; height: 200px;border-radius: 50%;" alt="">
+          </div>
+          <div id="changeImage" class="change-image">
+            <!-- <h5>Change Image</h5> -->
+          </div>
+          <div id="changeImageTriangle" class="triangle"></div>
+          <div class="Change-email-password">
+            <div class="email-edit"><br>
+              <h6>Last Visited</h6>
+              <label id='lblEmail' for="" value=''></label>
+              <!-- <input type="email" id="profileEmail" style="border:none;background:none;" readonly class="email" name="" value="atultripathi@gmail.com"> -->
+            </div>
+            <div class="row no-gutters">
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <!-- <a href="">Change Email</a> -->
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <a id="btnChangePassword" href="#">Change Password</a>
+                <div id="btnChangePasswordmessage" style="display: none;" class="">
+                  <h5>You will recieve a email.</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="col-lg-9 col-md-9 col-sm-12" style="padding: 4px;"><br>
-          <!-- <label for="status">Status:</label> -->
-          <!-- <strong><label id='status'></label></strong><br> -->
+          <label for="status">Status:</label>
+          <strong><label id='status'></label></strong><br>
           <div id='profileForm' class="row no-gutters">
             <div class="col-lg-6 col-md-6 col-sm-6">
-              <label for="name">Organization Short Name <span style='font-size:0.7rem; font-weight: lighter;'> (use for display purpose)</span></label><br>
-              <input type="text" id="txtOrgDisplayName" maxlength="60" required class='input-text' placeholder="Enter Organization Short Name"><br><br>
+              <label for="name">Name:</label><br>
+              <input type="text" id="name" name="name" value=""><br><br><br>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
-              <label for="name">Organization Full Name</label><br>
-              <input type="text" id="txtOrgName" maxlength="60" required class='input-text' placeholder="Enter Organization Name"><br><br>
+              <label for="mobile">Mobile:</label><br>
+              <input type="number" id="mobile" name="mobile" value=""><br><br><br>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
-              <label for="mobile">Primary Email <span style='font-size:0.7rem; font-weight: lighter;'> (use this for login)</span></label><br>
-              <input type="email" id="txtEmail" maxlength="50" required class='input-text' placeholder="Enter Email id"><br><br>
+              <label for="idtype">ID Type:</label><br>
+              <select id="idtype" name="idtype">
+                <option value="PAN">PAN No</option>
+                <option value="Aadhaar">Aadhaar No</option>
+              </select><br><br><br>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
-              <label for="mobile">Primary Mobile</label><br>
-              <input type="number" id="txtContact" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required class='input-text' placeholder="Enter mobile no">
+              <label for="idno">ID No:</label><br>
+              <input type="text" id="idno" name="idno" value=""><br><br><br>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
-              <label for="mobile">Additional Emails <span style='font-size:0.7rem; font-weight: lighter;'> (use semicolon to add more than one email)</span></label><br>
-              <input type="email" id="txtAdditionalEmail" maxlength="50" class='input-text' placeholder="Optional field"><br><br>
+              <label for="address">Address:</label><br>
+              <input type="text" id="address" name="address" value=""><br><br><br>
             </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
 
-            <div class="col-lg-6 col-md-6 col-sm-6">
-              <label for="mobile">Additional Contacts <span style='font-size:0.7rem; font-weight: lighter;'> (use semicolon to add more than one contact) </span></label><br>
-              <input type="text" id="txtAdditionalContact" maxlength="60" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class='input-text' placeholder="Optional field"><br><br>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
-              <label for="address">Organization Address</label><br>
-              <input type="text" id="txtOrgAddress" maxlength="100" class='input-text' placeholder="Optional field"><br><br>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
-              <label for="name">Contact Person Name</label><br>
-              <input type="text" id="txtContactPersonName" maxlength="60" class='input-text' placeholder="Optional field"><br><br>
-            </div>
-
-
             <div class="row no-gutters">
-
-              <div class="col-lg-12 col-md-12 col-sm-6">
-                <div class="alert">
-                  Data has been saved successfully
-                </div>
-                <div id='errorMessage' class="" style="text-align: center; color:Red; font-size: 0.9rem; font-weight: bold; display:none;">
-                  <br>
-                </div>
-                <br>
-                <button id='btnRegister' type='button' class="mybutton button5">Register<i class="fas fa-arrow-right"></i> </button>
+            <div class="col-lg-12 col-md-12 col-sm-6">
+              <div class="alert">
+                Data has been saved successfully
               </div>
+              <div id='errorMessage' class="" style="text-align: center; color:Red; font-size: 0.9rem; font-weight: bold; display:none;">
+                <br>
+              </div>
+
+              <!-- <input id='btnSave' type="button" value="Save"> -->
+              <button id='btnSave' class="mybutton button5">Save<i class="fas fa-arrow-right"></i> </button>
+            </div>
             </div>
           </div>
         </div>
@@ -226,111 +281,109 @@
     </div>
   </div>
 
-  <br><br><br><br>
-
   <!-- content - ends -->
 
   <!-- Footer Section - Start -->
-  <section id="footer">
-    <br /><br />
+<section id="footer">
+  <br /><br />
 
-    <div class="row no-gutters" style="text-align: center;">
-      <div class="col-lg-4 col-md-4 col-sm-12">
-        <div class="links-sitemaps">
-          <h5>SITEMAPS</h5>
-          <ul class="">
-            <li class="">
-              <a class="" href="../#">Home</a>
-            </li>
-            <li class="">
-              <a class="" href="../#IndustriesWeServe">Services</a>
-            </li>
-            <li class="">
-              <a class="" href="../#WhyToUse">Why Us</a>
-              <!-- <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#one">One</a></li>  -->
-            </li>
-            <li class="">
-              <a class="" href="../#hiw">How We Work</a>
-            </li>
-            <li class="">
-              <a class="" href="../#">Projects</a>
-            </li>
-            <li class="">
-              <a class="" href="#">Contact Us</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-12">
-        <div class="links-sitemaps">
-          <h5>OTHERS</h5>
-          <ul class="">
-            <li class="">
-              <a class="" href="../#">Jion us officialy</a>
-            </li>
-            <li class="">
-              <a class="" href="../#">Refer a friend</a>
-            </li>
-            <li class="">
-              <a class="" href="../#">Channel Partner</a>
-            </li>
-          </ul>
-        </div><br><br>
-
-        <div class="links-sitemaps">
-          <h5>INFORMATION</h5>
-          <ul class="">
-            <li class="">
-              <a class="" href="../#">Terms & Conditions</a>
-            </li>
-            <li class="">
-              <a class="" href="../#">Privacy & Policy</a>
-            </li>
-            <li class="">
-              <a class="" href="../#">FAQ's</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-12">
-        <div class="footer-last">
-          <table style="width: 100%;">
-            <tr>
-              <td style="width: 40%;text-align: right;">
-                <img src="../img/logo.png" width="55px" alt="">
-              </td>
-              <td style="text-align: left;padding-left: 10px;">
-                <div class="footer-last-heading">
-                  <h3>Hyper Cloud</h3>
-                  <span class="footer-ads">Advertising</span>
-                </div>
-              </td>
-            </tr>
-          </table>
-          <h6>WE CAST YOUR ADs</h6><br>
-          <br>
-          <h5 class="git">Get in Touch</h5>
-          <a href="" class="footer-no">+91 915 255 2222</a>
-          <br>
-          <a href="" class="footer-email">Connect@HyperCloudAdvertising.com</a><br><br>
-          <hr>
-          <div class="social">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="Copyright">
-        <h6>Design & Developed By <a style='decoration:none;color:white;' href="https://webpicker.in"> Web Picker </a></h6>
+  <div class="row no-gutters" style="text-align: center;">
+    <div class="col-lg-4 col-md-4 col-sm-12">
+      <div class="links-sitemaps">
+        <h5>SITEMAPS</h5>
+        <ul class="">
+          <li class="">
+            <a class="" href="../#">Home</a>
+          </li>
+          <li class="">
+            <a class="" href="../#IndustriesWeServe">Services</a>
+          </li>
+          <li class="">
+            <a class="" href="../#WhyToUse">Why Us</a>
+            <!-- <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#one">One</a></li>  -->
+          </li>
+          <li class="">
+            <a class="" href="../#hiw">How We Work</a>
+          </li>
+          <li class="">
+            <a class="" href="../#">Projects</a>
+          </li>
+          <li class="">
+            <a class="" href="#">Contact Us</a>
+          </li>
+        </ul>
       </div>
     </div>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+      <div class="links-sitemaps">
+        <h5>OTHERS</h5>
+        <ul class="">
+          <li class="">
+            <a class="" href="../#">Jion us officialy</a>
+          </li>
+          <li class="">
+            <a class="" href="../#">Refer a friend</a>
+          </li>
+          <li class="">
+            <a class="" href="../#">Channel Partner</a>
+          </li>
+        </ul>
+      </div><br><br>
 
-  </section>
+      <div class="links-sitemaps">
+        <h5>INFORMATION</h5>
+        <ul class="">
+          <li class="">
+            <a class="" href="../#">Terms & Conditions</a>
+          </li>
+          <li class="">
+            <a class="" href="../#">Privacy & Policy</a>
+          </li>
+          <li class="">
+            <a class="" href="../#">FAQ's</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+      <div class="footer-last">
+        <table style="width: 100%;">
+          <tr>
+            <td style="width: 40%;text-align: right;">
+              <img src="../img/logo.png" width="55px" alt="">
+            </td>
+            <td style="text-align: left;padding-left: 10px;">
+              <div class="footer-last-heading">
+                <h3>Hyper Cloud</h3>
+                <span class="footer-ads">Advertising</span>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <h6>WE CAST YOUR ADs</h6><br>
+        <br>
+        <h5 class="git">Get in Touch</h5>
+        <a href="" class="footer-no">+91 915 255 2222</a>
+        <br>
+        <a href="" class="footer-email">Connect@HyperCloudAdvertising.com</a><br><br>
+        <hr>
+        <div class="social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="Copyright">
+      <h6>Design & Developed By <a style='decoration:none;color:white;' href="https://webpicker.in"> Web Picker </a></h6>
+    </div>
+  </div>
+
+</section>
 
 
-  <!-- Footer Section - end -->
+<!-- Footer Section - end -->
   <!-- Jquery order should be higher from normal javascript  -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
@@ -348,7 +401,7 @@
 
   <script src="../js/firebase.js"></script>
   <script src="../js/firebase-admin-common.js"></script>
-  <script src="../js/hca/fb-customerReg.js"></script>
+  <script src="../js/firebase-profile.js"></script>
   <!-- <script src="../js/dashboard.js"></script> -->
   <!-- <script src="../js/main.js"></script> -->
 

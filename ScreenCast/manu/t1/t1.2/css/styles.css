@@ -58,11 +58,13 @@ h4 {
 h5 {
   font-size: 1.2rem;
   font-weight: normal;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 h6 {
   font-size: 0.8rem;
   font-weight: normal;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 /********** class selectors ************/
@@ -172,7 +174,7 @@ h6 {
   width: 2000px;
   height: 2000px;
   border-radius: 50%;
-  background: linear-gradient(-45deg, #603F8B, #A16AE8);
+  background: linear-gradient(-45deg,  #034687, #E10032);
   top: -10%;
   right: 48%;
   transform: translateY(-50%);
@@ -333,15 +335,15 @@ input:valid .input-field i {
   align-items: center;
   text-decoration: none;
   color: #fff;
-  background: #FD49A0;
+  background: #E10032;
   font-size: 1.1rem;
   border-radius: 50%;
   transition: 0.3s;
 }
 
 .social-icon:hover {
-  color: #FD49A0;
-  border: 1px solid #FD49A0;
+  color: #E10032;
+  border: 1px solid #E10032;
   text-decoration: none;
   background: none;
 }
@@ -785,11 +787,11 @@ input:valid .input-field i {
   /* Green */
   border: none;
   color: #fff;
-  padding: 8px 25px 8px 16px;
+  padding: 6px 16px 6px 16px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
@@ -799,9 +801,9 @@ input:valid .input-field i {
 }
 
 .button5 {
-  margin-top: 5%;
+  margin-top: 0;
   background: #E10032;
-  box-shadow: 5px 20px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
   border: 1px solid #fff;
 }
 
@@ -1397,100 +1399,6 @@ input:valid .input-field i {
 
 /* Footer Section - End */
 /* dashboard.html */
-.fixed-side-nav {}
-
-.navbar-dashboard {
-  /* background: rgba(0,0,0,0.1); */
-  box-shadow: 10px 0 20px rgba(0, 0, 0, 0.1);
-  height: 91vh;
-  padding-left: 10px;
-  border-radius: 0 20px 0 0;
-}
-
-.nav-all-items-dashboard {
-  display: grid;
-  grid-row: 1fr;
-  text-align: left;
-  width: 100%;
-  padding: 20px 0;
-}
-
-.nav-all-items-dashboard li {
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 26px 0 0 26px;
-}
-
-.nav-all-items-dashboard li:hover {
-  background: #E10032;
-}
-
-.nav-item-highlight
-{
-  background: #E10032;
-}
-
-.nav-all-items-dashboard li:hover a {
-  color: #fff;
-}
-
-.nav-all-items-dashboard li a {
-  text-decoration: none;
-  color: #603F8B;
-}
-
-.dashboard-content-row {
-  padding: 8px 3%;
-}
-
-.dashboard-card {
-  width: 100%;
-  box-shadow: 10px 0px 20px rgba(0, 0, 0, 0.2);
-  padding: 15px;
-}
-
-.number-one {
-  font-size: 1.5rem;
-  color: #000;
-}
-
-.number-two-positive {
-  color: green;
-  padding-left: 5px;
-  position: relative;
-  top: -15px;
-  font-size: 0.8rem;
-}
-
-.arrow-positive {
-  color: green;
-  padding-left: 5px;
-  position: relative;
-  top: -15px;
-  font-size: 0.8rem;
-}
-
-.number-two-negative {
-  color: red;
-  position: relative;
-  left: -34px;
-  top: 5px;
-  font-size: 0.8rem;
-}
-
-.arrow-negative {
-  color: red;
-  padding-left: 5px;
-  position: relative;
-  left: -34px;
-  top: 5px;
-  font-size: 0.8rem;
-}
-
-.dashboard-card-button {
-  position: relative;
-  left: -15px;
-}
 
 /* .dashboard-card p{
   color: rgba(0,0,0,0.5);
@@ -1575,104 +1483,6 @@ input[type=number] {
     text-align: center;
     padding-top: 20px;
   }
-}
-
-/* selecttemplate.html */
-.select-tp-heading {
-  padding: 10px 0 0 3%;
-}
-
-.select-tp-content-row {
-  padding-left: 3%;
-}
-
-.select-tp-card {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  box-shadow: 10px 0px 20px rgba(0, 0, 0, 0.2);
-  padding: 3px 20px;
-  cursor: pointer;
-}
-
-.select-tp-card-text-ads {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  box-shadow: 10px 0px 20px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  cursor: pointer;
-  height: 80px;
-  color: #603F8B;
-  text-decoration: none;
-}
-
-.select-tp-card-text-ads:hover {
-  color: #603F8B;
-  text-decoration: none;
-}
-
-.select-tp-content-col .active {
-  background: #FD49A0;
-  color: #fff;
-  border-radius: 16px 0 16px 16px;
-}
-
-.text-ads {
-  border: 1px solid #ccc;
-  min-height: 400px;
-  width: 100%;
-  border-radius: 16px;
-  padding: 20px;
-}
-
-.image-ads {
-  border: 1px solid #ccc;
-  min-height: 400px;
-  width: 100%;
-  border-radius: 16px;
-  padding: 20px;
-}
-
-/* tp_imagebased.html */
-.input-image-div {
-  min-height: 200px;
-  width: 100%;
-  padding: 7%;
-}
-
-.input-image {
-  min-width: 50%;
-  min-height: 200px;
-  border: 1px solid #ddd;
-}
-
-.image-name-input span:nth-child(1) {
-  position: relative;
-  left: 10px;
-  color: rgba(96, 63, 139, 0.8);
-}
-
-.image-name-input span:nth-child(2) {
-  position: relative;
-  left: 10px;
-  font-size: 2rem;
-  color: rgba(96, 63, 139, 0.3);
-}
-
-.image-name-input input {
-  position: relative;
-  border-color: rgba(0, 0, 0, 0.2);
-  background: none;
-  outline: none;
-  width: 350px;
-  padding: 10px 10px 10px 120px;
-  border-radius: 25px;
-  left: -110px;
-  z-index: 5;
-  color: #444;
 }
 
 .alert {

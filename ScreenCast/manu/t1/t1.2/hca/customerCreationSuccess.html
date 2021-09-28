@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 
 <head>
   <meta charset="utf-8">
@@ -14,6 +15,18 @@
 
   <link rel="shortcut icon" href="../img/logo.png">
 
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+
+
   <!-- Font Awesome cdn file -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -28,11 +41,12 @@
 
   <!-- Your Own Style -->
   <link rel="stylesheet" href="../css/styles.css">
-  <link rel="stylesheet" href="../css/admin.css">
 
 </head>
 
+
 <body>
+
   <!-- Navbar - Start -->
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container-fluid">
@@ -52,10 +66,40 @@
           <li class="nav-item">
             <a class="nav-link" href="../#"><i class="fas fa-home"></i></a>
           </li>
-
-          <li>
-            <!-- <a class="nav-link" href="../">Logout</a> -->
-            <button id='btnLogout' type='button' class="mybutton button5">Logout<i class="fas fa-arrow-right"></i> </button>
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="#services">Services</a> -->
+            <div class="dropdown">
+              <button onclick="ddIndustries()" class="dropbtn">Industries
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div id="myDropdown" class="dropdown-content">
+                <a href="../#IndustriesWeServe">DOOH & OUTDOOR</a>
+                <a href="../#IndustriesWeServe">TRANSPORTATION</a>
+                <a href="../#IndustriesWeServe">GOVERNMENT</a>
+                <a href="../#government">EDUCATION</a>
+                <a href="../#government">CORPORATE COMMUNICATION</a>
+                <a href="../#government">GROCERY</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="#WhyToUse">Features</a> -->
+            <div class="dropdown">
+              <button onclick="ddFeatures()" class="dropbtn">Features
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div id="myDropdown1" class="dropdown-content">
+                <a href="../#WhyToUse">SECURED CLOUD BASED</a>
+                <a href="../#WhyToUse">FAST AND NO LAGS</a>
+                <a href="../#WhyToUse">AI-POWERED</a>
+                <a href="../#aipowered">SEAMLESS INTEGRATION</a>
+                <a href="../#aipowered">ADs ANALYTICS</a>
+                <a href="../#aipowered">EASY TO CUSTOMIZE</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../contacts">Contact us</a>
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link" href="#hiw">How We Work</a>
@@ -64,11 +108,11 @@
             <a class="nav-link" href="#progects">Projects</a>
           </li> -->
           <!-- <li class="nav-item">
-            <a class="nav-link" href="contacts">Contact Us</a>
+            <a class="nav-link" href="../contacts">Contact Us</a>
           </li> -->
         </ul>
         <!-- <div class="nav-divider">
-          <a href="contacts" style="padding-right: 10px; "><button class="mybutton button5">Connect<i class="fas fa-arrow-right"></i> </button></a>
+          <a href="../contacts" style="padding-right: 10px; "><button class="mybutton button5">Connect<i class="fas fa-arrow-right"></i> </button></a>
         </div> -->
 
       </div>
@@ -86,7 +130,7 @@
       <!-- <a type="button" href="login">
         <span><i class="fas fa-user"></i></span> <br> <span> Login </span>
       </a> -->
-      <a type="button" href="#">
+      <a type="button" href="../contacts">
         <span><i class="fas fa-id-badge"></i></span> <br> <span> Contact Us </span>
       </a>
       <a type="button" data-toggle="collapse" data-target="#collapsibleNavbar1">
@@ -109,7 +153,7 @@
             <a class="" href="../#WhyToUse">Services</a>
           </li>
           <li class="">
-            <a class="" href="#">Contact</a>
+            <a class="" href="../contacts">Contact</a>
           </li>
         </ul>
       </div>
@@ -117,118 +161,35 @@
   </div>
   <!-- Navbar - End -->
 
-  <!-- Side navigation - starts -->
-  <div class="row no-gutters">
-    <div class="col-lg-2 col-md-2 col-sm-12">
-      <div class="fixed-side-nav">
-        <nav class="navbar-dashboard navbar-expand-lg">
-          <div class="">
-            <div class="collapse navbar-collapse" id="collapsibleNavbar1">
-              <ul class="nav navbar-nav ml-auto nav-all-items-dashboard">
-                <li class="">
-                  <a class="" href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
-                </li>
-                <li class="nav-item-highlight">
-                  <a style='color: #fff;' href="customerList.html"><i class="fas fa-clone"></i> Customers</a>
-                </li>
-                <li class="">
-                  <a class="" href="campaignList.html"><i class="fas fa-clone"></i> Campaigns</a>
-                </li>
-                <li class="">
-                  <a class="" href="#"><i class="fas fa-bezier-curve"></i> Devices </a>
-                </li>
-                <li class="">
-                  <a class="" href="#"><i class="fas fa-cogs"></i> Mapping</a>
-                </li>
-                <li class="">
-                  <a class="" href="#"><i class="fas fa-rupee-sign"></i> Billing</a>
-                </li>
-                <li class="">
-                  <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
-                </li>
-                <li class="">
-                  <a id='lnkLogout' class="" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </div>
 
-    <!-- Side navigation - ends -->
+  <div class="container" style="padding: 20px;">
+    <div class="Thank-you-content">
+      <div class="Thank-you-content-div1 large"></div>
+      <div class="Thank-you-content-div2 large"></div>
+      <div class="Thank-you-content-div3">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<lottie-player src="https://assets6.lottiefiles.com/packages/lf20_v7ae9ywr.json"  background="none"  speed="1" style="width: 200px; height:auto;"  loop  autoplay></lottie-player>
+        <h2>Thank You!</h2>
+        <div class="Thank-you-content-div3-content">
+          <span>You're now a member of our list of awesome people.
+           <br />  We will connect you soon. </span>
 
-    <!-- content - starts -->
-    <div class="col-lg-10 col-md-10 col-sm-12">
-      <div class="row no-gutters">
-        <h4 class="select-tp-heading">Customer</h4>
-      </div>
-      <hr>
-      <center>
-        <div id='loading' class="loader"></div>
-      </center>
-      <div class="row no-gutters dashboard-content-row">
-        <div class="col-lg-9 col-md-9 col-sm-12" style="padding: 4px;"><br>
-          <!-- <label for="status">Status:</label> -->
-          <!-- <strong><label id='status'></label></strong><br> -->
-          <div id='profileForm' class="row no-gutters">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-              <label for="name">Organization Short Name <span style='font-size:0.7rem; font-weight: lighter;'> (use for display purpose)</span></label><br>
-              <input type="text" id="txtOrgDisplayName" maxlength="60" required class='input-text' placeholder="Enter Organization Short Name"><br><br>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
-              <label for="name">Organization Full Name</label><br>
-              <input type="text" id="txtOrgName" maxlength="60" required class='input-text' placeholder="Enter Organization Name"><br><br>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
-              <label for="mobile">Primary Email <span style='font-size:0.7rem; font-weight: lighter;'> (use this for login)</span></label><br>
-              <input type="email" id="txtEmail" maxlength="50" required class='input-text' placeholder="Enter Email id"><br><br>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
-              <label for="mobile">Primary Mobile</label><br>
-              <input type="number" id="txtContact" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required class='input-text' placeholder="Enter mobile no">
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
-              <label for="mobile">Additional Emails <span style='font-size:0.7rem; font-weight: lighter;'> (use semicolon to add more than one email)</span></label><br>
-              <input type="email" id="txtAdditionalEmail" maxlength="50" class='input-text' placeholder="Optional field"><br><br>
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-sm-6">
-              <label for="mobile">Additional Contacts <span style='font-size:0.7rem; font-weight: lighter;'> (use semicolon to add more than one contact) </span></label><br>
-              <input type="text" id="txtAdditionalContact" maxlength="60" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class='input-text' placeholder="Optional field"><br><br>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
-              <label for="address">Organization Address</label><br>
-              <input type="text" id="txtOrgAddress" maxlength="100" class='input-text' placeholder="Optional field"><br><br>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
-              <label for="name">Contact Person Name</label><br>
-              <input type="text" id="txtContactPersonName" maxlength="60" class='input-text' placeholder="Optional field"><br><br>
-            </div>
-
-
-            <div class="row no-gutters">
-
-              <div class="col-lg-12 col-md-12 col-sm-6">
-                <div class="alert">
-                  Data has been saved successfully
-                </div>
-                <div id='errorMessage' class="" style="text-align: center; color:Red; font-size: 0.9rem; font-weight: bold; display:none;">
-                  <br>
-                </div>
-                <br>
-                <button id='btnRegister' type='button' class="mybutton button5">Register<i class="fas fa-arrow-right"></i> </button>
-              </div>
-            </div>
-          </div>
+        </div>
+        <a href="../login" style="padding-right: 10px; margin-top: 10px; "><button class="mybutton button5">Start the journey<i class="fas fa-arrow-right"></i> </button></a>
+        <div class="design"></div>
+        <div class="custom-shape-divider-bottom-1631597385">
+          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25"
+              class="shape-fill"></path>
+            <path
+              d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+              opacity=".5" class="shape-fill"></path>
+            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+          </svg>
         </div>
       </div>
     </div>
   </div>
-
-  <br><br><br><br>
-
-  <!-- content - ends -->
 
   <!-- Footer Section - Start -->
   <section id="footer">
@@ -253,10 +214,10 @@
               <a class="" href="../#hiw">How We Work</a>
             </li>
             <li class="">
-              <a class="" href="../#">Projects</a>
+              <a class="" href="#">Projects</a>
             </li>
             <li class="">
-              <a class="" href="#">Contact Us</a>
+              <a class="" href="../contacts">Contact Us</a>
             </li>
           </ul>
         </div>
@@ -329,8 +290,11 @@
 
   </section>
 
-
   <!-- Footer Section - end -->
+
+
+
+
   <!-- Jquery order should be higher from normal javascript  -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
@@ -341,24 +305,12 @@
   <!-- Javascript to Populate Map - Start  -->
   <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script> -->
 
-  <!-- Firebase Services -->
-  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
-
-  <script src="../js/firebase.js"></script>
-  <script src="../js/firebase-admin-common.js"></script>
-  <script src="../js/hca/fb-customerReg.js"></script>
-  <!-- <script src="../js/dashboard.js"></script> -->
-  <!-- <script src="../js/main.js"></script> -->
-
   <!-- Owl Carousel Javascript  -->
+  <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
 
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-
 
 </body>
 

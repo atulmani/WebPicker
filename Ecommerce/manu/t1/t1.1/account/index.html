@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Products Ecommerce-manu-t1.1 - product.html</title>
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <!-- google fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome cdn file -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+      <div class="navbar">
+        <div class="logo">
+        <a href="index.html"><img src="./img/logo.png" width="125px" alt=""></a>
+        </div>
+        <nav>
+          <ul id="MenuItems">
+            <li> <a href="index.html">Home</a> </li>
+            <li> <a href="products.html">Products</a> </li>
+            <li> <a href="#">About</a> </li>
+            <li> <a href="#">Contact</a> </li>
+            <li> <a href="account.html">Account</a> </li>
+          </ul>
+        </nav>
+      <a href="cart.html"><img src="./img/cart.png" width="30px" alt=""></a>
+        <img src="./img/menu.png" class="menu-icon" onclick="menutoggle()" alt="">
+      </div>
+</div>
+
+  <!-- Account page -->
+  <div class="account-page">
+    <div class="container">
+      <div class="row">
+        <div class="col-2 img-login">
+          <img src="./img/image1.png" width="100%" alt="">
+        </div>
+        <div class="col-2">
+          <div class="form-container">
+            <div class="form-btn">
+              <span onclick="login()">Login</span>
+              <span onclick="register()">Register</span>
+              <hr id="Indicator">
+            </div>
+
+            <form id="LoginForm" class="">
+              <input type="email" placeholder="Email" id="txtEmail_Signin" name="" value="">
+              <input type="password" placeholder="Password" id="txtPass_Signin" name="" value="">
+              <div class="" id="errorMessage_Login" style="display: none;"></div>
+              <button type="button" class="btn" id="btnSignin">Login</button>
+              <a href="#">Forget Password</a>
+            </form>
+
+            <form id="RegForm" class="">
+              <input type="text" placeholder="Username" name="" value="">
+              <input type="email" placeholder="Email" name="" value="">
+              <input type="password" placeholder="Password" name="" value="">
+              <button type="submit" class="btn" id="btnSignup">Register</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- footer -->
+  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col-1">
+          <h3>Download Our App</h3>
+          <p>Download App for Android and IOS moblie phone.</p>
+          <div class="app-logo">
+            <img src="./img/play-store.png" alt="">
+            <img src="./img/app-store.png" alt="">
+          </div>
+        </div>
+        <div class="footer-col-2">
+          <img src="./img/logo-white.png" alt="">
+          <p>Our Porpose Is To Sustainably Make The Pleasure And Benefits Of Sports
+          Accessible to The Many.</p>
+        </div>
+        <div class="footer-col-3">
+          <h3>Useful Links</h3>
+          <ul>
+            <li>Coupons</li>
+            <li>Blog Post</li>
+            <li>Return Policy</li>
+            <li>Join Affiliate</li>
+          </ul>
+        </div>
+        <div class="footer-col-4">
+          <h3>Follow Us</h3>
+          <ul>
+            <li>Facebook</li>
+            <li>Twitter</li>
+            <li>Instagram</li>
+            <li>YouTube</li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <p class="copyright">Copyright 2021 - Webpicker</p>
+    </div>
+  </div>
+
+  <!-- Firebase Services -->
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-storage.js"></script>
+
+  <script src="../js/firebase.js"></script>
+  <script src="../js/fb-login.js"></script>
+  <script src="../js/ecom.js"></script>
+
+  <script>
+    var LoginForm1 = document.getElementById("LoginForm");
+    var RegForm1 = document.getElementById("RegForm");
+    var Indicator1 = document.getElementById("Indicator");
+
+      function register(){
+
+        RegForm1.style.transform = "translateX(0px)";
+        LoginForm1.style.transform = "translateX(0px)";
+        Indicator.style.transform = "translateX(100px)";
+      }
+
+      function login(){
+
+        RegForm1.style.transform = "translateX(300px)";
+        LoginForm1.style.transform = "translateX(300px)";
+        Indicator.style.transform = "translateX(0px)";
+      }
+  </script>
+
+</body>
+
+</html>
