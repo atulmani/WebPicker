@@ -1324,7 +1324,7 @@ input:valid .input-field i {
   font-family: 'Bebas Neue';
   /* padding-left: 10px; */
   letter-spacing: 2px;
-  margin-top: 22px;
+  margin-top: 30px;
   font-weight: normal;
 }
 
@@ -1333,7 +1333,7 @@ input:valid .input-field i {
   font-size: 1.6rem;
   letter-spacing: 5px;
   position: relative;
-  top: -16px;
+  top: -22px;
 }
 
 .footer-last hr {
