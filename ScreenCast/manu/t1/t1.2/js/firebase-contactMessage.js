@@ -13,6 +13,8 @@ function saveMessage() {
         Name: document.getElementById('txtName').value,
         Phone: document.getElementById('txtPhone').value,
         Email: document.getElementById('txtEmail').value,
+        City: document.getElementById('txtCity').value,
+        Country: document.getElementById('txtCountry').value,
         Message: document.getElementById('txtMessage').value,
         Status: 'ACTIVE',
         Created_Timestamp: (new Date()).toString()
@@ -56,11 +58,14 @@ btnSave.addEventListener('click', e => {
   const txtName = document.getElementById('txtName');
   const txtPhone = document.getElementById('txtPhone');
   const txtEmail = document.getElementById('txtEmail');
+  const txtCity = document.getElementById('txtCity');
+  const txtCountry = document.getElementById('txtCountry');
   const txtMessage = document.getElementById('txtMessage');
 
   //All fields are mandatory while registration
   if (txtOrganization.value == '' || txtName.value == '' ||
     txtPhone.value == '' || txtEmail.value == '' ||
+    txtCity.value == '' || txtCountry.value == '' ||
     txtMessage.value == '') {
     console.log('All fields are mandatory');
     document.getElementById('errorMessage').innerHTML = 'All fields are mandatory';
