@@ -1,0 +1,7 @@
+User-agent: Googlebot
+Disallow: /nogooglebot/
+
+User-agent: *
+Allow: /index.html
+Allow: /designs/index.html
+Allow: /about/index.html

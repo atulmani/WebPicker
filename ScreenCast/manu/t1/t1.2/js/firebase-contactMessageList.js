@@ -45,6 +45,8 @@ function renderList(doc, count) {
   var Name = doc.data().Name;
   var Phone = doc.data().Phone;
   var Email = doc.data().Email;
+  var City = doc.data().City;
+  var Country = doc.data().Country;
   var Message = doc.data().Message;
   var Status = doc.data().Status;
   var Created_Timestamp = doc.data().Created_Timestamp;
@@ -83,12 +85,21 @@ function renderList(doc, count) {
   row.appendChild(cell6);
 
   var cell7 = document.createElement("td");
-  cell7.innerHTML = Message;
+  cell7.innerHTML = City;
   row.appendChild(cell7);
 
   var cell8 = document.createElement("td");
-  cell8.innerHTML = Status;
+  cell8.innerHTML = Country;
   row.appendChild(cell8);
+
+
+  var cell9 = document.createElement("td");
+  cell9.innerHTML = Message;
+  row.appendChild(cell9);
+
+  var cell10 = document.createElement("td");
+  cell10.innerHTML = Status;
+  row.appendChild(cell10);
 
   var options = {
     weekday: 'short',
@@ -101,9 +112,9 @@ function renderList(doc, count) {
   var formattedTime = ut.toLocaleTimeString("en-US");
   var formattedTimeStamp = formattedDate + ' ' + formattedTime;
 
-  var cell9 = document.createElement("td");
-  cell9.innerHTML = formattedTimeStamp;
-  row.appendChild(cell9);
+  var cell11 = document.createElement("td");
+  cell11.innerHTML = formattedTimeStamp;
+  row.appendChild(cell11);
 
   tbody.appendChild(row);
 

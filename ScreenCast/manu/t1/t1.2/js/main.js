@@ -219,7 +219,7 @@ $(document).ready(function() {
   owl.owlCarousel({
     margin: 0,
     loop: true,
-    center: true,
+    // center: true,
     autoplay: true,
     smartSpeed: 3000,
     autoplayTimeout: 4000,
@@ -233,11 +233,11 @@ $(document).ready(function() {
         stagePadding: 0
       },
       600: {
-        items: 2,
+        items: 1,
         stagePadding: 0
       },
       1000: {
-        items: 2,
+        items: 1,
         stagePadding: 0
       }
     }
