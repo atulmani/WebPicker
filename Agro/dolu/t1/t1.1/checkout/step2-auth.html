@@ -95,7 +95,7 @@
  <form class="row g-3">
    <div class="col-md-12">
      <label style="color:#4b7d59;" for="inputEmail4" class="form-label">Email</label>
-     <input type="email" class="form-control" readonly id="participantEmail" value="">
+     <input type="email" class="form-control" readonly id="userEmail" value="">
    </div>
    <div class="col-md-6">
      <label style="color:#4b7d59;" for="inputPassword4" class="form-label">First name</label>
@@ -113,7 +113,7 @@
 <label for="inputPassword4" class="form-label">Date of Birth</label>
 <div class="form-group">
 <div class="input-group date datetimepicker11">
-<input type="text" class="form-control" readonly >
+<input id="dob" type="text" class="form-control" readonly >
 <div class="input-group-addon input-group-prepend">
 <span class="input-group-text"><i class="fas fa-calendar"></i></span>
 </div>
@@ -132,17 +132,23 @@
 <input type="text" class="form-control" id="city">
 </div>
 <div class="col-md-6">
-<label style="color:#4b7d59;" for="inputCity" class="form-label">State</label>
+<label style="color:#4b7d59;" for="inputState" class="form-label">State</label>
 <input type="text" class="form-control" id="state">
 
 </div>
+<div class="col-md-6">
+<label style="color:#4b7d59;" for="inputTicket" class="form-label">No. of Ticket</label>
+<input type="number" class="form-control" id="tik">
 
-<div style="color:#4b7d59;" class="col-md-12">
+</div>
+
+
+<!-- <div style="color:#4b7d59;" class="col-md-12">
 <br>
 Select Category
 <br>
-</div>
-<div class="col-md-12">
+</div> -->
+<!-- <div class="col-md-12">
 <ul>
  <li><input type="radio"  id="inputEmail4">
  <label style="color:#4b7d59;" for="inputEmail4" class="form-label">Category 1 ( Rs. 500/-)</label> </li>
@@ -155,10 +161,10 @@ Select Category
 
 
 </ul>
-</div>
+</div> -->
 </form>
 
-<div class="dropdown">
+<!-- <div style="padding: 2% 0;" class="dropdown">
 <button style="background-color:#fbe25f;color:#fff;"  type="button" class="btn dropdown-toggle" data-toggle="dropdown">
  Select no. of tickets
 </button>
@@ -174,22 +180,24 @@ Select Category
  <a class="dropdown-item" href="#">9</a>
  <a class="dropdown-item" href="#">10</a>
 </div>
-</div><br>
+</div><br> -->
 
 
 <div class="col-lg-12">
-<span style="padding-left:66%;"> <a href="step3-checkout.html">
- <button id="btnCheckout" style="background-color:#fbe25f;color:#fff;" type="submit" class="btn">Checkout <i class="fas fa-angle-double-right"></i></button></a></span>
+<span style="padding-left:66%;">
+ <button id="btnCheckout" style="background-color:#fbe25f;color:#fff;" type="submit" class="btn">Checkout <i class="fas fa-angle-double-right"></i></button></span>
 </div>
 
 </div>
    </div>
+ </div>
+
    <div class="row no-gutters">
-     <div style="padding-left:2%;font-family: 'Oswald', sans-serif;" class="col-lg-8">
-       <div style="font-family: 'Baloo 2', cursive;" class="">
+     <div style="padding-left:2%;font-family: 'Baloo 2', cursive;" class="col-lg-8">
+
          <h3 style="color:#fbe25f;">About the event</h3><hr style="background-color:#fbe25f;">
 
-         <p style="font-weight:300;color:#4b7d59;">Teleport to your virtual island of Casa BACARDÍ
+         <p id="para" style="font-weight:300;color:#4b7d59;">Teleport to your virtual island of Casa BACARDÍ
            Bring home some Caribbean vibes and get grooving to your favourite beats at a music experience like never before.
            Casa BACARDÍ is a whole new virtual world on Sansar, with an epic stage for your favourite artists to perform on, games to play with your friends, hang out with them, play cocktail games and meet new people. Enjoy all of this and more from
            the comfort of your home along with your favourite BACARDÍ Cocktails.You can even design your own look & express yourselves through your avatar before you land on Casa BACARDÍ Island. Festival fashion doesn’t go away, you know?Find
@@ -239,21 +247,22 @@ Select Category
            There are few names that come to mind when you think of the top Indian comedians. But one constant is always Tanmay Bhat. From his work with AIB to his solo projects, he has made quite the name in the country and the world at large. And
            now, he's here to tickle your funny bone once more as the host to the Casa BACARDÍ stage! </p>
 
-       </div>
+
 
 
      </div>
      <div style="padding: 2% 2% 0 2%;" class="col-lg-4">
        <div style="border: 2px solid #889; " class="firstbox">
-         <h4 id="eventName" style="font-weight:1000; font-size:1.2rem;">YOUNG SHUTTLER SUB JUNIOR RANKING DISTRICT CHAMPIONSHIP MAR'2021</h4>
+         <h4 id="eventName" style="font-weight:1000; font-size:1.2rem;color:#4b7d59;">
+
+         </h4>
          <hr>
          <ul>
-           <li><i style="color:#fbe25f;" class="far fa-bookmark"></i> <span id="organiser-name" class="textheadleft">By: Champion sports</span></li>
-           <li><i style="color:#fbe25f;" class="far fa-calendar"></i> <span id="event-time" class="textheadleft">20 Aug | 6PM</span> </li>
-           <li><i style="color:#fbe25f;" class="fab fa-google-play"></i> <span id="venue" class="textheadleft">Online</span> </li>
-           <li><i style="color:#fbe25f;" class="fas fa-rupee-sign"></i> <span class="textheadleft">99 onwards</span>
-             <span style="padding-left:20%;"> <a href="#">
-             <button style="background-color:#fbe25f;color:#fff; font-size:0.8rem;" type="button" name="button" class="btn"> BUY NOW <i class="fas fa-angle-double-right"></i></button> </a> </span> </li>
+           <li><i style="color:#fde834;" class="far fa-bookmark"></i><span class="textheadleft">By: </span><span id="organiser-name" class="textheadleft"></span></li>
+           <li><i style="color:#fde834;" class="far fa-calendar"></i> <span class="textheadleft">Date:</span> <span id="start-time" class="textheadleft"></span> <span id="end-time" class="textheadleft"></span> </li>
+           <!-- <li><i style="color:#fde834;" class="fab fa-google-play"></i> <span id="venue" class="textheadleft"></span> </li> -->
+           <li><i style="color:#fde834;" class="fas fa-rupee-sign"></i> <span class="textheadleft">Price: ₹</span> <span id="event-price" class="textheadleft"></span>
+           </li>
          </ul>
 
        </div><br><br>
@@ -261,20 +270,21 @@ Select Category
          <h4 style="font-weight:1000;">Event Guide</h4>
          <hr>
          <ul>
-           <li><i class="fas fa-play-circle"></i> <span class="textheadleft">Digital Event : <span class="textheadright">Online</span> </span> </li>
-           <li><i class="fab fa-app-store"></i> <span class="textheadleft">For Age(s) : <span class="textheadright">21+</span> </span> </li>
-           <li><i class="fas fa-language"></i> <span class="textheadleft">Language : <span class="textheadright">Hinglish</span> </span> </li>
-           <li><i class="fas fa-headset"></i> <span class="textheadleft">Live Performance : <span class="textheadright">Enjoy a unique </span> </span></li>
+           <li><i class="fas fa-play-circle"></i> <span class="textheadleft">Digital Event : <span id="event-mode" class="textheadright"></span> </span> </li>
+           <li><i class="fab fa-app-store"></i> <span class="textheadleft">For Age(s) : <span id="age" class="textheadright"></span> </span> </li>
+           <li><i class="fas fa-language"></i> <span class="textheadleft">Language : <span id="language" class="textheadright"></span> </span> </li>
+           <li><i class="fas fa-headset"></i> <span class="textheadleft">Event Status : <span id="eventstatus" class="textheadright"></span> </span></li>
          </ul>
        </div><br><br>
        <div style="border: 2px solid #889;" class="thirdbox">
          <ul>
-           <li> <span> Have a question? <span style="padding-left:30%;"><a href="#"><button style="background-color:#fbe25f;color:#fff;  text-align:center; font-size:0.7rem;" type="button" name="button" class="btn"> ASK NOW <i class="fas fa-angle-double-right"></i></button></a></span></span><br> <span style="color:#889; font-size:0.74rem">Ask the organiser anything!</span>
+           <li> <span style="color:#4b7d59;"> Have a question? <span style="padding-left:30%;"><a href="#"><button style="background-color:#fde834;color:#4b7d59;  text-align:center; font-size:0.7rem;" type="button" name="button" class="btn"> ASK NOW
+                     <i class="fas fa-angle-double-right"></i></button></a></span></span><br> <span style="color:#889; font-size:0.74rem">Ask the organiser anything!</span>
              <br>
-             <span style="font-size:0.9rem;">Email: sanidhyapandeyatulmani@gmail.com</span><br>
-             <span style="font-size:0.9rem;">Contact: +91 7355545608, +91 998765432, +91 6645622319</span>
+             <span style="font-size:0.9rem;color:#4b7d59;">Email: </span> <span id="organiser-email" style="font-size:0.9rem;color:#4b7d59;"></span><br>
+             <span style="font-size:0.9rem;color:#4b7d59;">Contact: </span> <span id="organiser-phone" style="font-size:0.9rem;color:#4b7d59;"></span>
 
-            </li>
+           </li>
 
          </ul>
 
@@ -296,6 +306,8 @@ Select Category
  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
  <script src="../js/firebase.js"></script>
  <!-- <script src="../js/step1-auth.js"></script> -->
+ <script src="../js/fb-step2-auth.js"></script>
+ <script src="../js/main.js"></script>
 
 
  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
