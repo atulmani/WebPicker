@@ -76,52 +76,34 @@ function myfnc() {
   // anyway User will signout as soon as User will press signout / logout button anywhere in the application
   auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
     .then(() => {
+      // *********************for user creation*********************
       const promise = auth.createUserWithEmailAndPassword(email.value, pass.value);
       promise.then(function(firebaseUser) {
           // Success
-          console.log("Logged in User");
+          console.log("user created");
           // window.location.href = "profile.html";
           //Save users data into Users DB Collection
-            CreateUserData();
+          // UserEvent();
+          window.location.href = "../checkout/step2-auth.html?id=" + docID + "&eventid=" + eventid ;
+            // CreateUserData();
+
         });
-        // alert("test");
-        // window.location.href = "../checkout/step2-auth.html?id=" + docID + "&eventid=" + eventid ;
+
+         // *********************for user creation*********************
+        const lpromise = auth.signInWithEmailAndPassword(email.value, pass.value);
+        lpromise.then(function(firebaseUser) {
+            // Success
+            console.log("Logged in User");
+            // alert('test');
+            // UserEvent();
+            window.location.href = "../checkout/step2-auth.html?id=" + docID + "&eventid=" + eventid ;
+            // window.location.href = "profile.html";
+          })
+
     });
 
 };
 
-
-function CreateUserData() {
-  console.log('CreateUserData');
-
-    var txtEmail_Signin = document.getElementById("txtEmail_Signin").value;
-
-    console.log('email id:' + txtEmail_Signin);
-
-    console.log('Current user id: ' + auth.currentUser.uid);
-    //
-    // db.collection("Users").doc(auth.currentUser.uid).add({
-    db.collection("Users").doc(auth.currentUser.uid).set({
-        // console.log('inside db collection: ' + newEventID);
-        // UserId: docCount + 1,
-        // .doc(user.uid).set({uid: user.uid,},
-        UserEmail: txtEmail_Signin,
-        CreatedTimestamp: (new Date()).toString(),
-        UpdatedBy: '',
-        UpdatedTimestamp: '',
-        // Age: age,
-        // Language: language,
-        // Para: para
-      })
-      .then((docRef) => {
-        console.log("Data added sucessfully in the document: " + docRef.toString());
-        console.log("eventstart")
-        // console.log(Date.parse(eventstart))
-      })
-      .catch((error) => {
-        console.error("error adding document:", error);
-      });
-};
 
 //************* User Registration - Ends ******************
 
@@ -129,18 +111,40 @@ function CreateUserData() {
 
 
 
+//**************************Set users data into Users DB Collection starts**********************************
+function UserEvent(){
+  alert(' userEvent set started');
+
+  // var select = document.getElementById('idtype');
+  // var idtype = select.options[select.selectedIndex].value;
+
+  db.collection('userEvent')
+  .doc(auth.currentUser.uid)
+  .set({
+      uid: auth.currentUser.uid,
+      EventId: '',
+
+  })
+  .then(() => {
+        // updated
+        console.log ('Users data saved successfully');
+        //
+        // // Show alert
+        // document.querySelector('.alert').style.display = 'block';
+        //
+        // // Hide alert after 3 seconds
+        // setTimeout(function() {
+        //   document.querySelector('.alert').style.display = 'none';
+        // }, 3000);
 
 
-
-//************* for checkout to nex page from step1-auth to next one ******************
-
-
-
-
-
-
-
-
-
-
-//************* for checkout to nex page from step1-auth to next one - Ends ******************
+        // window.location.href = "../checkout/step3-checkout.html";
+      })
+      .catch((error) => {
+        // An error occurred
+        console.log(error.message);
+        // document.getElementById('errorMessage').innerHTML = error.message;
+        // document.getElementById('errorMessage').style.display = 'block';
+      });
+};
+// ******************************* set user data ends***********************************
