@@ -142,60 +142,6 @@ function renderEvents(doc) {
     "</div>" +
     "</a>";
 
-
-
-
-
-
-
-
   document.getElementById("eventRow").appendChild(itemCol);
-
-
-
-
-  // itemlist = document.getElementById("firebase-event-list");
-  // let item = document.createElement('div');
-  // item.classList.add("item");
-  // // item.innerHTML = "<div class='post-content'><h3 class='post-title'>" + change.doc.data().EventName + "</h3></div>";
-  //
-  //
-  // var link = "<a style='text-decoration:none;' href='createEvent.html?id=" + change.doc.data().EventId + "'>";
-  //
-  //
-  // // item.innerHTML = "<a style='text-decoration:none;' href='./Events/EventDetails.html?id=" + change.doc.data().EventId + ">" +
-  // item.innerHTML = link +
-  //   "<div class='item'>" +
-  //     "<div class='post-slide'>" +
-  //       "<div class='post-img'>" +
-  //           "<img style='border-radius:10px;' src='" + change.doc.data().EventImgURL + "' alt='' width='100%'>" +
-  //         "</div>" +
-  //         "<div class='post-content'>" +
-  //             "<h3 class='post-title' id='homepage_eventname'>" + change.doc.data().EventName +
-  //             "</h3>" +
-  //             "<p class='description'>" +
-  //                 "<span style='font-weight:bold'>Venue: </span>" + change.doc.data().EventVenue +
-  //                 "<br>" +
-  //                 "<span style='letter-spacing:1px;' id='homepage_eventvenue'></span>" +
-  //                 "<br>" +
-  //                 "<span style='font-weight:bold'>Date: </span>" + formatDate(change.doc.data().EventStartDate) + ' to ' + formatDate(change.doc.data().EventEndDate) +
-  //                 "<br>"
-  //                 "<span style='letter-spacing:1px;line-height:30px;'  id='homepage_eventdate'>" +
-  //                 "</span>" +
-  //                 "<br>" +
-  //                 "<span style='letter-spacing:1px;line-height:14px;'><span style='font-weight:bold'>Price</span>: ₹ 4999 </span>" +
-  //               "</p>" +
-  //             "</div>" +
-  //           "</div>" +
-  //         "</div>" +
-  //   "</a>"
-
-
-  // $('#event-list').trigger('add.owl.carousel', [item]).trigger('refresh.owl.carousel');
-
-  // console.log(change.doc.data().EventName);
-
-
-
 
 }
