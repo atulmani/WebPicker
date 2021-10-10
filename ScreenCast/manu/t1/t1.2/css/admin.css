@@ -280,6 +280,19 @@ body {
 
 
   /********* Loader - Starts **********/
+  .loaderincenter{
+    position: fixed;
+    width: 80%;
+    height: 80vh;
+    background: rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    /* filter: sepia(100px); */
+    /* backdrop-fitler: blur(20px); */
+  }
+
   .loader {
     border: 12px solid #E10032;
     border-radius: 50%;
