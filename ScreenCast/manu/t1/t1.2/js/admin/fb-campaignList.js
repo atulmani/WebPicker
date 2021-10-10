@@ -27,7 +27,7 @@ let tbody = document.createElement('tbody');
 
 // db.collection('WebAds').orderBy('Updated_Timestamp', 'desc').onSnapshot(snapshot => {
   // db.collection('WebAds').onSnapshot(snapshot => {
-db.collection('CampaignList').orderBy('Created_Timestamp', 'desc').get().then((snapshot) => {
+db.collection('CampaignList').orderBy('createdTimestamp', 'desc').get().then((snapshot) => {
   let changes = snapshot.docChanges();
   // console.log(changes);
   try {
@@ -60,16 +60,16 @@ db.collection('CampaignList').orderBy('Created_Timestamp', 'desc').get().then((s
 
 function renderList(doc, count) {
   // var ID = doc.data().ID;
-  var Campaign_ID = doc.data().Campaign_ID;
-  var Campaign_Name = doc.data().Campaign_Name;
-  var Organization_Name = doc.data().Organization_Name;
-  var Brand = doc.data().Brand;
+  var Campaign_ID = doc.data().campaignID;
+  var Campaign_Name = doc.data().campaignName;
+  var Organization_Name = doc.data().organizationName;
+  var Brand = doc.data().brand;
   var Device_List = '8';
-  var Status = doc.data().Status;
-  var Created_By = doc.data().Created_By;
-  var Created_Timestamp = doc.data().Created_Timestamp;
+  var Status = doc.data().status;
+  var Created_By = doc.data().createdBy;
+  var Created_Timestamp = doc.data().createdTimestamp;
   var Updated_By = doc.data().Updated_By;
-  var Updated_Timestamp = doc.data().Updated_Timestamp;
+  var Updated_Timestamp = doc.data().updatedTimestamp;
 
   // console.log ('document id: ' + doc.id);
 
@@ -86,7 +86,7 @@ function renderList(doc, count) {
   // var count = 1;
 
   var cell2 = document.createElement("td");
-  cell2.innerHTML = Campaign_ID;
+  cell2.innerHTML = "<a href='campaignReg.html?id=" + doc.id +"'>" + Campaign_ID + "</a>";;
   row.appendChild(cell2);
 
   var cell3 = document.createElement("td");
