@@ -9,6 +9,7 @@ auth.onAuthStateChanged(firebaseUser => {
       // console.log("Email ID: " + firebaseUser.email);
       document.getElementById('customerProfileIcon').src = firebaseUser.photoURL;
       document.getElementById('customerdisplayName').innerHTML = firebaseUser.displayName;
+
     } else {
       console.log('User has been logged out');
       window.location.href = "../login";

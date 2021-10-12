@@ -22,13 +22,13 @@ auth.onAuthStateChanged(firebaseUser => {
 
 // ****************** Starts - GetData **********************
 
-const table = document.getElementById('campaignList');
+const table = document.getElementById('deviceList');
 // const tbody = document.getElementById('');
 let tbody = document.createElement('tbody');
 
 // db.collection('WebAds').orderBy('Updated_Timestamp', 'desc').onSnapshot(snapshot => {
   // db.collection('WebAds').onSnapshot(snapshot => {
-db.collection('CampaignList').orderBy('createdTimestamp', 'desc').get().then((snapshot) => {
+db.collection('DeviceList').orderBy('createdTimestamp', 'desc').get().then((snapshot) => {
   let changes = snapshot.docChanges();
   // console.log(changes);
   try {
@@ -61,54 +61,60 @@ db.collection('CampaignList').orderBy('createdTimestamp', 'desc').get().then((sn
 
 function renderList(doc, count) {
   // var ID = doc.data().ID;
-  var Campaign_ID = doc.data().campaignID;
-  var Campaign_Name = doc.data().campaignName;
-  var Organization_Name = doc.data().organizationName;
-  var Brand = doc.data().brand;
-  var Device_List = '8';
-  var Status = doc.data().status;
-  var Created_By = doc.data().createdBy;
-  var Created_Timestamp = doc.data().createdTimestamp;
-  var Updated_By = doc.data().Updated_By;
-  var Updated_Timestamp = doc.data().updatedTimestamp;
 
-  // console.log ('document id: ' + doc.id);
-
-  // console.log('data received from db');
+  var deviceID = doc.id;
+  var deviceName = doc.data().deviceName;
+  var downloadMediaFrequency = doc.data().downloadMediaFrequency;
+  var deviceOwnerName = doc.data().deviceOwnerName;
+  var deviceCity = doc.data().deviceCity;
+  var deviceType = doc.data().deviceType;
+  var deviceSize = doc.data().deviceSize;
+  var locationType = doc.data().locationType;
+  var locationArea = doc.data().locationArea;
+  var completeAddress = doc.data().completeAddress;
+  var status = doc.data().status;
+  var createdBy = doc.data().createdBy;
+  var createdTimestamp = doc.data().createdTimestamp;
+  var updatedBy = doc.data().updatedBy;
+  var updatedTimestamp = doc.data().updatedTimestamp;
 
   let row = document.createElement('tr');
   // row.classList.add("item");
   var cell1 = document.createElement("td");
   cell1.innerHTML =  count ;
-  // var cellText = document.createTextNode("cell in row "+i+", column "+j);
-  // cell.appendChild(cellText);
   row.appendChild(cell1);
 
-  // var count = 1;
-
   var cell2 = document.createElement("td");
-  cell2.innerHTML = "<a href='campaignReg.html?id=" + doc.id +"'>" + Campaign_ID + "</a>";;
+  cell2.innerHTML = "<a href='deviceReg.html?id=" + doc.id +"'>" + deviceID + "</a>";;
   row.appendChild(cell2);
 
   var cell3 = document.createElement("td");
-  cell3.innerHTML = "<a href='campaignDetails.html?id=" + doc.id +"'>" + Campaign_Name + "</a>";
+  cell3.innerHTML = "<a href='deviceReg.html?id=" + doc.id +"'>" + deviceName + "</a>";
   row.appendChild(cell3);
 
   var cell4 = document.createElement("td");
-  cell4.innerHTML = Organization_Name;
+  cell4.innerHTML = downloadMediaFrequency;
   row.appendChild(cell4);
 
   var cell5 = document.createElement("td");
-  cell5.innerHTML = Brand;
+  cell5.innerHTML = deviceOwnerName;
   row.appendChild(cell5);
 
   var cell6 = document.createElement("td");
-  cell6.innerHTML = Device_List;
+  cell6.innerHTML = locationType;
   row.appendChild(cell6);
 
   var cell7 = document.createElement("td");
-  cell7.innerHTML = Status;
+  cell7.innerHTML = deviceCity + "<br>" +  locationArea + "<br>" + completeAddress;
   row.appendChild(cell7);
+
+  var cell8 = document.createElement("td");
+  cell8.innerHTML = deviceType + "<br>" + deviceSize ;
+  row.appendChild(cell8);
+
+  var cell9 = document.createElement("td");
+  cell9.innerHTML = status;
+  row.appendChild(cell9);
 
   var options = {
     weekday: 'short',
@@ -116,14 +122,14 @@ function renderList(doc, count) {
     month: 'short',
     day: 'numeric'
   };
-  const ut = new Date(Updated_Timestamp);
+  const ut = new Date(updatedTimestamp);
   var formattedDate = ut.toLocaleDateString("en-US", options);
   var formattedTime = ut.toLocaleTimeString("en-US");
   var formattedTimeStamp = formattedDate + ' ' + formattedTime;
 
-  var cell8 = document.createElement("td");
-  cell8.innerHTML = Updated_By + '<br>' + formattedTimeStamp;
-  row.appendChild(cell8);
+  var cell10 = document.createElement("td");
+  cell10.innerHTML = updatedBy + '<br>' + formattedTimeStamp;
+  row.appendChild(cell10);
 
   tbody.appendChild(row);
 };

@@ -134,14 +134,14 @@
                   <li class="">
                     <a class="" href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
                   </li>
-                  <li class="nav-item-highlight">
-                    <a  style='color: #fff;' href="campaignList.html"><i class="fas fa-clone"></i> Campaigns</a>
+                  <li class="">
+                    <a href="campaignList.html"><i class="fas fa-clone"></i> Campaigns</a>
                   </li>
                   <li class="">
                     <a class="" href="deviceList.html"><i class="fas fa-bezier-curve"></i> Devices </a>
                   </li>
-                  <li class="">
-                    <a class="" href="#"><i class="fas fa-cogs"></i> Mapping</a>
+                  <li class="nav-item-highlight">
+                    <a class="" style='color: #fff;' href="userList.html"><i class="fas fa-cogs"></i> Users</a>
                   </li>
                   <li class="">
                     <a class="" href="#"><i class="fas fa-rupee-sign"></i> Billing</a>
@@ -169,10 +169,10 @@
             <!-- <img src="../img/9.png" class="wave large" width="70%" alt=""> -->
             <div class="row no-gutters">
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                  <h4 class="select-tp-heading">Campaigns List</h4>
+                  <h4 class="select-tp-heading">User List</h4>
               </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                  <a href="campaignReg.html"> <button id='btnCampaignRegistration' class="mybutton button5" style="margin-top:16px;" >Campaigns Registration<i class="fas fa-arrow-right" ></i> </button></a>
+                  <!-- <a href="userReg.html"> <button id='btnCampaignRegistration' class="mybutton button5" style="margin-top:16px;" >User Registration<i class="fas fa-arrow-right" ></i> </button></a> -->
                 </div>
               </div>
               <hr>
@@ -181,13 +181,11 @@
                 <table id='campaignList' >
                   <tr>
                     <th>Sr#</th>
-                    <th>Campaign ID</th>
-                    <th>Campaign Name</th>
-                    <th>Organization Name</th>
-                    <th>Brand Name</th>
-                    <th>Device List</th>
+                    <th>User Email ID</th>
+                    <th>User Name</th>
+                    <th>User Location</th>
                     <th>Status</th>
-                    <th>Updated Timestamp</th>
+                    <th>Login Timestamp</th>
                   </tr>
 
                 </table>
@@ -322,7 +320,7 @@
 
       <script src="../js/firebase.js"></script>
       <script src="../js/firebase-admin-common.js"></script>
-      <script src="../js/admin/fb-campaignList.js"></script>
+      <script src="../js/admin/fb-userList.js"></script>
       <!-- <script src="../js/dashboard.js"></script> -->
       <!-- <script src="../js/main.js"></script> -->
 

@@ -7,7 +7,9 @@ auth.onAuthStateChanged(firebaseUser => {
       // console.log("UID: " + firebaseUser.uid);
       // console.log("Display Name: " + firebaseUser.displayName);
       // console.log("Email ID: " + firebaseUser.email);
-      // document.getElementById('displayName').innerHTML = firebaseUser.displayName;
+      document.getElementById('customerProfileIcon').src = firebaseUser.photoURL;
+      document.getElementById('customerdisplayName').innerHTML = firebaseUser.displayName;
+
     } else {
       console.log('User has been logged out');
       window.location.href = "../login";
@@ -40,7 +42,7 @@ function populateCampaignDetails(docID) {
   snapshot.get().then(async (doc) => {
     if (doc.exists) {
       // console.log('Doc: ' + doc.data().Customer_Name);
-      document.getElementById('txtCampaignName').value = doc.data().Campaign_Name;
+      document.getElementById('txtCampaignName').value = doc.data().campaignName;
 
       document.getElementById('loading').style.display = 'none';
     }
@@ -70,16 +72,14 @@ function addCampaigninDB() {
     db.collection('CampaignList')
       .add({
         ID: count + 1,
-        Campaign_ID: 'CAMP' + newCampaignID,
-        Campaign_Name : txtCampaignName,
-        Organization_Name : '',
-        Brand: '',
-        Device_List: '',
-        Status: 'NOT_PUBLISHED',
-        Created_By: auth.currentUser.email,
-        Created_Timestamp: (new Date()).toString(),
-        Updated_By: auth.currentUser.email,
-        Updated_Timestamp: (new Date()).toString()
+        campaignID: 'CAMP' + newCampaignID,
+        campaignName: txtCampaignName,
+        downloadurl:[],
+        status: 'NOT_PUBLISHED',
+        createdBy: auth.currentUser.email,
+        createdTimestamp: (new Date()).toString(),
+        updatedBy: auth.currentUser.email,
+        updatedTimestamp: (new Date()).toString()
       })
       .then(() => {
         // updated
