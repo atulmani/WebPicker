@@ -7,7 +7,8 @@ auth.onAuthStateChanged(firebaseUser => {
       // console.log("UID: " + firebaseUser.uid);
       // console.log("Display Name: " + firebaseUser.displayName);
       // console.log("Email ID: " + firebaseUser.email);
-      // document.getElementById('displayName').innerHTML = firebaseUser.displayName;
+      document.getElementById('customerProfileIcon').src = firebaseUser.photoURL;
+      document.getElementById('customerdisplayName').innerHTML = firebaseUser.displayName;
     } else {
       console.log('User has been logged out');
       window.location.href = "../login";
