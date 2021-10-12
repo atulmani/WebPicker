@@ -56,10 +56,42 @@ function populateEventData() {
       document.getElementById("organiser-phone").innerHTML = doc.data().EventorganiserPhone;
       document.getElementById("event-price").innerHTML = doc.data().Price;
       document.getElementById("event-image").src = doc.data().EventImgURL;
-      document.getElementById("age").innerHTML = doc.data().Age;
-      document.getElementById("language").innerHTML = doc.data().Language;
+      // document.getElementById("age").innerHTML = doc.data().Age;
+      // document.getElementById("language").innerHTML = doc.data().Language;
       document.getElementById("eventstatus").innerHTML = doc.data().Status;
-      document.getElementById("para").innerHTML = doc.data().Para;
+
+      if (doc.data().Age == 'undefined'  || doc.data().Age == '' || doc.data().Age == null ) {
+
+        document.getElementById("age").innerHTML = "any age group";
+        // console.log('In If condition :' + doc.data().Age );
+      }
+      else {
+       document.getElementById("age").innerHTML = doc.data().Age;
+       // console.log('age is working in else:' + doc.data().Age );
+     }
+      // document.getElementById("language").innerHTML = doc.data().Language;
+      if (doc.data().Language == 'undefined'  || doc.data().Language == '' || doc.data().Language == null ) {
+
+        document.getElementById("language").innerHTML = "English";
+        // console.log('In If condition :' + doc.data().Age );
+      }
+      else {
+       document.getElementById("language").innerHTML = doc.data().Language;
+       // console.log('age is working in else:' + doc.data().Age );
+     }
+      document.getElementById("eventstatus").innerHTML = doc.data().Status;
+      // document.getElementById("para").innerHTML = doc.data().Para;
+      if (doc.data().Para == 'undefined'  || doc.data().Para == '' || doc.data().Para == null ) {
+
+        document.getElementById("para").innerHTML = "Below are the event detail";
+        // console.log('In If condition :' + doc.data().Age );
+      }
+      else {
+       document.getElementById("para").innerHTML = doc.data().Para;
+       // console.log('age is working in else:' + doc.data().Age );
+     }
+
+      // document.getElementById("para").innerHTML = doc.data().Para;
       // document.getElementById("ticket").innerHTML = doc.data().Ticket;
     }
   });
@@ -151,52 +183,33 @@ function GetProfileData (user)
 
 
 //**************************Set users data into Users DB Collection starts**********************************
+const btnCheckout = document.getElementById('btnCheckout');
+btnCheckout.addEventListener('click', setUsersProfileData, false);
+
 function setUsersProfileData(user){
-  // alert('set started');
-
-  // var select = document.getElementById('idtype');
-  // var idtype = select.options[select.selectedIndex].value;
-
   db.collection('Users')
   .doc(auth.currentUser.uid)
   .set({
       uid: auth.currentUser.uid,
-      // // displayName: document.getElementById('profile-name').value.trim(),
-      //  // EmailID: user.email,
       Phone: document.getElementById('phone').value,
       DateOfBirth: document.getElementById('dob').value,
       Address: document.getElementById('address').value,
-      // ImageName : '',
-      // ImageURL : '',
       EmailId : auth.currentUser.email,
-      // // IDType: idtype,
-      // // IDNo: document.getElementById('idno').value.trim(),
-      // Status: 'ACTIVE',
+      Status: 'ACTIVE',
       CreatedTimestamp: '',
       UpdatedTimestamp: (new Date()).toString(),
       FirstName: document.getElementById('fName').value,
       LastName: document.getElementById('lName').value,
       City: document.getElementById('city').value,
       State: document.getElementById('state').value,
-      // Ticket: document.getElementId('ticket').value,
       Ticket: document.getElementById('tik').value,
   })
   .then(() => {
         // updated
         console.log ('Users data saved successfull');
-        // alert('userevent set done')
-        // EventRegistration();
-        //
-        // // Show alert
-        // document.querySelector('.alert').style.display = 'block';
-        //
-        // // Hide alert after 3 seconds
-        // setTimeout(function() {
-        //   document.querySelector('.alert').style.display = 'none';
-        // }, 3000);
 
+        eventRegistration();
 
-        window.location.href = "../checkout/step3-checkout.html?id=" + docID + "&eventid=" + eventid;
       })
       .catch((error) => {
         // An error occurred
@@ -205,97 +218,28 @@ function setUsersProfileData(user){
         // document.getElementById('errorMessage').style.display = 'block';
       });
 };
-// ******************************* set user data ends***********************************
 
-
-
-// ******************************* Update profie starts*********************************
-
-
-const btnCheckout = document.getElementById('btnCheckout');
-btnCheckout.addEventListener('click', setUsersProfileData, false);
-
-// function saveData() {
-//   console.log('Save data started123 jbjhhjj ');
-//   //Update Display name for User Profile in firebase system
-//   console.log('currentUser : ' + auth.currentUser.email);
-//   auth.currentUser.updateProfile({
-//     uid: auth.currentUser.uid,
-//     // displayName: document.getElementById('profile-name').value.trim(),
-//      // EmailID: user.email,
-//     Phone: document.getElementById('phone').value,
-//     DateOfBirth: document.getElementById('dob').value,
-//     Address: document.getElementById('address').value,
-//     ImageName : '',
-//     ImageURL : '',
-//     EmailId : auth.currentUser.email,
-//     // IDType: idtype,
-//     // IDNo: document.getElementById('idno').value.trim(),
-//     // Status: 'ACTIVE',
-//     CreatedTimestamp: '',
-//     UpdatedTimestamp: (new Date()).toString(),
-//     FirstName: document.getElementById('fName').value,
-//     LastName: document.getElementById('lName').value,
-//     City: document.getElementById('city').value,
-//     State: document.getElementById('state').value,
-//     // Ticket: document.getElementById('ticket').value,
-//     Ticket: document.getElementById('tik').value,
-//
-//   }).then(() => {
-//     // Update successful
-//     //Save the Users registration data in Users db Collection
-//     setUsersProfileData (auth.currentUser);
-//     window.location.href = "../checkout/step3-checkout.html";
-//
-//
-//   }).catch((error) => {
-//     console.log(error.message)
-//     // An error occurred
-//     // document.getElementById('errorMessage_Signup').innerHTML = error.message;
-//     // document.getElementById('errorMessage_Signup').style.display = 'block';
-//   });
-//   console.log('Save data completed ');
-// }
-
-// ******************************* Update profie ends*********************************
-
-
-//**************************Set users data into Users DB Collection starts**********************************
-function EventRegistration(user){
-  // alert(' userEvent set started');
-
-  // var select = document.getElementById('idtype');
-  // var idtype = select.options[select.selectedIndex].value;
+// ******************************* Event Registration ***********************************
+function eventRegistration() {
+  const erId = docID + auth.currentUser.uid;
 
   db.collection('EventRegistration')
-  .doc(docID)
-  .set({
+    .doc(erId)
+    .set({
       uid: auth.currentUser.uid,
       EventId: docID,
-      // ParticipantCount:'',
-      // SecParticipantFullname: '' ,
-      // SecParticipantDob: '',
-  })
-  .then(() => {
-        // updated
-        console.log ('data saved in EventRegistration collection');
-        //
-        // // Show alert
-        // document.querySelector('.alert').style.display = 'block';
-        //
-        // // Hide alert after 3 seconds
-        // setTimeout(function() {
-        //   document.querySelector('.alert').style.display = 'none';
-        // }, 3000);
+      Participants: [],
+    })
+    .then(() => {
+      // updated
+      console.log('data saved in EventRegistration collection');
 
-
-        window.location.href = "../checkout/step3-checkout.html?id=" + docID + "&eventid=" + eventid;
-      })
-      .catch((error) => {
-        // An error occurred
-        console.log(error.message);
-        // document.getElementById('errorMessage').innerHTML = error.message;
-        // document.getElementById('errorMessage').style.display = 'block';
-      });
+      window.location.href = "../checkout/step3-checkout.html?id=" + docID + "&eventid=" + eventid;
+    })
+    .catch((error) => {
+      // An error occurred
+      console.log(error.message);
+      // document.getElementById('errorMessage').innerHTML = error.message;
+      // document.getElementById('errorMessage').style.display = 'block';
+    });
 };
-// ******************************* set user data ends***********************************
