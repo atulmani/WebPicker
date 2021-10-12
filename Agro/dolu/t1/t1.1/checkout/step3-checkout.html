@@ -20,6 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
 
 
   <!-- Bootstrap css and font awesome -->
@@ -37,6 +38,21 @@
 </head>
 
 <body>
+  <!-- before navbar - start -->
+  <div class="before-nav">
+    <div class="before-nav-information">
+      <a href=""> <span> Login </span> <i class="fas fa-sign-in-alt"></i> </a> <span></span>
+
+    </div>
+
+    <div class="icons">
+      <a href="https://www.facebook.com/crop.queens/"> <i class="fab fa-facebook-f"></i> </a>
+      <a href="https://twitter.com/CropsQueens"> <i class="fab fa-twitter"></i> </a>
+      <a href="https://cropqueens.tumblr.com/"> <i class="fab fa-tumblr"></i> </a>
+      <a href="https://www.instagram.com/cropqueens/"> <i class="fab fa-instagram"></i> </a>
+    </div>
+  </div>
+
   <!-- Navbar - Start -->
   <nav class="navbar navbar-expand-lg sticky-top ">
     <a class="navbar-brand" href="#banner">
@@ -54,20 +70,19 @@
       </span>
       <ul class="nav navbar-nav ml-auto ">
         <li class="nav-item">
-          <a class="nav-link" href="#banner">Home</a>
+          <a class="nav-link" href="../index.html">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#sectors">Services</a>
+          <a class="nav-link" href="../index.html">Services</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="#portfolio">Portfolio</a>
-          <!-- <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#one">One</a></li>  -->
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="#footer">About us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#aboutus">About us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#contactus">Contact us</a>
+          <a class="nav-link" href="#footer">Contact us</a>
         </li>
       </ul>
 
@@ -127,9 +142,9 @@
  </div>
 </div>
 </form>
-<br>
-<button  style="background-color:#fbe25f;color:#fff; float:left; display:block;" class="btn addMore" type="button" name="button"> Add more</button>
-<button id="eventRegister" style="background-color:#fbe25f;color:#fff; float:right; display:block;" class="btn" type="button" name="button"> Click here to register</button><br><br>
+
+<button  style="background-color:#fbe25f;color:#fff; float:left; display:block;float:right;" class="btn addMore" type="button" name="button"> Add more</button><br><br>
+<!-- <button id="eventRegister" style="background-color:#fbe25f;color:#fff; float:right; display:block;" class="btn" type="button" name="button"> Click here to register</button><br><br> -->
 <!-- <button style="float:right;" class="btn" type="button" name="button"></button> -->
 <!-- <hr style="background-color:#000;"> -->
 
@@ -186,14 +201,14 @@
   <label for="inputEmail4" class="form-label">Full name</label>
   <input type="text" class="form-control" id="secpfullname">
   </div>
-  <div class="col-md-6">
+  <!-- <div class="col-md-6">
   <label for="inputEmail4" class="form-label">Email</label>
   <input type="email" class="form-control" id="secpemail">
-  </div>
-  <div class="col-md-6">
+  </div> -->
+  <!-- <div class="col-md-6">
   <label for="inputEmail4" class="form-label">Phone no.</label>
   <input type="number" class="form-control" id="secpphone">
-  </div>
+  </div> -->
 
 
 
@@ -210,10 +225,10 @@
   </div>
 
   </form>
-<br>
+
 <button id="saveup" style="background-color:#fbe25f;color:#fff; float:left; display:block;" class="btn" type="button" name="button"> Save</button><br><br>
-<button style="background-color:#fbe25f;color:#fff; float:right; display:block;" class="btn addMore" type="button" name="button"> Add More</button>
-<button style="background-color:#fbe25f;color:#fff; float:left; display:block;" class="btn del" type="button" name="button"> Delete</button><br><br>
+<!-- <button style="background-color:#fbe25f;color:#fff; float:right; display:block;" class="btn addMore" type="button" name="button"> Add More</button> -->
+<!-- <button style="background-color:#fbe25f;color:#fff; float:right; display:block;" class="btn del" type="button" name="button"> Delete</button><br><br> -->
 </div>
 <div id="head" class="" style="display: none ;">
   <p> data added sucessfully</p>
@@ -241,11 +256,14 @@
           <div class="col-lg-12">
              <ul>
               <li> <span style="font-weight:200" class="textheadleft"> Event cost</span>:<span id="event-price" style="position: relative;float: right;"></span></li>
-              <li> <span style="font-weight:200" class="textheadleft"> No. Of Tickets</span>: <span id="tickets" style="position: relative;float: right;"></span></li>
-              <li> <span style="font-weight:600" class="textheadleft"> Total:</span> <span style="position: relative;float: right;font-weight:600">Rs <span id="totalPrice"></span>  </span></li><hr>
-              <li> <span style="font-weight:200" class="textheadleft"> Tax And GST(2%)</span> <span style="position: relative;float: right;">Rs 12</span></li>
-              <li> <span style="font-weight:200" class="textheadleft"> Other Taxes(2%)</span> <span style="position: relative;float: right;">Rs 15.67</span></li><hr>
-              <li> <span style="font-weight:600" class="textheadleft"> Total Amount:</span><span style="position: relative;float: right;font-weight:600">Rs 2300</span></li><br>
+              <li> <span style="font-weight:200" class="textheadleft"> No. Of Tickets</span>: <span id="tickets" style="position: relative;float: right;">1</span></li>
+              <li> <span style="font-weight:600" class="textheadleft"> Total:</span>
+                <span style="position: relative;float: right;font-weight:600">Rs <span id="totalPrice"></span>
+              </span></li><hr>
+              <li> <span style="font-weight:200" class="textheadleft"> Tax And GST(<span id="eventgst"></span>%)</span> <span style="position: relative;float: right;">Rs <span id="gstvalue"></span></span></li>
+              <!-- <li> <span style="font-weight:200" class="textheadleft"> Other Taxes(2%)</span> <span style="position: relative;float: right;">Rs 15.67</span></li><hr> -->
+              <hr>
+              <li> <span style="font-weight:600" class="textheadleft"> Total Amount:</span><span id="finalamt" style="position: relative;float: right;font-weight:600">Rs 2300</span></li><br>
               <li> <span style="position: relative;float: right;"><button id="pay" style="background-color:#fbe25f;color:#fff; font-size:0.8rem; display:block;" type="button" name="button" class="btn"> PAY <i class="fas fa-angle-double-right"></i></button></span> </li>
             </ul>
 
@@ -273,6 +291,85 @@
 
 
   <!-- Banner Section - End -->
+
+
+   <!-- Footer Section - Start -->
+   <section id="footer">
+     <!-- <div style="background-color:#373435;" class="row no-gutters"> -->
+     <div style="background-color:#fbe25f; font-family: 'Baloo 2', cursive; letter-spacing:1.5px;" class="row no-gutters">
+       <div style="padding:50px;" class="col-lg-6 col-md-12 col-sm-12">
+
+         <span>
+           <h3 style="text-align:left;color:#4b7d59; font-weight:1000;">Crop Queens</h3>
+         </span>
+         <hr style="background-color:#fff;height:2px;">
+
+         <p style="text-align:left;font-size:1rem; color:#4b7d59;">Crop Queens is an initiative of CSDSE Private Limited . We at crop queens are closely associated with farmers and agriculture sector & food industry. This endeavor is our dream to change the scenario in agriculture and Food Processing to promote. This portal is dedicated to the growth of farmers and farming and food processing in our country. CSDSE has a team of competent professionals with rich experience as per industry standards.
+
+  </p>
+         <br><br>
+         <h4 style="text-align:left;color:#4b7d59;font-weight:1000;">Objective</h4>
+         <hr style="background-color:#fff; height:2px;">
+         <p style="text-align:left; font-size:1rem;color:#4b7d59;">Main objective of CropQueens.com is to streamline the agriculture sector with process oriented and simple platform that can be easily used by end user. We plan to put Indian farmers in global scenario and integrate Indian farming with global farming. Also, farmer should be benefited in terms of financial gain. Indian Agriculture sector needs reform in terms of modern age farming technologies. Crop Queens is bridging the gap between Indian agriculture and food processing industries.</p>
+
+       </div>
+       <div class="col-lg-6 col-md-12 col-sm-12 large" style=" padding: 10% 8%;">
+         <div class="" style="background:#6ea23f; padding:20px;text-align: center; border-radius:12px;">
+
+
+           <ul style="text-align:center;letter-spacing:2px;color:#fbe25f;" class="footer-styles">
+             <li class="footer-li"> <a style="font-size:0.78rem; color:#fbe25f;" href="#">About Us</a></li>
+             <li class="footer-li"> <a style="font-size:0.78rem; color:#fbe25f;" href="#">FAQ's</a> </li>
+             <li class="footer-li"> <a style="font-size:0.78rem; color:#fbe25f;" href="#">Privacy Policy</a> </li>
+             <li class="footer-li"> <a style="font-size:0.78rem; color:#fbe25f;" href="#">Contact Us</a> </li>
+
+           </ul><br class="large" />
+
+           <ul style="text-align:left; " class="footer-styles">
+             <li class="footer-li"> <a href="https://www.facebook.com/crop.queens/"><i style="font-size:18px; color:#fbe25f" class="fab fa-facebook-f"></i></a></li>
+             <li class="footer-li"> <a href="https://www.instagram.com/cropqueens/"><i style="font-size:18px; color:#fbe25f" class="fab fa-instagram"></i></a> </li>
+             <li class="footer-li"> <a href="#"><i style="font-size:18px; color:#fbe25f" class="fab fa-youtube"></i></a> </li>
+           </ul>
+
+         </div>
+       </div>
+
+       <!-- for phone -->
+
+       <div class="col-lg-6 col-md-12 col-sm-12 small" style="padding:3% 8%;">
+         <div class="" style="background:#6ea23f; padding:20px;text-align: center; border-radius: 12px; margin-bottom:15%;">
+
+           <ul style="text-align:left;" class="footer-styles">
+             <li class="footer-li"> <a style="font-size:10px; color:#fbe25f" href="#">About Us</a></li>
+             <li class="footer-li"> <a style="font-size:10px; color:#fbe25f" href="#">FAQ's</a> </li>
+             <li class="footer-li"> <a style="font-size:10px; color:#fbe25f" href="#">Privacy Policy</a> </li>
+             <li class="footer-li"> <a style="font-size:10px; color:#fbe25f" href="#">Contact Us</a> </li>
+
+           </ul>
+
+           <ul style="text-align:left;" class="footer-styles">
+             <li class="footer-li"> <a href="https://www.facebook.com/crop.queens/"><i style="font-size:18px; color:#fbe25f" class="fab fa-facebook-f"></i></a></li>
+             <li class="footer-li"> <a href="https://www.instagram.com/cropqueens/"><i style="font-size:18px; color:#fbe25f" class="fab fa-instagram"></i></a> </li>
+             <li class="footer-li"> <a href="#"><i style="font-size:18px; color:#fbe25f" class="fab fa-youtube"></i></a> </li>
+
+           </ul>
+         </div>
+       </div>
+
+
+     </div>
+
+       <div style="background:#6ea23f;font-size:10px;padding:0.5% 0;font-family: 'Baloo 2', cursive; color:#fbe25f;" class="">
+         Copyright © Academy Planner, Powered by TPLiVE
+
+
+       </div>
+
+   </section>
+
+
+
+   <!-- Footer Section - end -->
 
 
   <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
