@@ -83,6 +83,7 @@ function populateEventData() {
       document.getElementById("language").value = doc.data().Language;
       document.getElementById("eventstatus").value = doc.data().Status;
       document.getElementById("para").value = doc.data().Para;
+      document.getElementById("eventgst").value = doc.data().Gst;
     }
   });
 }
@@ -115,6 +116,7 @@ function CreateEventData() {
     var language = document.getElementById("language").value;
     var eventstatus = document.getElementById("eventstatus").value;
     var para = document.getElementById("para").value;
+    var eventgst = document.getElementById("eventgst").value;
 
     db.collection("Events").add({
         // console.log('inside db collection: ' + newEventID);
@@ -141,7 +143,8 @@ function CreateEventData() {
         UpdatedTimestamp: '',
         Age: age,
         Language: language,
-        Para: para
+        Para: para,
+        Gst: eventgst
 
 
       })
@@ -175,6 +178,7 @@ function UpdateEventData() {
   var language = document.getElementById("language").value;
   var eventstatus = document.getElementById("eventstatus").value;
   var para = document.getElementById("para").value;
+  var eventgst = document.getElementById("eventgst").value;
 
   db.collection("Events").doc(docID).update({
       // console.log('inside db collection: ' + newEventID);
@@ -193,7 +197,8 @@ function UpdateEventData() {
       UpdatedTimestamp: (new Date()).toString(),
       Age: age,
       Language: language,
-      Para: para
+      Para: para,
+      Gst: eventgst
 
 
     })
