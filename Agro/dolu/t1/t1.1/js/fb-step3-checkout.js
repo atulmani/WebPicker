@@ -24,7 +24,7 @@ auth.onAuthStateChanged(firebaseUser => {
       GetProfileData(firebaseUser);
       getEventRegistration();
       populateEventData();
-      calculatePrice();
+      // calculatePrice();
       console.log('getting profile data');
 
 
@@ -96,7 +96,7 @@ function GetProfileData(user) {
 // ******************************* Function for getting or populating user's data ends************
 
 
-const register = document.getElementById('eventRegister');
+// const register = document.getElementById('eventRegister');
 const addMore = document.querySelector(".addMore");
 const extraBox = document.getElementById('firstExtra');
 const pay = document.getElementById('pay');
@@ -107,74 +107,28 @@ const head = document.getElementById('head');
 
 
 
-register.addEventListener('click', eventRegistration, false);
+// register.addEventListener('click', eventRegistration, false);
 addMore.addEventListener('click', extraBoxDisplay, false);
 saveup.addEventListener('click', addEventReg, false);
 del.addEventListener('click', deleteEventReg, false);
 
 
-//**************************Set users data into Users DB Collection starts**********************************
-function eventRegistration(user) {
-  // alert(' participant set started');
-
-  // var select = document.getElementById('idtype');
-  // var idtype = select.options[select.selectedIndex].value;
-  const erId = docID + auth.currentUser.uid;
-
-  db.collection('EventRegistration')
-    .doc(erId)
-    .set({
-      uid: auth.currentUser.uid,
-      EventId: docID,
-      Participants: [],
-      // Price: document.getElementById("eventprice").value
-
-    })
-    .then(() => {
-      // updated
-      console.log('data saved in EventRegistration collection');
-      //
-      // // Show alert
-      // document.querySelector('.alert').style.display = 'block';
-      //
-      // // Hide alert after 3 seconds
-      // setTimeout(function() {
-      //   document.querySelector('.alert').style.display = 'none';
-      // }, 3000);
-      register.style.display = "none";
-      addMore.style.display = "block";
-      pay.style.display = "block";
-      console.log("the event registration id is" + erId);
-
-
-
-
-      // window.location.href = "../checkout/step3-checkout.html";
-    })
-    .catch((error) => {
-      // An error occurred
-      console.log(error.message);
-      // document.getElementById('errorMessage').innerHTML = error.message;
-      // document.getElementById('errorMessage').style.display = 'block';
-    });
-};
 // ******************************* set user data ends***********************************
 
 function extraBoxDisplay() {
   extraBox.style.display = "block";
 }
 
-
-
 function addEventReg() {
   // console.log ('erid is' + erId );
   console.log('data saved in EventRegistration collection 55555555555555555555555');
   const erId = docID + auth.currentUser.uid;
   const secpfullname = document.getElementById('secpfullname').value;
+  const secpdob = document.getElementById('secpdob').value;
 
   var newParticipant = {
     FullName: secpfullname,
-    DOB: '01/01/2020'
+    DOB: secpdob,
   };
 
   var docRef1 = db.collection('EventRegistration').doc(erId);
@@ -183,6 +137,7 @@ function addEventReg() {
   docRef1.update({
     Participants: firebase.firestore.FieldValue.arrayUnion(newParticipant)
   });
+
 
   // getEventRegistration();
   firstExtra.style.display = "none";
@@ -202,7 +157,7 @@ function deleteEventReg(ParticipantFullName) {
 
   var newParticipant = {
     FullName: secpfullname,
-    DOB: "01/01/2020"
+    // DOB: "01/01/2020"
   };
 
   var docRef1 = db.collection('EventRegistration').doc(erId);
@@ -248,7 +203,9 @@ function getEventRegistration() {
     if (doc.exists) {
       console.log('Doc: ' + erId);
       renderEventParticipation(doc);
-      document.getElementById("tickets").innerHTML = doc.data().Participants.length;
+      const participantlength = doc.data().Participants.length;
+      console.log("participantlength is" + participantlength );
+      document.getElementById("tickets").innerHTML = 1 + participantlength ;
     }
   }).catch((error) => {
     // An error occurred
@@ -319,22 +276,40 @@ function populateEventData() {
       // document.getElementById("organiser-email").innerHTML = doc.data().OrganiserEmail;
       // document.getElementById("organiser-phone").innerHTML = doc.data().EventorganiserPhone;
       document.getElementById("event-price").innerHTML = doc.data().Price;
+      document.getElementById("eventgst").innerHTML = doc.data().Gst;
       // document.getElementById("event-image").src = doc.data().EventImgURL;
       // document.getElementById("age").innerHTML = doc.data().Age;
       // document.getElementById("language").innerHTML = doc.data().Language;
       // document.getElementById("eventstatus").innerHTML = doc.data().Status;
       // document.getElementById("para").innerHTML = doc.data().Para;
 
+
+        const eventprice = document.getElementById("event-price").innerHTML;
+        console.log('Event Price: ' + eventprice );
+        const tickets = document.getElementById("tickets").innerHTML;
+        console.log('Tickets: ' + tickets );
+        // document.getElementById("totalPrice").innerHTML = eventprice * tickets;
+        // document.getElementById("totalPrice").innerHTML = "Total Price";
+        const totalPrice = eventprice * tickets;
+        document.getElementById("totalPrice").innerHTML = totalPrice;
+
+        const gst = document.getElementById('eventgst').innerHTML;
+
+        // const gstdivision = gst / 100;
+        // console.log("gst division is" + gstdivision);
+        const gstvalue = (gst/100) * totalPrice;
+        // const gstvalue = "totalPrice";
+        document.getElementById("gstvalue").innerHTML = gstvalue;
+
+        const finalamt = gstvalue + totalPrice
+
+        document.getElementById("finalamt").innerHTML = "Rs " + finalamt;
+
+
+
+
+
     }
   });
-}
 
-function calculatePrice(){
-  console.log("calucation started");
-  var tickets = document.getElementById("tickets").innerHTML;
-  console.log("the tickets are" + tickets );
-  var eventcost = document.getElementById("event-price").innerHTML;
-  var totalprice = document.getElementById("totalPrice").innerHTML;
-
-  totalprice = tickets*eventcost;
 }
