@@ -43,10 +43,38 @@ function populateEventData() {
       document.getElementById("organiser-phone").innerHTML = doc.data().EventorganiserPhone;
       document.getElementById("event-price").innerHTML = doc.data().Price;
       document.getElementById("event-image").src = doc.data().EventImgURL;
-      document.getElementById("age").innerHTML = doc.data().Age;
-      document.getElementById("language").innerHTML = doc.data().Language;
+      console.log('if age is working :' + doc.data().Age );
+      if (doc.data().Age == 'undefined'  || doc.data().Age == '' || doc.data().Age == null ) {
+
+        document.getElementById("age").innerHTML = "any age group";
+        // console.log('In If condition :' + doc.data().Age );
+      }
+      else {
+       document.getElementById("age").innerHTML = doc.data().Age;
+       // console.log('age is working in else:' + doc.data().Age );
+     }
+      // document.getElementById("language").innerHTML = doc.data().Language;
+      if (doc.data().Language == 'undefined'  || doc.data().Language == '' || doc.data().Language == null ) {
+
+        document.getElementById("language").innerHTML = "English";
+        // console.log('In If condition :' + doc.data().Age );
+      }
+      else {
+       document.getElementById("language").innerHTML = doc.data().Language;
+       // console.log('age is working in else:' + doc.data().Age );
+     }
       document.getElementById("eventstatus").innerHTML = doc.data().Status;
-      document.getElementById("para").innerHTML = doc.data().Para;
+      // document.getElementById("para").innerHTML = doc.data().Para;
+      if (doc.data().Para == 'undefined'  || doc.data().Para == '' || doc.data().Para == null ) {
+
+        document.getElementById("para").innerHTML = "Below are the event detail";
+        // console.log('In If condition :' + doc.data().Age );
+      }
+      else {
+       document.getElementById("para").innerHTML = doc.data().Para;
+       // console.log('age is working in else:' + doc.data().Age );
+     }
+      // console.log('age is:' + doc.data().Age );
 
     }
   });
@@ -87,6 +115,21 @@ function myfnc() {
           window.location.href = "../checkout/step2-auth.html?id=" + docID + "&eventid=" + eventid ;
             // CreateUserData();
 
+        })
+        .catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          if (errorCode === 'auth/wrong-password') {
+            console.log('Wrong password.');
+            document.getElementById('errorMessage_Login').innerHTML = errorMessage + ' Please use password eye to cross check the password you enter.';
+            document.getElementById('errorMessage_Login').style.display = 'block';
+          } else {
+            console.log(errorMessage);
+            document.getElementById('errorMessage_Login').innerHTML = 'The email id is registered with different phone no.';
+            document.getElementById('errorMessage_Login').style.display = 'block';
+          }
+          console.log(error);
         });
 
          // *********************for user creation*********************
@@ -103,6 +146,24 @@ function myfnc() {
     });
 
 };
+
+
+
+var btnChangePassword = document.getElementById('btnChangePassword');
+var btnChangePasswordmessage = document.getElementById('btnChangePasswordmessage');
+
+
+btnChangePassword.addEventListener('click', changePassword, false);
+
+function changePassword() {
+  const emailId = auth.currentUser.email;
+  btnChangePasswordmessage.style.display = 'block';
+  auth.sendPasswordResetEmail(emailId).then(function() {
+    console.log('email has been sent');
+  }).catch(function(error) {
+    console.log('error occurred while sending email: ' + error);
+  });
+}
 
 
 //************* User Registration - Ends ******************
