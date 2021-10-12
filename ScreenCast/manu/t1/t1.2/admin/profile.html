@@ -125,8 +125,10 @@
       <div class="fixed-side-nav">
         <nav class="navbar-dashboard navbar-expand-lg">
           <div class="" >
-            <img src="../img/customers/usha/usha.png" width="70%" alt="">
-            <h5> USHA Electricals</h5>
+            <center>
+              <img id="customerProfileIcon" src="" style="width: 100px; height: 100px;border-radius: 50%;" alt="">
+              <h5 id="customerdisplayName" > </h5>
+            </center>
           </div>
           <hr>
           <div class="">
@@ -175,11 +177,16 @@
       <hr>
       <div class="row no-gutters dashboard-content-row">
         <div class="col-lg-3 col-md-3 col-sm-12">
-          <div id="cameraIcon" class="camera-icon"><br>
-            <i class="fas fa-camera"></i>
+          <div class="" style="display:flex;">
+            <div id="uploadIcon" class="camera-icon">
+              <i class="fas fa-upload"></i>
+            </div>
+            <div id="cameraIcon" class="camera-icon" style="margin-left: 10px;">
+              <i class="fas fa-camera"></i>
+            </div>
           </div>
           <div class="profile-pic">
-            <img src="../img/logo.png" style="width: 200px; height: 200px;border-radius: 50%;" alt="">
+            <img id="profilePic" src="" style="width: 200px; height: 200px;border-radius: 50%;" alt="">
           </div>
           <div id="changeImage" class="change-image">
             <!-- <h5>Change Image</h5> -->
@@ -188,7 +195,7 @@
           <div class="Change-email-password">
             <div class="email-edit"><br>
               <h6>Last Visited</h6>
-              <input type="email" id="profileEmail" style="border:none;background:none;" readonly class="email" name="" value="atultripathi@gmail.com">
+              <input type="email" id="profileEmail" style="border:none;background:none;" readonly class="email" name="" value="">
             </div>
             <div class="row no-gutters">
               <div class="col-lg-12 col-md-12 col-sm-12">
@@ -204,9 +211,15 @@
           </div>
         </div>
         <div class="col-lg-9 col-md-9 col-sm-12" style="padding: 4px;"><br>
-          <label for="status">Status:</label>
-          <strong><label id='status'></label></strong><br>
           <div id='profileForm' class="row no-gutters">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <label for="name">Status:</label><br>
+              <strong><label id='status'></label></strong><br><br><br>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <label for="name">Display Name:</label><br>
+              <input type="text" id="custDisplayName" name="custDisplayName" value=""><br><br><br>
+            </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
               <label for="name">Name:</label><br>
               <input type="text" id="name" name="name" value=""><br><br><br>
@@ -240,7 +253,7 @@
               </div>
 
               <!-- <input id='btnSave' type="button" value="Save"> -->
-              <button id='btnSave' class="mybutton button5">Logout<i class="fas fa-arrow-right"></i> </button>
+              <button id='btnSave' class="mybutton button5">Save<i class="fas fa-arrow-right"></i> </button>
             </div>
             </div>
           </div>
@@ -357,10 +370,11 @@
   <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-storage.js"></script>
 
   <script src="../js/firebase.js"></script>
   <script src="../js/firebase-admin-common.js"></script>
-  <script src="../js/firebase-profile.js"></script>
+  <script src="../js/admin/fb-profile.js"></script>
   <!-- <script src="../js/main.js"></script> -->
 
   <!-- Owl Carousel Javascript  -->
