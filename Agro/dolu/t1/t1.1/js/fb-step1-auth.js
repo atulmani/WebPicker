@@ -43,10 +43,38 @@ function populateEventData() {
       document.getElementById("organiser-phone").innerHTML = doc.data().EventorganiserPhone;
       document.getElementById("event-price").innerHTML = doc.data().Price;
       document.getElementById("event-image").src = doc.data().EventImgURL;
-      document.getElementById("age").innerHTML = doc.data().Age;
-      document.getElementById("language").innerHTML = doc.data().Language;
+      console.log('if age is working :' + doc.data().Age );
+      if (doc.data().Age == 'undefined'  || doc.data().Age == '' || doc.data().Age == null ) {
+
+        document.getElementById("age").innerHTML = "any age group";
+        // console.log('In If condition :' + doc.data().Age );
+      }
+      else {
+       document.getElementById("age").innerHTML = doc.data().Age;
+       // console.log('age is working in else:' + doc.data().Age );
+     }
+      // document.getElementById("language").innerHTML = doc.data().Language;
+      if (doc.data().Language == 'undefined'  || doc.data().Language == '' || doc.data().Language == null ) {
+
+        document.getElementById("language").innerHTML = "English";
+        // console.log('In If condition :' + doc.data().Age );
+      }
+      else {
+       document.getElementById("language").innerHTML = doc.data().Language;
+       // console.log('age is working in else:' + doc.data().Age );
+     }
       document.getElementById("eventstatus").innerHTML = doc.data().Status;
-      document.getElementById("para").innerHTML = doc.data().Para;
+      // document.getElementById("para").innerHTML = doc.data().Para;
+      if (doc.data().Para == 'undefined'  || doc.data().Para == '' || doc.data().Para == null ) {
+
+        document.getElementById("para").innerHTML = "Below are the event detail";
+        // console.log('In If condition :' + doc.data().Age );
+      }
+      else {
+       document.getElementById("para").innerHTML = doc.data().Para;
+       // console.log('age is working in else:' + doc.data().Age );
+     }
+      // console.log('age is:' + doc.data().Age );
 
     }
   });
@@ -76,52 +104,67 @@ function myfnc() {
   // anyway User will signout as soon as User will press signout / logout button anywhere in the application
   auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
     .then(() => {
+      // *********************for user creation*********************
       const promise = auth.createUserWithEmailAndPassword(email.value, pass.value);
       promise.then(function(firebaseUser) {
           // Success
-          console.log("Logged in User");
+          console.log("user created");
           // window.location.href = "profile.html";
           //Save users data into Users DB Collection
-            CreateUserData();
+          // UserEvent();
+          window.location.href = "../checkout/step2-auth.html?id=" + docID + "&eventid=" + eventid ;
+            // CreateUserData();
+
+        })
+        .catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          if (errorCode === 'auth/wrong-password') {
+            console.log('Wrong password.');
+            document.getElementById('errorMessage_Login').innerHTML = errorMessage + ' Please use password eye to cross check the password you enter.';
+            document.getElementById('errorMessage_Login').style.display = 'block';
+          } else {
+            console.log(errorMessage);
+            document.getElementById('errorMessage_Login').innerHTML = 'The email id is registered with different phone no.';
+            document.getElementById('errorMessage_Login').style.display = 'block';
+          }
+          console.log(error);
         });
-        // alert("test");
-        // window.location.href = "../checkout/step2-auth.html?id=" + docID + "&eventid=" + eventid ;
+
+         // *********************for user creation*********************
+        const lpromise = auth.signInWithEmailAndPassword(email.value, pass.value);
+        lpromise.then(function(firebaseUser) {
+            // Success
+            console.log("Logged in User");
+            // alert('test');
+            // UserEvent();
+            window.location.href = "../checkout/step2-auth.html?id=" + docID + "&eventid=" + eventid ;
+            // window.location.href = "profile.html";
+          })
+
     });
 
 };
 
 
-function CreateUserData() {
-  console.log('CreateUserData');
 
-    var txtEmail_Signin = document.getElementById("txtEmail_Signin").value;
+var btnChangePassword = document.getElementById('btnChangePassword');
+var btnChangePasswordmessage = document.getElementById('btnChangePasswordmessage');
 
-    console.log('email id:' + txtEmail_Signin);
 
-    console.log('Current user id: ' + auth.currentUser.uid);
-    //
-    // db.collection("Users").doc(auth.currentUser.uid).add({
-    db.collection("Users").doc(auth.currentUser.uid).set({
-        // console.log('inside db collection: ' + newEventID);
-        // UserId: docCount + 1,
-        // .doc(user.uid).set({uid: user.uid,},
-        UserEmail: txtEmail_Signin,
-        CreatedTimestamp: (new Date()).toString(),
-        UpdatedBy: '',
-        UpdatedTimestamp: '',
-        // Age: age,
-        // Language: language,
-        // Para: para
-      })
-      .then((docRef) => {
-        console.log("Data added sucessfully in the document: " + docRef.toString());
-        console.log("eventstart")
-        // console.log(Date.parse(eventstart))
-      })
-      .catch((error) => {
-        console.error("error adding document:", error);
-      });
-};
+btnChangePassword.addEventListener('click', changePassword, false);
+
+function changePassword() {
+  const emailId = auth.currentUser.email;
+  btnChangePasswordmessage.style.display = 'block';
+  auth.sendPasswordResetEmail(emailId).then(function() {
+    console.log('email has been sent');
+  }).catch(function(error) {
+    console.log('error occurred while sending email: ' + error);
+  });
+}
+
 
 //************* User Registration - Ends ******************
 
@@ -129,18 +172,40 @@ function CreateUserData() {
 
 
 
+//**************************Set users data into Users DB Collection starts**********************************
+function UserEvent(){
+  alert(' userEvent set started');
+
+  // var select = document.getElementById('idtype');
+  // var idtype = select.options[select.selectedIndex].value;
+
+  db.collection('userEvent')
+  .doc(auth.currentUser.uid)
+  .set({
+      uid: auth.currentUser.uid,
+      EventId: '',
+
+  })
+  .then(() => {
+        // updated
+        console.log ('Users data saved successfully');
+        //
+        // // Show alert
+        // document.querySelector('.alert').style.display = 'block';
+        //
+        // // Hide alert after 3 seconds
+        // setTimeout(function() {
+        //   document.querySelector('.alert').style.display = 'none';
+        // }, 3000);
 
 
-
-//************* for checkout to nex page from step1-auth to next one ******************
-
-
-
-
-
-
-
-
-
-
-//************* for checkout to nex page from step1-auth to next one - Ends ******************
+        // window.location.href = "../checkout/step3-checkout.html";
+      })
+      .catch((error) => {
+        // An error occurred
+        console.log(error.message);
+        // document.getElementById('errorMessage').innerHTML = error.message;
+        // document.getElementById('errorMessage').style.display = 'block';
+      });
+};
+// ******************************* set user data ends***********************************

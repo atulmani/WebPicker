@@ -121,8 +121,10 @@
       <div class="fixed-side-nav">
         <nav class="navbar-dashboard navbar-expand-lg">
           <div class="" >
-            <img src="../img/customers/usha/usha.png" width="70%" alt="">
-            <h5> USHA Electricals</h5>
+            <center>
+              <img id="customerProfileIcon" src="" style="width: 100px; height: 100px;border-radius: 50%;" alt="">
+              <h5 id="customerdisplayName" > </h5>
+            </center>
           </div>
           <hr>
           <div class="">
@@ -136,10 +138,10 @@
                   <a class="" href="campaignList.html"><i class="fas fa-clone"></i> Campaigns</a>
                 </li>
                 <li class="">
-                  <a class="" href="#"><i class="fas fa-bezier-curve"></i> Devices </a>
+                  <a class="" href="deviceList.html"><i class="fas fa-bezier-curve"></i> Devices </a>
                 </li>
                 <li class="">
-                  <a class="" href="customerList.html"><i class="fas fa-clone"></i> Users</a>
+                  <a class="" href="userList.html"><i class="fas fa-clone"></i> Users</a>
                 </li>
                 <li class="">
                   <a class="" href="#"><i class="fas fa-rupee-sign"></i> Billing</a>
@@ -163,7 +165,7 @@
 
     <div class="col-lg-10 col-md-10 col-sm-12">
       <div class="row no-gutters">
-        <div style="padding-left:40px;padding-top: 8px;">
+        <div style="padding-left:10px;padding-top: 8px;">
           Hey!
           <strong><span id='displayName'> </span></strong>
           <span style="padding-left: 10px"> Your Campaigns are really awesome!!!</span>
@@ -174,43 +176,47 @@
         <div class="col-lg-3 col-md-6 col-sm-12" style="padding: 5px;">
           <div class="dashboard-card">
             <h4>Campaigns</h4>
-            <span class="number-one">226</span>
-            <span class="number-two-positive">200</span><span class="arrow-positive"><i class="fas fa-caret-up"></i></span>
-            <span class="number-two-negative">26</span><span class="arrow-negative"><i class="fas fa-caret-down"></i></span>
+            <span id='campaignCount' class="number-one"></span>
+            <span id='campaignActiveCount' class="number-two-positive"></span><span class="arrow-positive"><i class="fas fa-caret-up"></i></span>
+            <span id='campaignInActiveCount' class="number-two-negative">00</span><span class="arrow-negative"><i class="fas fa-caret-down"></i></span>
             <!-- <p>Compared to last month</p> -->
-            <a href="" style=""><button class="mybutton button6 dashboard-card-button">Ads<i class="fas fa-arrow-right"></i> </button></a>
+            <a href="campaignList.html" style="position: absolute; right:0; bottom:10px;" >
+              <button class="mybutton button6 dashboard-card-button">ADs<i class="fas fa-arrow-right"></i> </button></a>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12" style="padding: 5px;">
           <div class="dashboard-card">
             <h4>Devices</h4>
-            <span class="number-one">102</span>
-            <span class="number-two-positive">82</span><span class="arrow-positive"><i class="fas fa-caret-up"></i></span>
-            <span class="number-two-negative">20</span><span class="arrow-negative"><i class="fas fa-caret-down"></i></span>
+            <span id='deviceCount' class="number-one"></span>
+            <span id='deviceActiveCount' class="number-two-positive"></span><span class="arrow-positive"><i class="fas fa-caret-up"></i></span>
+            <span id='deviceInActiveCount' class="number-two-negative">00</span><span class="arrow-negative"><i class="fas fa-caret-down"></i></span>
             <!-- <p>Compared to last month</p> -->
-            <a href="" style=""><button class="mybutton button6 dashboard-card-button">Devices<i class="fas fa-arrow-right"></i> </button></a>
+            <a href="deviceList.html" style="position: absolute; right:0; bottom:10px;" >
+              <button class="mybutton button6 dashboard-card-button">Devices<i class="fas fa-arrow-right"></i> </button></a>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 col-sm-12" style="padding: 5px;">
           <div class="dashboard-card">
             <h4>Users</h4>
-            <span class="number-one">102</span>
-            <span class="number-two-positive">82</span><span class="arrow-positive"><i class="fas fa-caret-up"></i></span>
-            <span class="number-two-negative">20</span><span class="arrow-negative"><i class="fas fa-caret-down"></i></span>
+            <span id='userCount' class="number-one"></span>
+            <span id='userActiveCount' class="number-two-positive"></span><span class="arrow-positive"><i class="fas fa-caret-up"></i></span>
+            <span id='userInActiveCount' class="number-two-negative">00</span><span class="arrow-negative"><i class="fas fa-caret-down"></i></span>
             <!-- <p>Compared to last month</p> -->
-            <a href="" style=""><button class="mybutton button6 dashboard-card-button">Users<i class="fas fa-arrow-right"></i> </button></a>
+            <a href="userList.html" style="position: absolute; right:0; bottom:10px;" >
+              <button class="mybutton button6 dashboard-card-button">Users<i class="fas fa-arrow-right"></i> </button></a>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 col-sm-12" style="padding: 5px;">
           <div class="dashboard-card">
             <h4>Billing</h4>
-            <span class="number-one">102</span>
-            <span class="number-two-positive">82</span><span class="arrow-positive"><i class="fas fa-caret-up"></i></span>
-            <span class="number-two-negative">20</span><span class="arrow-negative"><i class="fas fa-caret-down"></i></span>
+            <span id='billingCount' class="number-one"></span>
+            <span id='billingActiveCount' class="number-two-positive"></span><span class="arrow-positive"><i class="fas fa-caret-up"></i></span>
+            <span id='billingInActiveCount' class="number-two-negative">00</span><span class="arrow-negative"><i class="fas fa-caret-down"></i></span>
             <!-- <p>Compared to last month</p> -->
-            <a href="" style=""><button class="mybutton button6 dashboard-card-button">Billings<i class="fas fa-arrow-right"></i> </button></a>
+            <a href="" style="position: absolute; right:0; bottom:10px;" >
+              <button class="mybutton button6 dashboard-card-button">Billing<i class="fas fa-arrow-right"></i> </button></a>
           </div>
         </div>
       </div>
@@ -338,7 +344,7 @@
 
   <script src="../js/firebase.js"></script>
   <script src="../js/firebase-admin-common.js"></script>
-  <script src="../js/hca/fb-dashboard.js"></script>
+  <script src="../js/admin/fb-dashboard.js"></script>
   <!-- <script src="../js/dashboard.js"></script> -->
   <!-- <script src="../js/main.js"></script> -->
 

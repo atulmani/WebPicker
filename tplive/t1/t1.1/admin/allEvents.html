@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="WebPicker - A Website Design & Development platform">
+  <meta name="keywords" content="website design and development">
+  <meta name="author" content="Web Picker">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Agro-Dolu-t1.1 - Index </title>
+
+  <link rel="shortcut icon" href="img/logo.png">
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+  <!-- Font Awesome cdn file -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <!-- Owl Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+  <!-- Bootstrap css -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+  <!-- Your Own Style -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/admin.css">
+
+</head>
+
+<body>
+  <!-- Customized Navbar - Start -->
+
+  <section id="header">
+    <header class="main_header" id="navbar">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="content">
+            <a href="../#header"><img src="../img/logo.png" class="logo" /></a>
+            <!-- <a href="../#header"><img src="../img/logo-opposite.png" class="logo-opposite" /></a> -->
+            <a href="../#header" class="logo-name" style="text-decoration:none;">CropQueens</a>
+            <!-- <div class="mobile-toggle">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div> -->
+            <div class="user-name">
+              <span>Hi</span>
+              <span id="displayName"></span>
+            </div>
+            <div class="profile-logo" id="profileLogo">
+              <img id='headerProfilePic' src="../img/logo.png" class="" alt="" style="border-radius:50%; width:30px;height: 30px;">
+              <i class="fas fa-sort-down"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="profile-logo-dropdown" id="profileLogoDropdown">
+      <a href="#">My Profile</a>
+      <a href="#" id="btnLogout2">Logout <i class="fas fa-sign-out-alt"></i></a>
+    </div>
+    <div class="profile-dropdown-triangle" id="profileLogoTriangle"></div>
+  </section>
+  <!-- Customized Navbar - End -->
+
+  <!-- Side navigation - starts -->
+  <div class="profile-full-content" id="fullContent">
+  <div class="row no-gutters">
+    <div class="col-lg-2 col-md-2 col-sm-12">
+      <div class="side-nav">
+        <div class="side-nav-menu">
+          <a href="#">
+            <div class="">
+              <i class="fas fa-home"></i>
+              Dashboard
+            </div>
+          </a><br>
+          <a href="allEvents.html">
+            <div class="">
+              <i class="fas fa-project-diagram"></i>
+              Events
+            </div>
+          </a><br>
+          <a href="#">
+            <div class="">
+              <i class="fas fa-male"></i>
+              Profile
+            </div>
+          </a><br>
+          <a href="#" id="btnLogout1">
+            <div class="">
+              <i class="fas fa-sign-out-alt"></i>
+              Logout
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side navigation - ends -->
+
+    <div class="col-lg-10 col-md-10 col-sm-12" style="padding:0 5%;">
+
+      <section id="cardsss">
+
+        <div style="padding:0 3%;" class="cardheading">
+
+          <center>
+            <h4 style="font-family: 'Baloo 2', cursive; color:#2F5233;font-weight:1000;">CREATE/EDIT EVENTS</h4>
+          </center>
+
+        </div>
+      </section>
+
+      <section id="designs" style="background-color:#fff;text-align: left;">
+        <br><br>
+
+        <div id='eventRow' class="row no-gutters">
+          <div style="padding:10px 10px 40px 10px;" class="col-lg-3 col-md-6 col-sm-12">
+            <a href="createEvent.html" style="text-decoration:none;">
+              <div class="add-event">
+                <i class="fas fa-plus"></i>
+                <h4>Add an event</h4>
+              </div>
+            </a>
+          </div>
+
+
+
+          <!-- <div class="col-lg-3 col-md-6 col-sm-12">
+            <a style="text-decoration:none;" href="createEvent.html">
+              <div class="item">
+                <div class="post-slide">
+                  <div class="post-img">
+                    <img style="border-radius:10px;" src="../img/PR4.png" alt="" width="100%">
+                  </div>
+                  <div class="post-content">
+                    <h3 class="post-title">
+                      MUSHROOM | FARMING
+                    </h3>
+                    <p class="description">
+                      <span style="letter-spacing:1px;font-weight:1000;"><span style="font-size:15px;">By</span>: Global FoodTech limited</span>
+                      <br>
+                      <span style="letter-spacing:1px;font-weight:1000;line-height:30px;"><span style="font-size:15px;">Date</span>: Sept'21 - 29 Sep'21 </span>
+                      <br>
+                      <span style="letter-spacing:1px;font-weight:1000;line-height:14px;"><span style="font-size:15px;">Price</span>: ₹ 4999 </span>
+                      <br>
+                      <span><button style="float:right; background:#fde834; color:
+#4b7d59; font-weight:1000;" class="btn" type="button" name="button" href:>Details</button> </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div> -->
+
+        </div>
+
+        <br /><br />
+
+      </section>
+
+    </div>
+
+  </div>
+</div>
+
+
+    <!-- Owl Carousel Designs - End -->
+
+
+
+    <!-- Footer Section - Start -->
+    <section id="footer">
+      <!-- <div style="background-color:#373435;" class="row no-gutters"> -->
+      <div style="background-color:#fbe25f; font-family: 'Baloo 2', cursive; letter-spacing:1.5px;" class="row no-gutters">
+        <div style="padding:50px;" class="col-lg-6 col-md-12 col-sm-12">
+
+          <span>
+            <h3 style="text-align:left;color:#4b7d59; font-weight:1000;">Crop Queens</h3>
+          </span>
+          <hr style="background-color:#fff;height:2px;">
+
+          <p style="text-align:left;font-size:1rem; color:#4b7d59;">Crop Queens is an initiative of CSDSE Private Limited . We at crop queens are closely associated with farmers and agriculture sector & food industry. This endeavor is our dream to
+            change the scenario in agriculture and Food Processing to promote. This portal is dedicated to the growth of farmers and farming and food processing in our country. CSDSE has a team of competent professionals with rich experience as per
+            industry standards.
+
+          </p>
+          <br><br>
+          <h4 style="text-align:left;color:#4b7d59;font-weight:1000;">Objective</h4>
+          <hr style="background-color:#fff; height:2px;">
+          <p style="text-align:left; font-size:1rem;color:#4b7d59;">Main objective of CropQueens.com is to streamline the agriculture sector with process oriented and simple platform that can be easily used by end user. We plan to put Indian farmers
+            in
+            global scenario and integrate Indian farming with global farming. Also, farmer should be benefited in terms of financial gain. Indian Agriculture sector needs reform in terms of modern age farming technologies. Crop Queens is bridging the
+            gap between Indian agriculture and food processing industries.</p>
+
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 large" style=" padding: 10% 8%;">
+          <div class="" style="background:#6ea23f; padding:20px;text-align: center; border-radius:12px;">
+
+
+            <ul style="text-align:center;letter-spacing:2px;color:#fbe25f;" class="footer-styles">
+              <li class="footer-li"> <a style="font-size:0.78rem; color:#fbe25f;" href="#">About Us</a></li>
+              <li class="footer-li"> <a style="font-size:0.78rem; color:#fbe25f;" href="#">FAQ's</a> </li>
+              <li class="footer-li"> <a style="font-size:0.78rem; color:#fbe25f;" href="#">Privacy Policy</a> </li>
+              <li class="footer-li"> <a style="font-size:0.78rem; color:#fbe25f;" href="#">Contact Us</a> </li>
+
+            </ul><br class="large" />
+
+            <ul style="text-align:left; " class="footer-styles">
+              <li class="footer-li"> <a href="#"><i style="font-size:18px; color:#fbe25f" class="fab fa-facebook-f"></i></a></li>
+              <li class="footer-li"> <a href="#"><i style="font-size:18px; color:#fbe25f" class="fab fa-instagram"></i></a> </li>
+              <li class="footer-li"> <a href="#"><i style="font-size:18px; color:#fbe25f" class="fab fa-youtube"></i></a> </li>
+            </ul>
+
+          </div>
+        </div>
+
+        <!-- for phone -->
+
+        <div class="col-lg-6 col-md-12 col-sm-12 small" style="padding:3% 8%;">
+          <div class="" style="background:#6ea23f; padding:20px;text-align: center; border-radius: 12px; margin-bottom:15%;">
+
+            <ul style="text-align:left;" class="footer-styles">
+              <li class="footer-li"> <a style="font-size:10px; color:#fbe25f" href="#">About Us</a></li>
+              <li class="footer-li"> <a style="font-size:10px; color:#fbe25f" href="#">FAQ's</a> </li>
+              <li class="footer-li"> <a style="font-size:10px; color:#fbe25f" href="#">Privacy Policy</a> </li>
+              <li class="footer-li"> <a style="font-size:10px; color:#fbe25f" href="#">Contact Us</a> </li>
+
+            </ul>
+
+            <ul style="text-align:left;" class="footer-styles">
+              <li class="footer-li"> <a href="#"><i style="font-size:18px; color:#fbe25f" class="fab fa-facebook-f"></i></a></li>
+              <li class="footer-li"> <a href="#"><i style="font-size:18px; color:#fbe25f" class="fab fa-instagram"></i></a> </li>
+              <li class="footer-li"> <a href="#"><i style="font-size:18px; color:#fbe25f" class="fab fa-youtube"></i></a> </li>
+
+            </ul>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div style="background:#6ea23f;font-size:10px;padding:0.5% 0;font-family: 'Baloo 2', cursive; color:#fbe25f;" class="">
+        Copyright © Academy Planner, Powered by TPLiVE
+
+
+      </div>
+
+    </section>
+
+    <!-- WebPicker Facebook Messenger Chat Plugin Code - Start -->
+    <div id="fb-root"></div>
+
+    <!-- Your Chat Plugin code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "101044708888104");
+      chatbox.setAttribute("attribution", "biz_inbox");
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml: true,
+          version: 'v11.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <!-- Jquery order should be higher from normal javascript  -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+    <!-- Owl Carousel JQuery -->
+    <!-- <script src="js/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Javascript to Populate Map - Start  -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
+
+
+    <!-- Firebase Services -->
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+
+    <script src="../js/firebase.js"></script>
+    <script src="../js/admin/fb-admin-common.js"></script>
+    <script src="../js/admin/fb-all-events.js"></script>
+    <!-- <script src="../js/main.js"></script> -->
+    <script src="../js/bootstrap-datetimepicker.min.js"></script>
+
+    <!-- Owl Carousel Javascript  -->
+    <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

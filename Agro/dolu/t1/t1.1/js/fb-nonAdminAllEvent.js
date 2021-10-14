@@ -22,7 +22,7 @@ function renderEvents(doc) {
   itemCol.classList.add("col-lg-3");
   itemCol.classList.add("col-md-6");
   itemCol.classList.add("col-sm-12");
-  itemCol.innerHTML = "<a style='text-decoration:none;' href='createEvent.html?id=" + doc.id + "&eventid=" + doc.data().EventId + "'>" +
+  itemCol.innerHTML = "<a style='text-decoration:none;' href='../productDetail/productDetail.html?id=" + doc.id + "&eventid=" + doc.data().EventId + "'>" +
     "<div class='item'>" +
     "<div class='post-slide'>" +
     "<div class='post-img'>" +
