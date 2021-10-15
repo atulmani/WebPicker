@@ -67,6 +67,7 @@ h6{
   border-right: 0;
   border-style: solid;
   border-color: #1638A0;
+  box-shadow: 0 0 20px 0 rgba(0,0,0,0.2)
 }
 
 .navbar-mobile{
@@ -246,26 +247,24 @@ h6{
 }
 
 .mybutton {
-  background-color: #221B1B; /* Green */
+  background: #221B1B; /* Green */
   border: none;
   color: white;
-  padding: 3px;
+  padding: 7px 10px;
   text-align: center;
-  padding: 0 10px;
   text-decoration: none;
   display: inline-block;
   font-size: 0.9rem;
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 .button5 {
-  background: #88CA5E;
-  color: black;
-  border: 1px solid transparent;
-  height: 100%;
-  margin-top: 1px;
+  background: #f58634;
+  color: #fff;
+  margin: 0 5px;
+  text-decoration: none;
 }
 .button5:hover {
 
@@ -409,15 +408,6 @@ h6{
   padding: 0 10px;
 }
 
-.product-details a{
-  padding:  7px 10px;
-  background: #f58634;
-  color: #fff;
-  font-size: 0.9rem;
-  margin: 0 5px;
-  text-decoration: none;
-}
-
 .ver-line1{
   content: '';
   height: 100px;
@@ -506,6 +496,19 @@ h6{
 
 .owl-item.active.center .client-item{
   transform: scale(1.1);
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 
