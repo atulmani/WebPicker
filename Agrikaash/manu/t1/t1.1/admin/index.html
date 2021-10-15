@@ -112,8 +112,10 @@
         <div class="login-register-card">
           <div class="login-register-card-fixed">
             <div class="form-btn">
-              <span onclick="login()">Login</span>
-              <span onclick="register()">Register</span>
+              <div class="">
+                <span onclick="login()">Login</span>
+                <span onclick="register()">Register</span>
+              </div>
               <hr id="Indicator">
             </div>
 
@@ -262,9 +264,9 @@
 
     function register() {
 
-      registerForm.style.transform = "translateX(-275px)";
-      loginForm.style.transform = "translateX(-275px)";
-      Indicator.style.transform = "translateX(130px)";
+      registerForm.style.transform = "translateX(-100%)";
+      loginForm.style.transform = "translateX(-100%)";
+      Indicator.style.transform = "translateX(100%)";
     }
 
     function login() {
