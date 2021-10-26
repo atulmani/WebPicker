@@ -1,0 +1,117 @@
+
+
+.side-navbar{
+  height: 100vh;
+  width: 100%;
+  box-shadow: 0 1px 30px 1px rgba(0,0,0,0.2);
+}
+
+.side-navbar-menu{
+  padding-top: 40px;
+}
+
+.side-navbar-menu a{
+  color: #1D741B;
+  transition: 0.2s linear;
+}
+
+.side-navbar-menu a div{
+  padding: 10px 20px;
+  transition: 0.2s linear;
+}
+
+.side-navbar-menu a:hover,
+.side-navbar-menu a div:hover{
+  text-decoration: none;
+  background: #1D741B;
+  color: #fff;
+}
+
+.detail-card-full-div{
+  padding: 3% 5%;
+}
+
+.detail-card-full-div .detail-card-full-div-heading{
+  font-size: 1.7rem;
+  color: #000;
+  text-align: center;
+}
+
+.detail-card{
+  background: rgba(0,0,0,0.05);
+  cursor: pointer;
+}
+
+.detail-card-no{
+  padding: 0 15px 0 15px;
+  display:flex;
+  justify-content: space-between;
+}
+
+.detail-card-no .detail-card-heading{
+  display:flex;
+  align-items:center;
+}
+
+.detail-card-no .detail-card-heading i{
+  padding-right:10px;
+  color:#88CA5E;
+}
+
+.detail-card-no .detail-card-heading h6{
+  color: #000;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+.detail-card .detail-card-arrow{
+  display:flex;
+  align-items:center;
+  font-size:0.7rem;
+  color:#888;
+}
+
+.detail-card hr{
+  margin: 5px 0;
+}
+
+.detail-card .detail-card-details{
+  display:flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.detail-card-details div{
+  display:flex;
+  flex-direction:column;
+}
+
+.detail-card-details div .small-1{
+  color:#aaa;
+  font-size: 0.7rem;
+}
+
+.detail-card-details div .small-2{
+  font-size:1.3rem;
+}
+
+.detail-card-details div .small-2.negative{
+  color: red;
+}
+
+.detail-card-details div .small-3{
+  color:#444;
+  margin-top:-7px;
+  font-size: 0.7rem;
+}
+
+.detail-card .progress-bar{
+  background: rgba(0,0,0,0.1);
+  height: 14px;
+  width: 100%;
+}
+
+.detail-card .progress-bar .inner-progress-bar{
+  background: linear-gradient(to right, rgba(29,116,27,0.8),#1D741B);
+  height: 14px;
+}
