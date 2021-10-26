@@ -236,6 +236,33 @@ $(function () {
       });
     });
 
+
+    $(document).ready(function() {
+      var owl = $('#partners-carousel');
+      owl.owlCarousel({
+        margin: 20,
+        loop: true,
+        autoplay: true,
+        smartSpeed:3000,
+        autoplayTimeout: 3000,
+        autoplayHoverPause: false,
+        nav:false,
+        dots:false,
+        responsive: {
+          0: {
+            items: 2
+          },
+          600: {
+            items: 4
+          },
+          1000: {
+            items: 6
+          }
+        }
+      });
+    });
+
+
 // $(function(){
 //     $("#clients-list").owlCarousel({
 //        items:6,
