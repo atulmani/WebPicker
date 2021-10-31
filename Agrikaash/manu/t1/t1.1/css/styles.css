@@ -147,7 +147,7 @@ h6{
 
 .navbar-cart-no{
   position: absolute;
-  right: 0;
+  right: 1%;
   top: 1%;
   display: flex;
   justify-content: center;
@@ -382,12 +382,17 @@ h6{
   color: rgba(0,0,0,0.9);
 }
 
-.product-list-div select{
+.product-list-div select,
+.product-list-div input{
   outline: none;
   padding: 5px 10px;
   width: 90%;
   color: rgba(0,0,0,0.7);
   border: 1px solid #bbb;
+}
+
+.product-list-div input{
+  border: 1px solid #efefef;
 }
 
 .product-details{
