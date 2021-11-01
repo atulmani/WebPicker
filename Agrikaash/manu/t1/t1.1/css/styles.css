@@ -72,7 +72,8 @@ h6{
 
 .navbar-mobile{
   background: #88CA5E;
-  padding: 5px 10px;
+  padding: 9px;
+  height: 48px;
 }
 
 .navbar-mobile-menu{
@@ -84,6 +85,24 @@ h6{
 .navbar-mobile-menu a{
   color: #fff;
   font-size: 1.3rem;
+}
+
+.navbar-mobile-menu .hamburger-icon{
+  position: absolute;
+  top: 14px;
+}
+
+.navbar-mobile-menu .user-icon{
+  font-size: 1rem;
+  position: absolute;
+  top: 11px;
+  right: 7px;
+  border: 1px solid #fff;
+  line-height: 20px;
+  text-align: center;
+  width: 25px;
+  height:25px;
+  border-radius:50%;
 }
 
 .navbar-mobile-search-bar input{
@@ -105,11 +124,12 @@ h6{
 
 .navbar-mobile-bottom{
   position: fixed;
-  background: #f4f4f4;
+  background: #88CA5E;
+  /* background: #f4f4f4; */
   bottom: 0;
   width: 100%;
   z-index: 999;
-  padding:6px 0px 0px 0px;
+  padding: 9px 0px 4px 0px;
   border-top: 0.01rem solid #aaa;
 }
 
@@ -127,7 +147,7 @@ h6{
 }
 
 .navbar-mobile-bottom-menu .navbar-mobile-bottom-menu-a.active{
-  color: #1D741B;
+  color: #fff;
 }
 
 /* .notification{
@@ -373,8 +393,9 @@ h6{
 
 .product-list-div{
   border: 1px solid #dedede;
-  padding: 10px;
+  padding: 6px;
   border-radius: 4px;
+  margin: 2px auto;
 }
 
 .product-list-div small{
@@ -385,8 +406,8 @@ h6{
 .product-list-div select,
 .product-list-div input{
   outline: none;
-  padding: 5px 10px;
-  width: 90%;
+  padding: 8px 10px;
+  width: 100%;
   color: rgba(0,0,0,0.7);
   border: 1px solid #bbb;
 }
