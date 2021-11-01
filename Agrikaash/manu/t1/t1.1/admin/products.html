@@ -10,7 +10,7 @@
 
   <title>Infra-atul-t1.1 - Index </title>
 
-  <link rel="shortcut icon" href="img/logo.png">
+  <link rel="shortcut icon" href="../img/logo.png">
 
   <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
@@ -38,6 +38,7 @@
   <!-- Your Own Style -->
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/products.css">
+  <link rel="stylesheet" href="../css/orders.css">
   <link rel="stylesheet" href="../css/dashboard.css">
 
 </head>
@@ -75,10 +76,10 @@
 
   <div class="small navbar-mobile">
     <div class="navbar-mobile-menu">
-      <a href="#"><i class="fas fa-bars"></i></a>
-      <a href="#"><img src="../img/logo.png" width="30px" alt=""> </a>
-      <a href="#" style="padding-right: 0px;"><i style="font-size: 0.8rem; position: relative; top: -3px;border: 1px solid #fff;line-height: 20px;
-      text-align: center;width: 20px; height:20px;border-radius:50%;" class="fas fa-user"></i></a>
+      <a href="#"><i class="fas fa-bars hamburger-icon"></i></a>
+      <a href="#"> <h4>Agrikaash</h4> </a>
+      <!-- <a href="#"><img src="../img/logo.png" width="30px" alt=""> </a> -->
+      <a href="#" style="padding-right: 0px;"><i class="fas fa-user user-icon"></i></a>
     </div>
     <!-- <div class="navbar-mobile-search-bar">
       <input type="text" name="" placeholder="Search Here..." value="">
@@ -372,15 +373,27 @@
 
       <br>
       <div class="row no-gutters small">
+
+        <div class="pay-now-div">
+          <h4 style="width:100%;text-align:center;">Products</h4>
+        </div>
+        <br><br>
+
         <div class="col-sm-12" style="padding: 5px;">
-          <div class="product-list-div" style="padding:0;">
+          <div class="product-list-div">
             <table>
               <tr>
                 <td width="45%" class="product-img-td">
                   <img src="../img/VF-1.png" width="100%" alt="">
+                  <!-- <div class="off-div">
+                    <small>20% OFF</small>
+                  </div> -->
+                  <div class="veg-nonVeg-div">
+                    <img src="../img/veg.png" width="100%" alt="">
+                  </div>
                 </td>
-                <td width="55%" valign="top" style="padding:2px;">
-                  <small style="font-size: 1.2rem; ;">Carrot</small><br>
+                <td width="55%" valign="top" class="product-names-div">
+                  <small class="product-names">Tomato</small><br>
                   <small style="font-size: 0.8rem; color: rgba(0,0,0,0.5);">amul</small><br>
                   <select class="" name="">
                     <option value="250 g">250 g - Rs. 59</option>
@@ -389,7 +402,7 @@
                     <option value="2 kg">2 kg - Rs. 59</option>
                     <option value="3kg">3 kg - Rs. 59</option>
                   </select>
-                  <table style="width:51%;position:absolute;bottom:10px;">
+                  <table style="width:51%;position:absolute;bottom:10px;right:10px;">
                     <tr>
                       <td width="100%" class="quantity-td">
                         <a href="#"><button class="mybutton button5" style="width:90px;font-size:1.08rem;">Add <i class="fas fa-cart-plus"></i></button></a>
@@ -403,7 +416,7 @@
         </div>
 
         <div class="col-sm-12" style="padding: 5px;">
-          <div class="product-list-div" style="padding:0;">
+          <div class="product-list-div">
             <table>
               <tr>
                 <td width="45%" class="product-img-td">
@@ -415,8 +428,8 @@
                     <img src="../img/veg.png" width="100%" alt="">
                   </div>
                 </td>
-                <td width="55%" valign="top" style="padding:2px;">
-                  <small style="font-size: 1.2rem; ;">Carrot</small><br>
+                <td width="55%" valign="top" class="product-names-div">
+                  <small class="product-names">Tomato</small><br>
                   <small style="font-size: 0.8rem; color: rgba(0,0,0,0.5);">amul</small><br>
                   <select class="" name="">
                     <option value="250 g">250 g - Rs. 59</option>
@@ -425,7 +438,7 @@
                     <option value="2 kg">2 kg - Rs. 59</option>
                     <option value="3kg">3 kg - Rs. 59</option>
                   </select>
-                  <table style="width:51%;position:absolute;bottom:10px;">
+                  <table style="width:51%;position:absolute;bottom:10px;right:10px;">
                     <tr>
                       <td width="100%" class="quantity-td">
                         <div id="quantityFullDiv" class="quantity buttons_added">
@@ -446,7 +459,7 @@
         </div>
 
         <div class="col-sm-12" style="padding: 5px;">
-          <div class="product-list-div" style="padding:0;">
+          <div class="product-list-div">
             <table>
               <tr>
                 <td width="45%" class="product-img-td">
@@ -454,9 +467,12 @@
                   <div class="off-div">
                     <small>20% OFF</small>
                   </div>
+                  <div class="veg-nonVeg-div">
+                    <img src="../img/non-veg.png" width="100%" alt="">
+                  </div>
                 </td>
-                <td width="55%" valign="top" style="padding:2px;">
-                  <small style="font-size: 1.2rem; ;">Carrot</small><br>
+                <td width="55%" valign="top" class="product-names-div">
+                  <small class="product-names">Tomato</small><br>
                   <small style="font-size: 0.8rem; color: rgba(0,0,0,0.5);">amul</small><br>
                   <select class="" name="">
                     <option value="250 g">250 g - Rs. 59</option>
@@ -465,10 +481,17 @@
                     <option value="2 kg">2 kg - Rs. 59</option>
                     <option value="3kg">3 kg - Rs. 59</option>
                   </select>
-                  <table style="width:51%;position:absolute;bottom:10px;">
+                  <table style="width:51%;position:absolute;bottom:10px;right:10px;">
                     <tr>
                       <td width="100%" class="quantity-td">
-                        <a href="#"><button class="mybutton button5" style="width:90px;font-size:1.08rem;">Add <i class="fas fa-cart-plus"></i></button></a>
+                        <div id="quantityFullDiv" class="quantity buttons_added">
+                          <input id="minus" type="button" value="-" class="minus">
+                          <input id="qty" type="number" step="1" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
+                          <input id="plus" type="button" value="+" class="plus">
+                          <input id="step" value="20" type="hidden" name="" value="">
+                          <input id="min" value="1" type="hidden" name="" value="">
+                          <input id="max" value="999" type="hidden" name="" value="">
+                        </div>
                       </td>
                     </tr>
                   </table>
@@ -478,35 +501,6 @@
           </div>
         </div>
 
-        <div class="col-sm-12" style="padding: 5px;">
-          <div class="product-list-div" style="padding:0;">
-            <table>
-              <tr>
-                <td width="45%" class="product-img-td">
-                  <img src="../img/VF-4.png" width="100%" alt="">
-                </td>
-                <td width="55%" valign="top" style="padding:2px;">
-                  <small style="font-size: 1.2rem; ;">Carrot</small><br>
-                  <small style="font-size: 0.8rem; color: rgba(0,0,0,0.5);">amul</small><br>
-                  <select class="" name="">
-                    <option value="250 g">250 g - Rs. 59</option>
-                    <option value="500 g">500 g - Rs. 59</option>
-                    <option value="1 kg">1 kg - Rs. 59</option>
-                    <option value="2 kg">2 kg - Rs. 59</option>
-                    <option value="3kg">3 kg - Rs. 59</option>
-                  </select>
-                  <table style="width:51%;position:absolute;bottom:10px;">
-                    <tr>
-                      <td width="100%" class="quantity-td">
-                        <a href="#"><button class="mybutton button5" style="width:90px;font-size:1.08rem;">Add <i class="fas fa-cart-plus"></i></button></a>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </div>
       </div>
     </div>
   </div>
