@@ -10,7 +10,7 @@
 
   <title>Infra-atul-t1.1 - Index </title>
 
-  <link rel="shortcut icon" href="img/logo.png">
+  <link rel="shortcut icon" href="../img/logo.png">
 
   <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
@@ -42,6 +42,7 @@
   <link rel="stylesheet" href="../css/cart.css">
   <link rel="stylesheet" href="../css/products.css">
   <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/orders.css">
 
 </head>
 
@@ -78,10 +79,10 @@
 
   <div class="small navbar-mobile">
     <div class="navbar-mobile-menu">
-      <a href="#"><i class="fas fa-bars"></i></a>
-      <a href="#"><img src="../img/logo.png" width="30px" alt=""> </a>
-      <a href="#" style="padding-right: 0px;"><i style="font-size: 0.8rem; position: relative; top: -3px;border: 1px solid #fff;line-height: 20px;
-      text-align: center;width: 20px; height:20px;border-radius:50%;" class="fas fa-user"></i></a>
+      <a href="#"><i class="fas fa-bars hamburger-icon"></i></a>
+      <a href="#"> <h4>Agrikaash</h4> </a>
+      <!-- <a href="#"><img src="../img/logo.png" width="30px" alt=""> </a> -->
+      <a href="#" style="padding-right: 0px;"><i class="fas fa-user user-icon"></i></a>
     </div>
     <!-- <div class="navbar-mobile-search-bar">
       <input type="text" name="" placeholder="Search Here..." value="">
@@ -376,8 +377,12 @@
       <br>
       <div class="row no-gutters small">
 
+        <div class="pay-now-div">
+          <h4 style="width:100%;text-align:center;">Review Your Cart</h4>
+        </div>
+        <br><br>
         <div class="col-sm-12" style="padding: 5px;">
-          <div class="product-list-div" style="padding:0;">
+          <div class="product-list-div">
             <table>
               <tr>
                 <td width="45%" class="product-img-td">
@@ -385,18 +390,19 @@
                   <div class="off-div">
                     <small>20% OFF</small>
                   </div>
+
                   <div class="veg-nonVeg-div">
                     <img src="../img/veg.png" width="100%" alt="">
                   </div>
                 </td>
-                <td width="55%" valign="top" style="padding:2px;">
-                  <small style="font-size: 1.2rem; ;">Carrot</small><br>
+                <td width="55%" valign="top" class="product-names-div">
+                  <small class="product-names">Carrot</small><br>
                   <small style="font-size: 0.8rem; color: rgba(0,0,0,0.5);">amul</small><br>
                   <input type="text" name="" value="1 kg - Rs. 59" readonly>
                   <table style="width:51%;position:absolute;bottom:10px;">
                     <tr>
                       <td width="30%">
-                        <span class="material-icons" style="color:red;cursor:pointer;">
+                        <span class="material-icons" style="cursor:pointer;">
                           delete_outline
                         </span>
                       </td>
