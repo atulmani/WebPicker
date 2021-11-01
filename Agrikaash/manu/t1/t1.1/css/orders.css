@@ -1,9 +1,10 @@
 
 .orders-list-div{
-  padding: 10px;
-  background: #eaeaea;
+  padding: 16px;
+  background: #fefefe;
   border: 1px solid #aaa;
   border-radius: 4px;
+  margin: 2px auto;
 }
 
 .orders-list-div div:nth-child(1) small{
@@ -52,10 +53,11 @@
 .pay-now-div{
   position: absolute;
   background: #eee;
-  top: 0;
+  top: 7px;
   left: 0;
   right: 0;
   display: flex;
   justify-content: space-between;
-  padding: 0 5px;
+  align-items: center;
+  padding: 5px 16px;
 }
