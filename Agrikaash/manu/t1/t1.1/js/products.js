@@ -1,8 +1,8 @@
 const plus = document.getElementById('plus');
 
-plus.addEventListener('click', incrementQty, false);
-
 var step = Number(document.getElementById('step').value);
+
+plus.addEventListener('click', incrementQty, false);
 
 function incrementQty() {
   var qty = Number(document.getElementById('qty').value);
