@@ -167,8 +167,8 @@ h6{
 
 .navbar-cart-no{
   position: absolute;
-  right: 1%;
-  top: 1%;
+  right: 5%;
+  top: 2%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -406,10 +406,12 @@ h6{
 .product-list-div select,
 .product-list-div input{
   outline: none;
+  background: #efefef;
   padding: 8px 10px;
   width: 100%;
   color: rgba(0,0,0,0.7);
   border: 1px solid #bbb;
+  margin-top: 8px;
 }
 
 .product-list-div input{
