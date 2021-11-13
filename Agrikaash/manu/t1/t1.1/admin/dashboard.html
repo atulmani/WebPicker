@@ -149,6 +149,27 @@
     </div>
     <!-- side navbar - end -->
     <div class="col-lg-10 col-md-10 col-sm-12">
+      <div id="google_translate_element"></div>
+
+      <!-- ASYNCHRONOUS Google Translate -->
+      <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+          }, 'google_translate_element');
+        }
+
+        (function() {
+          var googleTranslateScript = document.createElement('script');
+          googleTranslateScript.type = 'text/javascript';
+          googleTranslateScript.async = true;
+          googleTranslateScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(googleTranslateScript);
+        })();
+      </script>
+      <!-- End script -->
       <div class="row no-gutters" style="padding: 2% 0%;">
         <div class="col-lg-5 col-md-5 col-sm-12">
           <div class="detail-card-full-div">
