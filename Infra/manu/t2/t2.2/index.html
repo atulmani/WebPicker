@@ -54,7 +54,7 @@
 <body>
   <!-- Navbar - Start -->
   <nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container">
+    <div class="container-fluid">
       <a class="navbar-brand" href="#banner">
         <p3>HAS</p3>
       </a>
@@ -68,7 +68,7 @@
         <!-- <span class="navbar-text">
         <h5><strong>WE CONSTRUCT YOUR DREAM</h5>
       </span> -->
-        <ul class="nav navbar-nav ml-auto ">
+        <ul class="nav navbar-nav navbar-right  ml-auto ">
           <li class="nav-item">
             <a class="nav-link" href="#banner">Home</a>
           </li>
@@ -99,7 +99,7 @@
 
   <!-- banner - start -->
   <section id="banner" style="background-color:#FBFBFD;">
-    <div class="container" data-aos="">
+    <div class="container " data-aos="">
       <div class="hero">
         <h1 class="heading" data-aos="fade-in ease-in-out"data-aos-delay="200" >HAS Constructions</h1>
         <h4 class="text" data-aos="fade-in ease-in-out"data-aos-delay="250">Experiencing Future...</h4>
@@ -107,7 +107,7 @@
         <p> <a href=""><strong>Learn more </strong><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a></p>
       </div>
     </div>
-    <!-- Swiper for Mobile -->
+    <!-- Swiper for LAptop -->
     <div class="container large" data-aos="fade-in">
       <div class="row no-gutters">
         <div class="swiper-slide col-lg-3">
@@ -139,11 +139,46 @@
       </div>
       <div class="swiper-pagination"></div>
     </div>
-  </section>
+
 
 
   <!-- Swiper for Mobile -->
-  <div class="swiper-container mySwiper small" data-aos="fade-in">
+
+    <div class="row no-gutters" >
+        <div class="container small" data-aos="fade-in" style="align:center;">
+      <div class="swiper-slide col-lg-3">
+        <img src="./img/1.png" alt="">
+        <h5 data-aos="zoom-out" class="text">Road Construction</h5>
+        <p>The most common modes of construction are
+          Earth road method, Gravel road,
+          bituminous road; water bound macadam and concrete cement</p>
+      </div>
+      <div class="swiper-slide col-lg-3">
+        <img src="./img/2.png" alt="">
+        <h5 data-aos="zoom-out" class="text">Mall Construction</h5>
+        <p>Our Design-Build delivery system is a great fit for mall construction projects
+          because it emphasizes close collaboration between
+          customers and our design and construction teams.</p>
+      </div>
+      <div class="swiper-slide col-lg-3">
+        <img src="./img/3.png" alt="">
+        <h5 data-aos="zoom-out" class="text">Industry Development</h5>
+        <p>use ways that are affordable but effective,
+          then there are chances that you can control the expenses to suit your budget</p>
+      </div>
+      <div class="swiper-slide col-lg-3">
+        <img src="./img/4.png" alt="">
+        <h5 data-aos="zoom-out" class="text">Office setup</h5>
+        <p>A well-designed office is a happy office that promotes collaboration while reducing distractions.
+          Improve productivity and performance in the office by making some necessary design changes.</p>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+
+
+  <!-- <div class="swiper-container mySwiper small" data-aos="fade-in">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
         <img src="./img/1.png" alt="">
@@ -152,14 +187,14 @@
           Earth road method, Gravel road,
           bituminous road; water bound macadam and concrete cement</p>
       </div>
-      <div class="swiper-slide">
+      <div class="swiper-slide ">
         <img src="./img/2.png" alt="">
         <h5 class="text">Mall Construction</h5>
         <p>Our Design-Build delivery system is a great fit for mall construction projects
           because it emphasizes close collaboration between
           customers and our design and construction teams.</p>
       </div>
-      <div class="swiper-slide">
+      <div class="swiper-slide ">
         <img src="./img/3.png" alt="">
         <h5 class="text">Industry Development</h5>
         <p>use ways that are affordable but effective,
@@ -173,7 +208,7 @@
       </div>
     </div>
     <div class="swiper-pagination"></div>
-  </div>
+  </div> -->
   </section>
 
   <!-- banner - end -->
@@ -183,7 +218,7 @@
     <br><br>
     <div class="addvertisment">
       <br><br>
-      <div class="container">
+        <div class="container">
         <div class="content">
           <h1 data-aos="fade-up ease-in-out" class="heading">We deliver quality projects</h1>
           <h4 data-aos="fade-up ease-in-out" class="text">It's a leap year</h4>
@@ -705,18 +740,23 @@
   </section>
 
   <!-- Footer Section - end -->
+  <a href="https://wa.me/+919921073429"><i id="myBtn" href="" class="fa fa-whatsapp fa-3x" title="" onclick="" aria-hidden="true"></i></a>
 
-  <!-- WebPicker Facebook Messenger Chat Plugin Code - Start -->
+
+  <!-- Footer Section - end -->
+
+  <!-- Messenger Chat Plugin Code -->
   <div id="fb-root"></div>
 
   <!-- Your Chat Plugin code -->
-  <div id="fb-customer-chat" class="fb-customerchat">
+  <div id="fb-customer-chat" class="fb-customerchat" minimize="false">
   </div>
 
   <script>
     var chatbox = document.getElementById('fb-customer-chat');
-    chatbox.setAttribute("page_id", "101044708888104");
+    chatbox.setAttribute("page_id", "155813461134550");
     chatbox.setAttribute("attribution", "biz_inbox");
+
     window.fbAsyncInit = function() {
       FB.init({
         xfbml: true,
@@ -733,6 +773,8 @@
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
   </script>
+
+
 
   <!-- Jquery order should be higher from normal javascript  -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -777,13 +819,42 @@
         stretch: 0,
         depth: 100,
         modifier: 1,
-        slideShadows: true,
+        slideShadows: false,
       },
       pagination: {
         el: ".swiper-pagination",
       },
     });
   </script>
+
+<script type="">
+
+var swiper = new Swiper('.swiper-container', {
+  // Default parameters
+  slidesPerView: 1,
+  spaceBetween: 10,
+  // Responsive breakpoints
+  breakpoints: {
+    // when window width is >= 320px
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 20
+    },
+    // when window width is >= 480px
+    480: {
+      slidesPerView: 1,
+      spaceBetween: 30
+    },
+    // when window width is >= 640px
+    640: {
+      slidesPerView: 1,
+      spaceBetween: 0
+    }
+  }
+})
+
+</script>
+
 
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
