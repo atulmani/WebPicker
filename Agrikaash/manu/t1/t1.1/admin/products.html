@@ -379,6 +379,29 @@
         </div>
         <br><br>
 
+        <div style="padding:10px;float:right;" id="google_translate_element"></div><br><br>
+
+        <!-- ASYNCHRONOUS Google Translate -->
+        <script type="text/javascript">
+          function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+              pageLanguage: 'en',
+              layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+              includedLanguages: "en,hi",
+              autoDisplay: false
+            }, 'google_translate_element');
+          }
+
+          (function() {
+            var googleTranslateScript = document.createElement('script');
+            googleTranslateScript.type = 'text/javascript';
+            googleTranslateScript.async = true;
+            googleTranslateScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(googleTranslateScript);
+          })();
+        </script>
+        <!-- End script -->
+
         <div class="col-sm-12" style="padding: 5px;">
           <div class="product-list-div">
             <table>
