@@ -10,7 +10,7 @@
 
   <title>admin-atul-t1.1 - Index </title>
 
-  <link rel="shortcut icon" href="img/logo.png">
+  <link rel="shortcut icon" href="../img/logo.png">
 
   <!-- Google fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -35,6 +35,9 @@
   <!-- Your Own Style -->
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/login.css">
+  <link rel="stylesheet" href="../css/products.css">
+  <link rel="stylesheet" href="../css/orders.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
 
 </head>
 
@@ -72,7 +75,7 @@
   <div class="small navbar-mobile">
     <div class="navbar-mobile-menu">
       <a href="#"><i class="fas fa-bars"></i></a>
-      <a href="#"><img src="./img/logo.png" width="30px" alt=""> </a>
+      <a href="#"><img src="../img/logo.png" width="30px" alt=""> </a>
       <a href="#" style="padding-right: 0px;"><i style="font-size: 0.8rem; position: relative; top: -3px;border: 1px solid #fff;line-height: 20px;
       text-align: center;width: 20px; height:20px;border-radius:50%;" class="fas fa-user"></i></a>
     </div>
@@ -99,7 +102,7 @@
       <a href="#" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <i class="fas fa-shopping-cart"></i>
         <small>Cart</small>
-        <span class="cart-no">1</span>
+        <span class="navbar-cart-no">1</span>
       </a>
     </div>
   </div>
@@ -120,21 +123,21 @@
             </div>
 
             <div class="" style="display:flex;width:200%;">
-              <form class="login-form" id="loginForm">
+              <div class="login-form" id="loginForm">
                 <div class="login-form-feilds">
-                  <input type="email" required name="" value="">
+                  <input id="txtEmail_Signin" type="email" required name="" value="">
                   <div class="underline"></div>
                   <h5>Email</h5>
                 </div>
                 <div class="login-form-feilds">
-                  <input type="password" required name="" value="">
+                  <input id="txtPass_Signin" type="password" required name="" value="">
                   <div class="underline"></div>
                   <h5>Password</h5>
                 </div>
 
-                <a href="#" style="text-align: center;"><button class="mybutton button5">Login</button></a>
+                <button id="btnSignin" class="mybutton button5">Login</button>
 
-              </form>
+              </div>
 
               <form class="login-form" id="registerForm">
                 <div class="login-form-feilds">
@@ -220,7 +223,17 @@
   <!-- Javascript to Populate Map - Start  -->
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
 
-  <script src="js/main.js"></script>
+
+  <!-- Firebase Services -->
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-storage.js"></script>
+
+
+  <script src="../js/firebase.js"></script>
+  <script src="../js/fb-login.js"></script>
+  <script src="../js/main.js"></script>
 
   <!-- Owl Carousel Javascript  -->
   <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
