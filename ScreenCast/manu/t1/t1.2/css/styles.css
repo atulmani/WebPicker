@@ -1157,7 +1157,7 @@ input:valid .input-field i {
 
 #partners {
   background: rgba(219, 232, 225, 0);
-  display: none;
+  /* display: none; */
 }
 
 .testimonial-card {
