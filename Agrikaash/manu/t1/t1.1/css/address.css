@@ -1,0 +1,33 @@
+
+.address-div span{
+  position:absolute;
+  top: 10px;
+  right: 4%;
+}
+
+.address-card{
+  padding: 10px;
+}
+
+.address-card div{
+  display: flex;
+}
+
+.address-card div h5{
+  padding-left: 5px;
+  margin-top: -5px;
+  color: rgba(0,0,0,0.7);
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.address-card p{
+  color: rgba(0,0,0,0.6);
+  font-size: 0.9rem;
+  padding: 0 6px 0 12px;
+  margin: 0 auto;
+}
+
+.address-hr{
+  margin: 10px auto;
+}

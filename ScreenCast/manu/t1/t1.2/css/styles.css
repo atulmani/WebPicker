@@ -1157,7 +1157,7 @@ input:valid .input-field i {
 
 #partners {
   background: rgba(219, 232, 225, 0);
-  display: none;
+  /* display: none; */
 }
 
 .testimonial-card {
@@ -2179,4 +2179,52 @@ input[type=number] {
 }
 
 /* Thank You Page - end */
+
+/* career page - start */
+.positions-img{
+  padding: 10px 12%;
+}
+
+.positions-content{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 7%;
+}
+
+.positions-content .positions-content-header{
+  color: #666;
+  font-weight: bold;
+  margin: 0;
+}
+
+.positions-content .positions-content-subheading{
+  color: #888;
+  font-weight: bold;
+}
+
+.positions-content div{
+  margin: 8px 0;
+}
+
+.positions-content div .heading{
+  color: #666;
+  font-weight: bold;
+  margin: 15px 0 0 0;
+}
+
+.positions-content div .content{
+  color: #888;
+}
+
+.advertisement{
+  background: #efefef;
+  border-radius: 5px;
+  padding: 15px 20px;
+}
+
+/* career page - end */
+
 /* finish */
