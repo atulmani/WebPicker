@@ -698,6 +698,10 @@ h6{
   background: #0d8cf7;
   color: #fff;
 }
+.card{
+  border: 2px solid #161d65;
+  color: #161d65;
+}
 
 /*************** login - End *************/
 
