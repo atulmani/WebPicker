@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="WebPicker - A Website Design & Development platform">
+  <meta name="keywords" content="website design and development">
+  <meta name="author" content="Web Picker">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Agro-dolu-t1.1 - Step1-auth </title>
+
+  <link rel="shortcut icon" href="../img/logo.png">
+
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+    <!-- Font Awesome cdn file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Owl Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <!-- Your Own Style -->
+  <link rel="stylesheet" href="../css/styles.css">
+
+</head>
+
+<body>
+
+  <!-- before navbar - start -->
+  <div class="before-nav">
+    <div class="before-nav-information">
+      <a href=""> <span> Login </span> <i class="fas fa-sign-in-alt"></i> </a> <span></span>
+
+    </div>
+
+    <div class="icons">
+      <a href="https://www.facebook.com/crop.queens/"> <i class="fab fa-facebook-f"></i> </a>
+      <a href="https://twitter.com/CropsQueens"> <i class="fab fa-twitter"></i> </a>
+      <a href="https://cropqueens.tumblr.com/"> <i class="fab fa-tumblr"></i> </a>
+      <a href="https://www.instagram.com/cropqueens/"> <i class="fab fa-instagram"></i> </a>
+    </div>
+  </div>
+
+  <!-- Navbar - Start -->
+  <nav class="navbar navbar-expand-lg sticky-top ">
+    <a class="navbar-brand" href="#banner">
+      <img class="small" style="height:60px;" src="../img/logo.png" alt="">
+      <img class="large" style="height:60px;" src="../img/logolg.png" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+      <!-- <span>
+       <i class="fa fa-reorder fa-2x " style="color:#1638A0;" ></i>
+     </span> -->
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <span class="navbar-text">
+        <h5><strong> Crop Queens</strong></h5>
+      </span>
+      <ul class="nav navbar-nav ml-auto ">
+        <li class="nav-item">
+          <a class="nav-link" href="#banner">Home</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="../index.html">Services</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="#portfolio">Event Details</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#footer">About us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#footer">Contact us</a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+  <div class="small bardown">
+    <ul>
+      <li><a href="../index.html"> <span> <i style="color:#fde834;" class="fas fa-home"></i></span> <br> Home</a> </li>
+      <li><a href="./index.html"> <span> <i style="color:#fde834;" class="far fa-calendar-alt"></i></span> <br> Events </a></li>
+      <li><a href="./Order/coustomerInfo.html;"> <span> <i style="color:#fde834;" class="far fa-comment-dots"></i></span> <br> Inbox </a> </li>
+      <li><a href=""> <span> <i style="color:#fde834;" class="fas fa-users"></i></span> <br> Clubs </a> </li>
+      <li><a href=""> <span> <i style="color:#fde834;" class="fas fa-list"></i></span> <br> More </a> </li>
+    </ul>
+  </div>
+  <!-- Navbar - End -->
+
+  <!-- Banner Section - Start -->
+  <div class="row no-gutters">
+    <div style="padding:2% 2% 0 2%;" class="col-lg-8 ">
+      <img id="event-image" style="width:100%;border-radius:10px;" src="../img/1.png" alt=""><br><br>
+        <img style="width:100%;border-radius:10px;" src="../img/pager4.jpg" alt="">
+
+    </div>
+
+    <div style="padding: 2% 2% 0 2%;" class="col-lg-4">
+      <!-- login - start -->
+      <div class="login-full-page">
+        <div class="row no-gutters">
+          <div class="col-lg-12 ">
+            <div class="login-register-card">
+              <div class="login-register-card-fixed">
+                <div class="form-btn">
+                  <div class="" style="display:flex;justify-content:space-around;">
+                    <span onclick="login()">Login</span>
+                    <span onclick="register()">Register</span>
+                  </div>
+                  <hr id="Indicator">
+                </div>
+
+                <div class="" style="display:flex;width:200%;">
+                  <form class="login-form" id="loginForm">
+                    <div class="login-form-feilds">
+                      <input type="email" required name="" value="">
+                      <div class="underline"></div>
+                      <h5>Email</h5>
+                    </div>
+                    <div class="login-form-feilds">
+                      <input type="password" required name="" value="">
+                      <div class="underline"></div>
+                      <h5>Password</h5>
+                    </div>
+
+                    <a href="#" style="text-align: center;"><button style="color:#fff; background-color:#348DCB;" class="mybutton btn button5">Login</button></a>
+
+                  </form>
+
+                  <form class="login-form" id="registerForm">
+                    <!-- <div class="login-form-feilds">
+                      <input type="text" required name="" value="">
+                      <div class="underline"></div>
+                      <h5>Name</h5>
+                    </div> -->
+                    <!-- <div class="login-form-feilds">
+                      <input type="number" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required name="" value="">
+                      <div class="underline"></div>
+                      <h5>Phone Number</h5>
+                    </div> -->
+                    <div class="login-form-feilds">
+                      <input type="email" required name="" value="">
+                      <div class="underline"></div>
+                      <h5>Email</h5>
+                    </div>
+                    <div class="login-form-feilds">
+                      <input type="password" required name="" value="">
+                      <div class="underline"></div>
+                      <h5>Password</h5>
+                    </div>
+                    <a href="#" style="text-align: center;"><button style="color:#fff; background-color:#348DCB;" class="mybutton btn button5">Register</button></a><br>
+                  </form>
+                </div>
+
+                <div class="social-media">
+                  <i class="fab fa-facebook-f"></i>
+                  <i class="fab fa-twitter"></i>
+                  <i class="fab fa-google-plus-g"></i>
+                  <i class="fab fa-linkedin-in"></i>
+                  <i class="fab fa-facebook-messenger"></i>
+                </div>
+                <small style="text-align:center;padding-top:5px;">Sign in with more options</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- login - End -->
+<br><br>
+
+
+      <!-- <div style="border: 2px solid #7DB5DA; " class="firstbox">
+        <h4 id="eventName" style="font-weight:1000; font-size:1.2rem;color:#348DCB;">PLAYUPBEAT BADMINTON CHAMPS
+        </h4>
+        <hr>
+        <ul>
+          <li><i style="color:#348DCB;" class="far fa-bookmark"></i><span class="textheadleft">Organiser: </span><span style="color:#889;" id="organiser-name" class="textheadleft">Krishal Shetty</span></li>
+          <li><i style="color:#348DCB;" class="far fa-calendar"></i> <span class="textheadleft">Date:</span> <span id="start-time" class="textheadleft"></span> <span style="color:#889;" id="end-time" class="textheadleft">14 Sept'21 to 17
+              Sept'21</span> </li>
+          <li><i style="color:#348DCB;" class="fas fa-rupee-sign"></i> <span class="textheadleft">Price: ₹</span> <span style="color:#889;" id="event-price" class="textheadleft">1000</span>
+            <span style="padding-left:30%;">
+
+              <button style="background-color:#348DCB;color:#fff; font-size:0.8rem;" type="button" name="button" id="booking" class="btn"> Register Now <i class="fas fa-angle-double-right"></i>
+              </button>
+
+            </span>
+          </li>
+        </ul>
+
+      </div><br><br> -->
+      <div style="border: 2px solid #7DB5DA;" class="secbox">
+        <h4 style="font-weight:1000;color:#348DCB">Event Guide</h4>
+        <hr>
+        <ul>
+          <li><i class="fas fa-play-circle"></i> <span class="textheadleft">Venue : <span id="event-mode" class="textheadright">NKBA Pune</span> </span> </li>
+          <li><i class="fab fa-app-store"></i> <span class="textheadleft">Categories : <span id="age" class="textheadright"> MS, MD, MD(65+) </span> </span> </li>
+          <li><i class="fas fa-language"></i> <span class="textheadleft">Withdrawal Date : <span id="language" class="textheadright">13Sept'21</span> </span> </li>
+          <li><i class="fas fa-headset"></i> <span class="textheadleft">Event Status : <span id="eventstatus" class="textheadright">Upcomming</span> </span></li>
+        </ul>
+      </div><br><br>
+
+              <div style="border: 2px solid #7DB5DA;" class="thirdbox">
+                <ul>
+                  <li> <span style="color:#348DCB;"> Have a question? <span style="padding-left:30%;"><a href="#"><button style="background-color:#348DCB;color:#348DCB;  text-align:center; font-size:0.7rem;display:none;" type="button" name="button"
+                            class="btn"> ASK NOW
+                            <i class="fas fa-angle-double-right"></i></button></a></span></span><br> <span style="color:#889; font-size:0.74rem">Ask the organiser anything!</span>
+                    <br>
+                    <span style="font-size:0.9rem;color:#348DCB;">Email: </span> <span id="organiser-email" style="font-size:0.9rem;color:#889;">krishalpal123@gmail.com</span><br>
+                    <span style="font-size:0.9rem;color:#348DCB;">Contact: </span> <span id="organiser-phone" style="font-size:0.9rem;color:#889;">+91 7355534789</span>
+
+                  </li>
+
+                </ul>
+
+              </div>
+
+      </div>
+
+    </div>
+    <div class="row no-gutters">
+      <div style="padding-left:2%; font-family: 'Baloo 2', cursive;" class="">
+        <span>
+          <h3 style="color:#348DCB;">About the event</h3>
+        </span>
+        <hr style="background:#348DCB;">
+        <p id="para" style="font-weight:300;color:#333C5D;">
+          In case of any technical issue during registration, please get in touch with TPLiVE Whatsapp Support: 8484 966 096
+
+          There will be 3 categories of matches
+          MS (Men’s Singles)
+          MD (Men’s Doubles)
+          MD65+ (Men’s Doubles)
+          A player can participate in multiple categories in the tournament
+
+          All participants are advised to be present 15 mins before to the venue of the tournament and report your attendance
+
+
+
+          Match fixtures and timings will be updated one day before the tournament
+
+
+
+          Grace wait period will be 10 mins after which the participant/team will be disqualified, and the opponent will be declared winner for that match
+          Trophies and medals will be awarded for the finalists of each category
+          There will be a cash prize too for the winners and the runners up of each category
+
+          Winning team -> Rs. 2000
+          Runners up team -> Rs. 1000
+          The event will be on Feb 21 2021
+          Timing of the event will be from 2:00 pm to 7:00 pm
+          Registrations will be open till 18th Feb 2021 11:59 pm
+
+          The registration fees will be as follows:
+          MS (Men’s Single) -> Rs.500
+          MD (Men’s Double) –> Rs.750
+          MD65+ (Men’s double) -> 750
+          Venue Contact: Krishal Shetty - 9663292233 |
+
+          Venue Link: Not Available
+
+          Venue: WHITEFIELD SPORTS CENTRE, SEEGEHALLI
+
+          Registration Closed Date:Friday, 19 February 2021
+
+          <br>
+          We request you to kindly go through the rules and regulations before participating in the event.
+
+          A player can participate in multiple categories in the tournament
+          First round group stage 15 points
+          Next round group stages 21 points
+          There will be no concept of deuce till semi finals and the matches will be one set game
+          After group stages top 4 who are left will be the semi finalists
+          Semi finals and finals will be played for best of 3 sets(21 points). There will be deuce concept whenever the points are equaled at 20 – 20 each side. There will be no deuce more than 24 -24 each side and the team/ player who reaches 25
+          points will be the winner of the set
+          Semi-finals and Finals will be recorded
+          Teams/ players will have one review to challenge referee decision once per set in the semi finals and final match. Review will be there for only semi final and final matches
+          At any point of the game, the referee decision will considered as the final decision. Argument with the referee will lead to disqualification from the tournament
+          There will be 2 warnings given for a faulty service and the service will be redone after which the point will be given to the opponent
+        </p>
+
+      </div>
+      <!-- <div class="col-lg-4">
+
+
+        </div> -->
+
+    </div>
+
+
+  
+
+  <!-- </div> -->
+
+
+  <!-- Banner Section - End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- *******************FOOTER SECTION STARTS************************************** -->
+
+    <section id="footer">
+      <!-- <div style="background-color:#373435;" class="row no-gutters"> -->
+      <div style="background-color:#333C5D; font-family: 'Baloo 2', cursive; letter-spacing:1.5px;" class="row no-gutters">
+        <div style="padding:30px 50px;" class="col-lg-6 col-md-12 col-sm-12">
+
+          <span>
+            <h3 style="text-align:left;color:#fff; font-weight:1000;">TPLiVE</h3>
+          </span>
+          <hr style="background-color:#fff;height:2px;">
+
+          <p style="text-align:left;font-size:1rem; color:#fff;">TPLiVE is a startup whose aspiration is to join hands with Digital India and Go-Green. Our mission is to automate the process of creating any kind of events like Educational, Sports &
+            Fitness, Art, Music, Dance & Drama, Cultural, Online Shopping and many more...
+
+            Organizing any Tournament manually is always a challenge starting from registration forms distribution & collection, payment collection, draws & match schedule preparation & publish, umpire & score management, publish result till prize
+            distribution.
+
+            Our product aims at eliminating all the challenges faced by the Organizers and the Participants. This Mobile-Enabled Product is designed in an inventive way to ensure uninterrupted and smooth usage. Through this, application users can
+            interact and keep themselves updated about upcoming tournaments, LiVE match updates, results and other Sports related events.
+
+          </p>
+          <br><br>
+          <h4 style="text-align:left;color:#fff;font-weight:1000;">Objective</h4>
+          <hr style="background-color:#fff; height:2px;">
+          <p style="text-align:left; font-size:1rem;color:#fff;">We will be happy to provide our services to all the Tournament Organizers from District & State Sports Committees, Sports Academies, Schools, Corporates, Townships, Societies and every enthusiastic Sports lover to encourage Sports with health and happiness in their locality.
+
+  Please reach out to us through whatsapp or email or to meet us at our any upcoming events.</p>
+
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 large" style=" padding: 10% 8%;">
+          <div class="" style="background:#348DCB; padding: 10px 20px;text-align: center; border-radius:12px;">
+
+
+            <ul style="text-align:center;letter-spacing:2px;color:#fff;" class="footer-styles">
+              <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="#">About Us</a></li>
+              <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="#">FAQ's</a> </li>
+              <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="#">Privacy Policy</a> </li>
+              <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="#">Contact Us</a> </li>
+
+            </ul><br class="large" />
+
+            <ul style="text-align:left; " class="footer-styles">
+              <li class="footer-li"> <a href="https://www.facebook.com/crop.queens/"><i style="font-size:18px; color:#fff" class="fab fa-facebook-f"></i></a></li>
+              <li class="footer-li"> <a href="https://www.instagram.com/cropqueens/"><i style="font-size:18px; color:#fff" class="fab fa-instagram"></i></a> </li>
+              <li class="footer-li"> <a href="#"><i style="font-size:18px; color:#fff" class="fab fa-youtube"></i></a> </li>
+            </ul>
+
+          </div>
+        </div>
+
+        <!-- for phone -->
+
+        <div class="col-lg-6 col-md-12 col-sm-12 small" style="padding:3% 8%;">
+          <div style="background:#348DCB; padding:20px; text-align:center; border-radius: 12px;">
+
+
+            <ul style="text-align:left;" class="footer-styles">
+              <li class="footer-li"> <a style="font-size:10px; color:#fff" href="#">About Us</a></li>
+              <li class="footer-li"> <a style="font-size:10px; color:#fff" href="#">FAQ's</a> </li>
+              <li class="footer-li"> <a style="font-size:10px; color:#fff" href="#">Privacy Policy</a> </li>
+              <li class="footer-li"> <a style="font-size:10px; color:#fff" href="#">Contact Us</a> </li>
+
+            </ul>
+
+            <ul style="text-align:left;" class="footer-styles">
+              <li class="footer-li"> <a href="https://www.facebook.com/crop.queens/"><i style="font-size:18px; color:#fff" class="fab fa-facebook-f"></i></a></li>
+              <li class="footer-li"> <a href="https://www.instagram.com/cropqueens/"><i style="font-size:18px; color:#fff" class="fab fa-instagram"></i></a> </li>
+              <li class="footer-li"> <a href="#"><i style="font-size:18px; color:#fff" class="fab fa-youtube"></i></a> </li>
+
+            </ul>
+          </div><br><br><br><br>
+        </div>
+
+
+      </div>
+
+      <div style="background:#348DCB;font-size:10px;padding:0.5% 0;font-family: 'Baloo 2', cursive; color:#fff;" class="">
+        Copyright © Academy Planner, Powered by TPLiVE
+
+
+      </div>
+
+    </section>
+
+  <!-- Footer Section - end -->
+
+  <!-- WebPicker Facebook Messenger Chat Plugin Code - Start -->
+    <div id="fb-root"></div>
+
+    <!-- Your Chat Plugin code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "101044708888104");
+      chatbox.setAttribute("attribution", "biz_inbox");
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v11.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+  <!-- Jquery order should be higher from normal javascript  -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+  <!-- Owl Carousel JQuery -->
+  <!-- <script src="js/jquery.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Javascript to Populate Map - Start  -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
+<!--
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+
+    <script src="../js/firebase.js"></script>
+    <script src="../js/fb-step1-auth.js"></script>
+    <script src="/js/main.js"></script> -->
+
+  <!-- Owl Carousel Javascript  -->
+  <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script>
+    var loginForm = document.getElementById("loginForm");
+    var registerForm = document.getElementById("registerForm");
+    var Indicator = document.getElementById("Indicator");
+
+    function register() {
+
+      registerForm.style.transform = "translateX(-100%)";
+      loginForm.style.transform = "translateX(-100%)";
+      Indicator.style.transform = "translateX(100%)";
+    }
+
+    function login() {
+
+      registerForm.style.transform = "translateX(0px)";
+      loginForm.style.transform = "translateX(0px)";
+      Indicator.style.transform = "translateX(0px)";
+    }
+  </script>
+</body>
+</html>
