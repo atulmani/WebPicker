@@ -81,7 +81,7 @@
 }
 
 .quantity.buttons_added input {
-  display: inline-block;
+  display: inline-flex;
   margin: 0;
   vertical-align: top;
   box-shadow: none;
