@@ -15,8 +15,8 @@ auth.onAuthStateChanged(firebaseUser => {
       GetProfileData(firebaseUser);
       getCartItemNo();
       populateProductData();
-//      const promise = getCartItemNo();
-  //    const promise2 = promise.then(populateProductData);
+      //      const promise = getCartItemNo();
+      //    const promise2 = promise.then(populateProductData);
 
 
     } else {
@@ -35,7 +35,7 @@ function GetProfileData(user) {
   const snapshot = db.collection('Users').doc(user.uid);
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
-        console.log('Document ref id: ' + doc.data().uid);
+        //console.log('Document ref id: ' + doc.data().uid);
         userID = doc.data().uid;
         document.getElementById('headerProfilePic').src = doc.data().ImageURL;
         document.getElementById('displayName').innerHTML = doc.data().displayName;
@@ -50,14 +50,15 @@ function GetProfileData(user) {
 };
 
 function getCartItemNo() {
+  console.log("getCartItemNo");
   var cartItemNo = document.getElementById('cartItemNo');
-
+  console.log(cartItemNo);
   const snapshotCart = db.collection('CartDetails').doc(userID);
   snapshotCart.get().then((doc) => {
     if (doc.exists) {
-      console.log("doc exists");
+      //console.log("doc exists");
       var itemlist = doc.data().cartDetails;
-      console.log(itemlist);
+      //console.log(itemlist);
       item = itemlist.length;
       cartItems = itemlist;
       // item = doc.data().cartDetails.length;
@@ -73,7 +74,7 @@ function populateProductData() {
     ///check cart Start
     //get already added items from cart
     var item = [];
-    console.log(cartItems);
+    //console.log(cartItems);
     // const snapshotCart = db.collection('CartDetails').doc(userID);
     // snapshotCart.get().then((doc) => {
     //   if (doc.exists) {
@@ -86,7 +87,7 @@ function populateProductData() {
     var selectedindex = -1;
     var selectdedItem;
     changes.forEach(change => {
-      console.log(change.type, change.doc.id);
+      //console.log(change.type, change.doc.id);
       //console.log(item);
       if (change.type == 'added') {
         if (cartItems != null) {
@@ -104,7 +105,7 @@ function populateProductData() {
           selectdedItem = null;
         }
       }
-      console.log(change.doc, index, selectdedItem);
+      //console.log(change.doc, index, selectdedItem);
       renderProductNew(change.doc, index, selectdedItem);
       index = index + 1;
 
@@ -120,8 +121,8 @@ function populateProductData() {
 
 /////////////////////new function
 function renderProductNew(doc, index, selectedItem) {
-  console.log('Doc ID: ' + doc.id);
-  console.log('Event Name: ' + doc.data().ProductName);
+  //console.log(selectedItem);
+  //console.log('Event Name: ' + doc.data().ProductName);
 
   var productlist = doc.data().ProductDetails;
 
@@ -179,8 +180,9 @@ function renderProductNew(doc, index, selectedItem) {
   var selectP = document.createElement("select");
   selectP.name = "productDetails";
   selectP.id = "productDetails" + index;
-  console.log("mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + ")");
-  selectP.setAttribute("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelectedValue" + index + ")");
+  //console.log("mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + ")");
+  selectP.setAttribute("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelectedValue" + index + ","+index+")");
+  //selectP.addEventListener("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelectedValue" + index + ","+index+")");
   var indexnew = -1;
   var mrp = 0;
   var finalPrize = 0;
@@ -196,7 +198,7 @@ function renderProductNew(doc, index, selectedItem) {
         if (qtyNew === doc.data().MinimumQty)
           qtyNew = selectedItem.Quantity;
         //indexnew = option.index;
-        console.log("indexnew : ", indexnew);
+        //console.log("indexnew : ", indexnew);
         if (mrp === 0)
           mrp = val.ProductMRP;
         if (finalPrize === 0)
@@ -251,11 +253,11 @@ function renderProductNew(doc, index, selectedItem) {
   var buttonA = document.createElement("a");
   buttonA.setAttribute('href', '#');
   buttonA.setAttribute("id", "btnAddtoCart" + index);
+  buttonA.setAttribute("onclick", "addToCart(" + doc.data().MinimumQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "'," + index + ")");
 
   var addToCartBtn = document.createElement('button');
   addToCartBtn.setAttribute('class', 'mybutton button5');
   addToCartBtn.setAttribute('style', 'width:90px;font-size:1.08rem;');
-  addToCartBtn.setAttribute("onclick", "addToCart(" + doc.data().MinimumQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "')");
   addToCartBtn.innerHTML = "Add <i class='fas fa-cart-plus'></i>";
 
   var trinput1 = document.createElement("input");
@@ -264,7 +266,7 @@ function renderProductNew(doc, index, selectedItem) {
   trinput1.setAttribute("value", "-");
   trinput1.setAttribute("class", "minus");
 
-  trinput1.setAttribute("onclick", " decrementQty(" + "qty" + index + ", " + "min" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "',"+index+")");
+  trinput1.setAttribute("onclick", " decrementQty(" + "qty" + index + ", " + "min" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "'," + index + ")");
 
   //trinput1.setAttribute("onclick", " decrementQty(" + "qty" + index + ", " + "min" + index + " ," + doc.data().StepQty + ","+doc.data().ProductName+","+selectP+" ,"+doc.id+" )");
   var trinput2 = document.createElement("input");
@@ -274,7 +276,7 @@ function renderProductNew(doc, index, selectedItem) {
   trinput2.setAttribute("name", "quantity");
   //trinput2.setAttribute("value", doc.data().MinimumQty);
   if (selectedItem != null) {
-    trinput2.setAttribute("value", qtyNew);
+    trinput2.setAttribute("value", selectedItem.Quantity);
 
   } else {
     trinput2.setAttribute("value", doc.data().MinimumQty);
@@ -287,6 +289,7 @@ function renderProductNew(doc, index, selectedItem) {
   trinput2.setAttribute("inputmode", "");
 
   var trinput3 = document.createElement("input");
+  trinput2.setAttribute("onchange", "updateQuantity(" + "qty" + index + "," + doc.data().MinimumQty + "," + doc.data().MaximumQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "' )");
   trinput3.setAttribute("id", "plus" + index);
   trinput3.setAttribute("type", "button");
   trinput3.setAttribute("value", "+");
@@ -310,24 +313,25 @@ function renderProductNew(doc, index, selectedItem) {
 
   if (selectedItem != null) {
     buttonA.style.display = 'none';
+    trinput1.style.visibility = 'visible';
+    trinput2.style.visibility = 'visible';
+    trinput3.style.visibility = 'visible';
   } else {
-    trinput1.style.display = 'none';
-    trinput2.style.display = 'none';
-    trinput3.style.display = 'none';
-    trinput4.style.display = 'none';
-    trinput5.style.display = 'none';
-    trinput6.style.display = 'none';
+    buttonA.style.display = 'block';
+    trinput1.style.visibility = 'hidden';
+    trinput2.style.visibility = 'hidden';
+    trinput3.style.visibility = 'hidden';
   }
 
-    trdiv.appendChild(trinput1);
-    trdiv.appendChild(trinput2);
-    trdiv.appendChild(trinput3);
-    trdiv.appendChild(trinput4);
-    trdiv.appendChild(trinput5);
-    trdiv.appendChild(trinput6);
+  trdiv.appendChild(trinput1);
+  trdiv.appendChild(trinput2);
+  trdiv.appendChild(trinput3);
+  trdiv.appendChild(trinput4);
+  trdiv.appendChild(trinput5);
+  trdiv.appendChild(trinput6);
 
-    buttonA.appendChild(addToCartBtn);
-    trdiv.appendChild(buttonA);
+  buttonA.appendChild(addToCartBtn);
+  trdiv.appendChild(buttonA);
 
   // if (selectedItem != null) {
   //   trdiv.appendChild(trinput1);
@@ -356,15 +360,6 @@ function renderProductNew(doc, index, selectedItem) {
 }
 
 
-function addToCart(minQty, itemName, productID, itemSizeObj) {
-  console.log(minQty);
-  console.log(itemName);
-  console.log(productID);
-  console.log(itemSizeObj);
-
-  AddUpdateCart(itemName, itemSizeObj, minQty, productID, 'active');
-
-}
 
 /////////////////////new function
 // function renderProduct(doc, index) {
@@ -516,10 +511,24 @@ function addToCart(minQty, itemName, productID, itemSizeObj) {
 //
 // }
 
+function updateQuantity(oqty, iMin, iMax, itemName, productID, itemSizeObj) {
+  var qty = Number(oqty.value);
+  if (qty < iMin)
+    qty = iMin;
+  if (qty > iMax)
+    qty = iMax;
+  console.log(qty);
+
+  oqty.value = qty;
+  AddUpdateCart(itemName, itemSizeObj, Number(qty), productID, 'active');
+  getCartItemNo();
+}
+
 function incrementQty(oqty, omax, step, itemName, productID, itemSizeObj) {
 
   var qty = Number(oqty.value);
-
+  console.log(oqty);
+  console.log(qty);
   var max = Number(omax.value);
 
   if ((qty + step) <= max) {
@@ -535,6 +544,39 @@ function incrementQty(oqty, omax, step, itemName, productID, itemSizeObj) {
 
 }
 
+function ChangeAddButtonVisible(index, blflag) {
+  console.log(index, blflag);
+  var buttonA = document.getElementById("btnAddtoCart" + index);
+  var minB = document.getElementById("minus" + index);
+  var qtyB = document.getElementById("qty" + index);
+  var plusB = document.getElementById("plus" + index);
+
+  if (blflag === true) {
+    //console.log(buttonA);
+    buttonA.style.display = 'block';
+
+    minB.style.visibility = 'hidden';
+    qtyB.style.visibility = 'hidden';
+    plusB.style.visibility = 'hidden';
+  } else {
+    buttonA.style.display = 'none';
+
+    minB.style.visibility = 'visible';
+    qtyB.style.visibility = 'visible';
+    plusB.style.visibility = 'visible';
+  }
+}
+
+function addToCart(minQty, itemName, productID, itemSizeObj, index) {
+  //console.log(minQty);
+  //console.log(itemName);
+  //console.log(productID);
+  //console.log(itemSizeObj);
+
+  AddUpdateCart(itemName, itemSizeObj, minQty, productID, 'active');
+
+  ChangeAddButtonVisible(index, false);
+}
 //function decrementQty(oqty, omin, step, itemName, itemSizeObj, productID) {
 function decrementQty(oqty, omin, step, itemName, productID, itemSizeObj, index) {
 
@@ -546,36 +588,28 @@ function decrementQty(oqty, omin, step, itemName, productID, itemSizeObj, index)
     qty = qty - step;
   } else {
     qty = min;
-      buttonA = document.getElementById("btnAddtoCart" + index);
-      console.log(buttonA);
-      buttonA.style.display = 'block';
-      minB = document.getElementById("minus" + index);
-      minB.style.display = 'none';
 
-      qtyB = document.getElementById("qty" + index);
-      qtyB.style.display = 'none';
-
-      plusB = document.getElementById("plus" + index);
-      plusB.style.display = 'none';
   }
 
   oqty.value = qty;
 
   if (qty === min) {
-    deleteFromCart(itemSizeObj, productID);
+    var promise = deleteFromCart(itemSizeObj, productID, index);
+    promise.then(ChangeAddButtonVisible(index, true));
+
   } else {
     AddUpdateCart(itemName, itemSizeObj, qty, productID, 'active');
   }
 
 }
 
-function deleteFromCart(itemSizeObj, productID) {
+async function deleteFromCart(itemSizeObj, productID, index) {
 
   //const snapshot = db.collection('CartDetails').doc(userID);
   //snapshot.get().then((doc) => {
   //item = cartItems;
 
-  console.log(cartItems);
+  //console.log(cartItems);
 
   itemIndex = cartItems.findIndex(a => a.ProductID === productID && a.SelectedsubItem === itemSizeObj);
   if (itemIndex >= 0) {
@@ -588,11 +622,15 @@ function deleteFromCart(itemSizeObj, productID) {
       cartDetails: cartItems //firebase.firestore.FeildValue.arrayUnion(cartItems)
     })
     .then(() => {
-      console.log('manu');
+      //console.log('manu');
       // location.reload();
+      document.getElementById('cartItemNo').innerHTML = cartItems.length;
+
       populateProductData();
+      ChangeAddButtonVisible(index, true);
     })
     .catch((error) => {
+      return index;
       console.log("in error");
       document.getElementById('errorMessage').innerHTML = error.message;
       document.getElementById('errorMessage').style.display = 'block';
@@ -601,29 +639,44 @@ function deleteFromCart(itemSizeObj, productID) {
 
   //});
   // populateProductData();
+  return index;
 }
 
-function mySelectionChange(productdetails, mrp, final, hfSelected) {
+function mySelectionChange(productdetails, mrp, final, hfSelected, index) {
   //alert(productdetails);
   //alert(productdetails.selectedIndex);
+console.log(productdetails);
+console.log( mrp);
+console.log( final);
+console.log(hfSelected);
+
   var str = productdetails[productdetails.selectedIndex].value;
   hfSelected.value = productdetails[productdetails.selectedIndex].text;
-  console.log(hfSelected.value);
+  //console.log(hfSelected.value);
   const myarr = str.split(":");
   //alert (myarr )
   mrp.innerHTML = myarr[1];
   final.innerHTML = myarr[0];
   //alert(mrp);
-
+//check if already in cartItems
+ var selIndex = cartItems.findIndex(e => e.SelectedsubItem === str)
+ if (selIndex >= 0 ){ //item alreadt added
+   ChangeAddButtonVisible(index, false);
+ }
+ else
+ {
+   ChangeAddButtonVisible(index, true);
+ }
 }
 
 function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualityStatus) {
 
-  console.log(itemName);//Strawberry
+  console.log(itemName); //Strawberry
   console.log(itemSelect); //1KG - Rs.9
-  console.log(itemQuantity);//3
-  console.log(productID);//mdlfz4OFEAjScOhYBJVN
+  console.log(itemQuantity); //3
+  console.log(productID); //mdlfz4OFEAjScOhYBJVN
   console.log(itemQualityStatus); //active
+
   itemIndex = cartItems.findIndex(a => a.ProductID === productID && a.SelectedsubItem === itemSelect);
   if (itemIndex >= 0)
     cartItems.splice(itemIndex, 1);
@@ -635,12 +688,11 @@ function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualit
     ProductID: productID,
     Status: itemQualityStatus
   });
-
   db.collection('CartDetails')
     .doc(userID)
     .set({
       uid: userID,
-      cartDetails: cartItems,//firebase.firestore.FeildValue.arrayUnion(cartItems),
+      cartDetails: cartItems, //  firebase.firestore.FeildValue.arrayUnion(cartItems),
       CreatedTimestamp: '',
       UpdatedTimestamp: (new Date()).toString()
     })
@@ -661,7 +713,7 @@ function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualit
 }
 
 var removeByAttr = function(arr, attr, value) {
-  console.log("in remove");
+  //console.log("in remove");
   var i = arr.length;
   while (i--) {
     if (arr[i] &&
