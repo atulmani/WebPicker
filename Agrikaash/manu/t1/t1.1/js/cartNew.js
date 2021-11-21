@@ -262,7 +262,7 @@ function renderProduct(doc, index, selecteditem) {
   td2.setAttribute("width", "55%");
   td2.setAttribute("valign", "top")
   td2.setAttribute("class", "product-names-div");
-  td2.innerHTML = "<small class='product-names'>" + doc.data().ProductName + "</small><br>" +
+  td2.innerHTML = "<small class='product-names' id='itemName'>" + doc.data().ProductName + "</small><br>" +
     "<small style='font-size: 0.8rem; color: rgba(0,0,0,0.5);'>" + doc.data().Brand + "</small><br>";
 
   // var selectP = document.createElement("select");
@@ -355,6 +355,7 @@ function renderProduct(doc, index, selecteditem) {
   trinput2.setAttribute("type", "number");
   trinput2.setAttribute("step", "1");
   trinput2.setAttribute("name", "quantity");
+
   //trinput2.setAttribute("value", doc.data().MinimumQty);
   trinput2.setAttribute("value", selecteditem.Quantity);
   trinput2.setAttribute("title", "Qty");
@@ -362,13 +363,15 @@ function renderProduct(doc, index, selecteditem) {
   trinput2.setAttribute("size", "4");
   trinput2.setAttribute("pattern", "");
   trinput2.setAttribute("inputmode", "");
+  //trinput2.setAttribute("onClick","updateQuantity("+"qty" + index + "," + doc.data().MinimumQty +","+doc.data().MaximumQty+ ",''" +doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + " )");
+  trinput2.setAttribute("onchange","updateQuantity("+"qty" + index + "," + doc.data().MinimumQty +","+doc.data().MaximumQty+ ",'" +doc.data().ProductName + "','" + doc.id + "'," +  "hfSelect" + index+ " )");
 
   var trinput3 = document.createElement("input");
   trinput3.setAttribute("id", "plus" + index);
   trinput3.setAttribute("type", "button");
   trinput3.setAttribute("value", "+");
   //trinput3.setAttribute("onclick", "incrementQty(" + "qty" + index + ", " + "max" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "')");
-  trinput3.setAttribute("onclick", "incrementQty(" + "qty" + index + ", " + "max" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + ")");
+  trinput3.setAttribute("onclick", "incrementQty(" + "qty" + index + ", " + "max" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," +"hfSelect" + index + ")");
 
   trinput3.setAttribute("class", "plus");
 
@@ -412,6 +415,20 @@ function renderProduct(doc, index, selecteditem) {
 
 }
 
+function updateQuantity(oqty, iMin, iMax ,itemName, productID, itemSizeObj)
+{
+  console.log(itemSizeObj.value);
+  var qty = Number(oqty.value);
+  if(qty < iMin)
+    qty = iMin;
+  if (qty > iMax)
+      qty=iMax;
+
+      oqty.value = qty;
+      AddUpdateCart(itemName, itemSizeObj, Number(qty), productID, 'active');
+      getCartItemNo();
+}
+
 function incrementQty(oqty, omax, step, itemName, productID, itemSizeObj) {
 
   console.log(itemSizeObj);
@@ -427,7 +444,7 @@ function incrementQty(oqty, omax, step, itemName, productID, itemSizeObj) {
 
   oqty.value = qty;
   //var str = itemSizeObj[itemSizeObj.selectedIndex].text;
-  console.log(oqty, omax, step, itemName, productID, itemSizeObj);
+  //console.log(oqty, omax, step, itemName, productID, itemSizeObj);
   AddUpdateCart(itemName, itemSizeObj, qty, productID, 'active');
   getCartItemNo();
 }
@@ -516,7 +533,7 @@ function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualit
 
   var item = [];
   console.log("AddUpdateCart");
-  console.log("itemSelect : ", itemSelect.value);
+  console.log("itemSelect : ", itemSelect);
   console.log("itemName : ", itemName);
   console.log("itemQuantity : ", itemQuantity);
   console.log("productID : ", productID);
@@ -544,14 +561,14 @@ function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualit
       .doc(userID)
       .set({
         uid: userID,
-        cartDetails: firebase.firestore.FeildValue.arrayUnion(item),
+        cartDetails: item,//firebase.firestore.FeildValue.arrayUnion(item),
         CreatedTimestamp: '',
         UpdatedTimestamp: (new Date()).toString()
       })
       .then(() => {
         // updated
         console.log('Users data saved successfully');
-
+        getCartItemNo();
         // Show alert
         //document.querySelector('.alert').style.display = 'block';
 
