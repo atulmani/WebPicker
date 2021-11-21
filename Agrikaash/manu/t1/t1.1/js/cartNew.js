@@ -113,6 +113,8 @@ function getCartItemNo() {
       //  console.log(doc.id);
       item = doc.data().cartDetails;
       var arr = [];
+      var prise = 0;
+
       for (var i = 0; i < item.length; i++) {
         arr.push(item[i].ProductID);
       }
@@ -121,34 +123,46 @@ function getCartItemNo() {
       {
         var parr = [];
         //const prodDetails = db.collection('Products').doc(item[i].ProductID);
-        db.collection('Products').where("__name__", 'in', arr)
-          //const prodDetails = db.collection('Products').where ("__name__" , '==', 'O1RMEcLeeaHt9cXoAT33')
-          .get()
-          .then((psnapshot) => {
-            psnapshot.forEach((doc) => {
-              parr.push({
-                ProductID: doc.id,
-                ProductDetails: doc.data().ProductDetails
+        console.log(arr);
+        if (arr != null && arr.length > 0) {
+          db.collection('Products').where("__name__", 'in', arr)
+            //const prodDetails = db.collection('Products').where ("__name__" , '==', 'O1RMEcLeeaHt9cXoAT33')
+            .get()
+            .then((psnapshot) => {
+              psnapshot.forEach((doc) => {
+                parr.push({
+                  ProductID: doc.id,
+                  ProductDetails: doc.data().ProductDetails
+                });
               });
-            });
-            var prise = 0;
-            for (i = 0; i < item.length; i++) {
-              var qty = item[i].Quantity;
-              var selectedsubItem = item[i].SelectedsubItem;
-              var weight = selectedsubItem.split('-');
+              for (i = 0; i < item.length; i++) {
+                var qty = item[i].Quantity;
+                var selectedsubItem = item[i].SelectedsubItem;
+                var weight = selectedsubItem.split('-');
 
-              var selectedProduct = parr[parr.findIndex(e => e.ProductID === item[i].ProductID)];
-              if (selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
-                var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
-                prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
+                var selectedProduct = parr[parr.findIndex(e => e.ProductID === item[i].ProductID)];
+                if (selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
+                  var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
+                  prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
+                }
               }
-            }
-            cartItemNo.innerHTML = item.length;
-            document.getElementById('itemCount').innerHTML = item.length + ' Items';
+              cartItemNo.innerHTML = item.length;
+              document.getElementById('itemCount').innerHTML = item.length + ' Items';
 
-            document.getElementById('totalAmount').innerHTML = 'Rs. ' + prise;
+              document.getElementById('totalAmount').innerHTML = 'Rs. ' + prise;
 
-          });
+            });
+        }
+        else
+        {
+          document.getElementById("blankCartMessage").style.display = "block";
+          document.getElementById("btnCheckOut").style.display = "none";
+          cartItemNo.innerHTML = 0;
+          document.getElementById('itemCount').innerHTML = 0 + ' Items';
+
+          document.getElementById('totalAmount').innerHTML = 'Rs. 0' ;
+        }
+
 
       }
     }
@@ -459,7 +473,7 @@ function deleteCartItem(e, itemSizeObj, productID, deleteID) {
     db.collection('CartDetails')
       .doc(userID)
       .update({
-        cartDetails: item//firebase.firestore.FeildValue.arrayUnion(item)
+        cartDetails: item //firebase.firestore.FeildValue.arrayUnion(item)
       })
       .then(() => {
         console.log('manu');
