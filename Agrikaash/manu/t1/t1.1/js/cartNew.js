@@ -13,9 +13,10 @@ auth.onAuthStateChanged(firebaseUser => {
 
       GetProfileData(firebaseUser);
       populateCartData();
+      getCartItemNo();
     } else {
       console.log('User has been logged out');
-      //window.location.href = "../index.html";
+      window.location.href = "index.html";
     }
   } catch (error) {
     console.log(error.message);
@@ -75,63 +76,119 @@ var index = 0;
 
 function populateCartData() {
   var index = 0;
-  db.collection("CartDetails").doc(userID).onSnapshot(snapshot => {
+  try {
 
-    let changes = snapshot.docChanges();
-    // alert('Snapsize from Homepage: ' + snapshot.size);
-    // console.log(changes);
-    changes.forEach(change => {
-      console.log(change.doc.id);
-      var lProductID = change.doc.ProductID
-      const psnapshot = db.collection('Products').doc(lProductID);
+    const cartItems = db.collection("CartDetails").doc(userID);
+    cartItems.get().then((doc1) => {
+      if (doc1.exists) {
 
-      psnapshot.get().then((doc) => {
-        if (doc.exists) {
+        var cartDetail = doc1.data().cartDetails;
+        for (const item of cartDetail) {
+          var lProductID = item.ProductID;
+          selectdedItem = item.SelectedsubItem;
+          console.log(lProductID);
+          const psnapshot = db.collection('Products').doc(lProductID);
+          psnapshot.get().then((doc) => {
+            if (doc.exists) {
 
-        renderProduct(doc, index, selectdedItem);
-        index = index + 1;
-        itemCount.innerHTML = (index) + " Items";
-
+              renderProduct(doc, index, item);
+              index = index + 1;
+              itemCount.innerHTML = (index) + " Items";
+            }
+          });
+        }
       }
     });
-  });
+  } catch (e) {
+    console.log(e);
+  } finally {
+
+  }
 }
 
-
-
-function populateCartDataOld() {
+function getCartItemNo() {
   const snapshot = db.collection('CartDetails').doc(userID);
-
-  snapshot.get().then((doc) => {
+  snapshot.get().then(async (doc) => {
     if (doc.exists) {
-      console.log("doc exists");
+      //  console.log(doc.id);
       item = doc.data().cartDetails;
-      console.log(item);
+      var arr = [];
+      for (var i = 0; i < item.length; i++) {
+        arr.push(item[i].ProductID);
+      }
+      //  console.log(arr);
+      //for (var i = 0; i < item.length; i++)
+      {
+        var parr = [];
+        //const prodDetails = db.collection('Products').doc(item[i].ProductID);
+        db.collection('Products').where("__name__", 'in', arr)
+          //const prodDetails = db.collection('Products').where ("__name__" , '==', 'O1RMEcLeeaHt9cXoAT33')
+          .get()
+          .then((psnapshot) => {
+            psnapshot.forEach((doc) => {
+              parr.push({
+                ProductID: doc.id,
+                ProductDetails: doc.data().ProductDetails
+              });
+            });
+            var prise = 0;
+            for (i = 0; i < item.length; i++) {
+              var qty = item[i].Quantity;
+              var selectedsubItem = item[i].SelectedsubItem;
+              var weight = selectedsubItem.split('-');
 
-      db.collection("Products").orderBy('CreatedTimestamp', 'desc').onSnapshot(snapshot => {
+              var selectedProduct = parr[parr.findIndex(e => e.ProductID === item[i].ProductID)];
+              if (selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
+                var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
+                prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
+              }
+            }
+            cartItemNo.innerHTML = item.length;
+            document.getElementById('itemCount').innerHTML = item.length + ' Items';
 
-        let changes = snapshot.docChanges();
-        // alert('Snapsize from Homepage: ' + snapshot.size);
-        // console.log(changes);
+            document.getElementById('totalAmount').innerHTML = 'Rs. ' + prise;
 
+          });
 
-        changes.forEach(change => {
-          console.log(change.doc.id);
-          index = item.findIndex(a => a.ProductID === change.doc.id);
-
-          if (index >= 0) {
-            selectdedItem = item[index];
-            renderProduct(change.doc, index, selectdedItem);
-            index = index + 1;
-            itemCount.innerHTML = (index) + " Items";
-
-          }
-        });
-      });
+      }
     }
   });
 
 }
+//
+// function populateCartDataOld() {
+//   const snapshot = db.collection('CartDetails').doc(userID);
+//
+//   snapshot.get().then((doc) => {
+//     if (doc.exists) {
+//       console.log("doc exists");
+//       item = doc.data().cartDetails;
+//       console.log(item);
+//
+//       db.collection("Products").orderBy('CreatedTimestamp', 'desc').onSnapshot(snapshot => {
+//
+//         let changes = snapshot.docChanges();
+//         // alert('Snapsize from Homepage: ' + snapshot.size);
+//         // console.log(changes);
+//
+//
+//         changes.forEach(change => {
+//           console.log(change.doc.id);
+//           index = item.findIndex(a => a.ProductID === change.doc.id);
+//
+//           if (index >= 0) {
+//             selectdedItem = item[index];
+//             renderProduct(change.doc, index, selectdedItem);
+//             index = index + 1;
+//             itemCount.innerHTML = (index) + " Items";
+//
+//           }
+//         });
+//       });
+//     }
+//   });
+//
+// }
 
 /////////////////////new function
 function renderProduct(doc, index, selecteditem) {
@@ -139,7 +196,9 @@ function renderProduct(doc, index, selecteditem) {
   console.log('Event Name: ' + doc.data().ProductName);
 
   var productlist = doc.data().ProductDetails;
-
+  console.log(productlist);
+  var mainReload = document.createElement("main");
+  mainReload.setAttribute("id", "main" + index);
   var div1 = document.createElement("div");
   div1.setAttribute("class", "col-sm-12");
   div1.setAttribute("style", "padding: 5px;");
@@ -173,6 +232,7 @@ function renderProduct(doc, index, selecteditem) {
   div1_3.setAttribute("class", "veg-nonVeg-div");
 
   var imgVegNonVeg = document.createElement("img");
+
   if (doc.data().VegNonVeg === "Veg")
     imgVegNonVeg.setAttribute("src", "../img/veg.png");
   else if (doc.data().VegNonVeg === "NonVeg")
@@ -191,12 +251,16 @@ function renderProduct(doc, index, selecteditem) {
   td2.innerHTML = "<small class='product-names'>" + doc.data().ProductName + "</small><br>" +
     "<small style='font-size: 0.8rem; color: rgba(0,0,0,0.5);'>" + doc.data().Brand + "</small><br>";
 
-  var selectP = document.createElement("select");
-  selectP.name = "productDetails";
-  selectP.id = "productDetails" + index;
+  // var selectP = document.createElement("select");
+  // selectP.name = "productDetails";
+  // selectP.id = "productDetails" + index;
   var MRP = "";
   var FinalPrize = "";
-  selectP.setAttribute("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelect" + index + ")");
+  // selectP.setAttribute("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelect" + index + ")");
+  var hfSelected = document.createElement("input");
+  hfSelected.id = "hfSelect" + index;
+  hfSelected.setAttribute("type", "hidden");
+
   for (const val of productlist) {
     var option = document.createElement("option");
     option.value = val.ProductFinalPrise + ":" + val.ProductMRP;
@@ -206,26 +270,29 @@ function renderProduct(doc, index, selecteditem) {
       option.selected = true;
       MRP = val.ProductMRP;
       FinalPrize = val.ProductFinalPrise;
-
+      hfSelected.setAttribute("value", option.text);
     }
-    selectP.appendChild(option);
+    // selectP.appendChild(option);
   }
 
+  var itemUnit = document.createElement("input");
+  itemUnit.setAttribute("id", "unit" + index);
+  itemUnit.setAttribute("readonly", "true");
+  itemUnit.setAttribute("value", selecteditem.SelectedsubItem);
+  td2.appendChild(itemUnit);
+
   totalPrize = Number(totalPrize) + Number(FinalPrize) * Number(selecteditem.Quantity);
-  totalAmount.innerHTML = "Rs. " + totalPrize;
+  //totalAmount.innerHTML = "Rs. " + totalPrize;
 
   console.log("prize : " + totalPrize);
   //selectP.addEventListener("change", addActivityItem, false);
-  td2.appendChild(selectP);
-  var hfSelected = document.createElement("input");
-  hfSelected.id = "hfSelect" + index;
-  hfSelected.setAttribute("type", "hidden");
+  // td2.appendChild(selectP);
   td2.appendChild(hfSelected);
 
   var div1_4 = document.createElement("div");
   div1_4.setAttribute("class", "product-price");
   div1_4.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + MRP + "</span>" + "</h5>" +
-    "<small>₹ " + "<span id='final" + index + "'>" + FinalPrize + "</span></small>";
+    "<small>₹ " + "<span id='final" + index + "'>" + FinalPrize + "</span></small><br><br><br>";
 
   // div1_4.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + productlist[0].ProductMRP + "</span>" + "</h5>" +
   //   "<small>₹ " + "<span id='final" + index + "'>" + productlist[0].ProductFinalPrise + "</span></small>";
@@ -237,9 +304,25 @@ function renderProduct(doc, index, selecteditem) {
   table2.setAttribute("style", "width:51%;position:absolute;bottom:10px;right:10px;");
 
   var t2tr = document.createElement("tr");
-  var t2trtd = document.createElement("td");
-  t2trtd.setAttribute("width", "100%");
-  t2trtd.setAttribute("class", "quantity-td");
+
+  var t2trtd1 = document.createElement("td");
+  t2trtd1.setAttribute("width", "30%");
+  var delete_outline = document.createElement("span");
+  delete_outline.setAttribute("class", "material-icons");
+  delete_outline.setAttribute("style", "cursor:pointer;");
+
+  //  delete_outline.setAttribute("onclick", "deleteCartItem('" + selecteditem.SelectedsubItem + "', '" + doc.id + "')");
+  //  btnSelect1.addEventListener('click', function(e){selectImage(e,btnSelect1.id)}, false);
+
+  delete_outline.addEventListener('click', function(e) {
+    deleteCartItem(e, selecteditem.SelectedsubItem, doc.id, "main" + index)
+  }, false);
+  delete_outline.innerHTML = "delete_outline";
+  t2trtd1.appendChild(delete_outline);
+
+  var t2trtd2 = document.createElement("td");
+  t2trtd2.setAttribute("width", "70%");
+  t2trtd2.setAttribute("class", "quantity-td");
   var trdiv = document.createElement("div");
   trdiv.setAttribute("id", "quantityFullDiv" + index);
   trdiv.setAttribute("class", "quantity buttons_added");
@@ -250,7 +333,7 @@ function renderProduct(doc, index, selecteditem) {
   trinput1.setAttribute("value", "-");
   trinput1.setAttribute("class", "minus");
 
-  trinput1.setAttribute("onclick", " decrementQty(" + "qty" + index + ", " + "min" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + "hfSelect" + index + "')");
+  trinput1.setAttribute("onclick", " decrementQty(" + "qty" + index + ", " + "min" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + ")");
 
   //trinput1.setAttribute("onclick", " decrementQty(" + "qty" + index + ", " + "min" + index + " ," + doc.data().StepQty + ","+doc.data().ProductName+","+selectP+" ,"+doc.id+" )");
   var trinput2 = document.createElement("input");
@@ -297,8 +380,9 @@ function renderProduct(doc, index, selecteditem) {
   trdiv.appendChild(trinput5);
   trdiv.appendChild(trinput6);
 
-  t2trtd.appendChild(trdiv);
-  t2tr.appendChild(t2trtd);
+  t2trtd2.appendChild(trdiv);
+  t2tr.appendChild(t2trtd1);
+  t2tr.appendChild(t2trtd2);
   table2.appendChild(t2tr);
   td2.appendChild(table2);
 
@@ -307,7 +391,10 @@ function renderProduct(doc, index, selecteditem) {
   table1.appendChild(tr1);
   div1_1.appendChild(table1);
   div1.appendChild(div1_1);
-  document.getElementById("divCart").appendChild(div1);
+  mainReload.appendChild(div1);
+
+  //document.getElementById("divCart").appendChild(div1);
+  document.getElementById("divCart").appendChild(mainReload);
 
 }
 
@@ -326,9 +413,9 @@ function incrementQty(oqty, omax, step, itemName, productID, itemSizeObj) {
 
   oqty.value = qty;
   //var str = itemSizeObj[itemSizeObj.selectedIndex].text;
-
+  console.log(oqty, omax, step, itemName, productID, itemSizeObj);
   AddUpdateCart(itemName, itemSizeObj, qty, productID, 'active');
-
+  getCartItemNo();
 }
 
 //function decrementQty(oqty, omin, step, itemName, itemSizeObj, productID) {
@@ -347,10 +434,56 @@ function decrementQty(oqty, omin, step, itemName, productID, itemSizeObj) {
   oqty.value = qty;
 
   //var str = itemSizeObj[itemSizeObj.selectedIndex].text;
-
+  console.log(itemName, productID, itemSizeObj.value);
   AddUpdateCart(itemName, itemSizeObj, qty, productID, 'active');
-
+  getCartItemNo();
 }
+
+function deleteCartItem(e, itemSizeObj, productID, deleteID) {
+  e.preventDefault();
+  console.log("deleteID : ", deleteID);
+
+  const snapshot = db.collection('CartDetails').doc(userID);
+  snapshot.get().then((doc) => {
+    item = doc.data().cartDetails;
+
+    console.log(item);
+
+    itemIndex = item.findIndex(a => a.ProductID === productID && a.SelectedsubItem === itemSizeObj);
+    if (itemIndex >= 0) {
+      item.splice(itemIndex, 1);
+    }
+
+    console.log(item);
+
+    db.collection('CartDetails')
+      .doc(userID)
+      .update({
+        cartDetails: item//firebase.firestore.FeildValue.arrayUnion(item)
+      })
+      .then(() => {
+        console.log('manu');
+        itemdelete = document.getElementById(deleteID);
+        getCartItemNo();
+        itemdelete.remove();
+        //itemdelete.load(location.href + itemdelete); //to relooad a page
+        //var but = document.createElement("button");
+        //but.setAttribute
+        //$("#main").load(location.href + " #main"); to relooad a page
+        //location.reload();
+        // populateCartData();
+        getCartItemNo();
+      })
+      .catch((error) => {
+        console.log("in error");
+        // document.getElementById('errorMessage').innerHTML = error.message;
+        // document.getElementById('errorMessage').style.display = 'block';
+      });
+
+
+  });
+}
+
 
 function mySelectionChange(productdetails, mrp, final, hfselect) {
   //alert(productdetails);
@@ -369,7 +502,7 @@ function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualit
 
   var item = [];
   console.log("AddUpdateCart");
-  console.log("itemSelect : ", itemSelect);
+  console.log("itemSelect : ", itemSelect.value);
   console.log("itemName : ", itemName);
   console.log("itemQuantity : ", itemQuantity);
   console.log("productID : ", productID);
@@ -381,6 +514,7 @@ function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualit
       console.log("doc exists");
       item = doc.data().cartDetails;
     }
+
     if (item.findIndex(a => a.ProductID === productID) >= 0)
       item.splice(item.findIndex(a => a.ProductID === productID), 1);
 
@@ -391,12 +525,12 @@ function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualit
       ProductID: productID,
       Status: itemQualityStatus
     });
-
+    console.log(item, userID);
     db.collection('CartDetails')
       .doc(userID)
       .set({
         uid: userID,
-        cartDetails: item,
+        cartDetails: firebase.firestore.FeildValue.arrayUnion(item),
         CreatedTimestamp: '',
         UpdatedTimestamp: (new Date()).toString()
       })
