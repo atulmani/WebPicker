@@ -549,15 +549,14 @@ function decrementQty(oqty, omin, step, itemName, productID, itemSizeObj, index)
       buttonA = document.getElementById("btnAddtoCart" + index);
       console.log(buttonA);
       buttonA.style.display = 'block';
-/*
-      trinput1.style.display = 'none';
-      trinput2.style.display = 'none';
-      trinput3.style.display = 'none';
-      trinput4.style.display = 'none';
-      trinput5.style.display = 'none';
-      trinput6.style.display = 'none';
+      minB = document.getElementById("minus" + index);
+      minB.style.display = 'none';
 
-*/
+      qtyB = document.getElementById("qty" + index);
+      qtyB.style.display = 'none';
+
+      plusB = document.getElementById("plus" + index);
+      plusB.style.display = 'none';
   }
 
   oqty.value = qty;
