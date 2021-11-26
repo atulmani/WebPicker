@@ -1,5 +1,6 @@
 //const productID = document.getElementById('productID');
 var userID = "";
+var cartItems = [];
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
@@ -12,8 +13,17 @@ auth.onAuthStateChanged(firebaseUser => {
       // document.getElementById('profileEmail').value = firebaseUser.email;
 
       GetProfileData(firebaseUser);
-      populateCartData();
-      getCartItemNo();
+      var promise = getCartItemNo();
+      promise.then(populateCartData());
+
+      //      getCartItemNo();
+      //
+      //    populateCartData();
+      //  .then ({
+      // const promise1 =  populateCartData();
+      //
+      // const promise2=  promise1.then(getCartItemNo());
+
     } else {
       console.log('User has been logged out');
       window.location.href = "index.html";
@@ -74,16 +84,17 @@ function GetProfileData(user) {
 var totalPrize = 0;
 var index = 0;
 
-function populateCartData() {
+//async function populateCartData() {
+async function populateCartData() {
   var index = 0;
   try {
 
-    const cartItems = db.collection("CartDetails").doc(userID);
-    cartItems.get().then((doc1) => {
+    const cartItemsDB = db.collection("CartDetails").doc(userID);
+    cartItemsDB.get().then((doc1) => {
       if (doc1.exists) {
 
-        var cartDetail = doc1.data().cartDetails;
-        for (const item of cartDetail) {
+        var cartItems = doc1.data().cartDetails;
+        for (const item of cartItems) {
           var lProductID = item.ProductID;
           selectdedItem = item.SelectedsubItem;
           console.log(lProductID);
@@ -100,25 +111,34 @@ function populateCartData() {
       }
     });
   } catch (e) {
+    //return false;
     console.log(e);
   } finally {
 
+    //return true;
   }
+  //getCartItemNo();
+
+  //return true;
 }
 
-function getCartItemNo() {
+async function getCartItemNo1() {
   const snapshot = db.collection('CartDetails').doc(userID);
   snapshot.get().then(async (doc) => {
     if (doc.exists) {
-      //  console.log(doc.id);
-      item = doc.data().cartDetails;
+      console.log("testing");
       var arr = [];
-      var prise = 0;
 
-      for (var i = 0; i < item.length; i++) {
-        arr.push(item[i].ProductID);
+      //  console.log(doc.id);
+      cartItems = doc.data().cartDetails;
+
+      var prise = 0;
+      console.log(item);
+      for (var i = 0; i < cartItems.length; i++) {
+        console.log(cartItems[i].ProductID);
+        arr.push(cartItems[i].ProductID);
       }
-      //  console.log(arr);
+      console.log(arr);
       //for (var i = 0; i < item.length; i++)
       {
         var parr = [];
@@ -135,32 +155,30 @@ function getCartItemNo() {
                   ProductDetails: doc.data().ProductDetails
                 });
               });
-              for (i = 0; i < item.length; i++) {
-                var qty = item[i].Quantity;
-                var selectedsubItem = item[i].SelectedsubItem;
+              for (i = 0; i < cartItems.length; i++) {
+                var qty = cartItems[i].Quantity;
+                var selectedsubItem = cartItems[i].SelectedsubItem;
                 var weight = selectedsubItem.split('-');
 
-                var selectedProduct = parr[parr.findIndex(e => e.ProductID === item[i].ProductID)];
+                var selectedProduct = parr[parr.findIndex(e => e.ProductID === cartItems[i].ProductID)];
                 if (selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
                   var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
                   prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
                 }
               }
-              cartItemNo.innerHTML = item.length;
-              document.getElementById('itemCount').innerHTML = item.length + ' Items';
+              cartItemNo.innerHTML = cartItems.length;
+              document.getElementById('itemCount').innerHTML = cartItems.length + ' Items';
 
               document.getElementById('totalAmount').innerHTML = 'Rs. ' + prise;
 
             });
-        }
-        else
-        {
+        } else {
           document.getElementById("blankCartMessage").style.display = "block";
           document.getElementById("btnCheckOut").style.display = "none";
           cartItemNo.innerHTML = 0;
           document.getElementById('itemCount').innerHTML = 0 + ' Items';
 
-          document.getElementById('totalAmount').innerHTML = 'Rs. 0' ;
+          document.getElementById('totalAmount').innerHTML = 'Rs. 0';
         }
 
 
@@ -169,6 +187,70 @@ function getCartItemNo() {
   });
 
 }
+
+async function getCartItemNo() {
+  var arr = [];
+  var prise = 0;
+
+  const snapshot = db.collection('CartDetails').doc(userID);
+  snapshot.get().then(async (doc) => {
+    if (doc.exists) {
+      console.log("testing");
+
+      //  console.log(doc.id);
+      cartItems = doc.data().cartDetails;
+
+
+      console.log(cartItems);
+      for (var i = 0; i < cartItems.length; i++) {
+        arr.push(cartItems[i].ProductID);
+      }
+      console.log(arr);
+      var parr = [];
+      //const prodDetails = db.collection('Products').doc(item[i].ProductID);
+      console.log(arr);
+      if (arr != null && arr.length > 0) {
+        db.collection('Products').where("__name__", 'in', arr)
+          //const prodDetails = db.collection('Products').where ("__name__" , '==', 'O1RMEcLeeaHt9cXoAT33')
+          .get()
+          .then((psnapshot) => {
+            psnapshot.forEach((doc) => {
+              parr.push({
+                ProductID: doc.id,
+                ProductDetails: doc.data().ProductDetails
+              });
+            });
+            for (i = 0; i < cartItems.length; i++) {
+              var qty = cartItems[i].Quantity;
+              var selectedsubItem = cartItems[i].SelectedsubItem;
+              var weight = selectedsubItem.split('-');
+
+              var selectedProduct = parr[parr.findIndex(e => e.ProductID === cartItems[i].ProductID)];
+              if (selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
+                var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
+                prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
+              }
+            }
+            cartItemNo.innerHTML = cartItems.length;
+            document.getElementById('itemCount').innerHTML = cartItems.length + ' Items';
+
+            document.getElementById('totalAmount').innerHTML = 'Rs. ' + prise;
+
+          });
+      } else {
+        document.getElementById("blankCartMessage").style.display = "block";
+        document.getElementById("btnCheckOut").style.display = "none";
+        cartItemNo.innerHTML = 0;
+        document.getElementById('itemCount').innerHTML = 0 + ' Items';
+
+        document.getElementById('totalAmount').innerHTML = 'Rs. 0';
+      }
+
+
+    }
+  });
+}
+
 //
 // function populateCartDataOld() {
 //   const snapshot = db.collection('CartDetails').doc(userID);
@@ -364,14 +446,14 @@ function renderProduct(doc, index, selecteditem) {
   trinput2.setAttribute("pattern", "");
   trinput2.setAttribute("inputmode", "");
   //trinput2.setAttribute("onClick","updateQuantity("+"qty" + index + "," + doc.data().MinimumQty +","+doc.data().MaximumQty+ ",''" +doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + " )");
-  trinput2.setAttribute("onchange","updateQuantity("+"qty" + index + "," + doc.data().MinimumQty +","+doc.data().MaximumQty+ ",'" +doc.data().ProductName + "','" + doc.id + "'," +  "hfSelect" + index+ " )");
+  trinput2.setAttribute("onchange", "updateQuantity(" + "qty" + index + "," + doc.data().MinimumQty + "," + doc.data().MaximumQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + " )");
 
   var trinput3 = document.createElement("input");
   trinput3.setAttribute("id", "plus" + index);
   trinput3.setAttribute("type", "button");
   trinput3.setAttribute("value", "+");
   //trinput3.setAttribute("onclick", "incrementQty(" + "qty" + index + ", " + "max" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "')");
-  trinput3.setAttribute("onclick", "incrementQty(" + "qty" + index + ", " + "max" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," +"hfSelect" + index + ")");
+  trinput3.setAttribute("onclick", "incrementQty(" + "qty" + index + ", " + "max" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + ")");
 
   trinput3.setAttribute("class", "plus");
 
@@ -415,22 +497,21 @@ function renderProduct(doc, index, selecteditem) {
 
 }
 
-function updateQuantity(oqty, iMin, iMax ,itemName, productID, itemSizeObj)
-{
+function updateQuantity(oqty, iMin, iMax, itemName, productID, itemSizeObj) {
   console.log(itemSizeObj.value);
   var qty = Number(oqty.value);
-  if(qty < iMin)
+  if (qty < iMin)
     qty = iMin;
   if (qty > iMax)
-      qty=iMax;
+    qty = iMax;
 
-      oqty.value = qty;
-      AddUpdateCart(itemName, itemSizeObj, Number(qty), productID, 'active');
-      getCartItemNo();
+  oqty.value = qty;
+  AddUpdateCart(itemName, itemSizeObj, Number(qty), productID, 'active');
+  getCartItemNo();
 }
 
 function incrementQty(oqty, omax, step, itemName, productID, itemSizeObj) {
-
+  console.log(oqty, omax, step, itemName, productID, itemSizeObj);
   console.log(itemSizeObj);
   var qty = Number(oqty.value);
 
@@ -451,7 +532,9 @@ function incrementQty(oqty, omax, step, itemName, productID, itemSizeObj) {
 
 //function decrementQty(oqty, omin, step, itemName, itemSizeObj, productID) {
 function decrementQty(oqty, omin, step, itemName, productID, itemSizeObj) {
-
+  console.log("oqty : ", oqty);
+  console.log("omin ", omin);
+  console.log(step, itemName, productID, itemSizeObj);
   var qty = oqty.value;
 
   var min = omin.value;
@@ -471,12 +554,15 @@ function decrementQty(oqty, omin, step, itemName, productID, itemSizeObj) {
 }
 
 function deleteCartItem(e, itemSizeObj, productID, deleteID) {
+
   e.preventDefault();
   console.log("deleteID : ", deleteID);
+  console.log(itemSizeObj, productID, deleteID);
 
-  const snapshot = db.collection('CartDetails').doc(userID);
-  snapshot.get().then((doc) => {
-    item = doc.data().cartDetails;
+  //const snapshot = db.collection('CartDetails').doc(userID);
+  //snapshot.get().then((doc) =>
+  {
+    item = cartItems;
 
     console.log(item);
 
@@ -503,7 +589,7 @@ function deleteCartItem(e, itemSizeObj, productID, deleteID) {
         //$("#main").load(location.href + " #main"); to relooad a page
         //location.reload();
         // populateCartData();
-        getCartItemNo();
+        //getCartItemNo();
       })
       .catch((error) => {
         console.log("in error");
@@ -511,8 +597,8 @@ function deleteCartItem(e, itemSizeObj, productID, deleteID) {
         // document.getElementById('errorMessage').style.display = 'block';
       });
 
-
-  });
+  }
+  //});
 }
 
 
@@ -531,70 +617,68 @@ function mySelectionChange(productdetails, mrp, final, hfselect) {
 
 function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualityStatus) {
 
-  var item = [];
-  console.log("AddUpdateCart");
+  /*
+
+
+  */
+
+  console.log("AddUpdateCart", cartItems);
+  console.log("AddUpdateCart", cartItems.length);
   console.log("itemSelect : ", itemSelect);
   console.log("itemName : ", itemName);
   console.log("itemQuantity : ", itemQuantity);
   console.log("productID : ", productID);
   console.log("itemQualityStatus : ", itemQualityStatus);
 
-  const snapshot = db.collection('CartDetails').doc(userID);
-  snapshot.get().then((doc) => {
-    if (doc.exists) {
-      console.log("doc exists");
-      item = doc.data().cartDetails;
-    }
+  var itemIndex = cartItems.findIndex(a => a.ProductID === productID && a.SelectedsubItem === itemSelect.value);
+  console.log(itemIndex);
 
-    if (item.findIndex(a => a.ProductID === productID) >= 0)
-      item.splice(item.findIndex(a => a.ProductID === productID), 1);
+  if (itemIndex >= 0)
+    cartItems.splice(itemIndex, 1);
 
-    item.push({
-      ItemName: itemName,
-      SelectedsubItem: itemSelect.value,
-      Quantity: itemQuantity,
-      ProductID: productID,
-      Status: itemQualityStatus
-    });
-    console.log(item, userID);
-    db.collection('CartDetails')
-      .doc(userID)
-      .set({
-        uid: userID,
-        cartDetails: item,//firebase.firestore.FeildValue.arrayUnion(item),
-        CreatedTimestamp: '',
-        UpdatedTimestamp: (new Date()).toString()
-      })
-      .then(() => {
-        // updated
-        console.log('Users data saved successfully');
-        getCartItemNo();
-        // Show alert
-        //document.querySelector('.alert').style.display = 'block';
-
-        // Hide alert after 3 seconds
-        setTimeout(function() {
-          //document.querySelector('.alert').style.display = 'none';
-        }, 3000);
+  console.log(cartItems.length);
 
 
-        // window.location.href = "../admin/dashboard.html";
-      })
-      .catch((error) => {
-        // An error occurred
-        // console.log(error.message);
-        console.log("in error");
-        document.getElementById('errorMessage').innerHTML = error.message;
-        document.getElementById('errorMessage').style.display = 'block';
-      });
-
-
+  cartItems.push({
+    ItemName: itemName,
+    SelectedsubItem: itemSelect.value,
+    Quantity: itemQuantity,
+    ProductID: productID,
+    Status: itemQualityStatus
   });
 
+  console.log(cartItems.length, userID);
+  db.collection('CartDetails')
+    .doc(userID)
+    .set({
+      uid: userID,
+      cartDetails: cartItems, //firebase.firestore.FeildValue.arrayUnion(item),
+      CreatedTimestamp: '',
+      UpdatedTimestamp: (new Date()).toString()
+    })
+    .then(() => {
+      // updated
+      console.log('Users data saved successfully');
+      getCartItemNo();
+      // Show alert
+      //document.querySelector('.alert').style.display = 'block';
+
+    })
+    .catch((error) => {
+      // An error occurred
+      // console.log(error.message);
+      console.log("in error");
+      document.getElementById('errorMessage').innerHTML = error.message;
+      document.getElementById('errorMessage').style.display = 'block';
+    });
 
 
-
+  //});
 }
+
+
+
+
 
 var removeByAttr = function(arr, attr, value) {
   console.log("in remove");
