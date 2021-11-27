@@ -61,7 +61,7 @@ h6 {
 
 /* navbar start */
 .before-navbar {
-  background: #fff;
+  background: #EBEBE5;
   /* background: #65463E; */
   /* border-bottom: 1px solid rgba(255, 255, 255, 0.2); */
   padding: 5px;
@@ -74,6 +74,7 @@ h6 {
   align-items: center;
   justify-content: space-between;
   color: #65463E;
+  font-weight: 600;
   border: none;
 }
 
@@ -296,8 +297,8 @@ h6 {
 
 .gradient {
   position: absolute;
-  background: linear-gradient(to right, rgba(255, 87, 87, 1), rgba(255, 87, 87, 0));
-  height: 78vh;
+  background: linear-gradient(to right, rgba(101,70,62,1), rgba(101,70,62,0));
+  height: 65vh;
   width: 30%;
   z-index: 999;
   pointer-events: none;
@@ -423,7 +424,7 @@ h6 {
 }
 
 #whyus {
-  background: rgba(0, 0, 0, 0.04);
+  background: #EBEBE5;
   /* background: #fafafa; */
 }
 
@@ -435,7 +436,7 @@ h6 {
   backdrop-filter: blur(5px);
   position: absolute;
   left: 6%;
-  animation: shape1 20s infinite;
+  animation: shape1 20s linear infinite;
 }
 
 @keyframes shape1 {
@@ -464,6 +465,18 @@ h6 {
   box-shadow: -8px 0 7px 0px rgba(185,154,135,0.7);
 }
 
+.whyus-card h1{
+  position: absolute;
+  font-size: 4rem;
+  transform: translateX(150px) translateY(-0px);
+  opacity: 0.1;
+  transition: 0.5s;
+}
+
+.whyus-card:hover h1{
+  transform: translateX(150px) translateY(-35px);
+}
+
 .whyus-card img {
   width: 80%;
   height: 180px;
@@ -484,7 +497,7 @@ h6 {
 }
 
 #bulk {
-  background: rgba(0, 0, 0, 0.04);
+  background: #EBEBE5;
   /* background: #fafafa; */
 }
 
@@ -666,7 +679,7 @@ input[type=number] {
 }
 
 .full-row{
-  box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+  box-shadow: 0 0 15px 0 rgba(185,154,135,0.6);
   border-radius: 4px;
   margin: 20px auto;
 }
@@ -679,7 +692,7 @@ input[type=number] {
   justify-content: center;
   border: none;
   height: 100%;
-  border-right: 2px solid rgba(0,0,0,0.05);
+  /* border-right: 2px solid rgba(185,154,135,0.); */
 }
 
 .shiping-div-1{
@@ -705,7 +718,7 @@ input[type=number] {
   padding: 20px 0 0 0;
   font-size: 0.8rem;
   font-weight: bold;
-  color: rgba(0,0,0,0.7);
+  /* color: rgba(0,0,0,0.7); */
   margin: 0 auto;
 }
 
@@ -713,7 +726,8 @@ input[type=number] {
   margin: 0 auto;
   font-size: 0.7rem;
   font-weight: 500;
-  color: rgba(0,0,0,0.4);
+  /* color: rgba(0,0,0,0.4); */
+  color: #C9BEB1;
 }
 
 .shiping-div-2{
@@ -725,13 +739,15 @@ input[type=number] {
 }
 
 .shiping-div-2 p{
-  color: rgba(0,0,0,0.4);
+  /* color: rgba(0,0,0,1); */
   font-weight: 500;
   font-size: 0.9rem;
+  color: rgba(101,70,62,0.7);
 }
 
 #faq{
-  background: rgba(0, 0, 0, 0.04);
+  background: #EBEBE5;
+  /* background: rgba(0, 0, 0, 0.04); */
 }
 
 /* FAQ Expand Collapse - Start*/
@@ -747,8 +763,9 @@ input[type=number] {
 
 .accordion-body {
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: normal;
   line-height: 2;
+  background: #EBEBE5;
 }
 
 .smooth-expand-collapse {
@@ -759,6 +776,7 @@ input[type=number] {
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 1.2px;
+  color: #EBEBE5;
 }
 
 /* FAQ Expand Collapse - End */
