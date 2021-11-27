@@ -144,7 +144,7 @@ function SaveOrder() {
               orderDetails = aOrder.data().OrderDetails;
               //get delivery timeout
               var deliveryDate ='';
-              
+
               if (document.getElementById("delDate1").checked)
               {
                 deliveryDate = document.getElementById("delDate1").value;
@@ -234,6 +234,16 @@ function SaveOrder() {
                 .then((docRef) => {
                   console.log("Data added sucessfully in the document: ");
                   //showAddress(false);
+                  //delete from cart after order places
+                  cartDetails = [];
+                  db.collection('CartDetails')
+                  .doc(userID)
+                  .update({
+                    cartDetails : cartDetails
+                  })
+                  .then((docred) => {
+                    console.log('cart details made blank');
+                  });
                   // console.log(Date.parse(eventstart))
                 })
                 .catch((error) => {
