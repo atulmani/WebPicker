@@ -16,6 +16,7 @@ Reference Colors:
   margin:0;
   padding:0;
   box-sizing: border-box;
+  
 }
 
 body{
@@ -702,6 +703,12 @@ h6{
   border: 2px solid #161d65;
   color: #161d65;
 }
+.faqsec{
+  color:#000;
+  background: rgb(52, 141, 203, 0.7);
+  border-radius: 60px 60px 60px 60px;
+}
+
 
 /*************** login - End *************/
 

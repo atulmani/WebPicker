@@ -31,3 +31,12 @@
 .address-hr{
   margin: 10px auto;
 }
+
+.address-input-field label{
+  font-size: 0.9rem;
+  margin: 0 auto;
+}
+
+.address-input-field input{
+  padding: 2px 5px;
+}

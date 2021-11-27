@@ -13,8 +13,9 @@ auth.onAuthStateChanged(firebaseUser => {
       // document.getElementById('profileEmail').value = firebaseUser.email;
 
       GetProfileData(firebaseUser);
-      getCartItemNo();
-      populateProductData();
+
+      var promise = getCartItemNo();
+      promise.then(populateProductData());
       //      const promise = getCartItemNo();
       //    const promise2 = promise.then(populateProductData);
 
@@ -49,7 +50,7 @@ function GetProfileData(user) {
     });
 };
 
-function getCartItemNo() {
+async function getCartItemNo() {
   console.log("getCartItemNo");
   var cartItemNo = document.getElementById('cartItemNo');
   console.log(cartItemNo);
@@ -67,6 +68,7 @@ function getCartItemNo() {
     }
   });
 };
+
 
 function populateProductData() {
   db.collection("Products").orderBy('CreatedTimestamp', 'desc').onSnapshot(snapshot => {
@@ -181,7 +183,7 @@ function renderProductNew(doc, index, selectedItem) {
   selectP.name = "productDetails";
   selectP.id = "productDetails" + index;
   //console.log("mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + ")");
-  selectP.setAttribute("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelectedValue" + index + ","+index+")");
+  selectP.setAttribute("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelectedValue" + index + "," + index + ",'" + doc.id + "'," + doc.data().MinimumQty + ")");
   //selectP.addEventListener("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelectedValue" + index + ","+index+")");
   var indexnew = -1;
   var mrp = 0;
@@ -208,7 +210,8 @@ function renderProductNew(doc, index, selectedItem) {
         qtyNew = 1;
       }
     } else {
-
+      mrp = 0;
+      finalPrize = 0;
       indexnew = -1;
       qtyNew = 1;
     }
@@ -221,11 +224,16 @@ function renderProductNew(doc, index, selectedItem) {
   hfSelecttion.setAttribute("id", "hfSelectedValue" + index);
   hfSelecttion.setAttribute("type", "hidden");
   hfSelecttion.setAttribute("value", selectP[selectP.selectedIndex].text);
+  console.log("hfSelecttion : ", hfSelecttion);
+  console.log("mrp : ", mrp);
+  console.log("finalprize : ", finalPrize);
 
   td2.appendChild(hfSelecttion);
   td2.appendChild(selectP);
   var div1_4 = document.createElement("div");
   div1_4.setAttribute("class", "product-price");
+console.log(selectedItem);
+
   // div1_4.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + productlist[0].ProductMRP + "</span>" + "</h5>" +
   //   "<small>₹ " + "<span id='final" + index + "'>" + productlist[0].ProductFinalPrise + "</span></small>";
   if (selectedItem != null) {
@@ -568,12 +576,14 @@ function ChangeAddButtonVisible(index, blflag) {
 }
 
 function addToCart(minQty, itemName, productID, itemSizeObj, index) {
-  //console.log(minQty);
-  //console.log(itemName);
-  //console.log(productID);
-  //console.log(itemSizeObj);
-
-  AddUpdateCart(itemName, itemSizeObj, minQty, productID, 'active');
+  console.log(minQty);
+  console.log(itemName);
+  console.log(productID);
+  console.log(itemSizeObj);
+  var obj = document.getElementById("hfSelectedValue" + index);
+  console.log(obj);
+  //AddUpdateCart(itemName, itemSizeObj, minQty, productID, 'active');
+  AddUpdateCart(itemName, obj.value, minQty, productID, 'active');
 
   ChangeAddButtonVisible(index, false);
 }
@@ -642,31 +652,40 @@ async function deleteFromCart(itemSizeObj, productID, index) {
   return index;
 }
 
-function mySelectionChange(productdetails, mrp, final, hfSelected, index) {
+function mySelectionChange(productdetails, mrp, final, hfSelected, index, lproductID, minQty) {
   //alert(productdetails);
   //alert(productdetails.selectedIndex);
-console.log(productdetails);
-console.log( mrp);
-console.log( final);
-console.log(hfSelected);
+  console.log(productdetails);
+  console.log(mrp);
+  console.log(final);
+  console.log(hfSelected);
+  console.log(cartItems);
+  console.log(lproductID);
 
-  var str = productdetails[productdetails.selectedIndex].value;
+  //var str = productdetails[productdetails.selectedIndex].value;
+  console.log(productdetails[productdetails.selectedIndex].text);
   hfSelected.value = productdetails[productdetails.selectedIndex].text;
   //console.log(hfSelected.value);
+  str = productdetails[productdetails.selectedIndex].value;
   const myarr = str.split(":");
+
   //alert (myarr )
   mrp.innerHTML = myarr[1];
   final.innerHTML = myarr[0];
   //alert(mrp);
-//check if already in cartItems
- var selIndex = cartItems.findIndex(e => e.SelectedsubItem === str)
- if (selIndex >= 0 ){ //item alreadt added
-   ChangeAddButtonVisible(index, false);
- }
- else
- {
-   ChangeAddButtonVisible(index, true);
- }
+  //check if already in cartItems
+  //var selIndex = cartItems.findIndex(e => e.SelectedsubItem === str  &&  e.ProductID === productID );
+  var selIndex = cartItems.findIndex(a => a.ProductID === lproductID.trim() && a.SelectedsubItem === hfSelected.value);
+  console.log(" selIndex", selIndex);
+  if (selIndex >= 0) { //item alreadt added
+    var qtyObj = document.getElementById("qty" + index);
+    qtyObj.value = cartItems[selIndex].Quantity;
+    ChangeAddButtonVisible(index, false);
+  } else {
+    var qtyobj = document.getElementById("qty" + index);
+    qtyobj.value = minQty;
+    ChangeAddButtonVisible(index, true);
+  }
 }
 
 function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualityStatus) {

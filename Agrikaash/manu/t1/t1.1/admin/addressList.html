@@ -39,6 +39,7 @@
 
   <!-- Your Own Style -->
   <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/address.css">
   <link rel="stylesheet" href="../css/cart.css">
   <link rel="stylesheet" href="../css/products.css">
   <link rel="stylesheet" href="../css/dashboard.css">
@@ -80,7 +81,9 @@
   <div class="small navbar-mobile">
     <div class="navbar-mobile-menu">
       <a href="#"><i class="fas fa-bars hamburger-icon"></i></a>
-      <a href="#"> <h4>Agrikaash</h4> </a>
+      <a href="#">
+        <h4>Agrikaash</h4>
+      </a>
       <!-- <a href="#"><img src="../img/logo.png" width="30px" alt=""> </a> -->
       <a href="#" style="padding-right: 0px;"><i class="fas fa-user user-icon"></i></a>
     </div>
@@ -96,7 +99,7 @@
         <i class="fas fa-home"></i>
         <small>Home</small>
       </a>
-      <a href="productList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="productsList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <i class="fas fa-th-large"></i>
         <small>Products</small>
       </a>
@@ -104,10 +107,10 @@
         <i class="fab fa-buffer"></i>
         <small>Orders</small>
       </a>
-      <a href="#" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+      <a href="cartNew.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
         <i class="fas fa-shopping-cart"></i>
         <small>Cart</small>
-        <span class="navbar-cart-no" id="cartItemNo">0</span>
+        <span class="navbar-cart-no">1</span>
       </a>
     </div>
   </div>
@@ -153,42 +156,28 @@
       </div>
     </div>
     <!-- side navbar - end -->
-    <div class="col-lg-10 col-md-10 col-sm-12">
-      <div class="row no-gutters large" style="padding: 2%;">
 
+    <div class="col-lg-3 col-md-6 col-sm-12" style="padding:10px;">
+      <div class="" id="addAddressBtn">
+        <button class="mybutton button5" onClick="showAddress(true);">Add Address</button>
+      </div>
+
+      <div id="addressListDiv">
 
       </div>
 
-      <br>
-      <div class="row no-gutters small">
 
-        <div class="pay-now-div">
-          <h4 style="width:100%;text-align:center;">Review Your Cart</h4>
-        </div>
-        <br><br>
-        <div class="col-sm-12" style="padding: 5px;">
-          <div id = "divCart">
-            <input type="reeadonly" id="blankCartMessage" value="No items are added in cart" style="display:none;">
+      <div class="col-sm-12">
+        <div class="checkout-div">
+          <div class="">
+            <h5>Rs 79.73</h5>
+            <small>12 Items</small>
+          </div>
+          <div class="">
+            <a href="deliveryOptionNew.html"><button class="mybutton button5">NEXT</button></a>
           </div>
         </div>
-        <!-- <div id="divCart" class="product-list-div">
 
-        </div> -->
-
-
-
-        <div class="col-sm-12">
-          <div class="checkout-div">
-            <div class="">
-              <h5 id="totalAmount">Rs.</h5>
-              <small id="itemCount">Items</small>
-              <input type="hidden" id="hfFinalPrize">
-            </div>
-            <div class="">
-              <a href="deliveryOptionNew.html"><button class="mybutton button5" id="btnCheckOut">CHECKOUT</button></a>
-            </div>
-          </div>
-        </div>
 
       </div>
     </div>
@@ -277,17 +266,19 @@
   <!-- Javascript to Populate Map - Start  -->
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
 
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
 
-      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/firebase.js"></script>
 
-    <script src="../js/main.js"></script>
-    <script src="../js/firebase.js"></script>
+  <script src="../js/addressList.js"></script>
 
-<!-- <script src="../js/chart.js"></script> -->
-  <script src="../js/cartNew.js"></script>
+
+  <!-- <script src="../js/chart.js"></script> -->
+  <!-- <script src="../js/products.js"></script> -->
   <!-- <script src="../js/chart2.js"></script> -->
 
   <!-- Owl Carousel Javascript  -->
