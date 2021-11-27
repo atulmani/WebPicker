@@ -11,11 +11,16 @@ auth.onAuthStateChanged(firebaseUser => {
       GetProfileData(firebaseUser);
       UpdateDeliveryDate();
       GetDeliveryAddress();
+
+      getCartSummary();
       //      populateAddress(addressID);
 
     } else {
       console.log('User has been logged out');
+      // const functions = require("firebase-functions");
+      // functions.logger.log("Hello from info. Here's an object:", someObj);
       window.location.href = "index.html";
+
     }
   } catch (error) {
     console.log(error.message);
@@ -23,8 +28,7 @@ auth.onAuthStateChanged(firebaseUser => {
   }
 });
 
-function UpdateDeliveryDate()
-{
+function UpdateDeliveryDate() {
   const tempDate = new Date();
   console.log(tempDate.toLocaleDateString());
 
@@ -32,39 +36,40 @@ function UpdateDeliveryDate()
 
   //set for 1
   document.getElementById("delDate1").value = tempDate.toLocaleDateString();
-  document.getElementById('delDateSpan1').innerHTML =  tempDate.toLocaleDateString();
+  document.getElementById('delDateSpan1').innerHTML = tempDate.toLocaleDateString();
 
   tempDate.setDate(tempDate.getDate() + 1);
 
   document.getElementById("delDate2").value = tempDate.toLocaleDateString();
-  document.getElementById('delDateSpan2').innerHTML =  tempDate.toLocaleDateString();
+  document.getElementById('delDateSpan2').innerHTML = tempDate.toLocaleDateString();
 
   tempDate.setDate(tempDate.getDate() + 1);
 
   document.getElementById("delDate3").value = tempDate.toLocaleDateString();
-  document.getElementById('delDateSpan3').innerHTML =  tempDate.toLocaleDateString();
+  document.getElementById('delDateSpan3').innerHTML = tempDate.toLocaleDateString();
 
   tempDate.setDate(tempDate.getDate() + 1);
 
   document.getElementById("delDate4").value = tempDate.toLocaleDateString();
-  document.getElementById('delDateSpan4').innerHTML =  tempDate.toLocaleDateString();
+  document.getElementById('delDateSpan4').innerHTML = tempDate.toLocaleDateString();
 
   tempDate.setDate(tempDate.getDate() + 1);
 
   document.getElementById("delDate5").value = tempDate.toLocaleDateString();
-  document.getElementById('delDateSpan5').innerHTML =  tempDate.toLocaleDateString();
+  document.getElementById('delDateSpan5').innerHTML = tempDate.toLocaleDateString();
 
   tempDate.setDate(tempDate.getDate() + 1);
 
   document.getElementById("delDate6").value = tempDate.toLocaleDateString();
-  document.getElementById('delDateSpan6').innerHTML =  tempDate.toLocaleDateString();
+  document.getElementById('delDateSpan6').innerHTML = tempDate.toLocaleDateString();
 
   tempDate.setDate(tempDate.getDate() + 1);
 
   document.getElementById("delDate7").value = tempDate.toLocaleDateString();
-  document.getElementById('delDateSpan7').innerHTML =  tempDate.toLocaleDateString();
+  document.getElementById('delDateSpan7').innerHTML = tempDate.toLocaleDateString();
 
 }
+
 function GetProfileData(user) {
   // const ref = db.collection("Users").doc(user.uid);
 
@@ -143,73 +148,51 @@ function SaveOrder() {
               console.log('if order exists');
               orderDetails = aOrder.data().OrderDetails;
               //get delivery timeout
-              var deliveryDate ='';
+              var deliveryDate = '';
 
-              if (document.getElementById("delDate1").checked)
-              {
+              if (document.getElementById("delDate1").checked) {
                 deliveryDate = document.getElementById("delDate1").value;
-              }
-              else if (document.getElementById("delDate2").checked)
-              {
+              } else if (document.getElementById("delDate2").checked) {
                 deliveryDate = document.getElementById("delDate2").value;
-              }
-              else if (document.getElementById("delDate3").checked)
-              {
+              } else if (document.getElementById("delDate3").checked) {
                 deliveryDate = document.getElementById("delDate3").value;
-              }
-              else if (document.getElementById("delDate4").checked)
-              {
+              } else if (document.getElementById("delDate4").checked) {
                 deliveryDate = document.getElementById("delDate4").value;
-              }
-              else if (document.getElementById("delDate5").checked)
-              {
+              } else if (document.getElementById("delDate5").checked) {
                 deliveryDate = document.getElementById("delDate5").value;
-              }
-              else if (document.getElementById("delDate6").checked)
-              {
+              } else if (document.getElementById("delDate6").checked) {
                 deliveryDate = document.getElementById("delDate6").value;
-              }
-              else if (document.getElementById("delDate7").checked)
-              {
+              } else if (document.getElementById("delDate7").checked) {
                 deliveryDate = document.getElementById("delDate7").value;
               }
               var deliveryTime = '';
-              if (document.getElementById("delTime1").checked)
-              {
+              if (document.getElementById("delTime1").checked) {
                 deliveryTime = document.getElementById("delTime1").value;
-              }
-              else if (document.getElementById("delTime2").checked)
-              {
+              } else if (document.getElementById("delTime2").checked) {
                 deliveryTime = document.getElementById("delTime2").value;
-              }
-              else if (document.getElementById("delTime3").checked)
-              {
+              } else if (document.getElementById("delTime3").checked) {
                 deliveryTime = document.getElementById("delTime3").value;
-              }
-              else if (document.getElementById("delTime4").checked)
-              {
+              } else if (document.getElementById("delTime4").checked) {
                 deliveryTime = document.getElementById("delTime4").value;
               }
 
               var paymentOption = "";
-              if (document.getElementById("PayOption1").checked)
-              {
+              if (document.getElementById("PayOption1").checked) {
                 paymentOption = document.getElementById("PayOption1").value;
-              }
-              else if (document.getElementById("PayOption2").checked)
-              {
+              } else if (document.getElementById("PayOption2").checked) {
                 paymentOption = document.getElementById("PayOption2").value;
-              }
-              else if (document.getElementById("PayOption3").checked)
-              {
+              } else if (document.getElementById("PayOption3").checked) {
                 paymentOption = document.getElementById("PayOption3").value;
               }
 
+              var prize = document.getElementById("totalAmount").innerHTML;
+              var itemCount = document.getElementById("itemCount").innerHTML;
 
               orderDetails.push({
                 orderID: 'Ord-' + userID + Date.now(),
                 orderItems: cartDetails,
-                totalAmount: 0,
+                totalItems : itemCount,
+                totalAmount: prize,
                 deliveryAddress: selectedAddress,
                 deliveryDate: deliveryDate,
                 deliveryTime: deliveryTime,
@@ -235,15 +218,16 @@ function SaveOrder() {
                   console.log("Data added sucessfully in the document: ");
                   //showAddress(false);
                   //delete from cart after order places
-                  cartDetails = [];
+                  //cartDetails = [];
                   db.collection('CartDetails')
-                  .doc(userID)
-                  .update({
-                    cartDetails : cartDetails
-                  })
-                  .then((docred) => {
-                    console.log('cart details made blank');
-                  });
+                    .doc(userID)
+                    .update({
+                      cartDetails: cartDetails
+                    })
+                    .then((docred) => {
+                      console.log('cart details made blank');
+
+                    });
                   // console.log(Date.parse(eventstart))
                 })
                 .catch((error) => {
@@ -252,9 +236,7 @@ function SaveOrder() {
                 });
 
 
-            }
-            else
-            {
+            } else {
               console.log('create order');
             }
 
@@ -279,4 +261,63 @@ function SaveOrder() {
   });
 
 
+}
+
+function getCartSummary() {
+  var arr = [];
+  var prise = 0;
+
+  console.log(userID);
+  const snapshot = db.collection('CartDetails').doc(userID);
+  snapshot.get().then(async (doc) => {
+    if (doc.exists) {
+
+      //  console.log(doc.id);
+      cartItems = doc.data().cartDetails;
+
+
+      console.log(cartItems);
+      for (var i = 0; i < cartItems.length; i++) {
+        arr.push(cartItems[i].ProductID);
+      }
+      var parr = [];
+      console.log(arr);
+      if (arr != null && arr.length > 0) {
+        db.collection('Products').where("__name__", 'in', arr)
+          .get()
+          .then((psnapshot) => {
+            psnapshot.forEach((doc) => {
+              parr.push({
+                ProductID: doc.id,
+                ProductDetails: doc.data().ProductDetails
+              });
+            });
+            for (i = 0; i < cartItems.length; i++) {
+              var qty = cartItems[i].Quantity;
+              var selectedsubItem = cartItems[i].SelectedsubItem;
+              var weight = selectedsubItem.split('-');
+
+              var selectedProduct = parr[parr.findIndex(e => e.ProductID === cartItems[i].ProductID)];
+              if (selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
+                var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
+                prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
+              }
+            }
+            var len = cartItems.length;
+            document.getElementById('itemCount').innerHTML = len ;
+
+            document.getElementById('totalAmount').innerHTML =  prise;
+
+
+
+          });
+      } else {
+        document.getElementById('itemCount').innerHTML = '0';
+
+        document.getElementById('totalAmount').innerHTML = '0';
+
+      }
+    }
+
+  });
 }
