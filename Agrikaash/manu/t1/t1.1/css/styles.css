@@ -639,6 +639,27 @@ input[type=number] {
 
 
 
+
+
+
+
+
+/* cart page - start */
+
+.empty-cart{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+
+/* cart page - end */
+
+
+
   /********* Loader - Starts **********/
   .loaderincenter{
     position: fixed;
