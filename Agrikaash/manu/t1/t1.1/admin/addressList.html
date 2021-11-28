@@ -70,7 +70,7 @@
       </div>
       <div class="container before-nav">
         <span><i class="fas fa-shopping-cart"></i><a href="#">Cart</a></span>
-        <small class="navbar-cart-no">1</small>
+        <small class="navbar-cart-no">0</small>
         <span><i class="fas fa-user"></i><a href="./admin/index.html">Login/Sign Up</a> </span>
         <span><i class="fas fa-map-marker-alt"></i><a href="#">510086 - Banglore</a> </span>
         <span><i class="fas fa-phone fa-flip-horizontal" style="padding: 0 20px 0 5px; "></i><a href="#">98227 52885</a> </span>
@@ -110,7 +110,7 @@
       <a href="cartNew.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
         <i class="fas fa-shopping-cart"></i>
         <small>Cart</small>
-        <span class="navbar-cart-no">1</span>
+        <span class="navbar-cart-no" id="cartItemCount">0</span>
       </a>
     </div>
   </div>
@@ -159,7 +159,7 @@
 
     <div class="col-lg-3 col-md-6 col-sm-12" style="padding:10px;">
       <div class="" id="addAddressBtn">
-        <button class="mybutton button5" onClick="showAddress(true);">Add Address</button>
+        <button class="mybutton button5" onClick="AddAddress();">Add Address</button>
       </div>
 
       <div id="addressListDiv">
@@ -170,8 +170,8 @@
       <div class="col-sm-12">
         <div class="checkout-div">
           <div class="">
-            <h5>Rs 79.73</h5>
-            <small>12 Items</small>
+            <h5>Rs <span id="Totalprise"> 0</span></h5>
+            <small><span id="itemCount" >0 </span>Items</small>
           </div>
           <div class="">
             <a href="deliveryOptionNew.html"><button class="mybutton button5">NEXT</button></a>
