@@ -15,7 +15,11 @@ auth.onAuthStateChanged(firebaseUser => {
       GetProfileData(firebaseUser);
 
       var promise = getCartItemNo();
-      promise.then(populateProductData());
+      var promise2 = promise.then(populateProductData());
+      promise2.then(
+
+            document.getElementById('loading').style.display = 'none'
+);
       //      const promise = getCartItemNo();
       //    const promise2 = promise.then(populateProductData);
 
@@ -70,7 +74,7 @@ async function getCartItemNo() {
 };
 
 
-function populateProductData() {
+async function populateProductData() {
   db.collection("Products").orderBy('CreatedTimestamp', 'desc').onSnapshot(snapshot => {
     let changes = snapshot.docChanges();
     ///check cart Start
@@ -119,6 +123,8 @@ function populateProductData() {
 
 
   });
+
+
 }
 
 /////////////////////new function
