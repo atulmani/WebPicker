@@ -127,6 +127,16 @@ h6 {
   font-size: 0.8rem;
 }
 
+.collapsing{
+  background: #65463E;
+  height: 200px;
+}
+
+.navbar-collapse.show{
+  background: #65463E;
+  height: 200px;
+}
+
 .navbar {
   background-color: #65463E;
   /*color changed*/
@@ -198,7 +208,7 @@ h6 {
 }
 
 .navbar-mobile-bottom-menu .navbar-mobile-bottom-menu-a {
-  color: rgba(0, 0, 0, 0.45);
+  color: rgba(201,190,177,0.8);
   font-size: 1rem;
   text-align: center;
   text-decoration: none;
@@ -539,7 +549,7 @@ h6 {
 }
 
 .contactus-bg-image {
-  background: rgba(0, 0, 0, 0.5) url('../img/1.png');
+  background: rgba(0, 0, 0, 0.5) url('../img/1.gif');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -548,8 +558,13 @@ h6 {
 }
 
 .contact-div-1 {
-  /* background: #282b32; */
   padding: 5%;
+}
+
+@media (max-width: 850px) {
+  .contact-div-1 {
+    padding: 0%;
+  }
 }
 
 .contact-card {
@@ -564,20 +579,26 @@ h6 {
 .full-addres-div {
   display: flex;
   justify-content: space-between;
-  background: rgba(255, 87, 87, 0.7);
-  /* background: #65463E; */
-  /* background: rgba(255,255,255,0.2); */
-  padding: 10px;
+  background: rgba(235,235,229,0.9);
+  padding: 5px;
 }
 
 .address-div {
-  color: rgba(255, 255, 255, 1);
-  /* color: rgba(255,255,255,0.7); */
+  color: #65463E;
+}
+
+@media (max-width:850px) {
+  .address-div {
+    flex-basis: 37%;
+  }
+
+  .phone-div {
+    flex-basis: 60%;
+  }
 }
 
 .phone-div {
-  color: rgba(255, 255, 255, 1);
-  /* color: rgba(255,255,255,0.5); */
+  color: #65463E;
 }
 
 .phone-div small {
@@ -606,18 +627,20 @@ h6 {
 .contact-form-field textarea {
   padding: 5px;
   width: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid #65463E;
+  background: rgba(235,235,229,0.7);
+  border: 1px solid #B99A87;
   /* border: 1px solid rgba(255,255,255,0.2); */
   border-radius: 5px;
-  color: rgba(255, 255, 255, 1);
   outline: none;
   resize: none;
+  color: #65463E;
+  font-weight: 500;
 }
 
 .contact-form-field input::placeholder,
 .contact-form-field textarea::placeholder {
-  color: #aaa;
+  /* color: #65463E;
+  font-weight: 500; */
 }
 
 .contact-form-field i {
