@@ -100,18 +100,18 @@
         <i class="fas fa-home"></i>
         <small>Home</small>
       </a>
-      <a href="products.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="productList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <i class="fas fa-th-large"></i>
         <small>Products</small>
       </a>
-      <a href="orders.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="orderList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <i class="fab fa-buffer"></i>
         <small>Orders</small>
       </a>
-      <a href="cart.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+      <a href="cartNew.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
         <i class="fas fa-shopping-cart"></i>
         <small>Cart</small>
-        <span class="navbar-cart-no">1</span>
+        <span class="navbar-cart-no" id="CartitemCount">0</span>
       </a>
     </div>
   </div>
@@ -199,7 +199,9 @@
               <h5 style="padding-left: 5px;margin-top: 8px;color: rgba(0,0,0,0.7);">Select Delivery Option</h5>
             </div>
             <div>
-              Delivery Date
+              <span class="material-icons">
+                date_range
+              </span>
               <br />
               <input type="radio" name="delDate" id="delDate1" value='' checked>
               <span id='delDateSpan1'></span>
@@ -218,6 +220,10 @@
             </div>
             <br />
             <div>
+              <span class="material-icons">
+                schedule
+              </span>
+
               <input type="radio" name="delTime" id="delTime1" value='6 : 10 AM' checked>
               6 : 10 AM
               <input type="radio" name="delTime" id="delTime2" value='10 : 12 Noon'>
@@ -255,8 +261,8 @@
         <div class="col-sm-12">
           <div class="checkout-div">
             <div class="">
-              <h5>Rs 79.73</h5>
-              <small>12 Items</small>
+              <h5>Rs. <span id="itemCount">0</span></h5>
+              <small><span id="totalAmount">0 </span> Items</small>
             </div>
             <div class="">
               <button class="mybutton button5" onClick="SaveOrder();">PROCEED TO PAY</button>
@@ -360,6 +366,8 @@
   <script src="../js/firebase.js"></script>
 
   <script src="../js/main.js"></script>
+  <script src="../js/common.js"></script>
+
   <script src="../js/deliveryOptionNew.js"></script>
   <!-- <script src="../js/chart.js"></script> -->
   <!-- <script src="../js/products.js"></script> -->

@@ -9,7 +9,8 @@ auth.onAuthStateChanged(firebaseUser => {
 
       GetProfileData(firebaseUser);
       populateAddressList();
-
+      //populateCartData();
+      getCartItemNo();
     } else {
       console.log('User has been logged out');
       window.location.href = "index.html";
@@ -38,24 +39,24 @@ function GetProfileData(user) {
     });
 };
 
-function showAddress(flag) //true if add address to be shown,false if existing addrsss list to be shown
-{
-  console.log("in showAddress", flag);
-  var addAddress = document.getElementById('AddAddress');
-  var addressList = document.getElementById('addressListDiv');
-  var addressBtn = document.getElementById('addAddressBtn');
-  if (flag === true) {
-    addAddress.setAttribute('style', 'display:block;');
-    addressList.setAttribute('style', 'display:none;');
-    addressBtn.setAttribute('style', 'display:none');
-
-  } else {
-    console.log("in else");
-    addAddress.setAttribute('style', 'display:none;');
-    addressList.setAttribute('style', 'display:block;');
-    addressBtn.setAttribute('style', 'display:block');
-  }
-}
+// function showAddress(flag) //true if add address to be shown,false if existing addrsss list to be shown
+// {
+//   console.log("in showAddress", flag);
+//   var addAddress = document.getElementById('AddAddress');
+//   var addressList = document.getElementById('addressListDiv');
+//   var addressBtn = document.getElementById('addAddressBtn');
+//   if (flag === true) {
+//     addAddress.setAttribute('style', 'display:block;');
+//     addressList.setAttribute('style', 'display:none;');
+//     addressBtn.setAttribute('style', 'display:none');
+//
+//   } else {
+//     console.log("in else");
+//     addAddress.setAttribute('style', 'display:none;');
+//     addressList.setAttribute('style', 'display:block;');
+//     addressBtn.setAttribute('style', 'display:block');
+//   }
+// }
 
 function saveAddress() {
   console.log('in save address');
@@ -123,6 +124,9 @@ function saveAddress() {
   });
 }
 
+function AddAddress() {
+  window.location.href = "createAddress.html";
+}
 
 
 function removeAllChildNodes(parent) {
@@ -159,6 +163,21 @@ function populateAddressList() {
 
 
 }
+//
+// function populateCartData() {
+//   var itemCount = 0;
+//   const snapshot = db.collection('CartDetails').doc(userID);
+//   snapshot.get().then(async (doc) => {
+//     if (doc.exists) {
+//       cartDetails = doc.data().cartDetails;
+//       itemCount = cartDetails.length;
+//       //console.log(change.doc, index, selectdedItem);
+//     }
+//     document.getElementById('cartItemCount').innerHTML = itemCount;
+//
+//   });
+//
+// }
 
 function renderAddressList(item, index) {
   console.log(item);
@@ -180,20 +199,27 @@ function renderAddressList(item, index) {
   inp1.setAttribute('name', "address");
   inp1.setAttribute('onchange', "OnSelectionChange(" + index + " )");
   console.log(item.addressSelected);
-  if (item.addressSelected === 'YES')
-  {
+  if (item.addressSelected === 'YES') {
     console.log('on select', index);
     inp1.checked = true;
-  }else
-  {
+  } else {
     inp1.checked = false;
-}
+  }
   var h51 = document.createElement('h5');
   h51.innerHTML = item.branchName;
+  var edit = document.createElement("i");
+  edit.setAttribute('class', 'far fa-edit address-edit-icon');
+  edit.setAttribute('onclick', "editform(" + "hfID" + index + ");");
+
+  var hf = document.createElement("input");
+  hf.setAttribute("type", "hidden");
+  hf.setAttribute("id", "hfID" + index);
+  hf.setAttribute("value", item.branchID);
 
   div1_1_1.appendChild(inp1);
+  div1_1_1.appendChild(hf);
   div1_1_1.appendChild(h51);
-
+  div1_1_1.appendChild(edit);
   var p1 = document.createElement('p');
   p1.setAttribute('style', 'font-weight:bold;');
   p1.innerHTML = item.branchOwnerName;
@@ -225,7 +251,73 @@ function renderAddressList(item, index) {
 
 }
 
+function getCartItemNo() {
+ const snapshot = db.collection('CartDetails').doc(userID);
+ snapshot.get().then(async (doc) => {
+   if (doc.exists) {
+     console.log("testing");
+     var arr = [];
 
+     //  console.log(doc.id);
+     cartItems = doc.data().cartDetails;
+
+     var prise = 0;
+     //console.log(item);
+     for (var i = 0; i < cartItems.length; i++) {
+       console.log(cartItems[i].ProductID);
+       arr.push(cartItems[i].ProductID);
+     }
+     console.log(arr);
+     //for (var i = 0; i < item.length; i++)
+     {
+       var parr = [];
+       //const prodDetails = db.collection('Products').doc(item[i].ProductID);
+       console.log(arr);
+       if (arr != null && arr.length > 0) {
+         db.collection('Products').where("__name__", 'in', arr)
+           //const prodDetails = db.collection('Products').where ("__name__" , '==', 'O1RMEcLeeaHt9cXoAT33')
+           .get()
+           .then((psnapshot) => {
+             psnapshot.forEach((doc) => {
+               parr.push({
+                 ProductID: doc.id,
+                 ProductDetails: doc.data().ProductDetails
+               });
+             });
+             for (i = 0; i < cartItems.length; i++) {
+               var qty = cartItems[i].Quantity;
+               var selectedsubItem = cartItems[i].SelectedsubItem;
+               var weight = selectedsubItem.split('-');
+
+               var selectedProduct = parr[parr.findIndex(e => e.ProductID === cartItems[i].ProductID)];
+               if (selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
+                 var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
+                 prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
+               }
+             }
+             cartItemCount.innerHTML = cartItems.length;
+             document.getElementById('itemCount').innerHTML = cartItems.length ;
+
+             document.getElementById('Totalprise').innerHTML = prise;
+
+           });
+       } else {
+
+         cartItemCount.innerHTML = 0;
+         document.getElementById('itemCount').innerHTML = '0' ;
+
+         document.getElementById('Totalprise').innerHTML = '0';
+       }
+     }
+   }
+ });
+
+}
+function editform (obj)
+{
+    console.log(obj);
+    window.location.href = "createAddress.html?addressid=" +obj.value;
+}
 function OnSelectionChange(index) {
   console.log("OnSelectionChange", index);
   var itemID = document.getElementById("addID" + index).value;
@@ -233,34 +325,34 @@ function OnSelectionChange(index) {
 
   const snapshot = db.collection('AddressList').doc(userID);
   snapshot.get().then(async (doc) => {
-      if (doc.exists) {
-        console.log("OnSelectionChange : testing");
-        //  console.log(doc.id);
-        addressList = doc.data().AddressList;
+    if (doc.exists) {
+      console.log("OnSelectionChange : testing");
+      //  console.log(doc.id);
+      addressList = doc.data().AddressList;
 
 
-        for (i = 0; i < addressList.length; i++) {
-          if (addressList[i].branchID === itemID) {
-            addressList[i].addressSelected = 'YES';
-          } else {
-            addressList[i].addressSelected = 'NO';
-          }
+      for (i = 0; i < addressList.length; i++) {
+        if (addressList[i].branchID === itemID) {
+          addressList[i].addressSelected = 'YES';
+        } else {
+          addressList[i].addressSelected = 'NO';
         }
-
-
-        //update address list
-        db.collection('AddressList')
-          .doc(userID)
-          .update({
-            AddressList: addressList
-          })
-          .then((docRef) => {
-            console.log("Data added sucessfully in the document: ");
-            // console.log(Date.parse(eventstart))
-          })
-          .catch((error) => {
-            //  console.error("error adding document:", error.message);
-          });
       }
-    });
-  }
+
+
+      //update address list
+      db.collection('AddressList')
+        .doc(userID)
+        .update({
+          AddressList: addressList
+        })
+        .then((docRef) => {
+          console.log("Data added sucessfully in the document: ");
+          // console.log(Date.parse(eventstart))
+        })
+        .catch((error) => {
+          //  console.error("error adding document:", error.message);
+        });
+    }
+  });
+}

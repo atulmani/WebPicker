@@ -636,3 +636,54 @@ input[type=number] {
 }
 
 /* Footer Section - End */
+
+
+
+  /********* Loader - Starts **********/
+  .loaderincenter{
+    position: fixed;
+    width: 80%;
+    height: 80vh;
+    background: rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    /* filter: sepia(100px); */
+    /* backdrop-fitler: blur(20px); */
+  }
+
+  .loader {
+    border: 12px solid #E10032;
+    border-radius: 50%;
+    border-top: 12px solid #DBE8E1;
+    border-right: 12px solid #034687;
+    border-bottom: 12px solid #DBE8E1;
+    width: 70px;
+    height: 70px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    margin-top: 10%;
+  }
+
+  @-webkit-keyframes spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /********* Loader - Ends **********/

@@ -39,11 +39,9 @@
 
   <!-- Your Own Style -->
   <link rel="stylesheet" href="../css/styles.css">
-  <link rel="stylesheet" href="../css/address.css">
-  <link rel="stylesheet" href="../css/cart.css">
+  <link rel="stylesheet" href="../css/orders.css">
   <link rel="stylesheet" href="../css/products.css">
   <link rel="stylesheet" href="../css/dashboard.css">
-  <link rel="stylesheet" href="../css/orders.css">
 
 </head>
 
@@ -70,7 +68,7 @@
       </div>
       <div class="container before-nav">
         <span><i class="fas fa-shopping-cart"></i><a href="#">Cart</a></span>
-        <small class="navbar-cart-no">0</small>
+        <small class="navbar-cart-no">1</small>
         <span><i class="fas fa-user"></i><a href="./admin/index.html">Login/Sign Up</a> </span>
         <span><i class="fas fa-map-marker-alt"></i><a href="#">510086 - Banglore</a> </span>
         <span><i class="fas fa-phone fa-flip-horizontal" style="padding: 0 20px 0 5px; "></i><a href="#">98227 52885</a> </span>
@@ -99,18 +97,18 @@
         <i class="fas fa-home"></i>
         <small>Home</small>
       </a>
-      <a href="productsList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="productList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <i class="fas fa-th-large"></i>
         <small>Products</small>
       </a>
-      <a href="orders.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="#" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
         <i class="fab fa-buffer"></i>
         <small>Orders</small>
       </a>
-      <a href="cartNew.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+      <a href="cartNew.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <i class="fas fa-shopping-cart"></i>
         <small>Cart</small>
-        <span class="navbar-cart-no" id="cartItemCount">0</span>
+        <span class="navbar-cart-no" id='cartItemCount'>0</span>
       </a>
     </div>
   </div>
@@ -122,13 +120,13 @@
     <div class="col-lg-2 col-md-2 col-sm-12">
       <div class="side-navbar large">
         <div class="side-navbar-menu">
-          <a href="#">
+          <a href="dashboard.html">
             <div class="">
               <i class="fas fa-home"></i>
               Dashboard
             </div>
           </a><br>
-          <a href="#">
+          <a href="productList.html">
             <div class="">
               <i class="fas fa-th-large"></i>
               Products
@@ -156,28 +154,31 @@
       </div>
     </div>
     <!-- side navbar - end -->
-
-    <div class="col-lg-3 col-md-6 col-sm-12" style="padding:10px;">
-      <div class="" id="addAddressBtn">
-        <button class="mybutton button5" onClick="AddAddress();">Add Address</button>
-      </div>
-
-      <div id="addressListDiv">
+    <div class="col-lg-10 col-md-10 col-sm-12">
+      <div class="row no-gutters large" style="padding: 2%;">
 
       </div>
 
+      <br>
+      <div class="row no-gutters small">
 
-      <div class="col-sm-12">
-        <div class="checkout-div">
-          <div class="">
-            <h5>Rs <span id="Totalprise"> 0</span></h5>
-            <small><span id="itemCount" >0 </span>Items</small>
-          </div>
-          <div class="">
-            <a href="deliveryOptionNew.html"><button class="mybutton button5">NEXT</button></a>
-          </div>
+        <div class="pay-now-div">
+          <table>
+            <tr>
+              <td width="70%">
+                <h6 style="margin: 0 auto;">Please select multiple Pending orders to pay at once.</h6>
+              </td>
+              <td width="30%">
+                <a href="#"><button style="width: 95%;" class="mybutton button5">Pay Here</button></a>
+              </td>
+            </tr>
+          </table>
         </div>
+        <br />
+        <br />
+        <div id="orderList">
 
+        </div>
 
       </div>
     </div>
@@ -271,12 +272,10 @@
   <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
 
-  <script src="../js/main.js"></script>
   <script src="../js/firebase.js"></script>
 
-  <script src="../js/addressList.js"></script>
-
-
+  <script src="../js/main.js"></script>
+  <script src="../js/orderList.js"></script>
   <!-- <script src="../js/chart.js"></script> -->
   <!-- <script src="../js/products.js"></script> -->
   <!-- <script src="../js/chart2.js"></script> -->
