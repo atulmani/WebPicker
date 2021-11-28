@@ -32,6 +32,7 @@ auth.onAuthStateChanged(firebaseUser => {
     console.log(error.message);
     //window.location.href = "../index.html";
   }
+  document.getElementById('loading-img').style.display = 'none';
 });
 
 function GetProfileData(user) {
@@ -120,6 +121,9 @@ async function populateCartData() {
   //getCartItemNo();
 
   //return true;
+
+  // document.getElementById('loading').style.display = 'none';
+  //document.getElementById('loading-img').style.display = 'none';
 }
 
 async function getCartItemNo1() {
