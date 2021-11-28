@@ -48,6 +48,7 @@ function populateOrderDetails() {
   snapshot.get().then(async (doc) => {
     if (doc.exists) {
       orderList = doc.data().OrderDetails;
+      //orderList.sort()
       //console.log(change.doc, index, selectdedItem);
       for (i = 0; i < orderList.length; i++) {
         renderOrder(orderList[i], i);
