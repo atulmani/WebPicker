@@ -80,7 +80,9 @@
   <div class="small navbar-mobile">
     <div class="navbar-mobile-menu">
       <a href="#"><i class="fas fa-bars hamburger-icon"></i></a>
-      <a href="#"> <h4>Agrikaash</h4> </a>
+      <a href="#">
+        <h4>Agrikaash</h4>
+      </a>
       <!-- <a href="#"><img src="../img/logo.png" width="30px" alt=""> </a> -->
       <a href="#" style="padding-right: 0px;"><i class="fas fa-user user-icon"></i></a>
     </div>
@@ -167,8 +169,21 @@
         </div>
         <br><br>
         <div class="col-sm-12" style="padding: 5px;">
-          <div id = "divCart">
-            <input type="reeadonly" id="blankCartMessage" value="No items are added in cart" style="display:none;">
+          <center>
+            <!-- <div id='loading' class="loader"></div> -->
+            <div class="" id="loading-img">
+              <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+              <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_wclkkppn.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+              <h5>Getting your cart details</h5>
+            </div>
+          </center>
+          <div id="divCart" style="min-height: 320px;">
+            <div class="empty-cart" id="blankCartMessage" style="display:none;">
+              <img src="../img/empty_cart.svg" width="70%" alt=""><br><br><br>
+              <h5>Your cart is empty</h5>
+              <a href="productList.html"><button class="mybutton button5" style="margin-top: 20px;">Shop Now</button></a><br><br>
+            </div>
+            <!-- <input type="reeadonly" id="blankCartMessage" value="No items are added in cart" style="display:none;"> -->
           </div>
         </div>
         <!-- <div id="divCart" class="product-list-div">
@@ -204,7 +219,8 @@
 
   <!-- Footer Section - Start -->
   <section id="footer">
-    <br /><br />
+    <hr>
+    <br />
     <div class="container">
       <div class="row no-gutters">
         <div class="col-lg-3 col-md-6 col-sm-12">
@@ -278,15 +294,15 @@
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
 
 
-      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
 
-    <script src="../js/main.js"></script>
-    <script src="../js/firebase.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/firebase.js"></script>
 
-<!-- <script src="../js/chart.js"></script> -->
+  <!-- <script src="../js/chart.js"></script> -->
   <script src="../js/cartNew.js"></script>
   <!-- <script src="../js/chart2.js"></script> -->
 
