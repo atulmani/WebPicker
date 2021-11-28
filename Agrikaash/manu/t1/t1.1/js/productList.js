@@ -16,10 +16,10 @@ auth.onAuthStateChanged(firebaseUser => {
 
       var promise = getCartItemNo();
       var promise2 = promise.then(populateProductData());
-      promise2.then(
-
-            document.getElementById('loading').style.display = 'none'
-);
+//       promise2.then(
+//
+//             document.getElementById('loading').style.display = 'none'
+// );
       //      const promise = getCartItemNo();
       //    const promise2 = promise.then(populateProductData);
 
@@ -55,9 +55,9 @@ function GetProfileData(user) {
 };
 
 async function getCartItemNo() {
-  console.log("getCartItemNo");
+  //console.log("getCartItemNo");
   var cartItemNo = document.getElementById('cartItemNo');
-  console.log(cartItemNo);
+  //console.log(cartItemNo);
   const snapshotCart = db.collection('CartDetails').doc(userID);
   snapshotCart.get().then((doc) => {
     if (doc.exists) {
@@ -116,6 +116,7 @@ async function populateProductData() {
       index = index + 1;
 
     });
+    document.getElementById('loading').style.display = 'none';
 
     ////check cart end
 
@@ -230,15 +231,15 @@ function renderProductNew(doc, index, selectedItem) {
   hfSelecttion.setAttribute("id", "hfSelectedValue" + index);
   hfSelecttion.setAttribute("type", "hidden");
   hfSelecttion.setAttribute("value", selectP[selectP.selectedIndex].text);
-  console.log("hfSelecttion : ", hfSelecttion);
-  console.log("mrp : ", mrp);
-  console.log("finalprize : ", finalPrize);
+  //console.log("hfSelecttion : ", hfSelecttion);
+  //console.log("mrp : ", mrp);
+  //console.log("finalprize : ", finalPrize);
 
   td2.appendChild(hfSelecttion);
   td2.appendChild(selectP);
   var div1_4 = document.createElement("div");
   div1_4.setAttribute("class", "product-price");
-console.log(selectedItem);
+//console.log(selectedItem);
 
   // div1_4.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + productlist[0].ProductMRP + "</span>" + "</h5>" +
   //   "<small>₹ " + "<span id='final" + index + "'>" + productlist[0].ProductFinalPrise + "</span></small>";
@@ -531,7 +532,7 @@ function updateQuantity(oqty, iMin, iMax, itemName, productID, itemSizeObj) {
     qty = iMin;
   if (qty > iMax)
     qty = iMax;
-  console.log(qty);
+  //console.log(qty);
 
   oqty.value = qty;
   AddUpdateCart(itemName, itemSizeObj, Number(qty), productID, 'active');
@@ -541,8 +542,8 @@ function updateQuantity(oqty, iMin, iMax, itemName, productID, itemSizeObj) {
 function incrementQty(oqty, omax, step, itemName, productID, itemSizeObj) {
 
   var qty = Number(oqty.value);
-  console.log(oqty);
-  console.log(qty);
+  //console.log(oqty);
+  //console.log(qty);
   var max = Number(omax.value);
 
   if ((qty + step) <= max) {
@@ -559,7 +560,7 @@ function incrementQty(oqty, omax, step, itemName, productID, itemSizeObj) {
 }
 
 function ChangeAddButtonVisible(index, blflag) {
-  console.log(index, blflag);
+  //console.log(index, blflag);
   var buttonA = document.getElementById("btnAddtoCart" + index);
   var minB = document.getElementById("minus" + index);
   var qtyB = document.getElementById("qty" + index);
@@ -582,12 +583,12 @@ function ChangeAddButtonVisible(index, blflag) {
 }
 
 function addToCart(minQty, itemName, productID, itemSizeObj, index) {
-  console.log(minQty);
-  console.log(itemName);
-  console.log(productID);
-  console.log(itemSizeObj);
+  //console.log(minQty);
+  //console.log(itemName);
+  //console.log(productID);
+  //console.log(itemSizeObj);
   var obj = document.getElementById("hfSelectedValue" + index);
-  console.log(obj);
+  //console.log(obj);
   //AddUpdateCart(itemName, itemSizeObj, minQty, productID, 'active');
   AddUpdateCart(itemName, obj.value, minQty, productID, 'active');
 
@@ -661,15 +662,15 @@ async function deleteFromCart(itemSizeObj, productID, index) {
 function mySelectionChange(productdetails, mrp, final, hfSelected, index, lproductID, minQty) {
   //alert(productdetails);
   //alert(productdetails.selectedIndex);
-  console.log(productdetails);
-  console.log(mrp);
-  console.log(final);
-  console.log(hfSelected);
-  console.log(cartItems);
-  console.log(lproductID);
+  //console.log(productdetails);
+  //console.log(mrp);
+  //console.log(final);
+  //console.log(hfSelected);
+  //console.log(cartItems);
+  //console.log(lproductID);
 
   //var str = productdetails[productdetails.selectedIndex].value;
-  console.log(productdetails[productdetails.selectedIndex].text);
+  //console.log(productdetails[productdetails.selectedIndex].text);
   hfSelected.value = productdetails[productdetails.selectedIndex].text;
   //console.log(hfSelected.value);
   str = productdetails[productdetails.selectedIndex].value;
@@ -682,7 +683,7 @@ function mySelectionChange(productdetails, mrp, final, hfSelected, index, lprodu
   //check if already in cartItems
   //var selIndex = cartItems.findIndex(e => e.SelectedsubItem === str  &&  e.ProductID === productID );
   var selIndex = cartItems.findIndex(a => a.ProductID === lproductID.trim() && a.SelectedsubItem === hfSelected.value);
-  console.log(" selIndex", selIndex);
+  //console.log(" selIndex", selIndex);
   if (selIndex >= 0) { //item alreadt added
     var qtyObj = document.getElementById("qty" + index);
     qtyObj.value = cartItems[selIndex].Quantity;
@@ -696,11 +697,6 @@ function mySelectionChange(productdetails, mrp, final, hfSelected, index, lprodu
 
 function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualityStatus) {
 
-  console.log(itemName); //Strawberry
-  console.log(itemSelect); //1KG - Rs.9
-  console.log(itemQuantity); //3
-  console.log(productID); //mdlfz4OFEAjScOhYBJVN
-  console.log(itemQualityStatus); //active
 
   itemIndex = cartItems.findIndex(a => a.ProductID === productID && a.SelectedsubItem === itemSelect);
   if (itemIndex >= 0)
