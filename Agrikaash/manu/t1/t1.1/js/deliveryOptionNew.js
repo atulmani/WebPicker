@@ -277,7 +277,7 @@ function SaveOrder() {
     {
       console.log("in finally");
     };
-    window.location.href = "orderList.html";
+    //window.location.href = "orderList.html";
 
 }
 /*
