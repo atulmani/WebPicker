@@ -159,6 +159,8 @@ function populateAddressList() {
       // addressList.setAttribute('display', 'none;');
 
     }
+
+    document.getElementById('loading').style.display = 'none';
   });
 
 
