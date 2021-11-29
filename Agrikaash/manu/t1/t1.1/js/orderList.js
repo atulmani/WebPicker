@@ -54,8 +54,10 @@ function populateOrderDetails() {
         renderOrder(orderList[i], i);
       }
     }
+    document.getElementById('loading').style.display = 'none';
   });
   populateCartData();
+
 
 }
 
