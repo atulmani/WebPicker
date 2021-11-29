@@ -32,7 +32,7 @@ auth.onAuthStateChanged(firebaseUser => {
     console.log(error.message);
     //window.location.href = "../index.html";
   }
-  document.getElementById('loading-img').style.display = 'none';
+  // document.getElementById('loading-img').style.display = 'none';
 });
 
 function GetProfileData(user) {
@@ -107,6 +107,7 @@ async function populateCartData() {
               index = index + 1;
               itemCount.innerHTML = (index) + " Items";
             }
+            document.getElementById('loading-img').style.display = 'none';
           });
         }
       }
@@ -123,7 +124,6 @@ async function populateCartData() {
   //return true;
 
   // document.getElementById('loading').style.display = 'none';
-  //document.getElementById('loading-img').style.display = 'none';
 }
 
 async function getCartItemNo1() {
