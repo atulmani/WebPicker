@@ -65,3 +65,14 @@
   position: relative;
   top: 4px;
 }
+
+.date-div select,
+.product-list-div input{
+  outline: none;
+  background: #efefef;
+  padding: 8px 10px;
+  width: 100%;
+  color: rgba(0,0,0,0.7);
+  border: 1px solid #bbb;
+  margin-top: 8px;
+}
