@@ -93,9 +93,11 @@ async function populateCartData() {
     const cartItemsDB = db.collection("CartDetails").doc(userID);
     cartItemsDB.get().then((doc1) => {
       if (doc1.exists) {
+        console.log('doc1.exists');
 
         var cartItems = doc1.data().cartDetails;
         for (const item of cartItems) {
+          console.log('inside loop');
           var lProductID = item.ProductID;
           selectdedItem = item.SelectedsubItem;
           console.log(lProductID);
@@ -110,6 +112,13 @@ async function populateCartData() {
             document.getElementById('loading-img').style.display = 'none';
           });
         }
+        if(cartItems.length === 0)
+        {
+          document.getElementById('loading-img').style.display = 'none';
+        }
+      }
+      else{
+        document.getElementById('loading-img').style.display = 'none';
       }
     });
   } catch (e) {
