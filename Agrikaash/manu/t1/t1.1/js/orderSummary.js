@@ -5,7 +5,7 @@ var cartItems = [];
 let eventDocUrl = new URL(location.href);
 // console.log ('URL: ' + eventDocUrl);
 let searchParams = new URLSearchParams(eventDocUrl.search);
-const orderID = searchParams.get('orderID');
+const orderID = searchParams.get('id');
 // var userid = searchParams.get('usertid');
 
 auth.onAuthStateChanged(firebaseUser => {
