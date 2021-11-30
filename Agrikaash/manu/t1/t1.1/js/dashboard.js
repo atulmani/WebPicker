@@ -34,7 +34,7 @@ function GetProfileData(user) {
         document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
     })
-    .catch((error) => {
+    .catch(function(error)  {
       // An error occurred
       console.log(error.message);
     });
