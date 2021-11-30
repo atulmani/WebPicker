@@ -202,8 +202,8 @@
               <span class="material-icons">
                 date_range
               </span>
-              <br />
-              <input type="radio" name="delDate" id="delDate1" value='' checked>
+              <!-- <br />
+               <input type="radio" name="delDate" id="delDate1" value='' checked>
               <span id='delDateSpan1'></span>
               <input type="radio" name="delDate" id="delDate2" value=''>
               <span id='delDateSpan2'></span>
@@ -216,29 +216,30 @@
               <input type="radio" name="delDate" id="delDate6" value=''>
               <span id='delDateSpan6'></span>
               <input type="radio" name="delDate" id="delDate7" value=''>
-              <span id='delDateSpan7'></span>
+              <span id='delDateSpan7'></span>  -->
             </div>
             <div class="row no-gutters">
               <div class="col-sm-6">
                 <div class="date-div">
-                  <select class="" name="">
-                    <option>day 1</option>
-                    <option>day 2</option>
-                    <option>day 3</option>
-                    <option>day 4</option>
-                    <option>day 5</option>
-                    <option>day 6</option>
-                    <option>day 7</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="date-div">
-                  <select class="" name="">
-                    <option>time 1</option>
-                    <option>time 2</option>
-                    <option>time 3</option>
-                    <option>time 4</option>
+                  <!-- <select class="" name="" id="DeliveryDate">
+                    <option> day1 </option>
+                    <option> day2 </option>
+                    <option> day3 </option>
+                    <option> day4 </option>
+                    <option> day5 </option>
+                    <option> day6 </option>
+                    <option> day7 </option>
+
+                  </select> -->
+                  <select class="" name="" id="DeliveryDate">
+                    <option> </option>
+                    <option> </option>
+                    <option> </option>
+                    <option> </option>
+                    <option>  </option>
+                    <option>  </option>
+                    <option> </option>
+
                   </select>
                 </div>
               </div>
@@ -251,14 +252,25 @@
                 schedule
               </span>
 
-              <input type="radio" name="delTime" id="delTime1" value='6 : 10 AM' checked>
+              <div class="col-sm-6">
+                <div class="date-div">
+                  <select class="" name="" id="DeliveryTime">
+                    <option>6 : 10 AM</option>
+                    <option>10 : 12 Noon</option>
+                    <option>12 : 4 PM</option>
+                    <option>4 : 6 PM</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- <input type="radio" name="delTime" id="delTime1" value='6 : 10 AM' checked>
               6 : 10 AM
               <input type="radio" name="delTime" id="delTime2" value='10 : 12 Noon'>
               10 : 12 Noon
               <input type="radio" name="delTime" id="delTime3" value='12 : 4 PM'>
               12 : 4 PM
               <input type="radio" name="delTime" id="delTime4" value='4 : 6 PM'>
-              4 : 6 PM
+              4 : 6 PM -->
             </div>
 
             <div class="delivery-options">
@@ -288,11 +300,11 @@
         <div class="col-sm-12">
           <div class="checkout-div">
             <div class="">
-              <h5>Rs. <span id="itemCount">0</span></h5>
-              <small><span id="totalAmount">0 </span> Items</small>
+              <h5>Rs. <span id="totalAmount">0</span></h5>
+              <small><span id="itemCount">0 </span> Items</small>
             </div>
             <div class="">
-              <button class="mybutton button5" onClick="SaveOrder();">PROCEED TO PAY</button>
+              <button class="mybutton button5" onClick="SaveOrder();" id="btnProceedToPay">PROCEED TO PAY</button>
             </div>
           </div>
         </div>
