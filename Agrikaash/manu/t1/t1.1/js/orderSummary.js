@@ -45,7 +45,7 @@ function GetProfileData(user) {
 
       }
     })
-    .catch((error) => {
+    .catch(function(error)  {
       // An error occurred
       console.log(error.message);
       // document.getElementById('errorMessage_Signup').innerHTML = error.message;
@@ -75,7 +75,7 @@ function getOrderDetails() {
 
       }
     })
-    .catch((error) => {
+    .catch(function(error)  {
       // An error occurred
       console.log(error);
       // document.getElementById('errorMessage_Signup').innerHTML = error.message;
@@ -194,47 +194,7 @@ function renderOrderItem(orderItem) {
 //  console.log(totalPrize);
   var td4 = document.createElement('td');
   td4.innerHTML = 'Prize : ' + totalPrize;
-  /*
-  div1 - <div class="col-sm-12" style="padding: 5px;">
-    div2 - <div class="product-list-div">
-      table1 - <table>
-        tr1 - <tr>
-          td1 - <td width="45%" class="product-img-td">
-             <img src="../img/VF-2.png" width="100%" alt="">
-             <div class="off-div">
-              smaal1 - <small>20% OFF</small>
-            </div>
 
-            <div class="veg-nonVeg-div">
-              <img src="../img/veg.png" width="100%" alt="">
-            </div>
-          </td>
-          <td width="55%" valign="top" class="product-names-div">
-            <small class="product-names">Tomato</small><br>
-            <small style="font-size: 0.8rem; color: rgba(0,0,0,0.5);">amul</small><br>
-            <input type="text" name="" value="1 kg - Rs. 59" readonly>
-            <div class="product-price">
-              <h5>₹ 85960</h5>
-              <small>₹ 85960</small>
-            </div>
-            <table>
-              <tr>
-                <td width='50%'>
-                  Qty : 5
-                  </td>
-                  <td>
-                    Prize : Rs. 100
-                    </td>
-                </tr>
-              </table>
-
-          </td>
-        </tr>
-      </table>
-    </div>
-  </div>
-
-  */
   td1.appendChild(img1);
   div3.appendChild(small1);
   td1.appendChild(div3);
