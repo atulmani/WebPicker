@@ -81,40 +81,6 @@ function UpdateDeliveryDate() {
   delDate.options[6].text = tempDate.toLocaleDateString();
   delDate.options[6].value = tempDate.toLocaleDateString();
 
-  //set for 1
-  /*document.getElementById("delDate1").value = tempDate.toLocaleDateString();
-  document.getElementById('delDateSpan1').innerHTML = tempDate.toLocaleDateString();
-
-  tempDate.setDate(tempDate.getDate() + 1);
-
- document.getElementById("delDate2").value = tempDate.toLocaleDateString();
-  document.getElementById('delDateSpan2').innerHTML = tempDate.toLocaleDateString();
-
-  tempDate.setDate(tempDate.getDate() + 1);
-
-  document.getElementById("delDate3").value = tempDate.toLocaleDateString();
-  document.getElementById('delDateSpan3').innerHTML = tempDate.toLocaleDateString();
-
-  tempDate.setDate(tempDate.getDate() + 1);
-
-  document.getElementById("delDate4").value = tempDate.toLocaleDateString();
-  document.getElementById('delDateSpan4').innerHTML = tempDate.toLocaleDateString();
-
-  tempDate.setDate(tempDate.getDate() + 1);
-
-  document.getElementById("delDate5").value = tempDate.toLocaleDateString();
-  document.getElementById('delDateSpan5').innerHTML = tempDate.toLocaleDateString();
-
-  tempDate.setDate(tempDate.getDate() + 1);
-
-  document.getElementById("delDate6").value = tempDate.toLocaleDateString();
-  document.getElementById('delDateSpan6').innerHTML = tempDate.toLocaleDateString();
-
-  tempDate.setDate(tempDate.getDate() + 1);
-
-  document.getElementById("delDate7").value = tempDate.toLocaleDateString();
-  document.getElementById('delDateSpan7').innerHTML = tempDate.toLocaleDateString();
-*/
 }
 
 function GetDeliveryAddress() {
@@ -261,7 +227,8 @@ function SaveOrder() {
 
               });
 
-
+orderDetails
+              console.log(orderDetails);
               if (cartDetails.length > 0 && selectedAddress != null) {
                 console.log('insert order');
 
@@ -390,6 +357,7 @@ function createOrderItems() {
           .get()
           .then((psnapshot) => {
             psnapshot.forEach((doc) => {
+              console.log(doc.data().ProductImageURL);
               parr.push({
                 ProductID: doc.id,
                 ProductDetails: doc.data().ProductDetails,
