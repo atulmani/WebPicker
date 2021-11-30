@@ -40,7 +40,7 @@ function GetProfileData(user) {
         document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
     })
-    .catch((error) => {
+    .catch(function(error)  {
       // An error occurred
       console.log(error.message);
     });
@@ -227,7 +227,6 @@ function SaveOrder() {
 
               });
 
-orderDetails
               console.log(orderDetails);
               if (cartDetails.length > 0 && selectedAddress != null) {
                 console.log('insert order');
@@ -241,7 +240,7 @@ orderDetails
                     UpdatedBy: '',
                     UpdatedTimestamp: ''
                   })
-                  .then((docRef) => {
+                  .then(function(docRef)  {
                     console.log("Data added sucessfully in the document: ");
                     //showAddress(false);
                     //delete from cart after order places
@@ -251,14 +250,14 @@ orderDetails
                       .update({
                         cartDetails: cartDetails
                       })
-                      .then((docred) => {
+                      .then(function(docred)  {
                         console.log('cart details made blank');
                         window.location.href = "orderSummary.html?orderID=" + orderID;
                       });
 
                     // console.log(Date.parse(eventstart))
                   })
-                  .catch((error) => {
+                  .catch(function(error)  {
                     console.log(error);
                     //  console.error("error adding document:", error.message);
                   });
