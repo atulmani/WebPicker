@@ -60,7 +60,7 @@ function GetProfileData(user) {
 
       }
     })
-    .catch((error) => {
+    .catch(function(error)  {
       // An error occurred
       console.log(error.message);
       // document.getElementById('errorMessage_Signup').innerHTML = error.message;
@@ -369,14 +369,14 @@ document.getElementById('upload').onclick = function() {
             UpdatedBy: auth.currentUser.email,
             UpdatedTimestamp: (new Date()).toString()
           })
-          .then((docRef) => {
+          .then(function(docRef)  {
             document.getElementById("upload").disabled = true;
 
             console.log("Data added sucessfully in the document: " + productID);
             console.log("eventstart")
             // console.log(Date.parse(eventstart))
           })
-          .catch((error) => {
+          .catch(function(error)  {
             console.error("error adding document:", error);
           });
 
