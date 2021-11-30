@@ -42,5 +42,6 @@ function GetProfileData(user) {
 
 function PopulateTodaysOrder()
 {
-  
+  const snapshot = db.collection('Users').doc(user.uid);
+
 }
