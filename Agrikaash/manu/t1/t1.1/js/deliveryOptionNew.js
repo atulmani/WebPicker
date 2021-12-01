@@ -252,7 +252,7 @@ function SaveOrder() {
                       })
                       .then(function(docred)  {
                         console.log('cart details made blank');
-                        window.location.href = "orderSummary.html?orderID=" + orderID;
+                        window.location.href = "orderSummary.html?id=" + orderID;
                       });
 
                     // console.log(Date.parse(eventstart))
