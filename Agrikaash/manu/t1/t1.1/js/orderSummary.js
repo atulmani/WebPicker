@@ -18,6 +18,11 @@ auth.onAuthStateChanged(firebaseUser => {
       //GetProfileData(firebaseUser);
 
       getOrderDetails();
+      if (orderID != '' && orderID != null) {
+        document.getElementById('msg').innerHTML = 'Getting order details!!';
+      } else {
+        document.getElementById('msg').innerHTML = 'Your order is placed successfully';
+      }
       document.getElementById('loading-img').style.display = 'none';
     } else {
       console.log('User has been logged out');
@@ -45,7 +50,7 @@ function GetProfileData(user) {
 
       }
     })
-    .catch(function(error)  {
+    .catch(function(error) {
       // An error occurred
       console.log(error.message);
       // document.getElementById('errorMessage_Signup').innerHTML = error.message;
@@ -75,7 +80,7 @@ function getOrderDetails() {
 
       }
     })
-    .catch(function(error)  {
+    .catch(function(error) {
       // An error occurred
       console.log(error);
       // document.getElementById('errorMessage_Signup').innerHTML = error.message;
@@ -191,7 +196,7 @@ function renderOrderItem(orderItem) {
   td3.innerHTML = 'Qty : ' + orderItem.Quantity;
 
   var totalPrize = Number(orderItem.Quantity) * Number(orderItem.UnitPrise)
-//  console.log(totalPrize);
+  //  console.log(totalPrize);
   var td4 = document.createElement('td');
   td4.innerHTML = 'Prize : ' + totalPrize;
 
