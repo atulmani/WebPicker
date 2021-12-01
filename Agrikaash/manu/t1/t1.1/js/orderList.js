@@ -33,7 +33,7 @@ function GetProfileData(user) {
         document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
     })
-    .catch((error) => {
+    .catch(function(error)  {
       // An error occurred
       console.log(error.message);
       // document.getElementById('errorMessage_Signup').innerHTML = error.message;
@@ -90,9 +90,12 @@ function renderPendingPaymentOrder(order, index) {
   var div3 = document.createElement("div");
   div3.setAttribute("class", "");
 
+  var anchor = document.createElement("a");
+  anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID );
+
   var small1 = document.createElement("small");
   small1.setAttribute("class", "payment-pending");
-  small1.innerHTML = order.deliveryDate;
+  small1.innerHTML =  order.deliveryDate;
 
   var input1 = document.createElement("input");
   input1.setAttribute("type", "checkbox");
@@ -101,6 +104,11 @@ function renderPendingPaymentOrder(order, index) {
   input1.setAttribute("value", order.orderID);
   input1.setAttribute("id", "orderSelect" + index + 1);
   input1.checked = true
+
+  var hforderid = document.createElement("input");
+  hforderid.setAttribute('type','hidden');
+  hforderid.setAttribute('id','hfOrderID'+index);
+  hforderid.setAttribute('value', order.orderID );
 
   var h1 = document.createElement("h6");
   h1.innerHTML = "order Serial Numbe : " + index;
@@ -123,9 +131,10 @@ function renderPendingPaymentOrder(order, index) {
   div4.appendChild(div4h1);
   div4.appendChild(div4h2);
 
-
-  div3.appendChild(small1);
+  anchor.appendChild(small1);
+  div3.appendChild(anchor);
   div3.appendChild(input1);
+  div3.appendChild(hforderid);
 
   div2.appendChild(div3);
   div2.appendChild(h1);
@@ -147,6 +156,9 @@ function renderPendingOrder(order, index)
   var div3 = document.createElement("div");
   div3.setAttribute("class", "");
 
+  var anchor = document.createElement("a");
+  anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID );
+
   var small1 = document.createElement("small");
   small1.setAttribute("class", "delivery-pending");
   small1.innerHTML = order.deliveryDate;
@@ -154,6 +166,11 @@ function renderPendingOrder(order, index)
   var span1 = document.createElement('span');
   span1.setAttribute('class', "material-icons delivery-pending");
   span1.innerHTML = 'schedule';
+
+  var hforderid = document.createElement("input");
+  hforderid.setAttribute('type','hidden');
+  hforderid.setAttribute('id','hfOrderID'+index);
+  hforderid.setAttribute('value', order.orderID );
 
 
   var h1 = document.createElement("h6");
@@ -177,9 +194,11 @@ function renderPendingOrder(order, index)
   div4.appendChild(div4h1);
   div4.appendChild(div4h2);
 
+  anchor.appendChild(small1);
+  div3.appendChild(anchor);
 
-  div3.appendChild(small1);
   div3.appendChild(span1);
+  div3.appendChild(hforderid);
 
   div2.appendChild(div3);
 
@@ -202,12 +221,20 @@ function renderDeliveredOrder(order, index)
   var div3 = document.createElement("div");
   div3.setAttribute("class", "");
 
+
+  var anchor = document.createElement("a");
+  anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID );
+
   var small1 = document.createElement("small");
   small1.innerHTML = order.deliveryDate;
 
   var span1 = document.createElement('span');
   span1.setAttribute('class', "material-icons");
   span1.innerHTML = 'task_alt';
+  var hforderid = document.createElement("input");
+  hforderid.setAttribute('type','hidden');
+  hforderid.setAttribute('id','hfOrderID'+index);
+  hforderid.setAttribute('value', order.orderID );
 
 
   var h1 = document.createElement("h6");
@@ -229,10 +256,11 @@ function renderDeliveredOrder(order, index)
   div4.appendChild(div4h1);
   div4.appendChild(div4h2);
 
+  anchor.appendChild(small1);
+  div3.appendChild(anchor);
 
-  div3.appendChild(small1);
   div3.appendChild(span1);
-
+  div3.appendChild(hforderid);
   div2.appendChild(div3);
 
   div2.appendChild(h1);
@@ -254,6 +282,10 @@ function renderCancelledOrder(order, index)
   var div3 = document.createElement("div");
   div3.setAttribute("class", "");
 
+
+  var anchor = document.createElement("a");
+  anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID );
+
   var small1 = document.createElement("small");
   small1.setAttribute('class', "cancel");
   small1.innerHTML = order.deliveryDate;
@@ -261,6 +293,10 @@ function renderCancelledOrder(order, index)
   var span1 = document.createElement('span');
   span1.setAttribute('class', "material-icons cancel");
   span1.innerHTML = 'cancel';
+  var hforderid = document.createElement("input");
+  hforderid.setAttribute('type','hidden');
+  hforderid.setAttribute('id','hfOrderID'+index);
+  hforderid.setAttribute('value', order.orderID );
 
   var h1 = document.createElement("h6");
   h1.innerHTML = "order Serial Numbe : " + index + 1;
@@ -283,9 +319,11 @@ function renderCancelledOrder(order, index)
   div4.appendChild(div4h1);
   div4.appendChild(div4h2);
 
-
-  div3.appendChild(small1);
+  anchor.appendChild(small1);
+  div3.appendChild(anchor);
   div3.appendChild(span1);
+
+  div3.appendChild(hforderid);
 
   div2.appendChild(div3);
 

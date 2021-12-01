@@ -13,11 +13,11 @@ auth.onAuthStateChanged(firebaseUser => {
 
     } else {
       console.log('User has been logged out');
-      //window.location.href = "../index.html";
+      window.location.href = "index.html";
     }
   } catch (error) {
     console.log(error.message);
-    //window.location.href = "../index.html";
+    window.location.href = "index.html";
   }
 });
 
@@ -60,7 +60,7 @@ function GetProfileData(user) {
 
       }
     })
-    .catch((error) => {
+    .catch(function(error)  {
       // An error occurred
       console.log(error.message);
       // document.getElementById('errorMessage_Signup').innerHTML = error.message;
@@ -74,7 +74,7 @@ function GetProfileData(user) {
 let eventDocUrl = new URL(location.href);
 // console.log ('URL: ' + eventDocUrl);
 let searchParams = new URLSearchParams(eventDocUrl.search);
-const productID = searchParams.get('id');
+var productID = searchParams.get('id');
 // var userid = searchParams.get('usertid');
 console.log('Document ID: ' + productID);
 // console.log('Event ID: ' + userid);
@@ -82,7 +82,11 @@ console.log('Document ID: ' + productID);
 if (productID != null) {
   document.getElementById('optionalFields').style.display = 'block';
   document.getElementById('imageDiv').style.display = 'block';
-
+  //console.log(document.getElementById('productID'));
+  var obj = document.getElementById('hfproductID');
+  //console.log(obj);
+  document.getElementById('hfproductID').value = productID;
+  console.log(document.getElementById('hfproductID').value);
   populateProductData();
 }
 
@@ -95,7 +99,7 @@ function populateProductData() {
     if (doc.exists) {
       // console.log('Document id:' + doc.id);
       console.log(doc.data());
-      document.getElementById("productID").value = doc.data().id;
+      document.getElementById("hfproductID").value = doc.data().id;
       document.getElementById("productName").value = doc.data().ProductName;
       document.getElementById("brand").value = doc.data().Brand;
       var vegNonVeg = doc.data().VegNonVeg;
@@ -219,7 +223,7 @@ function CreateUpdateProductData() {
     }
     var ProductImageURL = document.getElementById("myimg").src;
     console.log(productID);
-    if (productID != null) {
+    if (productID != null && productID != '' ) {
       db.collection("Products").doc(productID).update({
           ProductName: productName,
           Brand: brand,
@@ -235,12 +239,12 @@ function CreateUpdateProductData() {
           UpdatedBy: '',
           UpdatedTimestamp: ''
         })
-        .then((docRef) => {
-          console.log("Data added sucessfully in the document: " + docRef.toString());
+        .then(function(docRef) {
+          console.log("Data added sucessfully in the document: " + docRef.id);
           console.log("eventstart")
           // console.log(Date.parse(eventstart))
         })
-        .catch((error) => {
+        .catch(function(error) {
           console.error("error adding document:", error);
         });
     } else {
@@ -262,12 +266,13 @@ function CreateUpdateProductData() {
           UpdatedBy: '',
           UpdatedTimestamp: ''
         })
-        .then((docRef) => {
-          console.log("Data added sucessfully in the document: " + docRef.toString());
+        .then(function(docRef) {
+          console.log("Data added sucessfully in the document: " + docRef.id);
+          document.getElementById('hfproductID').value = docRef.id;
           console.log("eventstart")
           // console.log(Date.parse(eventstart))
         })
-        .catch((error) => {
+        .catch(function(error) {
           console.error("error adding document:", error);
         });
 
@@ -325,11 +330,16 @@ document.getElementById("select").onclick = function(e) {
   input.click();
 
 }
+if(productID === null || productID === '')
+  productID = document.getElementById('hfproductID').value;
 
 //************ File Upload to Cloud Storage  ****************
 document.getElementById('upload').onclick = function() {
   // ImgName = document.getElementById('namebox').value;
+//  productID = document.getElementById('hfproductID').value;
+
   ImgName = productID + '_1.png';
+  console.log(ImgName);
   // ImgName = document.getElementById('productID').value + '_1.png';
   //files = document.getElementById("myimg").src;
 
@@ -346,10 +356,12 @@ document.getElementById('upload').onclick = function() {
     },
 
     function() {
+      //console.log(document.getElementById('hfproductID'));
+      //productID = document.getElementById('hfproductID').value;
       uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
         ImgUrl = url;
         alert('ImgUrl: ' + ImgUrl);
-
+        console.log(productID);
         db.collection("Products").doc(productID).update({
             // console.log('inside db collection: ' + newEventID);
             // EventId: newEventID,
@@ -357,14 +369,14 @@ document.getElementById('upload').onclick = function() {
             UpdatedBy: auth.currentUser.email,
             UpdatedTimestamp: (new Date()).toString()
           })
-          .then((docRef) => {
+          .then(function(docRef)  {
             document.getElementById("upload").disabled = true;
 
             console.log("Data added sucessfully in the document: " + productID);
             console.log("eventstart")
             // console.log(Date.parse(eventstart))
           })
-          .catch((error) => {
+          .catch(function(error)  {
             console.error("error adding document:", error);
           });
 
