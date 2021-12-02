@@ -222,7 +222,7 @@ function CreateUpdateProductData() {
 
     }
     var ProductImageURL = document.getElementById("myimg").src;
-    console.log(productID);
+    console.log(ProductImageURL);
     if (productID != null && productID != '' ) {
       db.collection("Products").doc(productID).update({
           ProductName: productName,
@@ -239,12 +239,12 @@ function CreateUpdateProductData() {
           UpdatedBy: '',
           UpdatedTimestamp: ''
         })
-        .then(function(docRef) {
-          console.log("Data added sucessfully in the document: " + docRef.id);
+        .then((docRef) => {
+          console.log("Data added sucessfully in the document: " );
           console.log("eventstart")
           // console.log(Date.parse(eventstart))
         })
-        .catch(function(error) {
+        .catch((error) => {
           console.error("error adding document:", error);
         });
     } else {
