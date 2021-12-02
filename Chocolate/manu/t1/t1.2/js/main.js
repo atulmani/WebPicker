@@ -1,9 +1,4 @@
 
-
-
-
-
-
 // Ristrict mouse right click - start
 document.addEventListener("contextmenu", function(e){
     e.preventDefault();
