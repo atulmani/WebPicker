@@ -45,20 +45,20 @@ function populateDeviceDetails(docID) {
       document.getElementById('txtDownloadMediaFreq').value = doc.data().downloadMediaFrequency;
       document.getElementById('txtDeviceOwner').value = doc.data().deviceOwnerName;
       document.getElementById('txtDeviceCity').value = doc.data().deviceCity;
-      for (var option of document.getElementById("deviceType").options)
-      {
-        if (option.value === doc.data().deviceType)
-        { option.selected = true; }
+      for (var option of document.getElementById("deviceType").options) {
+        if (option.value === doc.data().deviceType) {
+          option.selected = true;
+        }
       }
-      for (var option of document.getElementById("deviceSize").options)
-      {
-        if (option.value === doc.data().deviceSize)
-        { option.selected = true; }
+      for (var option of document.getElementById("deviceSize").options) {
+        if (option.value === doc.data().deviceSize) {
+          option.selected = true;
+        }
       }
-      for (var option of document.getElementById("locationType").options)
-      {
-        if (option.value === doc.data().locationType)
-        { option.selected = true; }
+      for (var option of document.getElementById("locationType").options) {
+        if (option.value === doc.data().locationType) {
+          option.selected = true;
+        }
       }
       document.getElementById('txtDeviceAreaLocationName').value = doc.data().locationArea;
       document.getElementById('txtDeviceAddress').value = doc.data().completeAddress;
@@ -77,52 +77,61 @@ function populateDeviceDetails(docID) {
 
 function addDeviceInDatabase() {
   //Add Customer Details in database
+  console.log('User Email: ' + auth.currentUser.email);
 
-  console.log('User Email: ' + auth.currentUser.email );
-
-  // db.collection('CustomerList').get().then((snapshot) => {
-  db.collection('DeviceList').get().then((snapshot) => {
-    count = snapshot.size;
-
-    console.log('count: ' + count);
-
-    sqNo = count + 1;
-    var newDeviceID = 10000 + count;
-
-    var selectDeviceType = document.getElementById('deviceType');
-    var deviceType = selectDeviceType.options[selectDeviceType.selectedIndex].value;
-    var selectDeviceSize = document.getElementById('deviceSize');
-    var deviceSize = selectDeviceSize.options[selectDeviceSize.selectedIndex].value;
-    var selectlocationType = document.getElementById('locationType');
-    var locationType = selectlocationType.options[selectlocationType.selectedIndex].value;
-
-    db.collection('DeviceList')
-      .add({
-        sqNo: sqNo,
-        deviceID: "",
-        deviceName: 'DEV' + newDeviceID,
-        downloadMediaFrequency: document.getElementById('txtDownloadMediaFreq').value.trim(),
-        deviceOwnerName : document.getElementById('txtDeviceOwner').value.trim(),
-        deviceCity : document.getElementById('txtDeviceCity').value.trim(),
-        deviceType: deviceType,
-        deviceSize: deviceSize,
-        locationType: locationType,
-        locationArea: document.getElementById('txtDeviceAreaLocationName').value.trim(),
-        completeAddress: document.getElementById('txtDeviceAddress').value.trim(),
-        status: 'ACTIVE',
-        createdBy: auth.currentUser.email,
-        createdTimestamp: (new Date()).toString(),
-        updatedBy: auth.currentUser.email,
-        updatedTimestamp: (new Date()).toString()
+  var lastSqNo = 0;
+  if (db.collection('DeviceList')) {
+    db.collection('DeviceList').orderBy('createdTimestamp', 'desc').limit(1).get().then((snapshot) => {
+      snapshot.forEach((doc) => {
+        // console.log('doc.id: ' + doc.id);
+        console.log('Last Sq no: ' + doc.data().sqNo);
+        lastSqNo = doc.data().sqNo;
       })
-      .then(() => {
-        // updated
-        console.log('Device added successfully in Database');
+    });
+  }
 
-        db.collection("DeviceList").where("sqNo", "==", sqNo)
-        .get()
-        .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
+    // db.collection('CustomerList').get().then((snapshot) => {
+    db.collection('DeviceList').orderBy('createdTimestamp', 'desc').get().then((snapshot) => {
+      // count = snapshot.size;
+      // console.log('count: ' + count);
+
+      sqNo = lastSqNo + 1;
+      var newDeviceID = 10000 + sqNo;
+
+      var selectDeviceType = document.getElementById('deviceType');
+      var deviceType = selectDeviceType.options[selectDeviceType.selectedIndex].value;
+      var selectDeviceSize = document.getElementById('deviceSize');
+      var deviceSize = selectDeviceSize.options[selectDeviceSize.selectedIndex].value;
+      var selectlocationType = document.getElementById('locationType');
+      var locationType = selectlocationType.options[selectlocationType.selectedIndex].value;
+
+      db.collection('DeviceList')
+        .add({
+          sqNo: sqNo,
+          deviceID: "",
+          deviceName: 'DEV' + newDeviceID,
+          downloadMediaFrequency: document.getElementById('txtDownloadMediaFreq').value.trim(),
+          deviceOwnerName: document.getElementById('txtDeviceOwner').value.trim(),
+          deviceCity: document.getElementById('txtDeviceCity').value.trim(),
+          deviceType: deviceType,
+          deviceSize: deviceSize,
+          locationType: locationType,
+          locationArea: document.getElementById('txtDeviceAreaLocationName').value.trim(),
+          completeAddress: document.getElementById('txtDeviceAddress').value.trim(),
+          status: 'ACTIVE',
+          createdBy: auth.currentUser.email,
+          createdTimestamp: (new Date()).toString(),
+          updatedBy: auth.currentUser.email,
+          updatedTimestamp: (new Date()).toString()
+        })
+        .then(() => {
+          // updated
+          console.log('Device added successfully in Database');
+
+          db.collection("DeviceList").where("sqNo", "==", sqNo)
+            .get()
+            .then((querySnapshot) => {
+              querySnapshot.forEach((doc) => {
                 // doc.data() is never undefined for query doc snapshots
                 console.log(doc.id, " => ", doc.data());
                 db.collection('DeviceCampaignList').doc(doc.id)
@@ -130,42 +139,47 @@ function addDeviceInDatabase() {
                     sqNo: sqNo,
                     deviceID: doc.id,
                     deviceName: 'DEV' + newDeviceID,
+                    status: 'ACTIVE',
                     type: true,
                     downloadMediaFrequency: document.getElementById('txtDownloadMediaFreq').value.trim(),
                     msg: "data fetch successfully",
-                    data:[],
-                    downloadurl:[]
-                  })
+                    data: [],
+                    downloadurl: []
+                  });
+
+                db.collection('DeviceCampaignSchedule').doc(doc.id)
+                  .set({
+                    deviceID: doc.id,
+                    schedule: []
+                  });
+              });
+            })
+            .catch((error) => {
+              console.log("Error getting documents: ", error);
             });
+
+          document.getElementById('errorMessage').innerHTML = "Device added successfully, please check Device List";
         })
         .catch((error) => {
-            console.log("Error getting documents: ", error);
+          // An error occurred
+          // console.log(error.message);
+          document.getElementById('errorMessage').innerHTML = error.message;
+          document.getElementById('errorMessage').style.display = 'block';
+          console.log('Error while saving data');
         });
 
-        document.getElementById('errorMessage').innerHTML = "Device added successfully, please check Device List";
-      })
-      .catch((error) => {
-        // An error occurred
-        // console.log(error.message);
-        document.getElementById('errorMessage').innerHTML = error.message;
-        document.getElementById('errorMessage').style.display = 'block';
-        console.log('Error while saving data');
-      });
+    });
 
-  });
+    // Show alert
+    document.querySelector('.alert').style.display = 'block';
 
-  // Show alert
-  document.querySelector('.alert').style.display = 'block';
-
-  // Hide alert after 3 seconds
-  setTimeout(function() {
-    document.querySelector('.alert').style.display = 'none';
-  }, 3000);
-
+    // Hide alert after 3 seconds
+    setTimeout(function() {
+      document.querySelector('.alert').style.display = 'none';
+    }, 3000);
 }
 
-function updateDeviceDetails(docID)
-{
+function updateDeviceDetails(docID) {
   console.log("Update device details...");
 
   db.collection('DeviceCampaignList').doc(docID)
@@ -184,12 +198,12 @@ function updateDeviceDetails(docID)
     });
 
 
-    var selectDeviceType = document.getElementById('deviceType');
-    var deviceType = selectDeviceType.options[selectDeviceType.selectedIndex].value;
-    var selectDeviceSize = document.getElementById('deviceSize');
-    var deviceSize = selectDeviceSize.options[selectDeviceSize.selectedIndex].value;
-    var selectlocationType = document.getElementById('locationType');
-    var locationType = selectlocationType.options[selectlocationType.selectedIndex].value;
+  var selectDeviceType = document.getElementById('deviceType');
+  var deviceType = selectDeviceType.options[selectDeviceType.selectedIndex].value;
+  var selectDeviceSize = document.getElementById('deviceSize');
+  var deviceSize = selectDeviceSize.options[selectDeviceSize.selectedIndex].value;
+  var selectlocationType = document.getElementById('locationType');
+  var locationType = selectlocationType.options[selectlocationType.selectedIndex].value;
 
   db.collection('DeviceList').doc(docID)
     .update({
@@ -237,7 +251,7 @@ btnRegister.addEventListener('click', e => {
   if (txtOwnerName == '' || txtDeviceCity == '' || txtDownloadMediaFreq == '') {
     document.getElementById('errorMessage').innerHTML = 'All fields are mandatory';
     document.getElementById('errorMessage').style.display = 'block';
-  } else if ( parseInt(txtDownloadMediaFreq) < 2 || parseInt(txtDownloadMediaFreq) > 525600) {
+  } else if (parseInt(txtDownloadMediaFreq) < 2 || parseInt(txtDownloadMediaFreq) > 525600) {
     document.getElementById('errorMessage').innerHTML = 'Download Frequency should be in between minimum 2 mins to maximum 52560 mins (1 year)';
     document.getElementById('errorMessage').style.display = 'block';
   } else {
