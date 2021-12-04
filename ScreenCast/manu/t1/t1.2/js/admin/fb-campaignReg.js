@@ -57,25 +57,37 @@ function populateCampaignDetails(docID) {
 
 function addCampaigninDB() {
   //Add Customer Details in database
-
   console.log('User Email: ' + auth.currentUser.email );
 
-  // db.collection('CustomerList').get().then((snapshot) => {
-  db.collection('CampaignList').orderBy('Created_Timestamp', 'asc').get().then((snapshot) => {
-    count = snapshot.size;
-    console.log('count: ' + count);
+  var lastSqNo = 0;
+  if (db.collection('CampaignList')) {
+    db.collection('CampaignList').orderBy('createdTimestamp', 'desc').limit(1).get().then((snapshot) => {
+      snapshot.forEach((doc) => {
+        // console.log('doc.id: ' + doc.id);
+        console.log('Last Sq no: ' + doc.data().sqNo);
+        lastSqNo = doc.data().sqNo;
+      })
+    });
+  }
 
-    var newCampaignID = 10000 + count;
+  // db.collection('CustomerList').get().then((snapshot) => {
+  db.collection('CampaignList').orderBy('Created_Timestamp', 'desc').get().then((snapshot) => {
+    // count = snapshot.size;
+    // console.log('count: ' + count);
+
+    sqNo = lastSqNo + 1;
+    var newCampaignID = 10000 + sqNo;
 
     const txtCampaignName = document.getElementById('txtCampaignName').value.trim();
 
     db.collection('CampaignList')
       .add({
-        ID: count + 1,
+        sqNo: sqNo,
         campaignID: 'CAMP' + newCampaignID,
         campaignName: txtCampaignName,
         downloadurl:[],
         status: 'NOT_PUBLISHED',
+        publishedTimestamp: '',
         createdBy: auth.currentUser.email,
         createdTimestamp: (new Date()).toString(),
         updatedBy: auth.currentUser.email,
