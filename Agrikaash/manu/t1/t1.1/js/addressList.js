@@ -33,7 +33,7 @@ function GetProfileData(user) {
         document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
     })
-    .catch((error) => {
+    .catch(function (error) {
       // An error occurred
       console.log(error.message);
     });
@@ -110,13 +110,13 @@ function saveAddress() {
           UpdatedBy: '',
           UpdatedTimestamp: ''
         })
-        .then((docRef) => {
+        .then(function(docRef)  {
           console.log("Data added sucessfully in the document: ");
           populateAddressList();
           //showAddress(false);
           // console.log(Date.parse(eventstart))
         })
-        .catch((error) => {
+        .catch(function(error) {
           //  console.error("error adding document:", error.message);
         });
 
@@ -159,25 +159,12 @@ function populateAddressList() {
       // addressList.setAttribute('display', 'none;');
 
     }
+
+    document.getElementById('loading').style.display = 'none';
   });
 
 
 }
-//
-// function populateCartData() {
-//   var itemCount = 0;
-//   const snapshot = db.collection('CartDetails').doc(userID);
-//   snapshot.get().then(async (doc) => {
-//     if (doc.exists) {
-//       cartDetails = doc.data().cartDetails;
-//       itemCount = cartDetails.length;
-//       //console.log(change.doc, index, selectdedItem);
-//     }
-//     document.getElementById('cartItemCount').innerHTML = itemCount;
-//
-//   });
-//
-// }
 
 function renderAddressList(item, index) {
   console.log(item);
@@ -346,12 +333,12 @@ function OnSelectionChange(index) {
         .update({
           AddressList: addressList
         })
-        .then((docRef) => {
+        .then(function(docRef)  {
           console.log("Data added sucessfully in the document: ");
           // console.log(Date.parse(eventstart))
         })
-        .catch((error) => {
-          //  console.error("error adding document:", error.message);
+        .catch(function(error)  {
+            console.error("error adding document:", error.message);
         });
     }
   });

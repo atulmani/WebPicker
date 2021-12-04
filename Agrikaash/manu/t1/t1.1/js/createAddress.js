@@ -40,7 +40,7 @@ function GetProfileData(user) {
         document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
     })
-    .catch((error) => {
+    .catch(function(error)  {
       // An error occurred
       console.log(error.message);
     });
@@ -141,12 +141,12 @@ function saveAddress() {
           UpdatedBy: '',
           UpdatedTimestamp: ''
         })
-        .then((docRef) => {
+        .then(function(docRef)  {
           console.log("Data added sucessfully in the document: ");
           window.location.href = "addressList.html";
           // console.log(Date.parse(eventstart))
         })
-        .catch((error) => {
+        .catch(function(error)  {
           //  console.error("error adding document:", error.message);
         });
 

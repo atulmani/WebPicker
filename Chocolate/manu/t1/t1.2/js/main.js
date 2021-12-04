@@ -157,7 +157,7 @@ $(function () {
   // });
 
   $(document).ready(function() {
-    var owl = $('#ingradients-list');
+    var owl = $('#ingradients-list1');
     owl.owlCarousel({
       margin: 20,
       loop: true,
@@ -185,26 +185,27 @@ $(function () {
 
 
     $(document).ready(function() {
-      var owl = $('#clients-list');
-      owl.owlCarousel({
+      var owl1 = $('#more-products');
+      owl1.owlCarousel({
         margin: 80,
         nav: true,
         loop: true,
         autoplay: true,
-        smartSpeed:3000,
+        smartSpeed:2000,
         autoplayTimeout: 4000,
         autoplayHoverPause: false,
         nav:false,
-        // dots:true,
+        dots:false,
         responsive: {
           0: {
-            items: 2
+            items: 1,
+            stagePadding: 50
           },
           600: {
-            items: 3
+            items: 2
           },
           1024: {
-            items: 4
+            items: 3
           }
         }
       });
@@ -451,3 +452,26 @@ new WOW().init();
     });
   }
 // map - end
+
+
+// js for product gallery
+
+   var productImg = document.getElementById("ProductImg");
+   var smallImg = document.getElementsByClassName("small-img");
+
+     smallImg[0].onclick = function()
+     {
+       productImg.src = smallImg[0].src;
+     }
+     smallImg[1].onclick = function()
+     {
+       productImg.src = smallImg[1].src;
+     }
+     smallImg[2].onclick = function()
+     {
+       productImg.src = smallImg[2].src;
+     }
+     smallImg[3].onclick = function()
+     {
+       productImg.src = smallImg[3].src;
+     }

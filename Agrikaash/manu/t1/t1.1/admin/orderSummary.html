@@ -39,6 +39,7 @@
 
   <!-- Your Own Style -->
   <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/orderSummary.css">
   <link rel="stylesheet" href="../css/cart.css">
   <link rel="stylesheet" href="../css/products.css">
   <link rel="stylesheet" href="../css/dashboard.css">
@@ -165,7 +166,7 @@
       <div class="row no-gutters small">
 
         <div class="pay-now-div">
-          <h4 style="width:100%;text-align:center;">Review Your Cart</h4>
+          <h4 style="width:100%;text-align:center;">Order Summary</h4>
         </div>
         <br><br>
         <div class="col-sm-12" style="padding: 5px;">
@@ -173,16 +174,43 @@
             <!-- <div id='loading' class="loader"></div> -->
             <div class="" id="loading-img">
               <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-              <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_wclkkppn.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
-              <h5>Getting your cart details</h5>
+              <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_ya4ycrti.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+              <h5><span id="msg">Your order is placed successfully</span></h5><br><br>
             </div>
           </center>
-          <div id="divCart" style="min-height: 320px;">
-            <div class="empty-cart" id="blankCartMessage" style="display:none;">
-              <img src="../img/empty_cart.svg" width="70%" alt=""><br><br><br>
-              <h5>Your cart is empty</h5>
-              <a href="productList.html"><button class="mybutton button5" style="margin-top: 20px;">Shop Now</button></a><br><br>
-            </div>
+          <div id="divCart">
+            <div class="empty-cart" ><br><br>
+
+
+              <div class="order-summary">
+                <div class="">
+                  <h5>Delivery Slot</h5><br>
+                  <p>Delivery Date: <span id="DeliveryDate"> </span> <br>
+                    Time Slot: <span id="DeliveryTime"> </span> <br>
+                    Order status: <span id="orderStatus"></span> <br />
+                    Payment status: <span id="PaymentStatus"></span><br />
+                    Order Date: <span id="orderDate"></span>
+                  </p>
+                </div>
+
+                <div class="">
+                  <h5>Address</h5><br>
+                  <p><span id="BranchName"> </span></p>
+                  <span id="BranchOwnerName"> </span>
+                  <p>
+                    <span id="AddressLine1"> </span>, <br>
+                    <span id="AddressLine2"> </span> <br>
+                    <span id="City"> </span> - <span id="ZipCode"> </span>
+                  </p>
+                  <p><i class="fas fa-phone-alt"></i> <span id="phoneNumber"> </span></p>
+                </div>
+              </div>
+
+              <h3>Items</h3>
+              <div id="orderItems">
+
+              </div>
+
             <!-- <input type="reeadonly" id="blankCartMessage" value="No items are added in cart" style="display:none;"> -->
           </div>
         </div>
@@ -195,12 +223,12 @@
         <div class="col-sm-12">
           <div class="checkout-div">
             <div class="">
-              <h5 id="totalAmount">Rs.</h5>
-              <small id="itemCount">Items</small>
+              <h5 id="totalAmount"></h5>
+              <small id="itemCount"></small>
               <input type="hidden" id="hfFinalPrize">
             </div>
             <div class="">
-              <a href="deliveryOptionNew.html"><button class="mybutton button5" id="btnCheckOut">CHECKOUT</button></a>
+              <a href="orderList.html"><button class="mybutton button5" id="btnCheckOut">Order List</button></a>
             </div>
           </div>
         </div>
@@ -303,7 +331,7 @@
   <script src="../js/firebase.js"></script>
 
   <!-- <script src="../js/chart.js"></script> -->
-  <script src="../js/cartNew.js"></script>
+  <script src="../js/orderSummary.js"></script>
   <!-- <script src="../js/chart2.js"></script> -->
 
   <!-- Owl Carousel Javascript  -->

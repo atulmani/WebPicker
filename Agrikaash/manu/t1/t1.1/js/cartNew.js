@@ -32,6 +32,7 @@ auth.onAuthStateChanged(firebaseUser => {
     console.log(error.message);
     //window.location.href = "../index.html";
   }
+  // document.getElementById('loading-img').style.display = 'none';
 });
 
 function GetProfileData(user) {
@@ -74,7 +75,7 @@ function GetProfileData(user) {
 
       }
     })
-    .catch((error) => {
+    .catch(function(error) {
       // An error occurred
       console.log(error.message);
       // document.getElementById('errorMessage_Signup').innerHTML = error.message;
@@ -92,9 +93,11 @@ async function populateCartData() {
     const cartItemsDB = db.collection("CartDetails").doc(userID);
     cartItemsDB.get().then((doc1) => {
       if (doc1.exists) {
+        console.log('doc1.exists');
 
         var cartItems = doc1.data().cartDetails;
         for (const item of cartItems) {
+          console.log('inside loop');
           var lProductID = item.ProductID;
           selectdedItem = item.SelectedsubItem;
           console.log(lProductID);
@@ -106,8 +109,16 @@ async function populateCartData() {
               index = index + 1;
               itemCount.innerHTML = (index) + " Items";
             }
+            document.getElementById('loading-img').style.display = 'none';
           });
         }
+        if(cartItems.length === 0)
+        {
+          document.getElementById('loading-img').style.display = 'none';
+        }
+      }
+      else{
+        document.getElementById('loading-img').style.display = 'none';
       }
     });
   } catch (e) {
@@ -120,6 +131,8 @@ async function populateCartData() {
   //getCartItemNo();
 
   //return true;
+
+  // document.getElementById('loading').style.display = 'none';
 }
 
 async function getCartItemNo1() {
@@ -591,7 +604,7 @@ function deleteCartItem(e, itemSizeObj, productID, deleteID) {
         // populateCartData();
         //getCartItemNo();
       })
-      .catch((error) => {
+      .catch(function(error)  {
         console.log("in error");
         // document.getElementById('errorMessage').innerHTML = error.message;
         // document.getElementById('errorMessage').style.display = 'block';
@@ -622,14 +635,6 @@ function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualit
 
   */
 
-  console.log("AddUpdateCart", cartItems);
-  console.log("AddUpdateCart", cartItems.length);
-  console.log("itemSelect : ", itemSelect);
-  console.log("itemName : ", itemName);
-  console.log("itemQuantity : ", itemQuantity);
-  console.log("productID : ", productID);
-  console.log("itemQualityStatus : ", itemQualityStatus);
-
   var itemIndex = cartItems.findIndex(a => a.ProductID === productID && a.SelectedsubItem === itemSelect.value);
   console.log(itemIndex);
 
@@ -656,7 +661,7 @@ function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualit
       CreatedTimestamp: '',
       UpdatedTimestamp: (new Date()).toString()
     })
-    .then(() => {
+    .then(function (docref )  {
       // updated
       console.log('Users data saved successfully');
       getCartItemNo();
@@ -664,7 +669,7 @@ function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualit
       //document.querySelector('.alert').style.display = 'block';
 
     })
-    .catch((error) => {
+    .catch(function(error)  {
       // An error occurred
       // console.log(error.message);
       console.log("in error");

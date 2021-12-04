@@ -581,7 +581,14 @@ h6 {
   display: flex;
   justify-content: space-between;
   background: rgba(235,235,229,0.9);
-  padding: 5px;
+  padding: 15px;
+}
+
+@media (max-width: 850px) {
+  .full-addres-div{
+    display: flex;
+    flex-direction: column-reverse;
+  }
 }
 
 .address-div {
@@ -628,7 +635,7 @@ h6 {
 .contact-form-field textarea {
   padding: 5px;
   width: 100%;
-  background: rgba(235,235,229,0.7);
+  background: rgba(235,235,229,0.9);
   border: 1px solid #B99A87;
   /* border: 1px solid rgba(255,255,255,0.2); */
   border-radius: 5px;
@@ -854,11 +861,15 @@ input[type=number] {
 }
 
 .read-more-button {
-  color: #65463E;
+  color: #fff;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: bold;
   margin-top: 0;
+}
+
+.read-more-button:hover{
+  color: #EBEBE5;
 }
 
 .footer-links h5 {
@@ -908,3 +919,87 @@ input[type=number] {
 }
 
 /* Footer Section - End */
+
+
+/* product detail page - start */
+
+.product-detail-img{
+  padding:40px;
+  background: #eee;
+  border-radius: 5px;
+}
+
+.product-details-content{
+  padding: 20px;
+}
+
+.review-count.product-details-content{
+  padding-left: 10px;
+  font-weight: 500;
+}
+
+.product-details-content .select h6{
+  font-weight: 500;
+}
+
+.product-details-content .select input{
+  border: 1px solid #ededed;
+  padding: 5px;
+  text-align: center;
+  margin: auto 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  width: 30%;
+  cursor: pointer;
+  outline: none;
+  background: none;
+}
+
+@media (max-width: 850px) {
+  .product-details-content .select input{
+    width: 45%;
+  }
+}
+
+.product-details-content .select input.active{
+  background: #ededed;
+}
+
+.product-details-content .para p{
+  font-size: 0.9rem;
+  color: rgba(0,0,0,0.4);
+  font-weight: bold;
+}
+
+.product-details-content .select h4{
+  font-size: 1.2rem;
+  color: rgba(0,0,0,0.7);
+  font-weight: 600;
+}
+
+.product-details-content .select .number:focus{
+  background: #ededed;
+}
+
+.description-heading{
+  font-weight: 500;
+}
+
+.description-para{
+  font-size: 0.8rem;
+  color: rgba(0,0,0,0.5);
+  font-weight: 500;
+}
+
+.small-img-row{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+.small-img-col{
+  flex-basis: 24%;
+  cursor: pointer;
+  padding: 6%;
+}
+
+/* product detail page - end */

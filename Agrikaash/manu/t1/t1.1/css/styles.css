@@ -290,6 +290,14 @@ h6{
 
 }
 
+.button6{
+  background: #fff;
+  color: #f58634;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
 .before-nav{
   position: absolute;
   top: 25%;
@@ -636,6 +644,27 @@ input[type=number] {
 }
 
 /* Footer Section - End */
+
+
+
+
+
+
+
+
+/* cart page - start */
+
+.empty-cart{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+
+/* cart page - end */
 
 
 
