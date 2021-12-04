@@ -402,6 +402,7 @@ $(document).ready(function() {
     autoplayHoverPause: false,
     nav: false,
     dots: false,
+    center: true,
     responsive: {
       0: {
         items: 2
