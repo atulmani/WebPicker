@@ -27,37 +27,9 @@ function GetProfileData(user) {
   const snapshot = db.collection('Users').doc(user.uid);
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
-        // let blogPost = doc.data();
-        // console.log ('User UID: ' + user.uid);
-        // console.log ('Document ref id: ' + doc.data().uid);
-        // console.log('Display Name: '+ doc.data().displayName);
-        // console.log('Phone '+ doc.data().Phone);
-        // console.log('Date of Birth: '+ doc.data().DateOfBirth);
-        // console.log('Address: '+ doc.data().Address);
-
-        // document.getElementById('status').innerHTML = doc.data().Status;
-        // document.getElementById('myimg').src = doc.data().ImageURL;
         document.getElementById('headerProfilePic').src = doc.data().ImageURL;
         // document.getElementById('profile-name').value = doc.data().displayName;
         document.getElementById('displayName').innerHTML = doc.data().displayName;
-        // document.getElementById('profile-number').value = doc.data().Phone;
-        // document.getElementById('profile-dob').value = doc.data().DateOfBirth;
-        // document.getElementById('profile-adress').value = doc.data().Address;
-        // document.getElementById('profileEmail').value = doc.data().EmailId;
-
-
-
-        // for (var option of document.getElementById("idtype").options)
-        // {
-        //   if (option.value === doc.data().IDType)
-        //   {
-        //       option.selected = true;
-        //   }
-        // }
-        //
-        // document.getElementById('idno').value = doc.data().IDNo;
-        // document.getElementById('address').value = doc.data().Address;
-
       }
     })
     .catch(function(error)  {
@@ -99,6 +71,34 @@ function populateProductData() {
     if (doc.exists) {
       // console.log('Document id:' + doc.id);
       console.log(doc.data());
+
+      var productTypeValue = doc.data().productType;
+      var customerBusinessType = doc.data().CustomerBusinessType;
+      if(productTypeValue != undefined)
+      {
+        console.log('is not undefined');
+        var productType = document.getElementById('productType');
+        for ( var i = 0; i < productType.options.length; i++ ) {
+                if ( productType.options[i].value == productTypeValue ) {
+                    productType.options[i].selected = true;
+                }
+            }
+
+      }
+
+      if(customerBusinessType != undefined)
+      {
+        console.log('is not undefined');
+        var businessType = document.getElementById('BusinessType');
+        for ( var i = 0; i < businessType.options.length; i++ ) {
+                if ( businessType.options[i].value == customerBusinessType ) {
+                    businessType.options[i].selected = true;
+                }
+            }
+
+      }
+
+
       document.getElementById("hfproductID").value = doc.data().id;
       document.getElementById("productName").value = doc.data().ProductName;
       document.getElementById("brand").value = doc.data().Brand;
@@ -163,6 +163,10 @@ function CreateUpdateProductData() {
     console.log('Snapshot Size: ' + docCount);
 
     //var productID = document.getElementById("productID").value;
+    var productType = document.getElementById("productType");
+    var customerBusinessTypeValue = BusinessType.options[BusinessType.selectedIndex].value;
+
+    var productTypeValue = productType.options[productType.selectedIndex].value;
     var productName = document.getElementById("productName").value;
     console.log("productName", productName);
     var brand = document.getElementById("brand").value;
@@ -225,6 +229,8 @@ function CreateUpdateProductData() {
     console.log(ProductImageURL);
     if (productID != null && productID != '' ) {
       db.collection("Products").doc(productID).update({
+          CustomerBusinessType : customerBusinessTypeValue,
+          productType : productTypeValue,
           ProductName: productName,
           Brand: brand,
           VegNonVeg: vegNonVeg,
@@ -251,6 +257,8 @@ function CreateUpdateProductData() {
       db.collection("Products").add({
           // console.log('inside db collection: ' + newEventID);
           ProductId: docCount + 1,
+          CustomerBusinessType : customerBusinessTypeValue,
+          productType : productTypeValue,
           ProductName: productName,
           Brand: brand,
           VegNonVeg: vegNonVeg,
