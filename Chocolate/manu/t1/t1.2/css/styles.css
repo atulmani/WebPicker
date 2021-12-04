@@ -61,23 +61,46 @@ h6 {
 
 /* navbar start */
 .before-navbar {
-  background: #EBEBE5;
+  background: #65463E;
   /* background: #65463E; */
   /* border-bottom: 1px solid rgba(255, 255, 255, 0.2); */
   padding: 5px;
-  border-bottom: 1px solid rgba(185,154,135,1);
-  border-top: 5px solid #65463E;
-  box-shadow: 0 0 15px 0 rgba(185,154,135,1);
+  /* border-bottom: 1px solid rgba(185,154,135,1); */
+  /* border-top: 5px solid #65463E; */
+  /* box-shadow: 0 0 15px 0 rgba(185,154,135,1); */
 }
 
 .before-navbar-div {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #65463E;
+  color: #EBEBE5;
   font-weight: 600;
   border: none;
 }
+
+
+.cod-free-shiping{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+@media (max-width: 850px) {
+  .cod-free-shiping{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.cod-free-shiping h6{
+  font-size: 0.7rem;
+  padding: 0 10px;
+}
+
+
 
 .social-media-head {
   display: flex;
@@ -115,17 +138,18 @@ h6 {
 
 .contact .content div:hover {
   cursor: pointer;
-  color: #000;
+  color: #C9BEB1;
 }
 
 .contact div i {
   font-size: 0.8rem;
   padding-right: 7px;
-  color: #65463E;
+  color: #EBEBE5;
 }
 
 .contact .content div span {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+  font-weight: normal;
 }
 
 .collapsing{
@@ -139,9 +163,9 @@ h6 {
 }
 
 .navbar {
-  background-color: #65463E;
+  background: #EBEBE5;
   /*color changed*/
-  height: 50px;
+  height: 58px;
   padding: 0;
 }
 
@@ -149,6 +173,26 @@ h6 {
   color: white;
   font-size: 1.7rem;
   padding-left: 12px;
+}
+
+.brand-heading{
+  padding-left:8px;
+  font-size:2rem;
+  font-weight:600;
+  color: #65463E;
+  font-family: 'Dancing Script';
+  margin: 0 auto;
+  padding-left: 30px;
+}
+
+.brand-sub-heading{
+  margin: 0 auto;
+  position: relative;
+  bottom: 8px;
+  color: #65463E;
+  font-size: 0.6rem;
+  padding-left: 30px;
+  letter-spacing: 1.6px;
 }
 
 .navbar-brand:hover {
@@ -167,9 +211,8 @@ h6 {
 }
 
 .nav-link {
-  /* color: white; */
-  color: #fff;
-  font-size: 1rem;
+  color: #65463E;
+  font-size: 0.9rem;
   text-align: center;
   font-weight: bold;
 }
