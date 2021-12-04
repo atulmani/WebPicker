@@ -200,6 +200,7 @@ function SaveOrder() {
 
             var prize = document.getElementById("totalAmount").innerHTML;
             var itemCount = document.getElementById("itemCount").innerHTML;
+
             const snapshotOrder = db.collection('OrderDetails').doc(userID);
             console.log("before insert");
 

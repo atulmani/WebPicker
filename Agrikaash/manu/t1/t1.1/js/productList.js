@@ -1,28 +1,18 @@
 //const productID = document.getElementById('productID');
 var userID = "";
 var cartItems = [];
+var productCategory = [];
+
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
-      //console.log(firebaseUser.uid);
-      // document.getElementById('displayName').innerHTML = firebaseUser.displayName;
-      // document.getElementById('profile-name').value = firebaseUser.displayName;
-      // document.getElementById('profile-number').value = firebaseUser.Phone;
-      // document.getElementById('profileEmail').value = firebaseUser.email;
-
       GetProfileData(firebaseUser);
 
       var promise = getCartItemNo();
-      var promise2 = promise.then(populateProductData());
-//       promise2.then(
-//
-//             document.getElementById('loading').style.display = 'none'
-// );
-      //      const promise = getCartItemNo();
-      //    const promise2 = promise.then(populateProductData);
-
+      var promise2 = promise.then(populateProductData('', ''));
+      //promise2.then(console.log(productCategory));
 
     } else {
       console.log('User has been logged out');
@@ -46,7 +36,7 @@ function GetProfileData(user) {
         document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
     })
-    .catch(function(error)  {
+    .catch(function(error) {
       // An error occurred
       console.log(error.message);
       // document.getElementById('errorMessage_Signup').innerHTML = error.message;
@@ -73,61 +63,107 @@ async function getCartItemNo() {
   });
 };
 
+function emptyDiv(div) {
+  div.innerHTML = '';
+}
+async function populateProductData(bType, pType) {
+  //var DBrows = db.collection("Products").where("OrganizationId", "==", Number(organizationid)).get();
+  var divPType = document.getElementById('productCategory');
+  var divPList = document.getElementById('productRow');
+  emptyDiv(divPList);
+  emptyDiv(divPType);
+  var DBrows;
+  if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
+  {
+    DBrows = db.collection("Products").get();
+  } else if ((pType === '' || pType === 'All') && (bType != '' && bType != 'All')) //select one customer businessType
+  {
+    DBrows = db.collection("Products").where("CustomerBusinessType", "==", bType).get();
+  } else if ((pType != '' && pType != 'All') && (bType === '' || bType === 'All')) //select one customer businessType
+  {
+    DBrows = db.collection("Products").where("productType", "==", pType).get();
+  } else if ((pType != '' && pType != 'All') && (bType != '' && bType != 'All')) //select one customer businessType
+  {
+    DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "==", bType).get();
+  }
 
-async function populateProductData() {
-  db.collection("Products").orderBy('CreatedTimestamp', 'desc').onSnapshot(snapshot => {
-    let changes = snapshot.docChanges();
-    ///check cart Start
-    //get already added items from cart
+  DBrows.then((changes) => {
     var item = [];
-    //console.log(cartItems);
-    // const snapshotCart = db.collection('CartDetails').doc(userID);
-    // snapshotCart.get().then((doc) => {
-    //   if (doc.exists) {
-    //     console.log("doc exists");
-    //     item = doc.data().cartDetails;
-    //     console.log(item);
-    //   }
-
     var index = 0;
     var selectedindex = -1;
     var selectdedItem;
+    productCategory.push('All');
     changes.forEach(change => {
-      //console.log(change.type, change.doc.id);
-      //console.log(item);
-      if (change.type == 'added') {
+      //if (change.type == 'added')
+      {
+        var pCategory = change.data().productType;
+        productCategory.push(pCategory)
+
         if (cartItems != null) {
-          selectedIndex = cartItems.findIndex(a => a.ProductID === change.doc.id);
+          selectedIndex = cartItems.findIndex(a => a.ProductID === change.id);
 
           if (selectedIndex >= 0) {
             selectdedItem = cartItems[selectedIndex];
-
           } else {
-
             selectdedItem = null;
           }
         } else {
-
           selectdedItem = null;
         }
       }
-      //console.log(change.doc, index, selectdedItem);
-      renderProductNew(change.doc, index, selectdedItem);
+      renderProductNew(change, index, selectdedItem);
       index = index + 1;
 
     });
+
+    var unique = productCategory.filter(onlyUnique);
+    renderProductCategory(unique);
     document.getElementById('loading').style.display = 'none';
 
-    ////check cart end
-
-    //});
-
-
+    //  });
   });
-
-
 }
 
+function onlyUnique(value, index, self) {
+  return self.indexOf(value) === index;
+}
+
+function renderProductCategory(productCategory) {
+
+  var div = document.getElementById('productCategory');
+  for (i = 0; i < productCategory.length; i++) {
+    var anchor = document.createElement("a");
+    anchor.setAttribute("href", "javascript:callFunction('" + productCategory[i] + "');");
+    anchor.innerHTML = productCategory[i];
+
+    var span = document.createElement("span");
+    span.innerHTML = "| ";
+
+    div.appendChild(anchor);
+    div.appendChild(span);
+  }
+}
+
+function callFunction(productType) {
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('hfpType').value = productType;
+
+  var e = document.getElementById("businessType");
+  var cType = e.options[e.selectedIndex].text;
+
+  // var cType = document.getElementById('businessType').SelectedValue;
+  populateProductData(cType, productType);
+  //renderProductNew(doc, index, selectedItem)
+}
+
+function changCustomerType() {
+  document.getElementById('loading').style.display = 'block';
+  var productType = document.getElementById('hfpType').value;
+  var e = document.getElementById("businessType");
+  var cType = e.options[e.selectedIndex].text;
+  populateProductData(cType, productType);
+  //renderProductNew(doc, index, selectedItem)
+}
 /////////////////////new function
 function renderProductNew(doc, index, selectedItem) {
   //console.log(selectedItem);
@@ -189,7 +225,6 @@ function renderProductNew(doc, index, selectedItem) {
   var selectP = document.createElement("select");
   selectP.name = "productDetails";
   selectP.id = "productDetails" + index;
-  //console.log("mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + ")");
   selectP.setAttribute("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelectedValue" + index + "," + index + ",'" + doc.id + "'," + doc.data().MinimumQty + ")");
   //selectP.addEventListener("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelectedValue" + index + ","+index+")");
   var indexnew = -1;
@@ -239,7 +274,7 @@ function renderProductNew(doc, index, selectedItem) {
   td2.appendChild(selectP);
   var div1_4 = document.createElement("div");
   div1_4.setAttribute("class", "product-price");
-//console.log(selectedItem);
+  //console.log(selectedItem);
 
   // div1_4.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + productlist[0].ProductMRP + "</span>" + "</h5>" +
   //   "<small>₹ " + "<span id='final" + index + "'>" + productlist[0].ProductFinalPrise + "</span></small>";

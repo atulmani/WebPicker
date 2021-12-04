@@ -6,24 +6,9 @@ auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
-      //console.log(firebaseUser.uid);
-      // document.getElementById('displayName').innerHTML = firebaseUser.displayName;
-      // document.getElementById('profile-name').value = firebaseUser.displayName;
-      // document.getElementById('profile-number').value = firebaseUser.Phone;
-      // document.getElementById('profileEmail').value = firebaseUser.email;
-
       GetProfileData(firebaseUser);
       var promise = getCartItemNo();
       promise.then(populateCartData());
-
-      //      getCartItemNo();
-      //
-      //    populateCartData();
-      //  .then ({
-      // const promise1 =  populateCartData();
-      //
-      // const promise2=  promise1.then(getCartItemNo());
-
     } else {
       console.log('User has been logged out');
       window.location.href = "index.html";
@@ -41,38 +26,10 @@ function GetProfileData(user) {
   const snapshot = db.collection('Users').doc(user.uid);
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
-        // let blogPost = doc.data();
-        // console.log ('User UID: ' + user.uid);
         console.log('Document ref id: ' + doc.data().uid);
         userID = doc.data().uid;
-        // console.log('Display Name: '+ doc.data().displayName);
-        // console.log('Phone '+ doc.data().Phone);
-        // console.log('Date of Birth: '+ doc.data().DateOfBirth);
-        // console.log('Address: '+ doc.data().Address);
-
-        // document.getElementById('status').innerHTML = doc.data().Status;
-        // document.getElementById('myimg').src = doc.data().ImageURL;
         document.getElementById('headerProfilePic').src = doc.data().ImageURL;
-        // document.getElementById('profile-name').value = doc.data().displayName;
         document.getElementById('displayName').innerHTML = doc.data().displayName;
-        // document.getElementById('profile-number').value = doc.data().Phone;
-        // document.getElementById('profile-dob').value = doc.data().DateOfBirth;
-        // document.getElementById('profile-adress').value = doc.data().Address;
-        // document.getElementById('profileEmail').value = doc.data().EmailId;
-
-
-
-        // for (var option of document.getElementById("idtype").options)
-        // {
-        //   if (option.value === doc.data().IDType)
-        //   {
-        //       option.selected = true;
-        //   }
-        // }
-        //
-        // document.getElementById('idno').value = doc.data().IDNo;
-        // document.getElementById('address').value = doc.data().Address;
-
       }
     })
     .catch(function(error) {
@@ -97,10 +54,8 @@ async function populateCartData() {
 
         var cartItems = doc1.data().cartDetails;
         for (const item of cartItems) {
-          console.log('inside loop');
           var lProductID = item.ProductID;
           selectdedItem = item.SelectedsubItem;
-          console.log(lProductID);
           const psnapshot = db.collection('Products').doc(lProductID);
           psnapshot.get().then((doc) => {
             if (doc.exists) {
@@ -112,12 +67,10 @@ async function populateCartData() {
             document.getElementById('loading-img').style.display = 'none';
           });
         }
-        if(cartItems.length === 0)
-        {
+        if (cartItems.length === 0) {
           document.getElementById('loading-img').style.display = 'none';
         }
-      }
-      else{
+      } else {
         document.getElementById('loading-img').style.display = 'none';
       }
     });
@@ -139,24 +92,19 @@ async function getCartItemNo1() {
   const snapshot = db.collection('CartDetails').doc(userID);
   snapshot.get().then(async (doc) => {
     if (doc.exists) {
-      console.log("testing");
       var arr = [];
 
       //  console.log(doc.id);
       cartItems = doc.data().cartDetails;
 
       var prise = 0;
-      console.log(item);
       for (var i = 0; i < cartItems.length; i++) {
-        console.log(cartItems[i].ProductID);
         arr.push(cartItems[i].ProductID);
       }
-      console.log(arr);
       //for (var i = 0; i < item.length; i++)
       {
         var parr = [];
         //const prodDetails = db.collection('Products').doc(item[i].ProductID);
-        console.log(arr);
         if (arr != null && arr.length > 0) {
           db.collection('Products').where("__name__", 'in', arr)
             //const prodDetails = db.collection('Products').where ("__name__" , '==', 'O1RMEcLeeaHt9cXoAT33')
@@ -208,20 +156,15 @@ async function getCartItemNo() {
   const snapshot = db.collection('CartDetails').doc(userID);
   snapshot.get().then(async (doc) => {
     if (doc.exists) {
-      console.log("testing");
-
-      //  console.log(doc.id);
+            //  console.log(doc.id);
       cartItems = doc.data().cartDetails;
 
 
-      console.log(cartItems);
       for (var i = 0; i < cartItems.length; i++) {
         arr.push(cartItems[i].ProductID);
       }
-      console.log(arr);
       var parr = [];
       //const prodDetails = db.collection('Products').doc(item[i].ProductID);
-      console.log(arr);
       if (arr != null && arr.length > 0) {
         db.collection('Products').where("__name__", 'in', arr)
           //const prodDetails = db.collection('Products').where ("__name__" , '==', 'O1RMEcLeeaHt9cXoAT33')
@@ -264,40 +207,6 @@ async function getCartItemNo() {
   });
 }
 
-//
-// function populateCartDataOld() {
-//   const snapshot = db.collection('CartDetails').doc(userID);
-//
-//   snapshot.get().then((doc) => {
-//     if (doc.exists) {
-//       console.log("doc exists");
-//       item = doc.data().cartDetails;
-//       console.log(item);
-//
-//       db.collection("Products").orderBy('CreatedTimestamp', 'desc').onSnapshot(snapshot => {
-//
-//         let changes = snapshot.docChanges();
-//         // alert('Snapsize from Homepage: ' + snapshot.size);
-//         // console.log(changes);
-//
-//
-//         changes.forEach(change => {
-//           console.log(change.doc.id);
-//           index = item.findIndex(a => a.ProductID === change.doc.id);
-//
-//           if (index >= 0) {
-//             selectdedItem = item[index];
-//             renderProduct(change.doc, index, selectdedItem);
-//             index = index + 1;
-//             itemCount.innerHTML = (index) + " Items";
-//
-//           }
-//         });
-//       });
-//     }
-//   });
-//
-// }
 
 /////////////////////new function
 function renderProduct(doc, index, selecteditem) {
@@ -305,7 +214,6 @@ function renderProduct(doc, index, selecteditem) {
   console.log('Event Name: ' + doc.data().ProductName);
 
   var productlist = doc.data().ProductDetails;
-  console.log(productlist);
   var mainReload = document.createElement("main");
   mainReload.setAttribute("id", "main" + index);
   var div1 = document.createElement("div");
@@ -370,15 +278,25 @@ function renderProduct(doc, index, selecteditem) {
   hfSelected.id = "hfSelect" + index;
   hfSelected.setAttribute("type", "hidden");
 
+  var hfMRP = document.createElement("input");
+  hfMRP.setAttribute("id","hfMrp" + index);
+  hfMRP.setAttribute("type", "hidden");
+
+  var hfFinalPrize = document.createElement("input");
+  hfFinalPrize.id = "hfFinalPrize" + index;
+  hfFinalPrize.setAttribute("type", "hidden");
+
   for (const val of productlist) {
     var option = document.createElement("option");
     option.value = val.ProductFinalPrise + ":" + val.ProductMRP;
     option.text = val.ProductWeight + " - " + "Rs." + val.ProductFinalPrise;
-    console.log(selecteditem.SelectedsubItem);
     if (selecteditem.SelectedsubItem === option.text) {
       option.selected = true;
       MRP = val.ProductMRP;
       FinalPrize = val.ProductFinalPrise;
+      hfMRP.setAttribute("value", MRP);
+      hfFinalPrize.setAttribute("value", FinalPrize);
+
       hfSelected.setAttribute("value", option.text);
     }
     // selectP.appendChild(option);
@@ -393,21 +311,21 @@ function renderProduct(doc, index, selecteditem) {
   totalPrize = Number(totalPrize) + Number(FinalPrize) * Number(selecteditem.Quantity);
   //totalAmount.innerHTML = "Rs. " + totalPrize;
 
-  console.log("prize : " + totalPrize);
   //selectP.addEventListener("change", addActivityItem, false);
   // td2.appendChild(selectP);
   td2.appendChild(hfSelected);
+  FinalPrize = Number(FinalPrize) * Number(selecteditem.Quantity)
+  MRP = Number(MRP) * Number(selecteditem.Quantity)
 
   var div1_4 = document.createElement("div");
+div1_4.setAttribute("id", "divPrise" + index);
   div1_4.setAttribute("class", "product-price");
+
   div1_4.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + MRP + "</span>" + "</h5>" +
     "<small>₹ " + "<span id='final" + index + "'>" + FinalPrize + "</span></small><br><br><br>";
 
-  // div1_4.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + productlist[0].ProductMRP + "</span>" + "</h5>" +
-  //   "<small>₹ " + "<span id='final" + index + "'>" + productlist[0].ProductFinalPrise + "</span></small>";
-
-  // div1_4.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + productlist[0].ProductMRP + "</span>" + "</h5>" +
-  //   "<small>₹ " + "<span id='final" + index + "'>" + productlist[0].ProductFinalPrise + "</span></small>";
+//div1_4.appendChild(mrpspan);
+//div1_4.appendChild(finalspan);
 
   var table2 = document.createElement("table");
   table2.setAttribute("style", "width:51%;position:absolute;bottom:10px;right:10px;");
@@ -420,8 +338,6 @@ function renderProduct(doc, index, selecteditem) {
   delete_outline.setAttribute("class", "material-icons");
   delete_outline.setAttribute("style", "cursor:pointer;");
 
-  //  delete_outline.setAttribute("onclick", "deleteCartItem('" + selecteditem.SelectedsubItem + "', '" + doc.id + "')");
-  //  btnSelect1.addEventListener('click', function(e){selectImage(e,btnSelect1.id)}, false);
 
   delete_outline.addEventListener('click', function(e) {
     deleteCartItem(e, selecteditem.SelectedsubItem, doc.id, "main" + index)
@@ -442,7 +358,7 @@ function renderProduct(doc, index, selecteditem) {
   trinput1.setAttribute("value", "-");
   trinput1.setAttribute("class", "minus");
 
-  trinput1.setAttribute("onclick", " decrementQty(" + "qty" + index + ", " + "min" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + ")");
+  trinput1.setAttribute("onclick", " decrementQty(" + "qty" + index + ", " + "min" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index +"," + "hfMrp" + index + "," + "hfFinalPrize" + index + ","+"divPrise" + index+" )");
 
   //trinput1.setAttribute("onclick", " decrementQty(" + "qty" + index + ", " + "min" + index + " ," + doc.data().StepQty + ","+doc.data().ProductName+","+selectP+" ,"+doc.id+" )");
   var trinput2 = document.createElement("input");
@@ -459,14 +375,14 @@ function renderProduct(doc, index, selecteditem) {
   trinput2.setAttribute("pattern", "");
   trinput2.setAttribute("inputmode", "");
   //trinput2.setAttribute("onClick","updateQuantity("+"qty" + index + "," + doc.data().MinimumQty +","+doc.data().MaximumQty+ ",''" +doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + " )");
-  trinput2.setAttribute("onchange", "updateQuantity(" + "qty" + index + "," + doc.data().MinimumQty + "," + doc.data().MaximumQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + " )");
+  trinput2.setAttribute("onchange", "updateQuantity(" + "qty" + index + "," + doc.data().MinimumQty + "," + doc.data().MaximumQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + "," + "hfMrp" + index + "," + "hfFinalPrize" + index + ","+"divPrise" + index+" )");
 
   var trinput3 = document.createElement("input");
   trinput3.setAttribute("id", "plus" + index);
   trinput3.setAttribute("type", "button");
   trinput3.setAttribute("value", "+");
   //trinput3.setAttribute("onclick", "incrementQty(" + "qty" + index + ", " + "max" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "')");
-  trinput3.setAttribute("onclick", "incrementQty(" + "qty" + index + ", " + "max" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + ")");
+  trinput3.setAttribute("onclick", "incrementQty(" + "qty" + index + ", " + "max" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + "," + "hfMrp" + index + "," + "hfFinalPrize" + index + ","+"divPrise" + index+" )");
 
   trinput3.setAttribute("class", "plus");
 
@@ -497,6 +413,8 @@ function renderProduct(doc, index, selecteditem) {
   t2tr.appendChild(t2trtd2);
   table2.appendChild(t2tr);
   td2.appendChild(table2);
+  td2.appendChild(hfMRP);
+  td2.appendChild(hfFinalPrize);
 
   td2.appendChild(div1_4);
   tr1.appendChild(td2);
@@ -510,8 +428,9 @@ function renderProduct(doc, index, selecteditem) {
 
 }
 
-function updateQuantity(oqty, iMin, iMax, itemName, productID, itemSizeObj) {
-  console.log(itemSizeObj.value);
+function updateQuantity(oqty, iMin, iMax, itemName, productID, itemSizeObj, hfMRP, hfFinalPrize, divprise ) {
+
+
   var qty = Number(oqty.value);
   if (qty < iMin)
     qty = iMin;
@@ -519,13 +438,23 @@ function updateQuantity(oqty, iMin, iMax, itemName, productID, itemSizeObj) {
     qty = iMax;
 
   oqty.value = qty;
+  var lmrp = 0;
+  var lfinal = 0 ;
+
+  lmrp = Number(qty) *  Number(hfMRP.value);
+  hfMRP.innerHTML = lmrp;
+
+  lfinal = Number(qty) *  Number(hfFinalPrize.value);
+  hfFinalPrize.innerHTML = lfinal;
+
+  divprise.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + lmrp + "</span>" + "</h5>" +
+    "<small>₹ " + "<span id='final" + index + "'>" + lfinal + "</span></small><br><br><br>";
+
   AddUpdateCart(itemName, itemSizeObj, Number(qty), productID, 'active');
   getCartItemNo();
 }
 
-function incrementQty(oqty, omax, step, itemName, productID, itemSizeObj) {
-  console.log(oqty, omax, step, itemName, productID, itemSizeObj);
-  console.log(itemSizeObj);
+function incrementQty(oqty, omax, step, itemName, productID, itemSizeObj, hfMRP, hfFinalPrize, divprise) {
   var qty = Number(oqty.value);
 
   var max = Number(omax.value);
@@ -537,17 +466,25 @@ function incrementQty(oqty, omax, step, itemName, productID, itemSizeObj) {
   }
 
   oqty.value = qty;
-  //var str = itemSizeObj[itemSizeObj.selectedIndex].text;
-  //console.log(oqty, omax, step, itemName, productID, itemSizeObj);
+
+  var lmrp = 0;
+  var lfinal = 0 ;
+
+  lmrp = Number(qty) *  Number(hfMRP.value);
+  hfMRP.innerHTML = lmrp;
+
+  lfinal = Number(qty) *  Number(hfFinalPrize.value);
+  hfFinalPrize.innerHTML = lfinal;
+
+  divprise.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + lmrp + "</span>" + "</h5>" +
+    "<small>₹ " + "<span id='final" + index + "'>" + lfinal + "</span></small><br><br><br>";
+
   AddUpdateCart(itemName, itemSizeObj, qty, productID, 'active');
   getCartItemNo();
 }
 
 //function decrementQty(oqty, omin, step, itemName, itemSizeObj, productID) {
-function decrementQty(oqty, omin, step, itemName, productID, itemSizeObj) {
-  console.log("oqty : ", oqty);
-  console.log("omin ", omin);
-  console.log(step, itemName, productID, itemSizeObj);
+function decrementQty(oqty, omin, step, itemName, productID, itemSizeObj, hfMRP, hfFinalPrize, divprise) {
   var qty = oqty.value;
 
   var min = omin.value;
@@ -560,8 +497,19 @@ function decrementQty(oqty, omin, step, itemName, productID, itemSizeObj) {
 
   oqty.value = qty;
 
+  var lmrp = 0;
+  var lfinal = 0 ;
+
+  lmrp = Number(qty) *  Number(hfMRP.value);
+  hfMRP.innerHTML = lmrp;
+
+  lfinal = Number(qty) *  Number(hfFinalPrize.value);
+  hfFinalPrize.innerHTML = lfinal;
+
+  divprise.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + lmrp + "</span>" + "</h5>" +
+    "<small>₹ " + "<span id='final" + index + "'>" + lfinal + "</span></small><br><br><br>";
+
   //var str = itemSizeObj[itemSizeObj.selectedIndex].text;
-  console.log(itemName, productID, itemSizeObj.value);
   AddUpdateCart(itemName, itemSizeObj, qty, productID, 'active');
   getCartItemNo();
 }
@@ -569,22 +517,17 @@ function decrementQty(oqty, omin, step, itemName, productID, itemSizeObj) {
 function deleteCartItem(e, itemSizeObj, productID, deleteID) {
 
   e.preventDefault();
-  console.log("deleteID : ", deleteID);
-  console.log(itemSizeObj, productID, deleteID);
 
   //const snapshot = db.collection('CartDetails').doc(userID);
   //snapshot.get().then((doc) =>
   {
     item = cartItems;
 
-    console.log(item);
-
-    itemIndex = item.findIndex(a => a.ProductID === productID && a.SelectedsubItem === itemSizeObj);
+        itemIndex = item.findIndex(a => a.ProductID === productID && a.SelectedsubItem === itemSizeObj);
     if (itemIndex >= 0) {
       item.splice(itemIndex, 1);
     }
 
-    console.log(item);
 
     db.collection('CartDetails')
       .doc(userID)
@@ -592,7 +535,6 @@ function deleteCartItem(e, itemSizeObj, productID, deleteID) {
         cartDetails: item //firebase.firestore.FeildValue.arrayUnion(item)
       })
       .then(() => {
-        console.log('manu');
         itemdelete = document.getElementById(deleteID);
         getCartItemNo();
         itemdelete.remove();
@@ -604,7 +546,7 @@ function deleteCartItem(e, itemSizeObj, productID, deleteID) {
         // populateCartData();
         //getCartItemNo();
       })
-      .catch(function(error)  {
+      .catch(function(error) {
         console.log("in error");
         // document.getElementById('errorMessage').innerHTML = error.message;
         // document.getElementById('errorMessage').style.display = 'block';
@@ -630,21 +572,13 @@ function mySelectionChange(productdetails, mrp, final, hfselect) {
 
 function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualityStatus) {
 
-  /*
-
-
-  */
 
   var itemIndex = cartItems.findIndex(a => a.ProductID === productID && a.SelectedsubItem === itemSelect.value);
-  console.log(itemIndex);
 
   if (itemIndex >= 0)
     cartItems.splice(itemIndex, 1);
 
-  console.log(cartItems.length);
-
-
-  cartItems.push({
+    cartItems.push({
     ItemName: itemName,
     SelectedsubItem: itemSelect.value,
     Quantity: itemQuantity,
@@ -652,7 +586,6 @@ function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualit
     Status: itemQualityStatus
   });
 
-  console.log(cartItems.length, userID);
   db.collection('CartDetails')
     .doc(userID)
     .set({
@@ -661,7 +594,7 @@ function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualit
       CreatedTimestamp: '',
       UpdatedTimestamp: (new Date()).toString()
     })
-    .then(function (docref )  {
+    .then(function(docref) {
       // updated
       console.log('Users data saved successfully');
       getCartItemNo();
@@ -669,7 +602,7 @@ function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualit
       //document.querySelector('.alert').style.display = 'block';
 
     })
-    .catch(function(error)  {
+    .catch(function(error) {
       // An error occurred
       // console.log(error.message);
       console.log("in error");
@@ -686,7 +619,6 @@ function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualit
 
 
 var removeByAttr = function(arr, attr, value) {
-  console.log("in remove");
   var i = arr.length;
   while (i--) {
     if (arr[i] &&

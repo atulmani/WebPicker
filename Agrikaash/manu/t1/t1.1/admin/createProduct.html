@@ -8,7 +8,7 @@
   <meta name="author" content="Web Picker">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Infra-atul-t1.1 - Index </title>
+  <title>Agrikaash - Admin </title>
 
   <link rel="shortcut icon" href="../img/logo.png">
 
@@ -157,144 +157,165 @@
         <div style="padding: 1.5%;" class="col-lg-6">
 
           <div style="border:2px solid #889;padding:10px;" class="firstbox">
-
             <div id="mandatoryFields" class="row g-3">
-
               <div class="col-md-12">
-                <label for="inputEmail4" class="form-label">Product Name</label>
-                <input id="hfproductID" type="hidden"  value="">
-                <input id="productName" type="text" required class="form-control" value="" placeholder="Enter the name of the event">
+                <label for="BusinessType" class="form-label">Customer Business Type</label>
+                <select name="BusinessType" id="BusinessType">
+                  <option value="Small">Small</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Large">Large</option>
+                </select>
               </div>
-              <div class="col-md-6">
-                <label for="inputCity" class="form-label">Brand</label>
-                <input id="brand" type="text" required class="form-control" value="">
-              </div>
-              <div class="col-md-6">
-                <input id="veg" type="radio" name="Veg-nonVeg" value="Veg">
-                Veg
-                <input id="nonVeg" type="radio" name="Veg-nonVeg" value="NonVeg">
-                Non-veg
-              </div>
+            </div>
+          </div>
 
-              <div class="col-md-6">
-                <label for="inputCity" id="organiserphone" class="form-label">Minimum Quantity</label>
-                <input id="minimumQty" maxlength="5" type="number" value="" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control">
-              </div>
-              <div class="col-md-6">
-                <label for="inputCity" class="form-label">Maximum Quantity</label>
-                <input id="maximumQty" maxlength="5" type="number" value="" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" id="eventorganisationPhone">
-              </div>
-              <div class="col-md-6">
-                <label for="inputCity" class="form-label">Step</label>
-                <input id="stepQty" maxlength="5" type="number" value="" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" id="eventorganisationPhone">
-              </div>
+          <div id="mandatoryFields" class="row g-3">
+            <div class="col-md-12">
+              <label for="productType" class="form-label">Product Type</label>
+              <select name="productType" id="productType">
+                <option value="Vegetable">Vegetable</option>
+                <option value="Fruit">Fruit</option>
+                <option value="Pearl">Pearl</option>
+                <option value="Goat Products">Goat Products</option>
 
-              <div class="col-md-12">
-                <div class="row no-gutters" style="border:1px solid #000;">
-                  <div class="col-md-4" style="padding:5px;">
-                    <label for="inputCity" class="form-label">Product weight</label>
-                    <input id="productWeight1" type="text" required class="form-control" value="">
-                  </div>
-                  <div class="col-md-4" style="padding:5px;">
-                    <label for="inputCity" class="form-label">Product MRP</label>
-                    <input id="productMRP1" type="text" required class="form-control" value="">
-                  </div>
-                  <div class="col-md-4" style="padding:5px;">
-                    <label for="inputCity" class="form-label">Product Final Prise</label>
-                    <input id="productFinalPrise1" type="text" required class="form-control" value="">
-                  </div>
+              </select>
+            </div>
 
-                  <div class="col-md-4" style="padding:5px;">
-                    <input id="productWeight2" type="text" required class="form-control" value="">
-                  </div>
-                  <div class="col-md-4" style="padding:5px;">
-                    <input id="productMRP2" type="text" required class="form-control" value="">
-                  </div>
-                  <div class="col-md-4" style="padding:5px;">
-                    <input id="productFinalPrise2" type="text" required class="form-control" value="">
-                  </div>
+            <div class="col-md-12">
+              <label for="inputEmail4" class="form-label">Product Name</label>
+              <input id="hfproductID" type="hidden" value="">
+              <input id="productName" type="text" required class="form-control" value="" placeholder="Enter the name of the event">
+            </div>
+            <div class="col-md-6">
+              <label for="inputCity" class="form-label">Brand</label>
+              <input id="brand" type="text" required class="form-control" value="">
+            </div>
+            <div class="col-md-6">
+              <input id="veg" type="radio" name="Veg-nonVeg" value="Veg">
+              Veg
+              <input id="nonVeg" type="radio" name="Veg-nonVeg" value="NonVeg">
+              Non-veg
+            </div>
 
-                  <div class="col-md-4" style="padding:5px;">
-                    <input id="productWeight3" type="text" required class="form-control" value="">
-                  </div>
-                  <div class="col-md-4" style="padding:5px;">
-                    <input id="productMRP3" type="text" required class="form-control" value="">
-                  </div>
-                  <div class="col-md-4" style="padding:5px;">
-                    <input id="productFinalPrise3" type="text" required class="form-control" value="">
-                  </div>
+            <div class="col-md-6">
+              <label for="inputCity" id="organiserphone" class="form-label">Minimum Quantity</label>
+              <input id="minimumQty" maxlength="5" type="number" value="" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label for="inputCity" class="form-label">Maximum Quantity</label>
+              <input id="maximumQty" maxlength="5" type="number" value="" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" id="eventorganisationPhone">
+            </div>
+            <div class="col-md-6">
+              <label for="inputCity" class="form-label">Step</label>
+              <input id="stepQty" maxlength="5" type="number" value="" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" id="eventorganisationPhone">
+            </div>
 
-                  <div class="col-md-4" style="padding:5px;">
-                    <input id="productWeight4" type="text" required class="form-control" value="">
-                  </div>
-                  <div class="col-md-4" style="padding:5px;">
-                    <input id="productMRP4" type="text" required class="form-control" value="">
-                  </div>
-                  <div class="col-md-4" style="padding:5px;">
-                    <input id="productFinalPrise4" type="text" required class="form-control" value="">
-                  </div>
+            <div class="col-md-12">
+              <div class="row no-gutters" style="border:1px solid #000;">
+                <div class="col-md-4" style="padding:5px;">
+                  <label for="inputCity" class="form-label">Product weight</label>
+                  <input id="productWeight1" type="text" required class="form-control" value="">
+                </div>
+                <div class="col-md-4" style="padding:5px;">
+                  <label for="inputCity" class="form-label">Product MRP</label>
+                  <input id="productMRP1" type="text" required class="form-control" value="">
+                </div>
+                <div class="col-md-4" style="padding:5px;">
+                  <label for="inputCity" class="form-label">Product Final Prise</label>
+                  <input id="productFinalPrise1" type="text" required class="form-control" value="">
+                </div>
 
-                  <div class="col-md-4" style="padding:5px;">
-                    <input id="productWeight5" type="text" required class="form-control" value="">
-                  </div>
-                  <div class="col-md-4" style="padding:5px;">
-                    <input id="productMRP5" type="text" required class="form-control" value="">
-                  </div>
-                  <div class="col-md-4" style="padding:5px;">
-                    <input id="productFinalPrise5" type="text" required class="form-control" value="">
-                  </div>
+                <div class="col-md-4" style="padding:5px;">
+                  <input id="productWeight2" type="text" required class="form-control" value="">
+                </div>
+                <div class="col-md-4" style="padding:5px;">
+                  <input id="productMRP2" type="text" required class="form-control" value="">
+                </div>
+                <div class="col-md-4" style="padding:5px;">
+                  <input id="productFinalPrise2" type="text" required class="form-control" value="">
+                </div>
+
+                <div class="col-md-4" style="padding:5px;">
+                  <input id="productWeight3" type="text" required class="form-control" value="">
+                </div>
+                <div class="col-md-4" style="padding:5px;">
+                  <input id="productMRP3" type="text" required class="form-control" value="">
+                </div>
+                <div class="col-md-4" style="padding:5px;">
+                  <input id="productFinalPrise3" type="text" required class="form-control" value="">
+                </div>
+
+                <div class="col-md-4" style="padding:5px;">
+                  <input id="productWeight4" type="text" required class="form-control" value="">
+                </div>
+                <div class="col-md-4" style="padding:5px;">
+                  <input id="productMRP4" type="text" required class="form-control" value="">
+                </div>
+                <div class="col-md-4" style="padding:5px;">
+                  <input id="productFinalPrise4" type="text" required class="form-control" value="">
+                </div>
+
+                <div class="col-md-4" style="padding:5px;">
+                  <input id="productWeight5" type="text" required class="form-control" value="">
+                </div>
+                <div class="col-md-4" style="padding:5px;">
+                  <input id="productMRP5" type="text" required class="form-control" value="">
+                </div>
+                <div class="col-md-4" style="padding:5px;">
+                  <input id="productFinalPrise5" type="text" required class="form-control" value="">
                 </div>
               </div>
             </div>
-            <div id="optionalFields" class="row no-gutters" style="display:none;">
-              <div class="row g-3">
+          </div>
+          <div id="optionalFields" class="row no-gutters" style="display:none;">
+            <div class="row g-3">
 
+            </div>
+          </div>
+
+          <div class="row no-gutters">
+
+
+            <!-- <br><br> -->
+            <div class="col-md-6">
+
+              <!-- <button  class="btn" type="submit" name="button">Save</button> -->
+              <input id="btnSave" style="background-color:#fbe25f; color:#6ea23f; margin-top:20px;" class="btn" type="button" name="Save" value="Save">
+
+            </div>
+            <div class="col-md-12">
+              <div id="createEventConformation" class="finger-line" style="display: none;">
+                <span>Congrats! Your Product is succsessfully created</span>
+                <span><i class="fas fa-hand-point-right"></i></span>
+                <span> <a href="allProducts.html">Click Here</a> </span>
               </div>
             </div>
-
-            <div class="row no-gutters">
-
-
-              <!-- <br><br> -->
-              <div class="col-md-6">
-
-                <!-- <button  class="btn" type="submit" name="button">Save</button> -->
-                <input id="btnSave" style="background-color:#fbe25f; color:#6ea23f; margin-top:20px;" class="btn" type="button" name="Save" value="Save">
-
-              </div>
-              <div class="col-md-12">
-                <div id="createEventConformation" class="finger-line" style="display: none;">
-                  <span>Congrats! Your Product is succsessfully created</span>
-                  <span><i class="fas fa-hand-point-right"></i></span>
-                  <span> <a href="allProducts.html">Click Here</a> </span>
-                </div>
-              </div>
-            </div>
-
           </div>
-        </div>
-        <div id='imageDiv' style="padding:1.5%;display:none;" class="col-lg-6">
-          <div style="border:2px solid #889; color:#6ea23f;" class="firstbox">
-            <style media="screen">
-              img {
-                height: 230px;
-                width: 330px;
-                border: 2px solid black;
-              }
-            </style>
-            Image Name <input id="namebox" type="text" name="" value=""> <br><br>
 
-            <img id="myimg" src="" alt=""><label id="UpProgress"></label> <br><br>
-            <h5>Your Image should be in ratio of 330 : 230 (px)</h5><br>
-            <button style="background:#fbe25f; color:#6ea23f;" class="btn" id="select" type="button" name="button">Select Image</button>
-            <button style="background:#fbe25f; color:#6ea23f;" class="btn" id="upload" type="button" disabled name="button">Upload Image</button>
-            <button style="background:#fbe25f; color:#6ea23f;" class="btn" id="retrieve" type="button" name="button">Retrieve Image</button>
-          </div>
-          <br>
         </div>
       </div>
+      <div id='imageDiv' style="padding:1.5%;display:none;" class="col-lg-6">
+        <div style="border:2px solid #889; color:#6ea23f;" class="firstbox">
+          <style media="screen">
+            img {
+              height: 230px;
+              width: 330px;
+              border: 2px solid black;
+            }
+          </style>
+          Image Name <input id="namebox" type="text" name="" value=""> <br><br>
 
+          <img id="myimg" src="" alt=""><label id="UpProgress"></label> <br><br>
+          <h5>Your Image should be in ratio of 330 : 230 (px)</h5><br>
+          <button style="background:#fbe25f; color:#6ea23f;" class="btn" id="select" type="button" name="button">Select Image</button>
+          <button style="background:#fbe25f; color:#6ea23f;" class="btn" id="upload" type="button" disabled name="button">Upload Image</button>
+          <button style="background:#fbe25f; color:#6ea23f;" class="btn" id="retrieve" type="button" name="button">Retrieve Image</button>
+        </div>
+        <br>
+      </div>
     </div>
+
+  </div>
   </div>
 
 
