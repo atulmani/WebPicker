@@ -13,6 +13,9 @@
 
   <link rel="shortcut icon" href="../img/logo.png">
 
+  <!-- Google Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   <!-- Font Awesome cdn file -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -196,7 +199,7 @@
         </center>
 
         <div class="col-lg-12 col-md-12 col-sm-12">
-          <button id='btnPublish' style="margin: 0;float: right;" class="mybutton button5">Publish<i class="fas fa-arrow-right"></i> </button>
+
         </div>
 
       <div class="container">
@@ -209,7 +212,12 @@
                     <img src="../img/customers/usha/usha.png" width="70%" alt="">
                   </div>
                 </div> -->
-                <div class="col-lg-9 col-md-7 col-sm-12">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div id='togglePublishButton' class="toggle-btn" onclick="publish()">
+                  <div class="inner-circle">
+                  </div>
+                </div>
+                <button id='btnPublish' style="margin: 0;float: right;" class="mybutton button5">Publish<i class="fas fa-arrow-right"></i> </button>
                   <div class="first-section-col-2">
                     <h4 id='lblCampaignName'></h4>
                     <span>Campaign ID : <label id='lblCampaignID'></label></span>
@@ -244,7 +252,7 @@
                 </div>
               </div>
               <hr>
-              <div class="row no-gutters second-section-row">
+              <!-- <div class="row no-gutters second-section-row">
                 <div class="col-lg-2 col-md-2 col-sm-6">
                   <p>Media Type</p>
                 </div>
@@ -260,19 +268,29 @@
                 <div class="col-lg-2 col-md-2 col-sm-6">
                   <p>Play Logs</p>
                 </div>
+              </div> -->
+              <div class="row no-gutters">
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <img id="ProductImg" src="" width="100%"  alt="">
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                  <img id='img1' src="" width="100%" alt="" class="second-section-small-img">
+                  <button id='btnSelect1' style="margin: 0;float: right;" class="mybutton button5">Select</button>
+                  <button id='btnUpload1' style="margin: 0;float: right;" class="mybutton button5">Upload</button>
+                </div>
               </div>
               <div class="row no-gutters">
                 <div class="col-lg-4 col-md-4 col-sm-12">
 
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12">
-                  <img id="ProductImg" src="" width="100%"  alt="">
+                  <!-- <img id="ProductImg12" src="" width="100%"  alt=""> -->
                   <div class="small-img-row">
-                    <div class="small-img-col">
-                      <img id='img1' src="" width="100%" alt="" class="second-section-small-img">
-                      <button id='btnSelect1' style="margin: 0;float: right;" class="mybutton button5">Select</button>
-                      <button id='btnUpload1' style="margin: 0;float: right;" class="mybutton button5">Upload</button>
-                    </div>
+                    <!-- <div class="small-img-col">
+                      <img id='img12' src="" width="100%" alt="" class="second-section-small-img">
+                      <button id='btnSelect12' style="margin: 0;float: right;" class="mybutton button5">Select</button>
+                      <button id='btnUpload12' style="margin: 0;float: right;" class="mybutton button5">Upload</button>
+                    </div> -->
                     <div class="small-img-col">
                       <img id="img2" src="" width="100%" alt="" class="second-section-small-img">
                       <button id='btnSelect2' style="margin: 0;float: right;" class="mybutton button5">Select</button>
@@ -312,25 +330,107 @@
             <div class="campaign-details-section">
               <div class="row no-gutters">
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                  <h5 class="head-text">Sheduled</h5>
+                  <h5 class="head-text">Schedule</h5>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                   <!-- <button id='upload' style="margin: 0;float: right;" class="mybutton button5">Upload<i class="fas fa-arrow-right"></i> </button> -->
                 </div>
               </div>
               <hr>
-              <div class="first-section-col-2">
-                <h5 style="padding: 10px 0;">Duratioon</h5>
-                <span>10:00 am - 11:00 am</span>
-                <span>10:00 am - 11:00 am</span>
-                <span>10:00 am - 11:00 am</span>
-                <span>10:00 am - 11:00 am</span>
-                <span>10:00 am - 11:00 am</span>
-                <span>10:00 am - 11:00 am</span><br><br>
-                <span>10:00 am - 11:00 am</span>
-                <span>10:00 am - 11:00 am</span>
-                <span>10:00 am - 11:00 am</span>
-                <span>10:00 am - 11:00 am</span>
+              <label>Start Time:</label>
+              <select id="startTime">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <select id="startTimeAMPM">
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+              </select>
+              <label style="padding-left:50px;" >End Time:</label>
+              <select id="endTime">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <select id="endTimeAMPM">
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+              </select>
+              <button id='btnAddSchedule' style="margin: 0;float: right;" class="mybutton button5">Add<i class="fas fa-arrow-right"></i> </button>
+              <div id="addScheduleErrMsg" class="errmsg"></div>
+              <div  class="first-section-col-2">
+                <h5 style="padding: 10px 0;">Selected Duration</h5>
+                <div id='populateSchedule' class="row no-gutters">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-lg-12 col-md-12 col-sm-12"><br><br>
+            <div class="campaign-details-section">
+              <div class="row no-gutters">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                  <h5 class="head-text">Devices</h5>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                  <!-- <button id='upload' style="margin: 0;float: right;" class="mybutton button5">Upload<i class="fas fa-arrow-right"></i> </button> -->
+                </div>
+              </div>
+              <hr>
+              <div id="addScheduleErrMsg" class="errmsg"></div>
+              <div class="row no-gutters">
+              <div class="col-lg-5">
+                  <select id='lstboxSource' multiple='multiple' class="" name="" style="width:95%;height: 250px;" >
+                    <!-- <option value="Black">1</option>
+                    <option value="Red">2</option>
+                    <option value="Blue">3</option>
+                    <option value="White">4</option>
+                    <option value="Red">5</option>
+                    <option value="Blue">6</option>
+                    <option value="White">7</option>
+                    <option value="Red">8</option>
+                    <option value="Blue">9</option>
+                    <option value="White">10</option>
+                    <option value="Red">11</option>
+                    <option value="Blue">12</option>
+                    <option value="White">13</option>
+                    <option value="White">14</option> -->
+                  </select>
+              </div>
+              <div  class="col-lg-2" style="text-align:center">
+                <br><br><br><br>
+                <input type="button" id='btnForwardTransfer' name="" value=">>"> <br /><br />
+                <input type="button" id='btnReverseTransfer' name="" value="<<">
+              </div>
+              <div  class="col-lg-5">
+                <select id='lstboxDestination' multiple='multiple' class="" name="" style="width:95%;height: 250px;">
+
+                </select>
+              </div>
               </div>
             </div>
           </div>
@@ -438,11 +538,6 @@
           </div>
         </div>
       </div>
-
-
-
-
-
     </div>
   </div>
 
