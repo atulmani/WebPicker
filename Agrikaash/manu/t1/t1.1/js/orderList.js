@@ -33,7 +33,7 @@ function GetProfileData(user) {
         document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
     })
-    .catch(function(error)  {
+    .catch(function(error) {
       // An error occurred
       console.log(error.message);
       // document.getElementById('errorMessage_Signup').innerHTML = error.message;
@@ -61,21 +61,21 @@ function populateOrderDetails() {
 
 }
 
-function populateCartData()
-{
- var itemCount = 0;
-    const snapshot = db.collection('CartDetails').doc(userID);
-    snapshot.get().then(async (doc) => {
-      if (doc.exists) {
-        cartDetails = doc.data().cartDetails;
-        itemCount = cartDetails.length;
-        //console.log(change.doc, index, selectdedItem);
-        }
-        document.getElementById('cartItemCount').innerHTML = itemCount;
+function populateCartData() {
+  var itemCount = 0;
+  const snapshot = db.collection('CartDetails').doc(userID);
+  snapshot.get().then(async (doc) => {
+    if (doc.exists) {
+      cartDetails = doc.data().cartDetails;
+      itemCount = cartDetails.length;
+      //console.log(change.doc, index, selectdedItem);
+    }
+    document.getElementById('cartItemCount').innerHTML = itemCount;
 
-    });
+  });
 
 }
+
 function renderPendingPaymentOrder(order, index) {
   var div1 = document.createElement("div");
   div1.setAttribute("class", "col-sm-12")
@@ -91,11 +91,11 @@ function renderPendingPaymentOrder(order, index) {
   div3.setAttribute("class", "");
 
   var anchor = document.createElement("a");
-  anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID );
+  anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID);
 
   var small1 = document.createElement("small");
   small1.setAttribute("class", "payment-pending");
-  small1.innerHTML =  order.deliveryDate;
+  small1.innerHTML = order.deliveryDate;
 
   var input1 = document.createElement("input");
   input1.setAttribute("type", "checkbox");
@@ -106,17 +106,29 @@ function renderPendingPaymentOrder(order, index) {
   input1.checked = true
 
   var hforderid = document.createElement("input");
-  hforderid.setAttribute('type','hidden');
-  hforderid.setAttribute('id','hfOrderID'+index);
-  hforderid.setAttribute('value', order.orderID );
+  hforderid.setAttribute('type', 'hidden');
+  hforderid.setAttribute('id', 'hfOrderID' + index);
+  hforderid.setAttribute('value', order.orderID);
 
   var h1 = document.createElement("h6");
   h1.innerHTML = "order Serial Numbe : " + index;
 
-  var h2 = document.createElement("h6");
-  h2.setAttribute("style", "padding:0;");
-  h2.innerHTML = "Rs " + order.totalAmount;
 
+  var h2 = document.createElement("h6");
+  if (order.discountedprize > 0) {
+    h2.setAttribute("style", "padding:0;text-decoration:line-through;");
+  } else {
+    h2.setAttribute("style", "padding:0;");
+
+  }
+  h2.innerHTML = "TotalAmount : Rs " + order.totalAmount;
+
+
+  if (order.discountedprize > 0) {
+    var h21 = document.createElement("h6");
+    h21.setAttribute("style", "padding:0;");
+    h21.innerHTML = "Discounted Amount : Rs " + order.discountedprize;
+  }
   var div4 = document.createElement("div");
   div4.setAttribute("class", "order-details");
 
@@ -139,13 +151,18 @@ function renderPendingPaymentOrder(order, index) {
   div2.appendChild(div3);
   div2.appendChild(h1);
   div2.appendChild(h2);
+  if (order.discountedprize > 0)
+
+  {
+    div2.appendChild(h21);
+  }
   div2.appendChild(div4);
   div1.appendChild(div2);
   document.getElementById("orderList").appendChild(div1);
 
 }
-function renderPendingOrder(order, index)
-{
+
+function renderPendingOrder(order, index) {
   var div1 = document.createElement("div");
   div1.setAttribute("class", "col-sm-12")
   div1.setAttribute("style", "padding: 5px;")
@@ -157,7 +174,7 @@ function renderPendingOrder(order, index)
   div3.setAttribute("class", "");
 
   var anchor = document.createElement("a");
-  anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID );
+  anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID);
 
   var small1 = document.createElement("small");
   small1.setAttribute("class", "delivery-pending");
@@ -168,17 +185,32 @@ function renderPendingOrder(order, index)
   span1.innerHTML = 'schedule';
 
   var hforderid = document.createElement("input");
-  hforderid.setAttribute('type','hidden');
-  hforderid.setAttribute('id','hfOrderID'+index);
-  hforderid.setAttribute('value', order.orderID );
+  hforderid.setAttribute('type', 'hidden');
+  hforderid.setAttribute('id', 'hfOrderID' + index);
+  hforderid.setAttribute('value', order.orderID);
 
 
   var h1 = document.createElement("h6");
   h1.innerHTML = "order Serial Numbe : " + index + 1;
 
+
+
+
   var h2 = document.createElement("h6");
-  h2.setAttribute("style", "padding:0;");
-  h2.innerHTML = "Rs " + order.totalAmount;
+  if (order.discountedprize > 0) {
+    h2.setAttribute("style", "padding:0;text-decoration:line-through;");
+  } else {
+    h2.setAttribute("style", "padding:0;");
+
+  }
+  h2.innerHTML = "TotalAmount : Rs " + order.totalAmount;
+
+
+  if (order.discountedprize > 0) {
+    var h21 = document.createElement("h6");
+    h21.setAttribute("style", "padding:0;");
+    h21.innerHTML = "Discounted Amount : Rs " + order.discountedprize;
+  }
 
   var div4 = document.createElement("div");
   div4.setAttribute("class", "order-details");
@@ -204,13 +236,16 @@ function renderPendingOrder(order, index)
 
   div2.appendChild(h1);
   div2.appendChild(h2);
+
+  if (order.discountedprize > 0)
+    div2.appendChild(h21);
   div2.appendChild(div4);
   div1.appendChild(div2);
   document.getElementById("orderList").appendChild(div1);
 
 }
-function renderDeliveredOrder(order, index)
-{
+
+function renderDeliveredOrder(order, index) {
   var div1 = document.createElement("div");
   div1.setAttribute("class", "col-sm-12")
   div1.setAttribute("style", "padding: 5px;")
@@ -223,7 +258,7 @@ function renderDeliveredOrder(order, index)
 
 
   var anchor = document.createElement("a");
-  anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID );
+  anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID);
 
   var small1 = document.createElement("small");
   small1.innerHTML = order.deliveryDate;
@@ -232,17 +267,29 @@ function renderDeliveredOrder(order, index)
   span1.setAttribute('class', "material-icons");
   span1.innerHTML = 'task_alt';
   var hforderid = document.createElement("input");
-  hforderid.setAttribute('type','hidden');
-  hforderid.setAttribute('id','hfOrderID'+index);
-  hforderid.setAttribute('value', order.orderID );
+  hforderid.setAttribute('type', 'hidden');
+  hforderid.setAttribute('id', 'hfOrderID' + index);
+  hforderid.setAttribute('value', order.orderID);
 
 
   var h1 = document.createElement("h6");
   h1.innerHTML = "order Serial Numbe : " + index + 1;
 
   var h2 = document.createElement("h6");
-  h2.setAttribute("style", "padding:0;");
-  h2.innerHTML = "Rs " + order.totalAmount;
+  if (order.discountedprize > 0) {
+    h2.setAttribute("style", "padding:0;text-decoration:line-through;");
+  } else {
+    h2.setAttribute("style", "padding:0;");
+
+  }
+  h2.innerHTML = "TotalAmount : Rs " + order.totalAmount;
+
+
+  if (order.discountedprize > 0) {
+    var h21 = document.createElement("h6");
+    h21.setAttribute("style", "padding:0;");
+    h21.innerHTML = "Discounted Amount : Rs " + order.discountedprize;
+  }
 
   var div4 = document.createElement("div");
   div4.setAttribute("class", "order-details");
@@ -265,13 +312,16 @@ function renderDeliveredOrder(order, index)
 
   div2.appendChild(h1);
   div2.appendChild(h2);
+
+  if (order.discountedprize > 0)
+    div2.appendChild(h21);
   div2.appendChild(div4);
   div1.appendChild(div2);
   document.getElementById("orderList").appendChild(div1);
 
 }
-function renderCancelledOrder(order, index)
-{
+
+function renderCancelledOrder(order, index) {
   var div1 = document.createElement("div");
   div1.setAttribute("class", "col-sm-12")
   div1.setAttribute("style", "padding: 5px;")
@@ -284,7 +334,7 @@ function renderCancelledOrder(order, index)
 
 
   var anchor = document.createElement("a");
-  anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID );
+  anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID);
 
   var small1 = document.createElement("small");
   small1.setAttribute('class', "cancel");
@@ -294,16 +344,28 @@ function renderCancelledOrder(order, index)
   span1.setAttribute('class', "material-icons cancel");
   span1.innerHTML = 'cancel';
   var hforderid = document.createElement("input");
-  hforderid.setAttribute('type','hidden');
-  hforderid.setAttribute('id','hfOrderID'+index);
-  hforderid.setAttribute('value', order.orderID );
+  hforderid.setAttribute('type', 'hidden');
+  hforderid.setAttribute('id', 'hfOrderID' + index);
+  hforderid.setAttribute('value', order.orderID);
 
   var h1 = document.createElement("h6");
   h1.innerHTML = "order Serial Numbe : " + index + 1;
 
   var h2 = document.createElement("h6");
-  h2.setAttribute("style", "padding:0;");
-  h2.innerHTML = "Rs " + order.totalAmount;
+  if (order.discountedprize > 0) {
+    h2.setAttribute("style", "padding:0;text-decoration:line-through;");
+  } else {
+    h2.setAttribute("style", "padding:0;");
+
+  }
+  h2.innerHTML = "TotalAmount : Rs " + order.totalAmount;
+
+
+  if (order.discountedprize > 0) {
+    var h21 = document.createElement("h6");
+    h21.setAttribute("style", "padding:0;");
+    h21.innerHTML = "Discounted Amount : Rs " + order.discountedprize;
+  }
 
   var div4 = document.createElement("div");
   div4.setAttribute("class", "order-details");
@@ -329,6 +391,9 @@ function renderCancelledOrder(order, index)
 
   div2.appendChild(h1);
   div2.appendChild(h2);
+  if (order.discountedprize > 0)
+    div2.appendChild(h21);
+
   div2.appendChild(div4);
   div1.appendChild(div2);
   document.getElementById("orderList").appendChild(div1);
