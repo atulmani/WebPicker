@@ -123,19 +123,19 @@
     <div class="col-lg-2 col-md-2 col-sm-12">
       <div class="side-navbar large">
         <div class="side-navbar-menu">
-          <a href="#">
+          <a href="dashboard.html">
             <div class="">
               <i class="fas fa-home"></i>
               Dashboard
             </div>
           </a><br>
-          <a href="#">
+          <a href="productList.html">
             <div class="">
               <i class="fas fa-th-large"></i>
               Products
             </div>
           </a><br>
-          <a href="#">
+          <a href="orderList.html">
             <div class="">
               <i class="fab fa-buffer"></i>
               Orders
@@ -159,8 +159,9 @@
     <!-- side navbar - end -->
     <div class="col-lg-10 col-md-10 col-sm-12">
       <div class="row no-gutters large" style="padding: 2%;">
-
-
+        <img id="headerProfilePic" src="" style="width: 100px; height: 100px;border-radius: 50%;" alt="">
+        <h5 id="displayName" > </h5>
+        <input type="hidden" id="EmailID" ></input>
       </div>
 
       <br>
@@ -202,35 +203,10 @@
               <span class="material-icons">
                 date_range
               </span>
-              <!-- <br />
-               <input type="radio" name="delDate" id="delDate1" value='' checked>
-              <span id='delDateSpan1'></span>
-              <input type="radio" name="delDate" id="delDate2" value=''>
-              <span id='delDateSpan2'></span>
-              <input type="radio" name="delDate" id="delDate3" value=''>
-              <span id='delDateSpan3'></span>
-              <input type="radio" name="delDate" id="delDate4" value=''>
-              <span id='delDateSpan4'></span>
-              <input type="radio" name="delDate" id="delDate5" value=''>
-              <span id='delDateSpan5'></span>
-              <input type="radio" name="delDate" id="delDate6" value=''>
-              <span id='delDateSpan6'></span>
-              <input type="radio" name="delDate" id="delDate7" value=''>
-              <span id='delDateSpan7'></span>  -->
             </div>
             <div class="row no-gutters">
               <div class="col-sm-6">
                 <div class="date-div">
-                  <!-- <select class="" name="" id="DeliveryDate">
-                    <option> day1 </option>
-                    <option> day2 </option>
-                    <option> day3 </option>
-                    <option> day4 </option>
-                    <option> day5 </option>
-                    <option> day6 </option>
-                    <option> day7 </option>
-
-                  </select> -->
                   <select class="" name="" id="DeliveryDate">
                     <option> </option>
                     <option> </option>
@@ -263,14 +239,21 @@
                 </div>
               </div>
 
-              <!-- <input type="radio" name="delTime" id="delTime1" value='6 : 10 AM' checked>
-              6 : 10 AM
-              <input type="radio" name="delTime" id="delTime2" value='10 : 12 Noon'>
-              10 : 12 Noon
-              <input type="radio" name="delTime" id="delTime3" value='12 : 4 PM'>
-              12 : 4 PM
-              <input type="radio" name="delTime" id="delTime4" value='4 : 6 PM'>
-              4 : 6 PM -->
+            </div>
+
+            <div id="divCoupon" class="delivery-options">
+              Available Coupons
+              <select onchange="applyCoupon();" style="display:block;" class="" name="" id="couponDetails">
+                <option value="none">
+                  Select Coupon
+                </option>
+              </select>
+              <span id="nocoupons" style="display:none;">No coupons available</span>
+              <!-- <input type="radio" checked name="delOption" value="Pay Later" id='PayOption1'>
+              <span class="material-icons">
+                savings
+              </span>
+              <h4>Pay Later</h4> -->
             </div>
 
             <div class="delivery-options">
@@ -300,8 +283,10 @@
         <div class="col-sm-12">
           <div class="checkout-div">
             <div class="">
-              <h5>Rs. <span id="totalAmount">0</span></h5>
+              <h5>₹ <span id="totalAmount">0</span></h5>
               <small><span id="itemCount">0 </span> Items</small>
+              <input type='hidden'  id="hftotalAmount" />
+              <input type='hidden'  id="hfdiscountedAmount" />
             </div>
             <div class="">
               <button class="mybutton button5" onClick="SaveOrder();" id="btnProceedToPay">PROCEED TO PAY</button>
