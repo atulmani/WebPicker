@@ -1,0 +1,13 @@
+
+
+.input-feild{
+  padding: 10px;
+}
+
+.input-feild input{
+  width: 100%;
+  outline: none;
+  background: none;
+  border: 1px solid #000;
+  padding: 2px 10px;
+}
