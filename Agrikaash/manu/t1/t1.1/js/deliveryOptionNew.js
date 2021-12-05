@@ -7,11 +7,12 @@ auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
-
+      console.log(userID);
       GetProfileData(firebaseUser);
       UpdateDeliveryDate();
       GetDeliveryAddress();
       createOrderItems();
+      GetCouponDetails();
       //getCartSummary();
       //      populateAddress(addressID);
 
@@ -31,22 +32,96 @@ auth.onAuthStateChanged(firebaseUser => {
 function GetProfileData(user) {
   // const ref = db.collection("Users").doc(user.uid);
 
-  const snapshot = db.collection('Users').doc(user.uid);
+  const snapshot = db.collection('UserList').doc(user.uid);
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
         //console.log('Document ref id: ' + doc.data().uid);
-        userID = doc.data().uid;
-        document.getElementById('headerProfilePic').src = doc.data().ImageURL;
+        userID = user.uid;
+        //  document.getElementById('headerProfilePic').src = doc.data().ImageURL;
         document.getElementById('displayName').innerHTML = doc.data().displayName;
+        document.getElementById('EmailID').value = doc.data().EmailID;
       }
     })
-    .catch(function(error)  {
+    .catch(function(error) {
       // An error occurred
       console.log(error.message);
     });
 };
 
+function GetCouponDetails() {
+  //get coupon details
+  //  var couponList = [];
+  var userList = [];
+  var couponDetails = document.getElementById("couponDetails");
+  DBrows = db.collection("Coupons").where("Status", "==", 'Active').get();
+  var flag=false;
+  DBrows.then((changes) => {
 
+    changes.forEach(change => {
+      userList = change.data().UserList;
+      console.log(userList);
+      if (userList[0].userID === 'All') {
+        flag=true;
+        var opt = document.createElement('option');
+        opt.value = change.id;
+        if (change.data().DiscountType === 'Percentage')
+          opt.innerHTML = change.data().DiscountValue + " %";
+        else
+          opt.innerHTML = "₹ " + change.data().DiscountValue;
+        couponDetails.appendChild(opt);
+      }
+      var index = userList.findIndex(e => e.userID === userID);
+      if (index >= 0) {
+        flag=true;
+        var opt = document.createElement('option');
+        opt.value = change.id;
+        if (change.data().DiscountType === 'Percentage')
+          opt.innerHTML = change.data().DiscountValue + " %";
+        else
+          opt.innerHTML = "₹ " + change.data().DiscountValue;
+        couponDetails.appendChild(opt);
+      }
+    });
+    if(flag === false)
+    {
+      couponDetails.style.display="none";
+    }
+    else
+    {
+      document.getElementById('nocoupons').style.display='none';
+    }
+  });
+  //console.log(couponList);
+}
+
+function applyCoupon()
+{
+  console.log("in applyCoupon");
+  var originalAmount = document.getElementById('hftotalAmount').value;
+  console.log(originalAmount);
+  var discountedAmount = 0;
+  var discount = document.getElementById('couponDetails');
+  if(discount.selectedIndex>0)
+  {
+    var discountText = discount.options[discount.selectedIndex].text;
+    console.log(discountText);
+    if(discountText.search("%") >= 0)//if percentage
+    {
+      var discountPercentage = discountText.replace(" %","").trim();
+      console.log(discountPercentage, originalAmount);
+      discountedAmount = (Number(originalAmount) * Number(discountPercentage.trim()))/100;
+    }
+    else//absolute discount
+    {
+      var discountAbsolute = discountText.replace("₹ ","").trim();
+      discountedAmount = (Number(originalAmount) - Number(discountAbsolute));
+    }
+
+    document.getElementById("hfdiscountedAmount").value =discountedAmount;
+    document.getElementById("totalAmount").innerHTML = "<span style='text-decoration:line-through;'>" +  originalAmount + "</span>" + "    " + discountedAmount;
+  }
+
+}
 function UpdateDeliveryDate() {
   const tempDate = new Date();
   console.log(tempDate.toLocaleDateString());
@@ -130,10 +205,6 @@ async function getCartDetails() {
         iError = 1;
         console.log("cart is empty, add to cart");
       }
-    } else {
-      message = "cart is empty, add to cart";
-      iError = 1;
-      console.log("cart is empty, add to cart");
     }
   });
   console.log(message);
@@ -198,8 +269,14 @@ function SaveOrder() {
               paymentOption = document.getElementById("PayOption3").value;
             }
 
-            var prize = document.getElementById("totalAmount").innerHTML;
+            var prize = document.getElementById("hftotalAmount").value;
+            var discountedprize = document.getElementById("hfdiscountedAmount").value;
             var itemCount = document.getElementById("itemCount").innerHTML;
+            var discount = {
+              coupondID: couponDetails.options[couponDetails.selectedIndex].value,
+              discountValue : couponDetails.options[couponDetails.selectedIndex].text
+
+            };
 
             const snapshotOrder = db.collection('OrderDetails').doc(userID);
             console.log("before insert");
@@ -209,18 +286,20 @@ function SaveOrder() {
                 console.log('if order exists');
                 orderDetails = aOrder.data().OrderDetails;
               }
-
+              console.log(userID);
               var orderID = userID + Date.now();
               console.log(OrderItems);
               orderDetails.push({
                 orderID: orderID,
-                orderItems: OrderItems,//cartDetails,
+                orderItems: OrderItems, //cartDetails,
                 totalItems: itemCount,
                 totalAmount: prize,
                 deliveryAddress: selectedAddress,
                 deliveryDate: deliveryDate,
                 deliveryTime: deliveryTime,
                 paymentOption: paymentOption,
+                discountedprize:discountedprize,
+                discountDetails:discount,
                 paymentStatus: 'Pending',
                 orderStatus: 'Pending',
                 orderDate: (new Date()).toString(),
@@ -229,6 +308,8 @@ function SaveOrder() {
               });
 
               console.log(orderDetails);
+              console.log(cartDetails.length);
+              console.log(selectedAddress );
               if (cartDetails.length > 0 && selectedAddress != null) {
                 console.log('insert order');
 
@@ -241,7 +322,7 @@ function SaveOrder() {
                     UpdatedBy: '',
                     UpdatedTimestamp: ''
                   })
-                  .then(function(docRef)  {
+                  .then(function(docRef) {
                     console.log("Data added sucessfully in the document: ");
                     //showAddress(false);
                     //delete from cart after order places
@@ -251,14 +332,14 @@ function SaveOrder() {
                       .update({
                         cartDetails: cartDetails
                       })
-                      .then(function(docred)  {
+                      .then(function(docred) {
                         console.log('cart details made blank');
                         window.location.href = "orderSummary.html?id=" + orderID;
                       });
 
                     // console.log(Date.parse(eventstart))
                   })
-                  .catch(function(error)  {
+                  .catch(function(error) {
                     console.log(error);
                     //  console.error("error adding document:", error.message);
                   });
@@ -317,6 +398,9 @@ function getCartSummary() {
             var len = cartItems.length;
             document.getElementById('itemCount').innerHTML = len;
             document.getElementById('totalAmount').innerHTML = prise;
+            document.getElementById('hftotalAmount').value = prise;
+            console.log("in set");
+            document.getElementById('hfdiscountedAmount').value = prise;
             document.getElementById('CartitemCount').innerHTML = len;
           });
       } else {
@@ -324,6 +408,9 @@ function getCartSummary() {
         document.getElementById('itemCount').innerHTML = '0';
         document.getElementById('totalAmount').innerHTML = '0';
         document.getElementById('CartitemCount').innerHTML = '0';
+        document.getElementById('hftotalAmount').value = '0';
+        document.getElementById('hfdiscountedAmount').value = '0';
+
         document.getElementById('btnProceedToPay').disabled = true;
       }
     }
@@ -361,8 +448,8 @@ function createOrderItems() {
               parr.push({
                 ProductID: doc.id,
                 ProductDetails: doc.data().ProductDetails,
-                productImageURL : doc.data().ProductImageURL,
-                VegNonVeg :doc.data().VegNonVeg
+                productImageURL: doc.data().ProductImageURL,
+                VegNonVeg: doc.data().VegNonVeg
               });
             });
             for (i = 0; i < cartItems.length; i++) {
@@ -387,7 +474,7 @@ function createOrderItems() {
                 ProductName: cartItems[i].ItemName,
                 SelectedSubItem: cartItems[i].SelectedsubItem,
                 ImageURL: selectedProduct.productImageURL,
-                VegNonVeg : selectedProduct.VegNonVeg,
+                VegNonVeg: selectedProduct.VegNonVeg,
                 UnitPrise: sellPrize,
                 MRP: MRP,
                 Quantity: cartItems[i].Quantity
@@ -398,12 +485,15 @@ function createOrderItems() {
             var len = cartItems.length;
             document.getElementById('itemCount').innerHTML = len;
             document.getElementById('totalAmount').innerHTML = prise;
+            document.getElementById('hftotalAmount').value = prise;
+
             document.getElementById('CartitemCount').innerHTML = len;
           });
       } else {
         console.log('in else');
         document.getElementById('itemCount').innerHTML = '0';
         document.getElementById('totalAmount').innerHTML = '0';
+        document.getElementById('hftotalAmount').value = '0';
         document.getElementById('CartitemCount').innerHTML = '0';
         document.getElementById('btnProceedToPay').disabled = true;
       }
