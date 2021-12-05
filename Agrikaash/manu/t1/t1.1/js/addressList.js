@@ -33,7 +33,7 @@ function GetProfileData(user) {
         document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
     })
-    .catch(function (error) {
+    .catch(function(error) {
       // An error occurred
       console.log(error.message);
     });
@@ -59,10 +59,11 @@ function GetProfileData(user) {
 // }
 
 function saveAddress() {
-  console.log('in save address');
+  console.log('in save address1');
   addressList = [];
   const snapshot = db.collection('AddressList').doc(userID);
   snapshot.get().then(async (doc) => {
+    console.log('check');
     if (doc.exists) {
       console.log("testing");
       //  console.log(doc.id);
@@ -72,56 +73,58 @@ function saveAddress() {
         addressList[i].addressSelected = 'NO';
       }
 
-
-      branchID = document.getElementById("branchID");
-      branchName = document.getElementById("branchName");
-      branchOwnerName = document.getElementById("branchOwnerName");
-      addressLine1 = document.getElementById("addressLine1");
-      addressLine2 = document.getElementById("addressLine2");
-      city = document.getElementById("City");
-      ZipCode = document.getElementById("ZipCode");
-      PhoneNumber = document.getElementById("PhoneNumber");
-      //addressSelected = document.getElementById("PhoneNumber");
-      console.log("branchName : ", branchName);
-      console.log(branchName.value);
-      if (branchID.value === "") {
-        branchID = userID + Date.now();
-        console.log(branchID);
-        addressList.push({
-          addressSelected: 'YES',
-          branchID: branchID,
-          branchName: branchName.value,
-          branchOwnerName: branchOwnerName.value,
-          addressLine1: addressLine1.value,
-          addressLine2: addressLine2.value,
-          city: city.value,
-          ZipCode: ZipCode.value,
-          PhoneNumber: PhoneNumber.value
-        });
-
-      }
-      console.log(addressList);
-      db.collection('AddressList')
-        .doc(userID)
-        .update({
-          AddressList: addressList,
-          CreatedBy: auth.currentUser.email,
-          CreatedTimestamp: (new Date()).toString(),
-          UpdatedBy: '',
-          UpdatedTimestamp: ''
-        })
-        .then(function(docRef)  {
-          console.log("Data added sucessfully in the document: ");
-          populateAddressList();
-          //showAddress(false);
-          // console.log(Date.parse(eventstart))
-        })
-        .catch(function(error) {
-          //  console.error("error adding document:", error.message);
-        });
-
     }
   });
+    console.log('before insert');
+    branchID = document.getElementById("branchID");
+    branchName = document.getElementById("branchName");
+    branchOwnerName = document.getElementById("branchOwnerName");
+    addressLine1 = document.getElementById("addressLine1");
+    addressLine2 = document.getElementById("addressLine2");
+    city = document.getElementById("City");
+    ZipCode = document.getElementById("ZipCode");
+    PhoneNumber = document.getElementById("PhoneNumber");
+    //addressSelected = document.getElementById("PhoneNumber");
+    console.log("branchName : ", branchName);
+    console.log(branchName.value);
+    if (branchID.value === "") {
+      branchID = userID + Date.now();
+      console.log(branchID);
+      addressList.push({
+        addressSelected: 'YES',
+        branchID: branchID,
+        branchName: branchName.value,
+        branchOwnerName: branchOwnerName.value,
+        addressLine1: addressLine1.value,
+        addressLine2: addressLine2.value,
+        city: city.value,
+        ZipCode: ZipCode.value,
+        PhoneNumber: PhoneNumber.value
+      });
+
+    }
+    console.log(addressList);
+    db.collection('AddressList')
+      .doc(userID)
+      .set({
+        AddressList: addressList,
+        CreatedBy: auth.currentUser.email,
+        CreatedTimestamp: (new Date()).toString(),
+        UpdatedBy: '',
+        UpdatedTimestamp: ''
+      })
+      .then(function(docRef) {
+        console.log("Data added sucessfully in the document: ");
+        populateAddressList();
+        //showAddress(false);
+        // console.log(Date.parse(eventstart))
+      })
+      .catch(function(error) {
+        //  console.error("error adding document:", error.message);
+      });
+
+
+  //});
 }
 
 function AddAddress() {
@@ -239,72 +242,73 @@ function renderAddressList(item, index) {
 }
 
 function getCartItemNo() {
- const snapshot = db.collection('CartDetails').doc(userID);
- snapshot.get().then(async (doc) => {
-   if (doc.exists) {
-     console.log("testing");
-     var arr = [];
+  const snapshot = db.collection('CartDetails').doc(userID);
+  snapshot.get().then(async (doc) => {
+    if (doc.exists) {
+      console.log("testing");
+      var arr = [];
 
-     //  console.log(doc.id);
-     cartItems = doc.data().cartDetails;
+      //  console.log(doc.id);
+      cartItems = doc.data().cartDetails;
 
-     var prise = 0;
-     //console.log(item);
-     for (var i = 0; i < cartItems.length; i++) {
-       console.log(cartItems[i].ProductID);
-       arr.push(cartItems[i].ProductID);
-     }
-     console.log(arr);
-     //for (var i = 0; i < item.length; i++)
-     {
-       var parr = [];
-       //const prodDetails = db.collection('Products').doc(item[i].ProductID);
-       console.log(arr);
-       if (arr != null && arr.length > 0) {
-         db.collection('Products').where("__name__", 'in', arr)
-           //const prodDetails = db.collection('Products').where ("__name__" , '==', 'O1RMEcLeeaHt9cXoAT33')
-           .get()
-           .then((psnapshot) => {
-             psnapshot.forEach((doc) => {
-               parr.push({
-                 ProductID: doc.id,
-                 ProductDetails: doc.data().ProductDetails
-               });
-             });
-             for (i = 0; i < cartItems.length; i++) {
-               var qty = cartItems[i].Quantity;
-               var selectedsubItem = cartItems[i].SelectedsubItem;
-               var weight = selectedsubItem.split('-');
+      var prise = 0;
+      //console.log(item);
+      for (var i = 0; i < cartItems.length; i++) {
+        console.log(cartItems[i].ProductID);
+        arr.push(cartItems[i].ProductID);
+      }
+      console.log(arr);
+      //for (var i = 0; i < item.length; i++)
+      {
+        var parr = [];
+        //const prodDetails = db.collection('Products').doc(item[i].ProductID);
+        console.log(arr);
+        if (arr != null && arr.length > 0) {
+          db.collection('Products').where("__name__", 'in', arr)
+            //const prodDetails = db.collection('Products').where ("__name__" , '==', 'O1RMEcLeeaHt9cXoAT33')
+            .get()
+            .then((psnapshot) => {
+              psnapshot.forEach((doc) => {
+                parr.push({
+                  ProductID: doc.id,
+                  ProductDetails: doc.data().ProductDetails
+                });
+              });
+              for (i = 0; i < cartItems.length; i++) {
+                var qty = cartItems[i].Quantity;
+                var selectedsubItem = cartItems[i].SelectedsubItem;
+                var weight = selectedsubItem.split('-');
 
-               var selectedProduct = parr[parr.findIndex(e => e.ProductID === cartItems[i].ProductID)];
-               if (selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
-                 var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
-                 prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
-               }
-             }
-             cartItemCount.innerHTML = cartItems.length;
-             document.getElementById('itemCount').innerHTML = cartItems.length ;
+                var selectedProduct = parr[parr.findIndex(e => e.ProductID === cartItems[i].ProductID)];
+                if (selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
+                  var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
+                  prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
+                }
+              }
+              cartItemCount.innerHTML = cartItems.length;
+              document.getElementById('itemCount').innerHTML = cartItems.length;
 
-             document.getElementById('Totalprise').innerHTML = prise;
+              document.getElementById('Totalprise').innerHTML = prise;
 
-           });
-       } else {
+            });
+        } else {
 
-         cartItemCount.innerHTML = 0;
-         document.getElementById('itemCount').innerHTML = '0' ;
+          cartItemCount.innerHTML = 0;
+          document.getElementById('itemCount').innerHTML = '0';
 
-         document.getElementById('Totalprise').innerHTML = '0';
-       }
-     }
-   }
- });
+          document.getElementById('Totalprise').innerHTML = '0';
+        }
+      }
+    }
+  });
 
 }
-function editform (obj)
-{
-    console.log(obj);
-    window.location.href = "createAddress.html?addressid=" +obj.value;
+
+function editform(obj) {
+  console.log(obj);
+  window.location.href = "createAddress.html?addressid=" + obj.value;
 }
+
 function OnSelectionChange(index) {
   console.log("OnSelectionChange", index);
   var itemID = document.getElementById("addID" + index).value;
@@ -333,12 +337,12 @@ function OnSelectionChange(index) {
         .update({
           AddressList: addressList
         })
-        .then(function(docRef)  {
+        .then(function(docRef) {
           console.log("Data added sucessfully in the document: ");
           // console.log(Date.parse(eventstart))
         })
-        .catch(function(error)  {
-            console.error("error adding document:", error.message);
+        .catch(function(error) {
+          console.error("error adding document:", error.message);
         });
     }
   });
