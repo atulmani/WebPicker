@@ -1,8 +1,8 @@
 //const productID = document.getElementById('productID');
 var userID = "";
 var orderList = [];
+try {
 auth.onAuthStateChanged(firebaseUser => {
-  try {
     if (firebaseUser) {
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
@@ -15,11 +15,15 @@ auth.onAuthStateChanged(firebaseUser => {
       console.log('User has been logged out');
       window.location.href = "index.html";
     }
-  } catch (error) {
-    console.log(error.message);
-    //window.location.href = "../index.html";
-  }
+
 });
+}
+catch (error) {
+
+    console.log(error.message);
+}
+ //window.location.href = "../index.html";
+
 
 function GetProfileData(user) {
   // const ref = db.collection("Users").doc(user.uid);
