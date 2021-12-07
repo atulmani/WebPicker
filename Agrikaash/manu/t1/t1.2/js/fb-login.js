@@ -103,7 +103,7 @@ btnSignup.addEventListener('click', e => {
 //Save users data into Users DB Collection
 function setUsersProfileData(user){
   console.log("in function 1");
-  db.collection('UserList')
+  db.collection('UserRequest')
   .doc(user.uid)
   .set({
       uid: user.uid,
@@ -114,16 +114,16 @@ function setUsersProfileData(user){
       Address: '',
       IDType: '',
       IDNo: '',
-      UserType:'Admin',
-      CustomerType:'Small',
-      Status: 'ACTIVE',
+      UserRole:[],
+      CustomerType:'',
+      Status: 'Pending',
       CreatedTimestamp: (new Date()).toString(),
       UpdatedTimestamp: ''
   })
   .then(() => {
         // updated
         console.log ('Data saved successfully');
-        window.location.href = "dashboard.html";
+        window.location.href = "Registration.html";
       })
       .catch((error) => {
         // An error occurred

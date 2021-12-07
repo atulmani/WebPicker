@@ -6,7 +6,7 @@ auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
-      GetProfileData(firebaseUser);
+      //GetProfileData(firebaseUser);
       var promise = getCartItemNo();
       promise.then(populateCartData());
     } else {
