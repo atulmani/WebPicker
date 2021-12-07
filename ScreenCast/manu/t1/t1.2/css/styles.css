@@ -77,14 +77,13 @@ h6 {
   border: none;
   cursor: pointer; */
 
-
   color: rgba(225, 0, 50, 1);
   padding: 4px 0;
   margin: 0 15px;
   font-size: 0.8rem;
   text-align: center;
   font-weight: 500;
-  background: #DBE8E1;
+  /* background: #fff; */
   width: 100px;
   border-radius: 16px;
   cursor: pointer;
@@ -591,7 +590,6 @@ input:valid .input-field i {
   border-bottom: 0;
   border-left: 0;
   border-right: 0;
-  box-shadow: 0 0 20px 0 rgba(225,0,50,0.2);
 }
 
 @media (max-width: 1080px) {
@@ -718,9 +716,14 @@ input:valid .input-field i {
   font-size: 0.8rem;
   text-align: center;
   font-weight: 500;
-  background-color: #DBE8E1;
+  background: #fff;
   width: 100px;
   border-radius: 16px;
+}
+
+.nav-link:hover {
+  color: #B4FEE7;
+  background: none;
 }
 
 /* .nav .active {
@@ -829,27 +832,25 @@ input:valid .input-field i {
   background: rgba(219, 232, 225, 0.4);
 }
 
-.owl-item .partners-item img {
-  opacity: 0.5;
+.owl-item .banner-item img {
+  opacity: 1;
   transition: 3s;
-  transform: scale(0.8);
-  filter: saturate(0);
+  transform: scale(1);
+  /* border-radius: 6px; */
 }
 
-.owl-item.center .partners-item img {
+.owl-item.center .banner-item img {
   opacity: 1;
-  transform: scale(1.4);
+  transform: scale(1.18);
   transition: 3s;
   border-radius: 6px;
-  filter: saturate(1);
 }
 
-.owl-item.active.center .partners-item img {
+.owl-item.active.center .banner-item img {
   opacity: 1;
-  transform: scale(1.4);
+  transform: scale(1.16);
   transition: 3s;
   border-radius: 6px;
-  filter: saturate(1);
 }
 
 .owl-nav {
@@ -1181,18 +1182,18 @@ input:valid .input-field i {
 
 .clients-card-name {
   font-size: 1.3rem;
+  /* font-family: 'Baloo Tammudu 2'; */
   position: relative;
   top: -50px;
-  color: #E10032;
 }
 
 .clients-designation {
   position: relative;
   top: -50px;
   font-size: 0.9rem;
+  width: 110%;
   /* background-color: #E10032; */
   text-align: center;
-  color: rgba(3, 70, 135, 1);
 }
 
 .clients-card-colun {
@@ -1282,6 +1283,7 @@ input:valid .input-field i {
 }
 
 .links-sitemaps h5 {
+  color: #fff;
   font-size: 1rem;
   font-weight: bold;
   padding-left: 40px;
@@ -1292,36 +1294,16 @@ input:valid .input-field i {
 }
 
 .links-sitemaps ul li a {
-  color: rgba(3, 70, 135, 1) ;
+  color: rgba(255, 255, 255, 1);
   font-size: 0.8rem;
   padding-top: 10px;
-  text-decoration: none;
 }
 
 .links-sitemaps ul li a:hover {
-  color: #e10032;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.8rem;
   padding-top: 10px;
 }
-
-.owl-item .ingradients-item img {
-  opacity: 0.3;
-  width: 70%;
-  transition: 3s;
-}
-
-.owl-item.center .ingradients-item img {
-  opacity: 1;
-  transform: scale(1.18);
-  transition: 3s;
-}
-
-.owl-item.active.center .ingradients-item img {
-  opacity: 1;
-  transform: scale(1.45);
-  transition: 3s;
-}
-
 
 /* Footer Section - Start */
 #map {
@@ -1330,11 +1312,9 @@ input:valid .input-field i {
 }
 
 #footer {
-  /* background: rgba(3, 70, 135, 0.9); */
-  background: #fff;
+  background: rgba(3, 70, 135, 0.9);
   text-align: center;
-  color: #e10032;
-  box-shadow: 0 0 15px 0 rgba(225,0,50,0.1);
+  color: white;
 }
 
 .footer-last {
@@ -1377,16 +1357,20 @@ input:valid .input-field i {
   font-size: 1.2rem;
 }
 
-.footer-no, .footer-email {
+.footer-no {
   float: left;
-  color: rgba(3, 70, 135, 1);
+  color: rgba(255, 255, 255, 0.7);
   padding-left: 20px;
-  font-size: 0.8rem;
+}
+
+.footer-email {
+  float: left;
+  color: rgba(255, 255, 255, 0.7);
+  padding-left: 20px;
 }
 
 .footer-no:hover, .footer-email:hover {
-  color: #e10032;
-  text-decoration: none;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .social {
@@ -1396,19 +1380,18 @@ input:valid .input-field i {
 
 .social .fab {
   /* color: rgba(255,255,255,0.7); */
-  color: #e10032;
-  border: 1px solid #e10032;
+  color: #151B25;
+  border: 1px dashed transparent;
   width: 40px;
   height: 40px;
   line-height: 40px;
   border-radius: 50%;
   background: #fff;
-  transition: 0.3s;
 }
 
 .social .fab:hover {
-  color: #fff;
-  background: #e10032
+  /* color: rgba(255, 255, 255, 1); */
+  border: 1px dashed #151B25;
 }
 
 .Copyright {
@@ -1720,6 +1703,16 @@ input[type=number] {
     display: flex;
     flex-direction: column;
   }
+}
+
+#partners-carousel .item img {
+  filter: grayscale(1);
+  width: 95%;
+}
+
+#partners-carousel .item:hover img {
+  cursor: pointer;
+  filter: grayscale(0);
 }
 
 .patners-heading {
