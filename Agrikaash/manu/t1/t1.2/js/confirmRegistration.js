@@ -223,44 +223,66 @@ function renderRegistrationRequest(doc, index) {
 }
 
 function ApproveRegistration(index) {
-//  console.log(index);
   var RegID = document.getElementById("hfID" + index).value;
   console.log(RegID);
 
   var comments = document.getElementById("comments" + index).value;
-  //console.log(comments);
+  var userRole = [];
+
   var userType1 = document.getElementById("userType1" + index);
-  console.log(userType1.value);
-  console.log(userType1.checked);
+
+  if (userType1.checked)
+    userRole.push({
+      Value: 'Customer',
+      Text: 'Retailer/Customer'
+    });
+
+  var userType2 = document.getElementById("userType2" + index);
+
+  if (userType2.checked)
+    userRole.push({
+      Value: 'Vendor',
+      Text: 'Vendor/Farmers'
+    });
+
+
   var dataRow;
   const snapshot = db.collection('UsersRequest').doc(RegID);
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
         dataRow = doc.data();
-        dataRow.Status ='ACTIVE'
-
-        const snapshot1 = db.collection('UsersList').doc(RegID);
-        snapshot1.get().then(async (doc1) => {
-            if (doc1.exists) {
-
-              //update Row
-
-              console.log("update row");
-            }
-            else
-            {
-              //insert roe
-              console.log("insert row");
-            }
+        dataRow.Status = 'ACTIVE';
+        console.log(dataRow );
+      }
+      console.log('before insert');
+      db.collection("UserList").doc(RegID).set({
+            Address: dataRow.Address,
+            DateOfBirth: dataRow.DateOfBirth,
+            EmailID: dataRow.EmailID,
+            IDNo: dataRow.IDNo,
+            IDType: dataRow.IDType,
+            Phone: dataRow.Phone,
+            displayName: dataRow.displayName,
+            CustomerType: dataRow.CustomerType,
+            Status: 'Active',
+            ProfileImageURL: dataRow.ProfileImageURL,
+            uid: RegID,
+            UserRoles: userRole,
+            CreatedBy: auth.currentUser.email,
+            CreatedTimestamp: (new Date()).toString(),
+            UpdatedBy: '',
+            UpdatedTimestamp: ''
           })
-          .catch(function(error) {
-            // An error occurred
-            console.log(error.message);
-            // document.getElementById('errorMessage_Signup').innerHTML = error.message;
-            // document.getElementById('errorMessage_Signup').style.display = 'block';
+          .then((docRef) => {
+            console.log("Data added sucessfully in the document: ");
+            console.log("eventstart")
+            // console.log(Date.parse(eventstart))
+          })
+          .catch((error) => {
+            console.error("error adding document:", error);
           });
 
-      }
+
     })
     .catch(function(error) {
       // An error occurred
@@ -272,4 +294,22 @@ function ApproveRegistration(index) {
 
 function RejectRegistration(index) {
   console.log(index);
+  var RegID = document.getElementById("hfID" + index).value;
+  console.log(RegID);
+  var comments = document.getElementById("comments" + index).value;
+
+  db.collection("UserList").doc(RegID).update({
+      Status: 'Rejected',
+      Comments: comments
+    })
+
+    .then((docRef) => {
+      console.log("Data added sucessfully in the document: ");
+      console.log("eventstart")
+      // console.log(Date.parse(eventstart))
+    })
+    .catch((error) => {
+      console.error("error adding document:", error);
+    });
+
 }
