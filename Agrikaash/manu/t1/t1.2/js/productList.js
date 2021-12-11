@@ -2,7 +2,7 @@
 var userID = "";
 var cartItems = [];
 var productCategory = [];
-
+var isAdmin = false;
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
@@ -27,15 +27,44 @@ auth.onAuthStateChanged(firebaseUser => {
 function GetProfileData(user) {
   // const ref = db.collection("Users").doc(user.uid);
 
-  const snapshot = db.collection('Users').doc(user.uid);
+
+  const snapshot = db.collection('UserList').doc(user.uid);
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
         //console.log('Document ref id: ' + doc.data().uid);
         userID = doc.data().uid;
-        document.getElementById('headerProfilePic').src = doc.data().ImageURL;
-        document.getElementById('displayName').innerHTML = doc.data().displayName;
+        userRole = doc.data().UserRole;
+        console.log(userRole);
+        if (userRole != undefined) {
+          if (userRole.findIndex(e => e.value === "Admin") >= 0) {
+            isAdmin = true;
+            document.getElementById("a4").href = "confirmRegistration.html";
+            var i4 = document.getElementById("i4");
+            i4.setAttribute("class", "fas fa-registered");
+            document.getElementById("small4").innerHTML = "Registration";
+            var span4 = document.getElementById("cartItemNo");
+            span4.style.display = "none";
+
+          } else {
+            isAdmin = false;
+
+            var a5 = document.getElementById("a5");
+            a5.style.display = "none";
+          }
+        } else {
+          {
+            var a5 = document.getElementById("a5");
+            a5.style.display = "none";
+            isAdmin = false;
+          }
+        }
+        if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
+          document.getElementById('navUser').src = doc.data().ProfileImageURL;
+        console.log(isAdmin);
       }
     })
+
+
     .catch(function(error) {
       // An error occurred
       console.log(error.message);
