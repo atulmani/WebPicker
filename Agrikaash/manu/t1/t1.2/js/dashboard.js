@@ -1,18 +1,17 @@
 //const productID = document.getElementById('productID');
 var userID = "";
-var addressList = [];
+var userRole = [];
+var isAdmin = false;
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
+      console.log(userID);
+      const promise = GetProfileData(firebaseUser);
+      // PopulateOrderSummary();
+      //   PopulateDeliverySummary();
 
-      GetProfileData(firebaseUser);
-      PopulateOrderSummary();
-      PopulateDeliverySummary();
-      //  populateAddressList();
-      //populateCartData();
-      //  getCartItemNo();
     } else {
       console.log('User has been logged out');
       window.location.href = "index.html";
@@ -26,13 +25,42 @@ auth.onAuthStateChanged(firebaseUser => {
 function GetProfileData(user) {
   // const ref = db.collection("Users").doc(user.uid);
 
-  const snapshot = db.collection('Users').doc(user.uid);
+  const snapshot = db.collection('UserList').doc(user.uid);
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
         //console.log('Document ref id: ' + doc.data().uid);
         userID = doc.data().uid;
-        document.getElementById('headerProfilePic').src = doc.data().ImageURL;
-        document.getElementById('displayName').innerHTML = doc.data().displayName;
+        userRole = doc.data().UserRole;
+        console.log(userRole);
+        if (userRole != undefined) {
+          if (userRole.findIndex(e => e.value === "Admin") >= 0) {
+            isAdmin = true;
+            document.getElementById("a2").href = "updateProduct.html";
+
+            document.getElementById("a4").href = "confirmRegistration.html";
+            var i4 = document.getElementById("i4");
+            i4.setAttribute("class", "fas fa-registered");
+            document.getElementById("small4").innerHTML = "Registration";
+            var span4 = document.getElementById("cartitemcount");
+            span4.style.display = "none";
+
+          } else
+          {
+            isAdmin = false;
+            document.getElementById("a5").style.display="none";
+          }
+        } else {
+          isAdmin = false;
+
+          document.getElementById("a5").style.display="none";
+        }
+        if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
+          document.getElementById('navUser').src = doc.data().ProfileImageURL;
+        console.log(isAdmin);
+        PopulateOrderSummary();
+        PopulateDeliverySummary();
+
+        //document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
     })
     .catch(function(error) {
@@ -46,7 +74,6 @@ var arrAmt = [];
 var dateArr = [];
 var chart1;
 var chart2;
-
 
 var arrAmtDelivery = [];
 var dateArrDelivery = [];
@@ -124,9 +151,6 @@ function PopulateOrderSummary() {
   var dayP5Amt = 0;
   var dayP6Amt = 0;
   var dayP7Amt = 0;
-
-
-
   var weekAmount = 0;
   var monthAmount = 0;
 
@@ -143,19 +167,24 @@ function PopulateOrderSummary() {
   ];
 
 
-  console.log(dateArr);
-
   var orderdate = new Date();
-  const snapshot = db.collection('OrderDetails').doc(userID);
-  snapshot.get().then(async (doc) => {
-      if (doc.exists) {
-        //console.log('Document ref id: ' + doc.data().uid);
+  var snapshot;
+
+  var DBrows;
+  console.log(isAdmin);
+  if (isAdmin === true) //Select all products
+  {
+    DBrows = db.collection("OrderDetails").get();
+  } else {
+    DBrows = db.collection('OrderDetails').where("__name__", "==", userID).get();
+  }
+
+  DBrows.then((changes) => {
+      //console.log(changes.doc);
+      changes.forEach((doc) => {
         var orderDetails = doc.data().OrderDetails;
-        //console.log(doc.data().OrderDetails.getDate());
         for (i = 0; i < orderDetails.length; i++) {
-          //console.log( orderDetails[i].orderDate);
           orderdate = new Date(Date.parse(orderDetails[i].orderDate));
-          //console.log(orderDetails[i].totalAmount);
           if (orderdate.getDate() === todayDate.getDate() && orderdate.getMonth() === todayDate.getMonth() && orderdate.getYear() === todayDate.getYear()) {
             todayCnt = todayCnt + 1;
             todayAmount = Number(todayAmount) + Number(orderDetails[i].totalAmount);
@@ -193,38 +222,36 @@ function PopulateOrderSummary() {
           }
 
         }
-
-
-
-        // console.log('todayCnt', todayCnt);
-        arrAmt = [todayAmount,
-          yesterdayAmount,
-          day3Amt,
-          day4Amt,
-          day5Amt,
-          day6Amt,
-          day7Amt
-        ];
-
-        console.log(arrAmt);
-        document.getElementById('todayCount').innerHTML = todayCnt;
-        document.getElementById('todayAmount').innerHTML = todayAmount;
-
-        document.getElementById('yesterdayCount').innerHTML = yesterdayCnt;
-        document.getElementById('yesterdayAmount').innerHTML = yesterdayAmount;
-
-        document.getElementById('WeekCount').innerHTML = weekCnt;
-        document.getElementById('WeekAmount').innerHTML = weekAmount;
-
-        document.getElementById('monthCount').innerHTML = monthCnt;
-        document.getElementById('monthAmount').innerHTML = monthAmount;
-
-        orderChart(arrAmt, dateArr);
+      });
 
 
 
 
-      }
+      // console.log('todayCnt', todayCnt);
+      arrAmt = [todayAmount,
+        yesterdayAmount,
+        day3Amt,
+        day4Amt,
+        day5Amt,
+        day6Amt,
+        day7Amt
+      ];
+
+      console.log(arrAmt);
+      document.getElementById('todayCount').innerHTML = todayCnt;
+      document.getElementById('todayAmount').innerHTML = todayAmount;
+
+      document.getElementById('yesterdayCount').innerHTML = yesterdayCnt;
+      document.getElementById('yesterdayAmount').innerHTML = yesterdayAmount;
+
+      document.getElementById('WeekCount').innerHTML = weekCnt;
+      document.getElementById('WeekAmount').innerHTML = weekAmount;
+
+      document.getElementById('monthCount').innerHTML = monthCnt;
+      document.getElementById('monthAmount').innerHTML = monthAmount;
+
+      orderChart(arrAmt, dateArr);
+
     })
     .catch(function(error) {
       // An error occurred
@@ -331,9 +358,20 @@ function PopulateDeliverySummary() {
   ];
   console.log(dateArrDelivery);
   var deliverydate = new Date();
-  const snapshot = db.collection('OrderDetails').doc(userID);
-  snapshot.get().then(async (doc) => {
-      if (doc.exists) {
+  if (isAdmin === true) //Select all products
+  {
+    DBrows = db.collection("OrderDetails").get();
+  } else {
+    DBrows = db.collection('OrderDetails').where("__name__", "==", userID).get();
+  }
+
+
+  DBrows.then((changes) => {
+      //console.log(changes.doc);
+      changes.forEach((doc) => {
+
+
+
         //console.log('Document ref id: ' + doc.data().uid);
         var orderDetails = doc.data().OrderDetails;
         //console.log(doc.data().OrderDetails.getDate());
@@ -390,27 +428,28 @@ function PopulateDeliverySummary() {
 
 
         }
+      });
 
-        arrAmtDelivery = [dayP7Amt,
-          dayP6Amt,
-          dayP5Amt,
-          dayP4Amt,
-          dayP3Amt,
-          dayP2Amt,
-          dayP1Amt,
-          todayAmount,
-          dayM1Amt,
-          dayM2Amt,
-          dayM3Amt,
-          dayM4Amt,
-          dayM5Amt,
-          dayM6Amt,
-          dayM7Amt
+      arrAmtDelivery = [dayP7Amt,
+        dayP6Amt,
+        dayP5Amt,
+        dayP4Amt,
+        dayP3Amt,
+        dayP2Amt,
+        dayP1Amt,
+        todayAmount,
+        dayM1Amt,
+        dayM2Amt,
+        dayM3Amt,
+        dayM4Amt,
+        dayM5Amt,
+        dayM6Amt,
+        dayM7Amt
 
-        ];
-        console.log(arrAmtDelivery);
-        deliveryChart(arrAmtDelivery, dateArrDelivery);
-      }
+      ];
+      console.log(arrAmtDelivery);
+      deliveryChart(arrAmtDelivery, dateArrDelivery);
+
     })
     .catch(function(error) {
       // An error occurred
