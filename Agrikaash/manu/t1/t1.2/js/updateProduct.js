@@ -47,6 +47,11 @@ function GetProfileData(user) {
     });
 };
 
+function createProduct()
+{
+  window.location.href = "createProduct.html";
+}
+
 function emptyDiv(div) {
   div.innerHTML = '';
 }
