@@ -24,7 +24,7 @@ auth.onAuthStateChanged(firebaseUser => {
 
 function GetProfileData() {
   console.log(userID);
-  const snapshot = db.collection('UserList').doc(userID);
+  const snapshot = db.collection('UserRequest').doc(userID);
   snapshot.get().then(async (doc) => {
     if (doc.exists) {
       // console.log('Document id:' + doc.id);
@@ -117,7 +117,7 @@ function SaveDetails() {
   console.log(document.getElementById('txtID').value);
   console.log(userType);
   console.log(customerType);
-  db.collection('UserList')
+  db.collection('UserRequest')
     .doc(userID)
     .update({
       DateOfBirth: '',
