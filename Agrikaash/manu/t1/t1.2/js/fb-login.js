@@ -18,8 +18,11 @@ btnSignin.addEventListener('click', e => {
       const promise = auth.signInWithEmailAndPassword(email.value, pass.value);
       promise.then(function(firebaseUser) {
           // Success
-          console.log("Logged in User");
-          window.location.href = "dashboard.html";
+          console.log("Logged in User: ", auth.currentUser.uid);
+
+          var userRole = GetProfileData(auth.currentUser);
+          console.log(userRole);
+
         })
         .catch(function(error) {
           // Handle Errors here.
@@ -59,53 +62,52 @@ btnSignup.addEventListener('click', e => {
   //anyway User will signout as soon as User will press signout / logout button anywhere in the application
   //auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
   //  .then(() => {
-      const promise = auth.createUserWithEmailAndPassword(email.value, pass.value);
-      promise.then(function(firebaseUser) {
-          // Success
-          console.log("Logged in User");
-          auth.currentUser.updateProfile({
-            displayName: name.value,
-            // phoneNumber: txtPhoneNo.value,
-            photoURL: ""
-            // photoURL: "https://example.com/jane-q-user/profile.jpg"
-          }).then(() => {
-            // Update successful
-            //Save the Users registration data in Users db Collection
-            setUsersProfileData (auth.currentUser);
-          }).catch((error) => {
-            // An error occurred
-            document.getElementById('errorMessage_Signup').innerHTML = error.message;
-            document.getElementById('errorMessage_Signup').style.display = 'block';
-          });
-          //window.location.href = "dashboard.html";
-        })
-        .catch(function(error) {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          if (errorCode === 'auth/wrong-password') {
-            console.log('Wrong password.');
-            document.getElementById('errorMessage_Login').innerHTML = errorMessage + ' Please use password eye to cross check the password you enter.';
-            document.getElementById('errorMessage_Login').style.display = 'block';
-          } else {
-            console.log(errorMessage);
-            document.getElementById('errorMessage_Login').innerHTML = 'The email id is not registered.';
-            document.getElementById('errorMessage_Login').style.display = 'block';
-          }
-          console.log(error);
-        });
+  const promise = auth.createUserWithEmailAndPassword(email.value, pass.value);
+  promise.then(function(firebaseUser) {
+      // Success
+      console.log("Logged in User");
+      auth.currentUser.updateProfile({
+        displayName: name.value,
+        // phoneNumber: txtPhoneNo.value,
+        photoURL: ""
+        // photoURL: "https://example.com/jane-q-user/profile.jpg"
+      }).then(() => {
+        // Update successful
+        //Save the Users registration data in Users db Collection
+        setUsersProfileData(auth.currentUser);
+      }).catch((error) => {
+        // An error occurred
+        document.getElementById('errorMessage_Registration').innerHTML = error.message;
+        document.getElementById('errorMessage_Registration').style.display = 'block';
+      });
+      //window.location.href = "dashboard.html";
+    })
+    .catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      if (errorCode === 'auth/wrong-password') {
+        console.log('Wrong password.');
+        document.getElementById('errorMessage_Registration').innerHTML = errorMessage + ' Please use password eye to cross check the password you enter.';
+        document.getElementById('errorMessage_Registration').style.display = 'block';
+      } else {
+        console.log(errorMessage);
+        document.getElementById('errorMessage_Registration').innerHTML = 'The email id is not registered.';
+        document.getElementById('errorMessage_Registration').style.display = 'block';
+      }
+      console.log(error);
+    });
 
-  //  });
 
 });
 
 
 //Save users data into Users DB Collection
-function setUsersProfileData(user){
+function setUsersProfileData(user) {
   console.log("in function 1");
   db.collection('UserRequest')
-  .doc(user.uid)
-  .set({
+    .doc(user.uid)
+    .set({
       uid: user.uid,
       displayName: user.displayName,
       EmailID: user.email,
@@ -114,21 +116,62 @@ function setUsersProfileData(user){
       Address: '',
       IDType: '',
       IDNo: '',
-      UserRole:[],
-      CustomerType:'',
+      UserRole: [],
+      CustomerType: '',
       Status: 'Pending',
       CreatedTimestamp: (new Date()).toString(),
       UpdatedTimestamp: ''
-  })
-  .then(() => {
-        // updated
-        console.log ('Data saved successfully');
-        window.location.href = "Registration.html";
-      })
-      .catch((error) => {
-        // An error occurred
-        // console.log(error.message);
-        document.getElementById('errorMessage_Signup').innerHTML = error.message;
-        document.getElementById('errorMessage_Signup').style.display = 'block';
-      });
+    })
+    .then(() => {
+      // updated
+      console.log('Data saved successfully');
+      window.location.href = "Registration.html";
+    })
+    .catch((error) => {
+      // An error occurred
+      // console.log(error.message);
+      document.getElementById('errorMessage_Registration').innerHTML = error.message;
+      document.getElementById('errorMessage_Registration').style.display = 'block';
+    });
+};
+
+
+function GetProfileData(user) {
+  // const ref = db.collection("Users").doc(user.uid);
+  console.log(user.uid);
+  const snapshot = db.collection('UserList').doc(user.uid);
+  var userRole = [];
+  //const snapshot = db.collection('UserList').doc('M71Jn4QTuAg7pd2fWsVhQAHPJym2');
+  snapshot.get().then(async (doc) => {
+      if (doc.exists) {
+        //console.log('Document ref id: ' + doc.data().uid);
+        //document.getElementById('displayName').innerHTML = doc.data().displayName;
+        userID = doc.uid;
+        userRole = doc.data().UserRole;
+        //return userRole;
+        console.log(userRole);
+        if (userRole === undefined || userRole.length === 0) {
+          document.getElementById('errorMessage_Login').innerHTML = 'You do not have access to Application. Please register or reach out to Agrikaash Team for Access';
+          document.getElementById('errorMessage_Login').style.display = 'block';
+          document.getElementById('register').style.display = 'block';
+        } else
+        {
+          console.log('is admin');
+          window.location.href = "dashboard.html";
+        }
+
+      } else {
+        document.getElementById('errorMessage_Login').innerHTML = 'You do not have access to Application. Please register or reach out to Agrikaash Team for Access';
+        document.getElementById('errorMessage_Login').style.display = 'block';
+        //document.getElementById('register').style.display = 'block';
+
+      }
+    })
+    .catch(function(error) {
+      console.log('in catch');
+      // An error occurred
+      console.log(error.message);
+      return userRole;
+    });
+  return userRole;
 };
