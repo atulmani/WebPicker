@@ -37,6 +37,9 @@ function GetProfileData(user) {
       if (doc.exists) {
         //console.log('Document ref id: ' + doc.data().uid);
         userID = user.uid;
+        if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
+          document.getElementById('navUser').src = doc.data().ProfileImageURL;
+        }
         //  document.getElementById('headerProfilePic').src = doc.data().ImageURL;
         document.getElementById('displayName').innerHTML = doc.data().displayName;
         document.getElementById('EmailID').value = doc.data().EmailID;
@@ -54,14 +57,14 @@ function GetCouponDetails() {
   var userList = [];
   var couponDetails = document.getElementById("couponDetails");
   DBrows = db.collection("Coupons").where("Status", "==", 'Active').get();
-  var flag=false;
+  var flag = false;
   DBrows.then((changes) => {
 
     changes.forEach(change => {
       userList = change.data().UserList;
       console.log(userList);
       if (userList[0].userID === 'All') {
-        flag=true;
+        flag = true;
         var opt = document.createElement('option');
         opt.value = change.id;
         if (change.data().DiscountType === 'Percentage')
@@ -72,7 +75,7 @@ function GetCouponDetails() {
       }
       var index = userList.findIndex(e => e.userID === userID);
       if (index >= 0) {
-        flag=true;
+        flag = true;
         var opt = document.createElement('option');
         opt.value = change.id;
         if (change.data().DiscountType === 'Percentage')
@@ -82,46 +85,41 @@ function GetCouponDetails() {
         couponDetails.appendChild(opt);
       }
     });
-    if(flag === false)
-    {
-      couponDetails.style.display="none";
-    }
-    else
-    {
-      document.getElementById('nocoupons').style.display='none';
+    if (flag === false) {
+      couponDetails.style.display = "none";
+    } else {
+      document.getElementById('nocoupons').style.display = 'none';
     }
   });
   //console.log(couponList);
 }
 
-function applyCoupon()
-{
+function applyCoupon() {
   console.log("in applyCoupon");
   var originalAmount = document.getElementById('hftotalAmount').value;
   console.log(originalAmount);
   var discountedAmount = 0;
   var discount = document.getElementById('couponDetails');
-  if(discount.selectedIndex>0)
-  {
+  if (discount.selectedIndex > 0) {
     var discountText = discount.options[discount.selectedIndex].text;
     console.log(discountText);
-    if(discountText.search("%") >= 0)//if percentage
+    if (discountText.search("%") >= 0) //if percentage
     {
-      var discountPercentage = discountText.replace(" %","").trim();
+      var discountPercentage = discountText.replace(" %", "").trim();
       console.log(discountPercentage, originalAmount);
-      discountedAmount = (Number(originalAmount) * Number(discountPercentage.trim()))/100;
-    }
-    else//absolute discount
+      discountedAmount = (Number(originalAmount) * Number(discountPercentage.trim())) / 100;
+    } else //absolute discount
     {
-      var discountAbsolute = discountText.replace("₹ ","").trim();
+      var discountAbsolute = discountText.replace("₹ ", "").trim();
       discountedAmount = (Number(originalAmount) - Number(discountAbsolute));
     }
 
-    document.getElementById("hfdiscountedAmount").value =discountedAmount;
-    document.getElementById("totalAmount").innerHTML = "<span style='text-decoration:line-through;'>" +  originalAmount + "</span>" + "    " + discountedAmount;
+    document.getElementById("hfdiscountedAmount").value = discountedAmount;
+    document.getElementById("totalAmount").innerHTML = "<span style='text-decoration:line-through;'>" + originalAmount + "</span>" + "    " + discountedAmount;
   }
 
 }
+
 function UpdateDeliveryDate() {
   const tempDate = new Date();
   console.log(tempDate.toLocaleDateString());
@@ -274,7 +272,7 @@ function SaveOrder() {
             var itemCount = document.getElementById("itemCount").innerHTML;
             var discount = {
               coupondID: couponDetails.options[couponDetails.selectedIndex].value,
-              discountValue : couponDetails.options[couponDetails.selectedIndex].text
+              discountValue: couponDetails.options[couponDetails.selectedIndex].text
 
             };
 
@@ -298,8 +296,8 @@ function SaveOrder() {
                 deliveryDate: deliveryDate,
                 deliveryTime: deliveryTime,
                 paymentOption: paymentOption,
-                discountedprize:discountedprize,
-                discountDetails:discount,
+                discountedprize: discountedprize,
+                discountDetails: discount,
                 paymentStatus: 'Pending',
                 orderStatus: 'Pending',
                 orderDate: (new Date()).toString(),
@@ -309,7 +307,7 @@ function SaveOrder() {
 
               console.log(orderDetails);
               console.log(cartDetails.length);
-              console.log(selectedAddress );
+              console.log(selectedAddress);
               if (cartDetails.length > 0 && selectedAddress != null) {
                 console.log('insert order');
 
