@@ -27,6 +27,9 @@ function GetProfileData(user) {
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
         console.log('Document ref id: ' + doc.data().uid);
+        if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
+          document.getElementById('navUser').src = doc.data().ProfileImageURL;
+        }
         userID = doc.data().uid;
         document.getElementById('headerProfilePic').src = doc.data().ImageURL;
         document.getElementById('displayName').innerHTML = doc.data().displayName;
@@ -57,10 +60,11 @@ function getRegistrationRequest() {
 }
 
 function renderRegistrationRequest(doc, index) {
-
+  console.log(doc.data());
   var div1 = document.createElement("div");
   div1.setAttribute("class", "col-sm-12");
   div1.setAttribute("style", "padding: 5px;");
+  div1.setAttribute("id", "mainDiv" + index);
 
   var div2 = document.createElement("div");
   div2.setAttribute("class", "orders-list-div");
@@ -195,6 +199,20 @@ function renderRegistrationRequest(doc, index) {
   div7.appendChild(input71);
   div2.appendChild(div7);
 
+
+    div7 = document.createElement("div");
+    div7.setAttribute("class", "");
+
+    var lable71 = document.createElement("Label");
+    lable71.innerHTML = "Customer Type : ";
+
+    div7.appendChild(lable71);
+    var input72 = document.createElement("label");
+    input72.setAttribute("id", "CustomerType" + index)
+    input72.innerHTML = "<b>"+doc.data().CustomerType  +"</b>";
+    div7.appendChild(input72);
+    div2.appendChild(div7);
+
   div7 = document.createElement("div");
 
   var hf = document.createElement("input");
@@ -215,9 +233,66 @@ function renderRegistrationRequest(doc, index) {
   input81.setAttribute("onclick", "RejectRegistration(" + index + ");");
   input81.setAttribute("value", " Reject ");
 
+  var hfAddress = document.createElement("input");
+  hfAddress.setAttribute("type", "hidden");
+  hfAddress.setAttribute("id", "hfAddress" + index);
+  hfAddress.setAttribute("value", doc.data().Address);
+  div7.appendChild(hfAddress);
+
+  var hfDoB = document.createElement("input");
+  hfDoB.setAttribute("type", "hidden");
+  hfDoB.setAttribute("id", "hfDOB" + index);
+  hfDoB.setAttribute("value", doc.data().DateOfBirth);
+  div7.appendChild(hfDoB);
+
+  var hfEmail = document.createElement("input");
+  hfEmail.setAttribute("type", "hidden");
+  hfEmail.setAttribute("id", "hfEmail" + index);
+  hfEmail.setAttribute("value", doc.data().EmailID);
+  div7.appendChild(hfEmail);
+
+
+
+  var hfIDNo = document.createElement("input");
+  hfIDNo.setAttribute("type", "hidden");
+  hfIDNo.setAttribute("id", "hfIDNo" + index);
+  hfIDNo.setAttribute("value", doc.data().IDNo);
+  div7.appendChild(hfIDNo);
+
+  var hfIDType = document.createElement("input");
+  hfIDType.setAttribute("type", "hidden");
+  hfIDType.setAttribute("id", "hfIDType" + index);
+  hfIDType.setAttribute("value", doc.data().IDType);
+  div7.appendChild(hfIDType);
+
+  var hfPhone = document.createElement("input");
+  hfPhone.setAttribute("type", "hidden");
+  hfPhone.setAttribute("id", "hfPhone" + index);
+  hfPhone.setAttribute("value", doc.data().Phone);
+  div7.appendChild(hfPhone);
+
+  var hfName = document.createElement("input");
+  hfName.setAttribute("type", "hidden");
+  hfName.setAttribute("id", "hfName" + index);
+  hfName.setAttribute("value", doc.data().displayName);
+  div7.appendChild(hfName);
+
+  var hfCustomerType = document.createElement("input");
+  hfCustomerType.setAttribute("type", "hidden");
+  hfCustomerType.setAttribute("id", "hfCustomerType" + index);
+  hfCustomerType.setAttribute("value", doc.data().CustomerType);
+  div7.appendChild(hfCustomerType);
+
+  var hfProfileImageURL = document.createElement("input");
+  hfProfileImageURL.setAttribute("type", "hidden");
+  hfProfileImageURL.setAttribute("id", "hfProfileImageURL" + index);
+  hfProfileImageURL.setAttribute("value", doc.data().ProfileImageURL);
+  div7.appendChild(hfProfileImageURL);
+
   div7.appendChild(input81);
   div2.appendChild(div7);
   div1.appendChild(div2);
+  console.log(div1);
   document.getElementById("rowItem").appendChild(div1);
 
 }
@@ -245,51 +320,38 @@ function ApproveRegistration(index) {
       Text: 'Vendor/Farmers'
     });
 
+  console.log('before insert');
+  db.collection("UserList").doc(RegID).set({
+      Address: document.getElementById("hfAddress" + index).value,
+      DateOfBirth: document.getElementById("hfDOB" + index).value,
+      EmailID: document.getElementById("hfEmail" + index).value,
+      IDNo: document.getElementById("hfIDNo" + index).value,
+      IDType: document.getElementById("hfIDType" + index).value,
+      Phone: document.getElementById("hfPhone" + index).value,
+      displayName: document.getElementById("hfName" + index).value,
+      CustomerType: document.getElementById("hfCustomerType" + index).value,
+      Status: 'Active',
+      ProfileImageURL: document.getElementById("hfProfileImageURL" + index).value,
+      uid: RegID,
+      Comments: document.getElementById("comments" + index).value,
+      UserRole: userRole,
+      CreatedBy: auth.currentUser.email,
+      CreatedTimestamp: (new Date()).toString(),
+      UpdatedBy: '',
+      UpdatedTimestamp: ''
+    })
+    .then((docRef) => {
+      console.log("Data added sucessfully in the document: ");
 
-  var dataRow;
-  const snapshot = db.collection('UsersRequest').doc(RegID);
-  snapshot.get().then(async (doc) => {
-      if (doc.exists) {
-        dataRow = doc.data();
-        dataRow.Status = 'ACTIVE';
-        console.log(dataRow );
-      }
-      console.log('before insert');
-      db.collection("UserList").doc(RegID).set({
-            Address: dataRow.Address,
-            DateOfBirth: dataRow.DateOfBirth,
-            EmailID: dataRow.EmailID,
-            IDNo: dataRow.IDNo,
-            IDType: dataRow.IDType,
-            Phone: dataRow.Phone,
-            displayName: dataRow.displayName,
-            CustomerType: dataRow.CustomerType,
-            Status: 'Active',
-            ProfileImageURL: dataRow.ProfileImageURL,
-            uid: RegID,
-            UserRoles: userRole,
-            CreatedBy: auth.currentUser.email,
-            CreatedTimestamp: (new Date()).toString(),
-            UpdatedBy: '',
-            UpdatedTimestamp: ''
-          })
-          .then((docRef) => {
-            console.log("Data added sucessfully in the document: ");
-            console.log("eventstart")
-            // console.log(Date.parse(eventstart))
-          })
-          .catch((error) => {
-            console.error("error adding document:", error);
-          });
-
+      //document.getElementById("mainDiv" + index).remove();
+      db.collection("UserRequest").doc(RegID)
+        .delete();
 
     })
-    .catch(function(error) {
-      // An error occurred
-      console.log(error.message);
-      // document.getElementById('errorMessage_Signup').innerHTML = error.message;
-      // document.getElementById('errorMessage_Signup').style.display = 'block';
+    .catch((error) => {
+      console.error("error adding document:", error);
     });
+
 }
 
 function RejectRegistration(index) {
@@ -298,7 +360,7 @@ function RejectRegistration(index) {
   console.log(RegID);
   var comments = document.getElementById("comments" + index).value;
 
-  db.collection("UserList").doc(RegID).update({
+  db.collection("UserRequest").doc(RegID).update({
       Status: 'Rejected',
       Comments: comments
     })
@@ -306,6 +368,9 @@ function RejectRegistration(index) {
     .then((docRef) => {
       console.log("Data added sucessfully in the document: ");
       console.log("eventstart")
+      //document.getElementById("rowItem").removeI
+      document.getElementById("mainDiv" + index).remove();
+
       // console.log(Date.parse(eventstart))
     })
     .catch((error) => {
