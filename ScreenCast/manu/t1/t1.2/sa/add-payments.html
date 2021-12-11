@@ -1,0 +1,495 @@
+<!-- Inward or Outward Remittance -->
+
+<!--
+YOY Revenue       YOY Profit
+
+Inward Remittance     |     Outward Remittance
+
+Payment Received &          Payments to Vendor or other partners
+map Invoice                 like Entertainment , Gift, Employee Salary , Bonus, Contractor payment -->
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="WebPicker">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Segmented Audience Engagement Solutions | Services for DOOH & Outdoor, Transportation, Government, Education,
+	Corporate Communication, Argiculture and many more..">
+  <meta name="keywords" content="DOOH Digital Out-of-home Outdoor Digital Advertising | Digital Advertisement Platform | Cloud Based Advertising | Hyper Digital Cloud Agency | Digital Cloud Company | ">
+  <title>Hyper Cloud Advertising | AI Powered Cloud Based Content Management Solutions for
+    Hyperlocal & Digital Out-of-home Advertising</title>
+
+  <link rel="shortcut icon" href="../img/logo.png">
+
+  <!-- Google Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome cdn file -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <!-- Owl Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+  <!-- Bootstrap css -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+  <!-- Your Own Style -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
+
+</head>
+
+<body>
+  <!-- Navbar - Start -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container-fluid">
+      <!-- <a class="navbar-brand" href="#">
+        <img src="img/logo.png" width="40px" alt="" style="margin-top: -10px;">
+        <span class="logo">Hyper Cloud</span><span class="logo"></span>
+      </a> -->
+      <a class="navbar-brand" href="https://HyperCloudAdvertising.com">
+        <table border="0px" style=" width: 100%; color:#fff; margin-top:-36px; margin-bottom: -28px; ">
+          <!-- <table class="small" border="0px" style=" color:#fff; margin-top:-36px; margin-bottom: -28px; " >   -->
+          <tr>
+            <td style="width: 38%;text-align: right;">
+              <img src="../img/logo.png" width="38px" alt="">
+            </td>
+            <td style=" color:#e10032; text-align: left;padding-left: 4px; position:relative;top:-5px;">
+              <div class="footer-last-heading">
+                <!-- <span style="font-family: 'Pacifico', cursive;">H</h3><h3>yper Cloud</h3> -->
+                <h3 style="font-size: 1.4rem;">Hyper</h3>
+                <h3 class="footer-ads">Cloud</h3>
+                <!-- <span class="footer-ads">Advertising</span> -->
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="text-align: center;">
+              <div style=" margin-top: -32px;color:#e10032;">
+                <h6>
+                  <span class="large" style="letter-spacing:0.4px;font-size: 0.6rem;font-weight:600; "> DIGITAL SOLUTIONS</span>
+                  <span class="small" style="padding-left:6%; letter-spacing:1.0px;font-size: 12px; "> DIGITAL SOLUTIONS</span>
+                </h6>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </a>
+
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+        <span>
+       <i class="fa fa-reorder fa-2x " style="color:#1638A0;" ></i>
+     </span>
+      </button> -->
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="nav navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-home"></i></a>
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="#services">Services</a> -->
+            <div class="dropdown">
+              <div onclick="ddIndustries()" class="dropbtn">Industries
+                <i class="fa fa-caret-down"></i>
+              </div>
+              <div id="myDropdown" class="dropdown-content">
+                <a href="#government">CORPORATE COMMUNICATION</a>
+                <a href="#IndustriesWeServe">DOOH & OUTDOOR</a>
+                <a href="#government">EDUCATION</a>
+                <a href="#IndustriesWeServe">GOVERNMENT</a>
+                <a href="#government">RETAIL & LAST MILE</a>
+                <a href="#IndustriesWeServe">TRANSPORTATION</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="#WhyToUse">Features</a> -->
+            <div class="dropdown">
+              <div onclick="ddFeatures()" class="dropbtn">Concepts
+                <i class="fa fa-caret-down"></i>
+              </div>
+              <div id="myDropdown1" class="dropdown-content">
+                <a href="#aipowered">ADs ANALYTICS</a>
+                <a href="#WhyToUse">AI-POWERED</a>
+                <a href="#aipowered">EASY TO CUSTOMIZE</a>
+                <a href="#WhyToUse">FAST AND NO LAGS</a>
+                <a href="#aipowered">SEAMLESS INTEGRATION</a>
+                <a href="#WhyToUse">SECURED CLOUD BASED</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contacts">Contact us</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#hiw">How We Work</a>
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#projects">Projects</a>
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="contacts">Contact Us</a>
+          </li> -->
+        </ul>
+        <!-- <div class="nav-divider">
+          <a href="contacts" style="padding-right: 10px; "><button class="mybutton button5">Connect<i class="fas fa-arrow-right"></i> </button></a>
+        </div> -->
+
+      </div>
+    </div>
+  </nav>
+
+  <div class="small navbar-bottom-mobile">
+    <ul>
+      <a type="button" href="#">
+        <span class="material-icons-outlined">
+          home
+        </span> <br>
+        <span> Home </span>
+      </a>
+      <a type="button" href="#WhyToUse">
+        <span class="material-icons-outlined">
+          account_balance_wallet
+        </span>
+        <br>
+        <span> Payments </span>
+      </a>
+      <!-- <a type="button" href="login">
+        <span><i class="fas fa-user"></i></span> <br> <span> Login </span>
+      </a> -->
+      <a type="button" href="contacts">
+        <span class="material-icons-outlined">
+          supervisor_account
+        </span>
+        <br>
+        <span> Partnerns </span>
+      </a>
+      <a type="button" data-toggle="collapse" data-target="#collapsibleNavbar1">
+        <span class="material-icons-outlined">
+          more_vert
+        </span> <br>
+        <span> More </span>
+      </a>
+
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse more-button-links" id="collapsibleNavbar1">
+        <ul class="">
+          <li class="">
+            <a class="" href="#">Home</a>
+          </li>
+          <li class="">
+            <a class="" href="#IndustriesWeServe">Industries</a>
+          </li>
+          <!-- <li class="">
+            <a class="" href="login">Login</a>
+          </li> -->
+          <li class="">
+            <a class="" href="#WhyToUse">Services</a>
+          </li>
+          <li class="">
+            <a class="" href="contacts">Contact</a>
+          </li>
+        </ul>
+      </div>
+
+  </div>
+
+
+  <!-- Navbar - End -->
+
+  <!-- Payments page - start -->
+  <section id="invoice"><br>
+    <div class="">
+      <center>
+        <h3>Genrate Invoice</h3>
+      </center>
+    </div>
+
+    <div class="" style="padding:10px;">
+      <div class="row no-gutters">
+        <div class="col-6" style="padding: 0 5px;">
+          <input type="radio" class="checkbox" id="userType1" name="user-type" value="">
+          <label class="checkbox-label" for="userType1">
+            <i class="fas fa-plus"></i>
+            <i class="fas fa-check"></i>
+            <span>Inward</span>
+          </label>
+        </div>
+
+        <div class="col-6" style="padding: 0 5px;">
+          <input type="radio" class="checkbox" id="userType2" name="user-type" value="">
+          <label class="checkbox-label" for="userType2">
+            <i class="fas fa-plus"></i>
+            <i class="fas fa-check"></i>
+            <span>Outward</span>
+          </label>
+        </div>
+      </div><br>
+
+      <div class="invoice-form">
+        <div class="row no-gutters">
+          <div class="col-sm-12 invoice-form-field">
+            <input type="number" placeholder="Amount" name="" value="">
+          </div>
+
+          <div class="col-sm-12 invoice-form-field">
+            <select class="" required name="">
+              <option disabled selected hidden>Name of Clients</option>
+              <option value="Anant">Anant</option>
+              <option value="Manu">Manu</option>
+              <option value="Dolu">Dolu</option>
+              <option value="Anita">Anita</option>
+              <option value="Mini">Mini</option>
+            </select>
+          </div>
+
+          <div class="col-sm-12 invoice-form-field">
+            <select class="" required name="">
+              <option disabled selected hidden>Mode of Payment</option>
+              <option value="Credit">Credit</option>
+              <option value="Debit">Debit</option>
+              <option value="online">Online</option>
+              <option value="Cash">Cash</option>
+            </select>
+          </div>
+
+          <div class="col-sm-12 invoice-form-field">
+            <select class="" required name="">
+              <option disabled selected hidden>Reason</option>
+              <option value="Partners">Partners</option>
+              <option value="Employee">Employee</option>
+            </select>
+          </div>
+
+          <div class="col-sm-12 invoice-form-field">
+            <div class="form-group">
+              <div class="input-group date datetimepicker11">
+                <input id="dob" type="text" style="width:70%;" class="form-control" readonly>
+                <div class="input-group-addon input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 invoice-form-field">
+            <textarea placeholder="About The Payment..." rows="8" cols="80"></textarea>
+          </div>
+
+          <div class="col-sm-12 invoice-form-field">
+            <a href="payments.html"> <button class="mybutton button5">Save<i class="fas fa-arrow-right"></i> </button></a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </section><br><br><br>
+
+  <!-- Payments page - end -->
+
+  <!-- Footer Section - Start -->
+  <section id="footer">
+    <br /><br />
+
+    <div class="row no-gutters" style="text-align: center;">
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="links-sitemaps">
+          <h5>SITEMAPS</h5>
+          <ul class="">
+            <li class="">
+              <a class="" href="#">Home</a>
+            </li>
+            <li class="">
+              <a class="" href="#IndustriesWeServe">Services</a>
+            </li>
+            <li class="">
+              <a class="" href="#WhyToUse">Why Us</a>
+              <!-- <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#one">One</a></li>  -->
+            </li>
+            <li class="">
+              <a class="" href="#hiw">How We Work</a>
+            </li>
+            <li class="">
+              <a class="" href="#">Projects</a>
+            </li>
+            <li class="">
+              <a class="" href="contacts">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="links-sitemaps">
+          <h5>OTHERS</h5>
+          <ul class="">
+            <li class="">
+              <a class="" href="#">Join us officialy</a>
+            </li>
+            <li class="">
+              <a class="" href="#">Refer a friend</a>
+            </li>
+            <li class="">
+              <a class="" href="#">Become our Channel Partner</a>
+            </li>
+          </ul>
+        </div><br><br>
+
+        <div class="links-sitemaps">
+          <h5>INFORMATION</h5>
+          <ul class="">
+            <li class="">
+              <a class="" href="#">Terms & Conditions</a>
+            </li>
+            <li class="">
+              <a class="" href="#">Privacy & Policy</a>
+            </li>
+            <li class="">
+              <a class="" href="#">FAQ's</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="footer-last">
+          <table style="width: 100%;">
+            <tr>
+              <td style="width: 40%;text-align: right;">
+                <img src="../img/logo.png" width="38px" alt="">
+              </td>
+              <td style="color:#e10032;text-align: left;padding-left: 4px;position:relative;top: -5px;">
+                <div class="footer-last-heading">
+                  <h3 style="font-size: 1.4rem;">Hyper</h3>
+                  <h3 class="footer-ads">Cloud</h3>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="margin-top: -30px;position:relative;left: 95px;">
+                  <h6>
+                    <span class="large" style="color:#e10032;letter-spacing:0.4px;font-size: 0.6rem;font-weight:600; text-align: left;"> DIGITAL SOLUTIONS</span>
+                  </h6>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <br>
+          <h5 class="git">Get in Touch</h5>
+          <a href="#" class="footer-no">+91 915 255 2222</a>
+          <br>
+          <a href="mailto:Connect@HyperCloudAdvertising.com" class="footer-email">Connect@HyperCloudAdvertising.com</a><br><br>
+          <hr>
+          <div class="social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="Copyright">
+        <h6>Design & Developed By <a style='decoration:none;color:white;' href="https://webpicker.in"> Web Picker </a></h6>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Footer Section - end -->
+
+  <!-- WebPicker Facebook Messenger Chat Plugin Code - Start -->
+  <div id="fb-root"></div>
+
+  <!-- Your Chat Plugin code -->
+  <!-- <div id="fb-customer-chat" class="fb-customerchat">
+  </div> -->
+
+  <!-- <script>
+    var chatbox = document.getElementById('fb-customer-chat');
+    chatbox.setAttribute("page_id", "101044708888104");
+    chatbox.setAttribute("attribution", "biz_inbox");
+    window.fbAsyncInit = function() {
+      FB.init({
+        xfbml: true,
+        version: 'v11.0'
+      });
+    };
+
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script> -->
+
+  <!-- Jquery order should be higher from normal javascript  -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+  <!-- Owl Carousel JQuery -->
+  <!-- <script src="js/jquery.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Javascript to Populate Map - Start  -->
+  <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script> -->
+
+  <!-- <script src="../js/main.js"></script> -->
+  <!-- <script src="../js/firebase.js"></script> -->
+  <script src="../js/sa/add-payments.js"></script>
+
+
+
+  <!-- Owl Carousel Javascript  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script src="../js/bootstrap-datetimepicker.min.js"></script>
+
+  <script>
+    $(function() {
+      $.extend(true, $.fn.datetimepicker.defaults, {
+        icons: {
+          time: 'far fa-clock',
+          date: 'far fa-calendar',
+          up: 'fas fa-arrow-up',
+          down: 'fas fa-arrow-down',
+          previous: 'fas fa-chevron-left',
+          next: 'fas fa-chevron-right',
+          today: 'far fa-calendar-check-o',
+          clear: 'far fa-trash',
+          close: 'far fa-times'
+        }
+      });
+    });
+  </script>
+  <script type="text/javascript">
+    $(function() {
+      $('.datetimepicker11').datetimepicker({
+        format: 'YYYY-MM-DD',
+        ignoreReadonly: true
+      });
+    });
+  </script>
+
+
+</body>
+
+</html>
