@@ -6,7 +6,7 @@ auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
-      //GetProfileData(firebaseUser);
+      GetProfileData(firebaseUser);
       var promise = getCartItemNo();
       promise.then(populateCartData());
     } else {
@@ -23,13 +23,16 @@ auth.onAuthStateChanged(firebaseUser => {
 function GetProfileData(user) {
   // const ref = db.collection("Users").doc(user.uid);
 
-  const snapshot = db.collection('Users').doc(user.uid);
+  const snapshot = db.collection('UserList').doc(user.uid);
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
         console.log('Document ref id: ' + doc.data().uid);
         userID = doc.data().uid;
-        document.getElementById('headerProfilePic').src = doc.data().ImageURL;
-        document.getElementById('displayName').innerHTML = doc.data().displayName;
+        if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
+          document.getElementById('navUser').src = doc.data().ProfileImageURL;
+        }
+//        document.getElementById('headerProfilePic').src = doc.data().ImageURL;
+//        document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
     })
     .catch(function(error) {
@@ -90,6 +93,7 @@ async function populateCartData() {
 
 async function getCartItemNo1() {
   const snapshot = db.collection('CartDetails').doc(userID);
+  console.log(snapshot);
   snapshot.get().then(async (doc) => {
     if (doc.exists) {
       var arr = [];
@@ -145,7 +149,21 @@ async function getCartItemNo1() {
 
       }
     }
-  });
+    else
+    {
+      console.log("in else");
+      document.getElementById("blankCartMessage").style.display = "block";
+      document.getElementById("btnCheckOut").style.display = "none";
+      cartItemNo.innerHTML = 0;
+      document.getElementById('itemCount').innerHTML = 0 + ' Items';
+
+      document.getElementById('totalAmount').innerHTML = 'Rs. 0';
+    }
+  })
+  .catch((docref))
+  {
+    console.log("in catch");
+  }
 
 }
 
@@ -202,6 +220,16 @@ async function getCartItemNo() {
         document.getElementById('totalAmount').innerHTML = 'Rs. 0';
       }
 
+
+    }
+    else
+    {
+      document.getElementById("blankCartMessage").style.display = "block";
+      document.getElementById("btnCheckOut").style.display = "none";
+      cartItemNo.innerHTML = 0;
+      document.getElementById('itemCount').innerHTML = 0 + ' Items';
+
+      document.getElementById('totalAmount').innerHTML = 'Rs. 0';
 
     }
   });
