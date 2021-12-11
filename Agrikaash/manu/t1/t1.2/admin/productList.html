@@ -78,7 +78,10 @@
         <h4>Agrikaash</h4>
       </a>
       <!-- <a href="#"><img src="../img/logo.png" width="30px" alt=""> </a> -->
-      <a href="#" style="padding-right: 0px;"><i class="fas fa-user user-icon"></i></a>
+      <a href="updateProfile.html" style="padding-right: 0px;">
+        <img src="../img/user.png" id="navUser" class="user-icon" alt="">
+        <!-- <i class="fas fa-user user-icon"></i> -->
+      </a>
     </div>
     <!-- <div class="navbar-mobile-search-bar">
       <input type="text" name="" placeholder="Search Here..." value="">
@@ -88,22 +91,26 @@
 
   <div class="small navbar-mobile-bottom">
     <div class="navbar-mobile-bottom-menu">
-      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-        <i class="fas fa-home"></i>
-        <small>Home</small>
+      <a href="dashboard.html" id="a1" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <i id="i1" class="fas fa-home"></i>
+        <small id="small1">Dashboard</small>
       </a>
-      <a href="productList.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+      <a href="productList.html" id="a2" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
         <i class="fas fa-th-large"></i>
         <small>Products</small>
       </a>
-      <a href="orderList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="orderList.html" id="a3" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <i class="fab fa-buffer"></i>
         <small>Orders</small>
       </a>
-      <a href="cartNew.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-        <i class="fas fa-shopping-cart"></i>
-        <small>Cart</small>
+      <a href="cartNew.html" id="a4" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <i id="i4" class="fas fa-shopping-cart"></i>
+        <small id='small4'>Cart</small>
         <span class="navbar-cart-no" id="cartItemNo">0</span>
+      </a>
+      <a href="couponSetup.html" class="navbar-mobile-bottom-menu-a" id="a5" style="display:flex; flex-direction:column;">
+        <i class="fas fa-ticket" ></i>
+        <small>Coupon</small>
       </a>
     </div>
   </div>
