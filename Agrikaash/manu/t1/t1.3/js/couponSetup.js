@@ -234,9 +234,11 @@ function renderCoupon(change, index) {
   var i1 = document.createElement("i");
   i1.setAttribute("onclick", "GetCouponDetails(" + "hfCouponDocID" + index + ");");
   i1.setAttribute("class", "far fa-edit address-edit-icon");
-  i1.setAttribute("style", "padding: 0 40px 0 5px;");
+  i1.setAttribute("style", "padding: 0 5px 0 5px;");
 
   div3.appendChild(i1);
+
+
 
   var span2 = document.createElement('span');
   span2.setAttribute("id", "btnDelete" + index);
