@@ -55,7 +55,7 @@ function populateOrderDetails() {
   // const snapshot = db.collection('OrderDetails').doc(userID);
 
 
-
+  var index = 0;
   const snapshot = db.collection('OrderDetails').get();
   snapshot.then((changes) => {
     changes.forEach(change => {
@@ -65,7 +65,8 @@ function populateOrderDetails() {
       var name = change.data().CreatedBy;
       console.log(name);
       for (i = 0; i < orderList.length; i++) {
-        renderOrder(orderList[i], i, name);
+        renderOrder(orderList[i], index, name);
+        index = index + 1;
       }
     });
   });
@@ -78,12 +79,13 @@ function renderPendingPaymentOrder(order, index, createdBy) {
   console.log('createdBy', createdBy);
   var dt = new Date(order.orderDate);
   var dt1 = new Date(order.deliveryDate);
-  var anchor = document.createElement("a");
-  anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID+"&userID="+order.orderBy);
+  // var anchor = document.createElement("a");
+  // anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID+"&userID="+order.orderBy);
 
   var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12")
-  div1.setAttribute("style", "padding: 5px;")
+  div1.setAttribute("class", "col-sm-12");
+  div1.setAttribute("style", "padding: 5px;");
+  div1.setAttribute("id", "mainDiv" + index);
 
 
   var div2 = document.createElement("div");
@@ -92,6 +94,41 @@ function renderPendingPaymentOrder(order, index, createdBy) {
   var div3 = document.createElement("div");
   div3.setAttribute("class", "");
   div3.setAttribute("style", "flex-direction: column;align-items: flex-start;");
+
+  var div5 = document.createElement("div");
+  div5.setAttribute("class", "order-details");
+
+  var hforderid = document.createElement("input");
+  hforderid.setAttribute('type', 'hidden');
+  hforderid.setAttribute('id', 'hfOrderID' + index);
+  hforderid.setAttribute('value', order.orderID);
+
+  div5.appendChild(hforderid);
+
+  var hforderby = document.createElement("input");
+  hforderby.setAttribute('type', 'hidden');
+  hforderby.setAttribute('id', 'hfOrderBy' + index);
+  hforderby.setAttribute('value', order.orderBy);
+
+  div5.appendChild(hforderby);
+
+  var i1 = document.createElement("i");
+  i1.setAttribute("onclick", "GetOrderDetails(" + "hfOrderID" + index + ", hfOrderBy" + index+");");
+  i1.setAttribute("class", "far fa-edit address-edit-icon");
+  i1.setAttribute("style", "padding: 0 5px 0 5px;");
+
+  div5.appendChild(i1);
+
+  var spanDelete = document.createElement('span');
+  spanDelete.setAttribute("id", "btnDelete" + index);
+  spanDelete.setAttribute("onclick", "deleteOrder(" + "hfOrderID" + index + ",mainDiv" + index + ");");
+  spanDelete.setAttribute("class", "material-icons");
+  spanDelete.setAttribute("style", "cursor:pointer;padding: 0 20px 0 5px;");
+  spanDelete.innerHTML = "delete_outline";
+
+  div5.appendChild(spanDelete);
+
+  div3.appendChild(div5);
 
 
   var small1 = document.createElement("small");
@@ -106,20 +143,7 @@ function renderPendingPaymentOrder(order, index, createdBy) {
 
   div3.appendChild(small11);
 
-  var hforderid = document.createElement("input");
-  hforderid.setAttribute('type', 'hidden');
-  hforderid.setAttribute('id', 'hfOrderID' + index);
-  hforderid.setAttribute('value', order.orderID);
 
-  var hforderby = document.createElement("input");
-  hforderby.setAttribute('type', 'hidden');
-  hforderby.setAttribute('id', 'hfOrderBy' + index);
-  hforderby.setAttribute('value', order.orderBy);
-
-  div3.appendChild(hforderby);
-
-
-  div3.appendChild(hforderid);
   div2.appendChild(div3);
 
   var h1 = document.createElement("h6");
@@ -164,12 +188,17 @@ function renderPendingPaymentOrder(order, index, createdBy) {
   div4h2.setAttribute("class", "payment-pending");
   div4h2.innerHTML = 'Payment Pending';
 
+
+
   div4.appendChild(div4h2);
+
   div2.appendChild(div4);
 
-  anchor.appendChild(div2);
+  //div2.appendChild(div5);
 
-  div1.appendChild(anchor);
+  //  anchor.appendChild(div2);
+
+  div1.appendChild(div2);
   document.getElementById("orderList").appendChild(div1);
 
 }
@@ -179,13 +208,14 @@ function renderPendingOrder(order, index, createdBy) {
 
   var dt = new Date(order.orderDate);
   var dt1 = new Date(order.deliveryDate);
-
-  var anchor = document.createElement("a");
-  anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID+"&userID="+order.orderBy);
+  //
+  // var anchor = document.createElement("a");
+  // anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID+"&userID="+order.orderBy);
 
   var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12")
-  div1.setAttribute("style", "padding: 5px;")
+  div1.setAttribute("class", "col-sm-12");
+  div1.setAttribute("style", "padding: 5px;");
+  div1.setAttribute("id", "mainDiv" + index);
 
   var div2 = document.createElement("div");
   div2.setAttribute("class", "orders-list-div");
@@ -194,6 +224,41 @@ function renderPendingOrder(order, index, createdBy) {
   div3.setAttribute("class", "");
   div3.setAttribute("style", "flex-direction: column;align-items: flex-start;");
 
+  var div5 = document.createElement("div");
+  div5.setAttribute("class", "order-details");
+
+  var hforderid = document.createElement("input");
+  hforderid.setAttribute('type', 'hidden');
+  hforderid.setAttribute('id', 'hfOrderID' + index);
+  hforderid.setAttribute('value', order.orderID);
+
+  div5.appendChild(hforderid);
+
+  var hforderby = document.createElement("input");
+  hforderby.setAttribute('type', 'hidden');
+  hforderby.setAttribute('id', 'hfOrderBy' + index);
+  hforderby.setAttribute('value', order.orderBy);
+
+  div5.appendChild(hforderby);
+
+  var i1 = document.createElement("i");
+  i1.setAttribute("onclick", "GetOrderDetails(" + "hfOrderID" + index + ", hfOrderBy" + index+");");
+  i1.setAttribute("class", "far fa-edit address-edit-icon");
+  i1.setAttribute("style", "padding: 0 5px 0 5px;");
+
+  div5.appendChild(i1);
+
+  var spanDelete = document.createElement('span');
+  spanDelete.setAttribute("id", "btnDelete" + index);
+  spanDelete.setAttribute("onclick", "deleteOrder(" + "hfOrderID" + index + ",mainDiv" + index + ");");
+  spanDelete.setAttribute("class", "material-icons");
+  spanDelete.setAttribute("style", "cursor:pointer;padding: 0 20px 0 5px;");
+  spanDelete.innerHTML = "delete_outline";
+
+  div5.appendChild(spanDelete);
+
+  div3.appendChild(div5);
+
 
   var small1 = document.createElement("small");
   small1.setAttribute("class", "delivery-pending");
@@ -201,8 +266,8 @@ function renderPendingOrder(order, index, createdBy) {
   div3.appendChild(small1);
 
   var small11 = document.createElement("small");
-  small11.setAttribute("class", "payment-pending");
-  small11.innerHTML = "<br>Order Date: " + dt.getDate() + "-" + (dt.getMonth() + 1) + "-" + dt.getFullYear();;
+  small11.setAttribute("class", "delivery-pending");
+  small11.innerHTML = "Order Date: " + dt.getDate() + "-" + (dt.getMonth() + 1) + "-" + dt.getFullYear();;
   div3.appendChild(small11)
 
   div2.appendChild(div3);
@@ -212,20 +277,6 @@ function renderPendingOrder(order, index, createdBy) {
   span1.innerHTML = 'schedule';
 
   div2.appendChild(span1);
-
-  var hforderid = document.createElement("input");
-  hforderid.setAttribute('type', 'hidden');
-  hforderid.setAttribute('id', 'hfOrderID' + index);
-  hforderid.setAttribute('value', order.orderID);
-  div2.appendChild(hforderid);
-
-  var hforderby = document.createElement("input");
-  hforderby.setAttribute('type', 'hidden');
-  hforderby.setAttribute('id', 'hfOrderBy' + index);
-  hforderby.setAttribute('value', order.orderBy);
-
-  div2.appendChild(hforderby);
-
 
 
   var h1 = document.createElement("h6");
@@ -269,8 +320,9 @@ function renderPendingOrder(order, index, createdBy) {
   div4h2.innerHTML = 'Delivery Pending';
   div4.appendChild(div4h2);
   div2.appendChild(div4);
-  anchor.appendChild(div2);
-  div1.appendChild(anchor);
+  //  anchor.appendChild(div2);
+  //div1.appendChild(anchor);
+  div1.appendChild(div2);
   document.getElementById("orderList").appendChild(div1);
 
 }
@@ -280,11 +332,12 @@ function renderDeliveredOrder(order, index, createdBy) {
   var dt1 = new Date(order.deliveryDate);
 
   var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12")
-  div1.setAttribute("style", "padding: 5px;")
+  div1.setAttribute("class", "col-sm-12");
+  div1.setAttribute("style", "padding: 5px;");
+  div1.setAttribute("id", "mainDiv" + index);
 
-  var anchor = document.createElement("a");
-  anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID+"&userID="+order.orderBy);
+  // var anchor = document.createElement("a");
+  // anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID+"&userID="+order.orderBy);
 
   var div2 = document.createElement("div");
   div2.setAttribute("class", "orders-list-div");
@@ -292,6 +345,34 @@ function renderDeliveredOrder(order, index, createdBy) {
   var div3 = document.createElement("div");
   div3.setAttribute("class", "");
   div3.setAttribute("style", "flex-direction: column;align-items: flex-start;");
+
+  var div5 = document.createElement("div");
+  div5.setAttribute("class", "order-details");
+
+  var hforderid = document.createElement("input");
+  hforderid.setAttribute('type', 'hidden');
+  hforderid.setAttribute('id', 'hfOrderID' + index);
+  hforderid.setAttribute('value', order.orderID);
+
+  div5.appendChild(hforderid);
+
+  var hforderby = document.createElement("input");
+  hforderby.setAttribute('type', 'hidden');
+  hforderby.setAttribute('id', 'hfOrderBy' + index);
+  hforderby.setAttribute('value', order.orderBy);
+
+  div5.appendChild(hforderby);
+
+  var i1 = document.createElement("i");
+  i1.setAttribute("onclick", "GetOrderDetails(" + "hfOrderID" + index + ", hfOrderBy" + index+");");
+  i1.setAttribute("class", "far fa-edit address-edit-icon");
+  i1.setAttribute("style", "padding: 0 5px 0 5px;");
+
+  div5.appendChild(i1);
+
+
+  div3.appendChild(div5);
+
 
   var small1 = document.createElement("small");
   small1.innerHTML = "Delivery Date: " + dt1.getDate() + "-" + (dt1.getMonth() + 1) + "-" + dt1.getFullYear();;
@@ -311,18 +392,7 @@ function renderDeliveredOrder(order, index, createdBy) {
 
   div2.appendChild(span1);
 
-  var hforderid = document.createElement("input");
-  hforderid.setAttribute('type', 'hidden');
-  hforderid.setAttribute('id', 'hfOrderID' + index);
-  hforderid.setAttribute('value', order.orderID);
-  div2.appendChild(hforderid);
 
-  var hforderby = document.createElement("input");
-  hforderby.setAttribute('type', 'hidden');
-  hforderby.setAttribute('id', 'hfOrderBy' + index);
-  hforderby.setAttribute('value', order.orderBy);
-
-  div2.appendChild(hforderby);
 
 
   var h1 = document.createElement("h6");
@@ -360,8 +430,9 @@ function renderDeliveredOrder(order, index, createdBy) {
 
   div4.appendChild(div4h2);
   div2.appendChild(div4);
-  anchor.appendChild(div2);
-  div1.appendChild(anchor);
+  // anchor.appendChild(div2);
+  // div1.appendChild(anchor);
+  div1.appendChild(div2);
   document.getElementById("orderList").appendChild(div1);
 
 }
@@ -371,11 +442,12 @@ function renderCancelledOrder(order, index, createdBy) {
   var dt1 = new Date(order.deliveryDate);
 
   var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12")
-  div1.setAttribute("style", "padding: 5px;")
-
-  var anchor = document.createElement("a");
-  anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID+"&userID="+order.orderBy);
+  div1.setAttribute("class", "col-sm-12");
+  div1.setAttribute("style", "padding: 5px;");
+  div1.setAttribute("id", "mainDiv" + index);
+  //
+  // var anchor = document.createElement("a");
+  // anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID+"&userID="+order.orderBy);
 
   var div2 = document.createElement("div");
   div2.setAttribute("class", "orders-list-div");
@@ -383,6 +455,33 @@ function renderCancelledOrder(order, index, createdBy) {
   var div3 = document.createElement("div");
   div3.setAttribute("class", "");
   div3.setAttribute("style", "flex-direction: column;align-items: flex-start;");
+
+  var div5 = document.createElement("div");
+  div5.setAttribute("class", "order-details");
+
+  var hforderid = document.createElement("input");
+  hforderid.setAttribute('type', 'hidden');
+  hforderid.setAttribute('id', 'hfOrderID' + index);
+  hforderid.setAttribute('value', order.orderID);
+
+  div5.appendChild(hforderid);
+
+  var hforderby = document.createElement("input");
+  hforderby.setAttribute('type', 'hidden');
+  hforderby.setAttribute('id', 'hfOrderBy' + index);
+  hforderby.setAttribute('value', order.orderBy);
+
+  div5.appendChild(hforderby);
+
+  var i1 = document.createElement("i");
+  i1.setAttribute("onclick", "GetOrderDetails(" + "hfOrderID" + index + ", hfOrderBy" + index+");");
+  i1.setAttribute("class", "far fa-edit address-edit-icon");
+  i1.setAttribute("style", "padding: 0 5px 0 5px;");
+
+  div5.appendChild(i1);
+
+
+  div3.appendChild(div5);
 
 
   var small1 = document.createElement("small");
@@ -401,20 +500,6 @@ function renderCancelledOrder(order, index, createdBy) {
   span1.setAttribute('class', "material-icons cancel");
   span1.innerHTML = 'cancel';
   div2.appendChild(span1);
-
-  var hforderid = document.createElement("input");
-  hforderid.setAttribute('type', 'hidden');
-  hforderid.setAttribute('id', 'hfOrderID' + index);
-  hforderid.setAttribute('value', order.orderID);
-  div2.appendChild(hforderid);
-
-  var hforderby = document.createElement("input");
-  hforderby.setAttribute('type', 'hidden');
-  hforderby.setAttribute('id', 'hfOrderBy' + index);
-  hforderby.setAttribute('value', order.orderBy);
-
-  div2.appendChild(hforderby);
-
 
   var h1 = document.createElement("h6");
   h1.innerHTML = "order Serial Numbe : " + index + 1;
@@ -455,8 +540,9 @@ function renderCancelledOrder(order, index, createdBy) {
   div4.appendChild(div4h2);
 
   div2.appendChild(div4);
-  anchor.appendChild(div2);
-  div1.appendChild(anchor);
+  // anchor.appendChild(div2);
+  // div1.appendChild(anchor);
+  div1.appendChild(div2);
   document.getElementById("orderList").appendChild(div1);
 
 }
@@ -475,4 +561,11 @@ function renderOrder(order, index, createdBy) {
 
   }
 
+}
+
+
+function GetOrderDetails(orderID, userID) {
+  console.log(orderID);
+
+  window.location.href="orderDetails.html?id="+orderID.value+"&userID=" + userID.value;
 }
