@@ -7,7 +7,7 @@ let eventDocUrl = new URL(location.href);
 let searchParams = new URLSearchParams(eventDocUrl.search);
 const orderID = searchParams.get('id');
 
- var userid_order = searchParams.get('userID');
+var userid_order = searchParams.get('userID');
 
 auth.onAuthStateChanged(firebaseUser => {
   try {
@@ -17,7 +17,7 @@ auth.onAuthStateChanged(firebaseUser => {
       console.log(orderID);
       console.log(userID);
       //GetProfileData(firebaseUser);
-
+      populateDeliveryDate();
       getOrderDetails();
       if (orderID != '' && orderID != null) {
         document.getElementById('msg').innerHTML = 'Getting order details!!';
@@ -35,6 +35,58 @@ auth.onAuthStateChanged(firebaseUser => {
   }
   // document.getElementById('loading-img').style.display = 'none';
 });
+
+function populateDeliveryDate() {
+
+  const tempDate = new Date();
+  var delDate = document.getElementById('odeliveryDate');
+  var option1;
+  console.log(delDate);
+  console.log(tempDate.toLocaleDateString());
+  tempDate.setDate(tempDate.getDate() + 1);
+  option1 = document.createElement("option");
+  option1.setAttribute("value", tempDate.toLocaleDateString());
+  option1.innerHTML = tempDate.toLocaleDateString();
+  delDate.appendChild(option1);
+
+  tempDate.setDate(tempDate.getDate() + 1);
+  option1 = document.createElement("option");
+  option1.setAttribute("value", tempDate.toLocaleDateString());
+  option1.innerHTML = tempDate.toLocaleDateString();
+  delDate.appendChild(option1);
+
+  tempDate.setDate(tempDate.getDate() + 1);
+  option1 = document.createElement("option");
+  option1.setAttribute("value", tempDate.toLocaleDateString());
+  option1.innerHTML = tempDate.toLocaleDateString();
+  delDate.appendChild(option1);
+
+  tempDate.setDate(tempDate.getDate() + 1);
+  option1 = document.createElement("option");
+  option1.setAttribute("value", tempDate.toLocaleDateString());
+  option1.innerHTML = tempDate.toLocaleDateString();
+  delDate.appendChild(option1);
+
+  tempDate.setDate(tempDate.getDate() + 1);
+  option1 = document.createElement("option");
+  option1.setAttribute("value", tempDate.toLocaleDateString());
+  option1.innerHTML = tempDate.toLocaleDateString();
+  delDate.appendChild(option1);
+
+  tempDate.setDate(tempDate.getDate() + 1);
+  option1 = document.createElement("option");
+  option1.setAttribute("value", tempDate.toLocaleDateString());
+  option1.innerHTML = tempDate.toLocaleDateString();
+  delDate.appendChild(option1);
+
+  tempDate.setDate(tempDate.getDate() + 1);
+  option1 = document.createElement("option");
+  option1.setAttribute("value", tempDate.toLocaleDateString());
+  option1.innerHTML = tempDate.toLocaleDateString();
+  delDate.appendChild(option1);
+
+
+}
 
 function GetProfileData(user) {
   // const ref = db.collection("Users").doc(user.uid);
@@ -94,9 +146,8 @@ function getOrderDetails() {
 }
 
 function populateDeliveryAddress(selectedOrder) {
-  var deliverydt=new Date(selectedOrder.deliveryDate);
-  var orderdt=new Date(selectedOrder.orderDate);
-
+  var deliverydt = new Date(selectedOrder.deliveryDate);
+  var orderdt = new Date(selectedOrder.orderDate);
   //document.getElementById('DeliveryDate').innerHTML = selectedOrder.deliveryDate;
   document.getElementById('DeliveryDate').innerHTML = deliverydt.getDate() + "-" + (deliverydt.getMonth() + 1) + "-" + deliverydt.getFullYear();
   document.getElementById('DeliveryTime').innerHTML = selectedOrder.deliveryTime;
@@ -112,6 +163,29 @@ function populateDeliveryAddress(selectedOrder) {
   document.getElementById('City').innerHTML = selectedOrder.deliveryAddress.city;
   document.getElementById('ZipCode').innerHTML = selectedOrder.deliveryAddress.ZipCode;
   document.getElementById('phoneNumber').innerHTML = selectedOrder.deliveryAddress.PhoneNumber;
+  console.log(selectedOrder.deliveryDate);
+  for (index = 0; index < odeliveryDate.options.length; index++) {
+    if (odeliveryDate.options[index].value === selectedOrder.deliveryDate)
+      odeliveryDate.options[index].selected = true;
+
+  }
+  console.log(selectedOrder.deliveryTime);
+  for (index = 0; index < odeliveryTime.options.length; index++) {
+    if (odeliveryTime.options[index].value === selectedOrder.deliveryTime)
+      odeliveryTime.options[index].selected = true;
+  }
+  console.log(selectedOrder.orderStatus);
+  for (index = 0; index < oOrderStatus.options.length; index++) {
+    if (oOrderStatus.options[index].value === selectedOrder.orderStatus)
+      oOrderStatus.options[index].selected = true;
+  }
+
+console.log(selectedOrder.paymentStatus);
+console.log(oPaymentStatus);
+    for (index = 0; index < oPaymentStatus.options.length; index++) {
+      if (oPaymentStatus.options[index].value === selectedOrder.paymentStatus)
+        oPaymentStatus.options[index].selected = true;
+    }
 
 }
 
