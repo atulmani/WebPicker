@@ -305,9 +305,7 @@ function SaveOrder() {
 
               });
 
-              console.log(orderDetails);
-              console.log(cartDetails.length);
-              console.log(selectedAddress);
+              console.log(auth.currentUser);
               if (cartDetails.length > 0 && selectedAddress != null) {
                 console.log('insert order');
 
@@ -315,7 +313,7 @@ function SaveOrder() {
                   .doc(userID)
                   .set({
                     OrderDetails: orderDetails,
-                    CreatedBy: auth.currentUser.email,
+                    CreatedBy:  auth.currentUser.email,
                     CreatedTimestamp: (new Date()).toString(),
                     UpdatedBy: '',
                     UpdatedTimestamp: ''
