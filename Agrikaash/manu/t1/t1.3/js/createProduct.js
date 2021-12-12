@@ -341,6 +341,9 @@ document.getElementById("select").onclick = function(e) {
   input.click();
 
 }
+
+console.log(productID);
+console.log(document.getElementById('hfproductID').value);
 if(productID === null || productID === '')
   productID = document.getElementById('hfproductID').value;
 
@@ -348,6 +351,10 @@ if(productID === null || productID === '')
 document.getElementById('upload').onclick = function() {
   // ImgName = document.getElementById('namebox').value;
 //  productID = document.getElementById('hfproductID').value;
+console.log(productID);
+console.log(document.getElementById('hfproductID').value);
+if(productID === null || productID === '')
+  productID = document.getElementById('hfproductID').value;
 
   ImgName = productID + '_1.png';
   console.log(ImgName);
@@ -385,6 +392,7 @@ document.getElementById('upload').onclick = function() {
 
             console.log("Data added sucessfully in the document: " + productID);
             console.log("eventstart")
+            window.location.href="updateProduct.html"
             // console.log(Date.parse(eventstart))
           })
           .catch(function(error)  {
