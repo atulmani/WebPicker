@@ -78,7 +78,7 @@
         <h4>Agrikaash</h4>
       </a>
 
-      <a href="updateProfile.html" style="padding-right: 0px;">
+      <a href="../login/updateProfile.html" style="padding-right: 0px;">
         <img src="../img/user.png" id="navUser" class="user-icon" alt="">
         <!-- <i class="fas fa-user"></i> -->
       </a>
@@ -92,27 +92,26 @@
   </div>
 
   <div class="small navbar-mobile-bottom">
-    <div class="navbar-mobile-bottom-menu">
-      <a href="#" class="navbar-mobile-bottom-menu-a active" id="a1" style="display:flex; flex-direction:column;">
+    <div class="navbar-mobile-bottom-menu" id="divBottomNavBar">
+      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a active"  style="display:flex; flex-direction:column;">
         <!-- <i class="fas fa-home"></i> -->
         <i class="fas fa-tachometer"></i>
         <small>Dashboard</small>
       </a>
-      <a href="productList.html" class="navbar-mobile-bottom-menu-a" id="a2" style="display:flex; flex-direction:column;">
+      <a href="updateProduct.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <i class="fas fa-th-large"></i>
         <small>Products</small>
       </a>
-      <a href="orderList.html" class="navbar-mobile-bottom-menu-a" id="a2" style="display:flex; flex-direction:column;">
+      <a href="orderStatus.html" class="navbar-mobile-bottom-menu-a"  style="display:flex; flex-direction:column;">
         <i class="fab fa-buffer"></i>
         <small>Orders</small>
       </a>
-      <a href="cartNew.html" class="navbar-mobile-bottom-menu-a" id="a4" style="display:flex; flex-direction:column;">
-        <i id="i4" class="fas fa-shopping-cart"></i>
-        <small id="small4">Cart</small>
-        <span  class="navbar-cart-no" id='cartitemcount'> 0</span>
+      <a href="confirmRegistration.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <i id="i4" class="fas fa-registered"></i>
+        <small id="small4">Registration</small>
       </a>
       <!-- <i class="fas fa-home"></i> -->
-      <a href="couponSetup.html" class="navbar-mobile-bottom-menu-a" id="a5" style="display:flex; flex-direction:column;">
+      <a href="couponSetup.html" class="navbar-mobile-bottom-menu-a"  style="display:flex; flex-direction:column;">
         <i class="fas fa-ticket" ></i>
         <small>Coupon</small>
       </a>
@@ -184,7 +183,13 @@
       <!-- End script -->
       <div class="row no-gutters" style="padding: 2% 0%;">
         <div class="col-lg-5 col-md-5 col-sm-12">
-          <div class="detail-card-full-div">
+          <div id="confirmationMessage" style="display:none;">
+            <!-- <Label id="confirmationMessage" "> -->
+            <Label >
+              Your do not have access to view this page. <a href="../partner/index.html">Click to go to home page</a> </Label>
+
+          </div>
+          <div id="divSummary" class="detail-card-full-div">
             <h3 class="detail-card-full-div-heading">Summary</h3>
             <!-- <span class="notification">1</span> -->
             <div class="detail-card">
@@ -277,7 +282,7 @@
 
           </div>
         </div>
-        <div class="col-lg-7 col-md-7 col-sm-12"><br><br>
+        <div id="divChart" class="col-lg-7 col-md-7 col-sm-12"><br><br>
           <div class="">
             <div class="row no-gutters">
               <div class="col-lg-3 col-md-3 col-sm-12">
@@ -415,7 +420,7 @@
   <script src="../js/firebase.js"></script>
 
   <!-- <script src="../js/chart.js"></script> -->
-  <script src="../js/dashboard.js"></script>
+  <script src="../js/dashboardAdmin.js"></script>
 
 
   <!-- <script src="../js/chart2.js"></script> -->
