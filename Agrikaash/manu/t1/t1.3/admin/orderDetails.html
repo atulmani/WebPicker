@@ -183,20 +183,20 @@
               <h5><span id="msg">Your order is placed successfully</span></h5><br><br>
             </div>
           </center>
-          <div id="divCart">
-            <div class="empty-cart"><br><br>
-              <div class="order-summary">
+          <div >
+            <div width="100%"><br><br>
+              <div width="100%">
                 <div class="" style="display:none;">
                   <h5>Delivery Slot</h5><br>
                   <p>
-                    Order Date: <span id="orderDate"></span>
+                    Order Date: <span id="oldorderDate"></span>
                     Delivery Date: <span id="DeliveryDate"> </span> <br>
                     Time Slot: <span id="DeliveryTime"> </span> <br>
                     Order status: <span id="orderStatus"></span> <br />
                     Payment status: <span id="PaymentStatus"></span><br />
                   </p>
                 </div>
-                <div class="">
+                <div class="" width="100%">
                   <h5>Delivery Slot</h5><br>
                   <table width="100%">
                     <tr>
@@ -204,6 +204,9 @@
                         Order Date:
                       </td>
                       <td>
+                        <input id="orderPlacedBy" type="hidden" />
+                        <input id="orderID" type="hidden" />
+
                         <span id="orderDate"></span>
                       </td>
                     </tr>
@@ -256,13 +259,21 @@
                     </tr>
                     <tr>
                       <td colspan=2>
-                        
+                        <div class="">
+                          <button class="mybutton button5" onClick="SaveOrder();" id="btnSaveOrder">Update Order</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+
+                      <td colspan=2>
+                        <label for="Mesage" id="Message"></label>
                       </td>
                     </tr>
                   </table>
                 </div>
                 <div class="">
-                  <h5>Address</h5><br>
+                  <br /><h5>Address</h5>
                   <p><span id="BranchName"> </span></p>
                   <span id="BranchOwnerName"> </span>
                   <p>
@@ -295,9 +306,7 @@
                 <small id="itemCount"></small>
                 <input type="hidden" id="hfFinalPrize">
               </div>
-              <div class="">
-                <a href="orderList.html"><button class="mybutton button5" id="btnCheckOut">Order List</button></a>
-              </div>
+
             </div>
           </div>
 
