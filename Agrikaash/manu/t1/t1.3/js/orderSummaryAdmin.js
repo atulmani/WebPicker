@@ -85,40 +85,7 @@ function SaveOrder() {
         var deliveryDateChanges = "";
         var deliverySlotChanges = "";
 
-        if(oldOrderStatus != oOrderStatus)
-        {
-          blTrackChanges = true;
-          orderStatusChanges = "changed from " +oldOrderStatus +" to " +  oOrderStatus;
-        }
-        if(oldPaymentStatus != paymentStatus)
-        {
-          blTrackChanges = true;
-          paymentStatusChanges = "changed from " +oldPaymentStatus +" to " +  paymentStatus;
-        }
 
-        if(oldDeliveryTime != deliveryTime)
-        {
-          blTrackChanges = true;
-          deliverySlotChanges = "changed from " +oldDeliveryTime +" to " +  deliveryTime;
-        }
-        if(oldDeliveryDate != deliveryDate)
-        {
-          blTrackChanges = true;
-          deliveryDateChanges = "changed from " +oldDeliveryDate +" to " +  deliveryDate;
-        }
-        orderChanges.push(
-          {
-              OrderStatus : orderStatusChanges,
-              PaymentStatus : paymentStatusChanges,
-              DeliverySlot : deliverySlotChanges,
-              DeliveryDate :deliveryDateChanges
-          }
-        );
-
-        if(flag === true)
-        {
-          UpdateOrderTrackingDetails(orderChanges, orderDetails.orderID);
-        }
 
         if (selectedOrderIndex >= 0) {
           selectedOrder = orderDetails[selectedOrderIndex];
@@ -127,6 +94,38 @@ function SaveOrder() {
           oldDeliveryDate = selectedOrder.deliveryDate;
           oldOrderStatus = selectedOrder.orderStatus;
           oldPaymentStatus = selectedOrder.paymentStatus;
+
+
+          if (oldOrderStatus != oOrderStatus) {
+            blTrackChanges = true;
+            orderStatusChanges = "changed from " + oldOrderStatus + " to " + orderStatus;
+          }
+          if (oldPaymentStatus != paymentStatus) {
+            blTrackChanges = true;
+            paymentStatusChanges = "changed from " + oldPaymentStatus + " to " + paymentStatus;
+          }
+
+          if (oldDeliveryTime != deliveryTime) {
+            blTrackChanges = true;
+            deliverySlotChanges = "changed from " + oldDeliveryTime + " to " + deliveryTime;
+          }
+          if (oldDeliveryDate != deliveryDate) {
+            blTrackChanges = true;
+            deliveryDateChanges = "changed from " + oldDeliveryDate + " to " + deliveryDate;
+          }
+          orderChanges.push({
+            OrderStatus: orderStatusChanges,
+            PaymentStatus: paymentStatusChanges,
+            DeliverySlot: deliverySlotChanges,
+            DeliveryDate: deliveryDateChanges,
+            ChangedTimeStamp: new Date()
+          });
+
+          if (blupdatedFlag === true) {
+            console.log(orderDetails);
+            console.log(orderDetails[selectedOrderIndex].orderID);
+            UpdateOrderTrackingDetails(orderChanges, orderDetails[selectedOrderIndex].orderID);
+          }
           //get new data
           selectedOrder.deliveryDate = deliveryDate;
           selectedOrder.orderStatus = orderStatus;
@@ -138,7 +137,12 @@ function SaveOrder() {
             (oldPaymentStatus === 'Completed' || paymentStatus === 'Completed')) {
             console.log("Wallet");
             document.getElementById("Message").innerHTML = "Payment of " + selectedOrder.totalAmount + " has been added to user's wallet";
-            updateWalletDetails(userid_order, selectedOrder.totalAmount);
+            updateWalletDetails(userid_order, selectedOrder.totalAmount, 'add');
+          } else if ((oldOrderStatus != orderStatus && oldOrderStatus === 'Cancelled') &&
+            (oldPaymentStatus != paymentStatus && oldPaymentStatus === 'Completed')) {
+            console.log("Wallet");
+            document.getElementById("Message").innerHTML = "Payment of " + selectedOrder.totalAmount + " has been deleted from to user's wallet";
+            updateWalletDetails(userid_order, selectedOrder.totalAmount, 'delete');
           } else if (orderStatus === 'Delivered' && paymentStatus === 'Pending') //invalid case expression:
           {
             blupdatedFlag = false;
@@ -173,32 +177,53 @@ function SaveOrder() {
       // document.getElementById('errorMessage_Signup').style.display = 'block';
     });
 }
-function UpdateOrderTrackingDetails(orderChanges, orderID)
-{
-  db.collection("OrderTracking").doc(userid_order).set({
-      OrderID: orderID,
-      ChangeTrack : firebase.firestore.FieldValue.arrayUnion(orderChanges),
-      UpdatedTimestamp: new Date(),
-      UpdatedByUser: userID
-    })
-    .then(function(docRef) {
-      console.log("Data added sucessfully in the document: " + userid_order);
-      //    window.location.href = "orderStatus.html"
-      // console.log(Date.parse(eventstart))
-    })
-    .catch(function(error) {
-      console.error("error updatign order:", error);
-    });
 
+function UpdateOrderTrackingDetails(orderChanges, orderID) {
+
+  var trackData = [];
+  console.log(userid_order);
+  console.log(orderID);
+  const snapshot = db.collection('OrderTracking').where("__name__", "==", userid_order).where('OrderID', "==", orderID).get(); //;//
+
+  snapshot.then((psnapshot) => {
+    psnapshot.forEach((doc) => {
+      console.log('existing track');
+      trackData = doc.data().ChangeTrack;
+    });
+    console.log(trackData);
+    for (i = 0; i < orderChanges.length; i++) {
+      trackData.push(orderChanges[i]);
+    }
+
+    db.collection("OrderTracking").doc(userid_order).set({
+        OrderID: orderID,
+        ChangeTrack: trackData,
+        UpdatedTimestamp: new Date(),
+        UpdatedByUser: userID
+      })
+      .then(function(docRef) {
+        console.log("Data added sucessfully in the document: " + userid_order);
+        //    window.location.href = "orderStatus.html"
+        // console.log(Date.parse(eventstart))
+      })
+      .catch(function(error) {
+        console.error("error updatign order:", error);
+      });
+
+  });
 }
-function updateWalletDetails(userid_order, totalamount) {
+
+function updateWalletDetails(userid_order, totalamount, addDelete) {
   var currentAmount = 0;
   const snapshot = db.collection('UserWallet').doc(userid_order);
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
         currentAmount = doc.data().WalletAmount;
       }
-      currentAmount = Number(currentAmount) + Number(totalamount);
+      if (addDelete === 'add')
+        currentAmount = Number(currentAmount) + Number(totalamount);
+      else
+        currentAmount = Number(currentAmount) - Number(totalamount);
       db.collection("UserWallet").doc(userid_order).set({
           WalletAmount: currentAmount,
           UpdatedTimestamp: new Date(),
