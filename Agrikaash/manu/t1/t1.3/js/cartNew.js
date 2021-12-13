@@ -200,7 +200,7 @@ async function getCartItemNo() {
               var weight = selectedsubItem.split('-');
 
               var selectedProduct = parr[parr.findIndex(e => e.ProductID === cartItems[i].ProductID)];
-              if (selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
+              if (selectedProduct.ProductDetails!= undefined && selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
                 var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
                 prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
               }
