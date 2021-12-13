@@ -23,7 +23,9 @@ map Invoice                 like Entertainment , Gift, Employee Salary , Bonus, 
   <title>Hyper Cloud Advertising | AI Powered Cloud Based Content Management Solutions for
     Hyperlocal & Digital Out-of-home Advertising</title>
 
-  <link rel="shortcut icon" href="img/logo.png">
+  <link rel="shortcut icon" href="../img/logo.png">
+
+  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
   <!-- Google Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -53,54 +55,23 @@ map Invoice                 like Entertainment , Gift, Employee Salary , Bonus, 
 
 <body>
   <!-- Navbar - Start -->
-  <nav class="navbar navbar-expand-lg sticky-top">
+  <nav class="navbar navbar-expand-lg sticky-top" style="padding:4px;">
     <div class="container-fluid">
-      <!-- <a class="navbar-brand" href="#">
-        <img src="img/logo.png" width="40px" alt="" style="margin-top: -10px;">
-        <span class="logo">Hyper Cloud</span><span class="logo"></span>
-      </a> -->
       <a class="navbar-brand" href="https://HyperCloudAdvertising.com">
-        <table border="0px" style=" width: 100%; color:#fff; margin-top:-36px; margin-bottom: -28px; ">
-          <!-- <table class="small" border="0px" style=" color:#fff; margin-top:-36px; margin-bottom: -28px; " >   -->
-          <tr>
-            <td style="width: 38%;text-align: right;">
-              <img src="../img/logo.png" width="38px" alt="">
-            </td>
-            <td style=" color:#e10032; text-align: left;padding-left: 4px; position:relative;top:-5px;">
-              <div class="footer-last-heading">
-                <!-- <span style="font-family: 'Pacifico', cursive;">H</h3><h3>yper Cloud</h3> -->
-                <h3 style="font-size: 1.4rem;">Hyper</h3>
-                <h3 class="footer-ads">Cloud</h3>
-                <!-- <span class="footer-ads">Advertising</span> -->
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2" style="text-align: center;">
-              <div style=" margin-top: -32px;color:#e10032;">
-                <h6>
-                  <span class="large" style="letter-spacing:0.4px;font-size: 0.6rem;font-weight:600; "> DIGITAL SOLUTIONS</span>
-                  <span class="small" style="padding-left:6%; letter-spacing:1.0px;font-size: 12px; "> DIGITAL SOLUTIONS</span>
-                </h6>
-              </div>
-            </td>
-          </tr>
-        </table>
+        <img src="../img/logo/logo-text.png" width="100px" alt="">
       </a>
 
-      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
+      <div class="navbar-toggler" data-toggle="collapse" data-target="#collapsibleNavbar1">
         <span>
-       <i class="fa fa-reorder fa-2x " style="color:#1638A0;" ></i>
+       <i class="fa fa-reorder" style="color:#1638A0;font-size: 1.6rem;" ></i>
      </span>
-      </button> -->
+   </div>
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="nav navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="#"><i class="fas fa-home"></i></a>
           </li>
           <li class="nav-item">
-            <!-- <a class="nav-link" href="#services">Services</a> -->
             <div class="dropdown">
               <div onclick="ddIndustries()" class="dropbtn">Industries
                 <i class="fa fa-caret-down"></i>
@@ -154,60 +125,48 @@ map Invoice                 like Entertainment , Gift, Employee Salary , Bonus, 
 
   <div class="small navbar-bottom-mobile">
     <ul>
-      <a type="button" href="#">
-        <span class="material-icons-outlined">
-          home
-        </span> <br>
-        <span> Home </span>
+      <a type="button" href="../#">
+        <span><i class="fas fa-home"></i></span> <br> <span> Home </span>
       </a>
-      <a type="button" href="#WhyToUse">
-        <span class="material-icons-outlined">
-          account_balance_wallet
-        </span>
-        <br>
-        <span> Payments </span>
+      <a type="button" href="../#WhyToUse">
+        <span><i class="fas fa-tasks"></i></span> <br> <span> Services </span>
       </a>
       <!-- <a type="button" href="login">
         <span><i class="fas fa-user"></i></span> <br> <span> Login </span>
       </a> -->
-      <a type="button" href="contacts">
-        <span class="material-icons-outlined">
-          supervisor_account
-        </span>
-        <br>
-        <span> Partnerns </span>
+      <a type="button" href="#">
+        <span><i class="fas fa-id-badge"></i></span> <br> <span> Contact Us </span>
       </a>
       <a type="button" data-toggle="collapse" data-target="#collapsibleNavbar1">
-        <span class="material-icons-outlined">
-          more_vert
-        </span> <br>
-        <span> More </span>
+        <span><i class="fas fa-list"></i></span> <br> <span> More </span>
       </a>
 
       <!-- Navbar links -->
       <div class="collapse navbar-collapse more-button-links" id="collapsibleNavbar1">
         <ul class="">
           <li class="">
-            <a class="" href="#">Home</a>
+            <a class="" href="../#">Home</a>
           </li>
           <li class="">
-            <a class="" href="#IndustriesWeServe">Industries</a>
+            <a class="" href="../#IndustriesWeServe">Industries</a>
           </li>
           <!-- <li class="">
             <a class="" href="login">Login</a>
           </li> -->
           <li class="">
-            <a class="" href="#WhyToUse">Services</a>
+            <a class="" href="../#WhyToUse">Services</a>
           </li>
           <li class="">
-            <a class="" href="contacts">Contact</a>
+            <a class="" href="../contacts/">Contact</a>
+          </li>
+
+          <li class="">
+            <a class="" href="../login/">login</a>
           </li>
         </ul>
       </div>
 
   </div>
-
-
   <!-- Navbar - End -->
 
   <!-- Payments page - start -->
@@ -221,21 +180,28 @@ map Invoice                 like Entertainment , Gift, Employee Salary , Bonus, 
     <div class="" style="padding:10px;">
       <div class="payment-revenue-div">
         <div class="">
-          <h5>YOY Revenue</h5>
-          <h4>₹ 400</h4>
+          <div class="">
+            <h5>YOY Revenue</h5>
+            <h4 id="revenue"></h4>
+          </div>
+
+          <div class="" style="display:none;">
+            <h5>YOY Profit</h5>
+            <h4 id="YOYprofit"></h4>
+          </div>
         </div>
 
         <div class="">
-          <h5>YOY Profit</h5>
-          <h4>₹ 200</h4>
+          <div class="" id="chartContainer" style="width:150px;height:100%;display:none;"></div>
         </div>
       </div>
     </div>
+    <hr>
 
     <div class="inward-outward-indicators">
       <div class="" style="display:flex;">
         <h4 style="font-size:1.1rem;font-weight:600;">Transactions</h4>
-        <a href="add-payments.html" class="plus-sign">
+        <a href="addPayments.html" class="plus-sign">
           <span class="material-icons-outlined">
             add
           </span>
@@ -248,7 +214,7 @@ map Invoice                 like Entertainment , Gift, Employee Salary , Bonus, 
           </span>
         </span>
         <div class="toggle-btn" id="_3rd-toggle-btn">
-          <input type="checkbox">
+          <input id="remittanceInput" type="checkbox">
           <span></span>
         </div>
         <span class="toggle-span">
@@ -261,7 +227,7 @@ map Invoice                 like Entertainment , Gift, Employee Salary , Bonus, 
     <div class="">
       <div class="" style="display:flex;justify-content:space-between;">
 
-        <a href="#" style="color:rgba(0,0,0,0.6);padding-left: 10px;">
+        <a href="#" style="color:rgba(0,0,0,0.6);padding-left: 10px;text-decoration:none;">
           <span class="material-icons-outlined">
             tune
           </span>
@@ -269,67 +235,26 @@ map Invoice                 like Entertainment , Gift, Employee Salary , Bonus, 
         </a><br>
 
         <div class="">
-          <small style="font-weight:bold;padding-right:10px;">₹ 1,22,22,940.00</small>
+          <small id="total" style="font-size:1rem;font-weight:bold;padding-right:10px;"></small>
         </div>
       </div>
 
 
-    </div><hr style="margin-bottom: 0"/>
+    </div>
+    <hr style="margin-bottom: 0" />
 
 
     <section id="inward-outward-section">
       <div class="full-div" id="fullDiv">
         <div class="" id="inwardPayment">
-          <div class="inward-outward-cards">
-
-            <table class="card-div">
-              <tr>
-                <td valign="center" width="60%">
-                  <div class="name-price">
-                    <h5>HyperCloudAdvertising Private Limited</h5>
-                    <small>12 / June / 2021</small>
-                  </div>
-                </td>
-
-                <td valign="center" style="text-align:right;" width="40%">
-                  <div class="price-type">
-                    <h6>- ₹1,22,22,940.00</h6>
-                    <small>Paid by Credit</small>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td width="100%" colspan=2>
-                  <span class="payment-para1">Lorem ipsum dolor sit amet... </span>
-                  <span class="show-more">show more</span>
-                  <div class="payment-para2">
-                    <span> consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</span>
-                  </div>
-                </td>
-              </tr>
-            </table>
+          <div class="inward-outward-cards" id="inwardPaymentDiv">
 
 
           </div>
         </div>
 
         <div class="" id="outwardPayment">
-          <div class="inward-outward-cards">
-            <div class="card-div">
-              <div class="name-price">
-                <div class="">
-                  <small>12 / JUN / 2021</small>
-                  <h5>Anita - outward</h5>
-                </div>
-                <div style="text-align:right;" class="">
-                  <small>Credit Card</small>
-                  <h6>₹ 57,000,200</h6>
-                </div>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet, magna aliqua.
-              </p>
-            </div>
+          <div class="inward-outward-cards" id="outwardPaymentDiv">
           </div>
         </div>
       </div>
@@ -405,29 +330,8 @@ map Invoice                 like Entertainment , Gift, Employee Salary , Bonus, 
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="footer-last">
-          <table style="width: 100%;">
-            <tr>
-              <td style="width: 40%;text-align: right;">
-                <img src="../img/logo.png" width="38px" alt="">
-              </td>
-              <td style="color:#e10032;text-align: left;padding-left: 4px;position:relative;top: -5px;">
-                <div class="footer-last-heading">
-                  <h3 style="font-size: 1.4rem;">Hyper</h3>
-                  <h3 class="footer-ads">Cloud</h3>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div style="margin-top: -30px;position:relative;left: 95px;">
-                  <h6>
-                    <span class="large" style="color:#e10032;letter-spacing:0.4px;font-size: 0.6rem;font-weight:600; text-align: left;"> DIGITAL SOLUTIONS</span>
-                  </h6>
-                </div>
-              </td>
-            </tr>
-          </table>
-          <br>
+          <img src="../img/logo/logo-text.png" width="110px" alt="">
+          <br><br>
           <h5 class="git">Get in Touch</h5>
           <a href="#" class="footer-no">+91 915 255 2222</a>
           <br>
@@ -485,11 +389,14 @@ map Invoice                 like Entertainment , Gift, Employee Salary , Bonus, 
   <!-- <script src="js/jquery.min.js"></script> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <!-- Javascript to Populate Map - Start  -->
-  <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script> -->
+  <!-- Firebase Services -->
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-storage.js"></script>
 
   <!-- <script src="../js/main.js"></script> -->
-  <!-- <script src="../js/firebase.js"></script> -->
+  <script src="../js/firebase.js"></script>
   <script src="../js/sa/payments.js"></script>
 
   <!-- Owl Carousel Javascript  -->
