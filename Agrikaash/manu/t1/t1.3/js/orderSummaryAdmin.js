@@ -14,8 +14,6 @@ auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
-      console.log(orderID);
-      console.log(userID);
       //GetProfileData(firebaseUser);
       populateDeliveryDate();
       getOrderDetails();
@@ -84,7 +82,7 @@ function SaveOrder() {
         var paymentStatusChanges = "";
         var deliveryDateChanges = "";
         var deliverySlotChanges = "";
-
+        var orderStage = 0;
 
 
         if (selectedOrderIndex >= 0) {
@@ -96,8 +94,18 @@ function SaveOrder() {
           oldPaymentStatus = selectedOrder.paymentStatus;
 
 
-          if (oldOrderStatus != oOrderStatus) {
+          if (oldOrderStatus != orderStatus) {
             blTrackChanges = true;
+            //1- Order Placed, 2 - Pending, 3 - Packed, 4 - On the Way, 5 - Delivered,
+            if (orderStatus === 'Pending')
+              orderStage = 2;
+            else if (orderStatus === 'Packed')
+              orderStage = 3;
+            else if (orderStatus === 'On The Way')
+              orderStage = 4;
+            else if (orderStatus === 'Delivered')
+              orderStage = 5;
+
             orderStatusChanges = "changed from " + oldOrderStatus + " to " + orderStatus;
           }
           if (oldPaymentStatus != paymentStatus) {
@@ -114,6 +122,7 @@ function SaveOrder() {
             deliveryDateChanges = "changed from " + oldDeliveryDate + " to " + deliveryDate;
           }
           orderChanges.push({
+            OrderStage: orderStage,
             OrderStatus: orderStatusChanges,
             PaymentStatus: paymentStatusChanges,
             DeliverySlot: deliverySlotChanges,
@@ -122,8 +131,6 @@ function SaveOrder() {
           });
 
           if (blupdatedFlag === true) {
-            console.log(orderDetails);
-            console.log(orderDetails[selectedOrderIndex].orderID);
             UpdateOrderTrackingDetails(orderChanges, orderDetails[selectedOrderIndex].orderID);
           }
           //get new data
@@ -135,12 +142,10 @@ function SaveOrder() {
           //order status changed is changed to cancelled,if payment status is completed, need to add the amount in user wallet
           if (oldOrderStatus != orderStatus && orderStatus === 'Cancelled' &&
             (oldPaymentStatus === 'Completed' || paymentStatus === 'Completed')) {
-            console.log("Wallet");
             document.getElementById("Message").innerHTML = "Payment of " + selectedOrder.totalAmount + " has been added to user's wallet";
             updateWalletDetails(userid_order, selectedOrder.totalAmount, 'add');
           } else if ((oldOrderStatus != orderStatus && oldOrderStatus === 'Cancelled') &&
             (oldPaymentStatus != paymentStatus && oldPaymentStatus === 'Completed')) {
-            console.log("Wallet");
             document.getElementById("Message").innerHTML = "Payment of " + selectedOrder.totalAmount + " has been deleted from to user's wallet";
             updateWalletDetails(userid_order, selectedOrder.totalAmount, 'delete');
           } else if (orderStatus === 'Delivered' && paymentStatus === 'Pending') //invalid case expression:
@@ -181,25 +186,30 @@ function SaveOrder() {
 function UpdateOrderTrackingDetails(orderChanges, orderID) {
 
   var trackData = [];
-  console.log(userid_order);
-  console.log(orderID);
-  const snapshot = db.collection('OrderTracking').where("__name__", "==", userid_order).where('OrderID', "==", orderID).get(); //;//
+  var trackdataForUpdate = [];
+  var trackingID = '';
+  const snapshot = db.collection('OrderTracking').where('OrderID', "==", orderID).get(); //;//
 
   snapshot.then((psnapshot) => {
     psnapshot.forEach((doc) => {
+
       console.log('existing track');
+      trackingID = doc.id;
       trackData = doc.data().ChangeTrack;
     });
-    console.log(trackData);
-    for (i = 0; i < orderChanges.length; i++) {
-      trackData.push(orderChanges[i]);
-    }
+    for (i = 0; i < trackData.length; i++) {
+      if(trackData[i].OrderStage < orderChanges[0].OrderStage)
+        trackdataForUpdate.push(trackData[i]);
 
-    db.collection("OrderTracking").doc(userid_order).set({
+    }
+    trackdataForUpdate.push(orderChanges[0]);
+
+    db.collection("OrderTracking").doc(trackingID).set({
         OrderID: orderID,
-        ChangeTrack: trackData,
+        ChangeTrack: trackdataForUpdate,
         UpdatedTimestamp: new Date(),
-        UpdatedByUser: userID
+        UpdatedByUser: userID,
+        userID: userid_order
       })
       .then(function(docRef) {
         console.log("Data added sucessfully in the document: " + userid_order);
@@ -252,8 +262,6 @@ function populateDeliveryDate() {
   const tempDate = new Date();
   var delDate = document.getElementById('odeliveryDate');
   var option1;
-  console.log(delDate);
-  console.log(tempDate.toLocaleDateString());
   tempDate.setDate(tempDate.getDate() + 1);
   option1 = document.createElement("option");
   option1.setAttribute("value", tempDate.toLocaleDateString());
@@ -341,7 +349,6 @@ function getOrderDetails() {
         var selectedOrder;
         if (selectedOrderIndex >= 0) {
           selectedOrder = orderDetails[selectedOrderIndex];
-          console.log(selectedOrder);
           populateDeliveryAddress(selectedOrder, userID);
           populateOrderItems(selectedOrder);
         }
@@ -386,6 +393,7 @@ function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
     if (odeliveryTime.options[index].value === selectedOrder.deliveryTime)
       odeliveryTime.options[index].selected = true;
   }
+  //document.getElementById("hfOrderStatus").value=selectedOrder.orderStatus;
   for (index = 0; index < oOrderStatus.options.length; index++) {
     if (oOrderStatus.options[index].value === selectedOrder.orderStatus)
       oOrderStatus.options[index].selected = true;
@@ -400,7 +408,6 @@ function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
 
 function populateOrderItems(selectedOrder) {
   var orderItem = selectedOrder.orderItems;
-  console.log(orderItem);
   for (i = 0; i < orderItem.length; i++) {
     renderOrderItem(orderItem[i]);
   }
