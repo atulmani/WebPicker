@@ -194,6 +194,26 @@ document.getElementById('upload').onclick = function() {
         ImgUrl = url;
         alert('ImgUrl: ' + ImgUrl);
         console.log(userID);
+
+        //Update meta data for firebase storage resources - Start
+          var storageRef = uploadTask.snapshot.ref;
+          // console.log ("storageRef: " + storageRef );
+          // Create file metadata to update to cache for 1 year
+          var newMetadata = {
+            cacheControl: 'public,max-age=31536000',
+            contentType: 'image/png'
+          };
+          // Update metadata properties
+          storageRef.updateMetadata(newMetadata)
+            .then((metadata) => {
+              // Updated metadata for storage resources is returned in the Promise
+              console.log("metadata added on image url: " + url );
+            }).catch((error) => {
+              // Uh-oh, an error occurred!
+            });
+
+            //Update meta data for firebase storage resources - End
+
         db.collection("UserRequest").doc(userID).update({
             // console.log('inside db collection: ' + newEventID);
             // EventId: newEventID,
