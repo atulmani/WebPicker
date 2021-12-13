@@ -117,7 +117,7 @@ function SaveOrder() {
 
         if(flag === true)
         {
-          UpdateOrderTrackingDetails(orderChanges);
+          UpdateOrderTrackingDetails(orderChanges, orderDetails.orderID);
         }
 
         if (selectedOrderIndex >= 0) {
@@ -173,9 +173,23 @@ function SaveOrder() {
       // document.getElementById('errorMessage_Signup').style.display = 'block';
     });
 }
-function UpdateOrderTrackingDetails(orderChanges)
+function UpdateOrderTrackingDetails(orderChanges, orderID)
 {
-  
+  db.collection("OrderTracking").doc(userid_order).set({
+      OrderID: orderID,
+      ChangeTrack : firebase.firestore.FieldValue.arrayUnion(orderChanges),
+      UpdatedTimestamp: new Date(),
+      UpdatedByUser: userID
+    })
+    .then(function(docRef) {
+      console.log("Data added sucessfully in the document: " + userid_order);
+      //    window.location.href = "orderStatus.html"
+      // console.log(Date.parse(eventstart))
+    })
+    .catch(function(error) {
+      console.error("error updatign order:", error);
+    });
+
 }
 function updateWalletDetails(userid_order, totalamount) {
   var currentAmount = 0;
