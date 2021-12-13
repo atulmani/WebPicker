@@ -24,12 +24,15 @@ auth.onAuthStateChanged(firebaseUser => {
 function GetProfileData(user) {
   // const ref = db.collection("Users").doc(user.uid);
 
-  const snapshot = db.collection('Users').doc(user.uid);
+  const snapshot = db.collection('UserList').doc(user.uid);
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
-        document.getElementById('headerProfilePic').src = doc.data().ImageURL;
+        if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
+          document.getElementById('navUser').src = doc.data().ProfileImageURL;
+        }
+        //document.getElementById('headerProfilePic').src = doc.data().ImageURL;
         // document.getElementById('profile-name').value = doc.data().displayName;
-        document.getElementById('displayName').innerHTML = doc.data().displayName;
+        //document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
     })
     .catch(function(error)  {

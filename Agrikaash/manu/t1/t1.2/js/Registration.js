@@ -7,8 +7,8 @@ auth.onAuthStateChanged(firebaseUser => {
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
 
-      GetProfileData(firebaseUser);
-      GetRegistrationRequest();
+      GetProfileData();
+//      GetUserProfile();
 
     } else {
       console.log('User has been logged out');
@@ -21,27 +21,8 @@ auth.onAuthStateChanged(firebaseUser => {
 });
 
 
-function GetProfileData(user) {
-  // const ref = db.collection("Users").doc(user.uid);
 
-  const snapshot = db.collection('Users').doc(user.uid);
-  snapshot.get().then(async (doc) => {
-      if (doc.exists) {
-        //console.log('Document ref id: ' + doc.data().uid);
-        userID = doc.data().uid;
-        document.getElementById('headerProfilePic').src = doc.data().ImageURL;
-        document.getElementById('displayName').innerHTML = doc.data().displayName;
-      }
-    })
-    .catch(function(error) {
-      // An error occurred
-      console.log(error.message);
-      // document.getElementById('errorMessage_Signup').innerHTML = error.message;
-      // document.getElementById('errorMessage_Signup').style.display = 'block';
-    });
-};
-
-function GetRegistrationRequest() {
+function GetProfileData() {
   console.log(userID);
   const snapshot = db.collection('UserRequest').doc(userID);
   snapshot.get().then(async (doc) => {
@@ -62,9 +43,12 @@ function GetRegistrationRequest() {
       document.getElementById('userName').innerHTML = displayName;
       document.getElementById('userEmail').innerHTML = userEmail;
       document.getElementById('userPhone').innerHTML = phone;
-      document.getElementById('myimg').src = profileImageURL;
+      if(profileImageURL != '' && profileImageURL != undefined)
+      {
+        document.getElementById('myimg').src = profileImageURL;
+        document.getElementById('navUser').src = profileImageURL;
+      }
       document.getElementById('txtCity').value = address;
-      document.getElementById('navUser').src = profileImageURL;
 
       var userType1 = document.getElementById("userType1");
       var userType2 = document.getElementById("userType2");
@@ -104,16 +88,24 @@ function SaveDetails() {
 
   //e.preventDefault();
   var userType = [];
-  var uType = document.getElementById("userType");
-  console.log(uType);
-  for (i = 0; i < uType.options.length; i++) {
-    if (uType.options[i].selected)
-
+  var uType1 = document.getElementById("userType1");
+  if (uType1.checked)
+  {
       userType.push({
-        text: uType.options[i].text,
-        value: uType.options[i].value
+        text: 'Retailer/Customer',
+        value: 'Customer'
       });
   }
+
+  var uType2 = document.getElementById("userType2");
+  if (uType2.checked)
+  {
+      userType.push({
+        text: 'Vendor/Farmers',
+        value: 'Vendor'
+      });
+  }
+
   var ocustomerType = document.getElementById("customerType");
   var customerType = ocustomerType.options[ocustomerType.selectedIndex].value;
 
@@ -137,6 +129,8 @@ function SaveDetails() {
     })
     .then(() => {
       //saved successfully
+      //
+      document.getElementById("confirmationMessage").style.display='block';
     })
     .catch(function(error) {
       console.log("in error");
@@ -207,7 +201,7 @@ document.getElementById('upload').onclick = function() {
           })
           .then(function(docRef) {
             document.getElementById("upload").disabled = true;
-            document.getElementById("navUser").src=url;  
+            document.getElementById("navUser").src=url;
             console.log("Data added sucessfully in the document: " + userID);
 
           })

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Agrikaash">
+  <meta name="keywords" content="website design and development">
+  <meta name="author" content="Web Picker">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Agrikaash </title>
+<!--
+  <link rel="shortcut icon" href="../img/logo.png"> -->
+
+  <!-- Google fonts -->
+  <!--
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+-->
+  <!-- Font Awesome cdn file -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <!-- Owl Stylesheets -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"> -->
+
+  <!-- Bootstrap css -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+
+  <!-- Your Own Style -->
+  <link rel="stylesheet" href="../css/styles.css">
+
+</head>
+
+<body>
+
+  <!-- Navbar - Start -->
+  <nav class="navbar navbar-expand-lg sticky-top large">
+    <div class="container">
+      <div class="" style="display:flex;">
+        <a class="navbar-brand" href="#banner">
+          <!-- <img src="./img/logo.png" width="30px" alt=""> -->
+        </a>
+      </div>
+      <div class="">
+
+      </div>
+      <div class="">
+
+      </div>
+      <div class="container before-nav">
+        <!-- <span><i class="fas fa-user"></i><a href="#">Login/Sign Up</a> </span>
+        <span><i class="fas fa-map-marker-alt"></i><a href="#">510086 - Banglore</a> </span>
+        <span><i class="fas fa-phone fa-flip-horizontal" style="padding: 0 20px 0 5px; "></i><a href="#">98227 52885</a> </span> -->
+      </div>
+    </div>
+  </nav>
+
+  <div class="small navbar-mobile">
+    <div class="navbar-mobile-menu">
+      <a href="#"><i class="fas fa-bars"></i></a>
+      <!-- <a href="#"><img src="../img/logo.png" width="30px" alt=""> </a> -->
+      <a href="#" style="padding-right: 0px;"><i style="font-size: 0.8rem; position: relative; top: -3px;border: 1px solid #fff;line-height: 20px;
+      text-align: center;width: 20px; height:20px;border-radius:50%;" class="fas fa-user"></i></a>
+    </div>
+  </div>
+
+  <div class="small navbar-mobile-bottom">
+    <div class="navbar-mobile-bottom-menu">
+
+    </div>
+  </div>
+  <!-- Navbar - End -->
+
+  <!-- login - start -->
+  <div class="login-full-page">
+    <div class="row no-gutters">
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="login-register-card">
+          <div class="login-register-card-fixed">
+            <form class="login-form" id="registerFormAdditional">
+              <div class="login-form-feilds">
+                <h5>City</h5>
+                <input type="text" id="txtCity" required name="" value="">
+                <div class="underline"></div>
+
+              </div>
+              <div class="login-form-feilds">
+                <h5>User Type</h5>
+
+                <select id="userType" multiple>
+                  <option value="Customer">Retailer/Customer</option>
+                  <option value="Vendor">Vendor/Farmers</option>
+                </select>
+                <div class="underline"></div>
+              </div>
+              <div class="login-form-feilds">
+                <h5>User Category</h5>
+                <select id="customerType">
+                  <option value="Small">Small</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Large">Large</option>
+                </select>
+              </div>
+
+              <div class="login-form-feilds">
+                <h5>ID Type</h5>
+
+                <select id="IDType">
+                  <option value="Aadhaar">Adhaar</option>
+                  <option value="PAN Number">PAN Number</option>
+                  <option value="Ration Card">Ration Card</option>
+                  <option value="Driving Licence">Driving Licence</option>
+                  <option value="Passport">Passport</option>
+                </select>
+                <div class="underline"></div>
+              </div>
+
+              <div class="login-form-feilds">
+
+                <h5>ID Number</h5>
+                <input type="text" id="txtID" required name="" value="">
+
+                <div class="underline"></div>
+              </div>
+              <a href="#" style="text-align: center;"><button id="btnSaveDetails" onclick="SaveDetails();" class="mybutton button5">Save Request</button></a><br>
+
+
+              <div id='imageDiv' style="padding:1.5%;" class="col-lg-6">
+                <div style="border:2px solid #889; color:#6ea23f;" class="firstbox">
+                  <style media="screen">
+                    img {
+                      height: 230px;
+                      width: 330px;
+                      border: 2px solid black;
+                    }
+                  </style>
+                  Image Name <input id="namebox" type="text" name="" value=""> <br><br>
+
+                  <img id="myimg" src="" alt=""><label id="UpProgress"></label> <br><br>
+                  <h5>Your Image should be in ratio of 330 : 230 (px)</h5><br>
+                  <button style="background:#fbe25f; color:#6ea23f;" class="btn" id="select" type="button" name="button">Select Image</button>
+                  <button style="background:#fbe25f; color:#6ea23f;" class="btn" id="upload" type="button" disabled name="button">Upload Image</button>
+                  <button style="background:#fbe25f; color:#6ea23f;" class="btn" id="retrieve" type="button" name="button">Retrieve Image</button>
+                </div>
+                <br>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12" style="display:flex;justify-content:center;align-items:center;">
+      <img src="../img/login-ad.png" style="width: 300px; height: 400px;" alt="">
+    </div>
+  </div>
+  </div>
+
+  <!-- login - End -->
+
+  <!-- Map Section - Start -->
+  <!-- <section id="map">
+
+  </section> -->
+  <!-- Map Section - End -->
+  <!-- Footer Section - Start -->
+  <section id="footer">
+    <br /><br />
+    <div class="row no-gutters">
+      <div class="col-lg-3 col-md-6 col-sm-12" style="text-align:center;">
+
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12" style="text-align:center;">
+
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12" style="text-align:center;">
+
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12" style="text-align:center;">
+        <div class="">
+          <img src="../img/logo.png" width="30%" alt="">
+        </div><br>
+        <p style="color:#078e00;">Buy online with us</p>
+      </div>
+    </div>
+    <br /><br />
+  </section>
+
+  <!-- Footer Section - end -->
+
+  <!-- Jquery order should be higher from normal javascript  -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+  <!-- Owl Carousel JQuery -->
+  <!-- <script src="js/jquery.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Javascript to Populate Map - Start  -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
+
+
+  <!-- Firebase Services -->
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-storage.js"></script>
+
+
+  <script src="../js/firebase.js"></script>
+  <script src="../js/Registration.js"></script>
+
+  <!-- Owl Carousel Javascript  -->
+  <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <script>
+    var loginForm = document.getElementById("loginForm");
+    var registerForm = document.getElementById("registerForm");
+    var Indicator = document.getElementById("Indicator");
+
+    function register() {
+
+      registerForm.style.transform = "translateX(-100%)";
+      loginForm.style.transform = "translateX(-100%)";
+      Indicator.style.transform = "translateX(100%)";
+    }
+
+    function login() {
+
+      registerForm.style.transform = "translateX(0px)";
+      loginForm.style.transform = "translateX(0px)";
+      Indicator.style.transform = "translateX(0px)";
+    }
+  </script>
+
+
+</body>
+
+</html>

@@ -77,8 +77,13 @@
       <a href="#">
         <h4>Agrikaash</h4>
       </a>
+
+      <a href="updateProfile.html" style="padding-right: 0px;">
+        <img src="../img/user.png" id="navUser" class="user-icon" alt="">
+        <!-- <i class="fas fa-user"></i> -->
+      </a>
       <!-- <a href="#"><img src="../img/logo.png" width="30px" alt=""> </a> -->
-      <a href="#" style="padding-right: 0px;"><i class="fas fa-user user-icon"></i></a>
+      <!-- <a href="#" style="padding-right: 0px;"><i class="fas fa-user user-icon"></i></a> -->
     </div>
     <!-- <div class="navbar-mobile-search-bar">
       <input type="text" name="" placeholder="Search Here..." value="">
@@ -88,22 +93,28 @@
 
   <div class="small navbar-mobile-bottom">
     <div class="navbar-mobile-bottom-menu">
-      <a href="#" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
-        <i class="fas fa-home"></i>
-        <small>Home</small>
+      <a href="#" class="navbar-mobile-bottom-menu-a active" id="a1" style="display:flex; flex-direction:column;">
+        <!-- <i class="fas fa-home"></i> -->
+        <i class="fas fa-tachometer"></i>
+        <small>Dashboard</small>
       </a>
-      <a href="productList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="productList.html" class="navbar-mobile-bottom-menu-a" id="a2" style="display:flex; flex-direction:column;">
         <i class="fas fa-th-large"></i>
         <small>Products</small>
       </a>
-      <a href="orderList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="orderList.html" class="navbar-mobile-bottom-menu-a" id="a2" style="display:flex; flex-direction:column;">
         <i class="fab fa-buffer"></i>
         <small>Orders</small>
       </a>
-      <a href="cartNew.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-        <i class="fas fa-shopping-cart"></i>
-        <small>Cart</small>
-        <span class="navbar-cart-no" id='cartitemcount'> 0</span>
+      <a href="cartNew.html" class="navbar-mobile-bottom-menu-a" id="a4" style="display:flex; flex-direction:column;">
+        <i id="i4" class="fas fa-shopping-cart"></i>
+        <small id="small4">Cart</small>
+        <span  class="navbar-cart-no" id='cartitemcount'> 0</span>
+      </a>
+      <!-- <i class="fas fa-home"></i> -->
+      <a href="couponSetup.html" class="navbar-mobile-bottom-menu-a" id="a5" style="display:flex; flex-direction:column;">
+        <i class="fas fa-ticket" ></i>
+        <small>Coupon</small>
       </a>
     </div>
   </div>
@@ -200,34 +211,34 @@
                 </div>
               </div><br>
 
-            <div class="detail-card">
-              <div class="detail-card-no">
-                <div class="detail-card-heading">
-                  <i class="fas fa-chart-line"></i>
-                  <h6></h6>
+              <div class="detail-card">
+                <div class="detail-card-no">
+                  <div class="detail-card-heading">
+                    <i class="fas fa-chart-line"></i>
+                    <h6></h6>
+                  </div>
+                  <div class="detail-card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                  </div>
                 </div>
-                <div class="detail-card-arrow">
-                  <i class="fas fa-chevron-right"></i>
+                <hr>
+                <div class="detail-card-details">
+                  <div class="">
+                    <small class="small-1">Last 7 Days</small>
+                    <small class="small-2" style="font-size:1.3rem;" id='WeekCount'>0</small>
+                    <small class="small-3">₹ <span id='WeekAmount'>0</span></small>
+                  </div>
+                  <div class="">
+                    <small class="small-1">Current Month</small>
+                    <small class="small-2" style="font-size:1.3rem;" id='monthCount'>0</small>
+                    <small class="small-3">₹ <span id='monthAmount'>0</span></small>
+                  </div>
                 </div>
-              </div>
-              <hr>
-              <div class="detail-card-details">
-                <div class="">
-                  <small class="small-1">Last 7 Days</small>
-                  <small class="small-2" style="font-size:1.3rem;" id='WeekCount'>0</small>
-                  <small class="small-3">₹ <span id='WeekAmount'>0</span></small>
-                </div>
-                <div class="">
-                  <small class="small-1">Current Month</small>
-                  <small class="small-2" style="font-size:1.3rem;" id='monthCount'>0</small>
-                  <small class="small-3">₹ <span id='monthAmount'>0</span></small>
-                </div>
-              </div>
 
-              <div class="progress-bar">
-                <div class="inner-progress-bar" style="width: 70%;"></div>
-              </div>
-            </div><br>
+                <div class="progress-bar">
+                  <div class="inner-progress-bar" style="width: 70%;"></div>
+                </div>
+              </div><br>
               <div class="detail-card">
                 <div class="detail-card-no">
                   <div class="detail-card-heading">
@@ -276,8 +287,8 @@
               </div>
               <div class="col-lg-9 col-md-9 col-sm-12">
                 <div class="" style="text-align:center;padding:20px;">
-                  <input type='radio' id='rdLine' name='charttype' onchange="changeGraphType( 1)"; /><span>Line Graph</span>
-                  <input type='radio' id='rdBar' name='charttype'  onchange="changeGraphType( 2)";/><span>Bar Graph</span>
+                  <input type='radio' id='rdLine' name='charttype' onchange="changeGraphType( 1)" ; /><span>Line Graph</span>
+                  <input type='radio' id='rdBar' name='charttype' onchange="changeGraphType( 2)" ; /><span>Bar Graph</span>
 
                   <div class="" id="chartContainer" style="width:100%;height:300px;"></div>
                 </div>
