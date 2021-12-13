@@ -24,7 +24,7 @@ function setUsersProfileData(user){
   .then(() => {
         // updated
         console.log ('Data saved successfully');
-        window.location.href = "../admin/dashboard.html";
+        window.location.href = "../sa/payments.html";
       })
       .catch((error) => {
         // An error occurred
@@ -141,8 +141,8 @@ btnSignin.addEventListener('click', e => {
 
 function redirectToDashboard()
 {
-  
-  window.location.href = "../admin/dashboard.html";
+
+  window.location.href = "../sa/payments.html";
 
 }
 

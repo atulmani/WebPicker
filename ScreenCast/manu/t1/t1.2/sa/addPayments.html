@@ -25,8 +25,6 @@ map Invoice                 like Entertainment , Gift, Employee Salary , Bonus, 
 
   <link rel="shortcut icon" href="../img/logo.png">
 
-  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
   <!-- Google Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
@@ -46,32 +44,64 @@ map Invoice                 like Entertainment , Gift, Employee Salary , Bonus, 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
   <!-- Bootstrap css -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
   <!-- Your Own Style -->
   <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
 
 </head>
 
 <body>
   <!-- Navbar - Start -->
-  <nav class="navbar navbar-expand-lg sticky-top" style="padding:4px;">
+  <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container-fluid">
+      <!-- <a class="navbar-brand" href="#">
+        <img src="img/logo.png" width="40px" alt="" style="margin-top: -10px;">
+        <span class="logo">Hyper Cloud</span><span class="logo"></span>
+      </a> -->
       <a class="navbar-brand" href="https://HyperCloudAdvertising.com">
-        <img src="../img/logo/logo-text.png" width="100px" alt="">
+        <table border="0px" style=" width: 100%; color:#fff; margin-top:-36px; margin-bottom: -28px; ">
+          <!-- <table class="small" border="0px" style=" color:#fff; margin-top:-36px; margin-bottom: -28px; " >   -->
+          <tr>
+            <td style="width: 38%;text-align: right;">
+              <img src="../img/logo.png" width="38px" alt="">
+            </td>
+            <td style=" color:#e10032; text-align: left;padding-left: 4px; position:relative;top:-5px;">
+              <div class="footer-last-heading">
+                <!-- <span style="font-family: 'Pacifico', cursive;">H</h3><h3>yper Cloud</h3> -->
+                <h3 style="font-size: 1.4rem;">Hyper</h3>
+                <h3 class="footer-ads">Cloud</h3>
+                <!-- <span class="footer-ads">Advertising</span> -->
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="text-align: center;">
+              <div style=" margin-top: -32px;color:#e10032;">
+                <h6>
+                  <span class="large" style="letter-spacing:0.4px;font-size: 0.6rem;font-weight:600; "> DIGITAL SOLUTIONS</span>
+                  <span class="small" style="padding-left:6%; letter-spacing:1.0px;font-size: 12px; "> DIGITAL SOLUTIONS</span>
+                </h6>
+              </div>
+            </td>
+          </tr>
+        </table>
       </a>
 
-      <div class="navbar-toggler" data-toggle="collapse" data-target="#collapsibleNavbar1">
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
         <span>
-       <i class="fa fa-reorder" style="color:#1638A0;font-size: 1.6rem;" ></i>
+       <i class="fa fa-reorder fa-2x " style="color:#1638A0;" ></i>
      </span>
-   </div>
+      </button> -->
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="nav navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="#"><i class="fas fa-home"></i></a>
           </li>
           <li class="nav-item">
+            <!-- <a class="nav-link" href="#services">Services</a> -->
             <div class="dropdown">
               <div onclick="ddIndustries()" class="dropbtn">Industries
                 <i class="fa fa-caret-down"></i>
@@ -125,142 +155,155 @@ map Invoice                 like Entertainment , Gift, Employee Salary , Bonus, 
 
   <div class="small navbar-bottom-mobile">
     <ul>
-      <a type="button" href="../#">
-        <span><i class="fas fa-home"></i></span> <br> <span> Home </span>
+      <a type="button" href="#">
+        <span class="material-icons-outlined">
+          home
+        </span> <br>
+        <span> Home </span>
       </a>
-      <a type="button" href="../#WhyToUse">
-        <span><i class="fas fa-tasks"></i></span> <br> <span> Services </span>
+      <a type="button" href="#WhyToUse">
+        <span class="material-icons-outlined">
+          account_balance_wallet
+        </span>
+        <br>
+        <span> Payments </span>
       </a>
       <!-- <a type="button" href="login">
         <span><i class="fas fa-user"></i></span> <br> <span> Login </span>
       </a> -->
-      <a type="button" href="#">
-        <span><i class="fas fa-id-badge"></i></span> <br> <span> Contact Us </span>
+      <a type="button" href="contacts">
+        <span class="material-icons-outlined">
+          supervisor_account
+        </span>
+        <br>
+        <span> Partnerns </span>
       </a>
       <a type="button" data-toggle="collapse" data-target="#collapsibleNavbar1">
-        <span><i class="fas fa-list"></i></span> <br> <span> More </span>
+        <span class="material-icons-outlined">
+          more_vert
+        </span> <br>
+        <span> More </span>
       </a>
 
       <!-- Navbar links -->
       <div class="collapse navbar-collapse more-button-links" id="collapsibleNavbar1">
         <ul class="">
           <li class="">
-            <a class="" href="../#">Home</a>
+            <a class="" href="#">Home</a>
           </li>
           <li class="">
-            <a class="" href="../#IndustriesWeServe">Industries</a>
+            <a class="" href="#IndustriesWeServe">Industries</a>
           </li>
           <!-- <li class="">
             <a class="" href="login">Login</a>
           </li> -->
           <li class="">
-            <a class="" href="../#WhyToUse">Services</a>
+            <a class="" href="#WhyToUse">Services</a>
           </li>
           <li class="">
-            <a class="" href="../contacts/">Contact</a>
-          </li>
-
-          <li class="">
-            <a class="" href="../login/">login</a>
+            <a class="" href="contacts">Contact</a>
           </li>
         </ul>
       </div>
 
   </div>
+
+
   <!-- Navbar - End -->
 
   <!-- Payments page - start -->
-  <section id="payments"><br>
+  <section id="invoice"><br>
     <div class="">
       <center>
-        <h3>Payments</h3>
+        <h3>Add Payment</h3>
       </center>
     </div>
 
     <div class="" style="padding:10px;">
-      <div class="payment-revenue-div">
-        <div class="">
-          <div class="">
-            <h5>YOY Revenue</h5>
-            <h4 id="revenue"></h4>
-          </div>
 
-          <div class="" style="display:none;">
-            <h5>YOY Profit</h5>
-            <h4 id="YOYprofit"></h4>
-          </div>
+      <div class="row no-gutters">
+        <div class="col-6" style="padding: 0 5px;">
+          <input type="radio" class="checkbox" id="userType1" name="user-type" value="Inward">
+          <label class="checkbox-label" for="userType1">
+            <i class="fas fa-plus"></i>
+            <i class="fas fa-check"></i>
+            <span>Inward</span>
+          </label>
         </div>
 
-        <div class="">
-          <div class="" id="chartContainer" style="width:150px;height:100%;display:none;"></div>
+        <div class="col-6" style="padding: 0 5px;">
+          <input type="radio" class="checkbox" id="userType2" name="user-type" value="Outward">
+          <label class="checkbox-label" for="userType2">
+            <i class="fas fa-plus"></i>
+            <i class="fas fa-check"></i>
+            <span>Outward</span>
+          </label>
+        </div>
+      </div>
+
+      <center id="errorMessage" class="error-message">
+        <span>All Feilds Are Compalsary</span>
+      </center><br>
+
+
+
+      <div class="invoice-form">
+        <div class="row no-gutters">
+          <div class="col-sm-12 invoice-form-field">
+            <input type="number" id="txtAmount" placeholder="Amount (number only)" name="" value="">
+          </div>
+
+          <div class="col-sm-12 invoice-form-field">
+            <select id="ddlClient" class="" name="">
+              <option selected hidden value="Name of Clients">Name of Clients</option>
+              <option value="Anant">Anant</option>
+              <option value="Manu">Manu</option>
+              <option value="Dolu">Dolu</option>
+              <option value="Anita">Anita</option>
+              <option value="Mini">Mini</option>
+            </select>
+          </div>
+
+          <div class="col-sm-12 invoice-form-field">
+            <select class="" id="ddlPaymentMode" name="">
+              <option selected hidden value="Mode of Payment">Mode of Payment</option>
+              <option value="Credit">Credit</option>
+              <option value="Debit">Debit</option>
+              <option value="online">Online</option>
+              <option value="Cash">Cash</option>
+            </select>
+          </div>
+
+          <div class="col-sm-12 invoice-form-field">
+            <select class="" id="ddlReason" name="">
+              <option selected hidden value="Reason">Reason</option>
+              <option value="Partners">Partners</option>
+              <option value="Employee">Employee</option>
+            </select>
+          </div>
+
+          <div class="col-sm-12 invoice-form-field">
+            <div class="form-group">
+              <div class="input-group date datetimepicker11">
+                <input id="dob" type="text" style="width:70%;" class="form-control" readonly>
+                <div class="input-group-addon input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 invoice-form-field">
+            <textarea id="txtComments" placeholder="About The Payment..." maxlength="120" rows="8" cols="80"></textarea>
+          </div>
+
+          <div class="col-sm-12 invoice-form-field">
+            <button id="btnSave" class="mybutton button5">Save<i class="fas fa-arrow-right"></i> </button>
+          </div>
+
         </div>
       </div>
     </div>
-    <hr>
-
-    <div class="inward-outward-indicators">
-      <div class="" style="display:flex;">
-        <h4 style="font-size:1.1rem;font-weight:600;">Transactions</h4>
-        <a href="addPayments.html" class="plus-sign">
-          <span class="material-icons-outlined">
-            add
-          </span>
-        </a>
-      </div>
-      <div class="" style="display:inline-flex;align-items:center;position:relative;top: 5px;">
-        <span class="toggle-span">
-          <span style="font-size:0.8rem;" class="material-icons-outlined">
-            south
-          </span>
-        </span>
-        <div class="toggle-btn" id="_3rd-toggle-btn">
-          <input id="remittanceInput" type="checkbox">
-          <span></span>
-        </div>
-        <span class="toggle-span">
-          <span style="font-size:0.8rem;" class="material-icons-outlined">
-            north
-          </span>
-        </span>
-      </div>
-    </div>
-    <div class="">
-      <div class="" style="display:flex;justify-content:space-between;">
-
-        <a href="#" style="color:rgba(0,0,0,0.6);padding-left: 10px;text-decoration:none;">
-          <span class="material-icons-outlined">
-            tune
-          </span>
-          <span class="duration-filter">This Month</span>
-        </a><br>
-
-        <div class="">
-          <small id="total" style="font-size:1rem;font-weight:bold;padding-right:10px;"></small>
-        </div>
-      </div>
-
-
-    </div>
-    <hr style="margin-bottom: 0" />
-
-
-    <section id="inward-outward-section">
-      <div class="full-div" id="fullDiv">
-        <div class="" id="inwardPayment">
-          <div class="inward-outward-cards" id="inwardPaymentDiv">
-
-
-          </div>
-        </div>
-
-        <div class="" id="outwardPayment">
-          <div class="inward-outward-cards" id="outwardPaymentDiv">
-          </div>
-        </div>
-      </div>
-
-    </section>
-
 
   </section><br><br><br>
 
@@ -330,8 +373,29 @@ map Invoice                 like Entertainment , Gift, Employee Salary , Bonus, 
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="footer-last">
-          <img src="../img/logo/logo-text.png" width="110px" alt="">
-          <br><br>
+          <table style="width: 100%;">
+            <tr>
+              <td style="width: 40%;text-align: right;">
+                <img src="../img/logo.png" width="38px" alt="">
+              </td>
+              <td style="color:#e10032;text-align: left;padding-left: 4px;position:relative;top: -5px;">
+                <div class="footer-last-heading">
+                  <h3 style="font-size: 1.4rem;">Hyper</h3>
+                  <h3 class="footer-ads">Cloud</h3>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="margin-top: -30px;position:relative;left: 95px;">
+                  <h6>
+                    <span class="large" style="color:#e10032;letter-spacing:0.4px;font-size: 0.6rem;font-weight:600; text-align: left;"> DIGITAL SOLUTIONS</span>
+                  </h6>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <br>
           <h5 class="git">Get in Touch</h5>
           <a href="#" class="footer-no">+91 915 255 2222</a>
           <br>
@@ -397,13 +461,44 @@ map Invoice                 like Entertainment , Gift, Employee Salary , Bonus, 
 
   <!-- <script src="../js/main.js"></script> -->
   <script src="../js/firebase.js"></script>
-  <script src="../js/sa/payments.js"></script>
+  <script src="../js/sa/addPayments.js"></script>
+
+
 
   <!-- Owl Carousel Javascript  -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
 
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <script src="../js/bootstrap-datetimepicker.min.js"></script>
+
+  <script>
+    $(function() {
+      $.extend(true, $.fn.datetimepicker.defaults, {
+        icons: {
+          time: 'far fa-clock',
+          date: 'far fa-calendar',
+          up: 'fas fa-arrow-up',
+          down: 'fas fa-arrow-down',
+          previous: 'fas fa-chevron-left',
+          next: 'fas fa-chevron-right',
+          today: 'far fa-calendar-check-o',
+          clear: 'far fa-trash',
+          close: 'far fa-times'
+        }
+      });
+    });
+  </script>
+  <script type="text/javascript">
+    $(function() {
+      $('.datetimepicker11').datetimepicker({
+        format: 'YYYY-MM-DD',
+        ignoreReadonly: true
+      });
+    });
+  </script>
+
 
 </body>
 
