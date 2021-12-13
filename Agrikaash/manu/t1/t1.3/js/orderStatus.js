@@ -113,7 +113,7 @@ function renderPendingPaymentOrder(order, index, createdBy) {
   div5.appendChild(hforderby);
 
   var i1 = document.createElement("i");
-  i1.setAttribute("onclick", "GetOrderDetails(" + "hfOrderID" + index + ", hfOrderBy" + index+");");
+  i1.setAttribute("onclick", "GetOrderDetails(" + "hfOrderID" + index + ", hfOrderBy" + index + ");");
   i1.setAttribute("class", "far fa-edit address-edit-icon");
   i1.setAttribute("style", "padding: 0 5px 0 5px;");
 
@@ -242,7 +242,7 @@ function renderPendingOrder(order, index, createdBy) {
   div5.appendChild(hforderby);
 
   var i1 = document.createElement("i");
-  i1.setAttribute("onclick", "GetOrderDetails(" + "hfOrderID" + index + ", hfOrderBy" + index+");");
+  i1.setAttribute("onclick", "GetOrderDetails(" + "hfOrderID" + index + ", hfOrderBy" + index + ");");
   i1.setAttribute("class", "far fa-edit address-edit-icon");
   i1.setAttribute("style", "padding: 0 5px 0 5px;");
 
@@ -364,7 +364,7 @@ function renderDeliveredOrder(order, index, createdBy) {
   div5.appendChild(hforderby);
 
   var i1 = document.createElement("i");
-  i1.setAttribute("onclick", "GetOrderDetails(" + "hfOrderID" + index + ", hfOrderBy" + index+");");
+  i1.setAttribute("onclick", "GetOrderDetails(" + "hfOrderID" + index + ", hfOrderBy" + index + ");");
   i1.setAttribute("class", "far fa-edit address-edit-icon");
   i1.setAttribute("style", "padding: 0 5px 0 5px;");
 
@@ -474,7 +474,7 @@ function renderCancelledOrder(order, index, createdBy) {
   div5.appendChild(hforderby);
 
   var i1 = document.createElement("i");
-  i1.setAttribute("onclick", "GetOrderDetails(" + "hfOrderID" + index + ", hfOrderBy" + index+");");
+  i1.setAttribute("onclick", "GetOrderDetails(" + "hfOrderID" + index + ", hfOrderBy" + index + ");");
   i1.setAttribute("class", "far fa-edit address-edit-icon");
   i1.setAttribute("style", "padding: 0 5px 0 5px;");
 
@@ -549,6 +549,19 @@ function renderCancelledOrder(order, index, createdBy) {
 /////////////////////new function
 function renderOrder(order, index, createdBy) {
   //console.log(selectedItem);
+  //orderStatus : Pending, Packed, On the Way, Delivered, Cancelled
+  //PaymentStatus : Pending, Completed
+  //Combination orderStatus : Pending, PaymentStatus : Pending - covered
+  //Combination orderStatus : Pending, PaymentStatus : Completed - covered
+  //Combination orderStatus : Packed, PaymentStatus : Pending - covered
+  //Combination orderStatus : Packed, PaymentStatus : Completed -covered
+  //Combination orderStatus : On the Way, PaymentStatus : Pending -covered
+  //Combination orderStatus : On the Way, PaymentStatus : Completed-covered
+  //Combination orderStatus : Delivered, PaymentStatus : Pending -- not a valid status
+  //Combination orderStatus : Delivered, PaymentStatus : Completed - covered
+  //Combination orderStatus : Cancelled, PaymentStatus : Pending  -covered
+  //Combination orderStatus : Cancelled, PaymentStatus : Completed - covered
+
 
   if (order.orderStatus === 'Pending' && order.paymentStatus === 'Pending') {
     renderPendingPaymentOrder(order, index, createdBy);
@@ -556,9 +569,16 @@ function renderOrder(order, index, createdBy) {
     renderPendingOrder(order, index, createdBy);
   } else if (order.paymentStatus === 'Completed' && order.orderStatus === 'Delivered') {
     renderDeliveredOrder(order, index, createdBy);
+  } else if (order.orderStatus === 'Packed' && order.paymentStatus === 'Pending') {
+    renderPendingPaymentOrder(order, index, createdBy);
+  } else if (order.orderStatus === 'Packed' && order.paymentStatus === 'Completed') {
+    renderPendingOrder(order, index, createdBy);
+  } else if (order.orderStatus === 'On the Way' && order.paymentStatus === 'Pending') {
+    renderPendingPaymentOrder(order, index, createdBy);
+  } else if (order.orderStatus === 'On the Way' && order.paymentStatus === 'Completed') {
+    renderPendingOrder(order, index, createdBy);
   } else if (order.orderStatus === 'Cancelled') {
     renderCancelledOrder(order, index, createdBy);
-
   }
 
 }
@@ -567,5 +587,5 @@ function renderOrder(order, index, createdBy) {
 function GetOrderDetails(orderID, userID) {
   console.log(orderID);
 
-  window.location.href="orderDetails.html?id="+orderID.value+"&userID=" + userID.value;
+  window.location.href = "orderDetails.html?id=" + orderID.value + "&userID=" + userID.value;
 }
