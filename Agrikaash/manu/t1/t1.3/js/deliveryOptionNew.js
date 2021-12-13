@@ -287,6 +287,26 @@ function SaveOrder() {
               console.log(userID);
               var orderID = userID + Date.now();
               console.log(OrderItems);
+              var orderChanges = [];
+              orderChanges.push({
+                OrderStage: 1,
+                OrderStatus: 'Order Placed',
+                PaymentStatus: 'Pending',
+                DeliverySlot: deliveryTime,
+                DeliveryDate: deliveryDate,
+                ChangedTimeStamp: new Date()
+              });
+
+              orderChanges.push({
+                OrderStage: 2,
+                OrderStatus: 'Pending',
+                PaymentStatus: 'Pending',
+                DeliverySlot: deliveryTime,
+                DeliveryDate: deliveryDate,
+                ChangedTimeStamp: new Date()
+              });
+
+
               orderDetails.push({
                 orderID: orderID,
                 orderItems: OrderItems, //cartDetails,
@@ -323,16 +343,33 @@ function SaveOrder() {
                     //showAddress(false);
                     //delete from cart after order places
                     cartDetails = [];
-                    db.collection('CartDetails')
-                      .doc(userID)
-                      .update({
-                        cartDetails: cartDetails
+
+                    db.collection("OrderTracking").add({
+                        OrderID: orderID,
+                        ChangeTrack: orderChanges,
+                        UpdatedTimestamp: new Date(),
+                        UpdatedByUser: userID,
+                        UserID : userID
                       })
-                      .then(function(docred) {
-                        console.log('cart details made blank');
-                        window.location.href = "orderSummary.html?id=" + orderID;
+                      .then(function(docRef) {
+                        console.log("Data added sucessfully in the document: " + userid_order);
+                        //    window.location.href = "orderStatus.html"
+                        // console.log(Date.parse(eventstart))
+                      })
+                      .catch(function(error) {
+                        console.error("error updatign order:", error);
                       });
 
+
+                      db.collection('CartDetails')
+                        .doc(userID)
+                        .update({
+                          cartDetails: cartDetails
+                        })
+                        .then(function(docred) {
+                          console.log('cart details made blank');
+                          window.location.href = "orderSummary.html?id=" + orderID;
+                        });
                     // console.log(Date.parse(eventstart))
                   })
                   .catch(function(error) {
