@@ -6,7 +6,7 @@ auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
-      //GetProfileData(firebaseUser);
+      GetProfileData(firebaseUser);
       getRegistrationRequest();
 
     } else {
@@ -22,8 +22,7 @@ auth.onAuthStateChanged(firebaseUser => {
 
 function GetProfileData(user) {
   // const ref = db.collection("Users").doc(user.uid);
-
-  const snapshot = db.collection('UsersList').doc(user.uid);
+  const snapshot = db.collection('UserList').doc(user.uid);
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
         console.log('Document ref id: ' + doc.data().uid);
@@ -31,8 +30,8 @@ function GetProfileData(user) {
           document.getElementById('navUser').src = doc.data().ProfileImageURL;
         }
         userID = doc.data().uid;
-        document.getElementById('headerProfilePic').src = doc.data().ImageURL;
-        document.getElementById('displayName').innerHTML = doc.data().displayName;
+      //  document.getElementById('headerProfilePic').src = doc.data().ImageURL;
+      //  document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
     })
     .catch(function(error) {
