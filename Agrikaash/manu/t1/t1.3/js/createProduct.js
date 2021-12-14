@@ -47,12 +47,9 @@ function GetProfileData(user) {
 
 // var url = location.href;
 let eventDocUrl = new URL(location.href);
-// console.log ('URL: ' + eventDocUrl);
 let searchParams = new URLSearchParams(eventDocUrl.search);
 var productID = searchParams.get('id');
 // var userid = searchParams.get('usertid');
-console.log('Document ID: ' + productID);
-// console.log('Event ID: ' + userid);
 
 if (productID != null) {
   document.getElementById('optionalFields').style.display = 'block';
@@ -303,7 +300,6 @@ function CreateUpdateEventData() {
   // CreateUpdateEventData.preventDefault();
   createEventConformation.style.display = 'block';
 
-  console.log('button clicked');
   CreateUpdateProductData();
   /*if (docID != null)
     UpdateEventData();
@@ -341,9 +337,6 @@ document.getElementById("select").onclick = function(e) {
   input.click();
 
 }
-
-console.log(productID);
-console.log(document.getElementById('hfproductID').value);
 if(productID === null || productID === '')
   productID = document.getElementById('hfproductID').value;
 
@@ -351,13 +344,10 @@ if(productID === null || productID === '')
 document.getElementById('upload').onclick = function() {
   // ImgName = document.getElementById('namebox').value;
 //  productID = document.getElementById('hfproductID').value;
-console.log(productID);
-console.log(document.getElementById('hfproductID').value);
 if(productID === null || productID === '')
   productID = document.getElementById('hfproductID').value;
 
   ImgName = productID + '_1.png';
-  console.log(ImgName);
   // ImgName = document.getElementById('productID').value + '_1.png';
   //files = document.getElementById("myimg").src;
 
@@ -379,9 +369,7 @@ if(productID === null || productID === '')
       uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
         ImgUrl = url;
         alert('ImgUrl: ' + ImgUrl);
-        console.log(productID);
-
-        //Update meta data for firebase storage resources - Start
+                //Update meta data for firebase storage resources - Start
           var storageRef = uploadTask.snapshot.ref;
           // console.log ("storageRef: " + storageRef );
           // Create file metadata to update to cache for 1 year
