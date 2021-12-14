@@ -14,7 +14,7 @@ auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
-      //GetProfileData(firebaseUser);
+      GetProfileData(firebaseUser);
       populateDeliveryDate();
       getOrderDetails();
       if (orderID != '' && orderID != null) {
@@ -198,12 +198,13 @@ function UpdateOrderTrackingDetails(orderChanges, orderID) {
       trackData = doc.data().ChangeTrack;
     });
     for (i = 0; i < trackData.length; i++) {
-      if(trackData[i].OrderStage < orderChanges[0].OrderStage)
+      if (trackData[i].OrderStage < orderChanges[0].OrderStage)
         trackdataForUpdate.push(trackData[i]);
 
     }
     trackdataForUpdate.push(orderChanges[0]);
-
+    console.log(userID);
+    console.log(auth);
     db.collection("OrderTracking").doc(trackingID).set({
         OrderID: orderID,
         ChangeTrack: trackdataForUpdate,
@@ -316,13 +317,10 @@ function GetProfileData(user) {
         // let blogPost = doc.data();
         // console.log ('User UID: ' + user.uid);
         console.log('Document ref id: ' + doc.data().uid);
-        userID = doc.data().uid;
+        userID = user.uid;
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
           document.getElementById('navUser').src = doc.data().ProfileImageURL;
         }
-
-        document.getElementById('headerProfilePic').src = doc.data().ImageURL;
-        document.getElementById('displayName').innerHTML = doc.data().displayName;
 
       }
     })
@@ -409,11 +407,12 @@ function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
 function populateOrderItems(selectedOrder) {
   var orderItem = selectedOrder.orderItems;
   for (i = 0; i < orderItem.length; i++) {
-    renderOrderItem(orderItem[i]);
+    renderOrderItem(orderItem[i], i);
   }
 }
 
-function renderOrderItem(orderItem) {
+function renderOrderItem(orderItem, index) {
+  console.log(orderItem);
   var div1 = document.createElement("div");
   div1.setAttribute('class', 'col-sm-12');
   div1.setAttribute('style', 'padding: 5px;');
@@ -435,11 +434,16 @@ function renderOrderItem(orderItem) {
   img1.setAttribute("width", "100%");
   img1.setAttribute("alt", "");
 
+  td1.appendChild(img1);
+
   var div3 = document.createElement('div');
   div3.setAttribute('class', "off-div");
 
   var small1 = document.createElement('small');
   small1.innerHTML = '20% OFF';
+
+  div3.appendChild(small1);
+  td1.appendChild(div3);
 
   var div4 = document.createElement('div');
   div4.setAttribute('class', "veg-nonVeg-div");
@@ -455,6 +459,10 @@ function renderOrderItem(orderItem) {
   imgVegNonVeg.setAttribute("width", "100%");
   imgVegNonVeg.setAttribute("alt", "");
 
+  div4.appendChild(imgVegNonVeg);
+  td1.appendChild(div4);
+  tr1.appendChild(td1);
+
   var td2 = document.createElement('td');
   td2.setAttribute('width', "55%");
   td2.setAttribute('valign', "top");
@@ -468,59 +476,80 @@ function renderOrderItem(orderItem) {
   var small3 = document.createElement('small');
   small3.setAttribute('style', 'style="font-size: 0.8rem; color: rgba(0,0,0,0.5);');
   small3.innerHTML = '';
+  td2.appendChild(small2);
+  td2.appendChild(small3);
 
   //console.log(orderItem.SelectedSubItem);
   var input1 = document.createElement('input');
   input1.setAttribute('type', 'text');
   input1.setAttribute('name', '');
-  input1.readonly = true;
+  input1.setAttribute("readonly", "true");
+  input1.setAttribute("id", "selectedItem" + index);
   input1.value = orderItem.SelectedSubItem;
+  td2.appendChild(input1);
 
   var div5 = document.createElement('div');
   div5.setAttribute('class', 'product-price');
   //console.log(orderItem.MRP);
   var h51 = document.createElement('h5');
   h51.innerHTML = '₹' + orderItem.MRP;
+  div5.appendChild(h51);
 
   //console.log(orderItem.UnitPrise);
   var small4 = document.createElement('small');
   small4.innerHTML = '₹' + orderItem.UnitPrise;
+  div5.appendChild(small4);
+  td2.appendChild(div5);
 
   var table2 = document.createElement('table');
-
   var tr2 = document.createElement('tr');
   //console.log(orderItem.Quantity);
   var td3 = document.createElement('td');
   td3.setAttribute('width', '50%');
+  //td3.setAttribute("colspan", "2");
   td3.innerHTML = 'Qty : ' + orderItem.Quantity;
+  //
+  // var inputQty = document.createElement("input");
+  // inputQty.setAttribute("id", "inputQty" + index);
+  // inputQty.setAttribute("value", orderItem.Quantity);
+  // //inputQty.setAttribute("onchange", "updateQuantity(" + "inputQty" + index + "," + doc.data().MinimumQty + "," + doc.data().MaximumQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "' )");
+  //
+  // td3.appendChild(inputQty);
+  tr2.appendChild(td3);
 
   var totalPrize = Number(orderItem.Quantity) * Number(orderItem.UnitPrise)
   //  console.log(totalPrize);
-  var td4 = document.createElement('td');
-  td4.innerHTML = 'Prize : ' + totalPrize;
 
-  td1.appendChild(img1);
-  div3.appendChild(small1);
-  td1.appendChild(div3);
-
-  div4.appendChild(imgVegNonVeg);
-  td1.appendChild(div4);
-  tr1.appendChild(td1);
-
-  td2.appendChild(small2);
-  td2.appendChild(small3);
   //  td2.appendChild(document.createElement('br'));
-  td2.appendChild(input1);
-
-  div5.appendChild(h51);
-  div5.appendChild(small4);
-  td2.appendChild(div5);
-
-  tr2.appendChild(td3);
-  tr2.appendChild(td4);
-
   table2.appendChild(tr2);
 
+  //tr2 = document.createElement('tr');
+  var td4 = document.createElement('td');
+  //td4.setAttribute("colspan", "2");
+  td4.innerHTML = 'Prize : ' + totalPrize;
+  tr2.appendChild(td4);
+  table2.appendChild(tr2);
+  tr2 = document.createElement('tr');
+  //console.log(orderItem.Quantity);
+  td3 = document.createElement('td');
+  td3.setAttribute('width', '50%');
+  //td3.setAttribute("colspan", "2");
+  var hf = document.createElement("input");
+  hf.setAttribute("id", "hfProdID" + index);
+  hf.setAttribute("type", "hidden");
+  hf.setAttribute("value", orderItem.ProductID);
+  td3.appendChild(hf);
+
+  var span2 = document.createElement('span');
+  span2.setAttribute("id", "btnDelete" + index);
+  console.log("deleteCoupon(" + "hfCouponDocID " + index + ");");
+  span2.setAttribute("onclick", "deleteItem(" + "hfProdID" + index + "," + "selectedItem" + index + ");");
+  span2.setAttribute("class", "material-icons");
+  span2.setAttribute("style", "cursor:pointer;padding: 0 20px 0 5px;");
+  span2.innerHTML = "delete_outline";
+  td3.appendChild(span2);
+  tr2.appendChild(td3);
+  table2.appendChild(tr2);
   td2.appendChild(table2)
 
   tr1.appendChild(td2);
@@ -532,4 +561,75 @@ function renderOrderItem(orderItem) {
   //console.log(div1);
   document.getElementById('orderItems').appendChild(div1);
 
+}
+
+function deleteItem(prodID, selectedItemIndex) {
+  //delete from order list
+  var allOrder;
+  var selectedOrder;
+  var selectedItem;
+  var walletAmount = 0;
+  var newOrder;
+  const snapshot = db.collection('OrderDetails').doc(userid_order);
+  snapshot.get().then(async (doc) => {
+      if (doc.exists) {
+        allOrder = doc.data().OrderDetails;
+
+        var selectIndex = allOrder.findIndex(e => e.orderID === orderID);
+        if (selectIndex >= 0) {
+          selectedOrder = allOrder[selectIndex];
+          //get the selected item
+          var selectedIIndex = selectedOrder.orderItems.findIndex(e => e.ProductID === prodID.value && e.SelectedSubItem === selectedItemIndex.value);
+          //if order has only one item, then mark this as Cancelled
+          console.log(selectedIIndex);
+          console.log(selectedOrder.orderItems.length);
+          if (selectedIIndex >= 0 && selectedOrder.orderItems.length === 1) {
+            console.log("order Cancelled");
+            allOrder[selectIndex].orderStatus = "Cancelled";
+            if (allOrder[selectIndex].paymentStatus === 'Completed') {
+              walletAmount = allOrder[selectIndex].totalAmount;
+              updateWalletDetails(userid_order, walletAmount, 'add');
+            }
+            newOrder = allOrder;
+          } else {
+            console.log("order updated");
+            for (i = 0; i < allOrder.length; i++) {
+              if (i != selectIndex)
+                newOrder.push(allOrder[i]);
+            }
+          }
+          console.log(newOrder);
+          db.collection('OrderDetails').doc(userid_order).update({
+              OrderDetails: newOrder
+            })
+            .then(function(docRef) {
+              console.log("Data added sucessfully in the document: " + userid_order);
+
+              //update order trackData
+              var orderChanges = [];
+              orderChanges.push({
+                OrderStage: 6,
+                OrderStatus: 'Order is Cancelled',
+                PaymentStatus: '',
+                DeliverySlot: '',
+                DeliveryDate: '',
+                ChangedTimeStamp: new Date()
+              });
+                console.log(orderChanges);
+                console.log( orderID);
+                UpdateOrderTrackingDetails(orderChanges, orderID);
+            })
+            .catch(function(error) {
+              console.error("error adding document:", error);
+            });
+        }
+      }
+
+    })
+    .catch(function(error) {
+      // An error occurred
+      console.log(error);
+      // document.getElementById('errorMessage_Signup').innerHTML = error.message;
+      // document.getElementById('errorMessage_Signup').style.display = 'block';
+    });
 }
