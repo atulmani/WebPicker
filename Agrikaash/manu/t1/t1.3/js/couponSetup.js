@@ -54,7 +54,6 @@ function GetUserList() {
       var option1 = document.createElement("option");
       option1.setAttribute("value", change.id);
       option1.innerHTML = change.data().displayName + " : " + change.data().EmailID
-      console.log(change.data().EmailID);
       ddl.appendChild(option1);
     });
 
@@ -68,8 +67,6 @@ function SaveCoupon() {
   var couponID = document.getElementById("hfCouponID");
   var users = [];
   var couponCode = Date.now();
-  console.log(document.getElementById("rbType1").checked);
-  console.log(document.getElementById("rbType2").checked);
   if (document.getElementById("rbType1").checked) {
     discountType = "Absolute";
   } else if (document.getElementById("rbType2").checked) {
@@ -148,14 +145,12 @@ function deleteCoupon(couponID) {
 }
 
 function GetCouponDetails(couponID) {
-  console.log(couponID.value);
   var index = 0;
   var userList = [];
   const snapshot = db.collection('Coupons').doc(couponID.value);
   snapshot.get().then(async (doc) => {
     if (doc.exists) {
       // console.log('Document id:' + doc.id);
-      console.log(doc.data());
       var status = doc.data().Status;
       userList = doc.data().UserList;
       var discountType = doc.data().DiscountType;
@@ -167,15 +162,12 @@ function GetCouponDetails(couponID) {
       document.getElementById("hfCouponID").value = doc.id;
       document.getElementById("DiscountPercentage").value = doc.data().DiscountValue;
       var userListCnt = document.getElementById("userList");
-      console.log(userList);
       //if (userList[0].userName != "All")
       {
 
 
         for (i = 0; i < userListCnt.options.length; i++) {
-          console.log(userListCnt.options[i].text);
           index = userList.findIndex(e => e.userName === userListCnt.options[i].text);
-          console.log(index);
           if (index >= 0)
             userListCnt.options[i].selected = true;
           else
@@ -222,11 +214,9 @@ function renderCoupon(change, index) {
   var input1 = document.createElement("input");
   input1.setAttribute("type", "checkbox");
   input1.setAttribute("id", "isActive" + index);
-  console.log("ChangeActive(" + "hfCouponDocID" + index + "," + index + ");");
   input1.setAttribute("onchange", "ChangeActive(" + "hfCouponDocID" + index + "," + index + ");");
   if (doc.Status === "Active")
     input1.checked = true;
-
 
   div3.appendChild(span1);
   div3.appendChild(input1);
@@ -237,8 +227,6 @@ function renderCoupon(change, index) {
   i1.setAttribute("style", "padding: 0 5px 0 5px;");
 
   div3.appendChild(i1);
-
-
 
   var span2 = document.createElement('span');
   span2.setAttribute("id", "btnDelete" + index);
@@ -300,8 +288,6 @@ function renderCoupon(change, index) {
 
 
 function ChangeActive(hfCouponDocID, index) {
-  console.log(hfCouponDocID);
-  console.log("in ChangeActive", hfCouponDocID, index);
 
   var cbActive = document.getElementById("isActive" + index);
   var status = "";
