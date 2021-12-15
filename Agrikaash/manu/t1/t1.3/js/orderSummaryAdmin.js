@@ -12,17 +12,20 @@ var userid_order = searchParams.get('userID');
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
+      console.log(orderID);
+      // if (orderID != '' && orderID != null) {
+      //   document.getElementById('msg').innerHTML = 'Getting order details!!';
+      // } else {
+      //   document.getElementById('msg').innerHTML = 'Your order is placed successfully';
+      // }
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
       GetProfileData(firebaseUser);
       populateDeliveryDate();
       getOrderDetails();
-      if (orderID != '' && orderID != null) {
-        document.getElementById('msg').innerHTML = 'Getting order details!!';
-      } else {
-        document.getElementById('msg').innerHTML = 'Your order is placed successfully';
-      }
+
       document.getElementById('loading-img').style.display = 'none';
+      //exportToCsv();
     } else {
       console.log('User has been logged out');
       //window.location.href = "index.html";
@@ -33,6 +36,7 @@ auth.onAuthStateChanged(firebaseUser => {
   }
   // document.getElementById('loading-img').style.display = 'none';
 });
+
 
 function SaveOrder() {
   document.getElementById("Message").text = "";
@@ -407,11 +411,11 @@ function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
 function populateOrderItems(selectedOrder) {
   var orderItem = selectedOrder.orderItems;
   for (i = 0; i < orderItem.length; i++) {
-    renderOrderItem(orderItem[i], i);
+    renderOrderItem(orderItem[i], i, selectedOrder.orderStatus);
   }
 }
 
-function renderOrderItem(orderItem, index) {
+function renderOrderItem(orderItem, index, orderStatusValue) {
   console.log(orderItem);
   var div1 = document.createElement("div");
   div1.setAttribute('class', 'col-sm-12');
@@ -540,15 +544,18 @@ function renderOrderItem(orderItem, index) {
   hf.setAttribute("value", orderItem.ProductID);
   td3.appendChild(hf);
 
-  var span2 = document.createElement('span');
-  span2.setAttribute("id", "btnDelete" + index);
-  console.log("deleteCoupon(" + "hfCouponDocID " + index + ");");
-  span2.setAttribute("onclick", "deleteItem(" + "hfProdID" + index + "," + "selectedItem" + index + ");");
-  span2.setAttribute("class", "material-icons");
-  span2.setAttribute("style", "cursor:pointer;padding: 0 20px 0 5px;");
-  span2.innerHTML = "delete_outline";
-  td3.appendChild(span2);
+  if (orderStatusValue != 'Cancelled') {
+    var span2 = document.createElement('span');
+    span2.setAttribute("id", "btnDelete" + index);
+    console.log("deleteCoupon(" + "hfCouponDocID " + index + ");");
+    span2.setAttribute("onclick", "deleteItem(" + "hfProdID" + index + "," + "selectedItem" + index + ");");
+    span2.setAttribute("class", "material-icons");
+    span2.setAttribute("style", "cursor:pointer;padding: 0 20px 0 5px;");
+    span2.innerHTML = "delete_outline";
+    td3.appendChild(span2);
+  }
   tr2.appendChild(td3);
+
   table2.appendChild(tr2);
   td2.appendChild(table2)
 
@@ -569,22 +576,23 @@ function deleteItem(prodID, selectedItemIndex) {
   var selectedOrder;
   var selectedItem;
   var walletAmount = 0;
-  var newOrder;
+  var newOrder = [];
+  var cancelFlag = false;
   const snapshot = db.collection('OrderDetails').doc(userid_order);
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
         allOrder = doc.data().OrderDetails;
-
         var selectIndex = allOrder.findIndex(e => e.orderID === orderID);
         if (selectIndex >= 0) {
           selectedOrder = allOrder[selectIndex];
           //get the selected item
           var selectedIIndex = selectedOrder.orderItems.findIndex(e => e.ProductID === prodID.value && e.SelectedSubItem === selectedItemIndex.value);
           //if order has only one item, then mark this as Cancelled
-          console.log(selectedIIndex);
+
           console.log(selectedOrder.orderItems.length);
           if (selectedIIndex >= 0 && selectedOrder.orderItems.length === 1) {
             console.log("order Cancelled");
+            cancelFlag = true;
             allOrder[selectIndex].orderStatus = "Cancelled";
             if (allOrder[selectIndex].paymentStatus === 'Completed') {
               walletAmount = allOrder[selectIndex].totalAmount;
@@ -593,12 +601,50 @@ function deleteItem(prodID, selectedItemIndex) {
             newOrder = allOrder;
           } else {
             console.log("order updated");
-            for (i = 0; i < allOrder.length; i++) {
-              if (i != selectIndex)
-                newOrder.push(allOrder[i]);
+            var totalPrise = 0;
+            for (j = 0; j < allOrder.length; j++) {
+              if (selectIndex != j) {
+
+                newOrder.push(allOrder[j])
+              } else {
+                var items = [] ;
+                var modifiedOrder = allOrder[selectIndex];
+
+                for (i = 0; i < allOrder[selectIndex].orderItems.length; i++) {
+
+                  if (i != selectedIIndex)
+                  {
+                    items.push(allOrder[selectIndex].orderItems[i]);
+                    totalPrise = Number(totalPrise) +  Number(allOrder[selectIndex].orderItems[i].UnitPrise ) * Number(allOrder[selectIndex].orderItems[i].Quantity )
+                  }
+                }
+                //check for discount promise
+                var discount;
+                var discountedAmount = 0;
+                if(modifiedOrder.discountDetails.coupondID != 'none')
+                {
+                  discount =modifiedOrder.discountDetails.discountValue;
+                  var discountValue  = 0;
+                  if(discount.includes("%"))
+                  {
+                    discount = discount.replace("%","");
+                    discountValue = Number(totalPrise) * Number(discount) /100;
+                  }
+                  else
+                  {
+                    discount = discount.replace("₹","");
+                    discountValue = Number(discount);
+                  }
+                }
+                discountedAmount = Number(totalPrise) - Number(discountValue);
+                modifiedOrder.totalItems =items.length;
+                modifiedOrder.orderItems =items;
+                modifiedOrder.totalAmount =totalPrise;
+                modifiedOrder.discountedprize = discountedAmount;
+                newOrder.push(modifiedOrder)
+              }
             }
           }
-          console.log(newOrder);
           db.collection('OrderDetails').doc(userid_order).update({
               OrderDetails: newOrder
             })
@@ -607,6 +653,8 @@ function deleteItem(prodID, selectedItemIndex) {
 
               //update order trackData
               var orderChanges = [];
+              if (cancelFlag === true)
+              {
               orderChanges.push({
                 OrderStage: 6,
                 OrderStatus: 'Order is Cancelled',
@@ -615,10 +663,21 @@ function deleteItem(prodID, selectedItemIndex) {
                 DeliveryDate: '',
                 ChangedTimeStamp: new Date()
               });
-                console.log(orderChanges);
-                console.log( orderID);
-                UpdateOrderTrackingDetails(orderChanges, orderID);
-            })
+            }else
+            {
+              orderChanges.push({
+                OrderStage: 6,
+                OrderStatus: 'Order Modified',
+                PaymentStatus: '',
+                DeliverySlot: '',
+                DeliveryDate: '',
+                ChangedTimeStamp: new Date()
+            });
+              console.log(orderChanges);
+              console.log(orderID);
+              UpdateOrderTrackingDetails(orderChanges, orderID);
+            }
+          })
             .catch(function(error) {
               console.error("error adding document:", error);
             });
