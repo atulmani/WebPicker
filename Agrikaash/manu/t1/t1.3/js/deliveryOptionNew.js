@@ -107,7 +107,7 @@ function applyCoupon() {
     {
       var discountPercentage = discountText.replace(" %", "").trim();
       console.log(discountPercentage, originalAmount);
-      discountedAmount = (Number(originalAmount) * Number(discountPercentage.trim())) / 100;
+      discountedAmount =Number(originalAmount) -  (Number(originalAmount) * Number(discountPercentage.trim())) / 100;
     } else //absolute discount
     {
       var discountAbsolute = discountText.replace("₹ ", "").trim();
