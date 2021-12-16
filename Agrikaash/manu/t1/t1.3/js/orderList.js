@@ -87,7 +87,7 @@ function populateCartData() {
 
 function renderPendingPaymentOrder(order, index) {
   var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12")
+  div1.setAttribute("class", "col-sm-12 "+"Pending")
   div1.setAttribute("style", "padding: 5px;")
 
   var span1 = document.createElement("span");
@@ -120,7 +120,11 @@ function renderPendingPaymentOrder(order, index) {
   hforderid.setAttribute('value', order.orderID);
 
   var h1 = document.createElement("h6");
-  h1.innerHTML = "order Serial Numbe : " + index;
+  h1.innerHTML = "Order Serial Numbe : " + (index +1);
+
+
+    var h11 = document.createElement("h6");
+    h11.innerHTML = "Order Status : " + order.orderStatus ;
 
 
   var h2 = document.createElement("h6");
@@ -128,15 +132,14 @@ function renderPendingPaymentOrder(order, index) {
     h2.setAttribute("style", "padding:0;text-decoration:line-through;");
   } else {
     h2.setAttribute("style", "padding:0;");
-
   }
-  h2.innerHTML = "TotalAmount : Rs " + order.totalAmount;
+  h2.innerHTML = "TotalAmount : ₹ " + order.totalAmount ;
 
 
   if (order.discountedprize > 0) {
     var h21 = document.createElement("h6");
     h21.setAttribute("style", "padding:0;");
-    h21.innerHTML = "Discounted Amount : Rs " + order.discountedprize;
+    h21.innerHTML = "Discounted Amount : ₹ " + order.discountedprize + "("+order.discountDetails.discountValue+" Off)";
   }
   var div4 = document.createElement("div");
   div4.setAttribute("class", "order-details");
@@ -159,6 +162,8 @@ function renderPendingPaymentOrder(order, index) {
 
   div2.appendChild(div3);
   div2.appendChild(h1);
+  div2.appendChild(h11);
+
   div2.appendChild(h2);
   if (order.discountedprize > 0)
 
@@ -173,7 +178,7 @@ function renderPendingPaymentOrder(order, index) {
 
 function renderPendingOrder(order, index) {
   var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12")
+  div1.setAttribute("class", "col-sm-12 " +"Pending");
   div1.setAttribute("style", "padding: 5px;")
 
   var div2 = document.createElement("div");
@@ -200,9 +205,10 @@ function renderPendingOrder(order, index) {
 
 
   var h1 = document.createElement("h6");
-  h1.innerHTML = "order Serial Numbe : " + index + 1;
+  h1.innerHTML = "Order Serial Numbe : " + (index + 1);
 
-
+    var h11 = document.createElement("h6");
+    h11.innerHTML = "Order Status : " + order.orderStatus ;
 
 
   var h2 = document.createElement("h6");
@@ -212,13 +218,13 @@ function renderPendingOrder(order, index) {
     h2.setAttribute("style", "padding:0;");
 
   }
-  h2.innerHTML = "TotalAmount : Rs " + order.totalAmount;
+  h2.innerHTML = "TotalAmount : ₹ " + order.totalAmount ;
 
 
   if (order.discountedprize > 0) {
     var h21 = document.createElement("h6");
     h21.setAttribute("style", "padding:0;");
-    h21.innerHTML = "Discounted Amount : Rs " + order.discountedprize;
+    h21.innerHTML = "Discounted Amount : ₹ " + order.discountedprize + "("+order.discountDetails.discountValue+" Off)";
   }
 
   var div4 = document.createElement("div");
@@ -244,6 +250,7 @@ function renderPendingOrder(order, index) {
   div2.appendChild(div3);
 
   div2.appendChild(h1);
+  div2.appendChild(h11);
   div2.appendChild(h2);
 
   if (order.discountedprize > 0)
@@ -256,8 +263,8 @@ function renderPendingOrder(order, index) {
 
 function renderDeliveredOrder(order, index) {
   var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12")
-  div1.setAttribute("style", "padding: 5px;")
+  div1.setAttribute("class", "col-sm-12 "+"Delivered");
+  div1.setAttribute("style", "padding: 5px;");
 
   var div2 = document.createElement("div");
   div2.setAttribute("class", "orders-list-div");
@@ -282,7 +289,11 @@ function renderDeliveredOrder(order, index) {
 
 
   var h1 = document.createElement("h6");
-  h1.innerHTML = "order Serial Numbe : " + index + 1;
+  h1.innerHTML = "Order Serial Numbe : " + (index + 1);
+
+
+    var h11 = document.createElement("h6");
+    h11.innerHTML = "Order Status : " + order.orderStatus ;
 
   var h2 = document.createElement("h6");
   if (order.discountedprize > 0) {
@@ -291,13 +302,13 @@ function renderDeliveredOrder(order, index) {
     h2.setAttribute("style", "padding:0;");
 
   }
-  h2.innerHTML = "TotalAmount : Rs " + order.totalAmount;
+  h2.innerHTML = "TotalAmount : ₹ " + order.totalAmount ;
 
 
   if (order.discountedprize > 0) {
     var h21 = document.createElement("h6");
     h21.setAttribute("style", "padding:0;");
-    h21.innerHTML = "Discounted Amount : Rs " + order.discountedprize;
+    h21.innerHTML = "Discounted Amount : ₹ " + order.discountedprize + "("+order.discountDetails.discountValue+" Off)";
   }
 
   var div4 = document.createElement("div");
@@ -320,6 +331,7 @@ function renderDeliveredOrder(order, index) {
   div2.appendChild(div3);
 
   div2.appendChild(h1);
+  div2.appendChild(h11);
   div2.appendChild(h2);
 
   if (order.discountedprize > 0)
@@ -332,8 +344,8 @@ function renderDeliveredOrder(order, index) {
 
 function renderCancelledOrder(order, index) {
   var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12")
-  div1.setAttribute("style", "padding: 5px;")
+  div1.setAttribute("class", "col-sm-12 "+"Cancelled");
+  div1.setAttribute("style", "padding: 5px;");
 
   var div2 = document.createElement("div");
   div2.setAttribute("class", "orders-list-div");
@@ -358,7 +370,11 @@ function renderCancelledOrder(order, index) {
   hforderid.setAttribute('value', order.orderID);
 
   var h1 = document.createElement("h6");
-  h1.innerHTML = "order Serial Numbe : " + index + 1;
+  h1.innerHTML = "Order Serial Numbe : " + (index + 1);
+
+  h11 = document.createElement("h6");
+ h11.innerHTML = "Order Status : " +order.orderStatus ;
+
 
   var h2 = document.createElement("h6");
   if (order.discountedprize > 0) {
@@ -367,13 +383,13 @@ function renderCancelledOrder(order, index) {
     h2.setAttribute("style", "padding:0;");
 
   }
-  h2.innerHTML = "TotalAmount : Rs " + order.totalAmount;
+  h2.innerHTML = "TotalAmount : ₹ " + order.totalAmount;
 
 
   if (order.discountedprize > 0) {
     var h21 = document.createElement("h6");
     h21.setAttribute("style", "padding:0;");
-    h21.innerHTML = "Discounted Amount : Rs " + order.discountedprize;
+    h21.innerHTML = "Discounted Amount : ₹ " + order.discountedprize  + "("+order.discountDetails.discountValue+" Off)";
   }
 
   var div4 = document.createElement("div");
@@ -399,6 +415,7 @@ function renderCancelledOrder(order, index) {
   div2.appendChild(div3);
 
   div2.appendChild(h1);
+  div2.appendChild(h11);
   div2.appendChild(h2);
   if (order.discountedprize > 0)
     div2.appendChild(h21);
@@ -411,16 +428,69 @@ function renderCancelledOrder(order, index) {
 /////////////////////new function
 function renderOrder(order, index) {
   //console.log(selectedItem);
-  console.log(order);
-  if (order.orderStatus === 'Pending' && order.paymentStatus === 'Pending') {
+    if (order.orderStatus === 'Pending' && order.paymentStatus === 'Pending') {
     renderPendingPaymentOrder(order, index);
   } else if (order.orderStatus === 'Pending' && order.paymentStatus === 'Completed') {
     renderPendingOrder(order, index);
   } else if (order.paymentStatus === 'Completed' && order.orderStatus === 'Delivered') {
     renderDeliveredOrder(order, index);
+  } else if (order.orderStatus === 'Packed' && order.paymentStatus === 'Pending') {
+    renderPendingPaymentOrder(order, index);
+  } else if (order.orderStatus === 'Packed' && order.paymentStatus === 'Completed') {
+    renderPendingOrder(order, index);
+  } else if (order.orderStatus === 'On The Way' && order.paymentStatus === 'Pending') {
+    renderPendingPaymentOrder(order, index);
+  } else if (order.orderStatus === 'On The Way' && order.paymentStatus === 'Completed') {
+    renderPendingOrder(order, index);
   } else if (order.orderStatus === 'Cancelled') {
     renderCancelledOrder(order, index);
-
   }
 
+
 }
+
+
+//function anchorlLnkClick() {
+
+  // $(window).load(function(){
+  console.log('Inside ready function');
+  console.log(document.getElementById('anchorAll'));
+  $('#anchorAll').click(function() {
+    // hideall();
+    // $('.all').toggle("slide");
+    console.log('clicked all');
+    $('.Pending').show("slide");
+    $('.Delivered').show("slide");
+    $('.Cancelled').show("slide");
+    // $('.Fruit').show("slide");
+  });
+  $('#anchorPending').click(function() {
+    hideall();
+    $('.Pending').show("fadeUp");
+  });
+  $('#anchorDelivered').click(function() {
+    hideall();
+    $('.Delivered').show("slide");
+   });
+
+   $('#anchorCancelled').click(function() {
+     hideall();
+     $('.Cancelled').show("slide");
+    });
+  // $('#anchorPearl').click(function() {
+  //   hideall();
+  //   $('.Pearl').show("slide");
+  // });
+  // $('#anchorFruit').click(function() {
+  //   hideall();
+  //   $('.Fruit').show("slide");
+  // });
+
+  function hideall() {
+    $('.Pending').hide();
+    $('.Delivered').hide();
+    $('.Cancelled').hide();
+    // $('.Fruit').hide();
+  };
+
+//}
