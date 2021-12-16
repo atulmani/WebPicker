@@ -83,10 +83,9 @@ function renderPendingPaymentOrder(order, index, createdBy) {
   // anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID+"&userID="+order.orderBy);
 
   var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12");
+  div1.setAttribute("class", "col-sm-12 "+"Pending");
   div1.setAttribute("style", "padding: 5px;");
   div1.setAttribute("id", "mainDiv" + index);
-
 
   var div2 = document.createElement("div");
   div2.setAttribute("class", "orders-list-div");
@@ -130,7 +129,6 @@ function renderPendingPaymentOrder(order, index, createdBy) {
 
   div3.appendChild(div5);
 
-
   var small1 = document.createElement("small");
   small1.setAttribute("class", "payment-pending");
   small1.innerHTML = "Delivery Date: " + dt1.getDate() + "-" + (dt1.getMonth() + 1) + "-" + dt1.getFullYear() + "";
@@ -142,12 +140,10 @@ function renderPendingPaymentOrder(order, index, createdBy) {
   small11.innerHTML = "Order Date: " + dt.getDate() + "-" + (dt.getMonth() + 1) + "-" + dt.getFullYear();;
 
   div3.appendChild(small11);
-
-
   div2.appendChild(div3);
 
   var h1 = document.createElement("h6");
-  h1.innerHTML = "order Serial Numbe : " + index;
+  h1.innerHTML = "Order Serial Numbe : " +( index + 1);
 
   div2.appendChild(h1);
 
@@ -155,6 +151,12 @@ function renderPendingPaymentOrder(order, index, createdBy) {
   h11.innerHTML = "Order By : " + createdBy;
 
   div2.appendChild(h11);
+
+
+     h11 = document.createElement("h6");
+    h11.innerHTML = "Order Status : " +order.orderStatus ;
+    div2.appendChild(h11);
+
   var h2 = document.createElement("h6");
   if (order.discountedprize > 0) {
     h2.setAttribute("style", "padding:0;text-decoration:line-through;");
@@ -162,15 +164,14 @@ function renderPendingPaymentOrder(order, index, createdBy) {
     h2.setAttribute("style", "padding:0;");
 
   }
-  h2.innerHTML = "TotalAmount : Rs " + order.totalAmount;
+  h2.innerHTML = "TotalAmount : ₹ " + order.totalAmount;
 
   div2.appendChild(h2);
-
 
   if (order.discountedprize > 0) {
     var h21 = document.createElement("h6");
     h21.setAttribute("style", "padding:0;");
-    h21.innerHTML = "Discounted Amount : Rs " + order.discountedprize;
+    h21.innerHTML = "Discounted Amount : ₹ " + order.discountedprize+" ("+ order.discountDetails.discountValue +" Off)";
     div2.appendChild(h21);
 
   }
@@ -187,11 +188,7 @@ function renderPendingPaymentOrder(order, index, createdBy) {
   var div4h2 = document.createElement("h5");
   div4h2.setAttribute("class", "payment-pending");
   div4h2.innerHTML = 'Payment Pending';
-
-
-
   div4.appendChild(div4h2);
-
   div2.appendChild(div4);
 
   //div2.appendChild(div5);
@@ -213,7 +210,7 @@ function renderPendingOrder(order, index, createdBy) {
   // anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID+"&userID="+order.orderBy);
 
   var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12");
+  div1.setAttribute("class", "col-sm-12 "+"Pending");
   div1.setAttribute("style", "padding: 5px;");
   div1.setAttribute("id", "mainDiv" + index);
 
@@ -256,9 +253,7 @@ function renderPendingOrder(order, index, createdBy) {
   spanDelete.innerHTML = "delete_outline";
 
   div5.appendChild(spanDelete);
-
   div3.appendChild(div5);
-
 
   var small1 = document.createElement("small");
   small1.setAttribute("class", "delivery-pending");
@@ -278,32 +273,33 @@ function renderPendingOrder(order, index, createdBy) {
 
   div2.appendChild(span1);
 
-
   var h1 = document.createElement("h6");
-  h1.innerHTML = "order Serial Numbe : " + index + 1;
+  h1.innerHTML = "Order Serial Numbe : " + (index + 1);
   div2.appendChild(h1);
 
   var h11 = document.createElement("h6");
   h11.innerHTML = "Order By : " + createdBy;
   div2.appendChild(h11);
 
+  h11 = document.createElement("h6");
+ h11.innerHTML = "Order Status : " +order.orderStatus ;
+ div2.appendChild(h11);
 
   var h2 = document.createElement("h6");
   if (order.discountedprize > 0) {
     h2.setAttribute("style", "padding:0;text-decoration:line-through;");
   } else {
     h2.setAttribute("style", "padding:0;");
-
   }
-  h2.innerHTML = "TotalAmount : Rs " + order.totalAmount;
+
+  h2.innerHTML = "TotalAmount : ₹ " + order.totalAmount;
   div2.appendChild(h2);
 
   if (order.discountedprize > 0) {
     var h21 = document.createElement("h6");
     h21.setAttribute("style", "padding:0;");
-    h21.innerHTML = "Discounted Amount : Rs " + order.discountedprize;
+    h21.innerHTML = "Discounted Amount : ₹ " + order.discountedprize+" ("+ order.discountDetails.discountValue +" Off)";
     div2.appendChild(h21);
-
   }
 
   var div4 = document.createElement("div");
@@ -332,7 +328,7 @@ function renderDeliveredOrder(order, index, createdBy) {
   var dt1 = new Date(order.deliveryDate);
 
   var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12");
+  div1.setAttribute("class", "col-sm-12 "+"Delivered");
   div1.setAttribute("style", "padding: 5px;");
   div1.setAttribute("id", "mainDiv" + index);
 
@@ -369,10 +365,7 @@ function renderDeliveredOrder(order, index, createdBy) {
   i1.setAttribute("style", "padding: 0 5px 0 5px;");
 
   div5.appendChild(i1);
-
-
   div3.appendChild(div5);
-
 
   var small1 = document.createElement("small");
   small1.innerHTML = "Delivery Date: " + dt1.getDate() + "-" + (dt1.getMonth() + 1) + "-" + dt1.getFullYear();;
@@ -392,15 +385,18 @@ function renderDeliveredOrder(order, index, createdBy) {
 
   div2.appendChild(span1);
 
-
-
-
   var h1 = document.createElement("h6");
-  h1.innerHTML = "order Serial Numbe : " + index + 1;
+  h1.innerHTML = "Order Serial Numbe : " + (index + 1);
   div2.appendChild(h1);
 
   var h11 = document.createElement("h6");
   h11.innerHTML = "Order By : " + createdBy;
+div2.appendChild(h11);
+
+  h11 = document.createElement("h6");
+ h11.innerHTML = "Order Status : " +order.orderStatus ;
+ div2.appendChild(h11);
+
   var h2 = document.createElement("h6");
   if (order.discountedprize > 0) {
     h2.setAttribute("style", "padding:0;text-decoration:line-through;");
@@ -408,13 +404,13 @@ function renderDeliveredOrder(order, index, createdBy) {
     h2.setAttribute("style", "padding:0;");
 
   }
-  h2.innerHTML = "TotalAmount : Rs " + order.totalAmount;
+  h2.innerHTML = "TotalAmount : ₹ " + order.totalAmount;
   div2.appendChild(h2);
 
   if (order.discountedprize > 0) {
     var h21 = document.createElement("h6");
     h21.setAttribute("style", "padding:0;");
-    h21.innerHTML = "Discounted Amount : Rs " + order.discountedprize;
+    h21.innerHTML = "Discounted Amount : ₹ " + order.discountedprize +" ("+ order.discountDetails.discountValue +" Off)";
     div2.appendChild(h21);
   }
 
@@ -442,7 +438,7 @@ function renderCancelledOrder(order, index, createdBy) {
   var dt1 = new Date(order.deliveryDate);
 
   var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12");
+  div1.setAttribute("class", "col-sm-12 "+"Cancelled");
   div1.setAttribute("style", "padding: 5px;");
   div1.setAttribute("id", "mainDiv" + index);
   //
@@ -479,10 +475,7 @@ function renderCancelledOrder(order, index, createdBy) {
   i1.setAttribute("style", "padding: 0 5px 0 5px;");
 
   div5.appendChild(i1);
-
-
   div3.appendChild(div5);
-
 
   var small1 = document.createElement("small");
   small1.setAttribute('class', "cancel");
@@ -502,12 +495,16 @@ function renderCancelledOrder(order, index, createdBy) {
   div2.appendChild(span1);
 
   var h1 = document.createElement("h6");
-  h1.innerHTML = "order Serial Numbe : " + index + 1;
+  h1.innerHTML = "Order Serial Numbe : " + (index + 1);
   div2.appendChild(h1);
 
   var h11 = document.createElement("h6");
   h11.innerHTML = "Order By : " + createdBy;
   div2.appendChild(h11);
+
+  h11 = document.createElement("h6");
+ h11.innerHTML = "Order Status : " +order.orderStatus ;
+ div2.appendChild(h11);
 
   var h2 = document.createElement("h6");
   if (order.discountedprize > 0) {
@@ -516,13 +513,13 @@ function renderCancelledOrder(order, index, createdBy) {
     h2.setAttribute("style", "padding:0;");
 
   }
-  h2.innerHTML = "TotalAmount : Rs " + order.totalAmount;
+  h2.innerHTML = "TotalAmount : ₹ " + order.totalAmount;
   div2.appendChild(h2);
 
   if (order.discountedprize > 0) {
     var h21 = document.createElement("h6");
     h21.setAttribute("style", "padding:0;");
-    h21.innerHTML = "Discounted Amount : Rs " + order.discountedprize;
+    h21.innerHTML = "Discounted Amount : ₹ " + order.discountedprize+" ("+ order.discountDetails.discountValue +" Off)";
     div2.appendChild(h21);
   }
 
@@ -561,8 +558,6 @@ function renderOrder(order, index, createdBy) {
   //Combination orderStatus : Delivered, PaymentStatus : Completed - covered
   //Combination orderStatus : Cancelled, PaymentStatus : Pending  -covered
   //Combination orderStatus : Cancelled, PaymentStatus : Completed - covered
-
-
   if (order.orderStatus === 'Pending' && order.paymentStatus === 'Pending') {
     renderPendingPaymentOrder(order, index, createdBy);
   } else if (order.orderStatus === 'Pending' && order.paymentStatus === 'Completed') {
@@ -573,9 +568,9 @@ function renderOrder(order, index, createdBy) {
     renderPendingPaymentOrder(order, index, createdBy);
   } else if (order.orderStatus === 'Packed' && order.paymentStatus === 'Completed') {
     renderPendingOrder(order, index, createdBy);
-  } else if (order.orderStatus === 'On the Way' && order.paymentStatus === 'Pending') {
+  } else if (order.orderStatus === 'On The Way' && order.paymentStatus === 'Pending') {
     renderPendingPaymentOrder(order, index, createdBy);
-  } else if (order.orderStatus === 'On the Way' && order.paymentStatus === 'Completed') {
+  } else if (order.orderStatus === 'On The Way' && order.paymentStatus === 'Completed') {
     renderPendingOrder(order, index, createdBy);
   } else if (order.orderStatus === 'Cancelled') {
     renderCancelledOrder(order, index, createdBy);
@@ -589,3 +584,50 @@ function GetOrderDetails(orderID, userID) {
 
   window.location.href = "orderDetails.html?id=" + orderID.value + "&userID=" + userID.value;
 }
+
+
+
+//function anchorlLnkClick() {
+
+  // $(window).load(function(){
+  console.log('Inside ready function');
+  console.log(document.getElementById('anchorAll'));
+  $('#anchorAll').click(function() {
+    // hideall();
+    // $('.all').toggle("slide");
+    console.log('clicked all');
+    $('.Pending').show("slide");
+    $('.Delivered').show("slide");
+    $('.Cancelled').show("slide");
+    // $('.Fruit').show("slide");
+  });
+  $('#anchorPending').click(function() {
+    hideall();
+    $('.Pending').show("fadeUp");
+  });
+  $('#anchorDelivered').click(function() {
+    hideall();
+    $('.Delivered').show("slide");
+   });
+
+   $('#anchorCancelled').click(function() {
+     hideall();
+     $('.Cancelled').show("slide");
+    });
+  // $('#anchorPearl').click(function() {
+  //   hideall();
+  //   $('.Pearl').show("slide");
+  // });
+  // $('#anchorFruit').click(function() {
+  //   hideall();
+  //   $('.Fruit').show("slide");
+  // });
+
+  function hideall() {
+    $('.Pending').hide();
+    $('.Delivered').hide();
+    $('.Cancelled').hide();
+    // $('.Fruit').hide();
+  };
+
+//}
