@@ -3,16 +3,19 @@ var userID = "";
 var cartItems = [];
 var productCategory = [];
 var isAdmin = false;
+var userBusinessCategory="";
+
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
       GetProfileData(firebaseUser);
+        console.log(userBusinessCategory);
+        var promise = getCartItemNo();
+        var promise2 = promise.then(populateProductData('', ''));
+        //promise2.then(console.log(productCategory));
 
-      var promise = getCartItemNo();
-      var promise2 = promise.then(populateProductData('', ''));
-      //promise2.then(console.log(productCategory));
 
     } else {
       console.log('User has been logged out');
@@ -34,7 +37,8 @@ function GetProfileData(user) {
         //console.log('Document ref id: ' + doc.data().uid);
         userID = doc.data().uid;
         userRole = doc.data().UserRole;
-        console.log(userRole);
+        console.log(doc.data().CustomerType);
+        userBusinessCategory = doc.data().CustomerType;
         if (userRole != undefined) {
           if (userRole.findIndex(e => e.value === "Admin") >= 0) {
             isAdmin = true;
@@ -102,6 +106,8 @@ async function populateProductData(bType, pType) {
   emptyDiv(divPList);
   emptyDiv(divPType);
   var DBrows;
+  bType = userBusinessCategory;
+  console.log(bType);
   if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
   {
     DBrows = db.collection("Products").get();
