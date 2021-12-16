@@ -27,29 +27,41 @@ body{
 }
 
 h1{
-  font-size: 3rem;
-  font-weight: bold;
+  font-size: 2.6rem;
+  font-weight: 700;
+  font-family: 'Oswald';
+  letter-spacing: 1px;
 }
 
 h2{
-  font-size: 2.5rem;
-  font-weight: bold;
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: 'Oswald';
+  letter-spacing: 1px;
 }
 h3{
-  font-size: 2rem;
-  font-weight: bold;
+  font-size: 1.8rem;
+  font-weight: 500;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 1px;
 }
 h4{
   font-size: 1.5rem;
-  font-weight:normal;
+  font-weight: normal;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 1px;
 }
 h5{
-  font-size: 1.2rem;
-  font-weight:normal;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 1px;
 }
 h6{
-  font-size: 0.8rem;
-  font-weight:normal;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.5px;
 }
 
 
@@ -60,7 +72,7 @@ h6{
 
 /* navbar start */
 .navbar{
-  background-color: #fefefe; /*color changed*/
+  background-color: #88CA5E; /*color changed*/
   border-top: 0;
   border-bottom: 0;
   border-left: 0;
@@ -184,10 +196,6 @@ h6{
   color: white;
   font-size: 1.7rem;
   padding-left: 12px;
-}
-
-.navbar-brand:hover{
-  color: #aaa;
 }
 
 .navbar-text{
@@ -324,18 +332,43 @@ h6{
 
 .serach-div{
   display: flex;
-  height: 30px;
-  margin-top: 5px;
 }
 
 .serach-div input{
-  border: 1px solid #444;
+  border: 1px solid #666;
   border-radius: 4px;
-  padding-left: 30px;
+  padding: 0px 0px 0px 30px;
   z-index: 999;
   background: none;
   outline: none;
-  font-size: 0.8rem;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  font-weight: 500;
+  height: 40px;
+  width: 250px;
+  background: rgba(255,255,255,0.4);
+}
+
+.serach-div input:focus{
+  background: rgba(250,250,250,0.8);
+}
+
+.serach-div i{
+  position:absolute;
+  transform:translateY(12px) translateX(7px);
+  color: #000;
+}
+
+.small-text{
+  font-size: 0.9rem;
+  color: rgba(0,0,0,0.7);
+}
+
+.user-agreement{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
 }
 
 @media (max-width: 850px) {
@@ -609,7 +642,7 @@ input[type=number] {
 }
 
 .copy-write{
-  background: #1D741B;
+  background: #88CA5E;
   color: #fff;
 }
 
@@ -981,7 +1014,6 @@ input[type=number] {
 }
 
 .login-register-card{
-  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -989,12 +1021,9 @@ input[type=number] {
 }
 
 .login-register-card-fixed{
-  padding: 3% 2%;
-  width:300px;
-  height: 500px;
-  display:flex;
-  flex-direction:column;
-  box-shadow: 0 0 20px 0 rgba(0,0,0,0.1);
+  padding: 30px 0;
+  /* width: 350px; */
+  box-shadow: 0 0 20px 0 rgba(0,0,0,0.2);
   overflow: hidden;
 }
 
@@ -1038,6 +1067,9 @@ input[type=number] {
   font-size: 1rem;
   z-index: -1;
   transition: 0.5s;
+  color: #bbb;
+  transition: 1.2s;
+  font-weight: normal;
 }
 
 .login-form .login-form-feilds input:focus ~ h5,
@@ -1059,15 +1091,16 @@ input[type=number] {
 .form-btn span{
   font-weight: bold;
   padding: 0 10px;
-  color: #555;
+  color: #aaa;
   cursor: pointer;
   width: 50%;
   display: inline-block;
   text-align: center;
+  font-size: 1.6rem;
 }
 
 #Indicator{
-  width: 130px;
+  width: 50%;
   border: none;
   background: #88CA5E;
   height: 3px;
