@@ -99,6 +99,14 @@ function populateDeliveryAddress(selectedOrder) {
   document.getElementById('PaymentStatus').innerHTML = selectedOrder.paymentStatus;
   document.getElementById('orderDate').innerHTML = selectedOrder.orderDate;
 
+  document.getElementById('paymentAmount').innerHTML = selectedOrder.totalAmount;
+  console.log( selectedOrder.discountedprize);
+  if (selectedOrder.discountedprize != "NaN" && selectedOrder.discountedprize != "0" && selectedOrder.discountedprize != "")
+  {
+    document.getElementById('discountAmount').innerHTML = selectedOrder.discountedprize +"(" + selectedOrder.discountDetails.discountValue +" Off)";
+  } else {
+    document.getElementById('discount').style.display = "none";
+  }
   document.getElementById('BranchName').innerHTML = selectedOrder.deliveryAddress.branchName;
   document.getElementById('BranchOwnerName').innerHTML = selectedOrder.deliveryAddress.branchOwnerName;
   document.getElementById('AddressLine1').innerHTML = selectedOrder.deliveryAddress.addressLine1;
