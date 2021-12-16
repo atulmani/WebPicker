@@ -134,7 +134,7 @@ async function getCartItemNo1() {
               cartItemNo.innerHTML = cartItems.length;
               document.getElementById('itemCount').innerHTML = cartItems.length + ' Items';
 
-              document.getElementById('totalAmount').innerHTML = 'Rs. ' + prise;
+              document.getElementById('totalAmount').innerHTML = '₹ ' + prise;
 
             });
         } else {
@@ -143,7 +143,7 @@ async function getCartItemNo1() {
           cartItemNo.innerHTML = 0;
           document.getElementById('itemCount').innerHTML = 0 + ' Items';
 
-          document.getElementById('totalAmount').innerHTML = 'Rs. 0';
+          document.getElementById('totalAmount').innerHTML = '₹ 0';
         }
 
 
@@ -157,7 +157,7 @@ async function getCartItemNo1() {
       cartItemNo.innerHTML = 0;
       document.getElementById('itemCount').innerHTML = 0 + ' Items';
 
-      document.getElementById('totalAmount').innerHTML = 'Rs. 0';
+      document.getElementById('totalAmount').innerHTML = '₹ 0';
     }
   })
   .catch((docref))
@@ -208,7 +208,7 @@ async function getCartItemNo() {
             cartItemNo.innerHTML = cartItems.length;
             document.getElementById('itemCount').innerHTML = cartItems.length + ' Items';
 
-            document.getElementById('totalAmount').innerHTML = 'Rs. ' + prise;
+            document.getElementById('totalAmount').innerHTML = '₹ ' + prise;
 
           });
       } else {
@@ -217,7 +217,7 @@ async function getCartItemNo() {
         cartItemNo.innerHTML = 0;
         document.getElementById('itemCount').innerHTML = 0 + ' Items';
 
-        document.getElementById('totalAmount').innerHTML = 'Rs. 0';
+        document.getElementById('totalAmount').innerHTML = '₹ 0';
       }
 
 
@@ -229,7 +229,7 @@ async function getCartItemNo() {
       cartItemNo.innerHTML = 0;
       document.getElementById('itemCount').innerHTML = 0 + ' Items';
 
-      document.getElementById('totalAmount').innerHTML = 'Rs. 0';
+      document.getElementById('totalAmount').innerHTML = '₹ 0';
 
     }
   });
