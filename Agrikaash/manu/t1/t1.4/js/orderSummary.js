@@ -14,7 +14,7 @@ auth.onAuthStateChanged(firebaseUser => {
       userID = firebaseUser.uid;
       console.log(orderID);
       console.log(userID);
-      //GetProfileData(firebaseUser);
+      GetProfileData(firebaseUser);
 
       getOrderDetails();
       if (orderID != '' && orderID != null) {
@@ -43,13 +43,12 @@ function GetProfileData(user) {
         // let blogPost = doc.data();
         // console.log ('User UID: ' + user.uid);
         console.log('Document ref id: ' + doc.data().uid);
-        userID = doc.data().uid;
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
           document.getElementById('navUser').src = doc.data().ProfileImageURL;
         }
 
-        document.getElementById('headerProfilePic').src = doc.data().ImageURL;
-        document.getElementById('displayName').innerHTML = doc.data().displayName;
+        // document.getElementById('headerProfilePic').src = doc.data().ImageURL;
+        // document.getElementById('displayName').innerHTML = doc.data().displayName;
 
       }
     })
@@ -63,23 +62,16 @@ function GetProfileData(user) {
 
 function getOrderDetails() {
   console.log(userID);
-  const snapshot = db.collection('OrderDetails').doc(userID);
+  const snapshot = db.collection('OrderDetails').doc(orderID);
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
         // let blogPost = doc.data();
         // console.log ('User UID: ' + user.uid);
         //console.log('Document ref id: ' + doc.data().uid);
-        var orderDetails = doc.data().OrderDetails;
-        console.log(orderDetails);
-        var selectedOrderIndex = orderDetails.findIndex(e => e.orderID === orderID);
-        console.log(selectedOrderIndex);
-        var selectedOrder;
-        if (selectedOrderIndex >= 0) {
-          selectedOrder = orderDetails[selectedOrderIndex];
-          console.log(selectedOrder);
-          populateDeliveryAddress(selectedOrder);
-          populateOrderItems(selectedOrder);
-        }
+        var orderDetails = doc.data();
+          console.log(orderDetails);
+          populateDeliveryAddress(orderDetails);
+          populateOrderItems(orderDetails);
 
       }
     })
@@ -93,11 +85,20 @@ function getOrderDetails() {
 
 function populateDeliveryAddress(selectedOrder) {
   console.log(document.getElementById('DeliveryDate'));
-  document.getElementById('DeliveryDate').innerHTML = selectedOrder.deliveryDate;
+
+  var options = { year: 'numeric', month: 'short', day: 'numeric' };
+    var dDate = new Date(selectedOrder.deliveryDate.seconds * 1000);
+    var delDate = dDate.toLocaleDateString("en-US", options);
+
+  document.getElementById('DeliveryDate').innerHTML = delDate;
   document.getElementById('DeliveryTime').innerHTML = selectedOrder.deliveryTime;
   document.getElementById('orderStatus').innerHTML = selectedOrder.orderStatus;
   document.getElementById('PaymentStatus').innerHTML = selectedOrder.paymentStatus;
-  document.getElementById('orderDate').innerHTML = selectedOrder.orderDate;
+  console.log(selectedOrder.orderDate);
+  var oDate = new Date(selectedOrder.orderDate.seconds * 1000);
+  var orderDate = oDate.toLocaleDateString("en-US", options);
+
+  document.getElementById('orderDate').innerHTML = orderDate;
 
   document.getElementById('paymentAmount').innerHTML = selectedOrder.totalAmount;
   console.log( selectedOrder.discountedprize);
