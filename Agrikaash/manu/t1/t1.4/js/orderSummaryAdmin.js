@@ -50,7 +50,8 @@ function SaveOrder() {
   var deliveryDate = odeliveryDate.options[odeliveryDate.selectedIndex].value;
   var orderStatus = oOrderStatus.options[oOrderStatus.selectedIndex].value;
   var paymentStatus = oPaymentStatus.options[oPaymentStatus.selectedIndex].value;
-
+console.log(deliveryDate);
+console.log(new Date(deliveryDate));
   var oldDeliveryTime = '';
   var oldDeliveryDate = '';
   var oldOrderStatus = '';
@@ -58,17 +59,17 @@ function SaveOrder() {
   var orderChanges = [];
   var blupdatedFlag = true;
   var blTrackChanges = false;
-  const snapshot = db.collection('OrderDetails').doc(userid_order);
+  const snapshot = db.collection('OrderDetails').doc(orderID);
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
         // let blogPost = doc.data();
         // console.log ('User UID: ' + user.uid);
         //console.log('Document ref id: ' + doc.data().uid);
-        var orderDetails = doc.data().OrderDetails;
+        //var orderDetails = doc.data().OrderDetails;
         //console.log(orderDetails);
-        var selectedOrderIndex = orderDetails.findIndex(e => e.orderID === orderID);
+        //var selectedOrderIndex = orderDetails.findIndex(e => e.orderID === orderID);
         //console.log(selectedOrderIndex);
-        var selectedOrder;
+        //var selectedOrder;
         //console.log(selectedItem);
         //orderStatus : Pending, Packed, On the Way, Delivered, Cancelled
         //PaymentStatus : Pending, Completed
@@ -89,14 +90,14 @@ function SaveOrder() {
         var orderStage = 0;
 
 
-        if (selectedOrderIndex >= 0) {
-          selectedOrder = orderDetails[selectedOrderIndex];
+         {
+          selectedOrder = doc.data();
           //copy original data
           oldDeliveryTime = selectedOrder.deliveryTime;
           oldDeliveryDate = selectedOrder.deliveryDate;
           oldOrderStatus = selectedOrder.orderStatus;
           oldPaymentStatus = selectedOrder.paymentStatus;
-
+          console.log(oldPaymentStatus);
 
           if (oldOrderStatus != orderStatus) {
             blTrackChanges = true;
@@ -135,14 +136,14 @@ function SaveOrder() {
           });
 
           if (blupdatedFlag === true) {
-            UpdateOrderTrackingDetails(orderChanges, orderDetails[selectedOrderIndex].orderID);
+            UpdateOrderTrackingDetails(orderChanges, doc.id);
           }
           //get new data
           selectedOrder.deliveryDate = deliveryDate;
           selectedOrder.orderStatus = orderStatus;
           selectedOrder.paymentStatus = paymentStatus;
           selectedOrder.deliveryTime = deliveryTime
-          orderDetails[selectedOrderIndex] = selectedOrder;
+          //orderDetails[selectedOrderIndex] = selectedOrder;
           //order status changed is changed to cancelled,if payment status is completed, need to add the amount in user wallet
           if (oldOrderStatus != orderStatus && orderStatus === 'Cancelled' &&
             (oldPaymentStatus === 'Completed' || paymentStatus === 'Completed')) {
@@ -160,8 +161,26 @@ function SaveOrder() {
           }
         }
         if (blupdatedFlag === true) {
-          db.collection("OrderDetails").doc(userid_order).update({
-              OrderDetails: orderDetails
+          db.collection("OrderDetails").doc(orderID).update({
+              orderItems: OrderItems, //cartDetails,
+              //totalItems: itemCount,
+              //totalAmount: prize,
+              //deliveryAddress: selectedAddress,
+              deliveryDate: firebase.firestore.Timestamp.fromDate(new Date(Date.parse(deliveryDate))), //deliveryDate,
+              deliveryTime: deliveryTime,
+              //paymentOption: paymentOption,
+              discountedprize: discountedprize,
+              paymentStatus: 'Pending',
+              orderStatus: 'Pending',
+            ///  orderDate: firebase.firestore.Timestamp.fromDate(new Date()),
+              orderBy: userID,
+              orderByUserName: userName,
+              //OrderDetails: orderDetails,
+              CreatedBy: auth.currentUser.email,
+              CreatedTimestamp: (new Date()).toString(),
+              UpdatedBy: '',
+              UpdatedTimestamp: ''
+
             })
             .then(function(docRef) {
               console.log("Data added sucessfully in the document: " + userid_order);
@@ -270,43 +289,43 @@ function populateDeliveryDate() {
   tempDate.setDate(tempDate.getDate() + 1);
   option1 = document.createElement("option");
   option1.setAttribute("value", tempDate.toLocaleDateString());
-  option1.innerHTML = tempDate.toLocaleDateString();
+  option1.innerHTML = tempDate.getDate() +"/"+(tempDate.getMonth() + 1) +"/" + tempDate.getFullYear(); //tempDate.toLocaleDateString();
   delDate.appendChild(option1);
 
   tempDate.setDate(tempDate.getDate() + 1);
   option1 = document.createElement("option");
   option1.setAttribute("value", tempDate.toLocaleDateString());
-  option1.innerHTML = tempDate.toLocaleDateString();
+  option1.innerHTML =tempDate.getDate() +"/"+(tempDate.getMonth() + 1) +"/" + tempDate.getFullYear();// tempDate.toLocaleDateString();
   delDate.appendChild(option1);
 
   tempDate.setDate(tempDate.getDate() + 1);
   option1 = document.createElement("option");
   option1.setAttribute("value", tempDate.toLocaleDateString());
-  option1.innerHTML = tempDate.toLocaleDateString();
+  option1.innerHTML =tempDate.getDate() +"/"+(tempDate.getMonth() + 1) +"/" + tempDate.getFullYear();// tempDate.toLocaleDateString();
   delDate.appendChild(option1);
 
   tempDate.setDate(tempDate.getDate() + 1);
   option1 = document.createElement("option");
   option1.setAttribute("value", tempDate.toLocaleDateString());
-  option1.innerHTML = tempDate.toLocaleDateString();
+  option1.innerHTML =tempDate.getDate() +"/"+(tempDate.getMonth() + 1) +"/" + tempDate.getFullYear();// tempDate.toLocaleDateString();
   delDate.appendChild(option1);
 
   tempDate.setDate(tempDate.getDate() + 1);
   option1 = document.createElement("option");
   option1.setAttribute("value", tempDate.toLocaleDateString());
-  option1.innerHTML = tempDate.toLocaleDateString();
+  option1.innerHTML = tempDate.getDate() +"/"+(tempDate.getMonth() + 1) +"/" + tempDate.getFullYear();//tempDate.toLocaleDateString();
   delDate.appendChild(option1);
 
   tempDate.setDate(tempDate.getDate() + 1);
   option1 = document.createElement("option");
   option1.setAttribute("value", tempDate.toLocaleDateString());
-  option1.innerHTML = tempDate.toLocaleDateString();
+  option1.innerHTML = tempDate.getDate() +"/"+(tempDate.getMonth() + 1) +"/" + tempDate.getFullYear();//tempDate.toLocaleDateString();
   delDate.appendChild(option1);
 
   tempDate.setDate(tempDate.getDate() + 1);
   option1 = document.createElement("option");
   option1.setAttribute("value", tempDate.toLocaleDateString());
-  option1.innerHTML = tempDate.toLocaleDateString();
+  option1.innerHTML = tempDate.getDate() +"/"+(tempDate.getMonth() + 1) +"/" + tempDate.getFullYear();//tempDate.toLocaleDateString();
   delDate.appendChild(option1);
 
 
@@ -338,22 +357,22 @@ function GetProfileData(user) {
 
 function getOrderDetails() {
   console.log(userID);
-  const snapshot = db.collection('OrderDetails').doc(userid_order);
+  const snapshot = db.collection('OrderDetails').doc(orderID);
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
         // let blogPost = doc.data();
         // console.log ('User UID: ' + user.uid);
         //console.log('Document ref id: ' + doc.data().uid);
-        var orderDetails = doc.data().OrderDetails;
+        //var orderDetails = doc.data().OrderDetails;
         //console.log(orderDetails);
-        var selectedOrderIndex = orderDetails.findIndex(e => e.orderID === orderID);
+        //var selectedOrderIndex = orderDetails.findIndex(e => e.orderID === orderID);
         //console.log(selectedOrderIndex);
-        var selectedOrder;
-        if (selectedOrderIndex >= 0) {
-          selectedOrder = orderDetails[selectedOrderIndex];
+        //var selectedOrder;
+        //if (selectedOrderIndex >= 0) {
+          selectedOrder = doc.data();
           populateDeliveryAddress(selectedOrder, userID);
           populateOrderItems(selectedOrder);
-        }
+        //}
 
       }
     })
@@ -366,15 +385,30 @@ function getOrderDetails() {
 }
 
 function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
-  var deliverydt = new Date(selectedOrder.deliveryDate);
-  var orderdt = new Date(selectedOrder.orderDate);
+
+      var options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      };
+
+      var deliverydt = new Date(selectedOrder.deliveryDate.seconds * 1000);
+      var dt1 = deliverydt.toLocaleDateString("en-US", options);
+
+      var orderdt = new Date(selectedOrder.orderDate.seconds * 1000);
+      var dt = orderdt.toLocaleDateString("en-US", options);
+
+  //
+  // var deliverydt = new Date(selectedOrder.deliveryDate);
+  // var orderdt = new Date(selectedOrder.orderDate);
+
   //document.getElementById('DeliveryDate').innerHTML = selectedOrder.deliveryDate;
   document.getElementById('DeliveryDate').innerHTML = deliverydt.getDate() + "-" + (deliverydt.getMonth() + 1) + "-" + deliverydt.getFullYear();
   document.getElementById('DeliveryTime').innerHTML = selectedOrder.deliveryTime;
   document.getElementById('orderStatus').innerHTML = selectedOrder.orderStatus;
   document.getElementById('PaymentStatus').innerHTML = selectedOrder.paymentStatus;
   // document.getElementById('orderDate').innerHTML = selectedOrder.orderDate;
-  document.getElementById('orderDate').innerHTML = orderdt.getDate() + "-" + (orderdt.getMonth() + 1) + "-" + orderdt.getFullYear();;
+  document.getElementById('orderDate').innerHTML = orderdt.getDate() + "/" + (orderdt.getMonth() + 1) + "/" + orderdt.getFullYear();;
 
   document.getElementById('BranchName').innerHTML = selectedOrder.deliveryAddress.branchName;
   document.getElementById('BranchOwnerName').innerHTML = selectedOrder.deliveryAddress.branchOwnerName;
@@ -387,7 +421,7 @@ function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
   document.getElementById('orderPlacedBy').value = orderPlacedBy;
 
   for (index = 0; index < odeliveryDate.options.length; index++) {
-    if (odeliveryDate.options[index].value === selectedOrder.deliveryDate)
+    if (odeliveryDate.options[index].text === (deliverydt.getDate() +"/"+(deliverydt.getMonth() + 1) +"/" + deliverydt.getFullYear()))//selectedOrder.deliveryDate)
       odeliveryDate.options[index].selected = true;
 
   }
