@@ -1,6 +1,6 @@
 //const productID = document.getElementById('productID');
 var userID = "";
-
+var userName = "";
 var OrderItems = [];
 auth.onAuthStateChanged(firebaseUser => {
   try {
@@ -37,6 +37,7 @@ function GetProfileData(user) {
       if (doc.exists) {
         //console.log('Document ref id: ' + doc.data().uid);
         userID = user.uid;
+        userName = doc.data().displayName;
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
           document.getElementById('navUser').src = doc.data().ProfileImageURL;
         }
@@ -107,7 +108,7 @@ function applyCoupon() {
     {
       var discountPercentage = discountText.replace(" %", "").trim();
       console.log(discountPercentage, originalAmount);
-      discountedAmount =Number(originalAmount) -  (Number(originalAmount) * Number(discountPercentage.trim())) / 100;
+      discountedAmount = Number(originalAmount) - (Number(originalAmount) * Number(discountPercentage.trim())) / 100;
     } else //absolute discount
     {
       var discountAbsolute = discountText.replace("₹ ", "").trim();
@@ -192,7 +193,8 @@ var orderDetails = [];
 var message = "";
 var iError = 0;
 
-async function getCartDetails() {
+//function getCartDetails() {
+function SaveOrder() {
   const snapshot = db.collection('CartDetails').doc(userID);
   snapshot.get().then(async (doc) => {
     if (doc.exists) {
@@ -203,191 +205,202 @@ async function getCartDetails() {
         iError = 1;
         console.log("cart is empty, add to cart");
       }
-    }
-  });
-  console.log(message);
-  return message;
-}
+      else
+      {
+        //Get Address Start
+        const snapshotAddress = db.collection('AddressList').doc(userID);
+        snapshotAddress.get().then(async (adoc) => {
+          if (adoc.exists) {
+            console.log('if address exists');
+            addressList = adoc.data().AddressList;
+            var selIndex = -1;
+            selIndex = addressList.findIndex(e => e.addressSelected === 'YES');
+            if (selIndex >= 0) {
+              selectedAddress = addressList[selIndex];
+              console.log('if address selected');
+                SaveOrderinDB();
+            } else {
+              message = message + "Select Address";
+              iError = 2;
+            }
+          } else {
+            message = message + "Add Address";
+            iError = 3;
+            console.log("Add Address");
+          }
+        });
 
-async function getAddress() {
-  const snapshotAddress = db.collection('AddressList').doc(userID);
-  snapshotAddress.get().then(async (adoc) => {
-    if (adoc.exists) {
-      console.log('if address exists');
-      addressList = adoc.data().AddressList;
-      var selIndex = -1;
-      selIndex = addressList.findIndex(e => e.addressSelected === 'YES');
-      if (selIndex >= 0) {
-        selectedAddress = addressList[selIndex];
-        console.log('if address selected');
-      } else {
-        message = message + "Select Address";
-        iError = 2;
+        //get address end
       }
-    } else {
-      message = message + "Add Address";
-      iError = 3;
-
-      console.log("Add Address");
     }
   });
   console.log(message);
   return message;
-
 }
+//
+// function getAddress() {
+//   const snapshotAddress = db.collection('AddressList').doc(userID);
+//   console.log('in getAddress');
+//   snapshotAddress.get().then(async (adoc) => {
+//     if (adoc.exists) {
+//       console.log('if address exists');
+//       addressList = adoc.data().AddressList;
+//       var selIndex = -1;
+//       selIndex = addressList.findIndex(e => e.addressSelected === 'YES');
+//       if (selIndex >= 0) {
+//         selectedAddress = addressList[selIndex];
+//         console.log('if address selected');
+//
+//       } else {
+//         message = message + "Select Address";
+//         iError = 2;
+//       }
+//     } else {
+//       message = message + "Add Address";
+//       iError = 3;
+//
+//       console.log("Add Address");
+//     }
+//   });
+//   console.log(message);
+//   return message;
+//
+// }
 
-function SaveOrder() {
+function SaveOrderinDB() {
 
   var orderDetails = [];
   var message = "";
   var iError = 0;
   console.log('SaveOrder');
-  getCartDetails()
-    .then(async (message) => {
-      if (message === '') {
-        console.log(message);
-        getAddress()
-          .then(async (message) => {
+  //getCartDetails();
 
-            var deliveryDate = '';
-            var delDateObj = document.getElementById("DeliveryDate");
-            deliveryDate = delDateObj.options[delDateObj.selectedIndex].value;
-            console.log(deliveryDate);
+  //getAddress();
+  var deliveryDate = '';
+  var delDateObj = document.getElementById("DeliveryDate");
+  deliveryDate = delDateObj.options[delDateObj.selectedIndex].value;
+  console.log(deliveryDate);
 
-            var deliveryTime = '';
-            var delTimeObj = document.getElementById("DeliveryTime");
-            deliveryTime = delTimeObj.options[delTimeObj.selectedIndex].value;
+  var deliveryTime = '';
+  var delTimeObj = document.getElementById("DeliveryTime");
+  deliveryTime = delTimeObj.options[delTimeObj.selectedIndex].value;
 
-            var paymentOption = "";
-            if (document.getElementById("PayOption1").checked) {
-              paymentOption = document.getElementById("PayOption1").value;
-            } else if (document.getElementById("PayOption2").checked) {
-              paymentOption = document.getElementById("PayOption2").value;
-            } else if (document.getElementById("PayOption3").checked) {
-              paymentOption = document.getElementById("PayOption3").value;
-            }
+  var paymentOption = "";
+  if (document.getElementById("PayOption1").checked) {
+    paymentOption = document.getElementById("PayOption1").value;
+  } else if (document.getElementById("PayOption2").checked) {
+    paymentOption = document.getElementById("PayOption2").value;
+  } else if (document.getElementById("PayOption3").checked) {
+    paymentOption = document.getElementById("PayOption3").value;
+  }
 
-            var prize = document.getElementById("hftotalAmount").value;
-            var discountedprize = document.getElementById("hfdiscountedAmount").value;
-            var itemCount = document.getElementById("itemCount").innerHTML;
-            var discount = {
-              coupondID: couponDetails.options[couponDetails.selectedIndex].value,
-              discountValue: couponDetails.options[couponDetails.selectedIndex].text
+  var prize = document.getElementById("hftotalAmount").value;
+  var discountedprize = document.getElementById("hfdiscountedAmount").value;
+  var itemCount = document.getElementById("itemCount").innerHTML;
+  var discount = {
+    coupondID: couponDetails.options[couponDetails.selectedIndex].value,
+    discountValue: couponDetails.options[couponDetails.selectedIndex].text
 
-            };
+  };
 
-            const snapshotOrder = db.collection('OrderDetails').doc(userID);
-            console.log("before insert");
+  var orderChanges = [];
+  orderChanges.push({
+    OrderStage: 1,
+    OrderStatus: 'Order Placed',
+    PaymentStatus: 'Pending',
+    DeliverySlot: deliveryTime,
+    DeliveryDate: deliveryDate,
+    ChangedTimeStamp: new Date()
+  });
 
-            snapshotOrder.get().then(async (aOrder) => {
-              if (aOrder.exists) {
-                console.log('if order exists');
-                orderDetails = aOrder.data().OrderDetails;
-              }
-              console.log(userID);
-              var orderID = userID + Date.now();
-              console.log(OrderItems);
-              var orderChanges = [];
-              orderChanges.push({
-                OrderStage: 1,
-                OrderStatus: 'Order Placed',
-                PaymentStatus: 'Pending',
-                DeliverySlot: deliveryTime,
-                DeliveryDate: deliveryDate,
-                ChangedTimeStamp: new Date()
-              });
+  orderChanges.push({
+    OrderStage: 2,
+    OrderStatus: 'Pending',
+    PaymentStatus: 'Pending',
+    DeliverySlot: deliveryTime,
+    DeliveryDate: deliveryDate,
+    ChangedTimeStamp: new Date()
+  });
 
-              orderChanges.push({
-                OrderStage: 2,
-                OrderStatus: 'Pending',
-                PaymentStatus: 'Pending',
-                DeliverySlot: deliveryTime,
-                DeliveryDate: deliveryDate,
-                ChangedTimeStamp: new Date()
-              });
+  console.log(orderChanges);
 
+  console.log(userID);
+  console.log(cartDetails.length);
+  console.log(selectedAddress);
+  if (cartDetails.length > 0 && selectedAddress != null) {
+    console.log('insert order');
 
-              orderDetails.push({
-                orderID: orderID,
-                orderItems: OrderItems, //cartDetails,
-                totalItems: itemCount,
-                totalAmount: prize,
-                deliveryAddress: selectedAddress,
-                deliveryDate: deliveryDate,
-                deliveryTime: deliveryTime,
-                paymentOption: paymentOption,
-                discountedprize: discountedprize,
-                discountDetails: discount,
-                paymentStatus: 'Pending',
-                orderStatus: 'Pending',
-                orderDate: (new Date()).toString(),
-                orderBy: userID
+    db.collection('OrderDetails')
+      .add({
+        orderItems: OrderItems, //cartDetails,
+        totalItems: itemCount,
+        totalAmount: prize,
+        deliveryAddress: selectedAddress,
+        deliveryDate: firebase.firestore.Timestamp.fromDate(new Date(Date.parse(deliveryDate))), //deliveryDate,
+        deliveryTime: deliveryTime,
+        paymentOption: paymentOption,
+        discountedprize: discountedprize,
+        discountDetails: discount,
+        paymentStatus: 'Pending',
+        orderStatus: 'Pending',
+        orderDate: firebase.firestore.Timestamp.fromDate(new Date()),
+        orderBy: userID,
+        orderByUserName: userName,
+        //OrderDetails: orderDetails,
+        CreatedBy: auth.currentUser.email,
+        CreatedTimestamp: (new Date()).toString(),
+        UpdatedBy: '',
+        UpdatedTimestamp: ''
+      })
 
-              });
+      .then(function(docRef) {
+        console.log("Data added sucessfully in the document: " + docRef.id);
+        orderID = docRef.id;
+        cartDetails = [];
 
-              console.log(auth.currentUser);
-              if (cartDetails.length > 0 && selectedAddress != null) {
-                console.log('insert order');
-
-                db.collection('OrderDetails')
-                  .doc(userID)
-                  .set({
-                    OrderDetails: orderDetails,
-                    CreatedBy:  auth.currentUser.email,
-                    CreatedTimestamp: (new Date()).toString(),
-                    UpdatedBy: '',
-                    UpdatedTimestamp: ''
-                  })
-                  .then(function(docRef) {
-                    console.log("Data added sucessfully in the document: ");
-                    //showAddress(false);
-                    //delete from cart after order places
-                    cartDetails = [];
-
-                    db.collection("OrderTracking").add({
-                        OrderID: orderID,
-                        ChangeTrack: orderChanges,
-                        UpdatedTimestamp: new Date(),
-                        UpdatedByUser: userID,
-                        UserID : userID
-                      })
-                      .then(function(docRef) {
-                        console.log("Data added sucessfully in the document: " + userid_order);
-                        //    window.location.href = "orderStatus.html"
-                        // console.log(Date.parse(eventstart))
-                      })
-                      .catch(function(error) {
-                        console.error("error updatign order:", error);
-                      });
-
-
-                      db.collection('CartDetails')
-                        .doc(userID)
-                        .update({
-                          cartDetails: cartDetails
-                        })
-                        .then(function(docred) {
-                          console.log('cart details made blank');
-                          window.location.href = "orderSummary.html?id=" + orderID;
-                        });
-                    // console.log(Date.parse(eventstart))
-                  })
-                  .catch(function(error) {
-                    console.log(error);
-                    //  console.error("error adding document:", error.message);
-                  });
-
-
-              }
-            });
+        db.collection('OrderTracking')
+          .doc(docRef.id)
+          .set({
+            OrderID: orderID,
+            ChangeTrack: orderChanges,
+            UpdatedTimestamp: new Date(),
+            UpdatedByUser: userID,
+            UserID: userID
+          })
+          .then(function(docRef) {
+            console.log("Data added sucessfully in the document: " + userID);
+            //    window.location.href = "orderStatus.html"
+            // console.log(Date.parse(eventstart))
+          })
+          .catch(function(error) {
+            console.error("error updatign order:", error);
           });
 
-        console.log("after address");
-      }
-    });
+
+        db.collection('CartDetails')
+          .doc(userID)
+          .update({
+            cartDetails: cartDetails
+          })
+          .then(function(docred) {
+            console.log('cart details made blank');
+            window.location.href = "orderSummary.html?id=" + orderID;
+          });
+        // console.log(Date.parse(eventstart))
+      })
+      .catch(function(error) {
+        console.log(error);
+        //  console.error("error adding document:", error.message);
+      });
+
+
+  }
+
+  console.log("after save");
   //window.location.href = "orderList.html";
 
 }
+
 
 function getCartSummary() {
   var arr = [];
