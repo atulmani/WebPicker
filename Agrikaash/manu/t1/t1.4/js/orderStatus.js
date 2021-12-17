@@ -63,47 +63,70 @@ function populateOrderDetails() {
 
 
   var index = 0;
-  const snapshot;
-  if(orderDateRange!= undefined && orderDateRange!= '' )
-   snapshot = db.collection('OrderDetails').get();
-  else if(orderDateRange === 'today')
-  {
+  var snapshot;
+  console.log(orderDateRange);
+  // if(orderDateRange!= undefined && orderDateRange!= '' )
+  //  snapshot = db.collection('OrderDetails').get();
+  // else if(orderDateRange === 'today')
+  // {
+  //
+  // }
+  // else if(orderDateRange === 'yesterday')
+  // {
+  //
+  // }
+  // else if(orderDateRange === 'week')
+  // {
+  //
+  // }
+  // else if(orderDateRange === 'month')
+  // {
+  //
+  // }
+  // console.log('before log');
+  // snapshot.then((changes) => {
 
-  }
-  else if(orderDateRange === 'yesterday')
-  {
 
-  }
-  else if(orderDateRange === 'week')
-  {
+  var DBrow = db.collection('OrderDetails')
+//    .where("orderDate", "<=", todayDate)
+  //  .where("orderDate", ">=", currentMonth)
+    DBrow.onSnapshot(snapshot => {
+    //.onSnapshot(snapshot => {
+      let changes = snapshot.docChanges();
 
-  }
-  else if(orderDateRange === 'month')
-  {
+      console.log("populatePayments: ");
 
-  }
-  snapshot.then((changes) => {
+  var i = 0;
     changes.forEach(change => {
-      orderList = change.data().OrderDetails;
+      orderList = change.doc.data();
       //orderList.sort()
       //console.log(change.doc, index, selectdedItem);
-      var name = change.data().CreatedBy;
-      console.log(name);
-      for (i = 0; i < orderList.length; i++) {
-        renderOrder(orderList[i], index, name);
+      var name = change.doc.data().CreatedBy;
+      console.log(change.doc.id);
+      //for (i = 0; i < orderList.length; i++) {
+        renderOrder(orderList, index, name, change.doc.id);
         index = index + 1;
-      }
+      });
     });
-  });
   document.getElementById('loading').style.display = 'none';
 
 
 }
 
-function renderPendingPaymentOrder(order, index, createdBy) {
-  console.log('createdBy', createdBy);
-  var dt = new Date(order.orderDate);
-  var dt1 = new Date(order.deliveryDate);
+function renderPendingPaymentOrder(order, index, createdBy, orderid) {
+
+    var options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    };
+
+    var dDate = new Date(order.deliveryDate.seconds * 1000);
+    var dt1 = dDate.toLocaleDateString("en-US", options);
+
+    var oDate = new Date(order.orderDate.seconds * 1000);
+    var dt = oDate.toLocaleDateString("en-US", options);
+
   // var anchor = document.createElement("a");
   // anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID+"&userID="+order.orderBy);
 
@@ -125,7 +148,7 @@ function renderPendingPaymentOrder(order, index, createdBy) {
   var hforderid = document.createElement("input");
   hforderid.setAttribute('type', 'hidden');
   hforderid.setAttribute('id', 'hfOrderID' + index);
-  hforderid.setAttribute('value', order.orderID);
+  hforderid.setAttribute('value', orderid);
 
   div5.appendChild(hforderid);
 
@@ -156,13 +179,13 @@ function renderPendingPaymentOrder(order, index, createdBy) {
 
   var small1 = document.createElement("small");
   small1.setAttribute("class", "payment-pending");
-  small1.innerHTML = "Delivery Date: " + dt1.getDate() + "-" + (dt1.getMonth() + 1) + "-" + dt1.getFullYear() + "";
+  small1.innerHTML = "Delivery Date: " +  dt1;//dt1.getDate() + "-" + (dt1.getMonth() + 1) + "-" + dt1.getFullYear() + "";
 
   div3.appendChild(small1);
 
   var small11 = document.createElement("small");
   small11.setAttribute("class", "payment-pending");
-  small11.innerHTML = "Order Date: " + dt.getDate() + "-" + (dt.getMonth() + 1) + "-" + dt.getFullYear();;
+  small11.innerHTML = "Order Date: " + dt;//dt.getDate() + "-" + (dt.getMonth() + 1) + "-" + dt.getFullYear();;
 
   div3.appendChild(small11);
   div2.appendChild(div3);
@@ -226,11 +249,20 @@ function renderPendingPaymentOrder(order, index, createdBy) {
 }
 
 
-function renderPendingOrder(order, index, createdBy) {
+function renderPendingOrder(order, index, createdBy, orderid) {
 
-  var dt = new Date(order.orderDate);
-  var dt1 = new Date(order.deliveryDate);
-  //
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+
+  var dDate = new Date(order.deliveryDate.seconds * 1000);
+  var dt1 = dDate.toLocaleDateString("en-US", options);
+
+  var oDate = new Date(order.orderDate.seconds * 1000);
+  var dt = oDate.toLocaleDateString("en-US", options);
+//
   // var anchor = document.createElement("a");
   // anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID+"&userID="+order.orderBy);
 
@@ -252,7 +284,7 @@ function renderPendingOrder(order, index, createdBy) {
   var hforderid = document.createElement("input");
   hforderid.setAttribute('type', 'hidden');
   hforderid.setAttribute('id', 'hfOrderID' + index);
-  hforderid.setAttribute('value', order.orderID);
+  hforderid.setAttribute('value', orderid);
 
   div5.appendChild(hforderid);
 
@@ -282,12 +314,12 @@ function renderPendingOrder(order, index, createdBy) {
 
   var small1 = document.createElement("small");
   small1.setAttribute("class", "delivery-pending");
-  small1.innerHTML = "Delivery Date: " + dt1.getDate() + "-" + (dt1.getMonth() + 1) + "-" + dt1.getFullYear();;
+  small1.innerHTML = "Delivery Date: " + dt1;//dt1.getDate() + "-" + (dt1.getMonth() + 1) + "-" + dt1.getFullYear();;
   div3.appendChild(small1);
 
   var small11 = document.createElement("small");
   small11.setAttribute("class", "delivery-pending");
-  small11.innerHTML = "Order Date: " + dt.getDate() + "-" + (dt.getMonth() + 1) + "-" + dt.getFullYear();;
+  small11.innerHTML = "Order Date: " + dt;//dt.getDate() + "-" + (dt.getMonth() + 1) + "-" + dt.getFullYear();;
   div3.appendChild(small11)
 
   div2.appendChild(div3);
@@ -348,9 +380,19 @@ function renderPendingOrder(order, index, createdBy) {
 
 }
 
-function renderDeliveredOrder(order, index, createdBy) {
-  var dt = new Date(order.orderDate);
-  var dt1 = new Date(order.deliveryDate);
+function renderDeliveredOrder(order, index, createdBy, orderid) {
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+
+  var dDate = new Date(order.deliveryDate.seconds * 1000);
+  var dt1 = dDate.toLocaleDateString("en-US", options);
+
+  var oDate = new Date(order.orderDate.seconds * 1000);
+  var dt = oDate.toLocaleDateString("en-US", options);
+
 
   var div1 = document.createElement("div");
   div1.setAttribute("class", "col-sm-12 "+"Delivered");
@@ -373,7 +415,7 @@ function renderDeliveredOrder(order, index, createdBy) {
   var hforderid = document.createElement("input");
   hforderid.setAttribute('type', 'hidden');
   hforderid.setAttribute('id', 'hfOrderID' + index);
-  hforderid.setAttribute('value', order.orderID);
+  hforderid.setAttribute('value', orderid);
 
   div5.appendChild(hforderid);
 
@@ -393,12 +435,12 @@ function renderDeliveredOrder(order, index, createdBy) {
   div3.appendChild(div5);
 
   var small1 = document.createElement("small");
-  small1.innerHTML = "Delivery Date: " + dt1.getDate() + "-" + (dt1.getMonth() + 1) + "-" + dt1.getFullYear();;
+  small1.innerHTML = "Delivery Date: " +dt1;// dt1.getDate() + "-" + (dt1.getMonth() + 1) + "-" + dt1.getFullYear();;
 
   div3.appendChild(small1);
 
   var small11 = document.createElement("small");
-  small11.innerHTML = "<br>Order Date: " + dt.getDate() + "-" + (dt.getMonth() + 1) + "-" + dt.getFullYear();;
+  small11.innerHTML = "<br>Order Date: " + dt;//dt.getDate() + "-" + (dt.getMonth() + 1) + "-" + dt.getFullYear();;
 
 
   div3.appendChild(small11);
@@ -458,9 +500,19 @@ div2.appendChild(h11);
 
 }
 
-function renderCancelledOrder(order, index, createdBy) {
-  var dt = new Date(order.orderDate);
-  var dt1 = new Date(order.deliveryDate);
+function renderCancelledOrder(order, index, createdBy, orderid) {
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+
+  var dDate = new Date(order.deliveryDate.seconds * 1000);
+  var dt1 = dDate.toLocaleDateString("en-US", options);
+
+  var oDate = new Date(order.orderDate.seconds * 1000);
+  var dt = oDate.toLocaleDateString("en-US", options);
+
 
   var div1 = document.createElement("div");
   div1.setAttribute("class", "col-sm-12 "+"Cancelled");
@@ -483,7 +535,7 @@ function renderCancelledOrder(order, index, createdBy) {
   var hforderid = document.createElement("input");
   hforderid.setAttribute('type', 'hidden');
   hforderid.setAttribute('id', 'hfOrderID' + index);
-  hforderid.setAttribute('value', order.orderID);
+  hforderid.setAttribute('value', orderid);
 
   div5.appendChild(hforderid);
 
@@ -504,12 +556,12 @@ function renderCancelledOrder(order, index, createdBy) {
 
   var small1 = document.createElement("small");
   small1.setAttribute('class', "cancel");
-  small1.innerHTML = "Delivery Date: " + dt1.getDate() + "-" + (dt1.getMonth() + 1) + "-" + dt1.getFullYear();
+  small1.innerHTML = "Delivery Date: " + dt1;//dt1.getDate() + "-" + (dt1.getMonth() + 1) + "-" + dt1.getFullYear();
   div3.appendChild(small1);
 
   var small11 = document.createElement("small");
   small11.setAttribute("class", "cancel");
-  small11.innerHTML = "<br>Order Date: " + dt.getDate() + "-" + (dt.getMonth() + 1) + "-" + dt.getFullYear();;
+  small11.innerHTML = "<br>Order Date: " + dt;//dt.getDate() + "-" + (dt.getMonth() + 1) + "-" + dt.getFullYear();;
   div3.appendChild(small11);
 
   div2.appendChild(div3);
@@ -569,7 +621,7 @@ function renderCancelledOrder(order, index, createdBy) {
 
 }
 /////////////////////new function
-function renderOrder(order, index, createdBy) {
+function renderOrder(order, index, createdBy, orderid) {
   //console.log(selectedItem);
   //orderStatus : Pending, Packed, On the Way, Delivered, Cancelled
   //PaymentStatus : Pending, Completed
@@ -584,21 +636,21 @@ function renderOrder(order, index, createdBy) {
   //Combination orderStatus : Cancelled, PaymentStatus : Pending  -covered
   //Combination orderStatus : Cancelled, PaymentStatus : Completed - covered
   if (order.orderStatus === 'Pending' && order.paymentStatus === 'Pending') {
-    renderPendingPaymentOrder(order, index, createdBy);
+    renderPendingPaymentOrder(order, index, createdBy, orderid);
   } else if (order.orderStatus === 'Pending' && order.paymentStatus === 'Completed') {
-    renderPendingOrder(order, index, createdBy);
+    renderPendingOrder(order, index, createdBy, orderid);
   } else if (order.paymentStatus === 'Completed' && order.orderStatus === 'Delivered') {
-    renderDeliveredOrder(order, index, createdBy);
+    renderDeliveredOrder(order, index, createdBy, orderid);
   } else if (order.orderStatus === 'Packed' && order.paymentStatus === 'Pending') {
-    renderPendingPaymentOrder(order, index, createdBy);
+    renderPendingPaymentOrder(order, index, createdBy, orderid);
   } else if (order.orderStatus === 'Packed' && order.paymentStatus === 'Completed') {
-    renderPendingOrder(order, index, createdBy);
+    renderPendingOrder(order, index, createdBy, orderid);
   } else if (order.orderStatus === 'On The Way' && order.paymentStatus === 'Pending') {
-    renderPendingPaymentOrder(order, index, createdBy);
+    renderPendingPaymentOrder(order, index, createdBy, orderid);
   } else if (order.orderStatus === 'On The Way' && order.paymentStatus === 'Completed') {
-    renderPendingOrder(order, index, createdBy);
+    renderPendingOrder(order, index, createdBy, orderid);
   } else if (order.orderStatus === 'Cancelled') {
-    renderCancelledOrder(order, index, createdBy);
+    renderCancelledOrder(order, index, createdBy, orderid);
   }
 
 }
