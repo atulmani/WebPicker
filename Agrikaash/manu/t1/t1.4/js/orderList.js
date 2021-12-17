@@ -2,7 +2,7 @@
 var userID = "";
 var orderList = [];
 try {
-auth.onAuthStateChanged(firebaseUser => {
+  auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
@@ -16,13 +16,12 @@ auth.onAuthStateChanged(firebaseUser => {
       window.location.href = "index.html";
     }
 
-});
-}
-catch (error) {
+  });
+} catch (error) {
 
-    console.log(error.message);
+  console.log(error.message);
 }
- //window.location.href = "../index.html";
+//window.location.href = "../index.html";
 
 
 function GetProfileData(user) {
@@ -38,7 +37,7 @@ function GetProfileData(user) {
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
           document.getElementById('navUser').src = doc.data().ProfileImageURL;
         }
-      //document.getElementById('headerProfilePic').src = doc.data().ProfileImageURL;
+        //document.getElementById('headerProfilePic').src = doc.data().ProfileImageURL;
         //document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
     })
@@ -52,17 +51,14 @@ function GetProfileData(user) {
 
 
 function populateOrderDetails() {
-
-  const snapshot = db.collection('OrderDetails').doc(userID);
-  snapshot.get().then(async (doc) => {
-    if (doc.exists) {
-      orderList = doc.data().OrderDetails;
-      //orderList.sort()
-      //console.log(change.doc, index, selectdedItem);
-      for (i = 0; i < orderList.length; i++) {
-        renderOrder(orderList[i], i);
-      }
-    }
+  var i = 0;
+  const snapshot = db.collection('OrderDetails').where('orderBy', '==', userID);
+  snapshot.get().then((changes) => {
+    changes.forEach(change => {
+      console.log();
+      renderOrder(change.id, change.data(), i);
+      i = i + 1;
+    });
     document.getElementById('loading').style.display = 'none';
   });
   populateCartData();
@@ -85,9 +81,10 @@ function populateCartData() {
 
 }
 
-function renderPendingPaymentOrder(order, index) {
+function renderPendingPaymentOrder(orderid, order, index) {
+  console.log(order);
   var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12 "+"Pending")
+  div1.setAttribute("class", "col-sm-12 " + "Pending")
   div1.setAttribute("style", "padding: 5px;")
 
   var span1 = document.createElement("span");
@@ -100,11 +97,29 @@ function renderPendingPaymentOrder(order, index) {
   div3.setAttribute("class", "");
 
   var anchor = document.createElement("a");
-  anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID);
+  anchor.setAttribute("href", "orderSummary.html?id=" + orderid);
+
+  //order.deliveryDate
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+
+  var oDate = new Date(order.deliveryDate.seconds * 1000);
+  var orderDate = oDate.toLocaleDateString("en-US", options);
 
   var small1 = document.createElement("small");
   small1.setAttribute("class", "payment-pending");
-  small1.innerHTML = order.deliveryDate;
+  small1.innerHTML = "Delivery Date : "+ orderDate;
+
+   oDate = new Date(order.orderDate.seconds * 1000);
+   orderDate = oDate.toLocaleDateString("en-US", options);
+
+  var small11= document.createElement("small");
+  small11.setAttribute("class", "payment-pending");
+  small11.innerHTML = "Order Date : "+ orderDate;
+
 
   var input1 = document.createElement("input");
   input1.setAttribute("type", "checkbox");
@@ -120,11 +135,11 @@ function renderPendingPaymentOrder(order, index) {
   hforderid.setAttribute('value', order.orderID);
 
   var h1 = document.createElement("h6");
-  h1.innerHTML = "Order Serial Numbe : " + (index +1);
+  h1.innerHTML = "Order Serial Numbe : " + (index + 1);
 
 
-    var h11 = document.createElement("h6");
-    h11.innerHTML = "Order Status : " + order.orderStatus ;
+  var h11 = document.createElement("h6");
+  h11.innerHTML = "Order Status : " + order.orderStatus;
 
 
   var h2 = document.createElement("h6");
@@ -133,13 +148,13 @@ function renderPendingPaymentOrder(order, index) {
   } else {
     h2.setAttribute("style", "padding:0;");
   }
-  h2.innerHTML = "TotalAmount : ₹ " + order.totalAmount ;
+  h2.innerHTML = "TotalAmount : ₹ " + order.totalAmount;
 
 
   if (order.discountedprize > 0) {
     var h21 = document.createElement("h6");
     h21.setAttribute("style", "padding:0;");
-    h21.innerHTML = "Discounted Amount : ₹ " + order.discountedprize + "("+order.discountDetails.discountValue+" Off)";
+    h21.innerHTML = "Discounted Amount : ₹ " + order.discountedprize + "(" + order.discountDetails.discountValue + " Off)";
   }
   var div4 = document.createElement("div");
   div4.setAttribute("class", "order-details");
@@ -157,6 +172,8 @@ function renderPendingPaymentOrder(order, index) {
 
   anchor.appendChild(small1);
   div3.appendChild(anchor);
+
+  div3.appendChild(small11);
   div3.appendChild(input1);
   div3.appendChild(hforderid);
 
@@ -176,9 +193,9 @@ function renderPendingPaymentOrder(order, index) {
 
 }
 
-function renderPendingOrder(order, index) {
+function renderPendingOrder(orderid, order, index) {
   var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12 " +"Pending");
+  div1.setAttribute("class", "col-sm-12 " + "Pending");
   div1.setAttribute("style", "padding: 5px;")
 
   var div2 = document.createElement("div");
@@ -188,11 +205,29 @@ function renderPendingOrder(order, index) {
   div3.setAttribute("class", "");
 
   var anchor = document.createElement("a");
-  anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID);
+  anchor.setAttribute("href", "orderSummary.html?id=" + orderid);
+
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+
+  var oDate = new Date(order.deliveryDate.seconds * 1000);
+  var orderDate = oDate.toLocaleDateString("en-US", options);
 
   var small1 = document.createElement("small");
   small1.setAttribute("class", "delivery-pending");
-  small1.innerHTML = order.deliveryDate;
+  small1.innerHTML = "Delivery Date : " + orderDate;
+
+
+     oDate = new Date(order.orderDate.seconds * 1000);
+     orderDate = oDate.toLocaleDateString("en-US", options);
+
+    var small11= document.createElement("small");
+    small11.setAttribute("class", "payment-pending");
+    small11.innerHTML = "Order Date : "+ orderDate;
+
 
   var span1 = document.createElement('span');
   span1.setAttribute('class', "material-icons delivery-pending");
@@ -207,8 +242,8 @@ function renderPendingOrder(order, index) {
   var h1 = document.createElement("h6");
   h1.innerHTML = "Order Serial Numbe : " + (index + 1);
 
-    var h11 = document.createElement("h6");
-    h11.innerHTML = "Order Status : " + order.orderStatus ;
+  var h11 = document.createElement("h6");
+  h11.innerHTML = "Order Status : " + order.orderStatus;
 
 
   var h2 = document.createElement("h6");
@@ -218,13 +253,13 @@ function renderPendingOrder(order, index) {
     h2.setAttribute("style", "padding:0;");
 
   }
-  h2.innerHTML = "TotalAmount : ₹ " + order.totalAmount ;
+  h2.innerHTML = "TotalAmount : ₹ " + order.totalAmount;
 
 
   if (order.discountedprize > 0) {
     var h21 = document.createElement("h6");
     h21.setAttribute("style", "padding:0;");
-    h21.innerHTML = "Discounted Amount : ₹ " + order.discountedprize + "("+order.discountDetails.discountValue+" Off)";
+    h21.innerHTML = "Discounted Amount : ₹ " + order.discountedprize + "(" + order.discountDetails.discountValue + " Off)";
   }
 
   var div4 = document.createElement("div");
@@ -243,6 +278,7 @@ function renderPendingOrder(order, index) {
 
   anchor.appendChild(small1);
   div3.appendChild(anchor);
+  div3.appendChild(small11);
 
   div3.appendChild(span1);
   div3.appendChild(hforderid);
@@ -261,9 +297,9 @@ function renderPendingOrder(order, index) {
 
 }
 
-function renderDeliveredOrder(order, index) {
+function renderDeliveredOrder(orderid, order, index) {
   var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12 "+"Delivered");
+  div1.setAttribute("class", "col-sm-12 " + "Delivered");
   div1.setAttribute("style", "padding: 5px;");
 
   var div2 = document.createElement("div");
@@ -274,10 +310,28 @@ function renderDeliveredOrder(order, index) {
 
 
   var anchor = document.createElement("a");
-  anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID);
+  anchor.setAttribute("href", "orderSummary.html?id=" + orderid);
+
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+
+  var oDate = new Date(order.deliveryDate.seconds * 1000);
+  var orderDate = oDate.toLocaleDateString("en-US", options);
 
   var small1 = document.createElement("small");
-  small1.innerHTML = order.deliveryDate;
+  small1.innerHTML = "Delivery Date : " + orderDate;
+
+
+     oDate = new Date(order.orderDate.seconds * 1000);
+     orderDate = oDate.toLocaleDateString("en-US", options);
+
+    var small11= document.createElement("small");
+    small11.setAttribute("class", "payment-pending");
+    small11.innerHTML = "Order Date : "+ orderDate;
+
 
   var span1 = document.createElement('span');
   span1.setAttribute('class', "material-icons");
@@ -292,8 +346,8 @@ function renderDeliveredOrder(order, index) {
   h1.innerHTML = "Order Serial Numbe : " + (index + 1);
 
 
-    var h11 = document.createElement("h6");
-    h11.innerHTML = "Order Status : " + order.orderStatus ;
+  var h11 = document.createElement("h6");
+  h11.innerHTML = "Order Status : " + order.orderStatus;
 
   var h2 = document.createElement("h6");
   if (order.discountedprize > 0) {
@@ -302,13 +356,13 @@ function renderDeliveredOrder(order, index) {
     h2.setAttribute("style", "padding:0;");
 
   }
-  h2.innerHTML = "TotalAmount : ₹ " + order.totalAmount ;
+  h2.innerHTML = "TotalAmount : ₹ " + order.totalAmount;
 
 
   if (order.discountedprize > 0) {
     var h21 = document.createElement("h6");
     h21.setAttribute("style", "padding:0;");
-    h21.innerHTML = "Discounted Amount : ₹ " + order.discountedprize + "("+order.discountDetails.discountValue+" Off)";
+    h21.innerHTML = "Discounted Amount : ₹ " + order.discountedprize + "(" + order.discountDetails.discountValue + " Off)";
   }
 
   var div4 = document.createElement("div");
@@ -325,6 +379,7 @@ function renderDeliveredOrder(order, index) {
 
   anchor.appendChild(small1);
   div3.appendChild(anchor);
+  div3.appendChild(small11);
 
   div3.appendChild(span1);
   div3.appendChild(hforderid);
@@ -342,9 +397,9 @@ function renderDeliveredOrder(order, index) {
 
 }
 
-function renderCancelledOrder(order, index) {
+function renderCancelledOrder(orderid, order, index) {
   var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12 "+"Cancelled");
+  div1.setAttribute("class", "col-sm-12 " + "Cancelled");
   div1.setAttribute("style", "padding: 5px;");
 
   var div2 = document.createElement("div");
@@ -355,11 +410,29 @@ function renderCancelledOrder(order, index) {
 
 
   var anchor = document.createElement("a");
-  anchor.setAttribute("href", "orderSummary.html?id=" + order.orderID);
+  anchor.setAttribute("href", "orderSummary.html?id=" + orderid);
+
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+
+  var oDate = new Date(order.deliveryDate.seconds * 1000);
+  var orderDate = oDate.toLocaleDateString("en-US", options);
 
   var small1 = document.createElement("small");
   small1.setAttribute('class', "cancel");
-  small1.innerHTML = order.deliveryDate;
+  small1.innerHTML = "Delivery Date : " + orderDate;
+
+
+
+     oDate = new Date(order.orderDate.seconds * 1000);
+     orderDate = oDate.toLocaleDateString("en-US", options);
+
+    var small11= document.createElement("small");
+    small11.setAttribute("class", "payment-pending");
+    small11.innerHTML = "Order Date : "+ orderDate;
 
   var span1 = document.createElement('span');
   span1.setAttribute('class', "material-icons cancel");
@@ -373,7 +446,7 @@ function renderCancelledOrder(order, index) {
   h1.innerHTML = "Order Serial Numbe : " + (index + 1);
 
   h11 = document.createElement("h6");
- h11.innerHTML = "Order Status : " +order.orderStatus ;
+  h11.innerHTML = "Order Status : " + order.orderStatus;
 
 
   var h2 = document.createElement("h6");
@@ -389,7 +462,7 @@ function renderCancelledOrder(order, index) {
   if (order.discountedprize > 0) {
     var h21 = document.createElement("h6");
     h21.setAttribute("style", "padding:0;");
-    h21.innerHTML = "Discounted Amount : ₹ " + order.discountedprize  + "("+order.discountDetails.discountValue+" Off)";
+    h21.innerHTML = "Discounted Amount : ₹ " + order.discountedprize + "(" + order.discountDetails.discountValue + " Off)";
   }
 
   var div4 = document.createElement("div");
@@ -408,6 +481,7 @@ function renderCancelledOrder(order, index) {
 
   anchor.appendChild(small1);
   div3.appendChild(anchor);
+  div3.appendChild(small11);
   div3.appendChild(span1);
 
   div3.appendChild(hforderid);
@@ -426,24 +500,24 @@ function renderCancelledOrder(order, index) {
 
 }
 /////////////////////new function
-function renderOrder(order, index) {
+function renderOrder(orderID, order, index) {
   //console.log(selectedItem);
-    if (order.orderStatus === 'Pending' && order.paymentStatus === 'Pending') {
-    renderPendingPaymentOrder(order, index);
+  if (order.orderStatus === 'Pending' && order.paymentStatus === 'Pending') {
+    renderPendingPaymentOrder(orderID, order, index);
   } else if (order.orderStatus === 'Pending' && order.paymentStatus === 'Completed') {
-    renderPendingOrder(order, index);
+    renderPendingOrder(orderID,order, index);
   } else if (order.paymentStatus === 'Completed' && order.orderStatus === 'Delivered') {
-    renderDeliveredOrder(order, index);
+    renderDeliveredOrder(orderID,order, index);
   } else if (order.orderStatus === 'Packed' && order.paymentStatus === 'Pending') {
-    renderPendingPaymentOrder(order, index);
+    renderPendingPaymentOrder(orderID,order, index);
   } else if (order.orderStatus === 'Packed' && order.paymentStatus === 'Completed') {
-    renderPendingOrder(order, index);
+    renderPendingOrder(orderID,order, index);
   } else if (order.orderStatus === 'On The Way' && order.paymentStatus === 'Pending') {
-    renderPendingPaymentOrder(order, index);
+    renderPendingPaymentOrder(orderID,order, index);
   } else if (order.orderStatus === 'On The Way' && order.paymentStatus === 'Completed') {
-    renderPendingOrder(order, index);
+    renderPendingOrder(orderID,order, index);
   } else if (order.orderStatus === 'Cancelled') {
-    renderCancelledOrder(order, index);
+    renderCancelledOrder(orderID,order, index);
   }
 
 
@@ -452,45 +526,45 @@ function renderOrder(order, index) {
 
 //function anchorlLnkClick() {
 
-  // $(window).load(function(){
-  console.log('Inside ready function');
-  console.log(document.getElementById('anchorAll'));
-  $('#anchorAll').click(function() {
-    // hideall();
-    // $('.all').toggle("slide");
-    console.log('clicked all');
-    $('.Pending').show("slide");
-    $('.Delivered').show("slide");
-    $('.Cancelled').show("slide");
-    // $('.Fruit').show("slide");
-  });
-  $('#anchorPending').click(function() {
-    hideall();
-    $('.Pending').show("fadeUp");
-  });
-  $('#anchorDelivered').click(function() {
-    hideall();
-    $('.Delivered').show("slide");
-   });
+// $(window).load(function(){
+console.log('Inside ready function');
+console.log(document.getElementById('anchorAll'));
+$('#anchorAll').click(function() {
+  // hideall();
+  // $('.all').toggle("slide");
+  console.log('clicked all');
+  $('.Pending').show("slide");
+  $('.Delivered').show("slide");
+  $('.Cancelled').show("slide");
+  // $('.Fruit').show("slide");
+});
+$('#anchorPending').click(function() {
+  hideall();
+  $('.Pending').show("fadeUp");
+});
+$('#anchorDelivered').click(function() {
+  hideall();
+  $('.Delivered').show("slide");
+});
 
-   $('#anchorCancelled').click(function() {
-     hideall();
-     $('.Cancelled').show("slide");
-    });
-  // $('#anchorPearl').click(function() {
-  //   hideall();
-  //   $('.Pearl').show("slide");
-  // });
-  // $('#anchorFruit').click(function() {
-  //   hideall();
-  //   $('.Fruit').show("slide");
-  // });
+$('#anchorCancelled').click(function() {
+  hideall();
+  $('.Cancelled').show("slide");
+});
+// $('#anchorPearl').click(function() {
+//   hideall();
+//   $('.Pearl').show("slide");
+// });
+// $('#anchorFruit').click(function() {
+//   hideall();
+//   $('.Fruit').show("slide");
+// });
 
-  function hideall() {
-    $('.Pending').hide();
-    $('.Delivered').hide();
-    $('.Cancelled').hide();
-    // $('.Fruit').hide();
-  };
+function hideall() {
+  $('.Pending').hide();
+  $('.Delivered').hide();
+  $('.Cancelled').hide();
+  // $('.Fruit').hide();
+};
 
 //}
