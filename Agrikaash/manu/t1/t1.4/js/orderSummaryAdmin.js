@@ -570,17 +570,18 @@ function SaveOrder() {
     var allOrder;
     var selectedOrder;
     var selectedItem;
+    var oldDiscountPrise;
+    var oldPrize;
     var walletAmount = 0;
     var newOrder = [];
     var cancelFlag = false;
     const snapshot = db.collection('OrderDetails').doc(orderID);
     snapshot.get().then(async (doc) => {
         if (doc.exists) {
-          //allOrder = doc.data().OrderDetails;
-          //var selectIndex = allOrder.findIndex(e => e.orderID === orderID);
-          //if (selectIndex >= 0)
            {
             selectedOrder = doc.data();
+            oldPrize = selectedOrder.totalAmount;
+            oldDiscountPrise = selectedOrder.discountedprize;
             //get the selected item
             var selectedIIndex = selectedOrder.orderItems.findIndex(e => e.ProductID === prodID.value && e.SelectedSubItem === selectedItemIndex.value);
             //if order has only one item, then mark this as Cancelled
@@ -625,6 +626,27 @@ function SaveOrder() {
                     }
                   }
                   discountedAmount = Number(totalPrise) - Number(discountValue);
+                  var refundAmount;
+                  console.log(totalPrise);
+                  console.log(oldPrize);
+                  console.log(discountedAmount );
+                  console.log( oldDiscountPrise);
+                  if(Number(totalPrise) < Number(oldPrize))
+                  {
+                    refundAmount = Number(oldPrize) - Number(totalPrise);
+                  }
+                  if(Number(discountedAmount) < Number(oldDiscountPrise))
+                  {
+                    refundAmount = Number(oldDiscountPrise) - Number(discountedAmount);
+                  }
+                  console.log(refundAmount);
+                  console.log(userid_order);
+
+                  if(refundAmount > 0 )
+                  {
+                    console.log('refundAmount : ', refundAmount);
+                    updateWalletDetails(userid_order, refundAmount, 'add');
+                  }
                   modifiedOrder.totalItems = items.length;
                   modifiedOrder.orderItems = items;
                   modifiedOrder.totalAmount = totalPrise;
@@ -633,6 +655,10 @@ function SaveOrder() {
                 }
               }
             }
+            console.log(modifiedOrder.orderItems,
+             modifiedOrder.orderItems.length,
+             totalPrise,
+            discountedAmount);
             db.collection('OrderDetails').doc(orderID).update({
               orderItems : modifiedOrder.orderItems,
               totalItems : modifiedOrder.orderItems.length,
@@ -670,8 +696,6 @@ function SaveOrder() {
               .catch(function(error) {
                 console.error("error adding document:", error);
               });
-          }
-        }
 
       })
       .catch(function(error) {
