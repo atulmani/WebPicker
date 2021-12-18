@@ -139,7 +139,7 @@
               Orders
             </div>
           </a><br>
-          <a href="#">
+          <a href="../login/updateProfile.html">
             <div class="">
               <i class="fas fa-male"></i>
               Profile
@@ -184,8 +184,20 @@
               <div class="order-summary">
                 <div class="">
                   <h5>Delivery Slot</h5><br>
-                  <p>Delivery Date: <span id="DeliveryDate"> </span> <br>
-                    Time Slot: <span id="DeliveryTime"> </span> <br>
+                  <p>Delivery Date:
+                          <select id="DeliveryDate">
+
+                          </select>
+                   <br>
+                    Time Slot:
+
+                    <select id="oDeliveryTime">
+                      <option>6 : 10 AM</option>
+                      <option>10 : 12 Noon</option>
+                      <option>12 : 4 PM</option>
+                      <option>4 : 6 PM</option>
+                    </select>
+                     <br>
                     Order status: <span id="orderStatus"></span> <br />
                     Order Date: <span id="orderDate"></span><br />
                     <br />
@@ -195,6 +207,12 @@
                     <span id="discount">Discounted Amount : ₹ <span id="discountAmount"> </span></span>
                   </p>
                 </div>
+
+                    <div class="">
+                      <button class="mybutton button5" onClick="SaveOrder();" id="btnSaveOrder">Update Order</button><br />
+                      <span id="spanMsg">Orders can be modified if, Order status is Pending and Delivery date is after 2 days</span>
+
+                    </div>
 
                 <div class="">
                   <h5>Address</h5><br>
