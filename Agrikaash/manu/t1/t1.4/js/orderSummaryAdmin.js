@@ -285,7 +285,7 @@ auth.onAuthStateChanged(firebaseUser => {
     hf.setAttribute("value", orderItem.ProductID);
     td3.appendChild(hf);
 
-    if (orderStatusValue != 'Cancelled') {
+    if (orderStatusValue === 'Pending' ) {
       var span2 = document.createElement('span');
       span2.setAttribute("id", "btnDelete" + index);
       console.log("deleteCoupon(" + "hfCouponDocID " + index + ");");
@@ -574,12 +574,18 @@ function SaveOrder() {
     var oldPrize;
     var walletAmount = 0;
     var newOrder = [];
+    var totalPrise = 0;
+    var discountedAmount = 0;
+
     var cancelFlag = false;
     const snapshot = db.collection('OrderDetails').doc(orderID);
     snapshot.get().then(async (doc) => {
         if (doc.exists) {
            {
+
             selectedOrder = doc.data();
+            var modifiedOrder = selectedOrder;
+
             oldPrize = selectedOrder.totalAmount;
             oldDiscountPrise = selectedOrder.discountedprize;
             //get the selected item
@@ -595,14 +601,16 @@ function SaveOrder() {
                 walletAmount = selectedOrder.totalAmount;
                 updateWalletDetails(userid_order, walletAmount, 'add');
               }
-              newOrder = selectedOrder;
+
+              totalPrise =  selectedOrder.totalAmount;
+              discountedAmount = selectedOrder.discountedprize ;
+              modifiedOrder = selectedOrder;
             } else {
               console.log("order updated");
-              var totalPrise = 0;
               //for (j = 0; j < allOrder.length; j++)
 
                   var items = [];
-                  var modifiedOrder = selectedOrder;
+            //       modifiedOrder = selectedOrder;
 
                   for (i = 0; i < selectedOrder.orderItems.length; i++) {
 
@@ -613,7 +621,7 @@ function SaveOrder() {
                   }
                   //check for discount promise
                   var discount;
-                  var discountedAmount = 0;
+                  modifiedOrder.orderItems = items;
                   if (modifiedOrder.discountDetails.coupondID != 'none') {
                     discount = modifiedOrder.discountDetails.discountValue;
                     var discountValue = 0;
@@ -627,10 +635,6 @@ function SaveOrder() {
                   }
                   discountedAmount = Number(totalPrise) - Number(discountValue);
                   var refundAmount;
-                  console.log(totalPrise);
-                  console.log(oldPrize);
-                  console.log(discountedAmount );
-                  console.log( oldDiscountPrise);
                   if(Number(totalPrise) < Number(oldPrize))
                   {
                     refundAmount = Number(oldPrize) - Number(totalPrise);
@@ -639,9 +643,6 @@ function SaveOrder() {
                   {
                     refundAmount = Number(oldDiscountPrise) - Number(discountedAmount);
                   }
-                  console.log(refundAmount);
-                  console.log(userid_order);
-
                   if(refundAmount > 0 )
                   {
                     console.log('refundAmount : ', refundAmount);
@@ -660,6 +661,7 @@ function SaveOrder() {
              totalPrise,
             discountedAmount);
             db.collection('OrderDetails').doc(orderID).update({
+              orderStatus :modifiedOrder.orderStatus,
               orderItems : modifiedOrder.orderItems,
               totalItems : modifiedOrder.orderItems.length,
               totalAmount : totalPrise,
