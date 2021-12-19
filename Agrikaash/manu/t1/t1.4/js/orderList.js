@@ -1,6 +1,12 @@
 //const productID = document.getElementById('productID');
 var userID = "";
 var orderList = [];
+// var url = location.href;
+let eventDocUrl = new URL(location.href);
+// console.log ('URL: ' + eventDocUrl);
+let searchParams = new URLSearchParams(eventDocUrl.search);
+const orderDateRange = searchParams.get('orderDateRange');
+
 try {
   auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
@@ -52,10 +58,64 @@ function GetProfileData(user) {
 
 function populateOrderDetails() {
   var i = 0;
-  const snapshot = db.collection('OrderDetails').where('orderBy', '==', userID);
-  snapshot.get().then((changes) => {
+  var fromDate;
+  var todayDate = new Date();
+  console.log(todayDate);
+  var toDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
+  var refDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
+
+  todayDate = refDate;
+  console.log(toDate);
+  console.log(todayDate);
+  var index = 0;
+  var snapshot;
+  var DBrows;
+  console.log(orderDateRange);
+  if (orderDateRange === undefined || orderDateRange === '' || orderDateRange === null)
+
+  {
+    DBrows = db.collection('OrderDetails').where('orderBy', '==', userID).get();
+
+    //DBrow = db.collection('OrderDetails').get();
+  } else if (orderDateRange === 'today') {
+  console.log('in today');
+    DBrows = db.collection('OrderDetails')
+      .where('orderBy', '==', userID)
+      .where("orderDate", ">=", toDate).get();
+
+  } else if (orderDateRange === 'yesterday') {
+    console.log(todayDate);
+    console.log(toDate);
+
+    todayDate.setDate(todayDate.getDate() - 1);
+
+  //  toDate.setDate(toDate.getDate() + 1);
+    console.log(todayDate);
+    console.log(toDate);
+    DBrows = db.collection('OrderDetails')
+      .where('orderBy', '==', userID)
+      .where("orderDate", ">=", todayDate)
+      .where("orderDate", "<=", toDate).get();
+  } else if (orderDateRange === 'week') {
+    refDate.setDate(refDate.getDate() - 7);
+    DBrows = db.collection('OrderDetails')
+      .where('orderBy', '==', userID)
+      .where("orderDate", ">=", refDate).get();
+  } else if (orderDateRange === 'month') {
+    refDate = new Date(refDate.getFullYear(), refDate.getMonth(), 1);
+    DBrows = db.collection('OrderDetails')
+      .where('orderBy', '==', userID)
+      .where("orderDate", ">=", refDate).get();
+  }
+  console.log('before log');
+  //snapshot.then((changes) => {
+
+  DBrows.then((changes) => {
+    console.log("populatePayments: ");
+
+    var i = 0;
     changes.forEach(change => {
-      console.log();
+      orderList = change.data();
       renderOrder(change.id, change.data(), i);
       i = i + 1;
     });
