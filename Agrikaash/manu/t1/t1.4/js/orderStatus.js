@@ -64,7 +64,11 @@ function populateOrderDetails() {
   var todayDate = new Date();
   console.log(todayDate);
   var toDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
+  var refDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
+
+  todayDate = refDate;
   console.log(toDate);
+  console.log(todayDate);
   var index = 0;
   var snapshot;
   var DBrows;
@@ -81,18 +85,25 @@ console.log('in today');
       .where("orderDate", ">=", toDate).get();
 
   } else if (orderDateRange === 'yesterday') {
-    todayDate.setDate(toDate.getDate() - 1);
+    console.log(todayDate);
+    console.log(toDate);
+
+    todayDate.setDate(todayDate.getDate() - 1);
+
+  //  toDate.setDate(toDate.getDate() + 1);
+    console.log(todayDate);
+    console.log(toDate);
     DBrows = db.collection('OrderDetails')
       .where("orderDate", ">=", todayDate)
       .where("orderDate", "<=", toDate).get();
   } else if (orderDateRange === 'week') {
-    tempDate.setDate(tempDate.getDate() - 7);
+    refDate.setDate(refDate.getDate() - 7);
     DBrows = db.collection('OrderDetails')
-      .where("orderDate", ">=", tempDate).get();
+      .where("orderDate", ">=", refDate).get();
   } else if (orderDateRange === 'month') {
-    fromDate = new Date(tempDate.getFullYear(), tempDate.getMonth(), 1);
+    refDate = new Date(refDate.getFullYear(), refDate.getMonth(), 1);
     DBrows = db.collection('OrderDetails')
-      .where("orderDate", ">=", fromDate).get();
+      .where("orderDate", ">=", refDate).get();
   }
   console.log('before log');
   //snapshot.then((changes) => {
