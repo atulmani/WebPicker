@@ -139,7 +139,7 @@
               Orders
             </div>
           </a><br>
-          <a href="#">
+          <a href="../login/updateProfile.html">
             <div class="">
               <i class="fas fa-male"></i>
               Profile
@@ -199,12 +199,17 @@
               <div class="detail-card-details">
                 <div class="">
                   <small class="small-1">Today's order</small>
-                  <small class="small-2" id='todayCount'>0</small>
+                  <a href="orderList.html?orderDateRange=today">
+                    <small class="small-2" id='todayCount'>0</small>
+                  </a>
+
                   <small class="small-3">₹ <span id='todayAmount'>0</span></small>
                 </div>
                 <div class="">
                   <small class="small-1">Yesterday's order</small>
+                  <a href="orderList.html?orderDateRange=yesterday">
                   <small class="small-2" style="font-size:1.3rem;" id='yesterdayCount'>0</small>
+                </a>
                   <small class="small-3">₹ <span id='yesterdayAmount'>0</span></small>
                 </div>
               </div><br>
@@ -223,12 +228,16 @@
                 <div class="detail-card-details">
                   <div class="">
                     <small class="small-1">Last 7 Days</small>
-                    <small class="small-2" style="font-size:1.3rem;" id='WeekCount'>0</small>
+                    <a href="orderList.html?orderDateRange=week">
+                      <small class="small-2" style="font-size:1.3rem;" id='WeekCount'>0</small>
+                    </a>
                     <small class="small-3">₹ <span id='WeekAmount'>0</span></small>
                   </div>
                   <div class="">
                     <small class="small-1">Current Month</small>
-                    <small class="small-2" style="font-size:1.3rem;" id='monthCount'>0</small>
+                    <a href="orderList.html?orderDateRange=month">
+                      <small class="small-2" style="font-size:1.3rem;" id='monthCount'>0</small>
+                    </a>
                     <small class="small-3">₹ <span id='monthAmount'>0</span></small>
                   </div>
                 </div>
