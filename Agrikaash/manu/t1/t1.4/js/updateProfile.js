@@ -39,9 +39,9 @@ function GetRegistrationRequest() {
       var profileImageURL = doc.data().ProfileImageURL;
       var userRole = doc.data().UserRole;
 
-      document.getElementById('userName').innerHTML = displayName;
+      document.getElementById('userName').value = displayName;
       document.getElementById('userEmail').innerHTML = userEmail;
-      document.getElementById('userPhone').innerHTML = phone;
+      document.getElementById('userPhone').value = phone;
 
       document.getElementById('Profilename').value = displayName;
       document.getElementById('phone').value = phone;
@@ -226,7 +226,7 @@ document.getElementById('upload').onclick = function() {
         ImgUrl = url;
         alert('ImgUrl: ' + ImgUrl);
         console.log(userID);
-        
+
         //Update meta data for firebase storage resources - Start
           var storageRef = uploadTask.snapshot.ref;
           // console.log ("storageRef: " + storageRef );
