@@ -36,38 +36,38 @@ body{
 h1{
   font-size: 2.6rem;
   font-weight: 700;
-  font-family: 'Oswald';
+  /* font-family: 'Oswald'; */
   letter-spacing: 1px;
 }
 
 h2{
   font-size: 2rem;
   font-weight: 600;
-  font-family: 'Oswald';
+  /* font-family: 'Oswald'; */
   letter-spacing: 1px;
 }
 h3{
   font-size: 1.8rem;
   font-weight: 500;
-  font-family: 'Oswald', sans-serif;
+  /* font-family: 'Oswald', sans-serif; */
   letter-spacing: 1px;
 }
 h4{
   font-size: 1.5rem;
   font-weight: normal;
-  font-family: 'Oswald', sans-serif;
+  /* font-family: 'lato'; */
   letter-spacing: 1px;
 }
 h5{
   font-size: 0.9rem;
   font-weight: 700;
-  font-family: 'Oswald', sans-serif;
+  /* font-family: 'Oswald', sans-serif; */
   letter-spacing: 1px;
 }
 h6{
   font-size: 1rem;
   font-weight: 700;
-  font-family: 'Oswald', sans-serif;
+  /* font-family: 'Oswald', sans-serif; */
   letter-spacing: 0.5px;
 }
 
@@ -510,7 +510,7 @@ h6{
 
 .small-text{
   font-size: 0.9rem;
-  color: rgba(0,0,0,0.7);
+  color: #666;
 }
 
 .user-agreement{
@@ -800,6 +800,12 @@ input[type=number] {
   font-size: 0.8rem;
 }
 
+@media (max-width: 850px) {
+  .copy-write{
+    padding: 0 0 80px 0;
+  }
+}
+
 .social{
   display: flex;
   justify-content: space-around;
@@ -1005,6 +1011,78 @@ input[type=number] {
 }
 
 /* cart page - end */
+
+/************* Profile page - starts **************/
+
+.camera-update-icon-div{
+  display:flex;
+  justify-content: space-around;
+  position: relative;
+  top: -30px;
+}
+
+.camera-icon{
+  /* float: right; */
+}
+
+.camera-icon i{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background: #f58634;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+}
+
+.profile-pic{
+  text-align: center;
+}
+
+.profile-pic img{
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: #eee;
+  padding:10px;
+}
+
+.profile-personal-input{
+  background: none;
+  outline: none;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.profile-personal-input:read-only{
+  border: 1px solid transparent;
+}
+
+.city-selector{
+  background: #ededed;
+  outline: none;
+  border: #ddd;
+  padding: 5px 40px 5px 20px;
+  margin: 10px auto;
+  border-radius: 4px;
+  color: #444;
+  -webkit-appearance: none;
+}
+
+/* .city-selector::-ms-expand {
+  display: none;
+} */
+
+.city-selector-icon{
+  position: relative;
+  top: 5px;
+  right: 35px;
+}
+
+
+/************* Profile page - ends *************/
 
 /* address page - start */
 
