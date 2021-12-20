@@ -1,3 +1,10 @@
+/* Google fonts  */
+/* @import url('https://fonts.gstatic.com'); */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+
 /* Color Palette - Details
 
 Palette#: 226650 from Colorhunt
@@ -22,7 +29,7 @@ body{
   width: 100%;
   margin: 0;
   padding: 0;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'lato';
   color: #1D741B;
 }
 
@@ -71,8 +78,97 @@ h6{
 }
 
 /* navbar start */
+
+.before-navbar {
+  background: #88CA5E;
+  padding: 5px;
+}
+
+
+.before-navbar-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #1D741B;
+  font-weight: 600;
+  border: none;
+}
+
+
+.cod-free-shiping{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+@media (max-width: 850px) {
+  .cod-free-shiping{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.cod-free-shiping h6{
+  font-size: 0.7rem;
+  padding: 0 10px;
+}
+
+
+
+.social-media-head {
+  display: flex;
+  padding-left: 20px;
+}
+
+.social-media-head i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  font-size: 1rem;
+  margin: auto 5px;
+  border-radius: 2px;
+  color: #65463E;
+  transition: all 0.5s;
+}
+
+.social-media-head i:hover {
+  background: #65463E;
+  color: #fff;
+}
+
+.contact {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contact div {
+  border-right: 1px solid #fff;
+  padding: 0 15px;
+  transition: all 0.3s;
+}
+
+.contact .content div:hover {
+  cursor: pointer;
+}
+
+.contact div i {
+  font-size: 0.8rem;
+  padding-right: 7px;
+  color: #1D741B;
+}
+
+.contact .content div span {
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: #1D741B;
+}
+
 .navbar{
-  background-color: #88CA5E; /*color changed*/
+  background-color: #1D741B; /*color changed*/
   border-top: 0;
   border-bottom: 0;
   border-left: 0;
@@ -83,7 +179,7 @@ h6{
 }
 
 .navbar-mobile{
-  background: #88CA5E;
+  background: #1D741B;
   padding: 9px;
   height: 48px;
 }
@@ -136,7 +232,7 @@ h6{
 
 .navbar-mobile-bottom{
   position: fixed;
-  background: #88CA5E;
+  background: #1D741B;
   /* background: #f4f4f4; */
   bottom: 0;
   width: 100%;
@@ -152,7 +248,7 @@ h6{
 }
 
 .navbar-mobile-bottom-menu .navbar-mobile-bottom-menu-a{
-  color: rgba(0,0,0,0.45);
+  color: #88CA5E;
   font-size: 1rem;
   text-align: center;
   text-decoration: none;
@@ -193,9 +289,14 @@ h6{
 }
 
 .navbar-brand{
-  color: white;
+  color: #fff;
   font-size: 1.7rem;
   padding-left: 12px;
+  text-transform: uppercase;
+}
+
+.navbar-brand:hover{
+  color: #fff;
 }
 
 .navbar-text{
@@ -313,21 +414,69 @@ h6{
 
 .before-nav span{
   float: right;
+  padding: 0 6px;
+  color: #88CA5E;
 }
 
 .before-nav span a{
-  color: #888;
+  color: #fff;
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .before-nav span a:hover{
-  color: #1D741B;
+  color: #fff;
 }
 
 .before-nav span i{
   font-size: 0.9rem;
   padding: 0 5px 0 20px;
+}
+
+.more-button-links {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(136,202,94,0.95);
+  z-index: 50;
+  text-align: center;
+  height: 92.5%;
+}
+
+.more-button-links ul {
+  position: relative;
+  top: calc(50% - 140px);
+  display: list-item;
+}
+
+.more-button-links ul li {
+  list-style: none;
+  font-size: 1.5rem;
+  line-height: 2.5;
+}
+
+.more-button-links ul li a {
+  color: #000;
+}
+
+.new-user{
+  position: absolute;
+  z-index: 999;
+  width: 40px;
+  height: 40px;
+  background: #f58634;
+  border-radius: 50%;
+  bottom: 60%;
+  left: calc(50% - 20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-user span{
+  color: #fff;
 }
 
 .serach-div{
@@ -642,8 +791,9 @@ input[type=number] {
 }
 
 .copy-write{
-  background: #88CA5E;
+  background: #1D741B;
   color: #fff;
+  padding: 0 0 4px 0;
 }
 
 .copy-write span{
@@ -1021,7 +1171,7 @@ input[type=number] {
 }
 
 .login-register-card-fixed{
-  padding: 30px 0;
+  padding: 10px 0;
   /* width: 350px; */
   box-shadow: 0 0 20px 0 rgba(0,0,0,0.2);
   overflow: hidden;
@@ -1081,6 +1231,12 @@ input[type=number] {
 .login-form .login-form-feilds input:focus ~ .underline,
 .login-form .login-form-feilds input:valid ~ .underline{
   transform: scaleX(1);
+}
+
+.login-form .login-form-feilds .reset-password{
+  float: right;
+  position: relative;
+  top: -20px;
 }
 
 .form-btn div{
