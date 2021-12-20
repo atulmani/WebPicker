@@ -1061,7 +1061,7 @@ input[type=number] {
 }
 
 .city-selector{
-  background: #ededed;
+  background: rgba(0,0,0,0.1);
   outline: none;
   border: #ddd;
   padding: 5px 40px 5px 20px;
@@ -1069,6 +1069,7 @@ input[type=number] {
   border-radius: 4px;
   color: #444;
   -webkit-appearance: none;
+  z-index: 10;
 }
 
 /* .city-selector::-ms-expand {
@@ -1079,6 +1080,7 @@ input[type=number] {
   position: relative;
   top: 5px;
   right: 35px;
+  z-index: -1;
 }
 
 
