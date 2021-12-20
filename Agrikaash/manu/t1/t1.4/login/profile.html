@@ -238,6 +238,15 @@
     <div class="col-lg-10 col-md-10 col-sm-12">
 
       <div class="container-fluid">
+
+        <div id="loading" class="">
+          <br><br><br><br>
+          <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+          <lottie-player src="https://assets4.lottiefiles.com/private_files/lf30_LOw4AL.json" background="transparent" speed="0.5" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+          <br><br><br><br><br><br><br>
+        </div>
+
+
         <div class="row no-gutters">
           <div class="col-lg-3 col-md-6 col-sm-12">
             <h6 style="padding: 10px;">
@@ -264,15 +273,12 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6 col-sm-12" style="display:flex; align-items:center;justify-content:center;">
+          <div class="col-lg-9 col-md-6 col-sm-12" style="display:flex; align-items:center;justify-content:center;">
             <div class="profile-personal-div" style="text-align:center;">
               <h4 style="padding: 10px 10px 0 10px;">
                 <input class="profile-personal-input" style="color: #1D741B;" type="text" readonly id='userName'></input>
                 <span class="material-icons-outlined" style="color: #f58634;">
                   edit
-                </span>
-                <span class="material-icons-outlined" style="color: green;">
-                  task_alt
                 </span>
               </h4>
               <small class="small-text" style="padding: 0 10px;">
@@ -280,10 +286,7 @@
                 <span class="material-icons-outlined" style="color: #f58634; font-size: 1.2rem;">
                   edit
                 </span>
-                <span class="material-icons-outlined" style="color: green; font-size: 1.2rem;">
-                  task_alt
-                </span>
-              </small><br>
+              </small><br><br>
 
               <div class="">
                 <select class="city-selector" name="">
@@ -299,6 +302,19 @@
                 </span>
               </div>
 
+              <div class="">
+                <select class="city-selector" name="">
+                  <option value="Small">Small</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Large">Large</option>
+                </select>
+
+                <span class="material-icons-outlined city-selector-icon">
+                  storefront
+                </span>
+              </div><br><br>
+
+              <a href="#"><button class="mybutton button5">Update Profile</button></a><br>
 
             </div>
           </div>
