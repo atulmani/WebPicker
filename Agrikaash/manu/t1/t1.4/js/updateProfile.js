@@ -48,7 +48,7 @@ function GetRegistrationRequest() {
 
       if (profileImageURL != '' && profileImageURL != undefined) {
         document.getElementById('myimg').src = profileImageURL;
-        document.getElementById('navUser').src = profileImageURL;
+        document.getElementById('profilePic').src = profileImageURL;
       }
       document.getElementById('txtCity').value = address;
 
@@ -69,17 +69,17 @@ function GetRegistrationRequest() {
         }
       else {
         document.getElementById("adminDiv").style.display = "none";
-        document.getElementById("divFooterPartner").style.display="block";
+        // document.getElementById("divFooterPartner").style.display="block";
         const snapshotCart = db.collection('CartDetails').doc(userID);
 
-        snapshotCart.get().then(async (docCart) => {
-          if (docCart.exists) {
-              var cartIemDetails = docCart.data().cartDetails;
-              if( cartIemDetails != undefined)
-                cartIem = cartIemDetails.length;
-              document.getElementById('cartitemcount').innerHTML = cartIem;
-          }
-        });
+        // snapshotCart.get().then(async (docCart) => {
+        //   if (docCart.exists) {
+        //       var cartIemDetails = docCart.data().cartDetails;
+        //       if( cartIemDetails != undefined)
+        //         cartIem = cartIemDetails.length;
+        //       document.getElementById('cartitemcount').innerHTML = cartIem;
+        //   }
+        // });
 
       }
 
@@ -103,9 +103,14 @@ function GetRegistrationRequest() {
 
       document.getElementById('txtID').value = IDNo
 
-
+      document.getElementById('loading').style.display = 'none';
     }
+    else{
+    document.getElementById('loading').style.display = 'none';
+  }
   });
+
+
 }
 
 function SaveDetails() {
