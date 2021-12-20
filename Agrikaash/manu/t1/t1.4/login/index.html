@@ -14,13 +14,18 @@
 
   <!-- <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
 
+
+  <!-- Google Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
   <!-- Google fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <!-- <link rel="preconnect" href="https://fonts.gstatic.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
     rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> -->
 
   <!-- Font Awesome cdn file -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -41,6 +46,48 @@
 
 <body>
 
+  <div class="before-navbar large">
+    <div class="container-fluid" style="padding-Left: 5%;">
+      <div class="before-navbar-div">
+        <!-- <div class="" style="display:flex;">
+          <span style="margin: auto 0;font-size:0.8rem;">Follow Us :</span>
+          <div class="social-media-head">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-youtube"></i>
+          </div>
+        </div> -->
+        <div class="cod-free-shiping" style="display:flex;">
+          <h6 style="font-weight: bold;">AVAILABLE IN NOIDA | VARANASI | LUCKNOW | GORAKHPUR | DEORIA</h6>
+        </div>
+        <div class="large contact">
+          <div class="" style="border:none;">
+
+          </div>
+          <div class="content" style="display:flex;border:none;">
+            <div class="">
+              <i class="fas fa-phone-alt"></i>
+              <span>+91 84489 98942</span>
+            </div>
+            <div class="">
+              <i class="fas fa-envelope"></i>
+              <span>info@agrikaash.com</span>
+            </div>
+            <div class="" style="border:none;">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Varanasi, India</span>
+            </div>
+            <!-- <div class="" style="border:none;">
+              <a href="#">
+                <i class="fas fa-shopping-cart cart" style="font-size: 1rem;"></i>
+              </a>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Navbar - Start -->
   <nav class="navbar navbar-expand-lg sticky-top large">
     <div class="container">
@@ -50,11 +97,10 @@
           <h4>Agrikaash</h4>
         </a>
       </div>
-      <div class="serach-div">
+      <!-- <div class="serach-div">
         <input type="text" name="Search" placeholder="Search..." class="search-input" value="">
         <i class="fas fa-search"></i>
-        <!-- <a href="#"><button class="mybutton button5"><i class="fas fa-search"></i></button></a> -->
-      </div>
+      </div> -->
       <div class="">
 
       </div>
@@ -62,24 +108,28 @@
 
       </div>
       <div class="container before-nav">
-        <span><i class="fas fa-shopping-cart"></i><a href="#">Cart</a></span>
-        <small class="navbar-cart-no" id='itemcount'>0</small>
+        <span><i class="fas fa-phone-alt"></i><a href="./admin/index.html">Contact</a> </span>
         <span><i class="fas fa-user"></i><a href="./admin/index.html">Login/Sign Up</a> </span>
-        <span><i class="fas fa-map-marker-alt"></i><a href="#">510086 - Banglore</a> </span>
-        <span><i class="fas fa-phone fa-flip-horizontal" style="padding: 0 20px 0 5px; "></i><a href="#">98227 52885</a> </span>
+        <span><i class="fas fa-list"></i><a href="./admin/index.html">Services</a> </span>
+        <span><i class="fas fa-sitemap"></i><a href="./admin/index.html">AgriBusiness</a> </span>
+        <span><i class="fas fa-home"></i><a href="./admin/index.html">Home</a> </span>
       </div>
     </div>
   </nav>
 
   <div class="small navbar-mobile">
     <div class="navbar-mobile-menu">
-      <a href="#"><i class="fas fa-bars hamburger-icon"></i></a>
+      <a href="#" data-toggle="collapse" data-target="#collapsibleNavbar1">
+        <span class="material-icons-outlined">
+          menu
+        </span>
+      </a>
       <a href="#">
-        <h4>Agrikaash</h4>
+        <h4 style="text-transform: uppercase;">Agrikaash</h4>
       </a>
 
       <a href="../login/updateProfile.html" style="padding-right: 0px;">
-        <img src="../img/user.png" id="navUser" class="user-icon" alt="">
+        <!-- <img src="../img/user.png" id="navUser" class="user-icon" alt=""> -->
         <!-- <i class="fas fa-user"></i> -->
       </a>
       <!-- <a href="#"><img src="../img/logo.png" width="30px" alt=""> </a> -->
@@ -93,36 +143,63 @@
 
   <div class="small navbar-mobile-bottom">
     <div class="navbar-mobile-bottom-menu" id="divBottomNavBar">
-      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a active"  style="display:flex; flex-direction:column;">
+      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a " style="display:flex; flex-direction:column;">
         <!-- <i class="fas fa-home"></i> -->
-        <i class="fas fa-tachometer"></i>
-        <small>Dashboard</small>
+        <i class="fas fa-home"></i>
+        <small>Home</small>
       </a>
       <a href="updateProduct.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <i class="fas fa-th-large"></i>
-        <small>Products</small>
+        <small>AgriBiz</small>
       </a>
-      <a href="orderStatus.html" class="navbar-mobile-bottom-menu-a"  style="display:flex; flex-direction:column;">
+      <a href="">
+
+      </a>
+      <a href="orderStatus.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <i class="fab fa-buffer"></i>
-        <small>Orders</small>
+        <small>Services</small>
       </a>
       <a href="confirmRegistration.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-        <i id="i4" class="fas fa-registered"></i>
-        <small id="small4">Registration</small>
-      </a>
-      <!-- <i class="fas fa-home"></i> -->
-      <a href="couponSetup.html" class="navbar-mobile-bottom-menu-a"  style="display:flex; flex-direction:column;">
-        <i class="fas fa-ticket" ></i>
-        <small>Coupon</small>
+        <i class="fas fa-registered"></i>
+        <small>Contact</small>
       </a>
     </div>
+    <div class="new-user">
+      <span class="material-icons-outlined">
+        person
+      </span>
+    </div>
+  </div>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse more-button-links" id="collapsibleNavbar1">
+    <ul class="">
+      <li class="">
+        <a class="" href="#">Home</a>
+      </li>
+      <li class="">
+        <a class="" href="#IndustriesWeServe">Industries</a>
+      </li>
+      <!-- <li class="">
+        <a class="" href="login">Login</a>
+      </li> -->
+      <li class="">
+        <a class="" href="#WhyToUse">Services</a>
+      </li>
+      <li class="">
+        <a class="" href="contacts">Contact</a>
+      </li>
+      <li class="">
+        <a class="" href="login">Login</a>
+      </li>
+    </ul>
   </div>
   <!-- Navbar - End -->
 
   <!-- login - start -->
-  <div class="login-full-page">
+  <div class="login-full-page container">
     <div class="row no-gutters">
-      <div class="col-lg-6 col-md-6 col-sm-12" style="padding: 20px;">
+      <div class="col-lg-6 col-md-6 col-sm-12" style="padding: 30px 7%;">
         <div class="login-register-card">
           <h4>Welcome To Agrikaash</h4>
           <p class="small-text" style="text-align:center;">Please Login / Register using your Email & Password to continue</p>
@@ -133,8 +210,8 @@
                 <span id="loginSelector" style="color:#88CA5E;" onclick="login()">Login</span>
                 <span id="registerSelector" onclick="register()">Register</span>
               </div>
-               <hr id="Indicator">
-            </div> <br><br>
+              <hr id="Indicator">
+            </div> <br>
 
             <div class="" style="display:flex;width:200%;">
               <div class="login-form" style="padding: 20px;" id="loginForm">
@@ -146,15 +223,15 @@
                 <div class="login-form-feilds">
                   <input id="txtPass_Signin" type="password" required name="" value="">
                   <div class="underline"></div>
-                  <h5>Password</h5><br>
-                  <a href="#">Reset Password</a>
+                  <h5>Password</h5>
+                  <a class="reset-password" href="#">Reset Password</a>
                 </div>
-                <br><br><br><br>
+                <br><br>
                 <center>
                   <button id="btnSignin" class="mybutton button5" style="width: 120px;font-weight: bold;font-size: 1rem;height: 40px;">Login</button>
                 </center>
                 <Label id="errorMessage_Login" style="display:none;"> </Label>
-                <a href="registration.html" id="register"  style="display:none;" >update/View Registration Request</a>
+                <a href="registration.html" id="register" style="display:none;">update/View Registration Request</a>
 
 
               </div>
@@ -235,8 +312,9 @@
         </div>
       </div>
 
-      <div class="col-lg-6 col-md-6 col-sm-12" style="padding: 70px;">
-        <img src="../img/2.png" width="100%" alt="">
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_xlmz9xwm.json" background="transparent" speed="0.5" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
       </div>
     </div>
   </div>
@@ -309,8 +387,8 @@
     </div>
     <div class="copy-write">
       <center>
-        <span>© Copyright 2021 </span>
-        <span style="font-family: 'Great Vibes'"> Web Picker</span>
+        <span>Powred by HyperCloud</span>
+        <!-- <span style="font-family: 'Great Vibes'"> Web Picker</span> -->
       </center>
     </div>
   </section>
@@ -367,7 +445,6 @@
       loginSelector.style.color = '#88CA5E';
       registerSelector.style.color = '#aaa';
     }
-
   </script>
 
 </body>
