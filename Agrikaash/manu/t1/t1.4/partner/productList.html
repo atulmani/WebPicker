@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="WebPicker - A Website Design & Development platform">
+  <meta name="description" content="Agrikaash">
   <meta name="keywords" content="website design and development">
   <meta name="author" content="Web Picker">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +13,11 @@
   <link rel="shortcut icon" href="../img/logo.png">
 
   <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+
+  <!-- Google Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 
 
   <!-- Google fonts -->
@@ -40,7 +45,49 @@
 
 </head>
 
-<body>
+<body style="background: #f4f4f4;">
+
+  <div class="before-navbar large">
+    <div class="container-fluid" style="padding-Left: 5%;">
+      <div class="before-navbar-div">
+        <!-- <div class="" style="display:flex;">
+          <span style="margin: auto 0;font-size:0.8rem;">Follow Us :</span>
+          <div class="social-media-head">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-youtube"></i>
+          </div>
+        </div> -->
+        <div class="cod-free-shiping" style="display:flex;">
+          <h6 style="font-weight: bold;">AVAILABLE IN NOIDA | VARANASI | LUCKNOW | GORAKHPUR | DEORIA</h6>
+        </div>
+        <div class="large contact">
+          <div class="" style="border:none;">
+
+          </div>
+          <div class="content" style="display:flex;border:none;">
+            <div class="">
+              <i class="fas fa-phone-alt"></i>
+              <span>+91 84489 98942</span>
+            </div>
+            <div class="">
+              <i class="fas fa-envelope"></i>
+              <span>info@agrikaash.com</span>
+            </div>
+            <div class="" style="border:none;">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Varanasi, India</span>
+            </div>
+            <!-- <div class="" style="border:none;">
+              <a href="#">
+                <i class="fas fa-shopping-cart cart" style="font-size: 1rem;"></i>
+              </a>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Navbar - Start -->
   <nav class="navbar navbar-expand-lg sticky-top large">
@@ -48,13 +95,13 @@
       <div class="" style="display:flex;">
         <a class="navbar-brand" href="#banner">
           <!-- <img src="./img/logo.png" width="30px" alt=""> -->
+          <h4>Agrikaash</h4>
         </a>
       </div>
-      <div class="serach-div">
+      <!-- <div class="serach-div">
         <input type="text" name="Search" placeholder="Search..." class="search-input" value="">
-        <i style="position:absolute;transform:translateY(7px) translateX(7px);" class="fas fa-search"></i>
-        <!-- <a href="#"><button class="mybutton button5"><i class="fas fa-search"></i></button></a> -->
-      </div>
+        <i class="fas fa-search"></i>
+      </div> -->
       <div class="">
 
       </div>
@@ -62,26 +109,36 @@
 
       </div>
       <div class="container before-nav">
-        <span><i class="fas fa-shopping-cart"></i><a href="#">Cart</a></span>
-        <small class="navbar-cart-no">1</small>
+        <span><i class="fas fa-phone-alt"></i><a href="./admin/index.html">Contact</a> </span>
         <span><i class="fas fa-user"></i><a href="./admin/index.html">Login/Sign Up</a> </span>
-        <span><i class="fas fa-map-marker-alt"></i><a href="#">510086 - Banglore</a> </span>
-        <span><i class="fas fa-phone fa-flip-horizontal" style="padding: 0 20px 0 5px; "></i><a href="#">98227 52885</a> </span>
+        <span><i class="fas fa-list"></i><a href="./admin/index.html">Services</a> </span>
+        <span><i class="fas fa-sitemap"></i><a href="./admin/index.html">AgriBusiness</a> </span>
+        <span><i class="fas fa-home"></i><a href="./admin/index.html">Home</a> </span>
       </div>
     </div>
   </nav>
 
   <div class="small navbar-mobile">
     <div class="navbar-mobile-menu">
-      <a href="#"><i class="fas fa-bars hamburger-icon"></i></a>
+      <a href="#" data-toggle="collapse" data-target="#collapsibleNavbar1">
+        <span class="material-icons-outlined">
+          menu
+        </span>
+      </a>
       <a href="#">
-        <h4>Agrikaash</h4>
+        <h4 style="text-transform: uppercase;">Agrikaash</h4>
+      </a>
+
+      <a href="../notification" style="padding-right: 10px;">
+        <span class="material-icons-outlined" style="color: #fff;">
+          notifications
+        </span>
+        <div class="notification-count">
+          <span class="">2</span>
+        </div>
       </a>
       <!-- <a href="#"><img src="../img/logo.png" width="30px" alt=""> </a> -->
-      <a href="../login/updateProfile.html" style="padding-right: 0px;">
-        <img src="../img/user.png" id="navUser" class="user-icon" alt="">
-        <!-- <i class="fas fa-user user-icon"></i> -->
-      </a>
+      <!-- <a href="#" style="padding-right: 0px;"><i class="fas fa-user user-icon"></i></a> -->
     </div>
     <!-- <div class="navbar-mobile-search-bar">
       <input type="text" name="" placeholder="Search Here..." value="">
@@ -90,29 +147,65 @@
   </div>
 
   <div class="small navbar-mobile-bottom">
-    <div class="navbar-mobile-bottom-menu">
-      <a href="dashboard.html" id="a1" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-        <i id="i1" class="fas fa-home"></i>
-        <small id="small1">Dashboard</small>
+    <div class="navbar-mobile-bottom-menu" id="divBottomNavBar">
+      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <span class="material-icons-outlined">
+          home
+        </span>
+        <small>Home</small>
       </a>
-      <a href="productList.html" id="a2" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
-        <i class="fas fa-th-large"></i>
+      <a href="productList.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+        <span class="material-icons-outlined">
+          category
+        </span>
         <small>Products</small>
       </a>
-      <a href="orderList.html" id="a3" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-        <i class="fab fa-buffer"></i>
+      <a href="">
+
+      </a>
+      <a href="orderStatus.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <span class="material-icons-outlined">
+          horizontal_split
+        </span>
         <small>Orders</small>
       </a>
-      <a href="cartNew.html" id="a4" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-        <i id="i4" class="fas fa-shopping-cart"></i>
+      <a href="confirmRegistration.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <span class="material-icons-outlined">
+          shopping_cart
+        </span>
         <small id='small4'>Cart</small>
         <span class="navbar-cart-no" id="cartItemNo">0</span>
       </a>
-      <a href="couponSetup.html" class="navbar-mobile-bottom-menu-a" id="a5" style="display:flex; flex-direction:column;">
-        <i class="fas fa-ticket" ></i>
-        <small>Coupon</small>
-      </a>
     </div>
+    <div class="new-user">
+      <span class="material-icons-outlined">
+        person
+      </span>
+    </div>
+  </div>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse more-button-links" id="collapsibleNavbar1">
+    <ul class="">
+      <li class="">
+        <a class="" href="#">Home</a>
+      </li>
+      <li class="">
+        <a class="" href="#IndustriesWeServe">Industries</a>
+      </li>
+      <!-- <li class="">
+        <a class="" href="login">Login</a>
+      </li> -->
+      <li class="">
+        <a class="" href="#WhyToUse">Services</a>
+      </li>
+      <li class="">
+        <a class="" href="contacts">Contact</a>
+      </li>
+      <li class="">
+        <a class="" href="login">Login</a>
+      </li>
+    </ul>
   </div>
   <!-- Navbar - End -->
 
@@ -122,33 +215,43 @@
     <div class="col-lg-2 col-md-2 col-sm-12">
       <div class="side-navbar large">
         <div class="side-navbar-menu">
-          <a href="dashboard.html">
+          <a href="#">
             <div class="">
-              <i class="fas fa-home"></i>
+              <span class="material-icons-outlined" style="position:relative; top:5px;">
+                home
+              </span>
               Dashboard
             </div>
           </a><br>
-          <a href="#">
+          <a href="productList.html">
             <div class="">
-              <i class="fas fa-th-large"></i>
+              <span class="material-icons-outlined" style="position:relative; top:5px;">
+                category
+              </span>
               Products
             </div>
           </a><br>
           <a href="orderList.html">
             <div class="">
-              <i class="fab fa-buffer"></i>
+              <span class="material-icons-outlined" style="position:relative; top:5px;">
+                horizontal_split
+              </span>
               Orders
             </div>
           </a><br>
-          <a href="../admin/updateProfile.html">
+          <a href="../login/updateProfile.html">
             <div class="">
-              <i class="fas fa-male"></i>
+              <span class="material-icons-outlined" style="position:relative; top:5px;">
+                manage_accounts
+              </span>
               Profile
             </div>
           </a><br>
           <a href="#">
             <div class="">
-              <i class="fas fa-sign-out-alt"></i>
+              <span class="material-icons-outlined" style="position:relative; top:5px;">
+                logout
+              </span>
               Logout
             </div>
           </a>
@@ -157,48 +260,83 @@
     </div>
     <!-- side navbar - end -->
     <div class="col-lg-10 col-md-10 col-sm-12">
-      <div class="row no-gutters" style="padding: 2%;">
-        <div class="row no-gutters">
-          <div class="product-menu"><br><br>
-            <div id='divbusinessType' >
-              Customer Business Type
-              <select id="businessType" onchange="changCustomerType();">
-                <option value='All' selected>All</option>
-
-                <option value='Small'>Small</option>
-                <option value='Medium'>Medium</option>
-                <option value='Large'>Large</option>
-
-                </option>
-              </select>
+      <div class="row no-gutters">
+        <div class="col-md-12 col-md-offset-1">
+          <div id="category-list" class="owl-carousel owl-theme">
+            <div class="item">
+              <a class="category-list-menu active">
+                <h5>All</h5>
+              </a>
+            </div>
+            <div class="item">
+              <a class="category-list-menu">
+                <h5>Vegtable</h5>
+              </a>
+            </div>
+            <div class="item">
+              <a class="category-list-menu">
+                <h5>Fruits</h5>
+              </a>
+            </div>
+            <div class="item">
+              <a class="category-list-menu">
+                <h5>Goat</h5>
+              </a>
+            </div>
+            <div class="item">
+              <a class="category-list-menu">
+                <h5>Pearl</h5>
+              </a>
+            </div>
+            <div class="item">
+              <a class="category-list-menu">
+                <h5>Honey</h5>
+              </a>
             </div>
           </div>
-
         </div>
-        <div class="row no-gutters">
-          <div class="product-menu">
-            <div id='productCategory'>
-            </div>
-            <input type="hidden" id="hfpType" />
-          </div>
+      </div>
 
+      <div class="category-list-sub-menu">
+
+        <div class="" id='divbusinessType'>
+          <select class="city-selector" id="businessType" onchange="changCustomerType();"
+           style="background: rgba(255,255,255,0.6);border: 1px solid #aaa;" name="">
+            <option value="All">All</option>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+          </select>
+
+          <span class="material-icons-outlined city-selector-icon">
+            storefront
+          </span>
         </div>
-        <div class="row no-gutters"><br>
 
-          <div id='productRow'>
-          </div>
-        </div>
-
-        <br>
-        <div class="row no-gutters small">
-
-          <div class="pay-now-div">
-            <h4 style="width:100%;text-align:center;">Products</h4>
-          </div>
-          <br><br>
+        <div class="">
+          <h5>26 Items</h5>
         </div>
 
       </div>
+
+
+      <div class="row no-gutters">
+        <div class="product-menu">
+          <div id='productCategory'>
+          </div>
+          <input type="hidden" id="hfpType" />
+        </div>
+
+      </div>
+
+
+      <div class="row no-gutters">
+
+        <div id='productRow'>
+        </div>
+      </div>
+
+      <br>
 
       <div class="row no-gutters">
         <div class="col-lg-12 col-md-12 col-sm-12">
