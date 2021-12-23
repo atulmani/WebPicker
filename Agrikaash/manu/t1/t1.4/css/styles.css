@@ -595,11 +595,48 @@ h6{
   /* background: linear-gradient(to right ,#078e00, #f58634); */
 }
 
+.category-list-menu{
+  text-decoration: none;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  padding: 5px 4px;
+  border: 1px solid #ddd;
+  color: #444;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.category-list-menu.active{
+  background: #f58634;
+}
+
+.category-list-menu h5{
+  position: relative;
+  top: 3px;
+}
+
+.category-list-menu.active h5{
+  color: #fff;
+}
+
+.category-list-sub-menu{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
 .product-list-div{
   border: 1px solid #dedede;
   padding: 6px;
   border-radius: 4px;
   margin: 2px auto;
+  background: #fff;
 }
 
 .product-list-div small{
@@ -1478,21 +1515,6 @@ input[type=number] {
   color: orange;
 }
 
-.pay-now-div{
-  position: absolute;
-  background: #f58634;
-  /* background: #eee; */
-  top: 7px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 16px;
-  color: #fff;
-}
-
-
 /* orders page - end */
 
 /* order summary page - start */
@@ -1548,7 +1570,7 @@ input[type=number] {
 }
 
 .detail-card-full-div{
-  padding: 3%;
+  padding: 0 3%;
 }
 
 .detail-card-full-div .detail-card-full-div-heading{
@@ -1572,7 +1594,7 @@ input[type=number] {
 }
 
 #cardDelivery:hover{
-  height: 500px;
+  height: 512px;
 }
 
 .dashboard-card .arrow-down{
@@ -1603,6 +1625,7 @@ input[type=number] {
   margin: 0 auto;
   color: #444;
   font-weight: 600;
+  font-size: 1.2rem;
 }
 
 .dashboard-card .details p{
@@ -1625,7 +1648,7 @@ input[type=number] {
   align-items: center;
   justify-content: space-between;
   padding: 5px 10px;
-  margin: 5px auto;
+  margin: 10px auto;
 }
 
 .dashboard-card-delivery div h5{
