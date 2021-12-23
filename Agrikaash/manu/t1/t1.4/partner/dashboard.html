@@ -148,25 +148,33 @@
 
   <div class="small navbar-mobile-bottom">
     <div class="navbar-mobile-bottom-menu" id="divBottomNavBar">
-      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a " style="display:flex; flex-direction:column;">
-        <!-- <i class="fas fa-home"></i> -->
-        <i class="fas fa-home"></i>
+      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+        <span class="material-icons-outlined">
+          home
+        </span>
         <small>Home</small>
       </a>
-      <a href="updateProduct.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-        <i class="fas fa-sitemap"></i>
-        <small>AgriBiz</small>
+      <a href="productList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <span class="material-icons-outlined">
+          category
+        </span>
+        <small>Products</small>
       </a>
       <a href="">
 
       </a>
       <a href="orderStatus.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-        <i class="fas fa-list"></i>
-        <small>Services</small>
+        <span class="material-icons-outlined">
+          horizontal_split
+        </span>
+        <small>Orders</small>
       </a>
       <a href="confirmRegistration.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-        <i class="fas fa-phone-alt"></i>
-        <small>Contact</small>
+        <span class="material-icons-outlined">
+          shopping_cart
+        </span>
+        <small id='small4'>Cart</small>
+        <span class="navbar-cart-no" id="cartItemNo">0</span>
       </a>
     </div>
     <div class="new-user">
@@ -209,31 +217,41 @@
         <div class="side-navbar-menu">
           <a href="#">
             <div class="">
-              <i class="fas fa-home"></i>
+              <span class="material-icons-outlined" style="position:relative; top:5px;">
+                home
+              </span>
               Dashboard
             </div>
           </a><br>
           <a href="productList.html">
             <div class="">
-              <i class="fas fa-th-large"></i>
+              <span class="material-icons-outlined" style="position:relative; top:5px;">
+                category
+              </span>
               Products
             </div>
           </a><br>
           <a href="orderList.html">
             <div class="">
-              <i class="fab fa-buffer"></i>
+              <span class="material-icons-outlined" style="position:relative; top:5px;">
+                horizontal_split
+              </span>
               Orders
             </div>
           </a><br>
           <a href="../login/updateProfile.html">
             <div class="">
-              <i class="fas fa-male"></i>
+              <span class="material-icons-outlined" style="position:relative; top:5px;">
+                manage_accounts
+              </span>
               Profile
             </div>
           </a><br>
           <a href="#">
             <div class="">
-              <i class="fas fa-sign-out-alt"></i>
+              <span class="material-icons-outlined" style="position:relative; top:5px;">
+                logout
+              </span>
               Logout
             </div>
           </a>
@@ -261,10 +279,10 @@
         })();
       </script> -->
       <!-- End script -->
-      <div class="row no-gutters" style="padding: 2% 0%;">
+      <div class="row no-gutters">
         <div class="col-lg-5 col-md-5 col-sm-12">
           <div class="detail-card-full-div">
-            <h3 class="detail-card-full-div-heading">Summary</h3>
+            <!-- <h3 class="detail-card-full-div-heading">Summary</h3> -->
 
             <div class="dashboard-card" id="cardOrder">
               <div class="" style="display:flex;align-items: center;">
