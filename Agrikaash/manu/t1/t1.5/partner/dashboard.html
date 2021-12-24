@@ -15,6 +15,11 @@
   <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 
+  <!-- Google Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+
   <!-- Google fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link
@@ -40,7 +45,49 @@
 
 </head>
 
-<body>
+<body style="background: #f4f4f4;">
+
+  <div class="before-navbar large">
+    <div class="container-fluid" style="padding-Left: 5%;">
+      <div class="before-navbar-div">
+        <!-- <div class="" style="display:flex;">
+          <span style="margin: auto 0;font-size:0.8rem;">Follow Us :</span>
+          <div class="social-media-head">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-youtube"></i>
+          </div>
+        </div> -->
+        <div class="cod-free-shiping" style="display:flex;">
+          <h6 style="font-weight: bold;">AVAILABLE IN NOIDA | VARANASI | LUCKNOW | GORAKHPUR | DEORIA</h6>
+        </div>
+        <div class="large contact">
+          <div class="" style="border:none;">
+
+          </div>
+          <div class="content" style="display:flex;border:none;">
+            <div class="">
+              <i class="fas fa-phone-alt"></i>
+              <span>+91 84489 98942</span>
+            </div>
+            <div class="">
+              <i class="fas fa-envelope"></i>
+              <span>info@agrikaash.com</span>
+            </div>
+            <div class="" style="border:none;">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Varanasi, India</span>
+            </div>
+            <!-- <div class="" style="border:none;">
+              <a href="#">
+                <i class="fas fa-shopping-cart cart" style="font-size: 1rem;"></i>
+              </a>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Navbar - Start -->
   <nav class="navbar navbar-expand-lg sticky-top large">
@@ -48,13 +95,13 @@
       <div class="" style="display:flex;">
         <a class="navbar-brand" href="#banner">
           <!-- <img src="./img/logo.png" width="30px" alt=""> -->
+          <h4>Agrikaash</h4>
         </a>
       </div>
-      <div class="serach-div">
+      <!-- <div class="serach-div">
         <input type="text" name="Search" placeholder="Search..." class="search-input" value="">
-        <i style="position:absolute;transform:translateY(7px) translateX(7px);" class="fas fa-search"></i>
-        <!-- <a href="#"><button class="mybutton button5"><i class="fas fa-search"></i></button></a> -->
-      </div>
+        <i class="fas fa-search"></i>
+      </div> -->
       <div class="">
 
       </div>
@@ -62,25 +109,33 @@
 
       </div>
       <div class="container before-nav">
-        <span><i class="fas fa-shopping-cart"></i><a href="#">Cart</a></span>
-        <small class="navbar-cart-no" id='itemcount'>0</small>
+        <span><i class="fas fa-phone-alt"></i><a href="./admin/index.html">Contact</a> </span>
         <span><i class="fas fa-user"></i><a href="./admin/index.html">Login/Sign Up</a> </span>
-        <span><i class="fas fa-map-marker-alt"></i><a href="#">510086 - Banglore</a> </span>
-        <span><i class="fas fa-phone fa-flip-horizontal" style="padding: 0 20px 0 5px; "></i><a href="#">98227 52885</a> </span>
+        <span><i class="fas fa-list"></i><a href="./admin/index.html">Services</a> </span>
+        <span><i class="fas fa-sitemap"></i><a href="./admin/index.html">AgriBusiness</a> </span>
+        <span><i class="fas fa-home"></i><a href="./admin/index.html">Home</a> </span>
       </div>
     </div>
   </nav>
 
   <div class="small navbar-mobile">
     <div class="navbar-mobile-menu">
-      <a href="#"><i class="fas fa-bars hamburger-icon"></i></a>
+      <a href="#" data-toggle="collapse" data-target="#collapsibleNavbar1">
+        <span class="material-icons-outlined">
+          menu
+        </span>
+      </a>
       <a href="#">
-        <h4>Agrikaash</h4>
+        <h4 style="text-transform: uppercase;">Agrikaash</h4>
       </a>
 
-      <a href="../login/updateProfile.html" style="padding-right: 0px;">
-        <img src="../img/user.png" id="navUser" class="user-icon" alt="">
-        <!-- <i class="fas fa-user"></i> -->
+      <a href="../notification" style="padding-right: 10px;">
+        <span class="material-icons-outlined" style="color: #fff;">
+          notifications
+        </span>
+        <div class="notification-count">
+          <span class="">2</span>
+        </div>
       </a>
       <!-- <a href="#"><img src="../img/logo.png" width="30px" alt=""> </a> -->
       <!-- <a href="#" style="padding-right: 0px;"><i class="fas fa-user user-icon"></i></a> -->
@@ -92,26 +147,65 @@
   </div>
 
   <div class="small navbar-mobile-bottom">
-    <div class="navbar-mobile-bottom-menu">
-      <a href="#" class="navbar-mobile-bottom-menu-a active" id="a1" style="display:flex; flex-direction:column;">
-        <!-- <i class="fas fa-home"></i> -->
-        <i class="fas fa-tachometer"></i>
-        <small>Dashboard</small>
+    <div class="navbar-mobile-bottom-menu" id="divBottomNavBar">
+      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+        <span class="material-icons-outlined">
+          home
+        </span>
+        <small>Home</small>
       </a>
-      <a href="productList.html" class="navbar-mobile-bottom-menu-a" id="a2" style="display:flex; flex-direction:column;">
-        <i class="fas fa-th-large"></i>
+      <a href="productList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <span class="material-icons-outlined">
+          category
+        </span>
         <small>Products</small>
       </a>
-      <a href="orderList.html" class="navbar-mobile-bottom-menu-a" id="a2" style="display:flex; flex-direction:column;">
-        <i class="fab fa-buffer"></i>
+      <a href="">
+
+      </a>
+      <a href="orderStatus.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <span class="material-icons-outlined">
+          horizontal_split
+        </span>
         <small>Orders</small>
       </a>
-      <a href="cartNew.html" class="navbar-mobile-bottom-menu-a" id="a4" style="display:flex; flex-direction:column;">
-        <i id="i4" class="fas fa-shopping-cart"></i>
-        <small id="small4">Cart</small>
-        <span  class="navbar-cart-no" id='cartitemcount'> 0</span>
+      <a href="confirmRegistration.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <span class="material-icons-outlined">
+          shopping_cart
+        </span>
+        <small id='small4'>Cart</small>
+        <span class="navbar-cart-no" id="cartItemNo">0</span>
       </a>
     </div>
+    <div class="new-user">
+      <span class="material-icons-outlined">
+        person
+      </span>
+    </div>
+  </div>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse more-button-links" id="collapsibleNavbar1">
+    <ul class="">
+      <li class="">
+        <a class="" href="#">Home</a>
+      </li>
+      <li class="">
+        <a class="" href="#IndustriesWeServe">Industries</a>
+      </li>
+      <!-- <li class="">
+        <a class="" href="login">Login</a>
+      </li> -->
+      <li class="">
+        <a class="" href="#WhyToUse">Services</a>
+      </li>
+      <li class="">
+        <a class="" href="contacts">Contact</a>
+      </li>
+      <li class="">
+        <a class="" href="login">Login</a>
+      </li>
+    </ul>
   </div>
   <!-- Navbar - End -->
 
@@ -123,31 +217,41 @@
         <div class="side-navbar-menu">
           <a href="#">
             <div class="">
-              <i class="fas fa-home"></i>
+              <span class="material-icons-outlined" style="position:relative; top:5px;">
+                home
+              </span>
               Dashboard
             </div>
           </a><br>
           <a href="productList.html">
             <div class="">
-              <i class="fas fa-th-large"></i>
+              <span class="material-icons-outlined" style="position:relative; top:5px;">
+                category
+              </span>
               Products
             </div>
           </a><br>
           <a href="orderList.html">
             <div class="">
-              <i class="fab fa-buffer"></i>
+              <span class="material-icons-outlined" style="position:relative; top:5px;">
+                horizontal_split
+              </span>
               Orders
             </div>
           </a><br>
           <a href="../login/updateProfile.html">
             <div class="">
-              <i class="fas fa-male"></i>
+              <span class="material-icons-outlined" style="position:relative; top:5px;">
+                manage_accounts
+              </span>
               Profile
             </div>
           </a><br>
           <a href="#">
             <div class="">
-              <i class="fas fa-sign-out-alt"></i>
+              <span class="material-icons-outlined" style="position:relative; top:5px;">
+                logout
+              </span>
               Logout
             </div>
           </a>
@@ -156,9 +260,7 @@
     </div>
     <!-- side navbar - end -->
     <div class="col-lg-10 col-md-10 col-sm-12">
-      <div id="google_translate_element"></div>
-
-      <!-- ASYNCHRONOUS Google Translate -->
+      <!-- <div id="google_translate_element"></div>
       <script type="text/javascript">
         function googleTranslateElementInit() {
           new google.translate.TranslateElement({
@@ -175,117 +277,229 @@
           googleTranslateScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(googleTranslateScript);
         })();
-      </script>
+      </script> -->
       <!-- End script -->
-      <div class="row no-gutters" style="padding: 2% 0%;">
+      <div class="row no-gutters">
         <div class="col-lg-5 col-md-5 col-sm-12">
           <div class="detail-card-full-div">
-            <h3 class="detail-card-full-div-heading">Summary</h3>
-            <!-- <span class="notification">1</span> -->
-            <div class="detail-card">
-              <div class="detail-card-no">
-                <div class="detail-card-heading">
-                  <i class="fas fa-truck"></i>
-                  <h6>Orders</h6>
-                </div>
-                <a href="orderList.html">
-                  <div class="detail-card-arrow">
-                    <i class="fas fa-chevron-right" ></i>
-                  </div>
+            <!-- <h3 class="detail-card-full-div-heading">Summary</h3> -->
+            <br>
+            <div class="" id="loading">
+              <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<lottie-player src="https://assets6.lottiefiles.com/packages/lf20_49rdyysj.json"  background="transparent"  speed="1"  style="width: 100%; height: 100%;"  loop  autoplay></lottie-player>
+  <br><br>
+              <center>
+                <h5 id="message">Getting Your Data</h5>
+                <button class="mybutton button5" id="btnStartShopping" style="display:none;">Start Shopping</button>
+              </center>
+            </div>
 
-                </a>
+            <div class="dashboard-card" id="cardOrder" style='display:none;'>
+              <div class="" style="display:flex;align-items: center;">
+                <div class="arrow-down">
+                  <span class="material-icons-outlined">
+                    keyboard_arrow_down
+                  </span>
+                </div>
+
+                <div class="">
+                  <span class="material-icons-outlined order-icon">
+                    category
+                  </span>
+                </div>
+                <div class="details">
+                  <h4>Orders</h4>
+                  <p class="small-text dashboard-sub-heading" id="lastOrder">Last Order : ₹ 0</p>
+                </div>
               </div>
-              <hr>
-              <div class="detail-card-details">
-                <div class="">
-                  <small class="small-1">Today's order</small>
-                  <a href="orderList.html?orderDateRange=today">
-                    <small class="small-2" id='todayCount'>0</small>
-                  </a>
 
-                  <small class="small-3">₹ <span id='todayAmount'>0</span></small>
-                </div>
-                <div class="">
-                  <small class="small-1">Yesterday's order</small>
-                  <a href="orderList.html?orderDateRange=yesterday">
-                  <small class="small-2" style="font-size:1.3rem;" id='yesterdayCount'>0</small>
-                </a>
-                  <small class="small-3">₹ <span id='yesterdayAmount'>0</span></small>
-                </div>
-              </div><br>
-
-              <div class="detail-card">
-                <div class="detail-card-no">
-                  <div class="detail-card-heading">
-                    <i class="fas fa-chart-line"></i>
-                    <h6></h6>
-                  </div>
-                  <div class="detail-card-arrow">
-                    <i class="fas fa-chevron-right"></i>
-                  </div>
-                </div>
-                <hr>
-                <div class="detail-card-details">
-                  <div class="">
-                    <small class="small-1">Last 7 Days</small>
-                    <a href="orderList.html?orderDateRange=week">
-                      <small class="small-2" style="font-size:1.3rem;" id='WeekCount'>0</small>
-                    </a>
-                    <small class="small-3">₹ <span id='WeekAmount'>0</span></small>
-                  </div>
-                  <div class="">
-                    <small class="small-1">Current Month</small>
-                    <a href="orderList.html?orderDateRange=month">
-                      <small class="small-2" style="font-size:1.3rem;" id='monthCount'>0</small>
-                    </a>
-                    <small class="small-3">₹ <span id='monthAmount'>0</span></small>
-                  </div>
-                </div>
-
-                <div class="progress-bar"  style="display:none;">
-                  <div class="inner-progress-bar" style="width: 70%;"></div>
-                </div>
-              </div><br>
-              <div class="detail-card" style="display:none;">
-                <div class="detail-card-no">
-                  <div class="detail-card-heading">
-                    <i class="fas fa-chart-line"></i>
-                    <h6>Today's Performance</h6>
-                  </div>
-                  <div class="detail-card-arrow">
-                    <i class="fas fa-chevron-right"></i>
-                  </div>
-                </div>
+              <div class="dashboard-card-expand">
                 <hr>
 
-
-                <div class="detail-card-details">
+                <div class="dashboard-card-order">
                   <div class="">
-                    <small class="small-1">Available</small>
-                    <small class="small-2">+ 0.96%</small>
-                    <small class="small-3">₹ 20,310</small>
+                    <h5 class="small-text">Today</h5>
+                    <a href="orderList.html?orderDateRange=today" id="todayCount">0</a><br>
+                    <small id="todayAmount">₹ 0</small>
                   </div>
+
                   <div class="">
-                    <small class="small-1">Sold</small>
-                    <small class="small-2 negative">- 0.32%</small>
-                    <small class="small-3">₹ 11,753</small>
+                    <h5 class="small-text">Yesterday</h5>
+                    <a href="orderList.html?orderDateRange=yesterday" id="yesterdayCount">0</a><br>
+                    <small id="yesterdayAmount">₹ 0</small>
                   </div>
                 </div><br>
-                <div class="progress-bar">
-                  <div class="inner-progress-bar" style="width: 40%;"></div>
+
+                <div class="dashboard-card-order">
+                  <div class="">
+                    <h5 class="small-text">Last 7 Days</h5>
+                    <a href="orderList.html?orderDateRange=week" id="WeekCount">0</a><br>
+                    <small id="WeekAmount">₹ 0</small>
+                  </div>
+
+                  <div class="">
+                    <h5 class="small-text">This Month</h5>
+                    <a href="orderList.html?orderDateRange=month" id="monthCount">0</a><br>
+                    <small id="monthAmount">₹ 0</small>
+                  </div>
                 </div>
-              </div><br>
 
-              <br>
-              <div class="progress-bar" style="display:none;">
-                <div class="inner-progress-bar" style="width: 90%;"></div>
+                <div class="" style="display:flex;align-items:center;padding-top: 10px;">
+                  <a href="#trend">
+                    <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
+                      Trend
+                      <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
+                        trending_up
+                      </span>
+                    </button>
+                  </a>
+                  <a href="orderStatus.html">
+                    <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
+                      More
+                      <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
+                        menu
+                      </span>
+                    </button>
+                  </a>
+                </div>
+
               </div>
-            </div><br>
+            </div>
 
-          </div>
-        </div>
-        <div class="col-lg-7 col-md-7 col-sm-12"><br><br>
-          <div class="">
+
+            <div class="dashboard-card" id="cardDelivery" >
+              <div class="" style="display:flex;align-items: center;">
+                <div class="arrow-down">
+                  <span class="material-icons-outlined">
+                    keyboard_arrow_down
+                  </span>
+                </div>
+
+                <div class="">
+                  <span class="material-icons-outlined order-icon">
+                    local_shipping
+                  </span>
+                </div>
+                <div class="details">
+                  <h4>Delivery</h4>
+                  <p class="small-text dashboard-sub-heading">Next Delivery : 20th Dec 2021, 08:00 pm</p>
+                </div>
+              </div>
+
+              <div class="dashboard-card-expand">
+                <hr>
+
+                <div class="dashboard-card-delivery" style="border-left: 2px solid #1D741B;">
+                  <div class="">
+                    <div class="" style="display:flex;align-items:center;">
+                      <span class="material-icons-outlined" style="font-size: 2rem; color: #1D741B;">
+                        check_circle
+                      </span>
+                      <h5>20th Dec, 2021, 08:00 pm</h5>
+                    </div>
+                    <div class="" style="display:flex;align-items:center;justify-content: space-between;">
+                      <small class="small-text dashboard-sub-heading">Items : 30 - ₹ 1,111</small>
+                      <small class="small-text dashboard-sub-heading" style="color: #1D741B;font-weight: bold;">On the Way</small>
+                    </div>
+                  </div>
+                  <div class="" style="text-align: center;">
+                    <span class="material-icons-outlined" style="font-size: 3.6rem;color: #aaa;
+                    position:relative;right: 8px;width: 30px;height:30px;">
+                      arrow_right
+                    </span>
+                  </div>
+                </div>
+
+                <div class="dashboard-card-delivery" style="border-left: 2px solid #88CA5E;">
+                  <div class="">
+                    <div class="" style="display:flex;align-items:center;">
+                      <span class="material-icons-outlined" style="font-size: 2rem; color: #88CA5E;">
+                        local_shipping
+                      </span>
+                      <h5>20th Dec, 2021, 08:00 pm</h5>
+                    </div>
+                    <div class="" style="display:flex;align-items:center;justify-content: space-between;">
+                      <small class="small-text dashboard-sub-heading">Items : 30 - ₹ 1,111</small>
+                      <small class="small-text dashboard-sub-heading" style="color: #88CA5E;font-weight: bold;">On the Way</small>
+                    </div>
+                  </div>
+                  <div class="" style="text-align: center;">
+                    <span class="material-icons-outlined" style="font-size: 3.6rem;color: #aaa;
+                    position:relative;right: 8px;width: 30px;height:30px;">
+                      arrow_right
+                    </span>
+                  </div>
+                </div>
+
+                <div class="dashboard-card-delivery" style="border-left: 2px solid #F8D210;">
+                  <div class="">
+                    <div class="" style="display:flex;align-items:center;">
+                      <span class="material-icons-outlined" style="font-size: 2rem; color: #F8D210;">
+                        widgets
+                      </span>
+                      <h5>20th Dec, 2021, 08:00 pm</h5>
+                    </div>
+                    <div class="" style="display:flex;align-items:center;justify-content: space-between;">
+                      <small class="small-text dashboard-sub-heading">Items : 30 - ₹ 1,111</small>
+                      <small class="small-text dashboard-sub-heading" style="color: #F8D210;font-weight: bold;">Packed</small>
+                    </div>
+                  </div>
+                  <div class="" style="text-align: center;">
+                    <span class="material-icons-outlined" style="font-size: 3.6rem;color: #aaa;
+                    position:relative;right: 8px;width: 30px;height:30px;">
+                      arrow_right
+                    </span>
+                  </div>
+                </div>
+
+                <div class="dashboard-card-delivery" style="border-left: 2px solid #ff5757;">
+                  <div class="">
+                    <div class="" style="display:flex;align-items:center;">
+                      <span class="material-icons-outlined" style="font-size: 2rem; color: #ff5757;">
+                        cancel
+                      </span>
+                      <h5>20th Dec, 2021, 08:00 pm</h5>
+                    </div>
+                    <div class="" style="display:flex;align-items:center;justify-content: space-between;">
+                      <small class="small-text dashboard-sub-heading">Items : 30 - ₹ 1,111</small>
+                      <small class="small-text dashboard-sub-heading" style="color: #ff5757;font-weight: bold;">Cancelled</small>
+                    </div>
+                  </div>
+                  <div class="" style="text-align: center;">
+                    <span class="material-icons-outlined" style="font-size: 3.6rem;color: #aaa;
+                    position:relative;right: 8px;width: 30px;height:30px;">
+                      arrow_right
+                    </span>
+                  </div>
+                </div><br>
+
+                <div class="" style="display:flex;align-items:center;padding-top: 10px;">
+                  <a href="#trend">
+                    <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
+                      Trend
+                      <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
+                        trending_up
+                      </span>
+                    </button>
+                  </a>
+                  <a href="#">
+                    <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
+                      More
+                      <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
+                        menu
+                      </span>
+                    </button>
+                  </a>
+                </div>
+
+              </div>
+            </div>
+
+
+            <!-- <span class="notification">1</span> -->
+
+        <div class="col-lg-7 col-md-7 col-sm-12" id="trendChart" style="display:none;"><br><br>
+          <section id="trend" class="">
             <div class="row no-gutters">
               <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="" style="width: 100%; background:rgba(0,0,0,0.05);height:100%;">
@@ -294,14 +508,14 @@
               </div>
               <div class="col-lg-9 col-md-9 col-sm-12">
                 <div class="" style="text-align:center;padding:20px;">
-                  <input type='radio' id='rdLine' name='charttype' onchange="changeGraphType( 1);"  /><span>Line Graph</span>
-                  <input type='radio' id='rdBar' name='charttype' onchange="changeGraphType( 2);" checked  /><span>Bar Graph</span>
+                  <input type='radio' id='rdLine' name='charttype' onchange="changeGraphType( 1);" /><span>Line Graph</span>
+                  <input type='radio' id='rdBar' name='charttype' onchange="changeGraphType( 2);" checked /><span>Bar Graph</span>
 
                   <div class="" id="chartContainer" style="width:100%;height:300px;"></div>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         </div>
       </div>
 
@@ -339,6 +553,7 @@
   <!-- Map Section - End -->
 
   <!-- Footer Section - Start -->
+  <hr>
   <section id="footer">
     <br /><br />
     <div class="container">
@@ -356,7 +571,7 @@
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12">
           <div class="footer-list">
-            <h5>Connect With us</h5>
+            <h5>Connect with us</h5>
             <ul>
               <li><a href="#">Facebook</a></li>
               <li><a href="#">Instagram</a></li>
@@ -382,7 +597,7 @@
             <img src="../img/logo.png" width="30%" alt="">
           </div>
           <hr>
-          <h6 style="text-align:left;font-size: 0.9rem; font-weight: bold;">Conetct With us</h6>
+          <h6 style="text-align:left;font-size: 0.9rem; font-weight: bold;">Conetct with us</h6>
           <div class="social">
             <i class="fab fa-facebook-messenger"></i>
             <i class="fab fa-facebook-f"></i>
@@ -395,8 +610,8 @@
     </div>
     <div class="copy-write">
       <center>
-        <span>© Copyright 2021 </span>
-        <span style="font-family: 'Great Vibes'"> Web Picker</span>
+        <span>Powred by HyperCloud</span>
+        <!-- <span style="font-family: 'Great Vibes'"> Web Picker</span> -->
       </center>
     </div>
   </section>
