@@ -15,7 +15,7 @@ try {
       userID = firebaseUser.uid;
       console.log(userID);
       GetProfileData();
-
+      GetUserList();
       populateOrderDetails();
 
     } else {
@@ -29,7 +29,31 @@ try {
   console.log(error.message);
 }
 //window.location.href = "../index.html";
+function GetUserList() {
+  var DBrows = db.collection('UserList').get();
 
+  DBrows.then((changes) => {
+    var i = 0;
+    changes.forEach(change => {
+      orderList = change.data();
+      //orderList.sort()
+      //console.log(change.doc, index, selectdedItem);
+      var name = change.data().CreatedBy;
+      var strText = change.data().displayName + ":" + change.data().EmailID;
+      var strValue = change.id;
+      console.log(strValue);
+      console.log(strText);
+      var option = document.createElement("option");
+      option.setAttribute("value", strValue);
+      option.innerHTML = strText;
+
+      document.getElementById("userList").appendChild(option);
+
+    });
+  });
+
+
+}
 
 function GetProfileData() {
   // const ref = db.collection("Users").doc(user.uid);
@@ -56,6 +80,46 @@ function GetProfileData() {
     });
 };
 
+function GetOrderByUsers() {
+  var index = 0;
+  document.getElementById('loading').style.display = 'block';
+  var users = document.getElementById('userList');
+  var selecteduservalue = users.options[users.selectedIndex].value;
+  console.log(selecteduservalue);
+var DBrows;
+  if(selecteduservalue === 'All')
+{
+  DBrows = db.collection('OrderDetails')
+    .get();
+
+}
+  else {
+    DBrows = db.collection('OrderDetails')
+      .where("orderBy", "==", selecteduservalue).get();
+
+
+  }
+
+  DBrows.then((changes) => {
+    console.log("populatePayments: ");
+
+    var i = 0;
+document.getElementById("orderList").innerHTML="";
+    changes.forEach(change => {
+      orderList = change.data();
+      //orderList.sort()
+      //console.log(change.doc, index, selectdedItem);
+      var name = change.data().CreatedBy;
+      console.log(change.id);
+      //for (i = 0; i < orderList.length; i++) {
+      renderOrder(orderList, index, name, change.id);
+      index = index + 1;
+    });
+  });
+  document.getElementById('loading').style.display = 'none';
+
+
+}
 
 function populateOrderDetails() {
 
@@ -73,14 +137,14 @@ function populateOrderDetails() {
   var snapshot;
   var DBrows;
   console.log(orderDateRange);
-  if (orderDateRange === undefined || orderDateRange === '')
+  if (orderDateRange === undefined || orderDateRange === '' || orderDateRange === null)
 
   {
     DBrows = db.collection('OrderDetails').get();
 
     //DBrow = db.collection('OrderDetails').get();
   } else if (orderDateRange === 'today') {
-console.log('in today');
+    console.log('in today');
     DBrows = db.collection('OrderDetails')
       .where("orderDate", ">=", toDate).get();
 
@@ -90,7 +154,7 @@ console.log('in today');
 
     todayDate.setDate(todayDate.getDate() - 1);
 
-  //  toDate.setDate(toDate.getDate() + 1);
+    //  toDate.setDate(toDate.getDate() + 1);
     console.log(todayDate);
     console.log(toDate);
     DBrows = db.collection('OrderDetails')
@@ -112,6 +176,7 @@ console.log('in today');
     console.log("populatePayments: ");
 
     var i = 0;
+document.getElementById("orderList").innerHTML="";
     changes.forEach(change => {
       orderList = change.data();
       //orderList.sort()
