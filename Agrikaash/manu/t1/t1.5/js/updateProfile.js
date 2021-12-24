@@ -6,7 +6,7 @@ auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
-Response.Cookies["googtrans"].Value = '/en/hi';
+      //Response.Cookies["googtrans"].Value = '/en/hi';
       //      GetProfileData(firebaseUser);
       GetRegistrationRequest();
 
