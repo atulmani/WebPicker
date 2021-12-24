@@ -407,6 +407,20 @@ h6{
   font-weight: 500;
 }
 
+.buttonTransparent{
+  background: none;
+  border: 1px solid #bbb;
+  color: #666;
+  border-radius: 20px;
+  padding: 5px 20px;
+  font-weight: 600;
+}
+
+.buttonTransparent:hover{
+  background: #666;
+  color: #f4f4f4;
+}
+
 .before-nav{
   position: absolute;
   top: 25%;
@@ -581,11 +595,48 @@ h6{
   /* background: linear-gradient(to right ,#078e00, #f58634); */
 }
 
+.category-list-menu{
+  text-decoration: none;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  padding: 5px 4px;
+  border: 1px solid #ddd;
+  color: #444;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.category-list-menu.active{
+  background: #f58634;
+}
+
+.category-list-menu h5{
+  position: relative;
+  top: 3px;
+}
+
+.category-list-menu.active h5{
+  color: #fff;
+}
+
+.category-list-sub-menu{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
 .product-list-div{
   border: 1px solid #dedede;
   padding: 6px;
   border-radius: 4px;
   margin: 2px auto;
+  background: #fff;
 }
 
 .product-list-div small{
@@ -1022,12 +1073,7 @@ input[type=number] {
 }
 
 .camera-icon{
-  border: none;
-  outline: none;
-}
-
-.camera-icon:disabled{
-  opacity: 0.5;
+  /* float: right; */
 }
 
 .camera-icon i{
@@ -1469,21 +1515,6 @@ input[type=number] {
   color: orange;
 }
 
-.pay-now-div{
-  position: absolute;
-  background: #f58634;
-  /* background: #eee; */
-  top: 7px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 16px;
-  color: #fff;
-}
-
-
 /* orders page - end */
 
 /* order summary page - start */
@@ -1539,13 +1570,101 @@ input[type=number] {
 }
 
 .detail-card-full-div{
-  padding: 3% 5%;
+  padding: 0 3%;
 }
 
 .detail-card-full-div .detail-card-full-div-heading{
   font-size: 1.7rem;
   color: #000;
   text-align: center;
+}
+
+.dashboard-card{
+  background: #fff;
+  margin: 25px auto;
+  padding: 15px 10px;
+  border-radius: 10px;
+  height: 75px;
+  overflow-y: hidden;
+  transition: 1s;
+}
+
+#cardOrder:hover{
+  height: 320px;
+}
+
+#cardDelivery:hover{
+  height: 512px;
+}
+
+.dashboard-card .arrow-down{
+  position: absolute;
+  right: 20px;
+  transform: translateY(-20px);
+  transition: 1s;
+}
+
+.dashboard-card:hover .arrow-down{
+  transform: translateY(-20px) rotate(180deg);
+}
+
+.dashboard-card div .order-icon{
+  font-size: 2.4rem;
+}
+
+.dashboard-sub-heading{
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.dashboard-card .details{
+  padding-left: 20px;
+}
+
+.dashboard-card .details h4{
+  margin: 0 auto;
+  color: #444;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.dashboard-card .details p{
+  margin: 0 auto;
+}
+
+.dashboard-card-order{
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+}
+
+.dashboard-card-order div a{
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin: 0 auto;
+  color: #1D741B;
+  text-decoration: none;
+}
+
+.dashboard-card-order div small{
+  position: relative;
+  top: -7px;
+  font-weight: bold;
+  color: #aaa;
+}
+
+.dashboard-card-delivery{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  margin: 10px auto;
+}
+
+.dashboard-card-delivery div h5{
+  color: #000;
+  margin-top: 7px;
+  padding-left: 5px;
 }
 
 .detail-card{
@@ -1627,7 +1746,40 @@ input[type=number] {
   height: 14px;
 }
 
+.notification-count{
+  position: absolute;
+  color: #fff;
+  font-size: 0.9rem;
+  background: red;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  top: 6px;
+  right: 10px;
+}
+
 /* dashboard page - end */
+
+/* notification page - start */
+.notification-card{
+  padding: 10px;
+  background: #efefef;
+  margin: 15px auto;
+}
+
+.notification-card .notification-card-details{
+  padding-top: 10px;
+}
+
+.notification-card .notification-card-details h4{
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* notification page - end */
 
 /* create product page - start */
 
