@@ -2,6 +2,7 @@
 var userID = "";
 var userName = "";
 var OrderItems = [];
+var userType = "";
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
@@ -38,6 +39,7 @@ function GetProfileData(user) {
         //console.log('Document ref id: ' + doc.data().uid);
         userID = user.uid;
         userName = doc.data().displayName;
+        userType = doc.data().CustomerType;
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
           document.getElementById('navUser').src = doc.data().ProfileImageURL;
         }
@@ -57,13 +59,33 @@ function GetCouponDetails() {
   //  var couponList = [];
   var userList = [];
   var couponDetails = document.getElementById("couponDetails");
-  DBrows = db.collection("Coupons").where("Status", "==", 'Active').get();
+  var today = Date.now();
+  DBrows = db.collection("Coupons")
+    .where("Status", "==", 'Active')
+    .where ('ValidityTill' ,">=" , today)
+    .get();
   var flag = false;
   DBrows.then((changes) => {
 
     changes.forEach(change => {
       userList = change.data().UserList;
       console.log(userList);
+      userTypeApplicable = change.data().UserType;
+
+      if(userTypeApplicable.includes(userType))
+      {
+        flag = true;
+        var opt = document.createElement('option');
+        opt.value = change.id;
+        if (change.data().DiscountType === 'Percentage')
+          opt.innerHTML = change.data().DiscountValue + " %";
+        else
+          opt.innerHTML = "₹ " + change.data().DiscountValue;
+        couponDetails.appendChild(opt);
+      }
+      else {
+
+
       if (userList[0].userID === 'All') {
         flag = true;
         var opt = document.createElement('option');
@@ -85,6 +107,7 @@ function GetCouponDetails() {
           opt.innerHTML = "₹ " + change.data().DiscountValue;
         couponDetails.appendChild(opt);
       }
+    }
     });
     if (flag === false) {
       couponDetails.style.display = "none";
