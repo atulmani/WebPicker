@@ -210,27 +210,28 @@ $(document).ready(function() {
 
 
 $(document).ready(function() {
-  var owl = $('#clients-list');
+  var owl = $('#category-list');
   owl.owlCarousel({
-    margin: 80,
-    nav: true,
-    loop: true,
-    center: true,
-    autoplay: true,
-    smartSpeed: 3000,
-    autoplayTimeout: 4000,
+    margin: 8,
+    // stagePadding: 30,
+    nav: false,
+    loop: false,
+    center: false,
+    autoplay: false,
+    smartSpeed: 1000,
+    autoplayTimeout: 1000,
     autoplayHoverPause: false,
     nav: false,
     dots: false,
     responsive: {
       0: {
-        items: 1
+        items: 3.5
       },
       600: {
-        items: 2
+        items: 4
       },
       1024: {
-        items: 3
+        items: 5
       }
     }
   });
