@@ -366,7 +366,6 @@
               </div>
             </div>
 
-
             <div class="dashboard-card" id="cardDelivery" >
               <div class="" style="display:flex;align-items: center;">
                 <div class="arrow-down">
@@ -382,14 +381,15 @@
                 </div>
                 <div class="details">
                   <h4>Delivery</h4>
-                  <p class="small-text dashboard-sub-heading">Next Delivery : 20th Dec 2021, 08:00 pm</p>
+                  <p class="small-text dashboard-sub-heading" id="nextDelivery">Next Delivery : 20th Dec 2021, 08:00 pm</p>
                 </div>
               </div>
 
               <div class="dashboard-card-expand">
                 <hr>
-
-                <div class="dashboard-card-delivery" style="border-left: 2px solid #1D741B;">
+                  <div id="deliveryDetailsCard">
+                  </div>
+                <div class="dashboard-card-delivery" style="border-left: 2px solid #1D741B; display:none;">
                   <div class="">
                     <div class="" style="display:flex;align-items:center;">
                       <span class="material-icons-outlined" style="font-size: 2rem; color: #1D741B;">
@@ -410,7 +410,7 @@
                   </div>
                 </div>
 
-                <div class="dashboard-card-delivery" style="border-left: 2px solid #88CA5E;">
+                <div class="dashboard-card-delivery" style="border-left: 2px solid #88CA5E;display:none;">
                   <div class="">
                     <div class="" style="display:flex;align-items:center;">
                       <span class="material-icons-outlined" style="font-size: 2rem; color: #88CA5E;">
@@ -431,7 +431,7 @@
                   </div>
                 </div>
 
-                <div class="dashboard-card-delivery" style="border-left: 2px solid #F8D210;">
+                <div class="dashboard-card-delivery" style="border-left: 2px solid #F8D210;display:none;">
                   <div class="">
                     <div class="" style="display:flex;align-items:center;">
                       <span class="material-icons-outlined" style="font-size: 2rem; color: #F8D210;">
@@ -452,7 +452,7 @@
                   </div>
                 </div>
 
-                <div class="dashboard-card-delivery" style="border-left: 2px solid #ff5757;">
+                <div class="dashboard-card-delivery" style="border-left: 2px solid #ff5757;display:none;">
                   <div class="">
                     <div class="" style="display:flex;align-items:center;">
                       <span class="material-icons-outlined" style="font-size: 2rem; color: #ff5757;">
