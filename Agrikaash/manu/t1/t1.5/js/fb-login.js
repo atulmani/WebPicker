@@ -152,7 +152,7 @@ function GetProfileData(user) {
         console.log(userRole.findIndex(e => e.value === 'Admin'));
 
         if (userRole === undefined || userRole.length === 0) {
-          window.location.href = "../admin/Registration.html";
+          window.location.href = "../login/Registration.html";
           //document.getElementById('errorMessage_Login').innerHTML = 'You do not have access to Application. <a href=Registration.html>Please register</a> or reach out to Agrikaash Team for Access';
           document.getElementById('errorMessage_Login').style.display = 'block';
           document.getElementById('register').style.display = 'block';
