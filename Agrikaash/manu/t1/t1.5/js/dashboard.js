@@ -11,7 +11,7 @@ auth.onAuthStateChanged(firebaseUser => {
 
     } else {
       console.log('User has been logged out');
-      window.location.href = "index.html";
+      window.location.href = "../login/index.html";
     }
   } catch (error) {
     console.log(error.message);
@@ -30,8 +30,8 @@ function GetProfileData(user) {
         userRole = doc.data().UserRole;
         console.log(userRole);
 
-        if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
-          document.getElementById('navUser').src = doc.data().ProfileImageURL;
+        // if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
+        //   document.getElementById('navUser').src = doc.data().ProfileImageURL;
         PopulateOrderSummary();
         PopulateDeliverySummary();
 
@@ -56,6 +56,13 @@ var chart1Delivery;
 
 function PopulateOrderSummary() {
   console.log('in PopulateTodaysOrder');
+  var amount = 239990;
+  var curFormat = { style: 'currency',
+        currency: 'INR',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0 };
+amount = amount.toLocaleString('en-IN', curFormat);
+console.log(amount);
   var todayDate = new Date();
 
   var yesterdayDate = new Date();
@@ -146,6 +153,7 @@ function PopulateOrderSummary() {
   console.log(currentMonth, userID, todayDate, currentMonth);
   var DBrows;
   //    DBrows =
+  var flag = false;
   db.collection('OrderDetails')
     .where("orderBy", "==", userID)
     .where("orderDate", "<=", todayDate)
@@ -156,7 +164,7 @@ function PopulateOrderSummary() {
       console.log("populatePayments: ");
 
       changes.forEach(change => {
-
+        flag = true;
         console.log('in loop');
         var orderDetails = change.doc.data();
 
@@ -211,25 +219,75 @@ function PopulateOrderSummary() {
 
         console.log(arrAmt);
         document.getElementById('todayCount').innerHTML = todayCnt;
-        document.getElementById('todayAmount').innerHTML = todayAmount;
+        document.getElementById('todayAmount').innerHTML = todayAmount.toLocaleString('en-IN', curFormat);
 
         document.getElementById('yesterdayCount').innerHTML = yesterdayCnt;
-        document.getElementById('yesterdayAmount').innerHTML = yesterdayAmount;
+        document.getElementById('yesterdayAmount').innerHTML = yesterdayAmount.toLocaleString('en-IN', curFormat);
 
         document.getElementById('WeekCount').innerHTML = weekCnt;
-        document.getElementById('WeekAmount').innerHTML = weekAmount;
+        document.getElementById('WeekAmount').innerHTML = weekAmount.toLocaleString('en-IN', curFormat);
 
         document.getElementById('monthCount').innerHTML = monthCnt;
-        document.getElementById('monthAmount').innerHTML = monthAmount;
+        document.getElementById('monthAmount').innerHTML = monthAmount.toLocaleString('en-IN', curFormat);
 
         orderChart(arrAmt, dateArr);
-
+        document.getElementById("loading").style.display="none";
+        document.getElementById("cardOrder").style.display="block";
+        document.getElementById("trendChart").style.display="block";
+        getLastOrder();
       });
+      if(flag === false)
+      {
+        //no date
+        document.getElementById("message").innerHTML="Welcome to Agrikaash."
+        document.getElementById('btnStartShopping').style.display="block";
+        document.getElementById("cardOrder").style.display="none";
+        document.getElementById("trendChart").style.display="none";
+
+      }
     });
 
 }
 
+function getLastOrder()
+{
+  var orderdate ;
+  var todayAmount=0;
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
 
+
+  db.collection('OrderDetails')
+    .where("orderBy", "==", userID)
+    .orderBy("orderDate", 'desc')
+    .limit(1)
+    .onSnapshot(snapshot => {
+      let changes = snapshot.docChanges();
+
+      console.log("populatePayments: ");
+
+      changes.forEach(change => {
+        flag = true;
+        var orderDetails = change.doc.data();
+
+         var oorderdate = new Date(orderDetails.orderDate.seconds * 1000);
+         console.log(oorderdate);
+         orderdate = oorderdate.toLocaleDateString("en-US", options);
+         console.log(orderdate);
+        todayAmount = Number(orderDetails.totalAmount);
+      });
+      var curFormat = { style: 'currency',
+            currency: 'INR',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0 };
+      todayAmount = todayAmount.toLocaleString('en-IN', curFormat);
+      document.getElementById('lastOrder').innerHTML = "Last Order ["+ orderdate +"] : "+todayAmount;
+    });
+
+}
 
 function PopulateDeliverySummary() {
   console.log('in PopulateDeliverySummary');
