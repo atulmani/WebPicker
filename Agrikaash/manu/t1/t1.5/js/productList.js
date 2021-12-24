@@ -42,28 +42,28 @@ function GetProfileData(user) {
         if (userRole != undefined) {
           if (userRole.findIndex(e => e.value === "Admin") >= 0) {
             isAdmin = true;
-            document.getElementById("a4").href = "confirmRegistration.html";
-            var i4 = document.getElementById("i4");
-            i4.setAttribute("class", "fas fa-registered");
-            document.getElementById("small4").innerHTML = "Registration";
-            var span4 = document.getElementById("cartItemNo");
-            span4.style.display = "none";
+            // document.getElementById("a4").href = "confirmRegistration.html";
+            // var i4 = document.getElementById("i4");
+            // i4.setAttribute("class", "fas fa-registered");
+            // document.getElementById("small4").innerHTML = "Registration";
+            // // var span4 = document.getElementById("cartItemNo");
+            // span4.style.display = "none";
 
           } else {
             isAdmin = false;
 
-            var a5 = document.getElementById("a5");
-            a5.style.display = "none";
+            // var a5 = document.getElementById("a5");
+            // a5.style.display = "none";
           }
         } else {
           {
-            var a5 = document.getElementById("a5");
-            a5.style.display = "none";
-            isAdmin = false;
+            // var a5 = document.getElementById("a5");
+            // a5.style.display = "none";
+            // isAdmin = false;
           }
         }
-        if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
-          document.getElementById('navUser').src = doc.data().ProfileImageURL;
+        // if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
+        //   document.getElementById('navUser').src = doc.data().ProfileImageURL;
         console.log(isAdmin);
 
         var promise = getCartItemNo();
