@@ -329,7 +329,7 @@ function getNextDelivery()
   };
 
 
-  var today = Date.now();
+  var today = new Date();
   var flag=false;
   db.collection('OrderDetails')
     .where("orderBy", "==", userID)
@@ -344,7 +344,7 @@ function getNextDelivery()
       changes.forEach(change => {
         flag = true;
         console.log("in first for");
-        var oorderdate = new Date(orderDetails.deliveryDate.seconds * 1000);
+        var oorderdate = new Date(change.doc.data().deliveryDate.seconds * 1000);
         deliveryDate = oorderdate.toLocaleDateString("en-US", options);
 
         deliveryTime = change.doc.data().deliveryTime;
@@ -355,7 +355,7 @@ function getNextDelivery()
       if(flag === false)
       {
 
-        console.log("in ssecond for");
+        console.log("in second for");
         db.collection('OrderDetails')
           .where("orderBy", "==", userID)
           .where("deliveryDate","<=", today)
