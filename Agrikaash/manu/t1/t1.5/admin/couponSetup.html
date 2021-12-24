@@ -39,6 +39,8 @@
 
   <!-- Your Own Style -->
   <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
+
 
 </head>
 
@@ -94,28 +96,28 @@
   <div class="small navbar-mobile-bottom">
     <div class="navbar-mobile-bottom-menu">
 
-        <a href="dashboard.html" class="navbar-mobile-bottom-menu-a"  style="display:flex; flex-direction:column;">
-          <!-- <i class="fas fa-home"></i> -->
-          <i class="fas fa-tachometer"></i>
-          <small>Dashboard</small>
-        </a>
-        <a href="updateProduct.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-          <i class="fas fa-th-large"></i>
-          <small>Products</small>
-        </a>
-        <a href="orderStatus.html" class="navbar-mobile-bottom-menu-a"  style="display:flex; flex-direction:column;">
-          <i class="fab fa-buffer"></i>
-          <small>Orders</small>
-        </a>
-        <a href="confirmRegistration.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-          <i id="i4" class="fas fa-registered"></i>
-          <small id="small4">Registration</small>
-        </a>
+      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <!-- <i class="fas fa-home"></i> -->
-        <a href="couponSetup.html" class="navbar-mobile-bottom-menu-a active"  style="display:flex; flex-direction:column;">
-          <i class="fas fa-ticket" ></i>
-          <small>Coupon</small>
-        </a>
+        <i class="fas fa-tachometer"></i>
+        <small>Dashboard</small>
+      </a>
+      <a href="updateProduct.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <i class="fas fa-th-large"></i>
+        <small>Products</small>
+      </a>
+      <a href="orderStatus.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <i class="fab fa-buffer"></i>
+        <small>Orders</small>
+      </a>
+      <a href="confirmRegistration.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <i id="i4" class="fas fa-registered"></i>
+        <small id="small4">Registration</small>
+      </a>
+      <!-- <i class="fas fa-home"></i> -->
+      <a href="couponSetup.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+        <i class="fas fa-ticket"></i>
+        <small>Coupon</small>
+      </a>
     </div>
   </div>
   <!-- Navbar - End -->
@@ -170,7 +172,7 @@
       <div class="row no-gutters small">
 
         <div class="pay-now-div">
-          <h4 style="width:100%;text-align:center;">Review Your Cart</h4>
+          <h4 style="width:100%;text-align:center;">Coupon Setup</h4>
         </div>
         <br><br>
         <div class="col-sm-12" style="padding: 5px;">
@@ -190,20 +192,63 @@
           </div> -->
           <div id="divSetCoupon">
             <div class="row no-gutters small" style="font-size: 1rem;">
+
               <div class="col-sm-12" style="padding: 5px;">
-                <input type="Radio" id="rbType1" value="Absolute Amount"  name="type"  />Absolute Amount <br />
+                <span> Coupon Name :</span>
+                <input type="text" name="for Name" id="couponName">
+              </div>
+
+              <div class="col-sm-12" style="padding: 5px;">
+                <input type="Radio" id="rbType1" value="Absolute Amount" name="type" />Absolute Amount <br />
                 <input type="Radio" id="rbType2" value="Percentage" text="Percentage" name="type" checked /> Percentage
                 <br />
               </div>
+
+
               <div class="col-sm-12" style="padding: 5px;">
                 <input type="hidden" id="hfCouponID" />
-                <span> Discount  :</span>
+                <span> Discount Value:</span>
                 <input type="text" name="for Discount" id="DiscountPercentage">
               </div>
+
+
+              <div class="col-sm-12 ">
+                <div class="input-group date datetimepicker11">
+                  Valid Till
+                  <input id="validTill" type="text" style="width:70%;" class="form-control" readonly>
+                  <div class="input-group-addon input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                  </div>
+                </div>
+              </div>
               <div class="col-sm-12" style="padding: 5px;">
+                Select user group, coupon will be applicable for all users is selected user Type<br>
+                <input type="checkbox" id="userType1" value="Small">
+                <label for="Small">Small</label><br>
+                <input type="checkbox" id="userType2" value="Medium">
+                <label for="Medium">Medium</label><br>
+                <input type="checkbox" id="userType3" value="Large">
+                <label for="Medium">large</label><br>
+              </div>
+              <div class="col-sm-12" style="padding: 5px;">
+                Or
+              </div>
+
+              <div class="col-sm-12" style="padding: 5px;">
+                Select users to Apply coupons, If no user selected, coupon will be applicable for all
                 <select id="userList" multiple width="100%">
 
                 </select>
+              </div>
+              <div class="col-sm-12" style="padding: 5px;">
+                <span> short Description</span>
+                <textarea name="for Discription" id="description" rows='2'></textarea>
+              </div>
+
+
+              <div class="col-sm-12" style="padding: 5px;">
+                <span> Terms and Condition</span>
+                <textarea name="for Discription" id="termsAndCondition" rows='2'> </textarea>
               </div>
               <div class="col-sm-12" style="padding: 5px;">
                 <a href="#"><button class="mybutton button5" id="btnSaveCoupon" onclick="SaveCoupon();">Save Coupon</button></a>
@@ -354,6 +399,56 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+
+    <script src="../js/bootstrap-datetimepicker.min.js"></script>
+
+    <script>
+      $(function() {
+        $.extend(true, $.fn.datetimepicker.defaults, {
+          icons: {
+            time: 'far fa-clock',
+            date: 'far fa-calendar',
+            up: 'fas fa-arrow-up',
+            down: 'fas fa-arrow-down',
+            previous: 'fas fa-chevron-left',
+            next: 'fas fa-chevron-right',
+            today: 'far fa-calendar-check-o',
+            clear: 'far fa-trash',
+            close: 'far fa-times'
+          }
+        });
+      });
+    </script>
+    <script type="text/javascript">
+      $(function() {
+        $('.datetimepicker11').datetimepicker({
+          // format: 'YYYY-MM-DD',
+          format: 'MMM DD, YYYY',
+          ignoreReadonly: true,
+          useCurrent: false,
+          //maxDate: new Date()
+          minDate: new Date()
+          // update: new Date()
+        });
+
+        // $('.datetimepicker11').datepicker("update", new Date());
+        // $('.datetimepicker11').datetimepicker('setDate', new Date()); // = set to today
+      });
+      // $(document).ready(function() {
+      //   // $('#txtDate').datepicker({ dateFormat: 'yy/mm/dd' });
+      //   $('.datetimepicker11').datetimepicker('setDate', new Date());
+      // });
+      // $('#datepicker').datepicker({
+      //   useCurrent: false,
+      //   format: 'dd/mm/yyyy'
+      // });
+      //
+      // $('#datetimepicker11').datepicker('setDate', new Date());
+    </script>
+
 
 </body>
 
