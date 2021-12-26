@@ -29,7 +29,7 @@ function GetProfileData(user) {
         console.log('Document ref id: ' + doc.data().uid);
         userID = doc.data().uid;
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
-          document.getElementById('navUser').src = doc.data().ProfileImageURL;
+          //  document.getElementById('navUser').src = doc.data().ProfileImageURL;
         }
 //        document.getElementById('headerProfilePic').src = doc.data().ImageURL;
 //        document.getElementById('displayName').innerHTML = doc.data().displayName;
