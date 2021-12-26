@@ -57,103 +57,33 @@ $(window).scroll(function() {
 //     });
 // });
 
-// $(function () {
-//     $("#team-members").owlCarousel({
-//         items: 2,
-//         autoplay: true,
-//         smartSpeed: 700,
-//         loop: true,
-//         autoplayHoverPause: true,
-//         nav: true,
-//         dots: false,
-//         responsive: {
-//             0: {
-//                 items: 1
-//             },
-//             480: {
-//                 items: 2
-//             }
-//         }
-//     });
-// });
+$(document).ready(function() {
+  var owl = $('#before-login-carousel');
+  owl.owlCarousel({
+    margin: 30,
+    loop: true,
+    autoplay: true,
+    smartSpeed:2500,
+    autoplayTimeout: 2700,
+    autoplayHoverPause: true,
+    nav:false,
+    dots:false,
+    center: true,
+    responsive: {
+      0: {
+        items: 1,
+        stagePadding: 50,
+      },
+      600: {
+        items: 1
+      },
+      1000: {
+        items: 1
+      }
+    }
+  });
+});
 
-// $(function() {
-//
-//   $("#progress-elements").waypoint(function() {
-//
-//     $(".progress-bar").each(function() {
-//
-//       $(this).animate({
-//         width: $(this).attr("aria-valuenow") + "%"
-//       }, 2000);
-//
-//     });
-//
-//     this.destroy();
-//   }, {
-//     offset: 'bottom-in-view'
-//   });
-//
-//
-// });
-
-
-// $(function() {
-//
-//   $("#services-tabs").responsiveTabs({
-//     animation: 'slide'
-//   });
-//
-//   //  $('.gallery').magnificPopup({
-//   //     delegate: '.popimg',
-//   //     type: 'image',
-//   //     gallery: {
-//   //         enabled: true
-//   //     }
-//   // });
-//   //   $('.gallery').isotope({
-//   //   // options
-//   //   itemSelector: '.items'
-//   // });
-//   //
-//   // var $gallery = $('.gallery').isotope({
-//   //   // options
-//   // });
-//
-//   // filter items on button click
-//   $('.filtering').on('click', 'span', function() {
-//
-//     var filterValue = $(this).attr('data-filter');
-//
-//     $gallery.isotope({
-//       filter: filterValue
-//     });
-//
-//   });
-//
-//   $('.filtering').on('click', 'span', function() {
-//
-//     $(this).addClass('active').siblings().removeClass('active');
-//
-//   });
-//
-// });
-
-// $(document).ready(function(){
-//     $("#testimonial-slider").owlCarousel({
-//        items:1,
-//         itemsDesktop:[1000,1],
-//         itemsDesktopSmall:[979,1],
-//         itemsTablet:[768,1],
-//         pagination:true,
-//         autoPlay:false
-//
-//     });
-//    $('.count').counterUp({
-//               delay: 10,
-//               time: 4000
-//           });
-// });
 
 $(document).ready(function() {
   var owl = $('#designs-list');
