@@ -355,6 +355,7 @@ function SaveOrderinDB() {
 
     db.collection('OrderDetails')
       .add({
+        orderNumber : Date.now(),
         orderItems: OrderItems, //cartDetails,
         totalItems: itemCount,
         totalAmount: prize,
