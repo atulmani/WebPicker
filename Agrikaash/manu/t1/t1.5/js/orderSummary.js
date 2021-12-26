@@ -176,17 +176,27 @@ function populateDeliveryAddress(selectedOrder) {
 
   document.getElementById('paymentAmount').innerHTML = amt;
   console.log(selectedOrder.discountedprize);
-  if (selectedOrder.discountedprize != "NaN" && selectedOrder.discountedprize != "0" && selectedOrder.discountedprize != "") {
-    var discountAmt = selectedOrder.discountedprize;
-    discountAmt = discountAmt.toLocaleString('en-IN', curFormat);
-    var discountValue = Number(selectedOrder.totalAmount) - Number(selectedOrder.discountedprize);
-    discountValue = discountValue.toLocaleString('en-IN', curFormat);
-
-    document.getElementById('discountAmount').innerHTML = discountAmt + "(" + selectedOrder.discountDetails.discountValue + " Off)";
-    document.getElementById('discountValue').innerHTML = discountValue;
-  } else {
-    document.getElementById('discount').style.display = "none";
+if( isNaN(selectedOrder.discountedprize ))
+  console.log('if');
+  else {
+    console.log('else');
   }
+  //if (selectedOrder.discountedprize === 'NaN' || selectedOrder.discountedprize === "0" || selectedOrder.discountedprize === "")
+  if (isNaN(selectedOrder.discountedprize) || selectedOrder.discountedprize === '' )
+    {
+      document.getElementById('discount').style.display = "none";
+    }else {
+      var discountAmt = selectedOrder.discountedprize;
+      discountAmt = discountAmt.toLocaleString('en-IN', curFormat);
+      console.log(discountAmt);
+        var discountValue = Number(selectedOrder.totalAmount) - Number(selectedOrder.discountedprize);
+console.log(discountValue);
+      discountValue = discountValue.toLocaleString('en-IN', curFormat);
+
+      document.getElementById('discountAmount').innerHTML = discountAmt + "(" + selectedOrder.discountDetails.discountValue + " Off)";
+      document.getElementById('discountValue').innerHTML = discountValue;
+    }
+
   document.getElementById('BranchName').innerHTML = selectedOrder.deliveryAddress.branchName;
   document.getElementById('BranchOwnerName').innerHTML = selectedOrder.deliveryAddress.branchOwnerName;
   document.getElementById('AddressLine1').innerHTML = selectedOrder.deliveryAddress.addressLine1;
@@ -239,6 +249,7 @@ function renderOrderItem(orderItem, orderStatusValue, deliveryDate , index) {
   var div1 = document.createElement("div");
   div1.setAttribute('class', 'col-sm-12');
   div1.setAttribute('style', 'padding: 5px;');
+  div1.setAttribute('id', 'parentDiv' + index);
 
   var div2 = document.createElement("div");
   div2.setAttribute('class', 'product-list-div');
@@ -377,7 +388,7 @@ function renderOrderItem(orderItem, orderStatusValue, deliveryDate , index) {
     var span2 = document.createElement('span');
     span2.setAttribute("id", "btnDelete" + index);
     console.log("deleteCoupon(" + "hfCouponDocID " + index + ");");
-    span2.setAttribute("onclick", "deleteItem(" + "hfProdID" + index + "," + "selectedItem" + index + ");");
+    span2.setAttribute("onclick", "deleteItem(" + "hfProdID" + index + "," + "selectedItem" + index + ","+ 'parentDiv' + index +");");
     span2.setAttribute("class", "material-icons");
     span2.setAttribute("style", "cursor:pointer;padding: 0 20px 0 5px;");
     span2.innerHTML = "delete_outline";
@@ -401,7 +412,7 @@ function renderOrderItem(orderItem, orderStatusValue, deliveryDate , index) {
 
 
 function SaveOrder() {
-  document.getElementById("Message").text = "";
+  //document.getElementById("Message").text = "";
   var odeliveryTime = document.getElementById("oDeliveryTime");
   var odeliveryDate = document.getElementById("DeliveryDate")
 
@@ -466,6 +477,7 @@ function SaveOrder() {
             console.log("Data added sucessfully in the document: " + orderID);
             //    window.location.href = "orderStatus.html"
             // console.log(Date.parse(eventstart))
+            document.getElementById("Message").style.display="block";
           })
           .catch(function(error) {
             console.error("error updatign order:", error);
@@ -524,7 +536,7 @@ function UpdateOrderTrackingDetails(orderChanges, orderID) {
 }
 
 
-function deleteItem(prodID, selectedItemIndex) {
+function deleteItem(prodID, selectedItemIndex, parentdiv) {
   //delete from order list
   var selectedOrder;
   var selectedItem;
@@ -666,6 +678,8 @@ function deleteItem(prodID, selectedItemIndex) {
       // document.getElementById('errorMessage_Signup').innerHTML = error.message;
       // document.getElementById('errorMessage_Signup').style.display = 'block';
     });
+
+    document.getElementById(parentdiv).innerHTML="";
 }
 
 
