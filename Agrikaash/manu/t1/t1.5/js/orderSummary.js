@@ -44,7 +44,7 @@ function GetProfileData(user) {
         // console.log ('User UID: ' + user.uid);
         console.log('Document ref id: ' + doc.data().uid);
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
-          document.getElementById('navUser').src = doc.data().ProfileImageURL;
+          //document.getElementById('navUser').src = doc.data().ProfileImageURL;
         }
 
         // document.getElementById('headerProfilePic').src = doc.data().ImageURL;
@@ -170,10 +170,22 @@ function populateDeliveryAddress(selectedOrder) {
   }
   //document.getElementById('orderDate').innerHTML = orderDate;
 
-  document.getElementById('paymentAmount').innerHTML = selectedOrder.totalAmount;
+  var amt = selectedOrder.totalAmount;
+  var curFormat = { style: 'currency',
+        currency: 'INR',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0 };
+  amt = amt.toLocaleString('en-IN', curFormat);
+
+
+
+  document.getElementById('paymentAmount').innerHTML = amt;
   console.log(selectedOrder.discountedprize);
   if (selectedOrder.discountedprize != "NaN" && selectedOrder.discountedprize != "0" && selectedOrder.discountedprize != "") {
-    document.getElementById('discountAmount').innerHTML = selectedOrder.discountedprize + "(" + selectedOrder.discountDetails.discountValue + " Off)";
+    var discountAmt = selectedOrder.discountedprize;
+    discountAmt = discountAmt.toLocaleString('en-IN', curFormat);
+
+    document.getElementById('discountAmount').innerHTML = discountAmt + "(" + selectedOrder.discountDetails.discountValue + " Off)";
   } else {
     document.getElementById('discount').style.display = "none";
   }
