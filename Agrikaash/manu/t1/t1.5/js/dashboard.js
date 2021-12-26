@@ -336,7 +336,7 @@ function PopulateDeliveryCard()
 
       changes.forEach(change => {
         flag = true;
-        renderDeliveryOrder(change.doc.data(), index);
+        renderDeliveryOrder(change.doc.data(), index, change.doc.id);
         index = index + 1;
       });
 
@@ -412,7 +412,7 @@ function getNextDelivery()
         }
     });
 }
-function renderDeliveryOrder(order, index)
+function renderDeliveryOrder(order, index, orderid)
 {
 
   var curFormat = { style: 'currency',
@@ -536,13 +536,15 @@ function renderDeliveryOrder(order, index)
     var div5 = document.createElement("div");
     div5.setAttribute("class","");
     div5.setAttribute("style","text-align: center;");
+    var aa = document.createElement("a");
+    aa.setAttribute("href","orderSummary.html?id="+orderid)
 
     var span2 = document.createElement("span");
     span2.setAttribute("class","material-icons-outlined");
     span2.setAttribute("style", "font-size: 3.6rem;color: #aaa; position:relative;right: 8px;width: 30px;height:30px;");
     span2.innerHTML="arrow_right";
-
-    div5.appendChild(span2);
+    aa.appendChild(span2);
+    div5.appendChild(aa);
 
     div1.appendChild(div5);
 
