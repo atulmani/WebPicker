@@ -39,6 +39,10 @@
   <!-- Bootstrap css -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
+  <!-- lottie files cdn link -->
+
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
   <!-- Your Own Style -->
   <link rel="stylesheet" href="../css/styles.css">
 
@@ -201,7 +205,53 @@
   <!-- Navbar - End -->
 
   <!-- login - start -->
-  <div class="login-full-page container">
+
+  <div class="" id="beforeLogin">
+    <h4>Welcome To Agrikaash</h4>
+    <br><br>
+    <!-- <div class="" style="padding: 8%;">
+      <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_xlmz9xwm.json" background="transparent" speed="0.5" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+    </div> -->
+    <!-- banner - start -->
+    <div class="container-fluid" >
+      <div class="row no-gutter">
+        <div class="col-md-12 col-md-offset-1">
+          <div id="before-login-carousel" class="owl-carousel owl-theme">
+            <div class="">
+              <div class="">
+                <img src="../img/before-login/1.png" alt="">
+              </div>
+            </div>
+            <div class="">
+              <div class="">
+                <img src="../img/before-login/2.png" alt="">
+              </div>
+            </div>
+            <div class="">
+              <div class="">
+                <img src="../img/before-login/3.png" alt="">
+              </div>
+            </div>
+            <div class="">
+              <div class="">
+                <img src="../img/before-login/4.png" alt="">
+              </div>
+            </div>
+            <div class="">
+              <div class="">
+                <img src="../img/before-login/5.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br><br>
+
+    <button id="btnContinue" class="mybutton button5 before-login-continue">Continue</button>
+  </div>
+
+  <div class="login-full-page container" id="login" style="display: none;">
     <div class="row no-gutters">
       <div class="col-lg-6 col-md-6 col-sm-12" style="padding: 30px 7%;">
         <div class="login-register-card">
@@ -228,7 +278,7 @@
                   <input id="txtPass_Signin" type="password" required name="" value="">
                   <div class="underline"></div>
                   <h5>Password</h5>
-                  <a class="reset-password" href="#">Reset Password</a>
+                  <a id="btnResetPassword" class="reset-password" href="#">Reset Password</a>
                 </div>
                 <br><br>
 
@@ -319,7 +369,6 @@
       </div>
 
       <div class="col-lg-6 col-md-6 col-sm-12">
-        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
         <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_xlmz9xwm.json" background="transparent" speed="0.5" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
       </div>
     </div>
