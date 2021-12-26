@@ -38,10 +38,9 @@ function GetProfileData(user) {
       if (doc.exists) {
         //console.log('Document ref id: ' + doc.data().uid);
         userID = doc.data().uid;
-        console.log(userID);
 
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
-          document.getElementById('navUser').src = doc.data().ProfileImageURL;
+      //    document.getElementById('navUser').src = doc.data().ProfileImageURL;
         }
         //document.getElementById('headerProfilePic').src = doc.data().ProfileImageURL;
         //document.getElementById('displayName').innerHTML = doc.data().displayName;
@@ -55,72 +54,163 @@ function GetProfileData(user) {
     });
 };
 
+function dateRangeChange()
+{
+  var dateRange = document.getElementById('dateRange');
+  var value=dateRange.options[dateRange.selectedIndex].value;
+  if(value === 'Today' )
+    window.location.href="orderStatus.html?orderDateRange=today";
+  else if(value === 'Yesterday' )
+    window.location.href="orderStatus.html?orderDateRange=yesterday";
 
+  else if(value === 'Last 7 days' )
+    window.location.href="orderStatus.html?orderDateRange=week";
+  else if(value === 'Current month' )
+    window.location.href="orderStatus.html?orderDateRange=month";
+  else if(value === 'Last 6 months' )
+      window.location.href="orderStatus.html?orderDateRange=sixmonth";
+
+}
 function populateOrderDetails() {
   var i = 0;
   var fromDate;
   var todayDate = new Date();
-  console.log(todayDate);
   var toDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
   var refDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
 
   todayDate = refDate;
-  console.log(toDate);
-  console.log(todayDate);
   var index = 0;
   var snapshot;
   var DBrows;
+
+  var fromDate ;
+  var toDate;
   console.log(orderDateRange);
   if (orderDateRange === undefined || orderDateRange === '' || orderDateRange === null)
-
   {
-
-    
-    DBrows = db.collection('OrderDetails').where('orderBy', '==', userID).get();
-
+    var dateRanceSelect = document.getElementById('dateRange');
+    var dateRanceSelectValue = dateRanceSelect.options[dateRanceSelect.selectedIndex].value;
+    if(dateRanceSelectValue === "Last 7 days")
+    {
+      refDate.setDate(refDate.getDate() - 7);
+      fromDate = refDate;
+      toDate = 'Today';
+      document.getElementById("dateRangelbl").innerHTML = refDate
+      DBrows = db.collection('OrderDetails')
+        .where('orderBy', '==', userID)
+        .where("orderDate", ">=", refDate).get();
+//    DBrows = db.collection('OrderDetails').where('orderBy', '==', userID).get();
+    }else if (dateRanceSelectValue === "Current month")
+    {
+      refDate = new Date(refDate.getFullYear(), refDate.getMonth(), 1);
+      fromDate = refDate;
+      toDate = 'Today';
+      DBrows = db.collection('OrderDetails')
+        .where('orderBy', '==', userID)
+        .where("orderDate", ">=", refDate).get();
+    }
+    else if  (dateRanceSelectValue === "Last 6 months")
+    {
+      refDate = refDate.setMonth(refDate.getMonth() - 6);
+      refDate = new Date(refDate);
+      fromDate = refDate;
+      toDate = 'Today';
+        DBrows = db.collection('OrderDetails')
+        .where('orderBy', '==', userID)
+        .where("orderDate", ">=", refDate).get();
+    }
     //DBrow = db.collection('OrderDetails').get();
   } else if (orderDateRange === 'today') {
-  console.log('in today');
+    fromDate = 'Today';
+    toDate = 'Today';
+    var filter = document.getElementById("dateRange");
+    filter.options[0].selected = true;
     DBrows = db.collection('OrderDetails')
       .where('orderBy', '==', userID)
       .where("orderDate", ">=", toDate).get();
 
   } else if (orderDateRange === 'yesterday') {
-    console.log(todayDate);
-    console.log(toDate);
+    var filter = document.getElementById("dateRange");
+    filter.options[1].selected = true;
 
-    todayDate.setDate(todayDate.getDate() - 1);
-
+      todayDate.setDate(todayDate.getDate() - 1);
+    fromDate = todayDate;
+    toDate=todayDate;
   //  toDate.setDate(toDate.getDate() + 1);
-    console.log(todayDate);
-    console.log(toDate);
     DBrows = db.collection('OrderDetails')
       .where('orderBy', '==', userID)
       .where("orderDate", ">=", todayDate)
       .where("orderDate", "<=", toDate).get();
   } else if (orderDateRange === 'week') {
+    var filter = document.getElementById("dateRange");
+    filter.options[2].selected = true;
+
     refDate.setDate(refDate.getDate() - 7);
+    fromDate = refDate;
+    toDate='Today';
     DBrows = db.collection('OrderDetails')
       .where('orderBy', '==', userID)
       .where("orderDate", ">=", refDate).get();
   } else if (orderDateRange === 'month') {
+    var filter = document.getElementById("dateRange");
+    filter.options[3].selected = true;
+
     refDate = new Date(refDate.getFullYear(), refDate.getMonth(), 1);
+    fromDate = refDate;
+    toDate ='Today';
     DBrows = db.collection('OrderDetails')
       .where('orderBy', '==', userID)
       .where("orderDate", ">=", refDate).get();
+  }else if(orderDateRange === 'sixmonth')
+  {
+    var filter = document.getElementById("dateRange");
+    filter.options[4].selected = true;
+
+    refDate = refDate.setMonth(refDate.getMonth() - 6);
+    refDate = new Date(refDate);
+    fromDate = refDate;
+    toDate = 'Today';
+      DBrows = db.collection('OrderDetails')
+      .where('orderBy', '==', userID)
+      .where("orderDate", ">=", refDate).get();
   }
-  console.log('before log');
-  //snapshot.then((changes) => {
+
+
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+  //console.log('fromDate' ,fromDate);
+  //console.log('toDate',toDate);
+  if(fromDate ==='Today')
+  {
+  document.getElementById('dateRangelbl').innerHTML="Order Placed Today";
+  }
+  else if(fromDate === toDate)
+  {
+    var displayDate  = fromDate.toLocaleDateString("en-US", options);
+    document.getElementById('dateRangelbl').innerHTML="Order Placed on :" + displayDate;
+  }else if(toDate==='Today')
+  {
+    var fDate = new Date(fromDate);
+    var displayDate  = fDate.toLocaleDateString("en-US", options);
+    document.getElementById('dateRangelbl').innerHTML= displayDate +" till Today";
+  }
+
 
   DBrows.then((changes) => {
-    console.log("populatePayments: ");
 
     var i = 0;
+    document.getElementById("orderListDiv").innerHTML="";
+
     changes.forEach(change => {
       orderList = change.data();
       renderOrder(change.id, change.data(), i);
       i = i + 1;
     });
+
+    document.getElementById("orderCount").innerHTML=i + " Orders";
     document.getElementById('loading').style.display = 'none';
   });
   populateCartData();
@@ -143,7 +233,7 @@ function populateCartData() {
 
 }
 
-function renderOrderNew(orderid, order, index)
+function renderOrder(orderid, order, index)
 {
   var div1 = document.createElement("div");
   div1.setAttribute("class","dashboard-card order-status");
@@ -160,7 +250,6 @@ function renderOrderNew(orderid, order, index)
   span1.innerHTML="keyboard_arrow_down";
 
   div3.appendChild(span1);
-
 
     var hforderid = document.createElement("input");
     hforderid.setAttribute('type', 'hidden');
@@ -327,9 +416,7 @@ function renderOrderNew(orderid, order, index)
             maximumFractionDigits: 0 };
 
       var displayAmt = Number(order.totalAmount).toLocaleString('en-IN', curFormat);
-      console.log(displayAmt);
-      console.log(order.totalAmount);
-    var small3 = document.createElement("small");
+      var small3 = document.createElement("small");
     small3.innerHTML=displayAmt;
     div11.appendChild(small3);
 
@@ -345,7 +432,7 @@ function renderOrderNew(orderid, order, index)
     div12.appendChild(h5);
 
     var displayDiscountAmt = order.discountedprize.toLocaleString('en-IN', curFormat);
-    console.log(displayDiscountAmt);
+    //console.log(displayDiscountAmt);
       var discount = order.discountDetails.coupondID;
 
     var small4 = document.createElement("small");
@@ -447,453 +534,6 @@ function renderOrderNew(orderid, order, index)
       div6.appendChild(div16);
       div1.appendChild(div6);
       document.getElementById("orderListDiv").appendChild(div1);
-}
-
-function renderPendingPaymentOrder(orderid, order, index) {
-  console.log(order);
-  var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12 " + "Pending")
-  div1.setAttribute("style", "padding: 5px;")
-
-  var span1 = document.createElement("span");
-  span1.innerHTML = "<br><br>";
-
-  var div2 = document.createElement("div");
-  div2.setAttribute("class", "orders-list-div");
-
-  var div3 = document.createElement("div");
-  div3.setAttribute("class", "");
-
-  var anchor = document.createElement("a");
-  anchor.setAttribute("href", "orderSummary.html?id=" + orderid);
-
-  //order.deliveryDate
-  var options = {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  };
-
-  var oDate = new Date(order.deliveryDate.seconds * 1000);
-  var orderDate = oDate.toLocaleDateString("en-US", options);
-
-  var small1 = document.createElement("small");
-  small1.setAttribute("class", "payment-pending");
-  small1.innerHTML = "Delivery Date : "+ orderDate;
-
-   oDate = new Date(order.orderDate.seconds * 1000);
-   orderDate = oDate.toLocaleDateString("en-US", options);
-
-  var small11= document.createElement("small");
-  small11.setAttribute("class", "payment-pending");
-  small11.innerHTML = "Order Date : "+ orderDate;
-
-
-  var input1 = document.createElement("input");
-  input1.setAttribute("type", "checkbox");
-  input1.setAttribute("class", "checkbox");
-  input1.setAttribute("name", "orderforPayment");
-  input1.setAttribute("value", order.orderID);
-  input1.setAttribute("id", "orderSelect" + index + 1);
-  input1.checked = true
-
-  var hforderid = document.createElement("input");
-  hforderid.setAttribute('type', 'hidden');
-  hforderid.setAttribute('id', 'hfOrderID' + index);
-  hforderid.setAttribute('value', order.orderID);
-
-  var h1 = document.createElement("h6");
-  h1.innerHTML = "Order Serial Numbe : " + (index + 1);
-
-
-  var h11 = document.createElement("h6");
-  h11.innerHTML = "Order Status : " + order.orderStatus;
-
-
-  var h2 = document.createElement("h6");
-  if (order.discountedprize > 0) {
-    h2.setAttribute("style", "padding:0;text-decoration:line-through;");
-  } else {
-    h2.setAttribute("style", "padding:0;");
-  }
-  h2.innerHTML = "TotalAmount : ₹ " + order.totalAmount;
-
-
-  if (order.discountedprize > 0) {
-    var h21 = document.createElement("h6");
-    h21.setAttribute("style", "padding:0;");
-    h21.innerHTML = "Discounted Amount : ₹ " + order.discountedprize + "(" + order.discountDetails.discountValue + " Off)";
-  }
-  var div4 = document.createElement("div");
-  div4.setAttribute("class", "order-details");
-
-  var div4h1 = document.createElement("h5");
-  div4h1.setAttribute("class", "payment-pending");
-  div4h1.innerHTML = order.totalItems + " Items";
-
-  var div4h2 = document.createElement("h5");
-  div4h2.setAttribute("class", "payment-pending");
-  div4h2.innerHTML = 'Payment Pending';
-
-  div4.appendChild(div4h1);
-  div4.appendChild(div4h2);
-
-  anchor.appendChild(small1);
-  div3.appendChild(anchor);
-
-  div3.appendChild(small11);
-  div3.appendChild(input1);
-  div3.appendChild(hforderid);
-
-  div2.appendChild(div3);
-  div2.appendChild(h1);
-  div2.appendChild(h11);
-
-  div2.appendChild(h2);
-  if (order.discountedprize > 0)
-
-  {
-    div2.appendChild(h21);
-  }
-  div2.appendChild(div4);
-  div1.appendChild(div2);
-  document.getElementById("orderList").appendChild(div1);
-
-}
-
-function renderPendingOrder(orderid, order, index) {
-  var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12 " + "Pending");
-  div1.setAttribute("style", "padding: 5px;")
-
-  var div2 = document.createElement("div");
-  div2.setAttribute("class", "orders-list-div");
-
-  var div3 = document.createElement("div");
-  div3.setAttribute("class", "");
-
-  var anchor = document.createElement("a");
-  anchor.setAttribute("href", "orderSummary.html?id=" + orderid);
-
-  var options = {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  };
-
-  var oDate = new Date(order.deliveryDate.seconds * 1000);
-  var orderDate = oDate.toLocaleDateString("en-US", options);
-
-  var small1 = document.createElement("small");
-  small1.setAttribute("class", "delivery-pending");
-  small1.innerHTML = "Delivery Date : " + orderDate;
-
-
-     oDate = new Date(order.orderDate.seconds * 1000);
-     orderDate = oDate.toLocaleDateString("en-US", options);
-
-    var small11= document.createElement("small");
-    small11.setAttribute("class", "payment-pending");
-    small11.innerHTML = "Order Date : "+ orderDate;
-
-
-  var span1 = document.createElement('span');
-  span1.setAttribute('class', "material-icons delivery-pending");
-  span1.innerHTML = 'schedule';
-
-  var hforderid = document.createElement("input");
-  hforderid.setAttribute('type', 'hidden');
-  hforderid.setAttribute('id', 'hfOrderID' + index);
-  hforderid.setAttribute('value', order.orderID);
-
-
-  var h1 = document.createElement("h6");
-  h1.innerHTML = "Order Serial Numbe : " + (index + 1);
-
-  var h11 = document.createElement("h6");
-  h11.innerHTML = "Order Status : " + order.orderStatus;
-
-
-  var h2 = document.createElement("h6");
-  if (order.discountedprize > 0) {
-    h2.setAttribute("style", "padding:0;text-decoration:line-through;");
-  } else {
-    h2.setAttribute("style", "padding:0;");
-
-  }
-  h2.innerHTML = "TotalAmount : ₹ " + order.totalAmount;
-
-
-  if (order.discountedprize > 0) {
-    var h21 = document.createElement("h6");
-    h21.setAttribute("style", "padding:0;");
-    h21.innerHTML = "Discounted Amount : ₹ " + order.discountedprize + "(" + order.discountDetails.discountValue + " Off)";
-  }
-
-  var div4 = document.createElement("div");
-  div4.setAttribute("class", "order-details");
-
-  var div4h1 = document.createElement("h5");
-  div4h1.setAttribute("class", "delivery-pending");
-  div4h1.innerHTML = order.totalItems + " Items";
-
-  var div4h2 = document.createElement("h5");
-  div4h2.setAttribute("class", "delivery-pending");
-  div4h2.innerHTML = 'Delivery Pending';
-
-  div4.appendChild(div4h1);
-  div4.appendChild(div4h2);
-
-  anchor.appendChild(small1);
-  div3.appendChild(anchor);
-  div3.appendChild(small11);
-
-  div3.appendChild(span1);
-  div3.appendChild(hforderid);
-
-  div2.appendChild(div3);
-
-  div2.appendChild(h1);
-  div2.appendChild(h11);
-  div2.appendChild(h2);
-
-  if (order.discountedprize > 0)
-    div2.appendChild(h21);
-  div2.appendChild(div4);
-  div1.appendChild(div2);
-  document.getElementById("orderList").appendChild(div1);
-
-}
-
-function renderDeliveredOrder(orderid, order, index) {
-  var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12 " + "Delivered");
-  div1.setAttribute("style", "padding: 5px;");
-
-  var div2 = document.createElement("div");
-  div2.setAttribute("class", "orders-list-div");
-
-  var div3 = document.createElement("div");
-  div3.setAttribute("class", "");
-
-
-  var anchor = document.createElement("a");
-  anchor.setAttribute("href", "orderSummary.html?id=" + orderid);
-
-  var options = {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  };
-
-  var oDate = new Date(order.deliveryDate.seconds * 1000);
-  var orderDate = oDate.toLocaleDateString("en-US", options);
-
-  var small1 = document.createElement("small");
-  small1.innerHTML = "Delivery Date : " + orderDate;
-
-
-     oDate = new Date(order.orderDate.seconds * 1000);
-     orderDate = oDate.toLocaleDateString("en-US", options);
-
-    var small11= document.createElement("small");
-    small11.setAttribute("class", "payment-pending");
-    small11.innerHTML = "Order Date : "+ orderDate;
-
-
-  var span1 = document.createElement('span');
-  span1.setAttribute('class', "material-icons");
-  span1.innerHTML = 'task_alt';
-  var hforderid = document.createElement("input");
-  hforderid.setAttribute('type', 'hidden');
-  hforderid.setAttribute('id', 'hfOrderID' + index);
-  hforderid.setAttribute('value', order.orderID);
-
-
-  var h1 = document.createElement("h6");
-  h1.innerHTML = "Order Serial Numbe : " + (index + 1);
-
-
-  var h11 = document.createElement("h6");
-  h11.innerHTML = "Order Status : " + order.orderStatus;
-
-  var h2 = document.createElement("h6");
-  if (order.discountedprize > 0) {
-    h2.setAttribute("style", "padding:0;text-decoration:line-through;");
-  } else {
-    h2.setAttribute("style", "padding:0;");
-
-  }
-  h2.innerHTML = "TotalAmount : ₹ " + order.totalAmount;
-
-
-  if (order.discountedprize > 0) {
-    var h21 = document.createElement("h6");
-    h21.setAttribute("style", "padding:0;");
-    h21.innerHTML = "Discounted Amount : ₹ " + order.discountedprize + "(" + order.discountDetails.discountValue + " Off)";
-  }
-
-  var div4 = document.createElement("div");
-  div4.setAttribute("class", "order-details");
-
-  var div4h1 = document.createElement("h5");
-  div4h1.innerHTML = order.totalItems + " Items";
-
-  var div4h2 = document.createElement("h5");
-  div4h2.innerHTML = 'Delivered';
-
-  div4.appendChild(div4h1);
-  div4.appendChild(div4h2);
-
-  anchor.appendChild(small1);
-  div3.appendChild(anchor);
-  div3.appendChild(small11);
-
-  div3.appendChild(span1);
-  div3.appendChild(hforderid);
-  div2.appendChild(div3);
-
-  div2.appendChild(h1);
-  div2.appendChild(h11);
-  div2.appendChild(h2);
-
-  if (order.discountedprize > 0)
-    div2.appendChild(h21);
-  div2.appendChild(div4);
-  div1.appendChild(div2);
-  document.getElementById("orderList").appendChild(div1);
-
-}
-
-function renderCancelledOrder(orderid, order, index) {
-  var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12 " + "Cancelled");
-  div1.setAttribute("style", "padding: 5px;");
-
-  var div2 = document.createElement("div");
-  div2.setAttribute("class", "orders-list-div");
-
-  var div3 = document.createElement("div");
-  div3.setAttribute("class", "");
-
-
-  var anchor = document.createElement("a");
-  anchor.setAttribute("href", "orderSummary.html?id=" + orderid);
-
-  var options = {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  };
-
-  var oDate = new Date(order.deliveryDate.seconds * 1000);
-  var orderDate = oDate.toLocaleDateString("en-US", options);
-
-  var small1 = document.createElement("small");
-  small1.setAttribute('class', "cancel");
-  small1.innerHTML = "Delivery Date : " + orderDate;
-
-
-
-     oDate = new Date(order.orderDate.seconds * 1000);
-     orderDate = oDate.toLocaleDateString("en-US", options);
-
-    var small11= document.createElement("small");
-    small11.setAttribute("class", "payment-pending");
-    small11.innerHTML = "Order Date : "+ orderDate;
-
-  var span1 = document.createElement('span');
-  span1.setAttribute('class', "material-icons cancel");
-  span1.innerHTML = 'cancel';
-  var hforderid = document.createElement("input");
-  hforderid.setAttribute('type', 'hidden');
-  hforderid.setAttribute('id', 'hfOrderID' + index);
-  hforderid.setAttribute('value', order.orderID);
-
-  var h1 = document.createElement("h6");
-  h1.innerHTML = "Order Serial Numbe : " + (index + 1);
-
-  h11 = document.createElement("h6");
-  h11.innerHTML = "Order Status : " + order.orderStatus;
-
-
-  var h2 = document.createElement("h6");
-  if (order.discountedprize > 0) {
-    h2.setAttribute("style", "padding:0;text-decoration:line-through;");
-  } else {
-    h2.setAttribute("style", "padding:0;");
-
-  }
-  h2.innerHTML = "TotalAmount : ₹ " + order.totalAmount;
-
-
-  if (order.discountedprize > 0) {
-    var h21 = document.createElement("h6");
-    h21.setAttribute("style", "padding:0;");
-    h21.innerHTML = "Discounted Amount : ₹ " + order.discountedprize + "(" + order.discountDetails.discountValue + " Off)";
-  }
-
-  var div4 = document.createElement("div");
-  div4.setAttribute("class", "order-details");
-
-  var div4h1 = document.createElement("h5");
-  div4h1.setAttribute('class', 'cancel');
-  div4h1.innerHTML = order.totalItems + " Items";
-
-  var div4h2 = document.createElement("h5");
-  div4h2.setAttribute('class', 'cancel');
-  div4h2.innerHTML = 'Cancelled';
-
-  div4.appendChild(div4h1);
-  div4.appendChild(div4h2);
-
-  anchor.appendChild(small1);
-  div3.appendChild(anchor);
-  div3.appendChild(small11);
-  div3.appendChild(span1);
-
-  div3.appendChild(hforderid);
-
-  div2.appendChild(div3);
-
-  div2.appendChild(h1);
-  div2.appendChild(h11);
-  div2.appendChild(h2);
-  if (order.discountedprize > 0)
-    div2.appendChild(h21);
-
-  div2.appendChild(div4);
-  div1.appendChild(div2);
-  document.getElementById("orderList").appendChild(div1);
-
-}
-/////////////////////new function
-function renderOrder(orderID, order, index) {
-  //console.log(selectedItem);
-console.log(orderID);
-console.log(order);
-console.log(index);
-renderOrderNew(orderID, order, index);
-
-/*  if (order.orderStatus === 'Pending' && order.paymentStatus === 'Pending') {
-    renderPendingPaymentOrder(orderID, order, index);
-  } else if (order.orderStatus === 'Pending' && order.paymentStatus === 'Completed') {
-    renderPendingOrder(orderID,order, index);
-  } else if (order.paymentStatus === 'Completed' && order.orderStatus === 'Delivered') {
-    renderDeliveredOrder(orderID,order, index);
-  } else if (order.orderStatus === 'Packed' && order.paymentStatus === 'Pending') {
-    renderPendingPaymentOrder(orderID,order, index);
-  } else if (order.orderStatus === 'Packed' && order.paymentStatus === 'Completed') {
-    renderPendingOrder(orderID,order, index);
-  } else if (order.orderStatus === 'On The Way' && order.paymentStatus === 'Pending') {
-    renderPendingPaymentOrder(orderID,order, index);
-  } else if (order.orderStatus === 'On The Way' && order.paymentStatus === 'Completed') {
-    renderPendingOrder(orderID,order, index);
-  } else if (order.orderStatus === 'Cancelled') {
-    renderCancelledOrder(orderID,order, index);
-  }
-*/
-
 }
 
 
