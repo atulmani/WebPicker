@@ -160,32 +160,30 @@ function populateDeliveryAddress(selectedOrder) {
   for (index = 0; index < odeliveryDate.options.length; index++) {
     if (odeliveryDate.options[index].text === (dDate.getDate() + "/" + (dDate.getMonth() + 1) + "/" + dDate.getFullYear())) //selectedOrder.deliveryDate)
       odeliveryDate.options[index].selected = true;
-
   }
-
 
   for (index = 0; index < odeliveryTime.options.length; index++) {
     if (odeliveryTime.options[index].value === selectedOrder.deliveryTime)
       odeliveryTime.options[index].selected = true;
   }
-  //document.getElementById('orderDate').innerHTML = orderDate;
 
-  var amt = selectedOrder.totalAmount;
+  var amt = Number(selectedOrder.totalAmount);
   var curFormat = { style: 'currency',
         currency: 'INR',
         minimumFractionDigits: 0,
         maximumFractionDigits: 0 };
   amt = amt.toLocaleString('en-IN', curFormat);
 
-
-
   document.getElementById('paymentAmount').innerHTML = amt;
   console.log(selectedOrder.discountedprize);
   if (selectedOrder.discountedprize != "NaN" && selectedOrder.discountedprize != "0" && selectedOrder.discountedprize != "") {
     var discountAmt = selectedOrder.discountedprize;
     discountAmt = discountAmt.toLocaleString('en-IN', curFormat);
+    var discountValue = Number(selectedOrder.totalAmount) - Number(selectedOrder.discountedprize);
+    discountValue = discountValue.toLocaleString('en-IN', curFormat);
 
     document.getElementById('discountAmount').innerHTML = discountAmt + "(" + selectedOrder.discountDetails.discountValue + " Off)";
+    document.getElementById('discountValue').innerHTML = discountValue;
   } else {
     document.getElementById('discount').style.display = "none";
   }
@@ -215,22 +213,26 @@ function populateDeliveryAddress(selectedOrder) {
   //order can be cancelled only if order status is Pending and delivery Date is > todays date
   if (selectedOrder.orderStatus === 'Pending' && dDate >= tempDate) {
     console.log('if enabled');
-    document.getElementById('spanMsg').style.display = "none";
-    btnSave.disabled = false;
+    //document.getElementById('spanMsg').style.visibility = "hidden";
+    //btnSave.disabled = false;
+    btnSave.style.visibility="visible";
   } else {
     console.log('if disabled');
 
-    document.getElementById('spanMsg').style.display = "block";
-    btnSave.disabled = true;
+    //document.getElementById('spanMsg').style.visibility = "visible";
+    //btnSave.disabled = true;
+    btnSave.style.visibility="hidden";
   }
 }
 
 function populateOrderItems(selectedOrder) {
   var orderItem = selectedOrder.orderItems;
   console.log(orderItem);
+  var i;
   for (i = 0; i < orderItem.length; i++) {
     renderOrderItem(orderItem[i], selectedOrder.orderStatus, selectedOrder.deliveryDate, i);
   }
+  document.getElementById("itemcount").innerHTML="("+i+")"
 }
 
 function renderOrderItem(orderItem, orderStatusValue, deliveryDate , index) {
