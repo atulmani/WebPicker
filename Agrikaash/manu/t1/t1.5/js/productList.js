@@ -111,19 +111,24 @@ async function populateProductData(bType, pType) {
   emptyDiv(divPList);
   emptyDiv(divPType);
   var DBrows;
-  bType = userBusinessCategory;
-  console.log(bType);
+  //bType = userBusinessCategory;
+  //console.log(bType);
   if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
   {
+    console.log('All', 'All');
     DBrows = db.collection("Products").get();
   } else if ((pType === '' || pType === 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
+    console.log('All', bType);
     DBrows = db.collection("Products").where("CustomerBusinessType", "==", bType).get();
   } else if ((pType != '' && pType != 'All') && (bType === '' || bType === 'All')) //select one customer businessType
   {
+
+      console.log(pType,'All');
     DBrows = db.collection("Products").where("productType", "==", pType).get();
   } else if ((pType != '' && pType != 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
+    console.log(pType,'All');
     DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "==", bType).get();
   }
 
@@ -155,7 +160,7 @@ async function populateProductData(bType, pType) {
       index = index + 1;
 
     });
-
+    document.getElementById("itemCnt").innerHTML = index + " Items";
     var unique = productCategory.filter(onlyUnique);
     renderProductCategory(unique);
     document.getElementById('loading').style.display = 'none';
@@ -169,9 +174,39 @@ function onlyUnique(value, index, self) {
 }
 
 function renderProductCategory(productCategory) {
+/*
+  <div class="item">
+    <a class="category-list-menu active">
+      <h5>All</h5>
+    </a>
+  </div>
+category-list*/
+var div = document.getElementById('category-list');
+div.innerHTML="";
+for (i = 0; i < productCategory.length; i++) {
+  var div1 = document.createElement("div");
+  div1.setAttribute("class","item");
+  var anchor = document.createElement("a");
+  if(i === 0)
+  {
+    anchor.setAttribute("class","category-list-menu active");
+  }
+  else {
+    anchor.setAttribute("class","category-list-menu");
+  }
+  anchor.setAttribute("href", "javascript:callFunction('" + productCategory[i] + "');");
 
-  var div = document.getElementById('productCategory');
+  var h11 = document.createElement("h5");
+  h11.innerHTML = productCategory[i];
+
+  anchor.appendChild(h11);
+  div1.appendChild(anchor);
+  div.appendChild (div1);
+}
+  /*var div = document.getElementById('productCategory');
   for (i = 0; i < productCategory.length; i++) {
+
+
     var anchor = document.createElement("a");
     anchor.setAttribute("href", "javascript:callFunction('" + productCategory[i] + "');");
     anchor.innerHTML = productCategory[i];
@@ -182,6 +217,8 @@ function renderProductCategory(productCategory) {
     div.appendChild(anchor);
     div.appendChild(span);
   }
+  */
+
 }
 
 function callFunction(productType) {
@@ -190,7 +227,8 @@ function callFunction(productType) {
 
   var e = document.getElementById("businessType");
   var cType = e.options[e.selectedIndex].text;
-
+  console.log(cType);
+  console.log(productType);
   // var cType = document.getElementById('businessType').SelectedValue;
   populateProductData(cType, productType);
   //renderProductNew(doc, index, selectedItem)
@@ -199,8 +237,10 @@ function callFunction(productType) {
 function changCustomerType() {
   document.getElementById('loading').style.display = 'block';
   var productType = document.getElementById('hfpType').value;
+  console.log(productType);
   var e = document.getElementById("businessType");
   var cType = e.options[e.selectedIndex].text;
+  console.log(cType);
   populateProductData(cType, productType);
   //renderProductNew(doc, index, selectedItem)
 }
