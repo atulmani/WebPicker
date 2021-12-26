@@ -30,7 +30,7 @@ body{
   margin: 0;
   padding: 0;
   font-family: 'lato';
-  color: #1D741B;
+  /* color: #1D741B; */
 }
 
 h1{
@@ -1037,14 +1037,14 @@ input[type=number] {
 
 .checkout-div{
   position: fixed;
-  bottom: 7%;
+  bottom: 9%;
   left: 0;
   right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 4px 10px;
-  z-index: 999;
+  z-index: 10;
   background: #eee;
 }
 
@@ -1131,7 +1131,7 @@ input[type=number] {
   position: relative;
   top: 5px;
   right: 35px;
-  z-index: -1;
+  pointer-events:none;
 }
 
 
@@ -1519,23 +1519,30 @@ input[type=number] {
 
 /* order summary page - start */
 
-.order-summary div{
+.order-summary{
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.order-summary .order-summary-div{
   text-align: left;
-  padding-bottom: 20px;
+  padding: 20px 10px;
 }
 
-.order-summary div h5{
-  font-size: 0.95rem;
-  color: rgba(0,0,0,0.4);
+.order-summary-address{
+  color: #aaa;
 }
 
-.order-summary div p{
-  padding-left: 20px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: rgba(0,0,0,0.5);
+.order-summary-address h5{
+  color: #666;
 }
 
+.order-summary-address p{
+  width: 100%;
+  margin: 0 auto;
+  font-size: 0.9rem;
+}
 
 /* order summary page - end */
 
@@ -1642,6 +1649,10 @@ input[type=number] {
   align-items:center;
 }
 
+.dashboard-card-order div:nth-child(2){
+  text-align: right;
+}
+
 .dashboard-card-order div a{
   font-weight: bold;
   font-size: 1.1rem;
@@ -1652,9 +1663,10 @@ input[type=number] {
 
 .dashboard-card-order div small{
   position: relative;
-  top: -7px;
+  top: -1px;
   font-weight: bold;
   color: #aaa;
+  font-size: 0.8rem;
 }
 
 .dashboard-card-delivery{
