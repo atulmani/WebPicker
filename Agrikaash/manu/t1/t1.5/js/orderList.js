@@ -5,7 +5,7 @@ var orderList = [];
 let eventDocUrl = new URL(location.href);
 // console.log ('URL: ' + eventDocUrl);
 let searchParams = new URLSearchParams(eventDocUrl.search);
-const orderDateRange = searchParams.get('orderDateRange');
+var orderDateRange = searchParams.get('orderDateRange');
 
 try {
   auth.onAuthStateChanged(firebaseUser => {
@@ -14,7 +14,7 @@ try {
       userID = firebaseUser.uid;
 
       GetProfileData(firebaseUser);
-
+      UpdateCartItem();
       populateOrderDetails();
 
     } else {
@@ -30,6 +30,24 @@ try {
 //window.location.href = "../index.html";
 
 
+function UpdateCartItem()
+{
+  var cartItemNo = document.getElementById('cartItemNo');
+  //console.log(cartItemNo);
+  const snapshotCart = db.collection('CartDetails').doc(userID);
+  snapshotCart.get().then((doc) => {
+    if (doc.exists) {
+      //console.log("doc exists");
+      var itemlist = doc.data().cartDetails;
+      //console.log(itemlist);
+      item = itemlist.length;
+      cartItems = itemlist;
+      // item = doc.data().cartDetails.length;
+      //console.log(item[0]);
+      cartItemNo.innerHTML = item;
+    }
+  });
+}
 function GetProfileData(user) {
   // const ref = db.collection("Users").doc(user.uid);
 
@@ -85,82 +103,64 @@ function populateOrderDetails() {
 
   var fromDate ;
   var toDate;
-  console.log(orderDateRange);
-  if (orderDateRange === undefined || orderDateRange === '' || orderDateRange === null)
+  console.log('test',orderDateRange);
+  if (orderDateRange === undefined || orderDateRange === '' || orderDateRange === null || orderDateRange === 'null')
   {
-    var dateRanceSelect = document.getElementById('dateRange');
-    var dateRanceSelectValue = dateRanceSelect.options[dateRanceSelect.selectedIndex].value;
-    if(dateRanceSelectValue === "Last 7 days")
-    {
-      refDate.setDate(refDate.getDate() - 7);
-      fromDate = refDate;
-      toDate = 'Today';
-      document.getElementById("dateRangelbl").innerHTML = refDate
-      DBrows = db.collection('OrderDetails')
-        .where('orderBy', '==', userID)
-        .where("orderDate", ">=", refDate).get();
-//    DBrows = db.collection('OrderDetails').where('orderBy', '==', userID).get();
-    }else if (dateRanceSelectValue === "Current month")
-    {
-      refDate = new Date(refDate.getFullYear(), refDate.getMonth(), 1);
-      fromDate = refDate;
-      toDate = 'Today';
-      DBrows = db.collection('OrderDetails')
-        .where('orderBy', '==', userID)
-        .where("orderDate", ">=", refDate).get();
-    }
-    else if  (dateRanceSelectValue === "Last 6 months")
-    {
-      refDate = refDate.setMonth(refDate.getMonth() - 6);
-      refDate = new Date(refDate);
-      fromDate = refDate;
-      toDate = 'Today';
-        DBrows = db.collection('OrderDetails')
-        .where('orderBy', '==', userID)
-        .where("orderDate", ">=", refDate).get();
-    }
+    orderDateRange = "week";
+    console.log(orderDateRange);
+  }
+  console.log(orderDateRange);
+
     //DBrow = db.collection('OrderDetails').get();
-  } else if (orderDateRange === 'today') {
-    fromDate = 'Today';
-    toDate = 'Today';
+   if (orderDateRange === 'today') {
     var filter = document.getElementById("dateRange");
     filter.options[0].selected = true;
+    console.log(toDate);
     DBrows = db.collection('OrderDetails')
       .where('orderBy', '==', userID)
       .where("orderDate", ">=", toDate).get();
+
+      fromDate = 'Today';
+      toDate = 'Today';
 
   } else if (orderDateRange === 'yesterday') {
     var filter = document.getElementById("dateRange");
     filter.options[1].selected = true;
 
       todayDate.setDate(todayDate.getDate() - 1);
-    fromDate = todayDate;
-    toDate=todayDate;
   //  toDate.setDate(toDate.getDate() + 1);
+  console.log(todayDate);
+  console.log(toDate);
     DBrows = db.collection('OrderDetails')
       .where('orderBy', '==', userID)
       .where("orderDate", ">=", todayDate)
       .where("orderDate", "<=", toDate).get();
+
+      fromDate = todayDate;
+      toDate=todayDate;
+
   } else if (orderDateRange === 'week') {
     var filter = document.getElementById("dateRange");
     filter.options[2].selected = true;
 
     refDate.setDate(refDate.getDate() - 7);
-    fromDate = refDate;
-    toDate='Today';
     DBrows = db.collection('OrderDetails')
       .where('orderBy', '==', userID)
       .where("orderDate", ">=", refDate).get();
+      fromDate = refDate;
+      toDate='Today';
+
   } else if (orderDateRange === 'month') {
     var filter = document.getElementById("dateRange");
     filter.options[3].selected = true;
 
     refDate = new Date(refDate.getFullYear(), refDate.getMonth(), 1);
-    fromDate = refDate;
-    toDate ='Today';
     DBrows = db.collection('OrderDetails')
       .where('orderBy', '==', userID)
       .where("orderDate", ">=", refDate).get();
+      fromDate = refDate;
+      toDate ='Today';
+
   }else if(orderDateRange === 'sixmonth')
   {
     var filter = document.getElementById("dateRange");
@@ -168,11 +168,12 @@ function populateOrderDetails() {
 
     refDate = refDate.setMonth(refDate.getMonth() - 6);
     refDate = new Date(refDate);
-    fromDate = refDate;
-    toDate = 'Today';
       DBrows = db.collection('OrderDetails')
       .where('orderBy', '==', userID)
       .where("orderDate", ">=", refDate).get();
+      fromDate = refDate;
+      toDate = 'Today';
+
   }
 
 
