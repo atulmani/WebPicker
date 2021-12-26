@@ -36,8 +36,8 @@ btnSignin.addEventListener('click', e => {
   //Sign in with user registered email id & pass with session based in single browser
   //User will sign-out as soon as user will close to browser window or move to new browser table2
   //anyway User will signout as soon as User will press signout / logout button anywhere in the application
-  auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
-    .then(() => {
+//  auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
+  //  .then(() => {
       const promise = auth.signInWithEmailAndPassword(email.value, pass.value);
       promise.then(function(firebaseUser) {
           // Success
@@ -63,7 +63,7 @@ btnSignin.addEventListener('click', e => {
           console.log(error);
         });
 
-    });
+  //  });
 
 });
 
