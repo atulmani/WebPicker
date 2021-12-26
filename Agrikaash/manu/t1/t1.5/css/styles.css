@@ -1298,6 +1298,24 @@ input[type=number] {
 /* delivery page - end */
 
 /* login page - start */
+
+#beforeLogin{
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.before-login-continue{
+  width: 200px;
+  font-weight: bold;
+  opacity: 0;
+  pointer-events: none;
+  transition: 3s;
+}
+
 /*************** login - Strat *************/
 
 .login-full-page{
