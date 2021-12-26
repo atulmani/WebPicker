@@ -1,17 +1,17 @@
 
+var userRole = [];
 
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
       console.log('Logged-in user email id: ' + firebaseUser.email);
-      userID = firebaseUser.uid;
-      //Response.Cookies["googtrans"].Value = '/en/hi';
-      //      GetProfileData(firebaseUser);
-      GetProfileData(firebaseUser);
+      // userID = firebaseUser.uid;
+      GetUserRole(firebaseUser);
 
     } else {
-      // console.log('User has been logged out');
-      // window.location.href = "index.html";
+      console.log('User has been logged out');
+      document.getElementById('btnContinue').style.opacity = '1';
+      document.getElementById('btnContinue').style.pointerEvents = 'all';
     }
   } catch (error) {
     console.log(error.message);
@@ -42,10 +42,8 @@ btnSignin.addEventListener('click', e => {
       promise.then(function(firebaseUser) {
           // Success
           console.log("Logged in User: ", auth.currentUser.uid);
-
-          var userRole = GetProfileData(auth.currentUser);
-          console.log(userRole);
-
+          GetUserRole(auth.currentUser);
+          checkUserRole();
         })
         .catch(function(error) {
           // Handle Errors here.
@@ -53,7 +51,7 @@ btnSignin.addEventListener('click', e => {
           var errorMessage = error.message;
           if (errorCode === 'auth/wrong-password') {
             console.log('Wrong password.');
-            document.getElementById('errorMessage_Login').innerHTML = errorMessage + ' Please use password eye to cross check the password you enter.';
+            document.getElementById('errorMessage_Login').innerHTML = errorMessage;
             document.getElementById('errorMessage_Login').style.display = 'block';
           } else {
             console.log(errorMessage);
@@ -159,49 +157,77 @@ function setUsersProfileData(user) {
 };
 
 
-function GetProfileData(user) {
+function GetUserRole(user) {
   // const ref = db.collection("Users").doc(user.uid);
-  console.log(user.uid);
+  // console.log(user.uid);
+  console.log('in doc');
+  try
+  {
+
   const snapshot = db.collection('UserList').doc(user.uid);
-  var userRole = [];
   //const snapshot = db.collection('UserList').doc('M71Jn4QTuAg7pd2fWsVhQAHPJym2');
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
-        //console.log('Document ref id: ' + doc.data().uid);
-        //document.getElementById('displayName').innerHTML = doc.data().displayName;
         userID = doc.uid;
         userRole = doc.data().UserRole;
-        //return userRole;
-        console.log(userRole.findIndex(e => e.value === 'Admin'));
-
-        if (userRole === undefined || userRole.length === 0) {
-          // window.location.href = "../login/Registration.html";
-          //document.getElementById('errorMessage_Login').innerHTML = 'You do not have access to Application. <a href=Registration.html>Please register</a> or reach out to Agrikaash Team for Access';
-          document.getElementById('errorMessage_Login').style.display = 'block';
-          document.getElementById('errorMessage_Login').innerHTML = 'User does not exists, Please register.';
-          // document.getElementById('register').style.display = 'block';
-        } else if (userRole.findIndex(e => e.value === 'Admin') >= 0) {
-          // console.log('is admin');
-          window.location.href = "../admin/dashboard.html";
-        } else {
-          // console.log('is partner');
-          window.location.href = "../partner/dashboard.html";
-        }
-
-      } else {
-        // window.location.href = "../login/Registration.html";
-
-        //document.getElementById('errorMessage_Login').innerHTML = 'You do not have access to Application. <a href=Registration.html>Please register</a> or reach out to Agrikaash Team for Access';
-        // document.getElementById('errorMessage_Login').style.display = 'block';
-        //document.getElementById('register').style.display = 'block';
-
       }
+      console.log('in doc');
+      document.getElementById('btnContinue').style.opacity = '1';
+      document.getElementById('btnContinue').style.pointerEvents = 'all';
     })
     .catch(function(error) {
       // console.log('in catch');
-      // An error occurred
-      // console.log(error.message);
-      return userRole;
+      console.log(error.message);
     });
-  return userRole;
+  }
+  catch(err) {
+    // console.log('in catch');
+    // console.log(error.message);
+  };
 };
+
+
+var btnContinue = document.getElementById('btnContinue');
+
+function checkUserRole() {
+  console.log(userRole.findIndex(e => e.value === 'Admin'));
+
+  if (userRole === undefined || userRole.length === 0) {
+    // window.location.href = "../login/Registration.html";
+    //document.getElementById('errorMessage_Login').innerHTML = 'You do not have access to Application. <a href=Registration.html>Please register</a> or reach out to Agrikaash Team for Access';
+    document.getElementById('errorMessage_Login').style.display = 'block';
+    // document.getElementById('errorMessage_Login').innerHTML = 'User does not exists, Please register.';
+    document.getElementById('login').style.display = 'block';
+    document.getElementById('beforeLogin').style.display = 'none';
+    // document.getElementById('register').style.display = 'block';
+  } else if (userRole.findIndex(e => e.value === 'Admin') >= 0) {
+    // console.log('is admin');
+    window.location.href = "../admin/dashboard.html";
+  } else {
+    // console.log('is partner');
+    window.location.href = "../partner/dashboard.html";
+  }
+}
+
+btnContinue.addEventListener('click', e => {
+  e.preventDefault();
+  checkUserRole();
+});
+
+
+
+//Reset / Change password
+// const btnResetPassword = document.getElementById('btnResetPassword');
+// const btnResetPasswordMessage = document.getElementById('btnResetPasswordMessage');
+//
+// btnResetPassword.addEventListener('click', resetPassword, false);
+//
+// function resetPassword() {
+//   const emailId = auth.currentUser.email;
+//   btnResetPasswordMessage.style.display = 'block';
+//   auth.sendPasswordResetEmail(emailId).then(function() {
+//     console.log('email has been sent');
+//   }).catch(function(error) {
+//     console.log('error occurred while sending email: ' + error);
+//   });
+// }
