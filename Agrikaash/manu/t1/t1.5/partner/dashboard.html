@@ -109,11 +109,11 @@
 
       </div>
       <div class="container before-nav">
-        <span><i class="fas fa-phone-alt"></i><a href="./admin/index.html">Contact</a> </span>
-        <span><i class="fas fa-user"></i><a href="./admin/index.html">Login/Sign Up</a> </span>
-        <span><i class="fas fa-list"></i><a href="./admin/index.html">Services</a> </span>
-        <span><i class="fas fa-sitemap"></i><a href="./admin/index.html">AgriBusiness</a> </span>
-        <span><i class="fas fa-home"></i><a href="./admin/index.html">Home</a> </span>
+        <span><i class="fas fa-phone-alt"></i><a href="../admin/index.html">Contact</a> </span>
+        <span><i class="fas fa-user"></i><a href="../login/index.html">Login/Sign Up</a> </span>
+        <span><i class="fas fa-list"></i><a href="../admin/index.html">Services</a> </span>
+        <span><i class="fas fa-sitemap"></i><a href="../admin/index.html">AgriBusiness</a> </span>
+        <span><i class="fas fa-home"></i><a href="../admin/index.html">Home</a> </span>
       </div>
     </div>
   </nav>
@@ -129,12 +129,12 @@
         <h4 style="text-transform: uppercase;">Agrikaash</h4>
       </a>
 
-      <a href="../notification" style="padding-right: 10px;">
+      <a href="../notification/index.html" style="padding-right: 10px;">
         <span class="material-icons-outlined" style="color: #fff;">
           notifications
         </span>
         <div class="notification-count">
-          <span class="">2</span>
+          <span class="">0</span>
         </div>
       </a>
       <!-- <a href="#"><img src="../img/logo.png" width="30px" alt=""> </a> -->
@@ -169,7 +169,7 @@
         </span>
         <small>Orders</small>
       </a>
-      <a href="confirmRegistration.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="cartNew.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <span class="material-icons-outlined">
           shopping_cart
         </span>
@@ -177,11 +177,11 @@
         <span class="navbar-cart-no" id="cartItemNo">0</span>
       </a>
     </div>
-    <div class="new-user">
+    <a class="new-user" href="../login/profile.html">
       <span class="material-icons-outlined">
         person
       </span>
-    </div>
+    </a>
   </div>
 
   <!-- Navbar links -->
@@ -231,7 +231,7 @@
               Products
             </div>
           </a><br>
-          <a href="orderList.html">
+          <a href="orderStatus.html">
             <div class="">
               <span class="material-icons-outlined" style="position:relative; top:5px;">
                 horizontal_split
@@ -239,7 +239,7 @@
               Orders
             </div>
           </a><br>
-          <a href="../login/updateProfile.html">
+          <a href="../login/profile.html">
             <div class="">
               <span class="material-icons-outlined" style="position:relative; top:5px;">
                 manage_accounts
@@ -247,7 +247,7 @@
               Profile
             </div>
           </a><br>
-          <a href="#">
+          <a href="../login/index.html">
             <div class="">
               <span class="material-icons-outlined" style="position:relative; top:5px;">
                 logout
@@ -290,7 +290,7 @@
   <br><br>
               <center>
                 <h5 id="message">Getting Your Data</h5>
-                <button class="mybutton button5" id="btnStartShopping" style="display:none;">Start Shopping</button>
+                <a href="productList.html"><button class="mybutton button5" id="btnStartShopping" style="display:none;"  >Start Shopping</button></a>
               </center>
             </div>
 
@@ -366,7 +366,6 @@
               </div>
             </div>
 
-
             <div class="dashboard-card" id="cardDelivery" >
               <div class="" style="display:flex;align-items: center;">
                 <div class="arrow-down">
@@ -382,14 +381,15 @@
                 </div>
                 <div class="details">
                   <h4>Delivery</h4>
-                  <p class="small-text dashboard-sub-heading">Next Delivery : 20th Dec 2021, 08:00 pm</p>
+                  <p class="small-text dashboard-sub-heading" id="nextDelivery">Next Delivery : 20th Dec 2021, 08:00 pm</p>
                 </div>
               </div>
 
               <div class="dashboard-card-expand">
                 <hr>
-
-                <div class="dashboard-card-delivery" style="border-left: 2px solid #1D741B;">
+                  <div id="deliveryDetailsCard">
+                  </div>
+                <div class="dashboard-card-delivery" style="border-left: 2px solid #1D741B; display:none;">
                   <div class="">
                     <div class="" style="display:flex;align-items:center;">
                       <span class="material-icons-outlined" style="font-size: 2rem; color: #1D741B;">
@@ -410,7 +410,7 @@
                   </div>
                 </div>
 
-                <div class="dashboard-card-delivery" style="border-left: 2px solid #88CA5E;">
+                <div class="dashboard-card-delivery" style="border-left: 2px solid #88CA5E;display:none;">
                   <div class="">
                     <div class="" style="display:flex;align-items:center;">
                       <span class="material-icons-outlined" style="font-size: 2rem; color: #88CA5E;">
@@ -431,7 +431,7 @@
                   </div>
                 </div>
 
-                <div class="dashboard-card-delivery" style="border-left: 2px solid #F8D210;">
+                <div class="dashboard-card-delivery" style="border-left: 2px solid #F8D210;display:none;">
                   <div class="">
                     <div class="" style="display:flex;align-items:center;">
                       <span class="material-icons-outlined" style="font-size: 2rem; color: #F8D210;">
@@ -452,7 +452,7 @@
                   </div>
                 </div>
 
-                <div class="dashboard-card-delivery" style="border-left: 2px solid #ff5757;">
+                <div class="dashboard-card-delivery" style="border-left: 2px solid #ff5757;display:none;">
                   <div class="">
                     <div class="" style="display:flex;align-items:center;">
                       <span class="material-icons-outlined" style="font-size: 2rem; color: #ff5757;">
