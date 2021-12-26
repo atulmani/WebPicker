@@ -1,3 +1,26 @@
+
+
+auth.onAuthStateChanged(firebaseUser => {
+  try {
+    if (firebaseUser) {
+      console.log('Logged-in user email id: ' + firebaseUser.email);
+      userID = firebaseUser.uid;
+      //Response.Cookies["googtrans"].Value = '/en/hi';
+      //      GetProfileData(firebaseUser);
+      GetProfileData(firebaseUser);
+
+    } else {
+      // console.log('User has been logged out');
+      // window.location.href = "index.html";
+    }
+  } catch (error) {
+    console.log(error.message);
+    //window.location.href = "../index.html";
+  }
+});
+
+
+
 const btnSignin = document.getElementById('btnSignin');
 const btnSignup = document.getElementById('btnSignUp');
 
@@ -152,31 +175,32 @@ function GetProfileData(user) {
         console.log(userRole.findIndex(e => e.value === 'Admin'));
 
         if (userRole === undefined || userRole.length === 0) {
-          window.location.href = "../login/Registration.html";
+          // window.location.href = "../login/Registration.html";
           //document.getElementById('errorMessage_Login').innerHTML = 'You do not have access to Application. <a href=Registration.html>Please register</a> or reach out to Agrikaash Team for Access';
           document.getElementById('errorMessage_Login').style.display = 'block';
-          document.getElementById('register').style.display = 'block';
+          document.getElementById('errorMessage_Login').innerHTML = 'User does not exists, Please register.';
+          // document.getElementById('register').style.display = 'block';
         } else if (userRole.findIndex(e => e.value === 'Admin') >= 0) {
-          console.log('is admin');
-          window.location.href = "../login/dashboard.html";
+          // console.log('is admin');
+          window.location.href = "../admin/dashboard.html";
         } else {
-          console.log('is partner');
+          // console.log('is partner');
           window.location.href = "../partner/dashboard.html";
         }
 
       } else {
-        window.location.href = "../login/Registration.html";
+        // window.location.href = "../login/Registration.html";
 
         //document.getElementById('errorMessage_Login').innerHTML = 'You do not have access to Application. <a href=Registration.html>Please register</a> or reach out to Agrikaash Team for Access';
-        document.getElementById('errorMessage_Login').style.display = 'block';
+        // document.getElementById('errorMessage_Login').style.display = 'block';
         //document.getElementById('register').style.display = 'block';
 
       }
     })
     .catch(function(error) {
-      console.log('in catch');
+      // console.log('in catch');
       // An error occurred
-      console.log(error.message);
+      // console.log(error.message);
       return userRole;
     });
   return userRole;
