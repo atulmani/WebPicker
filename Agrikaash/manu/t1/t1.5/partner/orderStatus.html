@@ -169,7 +169,7 @@
         </span>
         <small>Orders</small>
       </a>
-      <a href="confirmRegistration.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="cartNew.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <span class="material-icons-outlined">
           shopping_cart
         </span>
@@ -215,7 +215,7 @@
     <div class="col-lg-2 col-md-2 col-sm-12">
       <div class="side-navbar large">
         <div class="side-navbar-menu">
-          <a href="#">
+          <a href="dashboard.html">
             <div class="">
               <span class="material-icons-outlined" style="position:relative; top:5px;">
                 home
@@ -231,7 +231,7 @@
               Products
             </div>
           </a><br>
-          <a href="orderList.html">
+          <a href="orderStatus.html">
             <div class="">
               <span class="material-icons-outlined" style="position:relative; top:5px;">
                 horizontal_split
@@ -247,7 +247,7 @@
               Profile
             </div>
           </a><br>
-          <a href="#">
+          <a href="../login/index.html">
             <div class="">
               <span class="material-icons-outlined" style="position:relative; top:5px;">
                 logout
@@ -277,13 +277,15 @@
         </div>
 
         <div class="">
-          <h5>26 Orders</h5>
+          <h5 id="orderCount">26 Orders</h5>
         </div>
 
       </div>
 
       <div class="" style="padding: 0 10px;">
-        <div class="dashboard-card order-status">
+        <div id="orderListDiv">
+        </div>
+        <div class="dashboard-card order-status" style="display:none">
           <div class="" style="display:flex;align-items: center;">
             <div class="arrow-down">
               <span class="material-icons-outlined">
@@ -346,7 +348,7 @@
             </div><br>
 
             <div class="" style="display:flex;align-items:center;justify-content: space-between;padding-top: 10px;">
-              <a href="#">
+              <a href="#trend">
                 <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
                   Delete
                   <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
@@ -354,7 +356,7 @@
                   </span>
                 </button>
               </a>
-              <a href="orderSummary.html">
+              <a href="orderStatus.html">
                 <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
                   Edit
                   <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
@@ -493,7 +495,7 @@
   <script src="../js/firebase.js"></script>
 
   <script src="../js/main.js"></script>
-  <script src="../js/orderStatus.js"></script>
+  <script src="../js/orderList.js"></script>
   <!-- <script src="../js/chart.js"></script> -->
   <!-- <script src="../js/products.js"></script> -->
   <!-- <script src="../js/chart2.js"></script> -->
