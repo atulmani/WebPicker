@@ -80,6 +80,7 @@ function populateAddress(addressID) {
 function saveAddress() {
   console.log('in save address');
   addressList = [];
+  console.log(userID);
   const snapshot = db.collection('AddressList').doc(userID);
   snapshot.get().then(async (doc) => {
     if (doc.exists) {
@@ -87,73 +88,77 @@ function saveAddress() {
       addressList = doc.data().AddressList;
       var isNewAddress = true;
     }
+
+    branchID = document.getElementById("branchID").value;
+    branchName = document.getElementById("branchName").value;
+    branchOwnerName = document.getElementById("branchOwnerName").value;
+    addressLine1 = document.getElementById("addressLine1").value;
+    addressLine2 = document.getElementById("addressLine2").value;
+    city = document.getElementById("City").value;
+    ZipCode = document.getElementById("ZipCode").value;
+    PhoneNumber = document.getElementById("PhoneNumber").value;
+    console.log(addressList.length);
+    for (i = 0; i < addressList.length; i++) {
+      console.log(addressID);
+      if (addressList[i].branchID === addressID) {
+        isNewAddress = false;
+        addressList[i].addressSelected = 'YES';
+        addressList[i].branchID = branchID;
+        addressList[i].branchName = branchName;
+        addressList[i].branchOwnerName = branchOwnerName;
+        addressList[i].addressLine1 = addressLine1;
+        addressList[i].addressLine2 = addressLine2;
+        addressList[i].city = city;
+        addressList[i].ZipCode = ZipCode;
+        addressList[i].PhoneNumber = PhoneNumber;
+        addressList[i].addressSelected = 'YES';
+      } else
+        addressList[i].addressSelected = 'No';
+    }
+
+    //addressSelected = document.getElementById("PhoneNumber");
+    console.log("branchName : ", branchName);
+    console.log(branchID);
+    if (branchID === "") {
+      branchID = userID + Date.now();
+      console.log(branchID);
+      addressList.push({
+        addressSelected: 'YES',
+        branchID: branchID,
+        branchName: branchName,
+        branchOwnerName: branchOwnerName,
+        addressLine1: addressLine1,
+        addressLine2: addressLine2,
+        city: city,
+        ZipCode: ZipCode,
+        PhoneNumber: PhoneNumber
+      });
+
+    }
+    console.log(addressList);
+
+    db.collection('AddressList')
+      .doc(userID)
+      .set({
+        AddressList: addressList,
+        CreatedBy: auth.currentUser.email,
+        CreatedTimestamp: (new Date()).toString(),
+        UpdatedBy: '',
+        UpdatedTimestamp: ''
+      })
+      .then(function(docRef) {
+        console.log("Data added sucessfully in the document: ");
+        window.location.href = "addressList.html";
+        // console.log(Date.parse(eventstart))
+      })
+      .catch(function(error) {
+        //  console.error("error adding document:", error.message);
+      });
+    
+
   });
 
 
-  branchID = document.getElementById("branchID").value;
-  branchName = document.getElementById("branchName").value;
-  branchOwnerName = document.getElementById("branchOwnerName").value;
-  addressLine1 = document.getElementById("addressLine1").value;
-  addressLine2 = document.getElementById("addressLine2").value;
-  city = document.getElementById("City").value;
-  ZipCode = document.getElementById("ZipCode").value;
-  PhoneNumber = document.getElementById("PhoneNumber").value;
-
-  for (i = 0; i < addressList.length; i++) {
-
-    if (addressList[i].branchID === addressID) {
-      isNewAddress = false;
-      addressList[i].addressSelected = 'YES';
-      addressList[i].branchID = branchID;
-      addressList[i].branchName = branchName;
-      addressList[i].branchOwnerName = branchOwnerName;
-      addressList[i].addressLine1 = addressLine1;
-      addressList[i].addressLine2 = addressLine2;
-      addressList[i].city = city;
-      addressList[i].ZipCode = ZipCode;
-      addressList[i].PhoneNumber = PhoneNumber;
-      addressList[i].addressSelected = 'YES';
-    } else
-      addressList[i].addressSelected = 'No';
-  }
-
-  //addressSelected = document.getElementById("PhoneNumber");
-  console.log("branchName : ", branchName);
-  console.log(branchID);
-  if (branchID === "") {
-    branchID = userID + Date.now();
-    console.log(branchID);
-    addressList.push({
-      addressSelected: 'YES',
-      branchID: branchID,
-      branchName: branchName,
-      branchOwnerName: branchOwnerName,
-      addressLine1: addressLine1,
-      addressLine2: addressLine2,
-      city: city,
-      ZipCode: ZipCode,
-      PhoneNumber: PhoneNumber
-    });
-
-  }
-  console.log(addressList);
-  db.collection('AddressList')
-    .doc(userID)
-    .set({
-      AddressList: addressList,
-      CreatedBy: auth.currentUser.email,
-      CreatedTimestamp: (new Date()).toString(),
-      UpdatedBy: '',
-      UpdatedTimestamp: ''
-    })
-    .then(function(docRef) {
-      console.log("Data added sucessfully in the document: ");
-      window.location.href = "addressList.html";
-      // console.log(Date.parse(eventstart))
-    })
-    .catch(function(error) {
-      //  console.error("error adding document:", error.message);
-    });
 
 }
 //});

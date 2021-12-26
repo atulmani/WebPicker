@@ -134,7 +134,7 @@
           notifications
         </span>
         <div class="notification-count">
-          <span class="">2</span>
+          <span class="">0</span>
         </div>
       </a>
       <!-- <a href="#"><img src="../img/logo.png" width="30px" alt=""> </a> -->
@@ -331,11 +331,11 @@
 
                       <div class="" >
                         <div class="" style="display:flex;align-items:center;justify-content: space-between;padding-top: 10px;">
-                          <button class="mybutton button5" onClick="SaveOrder();" id="btnSaveOrder" style="padding-bottom: 7px;margin: auto 10px;">
+                          <button class="mybutton button5" onClick="SaveOrder();" id="btnSaveOrder" style="padding-bottom: 7px;margin: auto 10px; visibility: visible;;">
                             Update
                           </button>
                           <div class="">
-
+                                <span id="Message" style="display:none;"> Dlivery Slot has been updated successfully</span>  
                           </div>
                         </div>
                       </div>
@@ -373,17 +373,17 @@
                       </div>
                     </div><br>
 
-                    <div class="dashboard-card-order">
+                    <div class="dashboard-card-order" id="discount">
                       <div class="">
                         <h5 class="small-text" style="margin: 0 auto;">Discount</h5>
                         <!-- <a href='' id="todayCount">0</a><br> -->
-                        <small id="discount">  <span id="discountAmount"></span> </small>
+                        <small id="discount">  <span id="discountValue"></span> </small>
                       </div>
 
                       <div class="">
                         <h5 class="small-text" style="margin: 0 auto;">Total amount</h5>
                         <!-- <a href='' id="todayCount">0</a><br> -->
-                        <small> <span>₹</span> <span></span> </small>
+                        <small>  <span id="discountAmount"></span> </small>
                       </div>
                     </div><hr>
 
@@ -401,53 +401,12 @@
 
 
                   </div>
-                  <div class="order-summary-div">
-                    <h5>Delivery Slot</h5><br>
-                    <div class="">
 
-                    </div>
-                    <p>Delivery Date:
-                      <select id="DeliveryDate_old">
 
-                      </select>
-                    </p>
-                    <p>Time Slot:
-
-                      <select id="oDeliveryTime_old">
-                        <option>6 : 10 AM</option>
-                        <option>10 : 12 Noon</option>
-                        <option>12 : 4 PM</option>
-                        <option>4 : 6 PM</option>
-                      </select>
-                    </p>
-                    <p>Order status: <span id="orderStatus_old"></span></p>
-                    <p>Order Date: <span id="orderDate_old"></span></p>
-                    <p>Payment status: <span id="paymentAmount_old"></span></p>
-                    <p>Payment Amount : ₹<span id="paymentAmount"></span></p>
-                    <p id="discount">Discounted Amount : ₹ <span id="discountAmount_old"> </span></p>
-                  </div>
-
-                  <div class="">
-                    <button class="mybutton button5" onClick="SaveOrderOld();" id="btnSaveOrder_old">Update Order</button><br />
-                    <span id="spanMsg_old">Orders can be modified if, Order status is Pending and Delivery date is after 2 days</span>
-
-                  </div>
-
-                  <div class="order-summary-div">
-                    <h5>Delivery Address</h5><br>
-                    <p><span id="BranchName_old"> </span></p>
-                    <span id="BranchOwnerName_old"> </span>
-                    <p>
-                      <span id="AddressLine1_old"> </span>, <br>
-                      <span id="AddressLine2_old"> </span> <br>
-                      <span id="City_old"> </span> - <span id="ZipCode_old"> </span>
-                    </p>
-                    <p><i class="fas fa-phone-alt"></i> <span id="phoneNumber"> </span></p>
-                  </div>
                 </div>
               </div>
 
-              <h3>Items</h3>
+              <h3>Items <span id="itemcount"></span></h3>
               <div id="orderItems">
 
               </div>
@@ -468,9 +427,9 @@
                 <small id="itemCount"></small>
                 <input type="hidden" id="hfFinalPrize">
               </div>
-              <div class="">
+              <!-- <div class="">
                 <a href="orderList.html"><button class="mybutton button5" id="btnCheckOut">Order List</button></a>
-              </div>
+              </div> -->
             </div>
           </div>
 

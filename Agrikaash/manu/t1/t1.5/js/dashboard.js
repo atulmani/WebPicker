@@ -28,14 +28,14 @@ function GetProfileData(user) {
         //console.log('Document ref id: ' + doc.data().uid);
         userID = doc.data().uid;
         userRole = doc.data().UserRole;
-        console.log(userRole);
+      //  console.log(userRole);
 
         // if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
         //   document.getElementById('navUser').src = doc.data().ProfileImageURL;
         PopulateOrderSummary();
         PopulateDeliverySummary();
-PopulateDeliveryCard();
-
+        PopulateDeliveryCard();
+        UpdateCartItem();
         //document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
     })
@@ -55,15 +55,40 @@ var arrAmtDelivery = [];
 var dateArrDelivery = [];
 var chart1Delivery;
 
+function UpdateCartItem()
+{
+  var cartItemNo = document.getElementById('cartItemNo');
+  //console.log(cartItemNo);
+  const snapshotCart = db.collection('CartDetails').doc(userID);
+  snapshotCart.get().then((doc) => {
+    if (doc.exists) {
+      //console.log("doc exists");
+      var itemlist = doc.data().cartDetails;
+      //console.log(itemlist);
+      item = itemlist.length;
+      cartItems = itemlist;
+      // item = doc.data().cartDetails.length;
+      //console.log(item[0]);
+      cartItemNo.innerHTML = item;
+    }
+  });
+}
 function PopulateOrderSummary() {
   console.log('in PopulateTodaysOrder');
-  var amount = 239990;
+  var amount = 0;
+
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+
   var curFormat = { style: 'currency',
         currency: 'INR',
         minimumFractionDigits: 0,
         maximumFractionDigits: 0 };
 amount = amount.toLocaleString('en-IN', curFormat);
-console.log(amount);
+//console.log(amount);
   var todayDate = new Date();
 
   var yesterdayDate = new Date();
@@ -150,28 +175,33 @@ console.log(amount);
 
   var orderdate = new Date();
   var snapshot;
-  var currentMonth = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
-  console.log(currentMonth, userID, todayDate, currentMonth);
+  currentMonth = todayDate;
+  var currentMonth =currentMonth.setMonth(currentMonth.getMonth() -  2);
+  currentMonth = new Date(currentMonth);
+  todayDate = new Date();
+  //console.log(currentMonth, userID, todayDate, currentMonth);
   var DBrows;
   //    DBrows =
   var flag = false;
   db.collection('OrderDetails')
     .where("orderBy", "==", userID)
-    .where("orderDate", "<=", todayDate)
+  //  .where("orderDate", "<=", todayDate)
     .where("orderDate", ">=", currentMonth)
     .onSnapshot(snapshot => {
       let changes = snapshot.docChanges();
 
-      console.log("populatePayments: ");
+    //  console.log("populatePayments: ");
 
       changes.forEach(change => {
         flag = true;
-        console.log('in loop');
+      //  console.log('in loop');
         var orderDetails = change.doc.data();
 
         var orderdate = new Date(orderDetails.orderDate.seconds * 1000);
-
+        //console.log(orderdate.getYear(), todayDate.getYear());
+        //orderdate = oorderdate.toLocaleDateString("en-US", options);
         //orderdate = new Date(Date.parse(orderDetails.orderDate));
+        console.log(orderdate);
         if (orderdate.getDate() === todayDate.getDate() && orderdate.getMonth() === todayDate.getMonth() && orderdate.getYear() === todayDate.getYear()) {
           todayCnt = todayCnt + 1;
           todayAmount = Number(todayAmount) + Number(orderDetails.totalAmount);
@@ -219,6 +249,7 @@ console.log(amount);
         ];
 
         console.log(arrAmt);
+        console.log(dateArr);
         document.getElementById('todayCount').innerHTML = todayCnt;
         document.getElementById('todayAmount').innerHTML = todayAmount.toLocaleString('en-IN', curFormat);
 
@@ -269,16 +300,16 @@ function getLastOrder()
     .onSnapshot(snapshot => {
       let changes = snapshot.docChanges();
 
-      console.log("populatePayments: ");
+      //console.log("populatePayments: ");
 
       changes.forEach(change => {
         flag = true;
         var orderDetails = change.doc.data();
 
          var oorderdate = new Date(orderDetails.orderDate.seconds * 1000);
-         console.log(oorderdate);
+        // console.log(oorderdate);
          orderdate = oorderdate.toLocaleDateString("en-US", options);
-         console.log(orderdate);
+        // console.log(orderdate);
         todayAmount = Number(orderDetails.totalAmount);
       });
       var curFormat = { style: 'currency',
@@ -301,11 +332,11 @@ function PopulateDeliveryCard()
     .onSnapshot(snapshot => {
       let changes = snapshot.docChanges();
 
-      console.log("populatePayments: ");
+      //console.log("populatePayments: ");
 
       changes.forEach(change => {
         flag = true;
-        renderDeliveryOrder(change.doc.data(), index);
+        renderDeliveryOrder(change.doc.data(), index, change.doc.id);
         index = index + 1;
       });
 
@@ -381,7 +412,7 @@ function getNextDelivery()
         }
     });
 }
-function renderDeliveryOrder(order, index)
+function renderDeliveryOrder(order, index, orderid)
 {
 
   var curFormat = { style: 'currency',
@@ -505,13 +536,15 @@ function renderDeliveryOrder(order, index)
     var div5 = document.createElement("div");
     div5.setAttribute("class","");
     div5.setAttribute("style","text-align: center;");
+    var aa = document.createElement("a");
+    aa.setAttribute("href","orderSummary.html?id="+orderid)
 
     var span2 = document.createElement("span");
     span2.setAttribute("class","material-icons-outlined");
     span2.setAttribute("style", "font-size: 3.6rem;color: #aaa; position:relative;right: 8px;width: 30px;height:30px;");
     span2.innerHTML="arrow_right";
-
-    div5.appendChild(span2);
+    aa.appendChild(span2);
+    div5.appendChild(aa);
 
     div1.appendChild(div5);
 
@@ -615,7 +648,7 @@ function PopulateDeliverySummary() {
     dayM6,
     dayM7
   ];
-  console.log(dateArrDelivery);
+  //console.log(dateArrDelivery);
   var deliverydate = new Date();
 
   //    DBrows =
@@ -776,9 +809,9 @@ function orderChart(arrAmt, dateArr) {
       text: "Orders - Weekly"
     },
     axisX: {
-      valueFormatString: "MMM",
-      interval: 2,
-      intervalType: "month"
+      valueFormatString: "DD",
+      interval: 1
+      //intervalType: "day"
     },
     axisY: {
       includeZero: false
