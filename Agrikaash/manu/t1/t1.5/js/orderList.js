@@ -345,7 +345,7 @@ function renderOrder(orderid, order, index)
 
   var p1 = document.createElement("p");
   p1.setAttribute("class","small-text dashboard-sub-heading");
-  p1.innerHTML="Delivery date: " + delDate+ " [ " +  order.deliveryTime + " ] - " + order.totalItems +" Items" ;
+  p1.innerHTML="Delivery dt: " + delDate+ " | " +  order.deliveryTime + " - " + order.totalItems +" Items" ;
 
   div5.appendChild(p1);
   div2.appendChild(div5);
