@@ -31,8 +31,8 @@ function GetProfileData(user) {
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
           //  document.getElementById('navUser').src = doc.data().ProfileImageURL;
         }
-//        document.getElementById('headerProfilePic').src = doc.data().ImageURL;
-//        document.getElementById('displayName').innerHTML = doc.data().displayName;
+        //        document.getElementById('headerProfilePic').src = doc.data().ImageURL;
+        //        document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
     })
     .catch(function(error) {
@@ -95,75 +95,72 @@ async function getCartItemNo1() {
   const snapshot = db.collection('CartDetails').doc(userID);
   console.log(snapshot);
   snapshot.get().then(async (doc) => {
-    if (doc.exists) {
-      var arr = [];
+      if (doc.exists) {
+        var arr = [];
 
-      //  console.log(doc.id);
-      cartItems = doc.data().cartDetails;
+        //  console.log(doc.id);
+        cartItems = doc.data().cartDetails;
 
-      var prise = 0;
-      for (var i = 0; i < cartItems.length; i++) {
-        arr.push(cartItems[i].ProductID);
-      }
-      //for (var i = 0; i < item.length; i++)
-      {
-        var parr = [];
-        //const prodDetails = db.collection('Products').doc(item[i].ProductID);
-        if (arr != null && arr.length > 0) {
-          db.collection('Products').where("__name__", 'in', arr)
-            //const prodDetails = db.collection('Products').where ("__name__" , '==', 'O1RMEcLeeaHt9cXoAT33')
-            .get()
-            .then((psnapshot) => {
-              psnapshot.forEach((doc) => {
-                parr.push({
-                  ProductID: doc.id,
-                  ProductDetails: doc.data().ProductDetails
-                });
-              });
-              for (i = 0; i < cartItems.length; i++) {
-                var qty = cartItems[i].Quantity;
-                var selectedsubItem = cartItems[i].SelectedsubItem;
-                var weight = selectedsubItem.split('-');
-
-                var selectedProduct = parr[parr.findIndex(e => e.ProductID === cartItems[i].ProductID)];
-                if (selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
-                  var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
-                  prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
-                }
-              }
-              cartItemNo.innerHTML = cartItems.length;
-              document.getElementById('itemCount').innerHTML = cartItems.length + ' Items';
-
-              document.getElementById('totalAmount').innerHTML = '₹ ' + prise;
-
-            });
-        } else {
-          document.getElementById("blankCartMessage").style.display = "block";
-          document.getElementById("btnCheckOut").style.display = "none";
-          cartItemNo.innerHTML = 0;
-          document.getElementById('itemCount').innerHTML = 0 + ' Items';
-
-          document.getElementById('totalAmount').innerHTML = '₹ 0';
+        var prise = 0;
+        for (var i = 0; i < cartItems.length; i++) {
+          arr.push(cartItems[i].ProductID);
         }
+        //for (var i = 0; i < item.length; i++)
+        {
+          var parr = [];
+          //const prodDetails = db.collection('Products').doc(item[i].ProductID);
+          if (arr != null && arr.length > 0) {
+            db.collection('Products').where("__name__", 'in', arr)
+              //const prodDetails = db.collection('Products').where ("__name__" , '==', 'O1RMEcLeeaHt9cXoAT33')
+              .get()
+              .then((psnapshot) => {
+                psnapshot.forEach((doc) => {
+                  parr.push({
+                    ProductID: doc.id,
+                    ProductDetails: doc.data().ProductDetails
+                  });
+                });
+                for (i = 0; i < cartItems.length; i++) {
+                  var qty = cartItems[i].Quantity;
+                  var selectedsubItem = cartItems[i].SelectedsubItem;
+                  var weight = selectedsubItem.split('-');
+
+                  var selectedProduct = parr[parr.findIndex(e => e.ProductID === cartItems[i].ProductID)];
+                  if (selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
+                    var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
+                    prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
+                  }
+                }
+                cartItemNo.innerHTML = cartItems.length;
+                document.getElementById('itemCount').innerHTML = cartItems.length + ' Items';
+
+                document.getElementById('totalAmount').innerHTML = '₹ ' + prise;
+
+              });
+          } else {
+            document.getElementById("blankCartMessage").style.display = "block";
+            document.getElementById("btnCheckOut").style.display = "none";
+            cartItemNo.innerHTML = 0;
+            document.getElementById('itemCount').innerHTML = 0 + ' Items';
+
+            document.getElementById('totalAmount').innerHTML = '₹ 0';
+          }
 
 
+        }
+      } else {
+        console.log("in else");
+        document.getElementById("blankCartMessage").style.display = "block";
+        document.getElementById("btnCheckOut").style.display = "none";
+        cartItemNo.innerHTML = 0;
+        document.getElementById('itemCount').innerHTML = 0 + ' Items';
+
+        document.getElementById('totalAmount').innerHTML = '₹ 0';
       }
+    })
+    .catch((docref)) {
+      console.log("in catch");
     }
-    else
-    {
-      console.log("in else");
-      document.getElementById("blankCartMessage").style.display = "block";
-      document.getElementById("btnCheckOut").style.display = "none";
-      cartItemNo.innerHTML = 0;
-      document.getElementById('itemCount').innerHTML = 0 + ' Items';
-
-      document.getElementById('totalAmount').innerHTML = '₹ 0';
-    }
-  })
-  .catch((docref))
-  {
-    console.log("in catch");
-  }
 
 }
 
@@ -174,7 +171,7 @@ async function getCartItemNo() {
   const snapshot = db.collection('CartDetails').doc(userID);
   snapshot.get().then(async (doc) => {
     if (doc.exists) {
-            //  console.log(doc.id);
+      //  console.log(doc.id);
       cartItems = doc.data().cartDetails;
 
 
@@ -200,7 +197,7 @@ async function getCartItemNo() {
               var weight = selectedsubItem.split('-');
 
               var selectedProduct = parr[parr.findIndex(e => e.ProductID === cartItems[i].ProductID)];
-              if (selectedProduct.ProductDetails!= undefined && selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
+              if (selectedProduct.ProductDetails != undefined && selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
                 var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
                 prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
               }
@@ -221,9 +218,7 @@ async function getCartItemNo() {
       }
 
 
-    }
-    else
-    {
+    } else {
       document.getElementById("blankCartMessage").style.display = "block";
       document.getElementById("btnCheckOut").style.display = "none";
       cartItemNo.innerHTML = 0;
@@ -307,7 +302,7 @@ function renderProduct(doc, index, selecteditem) {
   hfSelected.setAttribute("type", "hidden");
 
   var hfMRP = document.createElement("input");
-  hfMRP.setAttribute("id","hfMrp" + index);
+  hfMRP.setAttribute("id", "hfMrp" + index);
   hfMRP.setAttribute("type", "hidden");
 
   var hfFinalPrize = document.createElement("input");
@@ -346,14 +341,14 @@ function renderProduct(doc, index, selecteditem) {
   MRP = Number(MRP) * Number(selecteditem.Quantity)
 
   var div1_4 = document.createElement("div");
-div1_4.setAttribute("id", "divPrise" + index);
+  div1_4.setAttribute("id", "divPrise" + index);
   div1_4.setAttribute("class", "product-price");
 
   div1_4.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + MRP + "</span>" + "</h5>" +
     "<small>₹ " + "<span id='final" + index + "'>" + FinalPrize + "</span></small><br><br><br>";
 
-//div1_4.appendChild(mrpspan);
-//div1_4.appendChild(finalspan);
+  //div1_4.appendChild(mrpspan);
+  //div1_4.appendChild(finalspan);
 
   var table2 = document.createElement("table");
   table2.setAttribute("style", "width:51%;position:absolute;bottom:10px;right:10px;");
@@ -386,7 +381,7 @@ div1_4.setAttribute("id", "divPrise" + index);
   trinput1.setAttribute("value", "-");
   trinput1.setAttribute("class", "minus");
 
-  trinput1.setAttribute("onclick", " decrementQty(" + "qty" + index + ", " + "min" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index +"," + "hfMrp" + index + "," + "hfFinalPrize" + index + ","+"divPrise" + index+" )");
+  trinput1.setAttribute("onclick", " decrementQty(" + "qty" + index + ", " + "min" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + "," + "hfMrp" + index + "," + "hfFinalPrize" + index + "," + "divPrise" + index + " )");
 
   //trinput1.setAttribute("onclick", " decrementQty(" + "qty" + index + ", " + "min" + index + " ," + doc.data().StepQty + ","+doc.data().ProductName+","+selectP+" ,"+doc.id+" )");
   var trinput2 = document.createElement("input");
@@ -403,14 +398,14 @@ div1_4.setAttribute("id", "divPrise" + index);
   trinput2.setAttribute("pattern", "");
   trinput2.setAttribute("inputmode", "");
   //trinput2.setAttribute("onClick","updateQuantity("+"qty" + index + "," + doc.data().MinimumQty +","+doc.data().MaximumQty+ ",''" +doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + " )");
-  trinput2.setAttribute("onchange", "updateQuantity(" + "qty" + index + "," + doc.data().MinimumQty + "," + doc.data().MaximumQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + "," + "hfMrp" + index + "," + "hfFinalPrize" + index + ","+"divPrise" + index+" )");
+  trinput2.setAttribute("onchange", "updateQuantity(" + "qty" + index + "," + doc.data().MinimumQty + "," + doc.data().MaximumQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + "," + "hfMrp" + index + "," + "hfFinalPrize" + index + "," + "divPrise" + index + " )");
 
   var trinput3 = document.createElement("input");
   trinput3.setAttribute("id", "plus" + index);
   trinput3.setAttribute("type", "button");
   trinput3.setAttribute("value", "+");
   //trinput3.setAttribute("onclick", "incrementQty(" + "qty" + index + ", " + "max" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "')");
-  trinput3.setAttribute("onclick", "incrementQty(" + "qty" + index + ", " + "max" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + "," + "hfMrp" + index + "," + "hfFinalPrize" + index + ","+"divPrise" + index+" )");
+  trinput3.setAttribute("onclick", "incrementQty(" + "qty" + index + ", " + "max" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + "," + "hfMrp" + index + "," + "hfFinalPrize" + index + "," + "divPrise" + index + " )");
 
   trinput3.setAttribute("class", "plus");
 
@@ -456,7 +451,7 @@ div1_4.setAttribute("id", "divPrise" + index);
 
 }
 
-function updateQuantity(oqty, iMin, iMax, itemName, productID, itemSizeObj, hfMRP, hfFinalPrize, divprise ) {
+function updateQuantity(oqty, iMin, iMax, itemName, productID, itemSizeObj, hfMRP, hfFinalPrize, divprise) {
 
 
   var qty = Number(oqty.value);
@@ -467,12 +462,12 @@ function updateQuantity(oqty, iMin, iMax, itemName, productID, itemSizeObj, hfMR
 
   oqty.value = qty;
   var lmrp = 0;
-  var lfinal = 0 ;
+  var lfinal = 0;
 
-  lmrp = Number(qty) *  Number(hfMRP.value);
+  lmrp = Number(qty) * Number(hfMRP.value);
   hfMRP.innerHTML = lmrp;
 
-  lfinal = Number(qty) *  Number(hfFinalPrize.value);
+  lfinal = Number(qty) * Number(hfFinalPrize.value);
   hfFinalPrize.innerHTML = lfinal;
 
   divprise.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + lmrp + "</span>" + "</h5>" +
@@ -496,12 +491,12 @@ function incrementQty(oqty, omax, step, itemName, productID, itemSizeObj, hfMRP,
   oqty.value = qty;
 
   var lmrp = 0;
-  var lfinal = 0 ;
+  var lfinal = 0;
 
-  lmrp = Number(qty) *  Number(hfMRP.value);
+  lmrp = Number(qty) * Number(hfMRP.value);
   hfMRP.innerHTML = lmrp;
 
-  lfinal = Number(qty) *  Number(hfFinalPrize.value);
+  lfinal = Number(qty) * Number(hfFinalPrize.value);
   hfFinalPrize.innerHTML = lfinal;
 
   divprise.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + lmrp + "</span>" + "</h5>" +
@@ -526,12 +521,12 @@ function decrementQty(oqty, omin, step, itemName, productID, itemSizeObj, hfMRP,
   oqty.value = qty;
 
   var lmrp = 0;
-  var lfinal = 0 ;
+  var lfinal = 0;
 
-  lmrp = Number(qty) *  Number(hfMRP.value);
+  lmrp = Number(qty) * Number(hfMRP.value);
   hfMRP.innerHTML = lmrp;
 
-  lfinal = Number(qty) *  Number(hfFinalPrize.value);
+  lfinal = Number(qty) * Number(hfFinalPrize.value);
   hfFinalPrize.innerHTML = lfinal;
 
   divprise.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + lmrp + "</span>" + "</h5>" +
@@ -551,7 +546,7 @@ function deleteCartItem(e, itemSizeObj, productID, deleteID) {
   {
     item = cartItems;
 
-        itemIndex = item.findIndex(a => a.ProductID === productID && a.SelectedsubItem === itemSizeObj);
+    itemIndex = item.findIndex(a => a.ProductID === productID && a.SelectedsubItem === itemSizeObj);
     if (itemIndex >= 0) {
       item.splice(itemIndex, 1);
     }
@@ -606,7 +601,7 @@ function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualit
   if (itemIndex >= 0)
     cartItems.splice(itemIndex, 1);
 
-    cartItems.push({
+  cartItems.push({
     ItemName: itemName,
     SelectedsubItem: itemSelect.value,
     Quantity: itemQuantity,
