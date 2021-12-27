@@ -62,7 +62,7 @@ function GetCouponDetails() {
   var today = Date.now();
   DBrows = db.collection("Coupons")
     .where("Status", "==", 'Active')
-    .where ('ValidityTill' ,">=" , today)
+    .where('ValidityTill', ">=", today)
     .get();
   var flag = false;
   DBrows.then((changes) => {
@@ -72,8 +72,7 @@ function GetCouponDetails() {
       console.log(userList);
       userTypeApplicable = change.data().UserType;
 
-      if(userTypeApplicable.includes(userType))
-      {
+      if (userTypeApplicable.includes(userType)) {
         flag = true;
         var opt = document.createElement('option');
         opt.value = change.id;
@@ -82,32 +81,31 @@ function GetCouponDetails() {
         else
           opt.innerHTML = "₹ " + change.data().DiscountValue;
         couponDetails.appendChild(opt);
-      }
-      else {
+      } else {
 
 
-      if (userList[0].userID === 'All') {
-        flag = true;
-        var opt = document.createElement('option');
-        opt.value = change.id;
-        if (change.data().DiscountType === 'Percentage')
-          opt.innerHTML = change.data().DiscountValue + " %";
-        else
-          opt.innerHTML = "₹ " + change.data().DiscountValue;
-        couponDetails.appendChild(opt);
+        if (userList[0].userID === 'All') {
+          flag = true;
+          var opt = document.createElement('option');
+          opt.value = change.id;
+          if (change.data().DiscountType === 'Percentage')
+            opt.innerHTML = change.data().DiscountValue + " %";
+          else
+            opt.innerHTML = "₹ " + change.data().DiscountValue;
+          couponDetails.appendChild(opt);
+        }
+        var index = userList.findIndex(e => e.userID === userID);
+        if (index >= 0) {
+          flag = true;
+          var opt = document.createElement('option');
+          opt.value = change.id;
+          if (change.data().DiscountType === 'Percentage')
+            opt.innerHTML = change.data().DiscountValue + " %";
+          else
+            opt.innerHTML = "₹ " + change.data().DiscountValue;
+          couponDetails.appendChild(opt);
+        }
       }
-      var index = userList.findIndex(e => e.userID === userID);
-      if (index >= 0) {
-        flag = true;
-        var opt = document.createElement('option');
-        opt.value = change.id;
-        if (change.data().DiscountType === 'Percentage')
-          opt.innerHTML = change.data().DiscountValue + " %";
-        else
-          opt.innerHTML = "₹ " + change.data().DiscountValue;
-        couponDetails.appendChild(opt);
-      }
-    }
     });
     if (flag === false) {
       couponDetails.style.display = "none";
@@ -227,9 +225,7 @@ function SaveOrder() {
         message = "cart is empty, add to cart";
         iError = 1;
         console.log("cart is empty, add to cart");
-      }
-      else
-      {
+      } else {
         //Get Address Start
         const snapshotAddress = db.collection('AddressList').doc(userID);
         snapshotAddress.get().then(async (adoc) => {
@@ -241,7 +237,7 @@ function SaveOrder() {
             if (selIndex >= 0) {
               selectedAddress = addressList[selIndex];
               console.log('if address selected');
-                SaveOrderinDB();
+              SaveOrderinDB();
             } else {
               message = message + "Select Address";
               iError = 2;
@@ -355,7 +351,7 @@ function SaveOrderinDB() {
 
     db.collection('OrderDetails')
       .add({
-        orderNumber : Date.now(),
+        orderNumber: Date.now(),
         orderItems: OrderItems, //cartDetails,
         totalItems: itemCount,
         totalAmount: prize,
