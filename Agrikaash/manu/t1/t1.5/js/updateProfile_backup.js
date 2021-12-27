@@ -60,24 +60,22 @@ function GetRegistrationRequest() {
         userType1.checked = true;
       if (userRole.findIndex(e => e.text === document.getElementById('userType2Text').innerHTML) >= 0)
         userType2.checked = true;
-      if (userRole.findIndex(e => e.text === document.getElementById('userType0Text').innerHTML) >= 0)
-        {
-          userType0.checked = true;
-          document.getElementById("divFooterAdmin").style.display="block";
+      if (userRole.findIndex(e => e.text === document.getElementById('userType0Text').innerHTML) >= 0) {
+        userType0.checked = true;
+        document.getElementById("divFooterAdmin").style.display = "block";
 
 
-        }
-      else {
+      } else {
         document.getElementById("adminDiv").style.display = "none";
-        document.getElementById("divFooterPartner").style.display="block";
+        document.getElementById("divFooterPartner").style.display = "block";
         const snapshotCart = db.collection('CartDetails').doc(userID);
 
         snapshotCart.get().then(async (docCart) => {
           if (docCart.exists) {
-              var cartIemDetails = docCart.data().cartDetails;
-              if( cartIemDetails != undefined)
-                cartIem = cartIemDetails.length;
-              document.getElementById('cartitemcount').innerHTML = cartIem;
+            var cartIemDetails = docCart.data().cartDetails;
+            if (cartIemDetails != undefined)
+              cartIem = cartIemDetails.length;
+            document.getElementById('cartitemcount').innerHTML = cartIem;
           }
         });
 
@@ -226,25 +224,25 @@ document.getElementById('upload').onclick = function() {
         ImgUrl = url;
         alert('ImgUrl: ' + ImgUrl);
         console.log(userID);
-        
-        //Update meta data for firebase storage resources - Start
-          var storageRef = uploadTask.snapshot.ref;
-          // console.log ("storageRef: " + storageRef );
-          // Create file metadata to update to cache for 1 year
-          var newMetadata = {
-            cacheControl: 'public,max-age=31536000',
-            contentType: 'image/png'
-          };
-          // Update metadata properties
-          storageRef.updateMetadata(newMetadata)
-            .then((metadata) => {
-              // Updated metadata for storage resources is returned in the Promise
-              console.log("metadata added on image url: " + url );
-            }).catch((error) => {
-              // Uh-oh, an error occurred!
-            });
 
-            //Update meta data for firebase storage resources - End
+        //Update meta data for firebase storage resources - Start
+        var storageRef = uploadTask.snapshot.ref;
+        // console.log ("storageRef: " + storageRef );
+        // Create file metadata to update to cache for 1 year
+        var newMetadata = {
+          cacheControl: 'public,max-age=31536000',
+          contentType: 'image/png'
+        };
+        // Update metadata properties
+        storageRef.updateMetadata(newMetadata)
+          .then((metadata) => {
+            // Updated metadata for storage resources is returned in the Promise
+            console.log("metadata added on image url: " + url);
+          }).catch((error) => {
+            // Uh-oh, an error occurred!
+          });
+
+        //Update meta data for firebase storage resources - End
 
         db.collection("UserList").doc(userID).update({
             // console.log('inside db collection: ' + newEventID);
