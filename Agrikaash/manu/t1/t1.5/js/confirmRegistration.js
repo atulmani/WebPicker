@@ -30,8 +30,8 @@ function GetProfileData(user) {
           document.getElementById('navUser').src = doc.data().ProfileImageURL;
         }
         userID = doc.data().uid;
-      //  document.getElementById('headerProfilePic').src = doc.data().ImageURL;
-      //  document.getElementById('displayName').innerHTML = doc.data().displayName;
+        //  document.getElementById('headerProfilePic').src = doc.data().ImageURL;
+        //  document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
     })
     .catch(function(error) {
@@ -199,18 +199,18 @@ function renderRegistrationRequest(doc, index) {
   div2.appendChild(div7);
 
 
-    div7 = document.createElement("div");
-    div7.setAttribute("class", "");
+  div7 = document.createElement("div");
+  div7.setAttribute("class", "");
 
-    var lable71 = document.createElement("Label");
-    lable71.innerHTML = "Customer Type : ";
+  var lable71 = document.createElement("Label");
+  lable71.innerHTML = "Customer Type : ";
 
-    div7.appendChild(lable71);
-    var input72 = document.createElement("label");
-    input72.setAttribute("id", "CustomerType" + index)
-    input72.innerHTML = "<b>"+doc.data().CustomerType  +"</b>";
-    div7.appendChild(input72);
-    div2.appendChild(div7);
+  div7.appendChild(lable71);
+  var input72 = document.createElement("label");
+  input72.setAttribute("id", "CustomerType" + index)
+  input72.innerHTML = "<b>" + doc.data().CustomerType + "</b>";
+  div7.appendChild(input72);
+  div2.appendChild(div7);
 
   div7 = document.createElement("div");
 
