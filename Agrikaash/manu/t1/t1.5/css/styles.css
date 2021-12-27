@@ -608,17 +608,15 @@ h6{
 .category-list-menu{
   text-decoration: none;
   width: 100%;
-  height: 50px;
+  height: 38px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #fff;
   padding: 5px 4px;
   border: 1px solid #ddd;
-  color: #444;
-  font-size: 0.8rem;
-  font-weight: bold;
   text-align: center;
+  border-radius: 4px;
 }
 
 .category-list-menu.active{
@@ -627,7 +625,10 @@ h6{
 
 .category-list-menu h5{
   position: relative;
-  top: 3px;
+  top: 5px;
+  color: #444;
+  font-size: 0.7rem;
+  font-weight: normal;
 }
 
 .category-list-menu.active h5{
@@ -638,7 +639,7 @@ h6{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 5px 10px 0 10px;
 }
 
 .product-list-div{
@@ -1301,7 +1302,7 @@ input[type=number] {
 
 #beforeLogin{
   width: 100%;
-  /* height: 80vh; */
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1625,11 +1626,11 @@ input[type=number] {
 }
 
 #cardOrder:hover{
-  height: 350px;
+  height: 320px;
 }
 
 #cardDelivery:hover{
-  height: 540px;
+  height: 512px;
 }
 
 .dashboard-card.order-status:hover{
