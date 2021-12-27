@@ -35,7 +35,7 @@ function GetProfileData(user) {
         //document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
     })
-    .catch(function(error)  {
+    .catch(function(error) {
       // An error occurred
       console.log(error.message);
       // document.getElementById('errorMessage_Signup').innerHTML = error.message;
@@ -74,27 +74,25 @@ function populateProductData() {
 
       var productTypeValue = doc.data().productType;
       var customerBusinessType = doc.data().CustomerBusinessType;
-      if(productTypeValue != undefined)
-      {
+      if (productTypeValue != undefined) {
         console.log('is not undefined');
         var productType = document.getElementById('productType');
-        for ( var i = 0; i < productType.options.length; i++ ) {
-                if ( productType.options[i].value == productTypeValue ) {
-                    productType.options[i].selected = true;
-                }
-            }
+        for (var i = 0; i < productType.options.length; i++) {
+          if (productType.options[i].value == productTypeValue) {
+            productType.options[i].selected = true;
+          }
+        }
 
       }
 
-      if(customerBusinessType != undefined)
-      {
+      if (customerBusinessType != undefined) {
         console.log('is not undefined');
         var businessType = document.getElementById('BusinessType');
-        for ( var i = 0; i < businessType.options.length; i++ ) {
-                if ( businessType.options[i].value == customerBusinessType ) {
-                    businessType.options[i].selected = true;
-                }
-            }
+        for (var i = 0; i < businessType.options.length; i++) {
+          if (businessType.options[i].value == customerBusinessType) {
+            businessType.options[i].selected = true;
+          }
+        }
 
       }
 
@@ -227,10 +225,10 @@ function CreateUpdateProductData() {
     }
     var ProductImageURL = document.getElementById("myimg").src;
     console.log(ProductImageURL);
-    if (productID != null && productID != '' ) {
+    if (productID != null && productID != '') {
       db.collection("Products").doc(productID).update({
-          CustomerBusinessType : customerBusinessTypeValue,
-          productType : productTypeValue,
+          CustomerBusinessType: customerBusinessTypeValue,
+          productType: productTypeValue,
           ProductName: productName,
           Brand: brand,
           VegNonVeg: vegNonVeg,
@@ -246,7 +244,7 @@ function CreateUpdateProductData() {
           UpdatedTimestamp: ''
         })
         .then((docRef) => {
-          console.log("Data added sucessfully in the document: " );
+          console.log("Data added sucessfully in the document: ");
           console.log("eventstart")
           // console.log(Date.parse(eventstart))
         })
@@ -257,8 +255,8 @@ function CreateUpdateProductData() {
       db.collection("Products").add({
           // console.log('inside db collection: ' + newEventID);
           ProductId: docCount + 1,
-          CustomerBusinessType : customerBusinessTypeValue,
-          productType : productTypeValue,
+          CustomerBusinessType: customerBusinessTypeValue,
+          productType: productTypeValue,
           ProductName: productName,
           Brand: brand,
           VegNonVeg: vegNonVeg,
@@ -337,15 +335,15 @@ document.getElementById("select").onclick = function(e) {
   input.click();
 
 }
-if(productID === null || productID === '')
+if (productID === null || productID === '')
   productID = document.getElementById('hfproductID').value;
 
 //************ File Upload to Cloud Storage  ****************
 document.getElementById('upload').onclick = function() {
   // ImgName = document.getElementById('namebox').value;
-//  productID = document.getElementById('hfproductID').value;
-if(productID === null || productID === '')
-  productID = document.getElementById('hfproductID').value;
+  //  productID = document.getElementById('hfproductID').value;
+  if (productID === null || productID === '')
+    productID = document.getElementById('hfproductID').value;
 
   ImgName = productID + '_1.png';
   // ImgName = document.getElementById('productID').value + '_1.png';
@@ -369,24 +367,24 @@ if(productID === null || productID === '')
       uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
         ImgUrl = url;
         alert('ImgUrl: ' + ImgUrl);
-                //Update meta data for firebase storage resources - Start
-          var storageRef = uploadTask.snapshot.ref;
-          // console.log ("storageRef: " + storageRef );
-          // Create file metadata to update to cache for 1 year
-          var newMetadata = {
-            cacheControl: 'public,max-age=31536000',
-            contentType: 'image/png'
-          };
-          // Update metadata properties
-          storageRef.updateMetadata(newMetadata)
-            .then((metadata) => {
-              // Updated metadata for storage resources is returned in the Promise
-              console.log("metadata added on image url: " + url );
-            }).catch((error) => {
-              // Uh-oh, an error occurred!
-            });
+        //Update meta data for firebase storage resources - Start
+        var storageRef = uploadTask.snapshot.ref;
+        // console.log ("storageRef: " + storageRef );
+        // Create file metadata to update to cache for 1 year
+        var newMetadata = {
+          cacheControl: 'public,max-age=31536000',
+          contentType: 'image/png'
+        };
+        // Update metadata properties
+        storageRef.updateMetadata(newMetadata)
+          .then((metadata) => {
+            // Updated metadata for storage resources is returned in the Promise
+            console.log("metadata added on image url: " + url);
+          }).catch((error) => {
+            // Uh-oh, an error occurred!
+          });
 
-            //Update meta data for firebase storage resources - End
+        //Update meta data for firebase storage resources - End
 
         db.collection("Products").doc(productID).update({
             // console.log('inside db collection: ' + newEventID);
@@ -395,15 +393,15 @@ if(productID === null || productID === '')
             UpdatedBy: auth.currentUser.email,
             UpdatedTimestamp: (new Date()).toString()
           })
-          .then(function(docRef)  {
+          .then(function(docRef) {
             document.getElementById("upload").disabled = true;
 
             console.log("Data added sucessfully in the document: " + productID);
             console.log("eventstart")
-            window.location.href="updateProduct.html"
+            window.location.href = "updateProduct.html"
             // console.log(Date.parse(eventstart))
           })
-          .catch(function(error)  {
+          .catch(function(error) {
             console.error("error adding document:", error);
           });
 
