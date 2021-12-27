@@ -3,7 +3,7 @@ var userID = "";
 var cartItems = [];
 var productCategory = [];
 var isAdmin = false;
-var userBusinessCategory="";
+var userBusinessCategory = "";
 
 auth.onAuthStateChanged(firebaseUser => {
   try {
@@ -11,10 +11,10 @@ auth.onAuthStateChanged(firebaseUser => {
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
       GetProfileData(firebaseUser);
-//        console.log(userBusinessCategory);
-        // var promise = getCartItemNo();
-        // var promise2 = promise.then(populateProductData('', ''));
-        //promise2.then(console.log(productCategory));
+      //        console.log(userBusinessCategory);
+      // var promise = getCartItemNo();
+      // var promise2 = promise.then(populateProductData('', ''));
+      //promise2.then(console.log(productCategory));
 
 
     } else {
@@ -124,11 +124,11 @@ async function populateProductData(bType, pType, flag) {
   } else if ((pType != '' && pType != 'All') && (bType === '' || bType === 'All')) //select one customer businessType
   {
 
-      console.log(pType,'All');
+    console.log(pType, 'All');
     DBrows = db.collection("Products").where("productType", "==", pType).get();
   } else if ((pType != '' && pType != 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
-    console.log(pType,'All');
+    console.log(pType, 'All');
     DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "==", bType).get();
   }
 
@@ -161,16 +161,16 @@ async function populateProductData(bType, pType, flag) {
 
     });
     document.getElementById("itemCnt").innerHTML = index + " Items";
-    if(flag=== true)
+    if (flag === true)
 
     {
       var unique = productCategory.filter(onlyUnique);
       renderProductCategory(unique);
-      document.getElementById("categoryCnt").value=unique.length;
+      document.getElementById("categoryCnt").value = unique.length;
     }
     document.getElementById('loading').style.display = 'none';
 
-//    init_carousel();
+    //    init_carousel();
     //  });
   });
 }
@@ -200,52 +200,50 @@ function onlyUnique(value, index, self) {
 // });
 
 function renderProductCategory(productCategory) {
-//var div = document.getElementById('category-list');
-//div.innerHTML="";
-for (i = 0; i < productCategory.length; i++) {
-  var item = document.createElement("div");
-  //div1.setAttribute("class","item");
-  item.classList.add("item");
+  //var div = document.getElementById('category-list');
+  //div.innerHTML="";
+  for (i = 0; i < productCategory.length; i++) {
+    var item = document.createElement("div");
+    //div1.setAttribute("class","item");
+    item.classList.add("item");
 
-  var anchor = document.createElement("a");
-  if(i === 0)
-  {
-    anchor.setAttribute("class","category-list-menu active");
-  }else {
-    anchor.setAttribute("class","category-list-menu");
+    var anchor = document.createElement("a");
+    if (i === 0) {
+      anchor.setAttribute("class", "category-list-menu active");
+    } else {
+      anchor.setAttribute("class", "category-list-menu");
+    }
+    anchor.setAttribute("href", "javascript:callFunction('" + productCategory[i] + "'," + "anchor" + i + ");");
+    anchor.setAttribute("id", "anchor" + i);
+    anchor.setAttribute("style", "text-decoration:none;");
+
+    var h11 = document.createElement("h5");
+    h11.innerHTML = productCategory[i];
+
+    anchor.appendChild(h11);
+    item.appendChild(anchor);
+
+    //div.carousel-inner
+    //div.appendChild (div1);
+    $('#category-list').trigger('add.owl.carousel', [item]).trigger('refresh.owl.carousel');
+
   }
-  anchor.setAttribute("href", "javascript:callFunction('" + productCategory[i] +"',"+ "anchor" + i +");");
-  anchor.setAttribute("id", "anchor" + i );
-  anchor.setAttribute("style", "text-decoration:none;");
-
-  var h11 = document.createElement("h5");
-  h11.innerHTML = productCategory[i];
-
-  anchor.appendChild(h11);
-  item.appendChild(anchor);
-
-//div.carousel-inner
-  //div.appendChild (div1);
-  $('#category-list').trigger('add.owl.carousel', [item]).trigger('refresh.owl.carousel');
 
 }
 
-}
-
-function clearSelection()
-{
+function clearSelection() {
   var cnt = document.getElementById("categoryCnt").value;
-    //console.log(document.getElementById("categoryCnt").value);
-      for(i = 0 ; i<cnt ; i++ )
-      {
-        var anchor = document.getElementById("anchor" + i);
-        anchor.setAttribute("class","category-list-menu");
-      }
+  //console.log(document.getElementById("categoryCnt").value);
+  for (i = 0; i < cnt; i++) {
+    var anchor = document.getElementById("anchor" + i);
+    anchor.setAttribute("class", "category-list-menu");
+  }
 }
+
 function callFunction(productType, objid) {
   console.log(objid);
   clearSelection();
-  objid.setAttribute("class","category-list-menu active");
+  objid.setAttribute("class", "category-list-menu active");
   document.getElementById('loading').style.display = 'block';
   document.getElementById('hfpType').value = productType;
 
@@ -294,6 +292,7 @@ function renderProductNew(doc, index, selectedItem) {
   hfID.setAttribute("value", doc.id);
   td1.appendChild(hfID);
   var img1 = document.createElement("img");
+  img1.setAttribute("src", "../img/banana.jpg");
   img1.setAttribute("src", doc.data().ProductImageURL);
   img1.setAttribute("width", "100%")
   img1.setAttribute("alt", "");
