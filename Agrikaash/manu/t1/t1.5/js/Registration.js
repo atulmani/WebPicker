@@ -20,7 +20,7 @@ auth.onAuthStateChanged(firebaseUser => {
   }
 });
 
-const btnLogout = document.getElementById ('btnLogout');
+const btnLogout = document.getElementById('btnLogout');
 
 btnLogout.addEventListener('click', e => {
   auth.signOut().then(() => {
@@ -144,7 +144,7 @@ function SaveDetails() {
   var userType = [];
   // var uType1 = document.getElementById("userType1");
   // if (uType1.checked)
-   {
+  {
     userType.push({
       text: 'Retailer/Customer',
       value: 'Customer'
@@ -194,8 +194,8 @@ function SaveDetails() {
       // document.getElementById('errorMessage').style.display = 'block';
     });
 
-    document.getElementById('userName').readOnly = true;
-    document.getElementById('userPhone').readOnly = true;
+  document.getElementById('userName').readOnly = true;
+  document.getElementById('userPhone').readOnly = true;
 
 }
 
