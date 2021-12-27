@@ -265,7 +265,7 @@ function renderProductNew(doc, index) {
 
   var spanDelete = document.createElement('span');
   spanDelete.setAttribute("id", "btnDelete" + index);
-  spanDelete.setAttribute("onclick", "deleteProduct(" + "hfID" + index + ",mainDiv" + index +");");
+  spanDelete.setAttribute("onclick", "deleteProduct(" + "hfID" + index + ",mainDiv" + index + ");");
   spanDelete.setAttribute("class", "material-icons");
   spanDelete.setAttribute("style", "cursor:pointer;padding: 0 20px 0 5px;");
   spanDelete.innerHTML = "delete_outline";
