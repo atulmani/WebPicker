@@ -77,16 +77,16 @@ function dateRangeChange()
   var dateRange = document.getElementById('dateRange');
   var value=dateRange.options[dateRange.selectedIndex].value;
   if(value === 'Today' )
-    window.location.href="orderStatus.html?orderDateRange=today";
+    window.location.href="orderList.html?orderDateRange=today";
   else if(value === 'Yesterday' )
-    window.location.href="orderStatus.html?orderDateRange=yesterday";
+    window.location.href="orderList.html?orderDateRange=yesterday";
 
   else if(value === 'Last 7 days' )
-    window.location.href="orderStatus.html?orderDateRange=week";
+    window.location.href="orderList.html?orderDateRange=week";
   else if(value === 'Current month' )
-    window.location.href="orderStatus.html?orderDateRange=month";
+    window.location.href="orderList.html?orderDateRange=month";
   else if(value === 'Last 6 months' )
-      window.location.href="orderStatus.html?orderDateRange=sixmonth";
+      window.location.href="orderList.html?orderDateRange=sixmonth";
 
 }
 function populateOrderDetails() {
