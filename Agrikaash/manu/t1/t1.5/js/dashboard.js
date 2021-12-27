@@ -266,6 +266,7 @@ amount = amount.toLocaleString('en-IN', curFormat);
         orderChart(arrAmt, dateArr);
         document.getElementById("loading").style.display="none";
         document.getElementById("cardOrder").style.display="block";
+        document.getElementById("cardDelivery").style.display="block";
         document.getElementById("trendChart").style.display="block";
         getLastOrder();
       });
@@ -275,6 +276,7 @@ amount = amount.toLocaleString('en-IN', curFormat);
         document.getElementById("message").innerHTML="Welcome to Agrikaash."
         document.getElementById('btnStartShopping').style.display="block";
         document.getElementById("cardOrder").style.display="none";
+        document.getElementById("cardDelivery").style.display="none";
         document.getElementById("trendChart").style.display="none";
 
 
