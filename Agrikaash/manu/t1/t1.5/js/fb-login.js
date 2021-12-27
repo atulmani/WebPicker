@@ -8,7 +8,6 @@ auth.onAuthStateChanged(firebaseUser => {
       // userID = firebaseUser.uid;
       GetUserRole(firebaseUser);
 
-
     } else {
       console.log('User has been logged out');
       document.getElementById('btnContinue').style.opacity = '1';
