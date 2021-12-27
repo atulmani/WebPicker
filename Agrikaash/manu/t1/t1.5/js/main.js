@@ -143,7 +143,7 @@ $(document).ready(function() {
   var owl = $('#category-list');
   owl.owlCarousel({
     margin: 8,
-    // stagePadding: 30,
+    stagePadding: 30,
     nav: false,
     loop: false,
     center: false,
@@ -155,7 +155,7 @@ $(document).ready(function() {
     dots: false,
     responsive: {
       0: {
-        items: 3.5
+        items: 3
       },
       600: {
         items: 4
