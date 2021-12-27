@@ -157,10 +157,10 @@ async function getCartItemNo1() {
 
         document.getElementById('totalAmount').innerHTML = '₹ 0';
       }
-    })
-    .catch((docref)) {
-      console.log("in catch");
-    }
+    });
+    // .catch((docref)) {
+    //   console.log("in catch");
+    // }
 
 }
 
