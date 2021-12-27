@@ -67,7 +67,7 @@ function GetProfileData(user) {
         console.log(isAdmin);
 
         var promise = getCartItemNo();
-        var promise2 = promise.then(populateProductData('', ''));
+        var promise2 = promise.then(populateProductData('', '', true));
 
 
       }
@@ -104,7 +104,7 @@ async function getCartItemNo() {
 function emptyDiv(div) {
   div.innerHTML = '';
 }
-async function populateProductData(bType, pType) {
+async function populateProductData(bType, pType, flag) {
   //var DBrows = db.collection("Products").where("OrganizationId", "==", Number(organizationid)).get();
   var divPType = document.getElementById('productCategory');
   var divPList = document.getElementById('productRow');
@@ -161,8 +161,13 @@ async function populateProductData(bType, pType) {
 
     });
     document.getElementById("itemCnt").innerHTML = index + " Items";
-    var unique = productCategory.filter(onlyUnique);
-    renderProductCategory(unique);
+    if(flag=== true)
+
+    {
+      var unique = productCategory.filter(onlyUnique);
+      renderProductCategory(unique);
+      document.getElementById("categoryCnt").value=unique.length;
+    }
     document.getElementById('loading').style.display = 'none';
 
 //    init_carousel();
@@ -195,33 +200,52 @@ function onlyUnique(value, index, self) {
 // });
 
 function renderProductCategory(productCategory) {
-var div = document.getElementById('category-list');
-div.innerHTML="";
+//var div = document.getElementById('category-list');
+//div.innerHTML="";
 for (i = 0; i < productCategory.length; i++) {
-  var div1 = document.createElement("div");
-  div1.setAttribute("class","item");
+  var item = document.createElement("div");
+  //div1.setAttribute("class","item");
+  item.classList.add("item");
+
   var anchor = document.createElement("a");
   if(i === 0)
   {
-    anchor.setAttribute("class","category-list-menu active//");
+    anchor.setAttribute("class","category-list-menu active");
   }else {
     anchor.setAttribute("class","category-list-menu");
   }
-  anchor.setAttribute("href", "javascript:callFunction('" + productCategory[i] + "');");
+  anchor.setAttribute("href", "javascript:callFunction('" + productCategory[i] +"',"+ "anchor" + i +");");
+  anchor.setAttribute("id", "anchor" + i );
+  anchor.setAttribute("style", "text-decoration:none;");
 
   var h11 = document.createElement("h5");
   h11.innerHTML = productCategory[i];
 
   anchor.appendChild(h11);
-  div1.appendChild(anchor);
+  item.appendChild(anchor);
 
 //div.carousel-inner
-  div.appendChild (div1);
-}
+  //div.appendChild (div1);
+  $('#category-list').trigger('add.owl.carousel', [item]).trigger('refresh.owl.carousel');
 
 }
 
-function callFunction(productType) {
+}
+
+function clearSelection()
+{
+  var cnt = document.getElementById("categoryCnt").value;
+    //console.log(document.getElementById("categoryCnt").value);
+      for(i = 0 ; i<cnt ; i++ )
+      {
+        var anchor = document.getElementById("anchor" + i);
+        anchor.setAttribute("class","category-list-menu");
+      }
+}
+function callFunction(productType, objid) {
+  console.log(objid);
+  clearSelection();
+  objid.setAttribute("class","category-list-menu active");
   document.getElementById('loading').style.display = 'block';
   document.getElementById('hfpType').value = productType;
 
@@ -230,7 +254,7 @@ function callFunction(productType) {
   console.log(cType);
   console.log(productType);
   // var cType = document.getElementById('businessType').SelectedValue;
-  populateProductData(cType, productType);
+  populateProductData(cType, productType, false);
   //renderProductNew(doc, index, selectedItem)
 }
 
@@ -241,7 +265,7 @@ function changCustomerType() {
   var e = document.getElementById("businessType");
   var cType = e.options[e.selectedIndex].text;
   console.log(cType);
-  populateProductData(cType, productType);
+  populateProductData(cType, productType, false);
   //renderProductNew(doc, index, selectedItem)
 }
 /////////////////////new function
@@ -735,44 +759,44 @@ function decrementQty(oqty, omin, step, itemName, productID, itemSizeObj, index)
 
 }
 
-async function deleteFromCart(itemSizeObj, productID, index) {
-
-  //const snapshot = db.collection('CartDetails').doc(userID);
-  //snapshot.get().then((doc) => {
-  //item = cartItems;
-
-  //console.log(cartItems);
-
-  itemIndex = cartItems.findIndex(a => a.ProductID === productID && a.SelectedsubItem === itemSizeObj);
-  if (itemIndex >= 0) {
-    cartItems.splice(itemIndex, 1);
-  }
-
-  db.collection('CartDetails')
-    .doc(userID)
-    .update({
-      cartDetails: cartItems //firebase.firestore.FeildValue.arrayUnion(cartItems)
-    })
-    .then(() => {
-      //console.log('manu');
-      // location.reload();
-      document.getElementById('cartItemNo').innerHTML = cartItems.length;
-
-      populateProductData();
-      ChangeAddButtonVisible(index, true);
-    })
-    .catch((error) => {
-      return index;
-      console.log("in error");
-      document.getElementById('errorMessage').innerHTML = error.message;
-      document.getElementById('errorMessage').style.display = 'block';
-    });
-
-
-  //});
-  // populateProductData();
-  return index;
-}
+// async function deleteFromCart(itemSizeObj, productID, index) {
+//
+//   //const snapshot = db.collection('CartDetails').doc(userID);
+//   //snapshot.get().then((doc) => {
+//   //item = cartItems;
+//
+//   //console.log(cartItems);
+//
+//   itemIndex = cartItems.findIndex(a => a.ProductID === productID && a.SelectedsubItem === itemSizeObj);
+//   if (itemIndex >= 0) {
+//     cartItems.splice(itemIndex, 1);
+//   }
+//
+//   db.collection('CartDetails')
+//     .doc(userID)
+//     .update({
+//       cartDetails: cartItems //firebase.firestore.FeildValue.arrayUnion(cartItems)
+//     })
+//     .then(() => {
+//       //console.log('manu');
+//       // location.reload();
+//       document.getElementById('cartItemNo').innerHTML = cartItems.length;
+//
+// //      populateProductData();
+//       ChangeAddButtonVisible(index, true);
+//     })
+//     .catch((error) => {
+//       return index;
+//       console.log("in error");
+//       document.getElementById('errorMessage').innerHTML = error.message;
+//       document.getElementById('errorMessage').style.display = 'block';
+//     });
+//
+//
+//   //});
+//   // populateProductData();
+//   return index;
+// }
 
 function mySelectionChange(productdetails, mrp, final, hfSelected, index, lproductID, minQty) {
   //alert(productdetails);
