@@ -12,31 +12,37 @@
 
   <link rel="shortcut icon" href="../img/logo.png">
 
-  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 
-  <!-- Google fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
-    rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 
-  <!-- Font Awesome cdn file -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-  <!-- Owl Stylesheets -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <!-- Font Awesome cdn file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-  <!-- Bootstrap css -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Owl Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 
-  <!-- Your Own Style -->
-  <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!-- Your Own Style -->
+    <link rel="stylesheet" href="../css/styles.css">
 
 </head>
 
@@ -62,9 +68,8 @@
 
       </div>
       <div class="container before-nav">
-        <span><i class="fas fa-shopping-cart"></i><a href="#">Cart</a></span>
-        <small class="navbar-cart-no" id='itemcount'>0</small>
-        <span><i class="fas fa-user"></i><a href="./admin/index.html">Login/Sign Up</a> </span>
+        <span><i class="fas fa-shopping-cart"></i><a href="updateProduct.html">Products</a></span>
+        <span><i class="fas fa-user"></i><a href="../admin/index.html">Login/Sign Up</a> </span>
         <span><i class="fas fa-map-marker-alt"></i><a href="#">510086 - Banglore</a> </span>
         <span><i class="fas fa-phone fa-flip-horizontal" style="padding: 0 20px 0 5px; "></i><a href="#">98227 52885</a> </span>
       </div>
@@ -149,7 +154,7 @@
               Profile
             </div>
           </a><br>
-          <a href="#">
+          <a href="../login/index.html">
             <div class="">
               <i class="fas fa-sign-out-alt"></i>
               Logout
@@ -186,115 +191,229 @@
           <div id="confirmationMessage" style="display:none;">
             <!-- <Label id="confirmationMessage" "> -->
             <Label >
-              Your do not have access to view this page. <a href="../partner/index.html">Click to go to home page</a> </Label>
+              Your do not have access to view this page. <a href="../login/index.html">Click to go to home page</a> </Label>
 
           </div>
-          <div id="divSummary" class="detail-card-full-div">
-            <h3 class="detail-card-full-div-heading">Summary</h3>
-            <!-- <span class="notification">1</span> -->
-            <div class="detail-card">
-              <div class="detail-card-no">
-                <div class="detail-card-heading">
-                  <i class="fas fa-truck"></i>
-                  <h6>Orders</h6>
-                </div>
-                <a href="orderStatus.html">
-                  <div class="detail-card-arrow">
-                    <i class="fas fa-chevron-right"></i>
-                  </div>
 
+        </div>
+        <div class="detail-card-full-div">
+          <br>
+          <div class="" id="loading">
+            <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+            <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_49rdyysj.json"  background="transparent"  speed="1"  style="width: 100%; height: 100%;"  loop  autoplay></lottie-player>
+            <br><br>
+            <center>
+              <h5 id="message">Getting Your Data</h5>
+              <a href="productList.html"><button class="mybutton button5" id="btnStartShopping" style="display:none;"  >Start Shopping</button></a>
+            </center>
+          </div>
+
+          <div class="dashboard-card" id="cardOrder" style='display:none;'>
+            <div class="" style="display:flex;align-items: center;">
+              <div class="arrow-down">
+                <span class="material-icons-outlined">
+                  keyboard_arrow_down
+                </span>
+              </div>
+
+              <div class="">
+                <span class="material-icons-outlined order-icon">
+                  category
+                </span>
+              </div>
+              <div class="details">
+                <h4>Orders</h4>
+                <p class="small-text dashboard-sub-heading" id="lastOrder">Last Order : ₹ 0</p>
+              </div>
+            </div>
+
+            <div class="dashboard-card-expand">
+              <hr>
+
+              <div class="dashboard-card-order">
+                <div class="">
+                  <h5 class="small-text">Today</h5>
+                  <a href="orderStatus.html?orderDateRange=today" id="todayCount">0</a><br>
+                  <small id="todayAmount">₹ 0</small>
+                </div>
+
+                <div class="">
+                  <h5 class="small-text">Yesterday</h5>
+                  <a href="orderStatus.html?orderDateRange=yesterday" id="yesterdayCount">0</a><br>
+                  <small id="yesterdayAmount">₹ 0</small>
+                </div>
+              </div><br>
+
+              <div class="dashboard-card-order">
+                <div class="">
+                  <h5 class="small-text">Last 7 Days</h5>
+                  <a href="orderStatus.html?orderDateRange=week" id="WeekCount">0</a><br>
+                  <small id="WeekAmount">₹ 0</small>
+                </div>
+
+                <div class="">
+                  <h5 class="small-text">This Month</h5>
+                  <a href="orderStatus.html?orderDateRange=month" id="monthCount">0</a><br>
+                  <small id="monthAmount">₹ 0</small>
+                </div>
+              </div>
+
+              <div class="" style="display:flex;align-items:center;padding-top: 10px;">
+                <a href="#trend">
+                  <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
+                    Trend
+                    <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
+                      trending_up
+                    </span>
+                  </button>
+                </a>
+                <a href="orderStatus.html">
+                  <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
+                    More
+                    <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
+                      menu
+                    </span>
+                  </button>
                 </a>
               </div>
-              <hr>
-              <div class="detail-card-details">
-                <div class="">
-                  <small class="small-1">Today's order</small>
-                  <a href="orderStatus.html?orderDateRange=today">
-                    <small class="small-2" id='todayCount'>0</small></a>
-                  <small class="small-3">₹ <span id='todayAmount'>0</span></small>
-                </div>
-                <div class="">
-                  <small class="small-1">Yesterday's order</small>
-                  <a href="orderStatus.html?orderDateRange=yesterday">
-                    <small class="small-2" style="font-size:1.3rem;" id='yesterdayCount'>0</small>
-                  </a>
-                  <small class="small-3">₹ <span id='yesterdayAmount'>0</span></small>
-                </div>
-              </div><br>
 
-              <div class="detail-card">
-                <div class="detail-card-no">
-                  <div class="detail-card-heading">
-                    <i class="fas fa-chart-line"></i>
-                    <h6></h6>
-                  </div>
-                  <div class="detail-card-arrow">
-                    <i class="fas fa-chevron-right"></i>
-                  </div>
-                </div>
-                <hr>
-                <div class="detail-card-details">
-                  <div class="">
-                    <small class="small-1">Last 7 Days</small>
-                    <a href="orderStatus.html?orderDateRange=week">
-                      <small class="small-2" style="font-size:1.3rem;" id='WeekCount'>0</small>
-
-                    </a>
-                    <small class="small-3">₹ <span id='WeekAmount'>0</span></small>
-                  </div>
-                  <div class="">
-                    <small class="small-1">Current Month</small>
-                    <a href="orderStatus.html?orderDateRange=month">
-
-                      <small class="small-2" style="font-size:1.3rem;" id='monthCount'>0</small>
-                    </a>
-                    <small class="small-3">₹ <span id='monthAmount'>0</span></small>
-                  </div>
-                </div>
-
-                <div class="progress-bar">
-                  <div class="inner-progress-bar" style="width: 70%;"></div>
-                </div>
-              </div><br>
-              <div class="detail-card">
-                <div class="detail-card-no">
-                  <div class="detail-card-heading">
-                    <i class="fas fa-chart-line"></i>
-                    <h6>Today's Performance</h6>
-                  </div>
-                  <div class="detail-card-arrow">
-                    <i class="fas fa-chevron-right"></i>
-                  </div>
-                </div>
-                <hr>
-
-
-                <div class="detail-card-details">
-                  <div class="">
-                    <small class="small-1">Available</small>
-                    <small class="small-2">+ 0.96%</small>
-                    <small class="small-3">₹ 20,310</small>
-                  </div>
-                  <div class="">
-                    <small class="small-1">Sold</small>
-                    <small class="small-2 negative">- 0.32%</small>
-                    <small class="small-3">₹ 11,753</small>
-                  </div>
-                </div><br>
-                <div class="progress-bar">
-                  <div class="inner-progress-bar" style="width: 40%;"></div>
-                </div>
-              </div><br>
-
-              <br>
-              <div class="progress-bar">
-                <div class="inner-progress-bar" style="width: 90%;"></div>
-              </div>
-            </div><br>
-
+            </div>
           </div>
-        </div>
-        <div id="divChart" class="col-lg-7 col-md-7 col-sm-12"><br><br>
+
+          <div class="dashboard-card" id="cardDelivery" >
+            <div class="" style="display:flex;align-items: center;">
+              <div class="arrow-down">
+                <span class="material-icons-outlined">
+                  keyboard_arrow_down
+                </span>
+              </div>
+
+              <div class="">
+                <span class="material-icons-outlined order-icon">
+                  local_shipping
+                </span>
+              </div>
+              <div class="details">
+                <h4>Delivery</h4>
+                <p class="small-text dashboard-sub-heading" id="nextDelivery">Next Delivery : 20th Dec 2021, 08:00 pm</p>
+              </div>
+            </div>
+
+            <div class="dashboard-card-expand">
+              <hr>
+                <div id="deliveryDetailsCard">
+                </div>
+              <div class="dashboard-card-delivery" style="border-left: 2px solid #1D741B; display:none;">
+                <div class="">
+                  <div class="" style="display:flex;align-items:center;">
+                    <span class="material-icons-outlined" style="font-size: 2rem; color: #1D741B;">
+                      check_circle
+                    </span>
+                    <h5>20th Dec, 2021, 08:00 pm</h5>
+                  </div>
+                  <div class="" style="display:flex;align-items:center;justify-content: space-between;">
+                    <small class="small-text dashboard-sub-heading">Items : 30 - ₹ 1,111</small>
+                    <small class="small-text dashboard-sub-heading" style="color: #1D741B;font-weight: bold;">On the Way</small>
+                  </div>
+                </div>
+                <div class="" style="text-align: center;">
+                  <span class="material-icons-outlined" style="font-size: 3.6rem;color: #aaa;
+                  position:relative;right: 8px;width: 30px;height:30px;">
+                    arrow_right
+                  </span>
+                </div>
+              </div>
+
+              <div class="dashboard-card-delivery" style="border-left: 2px solid #88CA5E;display:none;">
+                <div class="">
+                  <div class="" style="display:flex;align-items:center;">
+                    <span class="material-icons-outlined" style="font-size: 2rem; color: #88CA5E;">
+                      local_shipping
+                    </span>
+                    <h5>20th Dec, 2021, 08:00 pm</h5>
+                  </div>
+                  <div class="" style="display:flex;align-items:center;justify-content: space-between;">
+                    <small class="small-text dashboard-sub-heading">Items : 30 - ₹ 1,111</small>
+                    <small class="small-text dashboard-sub-heading" style="color: #88CA5E;font-weight: bold;">On the Way</small>
+                  </div>
+                </div>
+                <div class="" style="text-align: center;">
+                  <span class="material-icons-outlined" style="font-size: 3.6rem;color: #aaa;
+                  position:relative;right: 8px;width: 30px;height:30px;">
+                    arrow_right
+                  </span>
+                </div>
+              </div>
+
+              <div class="dashboard-card-delivery" style="border-left: 2px solid #F8D210;display:none;">
+                <div class="">
+                  <div class="" style="display:flex;align-items:center;">
+                    <span class="material-icons-outlined" style="font-size: 2rem; color: #F8D210;">
+                      widgets
+                    </span>
+                    <h5>20th Dec, 2021, 08:00 pm</h5>
+                  </div>
+                  <div class="" style="display:flex;align-items:center;justify-content: space-between;">
+                    <small class="small-text dashboard-sub-heading">Items : 30 - ₹ 1,111</small>
+                    <small class="small-text dashboard-sub-heading" style="color: #F8D210;font-weight: bold;">Packed</small>
+                  </div>
+                </div>
+                <div class="" style="text-align: center;">
+                  <span class="material-icons-outlined" style="font-size: 3.6rem;color: #aaa;
+                  position:relative;right: 8px;width: 30px;height:30px;">
+                    arrow_right
+                  </span>
+                </div>
+              </div>
+
+              <div class="dashboard-card-delivery" style="border-left: 2px solid #ff5757;display:none;">
+                <div class="">
+                  <div class="" style="display:flex;align-items:center;">
+                    <span class="material-icons-outlined" style="font-size: 2rem; color: #ff5757;">
+                      cancel
+                    </span>
+                    <h5>20th Dec, 2021, 08:00 pm</h5>
+                  </div>
+                  <div class="" style="display:flex;align-items:center;justify-content: space-between;">
+                    <small class="small-text dashboard-sub-heading">Items : 30 - ₹ 1,111</small>
+                    <small class="small-text dashboard-sub-heading" style="color: #ff5757;font-weight: bold;">Cancelled</small>
+                  </div>
+                </div>
+                <div class="" style="text-align: center;">
+                  <span class="material-icons-outlined" style="font-size: 3.6rem;color: #aaa;
+                  position:relative;right: 8px;width: 30px;height:30px;">
+                    arrow_right
+                  </span>
+                </div>
+              </div><br>
+
+              <div class="" style="display:flex;align-items:center;padding-top: 10px;">
+                <a href="#trend">
+                  <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
+                    Trend
+                    <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
+                      trending_up
+                    </span>
+                  </button>
+                </a>
+                <a href="#">
+                  <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
+                    More
+                    <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
+                      menu
+                    </span>
+                  </button>
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+
+      </div>
+
+
+        <div id="trendChart" class="col-lg-7 col-md-7 col-sm-12"><br><br>
           <div class="">
             <div class="row no-gutters">
               <div class="col-lg-3 col-md-3 col-sm-12">
@@ -430,6 +549,7 @@
 
   <script src="../js/main.js"></script>
   <script src="../js/firebase.js"></script>
+  <!-- <script src="../js/fb-logout.js"></script> -->
 
   <!-- <script src="../js/chart.js"></script> -->
   <script src="../js/dashboardAdmin.js"></script>
