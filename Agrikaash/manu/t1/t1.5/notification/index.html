@@ -45,7 +45,7 @@
 
 </head>
 
-<body style="background: #f4f4f4;">
+<body>
 
   <div class="before-navbar large">
     <div class="container-fluid" style="padding-Left: 5%;">
@@ -109,11 +109,11 @@
 
       </div>
       <div class="container before-nav">
-        <span><i class="fas fa-phone-alt"></i><a href="../admin/index.html">Contact</a> </span>
+        <span><i class="fas fa-phone-alt"></i><a href="../login/index.html">Contact</a> </span>
         <span><i class="fas fa-user"></i><a href="../login/index.html">Login/Sign Up</a> </span>
-        <span><i class="fas fa-list"></i><a href="../admin/index.html">Services</a> </span>
-        <span><i class="fas fa-sitemap"></i><a href="../admin/index.html">AgriBusiness</a> </span>
-        <span><i class="fas fa-home"></i><a href="../admin/index.html">Home</a> </span>
+        <span><i class="fas fa-list"></i><a href="../login/index.html">Services</a> </span>
+        <span><i class="fas fa-sitemap"></i><a href="../login/index.html">AgriBusiness</a> </span>
+        <span><i class="fas fa-home"></i><a href="../login/index.html">Home</a> </span>
       </div>
     </div>
   </nav>
@@ -129,12 +129,12 @@
         <h4 style="text-transform: uppercase;">Agrikaash</h4>
       </a>
 
-      <a href="../notification/index.html" style="padding-right: 10px;">
+      <a style="padding-right: 10px;">
         <span class="material-icons-outlined" style="color: #fff;">
           notifications
         </span>
         <div class="notification-count">
-          <span class="">0</span>
+          <span class="">2</span>
         </div>
       </a>
       <!-- <a href="#"><img src="../img/logo.png" width="30px" alt=""> </a> -->
@@ -148,49 +148,36 @@
 
   <div class="small navbar-mobile-bottom">
     <div class="navbar-mobile-bottom-menu" id="divBottomNavBar">
-      <a href="../partner/dashboard.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
-        <span class="material-icons-outlined">
-          home
-        </span>
+      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a " style="display:flex; flex-direction:column;">
+        <!-- <i class="fas fa-home"></i> -->
+        <i class="fas fa-home"></i>
         <small>Home</small>
       </a>
-      <a href="../partner/productList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-        <span class="material-icons-outlined">
-          category
-        </span>
-        <small>Products</small>
+      <a href="../partner/projectList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <i class="fas fa-sitemap"></i>
+        <small>AgriBiz</small>
       </a>
       <a href="">
 
       </a>
-      <a href="../partner/orderList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-        <span class="material-icons-outlined">
-          horizontal_split
-        </span>
-        <small>Orders</small>
+      <a href="admin/orderStatus.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <i class="fas fa-list"></i>
+        <small>Services</small>
       </a>
-      <a href="../partner/cartNew.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-        <span class="material-icons-outlined">
-          shopping_cart
-        </span>
-        <small id='small4'>Cart</small>
-        <span class="navbar-cart-no" id="cartItemNo">0</span>
+      <a href="confirmRegistration.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <i class="fas fa-phone-alt"></i>
+        <small>Contact</small>
       </a>
     </div>
-    <a class="new-user" href="../login/profile.html">
+    <div class="new-user">
       <span class="material-icons-outlined">
         person
       </span>
-    </a>
+    </div>
   </div>
 
   <!-- Navbar links -->
   <div class="collapse navbar-collapse more-button-links" id="collapsibleNavbar1">
-    <div class="pop-up-close-btn">
-      <span class="material-icons-outlined">
-        close
-      </span>
-    </div>
     <ul class="">
       <li class="">
         <a class="" href="#">Home</a>
@@ -208,7 +195,7 @@
         <a class="" href="contacts">Contact</a>
       </li>
       <li class="">
-        <a class="" id="btnLogout" href="">Logout</a>
+        <a class="" href="login">Login</a>
       </li>
     </ul>
   </div>
@@ -291,7 +278,7 @@
 
             <div class="" style="display:none;">
               <div class="notification-card">
-                <!-- <img src="./img/B-1.png" width="100%" alt=""> -->
+                <img src="./img/B-1.png" width="100%" alt="">
                 <div class="notification-card-details">
                   <h4>Spider Man - No Way Home</h4>
                   <p class="small-text" style="margin: 0 auto;">All the tickets are going to get
@@ -327,8 +314,8 @@
   <!-- Map Section - End -->
 
   <!-- Footer Section - Start -->
-  <hr class="large"/>
-  <section id="footer" class="large">
+  <hr>
+  <section id="footer">
     <br /><br />
     <div class="container">
       <div class="row no-gutters">
@@ -411,7 +398,7 @@
   <script src="../js/firebase.js"></script>
 
   <!-- <script src="../js/chart.js"></script> -->
-  <!-- <script src="../js/dashboard.js"></script> -->
+  <script src="../js/dashboard.js"></script>
 
 
   <!-- <script src="../js/chart2.js"></script> -->
