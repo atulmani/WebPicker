@@ -1301,7 +1301,7 @@ input[type=number] {
 
 #beforeLogin{
   width: 100%;
-  height: 90vh;
+  /* height: 80vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1625,11 +1625,11 @@ input[type=number] {
 }
 
 #cardOrder:hover{
-  height: 320px;
+  height: 350px;
 }
 
 #cardDelivery:hover{
-  height: 512px;
+  height: 540px;
 }
 
 .dashboard-card.order-status:hover{
