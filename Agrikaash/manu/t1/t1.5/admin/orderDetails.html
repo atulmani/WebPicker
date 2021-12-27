@@ -14,28 +14,30 @@
 
   <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
-  <!-- Google Icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 
-  <!-- Google fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
-    rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome cdn file -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Owl Stylesheets -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <!-- Font Awesome cdn file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <!-- Owl Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 
-  <!-- Bootstrap css -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
   <!-- Your Own Style -->
   <link rel="stylesheet" href="../css/styles.css">
@@ -168,13 +170,14 @@
       </div>
 
       <br>
-      <div class="row no-gutters small">
+      <div class="row no-gutters small" >
 
-        <div class="pay-now-div">
+        <div class="pay-now-div" >
           <h4 style="width:100%;text-align:center;">Order Summary</h4>
+
         </div>
-        <br><br>
-        <div class="col-sm-12" style="padding: 5px;">
+        <br>
+        <div class="col-sm-12" style="padding: 5px;" style="display:none;">
           <center>
             <!-- <div id='loading' class="loader"></div> -->
             <div class="" id="loading-img">
@@ -183,113 +186,199 @@
               <h5><span id="msg">Getting Order Details</span></h5><br><br>
             </div>
           </center>
-          <div >
-            <div width="100%"><br><br>
-              <div width="100%">
-                <div class="" style="display:none;">
-                  <h5>Delivery Slot</h5><br>
-                  <p>
-                    Order Date: <span id="oldorderDate"></span>
-                    Delivery Date: <span id="DeliveryDate"> </span> <br>
-                    Time Slot: <span id="DeliveryTime"> </span> <br>
-                    Order status: <span id="orderStatus"></span> <br />
-                    Payment status: <span id="PaymentStatus"></span><br />
-                  </p>
-                </div>
-                <div class="" width="100%">
-                  <h5>Delivery Slot</h5><br>
-                  <table width="100%">
-                    <tr>
-                      <td width="40%">
-                        Order Date:
-                      </td>
-                      <td>
-                        <input id="orderPlacedBy" type="hidden" />
-                        <input id="orderID" type="hidden" />
+        </div>
+        <div id="divCart">
+          <div class="empty-cart">
 
-                        <span id="orderDate"></span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        Delivery Date:
-                      </td>
-                      <td>
-                        <select id="odeliveryDate">
-                        </select>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        Time Slot:
-                      </td>
-                      <td>
-                        <select id="odeliveryTime">
-                          <option>6 : 10 AM</option>
-                          <option>10 : 12 Noon</option>
-                          <option>12 : 4 PM</option>
-                          <option>4 : 6 PM</option>
-                        </select>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        Order status:
-                      </td>
-                      <td>
-                        <select id="oOrderStatus">
-                          <option value="Pending"> Pending </option>
-                          <option value="Packed"> Packed </option>
-                          <option value="On The Way"> On the Way </option>
-                          <option value="Delivered"> Delivered </option>
-                          <option value="Cancelled"> Cancelled </option>
-                        </select>
-                        <input id="hfOrderStatus" type="hidden" />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        Payment status:
-                      </td>
-                      <td>
-                        <select id="oPaymentStatus">
-                          <option value="Pending"> Pending </option>
-                          <option value="Completed"> Completed </option>
-                        </select>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td colspan=2>
+
+            <div class="" style="padding: 10px;">
+              <div class="order-summary">
+                <div class="order-summary-div">
+                  <div class="dashboard-card-order">
+                    <div class="">
+                      <h5 class="small-text" style="margin: 0 auto;">Delivery date</h5>
+                      <!-- <a href='' id="todayCount">0</a><br> -->
+                      <div class="" style="display:flex;justify-content: space-between;">
                         <div class="">
-                          <button class="mybutton button5" onClick="SaveOrder();" id="btnSaveOrder">Update Order</button>
+                          <select class="city-selector" id="odeliveryDate" style="background: #fff;width: 140px;border: 1px solid #aaa;" name="">
+
+                          </select>
+
+                          <span class="material-icons-outlined city-selector-icon" style="z-index:10;">
+                            date_range
+                          </span>
                         </div>
-                      </td>
-                    </tr>
-                    <tr>
+                        <div class="">
 
-                      <td colspan=2>
-                        <label for="Mesage" id="Message"></label>
-                      </td>
-                    </tr>
-                  </table>
+                        </div>
+                      </div>
+
+                      <h5 class="small-text" style="margin: 0 auto;">Time slot</h5>
+                      <!-- <a href='' id="todayCount">0</a><br> -->
+                      <div class="" style="display:flex;justify-content: space-between;">
+                        <div class="">
+                          <select class="city-selector" id="DeliveryTime" style="background: #fff;width: 140px;border: 1px solid #aaa;" name="">
+                            <option>6 : 10 AM</option>
+                            <option>10 : 12 Noon</option>
+                            <option>12 : 4 PM</option>
+                            <option>4 : 6 PM</option>
+                          </select>
+
+                          <span class="material-icons-outlined city-selector-icon">
+                            date_range
+                          </span>
+                        </div>
+                        <div class="">
+
+                        </div>
+                      </div>
+
+                      <h5 class="small-text" style="margin: 0 auto;">Order Status</h5>
+                      <!-- <a href='' id="todayCount">0</a><br> -->
+                      <div class="" style="display:flex;justify-content: space-between;">
+                        <div class="">
+                          <select class="city-selector" id="oOrderStatus" style="background: #fff;width: 140px;border: 1px solid #aaa;" name="">
+                            <option value="Pending"> Pending </option>
+                            <option value="Packed"> Packed </option>
+                            <option value="On The Way"> On the Way </option>
+                            <option value="Delivered"> Delivered </option>
+                            <option value="Cancelled"> Cancelled </option>
+                          </select>
+
+
+                          <input id="hfOrderStatus" type="hidden" />
+
+                          <span class="material-icons-outlined city-selector-icon">
+                            approval
+                          </span>
+                        </div>
+                        <div class="">
+
+                        </div>
+                      </div>
+
+                      <h5 class="small-text" style="margin: 0 auto;">Paymenr Status</h5>
+                      <!-- <a href='' id="todayCount">0</a><br> -->
+                      <div class="" style="display:flex;justify-content: space-between;">
+                        <div class="">
+                          <select class="city-selector" id="oPaymentStatus" style="background: #fff;width: 140px;border: 1px solid #aaa;" name="">
+
+                              <option value="Pending"> Pending </option>
+                              <option value="Completed"> Completed </option>
+                            </select>
+
+
+                          <input id="hfOrderStatus" type="hidden" />
+
+                          <span class="material-icons-outlined city-selector-icon">
+                            approval
+                          </span>
+                        </div>
+                        <div class="">
+
+                        </div>
+                      </div>
+
+
+                    </div>
+
+                    <div class="">
+                      <div class="" style="display:flex;align-items:center;justify-content: space-between;padding-top: 10px;">
+                        <button class="mybutton button5" onClick="SaveOrder();" id="btnSaveOrder" style="padding-bottom: 7px;margin: auto 10px; visibility: visible;;">
+                          Update
+                        </button>
+                        <div class="">
+                          <span id="Message" style="display:none;"> Dlivery Slot has been updated successfully</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div><br>
+
+                  <div class="" style="color: #aaa;" id="pendingMessage">
+                    <span id="spanMsg"><strong> NOTE : </strong> Orders can be modified if, Order status is Pending and Delivery date is after 2 days</span>
+                  </div>
+                  <hr>
+
+                  <div class="dashboard-card-order">
+                    <div class="">
+                      <h5 class="small-text" style="margin: 0 auto;">Order By</h5>
+                      <!-- <a href='' id="todayCount">0</a><br> -->
+                      <small> <span id="orderBy"></span> </small>
+                    </div>
+
+                    <div class="">
+                      <h5 class="small-text" style="margin: 0 auto;">Order date</h5>
+                      <!-- <a href='' id="todayCount">0</a><br> -->
+                      <small id="orderDate"></small>
+                    </div>
+                  </div><br>
+
+                  <div class="dashboard-card-order">
+                    <div class="">
+                      <h5 class="small-text" style="margin: 0 auto;">Payment status</h5>
+                      <!-- <a href='' id="todayCount">0</a><br> -->
+                      <small id="PaymentStatus"></small>
+                      <input id="orderPlacedBy" type="hidden" />
+                      <input id="orderID" type="hidden" />
+                      <input id="hfOrderStatus" type="hidden" />
+
+
+                    </div>
+
+                    <div class="">
+                      <h5 class="small-text" style="margin: 0 auto;">Amount</h5>
+                      <!-- <a href='' id="todayCount">0</a><br> -->
+                      <small> <span id="paymentAmount"></span> </small>
+                    </div>
+                  </div><br>
+
+                  <div class="dashboard-card-order" id="discount">
+                    <div class="">
+                      <h5 class="small-text" style="margin: 0 auto;">Discount</h5>
+                      <!-- <a href='' id="todayCount">0</a><br> -->
+                      <small id="discount"> <span id="discountValue"></span> </small>
+                    </div>
+
+                    <div class="">
+                      <h5 class="small-text" style="margin: 0 auto;">Total amount</h5>
+                      <!-- <a href='' id="todayCount">0</a><br> -->
+                      <small> <span id="discountAmount"></span> </small>
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="order-summary-address">
+                    <h5>Delivery Address</h5>
+                    <p>
+                      <span id="BranchName"> </span> <br>
+                      <span id="BranchOwnerName"> </span> <br>
+                      <span id="AddressLine1"> </span>,
+                      <span id="AddressLine2"> </span> <br>
+                      <span id="City"> </span> - <span id="ZipCode"> </span>
+                    </p>
+                    <p><i class="fas fa-phone-alt"></i> <span id="phoneNumber"> </span></p>
+                  </div>
+
+
                 </div>
-                <div class="">
-                  <br /><h5>Address</h5>
-                  <p><span id="BranchName"> </span></p>
-                  <span id="BranchOwnerName"> </span>
-                  <p>
-                    <span id="AddressLine1"> </span>, <br>
-                    <span id="AddressLine2"> </span> <br>
-                    <span id="City"> </span> - <span id="ZipCode"> </span>
-                  </p>
-                  <p><i class="fas fa-phone-alt"></i> <span id="phoneNumber"> </span></p>
-                </div>
-              </div>
 
-              <h3>Items</h3>
-              <div id="orderItems">
 
               </div>
+            </div>
+
+            <h3>Items <span id="itemcount"></span></h3>
+            <div id="orderItems">
+
+            </div>
+
+            <!-- <input type="reeadonly" id="blankCartMessage" value="No items are added in cart" style="display:none;"> -->
+          </div>
+        </div>
+        <div class="col-sm-12" style="padding: 5px;" style="display:none;">
+
+          <div style="display:none;">
+            <div width="100%"><br><br>
+
 
               <!-- <input type="reeadonly" id="blankCartMessage" value="No items are added in cart" style="display:none;"> -->
             </div>
