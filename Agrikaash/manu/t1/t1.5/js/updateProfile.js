@@ -116,13 +116,14 @@ function GetRegistrationRequest() {
   updateWallet();
 }
 
-function updateWallet()
-{
+function updateWallet() {
 
-    var curFormat = { style: 'currency',
-          currency: 'INR',
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0 };
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  };
 
   var WalletDetails = document.getElementById('WalletDetails');
   //console.log(cartItemNo);
@@ -134,12 +135,12 @@ function updateWallet()
       //console.log(itemlist);
       wallerAmount = wallerAmount.toLocaleString('en-IN', curFormat);
       WalletDetails.innerHTML = wallerAmount;
-      document.getElementById("divWalletDetails").style.display="block";
+      document.getElementById("divWalletDetails").style.display = "block";
     }
   });
 }
-function UpdateCartItem()
-{
+
+function UpdateCartItem() {
   var cartItemNo = document.getElementById('cartItemNo');
   //console.log(cartItemNo);
   const snapshotCart = db.collection('CartDetails').doc(userID);
@@ -159,11 +160,11 @@ function UpdateCartItem()
 
 function editName() {
   document.getElementById('userName').readOnly = false;
-//var language=Request.Cookies["googtrans"].Value
+  //var language=Request.Cookies["googtrans"].Value
   //console.log(google.translate.TranslateElement);
   var lang = document.getElementById("google_translate_element");
-console.log(lang);
-console.log(document.getElementById("0:targetLanguage"));
+  console.log(lang);
+  console.log(document.getElementById("0:targetLanguage"));
 }
 
 function editMobile() {
@@ -233,8 +234,8 @@ function SaveDetails() {
     });
 
 
-        document.getElementById('userName').readOnly = true;
-        document.getElementById('userPhone').readOnly = true
+  document.getElementById('userName').readOnly = true;
+  document.getElementById('userPhone').readOnly = true
 }
 
 
