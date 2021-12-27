@@ -32,8 +32,8 @@ function GetProfileData(user) {
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
           document.getElementById('navUser').src = doc.data().ProfileImageURL;
         }
-    //  document.getElementById('headerProfilePic').src = doc.data().ImageURL;
-      //  document.getElementById('displayName').innerHTML = doc.data().displayName;
+        //  document.getElementById('headerProfilePic').src = doc.data().ImageURL;
+        //  document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
     })
     .catch(function(error) {
@@ -94,32 +94,32 @@ function SaveCoupon() {
 
 
 
-      for (i = 0; i < userList.options.length; i++) {
-        if (userList.options[i].selected) {
-          users.push({
-            userID: userList.options[i].value,
-            userName: userList.options[i].text
-          });
-        }
-      }
-      if (users.length === 0) {
-        users.push({
-          userID: 'All',
-          userName: 'All'
-        });
-      }
+  for (i = 0; i < userList.options.length; i++) {
+    if (userList.options[i].selected) {
+      users.push({
+        userID: userList.options[i].value,
+        userName: userList.options[i].text
+      });
+    }
+  }
+  if (users.length === 0) {
+    users.push({
+      userID: 'All',
+      userName: 'All'
+    });
+  }
 
 
 
-    console.log(validity.value);
+  console.log(validity.value);
 
   if (couponID.value != null && couponID.value != '') {
     db.collection("Coupons").doc(couponID.value).update({
-        CouponName : couponName.value,
-        Description : description.value,
-        TermsAndCondition : termsandCondition.value,
-        UserType : userTypes,
-        ValidityTill : validity.value,
+        CouponName: couponName.value,
+        Description: description.value,
+        TermsAndCondition: termsandCondition.value,
+        UserType: userTypes,
+        ValidityTill: validity.value,
         DiscountValue: discount.value,
         UserList: users,
         ValidityTill: firebase.firestore.Timestamp.fromDate(new Date(Date.parse(validity.value))),
@@ -138,21 +138,21 @@ function SaveCoupon() {
       });
   } else {
     db.collection("Coupons").add({
-      CouponName : couponName.value,
-      CouponCode : couponCode,
-      Description : description.value,
-      TermsAndCondition : termsandCondition.value,
-      UserType : userTypes,
-      ValidityTill : validity.value,
-      DiscountValue: discount.value,
-      UserList: users,
-      ValidityTill: firebase.firestore.Timestamp.fromDate(new Date(Date.parse(validity.value))),
-      DiscountType: discountType,
-      Status: 'Active',
-      CreatedBy: auth.currentUser.email,
-      CreatedTimestamp: (new Date()).toString(),
-      UpdatedBy: '',
-      UpdatedTimestamp: ''
+        CouponName: couponName.value,
+        CouponCode: couponCode,
+        Description: description.value,
+        TermsAndCondition: termsandCondition.value,
+        UserType: userTypes,
+        ValidityTill: validity.value,
+        DiscountValue: discount.value,
+        UserList: users,
+        ValidityTill: firebase.firestore.Timestamp.fromDate(new Date(Date.parse(validity.value))),
+        DiscountType: discountType,
+        Status: 'Active',
+        CreatedBy: auth.currentUser.email,
+        CreatedTimestamp: (new Date()).toString(),
+        UpdatedBy: '',
+        UpdatedTimestamp: ''
       })
       .then(function(docRef) {
         console.log("Data added sucessfully in the document: " + docRef.id);
@@ -208,32 +208,29 @@ function GetCouponDetails(couponID) {
       document.getElementById("description").value = doc.data().Description;
       document.getElementById("termsAndCondition").value = doc.data().TermsAndCondition;
 
-      var userTypes =[];
+      var userTypes = [];
       userTypes = doc.data().UserType;
       console.log(userTypes.includes("Small"));
-      if(userTypes.includes("Small")  )
-      {
-        document.getElementById("userType1").checked=true;
+      if (userTypes.includes("Small")) {
+        document.getElementById("userType1").checked = true;
       }
-      if(userTypes.includes("Medium") )
-      {
-        document.getElementById("userType2").checked=true;
+      if (userTypes.includes("Medium")) {
+        document.getElementById("userType2").checked = true;
       }
-      if(userTypes.includes("Large") )
-      {
-        document.getElementById("userType3").checked=true;
+      if (userTypes.includes("Large")) {
+        document.getElementById("userType3").checked = true;
       }
 
 
-        var options = {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric'
-        };
+      var options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      };
 
-        var dDate = new Date(doc.data().ValidityTill.seconds * 1000);
-        var dt1 = dDate.toLocaleDateString("en-US", options);
-        console.log(dt1);
+      var dDate = new Date(doc.data().ValidityTill.seconds * 1000);
+      var dt1 = dDate.toLocaleDateString("en-US", options);
+      console.log(dt1);
       document.getElementById("validTill").value = dt1;
 
 
@@ -292,8 +289,8 @@ function renderCoupon(change, index) {
 
   var span2 = document.createElement('span');
   span2.setAttribute("id", "btnDelete" + index);
-  console.log("deleteCoupon("+ "hfCouponDocID " + index +");");
-  span2.setAttribute("onclick", "deleteCoupon("+ "hfCouponDocID" + index +");");
+  console.log("deleteCoupon(" + "hfCouponDocID " + index + ");");
+  span2.setAttribute("onclick", "deleteCoupon(" + "hfCouponDocID" + index + ");");
   span2.setAttribute("class", "material-icons");
   span2.setAttribute("style", "cursor:pointer;padding: 0 20px 0 5px;");
   span2.innerHTML = "delete_outline";
