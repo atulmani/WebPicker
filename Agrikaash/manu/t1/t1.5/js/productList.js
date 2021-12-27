@@ -165,6 +165,7 @@ async function populateProductData(bType, pType) {
     renderProductCategory(unique);
     document.getElementById('loading').style.display = 'none';
 
+//    init_carousel();
     //  });
   });
 }
@@ -173,14 +174,27 @@ function onlyUnique(value, index, self) {
   return self.indexOf(value) === index;
 }
 
+// function init_carousel() {
+//     //$('.owl-carousel').owlCarousel();
+//
+//     $("#owl-carousel").owlCarousel({
+//   navigation: true,
+//   pagination: true,
+//   slideSpeed: 1000,
+//   stopOnHover: true,
+//   autoPlay: true,
+//   items: 7,
+//   itemsDesktopSmall: [1024, 3],
+//   itemsTablet: [600, 1],
+//   itemsMobile: [479, 1]
+// });
+//  };
+
+//  jQuery(document).ready(function() {
+//    init_carousel();
+// });
+
 function renderProductCategory(productCategory) {
-/*
-  <div class="item">
-    <a class="category-list-menu active">
-      <h5>All</h5>
-    </a>
-  </div>
-category-list*/
 var div = document.getElementById('category-list');
 div.innerHTML="";
 for (i = 0; i < productCategory.length; i++) {
@@ -189,9 +203,8 @@ for (i = 0; i < productCategory.length; i++) {
   var anchor = document.createElement("a");
   if(i === 0)
   {
-    anchor.setAttribute("class","category-list-menu active");
-  }
-  else {
+    anchor.setAttribute("class","category-list-menu active//");
+  }else {
     anchor.setAttribute("class","category-list-menu");
   }
   anchor.setAttribute("href", "javascript:callFunction('" + productCategory[i] + "');");
@@ -201,23 +214,10 @@ for (i = 0; i < productCategory.length; i++) {
 
   anchor.appendChild(h11);
   div1.appendChild(anchor);
+
+//div.carousel-inner
   div.appendChild (div1);
 }
-  /*var div = document.getElementById('productCategory');
-  for (i = 0; i < productCategory.length; i++) {
-
-
-    var anchor = document.createElement("a");
-    anchor.setAttribute("href", "javascript:callFunction('" + productCategory[i] + "');");
-    anchor.innerHTML = productCategory[i];
-
-    var span = document.createElement("span");
-    span.innerHTML = "| ";
-
-    div.appendChild(anchor);
-    div.appendChild(span);
-  }
-  */
 
 }
 
