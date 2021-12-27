@@ -15,27 +15,29 @@
   <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
   <!-- Google Icons -->
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 
-  <!-- Google fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
-    rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome cdn file -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Font Awesome cdn file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-  <!-- Owl Stylesheets -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <!-- Owl Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
-  <!-- Bootstrap css -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
   <!-- Your Own Style -->
   <link rel="stylesheet" href="../css/styles.css">
@@ -95,7 +97,7 @@
   <div class="small navbar-mobile-bottom">
     <div class="navbar-mobile-bottom-menu">
 
-      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a"  style="display:flex; flex-direction:column;">
+      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <!-- <i class="fas fa-home"></i> -->
         <i class="fas fa-tachometer"></i>
         <small>Dashboard</small>
@@ -104,7 +106,7 @@
         <i class="fas fa-th-large"></i>
         <small>Products</small>
       </a>
-      <a href="orderStatus.html" class="navbar-mobile-bottom-menu-a active"  style="display:flex; flex-direction:column;">
+      <a href="orderStatus.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
         <i class="fab fa-buffer"></i>
         <small>Orders</small>
       </a>
@@ -113,8 +115,8 @@
         <small id="small4">Registration</small>
       </a>
       <!-- <i class="fas fa-home"></i> -->
-      <a href="couponSetup.html" class="navbar-mobile-bottom-menu-a"  style="display:flex; flex-direction:column;">
-        <i class="fas fa-ticket" ></i>
+      <a href="couponSetup.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <i class="fas fa-ticket"></i>
         <small>Coupon</small>
       </a>
     </div>
@@ -167,20 +169,27 @@
       </div>
 
       <br>
-      <div class="row no-gutters small" >
+      <div class="row no-gutters small">
+        <div class="" id='divbusinessType'>
+          <select class="city-selector" id="dateRange" onchange="dateRangeChange();" style="background: rgba(255,255,255,0.6);border: 1px solid #aaa;" name="">
+            <option value="Today">Today</option>
+            <option value="Yesterday">Yesterday</option>
+            <option value="Last 7 days">Last 7 days</option>
+            <option value="Current month">Current month</option>
+            <option value="Last 6 months">Last 6 months</option>
+            <!-- <option value="Custom">Custom</option> -->
+          </select>
 
-        <div class="pay-now-div" style="display:none;">
-          <table>
-            <tr>
-              <td width="70%">
-                <h6 style="margin: 0 auto;">Please select multiple Pending orders to pay at once.</h6>
-              </td>
-              <td width="30%">
-                <a href="#"><button style="width: 95%;" class="mybutton button6">Pay Here</button></a>
-              </td>
-            </tr>
-          </table>
+          <span class="material-icons-outlined city-selector-icon">
+            filter_list
+          </span>
         </div>
+
+        <div class="" style="text-align: right;">
+          <h5 style="margin: 0 auto" id="orderCount">0 Orders</h5>
+          <small id="dateRangelbl" style="margin: 0 auto; color: #aaa;font-size: 0.7rem; font-weight: bold;"></small>
+        </div>
+
         <div class="">
           <table>
             <tr>
@@ -200,14 +209,14 @@
             </tr>
             <tr>
               <td colspan=4>
-              user list
-              <select id="userList" onchange="GetOrderByUsers();">
+                user list
+                <select id="userList" onchange="GetOrderByUsers();">
                   <option value="All">All</option>
 
-              </select>
+                </select>
 
-              <input type="text" id="userSearch" placeholder="Type user to search">
-            </td>
+                <input type="text" id="userSearch" placeholder="Type user to search">
+              </td>
             </tr>
 
           </table>
@@ -215,7 +224,7 @@
 
         </div>
 
-        <div id="orderList">
+        <div id="orderListDiv">
 
         </div>
 
@@ -225,7 +234,7 @@
 
     <div class="" id="loading">
       <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<lottie-player src="https://assets10.lottiefiles.com/packages/lf20_3NsGRu.json"  background="transparent"  speed="1"  style="width: 100%; height: 100%;"  loop  autoplay></lottie-player>
+      <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_3NsGRu.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
     </div>
   </div>
 
@@ -238,7 +247,8 @@
   <!-- Map Section - End -->
 
   <!-- Footer Section - Start -->
-  <section id="footer"><hr>
+  <section id="footer">
+    <hr>
     <br /><br />
     <div class="container">
       <div class="row no-gutters">
