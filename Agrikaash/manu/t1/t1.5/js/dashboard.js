@@ -26,7 +26,7 @@ function GetProfileData(user) {
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
         //console.log('Document ref id: ' + doc.data().uid);
-        userID = doc.data().uid;
+        //userID = doc.data().uid;
         userRole = doc.data().UserRole;
       //  console.log(userRole);
 
@@ -183,6 +183,7 @@ amount = amount.toLocaleString('en-IN', curFormat);
   var DBrows;
   //    DBrows =
   var flag = false;
+  console.log(userID);
   db.collection('OrderDetails')
     .where("orderBy", "==", userID)
   //  .where("orderDate", "<=", todayDate)
