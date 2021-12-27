@@ -2,7 +2,7 @@
 var userID = "";
 var orderList = [];
 try {
-auth.onAuthStateChanged(firebaseUser => {
+  auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
@@ -16,13 +16,12 @@ auth.onAuthStateChanged(firebaseUser => {
       window.location.href = "index.html";
     }
 
-});
-}
-catch (error) {
+  });
+} catch (error) {
 
-    console.log(error.message);
+  console.log(error.message);
 }
- //window.location.href = "../index.html";
+//window.location.href = "../index.html";
 
 
 function GetProfileData(user) {
@@ -38,7 +37,7 @@ function GetProfileData(user) {
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
           document.getElementById('navUser').src = doc.data().ProfileImageURL;
         }
-      //document.getElementById('headerProfilePic').src = doc.data().ProfileImageURL;
+        //document.getElementById('headerProfilePic').src = doc.data().ProfileImageURL;
         //document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
     })
@@ -65,7 +64,7 @@ function populateOrderDetails() {
     }
     document.getElementById('loading').style.display = 'none';
   });
-//  populateCartData();
+  //  populateCartData();
 
 
 }
