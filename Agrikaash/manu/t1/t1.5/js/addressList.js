@@ -31,7 +31,7 @@ function GetProfileData(user) {
         userID = doc.data().uid;
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
           document.getElementById('navUser').src = doc.data().ProfileImageURL;
-        }//document.getElementById('headerProfilePic').src = doc.data().ImageURL;
+        } //document.getElementById('headerProfilePic').src = doc.data().ImageURL;
         //document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
     })
@@ -77,53 +77,53 @@ function saveAddress() {
 
     }
   });
-    console.log('before insert');
-    branchID = document.getElementById("branchID");
-    branchName = document.getElementById("branchName");
-    branchOwnerName = document.getElementById("branchOwnerName");
-    addressLine1 = document.getElementById("addressLine1");
-    addressLine2 = document.getElementById("addressLine2");
-    city = document.getElementById("City");
-    ZipCode = document.getElementById("ZipCode");
-    PhoneNumber = document.getElementById("PhoneNumber");
-    //addressSelected = document.getElementById("PhoneNumber");
-    console.log("branchName : ", branchName);
-    console.log(branchName.value);
-    if (branchID.value === "") {
-      branchID = userID + Date.now();
-      console.log(branchID);
-      addressList.push({
-        addressSelected: 'YES',
-        branchID: branchID,
-        branchName: branchName.value,
-        branchOwnerName: branchOwnerName.value,
-        addressLine1: addressLine1.value,
-        addressLine2: addressLine2.value,
-        city: city.value,
-        ZipCode: ZipCode.value,
-        PhoneNumber: PhoneNumber.value
-      });
+  console.log('before insert');
+  branchID = document.getElementById("branchID");
+  branchName = document.getElementById("branchName");
+  branchOwnerName = document.getElementById("branchOwnerName");
+  addressLine1 = document.getElementById("addressLine1");
+  addressLine2 = document.getElementById("addressLine2");
+  city = document.getElementById("City");
+  ZipCode = document.getElementById("ZipCode");
+  PhoneNumber = document.getElementById("PhoneNumber");
+  //addressSelected = document.getElementById("PhoneNumber");
+  console.log("branchName : ", branchName);
+  console.log(branchName.value);
+  if (branchID.value === "") {
+    branchID = userID + Date.now();
+    console.log(branchID);
+    addressList.push({
+      addressSelected: 'YES',
+      branchID: branchID,
+      branchName: branchName.value,
+      branchOwnerName: branchOwnerName.value,
+      addressLine1: addressLine1.value,
+      addressLine2: addressLine2.value,
+      city: city.value,
+      ZipCode: ZipCode.value,
+      PhoneNumber: PhoneNumber.value
+    });
 
-    }
-    console.log(addressList);
-    db.collection('AddressList')
-      .doc(userID)
-      .set({
-        AddressList: addressList,
-        CreatedBy: auth.currentUser.email,
-        CreatedTimestamp: (new Date()).toString(),
-        UpdatedBy: '',
-        UpdatedTimestamp: ''
-      })
-      .then(function(docRef) {
-        console.log("Data added sucessfully in the document: ");
-        populateAddressList();
-        //showAddress(false);
-        // console.log(Date.parse(eventstart))
-      })
-      .catch(function(error) {
-        //  console.error("error adding document:", error.message);
-      });
+  }
+  console.log(addressList);
+  db.collection('AddressList')
+    .doc(userID)
+    .set({
+      AddressList: addressList,
+      CreatedBy: auth.currentUser.email,
+      CreatedTimestamp: (new Date()).toString(),
+      UpdatedBy: '',
+      UpdatedTimestamp: ''
+    })
+    .then(function(docRef) {
+      console.log("Data added sucessfully in the document: ");
+      populateAddressList();
+      //showAddress(false);
+      // console.log(Date.parse(eventstart))
+    })
+    .catch(function(error) {
+      //  console.error("error adding document:", error.message);
+    });
 
 
   //});
