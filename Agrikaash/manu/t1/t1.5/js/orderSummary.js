@@ -168,34 +168,35 @@ function populateDeliveryAddress(selectedOrder) {
   }
 
   var amt = Number(selectedOrder.totalAmount);
-  var curFormat = { style: 'currency',
-        currency: 'INR',
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0 };
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  };
   amt = amt.toLocaleString('en-IN', curFormat);
 
   document.getElementById('paymentAmount').innerHTML = amt;
   console.log(selectedOrder.discountedprize);
-if( isNaN(selectedOrder.discountedprize ))
-  console.log('if');
+  if (isNaN(selectedOrder.discountedprize))
+    console.log('if');
   else {
     console.log('else');
   }
   //if (selectedOrder.discountedprize === 'NaN' || selectedOrder.discountedprize === "0" || selectedOrder.discountedprize === "")
-  if (isNaN(selectedOrder.discountedprize) || selectedOrder.discountedprize === '' )
-    {
-      document.getElementById('discount').style.display = "none";
-    }else {
-      var discountAmt = selectedOrder.discountedprize;
-      discountAmt = discountAmt.toLocaleString('en-IN', curFormat);
-      console.log(discountAmt);
-        var discountValue = Number(selectedOrder.totalAmount) - Number(selectedOrder.discountedprize);
-console.log(discountValue);
-      discountValue = discountValue.toLocaleString('en-IN', curFormat);
+  if (isNaN(selectedOrder.discountedprize) || selectedOrder.discountedprize === '') {
+    document.getElementById('discount').style.display = "none";
+  } else {
+    var discountAmt = selectedOrder.discountedprize;
+    discountAmt = discountAmt.toLocaleString('en-IN', curFormat);
+    console.log(discountAmt);
+    var discountValue = Number(selectedOrder.totalAmount) - Number(selectedOrder.discountedprize);
+    console.log(discountValue);
+    discountValue = discountValue.toLocaleString('en-IN', curFormat);
 
-      document.getElementById('discountAmount').innerHTML = discountAmt + "(" + selectedOrder.discountDetails.discountValue + " Off)";
-      document.getElementById('discountValue').innerHTML = discountValue;
-    }
+    document.getElementById('discountAmount').innerHTML = discountAmt + "(" + selectedOrder.discountDetails.discountValue + " Off)";
+    document.getElementById('discountValue').innerHTML = discountValue;
+  }
 
   document.getElementById('BranchName').innerHTML = selectedOrder.deliveryAddress.branchName;
   document.getElementById('BranchOwnerName').innerHTML = selectedOrder.deliveryAddress.branchOwnerName;
@@ -225,13 +226,13 @@ console.log(discountValue);
     console.log('if enabled');
     //document.getElementById('spanMsg').style.visibility = "hidden";
     //btnSave.disabled = false;
-    btnSave.style.visibility="visible";
+    btnSave.style.visibility = "visible";
   } else {
     console.log('if disabled');
 
     //document.getElementById('spanMsg').style.visibility = "visible";
     //btnSave.disabled = true;
-    btnSave.style.visibility="hidden";
+    btnSave.style.visibility = "hidden";
   }
 }
 
@@ -242,10 +243,10 @@ function populateOrderItems(selectedOrder) {
   for (i = 0; i < orderItem.length; i++) {
     renderOrderItem(orderItem[i], selectedOrder.orderStatus, selectedOrder.deliveryDate, i);
   }
-  document.getElementById("itemcount").innerHTML="("+i+")"
+  document.getElementById("itemcount").innerHTML = "(" + i + ")"
 }
 
-function renderOrderItem(orderItem, orderStatusValue, deliveryDate , index) {
+function renderOrderItem(orderItem, orderStatusValue, deliveryDate, index) {
   var div1 = document.createElement("div");
   div1.setAttribute('class', 'col-sm-12');
   div1.setAttribute('style', 'padding: 5px;');
@@ -388,7 +389,7 @@ function renderOrderItem(orderItem, orderStatusValue, deliveryDate , index) {
     var span2 = document.createElement('span');
     span2.setAttribute("id", "btnDelete" + index);
     console.log("deleteCoupon(" + "hfCouponDocID " + index + ");");
-    span2.setAttribute("onclick", "deleteItem(" + "hfProdID" + index + "," + "selectedItem" + index + ","+ 'parentDiv' + index +");");
+    span2.setAttribute("onclick", "deleteItem(" + "hfProdID" + index + "," + "selectedItem" + index + "," + 'parentDiv' + index + ");");
     span2.setAttribute("class", "material-icons");
     span2.setAttribute("style", "cursor:pointer;padding: 0 20px 0 5px;");
     span2.innerHTML = "delete_outline";
@@ -477,7 +478,7 @@ function SaveOrder() {
             console.log("Data added sucessfully in the document: " + orderID);
             //    window.location.href = "orderStatus.html"
             // console.log(Date.parse(eventstart))
-            document.getElementById("Message").style.display="block";
+            document.getElementById("Message").style.display = "block";
           })
           .catch(function(error) {
             console.error("error updatign order:", error);
@@ -569,8 +570,8 @@ function deleteItem(prodID, selectedItemIndex, parentdiv) {
               walletAmount = selectedOrder.totalAmount;
               updateWalletDetails(userID, walletAmount, 'add');
             }
-            totalPrise =  selectedOrder.totalAmount;
-            discountedAmount = selectedOrder.discountedprize ;
+            totalPrise = selectedOrder.totalAmount;
+            discountedAmount = selectedOrder.discountedprize;
             modifiedOrder = selectedOrder;
 
           } else {
@@ -616,7 +617,7 @@ function deleteItem(prodID, selectedItemIndex, parentdiv) {
             console.log(refundAmount);
             console.log(userID);
 
-            if (refundAmount !=undefined && refundAmount > 0) {
+            if (refundAmount != undefined && refundAmount > 0) {
               console.log('refundAmount : ', refundAmount);
               updateWalletDetails(userID, refundAmount, 'add');
             }
@@ -633,7 +634,7 @@ function deleteItem(prodID, selectedItemIndex, parentdiv) {
         totalPrise,
         discountedAmount);
       db.collection('OrderDetails').doc(orderID).update({
-          orderStatus :modifiedOrder.orderStatus,
+          orderStatus: modifiedOrder.orderStatus,
           orderItems: modifiedOrder.orderItems,
           totalItems: modifiedOrder.orderItems.length,
           totalAmount: totalPrise,
@@ -679,41 +680,41 @@ function deleteItem(prodID, selectedItemIndex, parentdiv) {
       // document.getElementById('errorMessage_Signup').style.display = 'block';
     });
 
-    document.getElementById(parentdiv).innerHTML="";
+  document.getElementById(parentdiv).innerHTML = "";
 }
 
 
 
-  function updateWalletDetails(userID, totalamount, addDelete) {
-    var currentAmount = 0;
-    const snapshot = db.collection('UserWallet').doc(userID);
-    snapshot.get().then(async (doc) => {
-        if (doc.exists) {
-          currentAmount = doc.data().WalletAmount;
-        }
-        if (addDelete === 'add')
-          currentAmount = Number(currentAmount) + Number(totalamount);
-        else
-          currentAmount = Number(currentAmount) - Number(totalamount);
-        db.collection("UserWallet").doc(userID).set({
-            WalletAmount: currentAmount,
-            UpdatedTimestamp: new Date(),
-            UpdatedByUser: userID
-          })
-          .then(function(docRef) {
-            console.log("Data added sucessfully in the document: " + userID);
-            //    window.location.href = "orderStatus.html"
-            // console.log(Date.parse(eventstart))
-          })
-          .catch(function(error) {
-            console.error("error updatign order:", error);
-          });
+function updateWalletDetails(userID, totalamount, addDelete) {
+  var currentAmount = 0;
+  const snapshot = db.collection('UserWallet').doc(userID);
+  snapshot.get().then(async (doc) => {
+      if (doc.exists) {
+        currentAmount = doc.data().WalletAmount;
+      }
+      if (addDelete === 'add')
+        currentAmount = Number(currentAmount) + Number(totalamount);
+      else
+        currentAmount = Number(currentAmount) - Number(totalamount);
+      db.collection("UserWallet").doc(userID).set({
+          WalletAmount: currentAmount,
+          UpdatedTimestamp: new Date(),
+          UpdatedByUser: userID
+        })
+        .then(function(docRef) {
+          console.log("Data added sucessfully in the document: " + userID);
+          //    window.location.href = "orderStatus.html"
+          // console.log(Date.parse(eventstart))
+        })
+        .catch(function(error) {
+          console.error("error updatign order:", error);
+        });
 
-      })
-      .catch(function(error) {
-        // An error occurred
-        console.log(error);
-        // document.getElementById('errorMessage_Signup').innerHTML = error.message;
-        // document.getElementById('errorMessage_Signup').style.display = 'block';
-      });
-  }
+    })
+    .catch(function(error) {
+      // An error occurred
+      console.log(error);
+      // document.getElementById('errorMessage_Signup').innerHTML = error.message;
+      // document.getElementById('errorMessage_Signup').style.display = 'block';
+    });
+}
