@@ -20,7 +20,7 @@ auth.onAuthStateChanged(firebaseUser => {
 
     } else {
       console.log('User has been logged out');
-      window.location.href = "index.html";
+      window.location.href = "../login/index.html";
     }
   } catch (error) {
     console.log(error.message);
@@ -66,6 +66,10 @@ function UpdateCartItem()
       // item = doc.data().cartDetails.length;
       //console.log(item[0]);
       cartItemNo.innerHTML = item;
+
+      // <h5 id="totalAmount">₹ </h5>
+      // <small id="itemCount">Items</small>
+
     }
   });
 }
