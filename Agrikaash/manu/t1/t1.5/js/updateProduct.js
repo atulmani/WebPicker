@@ -4,6 +4,9 @@ var cartItems = [];
 var productCategory = [];
 var isAdmin = false;
 var userRole = [];
+var count ;
+var pID ;
+
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
@@ -48,6 +51,19 @@ function GetProfileData(user) {
           document.getElementById('navUser').src = doc.data().ProfileImageURL;
         console.log(isAdmin);
         if (isAdmin === true) {
+
+
+                console.log("in ");
+                db.collection('CollectionStatistics').get().then((changes) => {
+                    changes.forEach(change => {
+
+                    count = change.data().ProductCount;
+        //            count = count + 1;
+                    pID = change.id;
+                    console.log(count);
+                    console.log(pID);
+                  });
+                });
 
           populateProductData('', '');
         } else {
@@ -296,7 +312,18 @@ function GetProductDetails(productID) {
 function deleteProduct(productID, maindiv) {
   db.collection("Products").doc(productID.value)
     .delete();
+    count  = count - 1;
+    console.log(count);
 
+    db.collection("CollectionStatistics").doc(pID).update({
+        ProductCount: count,
+      })
+      .then(function(docRef) {
+        // console.log(Date.parse(eventstart))
+      })
+      .catch(function(error) {
+        console.error("error adding document:", error);
+      });
   document.getElementById("productRow").removeChild(maindiv);
 }
 
