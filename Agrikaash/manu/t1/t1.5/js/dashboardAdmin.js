@@ -28,7 +28,7 @@ function GetProfileData(user) {
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
         //console.log('Document ref id: ' + doc.data().uid);
-        userID = doc.data().uid;
+        //userID = doc.data().uid;
         userRole = doc.data().UserRole;
         console.log(userRole);
         if (userRole != undefined) {
@@ -43,13 +43,16 @@ function GetProfileData(user) {
 
         }
         if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
-          document.getElementById('navUser').src = doc.data().ProfileImageURL;
-        console.log(isAdmin);
+          //document.getElementById('navUser').src = doc.data().ProfileImageURL;
+          console.log(isAdmin);
         if (isAdmin === true) {
 
           PopulateOrderSummary();
           PopulateDeliverySummary();
           PopulateDeliveryCard();
+          GetRegistrationRequest();
+          PopulateProductSummary();
+
 
         } else {
           document.getElementById('confirmationMessage').style.display = "block";
@@ -273,6 +276,9 @@ function PopulateOrderSummary() {
         orderChart(arrAmt, dateArr);
         document.getElementById("loading").style.display = "none";
         document.getElementById("cardOrder").style.display = "block";
+        document.getElementById("cardDelivery").style.display = "block";
+        // document.getElementById("productDiv").style.display = "block";
+        document.getElementById("userRegistration").style.display = "block";
         document.getElementById("trendChart").style.display = "block";
         getLastOrder();
       });
@@ -281,6 +287,9 @@ function PopulateOrderSummary() {
         document.getElementById("message").innerHTML = "Welcome to Agrikaash."
         document.getElementById('btnStartShopping').style.display = "block";
         document.getElementById("cardOrder").style.display = "none";
+        document.getElementById("cardDelivery").style.display = "none";
+        // document.getElementById("productDiv").style.display = "none";
+        document.getElementById("userRegistration").style.display = "none";
         document.getElementById("trendChart").style.display = "none";
 
 
@@ -288,6 +297,234 @@ function PopulateOrderSummary() {
     });
 
 }
+
+function PopulateProductSummary() {
+
+  var flag = false;
+  var cnt = 0;
+  db.collection('Products')
+    .orderBy("CreatedTimestamp", 'desc')
+    .limit(4)
+    .onSnapshot(snapshot => {
+      let changes = snapshot.docChanges();
+
+      changes.forEach(change => {
+        flag = true;
+        renderProducts(change.doc.data(), cnt, change.doc.id);
+        cnt = cnt + 1;
+      });
+
+      db.collection('CollectionStatistics')
+        .onSnapshot(snapshot1 => {
+          let changes1 = snapshot1.docChanges();
+          changes1.forEach(change1 => {
+            var cnt = change1.doc.data().ProductCount;
+            document.getElementById("productCnt").innerHTML = "Product Count : " + cnt;
+          });
+        });
+
+    });
+
+  document.getElementById("productDiv").style.display = "block";
+}
+
+function renderProducts(productRec, index, productID) {
+  var div1 = document.createElement("div");
+  div1.setAttribute("class", "dashboard-card-delivery");
+  div1.setAttribute("style", "border-left: 2px solid #1D741B;");
+
+  var div2 = document.createElement("div");
+  div2.setAttribute("class", "");
+
+  var div3 = document.createElement('div');
+  div3.setAttribute("class", "");
+  div3.setAttribute("style", "display:flex;align-items:center;");
+
+  var div1_3 = document.createElement("div");
+  div1_3.setAttribute("class", "veg-nonVeg-div");
+
+  var imgVegNonVeg = document.createElement("img");
+
+  //var span1 = document.createElement("span");
+  //span1.setAttribute("class", "material-icons-outlined");
+  //span1.setAttribute("style", "font-size: 2rem; color: #1D741B;");
+  if(productRec.VegNonVeg === "Veg")
+  {
+        imgVegNonVeg.setAttribute("src", "../img/veg.png");
+  }
+  else
+  {
+         imgVegNonVeg.setAttribute("src", "../img/non-veg.png");
+  }
+
+//  div1_3.appendChild(imgVegNonVeg);
+  div3.appendChild(div1_3);
+
+  var h1 = document.createElement("h5");
+  h1.innerHTML = productRec.ProductName + " [ " + productRec.Brand + " ] ";
+  div3.appendChild(h1);
+
+  div2.appendChild(div3);
+
+  var div4 = document.createElement("div");
+  div4.setAttribute("class", "");
+  div4.setAttribute("style", "display:flex;align-items:center;justify-content: space-between;");
+
+  var small1 = document.createElement("small");
+  small1.setAttribute("class", "small-text dashboard-sub-heading");
+  small1.innerHTML = productRec.productType;
+
+  div4.appendChild(small1);
+
+  var small2 = document.createElement("small");
+  small2.setAttribute("class", "small-text dashboard-sub-heading");
+  small2.setAttribute("style", "color: #1D741B;font-weight: bold;");
+  small2.innerHTML = productRec.CustomerBusinessType;
+
+  div4.appendChild(small2);
+
+  div2.appendChild(div4);
+
+  div1.appendChild(div2);
+
+  var div6 = document.createElement("div");
+  div6.setAttribute("class", "");
+  div6.setAttribute("style", "text-align: center;");
+  var aa = document.createElement("a");
+  aa.setAttribute("href", "createProduct.html?id="+productID);
+
+  var span2 = document.createElement("span");
+  span2.setAttribute("class", "material-icons-outlined");
+  span2.setAttribute("style", "font-size: 3.6rem;color: #aaa; position:relative;right: 8px;width: 30px;height:30px;");
+  span2.innerHTML = "arrow_right";
+  aa.appendChild(span2);
+  div6.appendChild(aa);
+
+  div1.appendChild(div6);
+
+  document.getElementById("products").appendChild(div1);
+
+}
+
+function GetRegistrationRequest() {
+  var flag = false;
+  var cnt = 0;
+  db.collection('UserRequest')
+    .orderBy("CreatedTimestamp", 'desc')
+    .limit(4)
+    .onSnapshot(snapshot => {
+      let changes = snapshot.docChanges();
+
+      changes.forEach(change => {
+        flag = true;
+        renderRegistrationRequest(change.doc.data(), cnt);
+        cnt = cnt + 1;
+      });
+
+      db.collection('CollectionStatistics')
+        .onSnapshot(snapshot1 => {
+          let changes1 = snapshot1.docChanges();
+          changes1.forEach(change1 => {
+            var count = change1.doc.data().UserRequestCount;
+            document.getElementById("registrationCnt").innerHTML = "Registered request : " + count;
+
+          });
+        });
+    });
+}
+
+
+function renderRegistrationRequest(userRegistraion, index) {
+  console.log(userRegistraion, index);
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+
+  var div1 = document.createElement("div");
+  div1.setAttribute("class", "dashboard-card-delivery");
+  div1.setAttribute("style", "border-left: 2px solid #1D741B;");
+
+  var div2 = document.createElement("div");
+  div2.setAttribute("class", "");
+
+  var div3 = document.createElement('div');
+  div3.setAttribute("class", "");
+  div3.setAttribute("style", "display:flex;align-items:center;");
+
+  var span1 = document.createElement("span");
+  span1.setAttribute("class", "material-icons-outlined");
+  span1.setAttribute("style", "font-size: 2rem; color: #1D741B;");
+  span1.innerHTML = "check_circle";
+
+  div3.appendChild(span1);
+
+  var h1 = document.createElement("h5");
+  h1.innerHTML = userRegistraion.displayName + " [ " + userRegistraion.EmailID + " ] ";
+  div3.appendChild(h1);
+
+  div2.appendChild(div3);
+
+  var div4 = document.createElement("div");
+  div4.setAttribute("class", "");
+  div4.setAttribute("style", "display:flex;align-items:center;justify-content: space-between;");
+
+  var small1 = document.createElement("small");
+  small1.setAttribute("class", "small-text dashboard-sub-heading");
+  small1.innerHTML = userRegistraion.Phone;
+
+  div4.appendChild(small1);
+
+  var small2 = document.createElement("small");
+  small2.setAttribute("class", "small-text dashboard-sub-heading");
+  small2.setAttribute("style", "color: #1D741B;font-weight: bold;");
+  small2.innerHTML = userRegistraion.Address;
+
+  div4.appendChild(small2);
+
+  div2.appendChild(div4);
+
+  var div5 = document.createElement("div");
+  div5.setAttribute("class", "");
+  div5.setAttribute("style", "display:flex;align-items:center;justify-content: space-between;");
+
+  var small3 = document.createElement("small");
+  small3.setAttribute("class", "small-text dashboard-sub-heading");
+  small3.innerHTML = 'Customer Type';
+
+  div5.appendChild(small3);
+
+  var small4 = document.createElement("small");
+  small4.setAttribute("class", "small-text dashboard-sub-heading");
+  small4.setAttribute("style", "color: #1D741B;font-weight: bold;");
+  small4.innerHTML = userRegistraion.CustomerType;
+
+  div5.appendChild(small4);
+
+  div2.appendChild(div5);
+
+  div1.appendChild(div2);
+
+  var div6 = document.createElement("div");
+  div6.setAttribute("class", "");
+  div6.setAttribute("style", "text-align: center;");
+  var aa = document.createElement("a");
+  aa.setAttribute("href", "confirmRegistration.html")
+
+  var span2 = document.createElement("span");
+  span2.setAttribute("class", "material-icons-outlined");
+  span2.setAttribute("style", "font-size: 3.6rem;color: #aaa; position:relative;right: 8px;width: 30px;height:30px;");
+  span2.innerHTML = "arrow_right";
+  aa.appendChild(span2);
+  div6.appendChild(aa);
+
+  div1.appendChild(div6);
+
+  document.getElementById("registrationRequest").appendChild(div1);
+
+}
+
 
 function orderChart(arrAmt, dateArr) {
   // window.onload = function() {
