@@ -21,7 +21,7 @@ auth.onAuthStateChanged(firebaseUser => {
       console.log('User has been logged out');
       // const functions = require("firebase-functions");
       // functions.logger.log("Hello from info. Here's an object:", someObj);
-      window.location.href = "index.html";
+      window.location.href = "../login/index.html";
 
     }
   } catch (error) {
