@@ -1061,7 +1061,7 @@ input[type=number] {
 
 .checkout-div div h5{
   margin: 0 auto;
-  font-weight: 500;
+  font-weight: bold;
   font-size: 1rem;
 }
 
@@ -1069,7 +1069,7 @@ input[type=number] {
   font-size: 0.8rem;
   font-weight: bold;
   margin: 0 auto;
-  color: #88CA5E;
+  color: #666;
 }
 
 /* cart page - end */
@@ -1261,14 +1261,14 @@ input[type=number] {
 }
 
 .dievery-address-card .deliver-to small{
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   color: rgba(0,0,0,0.7);
   font-weight: bold;
   margin-top: -20px;
 }
 
-.dievery-address-card .deliver-to h5{
-  font-size: 0.9rem;
+.dievery-address-card .deliver-to h5 span{
+  font-size: 1.4rem;
   font-weight: bold;
 }
 
@@ -1286,6 +1286,23 @@ input[type=number] {
   right: 10px;
 }
 
+.coupons-div{
+  border: 1px solid #88CA5E;
+  margin: 16px auto;
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+
+.coupon-heading{
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.coupon-detail{
+  font-size: 0.8rem;
+  padding-left: 30px;
+}
+
 .dievery-address-card .delivery-options{
   border: 1px solid #88CA5E;
   margin: 16px auto;
@@ -1295,8 +1312,9 @@ input[type=number] {
   align-items: center;
 }
 
-.dievery-address-card .delivery-options span{
-  color: rgba(0,0,0,0.6);
+.dievery-address-card .delivery-options span,
+.coupons-div span{
+  color: #444;
   padding-left: 10px;
 }
 
@@ -1654,11 +1672,11 @@ input[type=number] {
 }
 
 #cardOrder:hover{
-  height: 320px;
+  height: 350px;
 }
 
 #cardDelivery:hover{
-  height: 512px;
+  height: 542px;
 }
 
 #productDiv:hover{
@@ -1932,6 +1950,14 @@ input[type=number] {
 .checkbox:checked ~ .checkbox-label{
   background: #88CA5E;
   border: 1px solid #88CA5E;
+  color: #fff;
+}
+
+.checkbox:checked ~ .checkbox-label span{
+  transition: 0.3s;
+}
+
+.checkbox:checked ~ .checkbox-label span{
   color: #fff;
 }
 
