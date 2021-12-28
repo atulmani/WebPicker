@@ -252,6 +252,22 @@ function CreateUpdateProductData() {
           console.error("error adding document:", error);
         });
     } else {
+      var count = 0;
+      var pID;
+      //add in CollectionStatistics
+      const snapshot1 = db.collection('CollectionStatistics');
+      snapshot1.get().then(async (doc1) => {
+        if (doc1.exists) {
+          console.log(doc1);
+          count = doc1.data().ProductCount;
+          count = count + 1;
+          pID = doc1.id;
+          console.log(count);
+          console.log(pID);
+        }
+      });
+
+
       db.collection("Products").add({
           // console.log('inside db collection: ' + newEventID);
           ProductId: docCount + 1,
@@ -275,13 +291,24 @@ function CreateUpdateProductData() {
         .then(function(docRef) {
           console.log("Data added sucessfully in the document: " + docRef.id);
           document.getElementById('hfproductID').value = docRef.id;
-          console.log("eventstart")
+          console.log("eventstart");
+          console.log(pID);
+          console.log(count);
+          db.collection("CollectionStatistics").doc(pID).update({
+              ProductCount: count,
+            })
+            .then(function(docRef) {
+              // console.log(Date.parse(eventstart))
+            })
+            .catch(function(error) {
+              console.error("error adding document:", error);
+            });
+
           // console.log(Date.parse(eventstart))
         })
         .catch(function(error) {
           console.error("error adding document:", error);
         });
-
     }
   });
 
