@@ -176,12 +176,7 @@
         person
       </span>
     </a>
-    </div>
-    <div class="new-user">
-      <span class="material-icons-outlined">
-        person
-      </span>
-    </div>
+  </div>
   </div>
 
   <!-- Navbar links -->
@@ -299,10 +294,10 @@
               <div class="">
 
               </div>
-              <div id="cameraIcon" class="camera-icon" >
+              <div id="cameraIcon" class="camera-icon">
                 <i class="fas fa-camera"></i>
               </div>
-              <button id="uploadIcon" class="camera-icon" disabled >
+              <button id="uploadIcon" class="camera-icon" disabled>
                 <i class="fas fa-upload"></i>
               </button>
               <div class="">
@@ -313,14 +308,14 @@
           <div class="col-lg-9 col-md-6 col-sm-12" style="display:flex; align-items:center;justify-content:center;">
             <div class="profile-personal-div" style="text-align:center;">
               <h4 style="padding: 10px 10px 0 10px;">
-                <input  class="profile-personal-input" style="color: #1D741B;" type="text" readonly id='userName'></input>
+                <input class="profile-personal-input" style="color: #1D741B;" type="text" readonly id='userName'></input>
 
                 <span class="material-icons-outlined" style="color: #f58634;" onclick="editName();">
                   edit
                 </span>
               </h4>
               <small class="small-text" style="padding: 0 10px;">
-                <input class="profile-personal-input" readonly style="width: 110px;" maxlength="10" id='userPhone' type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" ></input>
+                <input class="profile-personal-input" readonly style="width: 110px;" maxlength="10" id='userPhone' type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></input>
                 <span class="material-icons-outlined" style="color: #f58634; font-size: 1.2rem;" onclick="editMobile();">
                   edit
                 </span>
@@ -350,11 +345,24 @@
                 <span class="material-icons-outlined city-selector-icon">
                   storefront
                 </span>
+              </div><br>
+              <div id="divWalletDetails_old" style="display:none;">
+                Your Wallet has : <span id="WalletDetails_old"></span>
               </div>
-              <div id="divWalletDetails" style="display:none;">
-                Your Wallet has : <span id="WalletDetails"></span>
+              <div class="" id="divWalletDetails" style="display:none;">
+                <div class="wallet-div">
+                  <div class="">
+                    <span class="material-icons-outlined">
+                      account_balance_wallet
+                    </span>
+                  </div>
+                  <div class="">
+                    <h5>Wallet summary</h5>
+                    <span>Current Balance <strong>Rs.</strong> </span> <span id="WalletDetails" style="font-weight:bold;"></span>
+                  </div>
+                </div>
               </div>
-              <br><br>
+              <br>
 
               <a href="#"><button class="mybutton button5" onclick="SaveDetails();">Update Profile</button></a><br>
               <Label id="confirmationMessage" style="display:none;"> Your profile details have been updated successfully.</Label>
@@ -411,7 +419,7 @@
 
 
 
-      <div id='imageDiv' style="padding: 2%; display:none;" class="col-lg-6" >
+      <div id='imageDiv' style="padding: 2%; display:none;" class="col-lg-6">
         <div style="border:2px solid #889; color:#6ea23f;padding:10px;">
           <center>
             <img id="myimg" src="" style="width:200px;height: 200px;border: 1px solid #aaa;" alt=""><label id="UpProgress"></label>
@@ -435,10 +443,12 @@
 
   </section> -->
   <!-- Map Section - End -->
-  <hr>
+
 
   <!-- Footer Section - Start -->
-  <section id="footer">
+  <br class="small"/><br class="small"/><br class="small"/>
+  <section id="footer" class="large">
+    <hr>
     <br /><br />
     <div class="container">
       <div class="row no-gutters">
