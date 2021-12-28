@@ -141,7 +141,7 @@ function setUsersProfileData(user) {
       UserRole: [],
       CustomerType: '',
       Status: 'Pending',
-      CreatedTimestamp: (new Date()).toString(),
+      CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
       UpdatedTimestamp: ''
     })
     .then(() => {
