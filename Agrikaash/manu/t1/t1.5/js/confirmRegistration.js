@@ -335,7 +335,7 @@ function ApproveRegistration(index) {
       Comments: document.getElementById("comments" + index).value,
       UserRole: userRole,
       CreatedBy: auth.currentUser.email,
-      CreatedTimestamp: (new Date()).toString(),
+      CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
       UpdatedBy: '',
       UpdatedTimestamp: ''
     })
