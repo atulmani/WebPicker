@@ -39,15 +39,12 @@ function GetProfileData(user) {
         //document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
 
-      console.log("in ");
       db.collection('CollectionStatistics').get().then((changes) => {
           changes.forEach(change => {
 
           count = change.data().ProductCount;
           count = count + 1;
           pID = change.id;
-          console.log(count);
-          console.log(pID);
         });
       });
 
