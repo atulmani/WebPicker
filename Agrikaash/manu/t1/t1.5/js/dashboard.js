@@ -159,19 +159,19 @@ amount = amount.toLocaleString('en-IN', curFormat);
   var dayP7Amt = 0;
   var weekAmount = 0;
   var monthAmount = 0;
-
+  console.log(todayDate);
+  todayDate = new Date();
   dateArr = [
-
-    todayDate,
-    yesterdayDate,
-    day3,
-    day4,
-    day5,
+    day7,
     day6,
-    day7
-
+    day5,
+    day4,
+    day3,
+    yesterdayDate,
+    todayDate
   ];
 
+  console.log(dateArr);
 
   var orderdate = new Date();
   var snapshot;
@@ -240,14 +240,6 @@ amount = amount.toLocaleString('en-IN', curFormat);
         }
 
         // console.log('todayCnt', todayCnt);
-        arrAmt = [todayAmount,
-          yesterdayAmount,
-          day3Amt,
-          day4Amt,
-          day5Amt,
-          day6Amt,
-          day7Amt
-        ];
 
         console.log(arrAmt);
         console.log(dateArr);
@@ -263,13 +255,26 @@ amount = amount.toLocaleString('en-IN', curFormat);
         document.getElementById('monthCount').innerHTML = monthCnt;
         document.getElementById('monthAmount').innerHTML = monthAmount.toLocaleString('en-IN', curFormat);
 
-        orderChart(arrAmt, dateArr);
-        document.getElementById("loading").style.display="none";
-        document.getElementById("cardOrder").style.display="block";
-        document.getElementById("cardDelivery").style.display="block";
-        document.getElementById("trendChart").style.display="block";
-        getLastOrder();
       });
+
+      arrAmt = [
+        day7Amt,
+        day6Amt,
+        day5Amt,
+        day4Amt,
+        day3Amt,
+        yesterdayAmount,
+        todayAmount
+      ];
+      console.log(arrAmt);
+      console.log(dateArr);
+      orderChart(arrAmt, dateArr);
+      document.getElementById("loading").style.display="none";
+      document.getElementById("cardOrder").style.display="block";
+      document.getElementById("cardDelivery").style.display="block";
+      document.getElementById("trendChart").style.display="block";
+      getLastOrder();
+
       if(flag === false)
       {
         //no date
@@ -764,6 +769,11 @@ function orderChart(arrAmt, dateArr) {
   // window.onload = function() {
   var min = arrAmt[0];
   var max = arrAmt[0];
+  var dateoptions = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
 
   for (i = 1; i < 7; i++) {
     if (arrAmt[i] > 0) {
@@ -779,7 +789,7 @@ function orderChart(arrAmt, dateArr) {
   for (i = 0; i < 7; i++) {
     if (arrAmt[i] === min && minFlag === false) {
       item = {
-        x: dateArr[i],
+        x: dateArr[i].toLocaleDateString("en-US", dateoptions),//dateArr[i],
         y: arrAmt[i],
         indexLabel: "lowest",
         markerColor: "DarkSlateGrey",
@@ -788,7 +798,7 @@ function orderChart(arrAmt, dateArr) {
       minFlag = true;
     } else if (arrAmt[i] === max) {
       item = {
-        x: dateArr[i],
+        x:dateArr[i].toLocaleDateString("en-US", dateoptions),// dateArr[i],
         y: arrAmt[i],
         indexLabel: "highest",
         markerColor: "red",
@@ -796,7 +806,7 @@ function orderChart(arrAmt, dateArr) {
       };
     } else {
       item = {
-        x: dateArr[i],
+        x: dateArr[i].toLocaleDateString("en-US", dateoptions),//dateArr[i],
         y: arrAmt[i]
       };
     }
@@ -804,17 +814,18 @@ function orderChart(arrAmt, dateArr) {
     datapoints.push(item);
   }
 
-
+  console.log(datapoints);
   //  var chart1 = new CanvasJS.Chart("chartContainer", {
   chart1 = new CanvasJS.Chart("chartContainer", {
 
     title: {
       text: "Orders - Weekly"
     },
+
     axisX: {
-      valueFormatString: "DD",
-      interval: 1
-      //intervalType: "day"
+    //  valueFormatString: "MMM",
+      interval: 2,
+      intervalType: "days"
     },
     axisY: {
       includeZero: false
@@ -822,8 +833,12 @@ function orderChart(arrAmt, dateArr) {
     },
     data: [{
       type: "column",
+    //  showInLegend: true,
+      //name: "order $",
+      //yValueFormatString: "#,##0",
+      //xValueType: "date",
+      dataPoints : datapoints
 
-      dataPoints: datapoints
     }]
   });
 
