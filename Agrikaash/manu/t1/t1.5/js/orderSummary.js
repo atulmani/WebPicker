@@ -471,7 +471,7 @@ function SaveOrder() {
             deliveryDate: firebase.firestore.Timestamp.fromDate(new Date(Date.parse(deliveryDate))), //deliveryDate,
             deliveryTime: deliveryTime,
             UpdatedBy: auth.currentUser.email,
-            UpdatedTimestamp: (new Date()).toString()
+            UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
 
           })
           .then(function(docRef) {
@@ -520,7 +520,7 @@ function UpdateOrderTrackingDetails(orderChanges, orderID) {
     db.collection("OrderTracking").doc(trackingID).set({
         OrderID: orderID,
         ChangeTrack: trackdataForUpdate,
-        UpdatedTimestamp: new Date(),
+        UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
         UpdatedByUser: userID,
         userID: userID
       })
@@ -698,7 +698,7 @@ function updateWalletDetails(userID, totalamount, addDelete) {
         currentAmount = Number(currentAmount) - Number(totalamount);
       db.collection("UserWallet").doc(userID).set({
           WalletAmount: currentAmount,
-          UpdatedTimestamp: new Date(),
+          UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
           UpdatedByUser: userID
         })
         .then(function(docRef) {
