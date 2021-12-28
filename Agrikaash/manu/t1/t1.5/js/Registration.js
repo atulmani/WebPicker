@@ -172,7 +172,6 @@ function SaveDetails() {
   db.collection('UserRequest')
     .doc(userID)
     .update({
-
       DateOfBirth: '',
       displayName: document.getElementById('userName').value,
       Phone: document.getElementById('userPhone').value,
