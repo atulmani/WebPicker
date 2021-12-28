@@ -368,7 +368,7 @@ function SaveOrderinDB() {
         orderByUserName: userName,
         //OrderDetails: orderDetails,
         CreatedBy: auth.currentUser.email,
-        CreatedTimestamp: (new Date()).toString(),
+        CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
         UpdatedBy: '',
         UpdatedTimestamp: ''
       })
@@ -383,7 +383,7 @@ function SaveOrderinDB() {
           .set({
             OrderID: orderID,
             ChangeTrack: orderChanges,
-            UpdatedTimestamp: new Date(),
+            UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
             UpdatedByUser: userID,
             UserID: userID
           })
