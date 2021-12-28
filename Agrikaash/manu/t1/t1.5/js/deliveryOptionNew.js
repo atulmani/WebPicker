@@ -553,14 +553,14 @@ function createOrderItems() {
             document.getElementById('totalAmount').innerHTML = prise;
             document.getElementById('hftotalAmount').value = prise;
 
-            document.getElementById('CartitemCount').innerHTML = len;
+            document.getElementById('cartItemNo').innerHTML = len;
           });
       } else {
         console.log('in else');
         document.getElementById('itemCount').innerHTML = '0';
         document.getElementById('totalAmount').innerHTML = '0';
         document.getElementById('hftotalAmount').value = '0';
-        document.getElementById('CartitemCount').innerHTML = '0';
+        document.getElementById('cartItemNo').innerHTML = '0';
         document.getElementById('btnProceedToPay').disabled = true;
       }
     }
