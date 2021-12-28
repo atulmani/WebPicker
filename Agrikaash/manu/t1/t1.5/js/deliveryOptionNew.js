@@ -10,7 +10,9 @@ auth.onAuthStateChanged(firebaseUser => {
       userID = firebaseUser.uid;
       console.log(userID);
       GetProfileData(firebaseUser);
+      console.log("after firebaseUser");
       UpdateDeliveryDate();
+      console.log("after UpdateDeliveryDate");
       GetDeliveryAddress();
       createOrderItems();
       GetCouponDetails();
@@ -41,7 +43,7 @@ function GetProfileData(user) {
         userName = doc.data().displayName;
         userType = doc.data().CustomerType;
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
-          document.getElementById('navUser').src = doc.data().ProfileImageURL;
+          // document.getElementById('navUser').src = doc.data().ProfileImageURL;
         }
         //  document.getElementById('headerProfilePic').src = doc.data().ImageURL;
         document.getElementById('displayName').innerHTML = doc.data().displayName;
@@ -57,9 +59,12 @@ function GetProfileData(user) {
 function GetCouponDetails() {
   //get coupon details
   //  var couponList = [];
+  var cnt = 0;
+  var disText ;
+  console.log("in GetCouponDetails ");
   var userList = [];
   var couponDetails = document.getElementById("couponDetails");
-  var today = Date.now();
+  var today = new Date();
   DBrows = db.collection("Coupons")
     .where("Status", "==", 'Active')
     .where('ValidityTill', ">=", today)
@@ -68,19 +73,23 @@ function GetCouponDetails() {
   DBrows.then((changes) => {
 
     changes.forEach(change => {
-      userList = change.data().UserList;
-      console.log(userList);
-      userTypeApplicable = change.data().UserType;
 
+      userList = change.data().UserList;
+      userTypeApplicable = change.data().UserType;
       if (userTypeApplicable.includes(userType)) {
         flag = true;
         var opt = document.createElement('option');
         opt.value = change.id;
         if (change.data().DiscountType === 'Percentage')
-          opt.innerHTML = change.data().DiscountValue + " %";
+          disText = change.data().DiscountValue + " %";
         else
-          opt.innerHTML = "₹ " + change.data().DiscountValue;
+          disText = "₹ " + change.data().DiscountValue;
+        opt.innerHTML = disText;
         couponDetails.appendChild(opt);
+        cnt = Number(cnt) + 1;
+        rendercoupon(cnt,   change.data().Description,  change.id, change.data().DiscountType, change.data().DiscountValue );
+
+
       } else {
 
 
@@ -89,10 +98,14 @@ function GetCouponDetails() {
           var opt = document.createElement('option');
           opt.value = change.id;
           if (change.data().DiscountType === 'Percentage')
-            opt.innerHTML = change.data().DiscountValue + " %";
+            disText = change.data().DiscountValue + " %";
           else
-            opt.innerHTML = "₹ " + change.data().DiscountValue;
-          couponDetails.appendChild(opt);
+            disText = "₹ " + change.data().DiscountValue;
+          opt.innerHTML = disText;
+            couponDetails.appendChild(opt);
+          cnt = Number(cnt) + 1;
+          rendercoupon(cnt,   change.data().Description,  change.id, change.data().DiscountType, change.data().DiscountValue);
+
         }
         var index = userList.findIndex(e => e.userID === userID);
         if (index >= 0) {
@@ -100,10 +113,14 @@ function GetCouponDetails() {
           var opt = document.createElement('option');
           opt.value = change.id;
           if (change.data().DiscountType === 'Percentage')
-            opt.innerHTML = change.data().DiscountValue + " %";
+            disText = change.data().DiscountValue + " %";
           else
-            opt.innerHTML = "₹ " + change.data().DiscountValue;
+            disText = "₹ " + change.data().DiscountValue;
+          opt.innerHTML = disText;
           couponDetails.appendChild(opt);
+          cnt = Number(cnt) + 1;
+          rendercoupon(cnt, change.data().Description,  change.id, change.data().DiscountType, change.data().DiscountValue );
+
         }
       }
     });
@@ -114,6 +131,109 @@ function GetCouponDetails() {
     }
   });
   //console.log(couponList);
+}
+function rendercoupon(index,  comments , couponID, discountType, discountValue)
+{
+  var disText = "";
+  if (discountType === 'Percentage')
+    disText = discountValue + " %";
+  else
+    disText = "₹ " + discountValue;
+
+  console.log(disText);
+  var divcoupon = document.getElementById("couponListDiv");
+  /*
+  <div class="">
+    <input type="radio" class="checkbox" id="coupon_1" name="coupon">
+    <label class="checkbox-label" id="coupon_1-label" for="coupon_1" style="height: 55px;">
+      <i class="fas fa-plus"></i>
+      <i class="fas fa-check"></i>
+      <span class="coupon-heading">Get 5% discount</span><br>
+      <small class="coupon-detail">You will get instant cashback</small>
+    </label>
+  </div>
+
+  */
+  var div1 = document.createElement("div");
+  div1.setAttribute("class","");
+
+  var input1 = document.createElement("input");
+  input1.setAttribute("type","radio");
+  input1.setAttribute("class","checkbox");
+  input1.setAttribute("onchange","applyCouponNew(" + index +");");
+
+  input1.setAttribute("id","coupon"+ index );
+  input1.setAttribute("name","coupon");
+  div1.appendChild(input1);
+
+  var hf1 = document.createElement("input");
+  hf1.setAttribute("type","hidden");
+  hf1.setAttribute("id","hfDiscountType" + index);
+  hf1.setAttribute("value", discountType);
+  div1.appendChild(hf1);
+
+  var hf2 = document.createElement("input");
+  hf2.setAttribute("type","hidden");
+  hf2.setAttribute("id","hfDiscountValue" + index);
+  hf2.setAttribute("value", discountValue);
+  div1.appendChild(hf2);
+
+  var lable1 = document.createElement("label");
+  lable1.setAttribute("class","checkbox-label");
+  lable1.setAttribute("id","coupon_label" + index);
+  lable1.setAttribute("for", "coupon" + index);
+  lable1.setAttribute("style","height: 55px;");
+
+
+  var i1 = document.createElement("i");
+  i1.setAttribute("class","fas fa-plus");
+  lable1.appendChild(i1);
+
+  var i2 = document.createElement("i");
+  i2.setAttribute("class","fas fa-check");
+  lable1.appendChild(i2);
+
+  var span1  = document.createElement("span");
+  span1.setAttribute("class","coupon-heading");
+  span1.innerHTML = "Get " + disText + " discount";
+  lable1.appendChild(span1);
+
+  var br1 = document.createElement("br");
+
+  lable1.appendChild(br1);
+  var small1 =document.createElement("small");
+  small1.setAttribute("class","coupon-detail");
+  small1.innerHTML = comments;
+  lable1.appendChild(small1);
+  div1.appendChild(lable1);
+
+  divcoupon.appendChild(div1);
+}
+
+function applyCouponNew(index) {
+  console.log(index);
+  var disValue = document.getElementById("hfDiscountValue" + index);
+  var disType = document.getElementById("hfDiscountType" + index);
+  console.log(disValue.value);
+  console.log(disType.value);
+  var originalAmount = document.getElementById('hftotalAmount').value;
+  var discountedAmount = 0;
+
+  if (disType.value === 'Percentage')
+  {
+    var discountPercentage = disValue.value.trim();
+    console.log(discountPercentage, originalAmount);
+    discountedAmount = Number(originalAmount) - (Number(originalAmount) * Number(discountPercentage.trim())) / 100;
+  }
+  else
+  {
+    var discountAbsolute = disValue.value.trim();
+    discountedAmount = (Number(originalAmount) - Number(discountAbsolute));;
+  }
+
+  document.getElementById("hfdiscountedAmount").value = discountedAmount;
+  document.getElementById("totalAmount").innerHTML = "<span style='text-decoration:line-through;'>" + originalAmount + "</span>" + "    " + discountedAmount;
+
 }
 
 function applyCoupon() {
@@ -144,10 +264,10 @@ function applyCoupon() {
 
 function UpdateDeliveryDate() {
   const tempDate = new Date();
-  console.log(tempDate.toLocaleDateString());
+  //console.log(tempDate.toLocaleDateString());
 
   var delDate = document.getElementById('DeliveryDate');
-  console.log(delDate);
+  //console.log(delDate);
   tempDate.setDate(tempDate.getDate() + 1);
   delDate.options[0].text = tempDate.toLocaleDateString();
   delDate.options[0].value = tempDate.toLocaleDateString();
@@ -184,7 +304,7 @@ function GetDeliveryAddress() {
   snapshot.get().then(async (doc) => {
     if (doc.exists) {
       // console.log('Document id:' + doc.id);
-      console.log(doc.data());
+      //console.log(doc.data());
       addressList = doc.data().AddressList;
 
       selIndex = addressList.findIndex(e => e.addressSelected === 'YES');
@@ -192,11 +312,11 @@ function GetDeliveryAddress() {
 
         document.getElementById("branchID").value = addressList[selIndex].branchID;
         document.getElementById("branch").innerHTML = addressList[selIndex].branchName;
-        console.log(addressList[selIndex].addressLine1);
-        console.log(addressList[selIndex].addressLine2);
-        console.log(addressList[selIndex].city);
-        console.log(addressList[selIndex].ZipCode);
-        console.log(addressList[selIndex].PhoneNumber);
+        // console.log(addressList[selIndex].addressLine1);
+        // console.log(addressList[selIndex].addressLine2);
+        // console.log(addressList[selIndex].city);
+        // console.log(addressList[selIndex].ZipCode);
+        // console.log(addressList[selIndex].PhoneNumber);
 
         document.getElementById("address").innerHTML = addressList[selIndex].addressLine1 + ", " +
           addressList[selIndex].addressLine2 + ", " +
@@ -490,7 +610,7 @@ function createOrderItems() {
   var arr = [];
   var prise = 0;
 
-  console.log(userID);
+  //console.log(userID);
   const snapshot = db.collection('CartDetails').doc(userID);
   snapshot.get().then(async (doc) => {
     if (doc.exists) {
@@ -499,18 +619,18 @@ function createOrderItems() {
       cartItems = doc.data().cartDetails;
 
 
-      console.log(cartItems);
+      //console.log(cartItems);
       for (var i = 0; i < cartItems.length; i++) {
         arr.push(cartItems[i].ProductID);
       }
       var parr = [];
-      console.log(arr);
+      //console.log(arr);
       if (arr != null && arr.length > 0) {
         db.collection('Products').where("__name__", 'in', arr)
           .get()
           .then((psnapshot) => {
             psnapshot.forEach((doc) => {
-              console.log(doc.data().ProductImageURL);
+        //      console.log(doc.data().ProductImageURL);
               parr.push({
                 ProductID: doc.id,
                 ProductDetails: doc.data().ProductDetails,
@@ -534,7 +654,7 @@ function createOrderItems() {
                 MRP = unitPrise.ProductMRP;
                 sellPrize = unitPrise.ProductFinalPrise;
               }
-              console.log(selectedProduct);
+          //    console.log(selectedProduct);
               OrderItems.push({
                 ProductID: cartItems[i].ProductID,
                 ProductName: cartItems[i].ItemName,
@@ -547,7 +667,7 @@ function createOrderItems() {
               });
             }
 
-            console.log(OrderItems);
+        //    console.log(OrderItems);
             var len = cartItems.length;
             document.getElementById('itemCount').innerHTML = len;
             document.getElementById('totalAmount').innerHTML = prise;
