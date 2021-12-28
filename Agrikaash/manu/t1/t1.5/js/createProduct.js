@@ -1,4 +1,6 @@
 //const productID = document.getElementById('productID');
+var count = 0;
+var pID;
 
 auth.onAuthStateChanged(firebaseUser => {
   try {
@@ -30,10 +32,25 @@ function GetProfileData(user) {
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
           document.getElementById('navUser').src = doc.data().ProfileImageURL;
         }
+
+
         //document.getElementById('headerProfilePic').src = doc.data().ImageURL;
         // document.getElementById('profile-name').value = doc.data().displayName;
         //document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
+
+      console.log("in ");
+      db.collection('CollectionStatistics').get().then((changes) => {
+          changes.forEach(change => {
+
+          count = change.data().ProductCount;
+          count = count + 1;
+          pID = change.id;
+          console.log(count);
+          console.log(pID);
+        });
+      });
+
     })
     .catch(function(error) {
       // An error occurred
@@ -41,6 +58,9 @@ function GetProfileData(user) {
       // document.getElementById('errorMessage_Signup').innerHTML = error.message;
       // document.getElementById('errorMessage_Signup').style.display = 'block';
     });
+
+
+
 };
 
 //************* Populate Event Data - Starts ******************
@@ -252,20 +272,6 @@ function CreateUpdateProductData() {
           console.error("error adding document:", error);
         });
     } else {
-      var count = 0;
-      var pID;
-      //add in CollectionStatistics
-      const snapshot1 = db.collection('CollectionStatistics');
-      snapshot1.get().then(async (doc1) => {
-        if (doc1.exists) {
-          console.log(doc1);
-          count = doc1.data().ProductCount;
-          count = count + 1;
-          pID = doc1.id;
-          console.log(count);
-          console.log(pID);
-        }
-      });
 
 
       db.collection("Products").add({
@@ -292,6 +298,8 @@ function CreateUpdateProductData() {
           console.log("Data added sucessfully in the document: " + docRef.id);
           document.getElementById('hfproductID').value = docRef.id;
           console.log("eventstart");
+          //add in CollectionStatistics
+
           console.log(pID);
           console.log(count);
           db.collection("CollectionStatistics").doc(pID).update({
