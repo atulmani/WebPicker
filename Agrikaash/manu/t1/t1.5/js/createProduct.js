@@ -15,11 +15,11 @@ auth.onAuthStateChanged(firebaseUser => {
 
     } else {
       console.log('User has been logged out');
-      window.location.href = "index.html";
+      window.location.href = "../login/index.html";
     }
   } catch (error) {
     console.log(error.message);
-    window.location.href = "index.html";
+    window.location.href = "../login/index.html";
   }
 });
 
@@ -39,15 +39,12 @@ function GetProfileData(user) {
         //document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
 
-      console.log("in ");
       db.collection('CollectionStatistics').get().then((changes) => {
           changes.forEach(change => {
 
           count = change.data().ProductCount;
           count = count + 1;
           pID = change.id;
-          console.log(count);
-          console.log(pID);
         });
       });
 

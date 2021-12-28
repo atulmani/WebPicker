@@ -20,7 +20,7 @@ auth.onAuthStateChanged(firebaseUser => {
 
     } else {
       console.log('User has been logged out');
-      window.location.href = "index.html";
+      window.location.href = "../login/index.html";
     }
   } catch (error) {
     console.log(error.message);
@@ -37,9 +37,9 @@ function GetProfileData(user) {
         //console.log('Document ref id: ' + doc.data().uid);
         userID = doc.data().uid;
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
-          document.getElementById('navUser').src = doc.data().ProfileImageURL;
+          //document.getElementById('navUser').src = doc.data().ProfileImageURL;
         }
-
+        UpdateCartItem();
         //document.getElementById('headerProfilePic').src = doc.data().ImageURL;
         //document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
@@ -51,6 +51,28 @@ function GetProfileData(user) {
 };
 
 
+function UpdateCartItem()
+{
+  var cartItemNo = document.getElementById('cartItemCount');
+  //console.log(cartItemNo);
+  const snapshotCart = db.collection('CartDetails').doc(userID);
+  snapshotCart.get().then((doc) => {
+    if (doc.exists) {
+      //console.log("doc exists");
+      var itemlist = doc.data().cartDetails;
+      //console.log(itemlist);
+      item = itemlist.length;
+      cartItems = itemlist;
+      // item = doc.data().cartDetails.length;
+      //console.log(item[0]);
+      cartItemNo.innerHTML = item;
+
+      // <h5 id="totalAmount">₹ </h5>
+      // <small id="itemCount">Items</small>
+
+    }
+  });
+}
 
 function populateAddress(addressID) {
   var addressList = [];
