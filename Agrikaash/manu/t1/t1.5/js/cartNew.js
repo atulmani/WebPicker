@@ -615,7 +615,7 @@ function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualit
       uid: userID,
       cartDetails: cartItems, //firebase.firestore.FeildValue.arrayUnion(item),
       CreatedTimestamp: '',
-      UpdatedTimestamp: (new Date()).toString()
+      UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
     })
     .then(function(docref) {
       // updated
