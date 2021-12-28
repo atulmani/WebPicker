@@ -239,7 +239,7 @@ function CreateUpdateProductData() {
           ProductImageURL: ProductImageURL,
           Status: 'Active',
           CreatedBy: auth.currentUser.email,
-          CreatedTimestamp: (new Date()).toString(),
+          CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
           UpdatedBy: '',
           UpdatedTimestamp: ''
         })
@@ -268,7 +268,7 @@ function CreateUpdateProductData() {
           ProductImageURL: ProductImageURL,
           Status: 'Active',
           CreatedBy: auth.currentUser.email,
-          CreatedTimestamp: (new Date()).toString(),
+          CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
           UpdatedBy: '',
           UpdatedTimestamp: ''
         })
@@ -391,7 +391,7 @@ document.getElementById('upload').onclick = function() {
             // EventId: newEventID,
             ProductImageURL: ImgUrl,
             UpdatedBy: auth.currentUser.email,
-            UpdatedTimestamp: (new Date()).toString()
+            UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
           })
           .then(function(docRef) {
             document.getElementById("upload").disabled = true;
