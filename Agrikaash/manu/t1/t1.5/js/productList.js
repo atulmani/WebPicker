@@ -298,10 +298,10 @@ function renderProductNew(doc, index, selectedItem) {
   img1.setAttribute("alt", "");
   td1.appendChild(img1);
 
-  var div1_2 = document.createElement("div");
-  div1_2.setAttribute("class", "off-div");
-  div1_2.innerHTML = "<small>" + "20% OFF" + "</small>";
-  td1.appendChild(div1_2);
+  // var div1_2 = document.createElement("div");
+  // div1_2.setAttribute("class", "off-div");
+  // div1_2.innerHTML = "<small>" + "20% OFF" + "</small>";
+  // td1.appendChild(div1_2);
 
   var div1_3 = document.createElement("div");
   div1_3.setAttribute("class", "veg-nonVeg-div");
