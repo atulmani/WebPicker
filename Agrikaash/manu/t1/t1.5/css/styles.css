@@ -1633,6 +1633,11 @@ input[type=number] {
   height: 512px;
 }
 
+
+#userRegistration:hover{
+  height: 320px;
+}
+
 .dashboard-card.order-status:hover{
   height: 350px;
 }
