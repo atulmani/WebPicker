@@ -118,7 +118,9 @@ function populateOrderDetails() {
     console.log(toDate);
     DBrows = db.collection('OrderDetails')
       .where('orderBy', '==', userID)
-      .where("orderDate", ">=", toDate).get();
+      .where("orderDate", ">=", toDate)
+      .orderBy("orderDate", 'desc')
+      .get();
 
       fromDate = 'Today';
       toDate = 'Today';
@@ -134,7 +136,9 @@ function populateOrderDetails() {
     DBrows = db.collection('OrderDetails')
       .where('orderBy', '==', userID)
       .where("orderDate", ">=", todayDate)
-      .where("orderDate", "<=", toDate).get();
+      .where("orderDate", "<=", toDate)
+      .orderBy("orderDate", 'desc')
+      .get();
 
       fromDate = todayDate;
       toDate=todayDate;
@@ -146,7 +150,9 @@ function populateOrderDetails() {
     refDate.setDate(refDate.getDate() - 7);
     DBrows = db.collection('OrderDetails')
       .where('orderBy', '==', userID)
-      .where("orderDate", ">=", refDate).get();
+      .where("orderDate", ">=", refDate)
+      .orderBy("orderDate", 'desc')
+      .get();
       fromDate = refDate;
       toDate='Today';
 
@@ -157,7 +163,9 @@ function populateOrderDetails() {
     refDate = new Date(refDate.getFullYear(), refDate.getMonth(), 1);
     DBrows = db.collection('OrderDetails')
       .where('orderBy', '==', userID)
-      .where("orderDate", ">=", refDate).get();
+      .where("orderDate", ">=", refDate)
+      .orderBy("orderDate", 'desc')
+      .get();
       fromDate = refDate;
       toDate ='Today';
 
@@ -170,7 +178,9 @@ function populateOrderDetails() {
     refDate = new Date(refDate);
       DBrows = db.collection('OrderDetails')
       .where('orderBy', '==', userID)
-      .where("orderDate", ">=", refDate).get();
+      .where("orderDate", ">=", refDate)
+      .orderBy("orderDate", 'desc')
+      .get();
       fromDate = refDate;
       toDate = 'Today';
 
