@@ -142,7 +142,7 @@ function saveAddress() {
       .set({
         AddressList: addressList,
         CreatedBy: auth.currentUser.email,
-        CreatedTimestamp: (new Date()).toString(),
+        CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
         UpdatedBy: '',
         UpdatedTimestamp: ''
       })
