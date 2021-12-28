@@ -44,7 +44,7 @@ btnSignin.addEventListener('click', e => {
           // Success
           console.log("Logged in User: ", auth.currentUser.uid);
           GetUserRole(auth.currentUser);
-          checkUserRole();
+          //checkUserRole();
         })
         .catch(function(error) {
           // Handle Errors here.
@@ -173,6 +173,7 @@ function GetUserRole(user) {
         userRole = doc.data().UserRole;
       }
       console.log('in doc');
+      checkUserRole();
       document.getElementById('btnContinue').style.opacity = '1';
       document.getElementById('btnContinue').style.pointerEvents = 'all';
     })
