@@ -126,7 +126,7 @@ function SaveCoupon() {
         DiscountType: discountType,
         Status: 'Active',
         UpdatedBy: auth.currentUser.email,
-        UpdatedTimestamp: (new Date()).toString()
+        UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
       })
       .then((docRef) => {
         console.log("Data added sucessfully in the document: ");
@@ -150,7 +150,7 @@ function SaveCoupon() {
         DiscountType: discountType,
         Status: 'Active',
         CreatedBy: auth.currentUser.email,
-        CreatedTimestamp: (new Date()).toString(),
+        CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
         UpdatedBy: '',
         UpdatedTimestamp: ''
       })
