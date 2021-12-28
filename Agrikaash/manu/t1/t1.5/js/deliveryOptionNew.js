@@ -85,7 +85,7 @@ function GetCouponDetails() {
         else
           disText = "₹ " + change.data().DiscountValue;
         opt.innerHTML = disText;
-        couponDetails.appendChild(opt);
+        //couponDetails.appendChild(opt);
         cnt = Number(cnt) + 1;
         rendercoupon(cnt,   change.data().Description,  change.id, change.data().DiscountType, change.data().DiscountValue );
 
@@ -102,7 +102,7 @@ function GetCouponDetails() {
           else
             disText = "₹ " + change.data().DiscountValue;
           opt.innerHTML = disText;
-            couponDetails.appendChild(opt);
+          //  couponDetails.appendChild(opt);
           cnt = Number(cnt) + 1;
           rendercoupon(cnt,   change.data().Description,  change.id, change.data().DiscountType, change.data().DiscountValue);
 
@@ -117,7 +117,7 @@ function GetCouponDetails() {
           else
             disText = "₹ " + change.data().DiscountValue;
           opt.innerHTML = disText;
-          couponDetails.appendChild(opt);
+          //couponDetails.appendChild(opt);
           cnt = Number(cnt) + 1;
           rendercoupon(cnt, change.data().Description,  change.id, change.data().DiscountType, change.data().DiscountValue );
 
@@ -142,18 +142,7 @@ function rendercoupon(index,  comments , couponID, discountType, discountValue)
 
   console.log(disText);
   var divcoupon = document.getElementById("couponListDiv");
-  /*
-  <div class="">
-    <input type="radio" class="checkbox" id="coupon_1" name="coupon">
-    <label class="checkbox-label" id="coupon_1-label" for="coupon_1" style="height: 55px;">
-      <i class="fas fa-plus"></i>
-      <i class="fas fa-check"></i>
-      <span class="coupon-heading">Get 5% discount</span><br>
-      <small class="coupon-detail">You will get instant cashback</small>
-    </label>
-  </div>
 
-  */
   var div1 = document.createElement("div");
   div1.setAttribute("class","");
 
@@ -177,6 +166,12 @@ function rendercoupon(index,  comments , couponID, discountType, discountValue)
   hf2.setAttribute("id","hfDiscountValue" + index);
   hf2.setAttribute("value", discountValue);
   div1.appendChild(hf2);
+
+  var hf3 = document.createElement("input");
+  hf3.setAttribute("type","hidden");
+  hf3.setAttribute("id","hfCouponID" + index);
+  hf3.setAttribute("value", couponID);
+  div1.appendChild(hf3);
 
   var lable1 = document.createElement("label");
   lable1.setAttribute("class","checkbox-label");
@@ -436,9 +431,38 @@ function SaveOrderinDB() {
   var prize = document.getElementById("hftotalAmount").value;
   var discountedprize = document.getElementById("hfdiscountedAmount").value;
   var itemCount = document.getElementById("itemCount").innerHTML;
+
+  console.log(document.getElementById("couponListDiv").childElementCount);
+  var cnt = document.getElementById("couponListDiv").childElementCount;
+  var selCouponID = "Select coupon";
+  var selDiscountVal = "none";
+  for(i =1 ; i <= cnt; i++)
+  {
+    var select=document.getElementById("coupon"+i);
+    var disType = document.getElementById("hfDiscountType" + i);
+    var disValue = document.getElementById("hfDiscountValue" + i);
+    var couponID= document.getElementById("hfCouponID" + i);
+
+    if(select.checked === true)
+    {
+        selCouponID = couponID.value;
+        if(disType.value === 'Percentage')
+        {
+          selDiscountVal = disValue.value + " %";
+        }
+        else {
+          selDiscountVal = "₹ " + disValue.value  ;
+        }
+    }
+
+
+  }
+
+console.log(selCouponID);
+console.log(selDiscountVal);
   var discount = {
-    coupondID: couponDetails.options[couponDetails.selectedIndex].value,
-    discountValue: couponDetails.options[couponDetails.selectedIndex].text
+    coupondID: selCouponID, //couponDetails.options[couponDetails.selectedIndex].value,
+    discountValue: selDiscountVal //couponDetails.options[couponDetails.selectedIndex].text
 
   };
 
