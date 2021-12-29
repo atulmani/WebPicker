@@ -453,8 +453,12 @@ function renderOrder(orderid, order, index) {
   div16.setAttribute("class", "");
   div16.setAttribute("style", "display:flex;align-items:center;justify-content: space-between;padding-top: 10px;");
 
-  var anchor1 = document.createElement("span");
-  anchor1.setAttribute("onclick", "cancelOrder(" + 'hfOrderID' + index + ")");
+  // var anchor1 = document.createElement("span");
+  // anchor1.setAttribute("onclick", "cancelOrder(" + 'hfOrderID' + index + ")");
+
+
+    var anchor1 = document.createElement("a");
+    anchor1.setAttribute("href", "orderSummary.html?id=" + orderid + "&action=cancel");
 
   var button1 = document.createElement("button");
   button1.setAttribute("class", "mybutton buttonTransparent");
@@ -471,7 +475,7 @@ function renderOrder(orderid, order, index) {
     div16.appendChild(anchor1);
 
   var anchor2 = document.createElement("a");
-  anchor2.setAttribute("href", "orderSummary.html?id=" + orderid);
+  anchor2.setAttribute("href", "orderSummary.html?id=" + orderid+ "&action=view");
   //anchor.setAttribute("href", "orderSummary.html?id=" + orderid);
 
   var button2 = document.createElement("button");
