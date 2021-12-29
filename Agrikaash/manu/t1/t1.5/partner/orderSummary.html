@@ -282,15 +282,70 @@
               <h5><span id="msg">Your order is placed successfully</span></h5><br><br>
             </div>
           </center>
-          <div id="divCart">
+          <div id="divCart" style="width:100%">
+
             <div class="empty-cart">
 
 
               <div class="" style="padding: 10px;">
-                <div class="order-summary">
-                  <div class="order-summary-div">
+
+                <div class="order-summary" id="divCancel" style="display:none;">
+                  <h5 class="small-text" style="margin: 0 auto;">Select reason for Cancellation</h5>
+                  <div class="">
+                    <div class="" style="display:flex;justify-content: space-between;">
+                      <div class="">
+                        <select class="city-selector" id="cancelreason" style="background: #fff;width: 140px;border: 1px solid #aaa;" name="">
+                          <option>Duplicate Order Placed</option>
+                          <option>Order not required now</option>
+                          <option>Quality issues</option>
+                          <option>Prize is too high</option>
+                          <option>Others</option>
+
+                        </select>
+
+                        <span class="material-icons-outlined city-selector-icon" style="z-index:10;">
+                          help_outline
+                        </span>
+                      </div>
+                      <div class="">
+                        <div class="" style="display:flex;align-items:center;justify-content: space-between;padding-top: 10px; ">
+                          <button class="mybutton button5" onClick="cancelOrder();" id="btnCancelOrder" style="padding-bottom: 7px;margin: auto 10px; visibility: visible;">
+                            Cancel Order
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="">
+                      <span id="CancelMessage" style="color: #aaa;font-size:0.9rem; display:none;"> Order has been cancelled</span>
+                    </div>
+                  </div>
+                </div><br>
+
+                <div id="detailsDiv" onclick="myFunction();" class="dashboard-card order-summary-expand-div active">
+                  <div class="" style="display:flex;align-items: center;">
+                    <div class="order-summary-arrow-down">
+                      <span id="arrow" class="material-icons-outlined">
+                        keyboard_arrow_up
+                      </span>
+                    </div>
+
+                    <div class="">
+                      <span class="material-icons-outlined order-icon">
+                        category
+                      </span>
+                    </div>
+                    <div class="details">
+                      <h4>Order Details</h4>
+                      <!-- <p class="small-text dashboard-sub-heading" id="lastOrder">Last Order : ₹ 0</p> -->
+                    </div>
+                  </div>
+
+                  <div class="dashboard-card-expand">
+                    <hr>
+
                     <div class="dashboard-card-order">
                       <div class="">
+
                         <h5 class="small-text" style="margin: 0 auto;">Delivery date</h5>
                         <!-- <a href='' id="todayCount">0</a><br> -->
                         <div class="" style="display:flex;justify-content: space-between;">
@@ -401,18 +456,16 @@
                       <p><i class="fas fa-phone-alt"></i> <span id="phoneNumber"> </span></p>
                     </div>
 
-
                   </div>
-
-
                 </div>
               </div>
 
-              <h3>Items <span id="itemcount"></span></h3>
+              <div id="itemListDiv" style="">
+              <h4>Items <span id="itemcount"></span></h4>
               <div id="orderItems">
 
               </div>
-
+            </div>
               <!-- <input type="reeadonly" id="blankCartMessage" value="No items are added in cart" style="display:none;"> -->
             </div>
           </div>
@@ -448,11 +501,11 @@
     <!-- Map Section - End -->
 
     <!-- Footer Section - Start -->
-    <span >.</span>
-    <br class="small"/>
-    <br class="small"/>
-    <br class="small"/>
-    
+    <span>.</span>
+    <br class="small" />
+    <br class="small" />
+    <br class="small" />
+
     <section id="footer" class="large">
       <hr>
       <br />
