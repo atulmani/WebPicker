@@ -273,14 +273,14 @@ function renderOrderItem(orderItem, orderStatusValue, deliveryDate, index) {
   img1.setAttribute("alt", "");
   td1.appendChild(img1);
 
-  var div3 = document.createElement('div');
-  div3.setAttribute('class', "off-div");
-
-  var small1 = document.createElement('small');
-  small1.innerHTML = '20% OFF';
-
-  div3.appendChild(small1);
-  td1.appendChild(div3);
+  // var div3 = document.createElement('div');
+  // div3.setAttribute('class', "off-div");
+  //
+  // var small1 = document.createElement('small');
+  // small1.innerHTML = '';
+  //
+  // div3.appendChild(small1);
+  // td1.appendChild(div3);
 
   var div4 = document.createElement('div');
   div4.setAttribute('class', "veg-nonVeg-div");
@@ -327,7 +327,7 @@ function renderOrderItem(orderItem, orderStatusValue, deliveryDate, index) {
   input1.setAttribute('type', 'text');
   input1.setAttribute('name', '');
   input1.setAttribute("id", "selectedItem" + index);
-  input1.readonly = true;
+  input1.setAttribute("readonly", true);
   input1.value = orderItem.SelectedSubItem;
 
 
@@ -383,7 +383,7 @@ function renderOrderItem(orderItem, orderStatusValue, deliveryDate, index) {
   console.log(tempDate);
 
   //order can be cancelled only if order status is Pending and delivery Date is > todays date
-  if (orderStatusValue === 'Pending' && dDate > tempDate) {
+  if (orderStatusValue === 'Pending' && dDate >= tempDate) {
     console.log('Delete applicable');
     var tr3 = document.createElement('tr');
     //console.log(orderItem.Quantity);
@@ -391,7 +391,7 @@ function renderOrderItem(orderItem, orderStatusValue, deliveryDate, index) {
 
     var span2 = document.createElement('span');
     span2.setAttribute("id", "btnDelete" + index);
-    console.log("deleteCoupon(" + "hfCouponDocID " + index + ");");
+
     span2.setAttribute("onclick", "deleteItem(" + "hfProdID" + index + "," + "selectedItem" + index + "," + 'parentDiv' + index + ");");
     span2.setAttribute("class", "material-icons");
     span2.setAttribute("style", "cursor:pointer;padding: 0 20px 0 5px;");
@@ -682,8 +682,8 @@ function deleteItem(prodID, selectedItemIndex, parentdiv) {
       // document.getElementById('errorMessage_Signup').innerHTML = error.message;
       // document.getElementById('errorMessage_Signup').style.display = 'block';
     });
-
-  document.getElementById(parentdiv).innerHTML = "";
+    //console.log(parentdiv);
+  parentdiv.innerHTML = "";
 }
 
 
