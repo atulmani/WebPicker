@@ -6,6 +6,7 @@ let eventDocUrl = new URL(location.href);
 // console.log ('URL: ' + eventDocUrl);
 let searchParams = new URLSearchParams(eventDocUrl.search);
 const orderID = searchParams.get('id');
+const action = searchParams.get('action');
 
 auth.onAuthStateChanged(firebaseUser => {
   try {
@@ -14,6 +15,20 @@ auth.onAuthStateChanged(firebaseUser => {
       userID = firebaseUser.uid;
       console.log(orderID);
       console.log(userID);
+      console.log(action);
+      //logic for view of div if cancel or view
+      if(action === 'cancel') //if cancelled
+      {
+        document.getElementById("divCancel").style.display="block";
+        myFunction();
+      }
+      else { //view
+
+        document.getElementById("divCancel").style.display="none";
+        document.getElementById("itemListDiv").style.display="block";
+
+      }
+
       GetProfileData(firebaseUser);
       populateDeliveryDate();
       getOrderDetails();
@@ -33,6 +48,74 @@ auth.onAuthStateChanged(firebaseUser => {
   }
   // document.getElementById('loading-img').style.display = 'none';
 });
+
+function myFunction() {
+  var element = document.getElementById("detailsDiv");
+  element.classList.toggle("active");
+
+  var arrow = document.getElementById("arrow");
+  arrow.classList.toggle("active");
+}
+
+
+function cancelOrder() {
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+    var errorMsg = "";
+  // console.log(document.getElementById('PaymentStatus').innerHTML);
+    if (document.getElementById('PaymentStatus').innerHTML === 'Completed')
+    {
+      var walletAmount ;
+      if (document.getElementById('discount').visible === true)
+      {
+        walletAmount = document.getElementById('discountValue').innerHTML;
+      }
+      else {
+        walletAmount = document.getElementById('paymentAmount').innerHTML;
+      }
+      errorMsg = "Amount ("+walletAmount+") has been added to your wallet.";
+      walletAmount = walletAmount.replace(/[₹,]+/g,"");
+      console.log(walletAmount);
+      updateWalletDetails(userID, walletAmount, 'add');
+    }
+    var remarks=document.getElementById('cancelreason');
+    console.log(remarks.options[remarks.selectedIndex].text);
+    db.collection('OrderDetails')
+      .doc(orderID)
+      .update({
+        orderStatus: 'Cancelled',
+        CancelRemarks :remarks.options[remarks.selectedIndex].text,
+        paymentStatus: 'Pending' //firebase.firestore.FeildValue.arrayUnion(cartItems)
+      })
+      .then(() => {
+        console.log("order updated");
+        var orderChanges = [];
+        errorMsg = "Order has been cancelled." + errorMsg;
+        document.getElementById('CancelMessage').innerHTML = errorMsg;
+        document.getElementById('CancelMessage').style.display='block';
+        document.getElementById('btnCancelOrder').disabled= true;
+        orderChanges.push({
+          OrderStage: 6,
+          OrderStatus: 'Order is Cancelled',
+          PaymentStatus: '',
+          DeliverySlot: '',
+          DeliveryDate: '',
+          ChangedTimeStamp: new Date()
+        });
+        console.log(orderChanges);
+        console.log(orderID);
+        UpdateOrderTrackingDetails(orderChanges, orderID);
+        getOrderDetails();
+      })
+      .catch((error) => {
+        console.log("in error");
+
+      });
+
+}
 
 function GetProfileData(user) {
   // const ref = db.collection("Users").doc(user.uid);
@@ -243,6 +326,7 @@ function populateOrderItems(selectedOrder) {
   var orderItem = selectedOrder.orderItems;
   console.log(orderItem);
   var i;
+  document.getElementById('orderItems').innerHTML="";
   for (i = 0; i < orderItem.length; i++) {
     renderOrderItem(orderItem[i], selectedOrder.orderStatus, selectedOrder.deliveryDate, i);
   }
