@@ -340,6 +340,8 @@ function SaveOrder() {
       if (cartDetails.length === 0) {
         message = "cart is empty, add to cart";
         iError = 1;
+        document.getElementById("message").innerHTML="Cart is empty";
+        document.getElementById("message").style.display="block";
         console.log("cart is empty, add to cart");
       } else {
         //Get Address Start
@@ -356,10 +358,15 @@ function SaveOrder() {
               SaveOrderinDB();
             } else {
               message = message + "Select Address";
+              document.getElementById("message").innerHTML="Please select address";
+              document.getElementById("message").style.display="block";
               iError = 2;
             }
           } else {
             message = message + "Add Address";
+
+            document.getElementById("message").innerHTML="Add delivery address";
+            document.getElementById("message").style.display="block";
             iError = 3;
             console.log("Add Address");
           }
