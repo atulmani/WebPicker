@@ -170,19 +170,6 @@ function PopulateOrderSummary() {
   var weekAmount = 0;
   var monthAmount = 0;
 
-  dateArr = [
-
-    todayDate,
-    yesterdayDate,
-    day3,
-    day4,
-    day5,
-    day6,
-    day7
-
-  ];
-
-
   var orderdate = new Date();
   var snapshot;
   currentMonth = todayDate;
@@ -212,7 +199,8 @@ function PopulateOrderSummary() {
         //console.log(orderdate.getYear(), todayDate.getYear());
         //orderdate = oorderdate.toLocaleDateString("en-US", options);
         //orderdate = new Date(Date.parse(orderDetails.orderDate));
-        //console.log(orderdate);
+        console.log(orderdate);
+        console.log(todayDate);
         if (orderdate.getDate() === todayDate.getDate() && orderdate.getMonth() === todayDate.getMonth() && orderdate.getYear() === todayDate.getYear()) {
           todayCnt = todayCnt + 1;
           todayAmount = Number(todayAmount) + Number(orderDetails.totalAmount);
@@ -248,6 +236,19 @@ function PopulateOrderSummary() {
           monthAmount = Number(monthAmount) + Number(orderDetails.totalAmount);
 
         }
+        dateArr = [
+
+          todayDate,
+          yesterdayDate,
+          day3,
+          day4,
+          day5,
+          day6,
+          day7
+
+        ];
+
+        console.log(dateArr);
 
         // console.log('todayCnt', todayCnt);
         arrAmt = [todayAmount,
@@ -591,6 +592,11 @@ function orderChart(arrAmt, dateArr) {
 
       dataPoints: datapoints
     }]
+
+
+
+
+
   });
 
   chart1.render();
@@ -934,23 +940,6 @@ function PopulateDeliverySummary() {
 
 
 
-  dateArrDelivery = [
-    dayP7,
-    dayP6,
-    dayP5,
-    dayP4,
-    dayP3,
-    dayP2,
-    dayP1,
-    todayDate,
-    dayM1,
-    dayM2,
-    dayM3,
-    dayM4,
-    dayM5,
-    dayM6,
-    dayM7
-  ];
   //console.log(dateArrDelivery);
   var deliverydate = new Date();
 
@@ -1038,7 +1027,28 @@ function PopulateDeliverySummary() {
         dayM7Amt
 
       ];
+
+
+        dateArrDelivery = [
+          dayP7,
+          dayP6,
+          dayP5,
+          dayP4,
+          dayP3,
+          dayP2,
+          dayP1,
+          todayDate,
+          dayM1,
+          dayM2,
+          dayM3,
+          dayM4,
+          dayM5,
+          dayM6,
+          dayM7
+        ];
+
       console.log(arrAmtDelivery);
+      console.log(dateArrDelivery);
       deliveryChart(arrAmtDelivery, dateArrDelivery);
     });
 
@@ -1100,9 +1110,9 @@ function deliveryChart(arrAmt, dateArr) {
       text: "Delivery - Trend"
     },
     axisX: {
-      valueFormatString: "MMM",
-      interval: 2,
-      intervalType: "month"
+      valueFormatString: "DD",
+      interval: 1//,
+      //intervalType: "month"
     },
     axisY: {
       includeZero: false
