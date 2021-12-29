@@ -290,6 +290,7 @@ function UpdateDeliveryDate() {
   tempDate.setDate(tempDate.getDate() + 1);
   delDate.options[6].text = tempDate.toLocaleDateString();
   delDate.options[6].value = tempDate.toLocaleDateString();
+  delDate.options[6].selected=true;
 
 }
 
