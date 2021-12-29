@@ -436,38 +436,6 @@ function renderOrder(orderid, order, index) {
   var br2 = document.createElement("br");
   div6.appendChild(br2);
 
-  ///to be updated only in Admin module - Start
-  /*
-          var div13 = document.createElement("div");
-          div13.setAttribute("class","dashboard-card-order");
-
-          var div14 = document.createElement("div");
-          div14.setAttribute("class","");
-
-
-            var h5= document.setAttribute("h5");
-            h5.setAttribute("class","small-text");
-            h5.setAttribute("style","margin: 0 auto;");
-            h5.innerHTML="Order By";
-            div14.appendChild(h5);
-
-            var small4 = document.createElement("small");
-            small4.innerHTML= order.orderBy;
-            div14.appendChild(small4);
-
-            div13.appendChild(div14);
-
-            var div15 = document.createElement("div");
-            div15.setAttribute("class","");
-
-            div13.appendChild(div15);
-            div6.appendChild(div13);
-              var br3 = document.createElement("br");
-              div6.appendChild(br2);
-              */
-  ///to be updated only in Admin module - End
-
-
   var dDate = new Date(order.deliveryDate.seconds * 1000);
 
   const tempDate = new Date();
@@ -525,8 +493,6 @@ function renderOrder(orderid, order, index) {
 
 
 function cancelOrder(hfOrderID) {
-
-
   var options = {
     year: 'numeric',
     month: 'short',
@@ -536,13 +502,13 @@ function cancelOrder(hfOrderID) {
   console.log(hfOrderID);
   console.log("order Cancelled");
   //selectedOrder.orderStatus = "Cancelled";
-  if (selectedOrder.paymentStatus === 'Completed') {
-    walletAmount = selectedOrder.totalAmount;
-    updateWalletDetails(userID, walletAmount, 'add');
-  }
-  totalPrise = selectedOrder.totalAmount;
-  discountedAmount = selectedOrder.discountedprize;
-  modifiedOrder = selectedOrder;
+  // if (selectedOrder.paymentStatus === 'Completed') {
+  //   walletAmount = selectedOrder.totalAmount;
+  //   updateWalletDetails(userID, walletAmount, 'add');
+  // }
+  // totalPrise = selectedOrder.totalAmount;
+  // discountedAmount = selectedOrder.discountedprize;
+  // modifiedOrder = selectedOrder;
 
 
   var DBrows = db.collection('OrderDetails')
@@ -550,14 +516,131 @@ function cancelOrder(hfOrderID) {
     .get();
 
   DBrows.then((changes) => {
+    orderList = changes.data();
+    console.log(orderList.totalAmount);
+    if (orderList.paymentStatus === 'Completed') {
+      walletAmount = orderList.totalAmount;
+      updateWalletDetails(userID, walletAmount, 'add');
+    }
 
-    changes.forEach(change => {
-      orderList = change.data();
-    });
+    db.collection('OrderDetails')
+      .doc(hfOrderID.value)
+      .update({
+        orderStatus: 'Cancelled',
+        paymentStatus: 'Pending' //firebase.firestore.FeildValue.arrayUnion(cartItems)
+      })
+      .then(() => {
+        console.log("order updated");
+        var orderChanges = [];
+
+        orderChanges.push({
+          OrderStage: 6,
+          OrderStatus: 'Order is Cancelled',
+          PaymentStatus: '',
+          DeliverySlot: '',
+          DeliveryDate: '',
+          ChangedTimeStamp: new Date()
+        });
+        console.log(orderChanges);
+        console.log(hfOrderID.value);
+        UpdateOrderTrackingDetails(orderChanges, hfOrderID.value);
+        populateOrderDetails();
+      })
+      .catch((error) => {
+        console.log("in error");
+
+      });
+
+
+
+
+
   })
 
 
 }
+
+function UpdateOrderTrackingDetails(orderChanges, orderID) {
+
+  var trackData = [];
+  var trackdataForUpdate = [];
+  var trackingID = '';
+  const snapshot = db.collection('OrderTracking').doc(orderID).get(); //;//
+
+  snapshot.then(async (doc) => {
+    if (doc.exists) {
+
+      console.log('existing track');
+      trackingID = doc.id;
+      trackData = doc.data().ChangeTrack;
+    }
+
+    console.log(trackData);
+    console.log(trackingID);
+    //console.log(trackData[i].OrderStage);
+    console.log(orderChanges[0].OrderStage);
+    for (i = 0; i < trackData.length; i++) {
+      if (trackData[i].OrderStage < orderChanges[0].OrderStage)
+        trackdataForUpdate.push(trackData[i]);
+
+    }
+    trackdataForUpdate.push(orderChanges[0]);
+    console.log(userID);
+    console.log(auth);
+    db.collection("OrderTracking").doc(trackingID).set({
+        OrderID: orderID,
+        ChangeTrack: trackdataForUpdate,
+        UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+        UpdatedByUser: userID,
+        userID: userID
+      })
+      .then(function(docRef) {
+        console.log("Data added sucessfully in the document: " + userID);
+        //    window.location.href = "orderStatus.html"
+        // console.log(Date.parse(eventstart))
+      })
+      .catch(function(error) {
+        console.error("error updatign order:", error);
+      });
+
+  });
+}
+
+
+function updateWalletDetails(userID, totalamount, addDelete) {
+  var currentAmount = 0;
+  const snapshot = db.collection('UserWallet').doc(userID);
+  snapshot.get().then(async (doc) => {
+      if (doc.exists) {
+        currentAmount = doc.data().WalletAmount;
+      }
+      if (addDelete === 'add')
+        currentAmount = Number(currentAmount) + Number(totalamount);
+      else
+        currentAmount = Number(currentAmount) - Number(totalamount);
+      db.collection("UserWallet").doc(userID).set({
+          WalletAmount: currentAmount,
+          UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+          UpdatedByUser: userID
+        })
+        .then(function(docRef) {
+          console.log("Data added sucessfully in the document: " + userID);
+          //    window.location.href = "orderStatus.html"
+          // console.log(Date.parse(eventstart))
+        })
+        .catch(function(error) {
+          console.error("error updatign order:", error);
+        });
+
+    })
+    .catch(function(error) {
+      // An error occurred
+      console.log(error);
+      // document.getElementById('errorMessage_Signup').innerHTML = error.message;
+      // document.getElementById('errorMessage_Signup').style.display = 'block';
+    });
+}
+
 //function anchorlLnkClick() {
 
 // $(window).load(function(){
