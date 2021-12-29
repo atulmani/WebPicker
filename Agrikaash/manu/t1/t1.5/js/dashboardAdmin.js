@@ -1129,3 +1129,31 @@ function deliveryChart(arrAmt, dateArr) {
   // }
 
 }
+
+
+function changeGraphType1(type) {
+  console.log(type);
+  var chartType = document.getElementById('chartContainer1');
+
+  if (type === 2)
+    chart2.options.data[0].type = 'column';
+  if (type === 1)
+    chart2.options.data[0].type = 'line';
+
+
+  console.log(chart2.options.data[0].type);
+  chart2.render();
+}
+function changeGraphType(type) {
+  console.log(type);
+  var chartType = document.getElementById('chartContainer');
+
+  if (type === 2)
+    chart1.options.data[0].type = 'column';
+  if (type === 1)
+    chart1.options.data[0].type = 'line';
+
+
+  console.log(chart1.options.data[0].type);
+  chart1.render();
+}
