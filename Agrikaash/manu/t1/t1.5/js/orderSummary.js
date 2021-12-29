@@ -233,6 +233,8 @@ function populateDeliveryAddress(selectedOrder) {
     //document.getElementById('spanMsg').style.visibility = "visible";
     //btnSave.disabled = true;
     btnSave.style.visibility = "hidden";
+    document.getElementById("DeliveryDate").style.disabled=true;
+
   }
 }
 
