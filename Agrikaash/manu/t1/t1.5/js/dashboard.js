@@ -89,7 +89,7 @@ function PopulateOrderSummary() {
         maximumFractionDigits: 0 };
 amount = amount.toLocaleString('en-IN', curFormat);
 //console.log(amount);
-  var todayDate = new Date();
+var todayDate = new Date();
 
   var yesterdayDate = new Date();
   yesterdayDate.setDate(todayDate.getDate() - 1);
@@ -160,25 +160,15 @@ amount = amount.toLocaleString('en-IN', curFormat);
   var weekAmount = 0;
   var monthAmount = 0;
   console.log(todayDate);
-  todayDate = new Date();
-  dateArr = [
-    day7,
-    day6,
-    day5,
-    day4,
-    day3,
-    yesterdayDate,
-    todayDate
-  ];
-
-  console.log(dateArr);
+  //todayDate = new Date();
+  //todayDate = todayDate.setDate(yesterdayDate.getDate() + 1);
 
   var orderdate = new Date();
   var snapshot;
   currentMonth = todayDate;
   var currentMonth =currentMonth.setMonth(currentMonth.getMonth() -  2);
   currentMonth = new Date(currentMonth);
-  todayDate = new Date();
+  //todayDate = new Date();
   //console.log(currentMonth, userID, todayDate, currentMonth);
   var DBrows;
   //    DBrows =
@@ -241,38 +231,54 @@ amount = amount.toLocaleString('en-IN', curFormat);
 
         // console.log('todayCnt', todayCnt);
 
-        console.log(arrAmt);
-        console.log(dateArr);
-        document.getElementById('todayCount').innerHTML = todayCnt;
-        document.getElementById('todayAmount').innerHTML = todayAmount.toLocaleString('en-IN', curFormat);
-
-        document.getElementById('yesterdayCount').innerHTML = yesterdayCnt;
-        document.getElementById('yesterdayAmount').innerHTML = yesterdayAmount.toLocaleString('en-IN', curFormat);
-
-        document.getElementById('WeekCount').innerHTML = weekCnt;
-        document.getElementById('WeekAmount').innerHTML = weekAmount.toLocaleString('en-IN', curFormat);
-
-        document.getElementById('monthCount').innerHTML = monthCnt;
-        document.getElementById('monthAmount').innerHTML = monthAmount.toLocaleString('en-IN', curFormat);
 
       });
 
-      arrAmt = [
-        day7Amt,
-        day6Amt,
-        day5Amt,
-        day4Amt,
-        day3Amt,
-        yesterdayAmount,
-        todayAmount
+      dateArr = [
+
+        todayDate,
+        yesterdayDate,
+        day3,
+        day4,
+        day5,
+        day6,
+        day7
+
       ];
+
+      arrAmt = [todayAmount,
+        yesterdayAmount,
+        day3Amt,
+        day4Amt,
+        day5Amt,
+        day6Amt,
+        day7Amt
+      ];
+
       console.log(arrAmt);
       console.log(dateArr);
       orderChart(arrAmt, dateArr);
+
+      console.log(arrAmt);
+      console.log(dateArr);
+      document.getElementById('todayCount').innerHTML = todayCnt;
+      document.getElementById('todayAmount').innerHTML = todayAmount.toLocaleString('en-IN', curFormat);
+
+      document.getElementById('yesterdayCount').innerHTML = yesterdayCnt;
+      document.getElementById('yesterdayAmount').innerHTML = yesterdayAmount.toLocaleString('en-IN', curFormat);
+
+      document.getElementById('WeekCount').innerHTML = weekCnt;
+      document.getElementById('WeekAmount').innerHTML = weekAmount.toLocaleString('en-IN', curFormat);
+
+      document.getElementById('monthCount').innerHTML = monthCnt;
+      document.getElementById('monthAmount').innerHTML = monthAmount.toLocaleString('en-IN', curFormat);
+
       document.getElementById("loading").style.display="none";
       document.getElementById("cardOrder").style.display="block";
       document.getElementById("cardDelivery").style.display="block";
       document.getElementById("trendChart").style.display="block";
+      document.getElementById("trendChart1").style.display="block";
+
       getLastOrder();
 
       if(flag === false)
@@ -283,6 +289,7 @@ amount = amount.toLocaleString('en-IN', curFormat);
         document.getElementById("cardOrder").style.display="none";
         document.getElementById("cardDelivery").style.display="none";
         document.getElementById("trendChart").style.display="none";
+        document.getElementById("trendChart1").style.display="none";
 
 
       }
@@ -639,23 +646,6 @@ function PopulateDeliverySummary() {
 
 
 
-  dateArrDelivery = [
-    dayP7,
-    dayP6,
-    dayP5,
-    dayP4,
-    dayP3,
-    dayP2,
-    dayP1,
-    todayDate,
-    dayM1,
-    dayM2,
-    dayM3,
-    dayM4,
-    dayM5,
-    dayM6,
-    dayM7
-  ];
   //console.log(dateArrDelivery);
   var deliverydate = new Date();
 
@@ -743,6 +733,45 @@ function PopulateDeliverySummary() {
         dayM7Amt
 
       ];
+
+
+            arrAmtDelivery = [dayP7Amt,
+              dayP6Amt,
+              dayP5Amt,
+              dayP4Amt,
+              dayP3Amt,
+              dayP2Amt,
+              dayP1Amt,
+              todayAmount,
+              dayM1Amt,
+              dayM2Amt,
+              dayM3Amt,
+              dayM4Amt,
+              dayM5Amt,
+              dayM6Amt,
+              dayM7Amt
+
+            ];
+
+
+              dateArrDelivery = [
+                dayP7,
+                dayP6,
+                dayP5,
+                dayP4,
+                dayP3,
+                dayP2,
+                dayP1,
+                todayDate,
+                dayM1,
+                dayM2,
+                dayM3,
+                dayM4,
+                dayM5,
+                dayM6,
+                dayM7
+              ];
+
       console.log(arrAmtDelivery);
       deliveryChart(arrAmtDelivery, dateArrDelivery);
     });
@@ -775,7 +804,8 @@ function orderChart(arrAmt, dateArr) {
     day: 'numeric'
   };
 
-  for (i = 1; i < 7; i++) {
+  //for (i = 1; i < 7; i++) {
+  for (i = 1; i < 6; i++) {
     if (arrAmt[i] > 0) {
       if (min > arrAmt[i])
         min = arrAmt[i];
@@ -786,7 +816,8 @@ function orderChart(arrAmt, dateArr) {
   var datapoints = [];
   var item;
   var minFlag = false;
-  for (i = 0; i < 7; i++) {
+  //for (i = 0; i < 7; i++) {
+  for (i = 0; i < 6; i++) {
     if (arrAmt[i] === min && minFlag === false) {
       item = {
         x: dateArr[i].toLocaleDateString("en-US", dateoptions),//dateArr[i],
@@ -823,9 +854,9 @@ function orderChart(arrAmt, dateArr) {
     },
 
     axisX: {
-    //  valueFormatString: "MMM",
-      interval: 2,
-      intervalType: "days"
+      valueFormatString: "DD",
+      interval: 1
+    //  intervalType: "days"
     },
     axisY: {
       includeZero: false
@@ -901,9 +932,9 @@ function deliveryChart(arrAmt, dateArr) {
       text: "Delivery - Trend"
     },
     axisX: {
-      valueFormatString: "MMM",
-      interval: 2,
-      intervalType: "month"
+      valueFormatString: "DD",
+      interval: 1
+      //intervalType: "month"
     },
     axisY: {
       includeZero: false
