@@ -40,6 +40,9 @@
   <!-- Bootstrap css -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
+  <!-- lottiefiles cdn link -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
   <!-- Your Own Style -->
   <link rel="stylesheet" href="../css/styles.css">
 
@@ -406,9 +409,18 @@
     </div>
 
     <div class="" id="loading">
-      <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
       <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_3NsGRu.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
     </div>
+
+    <div class="" id="noOrders" style="width: 100%; text-align: center;display:none;">
+      <center>
+        <lottie-player src="https://assets3.lottiefiles.com/datafiles/hYQRPx1PLaUw8znMhjLq2LdMbklnAwVSqzrkB4wG/bag_error.json" background="transparent" speed="1" style="width: 80%;" loop autoplay></lottie-player>
+        <br>
+        <h5>NO Orders For Selected Duration!</h5>
+        <a href="productList.html"><button class="mybutton button5">Start Shopping</button></a>
+      </center>
+    </div>
+
   </div>
 
 
@@ -420,7 +432,7 @@
   <!-- Map Section - End -->
 
   <!-- Footer Section - Start -->
-  <br class="small"/><br class="small"/><br class="small"/>
+  <br class="small" /><br class="small" /><br class="small" />
   <section id="footer" class="large">
     <hr>
     <br /><br />

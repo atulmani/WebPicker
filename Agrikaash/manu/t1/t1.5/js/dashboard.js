@@ -277,7 +277,7 @@ function PopulateOrderSummary() {
         document.getElementById("cardDelivery").style.display = "block";
         // document.getElementById("productDiv").style.display = "block";
         //document.getElementById("userRegistration").style.display = "block";
-        document.getElementById("trendChart").style.display = "block";
+        // document.getElementById("trendChart").style.display = "block";
         document.getElementById("trendChart1").style.display = "block";
         getLastOrder();
       });
@@ -806,6 +806,8 @@ function changeGraphType1(type) {
 
 
 function orderChart(arrAmt, dateArr) {
+console.log(arrAmt);
+console.log(dateArr);
   // window.onload = function() {
   var min = arrAmt[0];
   var max = arrAmt[0];
@@ -870,102 +872,13 @@ function orderChart(arrAmt, dateArr) {
 
       dataPoints: datapoints
     }]
-
-
-
-
-
   });
 
+  // chart1.canvas.parentNode.style.width = '100%';
   chart1.render();
   // }
 
 }
-//
-// function orderChartold(arrAmt, dateArr) {
-//   // window.onload = function() {
-//   var min = arrAmt[0];
-//   var max = arrAmt[0];
-//   var dateoptions = {
-//     year: 'numeric',
-//     month: 'short',
-//     day: 'numeric'
-//   };
-//
-//   //for (i = 1; i < 7; i++) {
-//   for (i = 1; i < 6; i++) {
-//     if (arrAmt[i] > 0) {
-//       if (min > arrAmt[i])
-//         min = arrAmt[i];
-//       if (max < arrAmt[i])
-//         max = arrAmt[i];
-//     }
-//   }
-//   var datapoints = [];
-//   var item;
-//   var minFlag = false;
-//   //for (i = 0; i < 7; i++) {
-//   for (i = 0; i < 6; i++) {
-//     if (arrAmt[i] === min && minFlag === false) {
-//       item = {
-//         x: dateArr[i].toLocaleDateString("en-US", dateoptions),//dateArr[i],
-//         y: arrAmt[i],
-//         indexLabel: "lowest",
-//         markerColor: "DarkSlateGrey",
-//         markerType: "cross"
-//       };
-//       minFlag = true;
-//     } else if (arrAmt[i] === max) {
-//       item = {
-//         x:dateArr[i].toLocaleDateString("en-US", dateoptions),// dateArr[i],
-//         y: arrAmt[i],
-//         indexLabel: "highest",
-//         markerColor: "red",
-//         markerType: "triangle"
-//       };
-//     } else {
-//       item = {
-//         x: dateArr[i].toLocaleDateString("en-US", dateoptions),//dateArr[i],
-//         y: arrAmt[i]
-//       };
-//     }
-//
-//     datapoints.push(item);
-//   }
-//
-//   console.log(datapoints);
-//   //  var chart1 = new CanvasJS.Chart("chartContainer", {
-//   chart1 = new CanvasJS.Chart("chartContainer", {
-//
-//     title: {
-//       text: "Orders - Weekly"
-//     },
-//
-//     axisX: {
-//       valueFormatString: "DD",
-//       interval: 1
-//     //  intervalType: "days"
-//     },
-//     axisY: {
-//       includeZero: false
-//
-//     },
-//     data: [{
-//       type: "column",
-//     //  showInLegend: true,
-//       //name: "order $",
-//       //yValueFormatString: "#,##0",
-//       //xValueType: "date",
-//       dataPoints : datapoints
-//
-//     }]
-//   });
-//
-//   chart1.render();
-//   // }
-//
-// }
-
 
 
 
@@ -1040,75 +953,3 @@ function deliveryChart(arrAmt, dateArr) {
   // }
 
 }
-//
-// function deliveryChartold(arrAmt, dateArr) {
-//   // window.onload = function() {
-//   var min = arrAmt[0];
-//   var max = arrAmt[0];
-//
-//   for (i = 1; i < 15; i++) {
-//     if (arrAmt[i] > 0) {
-//       if (min > arrAmt[i])
-//         min = arrAmt[i];
-//       if (max < arrAmt[i])
-//         max = arrAmt[i];
-//     }
-//   }
-//   var datapoints = [];
-//   var item;
-//   var minFlag = false;
-//   for (i = 0; i < 15; i++) {
-//     if (arrAmt[i] === min && minFlag === false) {
-//       item = {
-//         x: dateArr[i],
-//         y: arrAmt[i],
-//         indexLabel: "lowest",
-//         markerColor: "DarkSlateGrey",
-//         markerType: "cross"
-//       };
-//       minFlag = true;
-//     } else if (arrAmt[i] === max) {
-//       item = {
-//         x: dateArr[i],
-//         y: arrAmt[i],
-//         indexLabel: "highest",
-//         markerColor: "red",
-//         markerType: "triangle"
-//       };
-//     } else {
-//       item = {
-//         x: dateArr[i],
-//         y: arrAmt[i]
-//       };
-//     }
-//
-//     datapoints.push(item);
-//   }
-//
-//
-//   //  var chart1 = new CanvasJS.Chart("chartContainer", {
-//   chart2 = new CanvasJS.Chart("chartContainer1", {
-//
-//     title: {
-//       text: "Delivery - Trend"
-//     },
-//     axisX: {
-//       valueFormatString: "DD",
-//       interval: 1
-//       //intervalType: "month"
-//     },
-//     axisY: {
-//       includeZero: false
-//
-//     },
-//     data: [{
-//       type: "column",
-//
-//       dataPoints: datapoints
-//     }]
-//   });
-//
-//   chart2.render();
-//   // }
-//
-// }
