@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 
-/* Color Palette - Details
+/* Color Palette - Detail
 
 Palette#: 226650 from Colorhunt
 
@@ -497,7 +497,6 @@ h6{
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
 }
 
 .new-user span{
@@ -1624,12 +1623,6 @@ input[type=number] {
 
 /* dashboard page - start */
 
-.chart-container {
-  /* position: relative; */
-  margin: auto;
-  /* height: 80vh;
-  width: 80vw; */
-}
 
 .side-navbar{
   height: 100vh;
@@ -1695,25 +1688,6 @@ input[type=number] {
 
 .dashboard-card.order-status:hover{
   height: 350px;
-}
-
-.dashboard-card.order-summary-expand-div.active{
-  height: 730px;
-}
-
-.order-summary-arrow-down{
-  position: absolute;
-  right: 20px;
-  transform: translateY(-20px);
-}
-
-#arrow{
-  transition: 1s;
-
-}
-
-#arrow.active{
-  transform: rotate(180deg);
 }
 
 .dashboard-card .arrow-down{
