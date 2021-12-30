@@ -497,6 +497,7 @@ h6{
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
 }
 
 .new-user span{
@@ -1623,6 +1624,12 @@ input[type=number] {
 
 /* dashboard page - start */
 
+.chart-container {
+  /* position: relative; */
+  margin: auto;
+  /* height: 80vh;
+  width: 80vw; */
+}
 
 .side-navbar{
   height: 100vh;
@@ -1702,7 +1709,7 @@ input[type=number] {
 
 #arrow{
   transition: 1s;
-  
+
 }
 
 #arrow.active{
