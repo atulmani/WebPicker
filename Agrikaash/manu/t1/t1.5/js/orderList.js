@@ -217,6 +217,10 @@ function populateOrderDetails() {
 
     document.getElementById("orderCount").innerHTML = i + " Orders";
     document.getElementById('loading').style.display = 'none';
+    if(i === 0 )
+    {
+      document.getElementById('noOrders').style.display = 'block';
+    }
   });
   populateCartData();
 
