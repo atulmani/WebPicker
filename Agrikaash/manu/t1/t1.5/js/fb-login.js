@@ -25,8 +25,17 @@ auth.onAuthStateChanged(firebaseUser => {
 const btnSignin = document.getElementById('btnSignin');
 const btnSignup = document.getElementById('btnSignUp');
 
+var btnTextWithLoader = document.getElementsByClassName('btnTextWithLoader');
+var btnLoader = document.getElementsByClassName('btnLoader');
+
 //Add Sign-in / Login addEventListener
 btnSignin.addEventListener('click', e => {
+
+  console.log(btnTextWithLoader);
+
+  btnTextWithLoader[0].style.display = 'none';
+  btnLoader[0].style.display = 'block';
+
   //Get email & pass
   console.log("in click");
   const email = document.getElementById('txtEmail_Signin');
@@ -44,6 +53,9 @@ btnSignin.addEventListener('click', e => {
           // Success
           console.log("Logged in User: ", auth.currentUser.uid);
           GetUserRole(auth.currentUser);
+
+          // btnTextWithLoader[0].style.display = 'block';
+          // btnLoader[0].style.display = 'none';
           //checkUserRole();
         })
         .catch(function(error) {
@@ -59,10 +71,13 @@ btnSignin.addEventListener('click', e => {
             document.getElementById('errorMessage_Login').innerHTML = 'The email id is not registered.';
             document.getElementById('errorMessage_Login').style.display = 'block';
           }
+          btnTextWithLoader[0].style.display = 'block';
+          btnLoader[0].style.display = 'none';
           console.log(error);
         });
 
   //  });
+
 
 });
 
@@ -178,11 +193,15 @@ function GetUserRole(user) {
       document.getElementById('btnContinue').style.pointerEvents = 'all';
     })
     .catch(function(error) {
+      btnTextWithLoader[0].style.display = 'block';
+      btnLoader[0].style.display = 'none';
       // console.log('in catch');
       console.log(error.message);
     });
   }
   catch(err) {
+    btnTextWithLoader[0].style.display = 'block';
+    btnLoader[0].style.display = 'none';
     // console.log('in catch');
     // console.log(error.message);
   };
