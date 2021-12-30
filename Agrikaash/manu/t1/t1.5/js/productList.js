@@ -39,6 +39,14 @@ function GetProfileData(user) {
         userRole = doc.data().UserRole;
         console.log(doc.data().CustomerType);
         userBusinessCategory = doc.data().CustomerType;
+        console.log(userBusinessCategory);
+        var business = document.getElementById("businessType");
+        for(i = 0 ; i<business.options.length; i++)
+        {
+          console.log(business.options[i].value);
+          if(business.options[i].value === userBusinessCategory)
+            business.options[i].selected=true;
+        }
         if (userRole != undefined) {
           if (userRole.findIndex(e => e.value === "Admin") >= 0) {
             isAdmin = true;
@@ -67,7 +75,8 @@ function GetProfileData(user) {
         console.log(isAdmin);
 
         var promise = getCartItemNo();
-        var promise2 = promise.then(populateProductData('', '', true));
+        // var promise2 = promise.then(populateProductData('', '', true));
+        var promise2 = promise.then(populateProductData(userBusinessCategory, '', true));
 
 
       }
