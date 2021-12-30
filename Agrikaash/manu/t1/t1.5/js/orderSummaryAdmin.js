@@ -466,9 +466,11 @@ function SaveOrder() {
         orderStatusChanges = "changed from " + oldOrderStatus + " to " + orderStatus;
         console.log(orderStatusChanges);
       }
-
+      console.log(paymentStatus);
+      console.log(oldPaymentStatus);
       if (oldPaymentStatus != paymentStatus) {
         blTrackChanges = true;
+      //  blupdatedFlag = true;
         paymentStatusChanges = "changed from " + oldPaymentStatus + " to " + paymentStatus;
       }
 
@@ -516,7 +518,7 @@ console.log(oldDeliveryDate);
       }
       console.log(deliveryDate);
       console.log(Date.parse(deliveryDate));
-
+      console.log(blupdatedFlag);
       if (blupdatedFlag === true) {
 
         //added the order in Order Details
