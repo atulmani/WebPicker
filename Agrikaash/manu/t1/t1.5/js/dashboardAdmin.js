@@ -181,9 +181,12 @@ function PopulateOrderSummary() {
   //    DBrows =
   var flag = false;
   console.log(userID);
+  var statusList = ['Pending', 'Packed','On The Way', 'Delivered'];
+
   db.collection('OrderDetails')
     // .where("orderBy", "==", userID)
     //  .where("orderDate", "<=", todayDate)
+    .where("orderStatus","in",statusList)
     .where("orderDate", ">=", currentMonth)
     .onSnapshot(snapshot => {
       let changes = snapshot.docChanges();
@@ -279,7 +282,7 @@ function PopulateOrderSummary() {
         document.getElementById("cardOrder").style.display = "block";
         document.getElementById("cardDelivery").style.display = "block";
         // document.getElementById("productDiv").style.display = "block";
-        document.getElementById("userRegistration").style.display = "block";
+        //document.getElementById("userRegistration").style.display = "block";
         document.getElementById("trendChart").style.display = "block";
         getLastOrder();
       });
@@ -290,7 +293,7 @@ function PopulateOrderSummary() {
         document.getElementById("cardOrder").style.display = "none";
         document.getElementById("cardDelivery").style.display = "none";
         // document.getElementById("productDiv").style.display = "none";
-        document.getElementById("userRegistration").style.display = "none";
+        //document.getElementById("userRegistration").style.display = "none";
         document.getElementById("trendChart").style.display = "none";
 
 
@@ -412,25 +415,37 @@ function GetRegistrationRequest() {
   var cnt = 0;
   db.collection('UserRequest')
     .orderBy("CreatedTimestamp", 'desc')
-    .limit(4)
+    //.limit(4)
     .onSnapshot(snapshot => {
       let changes = snapshot.docChanges();
 
       changes.forEach(change => {
         flag = true;
-        renderRegistrationRequest(change.doc.data(), cnt);
+        if(cnt < 4)
+          renderRegistrationRequest(change.doc.data(), cnt);
         cnt = cnt + 1;
       });
 
-      db.collection('CollectionStatistics')
-        .onSnapshot(snapshot1 => {
-          let changes1 = snapshot1.docChanges();
-          changes1.forEach(change1 => {
-            var count = change1.doc.data().UserRequestCount;
-            document.getElementById("registrationCnt").innerHTML = "Registered request : " + count;
+      document.getElementById("registrationCnt").innerHTML = "Registered request : " + cnt;
+      if(flag=== true)
+      {
+        document.getElementById("userRegistration").style.display = "block";
 
-          });
-        });
+      }
+      else {
+        document.getElementById("userRegistration").style.display = "none";
+
+
+      }
+      // db.collection('CollectionStatistics')
+      //   .onSnapshot(snapshot1 => {
+      //     let changes1 = snapshot1.docChanges();
+      //     changes1.forEach(change1 => {
+      //       var count = change1.doc.data().UserRequestCount;
+      //       document.getElementById("registrationCnt").innerHTML = "Registered request : " + count;
+      //
+      //     });
+      //   });
     });
 }
 
@@ -614,9 +629,11 @@ function getLastOrder() {
     day: 'numeric'
   };
 
+  var statusList = ['Pending', 'Packed','On The Way', 'Delivered'];
 
   db.collection('OrderDetails')
     // .where("orderBy", "==", userID)
+    .where("orderStatus","in",statusList)
     .orderBy("orderDate", 'desc')
     .limit(1)
     .onSnapshot(snapshot => {
@@ -650,7 +667,10 @@ function PopulateDeliveryCard() {
   var index = 0;
   var flag = false;
   console.log('PopulateDeliveryCard');
+  var statusList = ['Pending', 'Packed','On The Way', 'Delivered'];
+
   db.collection('OrderDetails')
+  .where("orderStatus","in",statusList)
     //.where("orderBy", "==", userID)
     .orderBy("deliveryDate", "desc")
     .limit(4)
@@ -710,8 +730,10 @@ function getNextDelivery() {
       if (flag === false) {
 
         console.log("in second for");
+        var statusList = ['Pending', 'Packed','On The Way', 'Delivered'];
+
         db.collection('OrderDetails')
-          //          .where("orderBy", "==", userID)
+          .where("orderStatus","in",statusList)
           .where("deliveryDate", "<=", today)
           .orderBy("deliveryDate", "desc")
           .limit(1)
@@ -944,8 +966,10 @@ function PopulateDeliverySummary() {
   var deliverydate = new Date();
 
   //    DBrows =
+  var statusList = ['Pending', 'Packed','On The Way', 'Delivered'];
+
   db.collection('OrderDetails')
-    //    .where("orderBy", "==", userID)
+    .where("orderStatus","in",statusList)
     .where("deliveryDate", "<=", dayP7)
     .where("deliveryDate", ">=", dayM7)
     .onSnapshot(snapshot => {
