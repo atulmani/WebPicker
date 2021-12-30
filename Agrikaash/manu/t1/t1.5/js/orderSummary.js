@@ -109,6 +109,7 @@ function cancelOrder() {
         console.log(orderID);
         UpdateOrderTrackingDetails(orderChanges, orderID);
         getOrderDetails();
+        document.getElementById("itemListDiv").style.display="none";
       })
       .catch((error) => {
         console.log("in error");
