@@ -1690,6 +1690,32 @@ input[type=number] {
   height: 350px;
 }
 
+.dashboard-card.order-summary-expand-div.active{
+  height: 730px;
+}
+
+.order-summary-arrow-down{
+  position: absolute;
+  right: 20px;
+  transform: translateY(-20px);
+}
+
+#arrow{
+  transition: 1s;
+
+}
+
+#arrow.active{
+  transform: rotate(180deg);
+}
+
+.dashboard-card .arrow-down{
+  position: absolute;
+  right: 20px;
+  transform: translateY(-20px);
+  transition: 1s;
+}
+
 .dashboard-card .arrow-down{
   position: absolute;
   right: 20px;
