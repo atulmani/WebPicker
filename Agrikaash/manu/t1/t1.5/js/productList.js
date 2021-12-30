@@ -41,11 +41,10 @@ function GetProfileData(user) {
         userBusinessCategory = doc.data().CustomerType;
         console.log(userBusinessCategory);
         var business = document.getElementById("businessType");
-        for(i = 0 ; i<business.options.length; i++)
-        {
+        for (i = 0; i < business.options.length; i++) {
           console.log(business.options[i].value);
-          if(business.options[i].value === userBusinessCategory)
-            business.options[i].selected=true;
+          if (business.options[i].value === userBusinessCategory)
+            business.options[i].selected = true;
         }
         if (userRole != undefined) {
           if (userRole.findIndex(e => e.value === "Admin") >= 0) {
@@ -117,8 +116,16 @@ async function populateProductData(bType, pType, flag) {
   //var DBrows = db.collection("Products").where("OrganizationId", "==", Number(organizationid)).get();
   var divPType = document.getElementById('productCategory');
   var divPList = document.getElementById('productRow');
+  var divPCList = document.getElementById('category-list');
   emptyDiv(divPList);
   emptyDiv(divPType);
+
+  var cnt = document.getElementById("categoryCnt").value;
+  console.log(cnt);
+  for (var i = 0; i < Number(cnt); i++) {
+    $('#category-list').trigger('remove.owl.carousel', [i]).trigger('refresh.owl.carousel');
+  }
+  // emptyDiv(divPCList);
   var DBrows;
   //bType = userBusinessCategory;
   //console.log(bType);
@@ -170,10 +177,16 @@ async function populateProductData(bType, pType, flag) {
 
     });
     document.getElementById("itemCnt").innerHTML = index + " Items";
-    if (flag === true)
+    //if (flag === true)
 
     {
+      // const myNode = document.getElementById("category-list");
+      // while (myNode.lastElementChild) {
+      //   console.log(myNode.lastElementChild);
+      //   myNode.removeChild(myNode.lastElementChild);
+      // }
       var unique = productCategory.filter(onlyUnique);
+      console.log(unique);
       renderProductCategory(unique);
       document.getElementById("categoryCnt").value = unique.length;
     }
@@ -209,8 +222,9 @@ function onlyUnique(value, index, self) {
 // });
 
 function renderProductCategory(productCategory) {
+  console.log(productCategory);
   //var div = document.getElementById('category-list');
-  //div.innerHTML="";
+
   for (i = 0; i < productCategory.length; i++) {
     var item = document.createElement("div");
     //div1.setAttribute("class","item");
