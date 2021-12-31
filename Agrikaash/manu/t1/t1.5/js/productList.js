@@ -37,12 +37,12 @@ function GetProfileData(user) {
         //console.log('Document ref id: ' + doc.data().uid);
         userID = doc.data().uid;
         userRole = doc.data().UserRole;
-        console.log(doc.data().CustomerType);
+        //console.log(doc.data().CustomerType);
         userBusinessCategory = doc.data().CustomerType;
-        console.log(userBusinessCategory);
+      //  console.log(userBusinessCategory);
         var business = document.getElementById("businessType");
         for (i = 0; i < business.options.length; i++) {
-          console.log(business.options[i].value);
+        //  console.log(business.options[i].value);
           if (business.options[i].value === userBusinessCategory)
             business.options[i].selected = true;
         }
@@ -71,7 +71,7 @@ function GetProfileData(user) {
         }
         // if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
         //   document.getElementById('navUser').src = doc.data().ProfileImageURL;
-        console.log(isAdmin);
+      //  console.log(isAdmin);
 
         var promise = getCartItemNo();
         // var promise2 = promise.then(populateProductData('', '', true));
@@ -121,7 +121,7 @@ async function populateProductData(bType, pType, flag) {
   emptyDiv(divPType);
 
   var cnt = document.getElementById("categoryCnt").value;
-  console.log(cnt);
+  //console.log(cnt);
   for (var i = 0; i < Number(cnt); i++) {
     $('#category-list').trigger('remove.owl.carousel', [i]).trigger('refresh.owl.carousel');
   }
@@ -185,8 +185,8 @@ async function populateProductData(bType, pType, flag) {
       //   myNode.removeChild(myNode.lastElementChild);
       // }
       var unique = productCategory.filter(onlyUnique);
-      console.log(unique);
-      renderProductCategory(unique);
+      //console.log(unique);
+      renderProductCategory(unique, pType);
       document.getElementById("categoryCnt").value = unique.length;
     }
     document.getElementById('loading').style.display = 'none';
@@ -220,8 +220,8 @@ function onlyUnique(value, index, self) {
 //    init_carousel();
 // });
 
-function renderProductCategory(productCategory) {
-  console.log(productCategory);
+function renderProductCategory(productCategory, pType) {
+  console.log(pType);
   //var div = document.getElementById('category-list');
 
   for (i = 0; i < productCategory.length; i++) {
@@ -230,9 +230,12 @@ function renderProductCategory(productCategory) {
     item.classList.add("item");
 
     var anchor = document.createElement("a");
-    if (i === 0) {
+    if (i === 0 &&(pType === 'All' || pType === '')) {
       anchor.setAttribute("class", "category-list-menu active");
-    } else {
+    } else if (productCategory[i] === pType ){
+      anchor.setAttribute("class", "category-list-menu active");
+    }
+    else {
       anchor.setAttribute("class", "category-list-menu");
     }
     anchor.setAttribute("href", "javascript:callFunction('" + productCategory[i] + "'," + "anchor" + i + ");");
@@ -254,6 +257,7 @@ function renderProductCategory(productCategory) {
 }
 
 function clearSelection() {
+  console.log('in clearSelection');
   var cnt = document.getElementById("categoryCnt").value;
   //console.log(document.getElementById("categoryCnt").value);
   for (i = 0; i < cnt; i++) {
@@ -265,15 +269,16 @@ function clearSelection() {
 function callFunction(productType, objid) {
   console.log(objid);
   clearSelection();
-  objid.setAttribute("class", "category-list-menu active");
   document.getElementById('loading').style.display = 'block';
   document.getElementById('hfpType').value = productType;
 
   var e = document.getElementById("businessType");
   var cType = e.options[e.selectedIndex].text;
-  console.log(cType);
-  console.log(productType);
+  //console.log(cType);
+  //console.log(productType);
   // var cType = document.getElementById('businessType').SelectedValue;
+  objid.setAttribute("class", "category-list-menu active");
+
   populateProductData(cType, productType, false);
   //renderProductNew(doc, index, selectedItem)
 }
@@ -281,10 +286,10 @@ function callFunction(productType, objid) {
 function changCustomerType() {
   document.getElementById('loading').style.display = 'block';
   var productType = document.getElementById('hfpType').value;
-  console.log(productType);
+  //console.log(productType);
   var e = document.getElementById("businessType");
   var cType = e.options[e.selectedIndex].text;
-  console.log(cType);
+  //console.log(cType);
   populateProductData(cType, productType, false);
   //renderProductNew(doc, index, selectedItem)
 }
@@ -338,8 +343,8 @@ function renderProductNew(doc, index, selectedItem) {
   div1_3.appendChild(imgVegNonVeg);
   td1.appendChild(div1_3);
   tr1.appendChild(td1);
-  console.log(doc.data().ProductName);
-  console.log(doc.id);
+  //console.log(doc.data().ProductName);
+  //console.log(doc.id);
   var td2 = document.createElement("td");
   td2.setAttribute("width", "55%");
   td2.setAttribute("valign", "top")
@@ -357,7 +362,7 @@ function renderProductNew(doc, index, selectedItem) {
   var mrp = 0;
   var finalPrize = 0;
   var qtyNew = doc.data().MinimumQty;
-  console.log(productlist.length);
+  //console.log(productlist.length);
 
   for (const val of productlist) {
       var option = document.createElement("option");
@@ -384,12 +389,12 @@ function renderProductNew(doc, index, selectedItem) {
         qtyNew = 1;
       }
 
-      console.log(option);
+      //console.log(option);
       selectP.add(option, undefined );
       // selectP.appendChild(option);
 
     }
-    console.log(selectP);
+    //console.log(selectP);
   //
   // for (int = 0 ; int <  productlist.length; int++ ) {
   //   var option = document.createElement("option");
@@ -796,7 +801,7 @@ function ChangeAddButtonVisible(index, blflag) {
     // qtyB.style.visibility = 'visible';
     // plusB.style.visibility = 'visible';
   }
-  console.log(document.getElementById("productDetails"+index));
+  //console.log(document.getElementById("productDetails"+index));
   document.getElementById("productDetails"+index).focus();
 
 }
@@ -810,7 +815,7 @@ function addToCart(minQty, itemName, productID, itemSizeObj, index) {
   //console.log(obj);
   //AddUpdateCart(itemName, itemSizeObj, minQty, productID, 'active');
   AddUpdateCart(itemName, obj.value, minQty, productID, 'active');
-  document.getElementById("productDetails"+index).focus();
+  //document.getElementById("productDetails"+index).focus();
   ChangeAddButtonVisible(index, false);
 }
 //function decrementQty(oqty, omin, step, itemName, itemSizeObj, productID) {
@@ -900,7 +905,7 @@ function mySelectionChange(productdetails, mrp, final, hfSelected, index, lprodu
   //check if already in cartItems
   //var selIndex = cartItems.findIndex(e => e.SelectedsubItem === str  &&  e.ProductID === productID );
   var selIndex = cartItems.findIndex(a => a.ProductID === lproductID.trim() && a.SelectedsubItem === hfSelected.value);
-  //console.log(" selIndex", selIndex);
+  console.log(" selIndex", selIndex);
   if (selIndex >= 0) { //item alreadt added
     var qtyObj = document.getElementById("qty" + index);
     qtyObj.value = cartItems[selIndex].Quantity;
