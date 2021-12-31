@@ -1317,6 +1317,55 @@ input[type=number] {
   padding: 2px 5px;
 }
 
+.add-address-card{
+  background: #fff;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.form-control {
+	position: relative;
+	margin: 5px 0;
+  border: none;
+}
+
+.form-control input {
+	border: none;
+	border-bottom: 2px solid #bbb;
+	padding: 5px 0;
+	display: block;
+	font-size: 18px;
+	font-family: 'Muli', sans-serif;
+	width: 100%;
+	transition: 0.1s ease-in;
+}
+
+.form-control input:focus,
+.form-control input:valid {
+	border-bottom-color: #000;
+	outline: none;
+}
+
+.form-control input:focus + label span ,
+.form-control input:valid + label span{
+	color: #000;
+	transform: translateY(-25px);
+}
+
+.form-control label {
+	position: absolute;
+	top: 15px;
+	left: 10px;
+  pointer-events: none;
+  color: #bbb;
+}
+
+.form-control label span {
+	display: inline-block;
+	font-size: 0.8rem;
+	min-width: 5px;
+	transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
 
 /* address page - end */
 
