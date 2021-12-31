@@ -195,11 +195,12 @@ async function getCartItemNo() {
               var qty = cartItems[i].Quantity;
               var selectedsubItem = cartItems[i].SelectedsubItem;
               var weight = selectedsubItem.split('-');
-
+              console.log(selectedsubItem);
               var selectedProduct = parr[parr.findIndex(e => e.ProductID === cartItems[i].ProductID)];
               if (selectedProduct.ProductDetails != undefined && selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
-                var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
-                prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
+                var unitPrise1 = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
+                console.log(unitPrise1);
+                prise = Number(prise) + Number(qty) * Number(unitPrise1.ProductFinalPrise);
               }
             }
             cartItemNo.innerHTML = cartItems.length;
