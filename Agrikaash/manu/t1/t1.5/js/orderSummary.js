@@ -331,7 +331,7 @@ function populateOrderItems(selectedOrder) {
   for (i = 0; i < orderItem.length; i++) {
     renderOrderItem(orderItem[i], selectedOrder.orderStatus, selectedOrder.deliveryDate, i);
   }
-  document.getElementById("itemcount").innerHTML = "(" + i + ")"
+  document.getElementById("itemcount").innerHTML =  i ;
 }
 
 function renderOrderItem(orderItem, orderStatusValue, deliveryDate, index) {
@@ -692,21 +692,21 @@ function deleteItem(prodID, selectedItemIndex, parentdiv) {
             }
             discountedAmount = Number(totalPrise) - Number(discountValue);
             var refundAmount;
-            console.log(totalPrise);
-            console.log(oldPrize);
-            console.log(discountedAmount);
-            console.log(oldDiscountPrise);
+            // console.log(totalPrise);
+            // console.log(oldPrize);
+            // console.log(discountedAmount);
+            // console.log(oldDiscountPrise);
             if (Number(totalPrise) < Number(oldPrize)) {
               refundAmount = Number(oldPrize) - Number(totalPrise);
             }
             if (Number(discountedAmount) < Number(oldDiscountPrise)) {
               refundAmount = Number(oldDiscountPrise) - Number(discountedAmount);
             }
-            console.log(refundAmount);
-            console.log(userID);
+            // console.log(refundAmount);
+            // console.log(userID);
 
             if (refundAmount != undefined && refundAmount > 0) {
-              console.log('refundAmount : ', refundAmount);
+            //  console.log('refundAmount : ', refundAmount);
               updateWalletDetails(userID, refundAmount, 'add');
             }
             modifiedOrder.totalItems = items.length;
@@ -730,7 +730,7 @@ function deleteItem(prodID, selectedItemIndex, parentdiv) {
         })
         .then(function(docRef) {
           console.log("Data added sucessfully in the document: " + orderID);
-
+          document.getElementById("itemcount").innerHTML = modifiedOrder.orderItems.length;
           //update order trackData
           var orderChanges = [];
           if (cancelFlag === true) {
@@ -753,8 +753,10 @@ function deleteItem(prodID, selectedItemIndex, parentdiv) {
             });
             console.log(orderChanges);
             console.log(orderID);
-            UpdateOrderTrackingDetails(orderChanges, orderID);
+
           }
+          UpdateOrderTrackingDetails(orderChanges, orderID);
+          getOrderDetails();
         })
         .catch(function(error) {
           console.error("error adding document:", error);
