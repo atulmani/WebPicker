@@ -451,12 +451,13 @@ h6{
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
+  right: 20%;
   bottom: 0;
-  background: rgba(136,202,94,0.95);
+  background: #fff;
   z-index: 50;
-  text-align: center;
   height: 100%;
+  /* padding-top: 40px; */
+  box-shadow: 0 0 200px 0 rgba(0,0,0,0.4);
 }
 
 .more-button-links .pop-up-close-btn{
@@ -471,18 +472,94 @@ h6{
 
 .more-button-links ul {
   position: relative;
-  top: calc(50% - 140px);
   display: list-item;
 }
 
 .more-button-links ul li {
   list-style: none;
   font-size: 1.5rem;
-  line-height: 2.5;
+  margin: 0 auto;
+  padding: 0 10px;
 }
 
-.more-button-links ul li a {
+.more-button-links ul li a .left-nav-first{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  background: url('../img/left-nav.mp4');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.more-button-links ul li a .left-nav-first img{
+  width: 100px;
+  height: 100px;
+  background: #efefef;
+  border-radius: 50%;
+}
+
+.more-button-links ul li a .left-nav-first h5{
+  color: #666;
+  padding-top: 20px;
+  margin: 0 auto;
+  font-weight: bold;
+}
+
+.more-button-links ul li a .left-nav-first small{
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.more-button-links ul li .left-navigation{
   color: #000;
+  display: flex;
+  padding-top: 20px;
+  text-decoration: none;
+}
+
+.more-button-links ul li .left-navigation div{
+  padding: 0 10px;
+}
+
+.more-button-links ul li .left-navigation div:nth-child(3){
+  padding: 0;
+}
+
+.more-button-links ul li .left-navigation .content{
+  width: 100%;
+}
+
+.more-button-links ul li .left-navigation .content small{
+  color: #aaa;
+  font-size: 0.8rem;
+  position: relative;
+  top: -20px;
+}
+
+.more-button-links ul li .left-navigation div .arrow-right{
+  color: #666;
+}
+
+.more-button-links ul li .left-navigation div:nth-child(1) span{
+  color: #bbb;
+}
+
+.more-button-links ul li .left-navigation div .notification{
+  font-size: 0.8rem;
+  background: red;
+  padding: 3px 8px;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.hr{
+  border: none;
+  border-bottom: 1px solid #ccc;
+  margin: 0;
 }
 
 .new-user{
@@ -956,6 +1033,11 @@ input[type=number] {
 .quantity-td{
   text-align: right;
   padding: 5px;
+}
+
+.product-btn-div{
+  display: flex;
+  flex-direction:row-reverse;
 }
 
 .quantity {
