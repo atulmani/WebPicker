@@ -358,69 +358,71 @@
     </div>
     <!-- side navbar - end -->
     <div class="col-lg-3 col-md-6 col-sm-12" style="padding:10px;">
+      <div class="detail-card-full-div"><br>
+        <h3 class="detail-card-full-div-heading">Address</h3>
 
-      <div class="" id="AddAddress">
+        <div class="add-address-card" id="AddAddress">
 
-        <div id="mandatoryFields" class="row g-3">
+          <div class="row no-gutters" id="mandatoryFields">
 
-          <div class="col-md-12 address-input-field">
-            <label for="brachName" class="form-label">Branch Name</label>
-            <input id='branchID' type="hidden" name="" value="">
-            <input id="branchName" type="text" required class="form-control" value="" placeholder="Enter the name of the branch">
-          </div>
+            <div class="form-control">
+              <input id='branchID' type="hidden" name="" value="">
+              <input id="branchName" type="text" required value="" maxlength="40">
+              <label>Branch Name</label>
+            </div>
 
-          <div class="col-md-12 address-input-field">
-            <label for="brachOwnerName" class="form-label">Branch Owner Name</label>
-            <input id="branchOwnerName" type="text" required class="form-control" value="">
-          </div>
+            <div class="form-control">
+              <input id="branchOwnerName" type="text" required maxlength="30" value="">
+              <label>Branch Owner Name</label>
+            </div>
 
-          <div class="col-md-12 address-input-field">
-            <label for="AddressLine1" class="form-label">Address Line 1</label>
-            <input id="addressLine1" type="text" required class="form-control" value="">
-          </div>
+            <div class="form-control">
+              <input id="addressLine1" type="text" required maxlength="30" value="">
+              <label for="AddressLine1">Address Line 1</label>
+            </div>
 
+            <div class="form-control">
+              <input id="addressLine2" type="text" required maxlength="30" value="">
+              <label for="AddressLine2">Address Line 2</label>
+            </div>
 
-          <div class="col-md-12 address-input-field">
-            <label for="AddressLine2" class="form-label">Address Line 2</label>
-            <input id="addressLine2" type="text" required class="form-control" value="">
-          </div>
+            <div class="form-control col-6" style="padding: 0 5px;">
+              <input id="City" type="text" required value="">
+              <label for="City">City</label>
+            </div>
 
-          <div class="col-md-12 address-input-field">
-            <label for="City" class="form-label">City</label>
-            <input id="City" type="text" required class="form-control" value="">
-          </div>
+            <div class="form-control col-6" style="padding: 0 5px;">
+              <input id="ZipCode" type="number" maxlength="6" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required value="">
+              <label for="Zip Code">Zip Code</label>
+            </div>
 
+            <div class="form-control">
+              <input id="PhoneNumber" maxlength="10" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required value="">
+              <label for="Phone Number">Phone Number</label>
+            </div>
 
-          <div class="col-md-12 address-input-field">
-            <label for="Zip Code" class="form-label">Zip Code</label>
-            <input id="ZipCode" type="text" required class="form-control" value="">
-          </div>
+            <div style="width: 100%;text-align: center;">
+              <button class="mybutton button5" onclick="saveAddress();">Save Address</button>
+            </div>
 
-          <div class="col-md-12 address-input-field">
-            <label for="Phone Number" class="form-label">Phone Number</label>
-            <input id="PhoneNumber" type="text" required class="form-control" value="">
-          </div>
-
-
-
-          <button class="mybutton button5" onclick="saveAddress();">Save Address</button>
-        </div>
-      </div>
-
-
-      <div class="col-sm-12">
-        <div class="checkout-div">
-          <div class="" style="visibility:hidden;">
-            <h5 id="totalAmount">₹ </h5>
-            <small id="itemCount">Items</small>
-            <input type="hidden" id="hfFinalPrize">
-          </div>
-          <div class="">
-            <a href="deliveryoption.html"><button class="mybutton button5">NEXT</button></a>
           </div>
         </div>
 
 
+        <div class="col-sm-12">
+          <div class="checkout-div">
+            <div class="" style="visibility:hidden;">
+              <h5 id="totalAmount">₹ </h5>
+              <small id="itemCount">Items</small>
+              <input type="hidden" id="hfFinalPrize">
+            </div>
+            <div class="">
+              <a href="deliveryoption.html"><button class="mybutton button5">NEXT</button></a>
+            </div>
+          </div>
+
+
+        </div>
       </div>
     </div>
   </div>
@@ -531,6 +533,18 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    const inputs = document.querySelectorAll('.form-control input');
+    const labels = document.querySelectorAll('.form-control label');
+
+    labels.forEach(label => {
+      label.innerHTML = label.innerText
+        .split('')
+        .map((letter, idx) => `<span style="transition-delay: ${idx * 50}ms">${letter}</span>`)
+        .join('');
+    });
+  </script>
 
 </body>
 
