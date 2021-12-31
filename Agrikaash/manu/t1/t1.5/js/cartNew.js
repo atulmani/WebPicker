@@ -53,7 +53,7 @@ async function populateCartData() {
     const cartItemsDB = db.collection("CartDetails").doc(userID);
     cartItemsDB.get().then((doc1) => {
       if (doc1.exists) {
-        console.log('doc1.exists');
+        //console.log('doc1.exists');
 
         var cartItems = doc1.data().cartDetails;
         for (const item of cartItems) {
@@ -93,7 +93,7 @@ async function populateCartData() {
 
 async function getCartItemNo1() {
   const snapshot = db.collection('CartDetails').doc(userID);
-  console.log(snapshot);
+  //console.log(snapshot);
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
         var arr = [];
@@ -195,11 +195,13 @@ async function getCartItemNo() {
               var qty = cartItems[i].Quantity;
               var selectedsubItem = cartItems[i].SelectedsubItem;
               var weight = selectedsubItem.split('-');
-              console.log(selectedsubItem);
+              //console.log(selectedsubItem);
               var selectedProduct = parr[parr.findIndex(e => e.ProductID === cartItems[i].ProductID)];
+              //console.log(selectedProduct);
+              //console.log(weight[0].trim());
               if (selectedProduct.ProductDetails != undefined && selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
                 var unitPrise1 = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
-                console.log(unitPrise1);
+                //console.log(unitPrise1);
                 prise = Number(prise) + Number(qty) * Number(unitPrise1.ProductFinalPrise);
               }
             }
@@ -234,8 +236,8 @@ async function getCartItemNo() {
 
 /////////////////////new function
 function renderProduct(doc, index, selecteditem) {
-  console.log('Doc ID: ' + doc.id);
-  console.log('Event Name: ' + doc.data().ProductName);
+  //console.log('Doc ID: ' + doc.id);
+  //console.log('Event Name: ' + doc.data().ProductName);
 
   var productlist = doc.data().ProductDetails;
   var mainReload = document.createElement("main");
