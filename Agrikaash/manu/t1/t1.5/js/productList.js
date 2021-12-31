@@ -351,7 +351,7 @@ function renderProductNew(doc, index, selectedItem) {
   selectP.setAttribute("name", "productDetails" +index);
   //selectP.setAttribute("disabled", false);
   selectP.setAttribute("id", "productDetails" + index);
-  //selectP.setAttribute("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelectedValue" + index + "," + index + ",'" + doc.id + "'," + doc.data().MinimumQty + ")");
+  selectP.setAttribute("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelectedValue" + index + "," + index + ",'" + doc.id + "'," + doc.data().MinimumQty + ")");
   //selectP.addEventListener("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelectedValue" + index + ","+index+")");
   var indexnew = -1;
   var mrp = 0;
@@ -796,6 +796,9 @@ function ChangeAddButtonVisible(index, blflag) {
     // qtyB.style.visibility = 'visible';
     // plusB.style.visibility = 'visible';
   }
+  console.log(document.getElementById("productDetails"+index));
+  document.getElementById("productDetails"+index).focus();
+
 }
 
 function addToCart(minQty, itemName, productID, itemSizeObj, index) {
@@ -807,7 +810,7 @@ function addToCart(minQty, itemName, productID, itemSizeObj, index) {
   //console.log(obj);
   //AddUpdateCart(itemName, itemSizeObj, minQty, productID, 'active');
   AddUpdateCart(itemName, obj.value, minQty, productID, 'active');
-
+  document.getElementById("productDetails"+index).focus();
   ChangeAddButtonVisible(index, false);
 }
 //function decrementQty(oqty, omin, step, itemName, itemSizeObj, productID) {
