@@ -92,7 +92,7 @@ function getOrderDetails() {
 }
 
 function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
-console.log(selectedOrder);
+  console.log(selectedOrder);
   var options = {
     year: 'numeric',
     month: 'short',
@@ -103,18 +103,24 @@ console.log(selectedOrder);
   //document.getElementById('DeliveryDate').innerHTML = delDate;
   var odeliveryDate = document.getElementById('odeliveryDate');
   //document.getElementById('DeliveryTime').innerHTML = selectedOrder.deliveryTime;
-  var objorderstatus = document.getElementById('oOrderStatus');//.innerHTML = selectedOrder.orderStatus;
+  var objorderstatus = document.getElementById('oOrderStatus'); //.innerHTML = selectedOrder.orderStatus;
   document.getElementById('PaymentStatus').innerHTML = selectedOrder.paymentStatus;
   var oDate = new Date(selectedOrder.orderDate.seconds * 1000);
   var orderDate = oDate.toLocaleDateString("en-US", options);
   var deliveryTime = document.getElementById('DeliveryTime');
-  document.getElementById("orderBy").innerHTML = selectedOrder.orderByUserName + ":" + selectedOrder.CreatedBy ;
+  document.getElementById("orderBy").innerHTML = selectedOrder.orderByUserName + ":" + selectedOrder.CreatedBy;
   document.getElementById("orderDate").innerHTML = orderDate;
+
+  for (index = 0; index < oPaymentStatus.options.length; index++) {
+    if (oPaymentStatus.options[index].value === selectedOrder.paymentStatus)
+      oPaymentStatus.options[index].selected = true;
+  }
+
   for (index = 0; index < odeliveryDate.options.length; index++) {
     if (odeliveryDate.options[index].text === (dDate.getDate() + "/" + (dDate.getMonth() + 1) + "/" + dDate.getFullYear())) //selectedOrder.deliveryDate)
       odeliveryDate.options[index].selected = true;
   }
-
+  console.log(selectedOrder.orderStatus);
   for (index = 0; index < objorderstatus.options.length; index++) {
     if (objorderstatus.options[index].value === selectedOrder.orderStatus)
       objorderstatus.options[index].selected = true;
@@ -189,61 +195,61 @@ console.log(selectedOrder);
   //   //btnSave.disabled = true;
   //   btnSave.style.visibility = "hidden";
   // }
-/*
-  var options = {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  };
+  /*
+    var options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    };
 
-  var deliverydt = new Date(selectedOrder.deliveryDate.seconds * 1000);
-  var dt1 = deliverydt.toLocaleDateString("en-US", options);
+    var deliverydt = new Date(selectedOrder.deliveryDate.seconds * 1000);
+    var dt1 = deliverydt.toLocaleDateString("en-US", options);
 
-  var orderdt = new Date(selectedOrder.orderDate.seconds * 1000);
-  var dt = orderdt.toLocaleDateString("en-US", options);
+    var orderdt = new Date(selectedOrder.orderDate.seconds * 1000);
+    var dt = orderdt.toLocaleDateString("en-US", options);
 
-  //
-  // var deliverydt = new Date(selectedOrder.deliveryDate);
-  // var orderdt = new Date(selectedOrder.orderDate);
+    //
+    // var deliverydt = new Date(selectedOrder.deliveryDate);
+    // var orderdt = new Date(selectedOrder.orderDate);
 
-  //document.getElementById('DeliveryDate').innerHTML = selectedOrder.deliveryDate;
-  //document.getElementById('DeliveryDate').innerHTML = deliverydt.getDate() + "-" + (deliverydt.getMonth() + 1) + "-" + deliverydt.getFullYear();
-  //document.getElementById('DeliveryTime').innerHTML = selectedOrder.deliveryTime;
-  //document.getElementById('orderStatus').innerHTML = selectedOrder.orderStatus;
-  //document.getElementById('PaymentStatus').innerHTML = selectedOrder.paymentStatus;
-  // document.getElementById('orderDate').innerHTML = selectedOrder.orderDate;
-  document.getElementById('orderDate').innerHTML = orderdt.getDate() + "/" + (orderdt.getMonth() + 1) + "/" + orderdt.getFullYear();;
+    //document.getElementById('DeliveryDate').innerHTML = selectedOrder.deliveryDate;
+    //document.getElementById('DeliveryDate').innerHTML = deliverydt.getDate() + "-" + (deliverydt.getMonth() + 1) + "-" + deliverydt.getFullYear();
+    //document.getElementById('DeliveryTime').innerHTML = selectedOrder.deliveryTime;
+    //document.getElementById('orderStatus').innerHTML = selectedOrder.orderStatus;
+    //document.getElementById('PaymentStatus').innerHTML = selectedOrder.paymentStatus;
+    // document.getElementById('orderDate').innerHTML = selectedOrder.orderDate;
+    document.getElementById('orderDate').innerHTML = orderdt.getDate() + "/" + (orderdt.getMonth() + 1) + "/" + orderdt.getFullYear();;
 
-  document.getElementById('BranchName').innerHTML = selectedOrder.deliveryAddress.branchName;
-  document.getElementById('BranchOwnerName').innerHTML = selectedOrder.deliveryAddress.branchOwnerName;
-  document.getElementById('AddressLine1').innerHTML = selectedOrder.deliveryAddress.addressLine1;
-  document.getElementById('AddressLine2').innerHTML = selectedOrder.deliveryAddress.addressLine2;
-  document.getElementById('City').innerHTML = selectedOrder.deliveryAddress.city;
-  document.getElementById('ZipCode').innerHTML = selectedOrder.deliveryAddress.ZipCode;
-  document.getElementById('phoneNumber').innerHTML = selectedOrder.deliveryAddress.PhoneNumber;
-  document.getElementById('orderID').value = selectedOrder.orderID;
-  document.getElementById('orderPlacedBy').value = orderPlacedBy;
+    document.getElementById('BranchName').innerHTML = selectedOrder.deliveryAddress.branchName;
+    document.getElementById('BranchOwnerName').innerHTML = selectedOrder.deliveryAddress.branchOwnerName;
+    document.getElementById('AddressLine1').innerHTML = selectedOrder.deliveryAddress.addressLine1;
+    document.getElementById('AddressLine2').innerHTML = selectedOrder.deliveryAddress.addressLine2;
+    document.getElementById('City').innerHTML = selectedOrder.deliveryAddress.city;
+    document.getElementById('ZipCode').innerHTML = selectedOrder.deliveryAddress.ZipCode;
+    document.getElementById('phoneNumber').innerHTML = selectedOrder.deliveryAddress.PhoneNumber;
+    document.getElementById('orderID').value = selectedOrder.orderID;
+    document.getElementById('orderPlacedBy').value = orderPlacedBy;
 
-  for (index = 0; index < odeliveryDate.options.length; index++) {
-    if (odeliveryDate.options[index].text === (deliverydt.getDate() + "/" + (deliverydt.getMonth() + 1) + "/" + deliverydt.getFullYear())) //selectedOrder.deliveryDate)
-      odeliveryDate.options[index].selected = true;
+    for (index = 0; index < odeliveryDate.options.length; index++) {
+      if (odeliveryDate.options[index].text === (deliverydt.getDate() + "/" + (deliverydt.getMonth() + 1) + "/" + deliverydt.getFullYear())) //selectedOrder.deliveryDate)
+        odeliveryDate.options[index].selected = true;
 
-  }
-  for (index = 0; index < odeliveryTime.options.length; index++) {
-    if (odeliveryTime.options[index].value === selectedOrder.deliveryTime)
-      odeliveryTime.options[index].selected = true;
-  }
-  //document.getElementById("hfOrderStatus").value=selectedOrder.orderStatus;
-  // for (index = 0; index < oOrderStatus.options.length; index++) {
-  //   if (oOrderStatus.options[index].value === selectedOrder.orderStatus)
-  //     oOrderStatus.options[index].selected = true;
-  // }
+    }
+    for (index = 0; index < odeliveryTime.options.length; index++) {
+      if (odeliveryTime.options[index].value === selectedOrder.deliveryTime)
+        odeliveryTime.options[index].selected = true;
+    }
+    //document.getElementById("hfOrderStatus").value=selectedOrder.orderStatus;
+    // for (index = 0; index < oOrderStatus.options.length; index++) {
+    //   if (oOrderStatus.options[index].value === selectedOrder.orderStatus)
+    //     oOrderStatus.options[index].selected = true;
+    // }
 
-  for (index = 0; index < oPaymentStatus.options.length; index++) {
-    if (oPaymentStatus.options[index].value === selectedOrder.paymentStatus)
-      oPaymentStatus.options[index].selected = true;
-  }
-*/
+    for (index = 0; index < oPaymentStatus.options.length; index++) {
+      if (oPaymentStatus.options[index].value === selectedOrder.paymentStatus)
+        oPaymentStatus.options[index].selected = true;
+    }
+  */
 }
 
 function populateOrderItems(selectedOrder) {
@@ -414,7 +420,7 @@ function SaveOrder() {
   var odeliveryDate = document.getElementById("odeliveryDate");
   var oOrderStatus = document.getElementById("oOrderStatus");
   var oPaymentStatus = document.getElementById("oPaymentStatus");
-  console.log(odeliveryTime);
+  //console.log(odeliveryTime);
   var deliveryTime = odeliveryTime.options[odeliveryTime.selectedIndex].value;
   var deliveryDate = odeliveryDate.options[odeliveryDate.selectedIndex].value;
   var orderStatus = oOrderStatus.options[oOrderStatus.selectedIndex].value;
@@ -462,7 +468,7 @@ function SaveOrder() {
         else if (orderStatus === 'Delivered')
           orderStage = 5;
         else if (orderStatus === 'Cancelled')
-            orderStage = 6;
+          orderStage = 6;
         orderStatusChanges = "changed from " + oldOrderStatus + " to " + orderStatus;
         console.log(orderStatusChanges);
       }
@@ -470,19 +476,19 @@ function SaveOrder() {
       console.log(oldPaymentStatus);
       if (oldPaymentStatus != paymentStatus) {
         blTrackChanges = true;
-      //  blupdatedFlag = true;
+        //  blupdatedFlag = true;
         paymentStatusChanges = "changed from " + oldPaymentStatus + " to " + paymentStatus;
       }
-
+      console.log(paymentStatusChanges);
       if (oldDeliveryTime != deliveryTime) {
         blTrackChanges = true;
         deliverySlotChanges = "changed from " + oldDeliveryTime + " to " + deliveryTime;
       }
       var dt = new Date(deliveryDate);
 
-console.log(dt.getDate() + "/" +(dt.getMonth()+1) + "/" + dt.getFullYear());
-console.log(oldDeliveryDate);
-    var delDate = dt.getDate() + "/" +(dt.getMonth()+1) + "/" + dt.getFullYear();
+      // console.log(dt.getDate() + "/" +(dt.getMonth()+1) + "/" + dt.getFullYear());
+      // console.log(oldDeliveryDate);
+      var delDate = dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear();
       //if (oldDeliveryDate != deliveryDate) {
       if (oldDeliveryDate != delDate) {
         blTrackChanges = true;
@@ -520,7 +526,8 @@ console.log(oldDeliveryDate);
       console.log(Date.parse(deliveryDate));
       console.log(blupdatedFlag);
       if (blupdatedFlag === true) {
-
+        console.log(paymentStatus);
+        console.log(orderID);
         //added the order in Order Details
         db.collection("OrderDetails").doc(orderID).update({
             deliveryDate: firebase.firestore.Timestamp.fromDate(new Date(Date.parse(deliveryDate))), //deliveryDate,
@@ -594,17 +601,28 @@ function UpdateOrderTrackingDetails(orderChanges, orderID) {
 function updateWalletDetails(userid_order, totalamount, addDelete) {
   var currentAmount = 0;
   const snapshot = db.collection('UserWallet').doc(userid_order);
+
+  var WalletDetails = [];
+
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
         currentAmount = doc.data().WalletAmount;
+        WalletDetails = doc.data().WalletDetails;
       }
       if (addDelete === 'add')
         currentAmount = Number(currentAmount) + Number(totalamount);
       else
         currentAmount = Number(currentAmount) - Number(totalamount);
+      WalletDetails.push({
+        orderID: orderID,
+        WalletAmount: totalamount,
+        WalletType: addDelete,
+        Date: firebase.firestore.Timestamp.fromDate(new Date())
+      });
       db.collection("UserWallet").doc(userid_order).set({
           WalletAmount: currentAmount,
           UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+          WalletDetails: WalletDetails,
           UpdatedByUser: userID
         })
         .then(function(docRef) {
