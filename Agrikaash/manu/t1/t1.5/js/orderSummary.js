@@ -739,7 +739,7 @@ function deleteItem(prodID, selectedItemIndex, parentdiv) {
             // console.log(refundAmount);
             // console.log(userID);
 
-            if (refundAmount != undefined && refundAmount > 0) {
+            if ((refundAmount != undefined && refundAmount > 0) && modifiedOrder.paymentStatus === 'Completed') {
               //  console.log('refundAmount : ', refundAmount);
 
               var walletRs = Number(refundAmount).toLocaleString('en-IN', curFormat);;
