@@ -795,7 +795,7 @@ function deleteItem(prodID, selectedItemIndex) {
             if (Number(discountedAmount) < Number(oldDiscountPrise)) {
               refundAmount = Number(oldDiscountPrise) - Number(discountedAmount);
             }
-            if (refundAmount > 0) {
+            if (refundAmount > 0 && modifiedOrder.paymentStatus === 'Completed') {
               console.log('refundAmount : ', refundAmount);
 
               var walletRs = Number(refundAmount).toLocaleString('en-IN', curFormat);
