@@ -30,8 +30,9 @@ function GetProfileData(user) {
         userRole = doc.data().UserRole;
       //  console.log(userRole);
 
-        // if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
-        //   document.getElementById('navUser').src = doc.data().ProfileImageURL;
+         if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
+           document.getElementById('profilePic').src = doc.data().ProfileImageURL;
+        document.getElementById('profileName').innerHTML =  doc.data().displayName;
         PopulateOrderSummary();
         PopulateDeliverySummary();
         PopulateDeliveryCard();
