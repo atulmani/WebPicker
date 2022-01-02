@@ -69,9 +69,9 @@ function GetProfileData(user) {
             // isAdmin = false;
           }
         }
-        // if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
-        //   document.getElementById('navUser').src = doc.data().ProfileImageURL;
-      //  console.log(isAdmin);
+        if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
+          document.getElementById('profilePic').src = doc.data().ProfileImageURL;
+       document.getElementById('profileName').innerHTML =  doc.data().displayName;
 
         var promise = getCartItemNo();
         // var promise2 = promise.then(populateProductData('', '', true));
