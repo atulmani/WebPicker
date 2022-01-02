@@ -139,8 +139,8 @@ function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
     maximumFractionDigits: 0
   };
   amt = amt.toLocaleString('en-IN', curFormat);
-
   document.getElementById('paymentAmount').innerHTML = amt;
+
   console.log(selectedOrder.discountedprize);
   if (isNaN(selectedOrder.discountedprize))
     console.log('if');
@@ -254,9 +254,13 @@ function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
 
 function populateOrderItems(selectedOrder) {
   var orderItem = selectedOrder.orderItems;
+  var i;
+  document.getElementById('orderItems').innerHTML="";
+
   for (i = 0; i < orderItem.length; i++) {
     renderOrderItem(orderItem[i], i, selectedOrder.orderStatus);
   }
+  document.getElementById("itemcount").innerHTML = i;
 }
 
 function renderOrderItem(orderItem, index, orderStatusValue) {
@@ -415,6 +419,13 @@ function renderOrderItem(orderItem, index, orderStatusValue) {
 }
 
 function SaveOrder() {
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  };
+
   document.getElementById("Message").text = "";
   var odeliveryTime = document.getElementById("DeliveryTime");
   var odeliveryDate = document.getElementById("odeliveryDate");
@@ -510,10 +521,13 @@ function SaveOrder() {
 
       if (oldOrderStatus != orderStatus && orderStatus === 'Cancelled' &&
         (oldPaymentStatus === 'Completed' || paymentStatus === 'Completed')) {
-        document.getElementById("Message").innerHTML = "Payment of " + selectedOrder.totalAmount + " has been added to user's wallet";
+        var walletRs = Number(selectedOrder.totalAmount).toLocaleString('en-IN', curFormat);;
+        //      document.getElementById("divWalletMessage").style.display="block";
+        document.getElementById("Message").innerHTML = "Payment of " + walletRs + " has been added to user's wallet";
         updateWalletDetails(userid_order, selectedOrder.totalAmount, 'add');
       } else if ((oldOrderStatus != orderStatus && oldOrderStatus === 'Cancelled') &&
         (oldPaymentStatus != paymentStatus && oldPaymentStatus === 'Completed')) {
+        var walletRs = Number(selectedOrder.totalAmount).toLocaleString('en-IN', curFormat);
         document.getElementById("Message").innerHTML = "Payment of " + selectedOrder.totalAmount + " has been deleted from to user's wallet";
         updateWalletDetails(userid_order, selectedOrder.totalAmount, 'delete');
       } else if (orderStatus === 'Delivered' && paymentStatus === 'Pending') //invalid case expression:
@@ -702,6 +716,12 @@ function deleteItem(prodID, selectedItemIndex) {
   var newOrder = [];
   var totalPrise = 0;
   var discountedAmount = 0;
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  };
 
   var cancelFlag = false;
   const snapshot = db.collection('OrderDetails').doc(orderID);
@@ -724,7 +744,15 @@ function deleteItem(prodID, selectedItemIndex) {
             cancelFlag = true;
             selectedOrder.orderStatus = "Cancelled";
             if (selectedOrder.paymentStatus === 'Completed') {
-              walletAmount = selectedOrder.totalAmount;
+              if (selectedOrder.discountedprize > 0) {
+                walletAmount = selectedOrder.discountedprize;
+              } else {
+                walletAmount = selectedOrder.totalAmount;
+              }
+              var walletRs = Number(walletAmount).toLocaleString('en-IN', curFormat);
+              selectedOrder.paymentStatus = "Pending";
+              document.getElementById("divWalletMessage").style.display = "block;"
+              document.getElementById("Walletmessage").innerHTML = "User Wallet has been added with : " + walletRs
               updateWalletDetails(userid_order, walletAmount, 'add');
             }
 
@@ -769,6 +797,11 @@ function deleteItem(prodID, selectedItemIndex) {
             }
             if (refundAmount > 0) {
               console.log('refundAmount : ', refundAmount);
+
+              var walletRs = Number(refundAmount).toLocaleString('en-IN', curFormat);
+
+              document.getElementById("divWalletMessage").style.display = "block;"
+              document.getElementById("Walletmessage").innerHTML = "User Wallet has been added with : " + walletRs
               updateWalletDetails(userid_order, refundAmount, 'add');
             }
             modifiedOrder.totalItems = items.length;
@@ -786,6 +819,7 @@ function deleteItem(prodID, selectedItemIndex) {
       db.collection('OrderDetails').doc(orderID).update({
           orderStatus: modifiedOrder.orderStatus,
           orderItems: modifiedOrder.orderItems,
+          paymentStatus : modifiedOrder.paymentStatus,
           totalItems: modifiedOrder.orderItems.length,
           totalAmount: totalPrise,
           discountedprize: discountedAmount
@@ -817,6 +851,7 @@ function deleteItem(prodID, selectedItemIndex) {
             console.log(orderID);
             UpdateOrderTrackingDetails(orderChanges, orderID);
           }
+          getOrderDetails();
         })
         .catch(function(error) {
           console.error("error adding document:", error);
