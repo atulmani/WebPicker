@@ -57,9 +57,10 @@ function GetProfileData(user) {
         //console.log('Document ref id: ' + doc.data().uid);
         userID = doc.data().uid;
 
-        if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
-          //    document.getElementById('navUser').src = doc.data().ProfileImageURL;
-        }
+        if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
+          document.getElementById('profilePic').src = doc.data().ProfileImageURL;
+       document.getElementById('profileName').innerHTML =  doc.data().displayName;
+
         //document.getElementById('headerProfilePic').src = doc.data().ProfileImageURL;
         //document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
