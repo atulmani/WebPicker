@@ -87,20 +87,44 @@ function cancelOrder() {
     month: 'short',
     day: 'numeric'
   };
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  };
+
+
     var errorMsg = "";
+    var payment = 0;
   // console.log(document.getElementById('PaymentStatus').innerHTML);
     if (document.getElementById('PaymentStatus').innerHTML === 'Completed')
     {
       var walletAmount ;
-      if (document.getElementById('discount').visible === true)
+      console.log(document.getElementById("hfDiscountFlag").value);
+
+      if (document.getElementById("hfDiscountFlag").value === "true")
       {
-        walletAmount = document.getElementById('discountValue').innerHTML;
+        console.log('in if');
+        payment = document.getElementById('paymentAmount').innerHTML;
+        payment = payment.replace(/[₹,]+/g,"");
+
+        walletAmount =  document.getElementById('discountValue').innerHTML;
+        walletAmount = walletAmount.replace(/[₹,]+/g,"");
+        walletAmount = Number(payment) - Number(walletAmount);
+        walletAmount = walletAmount.toLocaleString('en-IN', curFormat);
+        errorMsg = "Amount ("+walletAmount+") has been added to your wallet.";
+        walletAmount = walletAmount.replace(/[₹,]+/g,"");
+
       }
       else {
+        console.log('in else');
         walletAmount = document.getElementById('paymentAmount').innerHTML;
+        errorMsg = "Amount ("+walletAmount+") has been added to your wallet.";
+
+        walletAmount = walletAmount.replace(/[₹,]+/g,"");
+
       }
-      errorMsg = "Amount ("+walletAmount+") has been added to your wallet.";
-      walletAmount = walletAmount.replace(/[₹,]+/g,"");
       console.log(walletAmount);
       updateWalletDetails(userID, walletAmount, 'add');
     }
@@ -267,7 +291,9 @@ function populateDeliveryAddress(selectedOrder) {
   //if (selectedOrder.discountedprize === 'NaN' || selectedOrder.discountedprize === "0" || selectedOrder.discountedprize === "")
   if (isNaN(selectedOrder.discountedprize) || selectedOrder.discountedprize === '') {
     document.getElementById('discount').style.display = "none";
+    document.getElementById("hfDiscountFlag").value="false";
   } else {
+    document.getElementById("hfDiscountFlag").value="true";
     var discountAmt = selectedOrder.discountedprize;
     discountAmt = discountAmt.toLocaleString('en-IN', curFormat);
     console.log(discountAmt);
@@ -648,17 +674,17 @@ function deleteItem(prodID, selectedItemIndex, parentdiv) {
           var modifiedOrder = selectedOrder;
 
           if (selectedOrder.orderItems.length === 1) {
-            console.log("order Cancelled");
-            cancelFlag = true;
-            selectedOrder.orderStatus = "Cancelled";
-            if (selectedOrder.paymentStatus === 'Completed') {
-              walletAmount = selectedOrder.totalAmount;
-              updateWalletDetails(userID, walletAmount, 'add');
-            }
-            totalPrise = selectedOrder.totalAmount;
-            discountedAmount = selectedOrder.discountedprize;
-            modifiedOrder = selectedOrder;
-
+            // console.log("order Cancelled");
+            // cancelFlag = true;
+            // selectedOrder.orderStatus = "Cancelled";
+            // if (selectedOrder.paymentStatus === 'Completed') {
+            //   walletAmount = selectedOrder.totalAmount;
+            //   updateWalletDetails(userID, walletAmount, 'add');
+            // }
+            // totalPrise = selectedOrder.totalAmount;
+            // discountedAmount = selectedOrder.discountedprize;
+            // modifiedOrder = selectedOrder;
+            cancelOrder();
           } else {
             console.log("order updated");
 
@@ -775,17 +801,35 @@ function deleteItem(prodID, selectedItemIndex, parentdiv) {
 function updateWalletDetails(userID, totalamount, addDelete) {
   var currentAmount = 0;
   const snapshot = db.collection('UserWallet').doc(userID);
+
+  var WalletDetails = [];
+
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
         currentAmount = doc.data().WalletAmount;
+        WalletDetails = doc.data().WalletDetails;
       }
       if (addDelete === 'add')
         currentAmount = Number(currentAmount) + Number(totalamount);
       else
         currentAmount = Number(currentAmount) - Number(totalamount);
+        console.log(WalletDetails);
+        if(WalletDetails === undefined)
+          WalletDetails =[];
+      WalletDetails.push(
+        {
+          orderID : orderID,
+          WalletAmount : totalamount,
+          WalletType : addDelete,
+          Date : firebase.firestore.Timestamp.fromDate(new Date())
+        }
+      );
+
+      console.log(WalletDetails);
       db.collection("UserWallet").doc(userID).set({
           WalletAmount: currentAmount,
           UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+          WalletDetails : WalletDetails,
           UpdatedByUser: userID
         })
         .then(function(docRef) {
