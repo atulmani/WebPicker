@@ -13,9 +13,6 @@ auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
-      console.log(orderID);
-      console.log(userID);
-      console.log(action);
       //logic for view of div if cancel or view
       if(action === 'cancel') //if cancelled
       {
@@ -48,6 +45,32 @@ auth.onAuthStateChanged(firebaseUser => {
   }
   // document.getElementById('loading-img').style.display = 'none';
 });
+
+
+function GetProfileData(user) {
+  // const ref = db.collection("Users").doc(user.uid);
+
+  const snapshot = db.collection('UserList').doc(user.uid);
+  snapshot.get().then(async (doc) => {
+      if (doc.exists) {
+        // let blogPost = doc.data();
+        // console.log ('User UID: ' + user.uid);
+        if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
+          document.getElementById('profilePic').src = doc.data().ProfileImageURL;
+        document.getElementById('profileName').innerHTML =  doc.data().displayName;
+
+        // document.getElementById('headerProfilePic').src = doc.data().ImageURL;
+        // document.getElementById('displayName').innerHTML = doc.data().displayName;
+
+      }
+    })
+    .catch(function(error) {
+      // An error occurred
+      console.log(error.message);
+      // document.getElementById('errorMessage_Signup').innerHTML = error.message;
+      // document.getElementById('errorMessage_Signup').style.display = 'block';
+    });
+};
 
 function myFunction() {
   var element = document.getElementById("detailsDiv");
@@ -117,32 +140,6 @@ function cancelOrder() {
       });
 
 }
-
-function GetProfileData(user) {
-  // const ref = db.collection("Users").doc(user.uid);
-
-  const snapshot = db.collection('UserList').doc(user.uid);
-  snapshot.get().then(async (doc) => {
-      if (doc.exists) {
-        // let blogPost = doc.data();
-        // console.log ('User UID: ' + user.uid);
-        console.log('Document ref id: ' + doc.data().uid);
-        if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
-          //document.getElementById('navUser').src = doc.data().ProfileImageURL;
-        }
-
-        // document.getElementById('headerProfilePic').src = doc.data().ImageURL;
-        // document.getElementById('displayName').innerHTML = doc.data().displayName;
-
-      }
-    })
-    .catch(function(error) {
-      // An error occurred
-      console.log(error.message);
-      // document.getElementById('errorMessage_Signup').innerHTML = error.message;
-      // document.getElementById('errorMessage_Signup').style.display = 'block';
-    });
-};
 
 
 
