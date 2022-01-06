@@ -154,7 +154,7 @@
         </span>
         <small>Home</small>
       </a>
-      <a href="productList.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+      <a href="updateProduct.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
         <span class="material-icons-outlined">
           category
         </span>
@@ -246,7 +246,7 @@
       <hr class="hr" />
 
       <li class="">
-        <a href="../login/profile.html" class="left-navigation">
+        <a href="couponSetup.html" class="left-navigation">
           <div class="">
             <span class="material-icons-outlined">
               card_giftcard
@@ -266,7 +266,7 @@
       <hr class="hr" />
 
       <li class="">
-        <a href="#" class="left-navigation">
+        <a href="dashboard.html" class="left-navigation">
           <div class="">
             <span class="material-icons-outlined">
               landscape
@@ -286,7 +286,7 @@
       <hr class="hr" />
 
       <li class="">
-        <a href="#" id="btnLogout" class="left-navigation">
+        <a id="btnLogout" class="left-navigation">
           <div class="">
             <span class="material-icons-outlined">
               logout
@@ -323,19 +323,19 @@
               Dashboard
             </div>
           </a><br>
-          <a href="productList.html">
+          <a href="updateProduct.html">
             <div class="">
               <i class="fas fa-th-large"></i>
               Products
             </div>
           </a><br>
-          <a href="orderList.html">
+          <a href="orderStatus.html">
             <div class="">
               <i class="fab fa-buffer"></i>
               Orders
             </div>
           </a><br>
-          <a href="#">
+          <a href="../login/profile.html">
             <div class="">
               <i class="fas fa-male"></i>
               Profile
@@ -359,12 +359,12 @@
           <div class="add-address-card">
             <div class="row no-gutters">
 
-              <div class="col-sm-12" style="display:none;">
+              <div class="col-sm-12" id="imgDiv" style="display:none;">
                 <center>
-                  <img src="../img/camera.png" style="width: 250px;border: 1px solid #ddd;" alt="">
+                  <img src="../img/camera.png" id="myimg" style="width: 250px;border: 1px solid #ddd;" alt="">
                   <div class=""><br>
-                    <button class="mybutton button5" style="width: 100px">Select</button>
-                    <button class="mybutton button5" style="width: 100px">Upload</button>
+                    <button class="mybutton button5" id="select" style="width: 100px">Select</button>
+                    <button class="mybutton button5" style="width: 100px" id="upload" disabled>Upload</button>
                   </div>
                 </center><br>
               </div>
@@ -376,7 +376,7 @@
               </div>
 
               <div class="col-6" style="padding: 0 5px;">
-                <input type="radio" checked class="checkbox" style="width: 0px;" name="BusinessType" id="all" value="all">
+                <input type="radio" checked class="checkbox" style="width: 0px;" name="BusinessType" id="All" value="All">
                 <label class="checkbox-label" id="all-label" for="all">
                   <i class="fas fa-plus"></i>
                   <i class="fas fa-check"></i>
@@ -385,7 +385,7 @@
               </div>
 
               <div class="col-6" style="padding: 0 5px;">
-                <input type="radio" class="checkbox" style="width: 0px;" name="BusinessType" id="small" value="small">
+                <input type="radio" class="checkbox" style="width: 0px;" name="BusinessType" id="Small" value="Small">
                 <label class="checkbox-label" id="small-label" for="small">
                   <i class="fas fa-plus"></i>
                   <i class="fas fa-check"></i>
@@ -394,7 +394,7 @@
               </div>
 
               <div class="col-6" style="padding: 0 5px;">
-                <input type="radio" class="checkbox" style="width: 0px;" name="BusinessType" id="medium" value="medium">
+                <input type="radio" class="checkbox" style="width: 0px;" name="BusinessType" id="Medium" value="Medium">
                 <label class="checkbox-label" id="medium-label" for="medium">
                   <i class="fas fa-plus"></i>
                   <i class="fas fa-check"></i>
@@ -403,7 +403,7 @@
               </div>
 
               <div class="col-6" style="padding: 0 5px;">
-                <input type="radio" class="checkbox" style="width: 0px;" name="BusinessType" id="large" value="large">
+                <input type="radio" class="checkbox" style="width: 0px;" name="BusinessType" id="Large" value="Large">
                 <label class="checkbox-label" id="large-label" for="large">
                   <i class="fas fa-plus"></i>
                   <i class="fas fa-check"></i>
@@ -414,21 +414,21 @@
               <div class="col-sm-12">
                 <hr>
                 <div class="form-control">
-                  <input type="text" required value="Agrikaash" maxlength="40">
+                  <input type="text" id="brand" required value="Agrikaash" maxlength="40">
                   <label>Brand Name</label>
                 </div>
               </div>
 
               <div class="col-sm-12" style="background: rgba(135,202,93,0.1);">
                 <div class="form-control" style="background: transparent;">
-                  <input type="text" required style="background: transparent;" value="" maxlength="40">
+                  <input type="text" id="productName" required style="background: transparent;" value="" maxlength="40">
                   <label style="color: #ff5757;">Product Name</label>
                 </div>
               </div>
 
               <div class="col-6"><br>
                 <div class="" style="padding: 0 5px;">
-                  <input type="radio" checked class="checkbox" style="width: 0px;" name="Veg-NonVeg" id="veg" value="veg">
+                  <input type="radio" checked class="checkbox" style="width: 0px;" name="Veg-NonVeg" id="Veg" value="Veg">
                   <label class="checkbox-label" id="veg-label" for="veg">
                     <i class="fas fa-plus"></i>
                     <i class="fas fa-check"></i>
@@ -453,13 +453,13 @@
                 <div class="" style="display:flex; justify-content: space-between;align-items: center;">
                   <span>Category</span>
                   <div class="">
-                    <select class="city-selector" style="border: 1px solid #aaa;" name="">
-                      <option value="Today">Today</option>
-                      <option value="Yesterday">Yesterday</option>
-                      <option value="Last 7 days">Last 7 days</option>
-                      <option value="Current month">Current month</option>
-                      <option value="Last 6 months">Last 6 months</option>
-                      <!-- <option value="Custom">Custom</option> -->
+                    <select id="productType" class="city-selector" style="border: 1px solid #aaa;" name="">
+                      <option value="Vegetable">Vegetable</option>
+                      <option value="Vegetable">Vegetable & Fruits</option>
+                      <option value="Fruit">Fruit</option>
+                      <option value="Pearl">Pearl</option>
+                      <option value="Goat Products">Goat Products</option>
+
                     </select>
 
                     <span class="material-icons-outlined city-selector-icon">
@@ -467,61 +467,187 @@
                     </span>
                   </div>
                 </div>
+              </div>
+
+              <div class="col-lg-12">
                 <hr>
+                <center>
+                  <h4 class="small-text">Quantity Setup</h4><br>
+                </center>
               </div>
 
               <div class="col-4">
                 <div class="form-control">
-                  <input type="number" required value="1" maxlength="40">
+                  <input type="number" required value="1" maxlength="40" min=1 id="minimumQty">
                   <label>Min Qty</label>
                 </div>
               </div>
 
               <div class="col-4">
                 <div class="form-control">
-                  <input type="number" required value="50" maxlength="40">
+                  <input type="number" required value="50" maxlength="40" min=1 id="maximumQty">
                   <label>Max Qty</label>
                 </div>
               </div>
 
               <div class="col-4">
                 <div class="form-control">
-                  <input type="number" required value="1" maxlength="40">
+                  <input type="number" required value="1" maxlength="40" min=1 id="stepQty">
                   <label>Steps</label>
                 </div>
               </div>
+
               <div class="col-lg-12">
                 <hr>
+                <center>
+                  <h4 class="small-text">Price Setup</h4><br>
+                </center>
               </div>
 
-              <div class="col-4">
-                <div class="form-control">
-                  <input type="text" required value="" maxlength="40">
-                  <label style="color: #ff5757;">Weight</label>
-                </div>
+              <div id="row1" class="col-lg-12">
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    <div class="form-control">
+                      <input type="text" required value="" maxlength="40" id="productWeight1">
+                      <label style="color: #ff5757;">Weight</label>
+                    </div>
+                  </div>
+
+                  <div class="col-4">
+                    <div class="form-control">
+                      <input type="text" required value="" maxlength="40" id="productMRP1">
+                      <label style="color: #ff5757;">MRP</label>
+                    </div>
+                  </div>
+
+                  <div class="col-4">
+                    <div class="form-control">
+                      <input type="text" required value="" maxlength="40" id="productFinalPrise1">
+                      <label style="color: #ff5757;">Our Price</label>
+                    </div>
+                  </div>
+                </div><br>
               </div>
 
-              <div class="col-4">
-                <div class="form-control">
-                  <input type="text" required value="" maxlength="40">
-                  <label style="color: #ff5757;">MRP</label>
-                </div>
+              <div id="row2" class="col-sm-12" style="display:none;">
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    <div class="form-control">
+                      <input type="text" required value="" maxlength="40" id="productWeight2">
+                      <label style="color: #ff5757;">Weight</label>
+                    </div>
+                  </div>
+
+                  <div class="col-4">
+                    <div class="form-control">
+                      <input type="text" required value="" maxlength="40" id="productMRP2">
+                      <label style="color: #ff5757;">MRP</label>
+                    </div>
+                  </div>
+
+                  <div class="col-4">
+                    <div class="form-control">
+                      <input type="text" required value="" maxlength="40" id="productFinalPrise2">
+                      <label style="color: #ff5757;">Our Price</label>
+                    </div>
+                  </div>
+                </div><br>
               </div>
 
-              <div class="col-4">
-                <div class="form-control">
-                  <input type="text" required value="" maxlength="40">
-                  <label style="color: #ff5757;">Agrikaash Price</label>
-                </div>
+
+              <div id="row3" class="col-sm-12" style="display:none;">
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    <div class="form-control">
+                      <input type="text" required value="" maxlength="40" id="productWeight3">
+                      <label style="color: #ff5757;">Weight</label>
+                    </div>
+                  </div>
+
+                  <div class="col-4">
+                    <div class="form-control">
+                      <input type="text" required value="" maxlength="40" id="productMRP3">
+                      <label style="color: #ff5757;">MRP</label>
+                    </div>
+                  </div>
+
+                  <div class="col-4">
+                    <div class="form-control">
+                      <input type="text" required value="" maxlength="40" id="productFinalPrise3">
+                      <label style="color: #ff5757;">Our Price</label>
+                    </div>
+                  </div>
+                </div><br>
               </div>
 
-              <div class="col-sm-12" style="text-align: right;"><br>
-                <a href="#">+ Add More</a>
+
+              <div id="row4" class="col-sm-12" style="display:none;">
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    <div class="form-control">
+                      <input type="text" required value="" maxlength="40" id="productWeight4">
+                      <label style="color: #ff5757;">Weight</label>
+                    </div>
+                  </div>
+
+                  <div class="col-4">
+                    <div class="form-control">
+                      <input type="text" required value="" maxlength="40" id="productMRP4">
+                      <label style="color: #ff5757;">MRP</label>
+                    </div>
+                  </div>
+
+                  <div class="col-4">
+                    <div class="form-control">
+                      <input type="text" required value="" maxlength="40" id="productFinalPrise4">
+                      <label style="color: #ff5757;">Our Price</label>
+                    </div>
+                  </div>
+                </div><br>
               </div>
 
+
+              <div id="row5" class="col-sm-12" style="display:none;">
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    <div class="form-control">
+                      <input type="text" required value="" maxlength="40" id="productWeight5">
+                      <label style="color: #ff5757;">Weight</label>
+                    </div>
+                  </div>
+
+                  <div class="col-4">
+                    <div class="form-control">
+                      <input type="text" required value="" maxlength="40" id="productMRP5">
+                      <label style="color: #ff5757;">MRP</label>
+                    </div>
+                  </div>
+
+                  <div class="col-4">
+                    <div class="form-control">
+                      <input type="text" required value="" maxlength="40" id="productFinalPrise5">
+                      <label style="color: #ff5757;">Our Price</label>
+                    </div>
+                  </div>
+                </div><br>
+              </div>
+
+              <div class="col-sm-12" style="text-align: right;color: #2421b3 ;"><br>
+                <a id="btnAddMore" onclick="addRows()">+ Add More</a>
+              </div>
+
+
+              <div id="createEventConformation" class="col-sm-12" style="display: none;">
+                <center>
+                <span>Congrats! Your Product is succsessfully updated</span>
+                <!-- <span ><i class="fas fa-hand-point-right"></i></span>
+                <span> <a href="allProducts.html">Click Here</a> </span> -->
+              </center>
+              </div>
               <div class="col-sm-12">
                 <center>
-                  <button class="mybutton button5" style="width: 100px">Save</button>
+                  <button id="btnSave" class="mybutton button5" style="width: 100px">Save</button>
+                  <input type="hidden" id="hfproductID">
                 </center>
               </div>
 
@@ -537,167 +663,7 @@
 
 
 
-      <div class="row no-gutters">
-        <div style="padding: 1.5%;" class="col-lg-6">
 
-          <div style="border:2px solid #889;padding:10px;" class="firstbox">
-            <div id="mandatoryFields" class="row g-3">
-              <div class="col-md-12">
-                <label for="BusinessType" class="form-label">Customer Business Type</label>
-                <select name="BusinessType" id="BusinessType">
-                  <option value="Small">Small</option>
-                  <option value="Medium">Medium</option>
-                  <option value="Large">Large</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div id="mandatoryFields" class="row g-3">
-            <div class="col-md-12">
-              <label for="productType" class="form-label">Product Type</label>
-              <select name="productType" id="productType">
-                <option value="Vegetable">Vegetable</option>
-                <option value="Vegetable">Vegetable & Fruits</option>
-                <option value="Fruit">Fruit</option>
-                <option value="Pearl">Pearl</option>
-                <option value="Goat Products">Goat Products</option>
-
-              </select>
-            </div>
-
-            <div class="col-md-12">
-              <label for="inputEmail4" class="form-label">Product Name</label>
-              <input id="hfproductID" type="hidden" value="">
-              <input id="productName" type="text" required class="form-control" value="" placeholder="Enter the name of the event">
-            </div>
-            <div class="col-md-6">
-              <label for="inputCity" class="form-label">Brand</label>
-              <input id="brand" type="text" value="Agrikaash" required class="form-control" value="">
-            </div>
-            <div class="col-md-6">
-              <input id="veg" type="radio" name="Veg-nonVeg" value="Veg">
-              Veg
-              <input id="nonVeg" type="radio" name="Veg-nonVeg" value="NonVeg">
-              Non-veg
-            </div>
-
-            <div class="col-md-6">
-              <label for="inputCity" id="organiserphone" class="form-label">Minimum Quantity</label>
-              <input id="minimumQty" maxlength="5" type="number" value="1" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control">
-            </div>
-            <div class="col-md-6">
-              <label for="inputCity" class="form-label">Maximum Quantity</label>
-              <input id="maximumQty" maxlength="5" type="number" value="50" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" id="eventorganisationPhone">
-            </div>
-            <div class="col-md-6">
-              <label for="inputCity" class="form-label">Step</label>
-              <input id="stepQty" maxlength="5" type="number" value="1" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" id="eventorganisationPhone">
-            </div>
-
-            <div class="col-md-12">
-              <div class="row no-gutters" style="border:1px solid #000;">
-                <div class="col-md-4" style="padding:5px;">
-                  <label for="inputCity" class="form-label">Product weight</label>
-                  <input id="productWeight1" type="text" required class="form-control" value="1KG" placeholder="Enter weight">
-                </div>
-                <div class="col-md-4" style="padding:5px;">
-                  <label for="inputCity" class="form-label">Product MRP</label>
-                  <input id="productMRP1" type="text" required class="form-control" value="" placeholder="Enter MRP">
-                </div>
-                <div class="col-md-4" style="padding:5px;">
-                  <label for="inputCity" class="form-label">Product Final Prise</label>
-                  <input id="productFinalPrise1" type="text" required class="form-control" value="" placeholder="Enter Final Prize">
-                </div>
-
-                <div class="col-md-4" style="padding:5px;">
-                  <input id="productWeight2" type="text" required class="form-control" value="" placeholder="Enter weight">
-                </div>
-                <div class="col-md-4" style="padding:5px;">
-                  <input id="productMRP2" type="text" required class="form-control" value="" placeholder="Enter MRP">
-                </div>
-                <div class="col-md-4" style="padding:5px;">
-                  <input id="productFinalPrise2" type="text" required class="form-control" value="" placeholder="Enter Final Prize">
-                </div>
-
-                <div class="col-md-4" style="padding:5px;">
-                  <input id="productWeight3" type="text" required class="form-control" value="" placeholder="Enter weight">
-                </div>
-                <div class="col-md-4" style="padding:5px;">
-                  <input id="productMRP3" type="text" required class="form-control" value="" placeholder="Enter MRP">
-                </div>
-                <div class="col-md-4" style="padding:5px;">
-                  <input id="productFinalPrise3" type="text" required class="form-control" value="" placeholder="Enter Final Prize">
-                </div>
-
-                <div class="col-md-4" style="padding:5px;">
-                  <input id="productWeight4" type="text" required class="form-control" value="" placeholder="Enter weight">
-                </div>
-                <div class="col-md-4" style="padding:5px;">
-                  <input id="productMRP4" type="text" required class="form-control" value="" placeholder="Enter MRP">
-                </div>
-                <div class="col-md-4" style="padding:5px;">
-                  <input id="productFinalPrise4" type="text" required class="form-control" value="" placeholder="Enter Final Prize">
-                </div>
-
-                <div class="col-md-4" style="padding:5px;">
-                  <input id="productWeight5" type="text" required class="form-control" value="" placeholder="Enter weight">
-                </div>
-                <div class="col-md-4" style="padding:5px;">
-                  <input id="productMRP5" type="text" required class="form-control" value="" placeholder="Enter MRP">
-                </div>
-                <div class="col-md-4" style="padding:5px;">
-                  <input id="productFinalPrise5" type="text" required class="form-control" value="" placeholder="Enter Final Prize">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div id="optionalFields" class="row no-gutters" style="display:none;">
-            <div class="row g-3">
-
-            </div>
-          </div>
-
-          <div class="row no-gutters">
-
-
-            <!-- <br><br> -->
-            <div class="col-md-6">
-
-              <!-- <button  class="btn" type="submit" name="button">Save</button> -->
-              <input id="btnSave" style="background-color:#fbe25f; color:#6ea23f; margin-top:20px;" class="btn" type="button" name="Save" value="Save">
-
-            </div>
-            <div class="col-md-12">
-              <div id="createEventConformation" class="finger-line" style="display: none;">
-                <span>Congrats! Your Product is succsessfully created</span>
-                <!-- <span ><i class="fas fa-hand-point-right"></i></span>
-                <span> <a href="allProducts.html">Click Here</a> </span> -->
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <div id='imageDiv' style="padding:1.5%;display:none;" class="col-lg-6">
-        <div style="border:2px solid #889; color:#6ea23f;" class="firstbox">
-          <style media="screen">
-            img {
-              height: 230px;
-              width: 330px;
-              border: 2px solid black;
-            }
-          </style>
-          Image Name <input id="namebox" type="text" name="" value=""> <br><br>
-
-          <img id="myimg" src="" alt=""><label id="UpProgress"></label> <br><br>
-          <h5>Your Image should be in ratio of 330 : 230 (px)</h5><br>
-          <button style="background:#fbe25f; color:#6ea23f;" class="btn" id="select" type="button" name="button">Select Image</button>
-          <button style="background:#fbe25f; color:#6ea23f;" class="btn" id="upload" type="button" disabled name="button">Upload Image</button>
-          <!-- <button style="background:#fbe25f; color:#6ea23f;" class="btn" id="retrieve" type="button" name="button">Retrieve Image</button> -->
-        </div>
-        <br>
-      </div>
     </div>
 
   </div>
@@ -794,6 +760,7 @@
 
   <script src="../js/main.js"></script>
   <script src="../js/firebase.js"></script>
+  <script src="../js/fb-logout.js"></script>
 
   <!-- <script src="../js/chart.js"></script> -->
   <script src="../js/createProduct.js"></script>
