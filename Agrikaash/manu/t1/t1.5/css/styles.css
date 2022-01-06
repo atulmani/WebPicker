@@ -488,7 +488,7 @@ h6{
   justify-content: center;
   align-items: center;
   padding: 15px 0;
-  background: url('../img/left-nav.mp4');
+  /* background: url('../img/left-nav.mp4'); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1331,25 +1331,27 @@ input[type=number] {
 
 .form-control input {
 	border: none;
-	border-bottom: 2px solid #bbb;
-	padding: 5px 0;
+	border-bottom: 2px solid #ddd;
+	padding: 8px 0 0 0;
 	display: block;
-	font-size: 18px;
+	font-size: 0.9rem;
 	font-family: 'Muli', sans-serif;
 	width: 100%;
 	transition: 0.1s ease-in;
+  color: #666;
 }
 
 .form-control input:focus,
 .form-control input:valid {
-	border-bottom-color: #000;
+	border-bottom-color: #ddd;
 	outline: none;
 }
 
 .form-control input:focus + label span ,
 .form-control input:valid + label span{
-	color: #000;
-	transform: translateY(-25px);
+	color: #666;
+  font-weight: 800;
+	transform: translateY(-30px);
 }
 
 .form-control label {
@@ -1357,7 +1359,7 @@ input[type=number] {
 	top: 15px;
 	left: 10px;
   pointer-events: none;
-  color: #bbb;
+  font-weight: 800;
 }
 
 .form-control label span {
