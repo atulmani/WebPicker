@@ -6,10 +6,6 @@ auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
       console.log('Logged-in user email id: ' + firebaseUser.email);
-      // document.getElementById('displayName').innerHTML = firebaseUser.displayName;
-      // document.getElementById('profile-name').value = firebaseUser.displayName;
-      // document.getElementById('profile-number').value = firebaseUser.Phone;
-      // document.getElementById('profileEmail').value = firebaseUser.email;
 
       GetProfileData(firebaseUser);
 
@@ -30,17 +26,13 @@ function GetProfileData(user) {
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
-          document.getElementById('navUser').src = doc.data().ProfileImageURL;
+          document.getElementById('profilePic').src = doc.data().ProfileImageURL;
+
         }
-
-
-        //document.getElementById('headerProfilePic').src = doc.data().ImageURL;
-        // document.getElementById('profile-name').value = doc.data().displayName;
-        //document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
 
       db.collection('CollectionStatistics').get().then((changes) => {
-          changes.forEach(change => {
+        changes.forEach(change => {
 
           count = change.data().ProductCount;
           count = count + 1;
@@ -52,9 +44,7 @@ function GetProfileData(user) {
     .catch(function(error) {
       // An error occurred
       console.log(error.message);
-      // document.getElementById('errorMessage_Signup').innerHTML = error.message;
-      // document.getElementById('errorMessage_Signup').style.display = 'block';
-    });
+  });
 
 
 
@@ -69,13 +59,13 @@ var productID = searchParams.get('id');
 // var userid = searchParams.get('usertid');
 
 if (productID != null) {
-  document.getElementById('optionalFields').style.display = 'block';
-  document.getElementById('imageDiv').style.display = 'block';
-  //console.log(document.getElementById('productID'));
+
+  document.getElementById('imgDiv').style.display = 'block';
+
   var obj = document.getElementById('hfproductID');
   //console.log(obj);
   document.getElementById('hfproductID').value = productID;
-  console.log(document.getElementById('hfproductID').value);
+  //  console.log(document.getElementById('hfproductID').value);
   populateProductData();
 }
 
@@ -92,7 +82,6 @@ function populateProductData() {
       var productTypeValue = doc.data().productType;
       var customerBusinessType = doc.data().CustomerBusinessType;
       if (productTypeValue != undefined) {
-        console.log('is not undefined');
         var productType = document.getElementById('productType');
         for (var i = 0; i < productType.options.length; i++) {
           if (productType.options[i].value == productTypeValue) {
@@ -103,14 +92,14 @@ function populateProductData() {
       }
 
       if (customerBusinessType != undefined) {
-        console.log('is not undefined');
-        var businessType = document.getElementById('BusinessType');
-        for (var i = 0; i < businessType.options.length; i++) {
-          if (businessType.options[i].value == customerBusinessType) {
-            businessType.options[i].selected = true;
-          }
-        }
-
+        if (customerBusinessType === 'All')
+          document.getElementById("All").checked = true;
+        else if (customerBusinessType === 'Small')
+          document.getElementById("Small").checked = true;
+        else if (customerBusinessType === 'Medium')
+          document.getElementById("Medium").checked = true;
+        else if (customerBusinessType === 'Large')
+          document.getElementById("Large").checked = true;
       }
 
 
@@ -121,10 +110,11 @@ function populateProductData() {
       console.log("vegNonVeg", vegNonVeg);
 
       if (vegNonVeg === "Veg") {
-        document.getElementById("veg").checked = true;
+        document.getElementById("Veg").checked = true;
       } else if (vegNonVeg === "NonVeg") {
-        document.getElementById("nonVeg").checked = true;
+        document.getElementById("NonVeg").checked = true;
       }
+
       document.getElementById("minimumQty").value = doc.data().MinimumQty;
       document.getElementById("maximumQty").value = doc.data().MaximumQty;
       document.getElementById("stepQty").value = doc.data().StepQty;
@@ -137,30 +127,38 @@ function populateProductData() {
         document.getElementById("productFinalPrise1").value = productDetails[0].ProductFinalPrise;
       }
       if (productDetails[1] != null) {
+        document.getElementById("row2").style.display="block";
         document.getElementById("productWeight2").value = productDetails[1].ProductWeight;
         document.getElementById("productMRP2").value = productDetails[1].ProductMRP;
         document.getElementById("productFinalPrise2").value = productDetails[1].ProductFinalPrise;
       }
 
       if (productDetails[2] != null) {
+
+          document.getElementById("row3").style.display="block";
         document.getElementById("productWeight3").value = productDetails[2].ProductWeight;
         document.getElementById("productMRP3").value = productDetails[2].ProductMRP;
         document.getElementById("productFinalPrise3").value = productDetails[2].ProductFinalPrise;
       }
 
       if (productDetails[3] != null) {
+
+          document.getElementById("row4").style.display="block";
         document.getElementById("productWeight4").value = productDetails[3].ProductWeight;
         document.getElementById("productMRP4").value = productDetails[3].ProductMRP;
         document.getElementById("productFinalPrise4").value = productDetails[3].ProductFinalPrise;
       }
 
       if (productDetails[4] != null) {
+
+          document.getElementById("row5").style.display="block";
+          document.getElementById("btnAddMore").disabled="true";
         document.getElementById("productWeight5").value = productDetails[4].ProductWeight;
         document.getElementById("productMRP5").value = productDetails[4].ProductMRP;
         document.getElementById("productFinalPrise5").value = productDetails[4].ProductFinalPrise;
       }
       document.getElementById("myimg").src = doc.data().ProductImageURL;
-      console.log(doc.data().ProductImageURL);
+      //console.log(doc.data().ProductImageURL);
     }
   });
 }
@@ -168,6 +166,34 @@ function populateProductData() {
 //************* Populate Event Data - Ends ******************
 
 //************* Create & Update Event Data - Starts ******************
+
+function addRows() {
+  var row2 = document.getElementById("row2");
+  var row3 = document.getElementById("row3");
+  var row4 = document.getElementById("row4");
+  var row5 = document.getElementById("row5");
+
+  if (row2.style.display === "none") {
+    var productWeight1 = document.getElementById("productWeight1").value;
+    var productMRP1 = document.getElementById("productMRP1").value;
+    var productFinalPrise1 = document.getElementById("productFinalPrise1").value;
+    console.log('add row');
+    if (productWeight1 != '' && productMRP1 != '' && productFinalPrise1 != '') {
+      row2.style.display = "block";
+      // console.log('add row1');
+    }
+    else {
+      // console.log('add row2');
+    }
+  } else if (row3.style.display === "none") {
+    row3.style.display = "block";
+  } else if (row4.style.display === "none") {
+    row4.style.display = "block";
+  } else if (row5.style.display === "none") {
+    row5.style.display = "block";
+    document.getElementById("btnAddMore").disabled = "true";
+  }
+}
 
 function CreateUpdateProductData() {
   console.log('CreateUpdateProductData');
@@ -179,16 +205,24 @@ function CreateUpdateProductData() {
 
     //var productID = document.getElementById("productID").value;
     var productType = document.getElementById("productType");
-    var customerBusinessTypeValue = BusinessType.options[BusinessType.selectedIndex].value;
+    var customerBusinessTypeValue = "";
+    //BusinessType.options[BusinessType.selectedIndex].value;
+    if(document.getElementById("All").checked)
+      customerBusinessTypeValue ="All";
+    else if(document.getElementById("Small").checked)
+      customerBusinessTypeValue ="Small";
+    else if(document.getElementById("Medium").checked)
+      customerBusinessTypeValue ="Medium";
+    else if(document.getElementById("Large").checked)
+      customerBusinessTypeValue ="Large";
 
     var productTypeValue = productType.options[productType.selectedIndex].value;
     var productName = document.getElementById("productName").value;
-    console.log("productName", productName);
     var brand = document.getElementById("brand").value;
     var vegNonVeg = "";
-    if (document.getElementById("veg").checked) {
+    if (document.getElementById("Veg").checked) {
       vegNonVeg = "Veg";
-    } else if (document.getElementById("nonVeg").checked) {
+    } else if (document.getElementById("NonVeg").checked) {
       vegNonVeg = "NonVeg";
     }
     console.log(vegNonVeg);
@@ -241,7 +275,6 @@ function CreateUpdateProductData() {
 
     }
     var ProductImageURL = document.getElementById("myimg").src;
-    console.log(ProductImageURL);
     if (productID != null && productID != '') {
       db.collection("Products").doc(productID).update({
           CustomerBusinessType: customerBusinessTypeValue,
@@ -331,14 +364,8 @@ function CreateUpdateEventData() {
   createEventConformation.style.display = 'block';
 
   CreateUpdateProductData();
-  /*if (docID != null)
-    UpdateEventData();
-  else
-    CreateEventData();
-*/
 
-  document.getElementById('optionalFields').style.display = 'block';
-  document.getElementById('imageDiv').style.display = 'block';
+  document.getElementById('imgDiv').style.display = 'block';
 
   console.log("data sending to db-completed");
 
