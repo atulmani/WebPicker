@@ -361,7 +361,7 @@
 
               <div class="col-sm-12" id="imgDiv" style="display:none;">
                 <center>
-                  <img src="../img/camera.png" id="myimg" style="width: 250px;border: 1px solid #ddd;" alt="">
+                  <img src="../img/camera.png" id="myimg" style="width: 250px;height: 250px;border: 1px solid #ddd;" alt="">
                   <div class=""><br>
                     <button class="mybutton button5" id="select" style="width: 100px">Select</button>
                     <button class="mybutton button5" style="width: 100px" id="upload" disabled>Upload</button>
@@ -377,7 +377,7 @@
 
               <div class="col-6" style="padding: 0 5px;">
                 <input type="radio" checked class="checkbox" style="width: 0px;" name="BusinessType" id="All" value="All">
-                <label class="checkbox-label" id="all-label" for="all">
+                <label class="checkbox-label" id="All-label" for="All">
                   <i class="fas fa-plus"></i>
                   <i class="fas fa-check"></i>
                   <span>All</span>
@@ -386,7 +386,7 @@
 
               <div class="col-6" style="padding: 0 5px;">
                 <input type="radio" class="checkbox" style="width: 0px;" name="BusinessType" id="Small" value="Small">
-                <label class="checkbox-label" id="small-label" for="small">
+                <label class="checkbox-label" id="Small-label" for="Small">
                   <i class="fas fa-plus"></i>
                   <i class="fas fa-check"></i>
                   <span>Small</span>
@@ -395,7 +395,7 @@
 
               <div class="col-6" style="padding: 0 5px;">
                 <input type="radio" class="checkbox" style="width: 0px;" name="BusinessType" id="Medium" value="Medium">
-                <label class="checkbox-label" id="medium-label" for="medium">
+                <label class="checkbox-label" id="Medium-label" for="Medium">
                   <i class="fas fa-plus"></i>
                   <i class="fas fa-check"></i>
                   <span>Medium</span>
@@ -404,7 +404,7 @@
 
               <div class="col-6" style="padding: 0 5px;">
                 <input type="radio" class="checkbox" style="width: 0px;" name="BusinessType" id="Large" value="Large">
-                <label class="checkbox-label" id="large-label" for="large">
+                <label class="checkbox-label" id="Large-label" for="Large">
                   <i class="fas fa-plus"></i>
                   <i class="fas fa-check"></i>
                   <span>Large</span>
@@ -416,7 +416,7 @@
                 <div class="form-control">
                   <input type="text" id="brand" required value="Agrikaash" maxlength="40">
                   <label>Brand Name</label>
-                </div>
+                </div><br>
               </div>
 
               <div class="col-sm-12" style="background: rgba(135,202,93,0.1);">
@@ -429,7 +429,7 @@
               <div class="col-6"><br>
                 <div class="" style="padding: 0 5px;">
                   <input type="radio" checked class="checkbox" style="width: 0px;" name="Veg-NonVeg" id="Veg" value="Veg">
-                  <label class="checkbox-label" id="veg-label" for="veg">
+                  <label class="checkbox-label" id="Veg-label" for="Veg">
                     <i class="fas fa-plus"></i>
                     <i class="fas fa-check"></i>
                     <span>Veg</span>
@@ -472,8 +472,8 @@
               <div class="col-lg-12">
                 <hr>
                 <center>
-                  <h4 class="small-text">Quantity Setup</h4><br>
-                </center>
+                  <h4 class="small-text">Quantity Setup</h4>
+                </center><br>
               </div>
 
               <div class="col-4">
@@ -632,23 +632,24 @@
                 </div><br>
               </div>
 
-              <div class="col-sm-12" style="text-align: right;color: #2421b3 ;"><br>
+              <div class="col-sm-12" style="text-align: right;color: #2421b3 ;">
                 <a id="btnAddMore" onclick="addRows()">+ Add More</a>
               </div>
 
 
-              <div id="createEventConformation" class="col-sm-12" style="display: none;">
+              <div id="createEventConformation" class="col-sm-12" style="display: none;transition: 0.5s;">
+                <br>
                 <center>
-                <span>Congrats! Your Product is succsessfully updated</span>
+                <span>Product details are succsessfully updated</span>
                 <!-- <span ><i class="fas fa-hand-point-right"></i></span>
                 <span> <a href="allProducts.html">Click Here</a> </span> -->
               </center>
               </div>
-              <div class="col-sm-12">
+              <div class="col-sm-12"><br>
                 <center>
                   <button id="btnSave" class="mybutton button5" style="width: 100px">Save</button>
                   <input type="hidden" id="hfproductID">
-                </center>
+                </center><br>
               </div>
 
 
