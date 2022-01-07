@@ -229,52 +229,67 @@ function CreateUpdateProductData() {
     var minimumQty = document.getElementById("minimumQty").value;
     var maximumQty = document.getElementById("maximumQty").value;
     var stepQty = document.getElementById("stepQty").value;
-
+    var flag = false;
     var productDetails = [];
-    if (document.getElementById("productWeight1").value != "") {
+    if (document.getElementById("productWeight1").value != ""
+      &&  document.getElementById("productMRP1").value != ""
+      && document.getElementById("productFinalPrise1").value != "" ) {
       productDetails.push({
         ProductWeight: document.getElementById("productWeight1").value,
         ProductMRP: document.getElementById("productMRP1").value,
         ProductFinalPrise: document.getElementById("productFinalPrise1").value
       });
-
+      flag =true
     }
-    if (document.getElementById("productWeight2").value != "") {
+    if (document.getElementById("productWeight2").value != ""
+      &&  document.getElementById("productMRP2").value != ""
+      &&  document.getElementById("productFinalPrise2").value != "" ) {
       productDetails.push({
         ProductWeight: document.getElementById("productWeight2").value,
         ProductMRP: document.getElementById("productMRP2").value,
         ProductFinalPrise: document.getElementById("productFinalPrise2").value
       });
-
+      flag=true;
     }
 
-    if (document.getElementById("productWeight3").value != "") {
+    if (document.getElementById("productWeight3").value != ""
+      &&  document.getElementById("productMRP3").value != ""
+      &&  document.getElementById("productFinalPrise3").value != "" ) {
       productDetails.push({
         ProductWeight: document.getElementById("productWeight3").value,
         ProductMRP: document.getElementById("productMRP3").value,
         ProductFinalPrise: document.getElementById("productFinalPrise3").value
       });
-
+      flag=true;
     }
 
-    if (document.getElementById("productWeight4").value != "") {
+    if (document.getElementById("productWeight4").value != ""
+      &&  document.getElementById("productMRP4").value != ""
+      &&  document.getElementById("productFinalPrise4").value != "" ) {
       productDetails.push({
         ProductWeight: document.getElementById("productWeight4").value,
         ProductMRP: document.getElementById("productMRP4").value,
         ProductFinalPrise: document.getElementById("productFinalPrise4").value
       });
-
+      flag=true;
     }
 
-    if (document.getElementById("productWeight5").value != "") {
+    if (document.getElementById("productWeight5").value != ""
+      &&  document.getElementById("productMRP5").value != ""
+      &&  document.getElementById("productFinalPrise5").value != "" ) {
       productDetails.push({
         ProductWeight: document.getElementById("productWeight5").value,
         ProductMRP: document.getElementById("productMRP5").value,
         ProductFinalPrise: document.getElementById("productFinalPrise5").value
       });
-
+      flag=true;
     }
     var ProductImageURL = document.getElementById("myimg").src;
+
+    if(flag === true)
+    {
+
+
     if (productID != null && productID != '') {
       db.collection("Products").doc(productID).update({
           CustomerBusinessType: customerBusinessTypeValue,
@@ -348,6 +363,12 @@ function CreateUpdateProductData() {
           console.error("error adding document:", error);
         });
     }
+    document.getElementById("message").innerHTML="Product details are succsessfully updated";
+  }
+  else {
+
+    document.getElementById("message").innerHTML="Please enter all details to update";
+  }
   });
 
 }
