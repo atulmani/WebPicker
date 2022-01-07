@@ -359,12 +359,13 @@
     </div>
     <!-- side navbar - end -->
     <div class="col-lg-10 col-md-10 col-sm-12">
-      <div class="row no-gutters">
-        <div class="col-md-12 col-md-offset-1">
-          <input type="hidden" id="categoryCnt" value=0>
-          <div id="category-list" class="owl-carousel owl-theme" style="background: rgba(0,0,0,0.1);padding:5px 0;">
-            <!-- <div   class="owl-carousel-inner"> -->
-            <!-- <div class="item">
+      <div class="sticky-top" style="z-index: 10;">
+        <div class="row no-gutters" style="background: #ddd;">
+          <div class="col-md-12 col-md-offset-1">
+            <input type="hidden" id="categoryCnt" value=0>
+            <div id="category-list" class="owl-carousel owl-theme" style="padding:5px 0;">
+              <!-- <div   class="owl-carousel-inner"> -->
+              <!-- <div class="item">
               <a class="category-list-menu active">
                 <h5>All</h5>
               </a>
@@ -394,30 +395,31 @@
                 <h5>Honey</h5>
               </a>
             </div> -->
-            <!-- </div> -->
+              <!-- </div> -->
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="category-list-sub-menu">
+        <div class="category-list-sub-menu" style="background: #f4f4f4;">
 
-        <div class="" id='divbusinessType'>
-          <select class="city-selector" id="businessType" onchange="changCustomerType();" style="background: rgba(255,255,255,0.6);border: 1px solid #aaa;" name="">
-            <option value="All">All</option>
-            <option value="Small">Small</option>
-            <option value="Medium">Medium</option>
-            <option value="Large">Large</option>
-          </select>
+          <div class="" id='divbusinessType'>
+            <select class="city-selector" id="businessType" onchange="changCustomerType();" style="background: rgba(255,255,255,0.6);border: 1px solid #aaa;" name="">
+              <option value="All">All</option>
+              <option value="Small">Small</option>
+              <option value="Medium">Medium</option>
+              <option value="Large">Large</option>
+            </select>
 
-          <span class="material-icons-outlined city-selector-icon">
-            storefront
-          </span>
+            <span class="material-icons-outlined city-selector-icon">
+              storefront
+            </span>
+          </div>
+
+          <div class="">
+            <h5 id="itemCnt">0 Items</h5>
+          </div>
+
         </div>
-
-        <div class="">
-          <h5 id="itemCnt">0 Items</h5>
-        </div>
-
       </div>
 
 
