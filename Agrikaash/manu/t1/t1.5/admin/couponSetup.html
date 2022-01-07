@@ -42,6 +42,7 @@
 
   <!-- Your Own Style -->
   <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
 
 </head>
 
@@ -363,7 +364,145 @@
         <div class="pay-now-div">
           <h4 style="width:100%;text-align:center;">Coupon Setup</h4>
         </div>
-        <br><br>
+
+
+        <div class="col-sm-12" style="padding: 10px;">
+          <div class="add-address-card">
+            <div class="row no-gutters" id="createCouponDiv">
+              <div class="col-sm-12">
+                <div class="form-control">
+                  <input type="text" required value="" maxlength="40">
+                  <label style="color: #ff5757;">Coupon Name</label>
+                </div><br>
+              </div>
+
+              <div class="col-sm-12">
+                <div class="form-control">
+                  <input type="text" required value="" maxlength="40">
+                  <label style="color: #ff5757;">Short Description</label>
+                </div><br>
+              </div>
+
+              <div class="col-6" style="padding: 0 5px;">
+                <input type="radio" checked class="checkbox" style="width: 0px;" name="couponValueType" id="absoluteAmount" value="Absolute Amount">
+                <label class="checkbox-label" id="absoluteAmount-label" for="absoluteAmount">
+                  <i class="fas fa-plus"></i>
+                  <i class="fas fa-check"></i>
+                  <span>Absolute Amount</span>
+                </label>
+              </div>
+
+              <div class="col-6" style="padding: 0 5px;">
+                <input type="radio" class="checkbox" style="width: 0px;" name="couponValueType" id="percentage" value="Percentage">
+                <label class="checkbox-label" id="percentage-label" for="percentage">
+                  <i class="fas fa-plus"></i>
+                  <i class="fas fa-check"></i>
+                  <span>Percentage</span>
+                </label>
+              </div>
+
+              <div class="col-sm-12"><br>
+                <div class="form-control">
+                  <input type="number" required value="" maxlength="40">
+                  <label style="color: #ff5757;">Discounted Value</label>
+                </div><br>
+              </div>
+
+              <div class="col-sm-12">
+                <span>Valid till Date</span>
+                <div class="input-group date datetimepicker11">
+                  <input type="text" style="width: 70%;height: 40px;" class="form-control" readonly>
+                  <div class="input-group-addon input-group-prepend" style="height: 40px;margin-top: 5px;">
+                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                  </div>
+                </div>
+                <hr>
+              </div>
+            </div>
+
+            <div class="row no-gutters" id="mapCouponDiv">
+              <div class="col-6" style="padding: 0 5px;">
+                <input type="radio" checked class="checkbox" style="width: 0px;" name="BusinessType" id="All" value="All">
+                <label class="checkbox-label" id="All-label" for="All">
+                  <i class="fas fa-plus"></i>
+                  <i class="fas fa-check"></i>
+                  <span>All</span>
+                </label>
+              </div>
+
+              <div class="col-6" style="padding: 0 5px;">
+                <input type="radio" class="checkbox" style="width: 0px;" name="BusinessType" id="Small" value="Small">
+                <label class="checkbox-label" id="Small-label" for="Small">
+                  <i class="fas fa-plus"></i>
+                  <i class="fas fa-check"></i>
+                  <span>Small</span>
+                </label>
+              </div>
+
+              <div class="col-6" style="padding: 0 5px;">
+                <input type="radio" class="checkbox" style="width: 0px;" name="BusinessType" id="Medium" value="Medium">
+                <label class="checkbox-label" id="Medium-label" for="Medium">
+                  <i class="fas fa-plus"></i>
+                  <i class="fas fa-check"></i>
+                  <span>Medium</span>
+                </label>
+              </div>
+
+              <div class="col-6" style="padding: 0 5px;">
+                <input type="radio" class="checkbox" style="width: 0px;" name="BusinessType" id="Large" value="Large">
+                <label class="checkbox-label" id="Large-label" for="Large">
+                  <i class="fas fa-plus"></i>
+                  <i class="fas fa-check"></i>
+                  <span>Large</span>
+                </label>
+              </div>
+
+              <div class="col-sm-12">
+                <center><br>
+                  <span>OR</span>
+                </center><br>
+                <div class="">
+                  <div class="">
+                    <select class="city-selector multi-select" multiple style="border: 1px solid #aaa;height: 200px;width: 100%;" name="">
+                      <option value="Vegetable">Vegetable</option>
+                      <option value="Vegetable">Vegetable & Fruits</option>
+                      <option value="Fruit">Fruit</option>
+                      <option value="Pearl">Pearl</option>
+                      <option value="Goat Products">Goat Products</option>
+                    </select>
+
+                    <!-- <span class="material-icons-outlined city-selector-icon">
+                    person
+                  </span> -->
+                  </div>
+                </div>
+                <hr>
+              </div>
+
+              <div class="col-sm-12">
+                <div class="form-control">
+                  <span style="font-size: 0.8rem;">Terms & Conditions</span>
+                  <textarea></textarea>
+                </div><br>
+              </div>
+            </div>
+
+            <div class="row no-gutters">
+              <div class="col-sm-12"><br>
+                <center>
+                  <button class="mybutton button5" style="width: 100px">Save</button>
+                </center><br>
+              </div>
+            </div>
+
+            <div class="add-products">
+              <span class="material-icons-outlined">
+                add
+              </span>
+            </div>
+
+          </div>
+        </div>
         <div class="col-sm-12" style="padding: 5px;">
           <center>
             <!-- <div id='loading' class="loader"></div> -->
@@ -447,25 +586,161 @@
 
             <div class="">
 
-              <div class="add-address-card">
+              <div class="add-address-card" style="margin: 10px 0;background: rgba(67, 204, 104,0.1);">
                 <div class="offers-card">
                   <div class="">
-                    <div class="toggle-btn" id="_3rd-toggle-btn">
+                    <!-- <div class="toggle-btn" id="_3rd-toggle-btn">
                       <input id="remittanceInput" type="checkbox">
                       <span></span>
-                    </div>
-                    <img src="../img/discount.jpg" width="80px" alt="">
+                    </div> -->
+                    <img src="../img/discount1.jpg" style="width: 80px;height: 80px;" alt="">
                   </div>
                   <div class="offers-card-details">
+                    <span style="color: green;">
+                      <span class="material-icons-outlined" style="color: green;position: relative; top: 1.1px;">
+                        check
+                      </span>
+                      ACTIVE
+                    </span>
+                    <br>
+                    <small>Code : 183-5304-734-2613</small>
+                    <h5>Get instant cashback</h5>
+                    <span>7% Discount</span><br>
+                    <span>Valid till : 12th Jun 2007</span>
+                  </div>
+                  <div class="offers-card-edit-delete-div">
+                    <span class="material-icons-outlined" style="color: green;padding-bottom: 20px;">
+                      edit
+                    </span>
+                    <span class="material-icons-outlined" style="color: red;padding-top: 20px;">
+                      delete
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="add-address-card" style="margin: 10px 0;background: rgba(255, 87, 87,0.05);">
+                <div class="offers-card">
+                  <div class="">
+                    <!-- <div class="toggle-btn" id="_3rd-toggle-btn">
+                      <input id="remittanceInput" type="checkbox">
+                      <span></span>
+                    </div> -->
+                    <img src="../img/discount2.png" style="width: 80px;height: 80px;" alt="">
+                  </div>
+                  <div class="offers-card-details">
+                    <span style="color: #ff5757;">
+                      <span class="material-icons-outlined" style="color: #ff5757;position: relative; top: 1.1px;">
+                        close
+                      </span>
+                      INACTIVE
+                    </span>
+                    <br>
                     <small>Code : 183-5304-734-2613</small>
                     <h5>Get instant cashback</h5>
                     <span>7% Discount</span>
                   </div>
                   <div class="offers-card-edit-delete-div">
-                    <span class="material-icons-outlined" style="color: green">
+                    <span class="material-icons-outlined" style="color: green;padding-bottom: 20px;">
                       edit
                     </span>
-                    <span class="material-icons-outlined" style="color: red">
+                    <span class="material-icons-outlined" style="color: red;padding-top: 20px;">
+                      delete
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="add-address-card" style="margin: 10px 0;background: rgba(255, 87, 87,0.05);">
+                <div class="offers-card">
+                  <div class="">
+                    <!-- <div class="toggle-btn" id="_3rd-toggle-btn">
+                      <input id="remittanceInput" type="checkbox">
+                      <span></span>
+                    </div> -->
+                    <img src="../img/discount3.jpg" style="width: 80px;height: 80px;" alt="">
+                  </div>
+                  <div class="offers-card-details">
+                    <span style="color: #ff5757;">
+                      <span class="material-icons-outlined" style="color: #ff5757;position: relative; top: 1.1px;">
+                        close
+                      </span>
+                      INACTIVE
+                    </span>
+                    <br>
+                    <small>Code : 183-5304-734-2613</small>
+                    <h5>Get instant cashback</h5>
+                    <span>7% Discount</span>
+                  </div>
+                  <div class="offers-card-edit-delete-div">
+                    <span class="material-icons-outlined" style="color: green;padding-bottom: 20px;">
+                      edit
+                    </span>
+                    <span class="material-icons-outlined" style="color: red;padding-top: 20px;">
+                      delete
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="add-address-card" style="margin: 10px 0;background: rgba(67, 204, 104,0.1);">
+                <div class="offers-card">
+                  <div class="">
+                    <!-- <div class="toggle-btn" id="_3rd-toggle-btn">
+                      <input id="remittanceInput" type="checkbox">
+                      <span></span>
+                    </div> -->
+                    <img src="../img/discount4.jpg" style="width: 80px;height: 80px;" alt="">
+                  </div>
+                  <div class="offers-card-details">
+                    <span style="color: green;">
+                      <span class="material-icons-outlined" style="color: green;position: relative; top: 1.1px;">
+                        check
+                      </span>
+                      ACTIVE
+                    </span>
+                    <br>
+                    <small>Code : 183-5304-734-2613</small>
+                    <h5>Get instant cashback</h5>
+                    <span>7% Discount</span>
+                  </div>
+                  <div class="offers-card-edit-delete-div">
+                    <span class="material-icons-outlined" style="color: green;padding-bottom: 20px;">
+                      edit
+                    </span>
+                    <span class="material-icons-outlined" style="color: red;padding-top: 20px;">
+                      delete
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="add-address-card" style="margin: 10px 0;background: rgba(255, 87, 87,0.05);">
+                <div class="offers-card">
+                  <div class="">
+                    <!-- <div class="toggle-btn" id="_3rd-toggle-btn">
+                      <input id="remittanceInput" type="checkbox">
+                      <span></span>
+                    </div> -->
+                    <img src="../img/discount5.jpg" style="width: 80px;height: 80px;" alt="">
+                  </div>
+                  <div class="offers-card-details">
+                    <span style="color: #ff5757;">
+                      <span class="material-icons-outlined" style="color: #ff5757;position: relative; top: 1.1px;">
+                        close
+                      </span>
+                      INACTIVE
+                    </span>
+                    <br>
+                    <small>Code : 183-5304-734-2613</small>
+                    <h5>Get instant cashback</h5>
+                    <span>7% Discount</span>
+                  </div>
+                  <div class="offers-card-edit-delete-div">
+                    <span class="material-icons-outlined" style="color: green;padding-bottom: 20px;">
+                      edit
+                    </span>
+                    <span class="material-icons-outlined" style="color: red;padding-top: 20px;">
                       delete
                     </span>
                   </div>
@@ -614,6 +889,7 @@
 
   <!-- <script src="../js/chart.js"></script> -->
   <script src="../js/couponSetup.js"></script>
+  <script src="../js/fb-logout.js"></script>
   <!-- <script src="../js/chart2.js"></script> -->
 
   <!-- Owl Carousel Javascript  -->
@@ -670,6 +946,18 @@
     // });
     //
     // $('#datetimepicker11').datepicker('setDate', new Date());
+  </script>
+
+  <script type="text/javascript">
+    const inputs = document.querySelectorAll('.form-control input');
+    const labels = document.querySelectorAll('.form-control label');
+
+    labels.forEach(label => {
+      label.innerHTML = label.innerText
+        .split('')
+        .map((letter, idx) => `<span style="transition-delay: ${idx * 50}ms">${letter}</span>`)
+        .join('');
+    });
   </script>
 
 
