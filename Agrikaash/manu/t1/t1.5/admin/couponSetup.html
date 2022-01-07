@@ -164,13 +164,13 @@
       <a href="">
 
       </a>
-      <a href="orderList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="orderStatus.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <span class="material-icons-outlined">
           horizontal_split
         </span>
         <small>Orders</small>
       </a>
-      <a href="cartNew.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <span class="material-icons-outlined">
           currency_rupee
         </span>
@@ -368,17 +368,17 @@
 
         <div class="col-sm-12" style="padding: 10px;">
           <div class="add-address-card">
-            <div class="row no-gutters" id="createCouponDiv">
+            <div class="row no-gutters" id="createCouponDiv" style="display:none;">
               <div class="col-sm-12">
                 <div class="form-control">
-                  <input type="text" required value="" maxlength="40">
+                  <input type="text" required value="" id="couponName" maxlength="40">
                   <label style="color: #ff5757;">Coupon Name</label>
                 </div><br>
               </div>
 
               <div class="col-sm-12">
                 <div class="form-control">
-                  <input type="text" required value="" maxlength="40">
+                  <input type="text" required value="" id="description" maxlength="40">
                   <label style="color: #ff5757;">Short Description</label>
                 </div><br>
               </div>
@@ -403,7 +403,9 @@
 
               <div class="col-sm-12"><br>
                 <div class="form-control">
-                  <input type="number" required value="" maxlength="40">
+                  <input type="hidden" id="hfCouponID" />
+
+                  <input type="number" required value="" id="DiscountPercentage" min=1 maxlength="40">
                   <label style="color: #ff5757;">Discounted Value</label>
                 </div><br>
               </div>
@@ -411,7 +413,7 @@
               <div class="col-sm-12">
                 <span>Valid till Date</span>
                 <div class="input-group date datetimepicker11">
-                  <input type="text" style="width: 70%;height: 40px;" class="form-control" readonly>
+                  <input type="text" style="width: 70%;height: 40px;" class="form-control" id="validTill" readonly>
                   <div class="input-group-addon input-group-prepend" style="height: 40px;margin-top: 5px;">
                     <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                   </div>
@@ -420,7 +422,7 @@
               </div>
             </div>
 
-            <div class="row no-gutters" id="mapCouponDiv">
+            <div class="row no-gutters" id="mapCouponDiv" style="display:none;">
               <div class="col-6" style="padding: 0 5px;">
                 <input type="radio" checked class="checkbox" style="width: 0px;" name="BusinessType" id="All" value="All">
                 <label class="checkbox-label" id="All-label" for="All">
@@ -463,12 +465,14 @@
                 </center><br>
                 <div class="">
                   <div class="">
-                    <select class="city-selector multi-select" multiple style="border: 1px solid #aaa;height: 200px;width: 100%;" name="">
-                      <option value="Vegetable">Vegetable</option>
+                    If no user selected, coupon will be applicable for all
+
+                    <select class="city-selector multi-select" id="userList" multiple style="border: 1px solid #aaa;height: 200px;width: 100%;" name="">
+                      <!-- <option value="Vegetable">Vegetable</option>
                       <option value="Vegetable">Vegetable & Fruits</option>
                       <option value="Fruit">Fruit</option>
                       <option value="Pearl">Pearl</option>
-                      <option value="Goat Products">Goat Products</option>
+                      <option value="Goat Products">Goat Products</option> -->
                     </select>
 
                     <!-- <span class="material-icons-outlined city-selector-icon">
@@ -482,20 +486,20 @@
               <div class="col-sm-12">
                 <div class="form-control">
                   <span style="font-size: 0.8rem;">Terms & Conditions</span>
-                  <textarea></textarea>
+                  <textarea id="termsAndCondition"></textarea>
                 </div><br>
               </div>
             </div>
 
-            <div class="row no-gutters">
+            <div class="row no-gutters" id="divSaveButton" style="display:none;">
               <div class="col-sm-12"><br>
                 <center>
-                  <button class="mybutton button5" style="width: 100px">Save</button>
+                  <button class="mybutton button5" id="btnSaveCoupon" onclick="SaveCoupon();" style="width: 100px">Save</button>
                 </center><br>
               </div>
             </div>
 
-            <div class="add-products">
+            <div class="add-products" onclick="AddCoupon();">
               <span class="material-icons-outlined">
                 add
               </span>
@@ -519,80 +523,15 @@
             </div>
           </div> -->
           <div id="divSetCoupon">
-            <div class="row no-gutters small" style="font-size: 1rem;">
 
-              <div class="col-sm-12" style="padding: 5px;">
-                <span> Coupon Name :</span>
-                <input type="text" name="for Name" id="couponName">
-              </div>
-
-              <div class="col-sm-12" style="padding: 5px;">
-                <input type="Radio" id="rbType1" value="Absolute Amount" name="type" />Absolute Amount <br />
-                <input type="Radio" id="rbType2" value="Percentage" text="Percentage" name="type" checked /> Percentage
-                <br />
-              </div>
-
-
-              <div class="col-sm-12" style="padding: 5px;">
-                <input type="hidden" id="hfCouponID" />
-                <span> Discount Value:</span>
-                <input type="text" name="for Discount" id="DiscountPercentage">
-              </div>
-
-
-              <div class="col-sm-12 ">
-                <div class="input-group date datetimepicker11">
-                  Valid Till
-                  <input id="validTill" type="text" style="width:70%;" class="form-control" readonly>
-                  <div class="input-group-addon input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-12" style="padding: 5px;">
-                Select user group, coupon will be applicable for all users is selected user Type<br>
-                <input type="checkbox" id="userType1" value="Small">
-                <label for="Small">Small</label><br>
-                <input type="checkbox" id="userType2" value="Medium">
-                <label for="Medium">Medium</label><br>
-                <input type="checkbox" id="userType3" value="Large">
-                <label for="Medium">large</label><br>
-              </div>
-              <div class="col-sm-12" style="padding: 5px;">
-                Or
-              </div>
-
-              <div class="col-sm-12" style="padding: 5px;">
-                Select users to Apply coupons, If no user selected, coupon will be applicable for all
-                <select id="userList" multiple width="100%">
-
-                </select>
-              </div>
-              <div class="col-sm-12" style="padding: 5px;">
-                <span> short Description</span>
-                <textarea name="for Discription" id="description" rows='2'></textarea>
-              </div>
-
-
-              <div class="col-sm-12" style="padding: 5px;">
-                <span> Terms and Condition</span>
-                <textarea name="for Discription" id="termsAndCondition" rows='2'> </textarea>
-              </div>
-              <div class="col-sm-12" style="padding: 5px;">
-                <a href="#"><button class="mybutton button5" id="btnSaveCoupon" onclick="SaveCoupon();">Save Coupon</button></a>
-              </div>
-
+            <div class="" id="divCoupons">
             </div>
-
             <div class="">
-
+<!--
               <div class="add-address-card" style="margin: 10px 0;background: rgba(67, 204, 104,0.1);">
                 <div class="offers-card">
                   <div class="">
-                    <!-- <div class="toggle-btn" id="_3rd-toggle-btn">
-                      <input id="remittanceInput" type="checkbox">
-                      <span></span>
-                    </div> -->
+
                     <img src="../img/discount1.jpg" style="width: 80px;height: 80px;" alt="">
                   </div>
                   <div class="offers-card-details">
@@ -617,15 +556,11 @@
                     </span>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
-              <div class="add-address-card" style="margin: 10px 0;background: rgba(255, 87, 87,0.05);">
+              <!-- <div class="add-address-card" style="margin: 10px 0;background: rgba(255, 87, 87,0.05);">
                 <div class="offers-card">
                   <div class="">
-                    <!-- <div class="toggle-btn" id="_3rd-toggle-btn">
-                      <input id="remittanceInput" type="checkbox">
-                      <span></span>
-                    </div> -->
                     <img src="../img/discount2.png" style="width: 80px;height: 80px;" alt="">
                   </div>
                   <div class="offers-card-details">
@@ -649,15 +584,11 @@
                     </span>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
-              <div class="add-address-card" style="margin: 10px 0;background: rgba(255, 87, 87,0.05);">
+              <!-- <div class="add-address-card" style="margin: 10px 0;background: rgba(255, 87, 87,0.05);">
                 <div class="offers-card">
                   <div class="">
-                    <!-- <div class="toggle-btn" id="_3rd-toggle-btn">
-                      <input id="remittanceInput" type="checkbox">
-                      <span></span>
-                    </div> -->
                     <img src="../img/discount3.jpg" style="width: 80px;height: 80px;" alt="">
                   </div>
                   <div class="offers-card-details">
@@ -681,15 +612,11 @@
                     </span>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
-              <div class="add-address-card" style="margin: 10px 0;background: rgba(67, 204, 104,0.1);">
+              <!-- <div class="add-address-card" style="margin: 10px 0;background: rgba(67, 204, 104,0.1);">
                 <div class="offers-card">
                   <div class="">
-                    <!-- <div class="toggle-btn" id="_3rd-toggle-btn">
-                      <input id="remittanceInput" type="checkbox">
-                      <span></span>
-                    </div> -->
                     <img src="../img/discount4.jpg" style="width: 80px;height: 80px;" alt="">
                   </div>
                   <div class="offers-card-details">
@@ -713,15 +640,11 @@
                     </span>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
-              <div class="add-address-card" style="margin: 10px 0;background: rgba(255, 87, 87,0.05);">
+              <!-- <div class="add-address-card" style="margin: 10px 0;background: rgba(255, 87, 87,0.05);">
                 <div class="offers-card">
                   <div class="">
-                    <!-- <div class="toggle-btn" id="_3rd-toggle-btn">
-                      <input id="remittanceInput" type="checkbox">
-                      <span></span>
-                    </div> -->
                     <img src="../img/discount5.jpg" style="width: 80px;height: 80px;" alt="">
                   </div>
                   <div class="offers-card-details">
@@ -745,7 +668,7 @@
                     </span>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
             </div>
 
