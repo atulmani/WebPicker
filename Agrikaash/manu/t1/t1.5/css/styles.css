@@ -1242,6 +1242,11 @@ input[type=number] {
   z-index: 10;
 }
 
+.city-selector.multi-select option{
+  padding: 5px 0;
+  font-size: 1rem;
+}
+
 /* .city-selector::-ms-expand {
   display: none;
 } */
@@ -1355,7 +1360,8 @@ input[type=number] {
   border: none;
 }
 
-.form-control input {
+.form-control input,
+.form-control textarea {
 	border: none;
 	border-bottom: 2px solid #ddd;
 	padding: 8px 0 0 0;
@@ -1365,6 +1371,12 @@ input[type=number] {
 	width: 100%;
 	transition: 0.1s ease-in;
   color: #666;
+  outline: none;
+  resize: none;
+}
+
+.form-control textarea{
+  height: 80px;
 }
 
 .form-control input:focus,
@@ -1787,14 +1799,18 @@ input[type=number] {
   justify-content: space-around;
 }
 
+.offers-card-details{
+  padding-left: 10px;
+}
+
 .offers-card-details small{
-  color: #aaa;
+  color: #666;
   font-size: 0.7rem;
   font-weight: bold;
 }
 
 .offers-card-details h5{
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: bold;
   color: #444;
 }
@@ -1808,10 +1824,6 @@ input[type=number] {
 .offers-card-edit-delete-div{
   text-align: right;
   width: 10%;
-}
-
-.offers-card-edit-delete-div span{
-  padding: 15px 0;
 }
 
 .toggle-btn {
@@ -1837,11 +1849,16 @@ input[type=number] {
 }
 
 /* Third toggle btn */
+
+#_3rd-toggle-btn{
+  height: 20px;
+}
+
 #_3rd-toggle-btn span {
   display: block;
   width: 100%;
   height: 20px;
-  background-color: #43cc68;
+  background-color: #aaa;
   border-radius: 20px;
   transition: 0.5s ease background-color;
 }
@@ -1868,9 +1885,9 @@ input[type=number] {
   left: 16px;
   width: 0px;
   height: 5px;
-  margin-top: -30px;
+  margin-top: -12px;
   margin-left: -11px;
-  border: 5px solid #43cc68;
+  border: 5px solid #aaa;
   border-radius: 5px;
   transform: translate(0px, 0px);
   transition: 0.4s ease width, 0.4s ease border-radius, 0.62s ease transform, .4s border;
@@ -1885,11 +1902,11 @@ input[type=number] {
   width: 0px;
   border-radius: 50%;
   transform: translate(18px, 0px);
-  border: 5px solid #ff5757;
+  border: 5px solid #43cc68;
 }
 
 #_3rd-toggle-btn input[type="checkbox"]:checked+span {
-  background-color: #ff5757;
+  background-color: #43cc68;
 }
 
 /* Third toggle btn completed */
