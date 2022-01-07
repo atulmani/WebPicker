@@ -77,7 +77,7 @@ function GetCouponDetails() {
 
       userList = change.data().UserList;
       userTypeApplicable = change.data().UserType;
-      if (userTypeApplicable.includes(userType)) {
+      if (userTypeApplicable.includes(userType) || userTypeApplicable.includes('All')) {
         flag = true;
         var opt = document.createElement('option');
         opt.value = change.id;
