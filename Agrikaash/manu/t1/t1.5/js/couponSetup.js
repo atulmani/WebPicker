@@ -339,16 +339,7 @@ function renderCoupon(change, index)
 
   var ValidityTill = new Date(doc.ValidityTill.seconds * 1000);
   //ValidityTill = ValidityTill.toLocaleDateString("en-US", options);
-  console.log(ValidityTill);
   var today = new Date();
-  console.log(today);
-  if(ValidityTill >= today)
-  {
-    console.log("check successful");
-  }
-  else {
-    console.log("check unsuccessful");
-  }
   var div1 = document.createElement("div");
   div1.setAttribute("class","add-address-card");
 
