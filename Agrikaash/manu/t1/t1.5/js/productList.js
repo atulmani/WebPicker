@@ -119,6 +119,7 @@ async function populateProductData(bType, pType, flag) {
   var divPCList = document.getElementById('category-list');
   emptyDiv(divPList);
   emptyDiv(divPType);
+  var prodType = [];
 
   var cnt = document.getElementById("categoryCnt").value;
   //console.log(cnt);
@@ -135,7 +136,8 @@ async function populateProductData(bType, pType, flag) {
   } else if ((pType === '' || pType === 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
     console.log('All', bType);
-    DBrows = db.collection("Products").where("CustomerBusinessType", "==", bType).get();
+    prodType = ['All', bType];
+    DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).get();
   } else if ((pType != '' && pType != 'All') && (bType === '' || bType === 'All')) //select one customer businessType
   {
 
@@ -144,7 +146,8 @@ async function populateProductData(bType, pType, flag) {
   } else if ((pType != '' && pType != 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
     console.log(pType, 'All');
-    DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "==", bType).get();
+    prodType = ['All', bType];
+    DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).get();
   }
 
   DBrows.then((changes) => {
@@ -432,7 +435,13 @@ function renderProductNew(doc, index, selectedItem) {
   var hfSelecttion = document.createElement("input");
   hfSelecttion.setAttribute("id", "hfSelectedValue" + index);
   hfSelecttion.setAttribute("type", "hidden");
-  hfSelecttion.setAttribute("value", selectP[selectP.selectedIndex].text);
+  //console.log(selectP[0]);
+  if(selectP.selectedIndex >= 0 )
+    hfSelecttion.setAttribute("value", selectP[selectP.selectedIndex].text);
+  else {
+    hfSelecttion.setAttribute("value", "");
+
+  }
   //console.log("hfSelecttion : ", hfSelecttion);
   //console.log("mrp : ", mrp);
   //console.log("finalprize : ", finalPrize);
@@ -441,7 +450,6 @@ function renderProductNew(doc, index, selectedItem) {
   td2.appendChild(selectP);
   var div1_4 = document.createElement("div");
   div1_4.setAttribute("class", "product-price");
-  //console.log(selectedItem);
 
   // div1_4.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + productlist[0].ProductMRP + "</span>" + "</h5>" +
   //   "<small>₹ " + "<span id='final" + index + "'>" + productlist[0].ProductFinalPrise + "</span></small>";
