@@ -308,6 +308,7 @@ function renderProductNew(doc, index, selectedItem) {
   div1_1.setAttribute("class", "product-list-div");
 
   var table1 = document.createElement("table");
+  table1.setAttribute("width", "100%");
   var tr1 = document.createElement("tr");
 
   var td1 = document.createElement("td");
@@ -320,7 +321,8 @@ function renderProductNew(doc, index, selectedItem) {
   td1.appendChild(hfID);
   var img1 = document.createElement("img");
   img1.setAttribute("src", doc.data().ProductImageURL);
-  img1.setAttribute("width", "100%")
+  img1.setAttribute("width", "100%");
+  img1.setAttribute("class", "product-img");
   img1.setAttribute("alt", "Agrikaash");
   td1.appendChild(img1);
 
