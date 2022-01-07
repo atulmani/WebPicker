@@ -363,6 +363,11 @@ function CreateUpdateEventData() {
   // CreateUpdateEventData.preventDefault();
   createEventConformation.style.display = 'block';
 
+  // Hide alert after 3 seconds
+  setTimeout(function() {
+    createEventConformation.style.display = 'none';
+  }, 3000);
+
   CreateUpdateProductData();
 
   document.getElementById('imgDiv').style.display = 'block';
