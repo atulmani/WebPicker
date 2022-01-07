@@ -705,7 +705,7 @@ h6{
   top: 5px;
   color: #444;
   font-size: 0.7rem;
-  font-weight: normal;
+  font-weight: bold;
 }
 
 .category-list-menu.active h5{
@@ -735,7 +735,7 @@ h6{
 .product-list-div select,
 .product-list-div input{
   outline: none;
-  background: #efefef;
+  background: #f4fefe;
   padding: 8px 10px;
   width: 100%;
   color: rgba(0,0,0,0.7);
@@ -978,7 +978,13 @@ input[type=number] {
 /* product page - start */
 
 .product-img-td {
-  padding: 20px 10px;
+  padding: 0px 10px 0px 5px;
+}
+
+.product-img-td .product-img{
+  box-shadow: -7px 7px 7px 0 rgba(0,0,0,0.1);
+  border-radius: 4px;
+  border: 1px solid #eee;
 }
 
 .product-img-td .off-div {
@@ -998,10 +1004,11 @@ input[type=number] {
 .veg-nonVeg-div img{
   position: absolute;
   top: 20px;
-  left: 35%;
+  left: 40%;
   bottom: 7%;
   width: 20px;
   height: 20px;
+  background: #fff;
 }
 
 .product-names-div{
@@ -1010,7 +1017,6 @@ input[type=number] {
 
 .product-names{
   font-size: 1.2rem;
-  padding-left: 18px;
 }
 
 .product-price{
@@ -1018,7 +1024,8 @@ input[type=number] {
 }
 
 .product-price small{
-  color: #1D741B;
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 
 .product-price h5{
@@ -1111,6 +1118,25 @@ input[type=number] {
 }
 
 /* finish */
+
+.add-products{
+  position: fixed;
+  bottom: 12%;
+  right: 5%;
+  z-index: 999;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f58634;
+  border-radius: 50%;
+}
+
+.add-products span{
+  color: #fff;
+  font-size: 2.5rem;
+}
 
 
 /* product page - end */
@@ -1263,7 +1289,7 @@ input[type=number] {
 .address-edit-icon{
   background: red;
   position: absolute;
-  right: 10px;
+  right: 20px;
   width: 27px;
   height: 27px;
   display: flex;
@@ -1753,6 +1779,122 @@ input[type=number] {
 }
 
 /* order summary page - end */
+
+/* coupon setup page - start */
+.offers-card{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.offers-card-details small{
+  color: #aaa;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.offers-card-details h5{
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #444;
+}
+
+.offers-card-details span{
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: bold;
+}
+
+.offers-card-edit-delete-div{
+  text-align: right;
+  width: 10%;
+}
+
+.offers-card-edit-delete-div span{
+  padding: 15px 0;
+}
+
+.toggle-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  border-radius: 40px;
+}
+
+.toggle-btn input[type="checkbox"] {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: 0px;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 2;
+}
+
+/* Third toggle btn */
+#_3rd-toggle-btn span {
+  display: block;
+  width: 100%;
+  height: 20px;
+  background-color: #43cc68;
+  border-radius: 20px;
+  transition: 0.5s ease background-color;
+}
+
+#_3rd-toggle-btn span:before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 2px 6px 25px #d7d7d7;
+  transform: translate(0px, 0px);
+  transition: 0.6s ease transform, 0.6s box-shadow;
+}
+
+#_3rd-toggle-btn span:after {
+  content: '';
+  position: absolute;
+  top: 88%;
+  right: 0px;
+  left: 16px;
+  width: 0px;
+  height: 5px;
+  margin-top: -30px;
+  margin-left: -11px;
+  border: 5px solid #43cc68;
+  border-radius: 5px;
+  transform: translate(0px, 0px);
+  transition: 0.4s ease width, 0.4s ease border-radius, 0.62s ease transform, .4s border;
+}
+
+#_3rd-toggle-btn input[type="checkbox"]:checked+span:before {
+  box-shadow: 7px 6px 25px #e6e6e6;
+  transform: translate(18px, 0px);
+}
+
+#_3rd-toggle-btn input[type="checkbox"]:checked+span:after {
+  width: 0px;
+  border-radius: 50%;
+  transform: translate(18px, 0px);
+  border: 5px solid #ff5757;
+}
+
+#_3rd-toggle-btn input[type="checkbox"]:checked+span {
+  background-color: #ff5757;
+}
+
+/* Third toggle btn completed */
+
+/* coupon setup page - end */
 
 /* dashboard page - start */
 
