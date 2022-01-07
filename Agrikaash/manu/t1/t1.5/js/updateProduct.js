@@ -200,6 +200,7 @@ function renderProductNew(doc, index) {
   div1_1.setAttribute("class", "product-list-div " + doc.data().productType);
 
   var table1 = document.createElement("table");
+  table1.setAttribute("width", "100%");
   var tr1 = document.createElement("tr");
 
   var td1 = document.createElement("td");
@@ -212,14 +213,15 @@ function renderProductNew(doc, index) {
   td1.appendChild(hfID);
   var img1 = document.createElement("img");
   img1.setAttribute("src", doc.data().ProductImageURL);
-  img1.setAttribute("width", "100%")
+  img1.setAttribute("width", "100%");
+  img1.setAttribute("class", "product-img");
   img1.setAttribute("alt", "Agrikaash");
   td1.appendChild(img1);
 
-  var div1_2 = document.createElement("div");
-  div1_2.setAttribute("class", "off-div");
-  div1_2.innerHTML = "<small>" + "20% OFF" + "</small>";
-  td1.appendChild(div1_2);
+  // var div1_2 = document.createElement("div");
+  // div1_2.setAttribute("class", "off-div");
+  // div1_2.innerHTML = "<small>" + "20% OFF" + "</small>";
+  // td1.appendChild(div1_2);
 
   var div1_3 = document.createElement("div");
   div1_3.setAttribute("class", "veg-nonVeg-div");
@@ -276,8 +278,8 @@ function renderProductNew(doc, index) {
   // div1_4.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + productlist[0].ProductMRP + "</span>" + "</h5>" +
   //   "<small>₹ " + "<span id='final" + index + "'>" + productlist[0].ProductFinalPrise + "</span></small>";
 
-  div1_4.innerHTML = "<large>" + "<span><b>Customer Business Type :  </b>" + doc.data().CustomerBusinessType + "</span>" + "<large><br>" +
-    "<large>" + "<span><b>Product Type :  </b>" + doc.data().productType + "</span>" + "<large><br>";
+  div1_4.innerHTML = "<large>" + "<span><b>Type :  </b>" + doc.data().CustomerBusinessType + "</span>" + "<large><br>" +
+    "<large>" + "<span><b>Category :  </b>" + doc.data().productType + "</span>" + "<large><br><br>";
 
   var spanDelete = document.createElement('span');
   spanDelete.setAttribute("id", "btnDelete" + index);
