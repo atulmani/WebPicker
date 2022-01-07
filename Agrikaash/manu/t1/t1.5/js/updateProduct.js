@@ -97,21 +97,26 @@ function populateProductData(bType, pType) {
   var DBrows;
   if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
   {
-    DBrows = db.collection("Products").get();
+    DBrows = db.collection("Products").orderBy('CreatedTimestamp', 'desc');
   } else if ((pType === '' || pType === 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
     prodType = ['All', bType]
-    DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).get();
+    DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).orderBy('CreatedTimestamp', 'desc');
   } else if ((pType != '' && pType != 'All') && (bType === '' || bType === 'All')) //select one customer businessType
   {
-    DBrows = db.collection("Products").where("productType", "==", pType).get();
+    DBrows = db.collection("Products").where("productType", "==", pType).orderBy('CreatedTimestamp', 'desc');
   } else if ((pType != '' && pType != 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
     prodType = ['All',bType];
-    DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).get();
+    DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).orderBy('CreatedTimestamp', 'desc');
   }
 
-  DBrows.then((changes) => {
+
+
+  // DBrows.then((changes) => {
+  DBrows.onSnapshot((snapshot) => {
+    let changes = snapshot.docChanges();
+
     var item = [];
     var index = 0;
     var selectedindex = -1;
@@ -120,11 +125,11 @@ function populateProductData(bType, pType) {
     changes.forEach(change => {
       //if (change.type == 'added')
       {
-        var pCategory = change.data().productType;
+        var pCategory = change.doc.data().productType;
         productCategory.push(pCategory)
 
       }
-      renderProductNew(change, index);
+      renderProductNew(change.doc, index);
       index = index + 1;
 
     });
