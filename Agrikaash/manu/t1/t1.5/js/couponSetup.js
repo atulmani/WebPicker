@@ -30,10 +30,10 @@ function GetProfileData(user) {
         //console.log('Document ref id: ' + doc.data().uid);
         userID = doc.data().uid;
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
-          document.getElementById('navUser').src = doc.data().ProfileImageURL;
+          document.getElementById('profilePic').src = doc.data().ProfileImageURL;
         }
         //  document.getElementById('headerProfilePic').src = doc.data().ImageURL;
-        //  document.getElementById('displayName').innerHTML = doc.data().displayName;
+          document.getElementById('profileName').innerHTML = doc.data().displayName;
       }
     })
     .catch(function(error) {
@@ -68,31 +68,33 @@ function SaveCoupon() {
   var couponName = document.getElementById("couponName");
   var description = document.getElementById("description");
   var termsandCondition = document.getElementById("termsAndCondition");
-  var userType1 = document.getElementById("userType1");
-  var userType2 = document.getElementById("userType2");
-  var userType3 = document.getElementById("userType3");
+  var userTypeAll = document.getElementById("All");
+  var userTypeSmall = document.getElementById("Small");
+  var userTypeMedium = document.getElementById("Medium");
+  var userTypeLage = document.getElementById("Large");
   var validity = document.getElementById("validTill");
 
   var userTypes = [];
   var users = [];
   var couponCode = Date.now();
-  if (document.getElementById("rbType1").checked) {
+  if (document.getElementById("absoluteAmount").checked) {
     discountType = "Absolute";
-  } else if (document.getElementById("rbType2").checked) {
+  } else if (document.getElementById("percentage").checked) {
     discountType = "Percentage";
   }
 
-  if (userType1.checked) {
+    if (userTypeAll.checked) {
+      userTypes.push("All");
+    }
+  if (userTypeSmall.checked) {
     userTypes.push("Small");
   }
-  if (userType2.checked) {
+  if (userTypeMedium.checked) {
     userTypes.push("Medium");
   }
-  if (userType3.checked) {
+  if (userTypeLage.checked) {
     userTypes.push("Large");
   }
-
-
 
   for (i = 0; i < userList.options.length; i++) {
     if (userList.options[i].selected) {
@@ -108,9 +110,6 @@ function SaveCoupon() {
       userName: 'All'
     });
   }
-
-
-
   console.log(validity.value);
 
   if (couponID.value != null && couponID.value != '') {
@@ -166,6 +165,29 @@ function SaveCoupon() {
       });
 
   }
+  document.getElementById("createCouponDiv").style.display="none";
+  document.getElementById("mapCouponDiv").style.display="none";
+  document.getElementById("divSaveButton").style.display="none";
+}
+
+function AddCoupon()
+{
+  document.getElementById("createCouponDiv").style.display="block";
+  document.getElementById("mapCouponDiv").style.display="block";
+  document.getElementById("divSaveButton").style.display="block";
+
+
+  document.getElementById("hfCouponID").value = "";
+  document.getElementById("DiscountPercentage").value = "";
+  var userListCnt = document.getElementById("userList");
+    for (i = 0; i < userListCnt.options.length; i++) {
+        userListCnt.options[i].selected = false;
+  }
+  document.getElementById("couponName").value = "";
+  document.getElementById("description").value = "";
+  document.getElementById("termsAndCondition").value = "";
+
+  document.getElementById("validTill").value = "";
 
 }
 
@@ -179,7 +201,9 @@ function deleteCoupon(couponID) {
 function GetCouponDetails(couponID) {
   var index = 0;
   var userList = [];
+  console.log(couponID.value);
   const snapshot = db.collection('Coupons').doc(couponID.value);
+
   snapshot.get().then(async (doc) => {
     if (doc.exists) {
       // console.log('Document id:' + doc.id);
@@ -187,9 +211,9 @@ function GetCouponDetails(couponID) {
       userList = doc.data().UserList;
       var discountType = doc.data().DiscountType;
       if (discountType === "Percentage") {
-        document.getElementById("rbType2").checked = true;
+        document.getElementById("percentage").checked = true;
       } else {
-        document.getElementById("rbType1").checked = true;
+        document.getElementById("absoluteAmount").checked = true;
       }
       document.getElementById("hfCouponID").value = doc.id;
       document.getElementById("DiscountPercentage").value = doc.data().DiscountValue;
@@ -211,14 +235,17 @@ function GetCouponDetails(couponID) {
       var userTypes = [];
       userTypes = doc.data().UserType;
       console.log(userTypes.includes("Small"));
+      if (userTypes.includes("All")) {
+        document.getElementById("All").checked = true;
+      }
       if (userTypes.includes("Small")) {
-        document.getElementById("userType1").checked = true;
+        document.getElementById("Small").checked = true;
       }
       if (userTypes.includes("Medium")) {
-        document.getElementById("userType2").checked = true;
+        document.getElementById("Medium").checked = true;
       }
       if (userTypes.includes("Large")) {
-        document.getElementById("userType3").checked = true;
+        document.getElementById("Large").checked = true;
       }
 
 
@@ -237,6 +264,12 @@ function GetCouponDetails(couponID) {
     }
   });
   document.getElementById("DiscountPercentage").focus();
+
+
+    document.getElementById("createCouponDiv").style.display="block";
+    document.getElementById("mapCouponDiv").style.display="block";
+    document.getElementById("divSaveButton").style.display="block";
+
 }
 
 
@@ -244,8 +277,13 @@ function GetCouponList() {
   var ddl = document.getElementById("userList");
   var index = 0;
   document.getElementById("divCouponList").innerHTML = "";
-  const snapshot = db.collection('Coupons').get(); //.orderBy("Status");
-  snapshot.then((changes) => {
+  //const snapshot = db.collection('Coupons').get(); //.orderBy("Status");
+  const DBrows = db.collection('Coupons').orderBy("Status").orderBy('CreatedTimestamp', 'desc');
+
+  DBrows.onSnapshot((snapshot) => {
+    let changes = snapshot.docChanges();
+
+        document.getElementById("divCoupons").innerHTML="";
     changes.forEach(change => {
       //renderCoupon(change.data(), index);
       renderCoupon(change, index);
@@ -254,117 +292,222 @@ function GetCouponList() {
 
   });
 }
+function ChangeActive1(hfCouponDocID,index,flag)
+{
+  console.log('in ChangeActive', hfCouponDocID.value);
 
-function renderCoupon(change, index) {
-  var doc = change.data();
-  var divmain = document.getElementById("divCouponList");
+
+    var cbActive = document.getElementById("isActive" + index);
+    var status = "";
+    if (flag != true)
+      status = "Active";
+    else
+      status = "In active";
+
+    console.log(status);
+    if (hfCouponDocID.value != null && hfCouponDocID.value != '') {
+      db.collection("Coupons").doc(hfCouponDocID.value).update({
+          Status: status
+        })
+        .then((docRef) => {
+          console.log("Data added sucessfully in the document: ");
+          console.log("eventstart")
+          GetCouponList();
+          // console.log(Date.parse(eventstart))
+        })
+        .catch((error) => {
+          console.error("error adding document:", error);
+        });
+    }
+
+}
+function renderCoupon(change, index)
+{
+  var doc = change.doc.data();
+
+
+    var curFormat = { style: 'currency',
+          currency: 'INR',
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0 };
+
+    var options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    };
+
+  var ValidityTill = new Date(doc.ValidityTill.seconds * 1000);
+  //ValidityTill = ValidityTill.toLocaleDateString("en-US", options);
+  console.log(ValidityTill);
+  var today = new Date();
+  console.log(today);
+  if(ValidityTill >= today)
+  {
+    console.log("check successful");
+  }
+  else {
+    console.log("check unsuccessful");
+  }
   var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12");
+  div1.setAttribute("class","add-address-card");
+
+  if(doc.Status === "Active" && ValidityTill >= today)
+  {
+    div1.setAttribute("style","margin: 10px 0;background: rgba(67, 204, 104,0.1);");
+  }
+  else
+  {
+    div1.setAttribute("style","margin: 10px 0;background: rgba(255, 87, 87,0.05);");
+  }
 
   var div2 = document.createElement("div");
-  div2.setAttribute("class", "address-card");
+  div2.setAttribute("class","offers-card");
 
   var div3 = document.createElement("div");
-  div3.setAttribute("class", "");
+  div3.setAttribute("class","");
 
-  var span1 = document.createElement("span");
-  span1.innerHTML = "Is Active";
+  var hf = document.createElement("input");
+  hf.setAttribute("type","hidden");
+  hf.setAttribute("id","hfCouponDocID" + index);
+  hf.setAttribute("value",change.doc.id );
+  div3.appendChild(hf);
 
-  var input1 = document.createElement("input");
-  input1.setAttribute("type", "checkbox");
-  input1.setAttribute("id", "isActive" + index);
-  input1.setAttribute("onchange", "ChangeActive(" + "hfCouponDocID" + index + "," + index + ");");
-  if (doc.Status === "Active")
-    input1.checked = true;
+  var img1 = document.createElement("img");
+  img1.setAttribute("style","width: 80px;height: 80px;");
+  img1.setAttribute("alt","");
 
-  div3.appendChild(span1);
-  div3.appendChild(input1);
+  if(doc.DiscountType === "Percentage" && ValidityTill >= today && doc.Status === "Active")
+  {
+    img1.setAttribute("src","../img/discount1.jpg");
+  }
+  else if(doc.DiscountType === "Percentage" && (ValidityTill < today || doc.Status != "Active"))
+  {
+    img1.setAttribute("src","../img/discount3.jpg");
+  }
+  else if(doc.DiscountType === "Absolute" && ValidityTill >= today && doc.Status === "Active")
+  {
+    img1.setAttribute("src","../img/discount2.png");
+  }
+  else if(doc.DiscountType === "Absolute" && (ValidityTill < today || doc.Status != "Active"))
+  {
+    img1.setAttribute("src","../img/discount5.jpg");
+  }
 
-  var i1 = document.createElement("i");
-  i1.setAttribute("onclick", "GetCouponDetails(" + "hfCouponDocID" + index + ");");
-  i1.setAttribute("class", "far fa-edit address-edit-icon");
-  i1.setAttribute("style", "padding: 0 5px 0 5px;");
-
-  div3.appendChild(i1);
-
-  var span2 = document.createElement('span');
-  span2.setAttribute("id", "btnDelete" + index);
-  console.log("deleteCoupon(" + "hfCouponDocID " + index + ");");
-  span2.setAttribute("onclick", "deleteCoupon(" + "hfCouponDocID" + index + ");");
-  span2.setAttribute("class", "material-icons");
-  span2.setAttribute("style", "cursor:pointer;padding: 0 20px 0 5px;");
-  span2.innerHTML = "delete_outline";
-
-  div3.appendChild(span2);
-
-  var input2 = document.createElement("input");
-  input2.setAttribute("type", "hidden");
-  input2.setAttribute("id", "hfCouponID" + index);
-  input2.value = doc.couponID;
-  div3.appendChild(input2);
-
-  var input21 = document.createElement("input");
-  input21.setAttribute("type", "hidden");
-  input21.setAttribute("id", "hfCouponDocID" + index);
-  input21.value = change.id;
-
-  div3.appendChild(input21);
-
-  var h1 = document.createElement("h5");
-  h1.innerHTML = "Coupon Code : " + doc.CouponCode;
-
-  div3.appendChild(h1);
-
+  div3.appendChild(img1);
   div2.appendChild(div3);
 
-  var p3 = document.createElement("p");
-  p3.innerHTML = "<b>Discount Type : </b>" + doc.DiscountType;
-  div2.appendChild(p3);
+  var div4 = document.createElement("div");
+  div4.setAttribute("class","offers-card-details");
 
-  var p4 = document.createElement("p");
-  if (doc.DiscountType === "Percentage")
-    p4.innerHTML = "<b>Discount Value : </b>" + doc.DiscountValue + " %";
+  var anchor1 = document.createElement("div");
+  //anchor1.setAttribute("onclick","ChangeActive1();");
+if(doc.Status === "Active")
+    anchor1.setAttribute("onclick", "ChangeActive1(" + "hfCouponDocID" + index + "," + index + ",true);");
   else
-    p4.innerHTML = "<b>Discount Value : </b>₹ " + doc.DiscountValue;
+    anchor1.setAttribute("onclick", "ChangeActive1(" + "hfCouponDocID" + index + "," + index + ",false);");
 
-
-  div2.appendChild(p4);
-
-  var userlist = doc.UserList;
-  var userString = "";
-  for (i = 0; i < userlist.length; i++) {
-    userString = userString + userlist[i].userName + "\n";
+  var span1 = document.createElement("span");
+  if(doc.Status === "Active" && ValidityTill >= today)
+  {
+    span1.setAttribute("style","color: green;");
+  }
+  else {
+    span1.setAttribute("style","color: #ff5757;");
   }
 
-  var p5 = document.createElement("p");
-  p5.innerHTML = "<b>Aplicable to users : </b> " + userString;
+  var span2 = document.createElement("span");
+  span2.setAttribute("class","material-icons-outlined");
+  if(doc.Status === "Active" && ValidityTill >= today)
+  {
+    span2.setAttribute("style","color: green;position: relative; top: 1.1px;");
+    span2.innerHTML="check";
+    span1.appendChild(span2);
+    span1.innerHTML = span1.innerHTML + "ACTIVE";
+  }
+  else {
+      span2.setAttribute("style","color: #ff5757;position: relative; top: 1.1px;");
+      span2.innerHTML="close";
+      span1.appendChild(span2);
 
-  div2.appendChild(p5);
-  div1.appendChild(div2);
-  divmain.appendChild(div1);
+      span1.innerHTML = span1.innerHTML + "INACTIVE";
+  }
+  anchor1.appendChild(span1);
+  div4.appendChild(anchor1);
 
+  var br1 = document.createElement("br");
+  div4.appendChild(br1);
+
+  var small1 =document.createElement("small");
+  small1.innerHTML="Code : " + doc.CouponCode;
+  div4.appendChild(small1);
+
+  document.getElementById("divCoupons").appendChild(div1);
+  var h51 = document.createElement("h5");
+  h51.innerHTML="Get instant cashback";
+
+div4.appendChild(h51);
+  var span3 = document.createElement("span");
+  if(doc.DiscountType === "Absolute")
+  {
+    var displayAmt = doc.DiscountValue.toLocaleString('en-IN', curFormat);
+    span3.innerHTML= displayAmt + " Discount";
+  }
+  else {
+    span3.innerHTML= doc.DiscountValue + "% Discount";
+  }
+  div4.appendChild(span3);
+
+  var span4 = document.createElement("span");
+  span4.innerHTML = "Valid Till : " + ValidityTill.toLocaleDateString("en-US", options);
+  div4.appendChild(span4);
+
+  div2.appendChild(div4);
+
+  var div5 = document.createElement("div");
+  div5.setAttribute("class","offers-card-edit-delete-div");
+
+    var span5 = document.createElement("span");
+    span5.setAttribute("onclick", "GetCouponDetails(" + "hfCouponDocID" + index + ");");
+    span5.setAttribute("class","material-icons-outlined");
+    span5.setAttribute("style","color: green;padding-bottom: 20px;");
+    span5.innerHTML = "edit";
+    div5.appendChild(span5);
+
+    var span6 = document.createElement("span");
+    span6.setAttribute("class","material-icons-outlined");
+    span6.setAttribute("onclick", "deleteCoupon(" + "hfCouponDocID" + index + ");");
+    span6.setAttribute("style","color: red;padding-top: 20px;");
+    span6.innerHTML = "delete";
+    div5.appendChild(span6);
+
+    div2.appendChild(div5);
+
+    div1.appendChild(div2);
+
+    document.getElementById("divCoupons").appendChild(div1);
 }
 
 
-function ChangeActive(hfCouponDocID, index) {
-
-  var cbActive = document.getElementById("isActive" + index);
-  var status = "";
-  if (cbActive.checked)
-    status = "Active";
-  else
-    status = "In active";
-  if (hfCouponDocID.value != null && hfCouponDocID.value != '') {
-    db.collection("Coupons").doc(hfCouponDocID.value).update({
-        Status: status
-      })
-      .then((docRef) => {
-        console.log("Data added sucessfully in the document: ");
-        console.log("eventstart")
-        // console.log(Date.parse(eventstart))
-      })
-      .catch((error) => {
-        console.error("error adding document:", error);
-      });
-  }
-}
+// function ChangeActive(hfCouponDocID, index) {
+//
+//   var cbActive = document.getElementById("isActive" + index);
+//   var status = "";
+//   if (cbActive.checked)
+//     status = "Active";
+//   else
+//     status = "In active";
+//   if (hfCouponDocID.value != null && hfCouponDocID.value != '') {
+//     db.collection("Coupons").doc(hfCouponDocID.value).update({
+//         Status: status
+//       })
+//       .then((docRef) => {
+//         console.log("Data added sucessfully in the document: ");
+//         console.log("eventstart")
+//         // console.log(Date.parse(eventstart))
+//       })
+//       .catch((error) => {
+//         console.error("error adding document:", error);
+//       });
+//   }
+// }
