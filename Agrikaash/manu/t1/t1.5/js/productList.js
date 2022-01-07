@@ -39,10 +39,10 @@ function GetProfileData(user) {
         userRole = doc.data().UserRole;
         //console.log(doc.data().CustomerType);
         userBusinessCategory = doc.data().CustomerType;
-      //  console.log(userBusinessCategory);
+        //  console.log(userBusinessCategory);
         var business = document.getElementById("businessType");
         for (i = 0; i < business.options.length; i++) {
-        //  console.log(business.options[i].value);
+          //  console.log(business.options[i].value);
           if (business.options[i].value === userBusinessCategory)
             business.options[i].selected = true;
         }
@@ -71,7 +71,7 @@ function GetProfileData(user) {
         }
         if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
           document.getElementById('profilePic').src = doc.data().ProfileImageURL;
-       document.getElementById('profileName').innerHTML =  doc.data().displayName;
+        document.getElementById('profileName').innerHTML = doc.data().displayName;
 
         var promise = getCartItemNo();
         // var promise2 = promise.then(populateProductData('', '', true));
@@ -233,12 +233,11 @@ function renderProductCategory(productCategory, pType) {
     item.classList.add("item");
 
     var anchor = document.createElement("a");
-    if (i === 0 &&(pType === 'All' || pType === '')) {
+    if (i === 0 && (pType === 'All' || pType === '')) {
       anchor.setAttribute("class", "category-list-menu active");
-    } else if (productCategory[i] === pType ){
+    } else if (productCategory[i] === pType) {
       anchor.setAttribute("class", "category-list-menu active");
-    }
-    else {
+    } else {
       anchor.setAttribute("class", "category-list-menu");
     }
     anchor.setAttribute("href", "javascript:callFunction('" + productCategory[i] + "'," + "anchor" + i + ");");
@@ -358,7 +357,7 @@ function renderProductNew(doc, index, selectedItem) {
     "<small style='font-size: 0.8rem; color: rgba(0,0,0,0.5);'>" + doc.data().Brand + "</small><br>";
 
   var selectP = document.createElement("select");
-  selectP.setAttribute("name", "productDetails" +index);
+  selectP.setAttribute("name", "productDetails" + index);
   //selectP.setAttribute("disabled", false);
   selectP.setAttribute("id", "productDetails" + index);
   selectP.setAttribute("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelectedValue" + index + "," + index + ",'" + doc.id + "'," + doc.data().MinimumQty + ")");
@@ -370,36 +369,36 @@ function renderProductNew(doc, index, selectedItem) {
   //console.log(productlist.length);
 
   for (const val of productlist) {
-      var option = document.createElement("option");
-      option.value = val.ProductFinalPrise + ":" + val.ProductMRP;
-      option.text = val.ProductWeight + " - " + "Rs." + val.ProductFinalPrise;
-      if (selectedItem != null) {
-        if (option.text === selectedItem.SelectedsubItem) {
-          option.selected = true;
+    var option = document.createElement("option");
+    option.value = val.ProductFinalPrise + ":" + val.ProductMRP;
+    option.text = val.ProductWeight + " - " + "Rs." + val.ProductFinalPrise;
+    if (selectedItem != null) {
+      if (option.text === selectedItem.SelectedsubItem) {
+        option.selected = true;
 
-          if (qtyNew === doc.data().MinimumQty)
-            qtyNew = selectedItem.Quantity;
-          if (mrp === 0)
-            mrp =val.ProductMRP;
-          if (finalPrize === 0)
-            finalPrize = val.ProductFinalPrise
-        } else {
-          indexnew = -1;
-          qtyNew = 1;
-        }
+        if (qtyNew === doc.data().MinimumQty)
+          qtyNew = selectedItem.Quantity;
+        if (mrp === 0)
+          mrp = val.ProductMRP;
+        if (finalPrize === 0)
+          finalPrize = val.ProductFinalPrise
       } else {
-        mrp = 0;
-        finalPrize = 0;
         indexnew = -1;
         qtyNew = 1;
       }
-
-      //console.log(option);
-      selectP.add(option, undefined );
-      // selectP.appendChild(option);
-
+    } else {
+      mrp = 0;
+      finalPrize = 0;
+      indexnew = -1;
+      qtyNew = 1;
     }
-    //console.log(selectP);
+
+    //console.log(option);
+    selectP.add(option, undefined);
+    // selectP.appendChild(option);
+
+  }
+  //console.log(selectP);
   //
   // for (int = 0 ; int <  productlist.length; int++ ) {
   //   var option = document.createElement("option");
@@ -436,7 +435,7 @@ function renderProductNew(doc, index, selectedItem) {
   hfSelecttion.setAttribute("id", "hfSelectedValue" + index);
   hfSelecttion.setAttribute("type", "hidden");
   //console.log(selectP[0]);
-  if(selectP.selectedIndex >= 0 )
+  if (selectP.selectedIndex >= 0)
     hfSelecttion.setAttribute("value", selectP[selectP.selectedIndex].text);
   else {
     hfSelecttion.setAttribute("value", "");
@@ -476,10 +475,10 @@ function renderProductNew(doc, index, selectedItem) {
   trdiv.setAttribute("class", "quantity buttons_added");
 
   var divNewQty = document.createElement("div");
-  divNewQty.setAttribute("class","");
-  divNewQty.setAttribute("id","quantityFullDiv" + index);
+  divNewQty.setAttribute("class", "");
+  divNewQty.setAttribute("id", "quantityFullDiv" + index);
 
-  divNewQty.setAttribute("style","display: block;");
+  divNewQty.setAttribute("style", "display: block;");
 
 
   var buttonA = document.createElement("a");
@@ -545,28 +544,28 @@ function renderProductNew(doc, index, selectedItem) {
 
   if (selectedItem != null) {
     buttonA.style.display = 'none';
-      divNewQty.style.display="block";
+    divNewQty.style.display = "block";
     // trinput1.style.visibility = 'visible';
     // trinput2.style.visibility = 'visible';
     // trinput3.style.visibility = 'visible';
   } else {
     buttonA.style.display = 'block';
 
-    divNewQty.style.display="none";
+    divNewQty.style.display = "none";
     // trinput1.style.visibility = 'hidden';
     // trinput2.style.visibility = 'hidden';
     // trinput3.style.visibility = 'hidden';
   }
-// divNewQty.appendChild()
+  // divNewQty.appendChild()
 
-divNewQty.appendChild(trinput1);
-divNewQty.appendChild(trinput2);
-divNewQty.appendChild(trinput3);
-divNewQty.appendChild(trinput4);
-divNewQty.appendChild(trinput5);
-divNewQty.appendChild(trinput6);
+  divNewQty.appendChild(trinput1);
+  divNewQty.appendChild(trinput2);
+  divNewQty.appendChild(trinput3);
+  divNewQty.appendChild(trinput4);
+  divNewQty.appendChild(trinput5);
+  divNewQty.appendChild(trinput6);
 
-trdiv.appendChild(divNewQty);
+  trdiv.appendChild(divNewQty);
   // trdiv.appendChild(trinput1);
   // trdiv.appendChild(trinput2);
   // trdiv.appendChild(trinput3);
@@ -800,19 +799,19 @@ function ChangeAddButtonVisible(index, blflag) {
     //console.log(buttonA);
     buttonA.style.display = 'block';
 
-    divQty.style.display="none";
+    divQty.style.display = "none";
     // minB.style.visibility = 'hidden';
     // qtyB.style.visibility = 'hidden';
     // plusB.style.visibility = 'hidden';
   } else {
     buttonA.style.display = 'none';
-    divQty.style.display="block";
+    divQty.style.display = "block";
     // minB.style.visibility = 'visible';
     // qtyB.style.visibility = 'visible';
     // plusB.style.visibility = 'visible';
   }
   //console.log(document.getElementById("productDetails"+index));
-  document.getElementById("productDetails"+index).focus();
+  document.getElementById("productDetails" + index).focus();
 
 }
 
@@ -854,7 +853,7 @@ function decrementQty(oqty, omin, step, itemName, productID, itemSizeObj, index)
 
 }
 
- async  function deleteFromCart(itemSizeObj, productID, index) {
+async function deleteFromCart(itemSizeObj, productID, index) {
 
   // const snapshot = db.collection('CartDetails').doc(userID);
   // snapshot.get().then((doc) => {
@@ -877,11 +876,11 @@ function decrementQty(oqty, omin, step, itemName, productID, itemSizeObj, index)
       // location.reload();
       document.getElementById('cartItemNo').innerHTML = cartItems.length;
 
-//      populateProductData();
+      //      populateProductData();
       ChangeAddButtonVisible(index, true);
     })
     .catch((error) => {
-    //  return index;
+      //  return index;
       console.log("in error");
       document.getElementById('errorMessage').innerHTML = error.message;
       document.getElementById('errorMessage').style.display = 'block';
@@ -889,7 +888,8 @@ function decrementQty(oqty, omin, step, itemName, productID, itemSizeObj, index)
 
 
 
- }
+}
+
 function mySelectionChange(productdetails, mrp, final, hfSelected, index, lproductID, minQty) {
   console.log("in function");
   //alert(productdetails);
