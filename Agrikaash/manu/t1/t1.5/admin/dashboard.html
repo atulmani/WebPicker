@@ -12,7 +12,6 @@
 
   <link rel="shortcut icon" href="../img/logo.png">
 
-
   <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 
@@ -51,6 +50,14 @@
   <div class="before-navbar large">
     <div class="container-fluid" style="padding-Left: 5%;">
       <div class="before-navbar-div">
+        <!-- <div class="" style="display:flex;">
+          <span style="margin: auto 0;font-size:0.8rem;">Follow Us :</span>
+          <div class="social-media-head">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-youtube"></i>
+          </div>
+        </div> -->
         <div class="cod-free-shiping" style="display:flex;">
           <h6 style="font-weight: bold;">AVAILABLE IN NOIDA | VARANASI | LUCKNOW | GORAKHPUR | DEORIA</h6>
         </div>
@@ -71,6 +78,11 @@
               <i class="fas fa-map-marker-alt"></i>
               <span>Varanasi, India</span>
             </div>
+            <!-- <div class="" style="border:none;">
+              <a href="#">
+                <i class="fas fa-shopping-cart cart" style="font-size: 1rem;"></i>
+              </a>
+            </div> -->
           </div>
         </div>
       </div>
@@ -86,7 +98,10 @@
           <h4>Agrikaash</h4>
         </a>
       </div>
-
+      <!-- <div class="serach-div">
+        <input type="text" name="Search" placeholder="Search..." class="search-input" value="">
+        <i class="fas fa-search"></i>
+      </div> -->
       <div class="">
 
       </div>
@@ -94,10 +109,11 @@
 
       </div>
       <div class="container before-nav">
-        <span><i class="fas fa-shopping-cart"></i><a href="updateProduct.html">Products</a></span>
-        <span><i class="fas fa-user"></i><a href="../admin/index.html">Login/Sign Up</a> </span>
-        <span><i class="fas fa-map-marker-alt"></i><a href="#">510086 - Banglore</a> </span>
-        <span><i class="fas fa-phone fa-flip-horizontal" style="padding: 0 20px 0 5px; "></i><a href="#">98227 52885</a> </span>
+        <span><i class="fas fa-phone-alt"></i><a href="../admin/index.html">Contact</a> </span>
+        <span><i class="fas fa-user"></i><a href="../login/index.html">Login/Sign Up</a> </span>
+        <span><i class="fas fa-list"></i><a href="../admin/index.html">Services</a> </span>
+        <span><i class="fas fa-sitemap"></i><a href="../admin/index.html">AgriBusiness</a> </span>
+        <span><i class="fas fa-home"></i><a href="../admin/index.html">Home</a> </span>
       </div>
     </div>
   </nav>
@@ -113,55 +129,62 @@
         <h4 style="text-transform: uppercase;">Agrikaash</h4>
       </a>
 
+      <a href="../notification/notificationSetup.html" style="padding-right: 10px;">
+        <span class="material-icons-outlined" style="color: #fff;">
+          notifications
+        </span>
+        <div class="notification-count">
+          <span class="">0</span>
+        </div>
+      </a>
       <!-- <a href="#"><img src="../img/logo.png" width="30px" alt=""> </a> -->
       <!-- <a href="#" style="padding-right: 0px;"><i class="fas fa-user user-icon"></i></a> -->
     </div>
-
     <!-- <div class="navbar-mobile-search-bar">
       <input type="text" name="" placeholder="Search Here..." value="">
       <i class="fas fa-search"></i>
     </div> -->
   </div>
 
-
-    <div class="small navbar-mobile-bottom">
-      <div class="navbar-mobile-bottom-menu" id="divBottomNavBar">
-        <a href="dashboard.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
-          <span class="material-icons-outlined">
-            home
-          </span>
-          <small>Home</small>
-        </a>
-        <a href="updateProduct.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-          <span class="material-icons-outlined">
-            category
-          </span>
-          <small>Products</small>
-        </a>
-        <a href="">
-
-        </a>
-        <a href="orderStatus.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-          <span class="material-icons-outlined">
-            horizontal_split
-          </span>
-          <small>Orders</small>
-        </a>
-        <a href="dashboard.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-          <span class="material-icons-outlined">
-            currency_rupee
-          </span>
-          <small id='small4'>Payments</small>
-          <!-- <span class="navbar-cart-no" id="cartItemNo">0</span> -->
-        </a>
-      </div>
-      <a class="new-user" href="../login/profile.html">
+  <div class="small navbar-mobile-bottom">
+    <div class="navbar-mobile-bottom-menu" id="divBottomNavBar">
+      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
         <span class="material-icons-outlined">
-          person
+          home
         </span>
+        <small>Home</small>
+      </a>
+      <a href="updateProduct.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <span class="material-icons-outlined">
+          category
+        </span>
+        <small>Products</small>
+      </a>
+      <a href="">
+
+      </a>
+      <a href="orderStatus.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <span class="material-icons-outlined">
+          horizontal_split
+        </span>
+        <small>Orders</small>
+      </a>
+      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <span class="material-icons-outlined">
+          currency_rupee
+        </span>
+        <small id='small4'>Payments</small>
+        <!-- <span class="navbar-cart-no" id="cartItemNo">0</span> -->
       </a>
     </div>
-  <!-- Navbar - End -->
+    <a class="new-user" href="../login/profile.html">
+      <span class="material-icons-outlined">
+        person
+      </span>
+    </a>
+  </div>
+
+  <!-- Navbar links -->
   <div class="collapse navbar-collapse more-button-links" id="collapsibleNavbar1">
     <!-- <div class="pop-up-close-btn">
       <span class="material-icons-outlined">
@@ -286,49 +309,41 @@
   </div>
   <!-- navbar links - end -->
 
+  <!-- Navbar - End -->
+
   <!-- side navbar - start -->
 
   <div class="row no-gutters">
     <div class="col-lg-2 col-md-2 col-sm-12">
       <div class="side-navbar large">
         <div class="side-navbar-menu">
-          <a href="#">
+          <a href="dashboard.html">
             <div class="">
-              <span class="material-icons-outlined" style="position:relative; top:5px;">
-                home
-              </span>
+              <i class="fas fa-home"></i>
               Dashboard
             </div>
           </a><br>
           <a href="updateProduct.html">
             <div class="">
-              <span class="material-icons-outlined" style="position:relative; top:5px;">
-                category
-              </span>
+              <i class="fas fa-th-large"></i>
               Products
             </div>
           </a><br>
           <a href="orderStatus.html">
             <div class="">
-              <span class="material-icons-outlined" style="position:relative; top:5px;">
-                horizontal_split
-              </span>
+              <i class="fab fa-buffer"></i>
               Orders
             </div>
           </a><br>
           <a href="../login/profile.html">
             <div class="">
-              <span class="material-icons-outlined" style="position:relative; top:5px;">
-                manage_accounts
-              </span>
+              <i class="fas fa-male"></i>
               Profile
             </div>
           </a><br>
-          <a href="../login/index.html">
+          <a href="#">
             <div class="">
-              <span class="material-icons-outlined" style="position:relative; top:5px;">
-                logout
-              </span>
+              <i class="fas fa-sign-out-alt"></i>
               Logout
             </div>
           </a>
@@ -337,9 +352,8 @@
     </div>
     <!-- side navbar - end -->
     <div class="col-lg-10 col-md-10 col-sm-12">
-      <div id="google_translate_element"></div>
+      <!-- <div id="google_translate_element"></div>
 
-      <!-- ASYNCHRONOUS Google Translate -->
       <script type="text/javascript">
         function googleTranslateElementInit() {
           new google.translate.TranslateElement({
@@ -356,8 +370,7 @@
           googleTranslateScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(googleTranslateScript);
         })();
-      </script>
-      <!-- End script -->
+      </script> -->
       <div class="row no-gutters" style="padding: 2% 0%;">
         <div class="col-lg-5 col-md-5 col-sm-12">
           <div id="confirmationMessage" style="display:none;">
@@ -369,8 +382,8 @@
 
         </div>
         <div class="detail-card-full-div">
-          <br>
           <div class="" id="loading">
+            <br>
             <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
             <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_49rdyysj.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
             <br><br>
@@ -380,10 +393,10 @@
             </center>
           </div>
 
-          <div class="dashboard-card" id="cardOrder" style='display:none;'>
+          <div class="dashboard-card" id="cardOrder" onclick="showHideCard(cardOrder, cardOrderArrow)" style='display:none;'>
             <div class="" style="display:flex;align-items: center;">
               <div class="arrow-down">
-                <span class="material-icons-outlined">
+                <span id="cardOrderArrow" class="material-icons-outlined">
                   keyboard_arrow_down
                 </span>
               </div>
@@ -452,10 +465,10 @@
             </div>
           </div>
 
-          <div class="dashboard-card" id="cardDelivery" style='display:none;'>
+          <div class="dashboard-card" id="cardDelivery" onclick="showHideCard(cardDelivery, cardDeliveryArrow)" style='display:none;'>
             <div class="" style="display:flex;align-items: center;">
               <div class="arrow-down">
-                <span class="material-icons-outlined">
+                <span id="cardDeliveryArrow" class="material-icons-outlined">
                   keyboard_arrow_down
                 </span>
               </div>
@@ -519,10 +532,10 @@
           </div>
 
 
-          <div class="dashboard-card" id="userRegistration" style='display:none;'>
+          <div class="dashboard-card" id="userRegistration" onclick="showHideCard(userRegistration, userRegistrationArrow)" style='display:none;'>
             <div class="" style="display:flex;align-items: center;">
               <div class="arrow-down">
-                <span class="material-icons-outlined">
+                <span id="userRegistrationArrow" class="material-icons-outlined">
                   keyboard_arrow_down
                 </span>
               </div>
@@ -567,10 +580,10 @@
           </div>
 
 
-          <div class="dashboard-card" id="productDiv" style='display:none;'>
+          <div class="dashboard-card" id="productDiv" onclick="showHideCard(productDiv, productDivArrow)" style='display:none;'>
             <div class="" style="display:flex;align-items: center;">
               <div class="arrow-down">
-                <span class="material-icons-outlined">
+                <span id="productDivArrow" class="material-icons-outlined">
                   keyboard_arrow_down
                 </span>
               </div>
@@ -702,7 +715,8 @@
   <!-- Map Section - End -->
 
   <!-- Footer Section - Start -->
-  <section id="footer">
+  <br class="small"/><br class="small"/><br class="small"/>
+  <section id="footer" class="large">
     <br /><br />
     <div class="container">
       <div class="row no-gutters">
