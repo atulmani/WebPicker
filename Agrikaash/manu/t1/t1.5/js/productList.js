@@ -11,7 +11,6 @@ auth.onAuthStateChanged(firebaseUser => {
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
       GetProfileData(firebaseUser);
-      GetNotificationList();
       //        console.log(userBusinessCategory);
       // var promise = getCartItemNo();
       // var promise2 = promise.then(populateProductData('', ''));
@@ -36,7 +35,6 @@ function GetProfileData(user) {
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
         //console.log('Document ref id: ' + doc.data().uid);
-        userID = doc.data().uid;
         userRole = doc.data().UserRole;
         //console.log(doc.data().CustomerType);
         userBusinessCategory = doc.data().CustomerType;
@@ -77,6 +75,7 @@ function GetProfileData(user) {
         var promise = getCartItemNo();
         // var promise2 = promise.then(populateProductData('', '', true));
         var promise2 = promise.then(populateProductData(userBusinessCategory, '', true));
+        GetNotificationList();
 
 
       }
@@ -139,11 +138,13 @@ async function getCartItemNo() {
   var cartItemNo = document.getElementById('cartItemNo');
   //console.log(cartItemNo);
   const snapshotCart = db.collection('CartDetails').doc(userID);
+  console.log('in getCartItemNo 1');
   snapshotCart.get().then((doc) => {
     if (doc.exists) {
       //console.log("doc exists");
       var itemlist = doc.data().cartDetails;
       //console.log(itemlist);
+      console.log('in getCartItemNo 2');
       item = itemlist.length;
       cartItems = itemlist;
       // item = doc.data().cartDetails.length;
@@ -973,7 +974,7 @@ function mySelectionChange(productdetails, mrp, final, hfSelected, index, lprodu
 
 function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualityStatus) {
 
-
+console.log(userID);
   itemIndex = cartItems.findIndex(a => a.ProductID === productID && a.SelectedsubItem === itemSelect);
   if (itemIndex >= 0)
     cartItems.splice(itemIndex, 1);

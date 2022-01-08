@@ -1,6 +1,8 @@
 //const productID = document.getElementById('productID');
 var userID = "";
 var cartItems = [];
+var userType="";
+
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
@@ -9,6 +11,7 @@ auth.onAuthStateChanged(firebaseUser => {
       GetProfileData(firebaseUser);
       var promise = getCartItemNo();
       promise.then(populateCartData());
+      GetNotificationList();
     } else {
       console.log('User has been logged out');
       window.location.href = "../login/index.html";
@@ -28,6 +31,8 @@ function GetProfileData(user) {
       if (doc.exists) {
         console.log('Document ref id: ' + doc.data().uid);
         userID = doc.data().uid;
+        userType = doc.data().userType;
+
         if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
           document.getElementById('profilePic').src = doc.data().ProfileImageURL;
        document.getElementById('profileName').innerHTML =  doc.data().displayName;
@@ -45,6 +50,49 @@ function GetProfileData(user) {
 };
 var totalPrize = 0;
 var index = 0;
+
+
+function GetNotificationList() {
+  var index = 0;
+  var flag = false;
+  var today = new Date();
+
+  const DBrows = db.collection('Notification')
+    .where("Status", '==', 'Active')
+    .where('ValidityTill', ">=", today)
+    //.orderBy('CreatedTimestamp', 'desc');
+
+  DBrows.onSnapshot((snapshot) => {
+    let changes = snapshot.docChanges();
+
+    changes.forEach(change => {
+      var userListDB = change.doc.data().UserList;
+      var userTypeDB = change.doc.data().UserType;
+
+      if (userListDB === undefined)
+        flag = true;
+      else if (userListDB[0].userID === 'All')
+        flag = true;
+      else if (userListDB.findIndex(e => e.userID === userID) >= 0)
+        flag = true;
+      else if (userTypeDB === undefined)
+        flag = true;
+      else if (userTypeDB[0] === 'All')
+        flag = true;
+      else if (userTypeDB.indexOf(userType) >= 0)
+        flag = true;
+      if (flag === true) {
+        index = index + 1;
+      }
+    });
+
+    if(flag === true)
+    {
+      document.getElementById("notificationCnt").innerHTML=index;
+    }
+
+  });
+}
 
 //async function populateCartData() {
 async function populateCartData() {
