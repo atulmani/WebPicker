@@ -869,7 +869,7 @@ function renderDeliveryOrder(order, index, orderid) {
   div5.setAttribute("class", "");
   div5.setAttribute("style", "text-align: center;");
   var aa = document.createElement("a");
-  aa.setAttribute("href", "orderSummary.html?id=" + orderid)
+  aa.setAttribute("href", "orderDetails.html?id=" + orderid)
 
   var span2 = document.createElement("span");
   span2.setAttribute("class", "material-icons-outlined");
