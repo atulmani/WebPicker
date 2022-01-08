@@ -2307,6 +2307,16 @@ input[type=number] {
 /* create product page - end */
 
 /* Registration page - start */
+
+.user-registration-aproval-comments{
+  border: none;
+  outline: none;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  padding: 0 10px;
+  height: 40px;
+}
+
 .registration-full-form{
   padding: 3%;
 }
