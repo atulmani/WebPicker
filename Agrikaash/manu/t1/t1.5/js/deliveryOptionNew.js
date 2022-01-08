@@ -16,7 +16,11 @@ auth.onAuthStateChanged(firebaseUser => {
       GetDeliveryAddress();
       createOrderItems();
       GetCouponDetails();
-      GetNotificationList();
+      //GetNotificationList();
+      var siteNotification = localStorage.getItem("notificationCount");
+      document.getElementById("notificationCnt").innerHTML=siteNotification;
+      document.getElementById("notificationCnt1").innerHTML=siteNotification;
+
       //getCartSummary();
       //      populateAddress(addressID);
 
