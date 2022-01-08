@@ -46,7 +46,6 @@ function GetProfileData(user) {
 };
 
 function GetUserList() {
-
   var ddl = document.getElementById("userList");
   const snapshot = db.collection('UserList').get();
   snapshot.then((changes) => {
@@ -59,6 +58,8 @@ function GetUserList() {
     });
 
   });
+  console.log('in GetUserList');
+
 }
 
 function SaveNotification() {
@@ -157,7 +158,7 @@ function AddNotification()
   document.getElementById("createNotificationDiv").style.display="block";
   document.getElementById("mapNotificationDiv").style.display="block";
   document.getElementById("divSaveButton").style.display="block";
-  document.getElementById("notificationID").value = "";
+  document.getElementById("hfNotificationID").value = "";
 
   var userListCnt = document.getElementById("userList");
     for (i = 0; i < userListCnt.options.length; i++) {
@@ -251,7 +252,6 @@ function GetNotificationList() {
   DBrows.onSnapshot((snapshot) => {
     let changes = snapshot.docChanges();
 
-        document.getElementById("divNotification").innerHTML="";
     changes.forEach(change => {
       renderNotification(change, index);
       index = index + 1;
@@ -429,5 +429,5 @@ if(doc.Status === "Active")
 
     div1.appendChild(div2);
 
-    document.getElementById("divNotifications").appendChild(div1);
+    document.getElementById("divNotificationList").appendChild(div1);
 }
