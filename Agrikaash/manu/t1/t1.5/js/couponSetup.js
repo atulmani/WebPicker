@@ -157,7 +157,7 @@ function SaveCoupon() {
         console.log("Data added sucessfully in the document: " + docRef.id);
         couponID.value = docRef.id;
         console.log("eventstart");
-        GetCouponList();
+
         // console.log(Date.parse(eventstart))
       })
       .catch(function(error) {
@@ -165,6 +165,7 @@ function SaveCoupon() {
       });
 
   }
+  GetCouponList();
   document.getElementById("createCouponDiv").style.display="none";
   document.getElementById("mapCouponDiv").style.display="none";
   document.getElementById("divSaveButton").style.display="none";
@@ -426,8 +427,8 @@ if(doc.Status === "Active")
   anchor1.appendChild(span1);
   div4.appendChild(anchor1);
 
-  var br1 = document.createElement("br");
-  div4.appendChild(br1);
+  // var br1 = document.createElement("br");
+  // div4.appendChild(br1);
 
   var small1 =document.createElement("small");
   small1.innerHTML="Code : " + doc.CouponCode;
@@ -435,9 +436,15 @@ if(doc.Status === "Active")
 
   document.getElementById("divCoupons").appendChild(div1);
   var h51 = document.createElement("h5");
-  h51.innerHTML="Get instant cashback";
+  h51.innerHTML= doc.CouponName;
 
-div4.appendChild(h51);
+  div4.appendChild(h51);
+
+  var span31 = document.createElement("span");
+    span31.innerHTML=doc.Description ;
+  div4.appendChild(span31);
+  var br21 = document.createElement("br");
+  div4.appendChild(br21);
   var span3 = document.createElement("span");
   if(doc.DiscountType === "Absolute")
   {
@@ -448,7 +455,8 @@ div4.appendChild(h51);
     span3.innerHTML= doc.DiscountValue + "% Discount";
   }
   div4.appendChild(span3);
-
+  var br2 = document.createElement("br");
+  div4.appendChild(br2);
   var span4 = document.createElement("span");
   span4.innerHTML = "Valid Till : " + ValidityTill.toLocaleDateString("en-US", options);
   div4.appendChild(span4);
