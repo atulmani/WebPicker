@@ -11,6 +11,7 @@ auth.onAuthStateChanged(firebaseUser => {
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
       GetProfileData(firebaseUser);
+      GetNotificationList();
       //        console.log(userBusinessCategory);
       // var promise = getCartItemNo();
       // var promise2 = promise.then(populateProductData('', ''));
@@ -89,6 +90,49 @@ function GetProfileData(user) {
       // document.getElementById('errorMessage_Signup').style.display = 'block';
     });
 };
+
+
+function GetNotificationList() {
+  var index = 0;
+  var flag = false;
+  var today = new Date();
+
+  const DBrows = db.collection('Notification')
+    .where("Status", '==', 'Active')
+    .where('ValidityTill', ">=", today)
+    //.orderBy('CreatedTimestamp', 'desc');
+
+  DBrows.onSnapshot((snapshot) => {
+    let changes = snapshot.docChanges();
+
+    changes.forEach(change => {
+      var userListDB = change.doc.data().UserList;
+      var userTypeDB = change.doc.data().UserType;
+
+      if (userListDB === undefined)
+        flag = true;
+      else if (userListDB[0].userID === 'All')
+        flag = true;
+      else if (userListDB.findIndex(e => e.userID === userID) >= 0)
+        flag = true;
+      else if (userTypeDB === undefined)
+        flag = true;
+      else if (userTypeDB[0] === 'All')
+        flag = true;
+      else if (userTypeDB.indexOf(userBusinessCategory) >= 0)
+        flag = true;
+      if (flag === true) {
+        index = index + 1;
+      }
+    });
+
+    if(flag === true)
+    {
+      document.getElementById("notificationCnt").innerHTML=index;
+    }
+
+  });
+}
 
 async function getCartItemNo() {
   //console.log("getCartItemNo");

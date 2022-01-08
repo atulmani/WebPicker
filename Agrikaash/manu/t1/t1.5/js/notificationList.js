@@ -33,8 +33,8 @@ function GetProfileData(user) {
           document.getElementById('profilePic').src = doc.data().ProfileImageURL;
         }
 
-        //  document.getElementById('headerProfilePic').src = doc.data().ImageURL;
         document.getElementById('profileName').innerHTML = doc.data().displayName;
+
       }
     })
     .catch(function(error) {
@@ -119,7 +119,7 @@ function GetNotificationList() {
   const DBrows = db.collection('Notification')
     .where("Status", '==', 'Active')
     .where('ValidityTill', ">=", today)
-    .orderBy('CreatedTimestamp', 'desc');
+    //.orderBy('CreatedTimestamp', 'desc');
 
   DBrows.onSnapshot((snapshot) => {
     let changes = snapshot.docChanges();
@@ -138,7 +138,7 @@ function GetNotificationList() {
         flag = true;
       else if (userTypeDB[0] === 'All')
         flag = true;
-      else if (userTypeDB.findIndex(userType) >= 0)
+      else if (userTypeDB.indexOf(userType) >= 0)
         flag = true;
       if (flag === true) {
         renderNotification(change, index);
@@ -146,12 +146,21 @@ function GetNotificationList() {
       }
     });
 
+    if(flag === true)
+    {
+      document.getElementById("notificationCnt").innerHTML=index;
+      document.getElementById("noNotificationDiv").style.display="none";
+    }
+    else {
+      document.getElementById("messageDiv").style.display="none";
+    }
+
   });
 }
 
 function renderNotification(change, index) {
   var doc = change.doc.data();
-
+  console.log(doc);
 
   var curFormat = {
     style: 'currency',
