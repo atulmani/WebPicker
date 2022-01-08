@@ -415,7 +415,8 @@
         </div> <br>
         <div class="details">
           <input type="text" name="" value=""><br><br>
-          <select id="userList" multiple onchange="GetOrderByUsers();">
+          <!-- <select id="userList" multiple onchange="GetOrderByUsers();"> -->
+          <select id="userList" multiple >
             <option value="All">All</option>
 
           </select>
@@ -429,7 +430,7 @@
               </span>
             </button>
           </a>
-          <a href="#" onclick="closeOrderFilter()">
+          <a href="#" onclick="GetOrderByUsers()">
             <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
               Done
               <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
