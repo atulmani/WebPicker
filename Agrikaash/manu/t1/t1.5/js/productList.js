@@ -75,7 +75,10 @@ function GetProfileData(user) {
         var promise = getCartItemNo();
         // var promise2 = promise.then(populateProductData('', '', true));
         var promise2 = promise.then(populateProductData(userBusinessCategory, '', true));
-        GetNotificationList();
+      //  GetNotificationList();
+      var siteNotification = localStorage.getItem("notificationCount");
+      document.getElementById("notificationCnt").innerHTML=siteNotification;
+      document.getElementById("notificationCnt1").innerHTML=siteNotification;
 
 
       }
