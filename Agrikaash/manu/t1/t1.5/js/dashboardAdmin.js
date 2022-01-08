@@ -43,7 +43,11 @@ function GetProfileData(user) {
 
         }
         if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
-          //document.getElementById('navUser').src = doc.data().ProfileImageURL;
+          document.getElementById('profilePic').src = doc.data().ProfileImageURL;
+
+          document.getElementById('profileName').innerHTML = doc.data().displayName;
+
+
           console.log(isAdmin);
         if (isAdmin === true) {
 
