@@ -2053,11 +2053,11 @@ input[type=number] {
   transition: 1s;
 }
 
-#cardOrder:hover{
+.dashboard-card#cardOrder.active{
   height: 350px;
 }
 
-#cardDelivery:hover{
+.dashboard-card#cardDelivery.active{
   height: 542px;
 }
 
@@ -2084,7 +2084,6 @@ input[type=number] {
 
 #arrow{
   transition: 1s;
-
 }
 
 #arrow.active{
@@ -2098,15 +2097,12 @@ input[type=number] {
   transition: 1s;
 }
 
-.dashboard-card .arrow-down{
-  position: absolute;
-  right: 20px;
-  transform: translateY(-20px);
+.dashboard-card .arrow-down span{
   transition: 1s;
 }
 
-.dashboard-card:hover .arrow-down{
-  transform: translateY(-20px) rotate(180deg);
+.dashboard-card .arrow-down span.active{
+  transform: rotate(180deg);
 }
 
 .dashboard-card div .order-icon{
