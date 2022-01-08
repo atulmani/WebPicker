@@ -32,6 +32,7 @@ function GetProfileData(user) {
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
           document.getElementById('profilePic').src = doc.data().ProfileImageURL;
         }
+
         //  document.getElementById('headerProfilePic').src = doc.data().ImageURL;
           document.getElementById('profileName').innerHTML = doc.data().displayName;
       }
