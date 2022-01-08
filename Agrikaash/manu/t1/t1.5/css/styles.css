@@ -252,6 +252,11 @@ h6{
   font-size: 1rem;
   text-align: center;
   text-decoration: none;
+  width: 100%;
+}
+
+.navbar-mobile-bottom-menu a:nth-child(3){
+  width: 50%;
 }
 
 .navbar-mobile-bottom-menu .navbar-mobile-bottom-menu-a.active{
@@ -1156,7 +1161,7 @@ input[type=number] {
 
 .checkout-div{
   position: fixed;
-  bottom: 9%;
+  bottom: 8%;
   left: 0;
   right: 0;
   display: flex;
@@ -2061,10 +2066,10 @@ input[type=number] {
   height: 542px;
 }
 
-#productDiv:hover{
+.dashboard-card#productDiv.active{
   height: 512px;
 }
-#userRegistration:hover{
+.dashboard-card#userRegistration.active{
   height: 320px;
 }
 
