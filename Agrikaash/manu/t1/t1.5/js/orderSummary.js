@@ -29,7 +29,11 @@ auth.onAuthStateChanged(firebaseUser => {
       GetProfileData(firebaseUser);
       populateDeliveryDate();
       getOrderDetails();
-      GetNotificationList();
+      //GetNotificationList();
+      var siteNotification = localStorage.getItem("notificationCount");
+      document.getElementById("notificationCnt").innerHTML=siteNotification;
+      document.getElementById("notificationCnt1").innerHTML=siteNotification;
+
       if (orderID != '' && orderID != null) {
         document.getElementById('msg').innerHTML = 'Getting order details!!';
       } else {
