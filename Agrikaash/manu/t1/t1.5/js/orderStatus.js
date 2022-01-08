@@ -102,27 +102,19 @@ function dateRangeChange()
 }
 function GetOrderByUsers() {
   var index = 0;
-  var selectedusers = [];
   document.getElementById('loading').style.display = 'block';
   var users = document.getElementById('userList');
-  for(cnt = 0 ; cnt < users.options.length ; cnt++ )
-  {
-    if(users.options[cnt].selected)
-      selectedusers.push(users.options[cnt].value);
-  }
-  //var selecteduservalue = users.options[users.selectedIndex].value;
-
-  console.log(selectedusers);
-  //console.log(users.options[users.selectedIndex].text);
+  var selecteduservalue = users.options[users.selectedIndex].value;
+  console.log(selecteduservalue);
+  console.log(users.options[users.selectedIndex].text);
   var DBrows;
-//  if (selecteduservalue === 'All') {
-//    DBrows = db.collection('OrderDetails')
-//      .get();
-
-//  } else
-  {
+  if (selecteduservalue === 'All') {
     DBrows = db.collection('OrderDetails')
-      .where("orderBy", "in", selectedusers).get();
+      .get();
+
+  } else {
+    DBrows = db.collection('OrderDetails')
+      .where("orderBy", "==", selecteduservalue).get();
   }
 
   DBrows.then((changes) => {
@@ -144,13 +136,8 @@ function GetOrderByUsers() {
     });
   });
   document.getElementById('loading').style.display = 'none';
-  for(cnt = 0 ; cnt < users.options.length ; cnt++ )
-  {
-      users.options[cnt].selected = false;
-    
-  }
-  closeOrderFilter();
-  GetOrder('All');
+
+
 }
 
 function populateOrderDetailsBackup() {
