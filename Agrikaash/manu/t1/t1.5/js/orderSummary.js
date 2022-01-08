@@ -1,6 +1,7 @@
 //const productID = document.getElementById('productID');
 var userID = "";
 var cartItems = [];
+var userType="";
 // var url = location.href;
 let eventDocUrl = new URL(location.href);
 // console.log ('URL: ' + eventDocUrl);
@@ -28,6 +29,7 @@ auth.onAuthStateChanged(firebaseUser => {
       GetProfileData(firebaseUser);
       populateDeliveryDate();
       getOrderDetails();
+      GetNotificationList();
       if (orderID != '' && orderID != null) {
         document.getElementById('msg').innerHTML = 'Getting order details!!';
       } else {
@@ -54,6 +56,8 @@ function GetProfileData(user) {
       if (doc.exists) {
         // let blogPost = doc.data();
         // console.log ('User UID: ' + user.uid);
+        userType = doc.data().userType;
+
         if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
           document.getElementById('profilePic').src = doc.data().ProfileImageURL;
         document.getElementById('profileName').innerHTML = doc.data().displayName;
@@ -71,6 +75,47 @@ function GetProfileData(user) {
     });
 };
 
+function GetNotificationList() {
+  var index = 0;
+  var flag = false;
+  var today = new Date();
+
+  const DBrows = db.collection('Notification')
+    .where("Status", '==', 'Active')
+    .where('ValidityTill', ">=", today)
+    //.orderBy('CreatedTimestamp', 'desc');
+
+  DBrows.onSnapshot((snapshot) => {
+    let changes = snapshot.docChanges();
+
+    changes.forEach(change => {
+      var userListDB = change.doc.data().UserList;
+      var userTypeDB = change.doc.data().UserType;
+
+      if (userListDB === undefined)
+        flag = true;
+      else if (userListDB[0].userID === 'All')
+        flag = true;
+      else if (userListDB.findIndex(e => e.userID === userID) >= 0)
+        flag = true;
+      else if (userTypeDB === undefined)
+        flag = true;
+      else if (userTypeDB[0] === 'All')
+        flag = true;
+      else if (userTypeDB.indexOf(userType) >= 0)
+        flag = true;
+      if (flag === true) {
+        index = index + 1;
+      }
+    });
+
+    if(flag === true)
+    {
+      document.getElementById("notificationCnt").innerHTML=index;
+    }
+
+  });
+}
 function myFunction() {
   var element = document.getElementById("detailsDiv");
   element.classList.toggle("active");
