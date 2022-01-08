@@ -154,7 +154,7 @@
         </span>
         <small>Home</small>
       </a>
-      <a href="updateProduct.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+      <a href="updateProduct.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <span class="material-icons-outlined">
           category
         </span>
@@ -177,7 +177,7 @@
         <!-- <span class="navbar-cart-no" id="cartItemNo">0</span> -->
       </a>
     </div>
-    <a class="new-user" href="profile.html">
+    <a class="new-user" href="#">
       <span class="material-icons-outlined">
         person
       </span>
@@ -193,9 +193,9 @@
     </div> -->
     <ul class="">
       <li class="">
-        <a href="profile.html" style="text-decoration: none;" class="">
+        <a href="#" style="text-decoration: none;" class="">
           <div class="left-nav-first">
-            <img id="profilePic" src="../img/products/banana.png" width="" alt="">
+            <img id="profilePic" src="../img/user.png" width="" alt="">
             <h5 id="profileName"></h5>
 
             <small>View Profile</small>
@@ -335,7 +335,7 @@
               Orders
             </div>
           </a><br>
-          <a href="profile.html">
+          <a href="#">
             <div class="">
               <i class="fas fa-male"></i>
               Profile
@@ -351,147 +351,196 @@
       </div>
     </div>
     <!-- side navbar - end -->
-    <div id="confirmationMessage" style="display:none;">
-      <!-- <Label id="confirmationMessage" "> -->
-      <Label>
-        Your do not have access to view this page. <a href="../login/index.html">Click to go to home page</a> </Label>
-
-    </div>
-
     <div class="col-lg-10 col-md-10 col-sm-12">
 
-      <div class="sticky-top" style="z-index: 10;">
-        <div class="row no-gutters" style="background: #ddd;">
-          <div class="col-md-12 col-md-offset-1">
-            <input type="hidden" id="categoryCnt" value=0>
-                        <div id="category-list" class="owl-carousel owl-theme" style="padding:5px 0;">
-              <!-- <div   class="owl-carousel-inner"> -->
-              <!-- <div class="item">
-                <a class="category-list-menu active">
-                  <h5>All</h5>
-                </a>
-              </div>
-              <div class="item">
-                <a class="category-list-menu">
-                  <h5>Vegtable</h5>
-                </a>
-              </div>
-              <div class="item">
-                <a class="category-list-menu">
-                  <h5>Fruits</h5>
-                </a>
-              </div>
-              <div class="item">
-                <a class="category-list-menu">
-                  <h5>Goat</h5>
-                </a>
-              </div>
-              <div class="item">
-                <a class="category-list-menu">
-                  <h5>Pearl</h5>
-                </a>
-              </div>
-              <div class="item">
-                <a class="category-list-menu">
-                  <h5>Honey</h5>
-                </a>
-              </div> -->
-              <!-- </div> -->
-            </div>
-          </div>
+      <div class="container-fluid">
+
+        <div id="loading" class="">
+          <br><br><br><br>
+          <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+          <lottie-player src="https://assets4.lottiefiles.com/private_files/lf30_LOw4AL.json" background="transparent" speed="0.5" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+          <br><br><br><br><br><br><br>
         </div>
 
-        <div class="category-list-sub-menu" style="background: #f4f4f4;">
+        <div id="google_translate_element"></div>
 
-          <div class="" id='divbusinessType'>
-            <select class="city-selector" id="businessType" onchange="changCustomerType();" style="background: rgba(255,255,255,0.6);border: 1px solid #aaa;" name="">
-              <option value="All">All</option>
-              <option value="Small">Small</option>
-              <option value="Medium">Medium</option>
-              <option value="Large">Large</option>
-            </select>
+        <!-- ASYNCHRONOUS Google Translate -->
+        <script type="text/javascript">
+          function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+              pageLanguage: 'hi',
+              layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+              autoDisplay: false
+            }, 'google_translate_element');
+          }
 
-            <span class="material-icons-outlined city-selector-icon">
-              storefront
-            </span>
-          </div>
+          (function() {
+            var googleTranslateScript = document.createElement('script');
+            googleTranslateScript.type = 'text/javascript';
+            googleTranslateScript.async = true;
+            googleTranslateScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(googleTranslateScript);
+            console.log(googleTranslateScript);
 
-          <div class="">
-            <h5 id="itemCnt">0 Items</h5>
-          </div>
+          })();
+        </script>
 
-        </div>
-      </div>
-
-      <div class="add-products" onClick="createProduct();">
-        <span class="material-icons-outlined">
-          add
-        </span>
-      </div>
-
-      <div class="row no-gutters" style="padding: 2%;" id="divDetails">
-
-        <div class="col-sm-12">
-          <!-- <div class="product-menu"><br><br>
-            <div id='divbusinessType'>
-              Customer Business Type
-              <select id="businessType" onchange="changCustomerType();">
-                <option value='All' selected>All</option>
-
-                <option value='Small'>Small</option>
-                <option value='Medium'>Medium</option>
-                <option value='Large'>Large</option>
-
-
-              </select>
-
-
-            </div>
-
-
-
-          </div> -->
-          <!-- <div class="col-sm-12">
-            <div class="product-menu">
-              <div class="" id="addProductBtn">
-                <button class="mybutton button5" onClick="createProduct();">Add Product</button>
-              </div>
-
-            </div>
-          </div> -->
-          <div class="col-sm-12">
-            <div class="product-menu">
-
-              <div id='productCategory'>
-              </div>
-              <input type="hidden" id="hfpType" />
-            </div>
-          </div>
-          <div class="row no-gutters"><br>
-
-            <div id='productRow'>
-
-
-            </div>
-          </div>
-
-          <br>
-
-        </div>
 
         <div class="row no-gutters">
-          <div class="col-lg-12 col-md-12 col-sm-12">
-            <!-- <center>
-            <div id='loading' class="loader"></div>
-          </center> -->
-            <div class="" id="loading">
-              <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-              <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_ukfgwgr8.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <h6 style="padding: 10px;">
+              <center style="margin: 0 auto;">
+                <span id="userEmail"></span>
+              </center>
+            </h6>
+
+            <div class="profile-pic">
+              <img id="profilePic" src="../img/user.png" alt="">
+            </div>
+            <div class="camera-update-icon-div">
+              <div class="">
+
+              </div>
+              <div id="cameraIcon" class="camera-icon">
+                <i class="fas fa-camera"></i>
+              </div>
+              <button id="uploadIcon" class="camera-icon" disabled>
+                <i class="fas fa-upload"></i>
+              </button>
+              <div class="">
+
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-9 col-md-6 col-sm-12" style="display:flex; align-items:center;justify-content:center;">
+            <div class="profile-personal-div" style="text-align:center;">
+              <h4 style="padding: 10px 10px 0 10px;">
+                <input class="profile-personal-input" style="color: #1D741B;" type="text" readonly id='userName'></input>
+
+                <span class="material-icons-outlined" style="color: #f58634;" onclick="editName();">
+                  edit
+                </span>
+              </h4>
+              <small class="small-text" style="padding: 0 10px;">
+                <input class="profile-personal-input" readonly style="width: 110px;" maxlength="10" id='userPhone' type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></input>
+                <span class="material-icons-outlined" style="color: #f58634; font-size: 1.2rem;" onclick="editMobile();">
+                  edit
+                </span>
+              </small><br><br>
+
+              <div class="">
+                <select class="city-selector" name="" id="cityList">
+                  <option value="Varanasi">Varanasi</option>
+                  <option value="Noida">Noida</option>
+                  <option value="Lucknow">Lucknow</option>
+                  <option value="Gorakhpur">Gorakhpur</option>
+                  <option value="Deoria">Deoria</option>
+                </select>
+
+                <span class="material-icons-outlined city-selector-icon">
+                  location_on
+                </span>
+              </div>
+
+              <div class="">
+                <select class="city-selector" name="" id="customerType">
+                  <option value="Small">Small</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Large">Large</option>
+                </select>
+
+                <span class="material-icons-outlined city-selector-icon">
+                  storefront
+                </span>
+              </div><br>
+              <div id="divWalletDetails_old" style="display:none;">
+                Your Wallet has : <span id="WalletDetails_old"></span>
+              </div>
+              <div class="" id="divWalletDetails" style="display:none;">
+                <div class="wallet-div">
+                  <div class="">
+                    <span class="material-icons-outlined">
+                      account_balance_wallet
+                    </span>
+                  </div>
+                  <div class="">
+                    <h5>Wallet summary</h5>
+                    <span>Current Balance <strong>Rs.</strong> </span> <span id="WalletDetails" style="font-weight:bold;"></span>
+                  </div>
+                </div>
+              </div>
+              <br>
+
+              <a href="#"><button class="mybutton button5" onclick="SaveDetails();">Update Profile</button></a><br>
+              <Label id="confirmationMessage" style="display:none;"> Your profile details have been updated successfully.</Label>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="registration-full-form" style="display:none;">
+          <div class="registration-inner-div">
+            <div class="row no-gutters">
+              <div class="col-6">
+                <div class="registration-input-field">
+                  <h5>User Type</h5>
+
+                  <!-- <select id="userType" multiple>
+                    <option value="Customer">Retailer/Customer</option>
+                    <option value="Vendor">Vendor/Farmers</option>
+                  </select> -->
+                  <div class="" id="adminDiv">
+                    <input type="checkbox" class="checkbox" style="width: 0px;disabled:true;" name="" id="userType0" value="Admin" disabled>
+                    <label class="checkbox-label" id="userType0-label" for="userType0">
+                      <i class="fas fa-plus"></i>
+                      <i class="fas fa-check"></i>
+                      <span id="userType0Text">Admin</span>
+                    </label>
+                  </div>
+
+                  <div class="">
+                    <input type="checkbox" class="checkbox" style="width: 0px;" name="" id="userType1" value="Customer">
+                    <label class="checkbox-label" id="userType1-label" for="userType1">
+                      <i class="fas fa-plus"></i>
+                      <i class="fas fa-check"></i>
+                      <span id="userType1Text">Retailer/Customer</span>
+                    </label>
+                  </div>
+                  <div class="">
+                    <input type="checkbox" name="" class="checkbox" style="width: 0px;" id="userType2" value="Vendor">
+                    <label class="checkbox-label" id="userTyp2-label" for="userType2">
+                      <i class="fas fa-plus"></i>
+                      <i class="fas fa-check"></i>
+                      <span id="userType2Text">Vendor/Farmers</<span>
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
       </div>
+
+
+
+      <div id='imageDiv' style="padding: 2%; display:none;" class="col-lg-6">
+        <div style="border:2px solid #889; color:#6ea23f;padding:10px;">
+          <center>
+            <img id="myimg" src="" style="width:200px;height: 200px;border: 1px solid #aaa;" alt=""><label id="UpProgress"></label>
+          </center>
+          <h5>Your Image should be in ratio of 330 : 230 (px)</h5><br>
+          <button style="background:#fbe25f; color:#6ea23f;" class="btn" id="select" type="button" name="button">Select Image</button>
+          <button style="background:#fbe25f; color:#6ea23f;" class="btn" id="upload" type="button" disabled name="button">Upload Image</button>
+        </div>
+        <br>
+      </div>
     </div>
+
+    <br>
+  </div>
   </div>
 
 
@@ -502,8 +551,9 @@
   </section> -->
   <!-- Map Section - End -->
 
+
   <!-- Footer Section - Start -->
-  <br class="small" /><br class="small" /><br class="small" />
+  <br class="small"/><br class="small"/><br class="small"/>
   <section id="footer" class="large">
     <hr>
     <br /><br />
@@ -522,7 +572,7 @@
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12">
           <div class="footer-list">
-            <h5>Connect With us</h5>
+            <h5>Connect with us</h5>
             <ul>
               <li><a href="#">Facebook</a></li>
               <li><a href="#">Instagram</a></li>
@@ -548,7 +598,7 @@
             <img src="../img/logo.png" width="30%" alt="">
           </div>
           <hr>
-          <h6 style="text-align:left;font-size: 0.9rem; font-weight: bold;">Conetct With us</h6>
+          <h6 style="text-align:left;font-size: 0.9rem; font-weight: bold;">Conetct with us</h6>
           <div class="social">
             <i class="fab fa-facebook-messenger"></i>
             <i class="fab fa-facebook-f"></i>
@@ -561,8 +611,8 @@
     </div>
     <div class="copy-write">
       <center>
-        <span>© Copyright 2021 </span>
-        <span style="font-family: 'Great Vibes'"> Web Picker</span>
+        <span>Powred by HyperCloud</span>
+        <!-- <span style="font-family: 'Great Vibes'"> Web Picker</span> -->
       </center>
     </div>
   </section>
@@ -579,18 +629,18 @@
   <!-- Javascript to Populate Map - Start  -->
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
 
-
   <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
 
-  <script src="../js/main.js"></script>
   <script src="../js/firebase.js"></script>
-
-  <!-- <script src="../js/chart.js"></script> -->
-  <script src="../js/updateProduct.js"></script>
   <script src="../js/fb-logout.js"></script>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/updateProfile.js"></script>
+  <!-- <script src="../js/chart.js"></script> -->
+  <!-- <script src="../js/products.js"></script> -->
   <!-- <script src="../js/chart2.js"></script> -->
 
   <!-- Owl Carousel Javascript  -->
@@ -599,40 +649,6 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-  <script type="text/javascript">
-    // $(document).ready(function(){
-    //   $('#anchorAll').click(function() {
-    //     // hideall();
-    //     // $('.all').toggle("slide");
-    //     console.log('clicked All');
-    //     $('.Goat').show();
-    //     $('.Vegetable').show();
-    //     $('.Pearl').show();
-    //     $('.Fruit').show();
-    //   });
-    //   $('#anchorGoatProducts').click(function() {
-    //     hideall();
-    //     $('.Goat').show("slide");
-    //   });
-    //   $('#anchorVegetable').click(function() {
-    //     hideall();
-    //     $('.Vegetable').show("slide");
-    //   });
-    //   // $('#3').click(function() {
-    //   //   hideall();
-    //   //   $('.third').show("slide");
-    //   // });
-    // });
-    //
-    // function hideall(){
-    //   $('.Goat').hide();
-    //   $('.Vegetable').hide();
-    //   $('.Pearl').hide();
-    //   $('.Fruit').hide();
-    // };
-  </script>
-
 
 </body>
 
