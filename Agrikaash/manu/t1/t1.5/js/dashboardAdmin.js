@@ -1185,3 +1185,9 @@ function changeGraphType(type) {
   console.log(chart1.options.data[0].type);
   chart1.render();
 }
+
+function showHideCard(card, cardArrow) {
+  card.classList.toggle("active");
+
+  cardArrow.classList.toggle("active");
+}
