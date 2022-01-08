@@ -46,7 +46,11 @@ function GetProfileData(user) {
 
         }
         if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
-          // document.getElementById('navUser').src = doc.data().ProfileImageURL;
+        document.getElementById('profilePic').src = doc.data().ProfileImageURL;
+
+        document.getElementById('profileName').innerHTML = doc.data().displayName;
+
+
           if (isAdmin === true) {
             db.collection('CollectionStatistics').get().then((changes) => {
               changes.forEach(change => {

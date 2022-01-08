@@ -123,69 +123,168 @@
     </div> -->
   </div>
 
-  <div class="small navbar-mobile-bottom">
-    <div class="navbar-mobile-bottom-menu" id="divBottomNavBar">
-      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
-        <!-- <i class="fas fa-home"></i> -->
+
+    <div class="small navbar-mobile-bottom">
+      <div class="navbar-mobile-bottom-menu" id="divBottomNavBar">
+        <a href="dashboard.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+          <span class="material-icons-outlined">
+            home
+          </span>
+          <small>Home</small>
+        </a>
+        <a href="updateProduct.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+          <span class="material-icons-outlined">
+            category
+          </span>
+          <small>Products</small>
+        </a>
+        <a href="">
+
+        </a>
+        <a href="orderStatus.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+          <span class="material-icons-outlined">
+            horizontal_split
+          </span>
+          <small>Orders</small>
+        </a>
+        <a href="dashboard.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+          <span class="material-icons-outlined">
+            currency_rupee
+          </span>
+          <small id='small4'>Payments</small>
+          <!-- <span class="navbar-cart-no" id="cartItemNo">0</span> -->
+        </a>
+      </div>
+      <a class="new-user" href="../login/profile.html">
         <span class="material-icons-outlined">
-          home
+          person
         </span>
-        <small>Dashboard</small>
-      </a>
-      <a href="updateProduct.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-        <span class="material-icons-outlined">
-          category
-        </span>
-        <small>Products</small>
-      </a>
-      <a href="orderStatus.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-        <span class="material-icons-outlined">
-          horizontal_split
-        </span>
-        <small>Orders</small>
-      </a>
-      <a href="confirmRegistration.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-        <i id="i4" class="fas fa-registered"></i>
-        <small id="small4">Registration</small>
-      </a>
-      <!-- <i class="fas fa-home"></i> -->
-      <a href="couponSetup.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
-        <i class="fas fa-ticket"></i>
-        <small>Coupon</small>
       </a>
     </div>
-  </div>
   <!-- Navbar - End -->
-
-  <!-- Navbar links -->
   <div class="collapse navbar-collapse more-button-links" id="collapsibleNavbar1">
-    <div class="pop-up-close-btn">
+    <!-- <div class="pop-up-close-btn">
       <span class="material-icons-outlined">
         close
       </span>
-    </div>
+    </div> -->
     <ul class="">
       <li class="">
-        <a class="" href="#">Home</a>
+        <a href="../login/profile.html" style="text-decoration: none;" class="">
+          <div class="left-nav-first">
+            <img id="profilePic" src="../img/products/banana.png" width="" alt="">
+            <h5 id="profileName"></h5>
+
+            <small>View Profile</small>
+          </div>
+        </a>
       </li>
+      <hr class="hr" />
+
       <li class="">
-        <a class="" href="#IndustriesWeServe">Industries</a>
+        <a href="dashboard.html" class="left-navigation">
+          <div class="">
+            <span class="material-icons-outlined">
+              manage_accounts
+            </span>
+          </div>
+          <div class="content">
+            <h5>My Account</h5>
+            <small>Details on the dashboard</small>
+          </div>
+          <div class="">
+            <span class="material-icons arrow-right">
+              keyboard_double_arrow_right
+            </span>
+          </div>
+        </a>
       </li>
-      <!-- <li class="">
-          <a class="" href="login">Login</a>
-        </li> -->
+      <hr class="hr" />
+
       <li class="">
-        <a class="" href="#WhyToUse">Services</a>
+        <a href="../notification/notificationSetup.html" class="left-navigation">
+          <div class="">
+            <span class="material-icons-outlined">
+              notifications_active
+            </span>
+          </div>
+          <div class="content">
+            <h5>Notifications</h5>
+            <small>All your active notifications</small>
+          </div>
+          <div class="">
+            <!-- <span class="notification">10</span> -->
+            <span class="material-icons arrow-right">
+              keyboard_double_arrow_right
+            </span>
+          </div>
+        </a>
       </li>
+      <hr class="hr" />
+
       <li class="">
-        <a class="" href="contacts">Contact</a>
+        <a href="couponSetup.html" class="left-navigation">
+          <div class="">
+            <span class="material-icons-outlined">
+              card_giftcard
+            </span>
+          </div>
+          <div class="content">
+            <h5>Offers & Coupons</h5>
+            <small>Setup offers & coupons</small>
+          </div>
+          <div class="">
+            <span class="material-icons arrow-right">
+              keyboard_double_arrow_right
+            </span>
+          </div>
+        </a>
       </li>
+      <hr class="hr" />
+
       <li class="">
-        <a class="" id="btnLogout" href="">Logout</a>
+        <a href="dashboard.html" class="left-navigation">
+          <div class="">
+            <span class="material-icons-outlined">
+              landscape
+            </span>
+          </div>
+          <div class="content">
+            <h5>Reports</h5>
+            <small>Reporting services</small>
+          </div>
+          <div class="">
+            <span class="material-icons arrow-right">
+              keyboard_double_arrow_right
+            </span>
+          </div>
+        </a>
       </li>
+      <hr class="hr" />
+
+      <li class="">
+        <a id="btnLogout" class="left-navigation">
+          <div class="">
+            <span class="material-icons-outlined">
+              logout
+            </span>
+          </div>
+          <div class="content">
+            <h5>Logout</h5>
+            <small>Logout from this device</small>
+          </div>
+          <div class="">
+            <span class="material-icons arrow-right">
+              keyboard_double_arrow_right
+            </span>
+          </div>
+        </a>
+      </li>
+      <hr class="hr" />
+
     </ul>
   </div>
-  <!-- Navbar - End -->
+  <!-- navbar links - end -->
 
   <!-- side navbar - start -->
 
