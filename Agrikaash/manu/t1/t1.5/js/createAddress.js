@@ -18,7 +18,11 @@ auth.onAuthStateChanged(firebaseUser => {
 
       GetProfileData(firebaseUser);
       populateAddress(addressID);
-      GetNotificationList();
+      //GetNotificationList();
+      var siteNotification = localStorage.getItem("notificationCount");
+      document.getElementById("notificationCnt").innerHTML=siteNotification;
+      document.getElementById("notificationCnt1").innerHTML=siteNotification;
+
     } else {
       console.log('User has been logged out');
       window.location.href = "../login/index.html";
