@@ -1253,3 +1253,19 @@ function hideall() {
 };
 
 //}
+
+function populateOrderFilter(){
+  var orderFilter = document.getElementById('orderFilter');
+
+  // orderFilter.style.opacity = '1';
+  orderFilter.style.pointerEvents = 'all';
+  orderFilter.style.height = '100vh';
+}
+
+function closeOrderFilter(){
+  var orderFilter = document.getElementById('orderFilter');
+
+  // orderFilter.style.opacity = '0';
+  orderFilter.style.pointerEvents = 'none';
+  orderFilter.style.height = '0';
+}
