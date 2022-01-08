@@ -192,24 +192,28 @@ function renderRegistrationRequest(doc, index) {
   div7.appendChild(lable71);
   var input71 = document.createElement("input");
   input71.setAttribute("type", "text");
+  input71.setAttribute("class", "user-registration-aproval-comments");
   input71.setAttribute("id", "comments" + index)
   input71.setAttribute("placeholder", "Enter Comments");
 
+  var br = document.createElement("br");
+
   div7.appendChild(input71);
   div2.appendChild(div7);
+  div2.appendChild(br);
 
 
   div7 = document.createElement("div");
   div7.setAttribute("class", "");
 
-  var lable71 = document.createElement("Label");
-  lable71.innerHTML = "Customer Type : ";
-
-  div7.appendChild(lable71);
-  var input72 = document.createElement("label");
-  input72.setAttribute("id", "CustomerType" + index)
-  input72.innerHTML = "<b>" + doc.data().CustomerType + "</b>";
-  div7.appendChild(input72);
+  // var lable71 = document.createElement("Label");
+  // lable71.innerHTML = "Customer Type : ";
+  //
+  // div7.appendChild(lable71);
+  // var input72 = document.createElement("label");
+  // input72.setAttribute("id", "CustomerType" + index)
+  // input72.innerHTML = "<b>" + doc.data().CustomerType + "</b>";
+  // div7.appendChild(input72);
   div2.appendChild(div7);
 
   div7 = document.createElement("div");
@@ -222,6 +226,7 @@ function renderRegistrationRequest(doc, index) {
 
   var input81 = document.createElement("input");
   input81.setAttribute("type", "button");
+  input81.setAttribute("class", "mybutton button5");
   input81.setAttribute("onclick", "ApproveRegistration(" + index + ");");
   input81.setAttribute("value", " Approved ");
 
@@ -229,6 +234,8 @@ function renderRegistrationRequest(doc, index) {
 
   input81 = document.createElement("input");
   input81.setAttribute("type", "button");
+  input81.setAttribute("style", "float: right;");
+  input81.setAttribute("class", "mybutton button5");
   input81.setAttribute("onclick", "RejectRegistration(" + index + ");");
   input81.setAttribute("value", " Reject ");
 
