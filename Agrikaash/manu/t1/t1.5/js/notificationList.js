@@ -150,6 +150,8 @@ function GetNotificationList() {
     {
       document.getElementById("notificationCnt").innerHTML=index;
       document.getElementById("noNotificationDiv").style.display="none";
+      localStorage.setItem("notificationCount", index);
+
     }
     else {
       document.getElementById("messageDiv").style.display="none";
