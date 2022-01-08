@@ -97,6 +97,10 @@ function GetNotificationList() {
     if(flag === true)
     {
       document.getElementById("notificationCnt").innerHTML=index;
+      document.getElementById("notificationCnt1").innerHTML=index;
+
+      localStorage.setItem("notificationCount", index);
+
     }
 
   });
