@@ -392,10 +392,10 @@
               </center>
             </div>
 
-            <div class="dashboard-card" id="cardOrder" style='display:none;'>
+            <div class="dashboard-card" id="cardOrder" onclick="showHideCard(cardOrder, cardOrderArrow)" style='display:none;'>
               <div class="" style="display:flex;align-items: center;">
                 <div class="arrow-down">
-                  <span class="material-icons-outlined">
+                  <span id="cardOrderArrow" class="material-icons-outlined">
                     keyboard_arrow_down
                   </span>
                 </div>
@@ -464,10 +464,10 @@
               </div>
             </div>
 
-            <div class="dashboard-card" id="cardDelivery" style="display:none;">
+            <div class="dashboard-card" id="cardDelivery" onclick="showHideCard(cardDelivery, cardDeliveryArrow)" style="display:none;">
               <div class="" style="display:flex;align-items: center;">
                 <div class="arrow-down">
-                  <span class="material-icons-outlined">
+                  <span id="cardDeliveryArrow" class="material-icons-outlined">
                     keyboard_arrow_down
                   </span>
                 </div>
