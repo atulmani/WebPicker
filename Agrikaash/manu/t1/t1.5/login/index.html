@@ -14,7 +14,6 @@
 
   <!-- <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
 
-
   <!-- Google Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
@@ -204,8 +203,15 @@
   </div>
   <!-- Navbar - End -->
 
-  <!-- login - start -->
+  <!-- no-internet connection - start -->
+  <div class="offline" id="offline"><br><br><br>
+    <img src="../img/no-connection-icon.jpg" width="10%" alt="">
+    <h4>You are offline!</h4><br><br><br>
+    <img src="../img/no-connection.jpg" width="100%" alt="">
+  </div>
+  <!-- no-internet connection - end -->
 
+  <!-- login - start -->
   <div class="" id="beforeLogin"><br><br>
     <h4>Welcome To Agrikaash</h4>
     <br><br>
@@ -401,6 +407,20 @@
 
   <!-- Footer Section - end -->
 
+  <!-- Offline - Start -->
+    <script type="text/javascript">
+      var internet_status = window.navigator.onLine;
+      if (!internet_status)
+      {
+          console.log('You are Offline');
+          var offline = document.getElementById('offline');
+          var beforeLogin = document.getElementById('beforeLogin');
+          offline.style.display = 'block';
+          beforeLogin.style.display = 'none';
+      }
+    </script>
+  <!-- Offline - End -->
+
   <!-- Jquery order should be higher from normal javascript  -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
@@ -409,7 +429,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <!-- Javascript to Populate Map - Start  -->
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
+  <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script> -->
 
   <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
