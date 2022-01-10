@@ -393,6 +393,53 @@
             </center>
           </div>
 
+          <div class="dashboard-card" id="userRegistration" onclick="showHideCard(userRegistration, userRegistrationArrow)" style='display:none;'>
+            <div class="" style="display:flex;align-items: center;">
+              <div class="arrow-down">
+                <span id="userRegistrationArrow" class="material-icons-outlined">
+                  keyboard_arrow_down
+                </span>
+              </div>
+
+              <div class="">
+                <span class="material-icons-outlined order-icon">
+                  person_add
+                </span>
+              </div>
+              <div class="details">
+                <h4>User Registration</h4>
+                <p class="small-text dashboard-sub-heading" id="registrationCnt"> </p>
+              </div>
+            </div>
+
+            <div class="dashboard-card-expand">
+              <hr>
+              <div id="registrationRequest">
+
+              </div>
+
+              <div class="" style="display:flex;align-items:center;padding-top: 10px;">
+                <!-- <a href="#trend">
+                            <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
+                              Trend
+                              <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
+                                trending_up
+                              </span>
+                            </button>
+                          </a> -->
+                <a href="confirmRegistration.html">
+                  <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
+                    More
+                    <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
+                      menu
+                    </span>
+                  </button>
+                </a>
+              </div>
+
+            </div>
+          </div>
+
           <div class="dashboard-card" id="cardOrder" onclick="showHideCard(cardOrder, cardOrderArrow)" style='display:none;'>
             <div class="" style="display:flex;align-items: center;">
               <div class="arrow-down">
@@ -408,7 +455,7 @@
               </div>
               <div class="details">
                 <h4>Orders</h4>
-                <p class="small-text dashboard-sub-heading" id="lastOrder">Last Order : ₹ 0</p>
+                <p class="small-text dashboard-sub-heading" id="lastOrder">Last Order :</p>
               </div>
             </div>
 
@@ -480,7 +527,7 @@
               </div>
               <div class="details">
                 <h4>Delivery</h4>
-                <p class="small-text dashboard-sub-heading" id="nextDelivery">Next Delivery : 20th Dec 2021, 08:00 pm</p>
+                <p class="small-text dashboard-sub-heading" id="nextDelivery">Next Delivery :</p>
               </div>
             </div>
 
@@ -530,56 +577,6 @@
 
             </div>
           </div>
-
-
-          <div class="dashboard-card" id="userRegistration" onclick="showHideCard(userRegistration, userRegistrationArrow)" style='display:none;'>
-            <div class="" style="display:flex;align-items: center;">
-              <div class="arrow-down">
-                <span id="userRegistrationArrow" class="material-icons-outlined">
-                  keyboard_arrow_down
-                </span>
-              </div>
-
-              <div class="">
-                <span class="material-icons-outlined order-icon">
-                  person_add
-                </span>
-              </div>
-              <div class="details">
-                <h4>User Registration</h4>
-                <p class="small-text dashboard-sub-heading" id="registrationCnt"> </p>
-              </div>
-            </div>
-
-            <div class="dashboard-card-expand">
-              <hr>
-              <div id="registrationRequest">
-
-              </div>
-
-              <div class="" style="display:flex;align-items:center;padding-top: 10px;">
-                <!-- <a href="#trend">
-                            <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
-                              Trend
-                              <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
-                                trending_up
-                              </span>
-                            </button>
-                          </a> -->
-                <a href="confirmRegistration.html">
-                  <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
-                    More
-                    <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
-                      menu
-                    </span>
-                  </button>
-                </a>
-              </div>
-
-            </div>
-          </div>
-
-
           <div class="dashboard-card" id="productDiv" onclick="showHideCard(productDiv, productDivArrow)" style='display:none;'>
             <div class="" style="display:flex;align-items: center;">
               <div class="arrow-down">
@@ -749,7 +746,7 @@
             <ul>
               <li><a href="#">Sell on Agrikaash</a></li>
               <li><a href="#">Become a Affiliate</a></li>
-              <li><a href="#">Addvetise Your Products</a></li>
+              <li><a href="#">Advertise Your Products</a></li>
               <li><a href="#">Agrikaash Global Selling</a></li>
             </ul>
           </div>
