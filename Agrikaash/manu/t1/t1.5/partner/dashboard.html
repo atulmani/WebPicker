@@ -357,6 +357,16 @@
       </div>
     </div>
     <!-- side navbar - end -->
+
+    <!-- no-internet connection - start -->
+    <div class="offline" id="offline"><br><br><br>
+      <img src="../img/no-connection-icon.jpg" width="10%" alt="">
+      <h4>You are offline!</h4><br><br><br>
+      <img src="../img/no-connection.jpg" width="100%" alt="">
+    </div>
+    <!-- no-internet connection - end -->
+
+
     <div class="col-lg-10 col-md-10 col-sm-12">
       <!-- <div id="google_translate_element"></div>
       <script type="text/javascript">
@@ -711,7 +721,7 @@
             <ul>
               <li><a href="#">Sell on Agrikaash</a></li>
               <li><a href="#">Become a Affiliate</a></li>
-              <li><a href="#">Addvetise Your Products</a></li>
+              <li><a href="#">Advertise Your Products</a></li>
               <li><a href="#">Agrikaash Global Selling</a></li>
             </ul>
           </div>
@@ -741,6 +751,20 @@
   </section>
 
   <!-- Footer Section - end -->
+
+  <!-- Offline - Start -->
+    <script type="text/javascript">
+      var internet_status = window.navigator.onLine;
+      if (!internet_status)
+      {
+          console.log('You are Offline');
+          var offline = document.getElementById('offline');
+          // var beforeLogin = document.getElementById('beforeLogin');
+          offline.style.display = 'block';
+          // beforeLogin.style.display = 'none';
+      }
+    </script>
+  <!-- Offline - End -->
 
   <!-- Jquery order should be higher from normal javascript  -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
