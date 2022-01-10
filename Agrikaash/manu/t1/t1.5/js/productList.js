@@ -373,7 +373,7 @@ function renderProductNew(doc, index, selectedItem) {
   img1.setAttribute("src", doc.data().ProductImageURL);
   img1.setAttribute("width", "100%");
   img1.setAttribute("class", "product-img");
-  img1.setAttribute("alt", "Agrikaash");
+  img1.setAttribute("alt", "Product");
   td1.appendChild(img1);
 
   // var div1_2 = document.createElement("div");
