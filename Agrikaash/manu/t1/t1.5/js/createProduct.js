@@ -451,7 +451,8 @@ document.getElementById('upload').onclick = function() {
       //productID = document.getElementById('hfproductID').value;
       uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
         ImgUrl = url;
-        alert('ImgUrl: ' + ImgUrl);
+        // alert('ImgUrl: ' + ImgUrl);
+        alert("Image uploaded succsessfully");
         //Update meta data for firebase storage resources - Start
         var storageRef = uploadTask.snapshot.ref;
         // console.log ("storageRef: " + storageRef );
