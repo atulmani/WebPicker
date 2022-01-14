@@ -50,10 +50,10 @@ btnSignin.addEventListener('click', e => {
           // Success
           // console.log("Logged in User: ", auth.currentUser.uid);
           GetUserRole(auth.currentUser);
+          //checkUserRole();
 
           // btnTextWithLoader[0].style.display = 'block';
           // btnLoader[0].style.display = 'none';
-          //checkUserRole();
         })
         .catch(function(error) {
           // Handle Errors here.
@@ -172,22 +172,27 @@ function setUsersProfileData(user) {
 
 function GetUserRole(user) {
   // const ref = db.collection("Users").doc(user.uid);
-  // console.log(user.uid);
-  // console.log("GetUserRole");
+   console.log(user.uid);
+   console.log("GetUserRole");
   try
   {
-  const snapshot = db.collection('UserList').doc(user.uid);
+   const snapshot = db.collection('UserList').doc(user.uid);
+  //const snapshot = db.collection('UserList').doc('dZjKE4Lcrifp6vg7k01AnnVFSmH2');
   snapshot.get().then(async (doc) => {
+      console.log('before if');
+      console.log(doc);
       if (doc.exists) {
+        console.log(' if doc exists');
         userID = doc.uid;
         userRole = doc.data().UserRole;
-        // console.log("User Role: ", userRole);
+         console.log("User Role: ", userRole);
         checkUserRole();
         document.getElementById('btnContinue').style.opacity = '1';
         document.getElementById('btnContinue').style.pointerEvents = 'all';
       }
       else
       {
+        console.log('in else');
         const snapshot1 = db.collection('UserRequest').doc(user.uid);
         snapshot1.get().then(async (doc1) => {
             if (doc1.exists) {
@@ -203,14 +208,14 @@ function GetUserRole(user) {
     .catch(function(error) {
       btnTextWithLoader[0].style.display = 'block';
       btnLoader[0].style.display = 'none';
-      // console.log('in catch');
+       console.log('in catch');
       console.log(error.message);
     });
   }
   catch(error) {
     btnTextWithLoader[0].style.display = 'block';
     btnLoader[0].style.display = 'none';
-    // console.log('in catch');
+     console.log('in error');
     console.log(error.message);
   };
 };
