@@ -102,6 +102,10 @@ function GetNotificationList() {
       localStorage.setItem("notificationCount", index);
 
     }
+    else {
+      localStorage.setItem("notificationCount", 0);
+
+    }
 
   });
 }
