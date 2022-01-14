@@ -176,11 +176,13 @@ function GetCouponDetails() {
         }
       }
     });
+    console.log(flag);
     if (flag === false) {
       //couponDetails.style.display = "none";
       document.getElementById('nocoupons').style.display = 'block';
     } else {
       document.getElementById('couponListDiv').style.display = 'block';
+      document.getElementById('divCoupon').style.display = 'block';
     }
   });
 
