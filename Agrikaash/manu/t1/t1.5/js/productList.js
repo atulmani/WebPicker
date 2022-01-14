@@ -77,6 +77,7 @@ function GetProfileData(user) {
         var promise2 = promise.then(populateProductData(userBusinessCategory, '', true));
       //  GetNotificationList();
       var siteNotification = localStorage.getItem("notificationCount");
+      console.log(siteNotification);
       document.getElementById("notificationCnt").innerHTML=siteNotification;
       document.getElementById("notificationCnt1").innerHTML=siteNotification;
 
