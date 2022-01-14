@@ -195,9 +195,8 @@
       <li class="">
         <a href="#" style="text-decoration: none;" class="">
           <div class="left-nav-first">
-            <img id="profilePic" src="../img/user.png" width="" alt="">
+            <img id="profilePic_LeftNav" src="../img/user.png" width="" alt="">
             <h5 id="profileName"></h5>
-
             <small>View Profile</small>
           </div>
         </a>
@@ -415,14 +414,14 @@
           <div class="col-lg-9 col-md-6 col-sm-12" style="display:flex; align-items:center;justify-content:center;">
             <div class="profile-personal-div" style="text-align:center;">
               <h4 style="padding: 10px 10px 0 10px;">
-                <input class="profile-personal-input" style="color: #1D741B;" type="text" readonly id='userName'></input>
+                <input class="profile-personal-input" style="color: #1D741B;" type="text" placeholder="Name" readonly id='userName'></input>
 
                 <span class="material-icons-outlined" style="color: #f58634;" onclick="editName();">
                   edit
                 </span>
               </h4>
               <small class="small-text" style="padding: 0 10px;">
-                <input class="profile-personal-input" readonly style="width: 110px;" maxlength="10" id='userPhone' type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></input>
+                <input class="profile-personal-input" readonly style="width: 110px;" maxlength="10" id='userPhone' type="number" placeholder="mobile" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></input>
                 <span class="material-icons-outlined" style="color: #f58634; font-size: 1.2rem;" onclick="editMobile();">
                   edit
                 </span>
@@ -442,8 +441,9 @@
                 </span>
               </div>
 
-              <div class="">
+              <div class=""  style="display:none;">
                 <select class="city-selector" name="" id="customerType">
+                  <option value="All">All</option>
                   <option value="Small">Small</option>
                   <option value="Medium">Medium</option>
                   <option value="Large">Large</option>
