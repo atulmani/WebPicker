@@ -3,11 +3,12 @@ const firebaseConfig = {
   apiKey: "AIzaSyDu3knstap4guAHD26pXrXDge7Z4nmrbHg",
   authDomain: "agrikaash-uat.firebaseapp.com",
   projectId: "agrikaash-uat",
-  databaseURL: "https://agrikaash-uat.firebaseio.com",
+//  databaseURL: "https://agrikaash-uat.firebaseio.com",
   storageBucket: "agrikaash-uat.appspot.com",
   messagingSenderId: "531120657109",
   appId: "1:531120657109:web:13d50a355ac0da2370485c"
 };
+
 
 // const firebaseConfig = {
 //   apiKey: "AIzaSyDvjwDlU-4LvFVxRqabc4DUhoblQBZKpiI",
