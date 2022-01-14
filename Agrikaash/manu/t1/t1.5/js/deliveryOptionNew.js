@@ -18,8 +18,14 @@ auth.onAuthStateChanged(firebaseUser => {
       GetCouponDetails();
       //GetNotificationList();
       var siteNotification = localStorage.getItem("notificationCount");
+      if(siteNotification === null || siteNotification === undefined)
+        siteNotification = 0;
+        console.log(document.getElementById("notificationCnt"));
+        console.log(document.getElementById("notificationCnt1"));
+
       document.getElementById("notificationCnt").innerHTML=siteNotification;
       document.getElementById("notificationCnt1").innerHTML=siteNotification;
+      console.log(siteNotification);
 
       //getCartSummary();
       //      populateAddress(addressID);
@@ -118,11 +124,10 @@ function GetCouponDetails() {
     .get();
   var flag = false;
   DBrows.then((changes) => {
-
     changes.forEach(change => {
-
       userList = change.data().UserList;
       userTypeApplicable = change.data().UserType;
+      console.log(userTypeApplicable);
       if (userTypeApplicable.includes(userType) || userTypeApplicable.includes('All')) {
         flag = true;
         var opt = document.createElement('option');
@@ -172,12 +177,13 @@ function GetCouponDetails() {
       }
     });
     if (flag === false) {
-      couponDetails.style.display = "none";
+      //couponDetails.style.display = "none";
+      document.getElementById('nocoupons').style.display = 'block';
     } else {
-      document.getElementById('nocoupons').style.display = 'none';
+      document.getElementById('couponListDiv').style.display = 'block';
     }
   });
-  //console.log(couponList);
+
 }
 function rendercoupon(index,  comments , couponID, discountType, discountValue)
 {
