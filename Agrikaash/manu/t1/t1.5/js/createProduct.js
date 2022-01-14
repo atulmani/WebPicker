@@ -347,7 +347,7 @@ function CreateUpdateProductData() {
 
           console.log(pID);
           console.log(count);
-          db.collection("CollectionStatistics").doc(pID).update({
+          db.collection("CollectionStatistics").doc(pID).set({
               ProductCount: count,
             })
             .then(function(docRef) {
