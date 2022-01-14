@@ -4,14 +4,14 @@ var orderList = [];
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
-      console.log('Logged-in user email id: ' + firebaseUser.email);
+      // console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
       //Response.Cookies["googtrans"].Value = '/en/hi';
       //      GetProfileData(firebaseUser);
       GetRegistrationRequest();
 
     } else {
-      console.log('User has been logged out');
+      // console.log('User has been logged out');
       window.location.href = "../login/index.html";
     }
   } catch (error) {
@@ -21,12 +21,12 @@ auth.onAuthStateChanged(firebaseUser => {
 });
 
 function GetRegistrationRequest() {
-  console.log(userID);
+  // console.log(userID);
   const snapshot = db.collection('UserList').doc(userID);
   snapshot.get().then(async (doc) => {
     if (doc.exists) {
       // console.log('Document id:' + doc.id);
-      console.log(doc.data());
+      // console.log(doc.data());
       var displayName = doc.data().displayName;
       var userEmail = doc.data().EmailID;
       var address = doc.data().Address;
@@ -49,6 +49,7 @@ function GetRegistrationRequest() {
       if (profileImageURL != '' && profileImageURL != undefined) {
         //  document.getElementById('myimg').src = profileImageURL;
         document.getElementById('profilePic').src = profileImageURL;
+        document.getElementById('profilePic_LeftNav').src = profileImageURL;
       }
       var ocity = document.getElementById('cityList');
       for (i = 0; i < ocity.options.length; i++) {
@@ -164,7 +165,7 @@ function editName() {
   //console.log(google.translate.TranslateElement);
   var lang = document.getElementById("google_translate_element");
   console.log(lang);
-  console.log(document.getElementById("0:targetLanguage"));
+  // console.log(document.getElementById("0:targetLanguage"));
 }
 
 function editMobile() {
@@ -178,8 +179,8 @@ function SaveDetails() {
   // var uType0 = document.getElementById("userType0");
   // if (uType0 != undefined && uType0.checked) {
   //   userType.push({
-  //     text: 'Admin',
-  //     value: 'Admin'
+  //     Text: 'Admin',
+  //     Value: 'Admin'
   //   });
   // }
 
@@ -187,16 +188,16 @@ function SaveDetails() {
   //if (uType1.checked)
   {
     userType.push({
-      text: 'Retailer/Customer',
-      value: 'Customer'
+      Text: 'Retailer/Customer',
+      Value: 'Customer'
     });
   }
 
   // var uType2 = document.getElementById("userType2");
   // if (uType2.checked) {
   //   userType.push({
-  //     text: 'Vendor/Farmers',
-  //     value: 'Vendor'
+  //     Text: 'Vendor/Farmers',
+  //     Value: 'Vendor'
   //   });
   // }
 
@@ -218,13 +219,15 @@ function SaveDetails() {
       Address: city,
       IDType: '',
       IDNo: '',
-      UserRole: userType,
-      CustomerType: customerType
+      // UserRole: userType,
+      CustomerType: customerType,
+      UpdatedBy: auth.currentUser.email,
+      UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
     })
     .then(() => {
       //saved successfully
       //
-      console.log("saved");
+      // console.log("saved");
       document.getElementById("confirmationMessage").style.display = 'block';
     })
     .catch(function(error) {
@@ -252,14 +255,21 @@ document.getElementById("cameraIcon").onclick = function(e) {
   var input = document.createElement('input');
   input.type = 'file';
 
+
+
   input.onchange = e => {
     files = e.target.files;
     reader = new FileReader();
     reader.onload = function() {
       document.getElementById("profilePic").src = reader.result;
+      document.getElementById("profilePic_LeftNav").src = reader.result;
+
+      // console.log("Camera Icon Clicked", reader.result);
     }
+
     reader.readAsDataURL(files[0]);
     document.getElementById("uploadIcon").disabled = false;
+
   }
   input.click();
 
@@ -271,7 +281,7 @@ document.getElementById('uploadIcon').onclick = function() {
   //  productID = document.getElementById('hfproductID').value;
 
   ImgName = userID + '.png';
-  console.log(ImgName);
+  // console.log(ImgName);
   // ImgName = document.getElementById('productID').value + '_1.png';
   //files = document.getElementById("myimg").src;
 
@@ -292,8 +302,9 @@ document.getElementById('uploadIcon').onclick = function() {
       //productID = document.getElementById('hfproductID').value;
       uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
         ImgUrl = url;
-        alert('ImgUrl: ' + ImgUrl);
-        console.log(userID);
+        // alert('ImgUrl: ' + ImgUrl);
+        alert("Your image has been uploaded successfully");
+        // console.log(userID);
 
         //Update meta data for firebase storage resources - Start
         var storageRef = uploadTask.snapshot.ref;
@@ -307,7 +318,7 @@ document.getElementById('uploadIcon').onclick = function() {
         storageRef.updateMetadata(newMetadata)
           .then((metadata) => {
             // Updated metadata for storage resources is returned in the Promise
-            console.log("metadata added on image url: " + url);
+            // console.log("metadata added on image url: " + url);
           }).catch((error) => {
             // Uh-oh, an error occurred!
           });
@@ -322,7 +333,7 @@ document.getElementById('uploadIcon').onclick = function() {
           .then(function(docRef) {
             document.getElementById("upload").disabled = true;
             //        document.getElementById("navUser").src = url;
-            console.log("Data added sucessfully in the document: " + userID);
+            // console.log("Data added sucessfully in the document: " + userID);
 
           })
           .catch(function(error) {
