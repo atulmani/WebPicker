@@ -46,7 +46,7 @@ function GetProfileData(user) {
             business.options[i].selected = true;
         }
         if (userRole != undefined) {
-          if (userRole.findIndex(e => e.value === "Admin") >= 0) {
+          if (userRole.findIndex(e => e.Value === "Admin") >= 0) {
             isAdmin = true;
             // document.getElementById("a4").href = "confirmRegistration.html";
             // var i4 = document.getElementById("i4");
