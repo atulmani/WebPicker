@@ -146,8 +146,8 @@ function SaveDetails() {
   // if (uType1.checked)
   {
     userType.push({
-      text: 'Retailer/Customer',
-      value: 'Customer'
+      Text: 'Retailer/Customer',
+      Value: 'Customer'
     });
   }
 
