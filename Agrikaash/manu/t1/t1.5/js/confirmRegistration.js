@@ -353,6 +353,8 @@ function ApproveRegistration(index) {
       db.collection("UserRequest").doc(RegID)
         .delete();
 
+      window.location.href = "../admin/dashboard.html";
+
     })
     .catch((error) => {
       console.error("error adding document:", error);
