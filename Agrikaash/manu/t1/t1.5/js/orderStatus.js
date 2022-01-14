@@ -11,15 +11,12 @@ var orderDateRange = searchParams.get('orderDateRange');
 try {
   auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
-      console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
-      console.log(userID);
       GetProfileData();
       GetUserList();
       populateOrderDetails('Pending');
 
     } else {
-      console.log('User has been logged out');
       window.location.href = "../login/index.html";
     }
 
@@ -36,13 +33,10 @@ function GetUserList() {
     var i = 0;
     changes.forEach(change => {
       orderList = change.data();
-      //orderList.sort()
-      //console.log(change.doc, index, selectdedItem);
       var name = change.data().CreatedBy;
       var strText = change.data().displayName + ":" + change.data().EmailID;
       var strValue = change.id;
-      console.log(strValue);
-      console.log(strText);
+
       var option = document.createElement("option");
       option.setAttribute("value", strValue);
       option.innerHTML = strText;
@@ -61,9 +55,6 @@ function GetProfileData() {
   const snapshot = db.collection('UserList').doc(userID);
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
-        //console.log('Document ref id: ' + doc.data().uid);
-        //userID = doc.data().uid;
-        console.log(userID);
 
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
           document.getElementById('profilePic').src = doc.data().ProfileImageURL;
@@ -105,8 +96,7 @@ function GetOrderByUsers() {
   document.getElementById('loading').style.display = 'block';
   var users = document.getElementById('userList');
   var selecteduservalue = users.options[users.selectedIndex].value;
-  console.log(selecteduservalue);
-  console.log(users.options[users.selectedIndex].text);
+
   var DBrows;
   if (selecteduservalue === 'All') {
     DBrows = db.collection('OrderDetails')
@@ -118,19 +108,15 @@ function GetOrderByUsers() {
   }
 
   DBrows.then((changes) => {
-    console.log("populatePayments: ");
 
     var i = 0;
     document.getElementById("orderListDiv").innerHTML = "";
     changes.forEach(change => {
 
       orderList = change.data();
-      console.log(orderList);
-      //orderList.sort()
-      //console.log(change.doc, index, selectdedItem);
+
       var name = change.data().CreatedBy;
-      console.log(change.id);
-      //for (i = 0; i < orderList.length; i++) {
+
       renderOrder(change.id, change.data(), index)
       index = index + 1;
     });
@@ -145,17 +131,16 @@ function populateOrderDetailsBackup() {
   // const snapshot = db.collection('OrderDetails').doc(userID);
   var fromDate;
   var todayDate = new Date();
-  console.log(todayDate);
+  // console.log(todayDate);
   var toDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
   var refDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
 
   todayDate = refDate;
-  console.log(toDate);
-  console.log(todayDate);
+
   var index = 0;
   var snapshot;
   var DBrows;
-  console.log(orderDateRange);
+  // console.log(orderDateRange);
   if (orderDateRange === undefined || orderDateRange === '' || orderDateRange === null)
 
   {
@@ -163,19 +148,14 @@ function populateOrderDetailsBackup() {
 
     //DBrow = db.collection('OrderDetails').get();
   } else if (orderDateRange === 'today') {
-    console.log('in today');
+    // console.log('in today');
     DBrows = db.collection('OrderDetails')
       .where("orderDate", ">=", toDate).get();
 
   } else if (orderDateRange === 'yesterday') {
-    console.log(todayDate);
-    console.log(toDate);
 
     todayDate.setDate(todayDate.getDate() - 1);
 
-    //  toDate.setDate(toDate.getDate() + 1);
-    console.log(todayDate);
-    console.log(toDate);
     DBrows = db.collection('OrderDetails')
       .where("orderDate", ">=", todayDate)
       .where("orderDate", "<=", toDate).get();
@@ -188,21 +168,17 @@ function populateOrderDetailsBackup() {
     DBrows = db.collection('OrderDetails')
       .where("orderDate", ">=", refDate).get();
   }
-  console.log('before log');
-  //snapshot.then((changes) => {
 
   DBrows.then((changes) => {
-    console.log("populatePayments: ");
 
     var i = 0;
     document.getElementById("orderList").innerHTML = "";
     changes.forEach(change => {
       orderList = change.data();
-      //orderList.sort()
-      //console.log(change.doc, index, selectdedItem);
+
       var name = change.data().CreatedBy;
-      console.log(change.id);
-      //for (i = 0; i < orderList.length; i++) {
+
+
       renderOrder(orderList, index, name, change.id);
       index = index + 1;
     });
@@ -756,7 +732,6 @@ function populateOrderDetailsBackup() {
 
 
 function GetOrderDetails(orderID, userID) {
-  console.log(orderID);
 
   window.location.href = "orderDetails.html?id=" + orderID.value + "&userID=" + userID.value;
 }
@@ -777,19 +752,15 @@ function populateOrderDetails(orderStatus) {
   var orderStatusList = ['Pending','Packed','On The Way'];
   var fromDate ;
   var toDate;
-  console.log('test',orderDateRange);
+
   if (orderDateRange === undefined || orderDateRange === '' || orderDateRange === null || orderDateRange === 'null')
   {
     orderDateRange = "week";
-    console.log(orderDateRange);
   }
-    console.log(orderDateRange);
-
     //DBrow = db.collection('OrderDetails').get();
    if (orderDateRange === 'today') {
     var filter = document.getElementById("dateRange");
     filter.options[0].selected = true;
-    console.log(toDate);
 
     if(orderStatus === 'All')
     {
@@ -817,9 +788,7 @@ function populateOrderDetails(orderStatus) {
     filter.options[1].selected = true;
 
       todayDate.setDate(todayDate.getDate() - 1);
-  //  toDate.setDate(toDate.getDate() + 1);
-  console.log(todayDate);
-  console.log(toDate);
+
   if(orderStatus === 'All')
   {
     DBrows = db.collection('OrderDetails')
@@ -847,7 +816,7 @@ function populateOrderDetails(orderStatus) {
     filter.options[2].selected = true;
 
     refDate.setDate(refDate.getDate() - 7);
-    console.log(orderStatus);
+
     if(orderStatus === 'All')
     {
     DBrows = db.collection('OrderDetails')
@@ -925,8 +894,7 @@ function populateOrderDetails(orderStatus) {
     month: 'short',
     day: 'numeric'
   };
-  //console.log('fromDate' ,fromDate);
-  //console.log('toDate',toDate);
+
   if(fromDate ==='Today')
   {
   document.getElementById('dateRangelbl').innerHTML="Order Placed Today";
@@ -965,7 +933,7 @@ function populateOrderDetails(orderStatus) {
 function GetOrder(filter)
 {
   var orderMenuListHr = document.getElementById('orderMenuListHr');
-  console.log(filter);
+  // console.log(filter);
   if (filter === 'Pending') {
     orderMenuListHr.style.transform = 'translateX(0%)';
   } else if(filter === 'Delivered') {
@@ -1296,16 +1264,8 @@ function renderOrder(orderid, order, index)
       document.getElementById("orderListDiv").appendChild(div1);
 }
 
-
-//function anchorlLnkClick() {
-
-// $(window).load(function(){
-console.log('Inside ready function');
-console.log(document.getElementById('anchorAll'));
 $('#anchorAll').click(function() {
-  // hideall();
-  // $('.all').toggle("slide");
-  console.log('clicked all');
+
   $('.Pending').show("slide");
   $('.Delivered').show("slide");
   $('.Cancelled').show("slide");
