@@ -18,11 +18,7 @@ auth.onAuthStateChanged(firebaseUser => {
       GetCouponDetails();
       //GetNotificationList();
       var siteNotification = localStorage.getItem("notificationCount");
-      if(siteNotification === null || siteNotification === undefined)
-        siteNotification = 0;
-        console.log(document.getElementById("notificationCnt"));
-        console.log(document.getElementById("notificationCnt1"));
-
+      
       document.getElementById("notificationCnt").innerHTML=siteNotification;
       document.getElementById("notificationCnt1").innerHTML=siteNotification;
       console.log(siteNotification);
