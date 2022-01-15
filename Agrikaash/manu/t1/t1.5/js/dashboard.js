@@ -64,6 +64,18 @@ function GetNotificationList() {
   var index = 0;
   var flag = false;
   var today = new Date();
+  var userNotification = [];
+  const DBrows1 = db.collection('UserNotification')
+    .doc(userID);
+
+    const snapshot1 = db.collection('UserNotification').doc(userID);
+
+    snapshot1.get().then(async (doc1) => {
+      console.log('check');
+      if (doc1.exists) {
+        userNotification  = doc1.data().Notifications;
+      }
+    });
 
   const DBrows = db.collection('Notification')
     .where("Status", '==', 'Active')
@@ -89,6 +101,9 @@ function GetNotificationList() {
         flag = true;
       else if (userTypeDB.indexOf(userType) >= 0)
         flag = true;
+
+      if(userNotification.indexOf(change.doc.id) >= 0  )
+          flag = false;
       if (flag === true) {
         index = index + 1;
       }
