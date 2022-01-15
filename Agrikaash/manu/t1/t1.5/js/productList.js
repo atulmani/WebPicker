@@ -532,7 +532,8 @@ function renderProductNew(doc, index, selectedItem) {
   var buttonA = document.createElement("a");
   buttonA.setAttribute('href', '#');
   buttonA.setAttribute("id", "btnAddtoCart" + index);
-  buttonA.setAttribute("onclick", "addToCart(" + doc.data().MinimumQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "'," + index + ")");
+  // buttonA.setAttribute("onclick", "addToCart(" + doc.data().MinimumQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "'," + index + ")");
+  buttonA.addEventListener("click", function(e){addToCart(e, doc.data().MinimumQty, doc.data().ProductName, doc.id, selectP[selectP.selectedIndex].text, index)}, false);
 
   var addToCartBtn = document.createElement('button');
   addToCartBtn.setAttribute('class', 'mybutton button5');
@@ -863,7 +864,8 @@ function ChangeAddButtonVisible(index, blflag) {
 
 }
 
-function addToCart(minQty, itemName, productID, itemSizeObj, index) {
+function addToCart(e, minQty, itemName, productID, itemSizeObj, index) {
+  e.preventDefault();
   //console.log(minQty);
   //console.log(itemName);
   //console.log(productID);
