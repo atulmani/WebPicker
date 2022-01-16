@@ -4,7 +4,7 @@ var userName = "";
 var OrderItems = [];
 var userType = "";
 
-var cartItems =[];
+var cartItems = [];
 var cartLength = 0;
 var ArrProduct = [];
 var unitPrise = 0;
@@ -23,10 +23,11 @@ auth.onAuthStateChanged(firebaseUser => {
       UpdateDeliveryDate();
       console.log("after UpdateDeliveryDate");
       GetDeliveryAddress();
-      //createOrderItems();
 
       GetCartList();
       getAllProducts();
+
+      //createOrderItems();
 
 
       GetCouponDetails();
@@ -34,8 +35,8 @@ auth.onAuthStateChanged(firebaseUser => {
       //GetNotificationList();
       var siteNotification = localStorage.getItem("notificationCount");
 
-      document.getElementById("notificationCnt").innerHTML=siteNotification;
-      document.getElementById("notificationCnt1").innerHTML=siteNotification;
+      document.getElementById("notificationCnt").innerHTML = siteNotification;
+      document.getElementById("notificationCnt1").innerHTML = siteNotification;
       console.log(siteNotification);
 
       //getCartSummary();
@@ -90,7 +91,9 @@ function getAllProducts() {
       ArrProduct.push(obj);
     });
 
+    //createOrderItems();
     getCartItemNo();
+
   });
 
 }
@@ -111,8 +114,23 @@ function getCartItemNo() {
     if (selectedProduct.ProductDetails != undefined && selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
       var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
       prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
+
+    //  console.log(selectedProduct);
+      //console.log(unitPrise);
+          OrderItems.push({
+            ProductID: cartItems[i].ProductID,
+            ProductName: cartItems[i].ItemName,
+            SelectedSubItem: cartItems[i].SelectedsubItem,
+            ImageURL: selectedProduct.ProductImageURL,
+            VegNonVeg: selectedProduct.VegNonVeg,
+            UnitPrise: unitPrise.ProductFinalPrise,
+            MRP: unitPrise.ProductMRP,
+            Quantity: cartItems[i].Quantity
+          });
     }
+
   }
+  document.getElementById('hftotalAmount').value = prise;
 
   var curFormat = {
     style: 'currency',
@@ -123,7 +141,6 @@ function getCartItemNo() {
   prise = prise.toLocaleString('en-IN', curFormat);
 
   document.getElementById("totalAmount").innerHTML = prise;
-
 }
 
 function GetProfileData(user) {
@@ -137,7 +154,7 @@ function GetProfileData(user) {
         userType = doc.data().CustomerType;
         if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
           document.getElementById('profilePic').src = doc.data().ProfileImageURL;
-        document.getElementById('profileName').innerHTML =  doc.data().displayName;
+        document.getElementById('profileName').innerHTML = doc.data().displayName;
 
         //  document.getElementById('headerProfilePic').src = doc.data().ImageURL;
         document.getElementById('displayName').innerHTML = doc.data().displayName;
@@ -159,7 +176,7 @@ function GetNotificationList() {
   const DBrows = db.collection('Notification')
     .where("Status", '==', 'Active')
     .where('ValidityTill', ">=", today)
-    //.orderBy('CreatedTimestamp', 'desc');
+  //.orderBy('CreatedTimestamp', 'desc');
 
   DBrows.onSnapshot((snapshot) => {
     let changes = snapshot.docChanges();
@@ -185,18 +202,18 @@ function GetNotificationList() {
       }
     });
 
-    if(flag === true)
-    {
-      document.getElementById("notificationCnt").innerHTML=index;
+    if (flag === true) {
+      document.getElementById("notificationCnt").innerHTML = index;
     }
 
   });
 }
+
 function GetCouponDetails() {
   //get coupon details
   //  var couponList = [];
   var cnt = 0;
-  var disText ;
+  var disText;
   console.log("in GetCouponDetails ");
   var userList = [];
   var couponDetails = document.getElementById("couponDetails");
@@ -222,7 +239,7 @@ function GetCouponDetails() {
         opt.innerHTML = disText;
         //couponDetails.appendChild(opt);
         cnt = Number(cnt) + 1;
-        rendercoupon(cnt,   change.data().Description,  change.id, change.data().DiscountType, change.data().DiscountValue );
+        rendercoupon(cnt, change.data().Description, change.id, change.data().DiscountType, change.data().DiscountValue);
 
 
       } else {
@@ -239,7 +256,7 @@ function GetCouponDetails() {
           opt.innerHTML = disText;
           //  couponDetails.appendChild(opt);
           cnt = Number(cnt) + 1;
-          rendercoupon(cnt,   change.data().Description,  change.id, change.data().DiscountType, change.data().DiscountValue);
+          rendercoupon(cnt, change.data().Description, change.id, change.data().DiscountType, change.data().DiscountValue);
 
         }
         var index = userList.findIndex(e => e.userID === userID);
@@ -254,7 +271,7 @@ function GetCouponDetails() {
           opt.innerHTML = disText;
           //couponDetails.appendChild(opt);
           cnt = Number(cnt) + 1;
-          rendercoupon(cnt, change.data().Description,  change.id, change.data().DiscountType, change.data().DiscountValue );
+          rendercoupon(cnt, change.data().Description, change.id, change.data().DiscountType, change.data().DiscountValue);
 
         }
       }
@@ -270,8 +287,8 @@ function GetCouponDetails() {
   });
 
 }
-function rendercoupon(index,  comments , couponID, discountType, discountValue)
-{
+
+function rendercoupon(index, comments, couponID, discountType, discountValue) {
   var disText = "";
   if (discountType === 'Percentage')
     disText = discountValue + " %";
@@ -282,60 +299,60 @@ function rendercoupon(index,  comments , couponID, discountType, discountValue)
   var divcoupon = document.getElementById("couponListDiv");
 
   var div1 = document.createElement("div");
-  div1.setAttribute("class","");
+  div1.setAttribute("class", "");
 
   var input1 = document.createElement("input");
-  input1.setAttribute("type","radio");
-  input1.setAttribute("class","checkbox");
-  input1.setAttribute("onchange","applyCouponNew(" + index +");");
+  input1.setAttribute("type", "radio");
+  input1.setAttribute("class", "checkbox");
+  input1.setAttribute("onchange", "applyCouponNew(" + index + ");");
 
-  input1.setAttribute("id","coupon"+ index );
-  input1.setAttribute("name","coupon");
+  input1.setAttribute("id", "coupon" + index);
+  input1.setAttribute("name", "coupon");
   div1.appendChild(input1);
 
   var hf1 = document.createElement("input");
-  hf1.setAttribute("type","hidden");
-  hf1.setAttribute("id","hfDiscountType" + index);
+  hf1.setAttribute("type", "hidden");
+  hf1.setAttribute("id", "hfDiscountType" + index);
   hf1.setAttribute("value", discountType);
   div1.appendChild(hf1);
 
   var hf2 = document.createElement("input");
-  hf2.setAttribute("type","hidden");
-  hf2.setAttribute("id","hfDiscountValue" + index);
+  hf2.setAttribute("type", "hidden");
+  hf2.setAttribute("id", "hfDiscountValue" + index);
   hf2.setAttribute("value", discountValue);
   div1.appendChild(hf2);
 
   var hf3 = document.createElement("input");
-  hf3.setAttribute("type","hidden");
-  hf3.setAttribute("id","hfCouponID" + index);
+  hf3.setAttribute("type", "hidden");
+  hf3.setAttribute("id", "hfCouponID" + index);
   hf3.setAttribute("value", couponID);
   div1.appendChild(hf3);
 
   var lable1 = document.createElement("label");
-  lable1.setAttribute("class","checkbox-label");
-  lable1.setAttribute("id","coupon_label" + index);
+  lable1.setAttribute("class", "checkbox-label");
+  lable1.setAttribute("id", "coupon_label" + index);
   lable1.setAttribute("for", "coupon" + index);
-  lable1.setAttribute("style","height: 55px;");
+  lable1.setAttribute("style", "height: 55px;");
 
 
   var i1 = document.createElement("i");
-  i1.setAttribute("class","fas fa-plus");
+  i1.setAttribute("class", "fas fa-plus");
   lable1.appendChild(i1);
 
   var i2 = document.createElement("i");
-  i2.setAttribute("class","fas fa-check");
+  i2.setAttribute("class", "fas fa-check");
   lable1.appendChild(i2);
 
-  var span1  = document.createElement("span");
-  span1.setAttribute("class","coupon-heading");
+  var span1 = document.createElement("span");
+  span1.setAttribute("class", "coupon-heading");
   span1.innerHTML = "Get " + disText + " discount";
   lable1.appendChild(span1);
 
   var br1 = document.createElement("br");
 
   lable1.appendChild(br1);
-  var small1 =document.createElement("small");
-  small1.setAttribute("class","coupon-detail");
+  var small1 = document.createElement("small");
+  small1.setAttribute("class", "coupon-detail");
   small1.innerHTML = comments;
   lable1.appendChild(small1);
   div1.appendChild(lable1);
@@ -352,14 +369,11 @@ function applyCouponNew(index) {
   var originalAmount = document.getElementById('hftotalAmount').value;
   var discountedAmount = 0;
 
-  if (disType.value === 'Percentage')
-  {
+  if (disType.value === 'Percentage') {
     var discountPercentage = disValue.value.trim();
     console.log(discountPercentage, originalAmount);
     discountedAmount = Number(originalAmount) - (Number(originalAmount) * Number(discountPercentage.trim())) / 100;
-  }
-  else
-  {
+  } else {
     var discountAbsolute = disValue.value.trim();
     discountedAmount = (Number(originalAmount) - Number(discountAbsolute));;
   }
@@ -428,7 +442,7 @@ function UpdateDeliveryDate() {
   tempDate.setDate(tempDate.getDate() + 1);
   delDate.options[6].text = tempDate.toLocaleDateString();
   delDate.options[6].value = tempDate.toLocaleDateString();
-  delDate.options[6].selected=true;
+  delDate.options[6].selected = true;
 
 }
 
@@ -478,8 +492,8 @@ function SaveOrder() {
       if (cartDetails.length === 0) {
         message = "cart is empty, add to cart";
         iError = 1;
-        document.getElementById("message").innerHTML="Cart is empty";
-        document.getElementById("message").style.display="block";
+        document.getElementById("message").innerHTML = "Cart is empty";
+        document.getElementById("message").style.display = "block";
         console.log("cart is empty, add to cart");
       } else {
         //Get Address Start
@@ -496,15 +510,15 @@ function SaveOrder() {
               SaveOrderinDB();
             } else {
               message = message + "Select Address";
-              document.getElementById("message").innerHTML="Please select address";
-              document.getElementById("message").style.display="block";
+              document.getElementById("message").innerHTML = "Please select address";
+              document.getElementById("message").style.display = "block";
               iError = 2;
             }
           } else {
             message = message + "Add Address";
 
-            document.getElementById("message").innerHTML="Add delivery address";
-            document.getElementById("message").style.display="block";
+            document.getElementById("message").innerHTML = "Add delivery address";
+            document.getElementById("message").style.display = "block";
             iError = 3;
             console.log("Add Address");
           }
@@ -582,30 +596,26 @@ function SaveOrderinDB() {
   var cnt = document.getElementById("couponListDiv").childElementCount;
   var selCouponID = "Select coupon";
   var selDiscountVal = "none";
-  for(i =1 ; i <= cnt; i++)
-  {
-    var select=document.getElementById("coupon"+i);
+  for (i = 1; i <= cnt; i++) {
+    var select = document.getElementById("coupon" + i);
     var disType = document.getElementById("hfDiscountType" + i);
     var disValue = document.getElementById("hfDiscountValue" + i);
-    var couponID= document.getElementById("hfCouponID" + i);
+    var couponID = document.getElementById("hfCouponID" + i);
 
-    if(select.checked === true)
-    {
-        selCouponID = couponID.value;
-        if(disType.value === 'Percentage')
-        {
-          selDiscountVal = disValue.value + " %";
-        }
-        else {
-          selDiscountVal = "₹ " + disValue.value  ;
-        }
+    if (select.checked === true) {
+      selCouponID = couponID.value;
+      if (disType.value === 'Percentage') {
+        selDiscountVal = disValue.value + " %";
+      } else {
+        selDiscountVal = "₹ " + disValue.value;
+      }
     }
 
 
   }
 
-console.log(selCouponID);
-console.log(selDiscountVal);
+  console.log(selCouponID);
+  console.log(selDiscountVal);
   var discount = {
     coupondID: selCouponID, //couponDetails.options[couponDetails.selectedIndex].value,
     discountValue: selDiscountVal //couponDetails.options[couponDetails.selectedIndex].text
@@ -631,11 +641,6 @@ console.log(selDiscountVal);
     ChangedTimeStamp: new Date()
   });
 
-  console.log(orderChanges);
-
-  console.log(userID);
-  console.log(cartDetails.length);
-  console.log(selectedAddress);
   if (cartDetails.length > 0 && selectedAddress != null) {
     console.log('insert order');
 
@@ -643,7 +648,7 @@ console.log(selDiscountVal);
       .add({
         orderNumber: Date.now(),
         orderItems: OrderItems, //cartDetails,
-        totalItems: itemCount,
+        totalItems: cartDetails.length,
         totalAmount: prize,
         deliveryAddress: selectedAddress,
         deliveryDate: firebase.firestore.Timestamp.fromDate(new Date(Date.parse(deliveryDate))), //deliveryDate,
@@ -780,80 +785,27 @@ function createOrderItems() {
   var arr = [];
   var prise = 0;
 
-  //console.log(userID);
-  const snapshot = db.collection('CartDetails').doc(userID);
-  snapshot.get().then(async (doc) => {
-    if (doc.exists) {
-
-      //  console.log(doc.id);
-      cartItems = doc.data().cartDetails;
+  console.log(cartItems);
+  for (i = 0; i < cartItems.length; i++) {
 
 
-      //console.log(cartItems);
-      for (var i = 0; i < cartItems.length; i++) {
-        arr.push(cartItems[i].ProductID);
-      }
-      var parr = [];
-      //console.log(arr);
-      if (arr != null && arr.length > 0) {
-        db.collection('Products').where("__name__", 'in', arr)
-          .get()
-          .then((psnapshot) => {
-            psnapshot.forEach((doc) => {
-        //      console.log(doc.data().ProductImageURL);
-              parr.push({
-                ProductID: doc.id,
-                ProductDetails: doc.data().ProductDetails,
-                productImageURL: doc.data().ProductImageURL,
-                VegNonVeg: doc.data().VegNonVeg
-              });
-            });
-            for (i = 0; i < cartItems.length; i++) {
-
-
-              var qty = cartItems[i].Quantity;
-              var selectedsubItem = cartItems[i].SelectedsubItem;
-              var weight = selectedsubItem.split('-');
-              var selectedProduct = parr[parr.findIndex(e => e.ProductID === cartItems[i].ProductID)];
-              var unitPrise = 0;
-              var MRP = 0;
-              var sellPrize = 0;
-              if (selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
-                var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
-                prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
-                MRP = unitPrise.ProductMRP;
-                sellPrize = unitPrise.ProductFinalPrise;
-              }
-          //    console.log(selectedProduct);
-              OrderItems.push({
-                ProductID: cartItems[i].ProductID,
-                ProductName: cartItems[i].ItemName,
-                SelectedSubItem: cartItems[i].SelectedsubItem,
-                ImageURL: selectedProduct.productImageURL,
-                VegNonVeg: selectedProduct.VegNonVeg,
-                UnitPrise: sellPrize,
-                MRP: MRP,
-                Quantity: cartItems[i].Quantity
-              });
-            }
-
-        //    console.log(OrderItems);
-            var len = cartItems.length;
-            document.getElementById('itemCount').innerHTML = len;
-            document.getElementById('totalAmount').innerHTML = prise;
-            document.getElementById('hftotalAmount').value = prise;
-
-            document.getElementById('cartItemNo').innerHTML = len;
-          });
-      } else {
-        console.log('in else');
-        document.getElementById('itemCount').innerHTML = '0';
-        document.getElementById('totalAmount').innerHTML = '0';
-        document.getElementById('hftotalAmount').value = '0';
-        document.getElementById('cartItemNo').innerHTML = '0';
-        document.getElementById('btnProceedToPay').disabled = true;
-      }
-    }
-
-  });
+    var qty = cartItems[i].Quantity;
+    var selectedsubItem = cartItems[i].SelectedsubItem;
+    var weight = selectedsubItem.split('-');
+    var selectedProduct = ArrProduct[ArrProduct.findIndex(e => e.ProductID === cartItems[i].ProductID)];
+    var unitPrise = 0;
+    var MRP = 0;
+    var sellPrize = 0;
+        console.log(selectedProduct);
+    OrderItems.push({
+      ProductID: cartItems[i].ProductID,
+      ProductName: cartItems[i].ItemName,
+      SelectedSubItem: cartItems[i].SelectedsubItem,
+      ImageURL: selectedProduct.productImageURL,
+      VegNonVeg: selectedProduct.VegNonVeg,
+      UnitPrise: sellPrize,
+      MRP: MRP,
+      Quantity: cartItems[i].Quantity
+    });
+  }
 }
