@@ -159,7 +159,7 @@ function PopulateOrderSummary() {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
   amount = amount.toLocaleString('en-IN', curFormat);
   //console.log(amount);
@@ -512,7 +512,7 @@ function renderDeliveryOrder(order, index, orderid)
   var curFormat = { style: 'currency',
         currency: 'INR',
         minimumFractionDigits: 0,
-        maximumFractionDigits: 0 };
+        maximumFractionDigits: 2 };
 
   var options = {
     year: 'numeric',
@@ -587,16 +587,19 @@ function renderDeliveryOrder(order, index, orderid)
     var small1 = document.createElement("small");
     small1.setAttribute("class","small-text dashboard-sub-heading");
     var discamt  = order.discountedprize;
+    console.log(order.discountedprize);
+    console.log(order.totalAmount);
     var totalamt  = order.totalAmount;
     var displayAmt ;
-    if(discamt === undefined || discamt === null || discamt === "")
+    if(discamt === undefined || discamt === null || discamt === "" || discamt === 'NaN' || discamt === 0)
     {
       displayAmt = totalamt;
     }
     else {
       displayAmt = discamt;
     }
-    displayAmt = displayAmt.toLocaleString('en-IN', curFormat);
+    console.log(displayAmt);
+    displayAmt = Number(displayAmt).toLocaleString('en-IN', curFormat);
     small1.innerHTML="Items : " + order.totalItems + " - " + displayAmt;
 
     div4.appendChild(small1);
