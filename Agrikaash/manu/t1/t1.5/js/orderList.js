@@ -455,7 +455,7 @@ function renderOrder(orderid, order, index) {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
 
   var displayAmt = Number(order.totalAmount).toLocaleString('en-IN', curFormat);
