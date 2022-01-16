@@ -9,7 +9,7 @@ auth.onAuthStateChanged(firebaseUser => {
       userID = firebaseUser.uid;
       GetProfileData(firebaseUser);
       GetNotificationList();
-
+      GetCartDetails();
     } else {
       console.log('User has been logged out');
       window.location.href = "../login/index.html";
@@ -19,7 +19,18 @@ auth.onAuthStateChanged(firebaseUser => {
     //window.location.href = "../index.html";
   }
 });
+function GetCartDetails()
+{
+  var cartItems = [];
+    const snapshot = db.collection('CartDetails').doc(userID);
+    snapshot.get().then((doc) => {
+      if (doc.exists) {
+        cartItems = doc.data().cartDetails;
 
+        document.getElementById("cartItemNo").innerHTML =cartItems.length
+      }
+    });
+}
 function GetProfileData(user) {
   // const ref = db.collection("Users").doc(user.uid);
 
@@ -112,6 +123,7 @@ function GetNotificationDetails(notificationID) {
 function GetNotificationList() {
   var ddl = document.getElementById("userList");
   var index = 0;
+  var NotificationCnt = 0;
   var flag = false;
   var flag2 = false;
   var today = new Date();
@@ -121,13 +133,11 @@ function GetNotificationList() {
 
   const snapshot1 = db.collection('UserNotification').doc(userID);
 
-  snapshot1.get().then(async (doc1) => {
+  snapshot1.get().then((doc1) => {
     console.log('check');
     if (doc1.exists) {
       userNotification = doc1.data().Notifications;
     }
-  });
-
 
 
   document.getElementById("divNotificationList").innerHTML = "";
@@ -161,20 +171,28 @@ function GetNotificationList() {
 
       if (flag === true) {
         renderNotification(change, index, flag2);
-        if (flag2 === false && flag === true)
           index = index + 1;
+          if(flag2 === false)
+          {
+            NotificationCnt = NotificationCnt +1;
+          }
       }
-    });
 
-    if (flag === true) {
-      document.getElementById("notificationCnt").innerHTML = index;
+      flag = false;
+      flag2 = false;
+
+    });
+    document.getElementById("notificationCnt").innerHTML = NotificationCnt;
+    localStorage.setItem("notificationCount", NotificationCnt);
+
+    if (index > 0 ) {
       document.getElementById("noNotificationDiv").style.display = "none";
-      localStorage.setItem("notificationCount", index);
 
     } else {
       document.getElementById("messageDiv").style.display = "none";
     }
 
+  });
   });
 }
 
@@ -218,7 +236,7 @@ function renderNotification(change, index, flagread) {
   hf.setAttribute("id", "hfNotificationDocID" + index);
   hf.setAttribute("value", change.doc.id);
   div3.appendChild(hf);
-
+  console.log(hf);
   var img1 = document.createElement("img");
   img1.setAttribute("style", "width: 80px;height: 80px;");
   img1.setAttribute("alt", "");
@@ -259,12 +277,12 @@ function renderNotification(change, index, flagread) {
   //if (doc.Status === "Active" && ValidityTill >= today) {
   if (flagread === true) {
     span2.setAttribute("style", "color: green;position: relative; top: 1.1px;");
-    span2.innerHTML = "check";
+    span2.innerHTML = "mark_email_read";
     span1.appendChild(span2);
     span1.innerHTML = span1.innerHTML + "READ";
   } else {
     span2.setAttribute("style", "color: #ff5757;position: relative; top: 1.1px;");
-    span2.innerHTML = "close";
+    span2.innerHTML = "mark_email_unread";
     span1.appendChild(span2);
 
     span1.innerHTML = span1.innerHTML + "New Notifiation";
@@ -322,7 +340,8 @@ function renderNotification(change, index, flagread) {
 function ViewNotification(hfNotificationDocID) {
   var notificationList = [];
   var flag = true;
-  console.log(userID);
+  console.log(hfNotificationDocID);
+
 
   const snapshot = db.collection('UserNotification').doc(userID);
   snapshot.get().then(async (doc) => {
