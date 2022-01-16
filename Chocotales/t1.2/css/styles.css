@@ -61,8 +61,8 @@ h6 {
 
 /* navbar start */
 .before-navbar {
+  /* background: #B99A87; */
   background: #65463E;
-  /* background: #65463E; */
   /* border-bottom: 1px solid rgba(255, 255, 255, 0.2); */
   padding: 5px;
   /* border-bottom: 1px solid rgba(185,154,135,1); */
@@ -74,7 +74,7 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #EBEBE5;
+  color: #fff;
   font-weight: 600;
   border: none;
 }
@@ -171,16 +171,21 @@ h6 {
 }
 
 .navbar {
-  background: #EBEBE5;
+  background: rgba(201,190,177,0.6);
+  /* background: #B99A87; */
+  /* background: #65463E; */
+  /* background: #fff; */
+  /* background: #EBEBE5; */
   /*color changed*/
-  height: 62px;
+  height: 68px;
   padding: 0;
+
 }
 
 .navbar-brand {
   color: white;
   font-size: 1.7rem;
-  padding-left: 12px;
+  padding-left: 5%;
 }
 
 .brand-heading{
@@ -221,9 +226,10 @@ h6 {
 
 .nav-link {
   color: #65463E;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   text-align: center;
-  font-weight: bold;
+  font-weight: bolder;
+  font-family: 'Dancing Script';
 }
 
 .nav-link:hover {
@@ -686,7 +692,7 @@ h6 {
 }
 
 .phone-div div:nth-child(2):hover {
-  color: #65463E;
+  color: #ff5757;
   cursor: pointer;
 }
 
@@ -1106,7 +1112,7 @@ input[type=number] {
 }
 
 .product-details-content .select h6{
-  font-weight: 500;
+  font-weight: bold;
 }
 
 .product-details-content .select input{
@@ -1148,8 +1154,47 @@ input[type=number] {
   background: #ededed;
 }
 
-.description-heading{
+.in-stock{
+  color: green;
+  font-size: 0.8rem;
   font-weight: 500;
+}
+
+.order-now{
+  font-weight: 500;
+}
+
+.order-now-details{
+  display: flex;
+  align-items: flex-start;
+  background: #EBEBE5;
+  text-align: left;
+}
+
+@media (max-width: 850px) {
+  .order-now-details{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+}
+
+.order-now-details small{
+  padding:  10px 20px;
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.order-now-details small span.material-icons-outlined{
+  padding-right: 10px;
+}
+
+.description-heading{
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 .description-para{
