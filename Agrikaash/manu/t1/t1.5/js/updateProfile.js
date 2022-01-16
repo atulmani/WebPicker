@@ -12,7 +12,7 @@ auth.onAuthStateChanged(firebaseUser => {
 
       var siteNotification = localStorage.getItem("notificationCount");
       document.getElementById("notificationCnt").innerHTML=siteNotification;
-  //    document.getElementById("notificationCnt1").innerHTML=siteNotification;
+      document.getElementById("notificationCnt1").innerHTML=siteNotification;
 
     } else {
       // console.log('User has been logged out');
@@ -44,6 +44,7 @@ function GetRegistrationRequest() {
       var userRole = doc.data().UserRole;
 
       document.getElementById('userName').value = displayName;
+      document.getElementById('profileName').innerHTML = displayName;
       document.getElementById('userEmail').innerHTML = userEmail;
       document.getElementById('userPhone').value = phone;
 
