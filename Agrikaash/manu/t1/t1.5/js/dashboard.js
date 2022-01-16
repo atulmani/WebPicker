@@ -402,7 +402,7 @@ function getLastOrder()
       var curFormat = { style: 'currency',
             currency: 'INR',
             minimumFractionDigits: 0,
-            maximumFractionDigits: 0 };
+            maximumFractionDigits: 2 };
       todayAmount = todayAmount.toLocaleString('en-IN', curFormat);
       document.getElementById('lastOrder').innerHTML = "Last Order ["+ orderdate +"] : "+todayAmount;
     });
