@@ -139,7 +139,7 @@ function cancelOrder() {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
 
 
@@ -706,7 +706,7 @@ function deleteItem(prodID, selectedItemIndex, parentdiv) {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
 
   const snapshot = db.collection('OrderDetails').doc(orderID);
