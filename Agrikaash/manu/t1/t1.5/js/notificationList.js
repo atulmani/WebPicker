@@ -186,7 +186,7 @@ function renderNotification(change, index, flagread) {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
 
   var options = {
