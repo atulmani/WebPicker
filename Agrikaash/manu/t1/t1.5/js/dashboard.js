@@ -315,7 +315,6 @@ function PopulateOrderSummary() {
 
         ];
 
-        console.log(dateArr);
 
         // console.log('todayCnt', todayCnt);
         arrAmt = [todayAmount,
@@ -587,8 +586,6 @@ function renderDeliveryOrder(order, index, orderid)
     var small1 = document.createElement("small");
     small1.setAttribute("class","small-text dashboard-sub-heading");
     var discamt  = order.discountedprize;
-    console.log(order.discountedprize);
-    console.log(order.totalAmount);
     var totalamt  = order.totalAmount;
     var displayAmt ;
     if(discamt === undefined || discamt === null || discamt === "" || discamt === 'NaN' || discamt === 0)
@@ -598,7 +595,6 @@ function renderDeliveryOrder(order, index, orderid)
     else {
       displayAmt = discamt;
     }
-    console.log(displayAmt);
     displayAmt = Number(displayAmt).toLocaleString('en-IN', curFormat);
     small1.innerHTML="Items : " + order.totalItems + " - " + displayAmt;
 
@@ -742,7 +738,6 @@ function PopulateDeliverySummary() {
     .where("deliveryDate", ">=", dayM7)
     .onSnapshot(snapshot => {
 
-      console.log("11");
 
       let changes = snapshot.docChanges();
 
@@ -750,7 +745,6 @@ function PopulateDeliverySummary() {
 
       changes.forEach(change => {
 
-        console.log('in loop');
         var orderDetails = change.doc.data();
 
         deliverydate = new Date(orderDetails.deliveryDate.seconds * 1000);
@@ -842,8 +836,6 @@ function PopulateDeliverySummary() {
           dayM7
         ];
 
-      console.log(arrAmtDelivery);
-      console.log(dateArrDelivery);
       deliveryChart(arrAmtDelivery, dateArrDelivery);
     });
 
@@ -852,7 +844,6 @@ function PopulateDeliverySummary() {
 }
 
 function changeGraphType(type) {
-  console.log(type);
   var chartType = document.getElementById('chartContainer');
 
   if (type === 2)
@@ -861,13 +852,11 @@ function changeGraphType(type) {
     chart1.options.data[0].type = 'line';
 
 
-  console.log(chart1.options.data[0].type);
   chart1.render();
 }
 
 
 function changeGraphType1(type) {
-  console.log(type);
   var chartType = document.getElementById('chartContainer1');
 
   if (type === 2)
@@ -876,14 +865,11 @@ function changeGraphType1(type) {
     chart2.options.data[0].type = 'line';
 
 
-  console.log(chart2.options.data[0].type);
   chart2.render();
 }
 
 
 function orderChart(arrAmt, dateArr) {
-console.log(arrAmt);
-console.log(dateArr);
   // window.onload = function() {
   var min = arrAmt[0];
   var max = arrAmt[0];
