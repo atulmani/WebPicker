@@ -324,19 +324,15 @@ function populateDeliveryAddress(selectedOrder) {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
   amt = amt.toLocaleString('en-IN', curFormat);
 
   document.getElementById('paymentAmount').innerHTML = amt;
-  console.log(selectedOrder.discountedprize);
-  if (isNaN(selectedOrder.discountedprize))
-    console.log('if');
-  else {
-    console.log('else');
-  }
+console.log(selectedOrder.discountedprize );
+console.log(selectedOrder.totalAmount);
   //if (selectedOrder.discountedprize === 'NaN' || selectedOrder.discountedprize === "0" || selectedOrder.discountedprize === "")
-  if (isNaN(selectedOrder.discountedprize) || selectedOrder.discountedprize === '') {
+  if (isNaN(selectedOrder.discountedprize) || selectedOrder.discountedprize === '' || (selectedOrder.discountedprize === selectedOrder.totalAmount) || selectedOrder.discountedprize === 0) {
     document.getElementById('discount').style.display = "none";
     document.getElementById("hfDiscountFlag").value = "false";
   } else {
