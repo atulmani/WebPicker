@@ -84,32 +84,34 @@ $(document).ready(function() {
 });
 
 
-// $(document).ready(function() {
-//   var owl1 = $('#more-products');
-//   owl1.owlCarousel({
-//     margin: 80,
-//     nav: true,
-//     loop: true,
-//     autoplay: true,
-//     smartSpeed: 2000,
-//     autoplayTimeout: 4000,
-//     autoplayHoverPause: false,
-//     nav: false,
-//     dots: false,
-//     responsive: {
-//       0: {
-//         items: 1,
-//         stagePadding: 50
-//       },
-//       600: {
-//         items: 2
-//       },
-//       1024: {
-//         items: 3
-//       }
-//     }
-//   });
-// });
+$(document).ready(function() {
+  var owl1 = $('#more-products');
+  owl1.owlCarousel({
+    margin: 80,
+    nav: true,
+    loop: true,
+    autoplay: true,
+    smartSpeed: 2000,
+    autoplayTimeout: 4000,
+    autoplayHoverPause: false,
+    nav: false,
+    dots: false,
+    responsive: {
+      0: {
+        items: 1,
+        stagePadding: 15,
+        margin: 40,
+      },
+      600: {
+        items: 2
+      },
+      1024: {
+        items: 3,
+        stagePadding: 50,
+      }
+    }
+  });
+});
 
 // jQuery(document).ready(function() {
 // $(window).scroll(function() {
