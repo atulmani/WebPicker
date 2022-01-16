@@ -349,8 +349,13 @@ function changCustomerType() {
 }
 /////////////////////new function
 function renderProductNew(doc, index, selectedItem) {
-  //console.log(selectedItem);
-  //console.log('Event Name: ' + doc.data().ProductName);
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
+
 
   var productlist = doc.data().ProductDetails;
 
@@ -380,10 +385,6 @@ function renderProductNew(doc, index, selectedItem) {
   img1.setAttribute("alt", "Product");
   td1.appendChild(img1);
 
-  // var div1_2 = document.createElement("div");
-  // div1_2.setAttribute("class", "off-div");
-  // div1_2.innerHTML = "<small>" + "20% OFF" + "</small>";
-  // td1.appendChild(div1_2);
 
   var div1_3 = document.createElement("div");
   div1_3.setAttribute("class", "veg-nonVeg-div");
@@ -450,39 +451,6 @@ function renderProductNew(doc, index, selectedItem) {
     // selectP.appendChild(option);
 
   }
-  //console.log(selectP);
-  //
-  // for (int = 0 ; int <  productlist.length; int++ ) {
-  //   var option = document.createElement("option");
-  //   option.value = productlist[int].ProductFinalPrise + ":" + productlist[int].ProductMRP;
-  //   option.text = productlist[int].ProductWeight + " - " + "Rs." + productlist[int].ProductFinalPrise;
-  //   if (selectedItem != null) {
-  //     if (option.text === selectedItem.SelectedsubItem) {
-  //       option.selected = true;
-  //
-  //       if (qtyNew === doc.data().MinimumQty)
-  //         qtyNew = selectedItem.Quantity;
-  //       //indexnew = option.index;
-  //       //console.log("indexnew : ", indexnew);
-  //       if (mrp === 0)
-  //         mrp = productlist[int].ProductMRP;
-  //       if (finalPrize === 0)
-  //         finalPrize = productlist[int].ProductFinalPrise
-  //     } else {
-  //       indexnew = -1;
-  //       qtyNew = 1;
-  //     }
-  //   } else {
-  //     mrp = 0;
-  //     finalPrize = 0;
-  //     indexnew = -1;
-  //     qtyNew = 1;
-  //   }
-  //   selectP.appendChild(option);
-  //
-  // }
-  //selectP.addEventListener("change", addActivityItem, false);
-  //var hfSelecttion = document.createElement("input")
   var hfSelecttion = document.createElement("input");
   hfSelecttion.setAttribute("id", "hfSelectedValue" + index);
   hfSelecttion.setAttribute("type", "hidden");
@@ -505,13 +473,13 @@ function renderProductNew(doc, index, selectedItem) {
   // div1_4.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + productlist[0].ProductMRP + "</span>" + "</h5>" +
   //   "<small>₹ " + "<span id='final" + index + "'>" + productlist[0].ProductFinalPrise + "</span></small>";
   if (selectedItem != null) {
-    div1_4.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + mrp + "</span>" + "</h5>" +
-      "<small>₹ " + "<span id='final" + index + "'>" + finalPrize + "</span></small>";
+    div1_4.innerHTML = "<h5>" + "<span id='mrp" + index + "' >" + Number(mrp).toLocaleString('en-IN', curFormat) + "</span>" + "</h5>" +
+      "<small> " + "<span id='final" + index + "'>" + Number(finalPrize).toLocaleString('en-IN', curFormat) + "</span></small>";
 
   } else {
 
-    div1_4.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + productlist[0].ProductMRP + "</span>" + "</h5>" +
-      "<small>₹ " + "<span id='final" + index + "'>" + productlist[0].ProductFinalPrise + "</span></small>";
+    div1_4.innerHTML = "<h5>" + "<span id='mrp" + index + "' >" + Number(productlist[0].ProductMRP).toLocaleString('en-IN', curFormat)  + "</span>" + "</h5>" +
+      "<small> " + "<span id='final" + index + "'>" + Number(productlist[0].ProductFinalPrise).toLocaleString('en-IN', curFormat) + "</span></small>";
 
   }
 
