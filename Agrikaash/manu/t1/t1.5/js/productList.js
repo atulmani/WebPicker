@@ -16,6 +16,10 @@ auth.onAuthStateChanged(firebaseUser => {
       // var promise2 = promise.then(populateProductData('', ''));
       //promise2.then(console.log(productCategory));
 
+      var siteNotification = localStorage.getItem("notificationCount");
+      document.getElementById("notificationCnt").innerHTML=siteNotification;
+      document.getElementById("notificationCnt1").innerHTML=siteNotification;
+
 
     } else {
       console.log('User has been logged out');
