@@ -363,6 +363,12 @@ function rendercoupon(index, comments, couponID, discountType, discountValue) {
 }
 
 function applyCouponNew(index) {
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
   console.log(index);
   var disValue = document.getElementById("hfDiscountValue" + index);
   var disType = document.getElementById("hfDiscountType" + index);
@@ -381,7 +387,7 @@ function applyCouponNew(index) {
   }
 
   document.getElementById("hfdiscountedAmount").value = discountedAmount;
-  document.getElementById("totalAmount").innerHTML = "<span style='text-decoration:line-through;'>" + originalAmount + "</span>" + "    " + discountedAmount;
+  document.getElementById("totalAmount").innerHTML = "<span style='text-decoration:line-through;'>" + Number(originalAmount).toLocaleString('en-IN', curFormat) + "</span>" + "    " + Number(discountedAmount).toLocaleString('en-IN', curFormat);
 
 }
 
@@ -406,7 +412,7 @@ function applyCoupon() {
     }
 
     document.getElementById("hfdiscountedAmount").value = discountedAmount;
-    document.getElementById("totalAmount").innerHTML = "<span style='text-decoration:line-through;'>" + originalAmount + "</span>" + "    " + discountedAmount;
+    document.getElementById("totalAmount").innerHTML = "<span style='text-decoration:line-through;'>" + Number(originalAmount).toLocaleString('en-IN', curFormat); + "</span>" + "    " + Number(discountedAmount).toLocaleString('en-IN', curFormat);;
   }
 
 }
@@ -616,8 +622,6 @@ function SaveOrderinDB() {
 
   }
 
-  console.log(selCouponID);
-  console.log(selDiscountVal);
   var discount = {
     coupondID: selCouponID, //couponDetails.options[couponDetails.selectedIndex].value,
     discountValue: selDiscountVal //couponDetails.options[couponDetails.selectedIndex].text
