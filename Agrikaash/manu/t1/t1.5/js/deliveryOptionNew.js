@@ -214,6 +214,12 @@ function GetNotificationList() {
 function GetCouponDetails() {
   //get coupon details
   //  var couponList = [];
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
   var cnt = 0;
   var disText;
   console.log("in GetCouponDetails ");
@@ -237,7 +243,7 @@ function GetCouponDetails() {
         if (change.data().DiscountType === 'Percentage')
           disText = change.data().DiscountValue + " %";
         else
-          disText = "₹ " + change.data().DiscountValue;
+          disText =   Number(change.data().DiscountValue).toLocaleString('en-IN', curFormat);
         opt.innerHTML = disText;
         //couponDetails.appendChild(opt);
         cnt = Number(cnt) + 1;
@@ -254,7 +260,7 @@ function GetCouponDetails() {
           if (change.data().DiscountType === 'Percentage')
             disText = change.data().DiscountValue + " %";
           else
-            disText = "₹ " + change.data().DiscountValue;
+            disText =  Number(change.data().DiscountValue).toLocaleString('en-IN', curFormat);
           opt.innerHTML = disText;
           //  couponDetails.appendChild(opt);
           cnt = Number(cnt) + 1;
@@ -269,7 +275,7 @@ function GetCouponDetails() {
           if (change.data().DiscountType === 'Percentage')
             disText = change.data().DiscountValue + " %";
           else
-            disText = "₹ " + change.data().DiscountValue;
+            disText = Number(change.data().DiscountValue).toLocaleString('en-IN', curFormat);
           opt.innerHTML = disText;
           //couponDetails.appendChild(opt);
           cnt = Number(cnt) + 1;
@@ -291,11 +297,18 @@ function GetCouponDetails() {
 }
 
 function rendercoupon(index, comments, couponID, discountType, discountValue) {
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
+
   var disText = "";
   if (discountType === 'Percentage')
     disText = discountValue + " %";
   else
-    disText = "₹ " + discountValue;
+    disText =  Number(discountValue).toLocaleString('en-IN', curFormat);
 
   console.log(disText);
   var divcoupon = document.getElementById("couponListDiv");
@@ -571,6 +584,13 @@ function SaveOrder() {
 
 function SaveOrderinDB() {
 
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
+
   var orderDetails = [];
   var message = "";
   var iError = 0;
@@ -615,7 +635,7 @@ function SaveOrderinDB() {
       if (disType.value === 'Percentage') {
         selDiscountVal = disValue.value + " %";
       } else {
-        selDiscountVal = "₹ " + disValue.value;
+        selDiscountVal = Number(disValue.value).toLocaleString('en-IN', curFormat);
       }
     }
 
