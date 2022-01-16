@@ -26,7 +26,7 @@ auth.onAuthStateChanged(firebaseUser => {
 
     } else {
       console.log('User has been logged out');
-      window.location.href = "index.html";
+      window.location.href = "../login/index.html";
     }
   } catch (error) {
     console.log(error.message);
