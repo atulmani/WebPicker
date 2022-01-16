@@ -312,6 +312,13 @@ function getCartItemNo() {
 }
 
 function getCartItemNoDetails() {
+
+    var curFormat = {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2
+    };
   console.log('getCartItemNoDetails');
   var prise = 0;
 
@@ -342,7 +349,7 @@ function getCartItemNoDetails() {
     cartItemNo.innerHTML = cartItems.length;
     document.getElementById('itemCount').innerHTML = cartItems.length + ' Items';
     //document.getElementById('cartItemNo').innerHTML = cartItems.length
-    document.getElementById('totalAmount').innerHTML = '₹ ' + prise;
+    document.getElementById('totalAmount').innerHTML = Number(prise).toLocaleString('en-IN', curFormat);
 
 
   } else {
@@ -661,6 +668,13 @@ function renderProduct(doc, index, selecteditem) {
 
 /////////////////////new function
 function renderProduct_old(doc, index, selecteditem) {
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
+
   //  console.log('Doc ID: ' + doc.id);
   //  console.log('Event Name: ' + doc.data().ProductName);
 
@@ -775,8 +789,8 @@ function renderProduct_old(doc, index, selecteditem) {
   div1_4.setAttribute("id", "divPrise" + index);
   div1_4.setAttribute("class", "product-price");
 
-  div1_4.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + MRP + "</span>" + "</h5>" +
-    "<small>₹ " + "<span id='final" + index + "'>" + FinalPrize + "</span></small><br><br><br>";
+  div1_4.innerHTML = "<h5>" + "<span id='mrp" + index + "' >" + Number(MRP).toLocaleString('en-IN', curFormat) + "</span>" + "</h5>" +
+    "<small>" + "<span id='final" + index + "'>" + Number(FinalPrize).toLocaleString('en-IN', curFormat) + "</span></small><br><br><br>";
 
   //div1_4.appendChild(mrpspan);
   //div1_4.appendChild(finalspan);
@@ -883,7 +897,12 @@ function renderProduct_old(doc, index, selecteditem) {
 }
 
 function updateQuantity(oqty, iMin, iMax, itemName, productID, itemSizeObj, hfMRP, hfFinalPrize, divprise) {
-
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
 
   var qty = Number(oqty.value);
   if (qty < iMin)
@@ -901,14 +920,21 @@ function updateQuantity(oqty, iMin, iMax, itemName, productID, itemSizeObj, hfMR
   lfinal = Number(qty) * Number(hfFinalPrize.value);
   hfFinalPrize.innerHTML = lfinal;
 
-  divprise.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + lmrp + "</span>" + "</h5>" +
-    "<small>₹ " + "<span id='final" + index + "'>" + lfinal + "</span></small><br><br><br>";
+  divprise.innerHTML = "<h5>" + "<span id='mrp" + index + "' >" + Number(lmrp).toLocaleString('en-IN', curFormat) + "</span>" + "</h5>" +
+    "<small>" + "<span id='final" + index + "'>" + Number(lfinal).toLocaleString('en-IN', curFormat) + "</span></small><br><br><br>";
 
   AddUpdateCart(itemName, itemSizeObj, Number(qty), productID, 'active');
   getCartItemNo();
 }
 
 function incrementQty(oqty, omax, step, itemName, productID, itemSizeObj, hfMRP, hfFinalPrize, divprise) {
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
+
   var qty = Number(oqty.value);
 
   var max = Number(omax.value);
@@ -930,8 +956,8 @@ function incrementQty(oqty, omax, step, itemName, productID, itemSizeObj, hfMRP,
   lfinal = Number(qty) * Number(hfFinalPrize.value);
   hfFinalPrize.innerHTML = lfinal;
 
-  divprise.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + lmrp + "</span>" + "</h5>" +
-    "<small>₹ " + "<span id='final" + index + "'>" + lfinal + "</span></small><br><br><br>";
+  divprise.innerHTML = "<h5>" + "<span id='mrp" + index + "' >" + Number(lmrp).toLocaleString('en-IN', curFormat) + "</span>" + "</h5>" +
+    "<small>" + "<span id='final" + index + "'>" + Number(lfinal).toLocaleString('en-IN', curFormat) + "</span></small><br><br><br>";
 
   AddUpdateCart(itemName, itemSizeObj, qty, productID, 'active');
   getCartItemNo();
@@ -939,6 +965,12 @@ function incrementQty(oqty, omax, step, itemName, productID, itemSizeObj, hfMRP,
 
 //function decrementQty(oqty, omin, step, itemName, itemSizeObj, productID) {
 function decrementQty(oqty, omin, step, itemName, productID, itemSizeObj, hfMRP, hfFinalPrize, divprise) {
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
   var qty = oqty.value;
 
   var min = omin.value;
@@ -960,8 +992,8 @@ function decrementQty(oqty, omin, step, itemName, productID, itemSizeObj, hfMRP,
   lfinal = Number(qty) * Number(hfFinalPrize.value);
   hfFinalPrize.innerHTML = lfinal;
 
-  divprise.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + lmrp + "</span>" + "</h5>" +
-    "<small>₹ " + "<span id='final" + index + "'>" + lfinal + "</span></small><br><br><br>";
+  divprise.innerHTML = "<h5>" + "<span id='mrp" + index + "' >" + Number(lmrp).toLocaleString('en-IN', curFormat) + "</span>" + "</h5>" +
+    "<small> " + "<span id='final" + index + "'>" + Number(lfinal).toLocaleString('en-IN', curFormat) + "</span></small><br><br><br>";
 
   //var str = itemSizeObj[itemSizeObj.selectedIndex].text;
   AddUpdateCart(itemName, itemSizeObj, qty, productID, 'active');
