@@ -128,7 +128,7 @@ function updateWallet() {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
 
   var WalletDetails = document.getElementById('WalletDetails');
