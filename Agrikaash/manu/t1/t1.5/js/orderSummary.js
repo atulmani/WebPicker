@@ -401,6 +401,13 @@ function populateOrderItems(selectedOrder) {
 }
 
 function renderOrderItem(orderItem, orderStatusValue, deliveryDate, index) {
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
+
   var div1 = document.createElement("div");
   div1.setAttribute('class', 'col-sm-12');
   div1.setAttribute('style', 'padding: 5px;');
@@ -491,11 +498,11 @@ function renderOrderItem(orderItem, orderStatusValue, deliveryDate, index) {
   div5.setAttribute('class', 'product-price');
   //console.log(orderItem.MRP);
   var h51 = document.createElement('h5');
-  h51.innerHTML = '₹' + orderItem.MRP;
+  h51.innerHTML =  Number(orderItem.MRP).toLocaleString('en-IN', curFormat);
 
   //console.log(orderItem.UnitPrise);
   var small4 = document.createElement('small');
-  small4.innerHTML = '₹' + orderItem.UnitPrise;
+  small4.innerHTML =  Number(orderItem.UnitPrise).toLocaleString('en-IN', curFormat) ;
 
   div5.appendChild(h51);
   div5.appendChild(small4);
