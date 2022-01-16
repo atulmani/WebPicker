@@ -1141,7 +1141,7 @@ function renderOrder(orderid, order, index)
       var curFormat = { style: 'currency',
             currency: 'INR',
             minimumFractionDigits: 0,
-            maximumFractionDigits: 0 };
+            maximumFractionDigits: 2 };
 
       var displayAmt = Number(order.totalAmount).toLocaleString('en-IN', curFormat);
       var small3 = document.createElement("small");
