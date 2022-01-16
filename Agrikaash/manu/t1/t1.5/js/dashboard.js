@@ -738,6 +738,9 @@ function PopulateDeliverySummary() {
     .where("deliveryDate", "<=", dayP7)
     .where("deliveryDate", ">=", dayM7)
     .onSnapshot(snapshot => {
+
+      console.log("11");
+
       let changes = snapshot.docChanges();
 
       console.log("populatePayments: ");
