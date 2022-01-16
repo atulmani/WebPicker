@@ -29,6 +29,7 @@ auth.onAuthStateChanged(firebaseUser => {
       GetProfileData(firebaseUser);
       populateDeliveryDate();
       getOrderDetails();
+      GetCartDetails();
       //GetNotificationList();
       var siteNotification = localStorage.getItem("notificationCount");
       document.getElementById("notificationCnt").innerHTML=siteNotification;
@@ -51,7 +52,18 @@ auth.onAuthStateChanged(firebaseUser => {
   // document.getElementById('loading-img').style.display = 'none';
 });
 
-
+function GetCartDetails()
+{
+  var cartItems = [];
+    const snapshot = db.collection('CartDetails').doc(userID);
+    snapshot.get().then((doc) => {
+      if (doc.exists) {
+        cartItems = doc.data().cartDetails;
+        
+        document.getElementById("cartItemNo").innerHTML =cartItems.length
+      }
+    });
+}
 function GetProfileData(user) {
   // const ref = db.collection("Users").doc(user.uid);
 
