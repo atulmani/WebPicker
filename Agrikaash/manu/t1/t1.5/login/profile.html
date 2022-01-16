@@ -14,9 +14,11 @@
 
   <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
+
   <!-- Google Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
 
   <!-- Google fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -43,7 +45,7 @@
 
 </head>
 
-<body>
+<body style="background: #f4f4f4;">
 
   <div class="before-navbar large">
     <div class="container-fluid" style="padding-Left: 5%;">
@@ -107,11 +109,11 @@
 
       </div>
       <div class="container before-nav">
-        <span><i class="fas fa-phone-alt"></i><a href="./admin/index.html">Contact</a> </span>
-        <span><i class="fas fa-user"></i><a href="./admin/index.html">Login/Sign Up</a> </span>
-        <span><i class="fas fa-list"></i><a href="./admin/index.html">Services</a> </span>
-        <span><i class="fas fa-sitemap"></i><a href="./admin/index.html">AgriBusiness</a> </span>
-        <span><i class="fas fa-home"></i><a href="./admin/index.html">Home</a> </span>
+        <span><i class="fas fa-phone-alt"></i><a href="../admin/index.html">Contact</a> </span>
+        <span><i class="fas fa-user"></i><a href="../login/index.html">Login/Sign Up</a> </span>
+        <span><i class="fas fa-list"></i><a href="../admin/index.html">Services</a> </span>
+        <span><i class="fas fa-sitemap"></i><a href="../admin/index.html">AgriBusiness</a> </span>
+        <span><i class="fas fa-home"></i><a href="../admin/index.html">Home</a> </span>
       </div>
     </div>
   </nav>
@@ -127,19 +129,13 @@
         <h4 style="text-transform: uppercase;">Agrikaash</h4>
       </a>
 
-
-            <a href="../notification/index.html" style="padding-right: 10px;">
-              <span class="material-icons-outlined" style="color: #fff;">
-                notifications
-              </span>
-              <div class="notification-count">
-                <span class="" id="notificationCnt1">0</span>
-              </div>
-            </a>
-
-      <a href="../login/profile.html" style="padding-right: 0px;">
-        <!-- <img src="../img/user.png" id="navUser" class="user-icon" alt=""> -->
-        <!-- <i class="fas fa-user"></i> -->
+      <a href="../notification/index.html" style="padding-right: 10px;">
+        <span class="material-icons-outlined" style="color: #fff;">
+          notifications
+        </span>
+        <div class="notification-count">
+          <span class="" id="notificationCnt">0</span>
+        </div>
       </a>
       <!-- <a href="#"><img src="../img/logo.png" width="30px" alt=""> </a> -->
       <!-- <a href="#" style="padding-right: 0px;"><i class="fas fa-user user-icon"></i></a> -->
@@ -152,7 +148,7 @@
 
   <div class="small navbar-mobile-bottom">
     <div class="navbar-mobile-bottom-menu" id="divBottomNavBar">
-      <a href="../partner/dashboard.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="../partner/dashboard.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
         <span class="material-icons-outlined">
           home
         </span>
@@ -187,7 +183,6 @@
       </span>
     </a>
   </div>
-  </div>
 
   <!-- Navbar links -->
   <div class="collapse navbar-collapse more-button-links" id="collapsibleNavbar1">
@@ -200,7 +195,7 @@
       <li class="">
         <a href="../login/profile.html" style="text-decoration: none;" class="">
           <div class="left-nav-first">
-            <img id="profilePic_LeftNav" src="../img/user.png" width="" alt="">
+            <img id="profilePic_LeftNav" src="../img/products/banana.png" width="" alt="">
             <h5 id="profileName"></h5>
             <small>View Profile</small>
           </div>
@@ -209,7 +204,7 @@
       <hr class="hr" />
 
       <li class="">
-        <a href="dashboard.html" class="left-navigation">
+        <a href="../partner/dashboard.html" class="left-navigation">
           <div class="">
             <span class="material-icons-outlined">
               manage_accounts
@@ -240,7 +235,7 @@
             <small>All your active notifications</small>
           </div>
           <div class="">
-            <span class="notification" id="notificationCnt">0</span>
+            <span class="notification" id="notificationCnt1">0</span>
           </div>
         </a>
       </li>
@@ -318,33 +313,43 @@
     <div class="col-lg-2 col-md-2 col-sm-12">
       <div class="side-navbar large">
         <div class="side-navbar-menu">
-          <a href="dashboard.html">
+          <a href="../partner/dashboard.html">
             <div class="">
-              <i class="fas fa-home"></i>
+              <span class="material-icons-outlined" style="position:relative; top:5px;">
+                home
+              </span>
               Dashboard
             </div>
           </a><br>
-          <a href="productList.html">
+          <a href="../partner/productList.html">
             <div class="">
-              <i class="fas fa-th-large"></i>
+              <span class="material-icons-outlined" style="position:relative; top:5px;">
+                category
+              </span>
               Products
             </div>
           </a><br>
-          <a href="#">
+          <a href="../partner/orderList.html">
             <div class="">
-              <i class="fab fa-buffer"></i>
+              <span class="material-icons-outlined" style="position:relative; top:5px;">
+                horizontal_split
+              </span>
               Orders
             </div>
           </a><br>
-          <a href="#">
+          <a href="../login/profile.html">
             <div class="">
-              <i class="fas fa-male"></i>
+              <span class="material-icons-outlined" style="position:relative; top:5px;">
+                manage_accounts
+              </span>
               Profile
             </div>
           </a><br>
-          <a href="#">
+          <a href="../login/index.html">
             <div class="">
-              <i class="fas fa-sign-out-alt"></i>
+              <span class="material-icons-outlined" style="position:relative; top:5px;">
+                logout
+              </span>
               Logout
             </div>
           </a>
