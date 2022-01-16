@@ -136,7 +136,7 @@ function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
   amt = amt.toLocaleString('en-IN', curFormat);
   document.getElementById('paymentAmount').innerHTML = amt;
@@ -423,7 +423,7 @@ function SaveOrder() {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
 
   document.getElementById("Message").text = "";
@@ -720,7 +720,7 @@ function deleteItem(prodID, selectedItemIndex) {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
 
   var cancelFlag = false;
