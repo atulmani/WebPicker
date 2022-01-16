@@ -26,8 +26,8 @@ auth.onAuthStateChanged(firebaseUser => {
 
       var siteNotification = localStorage.getItem("notificationCount");
 
-      document.getElementById("notificationCnt").innerHTML=siteNotification;
-      document.getElementById("notificationCnt1").innerHTML=siteNotification;
+      document.getElementById("notificationCnt").innerHTML = siteNotification;
+      document.getElementById("notificationCnt1").innerHTML = siteNotification;
 
 
     } else {
@@ -69,8 +69,10 @@ function GetProfileData(user) {
         console.log('Document ref id: ' + doc.data().uid);
         userID = doc.data().uid;
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
-          //  document.getElementById('navUser').src = doc.data().ProfileImageURL;
+          document.getElementById('profilePic').src = doc.data().ProfileImageURL;
         }
+        document.getElementById('profileName').innerHTML = doc.data().displayName;
+
         //        document.getElementById('headerProfilePic').src = doc.data().ImageURL;
         //        document.getElementById('displayName').innerHTML = doc.data().displayName;
       }
@@ -93,10 +95,17 @@ function GetCartList() {
       cartLength = cartItems.length;
 
       console.log('Cart Length', cartLength);
-      console.log(cartItems);
+      console.log(cartItems.length);
       console.log('GetCartList - Ends');
 
       //GetProductList();
+      if (cartItems.length === 0) {
+        document.getElementById("blankCartMessage").style.display = "block";
+        document.getElementById("btnCheckOut").style.display = "none";
+        document.getElementById('itemCount').innerHTML = 0 + ' Items';
+        document.getElementById('totalAmount').innerHTML = '₹ 0';
+
+      }
 
     }
   });
