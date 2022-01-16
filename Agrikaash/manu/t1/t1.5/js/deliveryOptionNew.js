@@ -131,6 +131,7 @@ function getCartItemNo() {
 
   }
   document.getElementById('hftotalAmount').value = prise;
+  document.getElementById('hfdiscountedAmount').value = prise;
 
   var curFormat = {
     style: 'currency',
@@ -141,6 +142,7 @@ function getCartItemNo() {
   prise = prise.toLocaleString('en-IN', curFormat);
 
   document.getElementById("totalAmount").innerHTML = prise;
+
 }
 
 function GetProfileData(user) {
