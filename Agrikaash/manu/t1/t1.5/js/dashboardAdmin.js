@@ -99,7 +99,7 @@ function PopulateOrderSummary() {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
   amount = amount.toLocaleString('en-IN', curFormat);
   //console.log(amount);
@@ -655,7 +655,7 @@ function getLastOrder() {
         style: 'currency',
         currency: 'INR',
         minimumFractionDigits: 0,
-        maximumFractionDigits: 0
+        maximumFractionDigits: 2
       };
       todayAmount = todayAmount.toLocaleString('en-IN', curFormat);
       document.getElementById('lastOrder').innerHTML = "Last Order [" + orderdate + "] : " + todayAmount;
@@ -760,7 +760,7 @@ function renderDeliveryOrder(order, index, orderid) {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
 
   var options = {
