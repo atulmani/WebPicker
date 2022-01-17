@@ -235,7 +235,7 @@
             <small>All your active notifications</small>
           </div>
           <div class="">
-            <span class="notification">0</span>
+            <span class="notification" id="notificationCnt1">0</span>
           </div>
         </a>
       </li>
@@ -433,7 +433,7 @@
               </div>
             </div>
 
-            <div id="divCoupon" class="coupons-div">
+            <div id="divCoupon" class="coupons-div" style="display:none;">
               <h5 style="font-size: 1.1rem;padding-left: 5px;margin-top: 8px;text-align: center;width: 100%;color: rgba(0,0,0,0.7);">Coupons</h5><br>
               <div id="couponListDiv">
               </div>
@@ -466,7 +466,7 @@
                   <small class="coupon-detail">You will get instant cashback</small>
                 </label>
               </div>
-              <select onchange="applyCoupon();" style="display:none;" class="" name="" id="couponDetails1">
+              <select onchange="applyCoupon();" style="display:none;" class="" name="" id="couponDetails">
                 <option value="none">
                   Select Coupon
                 </option>
@@ -508,7 +508,7 @@
 
             <div class="">
               <span id="message" style="color:red; display:none;">Please select address</span>
-              <h5>₹ <span id="totalAmount">0</span></h5>
+              <h5><span id="totalAmount">0</span></h5>
               <small><span id="itemCount">0 </span> Items</small>
               <input type='hidden' id="hftotalAmount" />
               <input type='hidden' id="hfdiscountedAmount" />

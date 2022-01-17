@@ -3,12 +3,12 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Agrikaash - The Light That Leads">
+  <meta name="description" content="Agrikaash - The Light That Leads | Agriculture">
   <meta name="keywords" content="Agriculture">
-  <meta name="author" content="Web Picker">
+  <meta name="author" content="HyperCloudAdvertising">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Agrikaash - The Light That Leads</title>
+  <title>AGRIKAASH - THE LIGHT THAT LEADS</title>
 
   <link rel="shortcut icon" href="../img/logo.png">
 
@@ -122,10 +122,8 @@
 
   <div class="small navbar-mobile">
     <div class="navbar-mobile-menu">
-      <a href="#" data-toggle="collapse" data-target="#collapsibleNavbar1">
-        <span class="material-icons-outlined">
-          menu
-        </span>
+      <a href="#">
+
       </a>
       <a href="#">
         <h4 style="text-transform: uppercase;">Agrikaash</h4>
@@ -212,10 +210,12 @@
   <!-- no-internet connection - end -->
 
   <!-- login - start -->
-  <div class="" id="beforeLogin"><br><br>
-    <h4>Welcome To Agrikaash</h4>
-    <br><br>
-    <h4>Offers</h4><br>
+  <div class="" id="beforeLogin"><br>
+    <img src="../img/logo.png" width="100px" alt="">
+    <!-- <h4>Welcome To Agrikaash</h4> -->
+    <br>
+    <h4 style="margin: 0 auto;font-weight: bold;">Offers & Promotions</h4>
+    <small class="small-text" style="margin: 0 auto;word-spacing: 6px;">To Help You Save More</small> <br>
     <!-- <div class="" style="padding: 8%;">
       <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_xlmz9xwm.json" background="transparent" speed="0.5" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
     </div> -->
@@ -257,7 +257,7 @@
 
     <button id="btnContinue" class="mybutton button5 before-login-continue">Continue</button>
 
-    <div class="" style="text-align: center;"><br><br>
+    <div class="" style="text-align: center;"><br>
       <h5 class="small-text" style="margin: 0 auto;">Powered by</h5>
       <img src="../img/before-login/hca-logo.png" width="100%" alt="">
     </div>
@@ -266,10 +266,11 @@
 
   <div class="login-full-page container" id="login" style="display: none;">
     <div class="row no-gutters">
-      <div class="col-lg-6 col-md-6 col-sm-12" style="padding: 30px 7%;">
+      <div class="col-lg-6 col-md-6 col-sm-12" style="padding: 4px 7%;"><br>
         <div class="login-register-card">
-          <h4>Welcome To Agrikaash</h4>
-          <p class="small-text" style="text-align:center;">Please Login / Register using your Email & Password to continue</p>
+          <img src="../img/logo.png" width="100px" alt=""><br>
+          <h4 style="margin: 0 auto;font-weight: bold;">Welcome To Agrikaash</h4>
+          <p class="small-text" style="margin: 0 auto;text-align:center;word-spacing: 2px;">Please Login / Register using your <br> Email & Password to continue</p>
           <br>
           <div class="login-register-card-fixed">
             <div class="form-btn">
@@ -285,13 +286,21 @@
                 <div class="login-form-feilds">
                   <input id="txtEmail_Signin" type="email" required name="" value="">
                   <div class="underline"></div>
-                  <h5>Email</h5>
+                  <h5>
+                    Email
+                  </h5>
+                  <span class="material-icons-outlined">
+                    email
+                  </span>
                 </div>
                 <div class="login-form-feilds">
                   <input id="txtPass_Signin" type="password" required name="" value="">
                   <div class="underline"></div>
                   <h5>Password</h5>
-                  <a id="btnResetPassword" class="reset-password" href="#">Reset Password</a>
+                  <span class="material-icons-outlined">
+                    lock
+                  </span>
+                  <!-- <a id="btnResetPassword" class="reset-password" href="#">Reset Password</a> -->
                 </div>
                 <br><br>
 
@@ -317,21 +326,33 @@
                   <input type="text" id="txtNameReg" required name="" value="">
                   <div class="underline"></div>
                   <h5>Name</h5>
+                  <span class="material-icons-outlined">
+                    person
+                  </span>
                 </div>
                 <div class="login-form-feilds">
                   <input type="number" id="txtPhoneReg" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required name="" value="">
                   <div class="underline"></div>
                   <h5>Phone Number</h5>
+                  <span class="material-icons-outlined">
+                    phone
+                  </span>
                 </div>
                 <div class="login-form-feilds">
                   <input type="email" id="txtEmailReg" required name="" value="">
                   <div class="underline"></div>
                   <h5>Email</h5>
+                  <span class="material-icons-outlined">
+                    email
+                  </span>
                 </div>
                 <div class="login-form-feilds">
                   <input type="password" id="txtPasswordReg" required name="" value="">
                   <div class="underline"></div>
                   <h5>Password</h5>
+                  <span class="material-icons-outlined">
+                    lock
+                  </span>
                 </div>
                 <center>
                   <button id="btnSignUp" class="mybutton button5" style="width: 120px;font-weight: bold;font-size: 1rem;height: 40px;">Register</button><br>
@@ -408,17 +429,16 @@
   <!-- Footer Section - end -->
 
   <!-- Offline - Start -->
-    <script type="text/javascript">
-      var internet_status = window.navigator.onLine;
-      if (!internet_status)
-      {
-          console.log('You are Offline');
-          var offline = document.getElementById('offline');
-          var beforeLogin = document.getElementById('beforeLogin');
-          offline.style.display = 'block';
-          beforeLogin.style.display = 'none';
-      }
-    </script>
+  <script type="text/javascript">
+    var internet_status = window.navigator.onLine;
+    if (!internet_status) {
+      console.log('You are Offline');
+      var offline = document.getElementById('offline');
+      var beforeLogin = document.getElementById('beforeLogin');
+      offline.style.display = 'block';
+      beforeLogin.style.display = 'none';
+    }
+  </script>
   <!-- Offline - End -->
 
   <!-- Jquery order should be higher from normal javascript  -->

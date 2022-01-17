@@ -328,7 +328,7 @@ function renderCoupon(change, index)
     var curFormat = { style: 'currency',
           currency: 'INR',
           minimumFractionDigits: 0,
-          maximumFractionDigits: 0 };
+          maximumFractionDigits: 2 };
 
     var options = {
       year: 'numeric',

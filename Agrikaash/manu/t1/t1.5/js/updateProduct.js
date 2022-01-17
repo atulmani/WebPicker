@@ -35,7 +35,7 @@ function GetProfileData(user) {
         userID = doc.data().uid;
         userRole = doc.data().UserRole;
         if (userRole != undefined) {
-          if (userRole.findIndex(e => e.value === "Admin") >= 0) {
+          if (userRole.findIndex(e => e.Value === "Admin") >= 0) {
             isAdmin = true;
 
           } else {

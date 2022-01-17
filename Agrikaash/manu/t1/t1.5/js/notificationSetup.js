@@ -296,7 +296,7 @@ function renderNotification(change, index)
     var curFormat = { style: 'currency',
           currency: 'INR',
           minimumFractionDigits: 0,
-          maximumFractionDigits: 0 };
+          maximumFractionDigits: 2 };
 
     var options = {
       year: 'numeric',
@@ -412,7 +412,7 @@ if(doc.Status === "Active")
   div5.setAttribute("class","offers-card-edit-delete-div");
 
     var span5 = document.createElement("span");
-    span5.setAttribute("onclick", "GetNotiicationDetails(" + "hfNotificationDocID" + index + ");");
+    span5.setAttribute("onclick", "GetNotificationDetails(" + "hfNotificationDocID" + index + ");");
     span5.setAttribute("class","material-icons-outlined");
     span5.setAttribute("style","color: green;padding-bottom: 20px;");
     span5.innerHTML = "edit";

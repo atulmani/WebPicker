@@ -29,6 +29,7 @@ auth.onAuthStateChanged(firebaseUser => {
       GetProfileData(firebaseUser);
       populateDeliveryDate();
       getOrderDetails();
+      GetCartDetails();
       //GetNotificationList();
       var siteNotification = localStorage.getItem("notificationCount");
       document.getElementById("notificationCnt").innerHTML=siteNotification;
@@ -51,7 +52,18 @@ auth.onAuthStateChanged(firebaseUser => {
   // document.getElementById('loading-img').style.display = 'none';
 });
 
-
+function GetCartDetails()
+{
+  var cartItems = [];
+    const snapshot = db.collection('CartDetails').doc(userID);
+    snapshot.get().then((doc) => {
+      if (doc.exists) {
+        cartItems = doc.data().cartDetails;
+        
+        document.getElementById("cartItemNo").innerHTML =cartItems.length
+      }
+    });
+}
 function GetProfileData(user) {
   // const ref = db.collection("Users").doc(user.uid);
 
@@ -139,7 +151,7 @@ function cancelOrder() {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
 
 
@@ -324,19 +336,15 @@ function populateDeliveryAddress(selectedOrder) {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
   amt = amt.toLocaleString('en-IN', curFormat);
 
   document.getElementById('paymentAmount').innerHTML = amt;
-  console.log(selectedOrder.discountedprize);
-  if (isNaN(selectedOrder.discountedprize))
-    console.log('if');
-  else {
-    console.log('else');
-  }
+console.log(selectedOrder.discountedprize );
+console.log(selectedOrder.totalAmount);
   //if (selectedOrder.discountedprize === 'NaN' || selectedOrder.discountedprize === "0" || selectedOrder.discountedprize === "")
-  if (isNaN(selectedOrder.discountedprize) || selectedOrder.discountedprize === '') {
+  if (isNaN(selectedOrder.discountedprize) || selectedOrder.discountedprize === '' || (selectedOrder.discountedprize === selectedOrder.totalAmount) || selectedOrder.discountedprize === 0) {
     document.getElementById('discount').style.display = "none";
     document.getElementById("hfDiscountFlag").value = "false";
   } else {
@@ -405,6 +413,13 @@ function populateOrderItems(selectedOrder) {
 }
 
 function renderOrderItem(orderItem, orderStatusValue, deliveryDate, index) {
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
+
   var div1 = document.createElement("div");
   div1.setAttribute('class', 'col-sm-12');
   div1.setAttribute('style', 'padding: 5px;');
@@ -495,11 +510,11 @@ function renderOrderItem(orderItem, orderStatusValue, deliveryDate, index) {
   div5.setAttribute('class', 'product-price');
   //console.log(orderItem.MRP);
   var h51 = document.createElement('h5');
-  h51.innerHTML = '₹' + orderItem.MRP;
+  h51.innerHTML =  Number(orderItem.MRP).toLocaleString('en-IN', curFormat);
 
   //console.log(orderItem.UnitPrise);
   var small4 = document.createElement('small');
-  small4.innerHTML = '₹' + orderItem.UnitPrise;
+  small4.innerHTML =  Number(orderItem.UnitPrise).toLocaleString('en-IN', curFormat) ;
 
   div5.appendChild(h51);
   div5.appendChild(small4);
@@ -710,7 +725,7 @@ function deleteItem(prodID, selectedItemIndex, parentdiv) {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
 
   const snapshot = db.collection('OrderDetails').doc(orderID);

@@ -2,6 +2,15 @@
 var userID = "";
 var addressList = [];
 var userType="";
+
+
+var cartItems =[];
+var cartLength = 0;
+var ArrProduct = [];
+var unitPrise = 0;
+var prise = 0;
+var totalPrize = 0;
+
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
@@ -11,7 +20,9 @@ auth.onAuthStateChanged(firebaseUser => {
       GetProfileData(firebaseUser);
       populateAddressList();
       //populateCartData();
-      getCartItemNo();
+//      getCartItemNo();
+GetCartList();
+getAllProducts();
       //GetNotificationList();
       var siteNotification = localStorage.getItem("notificationCount");
       document.getElementById("notificationCnt").innerHTML=siteNotification;
@@ -27,6 +38,80 @@ auth.onAuthStateChanged(firebaseUser => {
     //window.location.href = "../index.html";
   }
 });
+
+
+
+
+
+function GetCartList() {
+  console.log('GetCartList - Starts');
+
+  const snapshot = db.collection('CartDetails').doc(userID);
+  snapshot.get().then((doc) => {
+    if (doc.exists) {
+      cartItems = doc.data().cartDetails;
+      cartLength = cartItems.length;
+
+      console.log('Cart Length', cartLength);
+      console.log(cartItems);
+      console.log('GetCartList - Ends');
+
+      //GetProductList();
+
+    }
+  });
+}
+
+
+function getAllProducts() {
+
+  DBrows = db.collection("Products").get();
+
+  DBrows.then((changes) => {
+    changes.forEach(change => {
+      var obj = {};
+
+      obj.productID = change.id;
+      obj.productDetails = change.data();
+
+      ArrProduct.push(obj);
+    });
+
+    getCartItemNo();
+  });
+
+}
+
+
+
+function getCartItemNo() {
+  console.log('in getCartItemNo');
+  document.getElementById('itemCount').innerHTML = cartItems.length + ' Items';
+  document.getElementById('cartItemCount').innerHTML = cartItems.length;
+  prise = 0;
+  for (i = 0; i < cartItems.length; i++) {
+    var qty = cartItems[i].Quantity;
+    var selectedsubItem = cartItems[i].SelectedsubItem;
+    var weight = selectedsubItem.split('-');
+    var index = ArrProduct.findIndex(e => e.productID === cartItems[i].ProductID);
+    var selectedProduct = ArrProduct[index].productDetails;
+    if (selectedProduct.ProductDetails != undefined && selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
+      var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
+      prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
+    }
+  }
+
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
+  prise = prise.toLocaleString('en-IN', curFormat);
+
+  document.getElementById("Totalprise").innerHTML = prise;
+
+}
 
 function GetProfileData(user) {
   // const ref = db.collection("Users").doc(user.uid);
@@ -293,7 +378,7 @@ function renderAddressList(item, index) {
 
 }
 
-function getCartItemNo() {
+function getCartItemNoOld() {
   const snapshot = db.collection('CartDetails').doc(userID);
   snapshot.get().then(async (doc) => {
     if (doc.exists) {

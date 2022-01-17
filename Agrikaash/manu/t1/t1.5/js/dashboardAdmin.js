@@ -4,19 +4,19 @@ var isAdmin = false;
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
-      console.log('Logged-in user email id: ' + firebaseUser.email);
+      // console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
-      console.log(userID);
+      // console.log(userID);
       const promise = GetProfileData(firebaseUser);
       // PopulateOrderSummary();
       //   PopulateDeliverySummary();
 
     } else {
-      console.log('User has been logged out');
+      // console.log('User has been logged out');
       window.location.href = "../login/index.html";
     }
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
     //window.location.href = "../index.html";
   }
 });
@@ -30,9 +30,9 @@ function GetProfileData(user) {
         //console.log('Document ref id: ' + doc.data().uid);
         //userID = doc.data().uid;
         userRole = doc.data().UserRole;
-        console.log(userRole);
+        // console.log(userRole);
         if (userRole != undefined) {
-          if (userRole.findIndex(e => e.value === "Admin") >= 0) {
+          if (userRole.findIndex(e => e.Value === "Admin") >= 0) {
             isAdmin = true;
 
           } else {
@@ -48,7 +48,7 @@ function GetProfileData(user) {
           document.getElementById('profileName').innerHTML = doc.data().displayName;
 
 
-          console.log(isAdmin);
+          // console.log(isAdmin);
         if (isAdmin === true) {
 
           PopulateOrderSummary();
@@ -86,7 +86,7 @@ var chart1Delivery;
 
 
 function PopulateOrderSummary() {
-  console.log('in PopulateTodaysOrder');
+  // console.log('in PopulateTodaysOrder');
   var amount = 0;
 
   var options = {
@@ -99,7 +99,7 @@ function PopulateOrderSummary() {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
   amount = amount.toLocaleString('en-IN', curFormat);
   //console.log(amount);
@@ -184,7 +184,7 @@ function PopulateOrderSummary() {
   var DBrows;
   //    DBrows =
   var flag = false;
-  console.log(userID);
+  // console.log(userID);
   var statusList = ['Pending', 'Packed','On The Way', 'Delivered'];
 
   db.collection('OrderDetails')
@@ -203,11 +203,7 @@ function PopulateOrderSummary() {
         var orderDetails = change.doc.data();
 
         var orderdate = new Date(orderDetails.orderDate.seconds * 1000);
-        //console.log(orderdate.getYear(), todayDate.getYear());
-        //orderdate = oorderdate.toLocaleDateString("en-US", options);
-        //orderdate = new Date(Date.parse(orderDetails.orderDate));
-        console.log(orderdate);
-        console.log(todayDate);
+
         if (orderdate.getDate() === todayDate.getDate() && orderdate.getMonth() === todayDate.getMonth() && orderdate.getYear() === todayDate.getYear()) {
           todayCnt = todayCnt + 1;
           todayAmount = Number(todayAmount) + Number(orderDetails.totalAmount);
@@ -255,7 +251,7 @@ function PopulateOrderSummary() {
 
         ];
 
-        console.log(dateArr);
+        // console.log(dateArr);
 
         // console.log('todayCnt', todayCnt);
         arrAmt = [todayAmount,
@@ -425,7 +421,7 @@ function GetRegistrationRequest() {
 
       changes.forEach(change => {
         flag = true;
-        if(cnt < 4)
+        if(cnt < 2)
           renderRegistrationRequest(change.doc.data(), cnt);
         cnt = cnt + 1;
       });
@@ -455,7 +451,7 @@ function GetRegistrationRequest() {
 
 
 function renderRegistrationRequest(userRegistraion, index) {
-  console.log(userRegistraion, index);
+  // console.log(userRegistraion, index);
   var options = {
     year: 'numeric',
     month: 'short',
@@ -659,7 +655,7 @@ function getLastOrder() {
         style: 'currency',
         currency: 'INR',
         minimumFractionDigits: 0,
-        maximumFractionDigits: 0
+        maximumFractionDigits: 2
       };
       todayAmount = todayAmount.toLocaleString('en-IN', curFormat);
       document.getElementById('lastOrder').innerHTML = "Last Order [" + orderdate + "] : " + todayAmount;
@@ -670,7 +666,7 @@ function getLastOrder() {
 function PopulateDeliveryCard() {
   var index = 0;
   var flag = false;
-  console.log('PopulateDeliveryCard');
+  // console.log('PopulateDeliveryCard');
   var statusList = ['Pending', 'Packed','On The Way', 'Delivered'];
 
   db.collection('OrderDetails')
@@ -696,7 +692,7 @@ function PopulateDeliveryCard() {
 }
 
 function getNextDelivery() {
-  console.log("getNextDelivery");
+  // console.log("getNextDelivery");
   var deliveryDate;
   var deliveryTime;
 
@@ -718,11 +714,11 @@ function getNextDelivery() {
     .onSnapshot(snapshot => {
       let changes = snapshot.docChanges();
 
-      console.log("populatePayments: ");
+      // console.log("populatePayments: ");
 
       changes.forEach(change => {
         flag = true;
-        console.log("in first for");
+        // console.log("in first for");
         var oorderdate = new Date(change.doc.data().deliveryDate.seconds * 1000);
         deliveryDate = oorderdate.toLocaleDateString("en-US", options);
 
@@ -733,7 +729,6 @@ function getNextDelivery() {
 
       if (flag === false) {
 
-        console.log("in second for");
         var statusList = ['Pending', 'Packed','On The Way', 'Delivered'];
 
         db.collection('OrderDetails')
@@ -744,10 +739,8 @@ function getNextDelivery() {
           .onSnapshot(snapshot1 => {
             let changes1 = snapshot1.docChanges();
 
-            console.log("populatePayments: ");
-
             changes1.forEach(change1 => {
-              console.log("in for");
+
               var oorderdate = new Date(change1.doc.data().deliveryDate.seconds * 1000);
               deliveryDate = oorderdate.toLocaleDateString("en-US", options);
 
@@ -767,7 +760,7 @@ function renderDeliveryOrder(order, index, orderid) {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
 
   var options = {
@@ -887,7 +880,7 @@ function renderDeliveryOrder(order, index, orderid) {
 
 
 function PopulateDeliverySummary() {
-  console.log('in PopulateDeliverySummary');
+
   var todayDate = new Date();
 
   var dayM1 = new Date();
@@ -964,9 +957,6 @@ function PopulateDeliverySummary() {
   var dayP6Amt = 0;
   var dayP7Amt = 0;
 
-
-
-  //console.log(dateArrDelivery);
   var deliverydate = new Date();
 
   //    DBrows =
@@ -979,11 +969,8 @@ function PopulateDeliverySummary() {
     .onSnapshot(snapshot => {
       let changes = snapshot.docChanges();
 
-      console.log("populatePayments: ");
-
       changes.forEach(change => {
 
-        console.log('in loop');
         var orderDetails = change.doc.data();
 
         deliverydate = new Date(orderDetails.deliveryDate.seconds * 1000);
@@ -1075,8 +1062,6 @@ function PopulateDeliverySummary() {
           dayM7
         ];
 
-      console.log(arrAmtDelivery);
-      console.log(dateArrDelivery);
       deliveryChart(arrAmtDelivery, dateArrDelivery);
     });
 
@@ -1160,7 +1145,7 @@ function deliveryChart(arrAmt, dateArr) {
 
 
 function changeGraphType1(type) {
-  console.log(type);
+  // console.log(type);
   var chartType = document.getElementById('chartContainer1');
 
   if (type === 2)
@@ -1169,11 +1154,11 @@ function changeGraphType1(type) {
     chart2.options.data[0].type = 'line';
 
 
-  console.log(chart2.options.data[0].type);
+  // console.log(chart2.options.data[0].type);
   chart2.render();
 }
 function changeGraphType(type) {
-  console.log(type);
+  // console.log(type);
   var chartType = document.getElementById('chartContainer');
 
   if (type === 2)
@@ -1182,7 +1167,7 @@ function changeGraphType(type) {
     chart1.options.data[0].type = 'line';
 
 
-  console.log(chart1.options.data[0].type);
+  // console.log(chart1.options.data[0].type);
   chart1.render();
 }
 

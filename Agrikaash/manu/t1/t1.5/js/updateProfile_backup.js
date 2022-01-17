@@ -113,24 +113,24 @@ function SaveDetails() {
   var uType0 = document.getElementById("userType0");
   if (uType0 != undefined && uType0.checked) {
     userType.push({
-      text: 'Admin',
-      value: 'Admin'
+      Text: 'Admin',
+      Value: 'Admin'
     });
   }
 
   var uType1 = document.getElementById("userType1");
   if (uType1.checked) {
     userType.push({
-      text: 'Retailer/Customer',
-      value: 'Customer'
+      Text: 'Retailer/Customer',
+      Value: 'Customer'
     });
   }
 
   var uType2 = document.getElementById("userType2");
   if (uType2.checked) {
     userType.push({
-      text: 'Vendor/Farmers',
-      value: 'Vendor'
+      Text: 'Vendor/Farmers',
+      Value: 'Vendor'
     });
   }
 

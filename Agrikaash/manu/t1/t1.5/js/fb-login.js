@@ -1,19 +1,19 @@
-
 var userRole = [];
+var loggedinUser;
 
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
+      loggedinUser = firebaseUser;
       console.log('Logged-in user email id: ' + firebaseUser.email);
       // userID = firebaseUser.uid;
-      GetUserRole(firebaseUser);
-
-
+      // GetUserRole(firebaseUser);
     } else {
+      loggedinUser = null;
       console.log('User has been logged out');
-      document.getElementById('btnContinue').style.opacity = '1';
-      document.getElementById('btnContinue').style.pointerEvents = 'all';
     }
+    document.getElementById('btnContinue').style.opacity = '1';
+    document.getElementById('btnContinue').style.pointerEvents = 'all';
   } catch (error) {
     console.log(error.message);
     //window.location.href = "../index.html";
@@ -31,17 +31,14 @@ var btnLoader = document.getElementsByClassName('btnLoader');
 //Add Sign-in / Login addEventListener
 btnSignin.addEventListener('click', e => {
 
-  console.log(btnTextWithLoader);
+  // console.log("Sign-In");
 
   btnTextWithLoader[0].style.display = 'none';
   btnLoader[0].style.display = 'block';
 
   //Get email & pass
-  console.log("in click");
   const email = document.getElementById('txtEmail_Signin');
   const pass = document.getElementById('txtPass_Signin');
-  console.log('btnSignin Clicked');
-
 
   //Sign in with user registered email id & pass with session based in single browser
   //User will sign-out as soon as user will close to browser window or move to new browser table2
@@ -51,29 +48,29 @@ btnSignin.addEventListener('click', e => {
       const promise = auth.signInWithEmailAndPassword(email.value, pass.value);
       promise.then(function(firebaseUser) {
           // Success
-          console.log("Logged in User: ", auth.currentUser.uid);
+          // console.log("Logged in User: ", auth.currentUser.uid);
           GetUserRole(auth.currentUser);
+          //checkUserRole();
 
           // btnTextWithLoader[0].style.display = 'block';
           // btnLoader[0].style.display = 'none';
-          //checkUserRole();
         })
         .catch(function(error) {
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
           if (errorCode === 'auth/wrong-password') {
-            console.log('Wrong password.');
+            // console.log('Wrong password.');
             document.getElementById('errorMessage_Login').innerHTML = errorMessage;
             document.getElementById('errorMessage_Login').style.display = 'block';
           } else {
-            console.log(errorMessage);
+            // console.log(errorMessage);
             document.getElementById('errorMessage_Login').innerHTML = 'The email id is not registered.';
             document.getElementById('errorMessage_Login').style.display = 'block';
           }
           btnTextWithLoader[0].style.display = 'block';
           btnLoader[0].style.display = 'none';
-          console.log(error);
+          // console.log(error);
         });
 
   //  });
@@ -86,13 +83,13 @@ btnSignin.addEventListener('click', e => {
 btnSignup.addEventListener('click', e => {
   //Get email & pass
   e.preventDefault();
-  console.log("in click");
+  // console.log("Sign-up");
   const email = document.getElementById('txtEmailReg');
   const pass = document.getElementById('txtPasswordReg');
   const name = document.getElementById('txtNameReg');
   const phone = document.getElementById('txtPhoneReg');
 
-  console.log('btnSignUp Clicked');
+  // console.log('btnSignUp Clicked');
 
   //Sign in with user registered email id & pass with session based in single browser
   //User will sign-out as soon as user will close to browser window or move to new browser table2
@@ -102,7 +99,7 @@ btnSignup.addEventListener('click', e => {
   const promise = auth.createUserWithEmailAndPassword(email.value, pass.value);
   promise.then(function(firebaseUser) {
       // Success
-      console.log("Logged in User");
+      // console.log("Logged in User");
       auth.currentUser.updateProfile({
         displayName: name.value,
         // phoneNumber: txtPhoneNo.value,
@@ -124,7 +121,7 @@ btnSignup.addEventListener('click', e => {
       var errorCode = error.code;
       var errorMessage = error.message;
       if (errorCode === 'auth/wrong-password') {
-        console.log('Wrong password.');
+        // console.log('Wrong password.');
         document.getElementById('errorMessage_Registration').innerHTML = errorMessage + ' Please use password eye to cross check the password you enter.';
         document.getElementById('errorMessage_Registration').style.display = 'block';
       } else {
@@ -141,7 +138,7 @@ btnSignup.addEventListener('click', e => {
 
 //Save users data into Users DB Collection
 function setUsersProfileData(user) {
-  console.log("in function 1");
+  // console.log("Set User Profile Data");
   db.collection('UserRequest')
     .doc(user.uid)
     .set({
@@ -161,7 +158,7 @@ function setUsersProfileData(user) {
     })
     .then(() => {
       // updated
-      console.log('Data saved successfully');
+      // console.log('Data saved successfully');
       window.location.href = "Registration.html";
     })
     .catch((error) => {
@@ -175,35 +172,51 @@ function setUsersProfileData(user) {
 
 function GetUserRole(user) {
   // const ref = db.collection("Users").doc(user.uid);
-  // console.log(user.uid);
-  console.log('in doc');
+   console.log(user.uid);
+   console.log("GetUserRole");
   try
   {
-
-  const snapshot = db.collection('UserList').doc(user.uid);
-  //const snapshot = db.collection('UserList').doc('M71Jn4QTuAg7pd2fWsVhQAHPJym2');
+   const snapshot = db.collection('UserList').doc(user.uid);
+  //const snapshot = db.collection('UserList').doc('dZjKE4Lcrifp6vg7k01AnnVFSmH2');
   snapshot.get().then(async (doc) => {
+      console.log('before if');
+      console.log(doc);
       if (doc.exists) {
+        console.log(' if doc exists');
         userID = doc.uid;
         userRole = doc.data().UserRole;
+         console.log("User Role: ", userRole);
+        checkUserRole();
+        document.getElementById('btnContinue').style.opacity = '1';
+        document.getElementById('btnContinue').style.pointerEvents = 'all';
       }
-      console.log('in doc');
-      checkUserRole();
-      document.getElementById('btnContinue').style.opacity = '1';
-      document.getElementById('btnContinue').style.pointerEvents = 'all';
+      else
+      {
+        console.log('in else');
+        const snapshot1 = db.collection('UserRequest').doc(user.uid);
+        snapshot1.get().then(async (doc1) => {
+            if (doc1.exists) {
+                // console.log("in user request");
+                userRole = doc1.data().UserRole;
+                window.location.href = "Registration.html";
+            }
+          });
+
+      }
+
     })
     .catch(function(error) {
       btnTextWithLoader[0].style.display = 'block';
       btnLoader[0].style.display = 'none';
-      // console.log('in catch');
+       console.log('in catch');
       console.log(error.message);
     });
   }
-  catch(err) {
+  catch(error) {
     btnTextWithLoader[0].style.display = 'block';
     btnLoader[0].style.display = 'none';
-    // console.log('in catch');
-    // console.log(error.message);
+     console.log('in error');
+    console.log(error.message);
   };
 };
 
@@ -211,9 +224,11 @@ function GetUserRole(user) {
 var btnContinue = document.getElementById('btnContinue');
 
 function checkUserRole() {
-  console.log(userRole.findIndex(e => e.value === 'Admin'));
+
+  // console.log(userRole.findIndex(e => e.Value === 'Admin'));
 
   if (userRole === undefined || userRole.length === 0) {
+    // console.log('in if check');
     // window.location.href = "../login/Registration.html";
     //document.getElementById('errorMessage_Login').innerHTML = 'You do not have access to Application. <a href=Registration.html>Please register</a> or reach out to Agrikaash Team for Access';
     document.getElementById('errorMessage_Login').style.display = 'block';
@@ -221,17 +236,22 @@ function checkUserRole() {
     document.getElementById('login').style.display = 'block';
     document.getElementById('beforeLogin').style.display = 'none';
     // document.getElementById('register').style.display = 'block';
-  } else if (userRole.findIndex(e => e.value === 'Admin') >= 0) {
-    // console.log('is admin');
+  } else if (userRole.findIndex(e => e.Value === 'Admin') >= 0) {
+     // console.log('is admin');
     window.location.href = "../admin/dashboard.html";
   } else {
-    // console.log('is partner');
+     // console.log('is partner');
     window.location.href = "../partner/dashboard.html";
   }
 }
 
 btnContinue.addEventListener('click', e => {
   e.preventDefault();
+  if (loggedinUser)
+  {
+    document.getElementById('login').style.display = 'none';
+    GetUserRole(loggedinUser);
+  }
   checkUserRole();
 });
 

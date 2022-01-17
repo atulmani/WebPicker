@@ -9,7 +9,7 @@ auth.onAuthStateChanged(firebaseUser => {
       userID = firebaseUser.uid;
       GetProfileData(firebaseUser);
       GetNotificationList();
-
+      GetCartDetails();
     } else {
       console.log('User has been logged out');
       window.location.href = "../login/index.html";
@@ -19,7 +19,18 @@ auth.onAuthStateChanged(firebaseUser => {
     //window.location.href = "../index.html";
   }
 });
+function GetCartDetails()
+{
+  var cartItems = [];
+    const snapshot = db.collection('CartDetails').doc(userID);
+    snapshot.get().then((doc) => {
+      if (doc.exists) {
+        cartItems = doc.data().cartDetails;
 
+        document.getElementById("cartItemNo").innerHTML =cartItems.length
+      }
+    });
+}
 function GetProfileData(user) {
   // const ref = db.collection("Users").doc(user.uid);
 
@@ -112,14 +123,28 @@ function GetNotificationDetails(notificationID) {
 function GetNotificationList() {
   var ddl = document.getElementById("userList");
   var index = 0;
+  var NotificationCnt = 0;
   var flag = false;
+  var flag2 = false;
   var today = new Date();
+  var userNotification = [];
+  const DBrows1 = db.collection('UserNotification')
+    .doc(userID);
+
+  const snapshot1 = db.collection('UserNotification').doc(userID);
+
+  snapshot1.get().then((doc1) => {
+    console.log('check');
+    if (doc1.exists) {
+      userNotification = doc1.data().Notifications;
+    }
+
 
   document.getElementById("divNotificationList").innerHTML = "";
   const DBrows = db.collection('Notification')
     .where("Status", '==', 'Active')
     .where('ValidityTill', ">=", today)
-    //.orderBy('CreatedTimestamp', 'desc');
+  //.orderBy('CreatedTimestamp', 'desc');
 
   DBrows.onSnapshot((snapshot) => {
     let changes = snapshot.docChanges();
@@ -140,27 +165,38 @@ function GetNotificationList() {
         flag = true;
       else if (userTypeDB.indexOf(userType) >= 0)
         flag = true;
+
+      if (userNotification.indexOf(change.doc.id) >= 0)
+        flag2 = true;
+
       if (flag === true) {
-        renderNotification(change, index);
-        index = index + 1;
+        renderNotification(change, index, flag2);
+          index = index + 1;
+          if(flag2 === false)
+          {
+            NotificationCnt = NotificationCnt +1;
+          }
       }
+
+      flag = false;
+      flag2 = false;
+
     });
+    document.getElementById("notificationCnt").innerHTML = NotificationCnt;
+    localStorage.setItem("notificationCount", NotificationCnt);
 
-    if(flag === true)
-    {
-      document.getElementById("notificationCnt").innerHTML=index;
-      document.getElementById("noNotificationDiv").style.display="none";
-      localStorage.setItem("notificationCount", index);
+    if (index > 0 ) {
+      document.getElementById("noNotificationDiv").style.display = "none";
 
-    }
-    else {
-      document.getElementById("messageDiv").style.display="none";
+    } else {
+      document.getElementById("messageDiv").style.display = "none";
     }
 
   });
+  });
 }
 
-function renderNotification(change, index) {
+function renderNotification(change, index, flagread) {
   var doc = change.doc.data();
   console.log(doc);
 
@@ -168,7 +204,7 @@ function renderNotification(change, index) {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
 
   var options = {
@@ -200,7 +236,7 @@ function renderNotification(change, index) {
   hf.setAttribute("id", "hfNotificationDocID" + index);
   hf.setAttribute("value", change.doc.id);
   div3.appendChild(hf);
-
+  console.log(hf);
   var img1 = document.createElement("img");
   img1.setAttribute("style", "width: 80px;height: 80px;");
   img1.setAttribute("alt", "");
@@ -218,11 +254,16 @@ function renderNotification(change, index) {
   div4.setAttribute("class", "offers-card-details");
 
   var anchor1 = document.createElement("div");
-  //anchor1.setAttribute("onclick","ChangeActive1();");
-  if (doc.Status === "Active")
-    anchor1.setAttribute("onclick", "ChangeActive1(" + "hfNotificationDocID" + index + "," + index + ",true);");
+  // if (doc.Status === "Active")
+  //   anchor1.setAttribute("onclick", "ViewNotification(" + "hfNotificationDocID" + index + "," + index + ",true);");
+  // else
+  //   anchor1.setAttribute("onclick", "ViewNotification(" + "hfNotificationDocID" + index + "," + index + ",false);");
+
+  if (flagread === true)
+    anchor1.setAttribute("onclick", "ViewNotification(" + "hfNotificationDocID" + index + "," + index + ",true);");
   else
-    anchor1.setAttribute("onclick", "ChangeActive1(" + "hfNotificationDocID" + index + "," + index + ",false);");
+    anchor1.setAttribute("onclick", "ViewNotification(" + "hfNotificationDocID" + index + "," + index + ",false);");
+
 
   var span1 = document.createElement("span");
   if (doc.Status === "Active" && ValidityTill >= today) {
@@ -233,17 +274,18 @@ function renderNotification(change, index) {
 
   var span2 = document.createElement("span");
   span2.setAttribute("class", "material-icons-outlined");
-  if (doc.Status === "Active" && ValidityTill >= today) {
+  //if (doc.Status === "Active" && ValidityTill >= today) {
+  if (flagread === true) {
     span2.setAttribute("style", "color: green;position: relative; top: 1.1px;");
-    span2.innerHTML = "check";
+    span2.innerHTML = "mark_email_read";
     span1.appendChild(span2);
-    span1.innerHTML = span1.innerHTML + "ACTIVE";
+    span1.innerHTML = span1.innerHTML + "READ";
   } else {
     span2.setAttribute("style", "color: #ff5757;position: relative; top: 1.1px;");
-    span2.innerHTML = "close";
+    span2.innerHTML = "mark_email_unread";
     span1.appendChild(span2);
 
-    span1.innerHTML = span1.innerHTML + "INACTIVE";
+    span1.innerHTML = span1.innerHTML + "New Notifiation";
   }
   anchor1.appendChild(span1);
   div4.appendChild(anchor1);
@@ -279,7 +321,7 @@ function renderNotification(change, index) {
   span5.setAttribute("class", "material-icons-outlined");
   span5.setAttribute("style", "color: green;padding-bottom: 20px;");
   span5.innerHTML = "edit";
-//  div5.appendChild(span5);
+  //  div5.appendChild(span5);
 
   var span6 = document.createElement("span");
   span6.setAttribute("class", "material-icons-outlined");
@@ -293,4 +335,49 @@ function renderNotification(change, index) {
   div1.appendChild(div2);
 
   document.getElementById("divNotificationList").appendChild(div1);
+}
+
+function ViewNotification(hfNotificationDocID) {
+  var notificationList = [];
+  var flag = true;
+  console.log(hfNotificationDocID);
+
+
+  const snapshot = db.collection('UserNotification').doc(userID);
+  snapshot.get().then(async (doc) => {
+    if (doc.exists) {
+      notificationList = doc.data().Notifications;
+    }
+    console.log(notificationList);
+    if (notificationList != undefined) {
+      console.log(notificationList.length);
+      for (index = 0; index < notificationList.length; index++) {
+        if (notificationList[index] === hfNotificationDocID.value) {
+          flag = false;
+          console.log(index);
+          notificationList.splice(index, 1);
+        }
+      }
+    } else {
+      notificationList = [];
+    }
+    if (flag === true) {
+      notificationList.push(hfNotificationDocID.value);
+    }
+    console.log(notificationList);
+    db.collection('UserNotification').doc(userID).set({
+        Notifications: notificationList
+      })
+      .then(function(docRef) {
+        console.log("Data added sucessfully in the document: ");
+        GetNotificationList();
+
+        //showAddress(false);
+        // console.log(Date.parse(eventstart))
+      })
+      .catch(function(error) {
+        //  console.error("error adding document:", error.message);
+      });
+
+  });
 }

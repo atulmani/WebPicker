@@ -113,9 +113,6 @@ function UpdateCartItem() {
       //console.log(item[0]);
       cartItemNo.innerHTML = item;
 
-      // <h5 id="totalAmount">₹ </h5>
-      // <small id="itemCount">Items</small>
-
     }
   });
 }

@@ -136,7 +136,7 @@ function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
   amt = amt.toLocaleString('en-IN', curFormat);
   document.getElementById('paymentAmount').innerHTML = amt;
@@ -265,6 +265,12 @@ function populateOrderItems(selectedOrder) {
 
 function renderOrderItem(orderItem, index, orderStatusValue) {
   console.log(orderItem);
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
   var div1 = document.createElement("div");
   div1.setAttribute('class', 'col-sm-12');
   div1.setAttribute('style', 'padding: 5px;');
@@ -344,12 +350,12 @@ function renderOrderItem(orderItem, index, orderStatusValue) {
   div5.setAttribute('class', 'product-price');
   //console.log(orderItem.MRP);
   var h51 = document.createElement('h5');
-  h51.innerHTML = '₹' + orderItem.MRP;
+  h51.innerHTML =  Number(orderItem.MRP).toLocaleString('en-IN', curFormat);
   div5.appendChild(h51);
 
   //console.log(orderItem.UnitPrise);
   var small4 = document.createElement('small');
-  small4.innerHTML = '₹' + orderItem.UnitPrise;
+  small4.innerHTML = Number(orderItem.UnitPrise).toLocaleString('en-IN', curFormat);
   div5.appendChild(small4);
   td2.appendChild(div5);
 
@@ -423,7 +429,7 @@ function SaveOrder() {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
 
   document.getElementById("Message").text = "";
@@ -720,7 +726,7 @@ function deleteItem(prodID, selectedItemIndex) {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
 
   var cancelFlag = false;

@@ -64,6 +64,18 @@ function GetNotificationList() {
   var index = 0;
   var flag = false;
   var today = new Date();
+  var userNotification = [];
+  const DBrows1 = db.collection('UserNotification')
+    .doc(userID);
+
+    const snapshot1 = db.collection('UserNotification').doc(userID);
+
+    snapshot1.get().then(async (doc1) => {
+      console.log('check');
+      if (doc1.exists) {
+        userNotification  = doc1.data().Notifications;
+      }
+    });
 
   const DBrows = db.collection('Notification')
     .where("Status", '==', 'Active')
@@ -89,6 +101,9 @@ function GetNotificationList() {
         flag = true;
       else if (userTypeDB.indexOf(userType) >= 0)
         flag = true;
+
+      if(userNotification.indexOf(change.doc.id) >= 0  )
+          flag = false;
       if (flag === true) {
         index = index + 1;
       }
@@ -100,6 +115,10 @@ function GetNotificationList() {
       document.getElementById("notificationCnt1").innerHTML=index;
 
       localStorage.setItem("notificationCount", index);
+
+    }
+    else {
+      localStorage.setItem("notificationCount", 0);
 
     }
 
@@ -140,7 +159,7 @@ function PopulateOrderSummary() {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 2
   };
   amount = amount.toLocaleString('en-IN', curFormat);
   //console.log(amount);
@@ -296,7 +315,6 @@ function PopulateOrderSummary() {
 
         ];
 
-        console.log(dateArr);
 
         // console.log('todayCnt', todayCnt);
         arrAmt = [todayAmount,
@@ -384,7 +402,7 @@ function getLastOrder()
       var curFormat = { style: 'currency',
             currency: 'INR',
             minimumFractionDigits: 0,
-            maximumFractionDigits: 0 };
+            maximumFractionDigits: 2 };
       todayAmount = todayAmount.toLocaleString('en-IN', curFormat);
       document.getElementById('lastOrder').innerHTML = "Last Order ["+ orderdate +"] : "+todayAmount;
     });
@@ -493,7 +511,7 @@ function renderDeliveryOrder(order, index, orderid)
   var curFormat = { style: 'currency',
         currency: 'INR',
         minimumFractionDigits: 0,
-        maximumFractionDigits: 0 };
+        maximumFractionDigits: 2 };
 
   var options = {
     year: 'numeric',
@@ -570,14 +588,14 @@ function renderDeliveryOrder(order, index, orderid)
     var discamt  = order.discountedprize;
     var totalamt  = order.totalAmount;
     var displayAmt ;
-    if(discamt === undefined || discamt === null || discamt === "")
+    if(discamt === undefined || discamt === null || discamt === "" || discamt === 'NaN' || discamt === 0)
     {
       displayAmt = totalamt;
     }
     else {
       displayAmt = discamt;
     }
-    displayAmt = displayAmt.toLocaleString('en-IN', curFormat);
+    displayAmt = Number(displayAmt).toLocaleString('en-IN', curFormat);
     small1.innerHTML="Items : " + order.totalItems + " - " + displayAmt;
 
     div4.appendChild(small1);
@@ -719,13 +737,14 @@ function PopulateDeliverySummary() {
     .where("deliveryDate", "<=", dayP7)
     .where("deliveryDate", ">=", dayM7)
     .onSnapshot(snapshot => {
+
+
       let changes = snapshot.docChanges();
 
       console.log("populatePayments: ");
 
       changes.forEach(change => {
 
-        console.log('in loop');
         var orderDetails = change.doc.data();
 
         deliverydate = new Date(orderDetails.deliveryDate.seconds * 1000);
@@ -817,8 +836,6 @@ function PopulateDeliverySummary() {
           dayM7
         ];
 
-      console.log(arrAmtDelivery);
-      console.log(dateArrDelivery);
       deliveryChart(arrAmtDelivery, dateArrDelivery);
     });
 
@@ -827,7 +844,6 @@ function PopulateDeliverySummary() {
 }
 
 function changeGraphType(type) {
-  console.log(type);
   var chartType = document.getElementById('chartContainer');
 
   if (type === 2)
@@ -836,13 +852,11 @@ function changeGraphType(type) {
     chart1.options.data[0].type = 'line';
 
 
-  console.log(chart1.options.data[0].type);
   chart1.render();
 }
 
 
 function changeGraphType1(type) {
-  console.log(type);
   var chartType = document.getElementById('chartContainer1');
 
   if (type === 2)
@@ -851,14 +865,11 @@ function changeGraphType1(type) {
     chart2.options.data[0].type = 'line';
 
 
-  console.log(chart2.options.data[0].type);
   chart2.render();
 }
 
 
 function orderChart(arrAmt, dateArr) {
-console.log(arrAmt);
-console.log(dateArr);
   // window.onload = function() {
   var min = arrAmt[0];
   var max = arrAmt[0];
