@@ -1164,7 +1164,7 @@ function renderOrder(orderid, order, index)
       var discount = order.discountDetails.coupondID;
 
     var small4 = document.createElement("small");
-    if(order.discountDetails.coupondID === "none"){
+    if(order.discountDetails.coupondID === "none" || order.discountDetails.discountValue === "none"){
       small4.innerHTML="No Discount";
     }
     else {
