@@ -148,15 +148,23 @@ function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
     console.log('else');
   }
   //if (selectedOrder.discountedprize === 'NaN' || selectedOrder.discountedprize === "0" || selectedOrder.discountedprize === "")
-  if (isNaN(selectedOrder.discountedprize) || selectedOrder.discountedprize === '') {
+  if (isNaN(selectedOrder.discountedprize) || selectedOrder.discountedprize === '' || selectedOrder.discountedprize === '0' || selectedOrder.discountedprize === 0) {
     document.getElementById('discount').style.display = "none";
+
+      document.getElementById('amountDisplay').innerHTML = amt;
+      document.getElementById('inDiscountValue').value = '0';
+      document.getElementById('hfDiscountValue').value = '0';
+
   } else {
     var discountAmt = selectedOrder.discountedprize;
     discountAmt = discountAmt.toLocaleString('en-IN', curFormat);
     console.log(discountAmt);
     var discountValue = Number(selectedOrder.totalAmount) - Number(selectedOrder.discountedprize);
     console.log(discountValue);
+    document.getElementById('inDiscountValue').value = discountValue;
+    document.getElementById('hfDiscountValue').value = discountValue;
     discountValue = discountValue.toLocaleString('en-IN', curFormat);
+    document.getElementById('amountDisplay').innerHTML = selectedOrder.totalAmount;
 
     document.getElementById('discountAmount').innerHTML = discountAmt + "(" + selectedOrder.discountDetails.discountValue + " Off)";
     document.getElementById('discountValue').innerHTML = discountValue;
@@ -264,7 +272,7 @@ function populateOrderItems(selectedOrder) {
 }
 
 function renderOrderItem(orderItem, index, orderStatusValue) {
-  console.log(orderItem);
+  //console.log(orderItem);
   var curFormat = {
     style: 'currency',
     currency: 'INR',
@@ -401,7 +409,7 @@ function renderOrderItem(orderItem, index, orderStatusValue) {
   if (orderStatusValue === 'Pending') {
     var span2 = document.createElement('span');
     span2.setAttribute("id", "btnDelete" + index);
-    console.log("deleteCoupon(" + "hfCouponDocID " + index + ");");
+    //console.log("deleteCoupon(" + "hfCouponDocID " + index + ");");
     span2.setAttribute("onclick", "deleteItem(" + "hfProdID" + index + "," + "selectedItem" + index + ");");
     span2.setAttribute("class", "material-icons");
     span2.setAttribute("style", "cursor:pointer;padding: 0 20px 0 5px;");
@@ -437,6 +445,8 @@ function SaveOrder() {
   var odeliveryDate = document.getElementById("odeliveryDate");
   var oOrderStatus = document.getElementById("oOrderStatus");
   var oPaymentStatus = document.getElementById("oPaymentStatus");
+  var hfDiscountValue = document.getElementById("hfDiscountValue");
+  var inDiscountValue = document.getElementById("inDiscountValue");
   //console.log(odeliveryTime);
   var deliveryTime = odeliveryTime.options[odeliveryTime.selectedIndex].value;
   var deliveryDate = odeliveryDate.options[odeliveryDate.selectedIndex].value;
@@ -447,15 +457,17 @@ function SaveOrder() {
   var paymentStatusChanges = '';
   var deliveryDateChanges = '';
   var deliverySlotChanges = '';
-
+  var discountChange = '';
   var oldDeliveryTime = '';
   var oldDeliveryDate = '';
   var oldOrderStatus = '';
   var oldPaymentStatus = '';
+
   var orderChanges = [];
   var blupdatedFlag = true;
   var blTrackChanges = false;
-
+  var oldDiscountPrize = 0;
+  var oldDiscount = {};
   const snapshot = db.collection('OrderDetails').doc(orderID);
   snapshot.get().then(async (doc) => {
     if (doc.exists) {
@@ -464,7 +476,8 @@ function SaveOrder() {
       oldDeliveryTime = selectedOrder.deliveryTime;
       oldOrderStatus = selectedOrder.orderStatus;
       oldPaymentStatus = selectedOrder.paymentStatus;
-
+      oldDiscount = selectedOrder.discountDetails;
+      oldDiscountPrize = selectedOrder.discountedprize;
       var options = {
         year: 'numeric',
         month: 'short',
@@ -473,6 +486,23 @@ function SaveOrder() {
       var dDate = new Date(selectedOrder.deliveryDate.seconds * 1000);
       oldDeliveryDate = dDate.getDate() + "/" + (dDate.getMonth() + 1) + "/" + dDate.getFullYear();
 
+      if(hfDiscountValue.value != inDiscountValue.value )
+      {
+        discountChange = 'Discount value changed from ' +hfDiscountValue.value + " to " +inDiscountValue.value;
+        oldDiscountPrize = Number(document.getElementById("amountDisplay").value) - Number(inDiscountValue.value);
+        oldDiscount.coupondID = "Manual Discount";
+        oldDiscount.discountValue = '₹' + inDiscountValue.value;
+        if (oldPaymentStatus === "Completed")
+        {
+          var walletAmt
+          if(Number(hfDiscountValue.value) > Number(inDiscountValue.value))
+              walletAmt =Number(hfDiscountValue.value) - Number(inDiscountValue.value);
+            else {
+              walletAmt =Number(inDiscountValue.value) - Number(hfDiscountValue.value);
+            }
+            updateWalletDetails(userid_order,walletAmt , 'add');
+        }
+      }
       if (oldOrderStatus != orderStatus) {
         blTrackChanges = true;
         //1- Order Placed, 2 - Pending, 3 - Packed, 4 - On the Way, 5 - Delivered,
@@ -518,6 +548,7 @@ function SaveOrder() {
         PaymentStatus: paymentStatusChanges,
         DeliverySlot: deliverySlotChanges,
         DeliveryDate: deliveryDateChanges,
+        DiscountChange : discountChange,
         ChangedTimeStamp: new Date()
       });
       console.log(doc.id);
@@ -554,6 +585,8 @@ function SaveOrder() {
             deliveryTime: deliveryTime,
             paymentStatus: paymentStatus,
             orderStatus: orderStatus,
+            discountDetails : oldDiscount,
+            discountedprize : oldDiscountPrize,
             UpdatedBy: auth.currentUser.email,
             UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
 
