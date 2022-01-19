@@ -264,7 +264,7 @@ function renderOrderSummary(ordSummary, index) {
     div5.setAttribute("class","");
 
     var anchor = document.createElement("a");
-    anchor.setAttribute("href", "paymentDetail.html?orderDate=" + ordSummary.orderDate);
+    anchor.setAttribute("href", "paymentDetail.html?orderDate=" + ordSummary.orderDate+"&PaymentStatus="+ordSummary.paymentStatus);
 
     var button1 = document.createElement("button");
     button1.setAttribute("class", "mybutton buttonTransparent");
