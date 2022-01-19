@@ -500,6 +500,7 @@ function SaveOrder() {
         oldDiscount.discountValue = '₹' + inDiscountValue.value;
         console.log(Number(hfDiscountValue.value));
         console.log(Number(inDiscountValue.value));
+        orderStage = 7;
         if (oldPaymentStatus === "Completed")
         {
           var walletAmt
@@ -508,6 +509,7 @@ function SaveOrder() {
             else {
               walletAmt =Number(inDiscountValue.value) - Number(hfDiscountValue.value);
             }
+
             updateWalletDetails(userid_order,walletAmt , 'add');
         }
       }
@@ -602,6 +604,7 @@ function SaveOrder() {
           })
           .then(function(docRef) {
             console.log("Data added sucessfully in the document: " + userid_order);
+            getOrderDetails();
             //    window.location.href = "orderStatus.html"
             // console.log(Date.parse(eventstart))
           })
@@ -612,6 +615,7 @@ function SaveOrder() {
       }
     }
   });
+
 }
 
 function UpdateOrderTrackingDetails(orderChanges, orderID) {
@@ -634,7 +638,7 @@ function UpdateOrderTrackingDetails(orderChanges, orderID) {
     //console.log(trackData[i].OrderStage);
     console.log(orderChanges[0].OrderStage);
     for (i = 0; i < trackData.length; i++) {
-      if (trackData[i].OrderStage < orderChanges[0].OrderStage)
+      if (trackData[i].OrderStage < orderChanges[0].OrderStage || trackData[i].OrderStage === 7) //discount details to be saved
         trackdataForUpdate.push(trackData[i]);
 
     }
