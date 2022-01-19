@@ -488,8 +488,12 @@ function SaveOrder() {
 
       if(hfDiscountValue.value != inDiscountValue.value )
       {
+        var amountDislay = document.getElementById("amountDisplay").innerHTML;
+        amountDislay = amountDislay.replace("₹", "");
+        console.log(document.getElementById("amountDisplay").innerHTML);
+        console.log(inDiscountValue.value);
         discountChange = 'Discount value changed from ' +hfDiscountValue.value + " to " +inDiscountValue.value;
-        oldDiscountPrize = Number(document.getElementById("amountDisplay").value) - Number(inDiscountValue.value);
+        oldDiscountPrize = Number(amountDislay) - Number(inDiscountValue.value);
         oldDiscount.coupondID = "Manual Discount";
         oldDiscount.discountValue = '₹' + inDiscountValue.value;
         if (oldPaymentStatus === "Completed")
@@ -503,6 +507,7 @@ function SaveOrder() {
             updateWalletDetails(userid_order,walletAmt , 'add');
         }
       }
+      console.log(discountChange);
       if (oldOrderStatus != orderStatus) {
         blTrackChanges = true;
         //1- Order Placed, 2 - Pending, 3 - Packed, 4 - On the Way, 5 - Delivered,
