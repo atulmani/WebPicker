@@ -1816,6 +1816,14 @@ input[type=number] {
   transition: 0.5s;
 }
 
+.payments-menu-list-hr{
+  border: none;
+  border-bottom: 4px solid #88CA5E;
+  margin: 0;
+  width: 50%;
+  transition: 0.5s;
+}
+
 .order-filter-div{
   position: fixed;
   top: 0;
@@ -1872,6 +1880,20 @@ input[type=number] {
 }
 
 /* order status page - end */
+
+/* payment - start */
+
+.payment-details-div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+/* payment - end */
+
+
 
 /* order summary page - start */
 
