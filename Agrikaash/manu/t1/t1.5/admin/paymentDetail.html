@@ -352,6 +352,17 @@
     </div>
     <!-- side navbar - end -->
     <div class="col-lg-10 col-md-10 col-sm-12">
+      <div class="order-menu-list">
+        <div class="" onclick="GetOrder('Pending');">
+          <h5>Pending</h5>
+        </div>
+        <div class="" onclick="GetOrder('Completed');">
+          <h5>Recieved</h5>
+        </div>
+      </div>
+      <hr class="payments-menu-list-hr" id="orderMenuListHr" />
+
+
       <!-- <div class="order-menu-list">
         <div class="" onclick="GetOrder('Pending');">
           <h5>Pending</h5>
@@ -363,6 +374,7 @@
       <hr class="payments-menu-list-hr" id="orderMenuListHr" /> -->
 
       <div class="category-list-sub-menu" style="background: #f4f4f4;">
+
 
         <div class="" id='divbusinessType'>
           <div class="">
@@ -384,15 +396,14 @@
           <small id="dateRangelbl" style="position: relative;top: -12px;color: #aaa;font-size: 0.8rem; font-weight: bold;"></small>
         </div>
 
-        <div class="">
-          <!-- <h5 data-toggle="collapse" data-target="#orderFilter"> -->
+        <!-- <div class="">
           <h5 onclick="populateOrderFilter()">
             <span class="material-icons-outlined">
               tune
             </span>
             <span style="position: relative; top: -7px;">Filter</span>
           </h5>
-        </div>
+        </div> -->
 
       </div>
 
@@ -476,16 +487,16 @@
         <div class="" style="display: flex; justify-content: space-between;padding: 0 10px;">
           <div class="">
             <small style="color: #444;font-weight: bold;">Amount</small>
-            <h5 class="small-text">₹ 1,45,95,265.00</h5>
+            <h5 class="small-text" id="headerAmount"></h5>
           </div>
           <div class="" style="text-align: right;">
             <small style="color: #444;font-weight: bold;">Discount</small>
-            <h5 class="small-text">₹ 500</h5>
+            <h5 class="small-text" id="headerDiscount"></h5>
           </div>
         </div>
 
         <div class="" style="padding: 10px;"><hr>
-          <div class="payment-details-div">
+          <div class="payment-details-div" >
             <div class="">
               <small style="font-size: 1rem;color: #444;font-weight: bold;">Partner</small>
             </div>
@@ -494,7 +505,7 @@
             </div>
           </div><hr>
 
-          <div class="payment-details-div">
+          <div class="payment-details-div" style="display:none">
             <div class="">
               <h5 class="small-text" style="margin: 0 auto;">Spencer</h5>
               <small style="color: #666; font-weight: bold; margin: 0 auto;">Date: 23 Jun, 2022</small>
@@ -505,13 +516,16 @@
             </div>
           </div><br>
 
-          <div class="payment-details-div">
+          <div class="payment-details-div" style="display:none">
             <div class="">
               <h5 class="small-text">Mother Dairy</h5>
             </div>
             <div class="" style="text-align: right;">
               <h5 class="small-text">₹ 5003</h5>
             </div>
+          </div><br>
+
+          <div id="orderDetailDiv">
           </div>
         </div>
 
@@ -623,7 +637,7 @@
   <script src="../js/fb-logout.js"></script>
 
   <script src="../js/main.js"></script>
-  <!-- <script src="../js/orderStatus.js"></script> -->
+  <script src="../js/paymentDetails.js"></script>
   <!-- <script src="../js/chart.js"></script> -->
   <!-- <script src="../js/products.js"></script> -->
   <!-- <script src="../js/chart2.js"></script> -->
