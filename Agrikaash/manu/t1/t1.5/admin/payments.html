@@ -356,7 +356,7 @@
         <div class="" onclick="GetOrder('Pending');">
           <h5>Pending</h5>
         </div>
-        <div class="" onclick="GetOrder('Recieved');">
+        <div class="" onclick="GetOrder('Completed');">
           <h5>Recieved</h5>
         </div>
       </div>
@@ -476,18 +476,90 @@
         <div class="" style="display: flex; justify-content: space-between;padding: 0 10px;">
           <div class="">
             <small style="color: #444;font-weight: bold;">Amount</small>
-            <h5 class="small-text">₹ 1,45,95,265.00</h5>
+            <h5 class="small-text" id="headerAmount"></h5>
           </div>
           <div class="" style="text-align: right;">
             <small style="color: #444;font-weight: bold;">Discount</small>
-            <h5 class="small-text">₹ 500</h5>
+            <h5 class="small-text" id="headerDiscount"></h5>
           </div>
         </div>
 
         <div class="" style="padding: 10px;">
-          <div class="dashboard-card order-status active" id="orderDiv0">
-            <div class="" style="display:flex;align-items: center;" onclick="showHideCard(orderDiv0, orderDiv0arrow)">
-              <div class="arrow-down"><span class="material-icons-outlined" id="orderDiv0arrow">keyboard_arrow_down</span><input type="hidden" id="hfOrderID0" value="undefined"></div>
+
+          <div class="dashboard-card active" style="height: 100%; display:none;" >
+            <div class="" style="display:flex;align-items: center;justify-content: space-between;">
+              <div class="details" style="position: relative; right: 4%;">
+                <div class="" style="display: flex;align-items: center;">
+                  <h4 style="color: #F8D210">₹ 80,954.00</h4>
+                  <small>( 40 orders )</small>
+                </div>
+                <p class="small-text dashboard-sub-heading">Order date: Jan 24, 2022</p>
+              </div>
+
+              <div class="">
+                <a href="paymentDetail.html">
+                  <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;height: 30px;">
+                    <span class="material-icons-outlined" style="position: relative;font-size: 1.2rem;">
+                      keyboard_double_arrow_right
+                    </span>
+                  </button>
+                </a>
+              </div>
+
+            </div>
+            <div class="dashboard-card-expand">
+              <br>
+              <div class="dashboard-card-order">
+                <div class="">
+                  <h5 class="small-text" style="margin: 0 auto;">Amount</h5><small>₹419</small>
+                </div>
+                <div class="">
+                  <h5 class="small-text" style="margin: 0 auto;">Discount</h5><small>₹339(Off ₹80)</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-card active" style="height: 100%; display:none;" >
+            <div class="" style="display:flex;align-items: center;justify-content: space-between;">
+              <div class="details" style="position: relative; right: 4%;">
+                <div class="" style="display: flex;align-items: center;">
+                  <h4 style="color: green">₹ 80,954.00</h4>
+                  <small>( 40 orders )</small>
+                </div>
+                <p class="small-text dashboard-sub-heading">Order date: Jan 24, 2022</p>
+              </div>
+
+              <div class="">
+                <a href="paymentDetail.html">
+                  <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;height: 30px;">
+                    <span class="material-icons-outlined" style="position: relative;font-size: 1.2rem;">
+                      keyboard_double_arrow_right
+                    </span>
+                  </button>
+                </a>
+              </div>
+
+            </div>
+            <div class="dashboard-card-expand">
+              <br>
+              <div class="dashboard-card-order">
+                <div class="">
+                  <h5 class="small-text" style="margin: 0 auto;">Amount</h5><small>₹419</small>
+                </div>
+                <div class="">
+                  <h5 class="small-text" style="margin: 0 auto;">Discount</h5><small>₹339(Off ₹80)</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="dashboard-card order-status active" id="orderDiv012" style="display:none;" >
+            <div class="" style="display:flex;align-items: center;" onclick="showHideCard(orderDiv012, orderDiv012arrow)">
+              <div class="arrow-down"><span class="material-icons-outlined" id="orderDiv012arrow">keyboard_arrow_down</span>
+
+              </div>
               <div class=""><span class="material-icons-outlined order-icon" style="font-size: 3rem; color: #F8D210;">history_toggle_off</span></div>
               <div class="details">
                 <h4 style="color: #F8D210">Pending</h4>
@@ -519,9 +591,10 @@
             </div>
           </div>
 
-          <div class="dashboard-card order-status active" id="orderDiv0">
-            <div class="" style="display:flex;align-items: center;" onclick="showHideCard(orderDiv0, orderDiv0arrow)">
-              <div class="arrow-down"><span class="material-icons-outlined" id="orderDiv0arrow">keyboard_arrow_down</span><input type="hidden" id="hfOrderID0" value="undefined"></div>
+          <div class="dashboard-card order-status active" id="orderDiv011" style="display:none;">
+            <div class="" style="display:flex;align-items: center;" onclick="showHideCard(orderDiv011, orderDiv011arrow)">
+              <div class="arrow-down"><span class="material-icons-outlined" id="orderDiv011arrow">keyboard_arrow_down</span>
+              </div>
               <div class=""><span class="material-icons-outlined order-icon" style="font-size: 3rem; color: green;">check_circle</span></div>
               <div class="details">
                 <h4 style="color: green">Recieved</h4>
@@ -555,7 +628,6 @@
         </div>
 
         <div id="orderListDiv" style="padding: 10px;">
-
         </div>
 
       </div>
@@ -662,10 +734,8 @@
   <script src="../js/fb-logout.js"></script>
 
   <script src="../js/main.js"></script>
-  <!-- <script src="../js/orderStatus.js"></script> -->
-  <!-- <script src="../js/chart.js"></script> -->
-  <!-- <script src="../js/products.js"></script> -->
-  <!-- <script src="../js/chart2.js"></script> -->
+  <script src="../js/payments.js"></script>
+
 
   <!-- Owl Carousel Javascript  -->
   <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
