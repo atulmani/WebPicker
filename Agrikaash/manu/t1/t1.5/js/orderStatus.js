@@ -965,16 +965,21 @@ function renderOrder(orderid, order, index)
 {
   var div1 = document.createElement("div");
   div1.setAttribute("class","dashboard-card order-status");
+  div1.setAttribute("id","orderDiv" + index);
+  // div1.setAttribute("onclick","showHideCard(orderDiv" + index + ", orderDiv" + index + "arrow)");
 
   var div2 = document.createElement("div");
   div2.setAttribute("class","");
   div2.setAttribute("style","display:flex;align-items: center;");
+  // div2.setAttribute("id","orderDiv" + index);
+  div2.setAttribute("onclick","showHideCard(orderDiv" + index + ", orderDiv" + index + "arrow)");
 
   var div3 = document.createElement("div");
   div3.setAttribute("class","arrow-down");
 
   var span1 = document.createElement("span");
   span1.setAttribute("class","material-icons-outlined");
+  span1.setAttribute("id","orderDiv" + index + "arrow");
   span1.innerHTML="keyboard_arrow_down";
 
   div3.appendChild(span1);
@@ -1316,4 +1321,10 @@ function closeOrderFilter(){
   // orderFilter.style.opacity = '0';
   orderFilter.style.pointerEvents = 'none';
   orderFilter.style.height = '0';
+}
+
+function showHideCard(card, cardArrow) {
+  card.classList.toggle("active");
+
+  cardArrow.classList.toggle("active");
 }
