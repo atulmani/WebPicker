@@ -565,7 +565,7 @@ function populateOrderDetails(paymentStatus) {
     document.getElementById("orderCount").innerHTML = i + " Orders";
     document.getElementById('loading').style.display = 'none';
   });
-  populateCartData();
+  //populateCartData();
 
 
 }
@@ -584,20 +584,20 @@ function GetOrder(filter) {
 
 }
 
-function populateCartData() {
-  var itemCount = 0;
-  const snapshot = db.collection('CartDetails').doc(userID);
-  snapshot.get().then(async (doc) => {
-    if (doc.exists) {
-      cartDetails = doc.data().cartDetails;
-      itemCount = cartDetails.length;
-      //console.log(change.doc, index, selectdedItem);
-    }
-    //document.getElementById('cartItemCount').innerHTML = itemCount;
-
-  });
-
-}
+// function populateCartData() {
+//   var itemCount = 0;
+//   const snapshot = db.collection('CartDetails').doc(userID);
+//   snapshot.get().then(async (doc) => {
+//     if (doc.exists) {
+//       cartDetails = doc.data().cartDetails;
+//       itemCount = cartDetails.length;
+//       //console.log(change.doc, index, selectdedItem);
+//     }
+//     //document.getElementById('cartItemCount').innerHTML = itemCount;
+//
+//   });
+//
+// }
 
 //
 // function renderOrder(orderid, order, index) {
