@@ -489,13 +489,17 @@ function SaveOrder() {
       if(hfDiscountValue.value != inDiscountValue.value )
       {
         var amountDislay = document.getElementById("amountDisplay").innerHTML;
-        amountDislay = amountDislay.replace("₹", "");
+      //  amountDislay = amountDislay.replace("₹", "");
+        amountDislay = amountDislay.replace(/[₹,]+/g, "");
+        console.log(amountDislay);
         console.log(document.getElementById("amountDisplay").innerHTML);
         console.log(inDiscountValue.value);
         discountChange = 'Discount value changed from ' +hfDiscountValue.value + " to " +inDiscountValue.value;
         oldDiscountPrize = Number(amountDislay) - Number(inDiscountValue.value);
         oldDiscount.coupondID = "Manual Discount";
         oldDiscount.discountValue = '₹' + inDiscountValue.value;
+        console.log(Number(hfDiscountValue.value));
+        console.log(Number(inDiscountValue.value));
         if (oldPaymentStatus === "Completed")
         {
           var walletAmt
