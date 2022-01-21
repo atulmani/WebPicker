@@ -390,9 +390,9 @@
       <div class="" style="padding: 0 10px;">
         <div id="orderListDiv">
         </div>
-        <div class="dashboard-card order-status" style="display:none">
-          <div class="" style="display:flex;align-items: center;">
-            <div class="arrow-down">
+        <div class="dashboard-card order-status" id="id1" style="display:none;" >
+          <div class=""   style="display:flex;align-items: center;" onclick="showHideCard(id1,id2)">
+            <div class="arrow-down" >
               <span class="material-icons-outlined">
                 keyboard_arrow_down
               </span>
@@ -403,13 +403,13 @@
                 check_circle
               </span>
             </div>
-            <div class="details">
+            <div class="details" >
               <h4 style="color: #1D741B">Deliverd</h4>
               <p class="small-text dashboard-sub-heading" id="lastOrder">Delivery date: 10th Dec 2022 - 2697 Items</p>
             </div>
           </div>
 
-          <div class="dashboard-card-expand">
+          <div class="dashboard-card-expand" id="id2">
             <hr>
 
             <div class="dashboard-card-order">
