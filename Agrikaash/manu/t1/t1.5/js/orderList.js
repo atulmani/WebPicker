@@ -81,48 +81,48 @@ function GetProfileData(user) {
     });
 };
 
-
-function GetNotificationList() {
-  var index = 0;
-  var flag = false;
-  var today = new Date();
-
-  const DBrows = db.collection('Notification')
-    .where("Status", '==', 'Active')
-    .where('ValidityTill', ">=", today)
-    //.orderBy('CreatedTimestamp', 'desc');
-
-  DBrows.onSnapshot((snapshot) => {
-    let changes = snapshot.docChanges();
-
-    changes.forEach(change => {
-      var userListDB = change.doc.data().UserList;
-      var userTypeDB = change.doc.data().UserType;
-
-      if (userListDB === undefined)
-        flag = true;
-      else if (userListDB[0].userID === 'All')
-        flag = true;
-      else if (userListDB.findIndex(e => e.userID === userID) >= 0)
-        flag = true;
-      else if (userTypeDB === undefined)
-        flag = true;
-      else if (userTypeDB[0] === 'All')
-        flag = true;
-      else if (userTypeDB.indexOf(userType) >= 0)
-        flag = true;
-      if (flag === true) {
-        index = index + 1;
-      }
-    });
-
-    if(flag === true)
-    {
-      document.getElementById("notificationCnt").innerHTML=index;
-    }
-
-  });
-}
+//
+// function GetNotificationList() {
+//   var index = 0;
+//   var flag = false;
+//   var today = new Date();
+//
+//   const DBrows = db.collection('Notification')
+//     .where("Status", '==', 'Active')
+//     .where('ValidityTill', ">=", today)
+//     //.orderBy('CreatedTimestamp', 'desc');
+//
+//   DBrows.onSnapshot((snapshot) => {
+//     let changes = snapshot.docChanges();
+//
+//     changes.forEach(change => {
+//       var userListDB = change.doc.data().UserList;
+//       var userTypeDB = change.doc.data().UserType;
+//
+//       if (userListDB === undefined)
+//         flag = true;
+//       else if (userListDB[0].userID === 'All')
+//         flag = true;
+//       else if (userListDB.findIndex(e => e.userID === userID) >= 0)
+//         flag = true;
+//       else if (userTypeDB === undefined)
+//         flag = true;
+//       else if (userTypeDB[0] === 'All')
+//         flag = true;
+//       else if (userTypeDB.indexOf(userType) >= 0)
+//         flag = true;
+//       if (flag === true) {
+//         index = index + 1;
+//       }
+//     });
+//
+//     if(flag === true)
+//     {
+//       document.getElementById("notificationCnt").innerHTML=index;
+//     }
+//
+//   });
+// }
 function dateRangeChange() {
   var dateRange = document.getElementById('dateRange');
   var value = dateRange.options[dateRange.selectedIndex].value;
@@ -293,16 +293,26 @@ function populateCartData() {
 
 }
 
+function showHideCard(card, cardArrow) {
+  card.classList.toggle("active");
+
+  cardArrow.classList.toggle("active");
+}
+
+
 function renderOrder(orderid, order, index) {
   var div1 = document.createElement("div");
   div1.setAttribute("class", "dashboard-card order-status");
+  div1.setAttribute("id", "card" + index);
 
   var div2 = document.createElement("div");
   div2.setAttribute("class", "");
   div2.setAttribute("style", "display:flex;align-items: center;");
+  div2.setAttribute("onclick", "showHideCard(card" + index +"," + "cardarrow" + index + ")");
 
   var div3 = document.createElement("div");
   div3.setAttribute("class", "arrow-down");
+
 
   var span1 = document.createElement("span");
   span1.setAttribute("class", "material-icons-outlined");
@@ -393,6 +403,7 @@ function renderOrder(orderid, order, index) {
 
   var div6 = document.createElement("div");
   div6.setAttribute("class", "dashboard-card-expand");
+  div6.setAttribute("id", "cardarrow" + index);
 
   var hr1 = document.createElement("hr");
   div6.appendChild(hr1);
