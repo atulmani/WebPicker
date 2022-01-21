@@ -59,7 +59,7 @@ function GetCartDetails()
     snapshot.get().then((doc) => {
       if (doc.exists) {
         cartItems = doc.data().cartDetails;
-        
+
         document.getElementById("cartItemNo").innerHTML =cartItems.length
       }
     });
@@ -160,10 +160,10 @@ function cancelOrder() {
   // console.log(document.getElementById('PaymentStatus').innerHTML);
   if (document.getElementById('PaymentStatus').innerHTML === 'Completed') {
     var walletAmount;
-    console.log(document.getElementById("hfDiscountFlag").value);
+    //console.log(document.getElementById("hfDiscountFlag").value);
 
     if (document.getElementById("hfDiscountFlag").value === "true") {
-      console.log('in if');
+      //console.log('in if');
       payment = document.getElementById('paymentAmount').innerHTML;
       payment = payment.replace(/[₹,]+/g, "");
 
@@ -175,19 +175,19 @@ function cancelOrder() {
       walletAmount = walletAmount.replace(/[₹,]+/g, "");
 
     } else {
-      console.log('in else');
+      //console.log('in else');
       walletAmount = document.getElementById('paymentAmount').innerHTML;
       errorMsg = "Amount (" + walletAmount + ") has been added to your wallet.";
 
       walletAmount = walletAmount.replace(/[₹,]+/g, "");
 
     }
-    console.log(walletAmount);
+    //console.log(walletAmount);
     updateWalletDetails(userID, walletAmount, 'add');
   }
   var remarks = document.getElementById('cancelreason');
-  console.log(remarks.options[remarks.selectedIndex].text);
-  console.log(remarks.options[remarks.selectedIndex].text);
+  //console.log(remarks.options[remarks.selectedIndex].text);
+  //console.log(remarks.options[remarks.selectedIndex].text);
 
   db.collection('OrderDetails')
     .doc(orderID)
@@ -197,7 +197,7 @@ function cancelOrder() {
       paymentStatus: 'Pending' //firebase.firestore.FeildValue.arrayUnion(cartItems)
     })
     .then(() => {
-      console.log("order updated");
+      //console.log("order updated");
       var orderChanges = [];
       errorMsg = "Order has been cancelled." + errorMsg;
       document.getElementById('CancelMessage').innerHTML = errorMsg;
@@ -211,8 +211,8 @@ function cancelOrder() {
         DeliveryDate: '',
         ChangedTimeStamp: new Date()
       });
-      console.log(orderChanges);
-      console.log(orderID);
+      //console.log(orderChanges);
+      //console.log(orderID);
       UpdateOrderTrackingDetails(orderChanges, orderID);
       getOrderDetails();
       document.getElementById("itemListDiv").style.display = "none";
@@ -277,7 +277,7 @@ function populateDeliveryDate() {
 }
 
 function getOrderDetails() {
-  console.log(userID);
+  //console.log(userID);
   const snapshot = db.collection('OrderDetails').doc(orderID);
   snapshot.get().then(async (doc) => {
       if (doc.exists) {
@@ -285,7 +285,7 @@ function getOrderDetails() {
         // console.log ('User UID: ' + user.uid);
         //console.log('Document ref id: ' + doc.data().uid);
         var orderDetails = doc.data();
-        console.log(orderDetails);
+        //console.log(orderDetails);
         populateDeliveryAddress(orderDetails);
         populateOrderItems(orderDetails);
 
@@ -300,7 +300,7 @@ function getOrderDetails() {
 }
 
 function populateDeliveryAddress(selectedOrder) {
-  console.log(document.getElementById('DeliveryDate'));
+  //console.log(document.getElementById('DeliveryDate'));
 
   var options = {
     year: 'numeric',
@@ -314,7 +314,7 @@ function populateDeliveryAddress(selectedOrder) {
   //document.getElementById('DeliveryTime').innerHTML = selectedOrder.deliveryTime;
   document.getElementById('orderStatus').innerHTML = selectedOrder.orderStatus;
   document.getElementById('PaymentStatus').innerHTML = selectedOrder.paymentStatus;
-  console.log(selectedOrder.orderDate);
+  //console.log(selectedOrder.orderDate);
   var oDate = new Date(selectedOrder.orderDate.seconds * 1000);
   var orderDate = oDate.toLocaleDateString("en-US", options);
 
@@ -341,8 +341,8 @@ function populateDeliveryAddress(selectedOrder) {
   amt = amt.toLocaleString('en-IN', curFormat);
 
   document.getElementById('paymentAmount').innerHTML = amt;
-console.log(selectedOrder.discountedprize );
-console.log(selectedOrder.totalAmount);
+//console.log(selectedOrder.discountedprize );
+//console.log(selectedOrder.totalAmount);
   //if (selectedOrder.discountedprize === 'NaN' || selectedOrder.discountedprize === "0" || selectedOrder.discountedprize === "")
   if (isNaN(selectedOrder.discountedprize) || selectedOrder.discountedprize === '' || (selectedOrder.discountedprize === selectedOrder.totalAmount) || selectedOrder.discountedprize === 0) {
     document.getElementById('discount').style.display = "none";
@@ -351,10 +351,10 @@ console.log(selectedOrder.totalAmount);
     document.getElementById("hfDiscountFlag").value = "true";
     var discountAmt = Number(selectedOrder.discountedprize);
     discountAmt = discountAmt.toLocaleString('en-IN', curFormat);
-    console.log(discountAmt);
+  //  console.log(discountAmt);
     var discountValue = Number(selectedOrder.totalAmount) - Number(selectedOrder.discountedprize);
     discountValue = discountValue.toLocaleString('en-IN', curFormat);
-    console.log(discountValue);
+    //console.log(discountValue);
 
     document.getElementById('discountAmount').innerHTML = discountAmt + "(" + selectedOrder.discountDetails.discountValue + " Off)";
     document.getElementById('discountValue').innerHTML = discountValue;
@@ -379,9 +379,9 @@ console.log(selectedOrder.totalAmount);
   const tempDate = new Date();
   tempDate.setDate(tempDate.getDate() + 2);
 
-  console.log(dDate);
-  console.log(tempDate);
-  console.log(selectedOrder.orderStatus);
+  //console.log(dDate);
+  //console.log(tempDate);
+  //console.log(selectedOrder.orderStatus);
 
   //order can be cancelled only if order status is Pending and delivery Date is > todays date
   if (selectedOrder.orderStatus === 'Pending' && dDate >= tempDate) {
@@ -403,7 +403,7 @@ console.log(selectedOrder.totalAmount);
 
 function populateOrderItems(selectedOrder) {
   var orderItem = selectedOrder.orderItems;
-  console.log(orderItem);
+  //console.log(orderItem);
   var i;
   document.getElementById('orderItems').innerHTML = "";
   for (i = 0; i < orderItem.length; i++) {
@@ -549,12 +549,12 @@ function renderOrderItem(orderItem, orderStatusValue, deliveryDate, index) {
   const tempDate = new Date();
   tempDate.setDate(tempDate.getDate() + 2);
 
-  console.log(dDate.toLocaleDateString("en-US", options));
-  console.log(tempDate);
+  //console.log(dDate.toLocaleDateString("en-US", options));
+  //console.log(tempDate);
 
   //order can be cancelled only if order status is Pending and delivery Date is > todays date
   if (orderStatusValue === 'Pending' && dDate >= tempDate) {
-    console.log('Delete applicable');
+    //console.log('Delete applicable');
     var tr3 = document.createElement('tr');
     //console.log(orderItem.Quantity);
     var td4 = document.createElement('td');
