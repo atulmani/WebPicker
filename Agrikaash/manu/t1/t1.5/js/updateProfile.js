@@ -118,51 +118,51 @@ function GetRegistrationRequest() {
       document.getElementById('loading').style.display = 'none';
     }
   });
-  UpdateCartItem();
-  updateWallet();
+  // UpdateCartItem();
+//  updateWallet();
 }
 
-function updateWallet() {
-
-  var curFormat = {
-    style: 'currency',
-    currency: 'INR',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 2
-  };
-
-  var WalletDetails = document.getElementById('WalletDetails');
-  //console.log(cartItemNo);
-  const snapshotCart = db.collection('UserWallet').doc(userID);
-  snapshotCart.get().then((doc) => {
-    if (doc.exists) {
-      //console.log("doc exists");
-      var wallerAmount = doc.data().WalletAmount;
-      //console.log(itemlist);
-      wallerAmount = wallerAmount.toLocaleString('en-IN', curFormat);
-      WalletDetails.innerHTML = wallerAmount;
-      document.getElementById("divWalletDetails").style.display = "block";
-    }
-  });
-}
-
-function UpdateCartItem() {
-  var cartItemNo = document.getElementById('cartItemNo');
-  //console.log(cartItemNo);
-  const snapshotCart = db.collection('CartDetails').doc(userID);
-  snapshotCart.get().then((doc) => {
-    if (doc.exists) {
-      //console.log("doc exists");
-      var itemlist = doc.data().cartDetails;
-      //console.log(itemlist);
-      item = itemlist.length;
-      cartItems = itemlist;
-      // item = doc.data().cartDetails.length;
-      //console.log(item[0]);
-      cartItemNo.innerHTML = item;
-    }
-  });
-}
+// function updateWallet() {
+//
+//   var curFormat = {
+//     style: 'currency',
+//     currency: 'INR',
+//     minimumFractionDigits: 0,
+//     maximumFractionDigits: 2
+//   };
+//
+//   var WalletDetails = document.getElementById('WalletDetails');
+//   //console.log(cartItemNo);
+//   const snapshotCart = db.collection('UserWallet').doc(userID);
+//   snapshotCart.get().then((doc) => {
+//     if (doc.exists) {
+//       //console.log("doc exists");
+//       var wallerAmount = doc.data().WalletAmount;
+//       //console.log(itemlist);
+//       wallerAmount = wallerAmount.toLocaleString('en-IN', curFormat);
+//       WalletDetails.innerHTML = wallerAmount;
+//       document.getElementById("divWalletDetails").style.display = "block";
+//     }
+//   });
+// }
+//
+// function UpdateCartItem() {
+//   var cartItemNo = document.getElementById('cartItemNo');
+//   //console.log(cartItemNo);
+//   const snapshotCart = db.collection('CartDetails').doc(userID);
+//   snapshotCart.get().then((doc) => {
+//     if (doc.exists) {
+//       //console.log("doc exists");
+//       var itemlist = doc.data().cartDetails;
+//       //console.log(itemlist);
+//       item = itemlist.length;
+//       cartItems = itemlist;
+//       // item = doc.data().cartDetails.length;
+//       //console.log(item[0]);
+//       cartItemNo.innerHTML = item;
+//     }
+//   });
+// }
 
 function editName() {
   document.getElementById('userName').readOnly = false;
