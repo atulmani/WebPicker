@@ -183,6 +183,7 @@ function GetNotificationList() {
 
     });
     document.getElementById("notificationCnt").innerHTML = NotificationCnt;
+    document.getElementById("notificationCnt1").innerHTML = NotificationCnt;
     localStorage.setItem("notificationCount", NotificationCnt);
 
     if (index > 0 ) {
