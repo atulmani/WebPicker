@@ -434,6 +434,13 @@ function renderOrderItem(orderItem, index, orderStatusValue) {
 }
 
 function SaveOrder() {
+
+    var btnTextWithLoader = document.getElementsByClassName('btnTextWithLoader');
+    var btnLoader = document.getElementsByClassName('btnLoader');
+
+    btnTextWithLoader[0].style.display = 'none';
+    btnLoader[0].style.display = 'block';
+
   var curFormat = {
     style: 'currency',
     currency: 'INR',
@@ -606,6 +613,9 @@ function SaveOrder() {
           .then(function(docRef) {
             console.log("Data added sucessfully in the document: " + userid_order);
             getOrderDetails();
+            document.getElementById("Message").style.display = "block";
+            btnTextWithLoader[0].style.display = 'block';
+            btnLoader[0].style.display = 'none';
             //    window.location.href = "orderStatus.html"
             // console.log(Date.parse(eventstart))
           })
