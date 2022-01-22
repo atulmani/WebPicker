@@ -40,6 +40,9 @@
   <!-- Bootstrap css -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
+  <!-- lottie cdn -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
   <!-- Your Own Style -->
   <link rel="stylesheet" href="../css/styles.css">
 
@@ -375,7 +378,6 @@
           <center>
             <!-- <div id='loading' class="loader"></div> -->
             <div class="" id="loading-img">
-              <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
               <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_ya4ycrti.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
               <h5><span id="msg">Your order is placed successfully</span></h5><br><br>
             </div>
@@ -442,7 +444,7 @@
                     <hr>
 
                     <div class="dashboard-card-order">
-                      <div class="">
+                      <div class="" style="width: 100%;text-align: left;">
 
                         <h5 class="small-text" style="margin: 0 auto;">Delivery date</h5>
                         <!-- <a href='' id="todayCount">0</a><br> -->
@@ -483,12 +485,17 @@
                       </div>
 
                       <div class="">
-                        <div class="" style="display:flex;align-items:center;text-align: right;flex-direction: column;padding-top: 10px;">
-                          <button class="mybutton button5" onClick="SaveOrder();" id="btnSaveOrder" style="padding-bottom: 7px;margin: auto 10px; visibility: visible;;">
-                            Update
+                        <div class="" style="width: 90%;display:flex;align-items:flex-end;text-align: right;flex-direction: column;padding-top: 10px;text-align: right;">
+                          <button class="mybutton button5" onClick="SaveOrder();" id="btnSaveOrder" style="padding-bottom: 7px;margin: auto 10px; visibility: visible;width: 100px;">
+                            <div class="btnTextWithLoader">
+                              Update
+                            </div>
+                            <div class="btnLoader" style="display:none;">
+                              <lottie-player src="https://assets8.lottiefiles.com/private_files/lf30_4muhuwvf.json" background="transparent" speed="1" style="width: 100%; height: 20px;" loop autoplay></lottie-player>
+                            </div>
                           </button>
                           <div class="">
-                            <span id="Message" style="display:none;"> Dlivery Slot has been updated successfully</span>
+                            <span id="Message" style="display:none;"> Delivery Slot has been updated successfully</span>
                           </div>
                         </div>
                       </div>
