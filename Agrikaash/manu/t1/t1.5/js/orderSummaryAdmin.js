@@ -166,7 +166,8 @@ function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
     discountValue = discountValue.toLocaleString('en-IN', curFormat);
     document.getElementById('amountDisplay').innerHTML = selectedOrder.totalAmount;
 
-    document.getElementById('discountAmount').innerHTML = discountAmt + "(" + selectedOrder.discountDetails.discountValue + " Off)";
+    //document.getElementById('discountAmount').innerHTML = discountAmt + "(" + selectedOrder.discountDetails.discountValue + " Off)";
+    document.getElementById('discountAmount').innerHTML = discountAmt ;
     document.getElementById('discountValue').innerHTML = discountValue;
   }
 
