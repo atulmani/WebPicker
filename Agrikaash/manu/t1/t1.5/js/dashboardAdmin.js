@@ -124,8 +124,8 @@ function PopulateOrderSummary() {
   day7.setDate(todayDate.getDate() - 6);
 
   var lastweek = new Date();
-  lastweek.setDate(todayDate.getDate() - 7);
-
+  lastweek.setDate(todayDate.getDate() - 8);
+  console.log(lastweek);
 
   var dayP1 = new Date();
   dayP1.setDate(todayDate.getDate() + 1);
@@ -149,7 +149,7 @@ function PopulateOrderSummary() {
   dayP7.setDate(todayDate.getDate() + 7);
 
   var lastweek = new Date();
-  lastweek.setDate(todayDate.getDate() - 7);
+  lastweek.setDate(todayDate.getDate() - 8);
 
   var todayCnt = 0;
   var yesterdayCnt = 0;
