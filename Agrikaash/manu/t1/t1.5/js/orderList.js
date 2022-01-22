@@ -316,6 +316,7 @@ function renderOrder(orderid, order, index) {
 
   var span1 = document.createElement("span");
   span1.setAttribute("class", "material-icons-outlined");
+   span1.setAttribute("id", "cardarrow" + index );
   span1.innerHTML = "keyboard_arrow_down";
 
   div3.appendChild(span1);
@@ -395,7 +396,7 @@ function renderOrder(orderid, order, index) {
 
   var p1 = document.createElement("p");
   p1.setAttribute("class", "small-text dashboard-sub-heading");
-  p1.innerHTML = "Delivery dt: " + delDate + " | " + order.deliveryTime + " - " + order.totalItems + " Items";
+  p1.innerHTML = "Delivery: " + delDate + " | " + order.deliveryTime + " - " + order.totalItems + " Items";
 
   div5.appendChild(p1);
   div2.appendChild(div5);
@@ -403,7 +404,7 @@ function renderOrder(orderid, order, index) {
 
   var div6 = document.createElement("div");
   div6.setAttribute("class", "dashboard-card-expand");
-  div6.setAttribute("id", "cardarrow" + index);
+  // div6.setAttribute("id", "cardarrow" + index);
 
   var hr1 = document.createElement("hr");
   div6.appendChild(hr1);
@@ -482,7 +483,7 @@ function renderOrder(orderid, order, index) {
   var h5 = document.createElement("h5");
   h5.setAttribute("class", "small-text");
   h5.setAttribute("style", "margin: 0 auto;");
-  h5.innerHTML = "Discount";
+  h5.innerHTML = "Payable Amount";
   div12.appendChild(h5);
 
   var displayDiscountAmt = order.discountedprize.toLocaleString('en-IN', curFormat);
@@ -493,7 +494,7 @@ function renderOrder(orderid, order, index) {
   if (order.discountDetails.coupondID === "none") {
     small4.innerHTML = "No Discount";
   } else {
-    small4.innerHTML = displayDiscountAmt + "(Off " + order.discountDetails.discountValue + ")";
+    small4.innerHTML = "<span style='font-size: 1.2rem;color: #1D741B;'>" + displayDiscountAmt + " </span> (Off " + order.discountDetails.discountValue + ")";
   }
   div12.appendChild(small4);
 
