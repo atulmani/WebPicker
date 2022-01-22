@@ -232,7 +232,7 @@ function renderOrderSummary(ordSummary, index) {
 
     var h41 = document.createElement("h4");
     if (ordSummary.paymentStatus === 'Pending') {
-      h41.setAttribute("style", "color: #F8D210");
+      h41.setAttribute("style", "color: #F8D210;");
     } else {
       h41.setAttribute("style", "color: green");
     }
