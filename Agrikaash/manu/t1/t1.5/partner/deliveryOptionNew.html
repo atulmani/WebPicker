@@ -40,6 +40,10 @@
   <!-- Bootstrap css -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
+  <!-- lottie files cdn link -->
+
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
   <!-- Your Own Style -->
   <link rel="stylesheet" href="../css/styles.css">
 
@@ -516,7 +520,14 @@
 
             </div>
             <div class="">
-              <button class="mybutton button5" onClick="SaveOrder();" id="btnProceedToPay">PROCEED TO PAY</button>
+              <button class="mybutton button5" onClick="SaveOrder();" disabled style="width: 150px;" id="btnProceedToPay">
+                <div class="btnTextWithLoader">
+                  PROCEED TO PAY
+                </div>
+                <div class="btnLoader" style="display:none;">
+                  <lottie-player src="https://assets8.lottiefiles.com/private_files/lf30_4muhuwvf.json" background="transparent" speed="1" style="width: 100%; height: 20px;" loop autoplay></lottie-player>
+                </div>
+              </button>
             </div>
 
           </div>
