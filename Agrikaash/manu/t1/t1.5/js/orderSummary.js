@@ -587,6 +587,13 @@ function renderOrderItem(orderItem, orderStatusValue, deliveryDate, index) {
 
 
 function SaveOrder() {
+
+  var btnTextWithLoader = document.getElementsByClassName('btnTextWithLoader');
+  var btnLoader = document.getElementsByClassName('btnLoader');
+
+  btnTextWithLoader[0].style.display = 'none';
+  btnLoader[0].style.display = 'block';
+
   //document.getElementById("Message").text = "";
   var odeliveryTime = document.getElementById("oDeliveryTime");
   var odeliveryDate = document.getElementById("DeliveryDate")
@@ -653,6 +660,8 @@ function SaveOrder() {
             //    window.location.href = "orderStatus.html"
             // console.log(Date.parse(eventstart))
             document.getElementById("Message").style.display = "block";
+            btnTextWithLoader[0].style.display = 'block';
+            btnLoader[0].style.display = 'none';
           })
           .catch(function(error) {
             console.error("error updatign order:", error);
