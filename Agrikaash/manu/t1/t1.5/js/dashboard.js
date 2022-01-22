@@ -810,49 +810,140 @@ function PopulateDeliverySummary() {
         //console.log(orderDetails[i].totalAmount);
         if (deliverydate.getDate() === todayDate.getDate() && deliverydate.getMonth() === todayDate.getMonth() && deliverydate.getYear() === todayDate.getYear()) {
           todayCnt = todayCnt + 1;
-          todayAmount = Number(todayAmount) + Number(orderDetails.totalAmount);
+          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
+          {
+            todayAmount = Number(todayAmount) + Number(orderDetails.totalAmount);
+          }else {
+            todayAmount = Number(todayAmount) +Number(orderDetails.discountedprize)
+          }
+          //todayAmount = Number(todayAmount) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayP1.getDate() && deliverydate.getMonth() === dayP1.getMonth() && deliverydate.getYear() === dayP1.getYear()) {
           dayP1Cnt = dayP1Cnt + 1;
-          dayP1Amt = Number(dayP1Amt) + Number(orderDetails.totalAmount);
+          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
+          {
+            dayP1Amt = Number(dayP1Amt) + Number(orderDetails.totalAmount);
+          }else {
+            dayP1Amt = Number(dayP1Amt) +Number(orderDetails.discountedprize)
+          }
+          //dayP1Amt = Number(dayP1Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayP2.getDate() && deliverydate.getMonth() === dayP2.getMonth() && deliverydate.getYear() === dayP2.getYear()) {
           dayP2Cnt = dayP2Cnt + 1;
-          dayP2Amt = Number(dayP2Amt) + Number(orderDetails.totalAmount);
+          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
+          {
+            dayP2Amt = Number(dayP2Amt) + Number(orderDetails.totalAmount);
+          }else {
+            dayP2Amt = Number(dayP2Amt) +Number(orderDetails.discountedprize)
+          }
+          //dayP2Amt = Number(dayP2Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayP3.getDate() && deliverydate.getMonth() === dayP3.getMonth() && deliverydate.getYear() === dayP3.getYear()) {
           dayP3Cnt = dayP3Cnt + 1;
-          dayP3Amt = Number(dayP3Amt) + Number(orderDetails.totalAmount);
+          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
+          {
+            dayP3Amt = Number(dayP3Amt) + Number(orderDetails.totalAmount);
+          }else {
+            dayP3Amt = Number(dayP3Amt) +Number(orderDetails.discountedprize)
+          }
+          //dayP3Amt = Number(dayP3Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayP4.getDate() && deliverydate.getMonth() === dayP4.getMonth() && deliverydate.getYear() === dayP4.getYear()) {
           dayP4Cnt = dayP4Cnt + 1;
-          dayP4Amt = Number(dayP4Amt) + Number(orderDetails.totalAmount);
+          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
+          {
+            dayP4Amt = Number(dayP4Amt) + Number(orderDetails.totalAmount);
+          }else {
+            dayP4Amt = Number(dayP4Amt) +Number(orderDetails.discountedprize)
+          }
+          //dayP4Amt = Number(dayP4Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayP5.getDate() && deliverydate.getMonth() === dayP5.getMonth() && deliverydate.getYear() === dayP5.getYear()) {
           dayP5Cnt = dayP5Cnt + 1;
-          dayP5Amt = Number(dayP5Amt) + Number(orderDetails.totalAmount);
+          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
+          {
+            dayP5Amt = Number(dayP5Amt) + Number(orderDetails.totalAmount);
+          }else {
+            dayP5Amt = Number(dayP5Amt) +Number(orderDetails.discountedprize)
+          }
+          //dayP5Amt = Number(dayP5Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayP6.getDate() && deliverydate.getMonth() === dayP6.getMonth() && deliverydate.getYear() === dayP6.getYear()) {
           dayP6Cnt = dayP6Cnt + 1;
-          dayP6Amt = Number(dayP6Amt) + Number(orderDetails.totalAmount);
+          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
+          {
+            dayP6Amt = Number(dayP6Amt) + Number(orderDetails.totalAmount);
+          }else {
+            dayP6Amt = Number(dayP6Amt) +Number(orderDetails.discountedprize)
+          }
+          //dayP6Amt = Number(dayP6Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayP7.getDate() && deliverydate.getMonth() === dayP7.getMonth() && deliverydate.getYear() === dayP7.getYear()) {
           dayP7Cnt = dayP7Cnt + 1;
-          dayP7Amt = Number(dayP7Amt) + Number(orderDetails.totalAmount);
+          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
+          {
+            dayP7Amt = Number(dayP7Amt) + Number(orderDetails.totalAmount);
+          }else {
+            dayP7Amt = Number(dayP7Amt) +Number(orderDetails.discountedprize)
+          }
+          //dayP7Amt = Number(dayP7Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayM1.getDate() && deliverydate.getMonth() === dayM1.getMonth() && deliverydate.getYear() === dayM1.getYear()) {
           dayM1Cnt = dayM1Cnt + 1;
-          dayM1Amt = Number(dayM1Amt) + Number(orderDetails.totalAmount);
+          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
+          {
+            dayM1Amt = Number(dayM1Amt) + Number(orderDetails.totalAmount);
+          }else {
+            dayM1Amt = Number(dayM1Amt) +Number(orderDetails.discountedprize)
+          }
+          //dayM1Amt = Number(dayM1Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayM2.getDate() && deliverydate.getMonth() === dayM2.getMonth() && deliverydate.getYear() === dayM2.getYear()) {
           dayM2Cnt = dayM2Cnt + 1;
-          dayM2Amt = Number(dayM2Amt) + Number(orderDetails.totalAmount);
+          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
+          {
+            dayM2Amt = Number(dayM2Amt) + Number(orderDetails.totalAmount);
+          }else {
+            dayM2Amt = Number(dayM2Amt) +Number(orderDetails.discountedprize)
+          }
+          //dayM2Amt = Number(dayM2Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayM3.getDate() && deliverydate.getMonth() === dayM3.getMonth() && deliverydate.getYear() === dayM3.getYear()) {
           dayM3Cnt = dayM3Cnt + 1;
-          dayM3Amt = Number(dayM3Amt) + Number(orderDetails.totalAmount);
+          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
+          {
+            dayM3Amt = Number(dayM3Amt) + Number(orderDetails.totalAmount);
+          }else {
+            dayM3Amt = Number(dayM3Amt) +Number(orderDetails.discountedprize)
+          }
+          //dayM3Amt = Number(dayM3Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayM4.getDate() && deliverydate.getMonth() === dayM4.getMonth() && deliverydate.getYear() === dayM4.getYear()) {
           dayM4Cnt = dayM4Cnt + 1;
-          dayM4Amt = Number(dayM4Amt) + Number(orderDetails.totalAmount);
+          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
+          {
+            dayM4Amt = Number(dayM4Amt) + Number(orderDetails.totalAmount);
+          }else {
+            dayM4Amt = Number(dayM4Amt) +Number(orderDetails.discountedprize)
+          }
+          //dayM4Amt = Number(dayM4Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayM5.getDate() && deliverydate.getMonth() === dayM5.getMonth() && deliverydate.getYear() === dayM5.getYear()) {
           dayM5Cnt = dayM5Cnt + 1;
-          dayM5Amt = Number(dayM5Amt) + Number(orderDetails.totalAmount);
+          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
+          {
+            dayM5Amt = Number(dayM5Amt) + Number(orderDetails.totalAmount);
+          }else {
+            dayM5Amt = Number(dayM5Amt) +Number(orderDetails.discountedprize)
+          }
+
+          //dayM5Amt = Number(dayM5Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayM6.getDate() && deliverydate.getMonth() === dayM6.getMonth() && deliverydate.getYear() === dayM6.getYear()) {
           dayM6Cnt = dayM6Cnt + 1;
-          dayM6Amt = Number(dayM6Amt) + Number(orderDetails.totalAmount);
+          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
+          {
+            dayM6Amt = Number(dayM6Amt) + Number(orderDetails.totalAmount);
+          }else {
+            dayM6Amt = Number(dayM6Amt) +Number(orderDetails.discountedprize)
+          }
+          //dayM6Amt = Number(dayM6Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayM7.getDate() && deliverydate.getMonth() === dayM7.getMonth() && deliverydate.getYear() === dayM7.getYear()) {
           dayM7Cnt = dayM7Cnt + 1;
-          dayM7Amt = Number(dayM7Amt) + Number(orderDetails.totalAmount);
+          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
+          {
+            dayM7Amt = Number(dayM7Amt) + Number(orderDetails.totalAmount);
+          }else {
+            dayM7Amt = Number(dayM7Amt) +Number(orderDetails.discountedprize)
+          }
+          //dayM7Amt = Number(dayM7Amt) + Number(orderDetails.totalAmount);
         }
 
 
