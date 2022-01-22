@@ -1128,7 +1128,7 @@ function renderOrder(orderid, order, index) {
   var h5 = document.createElement("h5");
   h5.setAttribute("class", "small-text");
   h5.setAttribute("style", "margin: 0 auto;");
-  h5.innerHTML = "Discount";
+  h5.innerHTML = "Payable  Amount";
   div12.appendChild(h5);
 
   var displayDiscountAmt = order.discountedprize.toLocaleString('en-IN', curFormat);
@@ -1139,7 +1139,9 @@ function renderOrder(orderid, order, index) {
   if (order.discountDetails.coupondID === "none" || order.discountDetails.discountValue === "none") {
     small4.innerHTML = "No Discount";
   } else {
-    small4.innerHTML = displayDiscountAmt + "(Off " + order.discountDetails.discountValue + ")";
+  //  small4.innerHTML = displayDiscountAmt + "(Off " + order.discountDetails.discountValue + ")";
+    small4.innerHTML = "<span style='font-size: 1.2rem;color: #1D741B;'>" + displayDiscountAmt + " </span> (Off " + order.discountDetails.discountValue + ")";
+
   }
   div12.appendChild(small4);
 
