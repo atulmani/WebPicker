@@ -618,6 +618,11 @@ function SaveOrder() {
             btnLoader[0].style.display = 'none';
             //    window.location.href = "orderStatus.html"
             // console.log(Date.parse(eventstart))
+            // Hide alert after 3 seconds
+            setTimeout(function() {
+              document.getElementById("Message").style.display = 'none';
+            }, 4000);
+
           })
           .catch(function(error) {
             console.error("error updatign order:", error);
