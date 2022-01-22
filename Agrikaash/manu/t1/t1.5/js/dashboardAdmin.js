@@ -283,7 +283,8 @@ function PopulateOrderSummary() {
         document.getElementById("cardDelivery").style.display = "block";
         // document.getElementById("productDiv").style.display = "block";
         //document.getElementById("userRegistration").style.display = "block";
-        // document.getElementById("trendChart").style.display = "block";
+        document.getElementById("trendChart").style.height = "450px";
+        document.getElementById("trendChart").style.visibility = "visible";
         getLastOrder();
       });
       if (flag === false) {
