@@ -38,6 +38,7 @@ auth.onAuthStateChanged(firebaseUser => {
       document.getElementById("notificationCnt").innerHTML = siteNotification;
       document.getElementById("notificationCnt1").innerHTML = siteNotification;
       console.log(siteNotification);
+      document.getElementById('btnProceedToPay').removeAttribute("disabled");
 
       //getCartSummary();
       //      populateAddress(addressID);
@@ -505,6 +506,9 @@ var iError = 0;
 
 //function getCartDetails() {
 function SaveOrder() {
+  var btnTextWithLoader = document.getElementsByClassName('btnTextWithLoader');
+  var btnLoader = document.getElementsByClassName('btnLoader');
+
   const snapshot = db.collection('CartDetails').doc(userID);
   snapshot.get().then(async (doc) => {
     if (doc.exists) {
@@ -549,6 +553,10 @@ function SaveOrder() {
       }
     }
   });
+
+  btnTextWithLoader[0].style.display = 'none';
+  btnLoader[0].style.display = 'block';
+
   console.log(message);
   return message;
 }
