@@ -238,7 +238,7 @@ function PopulateOrderSummary() {
           }else {
             day4Amt = Number(day4Amt) +Number(orderDetails.discountedprize)
           }
-          day4Amt = Number(day4Amt) + Number(orderDetails.totalAmount);
+          //day4Amt = Number(day4Amt) + Number(orderDetails.totalAmount);
         } else if (orderdate.getDate() === day5.getDate() && orderdate.getMonth() === day5.getMonth() && orderdate.getYear() === day5.getYear()) {
           if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
           {
@@ -246,7 +246,7 @@ function PopulateOrderSummary() {
           }else {
             day5Amt = Number(day5Amt) +Number(orderDetails.discountedprize)
           }
-          day5Amt = Number(day5Amt) + Number(orderDetails.totalAmount);
+          //day5Amt = Number(day5Amt) + Number(orderDetails.totalAmount);
         } else if (orderdate.getDate() === day6.getDate() && orderdate.getMonth() === day6.getMonth() && orderdate.getYear() === day6.getYear()) {
           if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
           {
@@ -254,7 +254,7 @@ function PopulateOrderSummary() {
           }else {
             day6Amt = Number(day6Amt) +Number(orderDetails.discountedprize)
           }
-          day6Amt = Number(day6Amt) + Number(orderDetails.totalAmount);
+          //day6Amt = Number(day6Amt) + Number(orderDetails.totalAmount);
         } else if (orderdate.getDate() === day7.getDate() && orderdate.getMonth() === day7.getMonth() && orderdate.getYear() === day7.getYear()) {
           if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
           {
@@ -262,7 +262,7 @@ function PopulateOrderSummary() {
           }else {
             day7Amt = Number(day7Amt) +Number(orderDetails.discountedprize)
           }
-          day7Amt = Number(day7Amt) + Number(orderDetails.totalAmount);
+        //  day7Amt = Number(day7Amt) + Number(orderDetails.totalAmount);
         }
 
 
@@ -275,7 +275,7 @@ function PopulateOrderSummary() {
           }else {
             weekAmount = Number(weekAmount) +Number(orderDetails.discountedprize)
           }
-          weekAmount = Number(weekAmount) + Number(orderDetails.totalAmount);
+          //weekAmount = Number(weekAmount) + Number(orderDetails.totalAmount);
         }
         if (orderdate.getMonth() === todayDate.getMonth() && orderdate.getYear() === todayDate.getYear()) {
 
@@ -283,17 +283,11 @@ function PopulateOrderSummary() {
 
           if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
           {
-            if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-            {
-              monthAmount = Number(monthAmount) + Number(orderDetails.totalAmount);
-            }else {
-              monthAmount = Number(monthAmount) +Number(orderDetails.discountedprize)
-            }
-            //monthAmount = Number(monthAmount) + Number(orderDetails.totalAmount);
+            monthAmount = Number(monthAmount) + Number(orderDetails.totalAmount);
           }else {
             monthAmount = Number(monthAmount) +Number(orderDetails.discountedprize)
           }
-          //monthAmount = Number(monthAmount) + Number(orderDetails.totalAmount);
+        //monthAmount = Number(monthAmount) + Number(orderDetails.totalAmount);
 
         }
         dateArr = [
