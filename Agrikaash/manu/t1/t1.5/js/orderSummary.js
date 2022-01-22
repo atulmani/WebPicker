@@ -662,6 +662,12 @@ function SaveOrder() {
             document.getElementById("Message").style.display = "block";
             btnTextWithLoader[0].style.display = 'block';
             btnLoader[0].style.display = 'none';
+
+              // Hide alert after 3 seconds
+              setTimeout(function() {
+                document.getElementById("Message").style.display = 'none';
+              }, 4000);
+
           })
           .catch(function(error) {
             console.error("error updatign order:", error);
