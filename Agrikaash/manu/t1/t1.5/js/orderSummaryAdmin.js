@@ -1,12 +1,15 @@
 //const productID = document.getElementById('productID');
 var userID = "";
 var cartItems = [];
+var orderItem = [];
 // var url = location.href;
 let eventDocUrl = new URL(location.href);
 // console.log ('URL: ' + eventDocUrl);
 let searchParams = new URLSearchParams(eventDocUrl.search);
 const orderID = searchParams.get('id');
-
+var discountValue = "";
+var totalAmount = 0;
+var paymentStatus = "";
 var userid_order = searchParams.get('userID');
 
 auth.onAuthStateChanged(firebaseUser => {
@@ -98,6 +101,10 @@ function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
     month: 'short',
     day: 'numeric'
   };
+  discountValue = selectedOrder.discountValue;
+  totalAmount = selectedOrder.totalAmount;
+  discountedprize = selectedOrder.discountedprize;
+   paymentStatus = selectedOrder.paymentStatus;
   var dDate = new Date(selectedOrder.deliveryDate.seconds * 1000);
   var delDate = dDate.toLocaleDateString("en-US", options);
   //document.getElementById('DeliveryDate').innerHTML = delDate;
@@ -262,7 +269,7 @@ function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
 }
 
 function populateOrderItems(selectedOrder) {
-  var orderItem = selectedOrder.orderItems;
+  orderItem = selectedOrder.orderItems;
   var i;
   document.getElementById('orderItems').innerHTML="";
 
@@ -374,7 +381,21 @@ function renderOrderItem(orderItem, index, orderStatusValue) {
   var td3 = document.createElement('td');
   td3.setAttribute('width', '50%');
   //td3.setAttribute("colspan", "2");
-  td3.innerHTML = 'Qty : ' + orderItem.Quantity;
+
+
+  // td3.innerHTML = 'Qty : ' + '<input type="number" style="background:#f4f4f4;border:1px solid #ddd;outline: none;width: 60%;" value="' + orderItem.Quantity + '"></input>';
+  // td3.innerHTML = 'Qty : ' + '<input type="number" style="background:none;border:none;outline: none;width: 60%;" readonly value="' + orderItem.Quantity + '"></input>';
+   td3.innerHTML = 'Qty : ' ;//+ '<input type="number" style="background:none;border:none;outline: none;width: 60%;" readonly value="' + orderItem.Quantity + '"></input>';
+
+  var inputQty = document.createElement("input");
+  inputQty.setAttribute("type","number");
+  inputQty.setAttribute("id","inQty" + index);
+  inputQty.setAttribute("style","background:none;border:none;outline: none;width: 60%;");
+   inputQty.setAttribute("readonly",true);
+  inputQty.setAttribute("value", orderItem.Quantity);
+  inputQty.setAttribute("onChange", "onChangeQty("+ "hfProdID" + index + "," + "selectedItem" + index + "," +"inQty" + index + ",editIcon" + index +",hfOldQty" + index +");" );
+
+  td3.appendChild(inputQty);
   //
   // var inputQty = document.createElement("input");
   // inputQty.setAttribute("id", "inputQty" + index);
@@ -417,7 +438,32 @@ function renderOrderItem(orderItem, index, orderStatusValue) {
     span2.innerHTML = "delete_outline";
     td3.appendChild(span2);
   }
-  tr2.appendChild(td3);
+
+
+if (orderStatusValue === 'Pending') {
+  var divEdit  = document.createElement("div");
+  divEdit.setAttribute("id", "editIcon" + index);
+
+  divEdit.setAttribute("onclick", "editItem(" + "hfProdID" + index + "," + "selectedItem" + index + "," +"inQty" + index + ",editIcon" + index +");");
+  var span12 = document.createElement("span");
+  span12.setAttribute("class", "material-icons-outlined");
+
+  span12.setAttribute("style", "position: relative;font-size: 1.2rem;padding-left: 5px;");
+  span12.innerHTML = "edit";
+  divEdit.appendChild(span12);
+  td3.appendChild(divEdit);
+
+}
+
+var hfQty = document.createElement("input");
+hfQty.setAttribute("id","hfOldQty" + index);
+hfQty.setAttribute("type","hidden" );
+hfQty.setAttribute("value", orderItem.Quantity );
+
+td3.appendChild(hfQty);
+
+tr2.appendChild(td3);
+
 
   table2.appendChild(tr2);
   td2.appendChild(table2)
@@ -773,6 +819,111 @@ function populateDeliveryDate() {
   delDate.appendChild(option1);
 }
 
+function onChangeQty(prodID, selectedItemIndex, inQty, editIcon, hfOldQty)
+{
+  console.log("onChangeQty");
+  console.log(prodID);
+  console.log( selectedItemIndex);
+  console.log(inQty.value);
+  console.log(editIcon);
+  var prizeDiffer = 0;
+  var qtyDiffer = 0;
+  //var discountedprize = 0;
+  //var totalAmount = 0;
+  console.log(totalAmount);
+  console.log(discountedprize);
+  const psnapshot = db.collection('Products').doc(prodID.value);
+  psnapshot.get().then((doc) => {
+    if (doc.exists) {
+      console.log(doc.data());
+      console.log(orderItem);
+      var index  = orderItem.findIndex(e=> e.ProductID === prodID.value && e.SelectedSubItem === selectedItemIndex.value);
+      //console.log(index);
+      if(Number(doc.data().MinimumQty) > Number(inQty.value))
+        inQty.value = doc.data().MinimumQty;
+      else if (Number(doc.data().MaximumQty) < Number(inQty.value))
+        inQty.value = doc.data().MaximumQty;
+
+      orderItem[index].Quantity = inQty.value;
+      qtyDiffer = Number(inQty.value) - Number(hfOldQty.value);
+      console.log(qtyDiffer);
+      prizeDiffer = Number(orderItem[index].UnitPrise) * Number(qtyDiffer);
+      console.log(prizeDiffer);
+      if(discountValue.search("%") >= 0 )
+      {
+        var percentage = discountValue.replaces("%","");
+        prizeDiffer = (Number(prizeDiffer) * (100 - Number(percentage)))/100;
+        totalAmount = Number(totalAmount) + Number(prizeDiffer);
+        discountedprize = Number(discountedprize) + Number(prizeDiffer);
+      }
+      else {
+          totalAmount = Number(totalAmount) + Number(prizeDiffer);
+          discountedprize = Number(discountedprize) + Number(prizeDiffer);
+      }
+
+      console.log(totalAmount);
+      console.log(discountedprize);
+
+      db.collection('OrderDetails').doc(orderID).update({
+          orderItems: orderItem,
+          totalAmount: totalAmount,
+          discountedprize: discountedprize
+        })
+        .then(function(docRef) {
+          console.log("Data added sucessfully in the document: " + orderID);
+
+          //update order trackData
+          var orderChanges = [];
+            orderChanges.push({
+              OrderStage: 7,
+              OrderStatus: 'Order is Updated by Admin for ' + prodID.value + " from " +  hfOldQty.value +" to " + inQty.value ,
+              PaymentStatus: '',
+              DeliverySlot: '',
+              DeliveryDate: '',
+              ChangedTimeStamp: new Date()
+            });
+            UpdateOrderTrackingDetails(orderChanges, orderID);
+
+            if(paymentStatus === 'Completed')
+            {
+              var curFormat = {
+                style: 'currency',
+                currency: 'INR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+              };
+
+              var walletRs = Number(-1 * prizeDiffer).toLocaleString('en-IN', curFormat);
+
+              document.getElementById("divWalletMessage").style.display = "block;"
+              document.getElementById("Walletmessage").innerHTML = "User Wallet has been added with : " + walletRs
+              updateWalletDetails(userid_order, -1 * prizeDiffer, 'add');
+          }
+
+          getOrderDetails();
+        })
+        .catch(function(error) {
+          console.error("error updating order:", error);
+        });
+
+
+    }
+  });
+
+  editIcon.setAttribute("style","");
+
+
+
+}
+function editItem(prodID, selectedItemIndex, inQty, editIcon) {
+  console.log('in editItem');
+  inQty.setAttribute("style", "background:#f4f4f4;border:1px solid #ddd;outline: none;width: 60%;");
+  inQty.removeAttribute("readOnly");
+
+  editIcon.setAttribute("style","pointer-events:none");
+  //<input type="number" style="background:#f4f4f4;border:1px solid #ddd;outline: none;width: 60%;"
+  //delet
+}
 function deleteItem(prodID, selectedItemIndex) {
   //delete from order list
   var allOrder;
