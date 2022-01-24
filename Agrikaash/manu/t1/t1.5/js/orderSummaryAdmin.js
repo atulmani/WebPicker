@@ -421,6 +421,7 @@ function renderOrderItem(orderItem, index, orderStatusValue) {
   //console.log(orderItem.Quantity);
   td3 = document.createElement('td');
   td3.setAttribute('width', '50%');
+  td3.setAttribute('style', 'display: flex;');
   //td3.setAttribute("colspan", "2");
   var hf = document.createElement("input");
   hf.setAttribute("id", "hfProdID" + index);
