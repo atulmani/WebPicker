@@ -30,7 +30,6 @@ function GetProfileData(user) {
 
         }
       }
-
       db.collection('CollectionStatistics').get().then((changes) => {
         changes.forEach(change => {
 
@@ -70,7 +69,6 @@ if (productID != null) {
 }
 
 //************* Populate Event Data - Starts ******************
-
 
 function populateProductData() {
   const snapshot = db.collection('Products').doc(productID);
