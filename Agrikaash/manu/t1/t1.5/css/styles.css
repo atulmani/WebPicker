@@ -695,7 +695,7 @@ h6{
   background: #ddd;
 }
 
-.new_category-list a{
+.new_category-list button{
   margin: 0 5px;
   background: #fff;
   color: #444;
@@ -708,10 +708,11 @@ h6{
   width: 100%;
   text-align: center;
   padding: 0 12%;
-  text-decoration: none;
+  border: none;
+  outline: none;
 }
 
-.new_category-list a.active{
+.new_category-list button.active{
   background: #f58634;
   color: #fff;
 }
