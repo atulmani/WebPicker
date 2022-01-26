@@ -536,8 +536,9 @@ h6 {
 }
 
 .owl-nav button span{
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.7);
   color: #fff;
+  font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -556,6 +557,10 @@ h6 {
 }
 
 #ourStory {
+  background: rgba(209,213,182,0.2);
+}
+
+#clients{
   background: rgba(209,213,182,0.2);
 }
 
@@ -665,6 +670,55 @@ h6 {
   color: #888;
 }
 
+.clients-card{
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.clients-card .img-div{
+  position: absolute;
+  top: 0;
+  left: calc(50% - 50px);
+  border: 2px solid #ddd;
+  padding: 10px;
+  width: 100px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.clients-card .img-div img{
+  width: 100%;
+  border-radius: 50%;
+}
+
+.clients-card .details{
+  padding-top: 20px;
+}
+
+.clients-card .details p{
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: 500;
+}
+
+.clients-card .details h5{
+  font-size: 0.9rem;
+  color: #888;
+  font-weight: bold;
+}
+
+.clients-card .details div{
+  text-align: left;
+}
+
+.clients-card .details div small{
+  margin: 0 auto;
+  font-size: 0.7rem;
+  color: #aaa;
+}
+
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -691,6 +745,7 @@ input[type=number] {
   height: 65px;
   overflow-y: hidden;
   box-shadow: 0 0 15px 0px rgba(185,154,135,0.3);
+  cursor: pointer;
   transition: 1s;
 }
 
@@ -738,7 +793,7 @@ input[type=number] {
 
 .dashboard-card .arrow-down{
   position: absolute;
-  right: 85px;
+  right: 15%;
   transform: translateY(0px);
   transition: 1s;
 }
@@ -788,7 +843,7 @@ input[type=number] {
 }
 
 #footer {
-  background: #C383B5;
+  background: #5C3B75;
   color: white;
 }
 
