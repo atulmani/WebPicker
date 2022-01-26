@@ -179,7 +179,7 @@ $(document).ready(function() {
     smartSpeed: 3000,
     autoplayTimeout: 4000,
     autoplayHoverPause: false,
-    nav: false,
+    nav: true,
     dots: false,
     center: true,
     responsive: {
