@@ -366,9 +366,15 @@
           <div class="col-md-12 col-md-offset-1">
             <input type="hidden" id="categoryCnt" value=0>
             <div class="new_category-list">
-              <a href="javascript:callFunction('All','')" id="allAnchor" class="active">All</a>
+              <!-- <a href="javascript:callFunction('All','')" id="allAnchor" class="active">All</a>
               <a href="javascript:callFunction('Vegetable','')" id="VegetableAnchor">Vegetable</a>
-              <a href="javascript:callFunction('Fruit','')" id="FruitAnchor">Fruit</a>
+              <a href="javascript:callFunction('Fruit','')" id="FruitAnchor">Fruit</a> -->
+
+
+                        <button  onclick="callFunction('All','')" id="allAnchor" class="active">All</button>
+                        <button  onclick="callFunction('Vegetable','')" id="VegetableAnchor">Vegetable</button>
+                        <button  onclick="callFunction('Fruit','')" id="FruitAnchor">Fruit</button>
+
             </div>
 
             <div id="category-list" class="owl-carousel owl-theme" style="padding:5px 0;display:none;">
