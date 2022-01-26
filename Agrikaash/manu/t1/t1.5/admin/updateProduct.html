@@ -365,7 +365,13 @@
         <div class="row no-gutters" style="background: #ddd;">
           <div class="col-md-12 col-md-offset-1">
             <input type="hidden" id="categoryCnt" value=0>
-            <div id="category-list" class="owl-carousel owl-theme" style="padding:5px 0;">
+            <div class="new_category-list">
+              <a href="javascript:callFunction('All','')" id="allAnchor" class="active">All</a>
+              <a href="javascript:callFunction('Vegetable','')" id="VegetableAnchor">Vegetable</a>
+              <a href="javascript:callFunction('Fruit','')" id="FruitAnchor">Fruit</a>
+            </div>
+
+            <div id="category-list" class="owl-carousel owl-theme" style="padding:5px 0;display:none;">
               <!-- <div   class="owl-carousel-inner"> -->
               <!-- <div class="item">
                 <a class="category-list-menu active">
