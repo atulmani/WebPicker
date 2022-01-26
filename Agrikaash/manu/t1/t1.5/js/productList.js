@@ -183,6 +183,8 @@ async function populateProductData(bType, pType, flag) {
   //console.log(bType);
   if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
   {
+    document.getElementById("idItem").innerHTML="";
+
     console.log('All', 'All');
     DBrows = db.collection("Products").get();
   } else if ((pType === '' || pType === 'All') && (bType != '' && bType != 'All')) //select one customer businessType
@@ -226,6 +228,15 @@ async function populateProductData(bType, pType, flag) {
           selectdedItem = null;
         }
       }
+
+
+      if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
+      {
+        var anchorB = document.createElement("button");
+        anchorB.setAttribute("onclick","showItem('" + change.id +"')");
+        anchorB.innerHTML =  change.data().ProductName;
+        document.getElementById("idItem").appendChild(anchorB);
+      }
       renderProductNew(change, index, selectdedItem);
       index = index + 1;
 
@@ -240,6 +251,7 @@ async function populateProductData(bType, pType, flag) {
       //   myNode.removeChild(myNode.lastElementChild);
       // }
       var unique = productCategory.filter(onlyUnique);
+
       //console.log(unique);
       renderProductCategory(unique, pType);
       document.getElementById("categoryCnt").value = unique.length;
@@ -1067,4 +1079,58 @@ var removeByAttr = function(arr, attr, value) {
     }
   }
   return arr;
+}
+
+
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function showItem(itemname)
+{
+  console.log(itemname);
+
+  const snapshot = db.collection('Products').doc(itemname);
+  snapshot.get().then(async (doc) => {
+      if (doc.exists) {
+
+      var pCategory = doc.data().productType;
+
+      if (cartItems != null) {
+        selectedIndex = cartItems.findIndex(a => a.ProductID === doc.id);
+
+        if (selectedIndex >= 0) {
+          selectdedItem = cartItems[selectedIndex];
+        } else {
+          selectdedItem = null;
+        }
+      } else {
+        selectdedItem = null;
+      }
+
+      document.getElementById("productRow").innerHTML ="";
+
+      //document.getElementById("idItem").innerHTML ="";
+
+      renderProductNew(doc, 0, selectdedItem);
+
+    }
+  });
+}
+function filterFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  div = document.getElementById("myDropdown");
+  a = div.getElementsByTagName("button");
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
 }
