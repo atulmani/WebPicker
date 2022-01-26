@@ -364,46 +364,21 @@
         <div class="row no-gutters" style="background: #ddd;">
           <div class="col-md-12 col-md-offset-1">
             <input type="hidden" id="categoryCnt" value=0>
-            <div id="category-list" class="owl-carousel owl-theme" style="padding:5px 0;">
-              <!-- <div   class="owl-carousel-inner"> -->
-              <!-- <div class="item">
-              <a class="category-list-menu active">
-                <h5>All</h5>
-              </a>
-            </div>
-            <div class="item">
-              <a class="category-list-menu">
-                <h5>Vegtable</h5>
-              </a>
-            </div>
-            <div class="item">
-              <a class="category-list-menu">
-                <h5>Fruits</h5>
-              </a>
-            </div>
-            <div class="item">
-              <a class="category-list-menu">
-                <h5>Goat</h5>
-              </a>
-            </div>
-            <div class="item">
-              <a class="category-list-menu">
-                <h5>Pearl</h5>
-              </a>
-            </div>
-            <div class="item">
-              <a class="category-list-menu">
-                <h5>Honey</h5>
-              </a>
-            </div> -->
-              <!-- </div> -->
+            <div id="category-list" class="owl-carousel owl-theme" style="padding:5px 0;display: none;">
+
             </div>
           </div>
         </div>
 
+        <div class="new_category-list">
+          <a href="#" class="active">All</a>
+          <a href="#">Vegetable</a>
+          <a href="#">Fruit</a>
+        </div>
+
         <div class="category-list-sub-menu" style="background: #f4f4f4;">
 
-          <div class="" id='divbusinessType'>
+          <div class="" id='divbusinessType' style="display: none;">
             <select class="city-selector" id="businessType" onchange="changCustomerType();" style="background: rgba(255,255,255,0.6);border: 1px solid #aaa;" name="">
               <option value="All">All</option>
               <option value="Small">Small</option>
