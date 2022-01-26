@@ -701,6 +701,8 @@ h6 {
   font-size: 0.8rem;
   color: #888;
   font-weight: 500;
+  height: 60px;
+  overflow-x: auto;
 }
 
 .clients-card .details h5{
