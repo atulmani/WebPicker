@@ -217,7 +217,7 @@ function renderProductCategory1(productCategory) {
   }
 }
 
-function callFunction(productType, objid) {
+function callFunctionOld(productType, objid) {
   console.log(objid);
   clearSelection();
   document.getElementById('loading').style.display = 'block';
@@ -231,6 +231,55 @@ function callFunction(productType, objid) {
   objid.setAttribute("class", "category-list-menu active");
 
   populateProductData(cType, productType);
+  //renderProductNew(doc, index, selectedItem)
+}
+
+function callFunction(productType, objid) {
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('hfpType').value = productType;
+
+  var e = document.getElementById("businessType");
+  var cType = e.options[e.selectedIndex].text;
+  //console.log(cType);
+  //console.log(productType);
+  // var cType = document.getElementById('businessType').SelectedValue;
+  //objid.setAttribute("class", "category-list-menu active");
+  if(productType === 'All')
+  {
+    var anchor = document.getElementById("allAnchor");
+    anchor.setAttribute("class", "active");
+
+    anchor = document.getElementById("FruitAnchor");
+    anchor.setAttribute("class", "");
+
+    anchor = document.getElementById("VegetableAnchor");
+    anchor.setAttribute("class", "");
+
+  }else if(productType === 'Vegetable')
+  {
+    var anchor = document.getElementById("allAnchor");
+    anchor.setAttribute("class", "");
+
+    anchor = document.getElementById("FruitAnchor");
+    anchor.setAttribute("class", "");
+
+    anchor = document.getElementById("VegetableAnchor");
+    anchor.setAttribute("class", "active");
+
+  }
+  else if(productType === 'Fruit')
+  {
+    var anchor = document.getElementById("allAnchor");
+    anchor.setAttribute("class", "");
+
+    anchor = document.getElementById("FruitAnchor");
+    anchor.setAttribute("class", "active");
+
+    anchor = document.getElementById("VegetableAnchor");
+    anchor.setAttribute("class", "");
+
+  }
+  populateProductData(cType, productType, false);
   //renderProductNew(doc, index, selectedItem)
 }
 
