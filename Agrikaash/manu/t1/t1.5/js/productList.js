@@ -193,7 +193,7 @@ async function populateProductData(bType, pType, flag) {
   } else if ((pType != '' && pType != 'All') && (bType === '' || bType === 'All')) //select one customer businessType
   {
 
-    console.log(pType, 'All');
+    //console.log(pType, 'All');
     DBrows = db.collection("Products").where("productType", "==", pType).get();
   } else if ((pType != '' && pType != 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
@@ -276,7 +276,7 @@ function onlyUnique(value, index, self) {
 // });
 
 function renderProductCategory(productCategory, pType) {
-  console.log(pType);
+  //console.log(pType);
   //var div = document.getElementById('category-list');
 
   for (i = 0; i < productCategory.length; i++) {
@@ -310,7 +310,7 @@ function renderProductCategory(productCategory, pType) {
 
 }
 
-function clearSelection() {
+function clearSelectionOld() {
   console.log('in clearSelection');
   var cnt = document.getElementById("categoryCnt").value;
   //console.log(document.getElementById("categoryCnt").value);
@@ -320,7 +320,21 @@ function clearSelection() {
   }
 }
 
-function callFunction(productType, objid) {
+function clearSelection() {
+  console.log('in clearSelection');
+  //console.log(document.getElementById("categoryCnt").value);
+    var anchor = document.getElementById("allAnchor");
+    anchor.setAttribute("class", "");
+
+    anchor = document.getElementById("FruitAnchor");
+    anchor.setAttribute("class", "");
+
+    anchor = document.getElementById("VegetableAnchor");
+    anchor.setAttribute("class", "");
+
+}
+
+function callFunctionOld(productType, objid) {
   console.log(objid);
   clearSelection();
   document.getElementById('loading').style.display = 'block';
@@ -336,6 +350,59 @@ function callFunction(productType, objid) {
   populateProductData(cType, productType, false);
   //renderProductNew(doc, index, selectedItem)
 }
+
+function callFunction(productType, objid) {
+  //console.log('objid');
+  //console.log('productType');
+  //clearSelection();
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('hfpType').value = productType;
+
+  var e = document.getElementById("businessType");
+  var cType = e.options[e.selectedIndex].text;
+  //console.log(cType);
+  //console.log(productType);
+  // var cType = document.getElementById('businessType').SelectedValue;
+  //objid.setAttribute("class", "category-list-menu active");
+  if(productType === 'All')
+  {
+    var anchor = document.getElementById("allAnchor");
+    anchor.setAttribute("class", "active");
+
+    anchor = document.getElementById("FruitAnchor");
+    anchor.setAttribute("class", "");
+
+    anchor = document.getElementById("VegetableAnchor");
+    anchor.setAttribute("class", "");
+
+  }else if(productType === 'Vegetable')
+  {
+    var anchor = document.getElementById("allAnchor");
+    anchor.setAttribute("class", "");
+
+    anchor = document.getElementById("FruitAnchor");
+    anchor.setAttribute("class", "");
+
+    anchor = document.getElementById("VegetableAnchor");
+    anchor.setAttribute("class", "active");
+
+  }
+  else if(productType === 'Fruit')
+  {
+    var anchor = document.getElementById("allAnchor");
+    anchor.setAttribute("class", "");
+
+    anchor = document.getElementById("FruitAnchor");
+    anchor.setAttribute("class", "active");
+
+    anchor = document.getElementById("VegetableAnchor");
+    anchor.setAttribute("class", "");
+
+  }
+  populateProductData(cType, productType, false);
+  //renderProductNew(doc, index, selectedItem)
+}
+
 
 function changCustomerType() {
   document.getElementById('loading').style.display = 'block';
