@@ -21,6 +21,12 @@ $(document).on({
 
 // Ristrict mouse right click - end
 
+function showHideCard(card, cardArrow) {
+  card.classList.toggle("active");
+
+  cardArrow.classList.toggle("active");
+}
+
 // Collapse Navbar toggle menu after clicking on menu items - Start
 $(document).on('click', function() {
   $('.collapse').collapse('hide');
@@ -178,6 +184,34 @@ $(document).ready(function() {
     autoplay: true,
     smartSpeed: 3000,
     autoplayTimeout: 4000,
+    autoplayHoverPause: false,
+    nav: true,
+    dots: false,
+    center: true,
+    responsive: {
+      0: {
+        items: 1,
+        stagePadding: 50,
+      },
+      600: {
+        items: 3
+      },
+      1024: {
+        items: 4
+      }
+    }
+  });
+});
+
+$(document).ready(function() {
+  var owl = $('#clients-list');
+  owl.owlCarousel({
+    margin: 30,
+    nav: true,
+    loop: true,
+    autoplay: true,
+    smartSpeed: 3000,
+    autoplayTimeout: 10000,
     autoplayHoverPause: false,
     nav: true,
     dots: false,
