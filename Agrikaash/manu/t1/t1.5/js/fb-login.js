@@ -225,17 +225,8 @@ var btnContinue = document.getElementById('btnContinue');
 
 function checkUserRole() {
 
-  // console.log(userRole.findIndex(e => e.Value === 'Admin'));
-
   if (userRole === undefined || userRole.length === 0) {
-    // console.log('in if check');
-    // window.location.href = "../login/Registration.html";
-    //document.getElementById('errorMessage_Login').innerHTML = 'You do not have access to Application. <a href=Registration.html>Please register</a> or reach out to Agrikaash Team for Access';
     document.getElementById('errorMessage_Login').style.display = 'block';
-    // document.getElementById('errorMessage_Login').innerHTML = 'User does not exists, Please register.';
-    document.getElementById('login').style.display = 'block';
-    document.getElementById('beforeLogin').style.display = 'none';
-    // document.getElementById('register').style.display = 'block';
   } else if (userRole.findIndex(e => e.Value === 'Admin') >= 0) {
      // console.log('is admin');
     window.location.href = "../admin/dashboard.html";
@@ -249,10 +240,12 @@ btnContinue.addEventListener('click', e => {
   e.preventDefault();
   if (loggedinUser)
   {
-    document.getElementById('login').style.display = 'none';
     GetUserRole(loggedinUser);
+    // document.getElementById('login').style.display = 'none';
+  } else {
+    document.getElementById('login').style.display = 'block';
+    document.getElementById('beforeLogin').style.display = 'none';
   }
-  checkUserRole();
 });
 
 
