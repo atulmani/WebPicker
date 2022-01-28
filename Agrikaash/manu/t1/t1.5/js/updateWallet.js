@@ -100,7 +100,7 @@ function SaveWallet()
     })
     .then((docRef) => {
       console.log("Data added sucessfully in the document: ");
-      document.getElementById("walletAmount").value = Number(walletAmount) + Number (document.getElementById("AddwalletAmount").value);
+      document.getElementById("walletAmount").innerHTML = Number(walletAmount) + Number (document.getElementById("AddwalletAmount").value);
       document.getElementById("AddwalletAmount").value = "0";
 
     })
@@ -109,6 +109,15 @@ function SaveWallet()
     });
 
 }
+
+function showUpdateWallet() {
+  var updateWalletFullDiv = document.getElementById('updateWalletFullDiv');
+  var updateWalletArrow = document.getElementById('updateWalletArrow');
+
+  updateWalletFullDiv.classList.toggle('updateWalletFullDivHide');
+  updateWalletArrow.classList.toggle('active');
+}
+
 function userListChange() {
   var userlist = document.getElementById("userList");
   var selectedUser = userlist.options[userlist.selectedIndex].value;
@@ -119,7 +128,7 @@ function userListChange() {
     const snapshot = db.collection('UserWallet').doc(selectedUser);
     snapshot.get().then(async (doc) => {
         if (doc.exists) {
-          document.getElementById('walletAmount').value = doc.data().WalletAmount;
+          document.getElementById('walletAmount').innerHTML = doc.data().WalletAmount;
           walletAmount = doc.data().WalletAmount;
           WalletDetails = doc.data().WalletDetails;
         }
@@ -127,7 +136,7 @@ function userListChange() {
           walletAmount = 0;
           WalletDetails = [];
 
-          document.getElementById('walletAmount').value = '0';
+          document.getElementById('walletAmount').innerHTML = '0';
         }
 
         //get Pending order Details
@@ -289,25 +298,30 @@ function addValue(checkB,  hfID, hfAmount)
   console.log(hfID);
   console.log( hfAmount);
   console.log(checkB.checked);
-  var amt = document.getElementById("SelectedAmount").value;
+  var amt = document.getElementById("SelectedAmount").innerHTML;
   console.log(amt);
   if(checkB.checked === true)
   {
     var total = Number(amt) + Number(hfAmount.value);
-    var walletAmt = document.getElementById("walletAmount").value;
+    var walletAmt = document.getElementById("walletAmount").innerHTML;
     if(Number(walletAmt) >= Number(total))
     {
-      document.getElementById("SelectedAmount").value = Number(amt) + Number(hfAmount.value);
+      document.getElementById("SelectedAmount").innerHTML = Number(amt) + Number(hfAmount.value);
       document.getElementById("message").style.display="none";
     }
     else {
       checkB.checked= false;
       document.getElementById("message").style.display="block";
+
+      // Hide alert after 4 seconds
+      setTimeout(function() {
+        document.getElementById("message").style.display = 'none';
+      }, 4000);
     }
     console.log("1", hfAmount.value);
   }
   else {
-    document.getElementById("SelectedAmount").value = Number(amt) - Number(hfAmount.value);
+    document.getElementById("SelectedAmount").innerHTML = Number(amt) - Number(hfAmount.value);
     console.log("2", hfAmount.value);
 
   }
@@ -355,7 +369,7 @@ function  UpdateOrder()
         })
         .then((docRef) => {
           console.log("Data added sucessfully in the document: ");
-          document.getElementById("walletAmount").value = Number(walletAmount) + Number (document.getElementById("AddwalletAmount").value);
+          document.getElementById("walletAmount").innerHTML = Number(walletAmount) + Number (document.getElementById("AddwalletAmount").value);
           document.getElementById("AddwalletAmount").value = "0";
           userListChange();
 
