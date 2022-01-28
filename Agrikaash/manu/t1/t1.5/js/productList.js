@@ -17,8 +17,8 @@ auth.onAuthStateChanged(firebaseUser => {
       //promise2.then(console.log(productCategory));
 
       var siteNotification = localStorage.getItem("notificationCount");
-      document.getElementById("notificationCnt").innerHTML=siteNotification;
-      document.getElementById("notificationCnt1").innerHTML=siteNotification;
+      document.getElementById("notificationCnt").innerHTML = siteNotification;
+      document.getElementById("notificationCnt1").innerHTML = siteNotification;
 
 
     } else {
@@ -79,10 +79,10 @@ function GetProfileData(user) {
         var promise = getCartItemNo();
         // var promise2 = promise.then(populateProductData('', '', true));
         var promise2 = promise.then(populateProductData(userBusinessCategory, '', true));
-      //  GetNotificationList();
-      var siteNotification = localStorage.getItem("notificationCount");
-      document.getElementById("notificationCnt").innerHTML=siteNotification;
-      document.getElementById("notificationCnt1").innerHTML=siteNotification;
+        //  GetNotificationList();
+        var siteNotification = localStorage.getItem("notificationCount");
+        document.getElementById("notificationCnt").innerHTML = siteNotification;
+        document.getElementById("notificationCnt1").innerHTML = siteNotification;
 
 
       }
@@ -106,7 +106,7 @@ function GetNotificationList() {
   const DBrows = db.collection('Notification')
     .where("Status", '==', 'Active')
     .where('ValidityTill', ">=", today)
-    //.orderBy('CreatedTimestamp', 'desc');
+  //.orderBy('CreatedTimestamp', 'desc');
 
   DBrows.onSnapshot((snapshot) => {
     let changes = snapshot.docChanges();
@@ -132,9 +132,8 @@ function GetNotificationList() {
       }
     });
 
-    if(flag === true)
-    {
-      document.getElementById("notificationCnt").innerHTML=index;
+    if (flag === true) {
+      document.getElementById("notificationCnt").innerHTML = index;
     }
 
   });
@@ -161,6 +160,43 @@ async function getCartItemNo() {
   });
 };
 
+function myChangeEvent() {
+  console.log('myChnageEvent');
+  var searchKey = document.getElementById("searchKey").value;
+  console.log(searchKey);
+  if (searchKey != '') {
+    console.log(searchKey);
+
+    var DBrows = db.collection("Products").where("ProductName", ">=", searchKey).where("ProductName", "<=", searchKey + "\uf8ff").get();
+    DBrows.then((changes) => {
+      var index = 0;
+      var selectedindex = -1;
+      var selectdedItem;
+      //productCategory.push('All');
+      changes.forEach(change => {
+        console.log('in for loop');
+        var pCategory = change.data().productType;
+        //productCategory.push(pCategory)
+        console.log(pCategory);
+        if (cartItems != null) {
+          selectedIndex = cartItems.findIndex(a => a.ProductID === change.id);
+
+          if (selectedIndex >= 0) {
+            selectdedItem = cartItems[selectedIndex];
+          } else {
+            selectdedItem = null;
+          }
+        } else {
+          selectdedItem = null;
+        }
+        renderProductNew(change, index, selectdedItem);
+        index = index + 1;
+      });
+    });
+
+  }
+}
+
 function emptyDiv(div) {
   div.innerHTML = '';
 }
@@ -183,7 +219,7 @@ async function populateProductData(bType, pType, flag) {
   //console.log(bType);
   if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
   {
-    document.getElementById("idItem").innerHTML="";
+    document.getElementById("idItem").innerHTML = "";
 
     console.log('All', 'All');
     DBrows = db.collection("Products").get();
@@ -233,8 +269,8 @@ async function populateProductData(bType, pType, flag) {
       if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
       {
         var anchorB = document.createElement("button");
-        anchorB.setAttribute("onclick","showItem('" + change.id +"')");
-        anchorB.innerHTML =  change.data().ProductName;
+        anchorB.setAttribute("onclick", "showItem('" + change.id + "')");
+        anchorB.innerHTML = change.data().ProductName;
         document.getElementById("idItem").appendChild(anchorB);
       }
       renderProductNew(change, index, selectdedItem);
@@ -335,14 +371,14 @@ function clearSelectionOld() {
 function clearSelection() {
   console.log('in clearSelection');
   //console.log(document.getElementById("categoryCnt").value);
-    var anchor = document.getElementById("allAnchor");
-    anchor.setAttribute("class", "");
+  var anchor = document.getElementById("allAnchor");
+  anchor.setAttribute("class", "");
 
-    anchor = document.getElementById("FruitAnchor");
-    anchor.setAttribute("class", "");
+  anchor = document.getElementById("FruitAnchor");
+  anchor.setAttribute("class", "");
 
-    anchor = document.getElementById("VegetableAnchor");
-    anchor.setAttribute("class", "");
+  anchor = document.getElementById("VegetableAnchor");
+  anchor.setAttribute("class", "");
 
 }
 
@@ -376,8 +412,7 @@ function callFunction(productType, objid) {
   //console.log(productType);
   // var cType = document.getElementById('businessType').SelectedValue;
   //objid.setAttribute("class", "category-list-menu active");
-  if(productType === 'All')
-  {
+  if (productType === 'All') {
     var anchor = document.getElementById("allAnchor");
     anchor.setAttribute("class", "active");
 
@@ -387,8 +422,7 @@ function callFunction(productType, objid) {
     anchor = document.getElementById("VegetableAnchor");
     anchor.setAttribute("class", "");
 
-  }else if(productType === 'Vegetable')
-  {
+  } else if (productType === 'Vegetable') {
     var anchor = document.getElementById("allAnchor");
     anchor.setAttribute("class", "");
 
@@ -398,9 +432,7 @@ function callFunction(productType, objid) {
     anchor = document.getElementById("VegetableAnchor");
     anchor.setAttribute("class", "active");
 
-  }
-  else if(productType === 'Fruit')
-  {
+  } else if (productType === 'Fruit') {
     var anchor = document.getElementById("allAnchor");
     anchor.setAttribute("class", "");
 
@@ -557,7 +589,7 @@ function renderProductNew(doc, index, selectedItem) {
 
   } else {
 
-    div1_4.innerHTML = "<h5>" + "<span id='mrp" + index + "' >" + Number(productlist[0].ProductMRP).toLocaleString('en-IN', curFormat)  + "</span>" + "</h5>" +
+    div1_4.innerHTML = "<h5>" + "<span id='mrp" + index + "' >" + Number(productlist[0].ProductMRP).toLocaleString('en-IN', curFormat) + "</span>" + "</h5>" +
       "<small> " + "<span id='final" + index + "'>" + Number(productlist[0].ProductFinalPrise).toLocaleString('en-IN', curFormat) + "</span></small>";
 
   }
@@ -584,7 +616,9 @@ function renderProductNew(doc, index, selectedItem) {
   buttonA.setAttribute('href', '#');
   buttonA.setAttribute("id", "btnAddtoCart" + index);
   // buttonA.setAttribute("onclick", "addToCart(" + doc.data().MinimumQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "'," + index + ")");
-  buttonA.addEventListener("click", function(e){addToCart(e, doc.data().MinimumQty, doc.data().ProductName, doc.id, selectP[selectP.selectedIndex].text, index)}, false);
+  buttonA.addEventListener("click", function(e) {
+    addToCart(e, doc.data().MinimumQty, doc.data().ProductName, doc.id, selectP[selectP.selectedIndex].text, index)
+  }, false);
 
   var addToCartBtn = document.createElement('button');
   addToCartBtn.setAttribute('class', 'mybutton button5');
@@ -1030,7 +1064,7 @@ function mySelectionChange(productdetails, mrp, final, hfSelected, index, lprodu
 
 function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualityStatus) {
 
-console.log(userID);
+  console.log(userID);
   itemIndex = cartItems.findIndex(a => a.ProductID === productID && a.SelectedsubItem === itemSelect);
   if (itemIndex >= 0)
     cartItems.splice(itemIndex, 1);
@@ -1095,8 +1129,7 @@ function showSearchInput() {
   serachDiv.classList.toggle("open");
 }
 
-function showItem(itemname)
-{
+function showItem(itemname) {
 
   var myDropdown = document.getElementById('myDropdown');
   var serachDiv = document.getElementById('serachDiv');
@@ -1105,7 +1138,7 @@ function showItem(itemname)
 
   const snapshot = db.collection('Products').doc(itemname);
   snapshot.get().then(async (doc) => {
-      if (doc.exists) {
+    if (doc.exists) {
 
       var pCategory = doc.data().productType;
 
@@ -1121,7 +1154,7 @@ function showItem(itemname)
         selectdedItem = null;
       }
 
-      document.getElementById("productRow").innerHTML ="";
+      document.getElementById("productRow").innerHTML = "";
 
       //document.getElementById("idItem").innerHTML ="";
 
@@ -1133,6 +1166,7 @@ function showItem(itemname)
     }
   });
 }
+
 function filterFunction() {
   console.log('hi');
   var input, filter, ul, li, a, i;
