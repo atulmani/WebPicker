@@ -375,9 +375,9 @@
           <a href="javascript:callFunction('Vegetable','')" id="VegetableAnchor">Vegetable</a>
           <a href="javascript:callFunction('Fruit','')" id="FruitAnchor">Fruit</a> -->
 
-          <button  onclick="callFunction('All','')" id="allAnchor" class="active">All</button>
-          <button  onclick="callFunction('Vegetable','')" id="VegetableAnchor">Vegetable</button>
-          <button  onclick="callFunction('Fruit','')" id="FruitAnchor">Fruit</button>
+          <button onclick="callFunction('All','')" id="allAnchor" class="active">All</button>
+          <button onclick="callFunction('Vegetable','')" id="VegetableAnchor">Vegetable</button>
+          <button onclick="callFunction('Fruit','')" id="FruitAnchor">Fruit</button>
 
         </div>
 
@@ -403,22 +403,30 @@
         </div>
       </div>
 
-      <div class="dropdown">
+      <div class="search-parent-div" style="padding: 15px;" id="myDropdown">
+        <div class="search" id="serachDiv">
+          <div class="" id="myInput">
+            <input type="search" class="search-box" onkeyup="filterFunction()" />
+          </div>
+          <span class="search-button" onclick="showSearchInput()">
+            <span class="search-icon"></span>
+          </span>
+        </div>
+        <div class="intelligence" id="idItem">
+
+        </div>
+      </div>
+
+
+      <!-- <div class="dropdown">
         <button onclick="myFunction()" class="dropbtn">Search Item</button>
         <div id="myDropdown" class="dropdown-content">
           <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
           <div id="idItem">
-          <!-- <a href="#about">About</a>
-          <a href="#base">Base</a>
-          <a href="#blog">Blog</a>
-          <a href="#contact">Contact</a>
-          <a href="#custom">Custom</a>
-          <a href="#support">Support</a>
-          <a href="#tools">Tools</a> -->
 
+          </div>
         </div>
-        </div>
-      </div>
+      </div> -->
 
       <div class="row no-gutters">
         <div class="product-menu">

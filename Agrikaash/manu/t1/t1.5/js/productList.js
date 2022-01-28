@@ -1084,12 +1084,23 @@ var removeByAttr = function(arr, attr, value) {
 
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
+// function myFunction() {
+//   document.getElementById("myDropdown").classList.toggle("show");
+// }
+
+function showSearchInput() {
+  var myDropdown = document.getElementById('myDropdown');
+  var serachDiv = document.getElementById('serachDiv');
+  myDropdown.classList.toggle("show");
+  serachDiv.classList.toggle("open");
 }
 
 function showItem(itemname)
 {
+
+  var myDropdown = document.getElementById('myDropdown');
+  var serachDiv = document.getElementById('serachDiv');
+
   console.log(itemname);
 
   const snapshot = db.collection('Products').doc(itemname);
@@ -1116,13 +1127,17 @@ function showItem(itemname)
 
       renderProductNew(doc, 0, selectdedItem);
 
+      myDropdown.classList.remove("show");
+      serachDiv.classList.remove("open");
+
     }
   });
 }
 function filterFunction() {
+  console.log('hi');
   var input, filter, ul, li, a, i;
   input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
+  filter = input.children[0].value.toUpperCase();
   div = document.getElementById("myDropdown");
   a = div.getElementsByTagName("button");
   for (i = 0; i < a.length; i++) {
