@@ -357,6 +357,7 @@ function addValue(checkB,  hfID, hfAmount)
   {
     var total = Number(amt) + Number(hfAmount.value);
     var walletAmt = document.getElementById("walletAmount").innerHTML;
+    walletAmt = walletAmt.replace(/[₹,]+/g, "");
     if(Number(walletAmt) >= Number(total))
     {
       document.getElementById("SelectedAmount").innerHTML = Number(amt) + Number(hfAmount.value);
