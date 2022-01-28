@@ -80,14 +80,57 @@ function GetProfileData() {
     });
 };
 
+function amountChange()
+{
+  //console.log('amountChange');
+  var btnAdd = document.getElementById("btnAdd");
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
+  var amountDislay = document.getElementById("AddwalletAmount").value;
+  amountDislay=Number(amountDislay).toLocaleString('en-IN', curFormat);
+  btnAdd.innerHTML=amountDislay
+}
+function addAmount(amt)
+{
+    //console.log(amt);
+    var curFormat = {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2
+    };
+
+    var amountDislay = document.getElementById("AddwalletAmount").value;
+    amountDislay = Number(amountDislay) + Number(amt);
+     document.getElementById("AddwalletAmount").value = amountDislay;
+    amountDislay=Number(amountDislay).toLocaleString('en-IN', curFormat);
+    btnAdd.innerHTML=amountDislay
+
+}
 function SaveWallet()
 {
   console.log('SaveWallet()');
+
+      var curFormat = {
+        style: 'currency',
+        currency: 'INR',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2
+      };
+  var amountDislay = document.getElementById("AddwalletAmount").value;
+
+  amountDislay = amountDislay.replace(/[₹,]+/g, "");
+  console.log(amountDislay);
+  console.log(walletAmount);
   var userlist = document.getElementById("userList");
   selectedUser = userlist.options[userlist.selectedIndex].value;
   WalletDetails.push({
     Date : firebase.firestore.Timestamp.fromDate(new Date()),
-    WalletAmount : Number (document.getElementById("AddwalletAmount").value),
+    WalletAmount : Number (amountDislay),
     WalletType : 'Add',
     orderID : 'Wallet Add by Admin'
   });
@@ -95,12 +138,13 @@ function SaveWallet()
   db.collection("UserWallet").doc(selectedUser).set({
       UpdatedByUser : userID,
       UpdatedTimestamp : firebase.firestore.Timestamp.fromDate(new Date()),
-      WalletAmount : Number(walletAmount) + Number (document.getElementById("AddwalletAmount").value),
+      WalletAmount : Number(walletAmount) + Number (amountDislay),
       WalletDetails : WalletDetails
     })
     .then((docRef) => {
+      walletAmount = Number(walletAmount) + Number (amountDislay);
       console.log("Data added sucessfully in the document: ");
-      document.getElementById("walletAmount").innerHTML = Number(walletAmount) + Number (document.getElementById("AddwalletAmount").value);
+      document.getElementById("walletAmount").innerHTML = Number(walletAmount).toLocaleString('en-IN', curFormat) ;
       document.getElementById("AddwalletAmount").value = "0";
 
     })
@@ -119,6 +163,14 @@ function showUpdateWallet() {
 }
 
 function userListChange() {
+
+    var curFormat = {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2
+    };
+
   var userlist = document.getElementById("userList");
   var selectedUser = userlist.options[userlist.selectedIndex].value;
   console.log(selectedUser);
@@ -128,7 +180,8 @@ function userListChange() {
     const snapshot = db.collection('UserWallet').doc(selectedUser);
     snapshot.get().then(async (doc) => {
         if (doc.exists) {
-          document.getElementById('walletAmount').innerHTML = doc.data().WalletAmount;
+          // document.getElementById('walletAmount').innerHTML = doc.data().WalletAmount;
+          document.getElementById('walletAmount').innerHTML = Number(doc.data().WalletAmount).toLocaleString('en-IN', curFormat);
           walletAmount = doc.data().WalletAmount;
           WalletDetails = doc.data().WalletDetails;
         }
