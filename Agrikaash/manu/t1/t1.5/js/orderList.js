@@ -783,11 +783,14 @@ function renderOrder(orderid, order, index) {
         div18.appendChild(div19);
 
         var small51 = document.createElement("small");
+        var timedisplay = "" ;
         if(pendingorderTrackIndex>=0 )
         {
-          var pendingDate = new Date(changeTrack[pendingorderTrackIndex].ChangedTimeStamp.seconds * 1000);
-          pendingDate = pendingDate.toLocaleDateString("en-US", options);
-          small51.innerHTML=pendingDate;
+          pendingDate = new Date(changeTrack[pendingorderTrackIndex].ChangedTimeStamp.seconds * 1000);
+          timedisplay = pendingDate.toLocaleTimeString('en-US');
+
+          var pendingDatedisplay = pendingDate.toLocaleDateString("en-US", options);
+          small51.innerHTML=pendingDatedisplay;
         }
         div18.appendChild(small51);
 
@@ -796,7 +799,13 @@ function renderOrder(orderid, order, index) {
 
         var small52 = document.createElement("small");
         small52.setAttribute("class","time");
-        small52.innerHTML ="Time";
+        if(pendingorderTrackIndex>=0 )
+        {
+          small52.innerHTML = timedisplay ;// "Time";
+        }
+        else {
+          small52.innerHTML = ""
+        }
         div18.appendChild(small52);
 
         div17.appendChild(div18);
@@ -832,15 +841,18 @@ function renderOrder(orderid, order, index) {
         div20.appendChild(div22);
 
         var small52 = document.createElement("small");
+        timedisplay = "";
         if(cancelledorderTrackIndex>=0 )
         {
           var cancelDate = new Date(changeTrack[cancelledorderTrackIndex].ChangedTimeStamp.seconds * 1000);
+          timedisplay = cancelDate.toLocaleTimeString('en-US');
           cancelDate = cancelDate.toLocaleDateString("en-US", options);
           small52.innerHTML=cancelDate;
         }
         else if(packedorderTrackIndex>=0 )
         {
           var packedDate = new Date(changeTrack[packedorderTrackIndex].ChangedTimeStamp.seconds * 1000);
+          timedisplay = packedDate.toLocaleTimeString('en-US');
           packedDate = packedDate.toLocaleDateString("en-US", options);
           small52.innerHTML=packedDate;
         }
@@ -852,7 +864,9 @@ function renderOrder(orderid, order, index) {
 
         var small53 = document.createElement("small");
         small53.setAttribute("class","time");
-        small53.innerHTML ="Time";
+
+
+        small53.innerHTML =timedisplay ;//"Time";
         div20.appendChild(small53);
 
         div17.appendChild(div20);
@@ -890,6 +904,7 @@ function renderOrder(orderid, order, index) {
         div23.appendChild(div25);
 
         var small53 = document.createElement("small");
+        timedisplay = "";
         if(cancelledorderTrackIndex>=0)
         {
           small53.innerHTML = "";
@@ -897,6 +912,8 @@ function renderOrder(orderid, order, index) {
         else if(onTheWayorderTrackIndex>=0 )
         {
           var onTheWayDate = new Date(changeTrack[onTheWayorderTrackIndex].ChangedTimeStamp.seconds * 1000);
+          timedisplay = onTheWayDate.toLocaleTimeString('en-US');
+
           onTheWayDate = onTheWayDate.toLocaleDateString("en-US", options);
           small53.innerHTML=onTheWayDate;
         }
@@ -907,7 +924,7 @@ function renderOrder(orderid, order, index) {
 
         var small54 = document.createElement("small");
         small54.setAttribute("class","time");
-        small54.innerHTML ="Time";
+        small54.innerHTML =timedisplay;//"Time";
         div23.appendChild(small54);
 
         div17.appendChild(div23);
@@ -945,6 +962,7 @@ function renderOrder(orderid, order, index) {
         div26.appendChild(div28);
 
         var small56 = document.createElement("small");
+        timedisplay = "";
         if(cancelledorderTrackIndex>=0)
         {
           small56.innerHTML=""
@@ -952,6 +970,8 @@ function renderOrder(orderid, order, index) {
         else if(deliveredorderTrackIndex>=0 )
         {
           var delievredDate = new Date(changeTrack[deliveredorderTrackIndex].ChangedTimeStamp.seconds * 1000);
+          timedisplay = delievredDate.toLocaleTimeString('en-US');
+
           delievredDate = delievredDate.toLocaleDateString("en-US", options);
           small56.innerHTML=delievredDate;
         }
@@ -962,7 +982,7 @@ function renderOrder(orderid, order, index) {
 
         var small55 = document.createElement("small");
         small55.setAttribute("class","time");
-        small55.innerHTML ="Time";
+        small55.innerHTML = timedisplay;//"Time";
         div26.appendChild(small55);
 
         div17.appendChild(div26);
