@@ -454,10 +454,10 @@ h6 {
   top: 0;
   left: 0;
   right: 20%;
-  bottom: 0;
+  bottom: 8%;
   background: #fff;
   z-index: 50;
-  height: 100%;
+  overflow: auto;
   /* padding-top: 40px; */
   box-shadow: 0 0 200px 0 rgba(0, 0, 0, 0.4);
 }
@@ -1782,6 +1782,61 @@ input[type=number] {
   color: orange;
 }
 
+.progress-bar-div{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #f4f4f4;
+  padding: 10px 0;
+}
+
+.progress-bar-div div{
+  width: 100%;
+  text-align: center;
+}
+
+.progress-bar-div div.active .step{
+  background: #1D741B;
+}
+
+.progress-bar-div div h5{
+  font-size: 0.6rem;
+  font-weight: bold;
+  color: #aaa;
+}
+
+.progress-bar-div div .step{
+  width: 20px;
+  height: 20px;
+  background: #aaa;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+
+.progress-bar-div div .step.center{
+  position: relative;
+  left: calc(50% - 20px);
+}
+
+.progress-bar-div div .step.right{
+  position: relative;
+  left: calc(100% - 40px);
+}
+
+.progress-bar-div div .line{
+  position: relative;
+  top: -11px;
+  left: 36px;
+  width: 82%;
+  height: 2px;
+  background: red;
+}
+
+.progress-bar-div div .line.center{
+  position: relative;
+  left: 56px;
+}
+
 /* orders page - end */
 /* order status page - start */
 .order-menu-list {
@@ -1811,7 +1866,7 @@ input[type=number] {
   border: none;
   border-bottom: 4px solid #88CA5E;
   margin: 0;
-  width: 25%;
+  width: 33.3%;
   transition: 0.5s;
 }
 
@@ -1887,6 +1942,120 @@ input[type=number] {
 }
 
 /* payment - end */
+
+/* update Wallet - start */
+
+.walletAmount{
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+.updateWallet-add-money-buttons{
+  padding: 0;
+  font-size: 0.7rem;
+  width:100%;
+  height: 35px;
+  margin: auto 10px;
+}
+
+.wallet-currency-rupee-icon{
+  position:absolute;
+  top: 17px;
+  font-size: 1.2rem;
+  font-weight:lighter;
+  color: #bbb;
+}
+
+.updateWalletFullDivHide{
+  display: none;
+  border: 1px solid #aaa;
+}
+
+.wallet-shiw-arrow{
+  font-size: 1.2rem;
+  position: relative;
+  top: -5px;
+  color: blue;
+  transition: 1s;
+}
+
+.wallet-shiw-arrow.active{
+  transform: rotate(180deg);
+}
+
+.wallet-transactions h5{
+  font-size: 0.6rem;
+  color: #666;
+  padding: 17px 10px 10px 10px;
+  font-weight: bold;
+}
+
+.wallet-transactions .wallet-transactions-card:nth-last-child(1){
+  border: none;
+}
+
+.wallet-transactions-card{
+  display: flex;
+  background: #fff;
+  padding: 10px;
+  border-bottom: 1px solid #ededed;
+}
+
+.wallet-transactions-card .details{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 85%;
+}
+
+.wallet-transactions-card .details div:nth-of-type(1){
+  text-align: left;
+}
+
+.wallet-transactions-card .details div:nth-of-type(2){
+  text-align: right;
+}
+
+.wallet-transactions-card .details div span{
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.wallet-transactions-card .details div small{
+  font-size: 0.6rem;
+  font-weight: bold;
+  color: #aaa;
+}
+
+.update-order-total-value-div{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.update-order-total-value-div div{
+  width: 100%;
+}
+
+.update-order-total-value-div div small{
+  font-size: 0.7rem;
+  color: #aaa;
+}
+
+.update-order-payment div{
+  padding: 4px 0;
+}
+
+.update-order-payment div h5{
+  font-weight: normal;
+  font-size: 0.7rem;
+}
+
+
+/* update Wallet - end */
+
 /* order summary page - start */
 .order-summary {
   background: #fff;
@@ -2556,7 +2725,7 @@ display: inline-block;
 }
 
 .search.open {
-  width: 420px;
+  width: 100%;
 }
 
 .search.open::before {
