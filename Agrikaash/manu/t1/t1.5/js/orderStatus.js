@@ -921,10 +921,8 @@ function GetOrder(filter) {
     orderMenuListHr.style.transform = 'translateX(0%)';
   } else if (filter === 'Delivered') {
     orderMenuListHr.style.transform = 'translateX(100%)';
-  } else if (filter === 'Cancelled') {
-    orderMenuListHr.style.transform = 'translateX(200%)';
   } else {
-    orderMenuListHr.style.transform = 'translateX(300%)';
+    orderMenuListHr.style.transform = 'translateX(200%)';
   }
   populateOrderDetails(filter);
 
