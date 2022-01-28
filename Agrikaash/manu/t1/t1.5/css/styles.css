@@ -1782,12 +1782,14 @@ input[type=number] {
   color: orange;
 }
 
+/* progress bar - start */
+
 .progress-bar-div{
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: #f4f4f4;
-  padding: 10px 0;
+  background: rgba(136,202,94,0.2);
+  padding: 10px 0 0 0;
 }
 
 .progress-bar-div div{
@@ -1795,7 +1797,8 @@ input[type=number] {
   text-align: center;
 }
 
-.progress-bar-div div.active .step{
+.progress-bar-div div.active .step,
+.progress-bar-div div.active .line{
   background: #1D741B;
 }
 
@@ -1803,6 +1806,40 @@ input[type=number] {
   font-size: 0.6rem;
   font-weight: bold;
   color: #aaa;
+}
+
+.progress-bar-div div small{
+  font-size: 0.6rem;
+  color: #aaa;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+.progress-bar-div div small.time{
+  position: relative;
+  top: -6px;
+}
+
+.progress-bar-div div.active h5{
+  color: #1D741B;
+}
+
+.progress-bar-div div:nth-child(1){
+  text-align: left;
+}
+
+.progress-bar-div div:nth-child(1) h5,
+.progress-bar-div div:nth-child(1) small{
+  padding-left: 10px;
+}
+
+.progress-bar-div div:nth-child(4){
+  text-align: right;
+}
+
+.progress-bar-div div:nth-child(4) h5,
+.progress-bar-div div:nth-child(4) small{
+  padding-right: 10px;
 }
 
 .progress-bar-div div .step{
@@ -1826,16 +1863,27 @@ input[type=number] {
 .progress-bar-div div .line{
   position: relative;
   top: -11px;
-  left: 36px;
-  width: 82%;
+  left: -46px;
+  width: 88%;
   height: 2px;
-  background: red;
+  background: #aaa;
 }
 
 .progress-bar-div div .line.center{
   position: relative;
-  left: 56px;
+  top: -11px;
+  left: -25px;
+  width: 62%;
 }
+
+.progress-bar-div div .line.right{
+  position: relative;
+  top: -11px;
+  left: -25px;
+  width: 88%;
+}
+
+/* progress bar - end */
 
 /* orders page - end */
 /* order status page - start */
@@ -2266,7 +2314,7 @@ input[type=number] {
 }
 
 .dashboard-card.order-status.active {
-  height: 380px;
+  height: 440px;
 }
 
 .dashboard-card.order-summary-expand-div.active {
