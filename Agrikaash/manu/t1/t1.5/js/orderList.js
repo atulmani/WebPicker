@@ -140,6 +140,20 @@ function dateRangeChange() {
 
 }
 
+function GetOrder(filter) {
+  var orderMenuListHr = document.getElementById('orderMenuListHr');
+  // console.log(filter);
+  if (filter === 'Pending') {
+    orderMenuListHr.style.transform = 'translateX(0%)';
+  } else if (filter === 'Delivered') {
+    orderMenuListHr.style.transform = 'translateX(100%)';
+  } else {
+    orderMenuListHr.style.transform = 'translateX(200%)';
+  }
+  populateOrderDetails(filter);
+
+}
+
 function populateOrderDetails() {
   var i = 0;
   var fromDate;
