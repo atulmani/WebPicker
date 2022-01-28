@@ -74,7 +74,7 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #fff;
+  color: #FFF7E5;
   font-weight: 600;
   border: none;
 }
@@ -188,6 +188,18 @@ h6 {
   padding-left: 5%;
 }
 
+@media (max-width: 850px) {
+  .navbar-brand{
+    position: relative;
+    top: -7px;
+  }
+
+  .navbar-toggler{
+    position: relative;
+    top: -7px;
+  }
+}
+
 .brand-heading{
   padding-left:8px;
   font-size:2rem;
@@ -275,7 +287,8 @@ h6 {
 }
 
 .navbar-mobile-bottom-menu .navbar-mobile-bottom-menu-a {
-  color: rgba(201,190,177,0.8);
+  /* color: rgba(201,190,177,0.8); */
+  color:#FFF7E5;
   font-size: 1rem;
   text-align: center;
   text-decoration: none;
@@ -1000,7 +1013,7 @@ input[type=number] {
 
 #footer {
   background: #65463E;
-  color: white;
+  color: #FFF7E5;
 }
 
 .footer-div-1 {
@@ -1041,7 +1054,7 @@ input[type=number] {
 }
 
 .read-more-button {
-  color: #fff;
+  color: #FFF7E5;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: bold;
@@ -1058,7 +1071,7 @@ input[type=number] {
 }
 
 .footer-links a {
-  color: #fff;
+  color: #FFF7E5;
   text-decoration: none;
   font-size: 0.8rem;
 }
@@ -1083,7 +1096,7 @@ input[type=number] {
   font-size: 1.1rem;
   width: 40px;
   height: 40px;
-  border: 1px solid #fff;
+  border: 1px solid #FFF7E5;
   display: flex;
   justify-content: center;
   align-items: center;
