@@ -375,7 +375,7 @@
 
       <div class="">
       <div class="category-list-sub-menu" id="walletDiv" style="background: #f4f4f4; display:none;text-align:center;">
-        <span class="walletAmount" style="font-weight: normal;">₹</span>
+        <!-- <span class="walletAmount" style="font-weight: normal;">₹</span> -->
         <span class="walletAmount" id="walletAmount"></span><br>
         <input type="hidden" id="hfWalletExists">
 
@@ -390,9 +390,9 @@
       <div class="updateWalletFullDivHide" id="updateWalletFullDiv">
       <div class=""><br>
         <div class="" style="display:flex;justify-content: space-around;align-items: center;padding: 0 10px;">
-          <button class="mybutton buttonTransparent updateWallet-add-money-buttons">+ ₹100</button>
-          <button class="mybutton buttonTransparent updateWallet-add-money-buttons">+ ₹1,000</button>
-          <button class="mybutton buttonTransparent updateWallet-add-money-buttons">+ ₹10,000</button>
+          <button class="mybutton buttonTransparent updateWallet-add-money-buttons" onclick="addAmount('10000');">+ ₹10,000</button>
+          <button class="mybutton buttonTransparent updateWallet-add-money-buttons" onclick="addAmount('20000');">+ ₹20,000</button>
+          <button class="mybutton buttonTransparent updateWallet-add-money-buttons" onclick="addAmount('50000');">+ ₹50,000</button>
         </div>
       </div>
 
@@ -405,7 +405,7 @@
               <span class="material-icons-outlined wallet-currency-rupee-icon">
                 currency_rupee
               </span>
-              <input type="text" value="1000" id="AddwalletAmount" style="background: none;font-size: 1.2rem;padding-left: 30px;" required maxlength="40">
+              <input type="text" value="5000" id="AddwalletAmount" onchange="amountChange();" style="background: none;font-size: 1.2rem;padding-left: 30px;" required maxlength="40">
               <label>Add Amount</label>
             </div>
           </div>
@@ -413,7 +413,7 @@
 
         <br>
         <button class="mybutton button5" onclick="SaveWallet();" style="padding-bottom: 7px;width: 100%;">
-          Proceed to add :  <span>₹ 100</span>
+          Proceed to add :  <span id="btnAdd">₹ 5000 </span>
         </button>
       </div><br>
 
