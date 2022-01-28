@@ -80,8 +80,7 @@ function GetProfileData() {
     });
 };
 
-function amountChange()
-{
+function amountChange() {
   //console.log('amountChange');
   var btnAdd = document.getElementById("btnAdd");
   var curFormat = {
@@ -91,36 +90,36 @@ function amountChange()
     maximumFractionDigits: 2
   };
   var amountDislay = document.getElementById("AddwalletAmount").value;
-  amountDislay=Number(amountDislay).toLocaleString('en-IN', curFormat);
-  btnAdd.innerHTML=amountDislay
+  amountDislay = Number(amountDislay).toLocaleString('en-IN', curFormat);
+  btnAdd.innerHTML = amountDislay
 }
-function addAmount(amt)
-{
-    //console.log(amt);
-    var curFormat = {
-      style: 'currency',
-      currency: 'INR',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 2
-    };
 
-    var amountDislay = document.getElementById("AddwalletAmount").value;
-    amountDislay = Number(amountDislay) + Number(amt);
-     document.getElementById("AddwalletAmount").value = amountDislay;
-    amountDislay=Number(amountDislay).toLocaleString('en-IN', curFormat);
-    btnAdd.innerHTML=amountDislay
+function addAmount(amt) {
+  //console.log(amt);
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
+
+  var amountDislay = document.getElementById("AddwalletAmount").value;
+  amountDislay = Number(amountDislay) + Number(amt);
+  document.getElementById("AddwalletAmount").value = amountDislay;
+  amountDislay = Number(amountDislay).toLocaleString('en-IN', curFormat);
+  btnAdd.innerHTML = amountDislay
 
 }
-function SaveWallet()
-{
+
+function SaveWallet() {
   console.log('SaveWallet()');
 
-      var curFormat = {
-        style: 'currency',
-        currency: 'INR',
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 2
-      };
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
   var amountDislay = document.getElementById("AddwalletAmount").value;
 
   amountDislay = amountDislay.replace(/[₹,]+/g, "");
@@ -129,22 +128,22 @@ function SaveWallet()
   var userlist = document.getElementById("userList");
   selectedUser = userlist.options[userlist.selectedIndex].value;
   WalletDetails.push({
-    Date : firebase.firestore.Timestamp.fromDate(new Date()),
-    WalletAmount : Number (amountDislay),
-    WalletType : 'Add',
-    orderID : 'Wallet Add by Admin'
+    Date: firebase.firestore.Timestamp.fromDate(new Date()),
+    WalletAmount: Number(amountDislay),
+    WalletType: 'Add',
+    orderID: 'Wallet Add by Admin'
   });
 
   db.collection("UserWallet").doc(selectedUser).set({
-      UpdatedByUser : userID,
-      UpdatedTimestamp : firebase.firestore.Timestamp.fromDate(new Date()),
-      WalletAmount : Number(walletAmount) + Number (amountDislay),
-      WalletDetails : WalletDetails
+      UpdatedByUser: userID,
+      UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+      WalletAmount: Number(walletAmount) + Number(amountDislay),
+      WalletDetails: WalletDetails
     })
     .then((docRef) => {
-      walletAmount = Number(walletAmount) + Number (amountDislay);
+      walletAmount = Number(walletAmount) + Number(amountDislay);
       console.log("Data added sucessfully in the document: ");
-      document.getElementById("walletAmount").innerHTML = Number(walletAmount).toLocaleString('en-IN', curFormat) ;
+      document.getElementById("walletAmount").innerHTML = Number(walletAmount).toLocaleString('en-IN', curFormat);
       document.getElementById("AddwalletAmount").value = "0";
 
     })
@@ -164,14 +163,15 @@ function showUpdateWallet() {
 
 function userListChange() {
 
-    var curFormat = {
-      style: 'currency',
-      currency: 'INR',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 2
-    };
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
 
   var userlist = document.getElementById("userList");
+  document.getElementById("WalletDetailsDt").innerHTML="";
   var selectedUser = userlist.options[userlist.selectedIndex].value;
   console.log(selectedUser);
   if (selectedUser != '0') {
@@ -184,51 +184,101 @@ function userListChange() {
           document.getElementById('walletAmount').innerHTML = Number(doc.data().WalletAmount).toLocaleString('en-IN', curFormat);
           walletAmount = doc.data().WalletAmount;
           WalletDetails = doc.data().WalletDetails;
-        }
-        else {
+        } else {
           walletAmount = 0;
           WalletDetails = [];
 
           document.getElementById('walletAmount').innerHTML = '0';
         }
 
+        //get WalletDetails start
+
+        var options = {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        };
+
+        var walletDetails = [];
+        const snapshot = db.collection('UserWallet').doc(selectedUser);
+        snapshot.get().then((doc) => {
+          if (doc.exists) {
+            walletDetails = doc.data().WalletDetails;
+            //console.log(walletDetails);
+            var oldDate = '';
+            var newDate = '';
+            var cnt = 0;
+            var closingBalance = walletAmount;
+            console.log(walletDetails.length);
+            for (intcnt = walletDetails.length - 1; intcnt >= 0; intcnt--) {
+              var dt = new Date(walletDetails[intcnt].Date.seconds * 1000);
+              dt = dt.toLocaleDateString("en-US", options);
+              if(oldDate != dt )
+              {
+                cnt = cnt + 1
+              }
+              renderWallet(walletDetails[intcnt], cnt, oldDate, dt, closingBalance);
+              if ((walletDetails[intcnt].WalletType === 'Add' && Number(walletDetails[intcnt].WalletAmount) > 0) || (walletDetails[intcnt].WalletType === 'Delete' && Number(walletDetails[intcnt].WalletAmount) < 0)) {
+                if (intcnt === walletDetails.length - 1) {
+                  closingBalance = Number(walletAmount) - Math.abs(walletDetails[intcnt].WalletAmount);
+                } else {
+                  closingBalance = Number(closingBalance) - Math.abs(walletDetails[intcnt].WalletAmount);
+                }
+
+              } else {
+
+                if (intcnt === walletDetails.length - 1) {
+                  closingBalance = Number(walletAmount) + Math.abs(walletDetails[intcnt].WalletAmount);
+                } else {
+                  closingBalance = Number(closingBalance) + Math.abs(walletDetails[intcnt].WalletAmount);
+                }
+              }
+              oldDate = dt;
+            }
+
+          }
+        });
+
         //get Pending order Details
         var DBrows = db.collection('OrderDetails')
           .where('paymentStatus', '==', 'Pending')
-          .where("orderBy", "==" , selectedUser)
+          .where("orderBy", "==", selectedUser)
           .get();
 
-          DBrows.then((changes) => {
+        DBrows.then((changes) => {
 
-//          document.getElementById("orderListDiv").innerHTML = "";
+          //          document.getElementById("orderListDiv").innerHTML = "";
           orderSummary = [];
           var i = 0;
 
-                document.getElementById("orderDetailDiv").innerHTML = "";
+          document.getElementById("orderDetailDiv").innerHTML = "";
+          var noFlag = true;
+          changes.forEach(change => {
+            noFlag = false;
+            console.log("in first loop");
+            // var options = {
+            //   year: 'numeric',
+            //   month: 'short',
+            //   day: 'numeric'
+            // };
+            //
+            renderOrder(change.data(), change.id, i);
+            i = i + 1;
+          });
+          if(i === 0)
+          {
+            document.getElementById("orderDetailDiv").innerHTML = "No Order with Payment Status as Pending";
+            document.getElementById("btnSaveOrder").setAttribute("disabled","true");
+          }
+          else {
+            document.getElementById("btnSaveOrder").removeAttribute("disabled");
+          }
+          document.getElementById("orderCnt").value = i;
 
-            changes.forEach(change => {
-
-              console.log("in first loop");
-                // var options = {
-                //   year: 'numeric',
-                //   month: 'short',
-                //   day: 'numeric'
-                // };
-                //
-                // var oorderdate = new Date(change.data().orderDate.seconds * 1000);
-                // oorderdate = oorderdate.toLocaleDateString("en-US", options);
-                // console.log (oorderdate) ;
-                renderOrder(change.data(), change.id, i);
-                i = i  +1;
-                // console.log(orderSummary);
-                // console.log(orderSummary.findIndex(e => e.orderDate === oorderdate && e.paymentStatus === change.data().paymentStatus));
-              });
-              document.getElementById("orderCnt").value= i;
-
-            });
-            document.getElementById("walletDiv").style.display="block";
-            document.getElementById("AddWalletDiv").style.display="block";
-            document.getElementById("orderDetails").style.display="block";
+        });
+        document.getElementById("walletDiv").style.display = "block";
+        document.getElementById("AddWalletDiv").style.display = "block";
+        document.getElementById("orderDetails").style.display = "block";
 
       })
       .catch(function(error) {
@@ -242,8 +292,111 @@ function userListChange() {
   }
 }
 
-function renderOrder(orderDetails, orderID, index)
-{
+function renderWallet(walletDetails, intcnt, oldDate, newDate, closingBalance) {
+  var div0  ;
+  if (oldDate != newDate) {
+    div0 = document.createElement("div");
+    div0.setAttribute("id","divmaster" + intcnt);
+    div0.setAttribute("class","wallet-transactions");
+    var h5 = document.createElement("h5");
+    h5.innerHTML = newDate;
+    div0.appendChild(h5);
+    //document.getElementById("WalletDetailsDt").appendChild(h5);
+  }
+  else {
+    div0 = document.getElementById("divmaster" + intcnt);
+  }
+  //console.log(div0);
+
+  var div1 = document.createElement("div");
+  div1.setAttribute("class", "wallet-transactions-card");
+
+  var div2 = document.createElement("div");
+  div2.setAttribute("class", "");
+  div2.setAttribute("style", "width: 15%;");
+
+  var img1 = document.createElement("img");
+  img1.setAttribute("width", "100%");
+  img1.setAttribute("alt", "");
+  if ((walletDetails.WalletType === 'Add' && Number(walletDetails.WalletAmount) > 0) || (walletDetails.WalletType === 'Delete' && Number(walletDetails.WalletAmount) < 0)) {
+    img1.setAttribute("src", "../img/discount2.png")
+  } else {
+
+    img1.setAttribute("src", "../img/discount1.jpg")
+  }
+  div2.appendChild(img1);
+  div1.appendChild(div2);
+
+  var div3 = document.createElement("div");
+  div3.setAttribute("class", "details");
+
+  var div4 = document.createElement("div");
+  div4.setAttribute("class", "");
+
+  var span1 = document.createElement("span");
+  if ((walletDetails.WalletType === 'Add' && Number(walletDetails.WalletAmount) > 0) || (walletDetails.WalletType === 'Delete' && Number(walletDetails.WalletAmount) < 0)) {
+    span1.innerHTML = "Added to wallet";
+  } else {
+    span1.innerHTML = "Deleted from wallet";
+
+  }
+
+  div4.appendChild(span1);
+  var br = document.createElement("br");
+  div4.appendChild(br);
+
+  var small1 = document.createElement("small");
+  small1.innerHTML = "mytime"; //(walletDetails.Date * 1000).format('HH:mm:ss')
+  //div4.appendChild(small1);
+
+  div3.appendChild(div4);
+
+  var div5 = document.createElement("div");
+  div5.setAttribute("class", "");
+
+
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
+
+  var span2 = document.createElement("span");
+  if ((walletDetails.WalletType === 'Add' && Number(walletDetails.WalletAmount) > 0) || (walletDetails.WalletType === 'Delete' && Number(walletDetails.WalletAmount) < 0)) {
+    span2.setAttribute("style", "font-size: 1rem;color: green;");
+    span2.innerHTML = "+" + Number(Math.abs(walletDetails.WalletAmount)).toLocaleString('en-IN', curFormat);
+  } else {
+    span2.setAttribute("style", "font-size: 1rem;color: #ff5757;");
+    span2.innerHTML = "-" + Number(Math.abs(walletDetails.WalletAmount)).toLocaleString('en-IN', curFormat);
+  }
+  div5.appendChild(span2);
+
+  var br2 = document.createElement("br");
+  div5.appendChild(br2);
+
+  var small2 = document.createElement("small");
+  small2.innerHTML = "Closing Balance : " + Number(closingBalance).toLocaleString('en-IN', curFormat);
+
+  div5.appendChild(small2);
+  div3.appendChild(div5);
+  div1.appendChild(div3);
+  div0.appendChild(div1);
+  if (oldDate === newDate) {
+  //  var div0 = document.createElement("div");
+  //  div0.setAttribute("id","divmaster" + intcnt);
+  //  div0.setAttribute("class","wallet-transactions");
+}
+else {
+
+  document.getElementById("WalletDetailsDt").appendChild(div0);
+
+}
+
+
+}
+
+function renderOrder(orderDetails, orderID, index) {
 
   var options = {
     year: 'numeric',
@@ -275,97 +428,93 @@ function renderOrder(orderDetails, orderID, index)
   */
 
   var div1 = document.createElement("div");
-  div1.setAttribute("class","payment-details-div");
+  div1.setAttribute("class", "payment-details-div");
 
   var div2 = document.createElement("div");
-  div2.setAttribute("class","");
+  div2.setAttribute("class", "");
 
   var h1 = document.createElement("h5");
-  h1.setAttribute("class","small-text");
-  h1.setAttribute("style","margin: 0 auto;");
+  h1.setAttribute("class", "small-text");
+  h1.setAttribute("style", "margin: 0 auto;");
   h1.innerHTML = oorderdate;
 
   div2.appendChild(h1);
   div1.appendChild(div2);
 
   var div3 = document.createElement("div");
-  div3.setAttribute("class","");
+  div3.setAttribute("class", "");
 
   var h2 = document.createElement("h5");
-  h2.setAttribute("class","small-text");
-  h2.setAttribute("style","margin: 0 auto;");
+  h2.setAttribute("class", "small-text");
+  h2.setAttribute("style", "margin: 0 auto;");
   h2.innerHTML = odeliverydate;
 
   div3.appendChild(h2);
   div1.appendChild(div3);
 
 
-    var div4 = document.createElement("div");
-    div4.setAttribute("class","");
+  var div4 = document.createElement("div");
+  div4.setAttribute("class", "");
 
-    var h3 = document.createElement("h5");
-    h3.setAttribute("class","small-text");
-    h3.setAttribute("style","margin: 0 auto;");
-    h3.innerHTML =orderDetails.discountedprize;
+  var h3 = document.createElement("h5");
+  h3.setAttribute("class", "small-text");
+  h3.setAttribute("style", "margin: 0 auto;");
+  h3.innerHTML = orderDetails.discountedprize;
 
-    div4.appendChild(h3);
-    div1.appendChild(div4);
-
-
-      var div5 = document.createElement("div");
-      div5.setAttribute("class","");
-
-      var h4 = document.createElement("input");
-      h4.setAttribute("type","checkbox");
-      h4.setAttribute("id","cb" + index);
-      h4.setAttribute("onclick","addValue( cb" + index +",hf" + index +",hfAmount" + index+ ")");
-      div5.appendChild(h4);
+  div4.appendChild(h3);
+  div1.appendChild(div4);
 
 
-      var hf4 = document.createElement("input");
-      hf4.setAttribute("type","hidden");
-      hf4.setAttribute("id","hf" + index);
-      hf4.setAttribute("value",orderID);
+  var div5 = document.createElement("div");
+  div5.setAttribute("class", "");
+
+  var h4 = document.createElement("input");
+  h4.setAttribute("type", "checkbox");
+  h4.setAttribute("id", "cb" + index);
+  h4.setAttribute("onclick", "addValue( cb" + index + ",hf" + index + ",hfAmount" + index + ")");
+  div5.appendChild(h4);
 
 
-      div5.appendChild(hf4);
+  var hf4 = document.createElement("input");
+  hf4.setAttribute("type", "hidden");
+  hf4.setAttribute("id", "hf" + index);
+  hf4.setAttribute("value", orderID);
 
 
-      var hf5 = document.createElement("input");
-      hf5.setAttribute("type","hidden");
-      hf5.setAttribute("id","hfAmount" + index);
-      hf5.setAttribute("value",orderDetails.discountedprize);
+  div5.appendChild(hf4);
 
 
-      div5.appendChild(hf5);
+  var hf5 = document.createElement("input");
+  hf5.setAttribute("type", "hidden");
+  hf5.setAttribute("id", "hfAmount" + index);
+  hf5.setAttribute("value", orderDetails.discountedprize);
 
-      div1.appendChild(div5);
 
-      document.getElementById("orderDetailDiv").appendChild(div1);
+  div5.appendChild(hf5);
+
+  div1.appendChild(div5);
+
+  document.getElementById("orderDetailDiv").appendChild(div1);
 
 }
 
-function addValue(checkB,  hfID, hfAmount)
-{
+function addValue(checkB, hfID, hfAmount) {
   console.log(checkB);
   console.log(hfID);
-  console.log( hfAmount);
+  console.log(hfAmount);
   console.log(checkB.checked);
   var amt = document.getElementById("SelectedAmount").innerHTML;
   console.log(amt);
-  if(checkB.checked === true)
-  {
+  if (checkB.checked === true) {
     var total = Number(amt) + Number(hfAmount.value);
     var walletAmt = document.getElementById("walletAmount").innerHTML;
     walletAmt = walletAmt.replace(/[₹,]+/g, "");
-    if(Number(walletAmt) >= Number(total))
-    {
+    if (Number(walletAmt) >= Number(total)) {
       document.getElementById("SelectedAmount").innerHTML = Number(amt) + Number(hfAmount.value);
-      document.getElementById("message").style.display="none";
-    }
-    else {
-      checkB.checked= false;
-      document.getElementById("message").style.display="block";
+      document.getElementById("message").style.display = "none";
+    } else {
+      checkB.checked = false;
+      document.getElementById("message").style.display = "block";
 
       // Hide alert after 4 seconds
       setTimeout(function() {
@@ -373,8 +522,7 @@ function addValue(checkB,  hfID, hfAmount)
       }, 4000);
     }
     console.log("1", hfAmount.value);
-  }
-  else {
+  } else {
     document.getElementById("SelectedAmount").innerHTML = Number(amt) - Number(hfAmount.value);
     console.log("2", hfAmount.value);
 
@@ -383,60 +531,58 @@ function addValue(checkB,  hfID, hfAmount)
 
 }
 
-function  UpdateOrder()
-{
+function UpdateOrder() {
   var amt = 0;
+  console.log("in UpdateOrder");
   var cnt = Number(document.getElementById("orderCnt").value);
-  for(index = 0 ;index < cnt ; index++)
-  {
+  for (index = 0; index < cnt; index++) {
     var flag = document.getElementById("cb" + index).checked;
-    if(flag === true)
-    {
+    if (flag === true) {
       amt = Number(amt) + Number(document.getElementById("hfAmount" + index).value);
 
       var orderid = document.getElementById("hf" + index).value;
       db.collection('OrderDetails').doc(orderid).update({
-        paymentStatus : 'Completed',
-        UpdatedBy: userID,
-        UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
-    })
-    .then((docRef) => {
-      console.log("Data added sucessfully in the document: ");
-      console.log("eventstart")
-      //update Wallet
-
-
-      var userlist = document.getElementById("userList");
-      selectedUser = userlist.options[userlist.selectedIndex].value;
-      WalletDetails.push({
-        Date : firebase.firestore.Timestamp.fromDate(new Date()),
-        WalletAmount : Number (amt),
-        WalletType : 'Delete',
-        orderID : 'Wallet amount : ('+amt+') adjusted for order by Admin'
-      });
-
-      db.collection("UserWallet").doc(selectedUser).set({
-          UpdatedByUser : userID,
-          UpdatedTimestamp : firebase.firestore.Timestamp.fromDate(new Date()),
-          WalletAmount : Number(walletAmount) -  Number (amt),
-          WalletDetails : WalletDetails
+          paymentStatus: 'Completed',
+          UpdatedBy: userID,
+          UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
         })
         .then((docRef) => {
           console.log("Data added sucessfully in the document: ");
-          document.getElementById("walletAmount").innerHTML = Number(walletAmount) + Number (document.getElementById("AddwalletAmount").value);
-          document.getElementById("AddwalletAmount").value = "0";
-          userListChange();
+          console.log("eventstart")
+          //update Wallet
 
+
+          var userlist = document.getElementById("userList");
+          selectedUser = userlist.options[userlist.selectedIndex].value;
+          WalletDetails.push({
+            Date: firebase.firestore.Timestamp.fromDate(new Date()),
+            WalletAmount: Number(amt),
+            WalletType: 'Delete',
+            orderID: 'Wallet amount : (' + amt + ') adjusted for order by Admin'
+          });
+
+          db.collection("UserWallet").doc(selectedUser).set({
+              UpdatedByUser: userID,
+              UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+              WalletAmount: Number(walletAmount) - Number(amt),
+              WalletDetails: WalletDetails
+            })
+            .then((docRef) => {
+              console.log("Data added sucessfully in the document: ");
+              document.getElementById("walletAmount").innerHTML = Number(walletAmount) + Number(document.getElementById("AddwalletAmount").value);
+              document.getElementById("AddwalletAmount").value = "0";
+              userListChange();
+
+            })
+            .catch((error) => {
+              console.error("error adding document:", error);
+            });
+
+          // console.log(Date.parse(eventstart))
         })
         .catch((error) => {
           console.error("error adding document:", error);
         });
-
-      // console.log(Date.parse(eventstart))
-    })
-    .catch((error) => {
-      console.error("error adding document:", error);
-    });
     }
   }
 
