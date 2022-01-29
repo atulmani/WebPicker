@@ -118,7 +118,7 @@
     </div>
   </nav>
 
-  <div class="small navbar-mobile">
+  <div class="small navbar-mobile" style="height: 100px;">
     <div class="navbar-mobile-menu">
       <a href="#" data-toggle="collapse" data-target="#collapsibleNavbar1">
         <span class="material-icons-outlined">
@@ -140,11 +140,28 @@
       </a>
       <!-- <a href="#"><img src="../img/logo.png" width="30px" alt=""> </a> -->
       <!-- <a href="#" style="padding-right: 0px;"><i class="fas fa-user user-icon"></i></a> -->
+
+
     </div>
     <!-- <div class="navbar-mobile-search-bar">
       <input type="text" name="" placeholder="Search Here..." value="">
       <i class="fas fa-search"></i>
     </div> -->
+
+    <div class="">
+
+      <div class="" id="myInput" style="padding: 10px 0;position:relative;">
+        <input type="search" name="" class="new_search-box" value="" placeholder="Search 100+ products" onfocus="inputSearchFocus()" onkeyup="filterFunction()" onchange="myChangeEvent();">
+        <div class="new_search-box-seach-icon">
+          <span class="material-icons-outlined">
+            youtube_searched_for
+          </span>
+        </div>
+      </div>
+      <div class="intelligence" id="idItem" style='display:none'>
+
+      </div>
+    </div>
   </div>
 
   <div class="small navbar-mobile-bottom">
@@ -376,6 +393,13 @@
                         <button  onclick="callFunction('Fruit','')" id="FruitAnchor">Fruit</button>
 
             </div>
+
+
+            <div class="" id="wrongSearch" style="text-align: center;display:none" ><br><br>
+              <img src="../img/no_search_product.svg" width="80%" alt=""><br><br><br>
+              <h5 class="small-text" >No products found for '<span id="searchKeyText"></span>'</h5><br><br>
+            </div>
+
 
             <div id="category-list" class="owl-carousel owl-theme" style="padding:5px 0;display:none;">
               <!-- <div   class="owl-carousel-inner"> -->
