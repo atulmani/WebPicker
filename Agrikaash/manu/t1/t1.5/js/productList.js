@@ -162,22 +162,60 @@ async function getCartItemNo() {
 
 function myChangeEvent() {
   console.log('myChnageEvent');
-  var searchKey = document.getElementById("searchKey").value;
-  console.log(searchKey);
-  if (searchKey != '') {
-    console.log(searchKey);
+  document.getElementById("productRow").innerHTML="";
 
-    var DBrows = db.collection("Products").where("ProductName", ">=", searchKey).where("ProductName", "<=", searchKey + "\uf8ff").get();
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.children[0].value.toUpperCase();
+  div = document.getElementById("myDropdown");
+  a = div.getElementsByTagName("button");
+  var hfid = "";
+  var productList = [];
+  var prodCnt = 0;
+  var callCount = 1;
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+      hfid = a[i].getElementsByTagName("input")[0];
+      productList.push(hfid.value);
+      prodCnt = prodCnt + 1;
+      if(prodCnt === 10)
+      {
+        RenderProductByProducrID(productList, callCount);
+        productList = [];
+        prodCnt = 0;
+        callCount = callCount + 1;
+      }
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+  if(productList.length > 0)
+  {
+
+    RenderProductByProducrID(productList, callCount);
+  }
+
+
+        myDropdown.classList.remove("show");
+        serachDiv.classList.remove("open");
+}
+
+function RenderProductByProducrID(productList, callCount)
+{
+
+    var DBrows = db.collection("Products").where("__name__", "in", productList).get();
     DBrows.then((changes) => {
-      var index = 0;
+      var index = Number(callCount) * 10;
       var selectedindex = -1;
       var selectdedItem;
       //productCategory.push('All');
       changes.forEach(change => {
-        console.log('in for loop');
+        //console.log('in for loop');
         var pCategory = change.data().productType;
         //productCategory.push(pCategory)
-        console.log(pCategory);
+        //console.log(pCategory);
         if (cartItems != null) {
           selectedIndex = cartItems.findIndex(a => a.ProductID === change.id);
 
@@ -194,7 +232,12 @@ function myChangeEvent() {
       });
     });
 
-  }
+    var myDropdown = document.getElementById('myDropdown');
+    var serachDiv = document.getElementById('serachDiv');
+    myDropdown.classList.remove("show");
+    serachDiv.classList.remove("open");
+
+
 }
 
 function emptyDiv(div) {
@@ -271,6 +314,13 @@ async function populateProductData(bType, pType, flag) {
         var anchorB = document.createElement("button");
         anchorB.setAttribute("onclick", "showItem('" + change.id + "')");
         anchorB.innerHTML = change.data().ProductName;
+
+        var hfID = document.createElement("input");
+        hfID.setAttribute("type","hidden");
+        hfID.setAttribute("id","hdID"+index);
+        hfID.setAttribute("value",change.id);
+        anchorB.appendChild(hfID);
+
         document.getElementById("idItem").appendChild(anchorB);
       }
       renderProductNew(change, index, selectdedItem);
@@ -297,6 +347,12 @@ async function populateProductData(bType, pType, flag) {
     //    init_carousel();
     //  });
   });
+  console.log("before remove");
+  // var myDropdown = document.getElementById('myDropdown');
+  // var serachDiv = document.getElementById('serachDiv');
+  // myDropdown.classList.remove("show");
+  // serachDiv.classList.remove("open");
+
 }
 
 function onlyUnique(value, index, self) {
@@ -1127,6 +1183,22 @@ function showSearchInput() {
   var serachDiv = document.getElementById('serachDiv');
   myDropdown.classList.toggle("show");
   serachDiv.classList.toggle("open");
+  // console.log(document.getElementById("myInput").children[0]);
+  console.log(document.getElementById("myInput").children[0].value);
+  if (serachDiv.classList.contains('open')) {
+    document.getElementById("myInput").children[0].focus();
+
+  if(document.getElementById("myInput").children[0].value === "")
+  {
+    console.log("get all element");
+  //  myChangeEvent();
+    //populateProductData(userBusinessCategory, '', true);
+    //myDropdown.classList.remove("show");
+    //serachDiv.classList.remove("open");
+
+  }
+}
+
 }
 
 function showItem(itemname) {
@@ -1159,6 +1231,8 @@ function showItem(itemname) {
       //document.getElementById("idItem").innerHTML ="";
 
       renderProductNew(doc, 0, selectdedItem);
+      var myDropdown = document.getElementById('myDropdown');
+      var serachDiv = document.getElementById('serachDiv');
 
       myDropdown.classList.remove("show");
       serachDiv.classList.remove("open");
