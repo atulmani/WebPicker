@@ -118,7 +118,7 @@
     </div>
   </nav>
 
-  <div class="small navbar-mobile">
+  <div class="small navbar-mobile" style="height: 100px;">
     <div class="navbar-mobile-menu">
       <a href="#" data-toggle="collapse" data-target="#collapsibleNavbar1">
         <span class="material-icons-outlined">
@@ -145,6 +145,19 @@
       <input type="text" name="" placeholder="Search Here..." value="">
       <i class="fas fa-search"></i>
     </div> -->
+    <div class="">
+      <div class="" id="myInput" style="padding: 10px 0;position:relative;">
+        <input type="search" name="" class="new_search-box" value="" placeholder="Search 100+ products" onfocus="inputSearchFocus()" onkeyup="filterFunction()" onchange="myChangeEvent();">
+        <div class="new_search-box-seach-icon">
+          <span class="material-icons-outlined">
+            youtube_searched_for
+          </span>
+        </div>
+      </div>
+      <div class="intelligence" id="idItem" style='display:none'>
+
+      </div>
+    </div>
   </div>
 
   <div class="small navbar-mobile-bottom">
@@ -380,41 +393,43 @@
           <button onclick="callFunction('Fruit','')" id="FruitAnchor">Fruit</button>
 
         </div>
-
-        <div class="category-list-sub-menu" style="background: #f4f4f4;">
-
-          <div class="" id='divbusinessType' style="display: none;">
-            <select class="city-selector" id="businessType" onchange="changCustomerType();" style="background: rgba(255,255,255,0.6);border: 1px solid #aaa;" name="">
-              <option value="All">All</option>
-              <option value="Small">Small</option>
-              <option value="Medium">Medium</option>
-              <option value="Large">Large</option>
-            </select>
-
-            <span class="material-icons-outlined city-selector-icon">
-              storefront
-            </span>
-          </div>
-
-          <div class="">
-            <h5 id="itemCnt">0 Items</h5>
-          </div>
-
-        </div>
       </div>
 
-      <div class="search-parent-div" style="padding: 15px;" id="myDropdown">
+      <div class="" id="wrongSearch" style="text-align: center;display:none" ><br><br>
+        <img src="../img/no_search_product.svg" width="80%" alt=""><br><br><br>
+        <h5 class="small-text" >No products found for '<span id="searchKeyText"></span>'</h5><br><br>
+      </div>
+
+      <div class="search-parent-div" style="position:relative; top: -30px;padding: 0 15px; display:none;" id="myDropdown">
         <div class="search" id="serachDiv">
           <div class="" id="myInput">
-            <input type="search" class="search-box" onkeyup="filterFunction()" onchange="myChangeEvent();"  />
+            <input type="search" class="search-box" onkeyup="filterFunction()" onchange="myChangeEvent();" />
           </div>
           <span class="search-button" onclick="showSearchInput()">
             <span class="search-icon"></span>
           </span>
         </div>
-        <div class="intelligence" id="idItem">
+      </div>
 
+      <div class="category-list-sub-menu" style="background: #f4f4f4;">
+
+        <div class="" id='divbusinessType' style="display: none;">
+          <select class="city-selector" id="businessType" onchange="changCustomerType();" style="background: rgba(255,255,255,0.6);border: 1px solid #aaa;" name="">
+            <option value="All">All</option>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+          </select>
+
+          <span class="material-icons-outlined city-selector-icon">
+            storefront
+          </span>
         </div>
+
+        <div class="" style="">
+          <h5 id="itemCnt">0 Items</h5>
+        </div>
+
       </div>
 
 
