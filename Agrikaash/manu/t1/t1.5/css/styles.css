@@ -1802,6 +1802,11 @@ input[type=number] {
   background: #1D741B;
 }
 
+.progress-bar-div div.cancelled .step,
+.progress-bar-div div.cancelled .line{
+  background: #ff5757;
+}
+
 .progress-bar-div div h5{
   font-size: 0.6rem;
   font-weight: bold;
@@ -1822,6 +1827,10 @@ input[type=number] {
 
 .progress-bar-div div.active h5{
   color: #1D741B;
+}
+
+.progress-bar-div div.cancelled h5{
+  color: #ff5757;
 }
 
 .progress-bar-div div:nth-child(1){
@@ -1863,7 +1872,7 @@ input[type=number] {
 .progress-bar-div div .line{
   position: relative;
   top: -11px;
-  left: -46px;
+  left: -60%;
   width: 88%;
   height: 2px;
   background: #aaa;
@@ -1872,14 +1881,14 @@ input[type=number] {
 .progress-bar-div div .line.center{
   position: relative;
   top: -11px;
-  left: -25px;
+  left: -30%;
   width: 62%;
 }
 
 .progress-bar-div div .line.right{
   position: relative;
   top: -11px;
-  left: -25px;
+  left: -30%;
   width: 88%;
 }
 
