@@ -42,7 +42,7 @@ function GetProfileData(user) {
     .catch(function(error) {
       // An error occurred
       console.log(error.message);
-  });
+    });
 
 
 
@@ -90,6 +90,18 @@ function populateProductData() {
 
       }
 
+      var productLocationValue = doc.data().ProductLocation;
+      if (productLocationValue != undefined) {
+        var locationCity = document.getElementById('locationCity');
+        for (var i = 0; i < locationCity.options.length; i++) {
+          if (locationCity.options[i].value == productLocationValue) {
+            locationCity.options[i].selected = true;
+          }
+        }
+
+      }
+
+
       if (customerBusinessType != undefined) {
         if (customerBusinessType === 'All')
           document.getElementById("All").checked = true;
@@ -124,37 +136,59 @@ function populateProductData() {
         document.getElementById("productWeight1").value = productDetails[0].ProductWeight;
         document.getElementById("productMRP1").value = productDetails[0].ProductMRP;
         document.getElementById("productFinalPrise1").value = productDetails[0].ProductFinalPrise;
+        if(productDetails[0].ProductPurchasePrice === undefined)
+          document.getElementById("purchasePrice1").value = productDetails[0].ProductFinalPrise;
+        else
+          document.getElementById("purchasePrice1").value = productDetails[0].ProductPurchasePrice;
       }
       if (productDetails[1] != null) {
-        document.getElementById("row2").style.display="block";
+        document.getElementById("row2").style.display = "block";
         document.getElementById("productWeight2").value = productDetails[1].ProductWeight;
         document.getElementById("productMRP2").value = productDetails[1].ProductMRP;
         document.getElementById("productFinalPrise2").value = productDetails[1].ProductFinalPrise;
+
+        if(productDetails[1].ProductPurchasePrice === undefined)
+          document.getElementById("purchasePrice2").value = productDetails[1].ProductFinalPrise;
+        else
+          document.getElementById("purchasePrice2").value = productDetails[1].ProductPurchasePrice;
       }
 
       if (productDetails[2] != null) {
 
-          document.getElementById("row3").style.display="block";
+        document.getElementById("row3").style.display = "block";
         document.getElementById("productWeight3").value = productDetails[2].ProductWeight;
         document.getElementById("productMRP3").value = productDetails[2].ProductMRP;
         document.getElementById("productFinalPrise3").value = productDetails[2].ProductFinalPrise;
+
+        if(productDetails[2].ProductPurchasePrice === undefined)
+          document.getElementById("purchasePrice3").value = productDetails[2].ProductFinalPrise;
+        else
+          document.getElementById("purchasePrice3").value = productDetails[2].ProductPurchasePrice;
       }
 
       if (productDetails[3] != null) {
 
-          document.getElementById("row4").style.display="block";
+        document.getElementById("row4").style.display = "block";
         document.getElementById("productWeight4").value = productDetails[3].ProductWeight;
         document.getElementById("productMRP4").value = productDetails[3].ProductMRP;
         document.getElementById("productFinalPrise4").value = productDetails[3].ProductFinalPrise;
+        if(productDetails[3].ProductPurchasePrice === undefined)
+          document.getElementById("purchasePrice4").value = productDetails[3].ProductFinalPrise;
+        else
+          document.getElementById("purchasePrice4").value = productDetails[3].ProductPurchasePrice;
       }
 
       if (productDetails[4] != null) {
 
-          document.getElementById("row5").style.display="block";
-          document.getElementById("btnAddMore").disabled="true";
+        document.getElementById("row5").style.display = "block";
+        document.getElementById("btnAddMore").disabled = "true";
         document.getElementById("productWeight5").value = productDetails[4].ProductWeight;
         document.getElementById("productMRP5").value = productDetails[4].ProductMRP;
         document.getElementById("productFinalPrise5").value = productDetails[4].ProductFinalPrise;
+        if(productDetails[4].ProductPurchasePrice === undefined)
+          document.getElementById("purchasePrice5").value = productDetails[4].ProductFinalPrise;
+        else
+          document.getElementById("purchasePrice5").value = productDetails[4].ProductPurchasePrice;
       }
       document.getElementById("myimg").src = doc.data().ProductImageURL;
       //console.log(doc.data().ProductImageURL);
@@ -180,8 +214,7 @@ function addRows() {
     if (productWeight1 != '' && productMRP1 != '' && productFinalPrise1 != '') {
       row2.style.display = "block";
       // console.log('add row1');
-    }
-    else {
+    } else {
       // console.log('add row2');
     }
   } else if (row3.style.display === "none") {
@@ -206,14 +239,17 @@ function CreateUpdateProductData() {
     var productType = document.getElementById("productType");
     var customerBusinessTypeValue = "";
     //BusinessType.options[BusinessType.selectedIndex].value;
-    if(document.getElementById("All").checked)
-      customerBusinessTypeValue ="All";
-    else if(document.getElementById("Small").checked)
-      customerBusinessTypeValue ="Small";
-    else if(document.getElementById("Medium").checked)
-      customerBusinessTypeValue ="Medium";
-    else if(document.getElementById("Large").checked)
-      customerBusinessTypeValue ="Large";
+    if (document.getElementById("All").checked)
+      customerBusinessTypeValue = "All";
+    else if (document.getElementById("Small").checked)
+      customerBusinessTypeValue = "Small";
+    else if (document.getElementById("Medium").checked)
+      customerBusinessTypeValue = "Medium";
+    else if (document.getElementById("Large").checked)
+      customerBusinessTypeValue = "Large";
+
+    var productLocation = document.getElementById("locationCity");
+    var productLocationValue = productLocation.options[productLocation.selectedIndex].value;
 
     var productTypeValue = productType.options[productType.selectedIndex].value;
     var productName = document.getElementById("productName").value;
@@ -230,82 +266,200 @@ function CreateUpdateProductData() {
     var stepQty = document.getElementById("stepQty").value;
     var flag = false;
     var productDetails = [];
-    if (document.getElementById("productWeight1").value != ""
-      &&  document.getElementById("productMRP1").value != ""
-      && document.getElementById("productFinalPrise1").value != "" ) {
+    if (document.getElementById("productWeight1").value != "" &&
+      document.getElementById("productMRP1").value != "" &&
+      document.getElementById("productFinalPrise1").value != "") {
       productDetails.push({
         ProductWeight: document.getElementById("productWeight1").value,
         ProductMRP: document.getElementById("productMRP1").value,
-        ProductFinalPrise: document.getElementById("productFinalPrise1").value
+        ProductFinalPrise: document.getElementById("productFinalPrise1").value,
+        ProductPurchasePrice: document.getElementById("purchasePrice1").value
       });
-      flag =true
+      flag = true
     }
-    if (document.getElementById("productWeight2").value != ""
-      &&  document.getElementById("productMRP2").value != ""
-      &&  document.getElementById("productFinalPrise2").value != "" ) {
+    if (document.getElementById("productWeight2").value != "" &&
+      document.getElementById("productMRP2").value != "" &&
+      document.getElementById("productFinalPrise2").value != "") {
       productDetails.push({
         ProductWeight: document.getElementById("productWeight2").value,
         ProductMRP: document.getElementById("productMRP2").value,
-        ProductFinalPrise: document.getElementById("productFinalPrise2").value
+        ProductFinalPrise: document.getElementById("productFinalPrise2").value,
+        ProductPurchasePrice: document.getElementById("purchasePrice2").value
       });
-      flag=true;
+      flag = true;
     }
 
-    if (document.getElementById("productWeight3").value != ""
-      &&  document.getElementById("productMRP3").value != ""
-      &&  document.getElementById("productFinalPrise3").value != "" ) {
+    if (document.getElementById("productWeight3").value != "" &&
+      document.getElementById("productMRP3").value != "" &&
+      document.getElementById("productFinalPrise3").value != "") {
       productDetails.push({
         ProductWeight: document.getElementById("productWeight3").value,
         ProductMRP: document.getElementById("productMRP3").value,
-        ProductFinalPrise: document.getElementById("productFinalPrise3").value
+        ProductFinalPrise: document.getElementById("productFinalPrise3").value,
+        ProductPurchasePrice: document.getElementById("purchasePrice3").value
       });
-      flag=true;
+      flag = true;
     }
 
-    if (document.getElementById("productWeight4").value != ""
-      &&  document.getElementById("productMRP4").value != ""
-      &&  document.getElementById("productFinalPrise4").value != "" ) {
+    if (document.getElementById("productWeight4").value != "" &&
+      document.getElementById("productMRP4").value != "" &&
+      document.getElementById("productFinalPrise4").value != "") {
       productDetails.push({
         ProductWeight: document.getElementById("productWeight4").value,
         ProductMRP: document.getElementById("productMRP4").value,
-        ProductFinalPrise: document.getElementById("productFinalPrise4").value
+        ProductFinalPrise: document.getElementById("productFinalPrise4").value,
+        ProductPurchasePrice: document.getElementById("purchasePrice4").value
       });
-      flag=true;
+      flag = true;
     }
 
-    if (document.getElementById("productWeight5").value != ""
-      &&  document.getElementById("productMRP5").value != ""
-      &&  document.getElementById("productFinalPrise5").value != "" ) {
+    if (document.getElementById("productWeight5").value != "" &&
+      document.getElementById("productMRP5").value != "" &&
+      document.getElementById("productFinalPrise5").value != "") {
       productDetails.push({
         ProductWeight: document.getElementById("productWeight5").value,
         ProductMRP: document.getElementById("productMRP5").value,
-        ProductFinalPrise: document.getElementById("productFinalPrise5").value
+        ProductFinalPrise: document.getElementById("productFinalPrise5").value,
+        ProductPurchasePrice: document.getElementById("purchasePrice5").value
       });
-      flag=true;
+      flag = true;
     }
     var ProductImageURL = document.getElementById("myimg").src;
 
-    if(flag === true)
-    {
+    if (flag === true) {
 
 
-    if (productID != null && productID != '') {
-      db.collection("Products").doc(productID).update({
-          CustomerBusinessType: customerBusinessTypeValue,
-          productType: productTypeValue,
-          ProductName: productName,
-          Brand: brand,
-          VegNonVeg: vegNonVeg,
-          MinimumQty: minimumQty,
-          MaximumQty: maximumQty,
-          StepQty: stepQty,
-          ProductDetails: productDetails,
-          ProductImageURL: ProductImageURL,
-          Status: 'Active',
-          CreatedBy: auth.currentUser.email,
-          CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
-          UpdatedBy: '',
-          UpdatedTimestamp: ''
+      if (productID != null && productID != '') {
+        db.collection("Products").doc(productID).update({
+            CustomerBusinessType: customerBusinessTypeValue,
+            productType: productTypeValue,
+            ProductName: productName,
+            Brand: brand,
+            VegNonVeg: vegNonVeg,
+            MinimumQty: minimumQty,
+            MaximumQty: maximumQty,
+            StepQty: stepQty,
+            ProductLocation: productLocationValue,
+            ProductDetails: productDetails,
+            ProductImageURL: ProductImageURL,
+            Status: 'Active',
+            CreatedBy: auth.currentUser.email,
+            CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+            UpdatedBy: '',
+            UpdatedTimestamp: ''
+          })
+          .then((docRef) => {
+            console.log("Data added sucessfully in the document: ");
+            console.log("eventstart")
+            ProductDetailsAuditLog(productID, productDetails);
+            // console.log(Date.parse(eventstart))
+          })
+          .catch((error) => {
+            console.error("error adding document:", error);
+          });
+      } else {
+
+
+        db.collection("Products").add({
+            // console.log('inside db collection: ' + newEventID);
+            ProductId: docCount + 1,
+            CustomerBusinessType: customerBusinessTypeValue,
+            productType: productTypeValue,
+            ProductName: productName,
+            Brand: brand,
+            VegNonVeg: vegNonVeg,
+            MinimumQty: minimumQty,
+            MaximumQty: maximumQty,
+            StepQty: stepQty,
+            ProductLocation: productLocationValue,
+            ProductDetails: productDetails,
+            ProductImageURL: ProductImageURL,
+            Status: 'Active',
+            CreatedBy: auth.currentUser.email,
+            CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+            UpdatedBy: '',
+            UpdatedTimestamp: ''
+          })
+          .then(function(docRef) {
+            console.log("Data added sucessfully in the document: " + docRef.id);
+            document.getElementById('hfproductID').value = docRef.id;
+            console.log("eventstart");
+
+            ProductDetailsAuditLog(docRef.id, productDetails);
+            //add in CollectionStatistics
+
+            console.log(pID);
+            console.log(count);
+            db.collection("CollectionStatistics").doc(pID).set({
+                ProductCount: count,
+              })
+              .then(function(docRef) {
+                // console.log(Date.parse(eventstart))
+              })
+              .catch(function(error) {
+                console.error("error adding document:", error);
+              });
+
+            // console.log(Date.parse(eventstart))
+          })
+          .catch(function(error) {
+            console.error("error adding document:", error);
+          });
+      }
+      document.getElementById("message").innerHTML = "Product details are succsessfully updated";
+    } else {
+
+      document.getElementById("message").innerHTML = "Please enter all details to update";
+    }
+  });
+
+}
+
+function ProductDetailsAuditLog(docid, ProductDetails) {
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+
+  const snapshot = db.collection('ProductAuditLog').doc(docid);
+  var today = new Date();
+  today = today.toLocaleDateString("en-US", options);
+  var flagExists = false;
+  var productDetailsLog = [];
+  var productDetailsLogChanged = [];
+  var productDetails;
+  snapshot.get().then(async (doc) => {
+    if (doc.exists) {
+      console.log(doc.data());
+      flagExists = true;
+      productDetailsLog = doc.data().productDetailLog;
+
+
+    }
+    console.log(flagExists);
+    if (flagExists === true) {
+      for (index = 0; index < productDetailsLog.length; index++) {
+        var cnt = productDetailsLog.findIndex(e => e.updatedDate === today);
+        if (index != cnt) {
+          productDetailsLogChanged.push(productDetailsLog[index]);
+        }
+      }
+    }
+    productDetailsLogChanged.push({
+      updatedDate: today,
+      FinalPrice: ProductDetails[0].ProductFinalPrise,
+      MRP: ProductDetails[0].ProductMRP,
+      ProductPurchasePrice : ProductDetails[0].ProductPurchasePrice,
+      ProductWeight: ProductDetails[0].ProductWeight
+    });
+    if (flagExists === true) {
+      db.collection("ProductAuditLog").doc(docid).update({
+          productID: docid,
+          productDetailLog: productDetailsLogChanged,
+          UpdatedBy: auth.currentUser.email,
+          UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+
         })
         .then((docRef) => {
           console.log("Data added sucessfully in the document: ");
@@ -316,62 +470,26 @@ function CreateUpdateProductData() {
           console.error("error adding document:", error);
         });
     } else {
+      db.collection("ProductAuditLog")
+      .doc(docid)
+      .set({
+          productID: docid,
+          productDetailLog: productDetailsLogChanged,
+          UpdatedBy: auth.currentUser.email,
+          UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
 
-
-      db.collection("Products").add({
-          // console.log('inside db collection: ' + newEventID);
-          ProductId: docCount + 1,
-          CustomerBusinessType: customerBusinessTypeValue,
-          productType: productTypeValue,
-          ProductName: productName,
-          Brand: brand,
-          VegNonVeg: vegNonVeg,
-          MinimumQty: minimumQty,
-          MaximumQty: maximumQty,
-          StepQty: stepQty,
-
-          ProductDetails: productDetails,
-          ProductImageURL: ProductImageURL,
-          Status: 'Active',
-          CreatedBy: auth.currentUser.email,
-          CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
-          UpdatedBy: '',
-          UpdatedTimestamp: ''
         })
-        .then(function(docRef) {
-          console.log("Data added sucessfully in the document: " + docRef.id);
-          document.getElementById('hfproductID').value = docRef.id;
-          console.log("eventstart");
-          //add in CollectionStatistics
-
-          console.log(pID);
-          console.log(count);
-          db.collection("CollectionStatistics").doc(pID).set({
-              ProductCount: count,
-            })
-            .then(function(docRef) {
-              // console.log(Date.parse(eventstart))
-            })
-            .catch(function(error) {
-              console.error("error adding document:", error);
-            });
-
+        .then((docRef) => {
+          console.log("Data added sucessfully in the document: ");
+          console.log("eventstart")
           // console.log(Date.parse(eventstart))
         })
-        .catch(function(error) {
+        .catch((error) => {
           console.error("error adding document:", error);
         });
     }
-    document.getElementById("message").innerHTML="Product details are succsessfully updated";
-  }
-  else {
-
-    document.getElementById("message").innerHTML="Please enter all details to update";
-  }
   });
-
 }
-
 // const eventForm = document.getElementById('eventForm');
 const createEventConformation = document.getElementById('createEventConformation');
 
