@@ -151,6 +151,7 @@ function SaveWallet() {
     .catch((error) => {
       console.error("error adding document:", error);
     });
+    userListChange();
 
 }
 
@@ -351,8 +352,11 @@ function renderWallet(walletDetails, intcnt, oldDate, newDate, closingBalance) {
   div4.appendChild(br);
 
   var small1 = document.createElement("small");
-  small1.innerHTML = "mytime"; //(walletDetails.Date * 1000).format('HH:mm:ss')
-  //div4.appendChild(small1);
+  //console.log(walletDetails.Date);
+  var timedisplay = new Date(walletDetails.Date.seconds * 1000);
+  timedisplay = timedisplay.toLocaleTimeString('en-US');
+  small1.innerHTML = timedisplay;
+  div4.appendChild(small1);
 
   div3.appendChild(div4);
 
