@@ -578,7 +578,7 @@ function UpdateOrder() {
             })
             .then((docRef) => {
               console.log("Data added sucessfully in the document: ");
-              document.getElementById("walletAmount").innerHTML = Number(walletAmount) + Number(document.getElementById("AddwalletAmount").value);
+              document.getElementById("walletAmount").innerHTML = Number(walletAmount) - Number(amt);
               document.getElementById("AddwalletAmount").value = "0";
               userListChange();
 
