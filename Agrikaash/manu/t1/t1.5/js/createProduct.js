@@ -32,7 +32,6 @@ function GetProfileData(user) {
       }
       db.collection('CollectionStatistics').get().then((changes) => {
         changes.forEach(change => {
-
           count = change.data().ProductCount;
           count = count + 1;
           pID = change.id;
@@ -56,6 +55,7 @@ let eventDocUrl = new URL(location.href);
 let searchParams = new URLSearchParams(eventDocUrl.search);
 var productID = searchParams.get('id');
 // var userid = searchParams.get('usertid');
+document.getElementById("productName").focus();
 
 if (productID != null) {
 
@@ -67,6 +67,7 @@ if (productID != null) {
   //  console.log(document.getElementById('hfproductID').value);
   populateProductData();
 }
+
 
 //************* Populate Event Data - Starts ******************
 
