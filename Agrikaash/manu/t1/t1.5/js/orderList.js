@@ -1,7 +1,7 @@
 //const productID = document.getElementById('productID');
 var userID = "";
 var orderList = [];
-var userType="";
+var userType = "";
 
 // var url = location.href;
 let eventDocUrl = new URL(location.href);
@@ -18,10 +18,10 @@ try {
       GetProfileData(firebaseUser);
       UpdateCartItem();
       populateOrderDetails('Pending');
-    //  GetNotificationList();
-    var siteNotification = localStorage.getItem("notificationCount");
-    document.getElementById("notificationCnt").innerHTML=siteNotification;
-    document.getElementById("notificationCnt1").innerHTML=siteNotification;
+      //  GetNotificationList();
+      var siteNotification = localStorage.getItem("notificationCount");
+      document.getElementById("notificationCnt").innerHTML = siteNotification;
+      document.getElementById("notificationCnt1").innerHTML = siteNotification;
 
     } else {
       console.log('User has been logged out');
@@ -67,7 +67,7 @@ function GetProfileData(user) {
 
         if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
           document.getElementById('profilePic').src = doc.data().ProfileImageURL;
-       document.getElementById('profileName').innerHTML =  doc.data().displayName;
+        document.getElementById('profileName').innerHTML = doc.data().displayName;
 
         //document.getElementById('headerProfilePic').src = doc.data().ProfileImageURL;
         //document.getElementById('displayName').innerHTML = doc.data().displayName;
@@ -168,11 +168,9 @@ function populateOrderDetails(filter) {
   var DBrows;
 
   var orderstatusList = [];
-  if(filter === 'Pending')
-  {
+  if (filter === 'Pending') {
     orderstatusList = ['Pending', 'Packed', 'On The Way'];
-  }
-  else {
+  } else {
     orderstatusList = [filter];
   }
   console.log(orderstatusList);
@@ -193,7 +191,7 @@ function populateOrderDetails(filter) {
     DBrows = db.collection('OrderDetails')
       .where('orderBy', '==', userID)
       .where("orderDate", ">=", toDate)
-      .where("orderStatus" ,"in", orderstatusList)
+      .where("orderStatus", "in", orderstatusList)
       .orderBy("orderDate", 'desc')
       .get();
 
@@ -212,7 +210,7 @@ function populateOrderDetails(filter) {
       .where('orderBy', '==', userID)
       .where("orderDate", ">=", todayDate)
       .where("orderDate", "<=", toDate)
-      .where("orderStatus" ,"in", orderstatusList)
+      .where("orderStatus", "in", orderstatusList)
       .orderBy("orderDate", 'desc')
       .get();
 
@@ -227,7 +225,7 @@ function populateOrderDetails(filter) {
     DBrows = db.collection('OrderDetails')
       .where('orderBy', '==', userID)
       .where("orderDate", ">=", refDate)
-      .where("orderStatus" ,"in", orderstatusList)
+      .where("orderStatus", "in", orderstatusList)
       .orderBy("orderDate", 'desc')
       .get();
     fromDate = refDate;
@@ -241,7 +239,7 @@ function populateOrderDetails(filter) {
     DBrows = db.collection('OrderDetails')
       .where('orderBy', '==', userID)
       .where("orderDate", ">=", refDate)
-      .where("orderStatus" ,"in", orderstatusList)
+      .where("orderStatus", "in", orderstatusList)
       .orderBy("orderDate", 'desc')
       .get();
     fromDate = refDate;
@@ -256,7 +254,7 @@ function populateOrderDetails(filter) {
     DBrows = db.collection('OrderDetails')
       .where('orderBy', '==', userID)
       .where("orderDate", ">=", refDate)
-      .where("orderStatus" ,"in", orderstatusList)
+      .where("orderStatus", "in", orderstatusList)
       .orderBy("orderDate", 'desc')
       .get();
     fromDate = refDate;
@@ -297,8 +295,7 @@ function populateOrderDetails(filter) {
 
     document.getElementById("orderCount").innerHTML = i + " Orders";
     document.getElementById('loading').style.display = 'none';
-    if(i === 0 )
-    {
+    if (i === 0) {
       document.getElementById('noOrders').style.display = 'block';
     }
   });
@@ -475,14 +472,14 @@ function renderOrder(orderid, order, index) {
   var div2 = document.createElement("div");
   div2.setAttribute("class", "");
   div2.setAttribute("style", "display:flex;align-items: center;");
-  div2.setAttribute("onclick", "showHideCard(card" + index +"," + "cardarrow" + index + ")");
+  div2.setAttribute("onclick", "showHideCard(card" + index + "," + "cardarrow" + index + ")");
 
   var div3 = document.createElement("div");
   div3.setAttribute("class", "arrow-down");
 
   var span1 = document.createElement("span");
   span1.setAttribute("class", "material-icons-outlined");
-   span1.setAttribute("id", "cardarrow" + index );
+  span1.setAttribute("id", "cardarrow" + index);
   span1.innerHTML = "keyboard_arrow_down";
 
   div3.appendChild(span1);
@@ -690,8 +687,8 @@ function renderOrder(orderid, order, index) {
   // anchor1.setAttribute("onclick", "cancelOrder(" + 'hfOrderID' + index + ")");
 
 
-    var anchor1 = document.createElement("a");
-    anchor1.setAttribute("href", "orderSummary.html?id=" + orderid + "&action=cancel");
+  var anchor1 = document.createElement("a");
+  anchor1.setAttribute("href", "orderSummary.html?id=" + orderid + "&action=cancel");
 
   var button1 = document.createElement("button");
   button1.setAttribute("class", "mybutton buttonTransparent");
@@ -708,7 +705,7 @@ function renderOrder(orderid, order, index) {
     div16.appendChild(anchor1);
 
   var anchor2 = document.createElement("a");
-  anchor2.setAttribute("href", "orderSummary.html?id=" + orderid+ "&action=view");
+  anchor2.setAttribute("href", "orderSummary.html?id=" + orderid + "&action=view");
   //anchor.setAttribute("href", "orderSummary.html?id=" + orderid);
 
   var button2 = document.createElement("button");
@@ -732,264 +729,237 @@ function renderOrder(orderid, order, index) {
   const snapshot = db.collection('OrderTracking').doc(orderid);
   var changeTrack = [];
   snapshot.get().then(async (doc) => {
-      if (doc.exists) {
-        changeTrack = doc.data().ChangeTrack;
+    if (doc.exists) {
+      changeTrack = doc.data().ChangeTrack;
 
-        var div17 = document.createElement("div");
-        div17.setAttribute("class","progress-bar-div");
+      var div17 = document.createElement("div");
+      div17.setAttribute("class", "progress-bar-div");
 
-        var pendingorderTrackIndex = changeTrack.findIndex(e=> e.OrderStage === 1);
-        var packedorderTrackIndex = changeTrack.findIndex(e=> e.OrderStage === 3);
-        var onTheWayorderTrackIndex = changeTrack.findIndex(e=> e.OrderStage === 4);
-        var deliveredorderTrackIndex = changeTrack.findIndex(e=> e.OrderStage === 5);
-        var cancelledorderTrackIndex = changeTrack.findIndex(e=> e.OrderStage === 6);
-        // console.log(packedorderTrackIndex);
-        // console.log(onTheWayorderTrackIndex);
-        // console.log(deliveredorderTrackIndex);
+      var pendingorderTrackIndex = changeTrack.findIndex(e => e.OrderStage === 1);
+      var packedorderTrackIndex = changeTrack.findIndex(e => e.OrderStage === 3);
+      var onTheWayorderTrackIndex = changeTrack.findIndex(e => e.OrderStage === 4);
+      var deliveredorderTrackIndex = changeTrack.findIndex(e => e.OrderStage === 5);
+      var cancelledorderTrackIndex = changeTrack.findIndex(e => e.OrderStage === 6);
 
+      if (packedorderTrackIndex === -1 && onTheWayorderTrackIndex >= 0)
+        packedorderTrackIndex = onTheWayorderTrackIndex;
+      else if (packedorderTrackIndex === -1 && deliveredorderTrackIndex >= 0)
+        packedorderTrackIndex = deliveredorderTrackIndex;
 
-        if(packedorderTrackIndex === -1 && onTheWayorderTrackIndex >= 0  )
-          packedorderTrackIndex = onTheWayorderTrackIndex;
-        else if (packedorderTrackIndex === -1 && deliveredorderTrackIndex >= 0  )
-          packedorderTrackIndex = deliveredorderTrackIndex;
-
-        if(onTheWayorderTrackIndex === -1 && deliveredorderTrackIndex >= 0)
-        {
-          onTheWayorderTrackIndex = deliveredorderTrackIndex;
-        }
-
-          var options = {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric'
-          };
-//          var displayDate = fromDate.toLocaleDateString("en-US", options);
-
-        var div18 = document.createElement("div");
-        if(pendingorderTrackIndex >= 0 )
-        {
-          div18.setAttribute("class","active");
-        }
-        else {
-          div18.setAttribute("class","");
-        }
-
-        var h55 = document.createElement("h5");
-        h55.innerHTML="Pending";
-        div18.appendChild(h55);
-
-        var div19 = document.createElement("div");
-        div19.setAttribute("class","step");
-        div18.appendChild(div19);
-
-        var small51 = document.createElement("small");
-        var timedisplay = "" ;
-        if(pendingorderTrackIndex>=0 )
-        {
-          pendingDate = new Date(changeTrack[pendingorderTrackIndex].ChangedTimeStamp.seconds * 1000);
-          timedisplay = pendingDate.toLocaleTimeString('en-US');
-
-          var pendingDatedisplay = pendingDate.toLocaleDateString("en-US", options);
-          small51.innerHTML=pendingDatedisplay;
-        }
-        div18.appendChild(small51);
-
-        var br551 = document.createElement("br");
-        div18.appendChild(br551);
-
-        var small52 = document.createElement("small");
-        small52.setAttribute("class","time");
-        if(pendingorderTrackIndex>=0 )
-        {
-          small52.innerHTML = timedisplay ;// "Time";
-        }
-        else {
-          small52.innerHTML = ""
-        }
-        div18.appendChild(small52);
-
-        div17.appendChild(div18);
-
-
-        var div20 = document.createElement("div");
-        if(packedorderTrackIndex >= 0 || cancelledorderTrackIndex >= 0 )
-        {
-          div20.setAttribute("class","active");
-        }
-        else {
-          div20.setAttribute("class","");
-        }
-
-        var h56 = document.createElement("h5");
-        if(cancelledorderTrackIndex >= 0 )
-        {
-          h56.innerHTML="Cencelled";
-        }
-        else
-        {
-          h56.innerHTML="Packed";
-        }
-
-        div20.appendChild(h56);
-
-        var div21 = document.createElement("div");
-        div21.setAttribute("class","step center");
-        div20.appendChild(div21);
-
-        var div22 = document.createElement("div");
-        div22.setAttribute("class","line");
-        div20.appendChild(div22);
-
-        var small52 = document.createElement("small");
-        timedisplay = "";
-        if(cancelledorderTrackIndex>=0 )
-        {
-          var cancelDate = new Date(changeTrack[cancelledorderTrackIndex].ChangedTimeStamp.seconds * 1000);
-          timedisplay = cancelDate.toLocaleTimeString('en-US');
-          cancelDate = cancelDate.toLocaleDateString("en-US", options);
-          small52.innerHTML=cancelDate;
-        }
-        else if(packedorderTrackIndex>=0 )
-        {
-          var packedDate = new Date(changeTrack[packedorderTrackIndex].ChangedTimeStamp.seconds * 1000);
-          timedisplay = packedDate.toLocaleTimeString('en-US');
-          packedDate = packedDate.toLocaleDateString("en-US", options);
-          small52.innerHTML=packedDate;
-        }
-
-        div20.appendChild(small52);
-
-        var br552 = document.createElement("br");
-        div20.appendChild(br552);
-
-        var small53 = document.createElement("small");
-        small53.setAttribute("class","time");
-
-
-        small53.innerHTML =timedisplay ;//"Time";
-        div20.appendChild(small53);
-
-        div17.appendChild(div20);
-
-        var div23 = document.createElement("div");
-        if(cancelledorderTrackIndex>=0)
-        {
-          div23.setAttribute("class","");
-        }
-        else if(onTheWayorderTrackIndex >= 0 )
-        {
-          div23.setAttribute("class","active");
-        }
-        else {
-          div23.setAttribute("class","");
-        }
-
-        var h57 = document.createElement("h5");
-        if(cancelledorderTrackIndex>=0)
-        {
-          h57.innerHTML="";
-        }
-        else {
-          h57.innerHTML="On The Way";
-
-        }
-        div23.appendChild(h57);
-
-        var div24 = document.createElement("div");
-        div24.setAttribute("class","step center");
-        div23.appendChild(div24);
-
-        var div25 = document.createElement("div");
-        div25.setAttribute("class","line center");
-        div23.appendChild(div25);
-
-        var small53 = document.createElement("small");
-        timedisplay = "";
-        if(cancelledorderTrackIndex>=0)
-        {
-          small53.innerHTML = "";
-        }
-        else if(onTheWayorderTrackIndex>=0 )
-        {
-          var onTheWayDate = new Date(changeTrack[onTheWayorderTrackIndex].ChangedTimeStamp.seconds * 1000);
-          timedisplay = onTheWayDate.toLocaleTimeString('en-US');
-
-          onTheWayDate = onTheWayDate.toLocaleDateString("en-US", options);
-          small53.innerHTML=onTheWayDate;
-        }
-        div23.appendChild(small53);
-
-        var br553 = document.createElement("br");
-        div23.appendChild(br553);
-
-        var small54 = document.createElement("small");
-        small54.setAttribute("class","time");
-        small54.innerHTML =timedisplay;//"Time";
-        div23.appendChild(small54);
-
-        div17.appendChild(div23);
-
-        var div26 = document.createElement("div");
-        if(cancelledorderTrackIndex>=0)
-        {
-          div26.setAttribute("class","");
-        }
-        else if(deliveredorderTrackIndex >= 0 )
-        {
-          div26.setAttribute("class","active");
-        }
-        else {
-          div26.setAttribute("class","");
-        }
-
-        var h58 = document.createElement("h5");
-        if(cancelledorderTrackIndex>=0)
-        {
-          h58.innerHTML="";
-        }
-        else {
-
-          h58.innerHTML="Delivered";
-        }
-        div26.appendChild(h58);
-
-        var div27 = document.createElement("div");
-        div27.setAttribute("class","step right");
-        div26.appendChild(div27);
-
-        var div28 = document.createElement("div");
-        div28.setAttribute("class","line right");
-        div26.appendChild(div28);
-
-        var small56 = document.createElement("small");
-        timedisplay = "";
-        if(cancelledorderTrackIndex>=0)
-        {
-          small56.innerHTML=""
-        }
-        else if(deliveredorderTrackIndex>=0 )
-        {
-          var delievredDate = new Date(changeTrack[deliveredorderTrackIndex].ChangedTimeStamp.seconds * 1000);
-          timedisplay = delievredDate.toLocaleTimeString('en-US');
-
-          delievredDate = delievredDate.toLocaleDateString("en-US", options);
-          small56.innerHTML=delievredDate;
-        }
-        div26.appendChild(small56);
-
-        var br554 = document.createElement("br");
-        div26.appendChild(br554);
-
-        var small55 = document.createElement("small");
-        small55.setAttribute("class","time");
-        small55.innerHTML = timedisplay;//"Time";
-        div26.appendChild(small55);
-
-        div17.appendChild(div26);
-        div6.appendChild(div17);
-
+      if (onTheWayorderTrackIndex === -1 && deliveredorderTrackIndex >= 0) {
+        onTheWayorderTrackIndex = deliveredorderTrackIndex;
       }
-    });
+
+      var options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      };
+      //          var displayDate = fromDate.toLocaleDateString("en-US", options);
+
+      var div18 = document.createElement("div");
+      if (pendingorderTrackIndex >= 0) {
+        div18.setAttribute("class", "active");
+      } else {
+        div18.setAttribute("class", "");
+      }
+
+      var h55 = document.createElement("h5");
+      h55.innerHTML = "Pending";
+      div18.appendChild(h55);
+
+      var div19 = document.createElement("div");
+      div19.setAttribute("class", "step");
+      div18.appendChild(div19);
+
+      var small51 = document.createElement("small");
+      var timedisplay = "";
+      if (pendingorderTrackIndex >= 0) {
+        pendingDate = new Date(changeTrack[pendingorderTrackIndex].ChangedTimeStamp.seconds * 1000);
+        timedisplay = pendingDate.toLocaleTimeString('en-US');
+
+        var pendingDatedisplay = pendingDate.toLocaleDateString("en-US", options);
+        small51.innerHTML = pendingDatedisplay;
+      }
+      div18.appendChild(small51);
+
+      var br551 = document.createElement("br");
+      div18.appendChild(br551);
+
+      var small52 = document.createElement("small");
+      small52.setAttribute("class", "time");
+      if (pendingorderTrackIndex >= 0) {
+        small52.innerHTML = timedisplay; // "Time";
+      } else {
+        small52.innerHTML = "-"
+      }
+      div18.appendChild(small52);
+
+      div17.appendChild(div18);
+
+      var div20 = document.createElement("div");
+      if (packedorderTrackIndex >= 0 ) {
+        div20.setAttribute("class", "active");
+      } else if ( cancelledorderTrackIndex >= 0) {
+        div20.setAttribute("class", "cancelled");
+      } else {
+        div20.setAttribute("class", "");
+      }
+
+      var h56 = document.createElement("h5");
+      if (cancelledorderTrackIndex >= 0) {
+        h56.innerHTML = "Cancelled";
+      } else {
+        h56.innerHTML = "Packed";
+      }
+
+      div20.appendChild(h56);
+
+      var div21 = document.createElement("div");
+      div21.setAttribute("class", "step center");
+      div20.appendChild(div21);
+
+      var div22 = document.createElement("div");
+      div22.setAttribute("class", "line");
+      div20.appendChild(div22);
+
+      var small52 = document.createElement("small");
+      timedisplay = "";
+      if (cancelledorderTrackIndex >= 0) {
+        var cancelDate = new Date(changeTrack[cancelledorderTrackIndex].ChangedTimeStamp.seconds * 1000);
+        timedisplay = cancelDate.toLocaleTimeString('en-US');
+        cancelDate = cancelDate.toLocaleDateString("en-US", options);
+        small52.innerHTML = cancelDate;
+      } else if (packedorderTrackIndex >= 0) {
+        var packedDate = new Date(changeTrack[packedorderTrackIndex].ChangedTimeStamp.seconds * 1000);
+        timedisplay = packedDate.toLocaleTimeString('en-US');
+        packedDate = packedDate.toLocaleDateString("en-US", options);
+        small52.innerHTML = packedDate;
+      }
+      else {
+        small52.innerHTML = "-";
+        timedisplay = "-";
+      }
+
+      div20.appendChild(small52);
+
+      var br552 = document.createElement("br");
+      div20.appendChild(br552);
+
+      var small53 = document.createElement("small");
+      small53.setAttribute("class", "time");
+      small53.innerHTML = timedisplay; //"Time";
+      div20.appendChild(small53);
+
+      div17.appendChild(div20);
+
+      var div23 = document.createElement("div");
+      if (cancelledorderTrackIndex >= 0) {
+        div23.setAttribute("class", "");
+      } else if (onTheWayorderTrackIndex >= 0) {
+        div23.setAttribute("class", "active");
+      } else {
+        div23.setAttribute("class", "");
+      }
+
+      var h57 = document.createElement("h5");
+      if (cancelledorderTrackIndex >= 0) {
+        h57.innerHTML = "-";
+      } else {
+        h57.innerHTML = "On The Way";
+      }
+      div23.appendChild(h57);
+
+      var div24 = document.createElement("div");
+      div24.setAttribute("class", "step center");
+      div23.appendChild(div24);
+
+      var div25 = document.createElement("div");
+      div25.setAttribute("class", "line center");
+      div23.appendChild(div25);
+
+      var small53 = document.createElement("small");
+      timedisplay = "";
+      if (cancelledorderTrackIndex >= 0) {
+        timedisplay = "-";
+        small53.innerHTML = "-";
+      } else if (onTheWayorderTrackIndex >= 0) {
+        var onTheWayDate = new Date(changeTrack[onTheWayorderTrackIndex].ChangedTimeStamp.seconds * 1000);
+        timedisplay = onTheWayDate.toLocaleTimeString('en-US');
+        onTheWayDate = onTheWayDate.toLocaleDateString("en-US", options);
+        small53.innerHTML = onTheWayDate;
+      }else {
+        small53.innerHTML ="-";
+        timedisplay ="-";
+      }
+
+      div23.appendChild(small53);
+
+      var br553 = document.createElement("br");
+      div23.appendChild(br553);
+
+      var small54 = document.createElement("small");
+      small54.setAttribute("class", "time");
+      small54.innerHTML = timedisplay; //"Time";
+      div23.appendChild(small54);
+
+      div17.appendChild(div23);
+
+      var div26 = document.createElement("div");
+      if (cancelledorderTrackIndex >= 0) {
+        div26.setAttribute("class", "");
+      } else if (deliveredorderTrackIndex >= 0) {
+        div26.setAttribute("class", "active");
+      } else {
+        div26.setAttribute("class", "");
+      }
+
+      var h58 = document.createElement("h5");
+      if (cancelledorderTrackIndex >= 0) {
+        h58.innerHTML = "-";
+      } else {
+        h58.innerHTML = "Delivered";
+      }
+      div26.appendChild(h58);
+
+      var div27 = document.createElement("div");
+      div27.setAttribute("class", "step right");
+      div26.appendChild(div27);
+
+      var div28 = document.createElement("div");
+      div28.setAttribute("class", "line right");
+      div26.appendChild(div28);
+
+      var small56 = document.createElement("small");
+      timedisplay = "";
+      if (cancelledorderTrackIndex >= 0) {
+        timedisplay = "-";
+        small56.innerHTML = "-";
+      } else if (deliveredorderTrackIndex >= 0) {
+        var delievredDate = new Date(changeTrack[deliveredorderTrackIndex].ChangedTimeStamp.seconds * 1000);
+        timedisplay = delievredDate.toLocaleTimeString('en-US');
+        delievredDate = delievredDate.toLocaleDateString("en-US", options);
+        small56.innerHTML = delievredDate;
+      }
+      else {
+        small56.innerHTML = "-";
+        timedisplay = "-";
+      }
+      div26.appendChild(small56);
+
+      var br554 = document.createElement("br");
+      div26.appendChild(br554);
+
+      var small55 = document.createElement("small");
+      small55.setAttribute("class", "time");
+      small55.innerHTML = timedisplay; //"Time";
+      div26.appendChild(small55);
+
+      div17.appendChild(div26);
+      div6.appendChild(div17);
+
+    }
+  });
 
   //Added elements progress- End
 
