@@ -102,6 +102,7 @@ function addAmount(amt) {
     minimumFractionDigits: 0,
     maximumFractionDigits: 2
   };
+  //document.getElementById("AddwalletAmount").focus();
 
   var amountDislay = document.getElementById("AddwalletAmount").value;
   amountDislay = Number(amountDislay) + Number(amt);
@@ -159,6 +160,9 @@ function showUpdateWallet() {
 
   updateWalletFullDiv.classList.toggle('updateWalletFullDivHide');
   updateWalletArrow.classList.toggle('active');
+  if( updateWalletArrow.classList.contains('active'))
+    document.getElementById("AddwalletAmount").focus();
+
 }
 
 function userListChange() {
@@ -278,6 +282,7 @@ function userListChange() {
         });
         document.getElementById("walletDiv").style.display = "block";
         document.getElementById("AddWalletDiv").style.display = "block";
+        document.getElementById("AddwalletAmount").focus();
         document.getElementById("orderDetails").style.display = "block";
 
       })
