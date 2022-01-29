@@ -205,7 +205,7 @@ function myChangeEvent() {
 function RenderProductByProducrID(productList, callCount)
 {
 
-    var DBrows = db.collection("Products").where("__name__", "in", productList).get();
+    var DBrows = db.collection("Products").where("__name__", "in", productList).orderBy("ProductName").get();
     DBrows.then((changes) => {
       var index = Number(callCount) * 10;
       var selectedindex = -1;
@@ -265,22 +265,22 @@ async function populateProductData(bType, pType, flag) {
     document.getElementById("idItem").innerHTML = "";
 
     console.log('All', 'All');
-    DBrows = db.collection("Products").get();
+    DBrows = db.collection("Products").orderBy("ProductName").get();
   } else if ((pType === '' || pType === 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
     console.log('All', bType);
     prodType = ['All', bType];
-    DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).get();
+    DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).orderBy("ProductName").get();
   } else if ((pType != '' && pType != 'All') && (bType === '' || bType === 'All')) //select one customer businessType
   {
 
     //console.log(pType, 'All');
-    DBrows = db.collection("Products").where("productType", "==", pType).get();
+    DBrows = db.collection("Products").where("productType", "==", pType).orderBy("ProductName").get();
   } else if ((pType != '' && pType != 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
     console.log(pType, 'All');
     prodType = ['All', bType];
-    DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).get();
+    DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).orderBy("ProductName").get();
   }
 
   DBrows.then((changes) => {
