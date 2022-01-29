@@ -418,6 +418,28 @@
 
               <div class="col-sm-12">
                 <hr>
+                <div class="" style="display:flex; justify-content: space-between;align-items: center;">
+                  <span>Location Available</span>
+                  <div class="">
+                    <select id="locationCity" class="city-selector" style="border: 1px solid #aaa;" name="">
+                      <option value="All">All</option>
+                      <option value="Varanasi">Varanasi</option>
+                      <option value="Noida">Noida</option>
+                      <option value="Lucknow">Lucknow</option>
+                      <option value="Gorakhpur">Gorakhpur</option>
+                      <option value="Deoria">Deoria</option>
+
+                    </select>
+
+                    <span class="material-icons-outlined city-selector-icon">
+                      filter_list
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-12">
+                <hr>
                 <div class="form-control">
                   <input type="text" id="brand" required value="Agrikaash" maxlength="40">
                   <label>Brand Name</label>
@@ -509,23 +531,39 @@
                 </center>
               </div>
 
+              <div class="col-sm-12" style="display:none;">
+                <hr>
+                <div class="form-control">
+                  <input type="number" min="1" id="purchasePrize" required value="" maxlength="40">
+                  <label>Purchanse Prize Per Unit</label>
+                </div><br>
+              </div>
+
+
               <div id="row1" class="col-lg-12">
                 <div class="row no-gutters">
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
                       <input type="text" required value="" maxlength="40" id="productWeight1">
                       <label style="color: #ff5757;">Weight</label>
                     </div>
                   </div>
 
-                  <div class="col-4">
+
+                  <div class="col-3">
+                    <div class="form-control">
+                      <input type="number" required value="" maxlength="40" id="purchasePrice1">
+                      <label style="color: #ff5757;">Pr. Price</label>
+                    </div>
+                  </div>
+                  <div class="col-3">
                     <div class="form-control">
                       <input type="text" required value="" maxlength="40" id="productMRP1">
                       <label style="color: #ff5757;">MRP</label>
                     </div>
                   </div>
 
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
                       <input type="text" required value="" maxlength="40" id="productFinalPrise1">
                       <label style="color: #ff5757;">Our Price</label>
@@ -536,21 +574,28 @@
 
               <div id="row2" class="col-sm-12" style="display:none;">
                 <div class="row no-gutters">
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
                       <input type="text" required value="" maxlength="40" id="productWeight2">
                       <label style="color: #ff5757;">Weight</label>
                     </div>
                   </div>
+                  <div class="col-3">
+                    <div class="form-control">
+                      <input type="number" required value="" maxlength="40" id="purchasePrice2">
+                      <label style="color: #ff5757;">Pr. Price</label>
+                    </div>
+                  </div>
 
-                  <div class="col-4">
+
+                  <div class="col-3">
                     <div class="form-control">
                       <input type="text" required value="" maxlength="40" id="productMRP2">
                       <label style="color: #ff5757;">MRP</label>
                     </div>
                   </div>
 
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
                       <input type="text" required value="" maxlength="40" id="productFinalPrise2">
                       <label style="color: #ff5757;">Our Price</label>
@@ -562,21 +607,28 @@
 
               <div id="row3" class="col-sm-12" style="display:none;">
                 <div class="row no-gutters">
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
                       <input type="text" required value="" maxlength="40" id="productWeight3">
                       <label style="color: #ff5757;">Weight</label>
                     </div>
                   </div>
 
-                  <div class="col-4">
+                  <div class="col-3">
+                    <div class="form-control">
+                      <input type="number" required value="" maxlength="40" id="purchasePrice3">
+                      <label style="color: #ff5757;">Pr. Price</label>
+                    </div>
+                  </div>
+
+                  <div class="col-3">
                     <div class="form-control">
                       <input type="text" required value="" maxlength="40" id="productMRP3">
                       <label style="color: #ff5757;">MRP</label>
                     </div>
                   </div>
 
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
                       <input type="text" required value="" maxlength="40" id="productFinalPrise3">
                       <label style="color: #ff5757;">Our Price</label>
@@ -588,21 +640,28 @@
 
               <div id="row4" class="col-sm-12" style="display:none;">
                 <div class="row no-gutters">
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
                       <input type="text" required value="" maxlength="40" id="productWeight4">
                       <label style="color: #ff5757;">Weight</label>
                     </div>
                   </div>
 
-                  <div class="col-4">
+
+                  <div class="col-3">
+                    <div class="form-control">
+                      <input type="number" required value="" maxlength="40" id="purchasePrice4">
+                      <label style="color: #ff5757;">Pr. Price</label>
+                    </div>
+                  </div>
+                  <div class="col-3">
                     <div class="form-control">
                       <input type="text" required value="" maxlength="40" id="productMRP4">
                       <label style="color: #ff5757;">MRP</label>
                     </div>
                   </div>
 
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
                       <input type="text" required value="" maxlength="40" id="productFinalPrise4">
                       <label style="color: #ff5757;">Our Price</label>
@@ -614,21 +673,29 @@
 
               <div id="row5" class="col-sm-12" style="display:none;">
                 <div class="row no-gutters">
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
                       <input type="text" required value="" maxlength="40" id="productWeight5">
                       <label style="color: #ff5757;">Weight</label>
                     </div>
                   </div>
 
-                  <div class="col-4">
+
+                  <div class="col-3">
+                    <div class="form-control">
+                      <input type="number" required value="" maxlength="40" id="purchasePrice5">
+                      <label style="color: #ff5757;">Pr. Price</label>
+                    </div>
+                  </div>
+
+                  <div class="col-3">
                     <div class="form-control">
                       <input type="text" required value="" maxlength="40" id="productMRP5">
                       <label style="color: #ff5757;">MRP</label>
                     </div>
                   </div>
 
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
                       <input type="text" required value="" maxlength="40" id="productFinalPrise5">
                       <label style="color: #ff5757;">Our Price</label>
