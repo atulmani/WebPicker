@@ -2323,7 +2323,7 @@ input[type=number] {
 }
 
 .dashboard-card.order-status.active {
-  height: 440px;
+  height: 500px;
 }
 
 .dashboard-card.order-summary-expand-div.active {
@@ -2761,11 +2761,45 @@ display: inline-block;
 } */
 
 /* Dropdown Button end*/
+
+.new_search-box{
+  border: none;
+  outline: none;
+  border: 1px solid #ddd;
+  background: #efefef;
+  width: 100%;
+  height: 30px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  padding: 0 10px 0 35px;
+  color: #888;
+  letter-spacing: 1px;
+}
+
+.new_search-box::placeholder{
+  color: #888;
+}
+
+.new_search-box-seach-icon{
+  position: absolute;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.new_search-box-seach-icon span{
+  color: #aaa;
+  font-size: 1.4rem;
+}
+
 .search {
-  width: 100px;
-  height: 100px;
+  width: 40px;
+  height: 30px;
   margin: 40px auto 0;
-  background-color: #242628;
+  background-color: #1D741B;
   position: relative;
   /* overflow: hidden; */
   transition: all .5s ease;
@@ -2774,10 +2808,10 @@ display: inline-block;
 .search::before {
   content: '';
   display: block;
-  width: 3px;
+  width: 2px;
   height: 100%;
   position: relative;
-  background-color: #00FEDE;
+  background-color: #fff;
   transition: all .5s ease;
 }
 
@@ -2786,8 +2820,8 @@ display: inline-block;
 }
 
 .search.open::before {
-  height: 60px;
-  margin: 20px 0 20px 30px;
+  height: 70%;
+  margin: 5px 0 7px 7px;
   position: absolute;
 }
 
@@ -2798,8 +2832,8 @@ display: inline-block;
   border: none;
   background: transparent;
   color: #fff;
-  padding: 20px 100px 20px 45px;
-  font-size: 2rem;
+  padding: 8px 100px 20px 20px;
+  font-size: 0.8rem;
 }
 
 .search-box:focus{
@@ -2807,84 +2841,89 @@ display: inline-block;
 }
 
 .search-button {
-  width: 100px;
-  height: 100px;
+  width: 30px;
+  height: 30px;
   display: block;
   position: absolute;
   right: 0;
   top: 0;
-  padding: 20px;
+  padding: 10px;
   cursor: pointer;
 }
 
 .search-icon {
-  width: 40px;
-  height: 40px;
+  width: 15px;
+  height: 15px;
   border-radius: 40px;
-  border: 3px solid #00FEDE;
+  border: 2px solid #fff;
   display: block;
   position: relative;
-  margin-left: 5px;
+  top: -5px;
+  left: -5px;
   transition: all .5s ease;
 }
 
 .search-icon::before{
   content: '';
-  width: 3px;
-  height: 15px;
+  width: 2px;
+  height: 5px;
   position: absolute;
-  right: -2px;
-  top: 30px;
+  right: -3px;
+  top: 8px;
   display: block;
-  background-color: #00FEDE;
+  background: #fff;
   transform: rotate(-45deg);
   transition: all .5s ease;
 }
 
 .search-icon::after{
   content: '';
-  width: 3px;
-  height: 15px;
+  width: 2px;
+  height: 5px;
   position: absolute;
-  right: -12px;
-  top: 40px;
+  right: -6px;
+  top: 11px;
   display: block;
-  background-color: #00FEDE;
+  background: #fff;
   transform: rotate(-45deg);
   transition: all .5s ease;
 }
 
 .search.open .search-icon{
-  margin: 0;
-  width: 60px;
-  height: 60px;
-  border-radius: 60px;
+  position: relative;
+  top: -4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
 }
 
 .search.open .search-icon::before{
   transform: rotate(52deg);
-  right: 22px;
-  top: 23px;
-  height: 18px;
+  right: 6px;
+  top: 6px;
+  height: 6px;
 }
 
 .search.open .search-icon::after{
   transform: rotate(-230deg);
-  right: 22px;
-  top: 13px;
-  height: 18px;
+  right: 6px;
+  top: 3px;
+  height: 6px;
 }
 
 .intelligence{
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  transform: translateY(0px);
   padding: 0 15px;
-  display: none;
   z-index: 999;
-  background: #242628;
+  background: #efefef;
 }
-
+/*
 .search-parent-div.show .intelligence{
   display: block;
-}
+} */
 
 .intelligence button{
   border: none;
@@ -2893,9 +2932,10 @@ display: inline-block;
   margin: 5px;
   border: 1px solid #ddd;
   text-align: center;
-  color: #fff;
-  font-size: 0.8rem;
-  height: 40px;
+  color: #444;
+  font-size: 0.7rem;
+  height: 30px;
   padding: 0 10px;
-  border-radius: 4px;
+  border-radius: 50px;
+  box-shadow: 0 0 3px 0 rgba(0,0,0,0.1);
 }
