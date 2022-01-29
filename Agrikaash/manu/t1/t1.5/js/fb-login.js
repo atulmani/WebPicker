@@ -244,6 +244,7 @@ btnContinue.addEventListener('click', e => {
     // document.getElementById('login').style.display = 'none';
   } else {
     document.getElementById('login').style.display = 'block';
+    document.getElementById("txtEmail_Signin").focus();
     document.getElementById('beforeLogin').style.display = 'none';
   }
 });
