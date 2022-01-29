@@ -42,7 +42,7 @@ function GetProfileData(user) {
         //console.log('Document ref id: ' + doc.data().uid);
         userRole = doc.data().UserRole;
         userLocation = doc.data().Address;
-        if(userLocation != undefined)
+        if (userLocation != undefined)
           productLocation = ['All', userLocation];
         else {
           productLocation = ['All'];
@@ -171,7 +171,59 @@ async function getCartItemNo() {
 
 function myChangeEvent() {
   console.log('myChnageEvent');
-  document.getElementById("productRow").innerHTML="";
+  document.getElementById("wrongSearch").style.display="none";
+
+  document.getElementById("productRow").innerHTML = "";
+  var noFlag= false;
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.children[0].value.toUpperCase();
+  div = document.getElementById("idItem");
+  a = div.getElementsByTagName("button");
+  var hfid = "";
+  var productList = [];
+  var prodCnt = 0;
+  var callCount = 1;
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      noFlag = true;;
+      a[i].style.display = "";
+      hfid = a[i].getElementsByTagName("input")[0];
+      productList.push(hfid.value);
+      prodCnt = prodCnt + 1;
+      if (prodCnt === 10) {
+        RenderProductByProducrID(productList, callCount);
+        productList = [];
+        prodCnt = 0;
+        callCount = callCount + 1;
+      }
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+  if (productList.length > 0) {
+
+    RenderProductByProducrID(productList, callCount);
+  }
+  console.log(noFlag);
+  if(noFlag === false)
+  {
+    document.getElementById("searchKeyText").innerHTML = filter;
+    document.getElementById("wrongSearch").style.display="block";
+
+  }
+  console.log("before display none");
+  document.getElementById("idItem").style.display = "none";
+  document.getElementById("myInput").children[0].blur();
+  // myDropdown.classList.remove("show");
+  // serachDiv.classList.remove("open");
+}
+
+
+function myChangeEventOld() {
+  console.log('myChnageEvent');
+  document.getElementById("productRow").innerHTML = "";
 
   var input, filter, ul, li, a, i;
   input = document.getElementById("myInput");
@@ -189,8 +241,7 @@ function myChangeEvent() {
       hfid = a[i].getElementsByTagName("input")[0];
       productList.push(hfid.value);
       prodCnt = prodCnt + 1;
-      if(prodCnt === 10)
-      {
+      if (prodCnt === 10) {
         RenderProductByProducrID(productList, callCount);
         productList = [];
         prodCnt = 0;
@@ -200,55 +251,53 @@ function myChangeEvent() {
       a[i].style.display = "none";
     }
   }
-  if(productList.length > 0)
-  {
+  if (productList.length > 0) {
 
     RenderProductByProducrID(productList, callCount);
   }
 
 
-        myDropdown.classList.remove("show");
-        serachDiv.classList.remove("open");
+  myDropdown.classList.remove("show");
+  serachDiv.classList.remove("open");
 }
 
-function RenderProductByProducrID(productList, callCount)
-{
+function RenderProductByProducrID(productList, callCount) {
 
-    var DBrows = db.collection("Products")
+  var DBrows = db.collection("Products")
     .where("__name__", "in", productList)
-//    .where("ProductLocation", "in", productLocation)
+    //    .where("ProductLocation", "in", productLocation)
     //.orderBy("ProductName")
     .get();
-    DBrows.then((changes) => {
-      var index = Number(callCount) * 10;
-      var selectedindex = -1;
-      var selectdedItem;
-      //productCategory.push('All');
-      changes.forEach(change => {
-        //console.log('in for loop');
-        var pCategory = change.data().productType;
-        //productCategory.push(pCategory)
-        //console.log(pCategory);
-        if (cartItems != null) {
-          selectedIndex = cartItems.findIndex(a => a.ProductID === change.id);
+  DBrows.then((changes) => {
+    var index = Number(callCount) * 10;
+    var selectedindex = -1;
+    var selectdedItem;
+    //productCategory.push('All');
+    changes.forEach(change => {
+      //console.log('in for loop');
+      var pCategory = change.data().productType;
+      //productCategory.push(pCategory)
+      //console.log(pCategory);
+      if (cartItems != null) {
+        selectedIndex = cartItems.findIndex(a => a.ProductID === change.id);
 
-          if (selectedIndex >= 0) {
-            selectdedItem = cartItems[selectedIndex];
-          } else {
-            selectdedItem = null;
-          }
+        if (selectedIndex >= 0) {
+          selectdedItem = cartItems[selectedIndex];
         } else {
           selectdedItem = null;
         }
-        renderProductNew(change, index, selectdedItem);
-        index = index + 1;
-      });
+      } else {
+        selectdedItem = null;
+      }
+      renderProductNew(change, index, selectdedItem);
+      index = index + 1;
     });
+  });
 
-    var myDropdown = document.getElementById('myDropdown');
-    var serachDiv = document.getElementById('serachDiv');
-    myDropdown.classList.remove("show");
-    serachDiv.classList.remove("open");
+  var myDropdown = document.getElementById('myDropdown');
+  var serachDiv = document.getElementById('serachDiv');
+  myDropdown.classList.remove("show");
+  serachDiv.classList.remove("open");
 
 
 }
@@ -279,33 +328,33 @@ async function populateProductData(bType, pType, flag) {
 
     console.log('All', 'All');
     DBrows = db.collection("Products")
-    .where("ProductLocation", "in", productLocation)
-    .orderBy("ProductName").get();
+      .where("ProductLocation", "in", productLocation)
+      .orderBy("ProductName").get();
   } else if ((pType === '' || pType === 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
     console.log('All', bType);
     prodType = ['All', bType];
     DBrows = db.collection("Products")
-    .where("CustomerBusinessType", "in", prodType)
-    .where("ProductLocation", "in", productLocation)
-    .orderBy("ProductName").get();
+      .where("CustomerBusinessType", "in", prodType)
+      .where("ProductLocation", "in", productLocation)
+      .orderBy("ProductName").get();
   } else if ((pType != '' && pType != 'All') && (bType === '' || bType === 'All')) //select one customer businessType
   {
 
     //console.log(pType, 'All');
     DBrows = db.collection("Products")
-    .where("productType", "==", pType)
-    .where("ProductLocation", "in", productLocation)
-    .orderBy("ProductName").get();
+      .where("productType", "==", pType)
+      .where("ProductLocation", "in", productLocation)
+      .orderBy("ProductName").get();
   } else if ((pType != '' && pType != 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
     console.log(pType, 'All');
     prodType = ['All', bType];
     DBrows = db.collection("Products")
-    .where("productType", "==", pType)
-    .where("CustomerBusinessType", "in", prodType)
-    .where("ProductLocation", "in", productLocation)
-    .orderBy("ProductName").get();
+      .where("productType", "==", pType)
+      .where("CustomerBusinessType", "in", prodType)
+      .where("ProductLocation", "in", productLocation)
+      .orderBy("ProductName").get();
   }
 
   DBrows.then((changes) => {
@@ -341,9 +390,9 @@ async function populateProductData(bType, pType, flag) {
         anchorB.innerHTML = change.data().ProductName;
 
         var hfID = document.createElement("input");
-        hfID.setAttribute("type","hidden");
-        hfID.setAttribute("id","hdID"+index);
-        hfID.setAttribute("value",change.id);
+        hfID.setAttribute("type", "hidden");
+        hfID.setAttribute("id", "hdID" + index);
+        hfID.setAttribute("value", change.id);
         anchorB.appendChild(hfID);
 
         document.getElementById("idItem").appendChild(anchorB);
@@ -1213,16 +1262,15 @@ function showSearchInput() {
   if (serachDiv.classList.contains('open')) {
     document.getElementById("myInput").children[0].focus();
 
-  if(document.getElementById("myInput").children[0].value === "")
-  {
-    console.log("get all element");
-  //  myChangeEvent();
-    //populateProductData(userBusinessCategory, '', true);
-    //myDropdown.classList.remove("show");
-    //serachDiv.classList.remove("open");
+    if (document.getElementById("myInput").children[0].value === "") {
+      console.log("get all element");
+      //  myChangeEvent();
+      //populateProductData(userBusinessCategory, '', true);
+      //myDropdown.classList.remove("show");
+      //serachDiv.classList.remove("open");
 
+    }
   }
-}
 
 }
 
@@ -1261,12 +1309,40 @@ function showItem(itemname) {
 
       myDropdown.classList.remove("show");
       serachDiv.classList.remove("open");
+      console.log("before none");
+      document.getElementById("idItem").style.display = "none";
+      document.getElementById("myInput").children[0].blur();
+
 
     }
   });
 }
 
+function inputSearchFocus() {
+  document.getElementById("idItem").style.display = "block";
+  document.getElementById("wrongSearch").style.display="none";
+
+}
+
 function filterFunction() {
+  console.log('hi');
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.children[0].value.toUpperCase();
+  //  console.log(filter);
+  div = document.getElementById("idItem");
+  a = div.getElementsByTagName("button");
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+
+function filterFunctionOld() {
   console.log('hi');
   var input, filter, ul, li, a, i;
   input = document.getElementById("myInput");
