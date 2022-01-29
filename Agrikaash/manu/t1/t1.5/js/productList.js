@@ -4,7 +4,8 @@ var cartItems = [];
 var productCategory = [];
 var isAdmin = false;
 var userBusinessCategory = "";
-
+var userLocation = "";
+var productLocation = [];
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
@@ -40,6 +41,12 @@ function GetProfileData(user) {
       if (doc.exists) {
         //console.log('Document ref id: ' + doc.data().uid);
         userRole = doc.data().UserRole;
+        userLocation = doc.data().Address;
+        if(userLocation != undefined)
+          productLocation = ['All', userLocation];
+        else {
+          productLocation = ['All'];
+        }
         //console.log(doc.data().CustomerType);
         userBusinessCategory = doc.data().CustomerType;
         //  console.log(userBusinessCategory);
@@ -49,6 +56,8 @@ function GetProfileData(user) {
           if (business.options[i].value === userBusinessCategory)
             business.options[i].selected = true;
         }
+
+
         if (userRole != undefined) {
           if (userRole.findIndex(e => e.Value === "Admin") >= 0) {
             isAdmin = true;
@@ -205,7 +214,11 @@ function myChangeEvent() {
 function RenderProductByProducrID(productList, callCount)
 {
 
-    var DBrows = db.collection("Products").where("__name__", "in", productList).orderBy("ProductName").get();
+    var DBrows = db.collection("Products")
+    .where("__name__", "in", productList)
+//    .where("ProductLocation", "in", productLocation)
+    //.orderBy("ProductName")
+    .get();
     DBrows.then((changes) => {
       var index = Number(callCount) * 10;
       var selectedindex = -1;
@@ -265,22 +278,34 @@ async function populateProductData(bType, pType, flag) {
     document.getElementById("idItem").innerHTML = "";
 
     console.log('All', 'All');
-    DBrows = db.collection("Products").orderBy("ProductName").get();
+    DBrows = db.collection("Products")
+    .where("ProductLocation", "in", productLocation)
+    .orderBy("ProductName").get();
   } else if ((pType === '' || pType === 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
     console.log('All', bType);
     prodType = ['All', bType];
-    DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).orderBy("ProductName").get();
+    DBrows = db.collection("Products")
+    .where("CustomerBusinessType", "in", prodType)
+    .where("ProductLocation", "in", productLocation)
+    .orderBy("ProductName").get();
   } else if ((pType != '' && pType != 'All') && (bType === '' || bType === 'All')) //select one customer businessType
   {
 
     //console.log(pType, 'All');
-    DBrows = db.collection("Products").where("productType", "==", pType).orderBy("ProductName").get();
+    DBrows = db.collection("Products")
+    .where("productType", "==", pType)
+    .where("ProductLocation", "in", productLocation)
+    .orderBy("ProductName").get();
   } else if ((pType != '' && pType != 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
     console.log(pType, 'All');
     prodType = ['All', bType];
-    DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).orderBy("ProductName").get();
+    DBrows = db.collection("Products")
+    .where("productType", "==", pType)
+    .where("CustomerBusinessType", "in", prodType)
+    .where("ProductLocation", "in", productLocation)
+    .orderBy("ProductName").get();
   }
 
   DBrows.then((changes) => {
