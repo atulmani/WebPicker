@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="WebPicker">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+    content="Mobile & Web App Design & Development | Artificial Intelligence, Analytics, Cloud & IOT | DOOH, SAAS & Retail / Corp Communication Solutions | Business Promotion, SEO, ORM, Press Release, Social Media | Bangalore | Delhi | Lucknow | Pune | Varanasi">
+  <meta name="keywords"
+    content="Mobile & Web App Design & Development | Artificial Intelligence, Analytics, Cloud & IOT | DOOH, SAAS & Retail / Corp Communication Solutions | Business Promotion, SEO, ORM, Press Release, Social Media | Bangalore | Delhi | Lucknow | Pune | Varanasi">
+  <title>Hyper Cloud | A - App Design & Development | B - Business Intelligence | C - Content Management | D - Digital Marketing</title>
+
+  <link rel="shortcut icon" href="../img/logo.png">
+
+  <!-- Google Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome cdn file -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <!-- Owl Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+  <!-- Bootstrap css -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+  <!-- Your Own Style -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
+
+</head>
+
+<body style="background: #f4f4f4;">
+  <!-- Navbar - Start -->
+  <nav class="navbar navbar-expand-lg sticky-top" style="padding:4px;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="https://HyperCloudAdvertising.com">
+        <img src="../img/logo/logo-text.png" width="100px" alt="">
+      </a>
+
+      <div class="navbar-toggler" data-toggle="collapse" data-target="#collapsibleNavbar1">
+        <span>
+          <i class="fa fa-reorder" style="color:#1638A0;font-size: 1.6rem;"></i>
+        </span>
+      </div>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="nav navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-home"></i></a>
+          </li>
+          <li class="nav-item">
+            <div class="dropdown">
+              <div onclick="ddIndustries()" class="dropbtn">Industries
+                <i class="fa fa-caret-down"></i>
+              </div>
+              <div id="myDropdown" class="dropdown-content">
+                <a href="#government">CORPORATE COMMUNICATION</a>
+                <a href="#IndustriesWeServe">DOOH & OUTDOOR</a>
+                <a href="#government">EDUCATION</a>
+                <a href="#IndustriesWeServe">GOVERNMENT</a>
+                <a href="#government">RETAIL & LAST MILE</a>
+                <a href="#IndustriesWeServe">TRANSPORTATION</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="#WhyToUse">Features</a> -->
+            <div class="dropdown">
+              <div onclick="ddFeatures()" class="dropbtn">Concepts
+                <i class="fa fa-caret-down"></i>
+              </div>
+              <div id="myDropdown1" class="dropdown-content">
+                <a href="#aipowered">ADs ANALYTICS</a>
+                <a href="#WhyToUse">AI-POWERED</a>
+                <a href="#aipowered">EASY TO CUSTOMIZE</a>
+                <a href="#WhyToUse">FAST AND NO LAGS</a>
+                <a href="#aipowered">SEAMLESS INTEGRATION</a>
+                <a href="#WhyToUse">SECURED CLOUD BASED</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contacts">Contact us</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#hiw">How We Work</a>
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#projects">Projects</a>
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="contacts">Contact Us</a>
+          </li> -->
+        </ul>
+        <!-- <div class="nav-divider">
+          <a href="contacts" style="padding-right: 10px; "><button class="mybutton button5">Connect<i class="fas fa-arrow-right"></i> </button></a>
+        </div> -->
+
+      </div>
+    </div>
+  </nav>
+
+  <div class="small navbar-bottom-mobile">
+    <ul>
+      <a type="button" href="../#">
+        <span><i class="fas fa-home"></i></span> <br> <span> Home </span>
+      </a>
+      <a type="button" href="payments.html">
+        <span><i class="fas fa-tasks"></i></span> <br> <span> Payments </span>
+      </a>
+      <!-- <a type="button" href="login">
+        <span><i class="fas fa-user"></i></span> <br> <span> Login </span>
+      </a> -->
+      <a type="button" href="#">
+        <span><i class="fas fa-id-badge"></i></span> <br> <span> Contact Us </span>
+      </a>
+      <a type="button" data-toggle="collapse" data-target="#collapsibleNavbar1">
+        <span><i class="fas fa-list"></i></span> <br> <span> More </span>
+      </a>
+
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse more-button-links" id="collapsibleNavbar1">
+        <ul class="">
+          <li class="">
+            <a class="" href="../#">Home</a>
+          </li>
+          <li class="">
+            <a class="" href="../#IndustriesWeServe">Industries</a>
+          </li>
+          <!-- <li class="">
+            <a class="" href="login">Login</a>
+          </li> -->
+          <li class="">
+            <a class="" href="../#WhyToUse">Services</a>
+          </li>
+          <li class="">
+            <a class="" href="../contacts/">Contact</a>
+          </li>
+
+          <li class="">
+            <a class="" href="../login/">Login</a>
+          </li>
+        </ul>
+      </div>
+
+  </div>
+  <!-- Navbar - End -->
+
+  <!-- Payments page - start -->
+  <section>
+    <div class="row no-gutters" style="padding: 1%;">
+      <div class="col-lg-3 col-md-6 col-sm-12 large" style="padding: 2%;">
+        <div class="stocks-display">
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
+            </div>
+
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
+            </div>
+
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
+            </div>
+
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
+            </div>
+
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
+            </div>
+
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
+            </div>
+
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
+            </div>
+
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
+            </div>
+
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
+            </div>
+
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
+            </div>
+
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
+            </div>
+
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-12" style="padding: 2%;">
+        <div class="book-details-card" style="margin-top: 0;">
+          <div class="" style="display: flex; align-items: center;justify-content: space-between;">
+            <input type="text" name="" readonly class="project-details-name" value="Pilates Matwork Essencial (in-studio)">
+            <div class="project-details-edit-icon">
+              <span class="material-icons-outlined">
+                edit
+              </span>
+            </div>
+          </div>
+          <div>
+            <span class="book-details-card-time">
+              <span class="material-icons-outlined">
+                access_time_filled
+              </span>
+              <small>12th Jun 2025 - 04 : 00 am</small>
+            </span>
+          </div>
+        </div><br>
+
+        <div class="" style="background: #fff;height: 400px;">
+
+          <div class="project-details-form-heading">
+            <h4>Project Details</h4>
+
+            <a href="book.html">
+              <button style="width: 150px;height: 40px;" class="mybutton button5">
+                <span style="position: relative; top: -7px;">Save</span>
+                <span style="position: relative; top: 1px;transition: transform 0.5s;" class="material-icons-outlined right">
+                  keyboard_arrow_right
+                </span>
+              </button>
+            </a>
+          </div>
+
+          <div class="row no-gutters">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="project-details-form-feild">
+                <input type="text" required name="" value="">
+                <label for="">Project Name</label>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="project-details-form-feild">
+                <input type="text" required name="" value="">
+                <label for="">Project Name</label>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="project-details-form-feild">
+                <input type="text" required name="" value="">
+                <label for="">Project Name</label>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="project-details-form-feild">
+                <input type="text" required name="" value="">
+                <label for="">Project Name</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-3 col-md-6" style="padding: 2%;">
+        <div class="" style="background: #fff; height: 185px;">
+
+        </div>
+        <br>
+        <div class="" style="background: #fff; height: 185px;">
+
+        </div>
+        <br>
+        <div class="" style="background: #fff; height: 185px;">
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Payments page - end -->
+
+  <!-- Footer Section - Start -->
+  <section id="footer">
+    <br /><br />
+
+    <div class="row no-gutters" style="text-align: center;">
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="links-sitemaps">
+          <h5>SITEMAPS</h5>
+          <ul class="">
+            <li class="">
+              <a class="" href="#">Home</a>
+            </li>
+            <li class="">
+              <a class="" href="#IndustriesWeServe">Services</a>
+            </li>
+            <li class="">
+              <a class="" href="#WhyToUse">Why Us</a>
+              <!-- <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#one">One</a></li>  -->
+            </li>
+            <li class="">
+              <a class="" href="#hiw">How We Work</a>
+            </li>
+            <li class="">
+              <a class="" href="#">Projects</a>
+            </li>
+            <li class="">
+              <a class="" href="contacts">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="links-sitemaps">
+          <h5>OTHERS</h5>
+          <ul class="">
+            <li class="">
+              <a class="" href="#">Join us officialy</a>
+            </li>
+            <li class="">
+              <a class="" href="#">Refer a friend</a>
+            </li>
+            <li class="">
+              <a class="" href="#">Become our Channel Partner</a>
+            </li>
+          </ul>
+        </div><br><br>
+
+        <div class="links-sitemaps">
+          <h5>INFORMATION</h5>
+          <ul class="">
+            <li class="">
+              <a class="" href="#">Terms & Conditions</a>
+            </li>
+            <li class="">
+              <a class="" href="#">Privacy & Policy</a>
+            </li>
+            <li class="">
+              <a class="" href="#">FAQ's</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="footer-last">
+          <img src="../img/logo/logo-text.png" width="110px" alt="">
+          <br><br>
+          <h5 class="git">Get in Touch</h5>
+          <a href="#" class="footer-no">+91 915 255 2222</a>
+          <br>
+          <a href="mailto:Connect@HyperCloudAdvertising.com" class="footer-email">Connect@HyperCloudAdvertising.com</a><br><br>
+          <hr>
+          <div class="social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="Copyright">
+        <h6>Design & Developed By <a style='decoration:none;color:white;' href="https://webpicker.in"> Web Picker </a></h6>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Footer Section - end -->
+
+  <!-- Jquery order should be higher from normal javascript  -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+  <!-- Owl Carousel JQuery -->
+  <!-- <script src="js/jquery.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Firebase Services -->
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-storage.js"></script>
+
+  <!-- <script src="../js/main.js"></script> -->
+  <script src="../js/firebase.js"></script>
+
+
+
+  <!-- Owl Carousel Javascript  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+
+</body>
+
+</html>
