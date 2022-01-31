@@ -202,8 +202,8 @@ function RenderProductByProducrID(productList, callCount) {
 
 function showItem(itemname) {
 
-  var myDropdown = document.getElementById('myDropdown');
-  var serachDiv = document.getElementById('serachDiv');
+  // var myDropdown = document.getElementById('myDropdown');
+  // var serachDiv = document.getElementById('serachDiv');
 
   //console.log(itemname);
 
