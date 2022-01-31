@@ -28,6 +28,153 @@ try {
 //window.location.href = "../index.html";
 function GetUserList() {
   var DBrows = db.collection('UserList').get();
+  // console.log("in GetUserList");
+  DBrows.then((changes) => {
+    var index = 0;
+    changes.forEach(change => {
+      // console.log(change.data());
+      // console.log(change.id);
+      var anchorB = document.createElement("button");
+      anchorB.setAttribute("onclick", "showItem('" + change.id + "')");
+      anchorB.innerHTML = change.data().displayName + ":" + change.data().EmailID;
+
+      var hfID = document.createElement("input");
+      hfID.setAttribute("type", "hidden");
+      hfID.setAttribute("id", "hdID" + index);
+      hfID.setAttribute("value", change.id);
+      anchorB.appendChild(hfID);
+
+      document.getElementById("idUsers").appendChild(anchorB);
+
+    });
+  });
+}
+
+
+function inputSearchFocus() {
+  document.getElementById("idUsers").style.display = "block";
+  document.getElementById("wrongSearch").style.display = "none";
+
+}
+
+function filterFunction() {
+  console.log('hi');
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.children[0].value.toUpperCase();
+  // console.log(filter);
+  div = document.getElementById("idUsers");
+  a = div.getElementsByTagName("button");
+  // console.log(a.length);
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+
+
+
+function myChangeEvent() {
+  console.log('myChangeEvent');
+
+  document.getElementById("orderListDiv").innerHTML = "";
+  var noFlag = false;
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.children[0].value.toUpperCase();
+  div = document.getElementById("idUsers");
+  a = div.getElementsByTagName("button");
+  var hfid = "";
+  var userList = [];
+  var prodCnt = 0;
+  var callCount = 0;
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      noFlag = true;;
+      a[i].style.display = "";
+      hfid = a[i].getElementsByTagName("input")[0];
+      userList.push(hfid.value);
+      prodCnt = prodCnt + 1;
+      if (prodCnt === 10) {
+        //RenderProductByProducrID(productList, callCount);
+        renderOrderByUserID(userList, callCount);
+        userList = [];
+        prodCnt = 0;
+        callCount = callCount + 1;
+      }
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+  if (userList.length > 0) {
+    renderOrderByUserID(userList, callCount);
+    callCount = callCount +1;
+  }
+  console.log(callCount);
+  if(callCount > 0 )
+    document.getElementById("wrongSearch").style.display = "none";
+  else {
+    document.getElementById("wrongSearch").style.display = "block";
+  }
+  document.getElementById("idUsers").style.display = "none";
+
+}
+
+
+function showItem(itemname) {
+  var index = 0;
+  console.log(itemname);
+
+    var DBrows = db.collection("OrderDetails")
+      .where("orderBy","==", itemname)
+      .get();
+    DBrows.then((changes) => {
+      changes.forEach(change => {
+        console.log(change.id);
+        console.log(change.data());
+        renderOrder(change.id, change.data(), index);
+        index = index + 1;
+      });
+      console.log(index);
+      if(index === 0 )
+      {
+        document.getElementById("wrongSearch").style.display = "block";
+      }
+      document.getElementById("idUsers").style.display = "none";
+
+    });
+
+}
+
+function renderOrderByUserID(userList, callCount) {
+  console.log(userList);
+  console.log(callCount);
+  var index = 0;
+  var DBrows = db.collection("OrderDetails")
+    .where("orderBy", "in", userList)
+    .get();
+  DBrows.then((changes) => {
+    index = Number(callCount) * 10;
+    //productCategory.push('All');
+    changes.forEach(change => {
+      renderOrder(change.id, change.data(), index);
+      index = index + 1;
+    });
+  });
+
+  if(index === 0 )
+  {
+      document.getElementById("wrongSearch").style.display = "block";
+  }
+}
+
+function GetUserListOld() {
+  var DBrows = db.collection('UserList').get();
 
   DBrows.then((changes) => {
     var i = 0;
@@ -122,8 +269,6 @@ function GetOrderByUsers() {
     });
   });
   document.getElementById('loading').style.display = 'none';
-
-
 }
 
 function populateOrderDetailsBackup() {
@@ -1137,7 +1282,7 @@ function renderOrder(orderid, order, index) {
   if (order.discountDetails.coupondID === "none" || order.discountDetails.discountValue === "none") {
     small4.innerHTML = "No Discount";
   } else {
-  //  small4.innerHTML = displayDiscountAmt + "(Off " + order.discountDetails.discountValue + ")";
+    //  small4.innerHTML = displayDiscountAmt + "(Off " + order.discountDetails.discountValue + ")";
     small4.innerHTML = "<span style='font-size: 1.2rem;color: #1D741B;'>" + displayDiscountAmt + " </span> (Off " + order.discountDetails.discountValue + ")";
 
   }
@@ -1235,246 +1380,244 @@ function renderOrder(orderid, order, index) {
   div6.appendChild(div16);
 
 
-    var hr11 = document.createElement("hr");
-    div6.appendChild(hr11);
+  var hr11 = document.createElement("hr");
+  div6.appendChild(hr11);
 
-    //Added elements progress- start
-    const snapshot = db.collection('OrderTracking').doc(orderid);
-    var changeTrack = [];
-    snapshot.get().then(async (doc) => {
-      if (doc.exists) {
-        changeTrack = doc.data().ChangeTrack;
+  //Added elements progress- start
+  const snapshot = db.collection('OrderTracking').doc(orderid);
+  var changeTrack = [];
+  snapshot.get().then(async (doc) => {
+    if (doc.exists) {
+      changeTrack = doc.data().ChangeTrack;
 
-        var div17 = document.createElement("div");
-        div17.setAttribute("class", "progress-bar-div");
+      var div17 = document.createElement("div");
+      div17.setAttribute("class", "progress-bar-div");
 
-        var pendingorderTrackIndex = changeTrack.findIndex(e => e.OrderStage === 1);
-        var packedorderTrackIndex = changeTrack.findIndex(e => e.OrderStage === 3);
-        var onTheWayorderTrackIndex = changeTrack.findIndex(e => e.OrderStage === 4);
-        var deliveredorderTrackIndex = changeTrack.findIndex(e => e.OrderStage === 5);
-        var cancelledorderTrackIndex = changeTrack.findIndex(e => e.OrderStage === 6);
+      var pendingorderTrackIndex = changeTrack.findIndex(e => e.OrderStage === 1);
+      var packedorderTrackIndex = changeTrack.findIndex(e => e.OrderStage === 3);
+      var onTheWayorderTrackIndex = changeTrack.findIndex(e => e.OrderStage === 4);
+      var deliveredorderTrackIndex = changeTrack.findIndex(e => e.OrderStage === 5);
+      var cancelledorderTrackIndex = changeTrack.findIndex(e => e.OrderStage === 6);
 
-        if (packedorderTrackIndex === -1 && onTheWayorderTrackIndex >= 0)
-          packedorderTrackIndex = onTheWayorderTrackIndex;
-        else if (packedorderTrackIndex === -1 && deliveredorderTrackIndex >= 0)
-          packedorderTrackIndex = deliveredorderTrackIndex;
+      if (packedorderTrackIndex === -1 && onTheWayorderTrackIndex >= 0)
+        packedorderTrackIndex = onTheWayorderTrackIndex;
+      else if (packedorderTrackIndex === -1 && deliveredorderTrackIndex >= 0)
+        packedorderTrackIndex = deliveredorderTrackIndex;
 
-        if (onTheWayorderTrackIndex === -1 && deliveredorderTrackIndex >= 0) {
-          onTheWayorderTrackIndex = deliveredorderTrackIndex;
-        }
-
-        var options = {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric'
-        };
-        //          var displayDate = fromDate.toLocaleDateString("en-US", options);
-
-        var div18 = document.createElement("div");
-        if (pendingorderTrackIndex >= 0) {
-          div18.setAttribute("class", "active");
-        } else {
-          div18.setAttribute("class", "");
-        }
-
-        var h55 = document.createElement("h5");
-        h55.innerHTML = "Pending";
-        div18.appendChild(h55);
-
-        var div19 = document.createElement("div");
-        div19.setAttribute("class", "step");
-        div18.appendChild(div19);
-
-        var small51 = document.createElement("small");
-        var timedisplay = "";
-        if (pendingorderTrackIndex >= 0) {
-          pendingDate = new Date(changeTrack[pendingorderTrackIndex].ChangedTimeStamp.seconds * 1000);
-          timedisplay = pendingDate.toLocaleTimeString('en-US');
-
-          var pendingDatedisplay = pendingDate.toLocaleDateString("en-US", options);
-          small51.innerHTML = pendingDatedisplay;
-        }
-        div18.appendChild(small51);
-
-        var br551 = document.createElement("br");
-        div18.appendChild(br551);
-
-        var small52 = document.createElement("small");
-        small52.setAttribute("class", "time");
-        if (pendingorderTrackIndex >= 0) {
-          small52.innerHTML = timedisplay; // "Time";
-        } else {
-          small52.innerHTML = "-"
-        }
-        div18.appendChild(small52);
-
-        div17.appendChild(div18);
-
-        var div20 = document.createElement("div");
-        if (packedorderTrackIndex >= 0 ) {
-          div20.setAttribute("class", "active");
-        } else if ( cancelledorderTrackIndex >= 0) {
-          div20.setAttribute("class", "cancelled");
-        } else {
-          div20.setAttribute("class", "");
-        }
-
-        var h56 = document.createElement("h5");
-        if (cancelledorderTrackIndex >= 0) {
-          h56.innerHTML = "Cancelled";
-        } else {
-          h56.innerHTML = "Packed";
-        }
-
-        div20.appendChild(h56);
-
-        var div21 = document.createElement("div");
-        div21.setAttribute("class", "step center");
-        div20.appendChild(div21);
-
-        var div22 = document.createElement("div");
-        div22.setAttribute("class", "line");
-        div20.appendChild(div22);
-
-        var small52 = document.createElement("small");
-        timedisplay = "";
-        if (cancelledorderTrackIndex >= 0) {
-          var cancelDate = new Date(changeTrack[cancelledorderTrackIndex].ChangedTimeStamp.seconds * 1000);
-          timedisplay = cancelDate.toLocaleTimeString('en-US');
-          cancelDate = cancelDate.toLocaleDateString("en-US", options);
-          small52.innerHTML = cancelDate;
-        } else if (packedorderTrackIndex >= 0) {
-          var packedDate = new Date(changeTrack[packedorderTrackIndex].ChangedTimeStamp.seconds * 1000);
-          timedisplay = packedDate.toLocaleTimeString('en-US');
-          packedDate = packedDate.toLocaleDateString("en-US", options);
-          small52.innerHTML = packedDate;
-        }
-        else {
-          small52.innerHTML = "-";
-          timedisplay = "-";
-        }
-
-        div20.appendChild(small52);
-
-        var br552 = document.createElement("br");
-        div20.appendChild(br552);
-
-        var small53 = document.createElement("small");
-        small53.setAttribute("class", "time");
-        small53.innerHTML = timedisplay; //"Time";
-        div20.appendChild(small53);
-
-        div17.appendChild(div20);
-
-        var div23 = document.createElement("div");
-        if (cancelledorderTrackIndex >= 0) {
-          div23.setAttribute("class", "");
-        } else if (onTheWayorderTrackIndex >= 0) {
-          div23.setAttribute("class", "active");
-        } else {
-          div23.setAttribute("class", "");
-        }
-
-        var h57 = document.createElement("h5");
-        if (cancelledorderTrackIndex >= 0) {
-          h57.innerHTML = "-";
-        } else {
-          h57.innerHTML = "On The Way";
-        }
-        div23.appendChild(h57);
-
-        var div24 = document.createElement("div");
-        div24.setAttribute("class", "step center");
-        div23.appendChild(div24);
-
-        var div25 = document.createElement("div");
-        div25.setAttribute("class", "line center");
-        div23.appendChild(div25);
-
-        var small53 = document.createElement("small");
-        timedisplay = "";
-        if (cancelledorderTrackIndex >= 0) {
-          timedisplay = "-";
-          small53.innerHTML = "-";
-        } else if (onTheWayorderTrackIndex >= 0) {
-          var onTheWayDate = new Date(changeTrack[onTheWayorderTrackIndex].ChangedTimeStamp.seconds * 1000);
-          timedisplay = onTheWayDate.toLocaleTimeString('en-US');
-          onTheWayDate = onTheWayDate.toLocaleDateString("en-US", options);
-          small53.innerHTML = onTheWayDate;
-        }else {
-          small53.innerHTML ="-";
-          timedisplay ="-";
-        }
-
-        div23.appendChild(small53);
-
-        var br553 = document.createElement("br");
-        div23.appendChild(br553);
-
-        var small54 = document.createElement("small");
-        small54.setAttribute("class", "time");
-        small54.innerHTML = timedisplay; //"Time";
-        div23.appendChild(small54);
-
-        div17.appendChild(div23);
-
-        var div26 = document.createElement("div");
-        if (cancelledorderTrackIndex >= 0) {
-          div26.setAttribute("class", "");
-        } else if (deliveredorderTrackIndex >= 0) {
-          div26.setAttribute("class", "active");
-        } else {
-          div26.setAttribute("class", "");
-        }
-
-        var h58 = document.createElement("h5");
-        if (cancelledorderTrackIndex >= 0) {
-          h58.innerHTML = "-";
-        } else {
-          h58.innerHTML = "Delivered";
-        }
-        div26.appendChild(h58);
-
-        var div27 = document.createElement("div");
-        div27.setAttribute("class", "step right");
-        div26.appendChild(div27);
-
-        var div28 = document.createElement("div");
-        div28.setAttribute("class", "line right");
-        div26.appendChild(div28);
-
-        var small56 = document.createElement("small");
-        timedisplay = "";
-        if (cancelledorderTrackIndex >= 0) {
-          timedisplay = "-";
-          small56.innerHTML = "-";
-        } else if (deliveredorderTrackIndex >= 0) {
-          var delievredDate = new Date(changeTrack[deliveredorderTrackIndex].ChangedTimeStamp.seconds * 1000);
-          timedisplay = delievredDate.toLocaleTimeString('en-US');
-          delievredDate = delievredDate.toLocaleDateString("en-US", options);
-          small56.innerHTML = delievredDate;
-        }
-        else {
-          small56.innerHTML = "-";
-          timedisplay = "-";
-        }
-        div26.appendChild(small56);
-
-        var br554 = document.createElement("br");
-        div26.appendChild(br554);
-
-        var small55 = document.createElement("small");
-        small55.setAttribute("class", "time");
-        small55.innerHTML = timedisplay; //"Time";
-        div26.appendChild(small55);
-
-        div17.appendChild(div26);
-        div6.appendChild(div17);
-
+      if (onTheWayorderTrackIndex === -1 && deliveredorderTrackIndex >= 0) {
+        onTheWayorderTrackIndex = deliveredorderTrackIndex;
       }
-    });
 
-    //Added elements progress- End
+      var options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      };
+      //          var displayDate = fromDate.toLocaleDateString("en-US", options);
+
+      var div18 = document.createElement("div");
+      if (pendingorderTrackIndex >= 0) {
+        div18.setAttribute("class", "active");
+      } else {
+        div18.setAttribute("class", "");
+      }
+
+      var h55 = document.createElement("h5");
+      h55.innerHTML = "Pending";
+      div18.appendChild(h55);
+
+      var div19 = document.createElement("div");
+      div19.setAttribute("class", "step");
+      div18.appendChild(div19);
+
+      var small51 = document.createElement("small");
+      var timedisplay = "";
+      if (pendingorderTrackIndex >= 0) {
+        pendingDate = new Date(changeTrack[pendingorderTrackIndex].ChangedTimeStamp.seconds * 1000);
+        timedisplay = pendingDate.toLocaleTimeString('en-US');
+
+        var pendingDatedisplay = pendingDate.toLocaleDateString("en-US", options);
+        small51.innerHTML = pendingDatedisplay;
+      }
+      div18.appendChild(small51);
+
+      var br551 = document.createElement("br");
+      div18.appendChild(br551);
+
+      var small52 = document.createElement("small");
+      small52.setAttribute("class", "time");
+      if (pendingorderTrackIndex >= 0) {
+        small52.innerHTML = timedisplay; // "Time";
+      } else {
+        small52.innerHTML = "-"
+      }
+      div18.appendChild(small52);
+
+      div17.appendChild(div18);
+
+      var div20 = document.createElement("div");
+      if (packedorderTrackIndex >= 0) {
+        div20.setAttribute("class", "active");
+      } else if (cancelledorderTrackIndex >= 0) {
+        div20.setAttribute("class", "cancelled");
+      } else {
+        div20.setAttribute("class", "");
+      }
+
+      var h56 = document.createElement("h5");
+      if (cancelledorderTrackIndex >= 0) {
+        h56.innerHTML = "Cancelled";
+      } else {
+        h56.innerHTML = "Packed";
+      }
+
+      div20.appendChild(h56);
+
+      var div21 = document.createElement("div");
+      div21.setAttribute("class", "step center");
+      div20.appendChild(div21);
+
+      var div22 = document.createElement("div");
+      div22.setAttribute("class", "line");
+      div20.appendChild(div22);
+
+      var small52 = document.createElement("small");
+      timedisplay = "";
+      if (cancelledorderTrackIndex >= 0) {
+        var cancelDate = new Date(changeTrack[cancelledorderTrackIndex].ChangedTimeStamp.seconds * 1000);
+        timedisplay = cancelDate.toLocaleTimeString('en-US');
+        cancelDate = cancelDate.toLocaleDateString("en-US", options);
+        small52.innerHTML = cancelDate;
+      } else if (packedorderTrackIndex >= 0) {
+        var packedDate = new Date(changeTrack[packedorderTrackIndex].ChangedTimeStamp.seconds * 1000);
+        timedisplay = packedDate.toLocaleTimeString('en-US');
+        packedDate = packedDate.toLocaleDateString("en-US", options);
+        small52.innerHTML = packedDate;
+      } else {
+        small52.innerHTML = "-";
+        timedisplay = "-";
+      }
+
+      div20.appendChild(small52);
+
+      var br552 = document.createElement("br");
+      div20.appendChild(br552);
+
+      var small53 = document.createElement("small");
+      small53.setAttribute("class", "time");
+      small53.innerHTML = timedisplay; //"Time";
+      div20.appendChild(small53);
+
+      div17.appendChild(div20);
+
+      var div23 = document.createElement("div");
+      if (cancelledorderTrackIndex >= 0) {
+        div23.setAttribute("class", "");
+      } else if (onTheWayorderTrackIndex >= 0) {
+        div23.setAttribute("class", "active");
+      } else {
+        div23.setAttribute("class", "");
+      }
+
+      var h57 = document.createElement("h5");
+      if (cancelledorderTrackIndex >= 0) {
+        h57.innerHTML = "-";
+      } else {
+        h57.innerHTML = "On The Way";
+      }
+      div23.appendChild(h57);
+
+      var div24 = document.createElement("div");
+      div24.setAttribute("class", "step center");
+      div23.appendChild(div24);
+
+      var div25 = document.createElement("div");
+      div25.setAttribute("class", "line center");
+      div23.appendChild(div25);
+
+      var small53 = document.createElement("small");
+      timedisplay = "";
+      if (cancelledorderTrackIndex >= 0) {
+        timedisplay = "-";
+        small53.innerHTML = "-";
+      } else if (onTheWayorderTrackIndex >= 0) {
+        var onTheWayDate = new Date(changeTrack[onTheWayorderTrackIndex].ChangedTimeStamp.seconds * 1000);
+        timedisplay = onTheWayDate.toLocaleTimeString('en-US');
+        onTheWayDate = onTheWayDate.toLocaleDateString("en-US", options);
+        small53.innerHTML = onTheWayDate;
+      } else {
+        small53.innerHTML = "-";
+        timedisplay = "-";
+      }
+
+      div23.appendChild(small53);
+
+      var br553 = document.createElement("br");
+      div23.appendChild(br553);
+
+      var small54 = document.createElement("small");
+      small54.setAttribute("class", "time");
+      small54.innerHTML = timedisplay; //"Time";
+      div23.appendChild(small54);
+
+      div17.appendChild(div23);
+
+      var div26 = document.createElement("div");
+      if (cancelledorderTrackIndex >= 0) {
+        div26.setAttribute("class", "");
+      } else if (deliveredorderTrackIndex >= 0) {
+        div26.setAttribute("class", "active");
+      } else {
+        div26.setAttribute("class", "");
+      }
+
+      var h58 = document.createElement("h5");
+      if (cancelledorderTrackIndex >= 0) {
+        h58.innerHTML = "-";
+      } else {
+        h58.innerHTML = "Delivered";
+      }
+      div26.appendChild(h58);
+
+      var div27 = document.createElement("div");
+      div27.setAttribute("class", "step right");
+      div26.appendChild(div27);
+
+      var div28 = document.createElement("div");
+      div28.setAttribute("class", "line right");
+      div26.appendChild(div28);
+
+      var small56 = document.createElement("small");
+      timedisplay = "";
+      if (cancelledorderTrackIndex >= 0) {
+        timedisplay = "-";
+        small56.innerHTML = "-";
+      } else if (deliveredorderTrackIndex >= 0) {
+        var delievredDate = new Date(changeTrack[deliveredorderTrackIndex].ChangedTimeStamp.seconds * 1000);
+        timedisplay = delievredDate.toLocaleTimeString('en-US');
+        delievredDate = delievredDate.toLocaleDateString("en-US", options);
+        small56.innerHTML = delievredDate;
+      } else {
+        small56.innerHTML = "-";
+        timedisplay = "-";
+      }
+      div26.appendChild(small56);
+
+      var br554 = document.createElement("br");
+      div26.appendChild(br554);
+
+      var small55 = document.createElement("small");
+      small55.setAttribute("class", "time");
+      small55.innerHTML = timedisplay; //"Time";
+      div26.appendChild(small55);
+
+      div17.appendChild(div26);
+      div6.appendChild(div17);
+
+    }
+  });
+
+  //Added elements progress- End
 
 
   div1.appendChild(div6);
