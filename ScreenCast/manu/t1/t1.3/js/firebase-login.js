@@ -157,6 +157,56 @@ function redirectToDashboard()
 
 //*********** Sign in - Email & Password - Ends ************
 
+//*********** Sign in - Phone - Starts ************
+
+window.onload = function(){
+  render();
+}
+
+function render()
+{
+  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+  recaptchaVerifier.render();
+  console.log('Captcha rendered');
+}
+
+
+btnSendOTP.addEventListener('click', e => {
+  // e.preventDefault();
+// function phoneAuth() {
+  var number = document.getElementById('txtPhone_Signin').value;
+  console.log('Phone No: ' + number);
+  auth.signInWithPhoneNumber(number, window.recaptchaVerifier)
+  .then(function(confirmationResult){
+    window.confirmationResult = confirmationResult;
+    coderesult = confirmationResult;
+    console.log('OTP Code: ' + coderesult);
+    console.log('Message sent');
+  })
+  .catch(function(error){
+    console.log('Error Sending OTP: ' + error.message);
+  })
+});
+
+btnSigninUsingOTP.addEventListener('click', e => {
+  // e.preventDefault();
+// function codeVerify() {
+  var code = document.getElementById('txtVerificationCode').value;
+  console.log('Code: ' + code);
+  coderesult.confirm(code).then(function (result) {
+    alert('Successfully registered');
+    var  user = result.user;
+    console.log(user);
+  })
+  .catch(function(error){
+    alert(error.message);
+  });
+});
+
+
+//*********** Sign in - Phone - Ends ************
+
+
 // Google authentication
 function googleProvider() {
   // [START auth_google_provider_create]
