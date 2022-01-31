@@ -1162,6 +1162,11 @@ input[type=number] {
   font-size: 2.5rem;
 }
 
+.product-graph{
+  padding: 10px;
+  background: rgba(136,202,94,0.1);
+}
+
 /* product page - end */
 /* cart page - start */
 .empty-cart {
@@ -1788,7 +1793,7 @@ input[type=number] {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: rgba(136,202,94,0.2);
+  background: rgba(136,202,94,0.1);
   padding: 10px 0 0 0;
 }
 
@@ -2290,7 +2295,7 @@ input[type=number] {
   padding: 0 3%;
 }
 
-.detail-card-full-div .detail-card-full-div-heading {
+.detail-card-full-div-heading {
   font-size: 1.7rem;
   color: #000;
   text-align: center;
@@ -2312,6 +2317,10 @@ input[type=number] {
 
 .dashboard-card#cardDelivery.active {
   height: 542px;
+}
+
+.dashboard-card#cardPayment.active {
+  height: 350px;
 }
 
 .dashboard-card#productDiv.active {
