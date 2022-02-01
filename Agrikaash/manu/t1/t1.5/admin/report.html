@@ -19,6 +19,9 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 
+  <!-- lottie file - cdn link -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
 
   <!-- Google fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -149,7 +152,7 @@
 
   <div class="small navbar-mobile-bottom">
     <div class="navbar-mobile-bottom-menu" id="divBottomNavBar">
-      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <span class="material-icons-outlined">
           home
         </span>
@@ -267,7 +270,7 @@
       <hr class="hr" />
 
       <li class="">
-        <a href="report.html" class="left-navigation">
+        <a href="dashboard.html" class="left-navigation">
           <div class="">
             <span class="material-icons-outlined">
               landscape
@@ -374,6 +377,10 @@
       </script> -->
       <div class="row no-gutters" style="padding: 2% 0%;">
         <div class="col-lg-5 col-md-5 col-sm-12">
+          <br>
+          <h3 class="detail-card-full-div-heading">Reports</h3>
+
+
           <div id="confirmationMessage" style="display:none;">
             <!-- <Label id="confirmationMessage" "> -->
             <Label>
@@ -385,8 +392,7 @@
         <div class="col-sm-12 detail-card-full-div" style="padding: 0 10px;">
           <div class="" id="loading">
             <br>
-            <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-            <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_49rdyysj.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+            <lottie-player src="https://assets3.lottiefiles.com/private_files/lf30_t4pkerh4.json"  background="transparent"  speed="2"  style="width: 100%; height: 100%;"  loop  autoplay></lottie-player>
             <br><br>
             <center>
               <h5 id="message">Getting Your Data</h5>
@@ -394,54 +400,7 @@
             </center>
           </div>
 
-          <div class="dashboard-card" id="userRegistration" onclick="showHideCard(userRegistration, userRegistrationArrow)" style='display:none;'>
-            <div class="" style="display:flex;align-items: center;">
-              <div class="arrow-down">
-                <span id="userRegistrationArrow" class="material-icons-outlined">
-                  keyboard_arrow_down
-                </span>
-              </div>
-
-              <div class="">
-                <span class="material-icons-outlined order-icon">
-                  person_add
-                </span>
-              </div>
-              <div class="details">
-                <h4>User Registration</h4>
-                <p class="small-text dashboard-sub-heading" id="registrationCnt"> </p>
-              </div>
-            </div>
-
-            <div class="dashboard-card-expand">
-              <hr>
-              <div id="registrationRequest">
-
-              </div>
-
-              <div class="" style="display:flex;align-items:center;padding-top: 10px;">
-                <!-- <a href="#trend">
-                            <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
-                              Trend
-                              <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
-                                trending_up
-                              </span>
-                            </button>
-                          </a> -->
-                <a href="confirmRegistration.html">
-                  <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
-                    More
-                    <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
-                      menu
-                    </span>
-                  </button>
-                </a>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="dashboard-card" id="cardOrder" onclick="showHideCard(cardOrder, cardOrderArrow)" style='display:none;'>
+          <div class="dashboard-card" id="cardOrder" onclick="showHideCard(cardOrder, cardOrderArrow)">
             <div class="" style="display:flex;align-items: center;">
               <div class="arrow-down">
                 <span id="cardOrderArrow" class="material-icons-outlined">
@@ -451,12 +410,12 @@
 
               <div class="">
                 <span class="material-icons-outlined order-icon">
-                  category
+                  people
                 </span>
               </div>
               <div class="details">
-                <h4>Orders</h4>
-                <p class="small-text dashboard-sub-heading" id="lastOrder">Last Order :</p>
+                <h4>Users</h4>
+                <p class="small-text dashboard-sub-heading">Total users: 47</p>
               </div>
             </div>
 
@@ -465,42 +424,20 @@
 
               <div class="dashboard-card-order">
                 <div class="">
-                  <h5 class="small-text">Today</h5>
-                  <a href="orderStatus.html?orderDateRange=today" id="todayCount">0</a><br>
-                  <small id="todayAmount">₹ 0</small>
+                  <h5 class="small-text">This month</h5>
+                  <a href="orderStatus.html?orderDateRange=today">5</a><br>
+                  <!-- <small id="todayAmount">₹ 0</small> -->
                 </div>
 
                 <div class="">
-                  <h5 class="small-text">Yesterday</h5>
-                  <a href="orderStatus.html?orderDateRange=yesterday" id="yesterdayCount">0</a><br>
-                  <small id="yesterdayAmount">₹ 0</small>
+                  <h5 class="small-text">Last 6 months</h5>
+                  <a href="orderStatus.html?orderDateRange=yesterday">154</a><br>
+                  <!-- <small id="yesterdayAmount">₹ 0</small> -->
                 </div>
               </div><br>
 
-              <div class="dashboard-card-order">
-                <div class="">
-                  <h5 class="small-text">Last 7 Days</h5>
-                  <a href="orderStatus.html?orderDateRange=week" id="WeekCount">0</a><br>
-                  <small id="WeekAmount">₹ 0</small>
-                </div>
-
-                <div class="">
-                  <h5 class="small-text">This Month</h5>
-                  <a href="orderStatus.html?orderDateRange=month" id="monthCount">0</a><br>
-                  <small id="monthAmount">₹ 0</small>
-                </div>
-              </div>
-
               <div class="" style="display:flex;align-items:center;padding-top: 10px;">
-                <a href="#trend">
-                  <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
-                    Trend
-                    <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
-                      trending_up
-                    </span>
-                  </button>
-                </a>
-                <a href="orderStatus.html">
+                <a href="#">
                   <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
                     More
                     <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
@@ -513,7 +450,7 @@
             </div>
           </div>
 
-          <div class="dashboard-card" id="cardDelivery" onclick="showHideCard(cardDelivery, cardDeliveryArrow)" style='display:none;'>
+          <div class="dashboard-card" id="cardDelivery" onclick="showHideCard(cardDelivery, cardDeliveryArrow)">
             <div class="" style="display:flex;align-items: center;">
               <div class="arrow-down">
                 <span id="cardDeliveryArrow" class="material-icons-outlined">
@@ -580,9 +517,7 @@
           </div>
 
 
-
-
-          <div class="dashboard-card" id="productDiv" onclick="showHideCard(productDiv, productDivArrow)" style='display:none;'>
+          <div class="dashboard-card" id="productDiv" onclick="showHideCard(productDiv, productDivArrow)">
             <div class="" style="display:flex;align-items: center;">
               <div class="arrow-down">
                 <span id="productDivArrow" class="material-icons-outlined">
@@ -682,33 +617,7 @@
 
 
       </div>
-<!--
-      <div class="row no-gutters">
-        <div class="col-lg-5 col-md-5 col-sm-12">
-
-        </div>
-        <div class="col-lg-7 col-md-7 col-sm-12"><br><br>
-          <div class="">
-            <div class="row no-gutters">
-              <div class="col-lg-3 col-md-3 col-sm-12">
-                <div class="" style="width: 100%; background:rgba(0,0,0,0.05);">
-                  <p style="padding:6px;"></p>
-                </div>
-              </div>
-              <div class="col-lg-9 col-md-9 col-sm-12">
-                <div class="" style="text-align:center;padding:20px;">
-                  <div class="" id="chartContainer1" style="width:100%;height:300px;"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
-
     </div>
-  <!-- </div> -->
-
-
 
   <!-- Map Section - Start -->
   <!-- <section id="map">
@@ -802,7 +711,7 @@
   <script src="../js/fb-logout.js"></script>
 
   <!-- <script src="../js/chart.js"></script> -->
-  <script src="../js/dashboardAdmin.js"></script>
+  <script src="../js/reportAdmin.js"></script>
 
 
   <!-- <script src="../js/chart2.js"></script> -->

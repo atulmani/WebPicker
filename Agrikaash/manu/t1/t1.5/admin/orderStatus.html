@@ -388,7 +388,25 @@
           <small id="dateRangelbl" style="position: relative;top: -12px;color: #aaa;font-size: 0.8rem; font-weight: bold;"></small>
         </div>
 
-        <div class="">
+
+
+            <div class="">
+
+              <div class="" id="myInput" style="padding: 10px 0;position:relative;">
+                <input type="search" name="" class="new_search-box" value="" placeholder="Search user" onfocus="inputSearchFocus()" onkeyup="filterFunction()" onchange="myChangeEvent();">
+                <div class="new_search-box-seach-icon">
+                  <span class="material-icons-outlined">
+                    youtube_searched_for
+                  </span>
+                </div>
+              </div>
+              <div class="intelligence" id="idUsers" style='display:none'>
+
+              </div>
+            </div>
+
+
+        <div class="" style="display:none">
           <!-- <h5 data-toggle="collapse" data-target="#orderFilter"> -->
           <h5 onclick="populateOrderFilter()">
             <span class="material-icons-outlined">
@@ -400,8 +418,12 @@
 
       </div>
 
+      <div class="" id="wrongSearch" style="text-align: center;display:none" ><br><br>
+        <img src="../img/no_search_product.svg" width="80%" alt=""><br><br><br>
+        <h5 class="small-text" >No orders found for user '<span id="searchKeyText"></span>'</h5><br><br>
+      </div>
       <!-- <div class="collapse navbar-collapse order-filter-div" id="orderFilter"> -->
-      <div class="order-filter-div" id="orderFilter">
+      <div class="order-filter-div" id="orderFilter" style="display:none">
         <div class="small navbar-mobile">
           <div class="navbar-mobile-menu">
             <a href="#" onclick="closeOrderFilter()">
@@ -411,14 +433,14 @@
             </a>
           </div>
         </div> <br>
-        <div class="details">
+        <div class="details" >
           <input type="text" name="" value=""><br><br>
           <select id="userList" multiple onchange="GetOrderByUsers();">
             <option value="All">All</option>
 
           </select>
         </div>
-        <div class="filter-action-btn">
+        <div class="filter-action-btn" >
           <a href="#" onclick="closeOrderFilter()">
             <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
               Close
@@ -427,7 +449,7 @@
               </span>
             </button>
           </a>
-          <a href="#" onclick="closeOrderFilter()">
+          <a href="#" onclick="closeOrderFilter()" >
             <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
               Done
               <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
