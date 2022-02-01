@@ -95,13 +95,17 @@ function inputSearchFocus() {
 function filterFunction() {
   console.log('hi');
   var input, filter, ul, li, a, i;
+  var search ;
   input = document.getElementById("myInput");
   filter = input.children[0].value.toUpperCase();
   //  console.log(filter);
   div = document.getElementById("idItem");
   a = div.getElementsByTagName("button");
   for (i = 0; i < a.length; i++) {
-    txtValue = a[i].textContent || a[i].innerText;
+    //console.log(document.getElementById("hfSearchID" + i).value);
+    //console.log(a[i].textContent);
+    //console.log(a[i].innerText);
+    txtValue =  a[i].innerText  + " " + document.getElementById("hfSearchID" + i).value ;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       a[i].style.display = "";
     } else {
@@ -128,7 +132,8 @@ function myChangeEvent() {
   var prodCnt = 0;
   var callCount = 1;
   for (i = 0; i < a.length; i++) {
-    txtValue = a[i].textContent || a[i].innerText;
+    txtValue =  a[i].innerText  + " " + document.getElementById("hfSearchID" + i).value ;
+//    txtValue = a[i].textContent || a[i].innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       noFlag = true;;
       a[i].style.display = "";
@@ -276,6 +281,8 @@ function populateProductData(bType, pType) {
     var selectedindex = -1;
     var selectdedItem;
     productCategory.push('All');
+    var productName = "";
+    var searchKey = "";
     changes.forEach(change => {
       //if (change.type == 'added')
       {
@@ -283,18 +290,35 @@ function populateProductData(bType, pType) {
         productCategory.push(pCategory)
 
       }
+      productName = change.doc.data().ProductName;
+      if(change.doc.data().SearchKey === undefined || change.doc.data().SearchKey === "")
+      {
+        searchKey = productName;
+      }
+      else {
+          searchKey = change.doc.data().SearchKey;
+      }
+
       //console.log(change.doc.data());
       if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
       {
         var anchorB = document.createElement("button");
         anchorB.setAttribute("onclick", "showItem('" + change.doc.id + "')");
-        anchorB.innerHTML = change.doc.data().ProductName;
+        anchorB.innerHTML = productName;
 
         var hfID = document.createElement("input");
         hfID.setAttribute("type", "hidden");
         hfID.setAttribute("id", "hdID" + index);
         hfID.setAttribute("value", change.doc.id);
+
         anchorB.appendChild(hfID);
+
+        var hfSearchID = document.createElement("input");
+        hfSearchID.setAttribute("type", "hidden");
+        hfSearchID.setAttribute("id", "hfSearchID" + index);
+        hfSearchID.setAttribute("value", searchKey);
+
+        anchorB.appendChild(hfSearchID);
 
         document.getElementById("idItem").appendChild(anchorB);
       }
@@ -593,7 +617,6 @@ function renderProductNew(doc, index) {
 
 
 function GetProductDetails(productID) {
-  console.log(productID.value);
   window.location.href = "createProduct.html?id=" + productID.value;
 }
 

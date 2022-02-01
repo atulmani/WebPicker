@@ -448,8 +448,15 @@
 
               <div class="col-sm-12" style="background: rgba(135,202,93,0.1);">
                 <div class="form-control" style="background: transparent;">
-                  <input type="text" id="productName" required style="background: transparent;" value="" maxlength="40">
+                  <input type="text" id="productName" required style="background: transparent;" onchange="copySearchKey();" value="" maxlength="100">
                   <label style="color: #ff5757;">Product Name</label>
+                </div>
+              </div>
+
+              <div class="col-sm-12" >
+                <div class="form-control" style="background: transparent;">
+                  <input type="text" id="searchKey" required style="background: transparent;" value="" maxlength="400">
+                  <label style="color: #ff5757;">searchKey</label>
                 </div>
               </div>
 

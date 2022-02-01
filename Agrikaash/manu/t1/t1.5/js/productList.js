@@ -185,7 +185,9 @@ function myChangeEvent() {
   var prodCnt = 0;
   var callCount = 1;
   for (i = 0; i < a.length; i++) {
-    txtValue = a[i].textContent || a[i].innerText;
+    //txtValue = a[i].textContent || a[i].innerText;
+    txtValue =  a[i].innerText  + " " + document.getElementById("hfSearchID" + i).value ;
+
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       noFlag = true;;
       a[i].style.display = "";
@@ -235,7 +237,9 @@ function myChangeEventOld() {
   var prodCnt = 0;
   var callCount = 1;
   for (i = 0; i < a.length; i++) {
-    txtValue = a[i].textContent || a[i].innerText;
+    //txtValue = a[i].textContent || a[i].innerText;
+    txtValue =  a[i].innerText  + " " + document.getElementById("hfSearchID" + i).value ;
+
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       a[i].style.display = "";
       hfid = a[i].getElementsByTagName("input")[0];
@@ -362,6 +366,8 @@ async function populateProductData(bType, pType, flag) {
     var index = 0;
     var selectedindex = -1;
     var selectdedItem;
+    var productName ;
+    var searchKey;
     productCategory.push('All');
     changes.forEach(change => {
       //if (change.type == 'added')
@@ -382,18 +388,33 @@ async function populateProductData(bType, pType, flag) {
         }
       }
 
+      productName = change.data().ProductName;
+      if(change.data().SearchKey === undefined || change.data().SearchKey === "")
+      {
+        searchKey = productName;
+      }
+      else {
+          searchKey = change.data().SearchKey;
+      }
+
 
       if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
       {
         var anchorB = document.createElement("button");
         anchorB.setAttribute("onclick", "showItem('" + change.id + "')");
-        anchorB.innerHTML = change.data().ProductName;
+        anchorB.innerHTML = productName;
 
         var hfID = document.createElement("input");
         hfID.setAttribute("type", "hidden");
         hfID.setAttribute("id", "hdID" + index);
         hfID.setAttribute("value", change.id);
         anchorB.appendChild(hfID);
+
+          var hfSearchID = document.createElement("input");
+          hfSearchID.setAttribute("type", "hidden");
+          hfSearchID.setAttribute("id", "hfSearchID" + index);
+          hfSearchID.setAttribute("value", searchKey);
+          anchorB.appendChild(hfSearchID);
 
         document.getElementById("idItem").appendChild(anchorB);
       }
@@ -1333,7 +1354,9 @@ function filterFunction() {
   div = document.getElementById("idItem");
   a = div.getElementsByTagName("button");
   for (i = 0; i < a.length; i++) {
-    txtValue = a[i].textContent || a[i].innerText;
+    //txtValue = a[i].textContent || a[i].innerText;
+    txtValue =  a[i].innerText  + " " + document.getElementById("hfSearchID" + i).value ;
+
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       a[i].style.display = "";
     } else {
@@ -1350,7 +1373,9 @@ function filterFunctionOld() {
   div = document.getElementById("myDropdown");
   a = div.getElementsByTagName("button");
   for (i = 0; i < a.length; i++) {
-    txtValue = a[i].textContent || a[i].innerText;
+    //txtValue = a[i].textContent || a[i].innerText;
+    txtValue =  a[i].innerText  + " " + document.getElementById("hfSearchID" + i).value ;
+
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       a[i].style.display = "";
     } else {
