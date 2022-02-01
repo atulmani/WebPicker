@@ -1371,33 +1371,55 @@ input:valid .input-field i {
   height: 100%;
 }
 
-
-
 .footer-links{
-  text-align: left;
+  padding: 0 5px;
+}
+
+@media (max-width: 850px) {
+  .footer-links{
+    text-align: center;
+  }
+}
+
+.footer-links h5{
+  font-size: 1.5rem;
+  color: #E10032;
+  font-weight: 500;
+  padding-bottom: 5px;
+}
+
+.footer-links div{
+  padding: 3px 0;
+}
+
+.footer-links div a{
+  color: #464646;
+  font-size: 1rem;
   text-decoration: none;
 }
 
-.footer-links h5 {
-  /* font-size: 1rem; */
-  /* font-weight: bold; */
-  padding-left: 40px;
+.footer-links div a::after{
+  display:block;
+  content: '';
+  transform: scaleX(0);
+  border-bottom: solid 3px #E10032;
+  transition: transform 250ms ease-in-out;
+  transform-origin: 0% 50%;
 }
 
-.footer-links ul li {
-  list-style: none;
+.footer-links div a:hover::after{
+  transform: scaleX(1);
 }
 
-.footer-links ul li a {
-  color: rgba(3, 70, 135, 0.9);
-  font-size: 0.8rem;
-  font-weight: lighter;
-  padding-top: 10px;
-  padding-left: -40px;
-  text-decoration: none;
+.footer-connect{
+  font-size: 1.2rem;
+  color: #888;
 }
 
-
+.footer-connect span:nth-child(1){
+  font-size: 1rem;
+  color: #aaa;
+}
 
 .links-sitemaps {
   text-align: left;
