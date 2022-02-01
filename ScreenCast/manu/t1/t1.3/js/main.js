@@ -194,7 +194,7 @@ $(document).ready(function() {
     smartSpeed: 3000,
     autoplayTimeout: 5500,
     autoplayHoverPause: false,
-    nav: false,
+    nav: true,
     dots: false,
     // stagePadding: 100,
     responsive: {
@@ -334,7 +334,7 @@ $(document).ready(function() {
 
 
 $(document).ready(function() {
-  var owl = $('#progects-owl-carousel');
+  var owl = $('#projects-owl-carousel');
   owl.owlCarousel({
     margin: 10,
     nav: true,
@@ -365,31 +365,32 @@ $(document).ready(function() {
 $(document).ready(function() {
   var owl = $('#clients-list');
   owl.owlCarousel({
-    margin: 10,
+    margin: 30,
     nav: true,
     loop: true,
     autoplay: true,
     smartSpeed: 3000,
-    autoplayTimeout: 4000,
+    autoplayTimeout: 10000,
     autoplayHoverPause: false,
-    autoWidth: false,
     nav: false,
-    dots: false,
+    navText:["<div class='nav-btn prev-slide'><span class='material-icons-outlined'>arrow_back_ios</span></div>","<div class='nav-btn next-slide'><span class='material-icons-outlined'>arrow_forward_ios</span></div>"],
+    dots: true,
+    center: true,
     responsive: {
       0: {
-        items: 3,
+        items: 1,
+        stagePadding: 10,
       },
       600: {
-        items: 3,
+        items: 3
       },
       1024: {
         items: 3,
-        stagePadding: 50,
+        // stagePadding: 50
       }
     }
   });
 });
-
 
 $(document).ready(function() {
   var owl = $('#partners-carousel');
@@ -417,31 +418,32 @@ $(document).ready(function() {
   });
 });
 
+$(document).ready(function() {
+  var owl = $('#partners-list');
+  owl.owlCarousel({
+    margin: 20,
+    loop: false,
+    autoplay: false,
+    smartSpeed: 1000,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: false,
+    nav: false,
+    dots: false,
+    responsive: {
+      0: {
+        items: 2,
+        stagePadding: 20,
+      },
+      600: {
+        items: 3
+      },
+      1000: {
+        items: 5
+      }
+    }
+  });
+});
 
-// $(function(){
-//     $("#clients-list").owlCarousel({
-//        items:6,
-//         autoPlay:false,
-//         smartSpeed:700,
-//         loop:true,
-//         autoplayHoverPause:true,
-//         nav:false,
-//         dots:false,
-//
-//         responsive:{
-//             0:{
-//                 items:3
-//             },
-//
-//              480:{
-//                 items:3
-//             },
-//
-//              768:{
-//                 items:6
-//             }
-//         }
-//     });
 
 // $("#news-slider").owlCarousel({
 //     items:3,
