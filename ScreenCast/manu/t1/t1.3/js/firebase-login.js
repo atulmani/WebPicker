@@ -180,7 +180,8 @@ btnSendOTP.addEventListener('click', e => {
   .then(function(confirmationResult){
     window.confirmationResult = confirmationResult;
     coderesult = confirmationResult;
-    console.log('OTP Code: ' + coderesult);
+    console.log('coderesult: ' + coderesult);
+    console.log('confirmationResult.verificationId ' + confirmationResult.verificationId);
     console.log('Message sent');
   })
   .catch(function(error){
@@ -189,12 +190,11 @@ btnSendOTP.addEventListener('click', e => {
 });
 
 btnSigninUsingOTP.addEventListener('click', e => {
-  // e.preventDefault();
-// function codeVerify() {
+  e.preventDefault();
   var code = document.getElementById('txtVerificationCode').value;
   console.log('Code: ' + code);
   coderesult.confirm(code).then(function (result) {
-    alert('Successfully registered');
+    console.log('Navigate to the dashboard/profile page');
     var  user = result.user;
     console.log(user);
   })
@@ -202,6 +202,21 @@ btnSigninUsingOTP.addEventListener('click', e => {
     alert(error.message);
   });
 });
+
+// btnSigninUsingOTP.addEventListener('click', e => {
+//   e.preventDefault();
+//   const code = document.getElementById('txtVerificationCode').value;
+//   const credential = auth.phoneAuthProvider.credential(coderesult, code);
+//   auth.signInWithCredential(credential)
+//   .then(() => {
+//     // window.location.assign('./profile');
+//     console.log('Navigate to the dashboard/profile page');
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   })
+//   ;
+// });
 
 
 //*********** Sign in - Phone - Ends ************
