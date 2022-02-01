@@ -70,7 +70,14 @@ if (productID != null) {
 
 
 //************* Populate Event Data - Starts ******************
+function copySearchKey()
+{
+  if(document.getElementById("searchKey").value==="")
+  {
 
+    document.getElementById("searchKey").value = document.getElementById("productName").value
+  }
+}
 function populateProductData() {
   const snapshot = db.collection('Products').doc(productID);
   snapshot.get().then(async (doc) => {
@@ -116,6 +123,15 @@ function populateProductData() {
 
       document.getElementById("hfproductID").value = doc.data().id;
       document.getElementById("productName").value = doc.data().ProductName;
+
+
+        if(doc.data().SearchKey === undefined || doc.data().SearchKey ==="")
+        {
+            document.getElementById("searchKey").value = doc.data().ProductName;
+        }
+        else {
+          document.getElementById("searchKey").value = doc.data().SearchKey;
+        }
       document.getElementById("brand").value = doc.data().Brand;
       var vegNonVeg = doc.data().VegNonVeg;
       console.log("vegNonVeg", vegNonVeg);
@@ -253,6 +269,9 @@ function CreateUpdateProductData() {
 
     var productTypeValue = productType.options[productType.selectedIndex].value;
     var productName = document.getElementById("productName").value;
+    var searchKey = document.getElementById("searchKey").value;
+    if(searchKey === "")
+      searchKey = productName;
     var brand = document.getElementById("brand").value;
     var vegNonVeg = "";
     if (document.getElementById("Veg").checked) {
@@ -334,6 +353,7 @@ function CreateUpdateProductData() {
             CustomerBusinessType: customerBusinessTypeValue,
             productType: productTypeValue,
             ProductName: productName,
+            SearchKey : searchKey,
             Brand: brand,
             VegNonVeg: vegNonVeg,
             MinimumQty: minimumQty,
@@ -366,6 +386,7 @@ function CreateUpdateProductData() {
             CustomerBusinessType: customerBusinessTypeValue,
             productType: productTypeValue,
             ProductName: productName,
+            SearchKey : searchKey,
             Brand: brand,
             VegNonVeg: vegNonVeg,
             MinimumQty: minimumQty,
