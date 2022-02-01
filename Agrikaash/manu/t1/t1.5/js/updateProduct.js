@@ -593,7 +593,6 @@ function renderProductNew(doc, index) {
 
 
 function GetProductDetails(productID) {
-  console.log(productID.value);
   window.location.href = "createProduct.html?id=" + productID.value;
 }
 
