@@ -568,6 +568,9 @@ function renderProductNew(doc, index) {
   var selectP = document.createElement("select");
   selectP.name = "productDetails";
   selectP.id = "productDetails" + index;
+  selectP.setAttribute("id", "productDetails" + index);
+  //selectP.setAttribute("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelectedValue" + index + "," + index + ",'" + doc.id + "'," + doc.data().MinimumQty + ")");
+
   //selectP.addEventListener("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelectedValue" + index + ","+index+")");
   var indexnew = -1;
   var mrp = 0;
@@ -576,7 +579,10 @@ function renderProductNew(doc, index) {
   for (const val of productlist) {
     var option = document.createElement("option");
     option.value = val.ProductFinalPrise + ":" + val.ProductMRP;
-    option.text = val.ProductWeight + " - " + "Rs." + val.ProductFinalPrise;
+    var productPurchasePrice = val.ProductPurchasePrice;
+    if (productPurchasePrice === undefined || productPurchasePrice === "")
+      productPurchasePrice = 0
+    option.text = val.ProductWeight + " - " + "Rs." + productPurchasePrice + "/" + val.ProductFinalPrise;
     selectP.appendChild(option);
   }
 
@@ -588,8 +594,12 @@ function renderProductNew(doc, index) {
   // div1_4.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + productlist[0].ProductMRP + "</span>" + "</h5>" +
   //   "<small>₹ " + "<span id='final" + index + "'>" + productlist[0].ProductFinalPrise + "</span></small>";
 
-  div1_4.innerHTML = "<large>" + "<span><b>Type :  </b>" + doc.data().CustomerBusinessType + "</span>" + "<large><br>" +
-    "<large>" + "<span><b>Category :  </b>" + doc.data().productType + "</span>" + "<large><br><br>";
+  // div1_4.innerHTML = "<large>" + "<span><b>Type :  </b>" + doc.data().CustomerBusinessType + "</span>" + "<large><br>" +
+  //   "<large>" + "<span><b>Category :  </b>" + doc.data().productType + "</span>" + "<large><br><br>";
+
+
+    div1_4.innerHTML = "<large>" + "<span><b>Location :  </b>" + doc.data().ProductLocation + "</span>" + "<large><br>" +
+      "<large>" + "<span><b>Category :  </b>" + doc.data().productType + "</span>" + "<large><br><br>";
 
   var spanDelete = document.createElement('span');
   spanDelete.setAttribute("id", "btnDelete" + index);
