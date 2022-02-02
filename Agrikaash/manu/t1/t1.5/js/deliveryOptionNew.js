@@ -116,8 +116,16 @@ function getCartItemNo() {
       var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
       prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
 
-    //  console.log(selectedProduct);
-      //console.log(unitPrise);
+      var purchasePrice = 0;
+      if(unitPrise.ProductPurchasePrice === undefined || unitPrise.ProductPurchasePrice === "")
+      {
+        purchasePrice = unitPrise.ProductFinalPrise;
+      }
+      else {
+        purchasePrice = unitPrise.ProductPurchasePrice;
+      }
+     console.log(selectedProduct);
+      console.log(cartItems[i]);
           OrderItems.push({
             ProductID: cartItems[i].ProductID,
             ProductName: cartItems[i].ItemName,
@@ -126,8 +134,10 @@ function getCartItemNo() {
             VegNonVeg: selectedProduct.VegNonVeg,
             UnitPrise: unitPrise.ProductFinalPrise,
             MRP: unitPrise.ProductMRP,
+            PurchasePrice : purchasePrice,
             Quantity: cartItems[i].Quantity
           });
+          console.log(OrderItems);
     }
 
   }
@@ -674,7 +684,7 @@ function SaveOrderinDB() {
     DeliveryDate: deliveryDate,
     ChangedTimeStamp: new Date()
   });
-
+  console.log(OrderItems);
   if (cartDetails.length > 0 && selectedAddress != null) {
     console.log('insert order');
 
@@ -839,7 +849,10 @@ function createOrderItems() {
       VegNonVeg: selectedProduct.VegNonVeg,
       UnitPrise: sellPrize,
       MRP: MRP,
+      PurchasePrice : 0,
       Quantity: cartItems[i].Quantity
     });
+
+    console.log(OrderItems);
   }
 }
