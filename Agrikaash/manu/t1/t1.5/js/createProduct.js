@@ -70,14 +70,13 @@ if (productID != null) {
 
 
 //************* Populate Event Data - Starts ******************
-function copySearchKey()
-{
-  if(document.getElementById("searchKey").value==="")
-  {
+function copySearchKey() {
+  if (document.getElementById("searchKey").value === "") {
 
     document.getElementById("searchKey").value = document.getElementById("productName").value
   }
 }
+
 function populateProductData() {
   const snapshot = db.collection('Products').doc(productID);
   snapshot.get().then(async (doc) => {
@@ -125,13 +124,11 @@ function populateProductData() {
       document.getElementById("productName").value = doc.data().ProductName;
 
 
-        if(doc.data().SearchKey === undefined || doc.data().SearchKey ==="")
-        {
-            document.getElementById("searchKey").value = doc.data().ProductName;
-        }
-        else {
-          document.getElementById("searchKey").value = doc.data().SearchKey;
-        }
+      if (doc.data().SearchKey === undefined || doc.data().SearchKey === "") {
+        document.getElementById("searchKey").value = doc.data().ProductName;
+      } else {
+        document.getElementById("searchKey").value = doc.data().SearchKey;
+      }
       document.getElementById("brand").value = doc.data().Brand;
       var vegNonVeg = doc.data().VegNonVeg;
       console.log("vegNonVeg", vegNonVeg);
@@ -152,7 +149,7 @@ function populateProductData() {
         document.getElementById("productWeight1").value = productDetails[0].ProductWeight;
         document.getElementById("productMRP1").value = productDetails[0].ProductMRP;
         document.getElementById("productFinalPrise1").value = productDetails[0].ProductFinalPrise;
-        if(productDetails[0].ProductPurchasePrice === undefined)
+        if (productDetails[0].ProductPurchasePrice === undefined)
           document.getElementById("purchasePrice1").value = productDetails[0].ProductFinalPrise;
         else
           document.getElementById("purchasePrice1").value = productDetails[0].ProductPurchasePrice;
@@ -163,7 +160,7 @@ function populateProductData() {
         document.getElementById("productMRP2").value = productDetails[1].ProductMRP;
         document.getElementById("productFinalPrise2").value = productDetails[1].ProductFinalPrise;
 
-        if(productDetails[1].ProductPurchasePrice === undefined)
+        if (productDetails[1].ProductPurchasePrice === undefined)
           document.getElementById("purchasePrice2").value = productDetails[1].ProductFinalPrise;
         else
           document.getElementById("purchasePrice2").value = productDetails[1].ProductPurchasePrice;
@@ -176,7 +173,7 @@ function populateProductData() {
         document.getElementById("productMRP3").value = productDetails[2].ProductMRP;
         document.getElementById("productFinalPrise3").value = productDetails[2].ProductFinalPrise;
 
-        if(productDetails[2].ProductPurchasePrice === undefined)
+        if (productDetails[2].ProductPurchasePrice === undefined)
           document.getElementById("purchasePrice3").value = productDetails[2].ProductFinalPrise;
         else
           document.getElementById("purchasePrice3").value = productDetails[2].ProductPurchasePrice;
@@ -188,7 +185,7 @@ function populateProductData() {
         document.getElementById("productWeight4").value = productDetails[3].ProductWeight;
         document.getElementById("productMRP4").value = productDetails[3].ProductMRP;
         document.getElementById("productFinalPrise4").value = productDetails[3].ProductFinalPrise;
-        if(productDetails[3].ProductPurchasePrice === undefined)
+        if (productDetails[3].ProductPurchasePrice === undefined)
           document.getElementById("purchasePrice4").value = productDetails[3].ProductFinalPrise;
         else
           document.getElementById("purchasePrice4").value = productDetails[3].ProductPurchasePrice;
@@ -201,7 +198,7 @@ function populateProductData() {
         document.getElementById("productWeight5").value = productDetails[4].ProductWeight;
         document.getElementById("productMRP5").value = productDetails[4].ProductMRP;
         document.getElementById("productFinalPrise5").value = productDetails[4].ProductFinalPrise;
-        if(productDetails[4].ProductPurchasePrice === undefined)
+        if (productDetails[4].ProductPurchasePrice === undefined)
           document.getElementById("purchasePrice5").value = productDetails[4].ProductFinalPrise;
         else
           document.getElementById("purchasePrice5").value = productDetails[4].ProductPurchasePrice;
@@ -270,7 +267,7 @@ function CreateUpdateProductData() {
     var productTypeValue = productType.options[productType.selectedIndex].value;
     var productName = document.getElementById("productName").value;
     var searchKey = document.getElementById("searchKey").value;
-    if(searchKey === "")
+    if (searchKey === "")
       searchKey = productName;
     var brand = document.getElementById("brand").value;
     var vegNonVeg = "";
@@ -279,69 +276,122 @@ function CreateUpdateProductData() {
     } else if (document.getElementById("NonVeg").checked) {
       vegNonVeg = "NonVeg";
     }
-    console.log(vegNonVeg);
     var minimumQty = document.getElementById("minimumQty").value;
     var maximumQty = document.getElementById("maximumQty").value;
     var stepQty = document.getElementById("stepQty").value;
     var flag = false;
+    var flagPrice = false;
     var productDetails = [];
+    var purchasePrice = 0;
+    var productFinalPrise = 0;
+    var margin = 0;
     if (document.getElementById("productWeight1").value != "" &&
       document.getElementById("productMRP1").value != "" &&
       document.getElementById("productFinalPrise1").value != "") {
-      productDetails.push({
-        ProductWeight: document.getElementById("productWeight1").value,
-        ProductMRP: document.getElementById("productMRP1").value,
-        ProductFinalPrise: document.getElementById("productFinalPrise1").value,
-        ProductPurchasePrice: document.getElementById("purchasePrice1").value
-      });
-      flag = true
+
+      purchasePrice = Number(document.getElementById("purchasePrice1").value);
+      productFinalPrise = Number(document.getElementById("productFinalPrise1").value);
+      margin = purchasePrice * 0.1;
+
+      if (productFinalPrise < (purchasePrice + margin)) {
+        flagPrice = true;
+      } else {
+        productDetails.push({
+          ProductWeight: document.getElementById("productWeight1").value,
+          ProductMRP: document.getElementById("productMRP1").value,
+          ProductFinalPrise: document.getElementById("productFinalPrise1").value,
+          ProductPurchasePrice: document.getElementById("purchasePrice1").value
+        });
+        flag = true
+      }
+
     }
     if (document.getElementById("productWeight2").value != "" &&
       document.getElementById("productMRP2").value != "" &&
       document.getElementById("productFinalPrise2").value != "") {
-      productDetails.push({
-        ProductWeight: document.getElementById("productWeight2").value,
-        ProductMRP: document.getElementById("productMRP2").value,
-        ProductFinalPrise: document.getElementById("productFinalPrise2").value,
-        ProductPurchasePrice: document.getElementById("purchasePrice2").value
-      });
-      flag = true;
+
+      purchasePrice = Number(document.getElementById("purchasePrice2").value);
+      productFinalPrise = Number(document.getElementById("productFinalPrise2").value);
+      margin = purchasePrice * 0.1;
+
+      if (productFinalPrise < (purchasePrice + margin)) {
+        flagPrice = true;
+      } else {
+        productDetails.push({
+          ProductWeight: document.getElementById("productWeight2").value,
+          ProductMRP: document.getElementById("productMRP2").value,
+          ProductFinalPrise: document.getElementById("productFinalPrise2").value,
+          ProductPurchasePrice: document.getElementById("purchasePrice2").value
+        });
+        flag = true;
+      }
     }
 
     if (document.getElementById("productWeight3").value != "" &&
       document.getElementById("productMRP3").value != "" &&
       document.getElementById("productFinalPrise3").value != "") {
-      productDetails.push({
-        ProductWeight: document.getElementById("productWeight3").value,
-        ProductMRP: document.getElementById("productMRP3").value,
-        ProductFinalPrise: document.getElementById("productFinalPrise3").value,
-        ProductPurchasePrice: document.getElementById("purchasePrice3").value
-      });
-      flag = true;
+
+      purchasePrice = Number(document.getElementById("purchasePrice3").value);
+      productFinalPrise = Number(document.getElementById("productFinalPrise3").value);
+      margin = purchasePrice * 0.1;
+
+      if (productFinalPrise < (purchasePrice + margin)) {
+        flagPrice = true;
+      } else {
+
+
+        productDetails.push({
+          ProductWeight: document.getElementById("productWeight3").value,
+          ProductMRP: document.getElementById("productMRP3").value,
+          ProductFinalPrise: document.getElementById("productFinalPrise3").value,
+          ProductPurchasePrice: document.getElementById("purchasePrice3").value
+        });
+        flag = true;
+      }
     }
 
     if (document.getElementById("productWeight4").value != "" &&
       document.getElementById("productMRP4").value != "" &&
       document.getElementById("productFinalPrise4").value != "") {
-      productDetails.push({
-        ProductWeight: document.getElementById("productWeight4").value,
-        ProductMRP: document.getElementById("productMRP4").value,
-        ProductFinalPrise: document.getElementById("productFinalPrise4").value,
-        ProductPurchasePrice: document.getElementById("purchasePrice4").value
-      });
-      flag = true;
+
+      purchasePrice = Number(document.getElementById("purchasePrice4").value);
+      productFinalPrise = Number(document.getElementById("productFinalPrise4").value);
+      margin = purchasePrice * 0.1;
+
+      if (productFinalPrise < (purchasePrice + margin)) {
+        flagPrice = true;
+      } else {
+
+        productDetails.push({
+          ProductWeight: document.getElementById("productWeight4").value,
+          ProductMRP: document.getElementById("productMRP4").value,
+          ProductFinalPrise: document.getElementById("productFinalPrise4").value,
+          ProductPurchasePrice: document.getElementById("purchasePrice4").value
+        });
+        flag = true;
+      }
     }
 
     if (document.getElementById("productWeight5").value != "" &&
       document.getElementById("productMRP5").value != "" &&
       document.getElementById("productFinalPrise5").value != "") {
-      productDetails.push({
-        ProductWeight: document.getElementById("productWeight5").value,
-        ProductMRP: document.getElementById("productMRP5").value,
-        ProductFinalPrise: document.getElementById("productFinalPrise5").value,
-        ProductPurchasePrice: document.getElementById("purchasePrice5").value
-      });
-      flag = true;
+
+      purchasePrice = Number(document.getElementById("purchasePrice5").value);
+      productFinalPrise = Number(document.getElementById("productFinalPrise5").value);
+      margin = purchasePrice * 0.1;
+
+      if (productFinalPrise < (purchasePrice + margin)) {
+        flagPrice = true;
+      } else {
+
+        productDetails.push({
+          ProductWeight: document.getElementById("productWeight5").value,
+          ProductMRP: document.getElementById("productMRP5").value,
+          ProductFinalPrise: document.getElementById("productFinalPrise5").value,
+          ProductPurchasePrice: document.getElementById("purchasePrice5").value
+        });
+        flag = true;
+      }
     }
     var ProductImageURL = document.getElementById("myimg").src;
 
@@ -353,7 +403,7 @@ function CreateUpdateProductData() {
             CustomerBusinessType: customerBusinessTypeValue,
             productType: productTypeValue,
             ProductName: productName,
-            SearchKey : searchKey,
+            SearchKey: searchKey,
             Brand: brand,
             VegNonVeg: vegNonVeg,
             MinimumQty: minimumQty,
@@ -386,7 +436,7 @@ function CreateUpdateProductData() {
             CustomerBusinessType: customerBusinessTypeValue,
             productType: productTypeValue,
             ProductName: productName,
-            SearchKey : searchKey,
+            SearchKey: searchKey,
             Brand: brand,
             VegNonVeg: vegNonVeg,
             MinimumQty: minimumQty,
@@ -429,8 +479,14 @@ function CreateUpdateProductData() {
       }
       document.getElementById("message").innerHTML = "Product details are succsessfully updated";
     } else {
+      if(flagPrice)
+      {
+        document.getElementById("message").innerHTML = "Please enter selling price 10% than purchase price";
+      }
+      else {
 
-      document.getElementById("message").innerHTML = "Please enter all details to update";
+        document.getElementById("message").innerHTML = "Please enter all details to update";
+      }
     }
   });
 
@@ -471,7 +527,7 @@ function ProductDetailsAuditLog(docid, ProductDetails) {
       updatedDate: today,
       FinalPrice: ProductDetails[0].ProductFinalPrise,
       MRP: ProductDetails[0].ProductMRP,
-      ProductPurchasePrice : ProductDetails[0].ProductPurchasePrice,
+      ProductPurchasePrice: ProductDetails[0].ProductPurchasePrice,
       ProductWeight: ProductDetails[0].ProductWeight
     });
     if (flagExists === true) {
@@ -492,8 +548,8 @@ function ProductDetailsAuditLog(docid, ProductDetails) {
         });
     } else {
       db.collection("ProductAuditLog")
-      .doc(docid)
-      .set({
+        .doc(docid)
+        .set({
           productID: docid,
           productDetailLog: productDetailsLogChanged,
           UpdatedBy: auth.currentUser.email,
