@@ -582,7 +582,22 @@ function renderProductNew(doc, index) {
     var productPurchasePrice = val.ProductPurchasePrice;
     if (productPurchasePrice === undefined || productPurchasePrice === "")
       productPurchasePrice = 0
-    option.text = val.ProductWeight + " - " + "Rs." + productPurchasePrice + "/" + val.ProductFinalPrise;
+
+      var curFormat = {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 1
+      };
+    var margin = 0;
+    if(productPurchasePrice === 0 )
+    margin = "NA";
+    else {
+      margin = Number(val.ProductFinalPrise) - Number(productPurchasePrice);
+      margin = margin *100 /Number(productPurchasePrice) ;
+      margin = margin.toLocaleString('en-IN', curFormat);
+
+      margin = margin +"%";
+    }
+    option.text = val.ProductWeight + " - " + "Rs." + productPurchasePrice + "/" + val.ProductFinalPrise + "("+margin+")";
     selectP.appendChild(option);
   }
 
