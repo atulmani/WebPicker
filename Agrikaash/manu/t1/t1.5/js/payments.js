@@ -1,8 +1,10 @@
 //const productID = document.getElementById('productID');
 var userID = "";
 var orderList = [];
+var userList = [];
 var orderSummary = [];
 // var url = location.href;
+var Paymentfilter = "";
 let eventDocUrl = new URL(location.href);
 // console.log ('URL: ' + eventDocUrl);
 let searchParams = new URLSearchParams(eventDocUrl.search);
@@ -12,10 +14,11 @@ try {
   auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       userID = firebaseUser.uid;
-      if (orderDateRange === "" || orderDateRange == undefined )
+      if (orderDateRange === "" || orderDateRange == undefined)
         orderDateRange = "week";
       GetProfileData();
       GetUserList();
+      Paymentfilter = 'Pending';
       populateOrderDetails('Pending');
 
     } else {
@@ -28,7 +31,7 @@ try {
   console.log(error.message);
 }
 //window.location.href = "../index.html";
-function GetUserList() {
+function GetUserListOld() {
   var DBrows = db.collection('UserList').get();
 
   DBrows.then((changes) => {
@@ -50,6 +53,540 @@ function GetUserList() {
 
 }
 
+function GetUserList() {
+  var DBrows = db.collection('UserList').get();
+  // console.log("in GetUserList");
+  DBrows.then((changes) => {
+    var index = 0;
+    changes.forEach(change => {
+      // console.log(change.data());
+      // console.log(change.id);
+      var anchorB = document.createElement("button");
+      anchorB.setAttribute("onclick", "showItem('" + change.id + "', '" + change.data().displayName + ":" + change.data().EmailID + "')");
+      anchorB.innerHTML = change.data().displayName + ":" + change.data().EmailID;
+
+      var hfID = document.createElement("input");
+      hfID.setAttribute("type", "hidden");
+      hfID.setAttribute("id", "hdID" + index);
+      hfID.setAttribute("value", change.id);
+      anchorB.appendChild(hfID);
+
+      document.getElementById("idUsers").appendChild(anchorB);
+
+    });
+  });
+}
+
+function inputSearchFocus() {
+  document.getElementById("idUsers").style.display = "block";
+  document.getElementById("wrongSearch").style.display = "none";
+
+}
+
+function filterFunction() {
+  console.log('hi');
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.children[0].value.toUpperCase();
+  // console.log(filter);
+  div = document.getElementById("idUsers");
+  a = div.getElementsByTagName("button");
+  // console.log(a.length);
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+
+
+//////////////////////////////////////////////
+
+function myChangeEvent() {
+  console.log('myChangeEvent');
+
+  document.getElementById("orderListDiv").innerHTML = "";
+  var noFlag = false;
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.children[0].value.toUpperCase();
+  div = document.getElementById("idUsers");
+  a = div.getElementsByTagName("button");
+  var hfid = "";
+  var userList = [];
+  var prodCnt = 0;
+  var callCount = 0;
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      noFlag = true;;
+      a[i].style.display = "";
+      hfid = a[i].getElementsByTagName("input")[0];
+      userList.push(hfid.value);
+      prodCnt = prodCnt + 1;
+      if (prodCnt === 10) {
+        //renderOrderByUserID(userList, callCount, Paymentfilter);
+        populateOrderDetailsByUsers(Paymentfilter, userList);
+        userList = [];
+        prodCnt = 0;
+        callCount = callCount + 1;
+      }
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+  if (userList.length > 0) {
+    //renderOrderByUserID(userList, callCount, Paymentfilter);
+    populateOrderDetailsByUsers(Paymentfilter, userList);
+    callCount = callCount + 1;
+  }
+  console.log(callCount);
+  document.getElementById("orderListDiv").innerHTML = "";
+  for (index = 0; index < orderSummary.length; index++) {
+
+    renderOrderSummary(orderSummary[index], index);
+  }
+
+  document.getElementById("orderCount").innerHTML = orderCnt + " Orders";
+
+  if (callCount > 0)
+    document.getElementById("wrongSearch").style.display = "none";
+  else {
+    document.getElementById("wrongSearch").style.display = "block";
+  }
+  document.getElementById("idUsers").style.display = "none";
+
+}
+
+
+function showItem(itemname, displayeName) {
+
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+  headerAmount = 0;
+  headerDiscount = 0;
+  var index = 0;
+  console.log(itemname);
+  userList = [];
+  userList.push(itemname);
+  document.getElementById("wrongSearch").style.display = "none";
+  populateOrderDetailsByUsers(Paymentfilter, userList);
+  document.getElementById("searchKeyText").innerHTML = " for '" + displayeName + "'";
+  // document.getElementById("orderListDiv").innerHTML = "";
+  // console.log(orderSummary);
+  //   for (index = 0; index < orderSummary.length; index++) {
+  //
+  //     renderOrderSummary(orderSummary[index], index);
+  //   }
+  //
+  //   document.getElementById("orderCount").innerHTML = orderCnt + " Orders";
+  //
+  //   console.log(index);
+  //   if (index === 0) {
+  //     document.getElementById("wrongSearch").style.display = "block";
+  //   }
+  //   document.getElementById("idUsers").style.display = "none";
+
+  document.getElementById("idUsers").style.display = "none";
+}
+
+var orderSummary = [];
+
+var headerAmount = 0;
+var headerDiscount = 0;
+var orderCnt = 0;
+
+function renderOrderByUserIDOld(userList, callCount, paymentStatus) {
+
+  console.log(userList);
+  console.log(callCount);
+  var index = 0;
+  var DBrows = db.collection("OrderDetails")
+    .where("orderBy", "in", userList)
+    .where("paymentStatus", "==", paymentStatus)
+    .get();
+
+
+  DBrows.then((changes) => {
+    index = Number(callCount) * 10;
+    //productCategory.push('All');
+    changes.forEach(change => {
+      var options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      };
+
+      headerAmount = headerAmount + Number(change.data().totalAmount);
+      headerDiscount = headerDiscount + Number(change.data().discountedprize);
+
+      var oorderdate = new Date(change.data().orderDate.seconds * 1000);
+      oorderdate = oorderdate.toLocaleDateString("en-US", options);
+      console.log(oorderdate);
+      orderCnt = orderCnt + 1;
+      console.log(orderSummary);
+      console.log(orderSummary.findIndex(e => e.orderDate === oorderdate && e.paymentStatus === change.data().paymentStatus));
+      if (orderSummary.lenght === 0) {
+
+        orderSummary.push({
+          orderDate: oorderdate,
+          paymentStatus: change.data().paymentStatus,
+          discountedprize: Number(change.data().discountedprize),
+          totalAmount: Number(change.data().totalAmount),
+          orderDetails: [{
+            orderID: change.id,
+            orderDate: oorderdate,
+            orderNumber: change.data().orderNumber,
+            discountedprize: change.data().discountedprize,
+            paymentStatus: change.data().paymentStatus,
+            totalAmount: change.data().totalAmount,
+            totalItems: change.data().totalItems,
+            orderBy: change.data().orderBy,
+            orderByUserName: change.data().orderByUserName
+          }]
+        });
+      } else if (orderSummary.findIndex(e => e.orderDate === oorderdate && e.paymentStatus === change.data().paymentStatus) === -1) {
+        orderSummary.push({
+          orderDate: oorderdate,
+          paymentStatus: change.data().paymentStatus,
+          discountedprize: Number(change.data().discountedprize),
+          totalAmount: Number(change.data().totalAmount),
+          orderDetails: [{
+            orderID: change.id,
+            orderDate: oorderdate,
+            orderNumber: change.data().orderNumber,
+            discountedprize: change.data().discountedprize,
+            paymentStatus: change.data().paymentStatus,
+            totalAmount: change.data().totalAmount,
+            totalItems: change.data().totalItems,
+            orderBy: change.data().orderBy,
+            orderByUserName: change.data().orderByUserName
+          }]
+        });
+      } else {
+        var jj = orderSummary.findIndex(e => e.orderDate === oorderdate && e.paymentStatus === change.data().paymentStatus);
+        console.log(jj);
+        console.log(oorderdate);
+        console.log(change.data().paymentStatus);
+
+        var discountedprize = Number(orderSummary[jj].discountedprize) + Number(change.data().discountedprize);
+        var totalAmount = Number(orderSummary[jj].totalAmount) + Number(change.data().totalAmount);
+        orderSummary[jj].discountedprize = Number(discountedprize);
+        orderSummary[jj].totalAmount = Number(totalAmount);
+
+        orderSummary[jj].orderDetails.push({
+          orderID: change.id,
+          orderDate: oorderdate,
+          orderNumber: change.data().orderNumber,
+          discountedprize: change.data().discountedprize,
+          paymentStatus: change.data().paymentStatus,
+          totalAmount: change.data().totalAmount,
+          totalItems: change.data().totalItems,
+          orderBy: change.data().orderBy,
+          orderByUserName: change.data().orderByUserName
+        });
+      }
+
+      //      renderOrder(change.id, change.data(), i);
+      //    i = i + 1;
+    });
+
+    headerDiscount = headerAmount - headerDiscount;
+
+    var curFormat = {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2
+    };
+
+    document.getElementById("headerAmount").innerHTML = Number(headerAmount).toLocaleString('en-IN', curFormat);
+    document.getElementById("headerDiscount").innerHTML = Number(headerDiscount).toLocaleString('en-IN', curFormat);
+
+    // for (index = 0; index < orderSummary.length; index++) {
+    //
+    //   renderOrderSummary(orderSummary[index], index);
+    // }
+
+    //    document.getElementById("orderCount").innerHTML = i + " Orders";
+
+
+  });
+  //});
+
+  if (index === 0) {
+    document.getElementById("wrongSearch").style.display = "block";
+  }
+}
+
+function populateOrderDetailsByUsers(paymentStatus, userList) {
+  //var i = 0;
+  var fromDate;
+  var todayDate = new Date();
+  var toDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
+  var refDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
+
+  todayDate = refDate;
+  var index = 0;
+  var snapshot;
+  var DBrows;
+  var orderStatusList = ['Pending', 'Packed', 'On The Way'];
+  var fromDate;
+  var toDate;
+  // var headerAmount = 0;
+  // var headerDiscount = 0;
+
+  if (orderDateRange === undefined || orderDateRange === '' || orderDateRange === null || orderDateRange === 'null') {
+    orderDateRange = "week";
+  }
+  if (orderDateRange === 'today') {
+    var filter = document.getElementById("dateRange");
+    filter.options[0].selected = true;
+
+    if (paymentStatus === 'All') {
+      DBrows = db.collection('OrderDetails')
+        .where("orderDate", ">=", toDate)
+        .where("orderDate", ">=", toDate)
+        .where("orderBy", "in", userList)
+        .get();
+    } else {
+      DBrows = db.collection('OrderDetails')
+        .where('paymentStatus', '==', paymentStatus)
+        .where("orderDate", ">=", toDate)
+        .where("orderBy", "in", userList)
+        .get();
+    }
+
+    fromDate = 'Today';
+    toDate = 'Today';
+
+  } else if (orderDateRange === 'yesterday') {
+    var filter = document.getElementById("dateRange");
+    filter.options[1].selected = true;
+
+
+    todayDate.setDate(todayDate.getDate() - 1);
+
+    if (paymentStatus === 'All') {
+      DBrows = db.collection('OrderDetails')
+        .where("orderDate", ">=", todayDate)
+        .where("orderDate", "<=", toDate)
+        .where("orderBy", "in", userList)
+        .get();
+    } else {
+      DBrows = db.collection('OrderDetails')
+        .where('paymentStatus', '==', paymentStatus)
+        .where("orderDate", ">=", todayDate)
+        .where("orderDate", "<=", toDate)
+        .where("orderBy", "in", userList)
+        .get();
+    }
+    fromDate = todayDate;
+    toDate = todayDate;
+
+  } else if (orderDateRange === 'week') {
+    var filter = document.getElementById("dateRange");
+    filter.options[2].selected = true;
+    refDate.setDate(refDate.getDate() - 7);
+
+    if (paymentStatus === 'All') {
+      DBrows = db.collection('OrderDetails')
+        .where("orderDate", ">=", refDate)
+        .where("orderBy", "in", userList)
+        .get();
+    } else {
+      DBrows = db.collection('OrderDetails')
+        .where('paymentStatus', '==', paymentStatus)
+        .where("orderDate", ">=", refDate)
+        .where("orderBy", "in", userList)
+        .get();
+    }
+    fromDate = refDate;
+    toDate = 'Today';
+
+  } else if (orderDateRange === 'month') {
+    var filter = document.getElementById("dateRange");
+    filter.options[3].selected = true;
+
+    refDate = new Date(refDate.getFullYear(), refDate.getMonth(), 1);
+    if (paymentStatus === 'All') {
+      DBrows = db.collection('OrderDetails')
+        .where("orderDate", ">=", refDate)
+        .where("orderBy", "in", userList)
+        .get();
+    } else {
+      DBrows = db.collection('OrderDetails')
+        .where('paymentStatus', '==', paymentStatus)
+        .where("orderDate", ">=", refDate)
+        .where("orderBy", "in", userList)
+        .get();
+    }
+    fromDate = refDate;
+    toDate = 'Today';
+
+  } else if (orderDateRange === 'sixmonth') {
+    var filter = document.getElementById("dateRange");
+    filter.options[4].selected = true;
+
+    refDate = refDate.setMonth(refDate.getMonth() - 6);
+    refDate = new Date(refDate);
+    if (paymentStatus === 'All') {
+      DBrows = db.collection('OrderDetails')
+        .where("orderDate", ">=", refDate)
+        .where("orderBy", "in", userList)
+        .get();
+    } else {
+      DBrows = db.collection('OrderDetails')
+        .where('paymentStatus', '==', paymentStatus)
+        .where("orderDate", ">=", refDate)
+        .where("orderBy", "in", userList)
+        .get();
+    }
+    fromDate = refDate;
+    toDate = 'Today';
+
+  }
+
+
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
+
+  if (fromDate === 'Today') {
+    document.getElementById('dateRangelbl').innerHTML = "Order Placed Today";
+  } else if (fromDate === toDate) {
+    var displayDate = fromDate.toLocaleDateString("en-US", options);
+    document.getElementById('dateRangelbl').innerHTML = "Order Placed on :" + displayDate;
+  } else if (toDate === 'Today') {
+    var fDate = new Date(fromDate);
+    var displayDate = fDate.toLocaleDateString("en-US", options);
+    document.getElementById('dateRangelbl').innerHTML = displayDate + " till Today";
+  }
+  //orderSummary
+  DBrows.then((changes) => {
+    document.getElementById("orderListDiv").innerHTML = "";
+    orderSummary = [];
+    //var i = 0;
+    orderCnt = 0;
+    changes.forEach(change => {
+
+      console.log("in first loop");
+      var options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      };
+
+      headerAmount = headerAmount + Number(change.data().totalAmount);
+      headerDiscount = headerDiscount + Number(change.data().discountedprize);
+
+      var oorderdate = new Date(change.data().orderDate.seconds * 1000);
+      oorderdate = oorderdate.toLocaleDateString("en-US", options);
+      // console.log(oorderdate);
+      orderCnt = orderCnt + 1;
+      //console.log(orderSummary);
+      // console.log(orderSummary.findIndex(e => e.orderDate === oorderdate && e.paymentStatus === change.data().paymentStatus));
+      if (orderSummary.lenght === 0) {
+
+        orderSummary.push({
+          orderDate: oorderdate,
+          paymentStatus: change.data().paymentStatus,
+          discountedprize: Number(change.data().discountedprize),
+          totalAmount: Number(change.data().totalAmount),
+          orderDetails: [{
+            orderID: change.id,
+            orderDate: oorderdate,
+            orderNumber: change.data().orderNumber,
+            discountedprize: change.data().discountedprize,
+            paymentStatus: change.data().paymentStatus,
+            totalAmount: change.data().totalAmount,
+            totalItems: change.data().totalItems,
+            orderBy: change.data().orderBy,
+            orderByUserName: change.data().orderByUserName
+          }]
+        });
+      } else if (orderSummary.findIndex(e => e.orderDate === oorderdate && e.paymentStatus === change.data().paymentStatus) === -1) {
+        orderSummary.push({
+          orderDate: oorderdate,
+          paymentStatus: change.data().paymentStatus,
+          discountedprize: Number(change.data().discountedprize),
+          totalAmount: Number(change.data().totalAmount),
+          orderDetails: [{
+            orderID: change.id,
+            orderDate: oorderdate,
+            orderNumber: change.data().orderNumber,
+            discountedprize: change.data().discountedprize,
+            paymentStatus: change.data().paymentStatus,
+            totalAmount: change.data().totalAmount,
+            totalItems: change.data().totalItems,
+            orderBy: change.data().orderBy,
+            orderByUserName: change.data().orderByUserName
+          }]
+        });
+      } else {
+        var jj = orderSummary.findIndex(e => e.orderDate === oorderdate && e.paymentStatus === change.data().paymentStatus);
+        // console.log(jj);
+        // console.log(oorderdate);
+        // console.log(change.data().paymentStatus);
+
+        var discountedprize = Number(orderSummary[jj].discountedprize) + Number(change.data().discountedprize);
+        var totalAmount = Number(orderSummary[jj].totalAmount) + Number(change.data().totalAmount);
+        orderSummary[jj].discountedprize = Number(discountedprize);
+        orderSummary[jj].totalAmount = Number(totalAmount);
+
+        orderSummary[jj].orderDetails.push({
+          orderID: change.id,
+          orderDate: oorderdate,
+          orderNumber: change.data().orderNumber,
+          discountedprize: change.data().discountedprize,
+          paymentStatus: change.data().paymentStatus,
+          totalAmount: change.data().totalAmount,
+          totalItems: change.data().totalItems,
+          orderBy: change.data().orderBy,
+          orderByUserName: change.data().orderByUserName
+        });
+      }
+
+      //      renderOrder(change.id, change.data(), i);
+      //i = i + 1;
+    });
+
+    headerDiscount = headerAmount - headerDiscount;
+
+    document.getElementById("headerAmount").innerHTML = Number(headerAmount).toLocaleString('en-IN', curFormat);
+    document.getElementById("headerDiscount").innerHTML = Number(headerDiscount).toLocaleString('en-IN', curFormat);
+    document.getElementById("orderListDiv").innerHTML = "";
+    for (index = 0; index < orderSummary.length; index++) {
+
+      renderOrderSummary(orderSummary[index], index);
+    }
+
+    if (orderSummary.length === 0) {
+      document.getElementById("wrongSearch").style.display = "block";
+    }
+    document.getElementById("orderCount").innerHTML = orderCnt + " Orders";
+    document.getElementById('loading').style.display = 'none';
+  });
+  //populateCartData();
+
+
+}
+
+/////////////////////////////////////////////
 function GetProfileData() {
   // const ref = db.collection("Users").doc(user.uid);
 
@@ -188,6 +725,7 @@ function GetOrderByUsers() {
       //renderOrder(change.id, change.data(), index)
 
     });
+    document.getElementById("orderListDiv").innerHTML = "";
     for (index = 0; index < orderSummary.length; index++) {
 
       renderOrderSummary(orderSummary[index], index);
@@ -204,11 +742,11 @@ function GetOrderDetails(orderID, userID) {
 }
 
 function renderOrderSummary(ordSummary, index) {
-  console.log(ordSummary);
-  console.log(index);
+  // console.log(ordSummary);
+  // console.log(index);
   var div1 = document.createElement("div");
   div1.setAttribute("class", "dashboard-card active");
-  div1.setAttribute("style","height: 100%;");
+  div1.setAttribute("style", "height: 100%;");
 
   var div2 = document.createElement("div");
   div2.setAttribute("class", "");
@@ -230,103 +768,101 @@ function renderOrderSummary(ordSummary, index) {
   };
 
 
-    var h41 = document.createElement("h4");
-    if (ordSummary.paymentStatus === 'Pending') {
-      h41.setAttribute("style", "color: #F8D210;");
-    } else {
-      h41.setAttribute("style", "color: green");
-    }
-    h41.innerHTML = ordSummary.totalAmount.toLocaleString('en-IN', curFormat);
+  var h41 = document.createElement("h4");
+  if (ordSummary.paymentStatus === 'Pending') {
+    h41.setAttribute("style", "color: #F8D210;");
+  } else {
+    h41.setAttribute("style", "color: green");
+  }
+  h41.innerHTML = ordSummary.totalAmount.toLocaleString('en-IN', curFormat);
 
-    div4.appendChild(h41);
+  div4.appendChild(h41);
 
-    var small1 = document.createElement("small");
-    small1.innerHTML = "( " + ordSummary.orderDetails.length ;
-    if(ordSummary.orderDetails.length <= 1 )
-    {
-      small1.innerHTML = small1.innerHTML + " Order )"
-    }
-    else {
-      small1.innerHTML = small1.innerHTML + " Orders )"
-    }
-    div4.appendChild(small1);
-    div3.appendChild(div4);
+  var small1 = document.createElement("small");
+  small1.innerHTML = "( " + ordSummary.orderDetails.length;
+  if (ordSummary.orderDetails.length <= 1) {
+    small1.innerHTML = small1.innerHTML + " Order )"
+  } else {
+    small1.innerHTML = small1.innerHTML + " Orders )"
+  }
+  div4.appendChild(small1);
+  div3.appendChild(div4);
 
-    var p1 = document.createElement("p");
-    p1.setAttribute("class","small-text dashboard-sub-heading");
-    p1.innerHTML = "Order date: " + ordSummary.orderDate;
+  var p1 = document.createElement("p");
+  p1.setAttribute("class", "small-text dashboard-sub-heading");
+  p1.innerHTML = "Order date: " + ordSummary.orderDate;
 
-    div3.appendChild(p1);
+  div3.appendChild(p1);
 
-    div2.appendChild(div3);
+  div2.appendChild(div3);
 
-    var div5 = document.createElement("div");
-    div5.setAttribute("class","");
+  var div5 = document.createElement("div");
+  div5.setAttribute("class", "");
 
-    var anchor = document.createElement("a");
-    anchor.setAttribute("href", "paymentDetail.html?orderDate=" + ordSummary.orderDate+"&PaymentStatus="+ordSummary.paymentStatus);
+  var anchor = document.createElement("a");
+  anchor.setAttribute("href", "paymentDetail.html?orderDate=" + ordSummary.orderDate + "&PaymentStatus=" + ordSummary.paymentStatus);
 
-    var button1 = document.createElement("button");
-    button1.setAttribute("class", "mybutton buttonTransparent");
-    button1.setAttribute("style", "padding-bottom: 7px;margin: auto 10px;height: 30px;");
+  var button1 = document.createElement("button");
+  button1.setAttribute("class", "mybutton buttonTransparent");
+  button1.setAttribute("style", "padding-bottom: 7px;margin: auto 10px;height: 30px;");
 
-    var span3 = document.createElement("span");
-    span3.setAttribute("class", "material-icons-outlined");
-    span3.setAttribute("style", "position: relative;font-size: 1.2rem;");
-    span3.innerHTML = "keyboard_double_arrow_right";
+  var span3 = document.createElement("span");
+  span3.setAttribute("class", "material-icons-outlined");
+  span3.setAttribute("style", "position: relative;font-size: 1.2rem;");
+  span3.innerHTML = "keyboard_double_arrow_right";
 
-    button1.appendChild(span3);
-    anchor.appendChild(button1);
+  button1.appendChild(span3);
+  anchor.appendChild(button1);
 
-    div5.appendChild(anchor);
+  div5.appendChild(anchor);
 
-    div2.appendChild(div5);
-    div1.appendChild(div2);
+  div2.appendChild(div5);
+  div1.appendChild(div2);
 
-    var div6 = document.createElement("div");
-    div6.setAttribute("class","dashboard-card-expand");
+  var div6 = document.createElement("div");
+  div6.setAttribute("class", "dashboard-card-expand");
 
-    var br1 = document.createElement("br");
-    div6.appendChild(br1);
+  var br1 = document.createElement("br");
+  div6.appendChild(br1);
 
-    var div7 = document.createElement("div");
-    div7.setAttribute("class","dashboard-card-order");
+  var div7 = document.createElement("div");
+  div7.setAttribute("class", "dashboard-card-order");
 
-    var div8 = document.createElement("div");
-    div8.setAttribute("class","");
+  var div8 = document.createElement("div");
+  div8.setAttribute("class", "");
 
-    var h51 = document.createElement("h5");
-    h51.setAttribute("class", "small-text");
-    h51.setAttribute("style", "margin: 0 auto;");
-    h51.innerHTML = "Amount";
-    div8.appendChild(h51);
+  var h51 = document.createElement("h5");
+  h51.setAttribute("class", "small-text");
+  h51.setAttribute("style", "margin: 0 auto;");
+  h51.innerHTML = "Amount";
+  div8.appendChild(h51);
 
-    var small1 = document.createElement("small");
-    small1.innerHTML = ordSummary.totalAmount.toLocaleString('en-IN', curFormat);
+  var small1 = document.createElement("small");
+  small1.innerHTML = ordSummary.totalAmount.toLocaleString('en-IN', curFormat);
 
-    div8.appendChild(small1);
+  div8.appendChild(small1);
 
-    div7.appendChild(div8);
+  div7.appendChild(div8);
 
-    var div9 = document.createElement("div");
-    div9.setAttribute("class", "");
+  var div9 = document.createElement("div");
+  div9.setAttribute("class", "");
 
-    var h52 = document.createElement("h5");
-    h52.setAttribute("class", "small-text");
-    h52.setAttribute("style", "margin: 0 auto;");
-    h52.innerHTML = "Discount";
-    var discountedValue = Number(ordSummary.totalAmount) - Number(ordSummary.discountedprize);
-    div9.appendChild(h52);
+  var h52 = document.createElement("h5");
+  h52.setAttribute("class", "small-text");
+  h52.setAttribute("style", "margin: 0 auto;");
+  h52.innerHTML = "Discount";
+  var discountedValue = Number(ordSummary.totalAmount) - Number(ordSummary.discountedprize);
+  div9.appendChild(h52);
 
-    var small2 = document.createElement("small");
-    small2.innerHTML = "( Off " + discountedValue.toLocaleString('en-IN', curFormat) + ")";
+  var small2 = document.createElement("small");
+  small2.innerHTML = "( Off " + discountedValue.toLocaleString('en-IN', curFormat) + ")";
 
-    div9.appendChild(small2);
+  div9.appendChild(small2);
 
-    div7.appendChild(div9);
-    div6.appendChild(div7);
-    div1.appendChild(div6);
-    document.getElementById("orderListDiv").appendChild(div1);
+  div7.appendChild(div9);
+  div6.appendChild(div7);
+  div1.appendChild(div6);
+  document.getElementById("orderListDiv").appendChild(div1);
 
 }
 
@@ -444,21 +980,24 @@ function populateOrderDetails(paymentStatus) {
     day: 'numeric'
   };
   var curFormat = {
-      style: 'currency',
-      currency: 'INR',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 2
-    };
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
 
   if (fromDate === 'Today') {
     document.getElementById('dateRangelbl').innerHTML = "Order Placed Today";
+    document.getElementById("searchKeyText").innerHTML = " for Today";
   } else if (fromDate === toDate) {
     var displayDate = fromDate.toLocaleDateString("en-US", options);
     document.getElementById('dateRangelbl').innerHTML = "Order Placed on :" + displayDate;
+    document.getElementById("searchKeyText").innerHTML = " for " + displayDate;
   } else if (toDate === 'Today') {
     var fDate = new Date(fromDate);
     var displayDate = fDate.toLocaleDateString("en-US", options);
     document.getElementById('dateRangelbl').innerHTML = displayDate + " till Today";
+    document.getElementById("searchKeyText").innerHTML = " since " + displayDate;
   }
   //orderSummary
   DBrows.then((changes) => {
@@ -470,21 +1009,21 @@ function populateOrderDetails(paymentStatus) {
     changes.forEach(change => {
 
       console.log("in first loop");
-        var options = {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric'
-        };
+      var options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      };
 
-        headerAmount = headerAmount +Number(change.data().totalAmount);
-        headerDiscount = headerDiscount +Number(change.data().discountedprize);
+      headerAmount = headerAmount + Number(change.data().totalAmount);
+      headerDiscount = headerDiscount + Number(change.data().discountedprize);
 
-        var oorderdate = new Date(change.data().orderDate.seconds * 1000);
-        oorderdate = oorderdate.toLocaleDateString("en-US", options);
-        console.log (oorderdate) ;
-        i = i  +1;
-        console.log(orderSummary);
-        console.log(orderSummary.findIndex(e => e.orderDate === oorderdate && e.paymentStatus === change.data().paymentStatus));
+      var oorderdate = new Date(change.data().orderDate.seconds * 1000);
+      oorderdate = oorderdate.toLocaleDateString("en-US", options);
+      //console.log(oorderdate);
+      i = i + 1;
+      // console.log(orderSummary);
+      // console.log(orderSummary.findIndex(e => e.orderDate === oorderdate && e.paymentStatus === change.data().paymentStatus));
       if (orderSummary.lenght === 0) {
 
         orderSummary.push({
@@ -524,9 +1063,9 @@ function populateOrderDetails(paymentStatus) {
         });
       } else {
         var jj = orderSummary.findIndex(e => e.orderDate === oorderdate && e.paymentStatus === change.data().paymentStatus);
-        console.log(jj);
-        console.log(oorderdate);
-        console.log(change.data().paymentStatus);
+        // console.log(jj);
+        // console.log(oorderdate);
+        // console.log(change.data().paymentStatus);
 
         var discountedprize = Number(orderSummary[jj].discountedprize) + Number(change.data().discountedprize);
         var totalAmount = Number(orderSummary[jj].totalAmount) + Number(change.data().totalAmount);
@@ -546,22 +1085,26 @@ function populateOrderDetails(paymentStatus) {
         });
       }
 
-//      renderOrder(change.id, change.data(), i);
-  //    i = i + 1;
+      //      renderOrder(change.id, change.data(), i);
+      //    i = i + 1;
     });
 
-            headerDiscount =headerAmount -  headerDiscount;
+    headerDiscount = headerAmount - headerDiscount;
 
-            document.getElementById("headerAmount").innerHTML = Number(headerAmount).toLocaleString('en-IN', curFormat);
-            document.getElementById("headerDiscount").innerHTML = Number(headerDiscount).toLocaleString('en-IN', curFormat);
+    document.getElementById("headerAmount").innerHTML = Number(headerAmount).toLocaleString('en-IN', curFormat);
+    document.getElementById("headerDiscount").innerHTML = Number(headerDiscount).toLocaleString('en-IN', curFormat);
+    document.getElementById("orderListDiv").innerHTML = "";
 
     for (index = 0; index < orderSummary.length; index++) {
 
       renderOrderSummary(orderSummary[index], index);
     }
+    if (orderSummary.length === 0) {
+      document.getElementById("wrongSearch").style.display = "block";
 
-/*
-*/
+    }
+    /*
+     */
     document.getElementById("orderCount").innerHTML = i + " Orders";
     document.getElementById('loading').style.display = 'none';
   });
@@ -580,6 +1123,7 @@ function GetOrder(filter) {
     orderMenuListHr.style.transform = 'translateX(100%)';
     orderMenuListHr.style.borderBottom = '4px solid green';
   }
+  Paymentfilter = filter;
   populateOrderDetails(filter);
 
 }
