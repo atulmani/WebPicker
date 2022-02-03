@@ -84,7 +84,7 @@ function dateRangeChange() {
   if (value === 'Today')
     window.location.href = "paymentDetail.html?orderDate=today&PaymentStatus="+paymentStatus;
   else if (value === 'Yesterday')
-    window.location.href = "paymentDetails.html?orderDate=yesterday&PaymentStatus="+paymentStatus;
+    window.location.href = "paymentDetail.html?orderDate=yesterday&PaymentStatus="+paymentStatus;
 
   else if (value === 'Last 7 days')
     window.location.href = "paymentDetail.html?orderDate=week&PaymentStatus="+paymentStatus;
