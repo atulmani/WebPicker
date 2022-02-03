@@ -305,7 +305,13 @@ function exportCSVFile(Results, FileName) {
         row = Results[rInd];
         // console.log(row);
         Object.entries(row).forEach(([key, val]) => {
-          CsvString += val.toString().replace(",", "") + ',';
+          if(val === undefined)
+          {
+            CsvString += " ,";
+          }
+          else {
+            CsvString += val.toString().replace(",", "") + ',';
+          }
         });
 
       CsvString += "\r\n";
