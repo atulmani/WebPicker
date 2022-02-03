@@ -147,15 +147,33 @@ function populateProductData() {
 
       var productDetails = doc.data().ProductDetails;
       //console.log(productDetails);
+      var curPercentageFormat = {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2
+      };
+
       if (productDetails[0] != null) {
         document.getElementById("productWeight1").value = productDetails[0].ProductWeight;
         document.getElementById("productMRP1").value = productDetails[0].ProductMRP;
         document.getElementById("productFinalPrise1").value = productDetails[0].ProductFinalPrise;
-        if (productDetails[0].ProductPurchasePrice === undefined)
+        if (productDetails[0].ProductPurchasePrice === undefined) {
           document.getElementById("purchasePrice1").value = productDetails[0].ProductFinalPrise;
-        else
+        } else {
           document.getElementById("purchasePrice1").value = productDetails[0].ProductPurchasePrice;
+        }
+        var finalPrise = document.getElementById("productFinalPrise1").value;
+        var purchasePrice = document.getElementById("purchasePrice1").value;
+        var profitPercentage = (finalPrise - purchasePrice) * 100 / purchasePrice;
+        if (Number(profitPercentage) < 10) {
+          document.getElementById("profitPercentage1").style.color = "#ff5757";
+        } else {
+          document.getElementById("profitPercentage1").style.color = "#666";
+        }
+        document.getElementById("profitPercentage1").value = profitPercentage.toLocaleString('en-IN', curPercentageFormat)+ "%";
       }
+
+
+
       if (productDetails[1] != null) {
         document.getElementById("row2").style.display = "block";
         document.getElementById("productWeight2").value = productDetails[1].ProductWeight;
@@ -166,6 +184,17 @@ function populateProductData() {
           document.getElementById("purchasePrice2").value = productDetails[1].ProductFinalPrise;
         else
           document.getElementById("purchasePrice2").value = productDetails[1].ProductPurchasePrice;
+
+          var finalPrise = document.getElementById("productFinalPrise2").value;
+          var purchasePrice = document.getElementById("purchasePrice2").value;
+          var profitPercentage = (finalPrise - purchasePrice) * 100 / purchasePrice;
+          if (Number(profitPercentage) < 10) {
+            document.getElementById("profitPercentage2").style.color = "#ff5757";
+          } else {
+            document.getElementById("profitPercentage2").style.color = "#666";
+          }
+          document.getElementById("profitPercentage2").value = profitPercentage.toLocaleString('en-IN', curPercentageFormat)+ "%";
+
       }
 
       if (productDetails[2] != null) {
@@ -179,6 +208,17 @@ function populateProductData() {
           document.getElementById("purchasePrice3").value = productDetails[2].ProductFinalPrise;
         else
           document.getElementById("purchasePrice3").value = productDetails[2].ProductPurchasePrice;
+
+          var finalPrise = document.getElementById("productFinalPrise3").value;
+          var purchasePrice = document.getElementById("purchasePrice3").value;
+          var profitPercentage = (finalPrise - purchasePrice) * 100 / purchasePrice;
+          if (Number(profitPercentage) < 10) {
+            document.getElementById("profitPercentage3").style.color = "#ff5757";
+          } else {
+            document.getElementById("profitPercentage3").style.color = "#666";
+          }
+          document.getElementById("profitPercentage3").value = profitPercentage.toLocaleString('en-IN', curPercentageFormat)+ "%";
+
       }
 
       if (productDetails[3] != null) {
@@ -191,6 +231,17 @@ function populateProductData() {
           document.getElementById("purchasePrice4").value = productDetails[3].ProductFinalPrise;
         else
           document.getElementById("purchasePrice4").value = productDetails[3].ProductPurchasePrice;
+
+          var finalPrise = document.getElementById("productFinalPrise4").value;
+          var purchasePrice = document.getElementById("purchasePrice4").value;
+          var profitPercentage = (finalPrise - purchasePrice) * 100 / purchasePrice;
+          if (Number(profitPercentage) < 10) {
+            document.getElementById("profitPercentage4").style.color = "#ff5757";
+          } else {
+            document.getElementById("profitPercentage4").style.color = "#666";
+          }
+          document.getElementById("profitPercentage4").value = profitPercentage.toLocaleString('en-IN', curPercentageFormat)+ "%";
+
       }
 
       if (productDetails[4] != null) {
@@ -204,6 +255,18 @@ function populateProductData() {
           document.getElementById("purchasePrice5").value = productDetails[4].ProductFinalPrise;
         else
           document.getElementById("purchasePrice5").value = productDetails[4].ProductPurchasePrice;
+
+          var finalPrise = document.getElementById("productFinalPrise5").value;
+          var purchasePrice = document.getElementById("purchasePrice5").value;
+          var profitPercentage = (finalPrise - purchasePrice) * 100 / purchasePrice;
+          if (Number(profitPercentage) < 10) {
+            document.getElementById("profitPercentage5").style.color = "#ff5757";
+          } else {
+            document.getElementById("profitPercentage5").style.color = "#666";
+          }
+          document.getElementById("profitPercentage5").value = profitPercentage.toLocaleString('en-IN', curPercentageFormat) + "%";
+
+
       }
       document.getElementById("myimg").src = doc.data().ProductImageURL;
       //console.log(doc.data().ProductImageURL);
@@ -215,17 +278,35 @@ function populateProductData() {
 
 //************* Create & Update Event Data - Starts ******************
 function setMRP(index) {
-  productFinalPrise = document.getElementById("productFinalPrise" + index);
-  productMRP = document.getElementById("productMRP" + index);
+  var productFinalPrise = document.getElementById("productFinalPrise" + index);
+  var productMRP = document.getElementById("productMRP" + index);
+  var productPurchasePrise = document.getElementById("purchasePrice" + index);
+  var profitPercentage = 0;
   var finalPrise = Number(productFinalPrise.value);
   var mrp = finalPrise + finalPrise * 0.1;
+
+  var purchasePrise = Number(productPurchasePrise.value);
   var curFormat = {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0
   };
 
+  var curPercentageFormat = {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
+
+  profitPercentage = (finalPrise - purchasePrise) * 100 / purchasePrise;
+  if (Number(profitPercentage) < 10) {
+    document.getElementById("profitPercentage" + index).style.color = "#ff5757";
+  } else {
+    document.getElementById("profitPercentage" + index).style.color = "#666";
+  }
+  document.getElementById("profitPercentage" + index).value = profitPercentage.toLocaleString('en-IN', curPercentageFormat) +"%";
   mrp = mrp.toLocaleString('en-IN', curFormat);
   productMRP.value = mrp;
+
+
 }
 
 function addRows() {
@@ -301,12 +382,11 @@ function CreateUpdateProductData() {
 
     if (productLocationValue === 'All') {
       console.log(productLocation.options);
-      for(int = 1 ;int < productLocation.options.length ; int++)
-      {
-      searchKey = searchKey +" " + productLocation.options[int].value ;
+      for (int = 1; int < productLocation.options.length; int++) {
+        searchKey = searchKey + " " + productLocation.options[int].value;
       }
     } else {
-        searchKey = searchKey + " " + productLocationValue;
+      searchKey = searchKey + " " + productLocationValue;
     }
 
     console.log(searchKey);
@@ -328,7 +408,8 @@ function CreateUpdateProductData() {
       margin = purchasePrice * 0.1;
       if (productFinalPrise < (purchasePrice + margin)) {
         flagPrice = true;
-      } else {
+      }
+       {
         productDetails.push({
           ProductWeight: document.getElementById("productWeight1").value,
           ProductMRP: document.getElementById("productMRP1").value,
@@ -348,7 +429,8 @@ function CreateUpdateProductData() {
       margin = purchasePrice * 0.1;
       if (productFinalPrise < (purchasePrice + margin)) {
         flagPrice = true;
-      } else {
+      }
+       {
         productDetails.push({
           ProductWeight: document.getElementById("productWeight2").value,
           ProductMRP: document.getElementById("productMRP2").value,
@@ -368,7 +450,8 @@ function CreateUpdateProductData() {
       margin = purchasePrice * 0.1;
       if (productFinalPrise < (purchasePrice + margin)) {
         flagPrice = true;
-      } else {
+      }
+       {
 
 
         productDetails.push({
@@ -390,7 +473,8 @@ function CreateUpdateProductData() {
       margin = purchasePrice * 0.1;
       if (productFinalPrise < (purchasePrice + margin)) {
         flagPrice = true;
-      } else {
+      }
+       {
 
         productDetails.push({
           ProductWeight: document.getElementById("productWeight4").value,
@@ -411,7 +495,8 @@ function CreateUpdateProductData() {
       margin = purchasePrice * 0.1;
       if (productFinalPrise < (purchasePrice + margin)) {
         flagPrice = true;
-      } else {
+      }
+       {
 
         productDetails.push({
           ProductWeight: document.getElementById("productWeight5").value,
@@ -424,7 +509,8 @@ function CreateUpdateProductData() {
     }
     var ProductImageURL = document.getElementById("myimg").src;
 
-    if (flag === true && flagPrice === false) {
+    // if (flag === true && flagPrice === false) {
+    if (flag === true ) {
 
 
       if (productID != null && productID != '') {
@@ -507,12 +593,17 @@ function CreateUpdateProductData() {
           });
       }
       document.getElementById("message").innerHTML = "Product details are succsessfully updated";
+      if(flagPrice === true )
+        document.getElementById("message").innerHTML = document.getElementById("message").innerHTML + ". \n Few of the selling price is less than 10% of purchase price";
     } else {
-      if (flagPrice) {
-        document.getElementById("message").innerHTML = "Please enter selling price 10% than purchase price";
-      } else {
+      //if (flagPrice) {
+      //  document.getElementById("message").innerHTML = "Please enter selling price 10% than purchase price";
+      //} else
+       {
 
         document.getElementById("message").innerHTML = "Please enter all details to update";
+        if(flagPrice === true )
+          document.getElementById("message").innerHTML = document.getElementById("message").innerHTML + "few of the selling price is less than 10% of purchase price";
       }
     }
   });
@@ -608,7 +699,7 @@ function CreateUpdateEventData() {
   // Hide alert after 3 seconds
   setTimeout(function() {
     createEventConformation.style.display = 'none';
-  }, 3000);
+  }, 5000);
 
   CreateUpdateProductData();
 
