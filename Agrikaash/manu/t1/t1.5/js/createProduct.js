@@ -127,7 +127,9 @@ function populateProductData() {
       if (doc.data().SearchKey === undefined || doc.data().SearchKey === "") {
         document.getElementById("searchKey").value = doc.data().ProductName;
       } else {
-        document.getElementById("searchKey").value = doc.data().SearchKey;
+        var searchkeys = doc.data().SearchKey.split(':');
+
+        document.getElementById("searchKey").value = searchkeys[0];
       }
       document.getElementById("brand").value = doc.data().Brand;
       var vegNonVeg = doc.data().VegNonVeg;
@@ -212,20 +214,20 @@ function populateProductData() {
 //************* Populate Event Data - Ends ******************
 
 //************* Create & Update Event Data - Starts ******************
-function setMRP(index)
-{
-  productFinalPrise = document.getElementById("productFinalPrise"+index);
-  productMRP = document.getElementById("productMRP"+index);
+function setMRP(index) {
+  productFinalPrise = document.getElementById("productFinalPrise" + index);
+  productMRP = document.getElementById("productMRP" + index);
   var finalPrise = Number(productFinalPrise.value);
   var mrp = finalPrise + finalPrise * 0.1;
-        var curFormat = {
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0
-        };
+  var curFormat = {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  };
 
-        mrp = mrp.toLocaleString('en-IN', curFormat);
-      productMRP.value = mrp;
+  mrp = mrp.toLocaleString('en-IN', curFormat);
+  productMRP.value = mrp;
 }
+
 function addRows() {
   var row2 = document.getElementById("row2");
   var row3 = document.getElementById("row3");
@@ -282,6 +284,7 @@ function CreateUpdateProductData() {
     var searchKey = document.getElementById("searchKey").value;
     if (searchKey === "")
       searchKey = productName;
+
     var brand = document.getElementById("brand").value;
     var vegNonVeg = "";
     if (document.getElementById("Veg").checked) {
@@ -289,6 +292,24 @@ function CreateUpdateProductData() {
     } else if (document.getElementById("NonVeg").checked) {
       vegNonVeg = "NonVeg";
     }
+    searchKey = searchKey + ": " + productTypeValue + " " + brand;
+    if (vegNonVeg === "Veg") {
+      searchKey = searchKey + " veg Vegeterian shakahari ";
+    } else {
+      searchKey = searchKey + " nonveg nonVegeterian non-Vegeterian mansahari ";
+    }
+
+    if (productLocationValue === 'All') {
+      console.log(productLocation.options);
+      for(int = 1 ;int < productLocation.options.length ; int++)
+      {
+      searchKey = searchKey +" " + productLocation.options[int].value ;
+      }
+    } else {
+        searchKey = searchKey + " " + productLocationValue;
+    }
+
+    console.log(searchKey);
     var minimumQty = document.getElementById("minimumQty").value;
     var maximumQty = document.getElementById("maximumQty").value;
     var stepQty = document.getElementById("stepQty").value;
@@ -305,8 +326,6 @@ function CreateUpdateProductData() {
       purchasePrice = Number(document.getElementById("purchasePrice1").value);
       productFinalPrise = Number(document.getElementById("productFinalPrise1").value);
       margin = purchasePrice * 0.1;
-      console.log(productFinalPrise);
-      console.log(purchasePrice + margin);
       if (productFinalPrise < (purchasePrice + margin)) {
         flagPrice = true;
       } else {
@@ -327,8 +346,6 @@ function CreateUpdateProductData() {
       purchasePrice = Number(document.getElementById("purchasePrice2").value);
       productFinalPrise = Number(document.getElementById("productFinalPrise2").value);
       margin = purchasePrice * 0.1;
-      console.log(productFinalPrise);
-      console.log(purchasePrice + margin);
       if (productFinalPrise < (purchasePrice + margin)) {
         flagPrice = true;
       } else {
@@ -349,8 +366,6 @@ function CreateUpdateProductData() {
       purchasePrice = Number(document.getElementById("purchasePrice3").value);
       productFinalPrise = Number(document.getElementById("productFinalPrise3").value);
       margin = purchasePrice * 0.1;
-      console.log(productFinalPrise);
-      console.log(purchasePrice + margin);
       if (productFinalPrise < (purchasePrice + margin)) {
         flagPrice = true;
       } else {
@@ -373,8 +388,6 @@ function CreateUpdateProductData() {
       purchasePrice = Number(document.getElementById("purchasePrice4").value);
       productFinalPrise = Number(document.getElementById("productFinalPrise4").value);
       margin = purchasePrice * 0.1;
-      console.log(productFinalPrise);
-      console.log(purchasePrice + margin);
       if (productFinalPrise < (purchasePrice + margin)) {
         flagPrice = true;
       } else {
@@ -396,8 +409,6 @@ function CreateUpdateProductData() {
       purchasePrice = Number(document.getElementById("purchasePrice5").value);
       productFinalPrise = Number(document.getElementById("productFinalPrise5").value);
       margin = purchasePrice * 0.1;
-      console.log(productFinalPrise);
-      console.log(purchasePrice + margin);
       if (productFinalPrise < (purchasePrice + margin)) {
         flagPrice = true;
       } else {
@@ -497,11 +508,9 @@ function CreateUpdateProductData() {
       }
       document.getElementById("message").innerHTML = "Product details are succsessfully updated";
     } else {
-      if(flagPrice)
-      {
+      if (flagPrice) {
         document.getElementById("message").innerHTML = "Please enter selling price 10% than purchase price";
-      }
-      else {
+      } else {
 
         document.getElementById("message").innerHTML = "Please enter all details to update";
       }
