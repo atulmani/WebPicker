@@ -2,7 +2,7 @@
 var userID = "";
 var orderList = [];
 var userType = "";
-
+var exportData = [];
 // var url = location.href;
 let eventDocUrl = new URL(location.href);
 // console.log ('URL: ' + eventDocUrl);
@@ -161,7 +161,19 @@ function populateOrderDetails(filter) {
   var todayDate = new Date();
   var toDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
   var refDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
-
+  exportData = [];
+  exportData.push({
+    C1 : "OrderID",
+    C2 : "OrderBy",
+    C3 : "OrderDate",
+    C4 : "DeliveryDate",
+    C5 : "DeliveryTime",
+    C6 : "OrderStatus",
+    C7 : "PaymentStatus",
+    C8 : "TotalItems",
+    C9 : "TotalAmount",
+    C10 : "DiscountedAmount"
+  });
   todayDate = refDate;
   var index = 0;
   var snapshot;
@@ -289,10 +301,26 @@ function populateOrderDetails(filter) {
 
     changes.forEach(change => {
       orderList = change.data();
+
+          var orderDate = new Date(orderList.orderDate.seconds * 1000);
+          var deliveryDate = new Date(orderList.deliveryDate.seconds * 1000);
+      exportData.push ({
+        C1 : orderList.orderNumber.toString() ,
+        C2 : orderList.orderBy + ":" + orderList.orderByUserName + ":" + orderList.CreatedBy,
+        C3 : orderDate.toLocaleDateString("en-US", options),
+        C4 : deliveryDate.toLocaleDateString("en-US", options),
+        C5 : orderList.deliveryTime,
+        C6 : orderList.orderStatus ,
+        C7 : orderList.paymentStatus,
+        C8 : orderList.totalItems,
+        C9 : orderList.totalAmount,
+        C10 : orderList.discountedprize
+      });
+
       renderOrder(change.id, change.data(), i);
       i = i + 1;
     });
-
+    //exportDataToExcel(exportData);
     document.getElementById("orderCount").innerHTML = i + " Orders";
     document.getElementById('loading').style.display = 'none';
     if (i === 0) {
@@ -304,6 +332,10 @@ function populateOrderDetails(filter) {
 
 }
 
+function exportFile()
+{
+  exportCSVFile (exportData, "orderDetails");
+}
 // function populateOrderDetailsOld() {
 //   var i = 0;
 //   var fromDate;
