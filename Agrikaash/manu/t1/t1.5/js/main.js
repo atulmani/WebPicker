@@ -287,3 +287,36 @@ $(document).ready(function() {
 //
 //   new WOW().init();
 // });
+
+
+
+function exportCSVFile(Results, FileName) {
+  // console.log(Results);
+  //exportToCsv = function()
+  {
+    var CsvString = "";
+    // Results.forEach(function(RowItem, RowIndex) {
+    //   RowItem.forEach(function(ColItem, ColIndex) {
+    //     CsvString += ColItem + ',';
+    //   });
+      var row = {};
+      for (rInd = 0 ;rInd < Results.length ; rInd ++ )
+      {
+        row = Results[rInd];
+        // console.log(row);
+        Object.entries(row).forEach(([key, val]) => {
+          CsvString += val.toString().replace(",", "") + ',';
+        });
+
+      CsvString += "\r\n";
+      }
+
+//    console.log(CsvString);
+    CsvString = "data:application/csv," + encodeURIComponent(CsvString);
+    var x = document.createElement("A");
+    x.setAttribute("href", CsvString);
+    x.setAttribute("download", FileName  +".csv");
+    document.body.appendChild(x);
+    x.click();
+  }
+}
