@@ -1404,7 +1404,8 @@ input[type=number] {
 }
 
 .form-control input:focus+label span,
-.form-control input:valid+label span {
+.form-control input:valid+label span,
+.form-control input:disabled+label span {
   color: #666;
   font-weight: 800;
   transform: translateY(-30px);
