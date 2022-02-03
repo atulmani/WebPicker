@@ -270,7 +270,7 @@
       <hr class="hr" />
 
       <li class="">
-        <a href="dashboard.html" class="left-navigation">
+        <a href="report.html" class="left-navigation">
           <div class="">
             <span class="material-icons-outlined">
               landscape
@@ -395,6 +395,23 @@
         </div>
 
         <div class="">
+
+          <div class="" id="myInput" style="padding: 10px 0;position:relative;">
+            <!-- <input type="search" name="" class="new_search-box" value="" placeholder="Search user" onfocus="inputSearchFocus()" onkeyup="filterFunction()" onchange="myChangeEvent();"> -->
+            <input type="search" name="" class="new_search-box" value="" placeholder="Search user" onfocus="inputSearchFocus()" onkeyup="filterFunction()" >
+            <div class="new_search-box-seach-icon">
+              <span class="material-icons-outlined">
+                youtube_searched_for
+              </span>
+            </div>
+          </div>
+          <div class="intelligence" id="idUsers" style='display:none'>
+
+          </div>
+        </div>
+
+
+        <div class="" style="display:none">
           <!-- <h5 data-toggle="collapse" data-target="#orderFilter"> -->
           <h5 onclick="populateOrderFilter()">
             <span class="material-icons-outlined">
@@ -407,7 +424,7 @@
       </div>
 
       <!-- <div class="collapse navbar-collapse order-filter-div" id="orderFilter"> -->
-      <div class="order-filter-div" id="orderFilter">
+      <div class="order-filter-div" id="orderFilter" style="display:none">
         <div class="small navbar-mobile">
           <div class="navbar-mobile-menu">
             <a href="#" onclick="closeOrderFilter()">
@@ -637,6 +654,10 @@
           </div>
         </div>
 
+        <div class="" id="wrongSearch" style="text-align: center;display:none" ><br><br>
+          <img src="../img/no_search_product.svg" width="80%" alt=""><br><br><br>
+          <h5 class="small-text" >No orders found <span id="searchKeyText"></span></h5><br><br>
+        </div>
         <div id="orderListDiv" style="padding: 10px;">
         </div>
 
