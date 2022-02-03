@@ -796,10 +796,11 @@ function deleteItem(prodID, selectedItemIndex, parentdiv) {
             }
             //check for discount promise
             var discount;
-
+            var discountValue = 0;
             if (modifiedOrder.discountDetails.coupondID != 'none') {
               discount = modifiedOrder.discountDetails.discountValue;
-              var discountValue = 0;
+              // console.log(discount);
+
               if (discount.includes("%")) {
                 discount = discount.replace("%", "");
                 discountValue = Number(totalPrise) * Number(discount) / 100;
@@ -808,6 +809,10 @@ function deleteItem(prodID, selectedItemIndex, parentdiv) {
                 discountValue = Number(discount);
               }
             }
+            // console.log(totalPrise);
+            // console.log(discountValue);
+            if(discountValue === undefined || discountValue === '' || isNaN(discountValue) || discountValue === "none"  )
+              discountValue = 0;
             discountedAmount = Number(totalPrise) - Number(discountValue);
             var refundAmount;
             if (Number(totalPrise) < Number(oldPrize)) {
@@ -837,10 +842,10 @@ function deleteItem(prodID, selectedItemIndex, parentdiv) {
           }
         }
       }
-      console.log(modifiedOrder.orderItems,
-        modifiedOrder.orderItems.length,
-        totalPrise,
-        discountedAmount);
+      // console.log(modifiedOrder.orderItems,
+      //   modifiedOrder.orderItems.length,
+      //   totalPrise,
+      //   discountedAmount);
       db.collection('OrderDetails').doc(orderID).update({
           orderStatus: modifiedOrder.orderStatus,
           orderItems: modifiedOrder.orderItems,
