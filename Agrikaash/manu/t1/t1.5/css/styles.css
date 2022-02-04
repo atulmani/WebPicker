@@ -2340,6 +2340,10 @@ input[type=number] {
   height: 730px;
 }
 
+.dashboard-card.user-list.active {
+  height: auto;
+}
+
 .order-summary-arrow-down {
   position: absolute;
   right: 20px;
