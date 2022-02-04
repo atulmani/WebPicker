@@ -95,9 +95,10 @@ function getUserReports() {
       userCnt = userCnt + 1;
 
     });
+    document.getElementById("userCnt").innerHTML = userCnt;
 
     document.getElementById("loading").style.display = "none";
-    document.getElementById("userListDiv").style.display = "block";
+    //document.getElementById("userListDiv").style.display = "block";
   });
 
 }
@@ -119,79 +120,84 @@ function renderUsers(userDetails, userID, index) {
   createdDate = createdDate.toLocaleDateString("en-US", options);
 
   var div1 = document.createElement("div");
-  div1.setAttribute("class", "payment-details-div");
+  div1.setAttribute("class", "dashboard-card user-list active");
 
   var div2 = document.createElement("div");
-  div2.setAttribute("class", "");
-
-  var h1 = document.createElement("h5");
-  h1.setAttribute("class", "small-text");
-  h1.setAttribute("style", "margin: 0 auto;");
-  h1.innerHTML = userDetails.EmailID;
-
-  div2.appendChild(h1);
-  div1.appendChild(div2);
+  div2.setAttribute("class", "dashboard-card-order");
+  div2.setAttribute("style", "display:flex; align-items: baseline;");
 
   var div3 = document.createElement("div");
   div3.setAttribute("class", "");
 
+  var h1 = document.createElement("h5");
+  h1.setAttribute("class", "small-text")
+  h1.setAttribute("style", "margin: 0 auto;");
+  if (userDetails.displayName === undefined)
+    h1.innerHTML = "-";
+  else
+    h1.innerHTML = userDetails.displayName;
+
+  div3.appendChild(h1);
+  var small1 = document.createElement("small");
+  small1.innerHTML = "<span>" + +"</span>"
+  if (userDetails.Address === undefined)
+    small1.innerHTML = "<span>-</span>";
+  else
+    small1.innerHTML = "<span>" + userDetails.Address + "</span>";
+  div3.appendChild(small1);
+
+  var br1 = document.createElement("br");
+  div3.appendChild(br1);
+
+  var small2 = document.createElement("small");
+  small2.innerHTML = "<span>" + +"</span>"
+  if (userDetails.CompanyName === undefined)
+    small2.innerHTML = "<span>-</span>";
+  else
+    small2.innerHTML = "<span>" + userDetails.CompanyName + "</span>";
+  div3.appendChild(small2);
+
+  div2.appendChild(div3);
+
+  var div4 = document.createElement("div");
+  div4.setAttribute("class", "");
+
   var h2 = document.createElement("h5");
-  h2.setAttribute("class", "small-text");
+  h2.setAttribute("class", "small-text")
   h2.setAttribute("style", "margin: 0 auto;");
   if (userDetails.Phone === undefined)
     h2.innerHTML = "-";
   else
     h2.innerHTML = userDetails.Phone;
 
-  div3.appendChild(h2);
-  div1.appendChild(div3);
+  div4.appendChild(h2);
 
-  var div4 = document.createElement("div");
-  div4.setAttribute("class", "");
-
-  var h3 = document.createElement("h5");
-  h3.setAttribute("class", "small-text");
-  h3.setAttribute("style", "margin: 0 auto;");
-  if (userDetails.displayName === undefined) {
-    h3.innerHTML = "-";
-  } else {
-    h3.innerHTML = userDetails.displayName;
-  }
-
-  div4.appendChild(h3);
-  div1.appendChild(div4);
-
-  var div5 = document.createElement("div");
-  div5.setAttribute("class", "");
-
-  var h4 = document.createElement("h5");
-  h4.setAttribute("class", "small-text");
-  h4.setAttribute("style", "margin: 0 auto;");
-  if (userDetails.Address === undefined)
-    h4.innerHTML = "-";
+  var small3 = document.createElement("small");
+  small3.innerHTML = "<span>" + +"</span>"
+  if (userDetails.EmailID === undefined)
+    small3.innerHTML = "<span>-</span>";
   else
-    h4.innerHTML = userDetails.Address;
-  div5.appendChild(h4);
+    small3.innerHTML = "<span>" + userDetails.EmailID + "</span>";
+  div4.appendChild(small3);
 
-  var hf4 = document.createElement("input");
-  hf4.setAttribute("type", "hidden");
-  hf4.setAttribute("id", "hf" + index);
-  hf4.setAttribute("value", userID);
-  div5.appendChild(hf4);
+  var br2 = document.createElement("br");
+  div4.appendChild(br2);
 
-  div1.appendChild(div5);
+  var small4 = document.createElement("small");
+  small4.innerHTML = "<span>" + +"</span>"
+  small4.innerHTML = "<span> since " + createdDate + "</span>";
+  div4.appendChild(small4);
 
-  var div6 = document.createElement("div");
-  div6.setAttribute("class", "");
+  div2.appendChild(div4);
 
-  var h6 = document.createElement("h5");
-  h6.setAttribute("class", "small-text");
-  h6.setAttribute("style", "margin: 0 auto;");
-  h6.innerHTML = createdDate;
-
-  div6.appendChild(h6);
-  div1.appendChild(div6);
+  div1.appendChild(div2);
 
   document.getElementById("userList").appendChild(div1);
 
+}
+
+function showHideCard(card, cardArrow) {
+  card.classList.toggle("active");
+
+  cardArrow.classList.toggle("active");
 }
