@@ -321,7 +321,7 @@ function exportCSVFile(Results, FileName) {
     CsvString = "data:application/csv," + encodeURIComponent(CsvString);
     var x = document.createElement("A");
     x.setAttribute("href", CsvString);
-    x.setAttribute("download", FileName  +".csv");
+    x.setAttribute("download", FileName  +".xlsx");
     document.body.appendChild(x);
     x.click();
   }
