@@ -428,12 +428,25 @@
                 </span>
               </small><br><br>
 
-              <small class="small-text" style="padding: 0 10px;">
-                <input class="profile-personal-input" readonly style="width: 110px;" maxlength="100" id='companyName' type="text" placeholder="Company Name" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></input>
+              <div class="">
+                <!-- <input class="profile-personal-input" readonly style="width: 110px;" maxlength="100" id='companyName' type="text" placeholder="Company Name" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></input> -->
+                <select class="city-selector" name="" id="companyName">
+                  <option value="Agrikaash">Agrikaash</option>
+                  
+                  <option value="Jalan">Jalan</option>
+                  <option value="Mother Dairy">Mother Dairy</option>
+                  <option value="Reliance">Reliance</option>
+                  <option value="Spencers">Spencers</option>
+                </select>
+
+                  <span class="material-icons-outlined city-selector-icon">
+                    location_on
+                  </span>
+<!--
                 <span class="material-icons-outlined" style="color: #f58634; font-size: 1.2rem;" onclick="editCompany();">
                   edit
-                </span>
-              </small><br><br>
+                </span> -->
+              </div><br><br>
 
               <div class="">
                 <select class="city-selector" name="" id="cityList">
