@@ -52,7 +52,13 @@ function GetRegistrationRequest() {
       document.getElementById('userPhone').value = phone;
 
       if(companyName !=  undefined)
-      document.getElementById('companyName').value = companyName;
+      {
+        var compName= document.getElementById('companyName')
+        for(i = 0 ;i< compName.options.length ; i++)
+          if(compName.options[i].text === companyName)
+            compName.options[i].selected = true;
+
+      }
 
       //  document.getElementById('Profilename').value = displayName;
       //  document.getElementById('phone').value = phone;
@@ -220,7 +226,8 @@ function SaveDetails() {
 
   var ocustomerType = document.getElementById("customerType");
   var customerType = ocustomerType.options[ocustomerType.selectedIndex].value;
-  var companyName = document.getElementById("companyName").value;
+  var ocompanyName = document.getElementById("companyName");
+  var companyName = ocompanyName.options[ocompanyName.selectedIndex].value
 
   // var oIDType = document.getElementById("IDType");
   // var IDType = oIDType.options[oIDType.selectedIndex].value;
