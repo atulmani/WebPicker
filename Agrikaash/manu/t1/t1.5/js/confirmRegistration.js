@@ -68,6 +68,20 @@ function renderRegistrationRequest(doc, index) {
   var div2 = document.createElement("div");
   div2.setAttribute("class", "orders-list-div");
 
+  var div0 = document.createElement("div");
+  div0.setAttribute("class", "");
+  var span0 = document.createElement("span");
+  if(doc.data().CompanyName === undefined)
+  {
+    span0.innerHTML = "Company Name : <b> - </b>";
+  }
+  else {
+
+    span0.innerHTML = "Company Name : <b>" + doc.data().CompanyName + "</b>";
+  }
+  div0.appendChild(span0);
+  div2.appendChild(div0);
+
   var div3 = document.createElement("div");
   div3.setAttribute("class", "");
   var span1 = document.createElement("span");
@@ -271,6 +285,13 @@ function renderRegistrationRequest(doc, index) {
   hfIDType.setAttribute("value", doc.data().IDType);
   div7.appendChild(hfIDType);
 
+  var hfcompanyName = document.createElement("input");
+  hfcompanyName.setAttribute("type", "hidden");
+  hfcompanyName.setAttribute("id", "hfcompanyName" + index);
+  hfcompanyName.setAttribute("value", doc.data().CompanyName);
+  div7.appendChild(hfcompanyName);
+
+
   var hfPhone = document.createElement("input");
   hfPhone.setAttribute("type", "hidden");
   hfPhone.setAttribute("id", "hfPhone" + index);
@@ -335,6 +356,7 @@ function ApproveRegistration(index) {
       IDType: document.getElementById("hfIDType" + index).value,
       Phone: document.getElementById("hfPhone" + index).value,
       displayName: document.getElementById("hfName" + index).value,
+      CompanyName: document.getElementById("hfcompanyName" + index).value,
       CustomerType: document.getElementById("hfCustomerType" + index).value,
       Status: 'Active',
       ProfileImageURL: document.getElementById("hfProfileImageURL" + index).value,
