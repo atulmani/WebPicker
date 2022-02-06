@@ -179,29 +179,30 @@ function SaveDetails() {
 
     var oCompanyName = document.getElementById("companyName");
     var valCompanyName = oCompanyName.options[oCompanyName.selectedIndex].value;
-
-  db.collection('UserRequest')
-    .doc(userID)
-    .update({
-      DateOfBirth: '',
+    var requestData =  {
+      email: document.getElementById("userEmail").innerHTML,
+      uid: userID,
       displayName: document.getElementById('userName').value,
-      Phone: document.getElementById('userPhone').value,
-      Address: city,
-      CompanyName : valCompanyName,
-      IDType: '',
-      IDNo: '',
-      UserRole: userType,
-      CustomerType: customerType
-
-    })
+      phoneNo: document.getElementById('userPhone').value,
+      userRole: userType,
+      status: "Pending",
+      address: city,
+      companyName: valCompanyName,
+      customerType: customerType,
+      action: "update"
+    };
+    console.log("before https calling function ");
+    // console.log(data);
+      const updateUserRequest = firebase.functions().httpsCallable("updateUserRequest");
+      updateUserRequest(requestData)
     .then(() => {
       //saved successfully
-      //
+      console.log("after https calling function ");
       document.getElementById("confirmationMessage").style.display = 'block';
     })
     .catch(function(error) {
       console.log("in error");
-      // document.getElementById('errorMessage').innerHTML = error.message;
+       document.getElementById('errorMessage').innerHTML = error.message;
       // document.getElementById('errorMessage').style.display = 'block';
     });
 
@@ -220,6 +221,7 @@ var reader;
 // document.getElementById("select").onclick = function(e) {
 document.getElementById("cameraIcon").onclick = function(e) {
   // alert('camera button click');
+  console.log("cameraIcon onclick");
   // document.getElementById("uploadImg").style.display = 'block';
   var input = document.createElement('input');
   input.type = 'file';
@@ -230,8 +232,11 @@ document.getElementById("cameraIcon").onclick = function(e) {
     reader.onload = function() {
 
       document.getElementById("profilePic").src = reader.result;
+      document.getElementById("profilePic_LeftNav").src = reader.result;
+
     }
     reader.readAsDataURL(files[0]);
+    console.log(("after load"));
     document.getElementById("uploadIcon").disabled = false;
   }
   input.click();
@@ -265,7 +270,7 @@ document.getElementById('uploadIcon').onclick = function() {
       //productID = document.getElementById('hfproductID').value;
       uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
         ImgUrl = url;
-        alert('ImgUrl: ' + ImgUrl);
+        alert('Image updated successfully');
         console.log(userID);
 
         //Update meta data for firebase storage resources - Start
@@ -287,11 +292,11 @@ document.getElementById('uploadIcon').onclick = function() {
 
         //Update meta data for firebase storage resources - End
 
-        db.collection("UserRequest").doc(userID).update({
-            // console.log('inside db collection: ' + newEventID);
-            // EventId: newEventID,
-            ProfileImageURL: ImgUrl
-          })
+        const updateUserProfileImage = firebase.functions().httpsCallable("updateUserProfileImage");
+        updateUserProfileImage({
+          uid: userID,
+          profileImageURL : ImgUrl
+        })
           .then(function(docRef) {
             document.getElementById("uploadIcon").disabled = true;
             //document.getElementById("navUser").src = url;
