@@ -54,6 +54,7 @@ function GetProfileData() {
       var phone = doc.data().Phone;
       var profileImageURL = doc.data().ProfileImageURL;
       var userRole = doc.data().UserRole;
+      var companyName = doc.data().CompanyName;
 
       document.getElementById('userName').value = displayName;
       document.getElementById('userEmail').innerHTML = userEmail;
@@ -70,6 +71,12 @@ function GetProfileData() {
       for (i = 0; i < ocity.options.length; i++) {
         if (ocity.options[i].value === address)
           ocity.options[i].selected = true;
+      }
+
+      var ocompany = document.getElementById('companyName');
+      for (i = 0; i < ocompany.options.length; i++) {
+        if (ocompany.options[i].value === companyName)
+          ocompany.options[i].selected = true;
       }
 
       //   var userType1 = document.getElementById("userType1");
@@ -169,6 +176,10 @@ function SaveDetails() {
   var oCity = document.getElementById("cityList");
   var city = oCity.options[oCity.selectedIndex].value;
 
+
+    var oCompanyName = document.getElementById("companyName");
+    var valCompanyName = oCompanyName.options[oCompanyName.selectedIndex].value;
+
   db.collection('UserRequest')
     .doc(userID)
     .update({
@@ -176,6 +187,7 @@ function SaveDetails() {
       displayName: document.getElementById('userName').value,
       Phone: document.getElementById('userPhone').value,
       Address: city,
+      CompanyName : valCompanyName,
       IDType: '',
       IDNo: '',
       UserRole: userType,
