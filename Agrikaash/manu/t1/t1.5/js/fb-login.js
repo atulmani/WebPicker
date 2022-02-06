@@ -107,6 +107,7 @@ btnSignup.addEventListener('click', e => {
         // photoURL: "https://example.com/jane-q-user/profile.jpg"
       }).then(() => {
         // Update successful
+        console.log("before setUsersProfileData call");
         //Save the Users registration data in Users db Collection
         setUsersProfileData(auth.currentUser);
       }).catch((error) => {
@@ -138,32 +139,55 @@ btnSignup.addEventListener('click', e => {
 
 //Save users data into Users DB Collection
 function setUsersProfileData(user) {
+  console.log("in setUsersProfileData before https calling function ");
+  console.log(user.email);
+  console.log(user.uid);
+  console.log(user.displayName);
+
+  var requestData =  {
+    email: user.email,
+    uid: user.uid,
+    displayName: user.displayName,
+    phoneNo: document.getElementById('txtPhoneReg').value,
+    userRole: [],
+    status: "Pending",
+    address: "",
+    companyName: "",
+    customerType: "",
+    action: "add"
+  };
+  console.log("before https calling function ");
+  // console.log(data);
+    const updateUserRequest = firebase.functions().httpsCallable("updateUserRequest");
+    updateUserRequest(requestData)
+
   // console.log("Set User Profile Data");
-  db.collection('UserRequest')
-    .doc(user.uid)
-    .set({
-      uid: user.uid,
-      displayName: user.displayName,
-      EmailID: user.email,
-      Phone: document.getElementById('txtPhoneReg').value,
-      DateOfBirth: '',
-      Address: '',
-      IDType: '',
-      IDNo: '',
-      UserRole: [],
-      CustomerType: '',
-      Status: 'Pending',
-      CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
-      UpdatedTimestamp: ''
-    })
+  // db.collection('UserRequest')
+  //   .doc(user.uid)
+  //   .set({
+  //     uid: user.uid,
+  //     displayName: user.displayName,
+  //     EmailID: user.email,
+  //     Phone: document.getElementById('txtPhoneReg').value,
+  //     DateOfBirth: '',
+  //     Address: '',
+  //     IDType: '',
+  //     IDNo: '',
+  //     UserRole: [],
+  //     CustomerType: '',
+  //     Status: 'Pending',
+  //     CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+  //     UpdatedTimestamp: ''
+  //   })
     .then(() => {
       // updated
-      // console.log('Data saved successfully');
+       console.log('after function call , Data saved successfully');
       window.location.href = "Registration.html";
     })
     .catch((error) => {
       // An error occurred
-      // console.log(error.message);
+       console.log(error.message);
+
       document.getElementById('errorMessage_Registration').innerHTML = error.message;
       document.getElementById('errorMessage_Registration').style.display = 'block';
     });
