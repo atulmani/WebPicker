@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Send Mail</title>
+<script src=
+	"https://smtpjs.com/v3/smtp.js">
+</script>
+
+<script type="text/javascript">
+	// function sendEmail() {
+	// Email.send({
+	// 	Host: "smtp.gmail.com",
+	// 	Username: "atul@hypercloudadvertising.com",
+	// 	Password: "Admin@123#",
+	// 	To: 'anitatripathi@gmail.com',
+	// 	From: "atul@hypercloudadvertising.com",
+	// 	Subject: "Sending Email using javascript",
+	// 	Body: "Well that was easy!!",
+	// })
+	// 	.then(function (message) {
+	// 	alert("mail sent successfully")
+	// 	});
+	// }
+	function sendEmail()
+	{
+		// Create the arguments to the callable function.
+var data = [];
+var para = {};
+para = {
+	subject : "New Subject from para",
+	emails : "anitatripathi@gmail.com"
+};
+data.push({
+	subject : "New Subject",
+	emails : "atulmani@gmail.com"
+});
+console.log(para);
+// data.put("event", "New Subject");
+// data.put("emails", "atulmani@gmail.com");
+// data.put("push", true);
+
+		const ret = firebase.functions().httpsCallable("sendMailapi");
+		// ret({
+		// 	subject : "New Subject after update",
+		// 	emails : "anitatripathi@gmail.com"
+		// }).then(result =>{
+		ret(para).then(result =>{
+
+			console.log("From Function " + result.data);
+		});
+	}
+</script>
+</head>
+
+<body>
+<form method="post">
+	<input type="button" value="Send Email"
+		onclick="sendEmail()" />
+
+    email sending sample
+</form>
+</body>
+
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-functions.js"></script>
+
+  <script src="../js/firebase.js"></script>
+
+
+
+</html>
