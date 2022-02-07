@@ -333,6 +333,7 @@ async function populateProductData(bType, pType, flag) {
     console.log('All', 'All');
     DBrows = db.collection("Products")
       .where("ProductLocation", "in", productLocation)
+      .where("Status", "==", "Active")
       .orderBy("ProductName").get();
   } else if ((pType === '' || pType === 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
@@ -341,6 +342,7 @@ async function populateProductData(bType, pType, flag) {
     DBrows = db.collection("Products")
       .where("CustomerBusinessType", "in", prodType)
       .where("ProductLocation", "in", productLocation)
+      .where("Status", "==", "Active")
       .orderBy("ProductName").get();
   } else if ((pType != '' && pType != 'All') && (bType === '' || bType === 'All')) //select one customer businessType
   {
@@ -349,6 +351,7 @@ async function populateProductData(bType, pType, flag) {
     DBrows = db.collection("Products")
       .where("productType", "==", pType)
       .where("ProductLocation", "in", productLocation)
+      .where("Status", "==", "Active")
       .orderBy("ProductName").get();
   } else if ((pType != '' && pType != 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
@@ -358,6 +361,7 @@ async function populateProductData(bType, pType, flag) {
       .where("productType", "==", pType)
       .where("CustomerBusinessType", "in", prodType)
       .where("ProductLocation", "in", productLocation)
+      .where("Status", "==", "Active")
       .orderBy("ProductName").get();
   }
 
