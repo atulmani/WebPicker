@@ -1,11 +1,11 @@
-// const functions = require("firebase-functions");
-
-
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const nodemailer = require("nodemailer");
 const cors = require("cors")({origin: true});
 admin.initializeApp();
+
+const userRequest = require("./userRequest.js");
+
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -37,6 +37,7 @@ const transporter = nodemailer.createTransport({
     pass: "dvroztfzdnfjyjob",
   },
 });
+// Here we're using Gmail to send email using http request
 
 exports.sendMail = functions.https.onRequest((req, res) => {
   cors(req, res, () => {
@@ -61,7 +62,7 @@ exports.sendMail = functions.https.onRequest((req, res) => {
   });
 });
 
-
+// Here we're using Gmail to send email using oncall function
 exports.sendMailapi = functions.https.onCall((data, context) => {
   // cors(data, context, () => {
   // getting dest email by query string
@@ -89,3 +90,33 @@ exports.sendMailapi = functions.https.onCall((data, context) => {
     return "Sended";
   });
 });
+
+
+// function for trigger using user created - auth
+exports.newUserSignin = functions.auth.user().onCreate((user) => {
+  console.log("user created", user.email, user.uid);
+  return admin.firestore().collection("UserRequest").doc(user.uid).set({
+    uid: user.uid,
+    displayName: " from trigger",
+    EmailID: user.email,
+    Phone: "",
+    DateOfBirth: "",
+    Address: "",
+    IDType: "",
+    IDNo: "",
+    UserRole: [],
+    CustomerType: "",
+    Status: "Pending",
+    CreatedTimestamp: admin.firestore().Timestamp.fromDate(new Date()),
+    UpdatedTimestamp: "",
+  });
+});
+
+
+// function for trigger using user deleted - auth
+exports.userDeleted = functions.auth.user().onDelete((user) => {
+  console.log("user deleted", user.email, user.uid);
+});
+
+exports.updateUserRequest = userRequest.updateUserRequest;
+exports.updateUserProfileImage = userRequest.updateUserProfileImage;
