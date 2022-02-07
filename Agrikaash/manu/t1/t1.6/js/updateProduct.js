@@ -7,6 +7,9 @@ var userRole = [];
 var count;
 var pID;
 
+var buisinessType = "";
+var productType = "";
+
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
@@ -239,8 +242,9 @@ function showItem(itemname) {
     }
   });
 }
-
 function populateProductData(bType, pType) {
+  buisinessType = bType;
+  productType = pType;
   //var DBrows = db.collection("Products").where("OrganizationId", "==", Number(organizationid)).get();
   var divPType = document.getElementById('productCategory');
   var divPList = document.getElementById('productRow');
@@ -256,18 +260,18 @@ function populateProductData(bType, pType) {
   var DBrows;
   if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
   {
-    DBrows = db.collection("Products").orderBy('CreatedTimestamp', 'desc');
+    DBrows = db.collection("Products").orderBy("Status").orderBy('CreatedTimestamp', 'desc');
   } else if ((pType === '' || pType === 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
     prodType = ['All', bType]
-    DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).orderBy('CreatedTimestamp', 'desc');
+    DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).orderBy("Status").orderBy('CreatedTimestamp', 'desc');
   } else if ((pType != '' && pType != 'All') && (bType === '' || bType === 'All')) //select one customer businessType
   {
-    DBrows = db.collection("Products").where("productType", "==", pType).orderBy('CreatedTimestamp', 'desc');
+    DBrows = db.collection("Products").where("productType", "==", pType).orderBy("Status").orderBy('CreatedTimestamp', 'desc');
   } else if ((pType != '' && pType != 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
     prodType = ['All',bType];
-    DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).orderBy('CreatedTimestamp', 'desc');
+    DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).orderBy("Status").orderBy('CreatedTimestamp', 'desc');
   }
 
 
@@ -677,8 +681,11 @@ function GetProductDetails(productID) {
 }
 
 function deleteProduct(productID, maindiv) {
-  db.collection("Products").doc(productID.value)
-    .delete();
+  db.collection("Products").doc(productID.value).update({
+    Status:"Inactive"
+  })
+  .then(function(docRef1) {
+    //.delete();
   count = count - 1;
   console.log(count);
 
@@ -691,7 +698,9 @@ function deleteProduct(productID, maindiv) {
     .catch(function(error) {
       console.error("error adding document:", error);
     });
-  document.getElementById("productRow").removeChild(maindiv);
+    populateProductData(buisinessType, productType);
+  });
+  //document.getElementById("productRow").removeChild(maindiv);
 }
 
 function anchorlLnkClick() {
