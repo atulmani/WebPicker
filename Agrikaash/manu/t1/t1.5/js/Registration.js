@@ -38,23 +38,43 @@ btnLogout.addEventListener('click', e => {
 
 function GetProfileData() {
   console.log(userID);
-  const snapshot = db.collection('UserRequest').doc(userID);
-  snapshot.get().then(async (doc) => {
-    if (doc.exists) {
-      // console.log('Document id:' + doc.id);
-      console.log(doc.data());
-      var displayName = doc.data().displayName;
-      var userEmail = doc.data().EmailID;
-      var address = doc.data().Address;
-      var CustomerType = doc.data().CustomerType;
+  var para ={
+    uid:userID
+  }
+  const getUserRequest = firebase.functions().httpsCallable("getUserRequest");
+  getUserRequest(para)
+
+  // const snapshot = db.collection('UserRequest').doc(userID);
+  // snapshot.get().then(async (doc) => {
+  .then((doc) => {
+    //console.log(doc);
+    if (doc != undefined) {
+      var record = doc.data._fieldsProto;
+      var displayName = record.displayName.stringValue;
+      var userEmail = record.EmailID.stringValue;
+      var address = record.Address.stringValue;
+      var CustomerType = record.CustomerType.stringValue;
       var cartIem = 0;
-      var DateOfBirth = doc.data().DateOfBirth;
-      var IDNo = doc.data().IDNo;
-      var IDType = doc.data().IDType;
-      var phone = doc.data().Phone;
-      var profileImageURL = doc.data().ProfileImageURL;
-      var userRole = doc.data().UserRole;
-      var companyName = doc.data().CompanyName;
+      var DateOfBirth = record.DateOfBirth.stringValue;
+      var IDNo = record.IDNo.stringValue;
+      var IDType = record.IDType.stringValue;
+      var phone = record.Phone.stringValue;
+      var profileImageURL = record.ProfileImageURL.stringValue;
+      var userRole = record.UserRole.arrayValue.values[0].mapValue.fields;
+      var companyName = record.CompanyName.stringValue;
+
+      // var displayName = doc.data().displayName;
+      // var userEmail = doc.data().EmailID;
+      // var address = doc.data().Address;
+      // var CustomerType = doc.data().CustomerType;
+      // var cartIem = 0;
+      // var DateOfBirth = doc.data().DateOfBirth;
+      // var IDNo = doc.data().IDNo;
+      // var IDType = doc.data().IDType;
+      // var phone = doc.data().Phone;
+      // var profileImageURL = doc.data().ProfileImageURL;
+      // var userRole = doc.data().UserRole;
+      // var companyName = doc.data().CompanyName;
 
       document.getElementById('userName').value = displayName;
       document.getElementById('userEmail').innerHTML = userEmail;
