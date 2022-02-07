@@ -2,7 +2,6 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
 // Function to update UserRequest collection
-// Here we're using Gmail to send email using oncall function
 exports.updateUserRequest = functions.https.onCall((data, context) => {
   if (!context.auth) {
     throw new functions.https.HttpError(
@@ -10,28 +9,15 @@ exports.updateUserRequest = functions.https.onCall((data, context) => {
         "only authenticated user can update userRequests"
     );
   }
-  console.log("first statement");
-  // const email = data.requestData.email;
   const email = data.email;
   const action = data.action;
-  // const uid = data.requestData.uid;
   const uid = data.uid;
-  console.log("uid", uid);
-
-  // const displayName = data.requestData.displayName;
   const displayName = data.displayName;
-  // const phoneNo = data.requestData.phoneNo;
   const phoneNo = data.phoneNo;
-  // const userRole = data.requestData.userRole;
   const userRole = data.userRole;
-  // console.log(userRole);
-  // const status = data.requestData.status;
   const status = data.status;
-  // const address = data.requestData.address;
   const address = data.address;
-  // const companyName = data.requestData.companyName;
   const companyName = data.companyName;
-  // const customerType = data.requestData.customerType;
   const customerType = data.customerType;
   console.log("before update statement");
 
@@ -64,10 +50,10 @@ exports.updateUserRequest = functions.https.onCall((data, context) => {
       displayName: displayName,
       EmailID: email,
       Phone: phoneNo,
-      // DateOfBirth: "",
+      DateOfBirth: "",
       Address: address,
-      // IDType: '',
-      // IDNo: '',
+      IDType: "",
+      IDNo: "",
       UserRole: userRole,
       CompanyName: companyName,
       CustomerType: customerType,
@@ -80,7 +66,6 @@ exports.updateUserRequest = functions.https.onCall((data, context) => {
 
 
 // Function to update UserRequest collection
-// Here we're using Gmail to send email using oncall function
 exports.updateUserProfileImage = functions.https.onCall((data, context) => {
   if (!context.auth) {
     throw new functions.https.HttpError(
@@ -100,4 +85,37 @@ exports.updateUserProfileImage = functions.https.onCall((data, context) => {
   return admin.firestore().collection("UserRequest").doc(uid).update({
     ProfileImageURL: profileImageURL,
   });
+});
+
+
+// Function to get all record
+exports.getAllUserRequests = functions.https.onCall((data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpError(
+        "unauthenticatied",
+        "only authenticated can get the details"
+    );
+  }
+  return admin.firestore().collection("UserRequest").get();
+});
+
+// Function to get user record
+exports.getUserRequest = functions.https.onCall((data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpError(
+        "unauthenticatied",
+        "only authenticated can get the details"
+    );
+  }
+
+  const uid = data.uid;
+
+  if (uid === undefined) {
+    throw new functions.https.HttpError(
+        "failed-precondition",
+        "user ID to be provided "
+    );
+  }
+
+  return admin.firestore().collection("UserRequest").doc(uid).get();
 });
