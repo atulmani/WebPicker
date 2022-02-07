@@ -160,25 +160,6 @@ function setUsersProfileData(user) {
   // console.log(data);
     const updateUserRequest = firebase.functions().httpsCallable("updateUserRequest");
     updateUserRequest(requestData)
-
-  // console.log("Set User Profile Data");
-  // db.collection('UserRequest')
-  //   .doc(user.uid)
-  //   .set({
-  //     uid: user.uid,
-  //     displayName: user.displayName,
-  //     EmailID: user.email,
-  //     Phone: document.getElementById('txtPhoneReg').value,
-  //     DateOfBirth: '',
-  //     Address: '',
-  //     IDType: '',
-  //     IDNo: '',
-  //     UserRole: [],
-  //     CustomerType: '',
-  //     Status: 'Pending',
-  //     CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
-  //     UpdatedTimestamp: ''
-  //   })
     .then(() => {
       // updated
        console.log('after function call , Data saved successfully');
@@ -217,12 +198,20 @@ function GetUserRole(user) {
       else
       {
         console.log('in else');
-        const snapshot1 = db.collection('UserRequest').doc(user.uid);
-        snapshot1.get().then(async (doc1) => {
-            if (doc1.exists) {
-                // console.log("in user request");
-                userRole = doc1.data().UserRole;
-                window.location.href = "Registration.html";
+
+        var para ={
+          uid:user.uid
+        }
+
+        const getUserRequest = firebase.functions().httpsCallable("getUserRequest");
+        getUserRequest(para)
+        .then((doc) => {
+          //console.log(doc);
+          if (doc != undefined) {
+            var record = doc.data._fieldsProto;
+
+            userRole = record.UserRole.arrayValue.values[0].mapValue.fields;
+            window.location.href = "Registration.html";
             }
           });
 
