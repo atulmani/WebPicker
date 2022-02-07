@@ -120,3 +120,5 @@ exports.userDeleted = functions.auth.user().onDelete((user) => {
 
 exports.updateUserRequest = userRequest.updateUserRequest;
 exports.updateUserProfileImage = userRequest.updateUserProfileImage;
+exports.getAllUserRequests = userRequest.getAllUserRequests;
+exports.getUserRequest = userRequest.getUserRequest;
