@@ -22,6 +22,10 @@ auth.onAuthStateChanged(firebaseUser => {
       document.getElementById("notificationCnt1").innerHTML = siteNotification;
 
 
+      var siteCartItem = localStorage.getItem("cartItem");
+      document.getElementById("cartItemNo").innerHTML = siteCartItem;
+
+
     } else {
       console.log('User has been logged out');
       window.location.href = "../login/index.html";
@@ -58,41 +62,27 @@ function GetProfileData(user) {
         }
 
 
-        if (userRole != undefined) {
-          if (userRole.findIndex(e => e.Value === "Admin") >= 0) {
-            isAdmin = true;
-            // document.getElementById("a4").href = "confirmRegistration.html";
-            // var i4 = document.getElementById("i4");
-            // i4.setAttribute("class", "fas fa-registered");
-            // document.getElementById("small4").innerHTML = "Registration";
-            // // var span4 = document.getElementById("cartItemNo");
-            // span4.style.display = "none";
-
-          } else {
-            isAdmin = false;
-
-            // var a5 = document.getElementById("a5");
-            // a5.style.display = "none";
-          }
-        } else {
-          {
-            // var a5 = document.getElementById("a5");
-            // a5.style.display = "none";
-            // isAdmin = false;
-          }
-        }
+        // if (userRole != undefined) {
+        //   if (userRole.findIndex(e => e.Value === "Admin") >= 0) {
+        //     isAdmin = true;
+        //
+        //   } else {
+        //     isAdmin = false;
+        //
+        // }
+        // } else {
+        //   {
+        //     // var a5 = document.getElementById("a5");
+        //     // a5.style.display = "none";
+        //     // isAdmin = false;
+        //   }
+        // }
         if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
           document.getElementById('profilePic').src = doc.data().ProfileImageURL;
         document.getElementById('profileName').innerHTML = doc.data().displayName;
 
         var promise = getCartItemNo();
-        // var promise2 = promise.then(populateProductData('', '', true));
         var promise2 = promise.then(populateProductData(userBusinessCategory, '', true));
-        //  GetNotificationList();
-        var siteNotification = localStorage.getItem("notificationCount");
-        document.getElementById("notificationCnt").innerHTML = siteNotification;
-        document.getElementById("notificationCnt1").innerHTML = siteNotification;
-
 
       }
     })
@@ -105,48 +95,6 @@ function GetProfileData(user) {
       // document.getElementById('errorMessage_Signup').style.display = 'block';
     });
 };
-
-
-function GetNotificationList() {
-  var index = 0;
-  var flag = false;
-  var today = new Date();
-
-  const DBrows = db.collection('Notification')
-    .where("Status", '==', 'Active')
-    .where('ValidityTill', ">=", today)
-  //.orderBy('CreatedTimestamp', 'desc');
-
-  DBrows.onSnapshot((snapshot) => {
-    let changes = snapshot.docChanges();
-
-    changes.forEach(change => {
-      var userListDB = change.doc.data().UserList;
-      var userTypeDB = change.doc.data().UserType;
-
-      if (userListDB === undefined)
-        flag = true;
-      else if (userListDB[0].userID === 'All')
-        flag = true;
-      else if (userListDB.findIndex(e => e.userID === userID) >= 0)
-        flag = true;
-      else if (userTypeDB === undefined)
-        flag = true;
-      else if (userTypeDB[0] === 'All')
-        flag = true;
-      else if (userTypeDB.indexOf(userBusinessCategory) >= 0)
-        flag = true;
-      if (flag === true) {
-        index = index + 1;
-      }
-    });
-
-    if (flag === true) {
-      document.getElementById("notificationCnt").innerHTML = index;
-    }
-
-  });
-}
 
 async function getCartItemNo() {
   //console.log("getCartItemNo");
@@ -171,10 +119,10 @@ async function getCartItemNo() {
 
 function myChangeEvent() {
   console.log('myChnageEvent');
-  document.getElementById("wrongSearch").style.display="none";
+  document.getElementById("wrongSearch").style.display = "none";
 
   document.getElementById("productRow").innerHTML = "";
-  var noFlag= false;
+  var noFlag = false;
   var input, filter, ul, li, a, i;
   input = document.getElementById("myInput");
   filter = input.children[0].value.toUpperCase();
@@ -186,7 +134,7 @@ function myChangeEvent() {
   var callCount = 1;
   for (i = 0; i < a.length; i++) {
     //txtValue = a[i].textContent || a[i].innerText;
-    txtValue =  a[i].innerText  + " " + document.getElementById("hfSearchID" + i).value ;
+    txtValue = a[i].innerText + " " + document.getElementById("hfSearchID" + i).value;
 
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       noFlag = true;;
@@ -209,10 +157,9 @@ function myChangeEvent() {
     RenderProductByProducrID(productList, callCount);
   }
   console.log(noFlag);
-  if(noFlag === false)
-  {
+  if (noFlag === false) {
     document.getElementById("searchKeyText").innerHTML = filter;
-    document.getElementById("wrongSearch").style.display="block";
+    document.getElementById("wrongSearch").style.display = "block";
 
   }
   console.log("before display none");
@@ -238,7 +185,7 @@ function myChangeEventOld() {
   var callCount = 1;
   for (i = 0; i < a.length; i++) {
     //txtValue = a[i].textContent || a[i].innerText;
-    txtValue =  a[i].innerText  + " " + document.getElementById("hfSearchID" + i).value ;
+    txtValue = a[i].innerText + " " + document.getElementById("hfSearchID" + i).value;
 
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       a[i].style.display = "";
@@ -333,7 +280,8 @@ async function populateProductData(bType, pType, flag) {
     console.log('All', 'All');
     DBrows = db.collection("Products")
       .where("ProductLocation", "in", productLocation)
-      .where("Status", "==", "Active")
+      .where("Status", "!=", "Inactive")
+      .orderBy("Status")
       .orderBy("ProductName").get();
   } else if ((pType === '' || pType === 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
@@ -342,7 +290,8 @@ async function populateProductData(bType, pType, flag) {
     DBrows = db.collection("Products")
       .where("CustomerBusinessType", "in", prodType)
       .where("ProductLocation", "in", productLocation)
-      .where("Status", "==", "Active")
+      .where("Status", "!=", "Inactive")
+      .orderBy("Status")
       .orderBy("ProductName").get();
   } else if ((pType != '' && pType != 'All') && (bType === '' || bType === 'All')) //select one customer businessType
   {
@@ -351,7 +300,8 @@ async function populateProductData(bType, pType, flag) {
     DBrows = db.collection("Products")
       .where("productType", "==", pType)
       .where("ProductLocation", "in", productLocation)
-      .where("Status", "==", "Active")
+      .where("Status", "!=", "Inactive")
+      .orderBy("Status")
       .orderBy("ProductName").get();
   } else if ((pType != '' && pType != 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
@@ -361,7 +311,8 @@ async function populateProductData(bType, pType, flag) {
       .where("productType", "==", pType)
       .where("CustomerBusinessType", "in", prodType)
       .where("ProductLocation", "in", productLocation)
-      .where("Status", "==", "Active")
+      .where("Status", "!=", "Inactive")
+      .orderBy("Status")
       .orderBy("ProductName").get();
   }
 
@@ -370,7 +321,7 @@ async function populateProductData(bType, pType, flag) {
     var index = 0;
     var selectedindex = -1;
     var selectdedItem;
-    var productName ;
+    var productName;
     var searchKey;
     productCategory.push('All');
     changes.forEach(change => {
@@ -393,12 +344,10 @@ async function populateProductData(bType, pType, flag) {
       }
 
       productName = change.data().ProductName;
-      if(change.data().SearchKey === undefined || change.data().SearchKey === "")
-      {
+      if (change.data().SearchKey === undefined || change.data().SearchKey === "") {
         searchKey = productName;
-      }
-      else {
-          searchKey = change.data().SearchKey;
+      } else {
+        searchKey = change.data().SearchKey;
       }
 
 
@@ -414,11 +363,11 @@ async function populateProductData(bType, pType, flag) {
         hfID.setAttribute("value", change.id);
         anchorB.appendChild(hfID);
 
-          var hfSearchID = document.createElement("input");
-          hfSearchID.setAttribute("type", "hidden");
-          hfSearchID.setAttribute("id", "hfSearchID" + index);
-          hfSearchID.setAttribute("value", searchKey);
-          anchorB.appendChild(hfSearchID);
+        var hfSearchID = document.createElement("input");
+        hfSearchID.setAttribute("type", "hidden");
+        hfSearchID.setAttribute("id", "hfSearchID" + index);
+        hfSearchID.setAttribute("value", searchKey);
+        anchorB.appendChild(hfSearchID);
 
         document.getElementById("idItem").appendChild(anchorB);
       }
@@ -621,9 +570,10 @@ function renderProductNew(doc, index, selectedItem) {
     minimumFractionDigits: 0,
     maximumFractionDigits: 2
   };
-
+  //console.log(doc.id, doc.data().ProductName);
 
   var productlist = doc.data().ProductDetails;
+  var weightUnit = doc.data().ProductWeightUnit;
 
   var div1 = document.createElement("div");
   div1.setAttribute("class", "col-sm-12");
@@ -631,6 +581,23 @@ function renderProductNew(doc, index, selectedItem) {
 
   var div1_1 = document.createElement("div");
   div1_1.setAttribute("class", "product-list-div");
+
+  if (doc.data().Status === "Out Of Stock") {
+    var divP = document.createElement("div");
+    divP.setAttribute("class", "inventory-quantity-level");
+    var blink = document.createElement("blink");
+    blink.innerHTML = "Out of Stock";
+    divP.appendChild(blink);
+    div1_1.appendChild(divP);
+  } else if (doc.data().PromotionFlag === true) {
+    var divP = document.createElement("div");
+    divP.setAttribute("class", "inventory-quantity-level");
+    divP.setAttribute("style", "background: #88CA5E;");
+    var blink = document.createElement("blink");
+    blink.innerHTML = doc.data().PromotionText;
+    divP.appendChild(blink);
+    div1_1.appendChild(divP);
+  }
 
   var table1 = document.createElement("table");
   table1.setAttribute("width", "100%");
@@ -644,6 +611,7 @@ function renderProductNew(doc, index, selectedItem) {
   hfID.setAttribute("type", "hidden");
   hfID.setAttribute("value", doc.id);
   td1.appendChild(hfID);
+
   var img1 = document.createElement("img");
   img1.setAttribute("src", doc.data().ProductImageURL);
   img1.setAttribute("width", "100%");
@@ -651,6 +619,13 @@ function renderProductNew(doc, index, selectedItem) {
   img1.setAttribute("alt", "Product");
   td1.appendChild(img1);
 
+  tr1.appendChild(td1);
+  //console.log(doc.data().ProductName);
+  //console.log(doc.id);
+  var td2 = document.createElement("td");
+  td2.setAttribute("width", "55%");
+  td2.setAttribute("valign", "top")
+  td2.setAttribute("class", "product-names-div product-select");
 
   var div1_3 = document.createElement("div");
   div1_3.setAttribute("class", "veg-nonVeg-div");
@@ -664,16 +639,23 @@ function renderProductNew(doc, index, selectedItem) {
   imgVegNonVeg.setAttribute("alt", "");
 
   div1_3.appendChild(imgVegNonVeg);
-  td1.appendChild(div1_3);
-  tr1.appendChild(td1);
-  //console.log(doc.data().ProductName);
-  //console.log(doc.id);
-  var td2 = document.createElement("td");
-  td2.setAttribute("width", "55%");
-  td2.setAttribute("valign", "top")
-  td2.setAttribute("class", "product-names-div product-select");
-  td2.innerHTML = "<small class='product-names'>" + doc.data().ProductName + "</small><br>" +
-    "<small style='font-size: 0.8rem; color: rgba(0,0,0,0.5);'>" + doc.data().Brand + "</small><br>";
+  td2.appendChild(div1_3);
+
+  var s1 = document.createElement("small");
+  s1.setAttribute("class", "product-names");
+  s1.innerHTML = doc.data().ProductName;
+
+  td2.appendChild(s1);
+  var b1 = document.createElement("br");
+  td2.appendChild(b1);
+
+
+  var s2 = document.createElement("small");
+  s2.setAttribute("style", "font-size: 0.8rem; color: rgba(0,0,0,0.5);");
+  s2.innerHTML = doc.data().Brand;
+  td2.appendChild(s2);
+  var b2 = document.createElement("br");
+  td2.appendChild(b2);
 
   var selectP = document.createElement("select");
   selectP.setAttribute("name", "productDetails" + index);
@@ -690,9 +672,20 @@ function renderProductNew(doc, index, selectedItem) {
   for (const val of productlist) {
     var option = document.createElement("option");
     option.value = val.ProductFinalPrise + ":" + val.ProductMRP;
-    option.text = val.ProductWeight + " - " + "Rs." + val.ProductFinalPrise;
+    var weight = val.ProductWeight;
+    weight = weight.split(" ");
+    var productWeight = "";
+    if (weightUnit === undefined) {
+      option.text = val.ProductWeight + " - " + "Rs." + val.ProductFinalPrise;
+    } else {
+      option.text = weight[0] + " " + weightUnit + " - " + "Rs." + val.ProductFinalPrise;
+    }
     if (selectedItem != null) {
-      if (option.text === selectedItem.SelectedsubItem) {
+      var selweight = selectedItem.SelectedsubItem;
+      selweight = selweight.split(" ");
+      var optiontext = option.text;
+      optiontext = optiontext.split(" ");
+      if (optiontext[0] === selweight[0]) {
         option.selected = true;
 
         if (qtyNew === doc.data().MinimumQty)
@@ -769,6 +762,9 @@ function renderProductNew(doc, index, selectedItem) {
 
   var buttonA = document.createElement("a");
   buttonA.setAttribute('href', '#');
+  if (doc.data().Status === "Out Of Stock") {
+    buttonA.setAttribute("disabled", true);
+  }
   buttonA.setAttribute("id", "btnAddtoCart" + index);
   // buttonA.setAttribute("onclick", "addToCart(" + doc.data().MinimumQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "'," + index + ")");
   buttonA.addEventListener("click", function(e) {
@@ -780,6 +776,11 @@ function renderProductNew(doc, index, selectedItem) {
   addToCartBtn.setAttribute('style', 'width:90px;font-size:1.08rem;');
   addToCartBtn.innerHTML = "Add <i class='fas fa-cart-plus'></i>";
 
+  if (doc.data().Status === "Out Of Stock") {
+    addToCartBtn.setAttribute("disabled", true);
+    addToCartBtn.setAttribute('style', 'width:90px;font-size:1.08rem;display:none');
+
+  }
   var trinput1 = document.createElement("input");
   trinput1.setAttribute("id", "minus" + index);
   trinput1.setAttribute("type", "button");
@@ -787,6 +788,10 @@ function renderProductNew(doc, index, selectedItem) {
   trinput1.setAttribute("class", "minus");
 
   trinput1.setAttribute("onclick", " decrementQty(" + "qty" + index + ", " + "min" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "'," + index + ")");
+  if (doc.data().Status === "Out Of Stock") {
+    trinput1.setAttribute("disabled", true);
+    trinput1.setAttribute("style", "display:none");
+  }
 
   //trinput1.setAttribute("onclick", " decrementQty(" + "qty" + index + ", " + "min" + index + " ," + doc.data().StepQty + ","+doc.data().ProductName+","+selectP+" ,"+doc.id+" )");
   var trinput2 = document.createElement("input");
@@ -807,15 +812,22 @@ function renderProductNew(doc, index, selectedItem) {
   trinput2.setAttribute("size", "4");
   trinput2.setAttribute("pattern", "");
   trinput2.setAttribute("inputmode", "");
+  trinput2.setAttribute("onchange", "updateQuantity(" + "qty" + index + "," + doc.data().MinimumQty + "," + doc.data().MaximumQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "' )");
+  if (doc.data().Status === "Out Of Stock") {
+    trinput2.setAttribute("disabled", true);
+    trinput2.setAttribute("style", "display:none");
+  }
 
   var trinput3 = document.createElement("input");
-  trinput2.setAttribute("onchange", "updateQuantity(" + "qty" + index + "," + doc.data().MinimumQty + "," + doc.data().MaximumQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "' )");
   trinput3.setAttribute("id", "plus" + index);
   trinput3.setAttribute("type", "button");
   trinput3.setAttribute("value", "+");
   trinput3.setAttribute("onclick", "incrementQty(" + "qty" + index + ", " + "max" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "')");
   trinput3.setAttribute("class", "plus");
-
+  if (doc.data().Status === "Out Of Stock") {
+    trinput3.setAttribute("disabled", true);
+    trinput3.setAttribute("style", "display:none");
+  }
   var trinput4 = document.createElement("input");
   trinput4.setAttribute("id", "step" + index);
   trinput4.setAttribute("type", "hidden");
@@ -1057,7 +1069,6 @@ function updateQuantity(oqty, iMin, iMax, itemName, productID, itemSizeObj) {
 }
 
 function incrementQty(oqty, omax, step, itemName, productID, itemSizeObj) {
-
   var qty = Number(oqty.value);
   //console.log(oqty);
   //console.log(qty);
@@ -1345,7 +1356,7 @@ function showItem(itemname) {
 
 function inputSearchFocus() {
   document.getElementById("idItem").style.display = "block";
-  document.getElementById("wrongSearch").style.display="none";
+  document.getElementById("wrongSearch").style.display = "none";
 
 }
 
@@ -1359,7 +1370,7 @@ function filterFunction() {
   a = div.getElementsByTagName("button");
   for (i = 0; i < a.length; i++) {
     //txtValue = a[i].textContent || a[i].innerText;
-    txtValue =  a[i].innerText  + " " + document.getElementById("hfSearchID" + i).value ;
+    txtValue = a[i].innerText + " " + document.getElementById("hfSearchID" + i).value;
 
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       a[i].style.display = "";
@@ -1378,7 +1389,7 @@ function filterFunctionOld() {
   a = div.getElementsByTagName("button");
   for (i = 0; i < a.length; i++) {
     //txtValue = a[i].textContent || a[i].innerText;
-    txtValue =  a[i].innerText  + " " + document.getElementById("hfSearchID" + i).value ;
+    txtValue = a[i].innerText + " " + document.getElementById("hfSearchID" + i).value;
 
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       a[i].style.display = "";
