@@ -599,9 +599,172 @@
             </div>
           </div>
 
+          <div class="dashboard-card" id="cardInventory" onclick="showHideCard(cardInventory, cardInventoryArrow)" style='display:none;'>
+            <!-- <div class="dashboard-card" id="cardInventory" onclick="showHideCard(cardInventory, cardInventoryArrow)" > -->
+            <div class="" style="display:flex;align-items: center;">
+              <div class="arrow-down">
+                <span id="cardInventoryArrow" class="material-icons-outlined">
+                  keyboard_arrow_down
+                </span>
+              </div>
+
+              <div class="">
+                <span class="material-icons-outlined order-icon">
+                  category
+                </span>
+              </div>
+              <div class="details">
+                <h4>Inventory</h4>
+                <p class="small-text dashboard-sub-heading" id="Inventory">Inventory Available for : <span id="inventoryCnt"></span> Items </p>
+              </div>
+            </div>
+
+            <div class="dashboard-card-expand">
+              <hr>
+
+              <div class="dashboard-card-order">
+                <div class="">
+                  <h5 class="small-text">To be Purchashed </h5>
+                  <small>(Over booked)</small><br>
+                  <div onClick="ShowInventory('overbooked');">
+                    <span id="overbookedCount">0 </span> Items
+                  </div>
+                </div>
+
+                <div class="">
+                  <h5 class="small-text">No Volume </h5>
+                  <small>( 0 Inventory )</small><br>
+                  <div onClick="ShowInventory('noinventory');">
+                    <span id="noVolumnCount">0</span> Items
+                    <!-- <small id="yesterdayAmount">₹ 0</small> -->
+                  </div>
+                </div>
+              </div><br>
+
+              <div class="dashboard-card-order">
+                <div class="">
+                  <h5 class="small-text">Low Volume </h5>
+                  <small>(Less Than 20)</small><br>
+                  <div onClick="ShowInventory('lowinventory');">
+                    <span id="lowVolumnCount">0</span> Items
+                    <!-- <small id="WeekAmount">₹ 0</small> -->
+                  </div>
+                </div>
+
+                <div class="">
+                  <h5 class="small-text">High Volume </h5>
+                  <small>(More Than 50)</small><br>
+                  <div onClick="ShowInventory('highinventory');">
+                    <span id="highVolumnCount">0</span> Items
+                    <!-- <small id="monthAmount">₹ 0</small> -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="" style="display:flex;align-items:center;padding-top: 10px;">
+                <a href="inventory.html">
+                  <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
+                    Inventory
+                    <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
+                      trending_up
+                    </span>
+                  </button>
+                </a>
+                <a href="purchaseBook.html">
+                  <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
+                    Update Purchase Details
+                    <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
+                      menu
+                    </span>
+                  </button>
+                </a>
+              </div>
+
+            </div>
+          </div>
 
 
 
+          <div class="dashboard-card" id="cardPurchase" onclick="showHideCard(cardPurchase, cardPurchaseArrow)" style='display:none;'>
+            <!-- <div class="dashboard-card" id="cardInventory" onclick="showHideCard(cardInventory, cardInventoryArrow)" > -->
+            <div class="" style="display:flex;align-items: center;">
+              <div class="arrow-down">
+                <span id="cardPurchaseArrow" class="material-icons-outlined">
+                  keyboard_arrow_down
+                </span>
+              </div>
+
+              <div class="">
+                <span class="material-icons-outlined order-icon">
+                  category
+                </span>
+              </div>
+              <div class="details">
+                <h4>Purchase Details</h4>
+                <p class="small-text dashboard-sub-heading" id="Inventory">Last Purchased : <span id="lastPurchased"></span> </p>
+              </div>
+            </div>
+
+            <div class="dashboard-card-expand">
+              <hr>
+
+              <div class="dashboard-card-order">
+                <div class="">
+                  <h5 class="small-text">Today </h5>
+                  <div onClick="ShowPurchase('today');">
+                    <span id="todayPurchase">0</span> Items<br>
+                    <small id="todayPurchaseAmount">₹ 0</small>
+                  </div>
+                </div>
+
+                <div class="">
+                  <h5 class="small-text">Yesterday </h5>
+                  <div onClick="ShowPurchase('yesterday');">
+                    <span id="yesterdayPurchase">0</span> Items<br>
+                    <small id="yesterdayPurchaseAmount">₹ 0</small>
+                  </div>
+                </div>
+              </div><br>
+
+              <div class="dashboard-card-order">
+                <div class="">
+                  <h5 class="small-text">Last 7 days </h5>
+                  <div onClick="ShowPurchase('week');">
+                    <span id="weekPurchase">0</span> Items<br>
+                    <small id="weekPurchaseAmount">₹ 0</small>
+                  </div>
+                </div>
+
+                <div class="">
+                  <h5 class="small-text">Last 1 Month </h5>
+                  <div onClick="ShowPurchase('month');">
+                    <span id="monthPurchase">0</span> Items<br>
+                    <small id="monthPurchaseAmount">₹ 0</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="" style="display:flex;align-items:center;padding-top: 10px;">
+                <a href="inventory.html">
+                  <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
+                    Inventory
+                    <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
+                      trending_up
+                    </span>
+                  </button>
+                </a>
+                <a href="purchaseBook.html">
+                  <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
+                    Update Purchase Details
+                    <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
+                      menu
+                    </span>
+                  </button>
+                </a>
+              </div>
+
+            </div>
+          </div>
           <div class="dashboard-card" id="productDiv" onclick="showHideCard(productDiv, productDivArrow)" style='display:none;'>
             <div class="" style="display:flex;align-items: center;">
               <div class="arrow-down">
@@ -659,50 +822,50 @@
       </div>
 
 
-        <div id="trendChart" class="col-lg-7 col-md-7 col-sm-12" style='visibility: hidden;height: 0;'><br><br>
-          <div class="">
-            <div class="row no-gutters">
-              <div class="col-lg-3 col-md-3 col-sm-12">
-                <div class="" style="width: 100%; background:rgba(0,0,0,0.05);height:100%;">
-                  <p style="padding:6px;"></p>
-                </div>
+      <div id="trendChart" class="col-lg-7 col-md-7 col-sm-12" style='visibility: hidden;height: 0;'><br><br>
+        <div class="">
+          <div class="row no-gutters">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+              <div class="" style="width: 100%; background:rgba(0,0,0,0.05);height:100%;">
+                <p style="padding:6px;"></p>
               </div>
-              <div class="col-lg-9 col-md-9 col-sm-12">
-                <div class="" style="text-align:center;padding:20px;">
-                  <input type='radio' id='rdLine' name='charttype' onchange="changeGraphType( 1)" ; /><span>Line Graph</span>
-                  <input type='radio' id='rdBar' name='charttype' onchange="changeGraphType( 2)" checked ; /><span>Bar Graph</span>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+              <div class="" style="text-align:center;padding:20px;">
+                <input type='radio' id='rdLine' name='charttype' onchange="changeGraphType( 1)" ; /><span>Line Graph</span>
+                <input type='radio' id='rdBar' name='charttype' onchange="changeGraphType( 2)" checked ; /><span>Bar Graph</span>
 
-                  <div class="" id="chartContainer" style="width:100%;height:300px;"></div>
-                </div>
+                <div class="" id="chartContainer" style="width:100%;height:300px;"></div>
               </div>
             </div>
           </div>
         </div>
-
-
-        <div  class="col-lg-7 col-md-7 col-sm-12"><br><br>
-          <div class="">
-            <div class="row no-gutters">
-              <div class="col-lg-3 col-md-3 col-sm-12">
-                <div class="" style="width: 100%; background:rgba(0,0,0,0.05);height:100%;">
-                  <p style="padding:6px;"></p>
-                </div>
-              </div>
-              <div class="col-lg-9 col-md-9 col-sm-12">
-                <div class="" style="text-align:center;padding:20px;">
-                  <input type='radio' id='rdLine1' name='charttype1' onchange="changeGraphType1( 1);" /><span>Line Graph</span>
-                  <input type='radio' id='rdBar1' name='charttype1' onchange="changeGraphType1( 2);" checked /><span>Bar Graph</span>
-
-                  <div class="" id="chartContainer1" style="width:100%;height:300px;"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
       </div>
-<!--
+
+
+      <div class="col-lg-7 col-md-7 col-sm-12"><br><br>
+        <div class="">
+          <div class="row no-gutters">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+              <div class="" style="width: 100%; background:rgba(0,0,0,0.05);height:100%;">
+                <p style="padding:6px;"></p>
+              </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+              <div class="" style="text-align:center;padding:20px;">
+                <input type='radio' id='rdLine1' name='charttype1' onchange="changeGraphType1( 1);" /><span>Line Graph</span>
+                <input type='radio' id='rdBar1' name='charttype1' onchange="changeGraphType1( 2);" checked /><span>Bar Graph</span>
+
+                <div class="" id="chartContainer1" style="width:100%;height:300px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <!--
       <div class="row no-gutters">
         <div class="col-lg-5 col-md-5 col-sm-12">
 
@@ -725,7 +888,7 @@
         </div>
       </div> -->
 
-    </div>
+  </div>
   <!-- </div> -->
 
 
@@ -737,7 +900,7 @@
   <!-- Map Section - End -->
 
   <!-- Footer Section - Start -->
-  <br class="small"/><br class="small"/><br class="small"/>
+  <br class="small" /><br class="small" /><br class="small" />
   <section id="footer" class="large">
     <br /><br />
     <div class="container">
