@@ -10,10 +10,18 @@ var pID;
 var buisinessType = "";
 var productType = "";
 var filter = "All";
+var flagSearch = true;
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
       console.log('Logged-in user email id: ' + firebaseUser.email);
+      // console.log(eventDocUrl);
+      filter = localStorage.getItem("inventoryFiler");
+
+      if (filter === undefined || filter === null || filter === '')
+        filter = 'All';
+      localStorage.removeItem("inventoryFiler");
+
       userID = firebaseUser.uid;
       GetProfileData(firebaseUser);
       document.getElementById('loading').style.display = 'none';
@@ -247,6 +255,7 @@ function showItem(itemname) {
 
 function populateProductData(bType, pType) {
   console.log('populateProductData', bType, pType);
+  console.log(filter);
   buisinessType = bType;
   productType = pType;
   //var DBrows = db.collection("Products").where("OrganizationId", "==", Number(organizationid)).get();
@@ -262,7 +271,15 @@ function populateProductData(bType, pType) {
   }
 
   var DBrows;
-  if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
+  if (filter === "overbooked") {
+    DBrows = db.collection("Products").where("AvailableQuantity", "<", 0).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+  } else if (filter === "noinventory") {
+    DBrows = db.collection("Products").where("AvailableQuantity", "==", 0).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+  } else if (filter === "lowinventory") {
+    DBrows = db.collection("Products").where("AvailableQuantity", "<", 20).where("AvailableQuantity", ">", 0).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+  } else if (filter === "highinventory") {
+    DBrows = db.collection("Products").where("AvailableQuantity", ">", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+  } else if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
   {
     console.log("in loop1");
     if (filter === "All") {
@@ -328,12 +345,9 @@ function populateProductData(bType, pType) {
     var productName = "";
     var searchKey = "";
     snapshot.forEach(change => {
-      //if (change.type == 'added')
-      {
-        var pCategory = change.data().productType;
-        productCategory.push(pCategory)
+      var pCategory = change.data().productType;
+      productCategory.push(pCategory)
 
-      }
       productName = change.data().ProductName;
       if (change.data().SearchKey === undefined || change.data().SearchKey === "") {
         searchKey = productName;
@@ -342,8 +356,10 @@ function populateProductData(bType, pType) {
       }
 
       //console.log(change.doc.data());
-      if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
+      if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All') && filter === 'All' && flagSearch === true)
+      // (filter === "overbooked" || filter === "noinventory" || filter === 'lowinventory' || filter === 'highinventory'))) //Select all products
       {
+
         var anchorB = document.createElement("button");
         anchorB.setAttribute("onclick", "showItem('" + change.id + "')");
         anchorB.innerHTML = productName;
@@ -370,6 +386,20 @@ function populateProductData(bType, pType) {
       index = index + 1;
 
     });
+    if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All') && filter === 'All' && flagSearch === true) {
+      flagSearch = false;
+    }
+    if (filter === 'overbooked' || filter === 'noinventory' || filter === "lowinventory" || filter === 'highinventory') {
+      filter = "All";
+      pType = '';
+      bType = '';
+
+      document.getElementById("allAnchor").setAttribute("class", "");
+      document.getElementById("VegetableAnchor").setAttribute("class", "");
+      document.getElementById("FruitAnchor").setAttribute("class", "");
+
+    }
+
     document.getElementById("itemCnt").innerHTML = index + " Items";
     var unique = productCategory.filter(onlyUnique);
     renderProductCategory(unique, pType);
