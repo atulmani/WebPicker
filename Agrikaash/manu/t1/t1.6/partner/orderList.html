@@ -397,8 +397,8 @@
 
         <div class="">
           <div onclick="exportFile();">
-          <img src="../img/excel.png" width="30px" alt="">
-        </div>
+            <img src="../img/excel.png" width="30px" alt="">
+          </div>
         </div>
 
         <div class="" style="text-align: right;">
@@ -425,7 +425,8 @@
               <p class="small-text dashboard-sub-heading">Delivery: Feb 4, 2022 | 6 : 10 AM - 1 Items</p>
             </div>
           </div>
-          <div class="dashboard-card-expand"><hr>
+          <div class="dashboard-card-expand">
+            <hr>
             <div class="dashboard-card-order">
               <div class="">
                 <h5 class="small-text" style="margin: 0 auto;">Order Number</h5>
@@ -465,7 +466,8 @@
                   </span>
                 </button>
               </a>
-            </div><hr>
+            </div>
+            <hr>
 
 
             <!-- Added elements - start -->
@@ -517,9 +519,9 @@
         </div>
         <div id="orderListDiv">
         </div>
-        <div class="dashboard-card order-status" id="id1" style="display:none;" >
-          <div class=""   style="display:flex;align-items: center;" onclick="showHideCard(id1,id2)">
-            <div class="arrow-down" >
+        <div class="dashboard-card order-status" id="id1" style="display:none;">
+          <div class="" style="display:flex;align-items: center;" onclick="showHideCard(id1,id2)">
+            <div class="arrow-down">
               <span class="material-icons-outlined">
                 keyboard_arrow_down
               </span>
@@ -530,7 +532,7 @@
                 check_circle
               </span>
             </div>
-            <div class="details" >
+            <div class="details">
               <h4 style="color: #1D741B">Deliverd</h4>
               <p class="small-text dashboard-sub-heading" id="lastOrder">Delivery date: 10th Dec 2022 - 2697 Items</p>
             </div>
@@ -618,7 +620,77 @@
         </div>
 
         <div class="">
-
+          <!-- <div class="dashboard-card order-status active" id="manu">
+            <div class="" style="display:flex;align-items: center;" onclick="showHideCard(card0,cardarrow0)">
+              <div class="arrow-down"><span class="material-icons-outlined" id="cardarrow0">keyboard_arrow_down</span><input type="hidden" id="hfOrderID0" value="rzczA5FJOynmaXwsQnCM"></div>
+              <div class=""><span class="material-icons-outlined order-icon" style="font-size: 3rem; color: #F8D210;">history_toggle_off</span></div>
+              <div class="details">
+                <h4 style="color: #F8D210">Manu</h4>
+                <p class="small-text dashboard-sub-heading">Delivery: Feb 19, 2022 | 6 : 10 AM - 1 Items</p>
+              </div>
+            </div>
+            <div class="dashboard-card-expand">
+              <hr>
+              <div class="dashboard-card-order">
+                <div class="">
+                  <h5 class="small-text" style="margin: 0 auto;">Order Number</h5><small>1644638368567</small>
+                </div>
+                <div class="">
+                  <h5 class="small-text" style="margin: 0 auto;">Order Date</h5><small>Feb 12, 2022</small>
+                </div>
+              </div><br>
+              <div class="dashboard-card-order">
+                <div class="">
+                  <h5 class="small-text" style="margin: 0 auto;">Total Amount</h5><small>₹16</small>
+                </div>
+                <div class="">
+                  <h5 class="small-text" style="margin: 0 auto;">Payable Amount</h5><small><span style="font-size: 1.2rem;color: #1D741B;">16 </span> (Off none)</small>
+                </div>
+              </div><br>
+              <div class="" style="display:flex;align-items:center;justify-content: space-around;padding-top: 10px;">
+                <a href="orderSummary.html?id=rzczA5FJOynmaXwsQnCM&amp;action=cancel">
+                  <button class="mybutton buttonTransparent" style="padding-bottom: 7px;">
+                    Cancel
+                    <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">delete_forever</span>
+                  </button>
+                </a>
+                <a href="orderSummary.html?id=rzczA5FJOynmaXwsQnCM&amp;action=view">
+                  <button class="mybutton buttonTransparent" style="padding-bottom: 7px;">
+                    Order again
+                    <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">replay</span>
+                  </button>
+                </a>
+                <a href="orderSummary.html?id=rzczA5FJOynmaXwsQnCM&amp;action=view">
+                  <button class="mybutton buttonTransparent" style="padding-bottom: 7px;">
+                    More
+                    <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">edit</span>
+                  </button>
+                </a>
+              </div>
+              <hr>
+              <div class="progress-bar-div">
+                <div class="active">
+                  <h5>Pending</h5>
+                  <div class="step"></div><small>Feb 12, 2022</small><br><small class="time">9:29:28 AM</small>
+                </div>
+                <div class="">
+                  <h5>Packed</h5>
+                  <div class="step center"></div>
+                  <div class="line"></div><small>-</small><br><small class="time">-</small>
+                </div>
+                <div class="">
+                  <h5>On The Way</h5>
+                  <div class="step center"></div>
+                  <div class="line center"></div><small>-</small><br><small class="time">-</small>
+                </div>
+                <div class="">
+                  <h5>Delivered</h5>
+                  <div class="step right"></div>
+                  <div class="line right"></div><small>-</small><br><small class="time">-</small>
+                </div>
+              </div>
+            </div>
+          </div> -->
         </div>
 
         <div id="orderList">
@@ -739,7 +811,7 @@
   <script src="../js/main.js"></script>
   <script src="../js/fb-logout.js"></script>
   <script src="../js/orderList.js"></script>
-  <script src="../js/common.js"></script>
+  <!-- <script src="../js/common.js"></script> -->
   <!-- <script src="../js/chart.js"></script> -->
   <!-- <script src="../js/products.js"></script> -->
   <!-- <script src="../js/chart2.js"></script> -->
