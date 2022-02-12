@@ -421,7 +421,7 @@
                   </div>
                 </div><br>
 
-                <div class="dashboard-card order-summary-expand-div active" id="detailsDiv" >
+                <div class="dashboard-card order-summary-expand-div active" id="detailsDiv">
                   <div class="" style="display:flex;align-items: center;" onclick="myFunction();">
                     <div class="order-summary-arrow-down">
                       <span id="arrow" class="material-icons-outlined">
@@ -568,11 +568,25 @@
                 <span id="walletMessage" style="color:blue;"></span>
               </div>
               <div id="itemListDiv" style="">
-              <h4>Items (<span id="itemcount"></span>)</h4>
-              <div id="orderItems">
+                <h4>Items (<span id="itemcount"></span>)</h4>
 
+
+                  <div class="" onclick="CopyOrder();">
+                    <button class="mybutton buttonTransparent" style="padding-bottom: 7px;">
+                        Order again
+
+                        <span class="material-icons-outlined" style='font-size: 1.2rem;padding-left: 5px;'>
+                          replay
+                        </span>
+                  </button>
+                </div>
+                <div class="row no-gutters">
+
+                <div id="orderItems" class="row no-gutters">
+
+                </div>
+                </div>
               </div>
-            </div>
               <!-- <input type="reeadonly" id="blankCartMessage" value="No items are added in cart" style="display:none;"> -->
             </div>
           </div>
