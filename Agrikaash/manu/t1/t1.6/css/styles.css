@@ -72,6 +72,19 @@ h6 {
   letter-spacing: 0.5px;
 }
 
+blink{
+  animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+  0%, 100%{
+    opacity: 1;
+  }
+  50%{
+    opacity: 0;
+  }
+}
+
 /********** class selectors ************/
 .container-fluid {
   width: 100%;
@@ -753,7 +766,6 @@ h6 {
 
 .product-list-div {
   border: 1px solid #dedede;
-  padding: 6px;
   border-radius: 4px;
   margin: 2px auto;
   background: #fff;
@@ -1026,18 +1038,18 @@ input[type=number] {
   color: #fff;
 }
 
+.product-names-div {
+  padding: 2px 2px 2px 2px;
+  position: relative;
+}
+
 .veg-nonVeg-div img {
   position: absolute;
-  top: 20px;
-  left: 40%;
-  bottom: 7%;
+  left: -20px;
+  top: 5px;
   width: 20px;
   height: 20px;
   background: #fff;
-}
-
-.product-names-div {
-  padding: 2px 2px 2px 2px;
 }
 
 .product-names {
@@ -1065,6 +1077,9 @@ input[type=number] {
 .quantity-td {
   text-align: right;
   padding: 5px;
+  position: absolute;
+  bottom: -10px;
+  right: 0;
 }
 
 .product-btn-div {
@@ -1165,6 +1180,15 @@ input[type=number] {
 .product-graph{
   padding: 10px;
   background: rgba(136,202,94,0.1);
+}
+
+.create-product-weight{
+  position: absolute;
+  top: 13px;
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500px;
+  pointer-events: none;
 }
 
 /* product page - end */
@@ -2953,3 +2977,26 @@ display: inline-block;
   border-radius: 50px;
   box-shadow: 0 0 3px 0 rgba(0,0,0,0.1);
 }
+
+/* inventory - start */
+
+.inventory-quantity-level{
+  background: #ff5757;
+  border-radius: 0 0 10px 0;
+  min-width: 100px;
+  display: inline-block;
+  padding: 2px 5px;
+  color: #fff;
+}
+
+.inventory-scrap-input input{
+  width: 30%;
+  border: none;
+  margin: 0;
+  color: #666;
+  padding:0;
+  background: none;
+}
+
+
+/* inventory - end */
