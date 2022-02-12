@@ -49,27 +49,27 @@ function GetProfileData(user) {
 
         }
         if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
-        document.getElementById('profilePic').src = doc.data().ProfileImageURL;
+          document.getElementById('profilePic').src = doc.data().ProfileImageURL;
 
         document.getElementById('profileName').innerHTML = doc.data().displayName;
 
 
-          if (isAdmin === true) {
-            db.collection('CollectionStatistics').get().then((changes) => {
-              changes.forEach(change => {
+        if (isAdmin === true) {
+          db.collection('CollectionStatistics').get().then((changes) => {
+            changes.forEach(change => {
 
-                count = change.data().ProductCount;
-                //            count = count + 1;
-                pID = change.id;
-              });
+              count = change.data().ProductCount;
+              //            count = count + 1;
+              pID = change.id;
             });
+          });
 
-            populateProductData('', '');
-          } else {
-            document.getElementById('confirmationMessage').style.display = "block";
-            document.getElementById('divDetails').style.display = "none";
-            document.getElementById('divBottomNavBar').style.display = "none";
-          }
+          populateProductData('', '');
+        } else {
+          document.getElementById('confirmationMessage').style.display = "block";
+          document.getElementById('divDetails').style.display = "none";
+          document.getElementById('divBottomNavBar').style.display = "none";
+        }
       }
     })
     .catch(function(error) {
@@ -91,14 +91,14 @@ function emptyDiv(div) {
 
 function inputSearchFocus() {
   document.getElementById("idItem").style.display = "block";
-  document.getElementById("wrongSearch").style.display="none";
+  document.getElementById("wrongSearch").style.display = "none";
 
 }
 
 function filterFunction() {
   console.log('hi');
   var input, filter, ul, li, a, i;
-  var search ;
+  var search;
   input = document.getElementById("myInput");
   filter = input.children[0].value.toUpperCase();
   //  console.log(filter);
@@ -108,7 +108,7 @@ function filterFunction() {
     //console.log(document.getElementById("hfSearchID" + i).value);
     //console.log(a[i].textContent);
     //console.log(a[i].innerText);
-    txtValue =  a[i].innerText  + " " + document.getElementById("hfSearchID" + i).value ;
+    txtValue = a[i].innerText + " " + document.getElementById("hfSearchID" + i).value;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       a[i].style.display = "";
     } else {
@@ -121,10 +121,10 @@ function filterFunction() {
 
 function myChangeEvent() {
   console.log('myChangeEvent');
-  document.getElementById("wrongSearch").style.display="none";
+  document.getElementById("wrongSearch").style.display = "none";
 
   document.getElementById("productRow").innerHTML = "";
-  var noFlag= false;
+  var noFlag = false;
   var input, filter, ul, li, a, i;
   input = document.getElementById("myInput");
   filter = input.children[0].value.toUpperCase();
@@ -135,8 +135,8 @@ function myChangeEvent() {
   var prodCnt = 0;
   var callCount = 1;
   for (i = 0; i < a.length; i++) {
-    txtValue =  a[i].innerText  + " " + document.getElementById("hfSearchID" + i).value ;
-//    txtValue = a[i].textContent || a[i].innerText;
+    txtValue = a[i].innerText + " " + document.getElementById("hfSearchID" + i).value;
+    //    txtValue = a[i].textContent || a[i].innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       noFlag = true;;
       a[i].style.display = "";
@@ -158,10 +158,9 @@ function myChangeEvent() {
     RenderProductByProducrID(productList, callCount);
   }
   console.log(noFlag);
-  if(noFlag === false)
-  {
+  if (noFlag === false) {
     document.getElementById("searchKeyText").innerHTML = filter;
-    document.getElementById("wrongSearch").style.display="block";
+    document.getElementById("wrongSearch").style.display = "block";
 
   }
   console.log("before display none");
@@ -242,6 +241,7 @@ function showItem(itemname) {
     }
   });
 }
+
 function populateProductData(bType, pType) {
   buisinessType = bType;
   productType = pType;
@@ -270,7 +270,7 @@ function populateProductData(bType, pType) {
     DBrows = db.collection("Products").where("productType", "==", pType).orderBy("Status").orderBy('CreatedTimestamp', 'desc');
   } else if ((pType != '' && pType != 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
-    prodType = ['All',bType];
+    prodType = ['All', bType];
     DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).orderBy("Status").orderBy('CreatedTimestamp', 'desc');
   }
 
@@ -295,12 +295,10 @@ function populateProductData(bType, pType) {
 
       }
       productName = change.doc.data().ProductName;
-      if(change.doc.data().SearchKey === undefined || change.doc.data().SearchKey === "")
-      {
+      if (change.doc.data().SearchKey === undefined || change.doc.data().SearchKey === "") {
         searchKey = productName;
-      }
-      else {
-          searchKey = change.doc.data().SearchKey;
+      } else {
+        searchKey = change.doc.data().SearchKey;
       }
 
       //console.log(change.doc.data());
@@ -330,7 +328,7 @@ function populateProductData(bType, pType) {
       index = index + 1;
 
     });
-    document.getElementById("itemCnt").innerHTML=index + " Items";
+    document.getElementById("itemCnt").innerHTML = index + " Items";
     var unique = productCategory.filter(onlyUnique);
     renderProductCategory(unique, pType);
     document.getElementById("categoryCnt").value = unique.length;
@@ -389,6 +387,7 @@ function renderProductCategory(productCategory, pType) {
   }
 
 }
+
 function renderProductCategory1(productCategory) {
 
   var div = document.getElementById('productCategory');
@@ -437,8 +436,7 @@ function callFunction(productType, objid) {
   //console.log(productType);
   // var cType = document.getElementById('businessType').SelectedValue;
   //objid.setAttribute("class", "category-list-menu active");
-  if(productType === 'All')
-  {
+  if (productType === 'All') {
     var anchor = document.getElementById("allAnchor");
     anchor.setAttribute("class", "active");
 
@@ -448,8 +446,7 @@ function callFunction(productType, objid) {
     anchor = document.getElementById("VegetableAnchor");
     anchor.setAttribute("class", "");
 
-  }else if(productType === 'Vegetable')
-  {
+  } else if (productType === 'Vegetable') {
     var anchor = document.getElementById("allAnchor");
     anchor.setAttribute("class", "");
 
@@ -459,9 +456,7 @@ function callFunction(productType, objid) {
     anchor = document.getElementById("VegetableAnchor");
     anchor.setAttribute("class", "active");
 
-  }
-  else if(productType === 'Fruit')
-  {
+  } else if (productType === 'Fruit') {
     var anchor = document.getElementById("allAnchor");
     anchor.setAttribute("class", "");
 
@@ -497,14 +492,12 @@ function changCustomerType() {
   //renderProductNew(doc, index, selectedItem)
 }
 /////////////////////new function
-
 function renderProductNew(doc, index) {
 
   var productlist = doc.data().ProductDetails;
-
-  //var anchor = document.createElement("a");
-  //anchor.setAttribute("href", "createProduct.html?id=" + doc.id);
-
+  var productUnitPrice = 0;
+  if (doc.data().UnitPrice != undefined)
+    productUnitPrice = doc.data().UnitPrice;
   var div1 = document.createElement("div");
   div1.setAttribute("class", "col-sm-12");
   div1.setAttribute("id", "mainDiv" + index);
@@ -513,6 +506,31 @@ function renderProductNew(doc, index) {
   var div1_1 = document.createElement("div");
   div1_1.setAttribute("class", "product-list-div " + doc.data().productType);
 
+  if (doc.data().Status === "Inactive") {
+    var divP = document.createElement("div");
+    divP.setAttribute("class", "inventory-quantity-level");
+    var blink = document.createElement("blink");
+    blink.innerHTML = "Inactive";
+    divP.appendChild(blink);
+    div1_1.appendChild(divP);
+  }
+  else if (doc.data().Status === "Out Of Stock") {
+    var divP = document.createElement("div");
+    divP.setAttribute("class", "inventory-quantity-level");
+    var blink = document.createElement("blink");
+    blink.innerHTML = "Out of Stock";
+    divP.appendChild(blink);
+    div1_1.appendChild(divP);
+  } else if (doc.data().PromotionFlag === true) {
+    var divP = document.createElement("div");
+    divP.setAttribute("class", "inventory-quantity-level");
+    divP.setAttribute("style", "background: #88CA5E;");
+    var blink = document.createElement("blink");
+    blink.innerHTML = doc.data().PromotionText;
+    divP.appendChild(blink);
+    div1_1.appendChild(divP);
+  }
+
   var table1 = document.createElement("table");
   table1.setAttribute("width", "100%");
   var tr1 = document.createElement("tr");
@@ -520,35 +538,19 @@ function renderProductNew(doc, index) {
   var td1 = document.createElement("td");
   td1.setAttribute("width", "45%");
   td1.setAttribute("class", "product-img-td");;
+
   var hfID = document.createElement("input");
   hfID.setAttribute("id", "hfID" + index);
   hfID.setAttribute("type", "hidden");
   hfID.setAttribute("value", doc.id);
   td1.appendChild(hfID);
+
   var img1 = document.createElement("img");
   img1.setAttribute("src", doc.data().ProductImageURL);
   img1.setAttribute("width", "100%");
   img1.setAttribute("class", "product-img");
   img1.setAttribute("alt", "Product");
   td1.appendChild(img1);
-
-  // var div1_2 = document.createElement("div");
-  // div1_2.setAttribute("class", "off-div");
-  // div1_2.innerHTML = "<small>" + "20% OFF" + "</small>";
-  // td1.appendChild(div1_2);
-
-  var div1_3 = document.createElement("div");
-  div1_3.setAttribute("class", "veg-nonVeg-div");
-
-  var imgVegNonVeg = document.createElement("img");
-  if (doc.data().VegNonVeg === "Veg")
-    imgVegNonVeg.setAttribute("src", "../img/veg.png");
-  else if (doc.data().VegNonVeg === "NonVeg")
-    imgVegNonVeg.setAttribute("src", "../img/non-veg.png");
-  imgVegNonVeg.setAttribute("width", "100%");
-  imgVegNonVeg.setAttribute("alt", "");
-
-  div1_3.appendChild(imgVegNonVeg);
 
   var i1 = document.createElement("i");
   i1.setAttribute("onclick", "GetProductDetails(" + "hfID" + index + ");");
@@ -557,8 +559,6 @@ function renderProductNew(doc, index) {
 
   td1.appendChild(i1);
 
-  td1.appendChild(div1_3);
-
 
   tr1.appendChild(td1);
 
@@ -566,16 +566,51 @@ function renderProductNew(doc, index) {
   td2.setAttribute("width", "55%");
   td2.setAttribute("valign", "top")
   td2.setAttribute("class", "product-names-div");
-  td2.innerHTML = "<small class='product-names'>" + doc.data().ProductName + "</small><br>" +
-    "<small style='font-size: 0.8rem; color: rgba(0,0,0,0.5);'>" + doc.data().Brand + "</small><br>";
+
+
+    var div1_3 = document.createElement("div");
+    div1_3.setAttribute("class", "veg-nonVeg-div");
+
+    var imgVegNonVeg = document.createElement("img");
+    if (doc.data().VegNonVeg === "Veg")
+      imgVegNonVeg.setAttribute("src", "../img/veg.png");
+    else if (doc.data().VegNonVeg === "NonVeg")
+      imgVegNonVeg.setAttribute("src", "../img/non-veg.png");
+    imgVegNonVeg.setAttribute("width", "100%");
+    imgVegNonVeg.setAttribute("alt", "");
+
+    div1_3.appendChild(imgVegNonVeg);
+    td2.appendChild(div1_3);
+
+
+      var s1 = document.createElement("small");
+      s1.setAttribute("class", "product-names");
+      s1.innerHTML = doc.data().ProductName;
+
+      td2.appendChild(s1);
+      var b1 = document.createElement("br");
+      td2.appendChild(b1);
+
+
+      var s2 = document.createElement("small");
+      s2.setAttribute("style", "font-size: 0.8rem; color: rgba(0,0,0,0.5);");
+      s2.innerHTML = doc.data().Brand;
+      td2.appendChild(s2);
+      var b2 = document.createElement("br");
+      td2.appendChild(b2);
+  // 
+  // td2.innerHTML = "<small class='product-names'>" + doc.data().ProductName + "</small><br>" +
+  //   "<small style='font-size: 0.8rem; color: rgba(0,0,0,0.5);'>" + doc.data().Brand + "</small><br>";
 
   var selectP = document.createElement("select");
   selectP.name = "productDetails";
   selectP.id = "productDetails" + index;
   selectP.setAttribute("id", "productDetails" + index);
   //selectP.setAttribute("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelectedValue" + index + "," + index + ",'" + doc.id + "'," + doc.data().MinimumQty + ")");
+  var productWeightUnit = doc.data().ProductWeightUnit
+  //  var productPurchasePrise = doc.data().ProductWeightUnit
 
-  selectP.setAttribute("onchange", "mySelectionChange("+ index +")");
+  selectP.setAttribute("onchange", "mySelectionChange(" + index + ")");
   var indexnew = -1;
   var mrp = 0;
   var finalPrize = 0;
@@ -584,56 +619,52 @@ function renderProductNew(doc, index) {
     var option = document.createElement("option");
     option.setAttribute('style', 'color: black')
     option.value = val.ProductFinalPrise + ":" + val.ProductMRP;
-    var productPurchasePrice = val.ProductPurchasePrice;
-    if (productPurchasePrice === undefined || productPurchasePrice === "")
-      productPurchasePrice = 0
+    // var productPurchasePrice = val.ProductPurchasePrice;
+    var weights = val.ProductWeight.split(" ");
+    if (productWeightUnit === undefined)
+      productWeightUnit = weights[1];
 
-      var curFormat = {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 1
-      };
-    var margin = 0;
-    if(productPurchasePrice === 0 )
-    {
-      option.setAttribute("style","color: red;");
-      margin = "NA";
+    if (productUnitPrice === undefined || productUnitPrice === "" || productUnitPrice === "NA") {
+      productPurchasePrice = 0
+    } else {
+      productPurchasePrice = Number(productUnitPrice) * Number(weights[0]);
     }
-    else {
+    var curFormat = {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 1
+    };
+    var margin = 0;
+    if (productPurchasePrice === 0) {
+      option.setAttribute("style", "color: red;");
+      margin = "NA";
+    } else {
       margin = Number(val.ProductFinalPrise) - Number(productPurchasePrice);
-      margin = margin *100 /Number(productPurchasePrice) ;
-      if(margin < 10)
-      {
-        option.setAttribute("style","color: red;");
+      margin = margin * 100 / Number(productPurchasePrice);
+      if (margin < 10) {
+        option.setAttribute("style", "color: red;");
 
       }
       margin = margin.toLocaleString('en-IN', curFormat);
 
-      margin = margin +"%";
+      margin = margin + "%";
     }
-    if(margin === "NA")
-    {
-      option.setAttribute("style","color: red;");
+    if (margin === "NA") {
+      option.setAttribute("style", "color: red;");
     }
-
-    option.text = val.ProductWeight + " - " + "Rs." + productPurchasePrice + "/" + val.ProductFinalPrise + "("+margin+")";
+    // option.text = val.ProductWeight + " - " + "Rs." + productPurchasePrice + "/" + val.ProductFinalPrise + "("+margin+")";
+    option.text = weights[0] + " " + productWeightUnit + " - " + "Rs." + productPurchasePrice + "/" + val.ProductFinalPrise + "(" + margin + ")";
     selectP.appendChild(option);
   }
 
 
   td2.appendChild(selectP);
+
   var div1_4 = document.createElement("div");
   div1_4.setAttribute("class", "product-price");
-  //console.log(selectedItem);
 
-  // div1_4.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + productlist[0].ProductMRP + "</span>" + "</h5>" +
-  //   "<small>₹ " + "<span id='final" + index + "'>" + productlist[0].ProductFinalPrise + "</span></small>";
+  div1_4.innerHTML = "<large>" + "<span><b>Location :  </b>" + doc.data().ProductLocation + "</span>" + "<large><br>" +
+    "<large>" + "<span><b>Category :  </b>" + doc.data().productType + "</span>" + "<large><br><br>";
 
-  // div1_4.innerHTML = "<large>" + "<span><b>Type :  </b>" + doc.data().CustomerBusinessType + "</span>" + "<large><br>" +
-  //   "<large>" + "<span><b>Category :  </b>" + doc.data().productType + "</span>" + "<large><br><br>";
-
-
-    div1_4.innerHTML = "<large>" + "<span><b>Location :  </b>" + doc.data().ProductLocation + "</span>" + "<large><br>" +
-      "<large>" + "<span><b>Category :  </b>" + doc.data().productType + "</span>" + "<large><br><br>";
 
   var spanDelete = document.createElement('span');
   spanDelete.setAttribute("id", "btnDelete" + index);
@@ -641,8 +672,6 @@ function renderProductNew(doc, index) {
   spanDelete.setAttribute("class", "material-icons");
   spanDelete.setAttribute("style", "cursor:pointer;padding: 0 20px 0 5px;");
   spanDelete.innerHTML = "delete_outline";
-
-
 
   div1_4.appendChild(spanDelete);
   td2.appendChild(div1_4);
@@ -657,49 +686,52 @@ function renderProductNew(doc, index) {
   //  anchor.appendChild(div1);
   document.getElementById("productRow").appendChild(div1);
   mySelectionChange(index)
+
 }
 
-function mySelectionChange(index)
-{
+function renderProductNewOld(doc, index) {
+
+}
+
+function mySelectionChange(index) {
 
   var element = document.getElementById("productDetails" + index);
-  element.setAttribute("style","color: black;");
-  for (int = 0 ; int < element.options.length ;int++)
-  {
-//    console.log(element.options[int].style.color);
-    if(element.options[int].selected && element.options[int].style.color === "red")
-    {
-  //    console.log("is red");
-      element.setAttribute("style","color: red;");
+  element.setAttribute("style", "color: black;");
+  for (int = 0; int < element.options.length; int++) {
+    //    console.log(element.options[int].style.color);
+    if (element.options[int].selected && element.options[int].style.color === "red") {
+      //    console.log("is red");
+      element.setAttribute("style", "color: red;");
     }
 
 
   }
 }
+
 function GetProductDetails(productID) {
   window.location.href = "createProduct.html?id=" + productID.value;
 }
 
 function deleteProduct(productID, maindiv) {
   db.collection("Products").doc(productID.value).update({
-    Status:"Inactive"
-  })
-  .then(function(docRef1) {
-    //.delete();
-  count = count - 1;
-  console.log(count);
+      Status: "Inactive"
+    })
+    .then(function(docRef1) {
+      //.delete();
+      count = count - 1;
+      console.log(count);
 
-  db.collection("CollectionStatistics").doc(pID).update({
-      ProductCount: count,
-    })
-    .then(function(docRef) {
-      // console.log(Date.parse(eventstart))
-    })
-    .catch(function(error) {
-      console.error("error adding document:", error);
+      db.collection("CollectionStatistics").doc(pID).update({
+          ProductCount: count,
+        })
+        .then(function(docRef) {
+          // console.log(Date.parse(eventstart))
+        })
+        .catch(function(error) {
+          console.error("error adding document:", error);
+        });
+      populateProductData(buisinessType, productType);
     });
-    populateProductData(buisinessType, productType);
-  });
   //document.getElementById("productRow").removeChild(maindiv);
 }
 
