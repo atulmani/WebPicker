@@ -1,7 +1,7 @@
 //const productID = document.getElementById('productID');
 var userID = "";
 var cartItems = [];
-var userType="";
+var userType = "";
 // var url = location.href;
 let eventDocUrl = new URL(location.href);
 // console.log ('URL: ' + eventDocUrl);
@@ -32,8 +32,8 @@ auth.onAuthStateChanged(firebaseUser => {
       GetCartDetails();
       //GetNotificationList();
       var siteNotification = localStorage.getItem("notificationCount");
-      document.getElementById("notificationCnt").innerHTML=siteNotification;
-      document.getElementById("notificationCnt1").innerHTML=siteNotification;
+      document.getElementById("notificationCnt").innerHTML = siteNotification;
+      document.getElementById("notificationCnt1").innerHTML = siteNotification;
 
       if (orderID != '' && orderID != null) {
         document.getElementById('msg').innerHTML = 'Getting order details!!';
@@ -52,18 +52,18 @@ auth.onAuthStateChanged(firebaseUser => {
   // document.getElementById('loading-img').style.display = 'none';
 });
 
-function GetCartDetails()
-{
+function GetCartDetails() {
   var cartItems = [];
-    const snapshot = db.collection('CartDetails').doc(userID);
-    snapshot.get().then((doc) => {
-      if (doc.exists) {
-        cartItems = doc.data().cartDetails;
+  const snapshot = db.collection('CartDetails').doc(userID);
+  snapshot.get().then((doc) => {
+    if (doc.exists) {
+      cartItems = doc.data().cartDetails;
 
-        document.getElementById("cartItemNo").innerHTML =cartItems.length
-      }
-    });
+      document.getElementById("cartItemNo").innerHTML = cartItems.length
+    }
+  });
 }
+
 function GetProfileData(user) {
   // const ref = db.collection("Users").doc(user.uid);
 
@@ -99,7 +99,7 @@ function GetNotificationList() {
   const DBrows = db.collection('Notification')
     .where("Status", '==', 'Active')
     .where('ValidityTill', ">=", today)
-    //.orderBy('CreatedTimestamp', 'desc');
+  //.orderBy('CreatedTimestamp', 'desc');
 
   DBrows.onSnapshot((snapshot) => {
     let changes = snapshot.docChanges();
@@ -125,13 +125,13 @@ function GetNotificationList() {
       }
     });
 
-    if(flag === true)
-    {
-      document.getElementById("notificationCnt").innerHTML=index;
+    if (flag === true) {
+      document.getElementById("notificationCnt").innerHTML = index;
     }
 
   });
 }
+
 function myFunction() {
   var element = document.getElementById("detailsDiv");
   element.classList.toggle("active");
@@ -139,7 +139,51 @@ function myFunction() {
   var arrow = document.getElementById("arrow");
   arrow.classList.toggle("active");
 }
+async function CopyOrder() {
+  var cartItemToCopy = [];
+  var cartItem = [];
+  var cartID = "";
+  const originalOrder = await db.collection("OrderDetails").doc(orderID).get();
+  if (originalOrder.exists) {
+    cartItemToCopy = originalOrder.data().orderItems;
+  }
+  const cartRecord = await db.collection("CartDetails").doc(userID).get();
+  if (cartRecord.exists) {
+    cartID = cartRecord.id;
+    cartItem = cartRecord.data().cartDetails;
+  }
+  for (cnt = 0; cnt < cartItemToCopy.length; cnt++) {
+    if (cartItem.findIndex(e => e.ProductID === cartItemToCopy[cnt].ProductID && e.SelectedsubItem === cartItemToCopy[cnt].SelectedSubItem) < 0) {
+      cartItem.push({
+        ItemName: cartItemToCopy[cnt].ProductName,
+        ProductID: cartItemToCopy[cnt].ProductID,
+        Quantity: cartItemToCopy[cnt].Quantity,
+        SelectedsubItem: cartItemToCopy[cnt].SelectedSubItem,
+        Status: 'Active'
+      });
+    }
+  }
+  if (cartID === "") {
+    const addCard = await db.collection("CartDetails").doc(userID).add({
+      uid: userID,
+      cartDetails: cartItem,
+      CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+      UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+    });
 
+  } else {
+    const addCard = await db.collection("CartDetails").doc(cartID).update({
+      uid: userID,
+      cartDetails: cartItem,
+      CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+      UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+    });
+
+  }
+
+  window.location.href = "cartNew.html";
+
+}
 
 function cancelOrder() {
   var options = {
@@ -341,8 +385,8 @@ function populateDeliveryAddress(selectedOrder) {
   amt = amt.toLocaleString('en-IN', curFormat);
 
   document.getElementById('paymentAmount').innerHTML = amt;
-//console.log(selectedOrder.discountedprize );
-//console.log(selectedOrder.totalAmount);
+  //console.log(selectedOrder.discountedprize );
+  //console.log(selectedOrder.totalAmount);
   //if (selectedOrder.discountedprize === 'NaN' || selectedOrder.discountedprize === "0" || selectedOrder.discountedprize === "")
   if (isNaN(selectedOrder.discountedprize) || selectedOrder.discountedprize === '' || (selectedOrder.discountedprize === selectedOrder.totalAmount) || selectedOrder.discountedprize === 0) {
     document.getElementById('discount').style.display = "none";
@@ -351,12 +395,12 @@ function populateDeliveryAddress(selectedOrder) {
     document.getElementById("hfDiscountFlag").value = "true";
     var discountAmt = Number(selectedOrder.discountedprize);
     discountAmt = discountAmt.toLocaleString('en-IN', curFormat);
-  //  console.log(discountAmt);
+    //  console.log(discountAmt);
     var discountValue = Number(selectedOrder.totalAmount) - Number(selectedOrder.discountedprize);
     discountValue = discountValue.toLocaleString('en-IN', curFormat);
     //console.log(discountValue);
 
-    document.getElementById('discountAmount').innerHTML = discountAmt ;
+    document.getElementById('discountAmount').innerHTML = discountAmt;
     // document.getElementById('discountAmount').innerHTML = discountAmt + "(" + selectedOrder.discountDetails.discountValue + " Off)";
     document.getElementById('discountValue').innerHTML = discountValue;
   }
@@ -420,15 +464,12 @@ function renderOrderItem(orderItem, orderStatusValue, deliveryDate, index) {
     minimumFractionDigits: 0,
     maximumFractionDigits: 2
   };
-
   var div1 = document.createElement("div");
   div1.setAttribute('class', 'col-sm-12');
-  div1.setAttribute('style', 'padding: 5px;');
   div1.setAttribute('id', 'parentDiv' + index);
 
   var div2 = document.createElement("div");
   div2.setAttribute('class', 'product-list-div');
-
 
   var table1 = document.createElement("table");
 
@@ -437,21 +478,18 @@ function renderOrderItem(orderItem, orderStatusValue, deliveryDate, index) {
   var td1 = document.createElement('td');
   td1.setAttribute('width', "45%");
   td1.setAttribute('class', "product-img-td");
-
   var img1 = document.createElement("img");
   img1.setAttribute('src', orderItem.ImageURL);
   img1.setAttribute("width", "100%");
   img1.setAttribute("alt", "");
   td1.appendChild(img1);
+  tr1.appendChild(td1);
 
-  // var div3 = document.createElement('div');
-  // div3.setAttribute('class', "off-div");
-  //
-  // var small1 = document.createElement('small');
-  // small1.innerHTML = '';
-  //
-  // div3.appendChild(small1);
-  // td1.appendChild(div3);
+  var td2 = document.createElement('td');
+  td2.setAttribute('width', "55%");
+  td2.setAttribute('valign', "top");
+  td2.setAttribute('class', "product-names-div");
+  td2.setAttribute('style', "text-align: left;");
 
   var div4 = document.createElement('div');
   div4.setAttribute('class', "veg-nonVeg-div");
@@ -462,20 +500,11 @@ function renderOrderItem(orderItem, orderStatusValue, deliveryDate, index) {
     imgVegNonVeg.setAttribute("src", "../img/veg.png");
   } else if (orderItem.VegNonVeg === "NonVeg") {
     imgVegNonVeg.setAttribute("src", "../img/non-veg.png");
-
   }
   imgVegNonVeg.setAttribute("width", "100%");
   imgVegNonVeg.setAttribute("alt", "");
-
-
   div4.appendChild(imgVegNonVeg);
-  td1.appendChild(div4);
-  tr1.appendChild(td1);
-
-  var td2 = document.createElement('td');
-  td2.setAttribute('width', "55%");
-  td2.setAttribute('valign', "top");
-  td2.setAttribute('class', "product-names-div");
+  td2.appendChild(div4);
 
   var hf = document.createElement("input");
   hf.setAttribute("id", "hfProdID" + index);
@@ -483,82 +512,69 @@ function renderOrderItem(orderItem, orderStatusValue, deliveryDate, index) {
   hf.setAttribute("value", orderItem.ProductID);
   td2.appendChild(hf);
 
-  //console.log(orderItem.ProductName);
   var small2 = document.createElement('small');
   small2.setAttribute('class', 'product-names');
   small2.innerHTML = orderItem.ProductName;
-
+  td2.appendChild(small2);
 
   var small3 = document.createElement('small');
   small3.setAttribute('style', 'style="font-size: 0.8rem; color: rgba(0,0,0,0.5);');
   small3.innerHTML = '';
+  td2.appendChild(small3);
 
-  //console.log(orderItem.SelectedSubItem);
   var input1 = document.createElement('input');
   input1.setAttribute('type', 'text');
   input1.setAttribute('name', '');
   input1.setAttribute("id", "selectedItem" + index);
   input1.setAttribute("readonly", true);
   input1.value = orderItem.SelectedSubItem;
-
-
-  td2.appendChild(small2);
-  td2.appendChild(small3);
-  //  td2.appendChild(document.createElement('br'));
   td2.appendChild(input1);
 
   var div5 = document.createElement('div');
   div5.setAttribute('class', 'product-price');
-  //console.log(orderItem.MRP);
+
   var h51 = document.createElement('h5');
-  h51.innerHTML =  Number(orderItem.MRP).toLocaleString('en-IN', curFormat);
-
-  //console.log(orderItem.UnitPrise);
-  var small4 = document.createElement('small');
-  small4.innerHTML =  Number(orderItem.UnitPrise).toLocaleString('en-IN', curFormat) ;
-
+  h51.innerHTML = Number(orderItem.MRP).toLocaleString('en-IN', curFormat);
   div5.appendChild(h51);
+
+  var small4 = document.createElement('small');
+  small4.innerHTML = Number(orderItem.UnitPrise).toLocaleString('en-IN', curFormat);
   div5.appendChild(small4);
   td2.appendChild(div5);
 
-  var table2 = document.createElement('table');
+  var div6 = document.createElement("div");
+  div6.setAttribute("class", "");
+  div6.setAttribute("style", "display: flex;");
 
-  var tr2 = document.createElement('tr');
-  //console.log(orderItem.Quantity);
-  var td3 = document.createElement('td');
-  td3.setAttribute('width', '50%');
-  td3.innerHTML = 'Qty : ' + orderItem.Quantity;
-
-  tr2.appendChild(td3);
-
+  var small5 = document.createElement('small');
+  small5.setAttribute("style", "font-size: 0.8rem;padding: 0 5px;")
+  small5.innerHTML = 'Qty : ' + orderItem.Quantity;
+  div6.appendChild(small5);
   var totalPrize = Number(orderItem.Quantity) * Number(orderItem.UnitPrise)
-  //  console.log(totalPrize);
-  var td4 = document.createElement('td');
-  td4.innerHTML = 'Prize : ' + totalPrize;
 
-  tr2.appendChild(td4);
+  var small6 = document.createElement('small');
+  small6.setAttribute("style", "font-size: 0.8rem;padding: 0 5px;")
+  small6.innerHTML = 'Prize : ' + Number(totalPrize).toLocaleString('en-IN', curFormat);;
+  div6.appendChild(small6);
+  td2.appendChild(div6);
 
-  table2.appendChild(tr2);
 
   var options = {
     year: 'numeric',
     month: 'short',
     day: 'numeric'
   };
+
   var dDate = new Date(deliveryDate.seconds * 1000);
 
   const tempDate = new Date();
   tempDate.setDate(tempDate.getDate() + 2);
 
-  //console.log(dDate.toLocaleDateString("en-US", options));
-  //console.log(tempDate);
 
-  //order can be cancelled only if order status is Pending and delivery Date is > todays date
   if (orderStatusValue === 'Pending' && dDate >= tempDate) {
-    //console.log('Delete applicable');
-    var tr3 = document.createElement('tr');
-    //console.log(orderItem.Quantity);
-    var td4 = document.createElement('td');
+    var div7 = document.createElement("div");
+    div7.setAttribute("class", "");
+    div7.setAttribute("style", "float:right;");
 
     var span2 = document.createElement('span');
     span2.setAttribute("id", "btnDelete" + index);
@@ -567,24 +583,18 @@ function renderOrderItem(orderItem, orderStatusValue, deliveryDate, index) {
     span2.setAttribute("class", "material-icons");
     span2.setAttribute("style", "cursor:pointer;padding: 0 20px 0 5px;");
     span2.innerHTML = "delete_outline";
-    td4.appendChild(span2);
-    tr3.appendChild(td4);
-    table2.appendChild(tr3);
+
+    div7.appendChild(span2);
+
+    td2.appendChild(div7);
   }
-
-  td2.appendChild(table2)
-
   tr1.appendChild(td2);
   table1.appendChild(tr1);
-
   div2.appendChild(table1)
-
   div1.appendChild(div2);
-  //console.log(div1);
   document.getElementById('orderItems').appendChild(div1);
 
 }
-
 
 function SaveOrder() {
 
@@ -663,10 +673,10 @@ function SaveOrder() {
             btnTextWithLoader[0].style.display = 'block';
             btnLoader[0].style.display = 'none';
 
-              // Hide alert after 3 seconds
-              setTimeout(function() {
-                document.getElementById("Message").style.display = 'none';
-              }, 4000);
+            // Hide alert after 3 seconds
+            setTimeout(function() {
+              document.getElementById("Message").style.display = 'none';
+            }, 4000);
 
           })
           .catch(function(error) {
@@ -811,7 +821,7 @@ function deleteItem(prodID, selectedItemIndex, parentdiv) {
             }
             // console.log(totalPrise);
             // console.log(discountValue);
-            if(discountValue === undefined || discountValue === '' || isNaN(discountValue) || discountValue === "none"  )
+            if (discountValue === undefined || discountValue === '' || isNaN(discountValue) || discountValue === "none")
               discountValue = 0;
             discountedAmount = Number(totalPrise) - Number(discountValue);
             var refundAmount;
