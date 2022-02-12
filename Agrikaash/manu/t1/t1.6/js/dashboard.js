@@ -127,6 +127,7 @@ function GetNotificationList() {
 
 function UpdateCartItem()
 {
+  localStorage.setItem("cartItem", 0);
   var cartItemNo = document.getElementById('cartItemNo');
   //console.log(cartItemNo);
   const snapshotCart = db.collection('CartDetails').doc(userID);
@@ -140,6 +141,8 @@ function UpdateCartItem()
       // item = doc.data().cartDetails.length;
       //console.log(item[0]);
       cartItemNo.innerHTML = item;
+      localStorage.setItem("cartItem", item);
+
     }
   });
 }
