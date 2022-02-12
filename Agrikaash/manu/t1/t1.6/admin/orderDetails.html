@@ -28,6 +28,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+
   <!-- Font Awesome cdn file -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -39,6 +40,7 @@
 
   <!-- Bootstrap css -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
 
   <!-- Your Own Style -->
   <link rel="stylesheet" href="../css/styles.css">
@@ -359,9 +361,9 @@
       </div>
 
       <br>
-      <div class="row no-gutters small" >
+      <div class="row no-gutters small">
 
-        <div class="pay-now-div" >
+        <div class="pay-now-div">
           <h4 style="width:100%;text-align:center;">Order Summary</h4>
 
         </div>
@@ -382,19 +384,19 @@
 
             <div class="" style="padding: 10px;">
               <div class="order-summary">
-                <div class="order-summary-div">
+                <div class="order-summary-div" style="padding: 20px 0;">
                   <div class="dashboard-card-order">
                     <div class="">
                       <h5 class="small-text" style="margin: 0 auto;">Discount For Order</h5>
                       <div class="" style="display:flex;justify-content: space-between;">
                         <div class="">
-                          <input class="city-selector" type="number" style="background: #fff;width: 140px;border: 1px solid #aaa;" id="inDiscountValue" value=0 >
-                          <input type="hidden" id="hfDiscountValue" value=0 >
+                          <input class="city-selector" type="number" style="background: #fff;width: 140px;border: 1px solid #aaa;" id="inDiscountValue" value=0>
+                          <input type="hidden" id="hfDiscountValue" value=0>
                           <span class="material-icons-outlined city-selector-icon" style="z-index:10;">
                             discount
                           </span>
                         </div>
-                        <small>Order Amount : <span id="amountDisplay" ></span> </small>
+                        <small style="display:flex; align-items: center;">Order Amount : <span id="amountDisplay"></span> </small>
                         <div class="">
 
                         </div>
@@ -441,39 +443,15 @@
                         </div>
                       </div>
 
-                      <h5 class="small-text" style="margin: 0 auto;">Order Status</h5>
-                      <!-- <a href='' id="todayCount">0</a><br> -->
-                      <div class="" style="display:flex;justify-content: space-between;">
-                        <div class="">
-                          <select class="city-selector" id="oOrderStatus" style="background: #fff;width: 140px;border: 1px solid #aaa;" name="">
-                            <option value="Pending"> Pending </option>
-                            <option value="Packed"> Packed </option>
-                            <option value="On The Way"> On the Way </option>
-                            <option value="Delivered"> Delivered </option>
-                            <option value="Cancelled"> Cancelled </option>
-                          </select>
-
-
-                          <input id="hfOrderStatus" type="hidden" />
-
-                          <span class="material-icons-outlined city-selector-icon">
-                            approval
-                          </span>
-                        </div>
-                        <div class="">
-
-                        </div>
-                      </div>
-
                       <h5 class="small-text" style="margin: 0 auto;">Payment Status</h5>
                       <!-- <a href='' id="todayCount">0</a><br> -->
                       <div class="" style="display:flex;justify-content: space-between;">
                         <div class="">
                           <select class="city-selector" id="oPaymentStatus" style="background: #fff;width: 140px;border: 1px solid #aaa;" name="">
 
-                              <option value="Pending"> Pending </option>
-                              <option value="Completed"> Completed </option>
-                            </select>
+                            <option value="Pending"> Pending </option>
+                            <option value="Completed"> Completed </option>
+                          </select>
 
 
                           <input id="hfOrderStatus" type="hidden" />
@@ -505,6 +483,39 @@
 
                         <div class="">
                           <span id="Message" style="display:none;text-align: center;"> Order updated successfully</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div><br>
+
+                  <div class="" style="border: 1px dashed #888; border-radius: 10px;padding: 15px 10px 5px 10px; position:relative;">
+                    <h5 class="small-text" style="margin: 0 auto; position: absolute;top: -10px; left: calc(50% - 50px);background: #fff; padding: 0 10px;">Order Status</h5>
+                    <!-- <a href='' id="todayCount">0</a><br> -->
+                    <div class="" style="display:flex;justify-content: space-between;">
+                      <div class="">
+                        <select class="city-selector" id="oOrderStatus" style="background: #fff;width: 140px;border: 1px solid #aaa;" name="">
+                          <option value="Pending"> Pending </option>
+                          <option value="Packed"> Packed </option>
+                          <option value="On The Way"> On the Way </option>
+                          <option value="Delivered"> Delivered </option>
+                          <option value="Cancelled"> Cancelled </option>
+                        </select>
+
+
+                        <input id="hfOrderStatus" type="hidden" />
+
+                        <span class="material-icons-outlined city-selector-icon">
+                          approval
+                        </span>
+                      </div>
+
+
+                      <div class="">
+                        <div class="input-group date datetimepicker11" id="datetimepickerStatus">
+                          <input type="text" style="width: 100px;font-size: 0.8rem;height: 41px;" class="form-control" id="statusChangedOn" readonly>
+                          <div class="input-group-addon input-group-prepend" style="height: 41px;margin-top: 5px;">
+                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -583,7 +594,7 @@
             </div>
 
             <!-- <div id="divWalletMessage" style="display:block;"> -->
-            <div id="divWalletMessage" >
+            <div id="divWalletMessage">
               <span id="Walletmessage" style="color:blue;"></span>
             </div>
 
@@ -592,8 +603,8 @@
             <div id="orderItems">
 
             </div>
-            <br class="small"/><br class="small"/>
-            <br class="small"/><br class="small"/>
+            <br class="small" /><br class="small" />
+            <br class="small" /><br class="small" />
 
             <!-- <input type="reeadonly" id="blankCartMessage" value="No items are added in cart" style="display:none;"> -->
           </div>
@@ -712,6 +723,55 @@
     <!-- Javascript to Populate Map - Start  -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+
+    <script src="../js/bootstrap-datetimepicker.min.js"></script>
+
+    <script>
+      $(function() {
+        $.extend(true, $.fn.datetimepicker.defaults, {
+          icons: {
+            time: 'far fa-clock',
+            date: 'far fa-calendar',
+            up: 'fas fa-arrow-up',
+            down: 'fas fa-arrow-down',
+            previous: 'fas fa-chevron-left',
+            next: 'fas fa-chevron-right',
+            today: 'far fa-calendar-check-o',
+            clear: 'far fa-trash',
+            close: 'far fa-times'
+          }
+        });
+      });
+    </script>
+    <script type="text/javascript">
+      $(function() {
+        $('.datetimepicker11').datetimepicker({
+          // format: 'YYYY-MM-DD',
+          format: 'MMM DD, YYYY',
+          ignoreReadonly: true,
+          useCurrent: true,
+          maxDate: new Date()
+          //minDate: new Date()
+          // update: new Date()
+        });
+
+        // $('.datetimepicker11').datepicker("update", new Date());
+        // $('.datetimepicker11').datetimepicker('setDate', new Date()); // = set to today
+      });
+      // $(document).ready(function() {
+      //   // $('#txtDate').datepicker({ dateFormat: 'yy/mm/dd' });
+      //   $('.datetimepicker11').datetimepicker('setDate', new Date());
+      // });
+      // $('#datepicker').datepicker({
+      //   useCurrent: false,
+      //   format: 'dd/mm/yyyy'
+      // });
+      //
+      // $('#datetimepicker11').datepicker('setDate', new Date());
+    </script>
 
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
