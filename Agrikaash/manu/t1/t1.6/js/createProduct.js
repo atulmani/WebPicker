@@ -44,8 +44,6 @@ function GetProfileData(user) {
       console.log(error.message);
     });
 
-
-
 };
 
 //************* Populate Event Data - Starts ******************
@@ -89,13 +87,46 @@ function copySearchKey() {
   }
 }
 
+function SetPromotion() {
+  if (document.getElementById("isPromotion").checked) {
+    console.log("ckecked");
+    document.getElementById("OfferDescription").removeAttribute("disabled");
+    document.getElementById("OfferDescription").focus();
+  } else {
+    console.log("unckecked");
+    document.getElementById("OfferDescription").setAttribute("disabled", true);
+  }
+}
+
 function populateProductData() {
+
+  var flagPurchasePrize = false;
+  var unitPrize = 0;
+
+  // db.collection('PurchaseBook')
+  //   .where("ProductId", "==", productID)
+  //   .orderBy("CreatedTimestamp", 'desc')
+  //   .limit(1)
+  //   .onSnapshot(snapshot => {
+  //     let changes = snapshot.docChanges();
+  //     changes.forEach(change => {
+  //       flagPurchasePrize = true;
+  //       unitPrize = change.doc.data().UnitPrize;
+  //       document.getElementById("prizeSetup").style.display = "block";
+  //     });
+  //   });
+
+
   const snapshot = db.collection('Products').doc(productID);
   snapshot.get().then(async (doc) => {
     if (doc.exists) {
       // console.log('Document id:' + doc.id);
       console.log(doc.data());
-
+      if (doc.data().UnitPrice != undefined) {
+        unitPrize = doc.data().UnitPrice;
+        flagPurchasePrize = true;
+        document.getElementById("prizeSetup").style.display = "block";
+      }
       var productTypeValue = doc.data().productType;
       var customerBusinessType = doc.data().CustomerBusinessType;
       if (productTypeValue != undefined) {
@@ -107,6 +138,8 @@ function populateProductData() {
         }
 
       }
+
+      var productWeightUnit = doc.data().ProductWeightUnit;
 
       var productLocationValue = doc.data().ProductLocation;
       if (productLocationValue != undefined) {
@@ -129,16 +162,33 @@ function populateProductData() {
           document.getElementById("Large").checked = true;
       }
 
-
       document.getElementById("hfproductID").value = doc.data().id;
       document.getElementById("productName").value = doc.data().ProductName;
+      if (doc.data().ShortDescription != undefined) {
+        document.getElementById("shortDescription").value = doc.data().ShortDescription;
+      }
+      //console.log(doc.data().PromotionFlag);
+      //console.log(document.getElementById("isPromotion"));
+      if (doc.data().PromotionFlag != undefined) {
+        if (doc.data().PromotionFlag === true) {
+          document.getElementById("isPromotion").checked = true;
+          document.getElementById("OfferDescription").value = doc.data().PromotionText;
+          document.getElementById("OfferDescription").removeAttribute("disabled");
+        } else {
+          document.getElementById("isPromotion").checked = false;
 
-      if (doc.data().Status === "Active") {
-        document.getElementById("Status").checked = true;
-        document.getElementById("idStatus").innerHTML = "Active";
+        }
       } else {
-        document.getElementById("Status").checked = false;
-        document.getElementById("idStatus").innerHTML = "Inactive";
+        document.getElementById("isPromotion").checked = false;
+
+      }
+      console.log(doc.data().Status);
+      if (doc.data().Status === "Active") {
+        document.getElementById("active").checked = true;
+      } else if (doc.data().Status === "Inactive") {
+        document.getElementById("inactive").checked = true;
+      }else if (doc.data().Status === "Out Of Stock") {
+        document.getElementById("outOfStock").checked = true;
       }
 
       if (doc.data().SearchKey === undefined || doc.data().SearchKey === "") {
@@ -168,124 +218,233 @@ function populateProductData() {
         minimumFractionDigits: 0,
         maximumFractionDigits: 2
       };
+      var weightUnit = "";
+      var weight = "";
 
       if (productDetails[0] != null) {
-        document.getElementById("productWeight1").value = productDetails[0].ProductWeight;
+        // document.getElementById("productWeight1").value = productDetails[0].ProductWeight;
+        weight = productDetails[0].ProductWeight;
+        weight = weight.split(" ");
+        // console.log(weight);
+        document.getElementById("productWeight1").value = weight[0];
+
+        if (productWeightUnit === undefined) {
+          if (weight[1].toUpperCase() === "DOZEN") {
+            weightUnit = "Dozen";
+            productWeightUnit = "Dozen";
+            document.getElementById("Dozen").checked = true;
+          } else if (weight[1].toUpperCase() === "PIECE" || weight[1].toUpperCase() === "PC") {
+            weightUnit = "Piece";
+            productWeightUnit = "Piece";
+            document.getElementById("Piece").checked = true;
+          } else if (weight[1].toUpperCase() === "QUINTAL") {
+            weightUnit = "Quintal";
+            productWeightUnit = "Quintal";
+            document.getElementById("Quintal").checked = true;
+          } else { //if(weight[1].toUpperCase() === "KG")
+            weightUnit = "KG";
+            productWeightUnit = "KG";
+            document.getElementById("KG").checked = true;
+          }
+        }
+        document.getElementById("productWeightUnit").value = productWeightUnit;
+        document.getElementById("unit1").innerHTML = weightUnit
         document.getElementById("productMRP1").value = productDetails[0].ProductMRP;
         document.getElementById("productFinalPrise1").value = productDetails[0].ProductFinalPrise;
-        if (productDetails[0].ProductPurchasePrice === undefined) {
-          document.getElementById("purchasePrice1").value = productDetails[0].ProductFinalPrise;
-        } else {
-          document.getElementById("purchasePrice1").value = productDetails[0].ProductPurchasePrice;
-        }
+        // if (productDetails[0].ProductPurchasePrice === undefined) {
+        //   document.getElementById("purchasePrice1").value = productDetails[0].ProductFinalPrise;
+        // } else {
+        //   document.getElementById("purchasePrice1").value = productDetails[0].ProductPurchasePrice;
+        // }
         var finalPrise = document.getElementById("productFinalPrise1").value;
-        var purchasePrice = document.getElementById("purchasePrice1").value;
-        var profitPercentage = (finalPrise - purchasePrice) * 100 / purchasePrice;
-        if (Number(profitPercentage) < 10) {
-          document.getElementById("profitPercentage1").style.color = "#ff5757";
+        // var purchasePrice = document.getElementById("purchasePrice1").value;
+        var purchasePrice = Number(unitPrize) * Number(weight[0]);
+        if (purchasePrice === 0) {
+          document.getElementById("purchasePrice1").value = "NA";
+          document.getElementById("profitPercentage1").value = "NA";
+
         } else {
-          document.getElementById("profitPercentage1").style.color = "#666";
+
+          document.getElementById("purchasePrice1").value = purchasePrice;
+
+          var profitPercentage = (finalPrise - purchasePrice) * 100 / purchasePrice;
+          if (Number(profitPercentage) < 10) {
+            document.getElementById("profitPercentage1").style.color = "#ff5757";
+          } else {
+            document.getElementById("profitPercentage1").style.color = "#666";
+          }
+          document.getElementById("profitPercentage1").value = profitPercentage.toLocaleString('en-IN', curPercentageFormat) + "%";
         }
-        document.getElementById("profitPercentage1").value = profitPercentage.toLocaleString('en-IN', curPercentageFormat) + "%";
+        formatValue(1);
+
       }
-
-
 
       if (productDetails[1] != null) {
         document.getElementById("row2").style.display = "block";
-        document.getElementById("productWeight2").value = productDetails[1].ProductWeight;
+        // document.getElementById("productWeight2").value = productDetails[1].ProductWeight;
+        weight = productDetails[1].ProductWeight;
+        weight = weight.split(" ");
+        // console.log(weight);
+        document.getElementById("productWeight2").value = weight[0];
+        document.getElementById("unit2").innerHTML = weightUnit;
         document.getElementById("productMRP2").value = productDetails[1].ProductMRP;
-        document.getElementById("productFinalPrise2").value = productDetails[1].ProductFinalPrise;
 
-        if (productDetails[1].ProductPurchasePrice === undefined)
-          document.getElementById("purchasePrice2").value = productDetails[1].ProductFinalPrise;
-        else
-          document.getElementById("purchasePrice2").value = productDetails[1].ProductPurchasePrice;
+        document.getElementById("productFinalPrise2").value = productDetails[1].ProductFinalPrise;
+        //
+        // if (productDetails[1].ProductPurchasePrice === undefined)
+        //   document.getElementById("purchasePrice2").value = productDetails[1].ProductFinalPrise;
+        // else
+        //   document.getElementById("purchasePrice2").value = productDetails[1].ProductPurchasePrice;
 
         var finalPrise = document.getElementById("productFinalPrise2").value;
-        var purchasePrice = document.getElementById("purchasePrice2").value;
-        var profitPercentage = (finalPrise - purchasePrice) * 100 / purchasePrice;
-        if (Number(profitPercentage) < 10) {
-          document.getElementById("profitPercentage2").style.color = "#ff5757";
+        var purchasePrice = Number(unitPrize) * Number(weight[0]);
+        if (purchasePrice === 0) {
+          document.getElementById("purchasePrice2").value = "NA";
+          document.getElementById("profitPercentage2").value = "NA";
+
         } else {
-          document.getElementById("profitPercentage2").style.color = "#666";
+
+          document.getElementById("purchasePrice2").value = purchasePrice;
+
+          //        var purchasePrice = document.getElementById("purchasePrice2").value;
+          var profitPercentage = (finalPrise - purchasePrice) * 100 / purchasePrice;
+          if (Number(profitPercentage) < 10) {
+            document.getElementById("profitPercentage2").style.color = "#ff5757";
+          } else {
+            document.getElementById("profitPercentage2").style.color = "#666";
+          }
+          document.getElementById("profitPercentage2").value = profitPercentage.toLocaleString('en-IN', curPercentageFormat) + "%";
         }
-        document.getElementById("profitPercentage2").value = profitPercentage.toLocaleString('en-IN', curPercentageFormat) + "%";
+        formatValue(2);
 
       }
-
       if (productDetails[2] != null) {
 
         document.getElementById("row3").style.display = "block";
-        document.getElementById("productWeight3").value = productDetails[2].ProductWeight;
-        document.getElementById("productMRP3").value = productDetails[2].ProductMRP;
+
+        // document.getElementById("productWeight3").value = productDetails[2].ProductWeight;
+        weight = productDetails[2].ProductWeight;
+        weight = weight.split(" ");
+        // console.log(weight);
+        document.getElementById("productWeight3").value = weight[0];
+        document.getElementById("unit3").innerHTML = weightUnit;
+        // document.getElementById("productMRP3").value = productDetails[2].ProductMRP;
+
+        document.getElementById("productMRP3").value = Number(unitPrize) * Number(weight[0]);
         document.getElementById("productFinalPrise3").value = productDetails[2].ProductFinalPrise;
 
-        if (productDetails[2].ProductPurchasePrice === undefined)
-          document.getElementById("purchasePrice3").value = productDetails[2].ProductFinalPrise;
-        else
-          document.getElementById("purchasePrice3").value = productDetails[2].ProductPurchasePrice;
+        // if (productDetails[2].ProductPurchasePrice === undefined)
+        //   document.getElementById("purchasePrice3").value = productDetails[2].ProductFinalPrise;
+        // else
+        //   document.getElementById("purchasePrice3").value = productDetails[2].ProductPurchasePrice;
 
         var finalPrise = document.getElementById("productFinalPrise3").value;
-        var purchasePrice = document.getElementById("purchasePrice3").value;
-        var profitPercentage = (finalPrise - purchasePrice) * 100 / purchasePrice;
-        if (Number(profitPercentage) < 10) {
-          document.getElementById("profitPercentage3").style.color = "#ff5757";
+        var purchasePrice = Number(unitPrize) * Number(weight[0]);
+        if (purchasePrice === 0) {
+          document.getElementById("purchasePrice3").value = "NA";
+          document.getElementById("profitPercentage3").value = "NA";
+
         } else {
-          document.getElementById("profitPercentage3").style.color = "#666";
+
+          document.getElementById("purchasePrice3").value = purchasePrice;
+
+          var profitPercentage = (finalPrise - purchasePrice) * 100 / purchasePrice;
+          if (Number(profitPercentage) < 10) {
+            document.getElementById("profitPercentage3").style.color = "#ff5757";
+          } else {
+            document.getElementById("profitPercentage3").style.color = "#666";
+          }
+          document.getElementById("profitPercentage3").value = profitPercentage.toLocaleString('en-IN', curPercentageFormat) + "%";
         }
-        document.getElementById("profitPercentage3").value = profitPercentage.toLocaleString('en-IN', curPercentageFormat) + "%";
+        formatValue(3);
 
       }
 
       if (productDetails[3] != null) {
 
         document.getElementById("row4").style.display = "block";
-        document.getElementById("productWeight4").value = productDetails[3].ProductWeight;
+        // document.getElementById("productWeight4").value = productDetails[3].ProductWeight;
+        weight = productDetails[3].ProductWeight;
+        weight = weight.split(" ");
+        // console.log(weight);
+        document.getElementById("productWeight4").value = weight[0];
+        document.getElementById("unit4").innerHTML = weightUnit;
         document.getElementById("productMRP4").value = productDetails[3].ProductMRP;
         document.getElementById("productFinalPrise4").value = productDetails[3].ProductFinalPrise;
-        if (productDetails[3].ProductPurchasePrice === undefined)
-          document.getElementById("purchasePrice4").value = productDetails[3].ProductFinalPrise;
-        else
-          document.getElementById("purchasePrice4").value = productDetails[3].ProductPurchasePrice;
+        // if (productDetails[3].ProductPurchasePrice === undefined)
+        //   document.getElementById("purchasePrice4").value = productDetails[3].ProductFinalPrise;
+        // else
+        //   document.getElementById("purchasePrice4").value = productDetails[3].ProductPurchasePrice;
 
         var finalPrise = document.getElementById("productFinalPrise4").value;
-        var purchasePrice = document.getElementById("purchasePrice4").value;
-        var profitPercentage = (finalPrise - purchasePrice) * 100 / purchasePrice;
-        if (Number(profitPercentage) < 10) {
-          document.getElementById("profitPercentage4").style.color = "#ff5757";
+        var purchasePrice = Number(unitPrize) * Number(weight[0]);
+        // document.getElementById("purchasePrice4").value = purchasePrice;
+        if (purchasePrice === 0) {
+          document.getElementById("purchasePrice4").value = "NA";
+          document.getElementById("profitPercentage4").value = "NA";
+
         } else {
-          document.getElementById("profitPercentage4").style.color = "#666";
+
+          document.getElementById("purchasePrice4").value = purchasePrice;
+
+          // var finalPrise = document.getElementById("productFinalPrise4").value;
+          // var purchasePrice = document.getElementById("purchasePrice4").value;
+          var profitPercentage = (finalPrise - purchasePrice) * 100 / purchasePrice;
+          if (Number(profitPercentage) < 10) {
+            document.getElementById("profitPercentage4").style.color = "#ff5757";
+          } else {
+            document.getElementById("profitPercentage4").style.color = "#666";
+          }
+          document.getElementById("profitPercentage4").value = profitPercentage.toLocaleString('en-IN', curPercentageFormat) + "%";
         }
-        document.getElementById("profitPercentage4").value = profitPercentage.toLocaleString('en-IN', curPercentageFormat) + "%";
+        formatValue(4);
 
       }
 
       if (productDetails[4] != null) {
-
         document.getElementById("row5").style.display = "block";
         document.getElementById("btnAddMore").disabled = "true";
-        document.getElementById("productWeight5").value = productDetails[4].ProductWeight;
+        // document.getElementById("productWeight5").value = productDetails[4].ProductWeight;
+        weight = productDetails[4].ProductWeight;
+        weight = weight.split(" ");
+        // console.log(weight);
+        document.getElementById("productWeight5").value = weight[0];
+        document.getElementById("unit5").innerHTML = weightUnit;
         document.getElementById("productMRP5").value = productDetails[4].ProductMRP;
         document.getElementById("productFinalPrise5").value = productDetails[4].ProductFinalPrise;
-        if (productDetails[4].ProductPurchasePrice === undefined)
-          document.getElementById("purchasePrice5").value = productDetails[4].ProductFinalPrise;
-        else
-          document.getElementById("purchasePrice5").value = productDetails[4].ProductPurchasePrice;
+        // if (productDetails[4].ProductPurchasePrice === undefined)
+        //   document.getElementById("purchasePrice5").value = productDetails[4].ProductFinalPrise;
+        // else
+        //   document.getElementById("purchasePrice5").value = productDetails[4].ProductPurchasePrice;
 
         var finalPrise = document.getElementById("productFinalPrise5").value;
-        var purchasePrice = document.getElementById("purchasePrice5").value;
-        var profitPercentage = (finalPrise - purchasePrice) * 100 / purchasePrice;
-        if (Number(profitPercentage) < 10) {
-          document.getElementById("profitPercentage5").style.color = "#ff5757";
-        } else {
-          document.getElementById("profitPercentage5").style.color = "#666";
-        }
-        document.getElementById("profitPercentage5").value = profitPercentage.toLocaleString('en-IN', curPercentageFormat) + "%";
+        var purchasePrice = Number(unitPrize) * Number(weight[0]);
+        // document.getElementById("purchasePrice5").value = purchasePrice;
+        if (purchasePrice === 0) {
+          document.getElementById("purchasePrice5").value = "NA";
+          document.getElementById("profitPercentage5").value = "NA";
 
+        } else {
+
+          document.getElementById("purchasePrice5").value = purchasePrice;
+          // var finalPrise = document.getElementById("productFinalPrise5").value;
+          // var purchasePrice = document.getElementById("purchasePrice5").value;
+          var profitPercentage = (finalPrise - purchasePrice) * 100 / purchasePrice;
+          if (Number(profitPercentage) < 10) {
+            document.getElementById("profitPercentage5").style.color = "#ff5757";
+          } else {
+            document.getElementById("profitPercentage5").style.color = "#666";
+          }
+          document.getElementById("profitPercentage5").value = profitPercentage.toLocaleString('en-IN', curPercentageFormat) + "%";
+        }
+        formatValue(5);
 
       }
       document.getElementById("myimg").src = doc.data().ProductImageURL;
+
+      document.getElementById("lastUnitPrize").innerHTML = unitPrize;
+      document.getElementById("unitName").innerHTML = weightUnit;
+
       //console.log(doc.data().ProductImageURL);
     }
   });
@@ -293,6 +452,64 @@ function populateProductData() {
 
 //************* Populate Event Data - Ends ******************
 
+function setPurchasePrise(index) {
+  var weight = document.getElementById("productWeight" + index);
+  var unitPrize = document.getElementById("lastUnitPrize");
+  var purchasePrice = document.getElementById("purchasePrice" + index);
+  var purchaseP = 0;
+  if (unitPrize.innerHTML != "") {
+    purchaseP = Number(unitPrize.innerHTML) * Number(weight.value);
+  } else {
+    document.getElementById("profitPercentage" + index).value = "NA";
+  }
+
+  purchasePrice.value = purchaseP;
+  setMRP(index);
+  //    var unit = document.getElementById("unit" + index);
+
+}
+
+function changeUnit() {
+  console.log("in changeUnit");
+  var unitKG = document.getElementById("KG");
+  var unitDozen = document.getElementById("Dozen");
+  var unitPiece = document.getElementById("Piece");
+  var unitQuintal = document.getElementById("Quintal");
+
+  if (unitKG.checked) {
+    // console.log("1");
+    document.getElementById("productWeightUnit").value = "KG";
+    document.getElementById("unit1").innerHTML = "KG";
+    document.getElementById("unit2").innerHTML = "KG";
+    document.getElementById("unit3").innerHTML = "KG";
+    document.getElementById("unit4").innerHTML = "KG";
+    document.getElementById("unit5").innerHTML = "KG";
+  } else if (unitDozen.checked) {
+    // console.log("2");
+    document.getElementById("productWeightUnit").value = "Dozen";
+    document.getElementById("unit1").innerHTML = "Dozen";
+    document.getElementById("unit2").innerHTML = "Dozen";
+    document.getElementById("unit3").innerHTML = "Dozen";
+    document.getElementById("unit4").innerHTML = "Dozen";
+    document.getElementById("unit5").innerHTML = "Dozen";
+  } else if (unitPiece.checked) {
+    // console.log("3");
+    document.getElementById("productWeightUnit").value = "Piece";
+    document.getElementById("unit1").innerHTML = "Piece";
+    document.getElementById("unit2").innerHTML = "Piece";
+    document.getElementById("unit3").innerHTML = "Piece";
+    document.getElementById("unit4").innerHTML = "Piece";
+    document.getElementById("unit5").innerHTML = "Piece";
+  } else if (unitQuintal.checked) {
+    // console.log("4");
+    document.getElementById("productWeightUnit").value = "Quintal";
+    document.getElementById("unit1").innerHTML = "Quintal";
+    document.getElementById("unit2").innerHTML = "Quintal";
+    document.getElementById("unit3").innerHTML = "Quintal";
+    document.getElementById("unit4").innerHTML = "Quintal";
+    document.getElementById("unit5").innerHTML = "Quintal";
+  }
+}
 //************* Create & Update Event Data - Starts ******************
 function setMRP(index) {
   var productFinalPrise = document.getElementById("productFinalPrise" + index);
@@ -312,14 +529,16 @@ function setMRP(index) {
     minimumFractionDigits: 0,
     maximumFractionDigits: 2
   };
+  if (Number(purchasePrise) === purchasePrise) {
 
-  profitPercentage = (finalPrise - purchasePrise) * 100 / purchasePrise;
-  if (Number(profitPercentage) < 10) {
-    document.getElementById("profitPercentage" + index).style.color = "#ff5757";
-  } else {
-    document.getElementById("profitPercentage" + index).style.color = "#666";
+    profitPercentage = (finalPrise - purchasePrise) * 100 / purchasePrise;
+    if (Number(profitPercentage) < 10) {
+      document.getElementById("profitPercentage" + index).style.color = "#ff5757";
+    } else {
+      document.getElementById("profitPercentage" + index).style.color = "#666";
+    }
+    document.getElementById("profitPercentage" + index).value = profitPercentage.toLocaleString('en-IN', curPercentageFormat) + "%";
   }
-  document.getElementById("profitPercentage" + index).value = profitPercentage.toLocaleString('en-IN', curPercentageFormat) + "%";
   mrp = mrp.toLocaleString('en-IN', curFormat);
   productMRP.value = mrp;
 
@@ -353,6 +572,23 @@ function addRows() {
   }
 }
 
+function formatValue(index) {
+  var weight = document.getElementById("productWeight" + index);
+  var unit = document.getElementById("unit" + index);
+
+  if (weight.value.length === 0) {
+    unit.style.transform = 'translateX(6px)';
+  } else if (weight.value.length === 1) {
+    unit.style.transform = 'translateX(12px)';
+  } else if (weight.value.length === 2) {
+    unit.style.transform = 'translateX(22px)';
+  } else if (weight.value.length === 3) {
+    unit.style.transform = 'translateX(32px)';
+  } else {
+    unit.style.transform = 'translateX(38px)';
+  }
+}
+
 function CreateUpdateProductData() {
   console.log('CreateUpdateProductData');
 
@@ -379,6 +615,14 @@ function CreateUpdateProductData() {
 
     var productTypeValue = productType.options[productType.selectedIndex].value;
     var productName = document.getElementById("productName").value;
+    var shortDescription = document.getElementById("shortDescription").value;
+    var isPromotion = document.getElementById("isPromotion");
+    var promotionText = document.getElementById("OfferDescription").value;
+    var promotionFlag = true;
+    if (!isPromotion.checked) {
+      promotionFlag = false;
+      promotionText = "";
+    }
     var searchKey = document.getElementById("searchKey").value;
     if (searchKey === "")
       searchKey = productName;
@@ -427,6 +671,7 @@ function CreateUpdateProductData() {
         flagPrice = true;
       } {
         productDetails.push({
+          // ProductWeight: document.getElementById("productWeight1").value + " " +  document.getElementById("unit1").innerHTML,
           ProductWeight: document.getElementById("productWeight1").value,
           ProductMRP: document.getElementById("productMRP1").value,
           ProductFinalPrise: document.getElementById("productFinalPrise1").value,
@@ -447,6 +692,7 @@ function CreateUpdateProductData() {
         flagPrice = true;
       } {
         productDetails.push({
+          // ProductWeight: document.getElementById("productWeight2").value + " " +  document.getElementById("unit2").innerHTML,
           ProductWeight: document.getElementById("productWeight2").value,
           ProductMRP: document.getElementById("productMRP2").value,
           ProductFinalPrise: document.getElementById("productFinalPrise2").value,
@@ -469,6 +715,7 @@ function CreateUpdateProductData() {
 
 
         productDetails.push({
+          // ProductWeight: document.getElementById("productWeight3").value + " " +  document.getElementById("unit3").innerHTML,
           ProductWeight: document.getElementById("productWeight3").value,
           ProductMRP: document.getElementById("productMRP3").value,
           ProductFinalPrise: document.getElementById("productFinalPrise3").value,
@@ -490,6 +737,7 @@ function CreateUpdateProductData() {
       } {
 
         productDetails.push({
+          // ProductWeight: document.getElementById("productWeight4").value + " " +  document.getElementById("unit4").innerHTML,
           ProductWeight: document.getElementById("productWeight4").value,
           ProductMRP: document.getElementById("productMRP4").value,
           ProductFinalPrise: document.getElementById("productFinalPrise4").value,
@@ -511,6 +759,7 @@ function CreateUpdateProductData() {
       } {
 
         productDetails.push({
+          // ProductWeight: document.getElementById("productWeight5").value + " " +  document.getElementById("unit5").innerHTML,
           ProductWeight: document.getElementById("productWeight5").value,
           ProductMRP: document.getElementById("productMRP5").value,
           ProductFinalPrise: document.getElementById("productFinalPrise5").value,
@@ -520,15 +769,17 @@ function CreateUpdateProductData() {
       }
     }
     var ProductImageURL = document.getElementById("myimg").src;
-    var ostatus = document.getElementById("Status");
-    var status="Active";
-    if(ostatus.checked)
-    {
-      status="Active";
+
+    var status = "Active";
+    if (document.getElementById("active").checked) {
+      status = "Active";
+    } else if (document.getElementById("inactive").checked) {
+      status = "Inactive";
+    } else if (document.getElementById("outOfStock").checked) {
+      status = "Out Of Stock";
     }
-    else {
-      status="Inactive";
-    }
+
+    var productWeightUnit = document.getElementById("productWeightUnit").value
     // if (flag === true && flagPrice === false) {
     if (flag === true) {
 
@@ -547,11 +798,15 @@ function CreateUpdateProductData() {
             ProductLocation: productLocationValue,
             ProductDetails: productDetails,
             ProductImageURL: ProductImageURL,
+            ShortDescription: shortDescription,
+            PromotionText: promotionText,
+            PromotionFlag: promotionFlag,
             Status: status,
-            CreatedBy: auth.currentUser.email,
-            CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
-            UpdatedBy: '',
-            UpdatedTimestamp: ''
+            ProductWeightUnit: productWeightUnit,
+            // CreatedBy: auth.currentUser.email,
+            // CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+            UpdatedBy: auth.currentUser.email,
+            UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
           })
           .then((docRef) => {
             console.log("Data added sucessfully in the document: ");
@@ -581,6 +836,10 @@ function CreateUpdateProductData() {
             ProductDetails: productDetails,
             ProductImageURL: ProductImageURL,
             Status: status,
+            ProductWeightUnit: productWeightUnit,
+            ShortDescription: shortDescription,
+            PromotionText: promotionText,
+            PromotionFlag: promotionFlag,
             CreatedBy: auth.currentUser.email,
             CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
             UpdatedBy: '',
@@ -596,8 +855,8 @@ function CreateUpdateProductData() {
 
             console.log(pID);
             console.log(count);
-            db.collection("CollectionStatistics").doc(pID).set({
-                ProductCount: count,
+            db.collection("CollectionStatistics").doc(pID).update({
+                ProductCount: firebase.firestore.FieldValue.increment(1),
               })
               .then(function(docRef) {
                 // console.log(Date.parse(eventstart))
