@@ -370,50 +370,50 @@
                 </center><br>
               </div>
 
-              <div class="" style="display:none;" >
+              <div class="" style="display:none;">
 
 
-              <div class="col-lg-12">
-                <center>
-                  <h4 class="small-text">Business Type</h4>
-                </center>
-              </div>
+                <div class="col-lg-12">
+                  <center>
+                    <h4 class="small-text">Business Type</h4>
+                  </center>
+                </div>
 
-              <div class="col-6" style="padding: 0 5px;">
-                <input type="radio" checked class="checkbox" style="width: 0px;" name="BusinessType" id="All" value="All">
-                <label class="checkbox-label" id="All-label" for="All">
-                  <i class="fas fa-plus"></i>
-                  <i class="fas fa-check"></i>
-                  <span>All</span>
-                </label>
-              </div>
+                <div class="col-6" style="padding: 0 5px;">
+                  <input type="radio" checked class="checkbox" style="width: 0px;" name="BusinessType" id="All" value="All">
+                  <label class="checkbox-label" id="All-label" for="All">
+                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-check"></i>
+                    <span>All</span>
+                  </label>
+                </div>
 
-              <div class="col-6" style="padding: 0 5px;">
-                <input type="radio" class="checkbox" style="width: 0px;" name="BusinessType" id="Small" value="Small">
-                <label class="checkbox-label" id="Small-label" for="Small">
-                  <i class="fas fa-plus"></i>
-                  <i class="fas fa-check"></i>
-                  <span>Small</span>
-                </label>
-              </div>
+                <div class="col-6" style="padding: 0 5px;">
+                  <input type="radio" class="checkbox" style="width: 0px;" name="BusinessType" id="Small" value="Small">
+                  <label class="checkbox-label" id="Small-label" for="Small">
+                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-check"></i>
+                    <span>Small</span>
+                  </label>
+                </div>
 
-              <div class="col-6" style="padding: 0 5px;">
-                <input type="radio" class="checkbox" style="width: 0px;" name="BusinessType" id="Medium" value="Medium">
-                <label class="checkbox-label" id="Medium-label" for="Medium">
-                  <i class="fas fa-plus"></i>
-                  <i class="fas fa-check"></i>
-                  <span>Medium</span>
-                </label>
-              </div>
+                <div class="col-6" style="padding: 0 5px;">
+                  <input type="radio" class="checkbox" style="width: 0px;" name="BusinessType" id="Medium" value="Medium">
+                  <label class="checkbox-label" id="Medium-label" for="Medium">
+                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-check"></i>
+                    <span>Medium</span>
+                  </label>
+                </div>
 
-              <div class="col-6" style="padding: 0 5px;">
-                <input type="radio" class="checkbox" style="width: 0px;" name="BusinessType" id="Large" value="Large">
-                <label class="checkbox-label" id="Large-label" for="Large">
-                  <i class="fas fa-plus"></i>
-                  <i class="fas fa-check"></i>
-                  <span>Large</span>
-                </label>
-              </div>
+                <div class="col-6" style="padding: 0 5px;">
+                  <input type="radio" class="checkbox" style="width: 0px;" name="BusinessType" id="Large" value="Large">
+                  <label class="checkbox-label" id="Large-label" for="Large">
+                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-check"></i>
+                    <span>Large</span>
+                  </label>
+                </div>
               </div>
 
               <div class="col-sm-12">
@@ -453,24 +453,74 @@
                 </div>
               </div>
 
-              <div class="col-sm-12" >
+              <div class="col-sm-12">
                 <div class="form-control" style="background: transparent;">
                   <input type="text" id="searchKey" required style="background: transparent;" value="" maxlength="400">
                   <label style="color: #ff5757;">searchKey</label>
                 </div>
               </div>
 
-              <div class="col-sm-12"><br>
+
+            <div class="col-sm-12">
+              <div class="form-control" style="background: transparent;">
+                <input type="text" id="shortDescription" style="background: transparent;" value="" maxlength="400">
+                <label style="color: #ff5757;">Short Description</label>
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <div class="form-control" style="background: transparent;">
+                <input type="checkbox" id="isPromotion" onclick="SetPromotion();" ></input>
+                <input type="text" id="OfferDescription" style="background: transparent;"  disabled value="" maxlength="400">
+                <label style="color: #ff5757;">Promot Offer</label>
+              </div>
+            </div>
+              <!-- <div class="col-sm-12"><br>
                 <div class="" style="padding: 0 5px;" onclick="changeStatus();">
-                  <input type="checkbox" checked  class="checkbox" style="width: 0px;" name="status" id="Status" value="">
+                  <input type="checkbox" checked class="checkbox" style="width: 0px;" name="status" id="Status" value="">
                   <label class="checkbox-label" id="Veg-label" for="Veg">
                     <i class="fas fa-plus"></i>
                     <i class="fas fa-check"></i>
                     <span id="idStatus">Active</span>
                   </label>
-                </input>
+                  </input>
+                </div>
+              </div> -->
+              <hr>
+              <div class="col-4"><br>
+                <div class="" style="padding: 0 5px;">
+                  <input type="radio" checked class="checkbox" style="width: 0px;" name="ProductStatus" id="active" value="active">
+                  <label class="checkbox-label" id="active-label" for="active">
+                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-check"></i>
+                    <span>Active</span>
+                  </label>
                 </div>
               </div>
+
+              <div class="col-4"><br>
+                <div class="" style="padding: 0 5px;">
+                  <input type="radio" class="checkbox" style="width: 0px;" name="ProductStatus" id="inactive" value="inactive">
+                  <label class="checkbox-label" id="inactive-label" for="inactive">
+                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-check"></i>
+                    <span>Inactive</span>
+                  </label>
+                </div>
+              </div>
+
+
+              <div class="col-4"><br>
+                <div class="" style="padding: 0 5px;">
+                  <input type="radio" class="checkbox" style="width: 0px;" name="ProductStatus" id="outOfStock" value="outOfStock">
+                  <label class="checkbox-label" id="outOfStock-label" for="outOfStock">
+                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-check"></i>
+                    <span>Out of Stock</span>
+                  </label>
+                </div>
+              </div>
+              <hr>
               <div class="col-6"><br>
                 <div class="" style="padding: 0 5px;">
                   <input type="radio" checked class="checkbox" style="width: 0px;" name="Veg-NonVeg" id="Veg" value="Veg">
@@ -545,32 +595,69 @@
               <div class="col-lg-12">
                 <hr>
                 <center>
-                  <h4 class="small-text">Price Setup</h4><br>
+                  <h5 class="small-text">Price Setup</h5>
+                  <div id="prizeSetup" style="display:none">
+                  <h4 class="small-text" >Puchase prize : <span id="currency">₹</span> <span id="lastUnitPrize">  </span> Per <span id="unitName"> </span></h4> <br>
+                </div>
                 </center>
               </div>
 
-              <div class="col-sm-12" style="display:none;">
+              <div class="col-sm-12" style="display:none;"><br>
                 <hr>
                 <div class="form-control">
                   <input type="number" min="1" id="purchasePrize" required value="" maxlength="40">
                   <label>Purchanse Prize Per Unit</label>
                 </div><br>
               </div>
-
+              <!-- <div class="row no-gutters" style="padding: 0 5px;"> -->
+              <div class="col-3" style="padding: 0 5px;">
+                <input type="radio" checked class="checkbox" style="width: 0px;" name="unit" id="KG" onclick="changeUnit();" value="KG">
+                <label class="checkbox-label" id="KG-label" for="KG">
+                  <i class="fas fa-plus"></i>
+                  <i class="fas fa-check"></i>
+                  <span>KG</span>
+                </label>
+              </div>
+              <div class="col-3" style="padding: 0 5px;">
+                <input type="radio" class="checkbox" style="width: 0px;" name="unit" id="Dozen" onclick="changeUnit();" value="Dozen">
+                <label class="checkbox-label" id="Dozen-label" for="Dozen">
+                  <i class="fas fa-plus"></i>
+                  <i class="fas fa-check"></i>
+                  <span>Dozen</span>
+                </label>
+              </div>
+              <div class="col-3" style="padding: 0 5px;">
+                <input type="radio" class="checkbox" style="width: 0px;" name="unit" id="Piece" onclick="changeUnit();" value="Piece">
+                <label class="checkbox-label" id="Piece-label" for="Piece">
+                  <i class="fas fa-plus"></i>
+                  <i class="fas fa-check"></i>
+                  <span>Piece</span>
+                </label>
+              </div>
+              <div class="col-3" style="padding: 0 5px;">
+                <input type="radio" class="checkbox" style="width: 0px;" name="unit" id="Quintal" onclick="changeUnit();" value="Quintal">
+                <label class="checkbox-label" id="Quintal-label" for="Quintal">
+                  <i class="fas fa-plus"></i>
+                  <i class="fas fa-check"></i>
+                  <span>Quintal</span>
+                </label>
+              </div>
+              <input type="hidden" id="productWeightUnit" >
 
               <div id="row1" class="col-lg-12">
-                <div class="row no-gutters">
+              <br>  <div class="row no-gutters">
                   <div class="col-3">
                     <div class="form-control">
-                      <input type="text" required value="" maxlength="40" id="productWeight1">
+                      <input type="number" maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required value="" maxlength="40" onkeyup="formatValue(1);" id="productWeight1" onchange="setPurchasePrise(1)">
                       <label style="color: #ff5757;">Weight</label>
+                      <span id="unit1" class="create-product-weight"></span>
                     </div>
                   </div>
 
 
                   <div class="col-3">
                     <div class="form-control">
-                      <input type="number" required value="" maxlength="40" id="purchasePrice1">
+                      <input type="text" disabled value="" maxlength="40" id="purchasePrice1">
                       <label style="color: #ff5757;">Pr. Price</label>
                     </div>
                   </div>
@@ -581,7 +668,7 @@
                       <!-- <label style="color: #ff5757;" style="display:none">MRP</label> -->
 
 
-                      <input type="text" required value="" maxlength="40" disabled id="profitPercentage1" >
+                      <input type="text" required value="" maxlength="40" disabled id="profitPercentage1">
                       <label style="color: #ff5757;">Margin</label>
                     </div>
                   </div>
@@ -600,13 +687,14 @@
                 <div class="row no-gutters">
                   <div class="col-3">
                     <div class="form-control">
-                      <input type="text" required value="" maxlength="40" id="productWeight2">
+                      <input type="number" maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required value="" maxlength="40" onkeyup="formatValue(2);" id="productWeight2" onchange="setPurchasePrise(2)">
                       <label style="color: #ff5757;">Weight</label>
+                      <span id="unit2" class="create-product-weight"></span>
                     </div>
                   </div>
                   <div class="col-3">
                     <div class="form-control">
-                      <input type="number" required value="" maxlength="40" id="purchasePrice2">
+                      <input type="text" disabled value="" maxlength="40" id="purchasePrice2">
                       <label style="color: #ff5757;">Pr. Price</label>
                     </div>
                   </div>
@@ -618,7 +706,7 @@
                       <!-- <label style="color: #ff5757;" style="display:none">MRP</label> -->
 
 
-                      <input type="text" required value="" maxlength="40" disabled id="profitPercentage2" >
+                      <input type="text" required value="" maxlength="40" disabled id="profitPercentage2">
                       <label style="color: #ff5757;">Margin</label>
                     </div>
                   </div>
@@ -637,14 +725,15 @@
                 <div class="row no-gutters">
                   <div class="col-3">
                     <div class="form-control">
-                      <input type="text" required value="" maxlength="40" id="productWeight3">
+                      <input type="number" maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required value="" maxlength="40" onkeyup="formatValue(3);" id="productWeight3" onchange="setPurchasePrise(3)">
                       <label style="color: #ff5757;">Weight</label>
+                      <span id="unit3" class="create-product-weight"></span>
                     </div>
                   </div>
 
                   <div class="col-3">
                     <div class="form-control">
-                      <input type="number" required value="" maxlength="40" id="purchasePrice3">
+                      <input type="text" disabled value="" maxlength="40" id="purchasePrice3">
                       <label style="color: #ff5757;">Pr. Price</label>
                     </div>
                   </div>
@@ -655,7 +744,7 @@
                       <!-- <label style="color: #ff5757;" style="display:none">MRP</label> -->
 
 
-                      <input type="text" required value="" maxlength="40" disabled id="profitPercentage3" >
+                      <input type="text" required value="" maxlength="40" disabled id="profitPercentage3">
                       <label style="color: #ff5757;">Margin</label>
                     </div>
                   </div>
@@ -674,15 +763,16 @@
                 <div class="row no-gutters">
                   <div class="col-3">
                     <div class="form-control">
-                      <input type="text" required value="" maxlength="40" id="productWeight4">
+                      <input type="number" maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required value="" maxlength="40" onkeyup="formatValue(4);" id="productWeight4" onchange="setPurchasePrise(4)">
                       <label style="color: #ff5757;">Weight</label>
+                      <span id="unit4" class="create-product-weight"></span>
                     </div>
                   </div>
 
 
                   <div class="col-3">
                     <div class="form-control">
-                      <input type="number" required value="" maxlength="40" id="purchasePrice4">
+                      <input type="text" disabled value="" maxlength="40" id="purchasePrice4">
                       <label style="color: #ff5757;">Pr. Price</label>
                     </div>
                   </div>
@@ -692,14 +782,14 @@
                       <!-- <label style="color: #ff5757;" style="display:none">MRP</label> -->
 
 
-                      <input type="text" required value="" maxlength="40" disabled id="profitPercentage4" >
+                      <input type="text" required value="" maxlength="40" disabled id="profitPercentage4">
                       <label style="color: #ff5757;">Margin</label>
                     </div>
                   </div>
 
                   <div class="col-3">
                     <div class="form-control">
-                      <input type="text" required value="" maxlength="40"  onchange="setMRP(4);" id="productFinalPrise4">
+                      <input type="text" required value="" maxlength="40" onchange="setMRP(4);" id="productFinalPrise4">
                       <label style="color: #ff5757;">Our Price</label>
                     </div>
                   </div>
@@ -711,15 +801,16 @@
                 <div class="row no-gutters">
                   <div class="col-3">
                     <div class="form-control">
-                      <input type="text" required value="" maxlength="40" id="productWeight5">
+                      <input type="number" maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required value="" maxlength="40" onkeyup="formatValue(5);" id="productWeight5" onchange="setPurchasePrise(5)">
                       <label style="color: #ff5757;">Weight</label>
+                      <span id="unit5" class="create-product-weight"></span>
                     </div>
                   </div>
 
 
                   <div class="col-3">
                     <div class="form-control">
-                      <input type="number" required value="" maxlength="40" id="purchasePrice5">
+                      <input type="text" disabled value="" maxlength="40" id="purchasePrice5">
                       <label style="color: #ff5757;">Pr. Price</label>
                     </div>
                   </div>
@@ -730,7 +821,7 @@
                       <!-- <label style="color: #ff5757;" style="display:none">MRP</label> -->
 
 
-                      <input type="text" required value="" maxlength="40" disabled id="profitPercentage5" >
+                      <input type="text" required value="" maxlength="40" disabled id="profitPercentage5">
                       <label style="color: #ff5757;">Margin</label>
                     </div>
                   </div>
@@ -752,10 +843,10 @@
               <div id="createEventConformation" class="col-sm-12" style="display: none;transition: 0.5s;">
                 <br>
                 <center>
-                <span id="message">Product details are succsessfully updated</span>
-                <!-- <span ><i class="fas fa-hand-point-right"></i></span>
+                  <span id="message">Product details are succsessfully updated</span>
+                  <!-- <span ><i class="fas fa-hand-point-right"></i></span>
                 <span> <a href="allProducts.html">Click Here</a> </span> -->
-              </center>
+                </center>
               </div>
               <div class="col-sm-12"><br>
                 <center>
