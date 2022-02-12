@@ -17,11 +17,11 @@ auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       console.log('Logged-in user email id: ' + firebaseUser.email);
       userID = firebaseUser.uid;
-      console.log(userID);
+      // console.log(userID);
       GetProfileData(firebaseUser);
-      console.log("after firebaseUser");
+      // console.log("after firebaseUser");
       UpdateDeliveryDate();
-      console.log("after UpdateDeliveryDate");
+      // console.log("after UpdateDeliveryDate");
       GetDeliveryAddress();
 
       GetCartList();
@@ -37,7 +37,7 @@ auth.onAuthStateChanged(firebaseUser => {
 
       document.getElementById("notificationCnt").innerHTML = siteNotification;
       document.getElementById("notificationCnt1").innerHTML = siteNotification;
-      console.log(siteNotification);
+      // console.log(siteNotification);
       document.getElementById('btnProceedToPay').removeAttribute("disabled");
 
       //getCartSummary();
@@ -67,9 +67,9 @@ function GetCartList() {
       cartItems = doc.data().cartDetails;
       cartLength = cartItems.length;
 
-      console.log('Cart Length', cartLength);
-      console.log(cartItems);
-      console.log('GetCartList - Ends');
+      // console.log('Cart Length', cartLength);
+      // console.log(cartItems);
+      // console.log('GetCartList - Ends');
 
       //GetProductList();
 
@@ -109,35 +109,40 @@ function getCartItemNo() {
   for (i = 0; i < cartItems.length; i++) {
     var qty = cartItems[i].Quantity;
     var selectedsubItem = cartItems[i].SelectedsubItem;
-    var weight = selectedsubItem.split('-');
+    var weight = selectedsubItem.split(' ');
     var index = ArrProduct.findIndex(e => e.productID === cartItems[i].ProductID);
     var selectedProduct = ArrProduct[index].productDetails;
-    if (selectedProduct.ProductDetails != undefined && selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
-      var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
+    if (selectedProduct.ProductDetails != undefined && selectedProduct.ProductDetails.findIndex(e => e.ProductWeight.split(" ")[0] == weight[0].trim()) >= 0) {
+      var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight.split(" ")[0] == weight[0].trim())]
       prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
 
       var purchasePrice = 0;
-      if(unitPrise.ProductPurchasePrice === undefined || unitPrise.ProductPurchasePrice === "")
-      {
+      if (unitPrise.ProductPurchasePrice === undefined || unitPrise.ProductPurchasePrice === "") {
         purchasePrice = unitPrise.ProductFinalPrise;
-      }
-      else {
+      } else {
         purchasePrice = unitPrise.ProductPurchasePrice;
       }
-     console.log(selectedProduct);
-      console.log(cartItems[i]);
-          OrderItems.push({
-            ProductID: cartItems[i].ProductID,
-            ProductName: cartItems[i].ItemName,
-            SelectedSubItem: cartItems[i].SelectedsubItem,
-            ImageURL: selectedProduct.ProductImageURL,
-            VegNonVeg: selectedProduct.VegNonVeg,
-            UnitPrise: unitPrise.ProductFinalPrise,
-            MRP: unitPrise.ProductMRP,
-            PurchasePrice : purchasePrice,
-            Quantity: cartItems[i].Quantity
-          });
-          console.log(OrderItems);
+      var selectedItemDetails = "";
+      if (selectedProduct.ProductWeightUnit != undefined) {
+        selectedItemDetails = weight[0] + " " + selectedProduct.ProductWeightUnit + " - Rs." + unitPrise.ProductFinalPrise;
+      } else {
+        selectedItemDetails = cartItems[i].SelectedsubItem;
+      }
+      // console.log(selectedProduct);
+      // console.log(cartItems[i]);
+      OrderItems.push({
+        ProductID: cartItems[i].ProductID,
+        ProductName: cartItems[i].ItemName,
+        SelectedSubItem: selectedItemDetails,
+        // SelectedSubItem: cartItems[i].SelectedsubItem,
+        ImageURL: selectedProduct.ProductImageURL,
+        VegNonVeg: selectedProduct.VegNonVeg,
+        UnitPrise: unitPrise.ProductFinalPrise,
+        MRP: unitPrise.ProductMRP,
+        PurchasePrice: purchasePrice,
+        Quantity: cartItems[i].Quantity
+      });
+      // console.log(OrderItems);
     }
 
   }
@@ -254,7 +259,7 @@ function GetCouponDetails() {
         if (change.data().DiscountType === 'Percentage')
           disText = change.data().DiscountValue + " %";
         else
-          disText =   Number(change.data().DiscountValue).toLocaleString('en-IN', curFormat);
+          disText = Number(change.data().DiscountValue).toLocaleString('en-IN', curFormat);
         opt.innerHTML = disText;
         //couponDetails.appendChild(opt);
         cnt = Number(cnt) + 1;
@@ -271,7 +276,7 @@ function GetCouponDetails() {
           if (change.data().DiscountType === 'Percentage')
             disText = change.data().DiscountValue + " %";
           else
-            disText =  Number(change.data().DiscountValue).toLocaleString('en-IN', curFormat);
+            disText = Number(change.data().DiscountValue).toLocaleString('en-IN', curFormat);
           opt.innerHTML = disText;
           //  couponDetails.appendChild(opt);
           cnt = Number(cnt) + 1;
@@ -295,7 +300,7 @@ function GetCouponDetails() {
         }
       }
     });
-    console.log(flag);
+    // console.log(flag);
     if (flag === false) {
       //couponDetails.style.display = "none";
       document.getElementById('nocoupons').style.display = 'block';
@@ -319,7 +324,7 @@ function rendercoupon(index, comments, couponID, discountType, discountValue) {
   if (discountType === 'Percentage')
     disText = discountValue + " %";
   else
-    disText =  Number(discountValue).toLocaleString('en-IN', curFormat);
+    disText = Number(discountValue).toLocaleString('en-IN', curFormat);
 
   console.log(disText);
   var divcoupon = document.getElementById("couponListDiv");
@@ -570,37 +575,8 @@ function SaveOrder() {
   console.log(message);
   return message;
 }
-//
-// function getAddress() {
-//   const snapshotAddress = db.collection('AddressList').doc(userID);
-//   console.log('in getAddress');
-//   snapshotAddress.get().then(async (adoc) => {
-//     if (adoc.exists) {
-//       console.log('if address exists');
-//       addressList = adoc.data().AddressList;
-//       var selIndex = -1;
-//       selIndex = addressList.findIndex(e => e.addressSelected === 'YES');
-//       if (selIndex >= 0) {
-//         selectedAddress = addressList[selIndex];
-//         console.log('if address selected');
-//
-//       } else {
-//         message = message + "Select Address";
-//         iError = 2;
-//       }
-//     } else {
-//       message = message + "Add Address";
-//       iError = 3;
-//
-//       console.log("Add Address");
-//     }
-//   });
-//   console.log(message);
-//   return message;
-//
-// }
 
-function SaveOrderinDB() {
+async function SaveOrderinDB() {
 
   var curFormat = {
     style: 'currency',
@@ -656,8 +632,6 @@ function SaveOrderinDB() {
         selDiscountVal = Number(disValue.value).toLocaleString('en-IN', curFormat);
       }
     }
-
-
   }
 
   var discount = {
@@ -688,7 +662,7 @@ function SaveOrderinDB() {
   if (cartDetails.length > 0 && selectedAddress != null) {
     console.log('insert order');
 
-    db.collection('OrderDetails')
+    const addOrderAwait = await db.collection('OrderDetails')
       .add({
         orderNumber: Date.now(),
         orderItems: OrderItems, //cartDetails,
@@ -710,55 +684,234 @@ function SaveOrderinDB() {
         CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
         UpdatedBy: '',
         UpdatedTimestamp: ''
-      })
-
-      .then(function(docRef) {
-        console.log("Data added sucessfully in the document: " + docRef.id);
-        orderID = docRef.id;
-        cartDetails = [];
-
-        db.collection('OrderTracking')
-          .doc(docRef.id)
-          .set({
-            OrderID: orderID,
-            ChangeTrack: orderChanges,
-            UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
-            UpdatedByUser: userID,
-            UserID: userID
-          })
-          .then(function(docRef) {
-            console.log("Data added sucessfully in the document: " + userID);
-            //    window.location.href = "orderStatus.html"
-            // console.log(Date.parse(eventstart))
-          })
-          .catch(function(error) {
-            console.error("error updatign order:", error);
-          });
-
-
-        db.collection('CartDetails')
-          .doc(userID)
-          .update({
-            cartDetails: cartDetails
-          })
-          .then(function(docred) {
-            console.log('cart details made blank');
-            window.location.href = "orderSummary.html?id=" + orderID;
-          });
-        // console.log(Date.parse(eventstart))
-      })
-      .catch(function(error) {
-        console.log(error);
-        //  console.error("error adding document:", error.message);
       });
+
+    const ordertrackingAwait =await db.collection('OrderTracking')
+      .doc(addOrderAwait.id)
+      .set({
+        OrderID: addOrderAwait.id,
+        ChangeTrack: orderChanges,
+        UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+        UpdatedByUser: userID,
+        UserID: userID
+      });
+
+
+    const updateInventory = await updateInventoryItems();
+     cartDetails= [];
+    db.collection('CartDetails')
+      .doc(userID)
+      .update({
+        cartDetails: cartDetails
+      })
+      .then(function(docred) {
+        console.log('cart details made blank');
+         window.location.href = "orderSummary.html?id=" + addOrderAwait.id;
+      });
+  // console.log(Date.parse(eventstart))
 
 
   }
 
-  console.log("after save");
-  //window.location.href = "orderList.html";
+  async function  updateInventoryItems()
+  {
+    var cntItem = 0;
+    for (index = 0 ;index < cartItems.length ; index ++)
+    {
+      cntItem = -1 * Number(cartDetails[index].SelectedsubItem.split(" ")[0]) * Number(cartDetails[index].Quantity);
+      var doc = await db.collection("ProductsInventory").doc(cartDetails[index].ProductID).get();
+      console.log(cntItem);
+      if(doc.exists)
+      {
+        console.log(doc.data().AvailableQuantity);
+        cntItem = Number(cntItem) + Number(doc.data().AvailableQuantity);
+        console.log(doc.id, cntItem);
+        const updateInventory = await db.collection("ProductsInventory").doc(doc.id).update({
+            AvailableQuantity: Number(cntItem),
+            LastUpdatedBy: auth.currentUser.email,
+            LastUpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+          });
+      }
+      else {
+        console.log(cntItem, doc.id);
+        const addInventory = await db.collection("ProductsInventory").doc(cartDetails[index].Products).set({
+            AvailableQuantity: Number(cntItem),
+            LastUpdatedBy: auth.currentUser.email,
+            LastUpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+          });
+      }
+      console.log(doc.id, cntItem);
+      const productawait = await  db.collection("Products").doc(doc.id).update({
+        AvailableQuantity: Number(cntItem)
+      });
+    }
+    return true;
+  }
 
+  // console.log("after save");
+  // //window.location.href = "orderList.html";
+  //
 }
+//
+// function SaveOrderinDBOld() {
+//
+//   var curFormat = {
+//     style: 'currency',
+//     currency: 'INR',
+//     minimumFractionDigits: 0,
+//     maximumFractionDigits: 2
+//   };
+//
+//   var orderDetails = [];
+//   var message = "";
+//   var iError = 0;
+//   console.log('SaveOrder');
+//   //getCartDetails();
+//
+//   //getAddress();
+//   var deliveryDate = '';
+//   var delDateObj = document.getElementById("DeliveryDate");
+//   deliveryDate = delDateObj.options[delDateObj.selectedIndex].value;
+//   console.log(deliveryDate);
+//
+//   var deliveryTime = '';
+//   var delTimeObj = document.getElementById("DeliveryTime");
+//   deliveryTime = delTimeObj.options[delTimeObj.selectedIndex].value;
+//
+//   var paymentOption = "";
+//   if (document.getElementById("PayOption1").checked) {
+//     paymentOption = document.getElementById("PayOption1").value;
+//   } else if (document.getElementById("PayOption2").checked) {
+//     paymentOption = document.getElementById("PayOption2").value;
+//   } else if (document.getElementById("PayOption3").checked) {
+//     paymentOption = document.getElementById("PayOption3").value;
+//   }
+//
+//   var prize = document.getElementById("hftotalAmount").value;
+//   var discountedprize = document.getElementById("hfdiscountedAmount").value;
+//   var itemCount = document.getElementById("itemCount").innerHTML;
+//
+//   console.log(document.getElementById("couponListDiv").childElementCount);
+//   var cnt = document.getElementById("couponListDiv").childElementCount;
+//   var selCouponID = "Select coupon";
+//   var selDiscountVal = "none";
+//   for (i = 1; i <= cnt; i++) {
+//     var select = document.getElementById("coupon" + i);
+//     var disType = document.getElementById("hfDiscountType" + i);
+//     var disValue = document.getElementById("hfDiscountValue" + i);
+//     var couponID = document.getElementById("hfCouponID" + i);
+//
+//     if (select.checked === true) {
+//       selCouponID = couponID.value;
+//       if (disType.value === 'Percentage') {
+//         selDiscountVal = disValue.value + " %";
+//       } else {
+//         selDiscountVal = Number(disValue.value).toLocaleString('en-IN', curFormat);
+//       }
+//     }
+//
+//
+//   }
+//
+//   var discount = {
+//     coupondID: selCouponID, //couponDetails.options[couponDetails.selectedIndex].value,
+//     discountValue: selDiscountVal //couponDetails.options[couponDetails.selectedIndex].text
+//
+//   };
+//
+//   var orderChanges = [];
+//   orderChanges.push({
+//     OrderStage: 1,
+//     OrderStatus: 'Order Placed',
+//     PaymentStatus: 'Pending',
+//     DeliverySlot: deliveryTime,
+//     DeliveryDate: deliveryDate,
+//     ChangedTimeStamp: new Date()
+//   });
+//
+//   orderChanges.push({
+//     OrderStage: 2,
+//     OrderStatus: 'Pending',
+//     PaymentStatus: 'Pending',
+//     DeliverySlot: deliveryTime,
+//     DeliveryDate: deliveryDate,
+//     ChangedTimeStamp: new Date()
+//   });
+//   console.log(OrderItems);
+//   if (cartDetails.length > 0 && selectedAddress != null) {
+//     console.log('insert order');
+//
+//     db.collection('OrderDetails')
+//       .add({
+//         orderNumber: Date.now(),
+//         orderItems: OrderItems, //cartDetails,
+//         totalItems: cartDetails.length,
+//         totalAmount: prize,
+//         deliveryAddress: selectedAddress,
+//         deliveryDate: firebase.firestore.Timestamp.fromDate(new Date(Date.parse(deliveryDate))), //deliveryDate,
+//         deliveryTime: deliveryTime,
+//         paymentOption: paymentOption,
+//         discountedprize: discountedprize,
+//         discountDetails: discount,
+//         paymentStatus: 'Pending',
+//         orderStatus: 'Pending',
+//         orderDate: firebase.firestore.Timestamp.fromDate(new Date()),
+//         orderBy: userID,
+//         orderByUserName: userName,
+//         //OrderDetails: orderDetails,
+//         CreatedBy: auth.currentUser.email,
+//         CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+//         UpdatedBy: '',
+//         UpdatedTimestamp: ''
+//       })
+//
+//       .then(function(docRef) {
+//         console.log("Data added sucessfully in the document: " + docRef.id);
+//         orderID = docRef.id;
+//
+//         db.collection('OrderTracking')
+//           .doc(docRef.id)
+//           .set({
+//             OrderID: orderID,
+//             ChangeTrack: orderChanges,
+//             UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+//             UpdatedByUser: userID,
+//             UserID: userID
+//           })
+//           .then(function(docRef) {
+//             console.log("Data added sucessfully in the document: " + userID);
+//             //    window.location.href = "orderStatus.html"
+//             // console.log(Date.parse(eventstart))
+//           })
+//           .catch(function(error) {
+//             console.error("error updatign order:", error);
+//           });
+//
+//         updateInventoryItems();
+//         // db.collection('CartDetails')
+//         //   .doc(userID)
+//         //   .update({
+//         //     cartDetails: cartDetails
+//         //   })
+//         //   .then(function(docred) {
+//         //     console.log('cart details made blank');
+//         //     window.location.href = "orderSummary.html?id=" + orderID;
+//         //   });
+//         // // console.log(Date.parse(eventstart))
+//       })
+//       .catch(function(error) {
+//         console.log(error);
+//         //  console.error("error adding document:", error.message);
+//       });
+//
+//
+//   }
+//
+//   console.log("after save");
+//   //window.location.href = "orderList.html";
+//
+// }
+
 
 
 function getCartSummary() {
@@ -793,9 +946,9 @@ function getCartSummary() {
             for (i = 0; i < cartItems.length; i++) {
               var qty = cartItems[i].Quantity;
               var selectedsubItem = cartItems[i].SelectedsubItem;
-              var weight = selectedsubItem.split('-');
+              var weight = selectedsubItem.split(' ');
               var selectedProduct = parr[parr.findIndex(e => e.ProductID === cartItems[i].ProductID)];
-              if (selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
+              if (selectedProduct.ProductDetails.findIndex(e => e.ProductWeight.split(" ")[0] == weight[0].trim()) >= 0) {
                 var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
                 prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
               }
@@ -840,7 +993,7 @@ function createOrderItems() {
     var unitPrise = 0;
     var MRP = 0;
     var sellPrize = 0;
-        console.log(selectedProduct);
+    console.log(selectedProduct);
     OrderItems.push({
       ProductID: cartItems[i].ProductID,
       ProductName: cartItems[i].ItemName,
@@ -849,7 +1002,7 @@ function createOrderItems() {
       VegNonVeg: selectedProduct.VegNonVeg,
       UnitPrise: sellPrize,
       MRP: MRP,
-      PurchasePrice : 0,
+      PurchasePrice: 0,
       Quantity: cartItems[i].Quantity
     });
 
