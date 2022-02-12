@@ -17,9 +17,9 @@ auth.onAuthStateChanged(firebaseUser => {
       GetProfileData(firebaseUser);
       GetCartList();
       getAllProducts();
-      console.log(ArrProduct);
-      console.log(cartItems);
-      //populateCartData();
+      // console.log(ArrProduct);
+      // console.log(cartItems);
+      // //populateCartData();
       //GetCartList();
       // getCartItemNo();
       //populateCartData();
@@ -94,9 +94,9 @@ function GetCartList() {
       cartItems = doc.data().cartDetails;
       cartLength = cartItems.length;
 
-      console.log('Cart Length', cartLength);
-      console.log(cartItems.length);
-      console.log('GetCartList - Ends');
+      // console.log('Cart Length', cartLength);
+      // console.log(cartItems.length);
+      // console.log('GetCartList - Ends');
 
       //GetProductList();
       if (cartItems.length === 0) {
@@ -114,7 +114,7 @@ function GetCartList() {
 function populateCartData() {
   var index = 0;
   try {
-    console.log(cartItems.length);
+    // console.log(cartItems.length);
     if (cartItems.length === 0) {
       document.getElementById('loading-img').style.display = 'none';
     } else {
@@ -141,7 +141,7 @@ function populateCartData() {
         maximumFractionDigits: 2
       };
       totalPrize = totalPrize.toLocaleString('en-IN', curFormat);
-
+      // console.log("before write 1");
       document.getElementById("totalAmount").innerHTML = totalPrize;
       document.getElementById('loading-img').style.display = 'none';
 
@@ -287,14 +287,21 @@ function getCartItemNo() {
   document.getElementById('itemCount').innerHTML = cartItems.length + ' Items';
   document.getElementById('cartItemNo').innerHTML = cartItems.length;
   prise = 0;
+  // console.log(cartItems.length);
   for (i = 0; i < cartItems.length; i++) {
     var qty = cartItems[i].Quantity;
     var selectedsubItem = cartItems[i].SelectedsubItem;
-    var weight = selectedsubItem.split('-');
+    // var weight = selectedsubItem.split('-');
+    var weight = selectedsubItem.split(' ');
     var index = ArrProduct.findIndex(e => e.productID === cartItems[i].ProductID);
     var selectedProduct = ArrProduct[index].productDetails;
-    if (selectedProduct.ProductDetails != undefined && selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
-      var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
+    // console.log(selectedProduct.ProductDetails[0].ProductWeight.split(" "));
+    // console.log(weight);
+    // console.log(selectedProduct.ProductDetails.findIndex(e => e.ProductWeight.split(" ")[0] == weight[0].trim()));
+    if (selectedProduct.ProductDetails != undefined && selectedProduct.ProductDetails.findIndex(e => e.ProductWeight.split(" ")[0] == weight[0].trim()) >= 0) {
+      var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight.split(" ")[0] == weight[0].trim())]
+      // console.log(unitPrise);
+      // console.log(qty);
       prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
     }
   }
@@ -306,6 +313,7 @@ function getCartItemNo() {
     maximumFractionDigits: 2
   };
   prise = prise.toLocaleString('en-IN', curFormat);
+  // console.log("before write 2");
 
   document.getElementById("totalAmount").innerHTML = prise;
 
@@ -339,8 +347,8 @@ function getCartItemNoDetails() {
       console.log(index);
       var selectedProduct = ArrProduct[index].productDetails;
       console.log(selectedProduct);
-      if (selectedProduct.ProductDetails != undefined && selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim() >= 0)) {
-        var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight == weight[0].trim())]
+      if (selectedProduct.ProductDetails != undefined && selectedProduct.ProductDetails.findIndex(e => e.ProductWeight.split(" ")[0] == weight.split(" ")[0].trim()) >= 0) {
+        var unitPrise = selectedProduct.ProductDetails[selectedProduct.ProductDetails.findIndex(e => e.ProductWeight.split(" ")[0] == weight.split(" ")[0].trim())]
         prise = Number(prise) + Number(qty) * Number(unitPrise.ProductFinalPrise);
       }
     }
@@ -349,6 +357,8 @@ function getCartItemNoDetails() {
     cartItemNo.innerHTML = cartItems.length;
     document.getElementById('itemCount').innerHTML = cartItems.length + ' Items';
     //document.getElementById('cartItemNo').innerHTML = cartItems.length
+    console.log("before write 3");
+
     document.getElementById('totalAmount').innerHTML = Number(prise).toLocaleString('en-IN', curFormat);
 
 
@@ -436,8 +446,7 @@ function renderProduct(doc, index, selecteditem) {
   //  console.log('Event Name: ' + doc.data().ProductName);
   //console.log(doc.productDetails.);
   //var productlist = doc.data().ProductDetails;
-
-
+  var pProductWeightUnit = doc.productDetails.ProductWeightUnit;
   var curFormat = {
     style: 'currency',
     currency: 'INR',
@@ -448,6 +457,7 @@ function renderProduct(doc, index, selecteditem) {
   var productlist = doc.productDetails.ProductDetails;
   var mainReload = document.createElement("main");
   mainReload.setAttribute("id", "main" + index);
+  mainReload.setAttribute("class", "row no-gutters");
   var div1 = document.createElement("div");
   div1.setAttribute("class", "col-sm-12");
   div1.setAttribute("style", "padding: 5px;");
@@ -479,28 +489,48 @@ function renderProduct(doc, index, selecteditem) {
   div1_2.innerHTML = "<small>" + "20% OFF" + "</small>";
   td1.appendChild(div1_2);
 
-  var div1_3 = document.createElement("div");
-  div1_3.setAttribute("class", "veg-nonVeg-div");
-
-  var imgVegNonVeg = document.createElement("img");
-
-  if (doc.productDetails.VegNonVeg === "Veg")
-    imgVegNonVeg.setAttribute("src", "../img/veg.png");
-  else if (doc.productDetails.VegNonVeg === "NonVeg")
-    imgVegNonVeg.setAttribute("src", "../img/non-veg.png");
-  imgVegNonVeg.setAttribute("width", "100%");
-  imgVegNonVeg.setAttribute("alt", "");
-
-  div1_3.appendChild(imgVegNonVeg);
-  td1.appendChild(div1_3);
   tr1.appendChild(td1);
 
   var td2 = document.createElement("td");
   td2.setAttribute("width", "55%");
   td2.setAttribute("valign", "top")
   td2.setAttribute("class", "product-names-div");
-  td2.innerHTML = "<small class='product-names' id='itemName'>" + doc.productDetails.ProductName + "</small><br>" +
-    "<small style='font-size: 0.8rem; color: rgba(0,0,0,0.5);'>" + doc.productDetails.Brand + "</small><br>";
+
+
+    var div1_3 = document.createElement("div");
+    div1_3.setAttribute("class", "veg-nonVeg-div");
+
+    var imgVegNonVeg = document.createElement("img");
+
+    if (doc.productDetails.VegNonVeg === "Veg")
+      imgVegNonVeg.setAttribute("src", "../img/veg.png");
+    else if (doc.productDetails.VegNonVeg === "NonVeg")
+      imgVegNonVeg.setAttribute("src", "../img/non-veg.png");
+    imgVegNonVeg.setAttribute("width", "100%");
+    imgVegNonVeg.setAttribute("alt", "");
+
+    div1_3.appendChild(imgVegNonVeg);
+    td2.appendChild(div1_3);
+
+    var s1 = document.createElement("small");
+    s1.setAttribute("class", "product-names");
+    s1.innerHTML = doc.productDetails.ProductName;
+
+    td2.appendChild(s1);
+    var b1 = document.createElement("br");
+    td2.appendChild(b1);
+
+
+    var s2 = document.createElement("small");
+    s2.setAttribute("style", "font-size: 0.8rem; color: rgba(0,0,0,0.5);");
+    s2.innerHTML = doc.productDetails.Brand;
+    td2.appendChild(s2);
+    var b2 = document.createElement("br");
+    td2.appendChild(b2);
+
+
+  // td2.innerHTML = "<small class='product-names' id='itemName'>" + doc.productDetails.ProductName + "</small><br>" +
+  //   "<small style='font-size: 0.8rem; color: rgba(0,0,0,0.5);'>" + doc.productDetails.Brand + "</small><br>";
 
   // var selectP = document.createElement("select");
   // selectP.name = "productDetails";
@@ -519,18 +549,28 @@ function renderProduct(doc, index, selecteditem) {
   var hfFinalPrize = document.createElement("input");
   hfFinalPrize.id = "hfFinalPrize" + index;
   hfFinalPrize.setAttribute("type", "hidden");
-
+  //var
   for (const val of productlist) {
     var option = document.createElement("option");
     option.value = val.ProductFinalPrise + ":" + val.ProductMRP;
-    option.text = val.ProductWeight + " - " + "Rs." + val.ProductFinalPrise;
-    if (selecteditem.SelectedsubItem === option.text) {
+    if(pProductWeightUnit != undefined)
+    {
+      option.text = val.ProductWeight.split(" ")[0] + " " + pProductWeightUnit +  " - " + "Rs." + val.ProductFinalPrise;
+    }
+    else {
+      option.text = val.ProductWeight + " - " + "Rs." + val.ProductFinalPrise
+    }
+    var productWeight = val.ProductWeight;
+    productWeight = productWeight.split(" ");
+    var selectedsubItem = selecteditem.SelectedsubItem;
+    selectedsubItem = selectedsubItem.split(" ");
+    if (selectedsubItem[0] === productWeight[0]) {
       option.selected = true;
       MRP = val.ProductMRP;
       FinalPrize = val.ProductFinalPrise;
       hfMRP.setAttribute("value", MRP);
       hfFinalPrize.setAttribute("value", FinalPrize);
-
+      // console.log(option.text);
       hfSelected.setAttribute("value", option.text);
 
       //      totalPrize = Number(totalPrize) + Number(val.ProductFinalPrise) *
@@ -566,12 +606,13 @@ function renderProduct(doc, index, selecteditem) {
   //div1_4.appendChild(finalspan);
 
   var table2 = document.createElement("table");
-  table2.setAttribute("style", "width:51%;position:absolute;bottom:10px;right:10px;");
+  table2.setAttribute("style", "width:100%;position:absolute;bottom:10px;right:10px;");
 
   var t2tr = document.createElement("tr");
 
   var t2trtd1 = document.createElement("td");
   t2trtd1.setAttribute("width", "30%");
+  t2trtd1.setAttribute("valign", "bottom");
   var delete_outline = document.createElement("span");
   delete_outline.setAttribute("class", "material-icons");
   delete_outline.setAttribute("style", "cursor:pointer;");
@@ -586,6 +627,7 @@ function renderProduct(doc, index, selecteditem) {
   var t2trtd2 = document.createElement("td");
   t2trtd2.setAttribute("width", "70%");
   t2trtd2.setAttribute("class", "quantity-td");
+  t2trtd2.setAttribute("style", "position:relative;");
   var trdiv = document.createElement("div");
   trdiv.setAttribute("id", "quantityFullDiv" + index);
   trdiv.setAttribute("class", "quantity buttons_added");
@@ -667,234 +709,234 @@ function renderProduct(doc, index, selecteditem) {
 }
 
 /////////////////////new function
-function renderProduct_old(doc, index, selecteditem) {
-  var curFormat = {
-    style: 'currency',
-    currency: 'INR',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 2
-  };
-
-  //  console.log('Doc ID: ' + doc.id);
-  //  console.log('Event Name: ' + doc.data().ProductName);
-
-  //var productlist = doc.data().ProductDetails;
-  var productlist = doc.productDetails;
-  var mainReload = document.createElement("main");
-  mainReload.setAttribute("id", "main" + index);
-  var div1 = document.createElement("div");
-  div1.setAttribute("class", "col-sm-12");
-  div1.setAttribute("style", "padding: 5px;");
-
-  var div1_1 = document.createElement("div");
-  div1_1.setAttribute("class", "product-list-div");
-
-  var table1 = document.createElement("table");
-  table1.setAttribute("width", "100%");
-
-  var tr1 = document.createElement("tr");
-
-  var td1 = document.createElement("td");
-  td1.setAttribute("width", "45%");
-  td1.setAttribute("class", "product-img-td");;
-  var hfID = document.createElement("input");
-  hfID.setAttribute("id", "hfID" + index);
-  hfID.setAttribute("type", "hidden");
-  hfID.setAttribute("value", doc.id);
-  td1.appendChild(hfID);
-  var img1 = document.createElement("img");
-  img1.setAttribute("src", doc.data().ProductImageURL);
-  img1.setAttribute("width", "100%")
-  img1.setAttribute("alt", "");
-  td1.appendChild(img1);
-
-  var div1_2 = document.createElement("div");
-  div1_2.setAttribute("class", "off-div");
-  div1_2.innerHTML = "<small>" + "20% OFF" + "</small>";
-  td1.appendChild(div1_2);
-
-  var div1_3 = document.createElement("div");
-  div1_3.setAttribute("class", "veg-nonVeg-div");
-
-  var imgVegNonVeg = document.createElement("img");
-
-  if (doc.data().VegNonVeg === "Veg")
-    imgVegNonVeg.setAttribute("src", "../img/veg.png");
-  else if (doc.data().VegNonVeg === "NonVeg")
-    imgVegNonVeg.setAttribute("src", "../img/non-veg.png");
-  imgVegNonVeg.setAttribute("width", "100%");
-  imgVegNonVeg.setAttribute("alt", "");
-
-  div1_3.appendChild(imgVegNonVeg);
-  td1.appendChild(div1_3);
-  tr1.appendChild(td1);
-
-  var td2 = document.createElement("td");
-  td2.setAttribute("width", "55%");
-  td2.setAttribute("valign", "top")
-  td2.setAttribute("class", "product-names-div");
-  td2.innerHTML = "<small class='product-names' id='itemName'>" + doc.data().ProductName + "</small><br>" +
-    "<small style='font-size: 0.8rem; color: rgba(0,0,0,0.5);'>" + doc.data().Brand + "</small><br>";
-
-  // var selectP = document.createElement("select");
-  // selectP.name = "productDetails";
-  // selectP.id = "productDetails" + index;
-  var MRP = "";
-  var FinalPrize = "";
-  // selectP.setAttribute("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelect" + index + ")");
-  var hfSelected = document.createElement("input");
-  hfSelected.id = "hfSelect" + index;
-  hfSelected.setAttribute("type", "hidden");
-
-  var hfMRP = document.createElement("input");
-  hfMRP.setAttribute("id", "hfMrp" + index);
-  hfMRP.setAttribute("type", "hidden");
-
-  var hfFinalPrize = document.createElement("input");
-  hfFinalPrize.id = "hfFinalPrize" + index;
-  hfFinalPrize.setAttribute("type", "hidden");
-
-  for (const val of productlist) {
-    var option = document.createElement("option");
-    option.value = val.ProductFinalPrise + ":" + val.ProductMRP;
-    option.text = val.ProductWeight + " - " + "Rs." + val.ProductFinalPrise;
-    if (selecteditem.SelectedsubItem === option.text) {
-      option.selected = true;
-      MRP = val.ProductMRP;
-      FinalPrize = val.ProductFinalPrise;
-      hfMRP.setAttribute("value", MRP);
-      hfFinalPrize.setAttribute("value", FinalPrize);
-
-      hfSelected.setAttribute("value", option.text);
-    }
-    // selectP.appendChild(option);
-  }
-
-  var itemUnit = document.createElement("input");
-  itemUnit.setAttribute("id", "unit" + index);
-  itemUnit.setAttribute("readonly", "true");
-  itemUnit.setAttribute("value", selecteditem.SelectedsubItem);
-  td2.appendChild(itemUnit);
-
-  totalPrize = Number(totalPrize) + Number(FinalPrize) * Number(selecteditem.Quantity);
-  //totalAmount.innerHTML = "Rs. " + totalPrize;
-
-  //selectP.addEventListener("change", addActivityItem, false);
-  // td2.appendChild(selectP);
-  td2.appendChild(hfSelected);
-  FinalPrize = Number(FinalPrize) * Number(selecteditem.Quantity)
-  MRP = Number(MRP) * Number(selecteditem.Quantity)
-
-  var div1_4 = document.createElement("div");
-  div1_4.setAttribute("id", "divPrise" + index);
-  div1_4.setAttribute("class", "product-price");
-
-  div1_4.innerHTML = "<h5>" + "<span id='mrp" + index + "' >" + Number(MRP).toLocaleString('en-IN', curFormat) + "</span>" + "</h5>" +
-    "<small>" + "<span id='final" + index + "'>" + Number(FinalPrize).toLocaleString('en-IN', curFormat) + "</span></small><br><br><br>";
-
-  //div1_4.appendChild(mrpspan);
-  //div1_4.appendChild(finalspan);
-
-  var table2 = document.createElement("table");
-  table2.setAttribute("style", "width:51%;position:absolute;bottom:10px;right:10px;");
-
-  var t2tr = document.createElement("tr");
-
-  var t2trtd1 = document.createElement("td");
-  t2trtd1.setAttribute("width", "30%");
-  var delete_outline = document.createElement("span");
-  delete_outline.setAttribute("class", "material-icons");
-  delete_outline.setAttribute("style", "cursor:pointer;");
-
-
-  delete_outline.addEventListener('click', function(e) {
-    deleteCartItem(e, selecteditem.SelectedsubItem, doc.id, "main" + index)
-  }, false);
-  delete_outline.innerHTML = "delete_outline";
-  t2trtd1.appendChild(delete_outline);
-
-  var t2trtd2 = document.createElement("td");
-  t2trtd2.setAttribute("width", "70%");
-  t2trtd2.setAttribute("class", "quantity-td");
-  var trdiv = document.createElement("div");
-  trdiv.setAttribute("id", "quantityFullDiv" + index);
-  trdiv.setAttribute("class", "quantity buttons_added");
-
-  var trinput1 = document.createElement("input");
-  trinput1.setAttribute("id", "minus" + index);
-  trinput1.setAttribute("type", "button");
-  trinput1.setAttribute("value", "-");
-  trinput1.setAttribute("class", "minus");
-
-  trinput1.setAttribute("onclick", " decrementQty(" + "qty" + index + ", " + "min" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + "," + "hfMrp" + index + "," + "hfFinalPrize" + index + "," + "divPrise" + index + " )");
-
-  //trinput1.setAttribute("onclick", " decrementQty(" + "qty" + index + ", " + "min" + index + " ," + doc.data().StepQty + ","+doc.data().ProductName+","+selectP+" ,"+doc.id+" )");
-  var trinput2 = document.createElement("input");
-  trinput2.setAttribute("id", "qty" + index);
-  trinput2.setAttribute("type", "number");
-  trinput2.setAttribute("step", "1");
-  trinput2.setAttribute("name", "quantity");
-
-  //trinput2.setAttribute("value", doc.data().MinimumQty);
-  trinput2.setAttribute("value", selecteditem.Quantity);
-  trinput2.setAttribute("title", "Qty");
-  trinput2.setAttribute("class", "input-text qty text");
-  trinput2.setAttribute("size", "4");
-  trinput2.setAttribute("pattern", "");
-  trinput2.setAttribute("inputmode", "");
-  //trinput2.setAttribute("onClick","updateQuantity("+"qty" + index + "," + doc.data().MinimumQty +","+doc.data().MaximumQty+ ",''" +doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + " )");
-  trinput2.setAttribute("onchange", "updateQuantity(" + "qty" + index + "," + doc.data().MinimumQty + "," + doc.data().MaximumQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + "," + "hfMrp" + index + "," + "hfFinalPrize" + index + "," + "divPrise" + index + " )");
-
-  var trinput3 = document.createElement("input");
-  trinput3.setAttribute("id", "plus" + index);
-  trinput3.setAttribute("type", "button");
-  trinput3.setAttribute("value", "+");
-  //trinput3.setAttribute("onclick", "incrementQty(" + "qty" + index + ", " + "max" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "')");
-  trinput3.setAttribute("onclick", "incrementQty(" + "qty" + index + ", " + "max" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + "," + "hfMrp" + index + "," + "hfFinalPrize" + index + "," + "divPrise" + index + " )");
-
-  trinput3.setAttribute("class", "plus");
-
-  var trinput4 = document.createElement("input");
-  trinput4.setAttribute("id", "step" + index);
-  trinput4.setAttribute("type", "hidden");
-  trinput4.setAttribute("value", doc.data().StepQty);
-
-  var trinput5 = document.createElement("input");
-  trinput5.setAttribute("id", "min" + index);
-  trinput5.setAttribute("type", "hidden");
-  trinput5.setAttribute("value", doc.data().MinimumQty);
-
-  var trinput6 = document.createElement("input");
-  trinput6.setAttribute("id", "max" + index);
-  trinput6.setAttribute("type", "hidden");
-  trinput6.setAttribute("value", doc.data().MaximumQty);
-
-  trdiv.appendChild(trinput1);
-  trdiv.appendChild(trinput2);
-  trdiv.appendChild(trinput3);
-  trdiv.appendChild(trinput4);
-  trdiv.appendChild(trinput5);
-  trdiv.appendChild(trinput6);
-
-  t2trtd2.appendChild(trdiv);
-  t2tr.appendChild(t2trtd1);
-  t2tr.appendChild(t2trtd2);
-  table2.appendChild(t2tr);
-  td2.appendChild(table2);
-  td2.appendChild(hfMRP);
-  td2.appendChild(hfFinalPrize);
-
-  td2.appendChild(div1_4);
-  tr1.appendChild(td2);
-  table1.appendChild(tr1);
-  div1_1.appendChild(table1);
-  div1.appendChild(div1_1);
-  mainReload.appendChild(div1);
-
-  //document.getElementById("divCart").appendChild(div1);
-  document.getElementById("divCart").appendChild(mainReload);
-
-}
+// function renderProduct_old(doc, index, selecteditem) {
+//   var curFormat = {
+//     style: 'currency',
+//     currency: 'INR',
+//     minimumFractionDigits: 0,
+//     maximumFractionDigits: 2
+//   };
+//
+//   //  console.log('Doc ID: ' + doc.id);
+//   //  console.log('Event Name: ' + doc.data().ProductName);
+//
+//   //var productlist = doc.data().ProductDetails;
+//   var productlist = doc.productDetails;
+//   var mainReload = document.createElement("main");
+//   mainReload.setAttribute("id", "main" + index);
+//   var div1 = document.createElement("div");
+//   div1.setAttribute("class", "col-sm-12");
+//   div1.setAttribute("style", "padding: 5px;");
+//
+//   var div1_1 = document.createElement("div");
+//   div1_1.setAttribute("class", "product-list-div");
+//
+//   var table1 = document.createElement("table");
+//   table1.setAttribute("width", "100%");
+//
+//   var tr1 = document.createElement("tr");
+//
+//   var td1 = document.createElement("td");
+//   td1.setAttribute("width", "45%");
+//   td1.setAttribute("class", "product-img-td");;
+//   var hfID = document.createElement("input");
+//   hfID.setAttribute("id", "hfID" + index);
+//   hfID.setAttribute("type", "hidden");
+//   hfID.setAttribute("value", doc.id);
+//   td1.appendChild(hfID);
+//   var img1 = document.createElement("img");
+//   img1.setAttribute("src", doc.data().ProductImageURL);
+//   img1.setAttribute("width", "100%")
+//   img1.setAttribute("alt", "");
+//   td1.appendChild(img1);
+//
+//   var div1_2 = document.createElement("div");
+//   div1_2.setAttribute("class", "off-div");
+//   div1_2.innerHTML = "<small>" + "20% OFF" + "</small>";
+//   td1.appendChild(div1_2);
+//
+//   var div1_3 = document.createElement("div");
+//   div1_3.setAttribute("class", "veg-nonVeg-div");
+//
+//   var imgVegNonVeg = document.createElement("img");
+//
+//   if (doc.data().VegNonVeg === "Veg")
+//     imgVegNonVeg.setAttribute("src", "../img/veg.png");
+//   else if (doc.data().VegNonVeg === "NonVeg")
+//     imgVegNonVeg.setAttribute("src", "../img/non-veg.png");
+//   imgVegNonVeg.setAttribute("width", "100%");
+//   imgVegNonVeg.setAttribute("alt", "");
+//
+//   div1_3.appendChild(imgVegNonVeg);
+//   td1.appendChild(div1_3);
+//   tr1.appendChild(td1);
+//
+//   var td2 = document.createElement("td");
+//   td2.setAttribute("width", "55%");
+//   td2.setAttribute("valign", "top")
+//   td2.setAttribute("class", "product-names-div");
+//   td2.innerHTML = "<small class='product-names' id='itemName'>" + doc.data().ProductName + "</small><br>" +
+//     "<small style='font-size: 0.8rem; color: rgba(0,0,0,0.5);'>" + doc.data().Brand + "</small><br>";
+//
+//   // var selectP = document.createElement("select");
+//   // selectP.name = "productDetails";
+//   // selectP.id = "productDetails" + index;
+//   var MRP = "";
+//   var FinalPrize = "";
+//   // selectP.setAttribute("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelect" + index + ")");
+//   var hfSelected = document.createElement("input");
+//   hfSelected.id = "hfSelect" + index;
+//   hfSelected.setAttribute("type", "hidden");
+//
+//   var hfMRP = document.createElement("input");
+//   hfMRP.setAttribute("id", "hfMrp" + index);
+//   hfMRP.setAttribute("type", "hidden");
+//
+//   var hfFinalPrize = document.createElement("input");
+//   hfFinalPrize.id = "hfFinalPrize" + index;
+//   hfFinalPrize.setAttribute("type", "hidden");
+//
+//   for (const val of productlist) {
+//     var option = document.createElement("option");
+//     option.value = val.ProductFinalPrise + ":" + val.ProductMRP;
+//     option.text = val.ProductWeight + " - " + "Rs." + val.ProductFinalPrise;
+//     if (selecteditem.SelectedsubItem === option.text) {
+//       option.selected = true;
+//       MRP = val.ProductMRP;
+//       FinalPrize = val.ProductFinalPrise;
+//       hfMRP.setAttribute("value", MRP);
+//       hfFinalPrize.setAttribute("value", FinalPrize);
+//
+//       hfSelected.setAttribute("value", option.text);
+//     }
+//     // selectP.appendChild(option);
+//   }
+//
+//   var itemUnit = document.createElement("input");
+//   itemUnit.setAttribute("id", "unit" + index);
+//   itemUnit.setAttribute("readonly", "true");
+//   itemUnit.setAttribute("value", selecteditem.SelectedsubItem);
+//   td2.appendChild(itemUnit);
+//
+//   totalPrize = Number(totalPrize) + Number(FinalPrize) * Number(selecteditem.Quantity);
+//   //totalAmount.innerHTML = "Rs. " + totalPrize;
+//
+//   //selectP.addEventListener("change", addActivityItem, false);
+//   // td2.appendChild(selectP);
+//   td2.appendChild(hfSelected);
+//   FinalPrize = Number(FinalPrize) * Number(selecteditem.Quantity)
+//   MRP = Number(MRP) * Number(selecteditem.Quantity)
+//
+//   var div1_4 = document.createElement("div");
+//   div1_4.setAttribute("id", "divPrise" + index);
+//   div1_4.setAttribute("class", "product-price");
+//
+//   div1_4.innerHTML = "<h5>" + "<span id='mrp" + index + "' >" + Number(MRP).toLocaleString('en-IN', curFormat) + "</span>" + "</h5>" +
+//     "<small>" + "<span id='final" + index + "'>" + Number(FinalPrize).toLocaleString('en-IN', curFormat) + "</span></small><br><br><br>";
+//
+//   //div1_4.appendChild(mrpspan);
+//   //div1_4.appendChild(finalspan);
+//
+//   var table2 = document.createElement("table");
+//   table2.setAttribute("style", "width:51%;position:absolute;bottom:10px;right:10px;");
+//
+//   var t2tr = document.createElement("tr");
+//
+//   var t2trtd1 = document.createElement("td");
+//   t2trtd1.setAttribute("width", "30%");
+//   var delete_outline = document.createElement("span");
+//   delete_outline.setAttribute("class", "material-icons");
+//   delete_outline.setAttribute("style", "cursor:pointer;");
+//
+//
+//   delete_outline.addEventListener('click', function(e) {
+//     deleteCartItem(e, selecteditem.SelectedsubItem, doc.id, "main" + index)
+//   }, false);
+//   delete_outline.innerHTML = "delete_outline";
+//   t2trtd1.appendChild(delete_outline);
+//
+//   var t2trtd2 = document.createElement("td");
+//   t2trtd2.setAttribute("width", "70%");
+//   t2trtd2.setAttribute("class", "quantity-td");
+//   var trdiv = document.createElement("div");
+//   trdiv.setAttribute("id", "quantityFullDiv" + index);
+//   trdiv.setAttribute("class", "quantity buttons_added");
+//
+//   var trinput1 = document.createElement("input");
+//   trinput1.setAttribute("id", "minus" + index);
+//   trinput1.setAttribute("type", "button");
+//   trinput1.setAttribute("value", "-");
+//   trinput1.setAttribute("class", "minus");
+//
+//   trinput1.setAttribute("onclick", " decrementQty(" + "qty" + index + ", " + "min" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + "," + "hfMrp" + index + "," + "hfFinalPrize" + index + "," + "divPrise" + index + " )");
+//
+//   //trinput1.setAttribute("onclick", " decrementQty(" + "qty" + index + ", " + "min" + index + " ," + doc.data().StepQty + ","+doc.data().ProductName+","+selectP+" ,"+doc.id+" )");
+//   var trinput2 = document.createElement("input");
+//   trinput2.setAttribute("id", "qty" + index);
+//   trinput2.setAttribute("type", "number");
+//   trinput2.setAttribute("step", "1");
+//   trinput2.setAttribute("name", "quantity");
+//
+//   //trinput2.setAttribute("value", doc.data().MinimumQty);
+//   trinput2.setAttribute("value", selecteditem.Quantity);
+//   trinput2.setAttribute("title", "Qty");
+//   trinput2.setAttribute("class", "input-text qty text");
+//   trinput2.setAttribute("size", "4");
+//   trinput2.setAttribute("pattern", "");
+//   trinput2.setAttribute("inputmode", "");
+//   //trinput2.setAttribute("onClick","updateQuantity("+"qty" + index + "," + doc.data().MinimumQty +","+doc.data().MaximumQty+ ",''" +doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + " )");
+//   trinput2.setAttribute("onchange", "updateQuantity(" + "qty" + index + "," + doc.data().MinimumQty + "," + doc.data().MaximumQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + "," + "hfMrp" + index + "," + "hfFinalPrize" + index + "," + "divPrise" + index + " )");
+//
+//   var trinput3 = document.createElement("input");
+//   trinput3.setAttribute("id", "plus" + index);
+//   trinput3.setAttribute("type", "button");
+//   trinput3.setAttribute("value", "+");
+//   //trinput3.setAttribute("onclick", "incrementQty(" + "qty" + index + ", " + "max" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "')");
+//   trinput3.setAttribute("onclick", "incrementQty(" + "qty" + index + ", " + "max" + index + " ," + doc.data().StepQty + ",'" + doc.data().ProductName + "','" + doc.id + "'," + "hfSelect" + index + "," + "hfMrp" + index + "," + "hfFinalPrize" + index + "," + "divPrise" + index + " )");
+//
+//   trinput3.setAttribute("class", "plus");
+//
+//   var trinput4 = document.createElement("input");
+//   trinput4.setAttribute("id", "step" + index);
+//   trinput4.setAttribute("type", "hidden");
+//   trinput4.setAttribute("value", doc.data().StepQty);
+//
+//   var trinput5 = document.createElement("input");
+//   trinput5.setAttribute("id", "min" + index);
+//   trinput5.setAttribute("type", "hidden");
+//   trinput5.setAttribute("value", doc.data().MinimumQty);
+//
+//   var trinput6 = document.createElement("input");
+//   trinput6.setAttribute("id", "max" + index);
+//   trinput6.setAttribute("type", "hidden");
+//   trinput6.setAttribute("value", doc.data().MaximumQty);
+//
+//   trdiv.appendChild(trinput1);
+//   trdiv.appendChild(trinput2);
+//   trdiv.appendChild(trinput3);
+//   trdiv.appendChild(trinput4);
+//   trdiv.appendChild(trinput5);
+//   trdiv.appendChild(trinput6);
+//
+//   t2trtd2.appendChild(trdiv);
+//   t2tr.appendChild(t2trtd1);
+//   t2tr.appendChild(t2trtd2);
+//   table2.appendChild(t2tr);
+//   td2.appendChild(table2);
+//   td2.appendChild(hfMRP);
+//   td2.appendChild(hfFinalPrize);
+//
+//   td2.appendChild(div1_4);
+//   tr1.appendChild(td2);
+//   table1.appendChild(tr1);
+//   div1_1.appendChild(table1);
+//   div1.appendChild(div1_1);
+//   mainReload.appendChild(div1);
+//
+//   //document.getElementById("divCart").appendChild(div1);
+//   document.getElementById("divCart").appendChild(mainReload);
+//
+// }
 
 function updateQuantity(oqty, iMin, iMax, itemName, productID, itemSizeObj, hfMRP, hfFinalPrize, divprise) {
   var curFormat = {
@@ -903,7 +945,7 @@ function updateQuantity(oqty, iMin, iMax, itemName, productID, itemSizeObj, hfMR
     minimumFractionDigits: 0,
     maximumFractionDigits: 2
   };
-
+  console.log(itemSizeObj);
   var qty = Number(oqty.value);
   if (qty < iMin)
     qty = iMin;
@@ -935,8 +977,17 @@ function incrementQty(oqty, omax, step, itemName, productID, itemSizeObj, hfMRP,
     maximumFractionDigits: 2
   };
 
-  var qty = Number(oqty.value);
+console.log(oqty);
+console.log(omax);
+console.log(step);
+console.log(itemName);
+console.log(productID);
+console.log(itemSizeObj);
+console.log(hfMRP);
+console.log(hfFinalPrize);
+console.log(divprise);
 
+  var qty = Number(oqty.value);
   var max = Number(omax.value);
 
   if ((qty + step) <= max) {
@@ -946,16 +997,17 @@ function incrementQty(oqty, omax, step, itemName, productID, itemSizeObj, hfMRP,
   }
 
   oqty.value = qty;
+  console.log(qty);
 
   var lmrp = 0;
   var lfinal = 0;
 
   lmrp = Number(qty) * Number(hfMRP.value);
   hfMRP.innerHTML = lmrp;
-
+  console.log(lmrp);
   lfinal = Number(qty) * Number(hfFinalPrize.value);
   hfFinalPrize.innerHTML = lfinal;
-
+console.log(lfinal);
   divprise.innerHTML = "<h5>" + "<span id='mrp" + index + "' >" + Number(lmrp).toLocaleString('en-IN', curFormat) + "</span>" + "</h5>" +
     "<small>" + "<span id='final" + index + "'>" + Number(lfinal).toLocaleString('en-IN', curFormat) + "</span></small><br><br><br>";
 
@@ -1009,7 +1061,7 @@ function deleteCartItem(e, itemSizeObj, productID, deleteID) {
   {
     item = cartItems;
 
-    itemIndex = item.findIndex(a => a.ProductID === productID && a.SelectedsubItem === itemSizeObj);
+    itemIndex = item.findIndex(a => a.ProductID === productID && a.SelectedsubItem.split(" ")[0] === itemSizeObj.split(" ")[0]);
     if (itemIndex >= 0) {
       item.splice(itemIndex, 1);
     }
@@ -1067,8 +1119,8 @@ function mySelectionChange(productdetails, mrp, final, hfselect) {
 
 function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualityStatus) {
 
-
-  var itemIndex = cartItems.findIndex(a => a.ProductID === productID && a.SelectedsubItem === itemSelect.value);
+  console.log(itemSelect);
+  var itemIndex = cartItems.findIndex(a => a.ProductID === productID && a.SelectedsubItem.split(" ")[0] === itemSelect.value.split(" ")[0]);
 
   if (itemIndex >= 0)
     cartItems.splice(itemIndex, 1);
