@@ -8,6 +8,7 @@ let eventDocUrl = new URL(location.href);
 let searchParams = new URLSearchParams(eventDocUrl.search);
 const orderID = searchParams.get('id');
 var discountValue = "";
+var discountedprize = 0;
 var totalAmount = 0;
 var paymentStatus = "";
 var userid_order = searchParams.get('userID');
@@ -52,7 +53,7 @@ function GetProfileData(user) {
         console.log('Document ref id: ' + doc.data().uid);
         userID = user.uid;
         if (doc.data().ProfileImageURL != undefined && doc.data().ProfileImageURL != "") {
-          document.getElementById('navUser').src = doc.data().ProfileImageURL;
+          document.getElementById('profilePic').src = doc.data().ProfileImageURL;
         }
 
       }
@@ -104,7 +105,10 @@ function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
   discountValue = selectedOrder.discountValue;
   totalAmount = selectedOrder.totalAmount;
   discountedprize = selectedOrder.discountedprize;
-   paymentStatus = selectedOrder.paymentStatus;
+  if (discountedprize === undefined)
+    discountedprize = totalAmount;
+
+  paymentStatus = selectedOrder.paymentStatus;
   var dDate = new Date(selectedOrder.deliveryDate.seconds * 1000);
   var delDate = dDate.toLocaleDateString("en-US", options);
   //document.getElementById('DeliveryDate').innerHTML = delDate;
@@ -117,6 +121,7 @@ function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
   var deliveryTime = document.getElementById('DeliveryTime');
   document.getElementById("orderBy").innerHTML = selectedOrder.orderByUserName + ":" + selectedOrder.CreatedBy;
   document.getElementById("orderDate").innerHTML = orderDate;
+  $('#datetimepickerStatus').data("DateTimePicker").minDate(new Date(oDate.getFullYear(), oDate.getMonth()   , oDate.getDate()));
 
   for (index = 0; index < oPaymentStatus.options.length; index++) {
     if (oPaymentStatus.options[index].value === selectedOrder.paymentStatus)
@@ -138,7 +143,7 @@ function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
       deliveryTime.options[index].selected = true;
   }
 
-  var amt = Number(selectedOrder.totalAmount);
+  var amt = Number(totalAmount);
   var curFormat = {
     style: 'currency',
     currency: 'INR',
@@ -147,26 +152,18 @@ function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
   };
   amt = amt.toLocaleString('en-IN', curFormat);
   document.getElementById('paymentAmount').innerHTML = amt;
-
-  console.log(selectedOrder.discountedprize);
-  if (isNaN(selectedOrder.discountedprize))
-    console.log('if');
-  else {
-    console.log('else');
-  }
-  //if (selectedOrder.discountedprize === 'NaN' || selectedOrder.discountedprize === "0" || selectedOrder.discountedprize === "")
-  if (isNaN(selectedOrder.discountedprize) || selectedOrder.discountedprize === '' || selectedOrder.discountedprize === '0' || selectedOrder.discountedprize === 0) {
+  var discountAmt = selectedOrder.discountedprize;
+  discountAmt = discountAmt.toLocaleString('en-IN', curFormat);
+  console.log(discountAmt);
+  var discountValue = Number(totalAmount) - Number(discountedprize);
+  if (discountValue === 0) {
     document.getElementById('discount').style.display = "none";
 
-      document.getElementById('amountDisplay').innerHTML = amt;
-      document.getElementById('inDiscountValue').value = '0';
-      document.getElementById('hfDiscountValue').value = '0';
+    document.getElementById('amountDisplay').innerHTML = amt;
+    document.getElementById('inDiscountValue').value = '0';
+    document.getElementById('hfDiscountValue').value = '0';
 
   } else {
-    var discountAmt = selectedOrder.discountedprize;
-    discountAmt = discountAmt.toLocaleString('en-IN', curFormat);
-    console.log(discountAmt);
-    var discountValue = Number(selectedOrder.totalAmount) - Number(selectedOrder.discountedprize);
     console.log(discountValue);
     document.getElementById('inDiscountValue').value = discountValue;
     document.getElementById('hfDiscountValue').value = discountValue;
@@ -174,7 +171,7 @@ function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
     document.getElementById('amountDisplay').innerHTML = selectedOrder.totalAmount;
 
     //document.getElementById('discountAmount').innerHTML = discountAmt + "(" + selectedOrder.discountDetails.discountValue + " Off)";
-    document.getElementById('discountAmount').innerHTML = discountAmt ;
+    document.getElementById('discountAmount').innerHTML = discountAmt;
     document.getElementById('discountValue').innerHTML = discountValue;
   }
 
@@ -271,7 +268,7 @@ function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
 function populateOrderItems(selectedOrder) {
   orderItem = selectedOrder.orderItems;
   var i;
-  document.getElementById('orderItems').innerHTML="";
+  document.getElementById('orderItems').innerHTML = "";
 
   for (i = 0; i < orderItem.length; i++) {
     renderOrderItem(orderItem[i], i, selectedOrder.orderStatus);
@@ -366,7 +363,7 @@ function renderOrderItem(orderItem, index, orderStatusValue) {
   div5.setAttribute('class', 'product-price');
   //console.log(orderItem.MRP);
   var h51 = document.createElement('h5');
-  h51.innerHTML =  Number(orderItem.MRP).toLocaleString('en-IN', curFormat);
+  h51.innerHTML = Number(orderItem.MRP).toLocaleString('en-IN', curFormat);
   div5.appendChild(h51);
 
   //console.log(orderItem.UnitPrise);
@@ -385,15 +382,15 @@ function renderOrderItem(orderItem, index, orderStatusValue) {
 
   // td3.innerHTML = 'Qty : ' + '<input type="number" style="background:#f4f4f4;border:1px solid #ddd;outline: none;width: 60%;" value="' + orderItem.Quantity + '"></input>';
   // td3.innerHTML = 'Qty : ' + '<input type="number" style="background:none;border:none;outline: none;width: 60%;" readonly value="' + orderItem.Quantity + '"></input>';
-   td3.innerHTML = 'Qty : ' ;//+ '<input type="number" style="background:none;border:none;outline: none;width: 60%;" readonly value="' + orderItem.Quantity + '"></input>';
+  td3.innerHTML = 'Qty : '; //+ '<input type="number" style="background:none;border:none;outline: none;width: 60%;" readonly value="' + orderItem.Quantity + '"></input>';
 
   var inputQty = document.createElement("input");
-  inputQty.setAttribute("type","number");
-  inputQty.setAttribute("id","inQty" + index);
-  inputQty.setAttribute("style","background:none;border:none;outline: none;width: 60%;");
-   inputQty.setAttribute("readonly",true);
+  inputQty.setAttribute("type", "number");
+  inputQty.setAttribute("id", "inQty" + index);
+  inputQty.setAttribute("style", "background:none;border:none;outline: none;width: 60%;");
+  inputQty.setAttribute("readonly", true);
   inputQty.setAttribute("value", orderItem.Quantity);
-  inputQty.setAttribute("onChange", "onChangeQty("+ "hfProdID" + index + "," + "selectedItem" + index + "," +"inQty" + index + ",editIcon" + index +",hfOldQty" + index +");" );
+  inputQty.setAttribute("onChange", "onChangeQty(" + "hfProdID" + index + "," + "selectedItem" + index + "," + "inQty" + index + ",editIcon" + index + ",hfOldQty" + index + ");");
 
   td3.appendChild(inputQty);
   //
@@ -441,29 +438,29 @@ function renderOrderItem(orderItem, index, orderStatusValue) {
   }
 
 
-if (orderStatusValue === 'Pending') {
-  var divEdit  = document.createElement("div");
-  divEdit.setAttribute("id", "editIcon" + index);
+  if (orderStatusValue === 'Pending') {
+    var divEdit = document.createElement("div");
+    divEdit.setAttribute("id", "editIcon" + index);
 
-  divEdit.setAttribute("onclick", "editItem(" + "hfProdID" + index + "," + "selectedItem" + index + "," +"inQty" + index + ",editIcon" + index +");");
-  var span12 = document.createElement("span");
-  span12.setAttribute("class", "material-icons-outlined");
+    divEdit.setAttribute("onclick", "editItem(" + "hfProdID" + index + "," + "selectedItem" + index + "," + "inQty" + index + ",editIcon" + index + ");");
+    var span12 = document.createElement("span");
+    span12.setAttribute("class", "material-icons-outlined");
 
-  span12.setAttribute("style", "position: relative;font-size: 1.2rem;padding-left: 5px;");
-  span12.innerHTML = "edit";
-  divEdit.appendChild(span12);
-  td3.appendChild(divEdit);
+    span12.setAttribute("style", "position: relative;font-size: 1.2rem;padding-left: 5px;");
+    span12.innerHTML = "edit";
+    divEdit.appendChild(span12);
+    td3.appendChild(divEdit);
 
-}
+  }
 
-var hfQty = document.createElement("input");
-hfQty.setAttribute("id","hfOldQty" + index);
-hfQty.setAttribute("type","hidden" );
-hfQty.setAttribute("value", orderItem.Quantity );
+  var hfQty = document.createElement("input");
+  hfQty.setAttribute("id", "hfOldQty" + index);
+  hfQty.setAttribute("type", "hidden");
+  hfQty.setAttribute("value", orderItem.Quantity);
 
-td3.appendChild(hfQty);
+  td3.appendChild(hfQty);
 
-tr2.appendChild(td3);
+  tr2.appendChild(td3);
 
 
   table2.appendChild(tr2);
@@ -482,11 +479,12 @@ tr2.appendChild(td3);
 
 function SaveOrder() {
 
-    var btnTextWithLoader = document.getElementsByClassName('btnTextWithLoader');
-    var btnLoader = document.getElementsByClassName('btnLoader');
-
-    btnTextWithLoader[0].style.display = 'none';
-    btnLoader[0].style.display = 'block';
+  var btnTextWithLoader = document.getElementsByClassName('btnTextWithLoader');
+  var btnLoader = document.getElementsByClassName('btnLoader');
+  var orderStatusChanged = document.getElementById("statusChangedOn");
+//firebase.firestore.Timestamp.fromDate(new Date(Date.parse(validity.value)))
+  btnTextWithLoader[0].style.display = 'none';
+  btnLoader[0].style.display = 'block';
 
   var curFormat = {
     style: 'currency',
@@ -541,34 +539,26 @@ function SaveOrder() {
       var dDate = new Date(selectedOrder.deliveryDate.seconds * 1000);
       oldDeliveryDate = dDate.getDate() + "/" + (dDate.getMonth() + 1) + "/" + dDate.getFullYear();
 
-      if(hfDiscountValue.value != inDiscountValue.value )
-      {
+      if (hfDiscountValue.value != inDiscountValue.value) {
         var amountDislay = document.getElementById("amountDisplay").innerHTML;
-      //  amountDislay = amountDislay.replace("₹", "");
+        //  amountDislay = amountDislay.replace("₹", "");
         amountDislay = amountDislay.replace(/[₹,]+/g, "");
-        console.log(amountDislay);
-        console.log(document.getElementById("amountDisplay").innerHTML);
-        console.log(inDiscountValue.value);
-        discountChange = 'Discount value changed from ' +hfDiscountValue.value + " to " +inDiscountValue.value;
+        discountChange = 'Discount value changed from ' + hfDiscountValue.value + " to " + inDiscountValue.value;
         oldDiscountPrize = Number(amountDislay) - Number(inDiscountValue.value);
         oldDiscount.coupondID = "Manual Discount";
         oldDiscount.discountValue = '₹' + inDiscountValue.value;
-        console.log(Number(hfDiscountValue.value));
-        console.log(Number(inDiscountValue.value));
         orderStage = 7;
-        if (oldPaymentStatus === "Completed")
-        {
+        if (oldPaymentStatus === "Completed") {
           var walletAmt
-          if(Number(hfDiscountValue.value) > Number(inDiscountValue.value))
-              walletAmt =Number(hfDiscountValue.value) - Number(inDiscountValue.value);
-            else {
-              walletAmt =Number(inDiscountValue.value) - Number(hfDiscountValue.value);
-            }
+          if (Number(hfDiscountValue.value) > Number(inDiscountValue.value))
+            walletAmt = Number(hfDiscountValue.value) - Number(inDiscountValue.value);
+          else {
+            walletAmt = Number(inDiscountValue.value) - Number(hfDiscountValue.value);
+          }
 
-            updateWalletDetails(userid_order,walletAmt , 'add');
+          updateWalletDetails(userid_order, walletAmt, 'add');
         }
       }
-      console.log(discountChange);
       if (oldOrderStatus != orderStatus) {
         blTrackChanges = true;
         //1- Order Placed, 2 - Pending, 3 - Packed, 4 - On the Way, 5 - Delivered,
@@ -585,8 +575,6 @@ function SaveOrder() {
         orderStatusChanges = "changed from " + oldOrderStatus + " to " + orderStatus;
         console.log(orderStatusChanges);
       }
-      console.log(paymentStatus);
-      console.log(oldPaymentStatus);
       if (oldPaymentStatus != paymentStatus) {
         blTrackChanges = true;
         //  blupdatedFlag = true;
@@ -614,10 +602,10 @@ function SaveOrder() {
         PaymentStatus: paymentStatusChanges,
         DeliverySlot: deliverySlotChanges,
         DeliveryDate: deliveryDateChanges,
-        DiscountChange : discountChange,
-        ChangedTimeStamp: new Date()
+        DiscountChange: discountChange,
+        ChangedTimeStamp: new Date(orderStatusChanged.value) //new Date()
       });
-      console.log(doc.id);
+      console.log(orderChanges);
       if (blupdatedFlag === true) {
         UpdateOrderTrackingDetails(orderChanges, doc.id);
       }
@@ -651,8 +639,8 @@ function SaveOrder() {
             deliveryTime: deliveryTime,
             paymentStatus: paymentStatus,
             orderStatus: orderStatus,
-            discountDetails : oldDiscount,
-            discountedprize : oldDiscountPrize,
+            discountDetails: oldDiscount,
+            discountedprize: oldDiscountPrize,
             UpdatedBy: auth.currentUser.email,
             UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
 
@@ -687,14 +675,14 @@ function UpdateOrderTrackingDetails(orderChanges, orderID) {
   var trackdataForUpdate = [];
   var trackingID = '';
   const snapshot = db.collection('OrderTracking').doc(orderID).get(); //;//
-
+  trackingID = orderID;
   snapshot.then(async (doc) => {
     if (doc.exists) {
 
       console.log('existing track');
-      trackingID = doc.id;
+      //trackingID = doc.id;
       trackData = doc.data().ChangeTrack;
-    }
+
 
     console.log(trackData);
     console.log(trackingID);
@@ -708,6 +696,7 @@ function UpdateOrderTrackingDetails(orderChanges, orderID) {
     trackdataForUpdate.push(orderChanges[0]);
     console.log(userID);
     console.log(userid_order);
+    console.log(trackingID);
     db.collection("OrderTracking").doc(trackingID).set({
         OrderID: orderID,
         ChangeTrack: trackdataForUpdate,
@@ -723,7 +712,7 @@ function UpdateOrderTrackingDetails(orderChanges, orderID) {
       .catch(function(error) {
         console.error("error updatign order:", error);
       });
-
+    }
   });
 }
 
@@ -820,11 +809,10 @@ function populateDeliveryDate() {
   delDate.appendChild(option1);
 }
 
-function onChangeQty(prodID, selectedItemIndex, inQty, editIcon, hfOldQty)
-{
+function onChangeQty(prodID, selectedItemIndex, inQty, editIcon, hfOldQty) {
   console.log("onChangeQty");
   console.log(prodID);
-  console.log( selectedItemIndex);
+  console.log(selectedItemIndex);
   console.log(inQty.value);
   console.log(editIcon);
   var prizeDiffer = 0;
@@ -838,9 +826,9 @@ function onChangeQty(prodID, selectedItemIndex, inQty, editIcon, hfOldQty)
     if (doc.exists) {
       console.log(doc.data());
       console.log(orderItem);
-      var index  = orderItem.findIndex(e=> e.ProductID === prodID.value && e.SelectedSubItem === selectedItemIndex.value);
+      var index = orderItem.findIndex(e => e.ProductID === prodID.value && e.SelectedSubItem === selectedItemIndex.value);
       //console.log(index);
-      if(Number(doc.data().MinimumQty) > Number(inQty.value))
+      if (Number(doc.data().MinimumQty) > Number(inQty.value))
         inQty.value = doc.data().MinimumQty;
       else if (Number(doc.data().MaximumQty) < Number(inQty.value))
         inQty.value = doc.data().MaximumQty;
@@ -850,16 +838,14 @@ function onChangeQty(prodID, selectedItemIndex, inQty, editIcon, hfOldQty)
       console.log(qtyDiffer);
       prizeDiffer = Number(orderItem[index].UnitPrise) * Number(qtyDiffer);
       console.log(prizeDiffer);
-      if(discountValue.search("%") >= 0 )
-      {
-        var percentage = discountValue.replaces("%","");
-        prizeDiffer = (Number(prizeDiffer) * (100 - Number(percentage)))/100;
+      if (discountValue.search("%") >= 0) {
+        var percentage = discountValue.replaces("%", "");
+        prizeDiffer = (Number(prizeDiffer) * (100 - Number(percentage))) / 100;
         totalAmount = Number(totalAmount) + Number(prizeDiffer);
         discountedprize = Number(discountedprize) + Number(prizeDiffer);
-      }
-      else {
-          totalAmount = Number(totalAmount) + Number(prizeDiffer);
-          discountedprize = Number(discountedprize) + Number(prizeDiffer);
+      } else {
+        totalAmount = Number(totalAmount) + Number(prizeDiffer);
+        discountedprize = Number(discountedprize) + Number(prizeDiffer);
       }
 
       console.log(totalAmount);
@@ -875,33 +861,33 @@ function onChangeQty(prodID, selectedItemIndex, inQty, editIcon, hfOldQty)
 
           //update order trackData
           var orderChanges = [];
-            orderChanges.push({
-              OrderStage: 7,
-              OrderStatus: 'Order is Updated by Admin for ' + prodID.value + " from " +  hfOldQty.value +" to " + inQty.value ,
-              PaymentStatus: '',
-              DeliverySlot: '',
-              DeliveryDate: '',
-              ChangedTimeStamp: new Date()
-            });
-            UpdateOrderTrackingDetails(orderChanges, orderID);
+          orderChanges.push({
+            OrderStage: 7,
+            OrderStatus: 'Order is Updated by Admin for ' + prodID.value + " from " + hfOldQty.value + " to " + inQty.value,
+            PaymentStatus: '',
+            DeliverySlot: '',
+            DeliveryDate: '',
+            ChangedTimeStamp: new Date()
+          });
+          UpdateOrderTrackingDetails(orderChanges, orderID);
 
-            if(paymentStatus === 'Completed')
-            {
-              var curFormat = {
-                style: 'currency',
-                currency: 'INR',
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 2
-              };
+          if (paymentStatus === 'Completed') {
+            var curFormat = {
+              style: 'currency',
+              currency: 'INR',
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 2
+            };
 
-              var walletRs = Number(-1 * prizeDiffer).toLocaleString('en-IN', curFormat);
+            var walletRs = Number(-1 * prizeDiffer).toLocaleString('en-IN', curFormat);
 
-              document.getElementById("divWalletMessage").style.display = "block;"
-              document.getElementById("Walletmessage").innerHTML = "User Wallet has been added with : " + walletRs
-              updateWalletDetails(userid_order, -1 * prizeDiffer, 'add');
+            document.getElementById("divWalletMessage").style.display = "block;"
+            document.getElementById("Walletmessage").innerHTML = "User Wallet has been added with : " + walletRs
+            updateWalletDetails(userid_order, -1 * prizeDiffer, 'add');
           }
 
           getOrderDetails();
+          updateInventory(qtyDiffer, orderItem[index].ProductID);
         })
         .catch(function(error) {
           console.error("error updating order:", error);
@@ -911,23 +897,68 @@ function onChangeQty(prodID, selectedItemIndex, inQty, editIcon, hfOldQty)
     }
   });
 
-  editIcon.setAttribute("style","");
+  editIcon.setAttribute("style", "");
 
 
 
 }
+async function updateInventory(qtyDiffer, productID) {
+  console.log(qtyDiffer);
+  console.log(productID);
+  ////////
+  const updateProduct = await db.collection("Products").doc(productID).update({
+    AvailableQuantity: firebase.firestore.FieldValue.increment((-1 * Number(qtyDiffer)))
+  });
+  const doc1 = await db.collection('ProductsInventory').doc(productID).get();
+  if (doc1.exists) {
+    console.log('if doc exists');
+    db.collection("ProductsInventory").doc(productID).update({
+        AvailableQuantity: firebase.firestore.FieldValue.increment(-1 * Number(qtyDiffer)),
+        LastUpdatedBy: auth.currentUser.email,
+        LastUpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+      })
+      .then(function(docRef2) {
+        // console.log(Date.parse(eventstart))
+
+      })
+      .catch(function(error2) {
+        console.error("error adding document:", error2);
+      });
+  } else {
+    console.log('if doc not exists');
+    db.collection("ProductsInventory").doc(productID).set({
+        AvailableQuantity: Number(-1 * qtyDiffer),
+        LastUpdatedBy: auth.currentUser.email,
+        LastUpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+      })
+      .then(function(docRef2) {
+        // console.log(Date.parse(eventstart))
+
+      })
+      .catch(function(error2) {
+        console.error("error adding document:", error2);
+      });
+  }
+
+
+
+  //////////
+}
+
 function editItem(prodID, selectedItemIndex, inQty, editIcon) {
   console.log('in editItem');
   inQty.setAttribute("style", "background:#f4f4f4;border:1px solid #ddd;outline: none;width: 60%;");
   inQty.removeAttribute("readOnly");
 
-  editIcon.setAttribute("style","pointer-events:none");
+  editIcon.setAttribute("style", "pointer-events:none");
   //<input type="number" style="background:#f4f4f4;border:1px solid #ddd;outline: none;width: 60%;"
   //delet
 }
+
 function deleteItem(prodID, selectedItemIndex) {
   //delete from order list
   var allOrder;
+  var qtyDiff = 0;
   var selectedOrder;
   var selectedItem;
   var oldDiscountPrise;
@@ -957,7 +988,7 @@ function deleteItem(prodID, selectedItemIndex) {
           //get the selected item
           var selectedIIndex = selectedOrder.orderItems.findIndex(e => e.ProductID === prodID.value && e.SelectedSubItem === selectedItemIndex.value);
           //if order has only one item, then mark this as Cancelled
-
+          qtyDiff = selectedOrder.orderItems[selectedIIndex].Quantity;
           console.log(selectedOrder.orderItems.length);
           if (selectedOrder.orderItems.length === 1) {
             console.log("order Cancelled");
@@ -996,9 +1027,14 @@ function deleteItem(prodID, selectedItemIndex) {
             //check for discount promise
             var discount;
             modifiedOrder.orderItems = items;
-            if (modifiedOrder.discountDetails.coupondID != 'none') {
+            var discountValue = 0;
+            if(oldPrize != oldDiscountPrise )
+            {
+              discountValue = Number(oldPrize) - Number(oldDiscountPrise);
+            }
+            if (modifiedOrder.discountDetails.coupondID != 'none' && modifiedOrder.discountDetails.coupondID != 'Select coupon') {
               discount = modifiedOrder.discountDetails.discountValue;
-              var discountValue = 0;
+
               if (discount.includes("%")) {
                 discount = discount.replace("%", "");
                 discountValue = Number(totalPrise) * Number(discount) / 100;
@@ -1039,7 +1075,7 @@ function deleteItem(prodID, selectedItemIndex) {
       db.collection('OrderDetails').doc(orderID).update({
           orderStatus: modifiedOrder.orderStatus,
           orderItems: modifiedOrder.orderItems,
-          paymentStatus : modifiedOrder.paymentStatus,
+          paymentStatus: modifiedOrder.paymentStatus,
           totalItems: modifiedOrder.orderItems.length,
           totalAmount: totalPrise,
           discountedprize: discountedAmount
@@ -1060,7 +1096,7 @@ function deleteItem(prodID, selectedItemIndex) {
             });
           } else {
             orderChanges.push({
-              OrderStage: 6,
+              OrderStage: 7,
               OrderStatus: 'Order Modified',
               PaymentStatus: '',
               DeliverySlot: '',
@@ -1072,10 +1108,12 @@ function deleteItem(prodID, selectedItemIndex) {
             UpdateOrderTrackingDetails(orderChanges, orderID);
           }
           getOrderDetails();
+
         })
         .catch(function(error) {
           console.error("error adding document:", error);
         });
+      updateInventory(qtyDiff, prodID.value);
 
     })
     .catch(function(error) {
