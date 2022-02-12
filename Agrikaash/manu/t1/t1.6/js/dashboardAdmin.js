@@ -45,10 +45,10 @@ function GetProfileData(user) {
         if (doc.data().ProfileImageURL != "" && doc.data().ProfileImageURL != undefined)
           document.getElementById('profilePic').src = doc.data().ProfileImageURL;
 
-          document.getElementById('profileName').innerHTML = doc.data().displayName;
+        document.getElementById('profileName').innerHTML = doc.data().displayName;
 
 
-          // console.log(isAdmin);
+        // console.log(isAdmin);
         if (isAdmin === true) {
 
           PopulateOrderSummary();
@@ -56,8 +56,8 @@ function GetProfileData(user) {
           PopulateDeliveryCard();
           GetRegistrationRequest();
           PopulateProductSummary();
-
-
+          populateInventorySummary();
+          populatePurchaseSummary();
         } else {
           document.getElementById('confirmationMessage').style.display = "block";
           document.getElementById('divSummary').style.display = "none";
@@ -84,6 +84,171 @@ var arrAmtDelivery = [];
 var dateArrDelivery = [];
 var chart1Delivery;
 
+function populateInventorySummary() {
+  var negativeCount = 0;
+  var zeroCount = 0;
+  var positiveCount = 0;
+  var lowCount = 0
+  var highCount = 0
+  var availableQty = 0;
+  // var DBrows = db.collection("Products").where("AvailableQuantity", "<", 20).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+  var DBrows = db.collection("Products").get();
+  DBrows.then((snapshot) => {
+    snapshot.forEach(change => {
+      availableQty = change.data().AvailableQuantity;
+      if (availableQty === undefined || availableQty === 0) {
+        zeroCount = zeroCount + 1;
+      } else if (Number(availableQty) < 0) {
+        negativeCount = negativeCount + 1;
+      } else if (Number(availableQty) < 20) {
+        lowCount = lowCount + 1;
+        positiveCount = positiveCount + 1;
+      } else if (Number(availableQty) > 50) {
+        highCount = highCount + 1;
+        positiveCount = positiveCount + 1;
+      } else {
+        positiveCount = positiveCount + 1;
+      }
+
+    });
+
+    document.getElementById("inventoryCnt").innerHTML = positiveCount;
+    document.getElementById("overbookedCount").innerHTML = negativeCount;
+    document.getElementById("noVolumnCount").innerHTML = zeroCount;
+    document.getElementById("lowVolumnCount").innerHTML = lowCount;
+    document.getElementById("highVolumnCount").innerHTML = highCount;
+
+
+  });
+  document.getElementById("cardInventory").style.display = "block";
+
+}
+
+function populatePurchaseSummary() {
+  var amount = 0;
+
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
+  // amount = amount.toLocaleString('en-IN', curFormat);
+
+  var todayDate = new Date();
+
+  var yesterdayDate = new Date();
+  yesterdayDate.setDate(todayDate.getDate() - 1);
+
+  var lastweek = new Date();
+  lastweek.setDate(todayDate.getDate() - 8);
+  console.log(lastweek);
+
+  var todayCnt = 0;
+  var yesterdayCnt = 0;
+  var weekCnt = 0;
+  var monthCnt = 0;
+
+  var todayAmount = 0;
+  var yesterdayAmount = 0;
+  var weekAmount = 0;
+  var monthAmount = 0;
+  var lastAmount = 0;
+  var purchaseDate = new Date();
+
+  var snapshot;
+
+  currentMonth = todayDate;
+  var currentMonth = currentMonth.setMonth(currentMonth.getMonth() - 2);
+  currentMonth = new Date(currentMonth);
+  todayDate = new Date();
+  var DBrows;
+  var flag = false;
+  var lastPurshasedDetails = "";
+  var unitPrize = 0
+  var amount = 0;
+  var qty = 0
+  var pName = "";
+  var displayamount = "";
+  var productID = "";
+  var DBRows = db.collection('PurchaseBook')
+    .where("CreatedTimestamp", ">=", currentMonth)
+    .orderBy("CreatedTimestamp", "desc")
+    .get();
+  DBRows.then((changes) => {
+    changes.forEach(change => {
+
+      purchaseDate = new Date(change.data().CreatedTimestamp.seconds * 1000);
+      qty = change.data().QuantityPurchased;
+      unitPrize = change.data().UnitPrize;
+      amount = Number(qty) * Number(unitPrize);
+      if (flag === false) {
+        // console.log(change.data().ProductId);
+        productID = change.data().ProductId
+        lastPurshasedDetails = "(Qty : " +qty+ ":: Amount : " + amount.toLocaleString('en-IN', curFormat) + ")"
+        console.log(lastPurshasedDetails);
+      }
+      if (purchaseDate.getDate() === todayDate.getDate() && purchaseDate.getMonth() === todayDate.getMonth() && purchaseDate.getYear() === todayDate.getYear()) {
+        todayCnt = todayCnt + 1;
+        todayAmount = Number(todayAmount) + Number(amount);
+      } else if (purchaseDate.getDate() === yesterdayDate.getDate() && purchaseDate.getMonth() === yesterdayDate.getMonth() && purchaseDate.getYear() === yesterdayDate.getYear()) {
+        yesterdayCnt = yesterdayCnt + 1;
+        yesterdayAmount = Number(yesterdayAmount) + Number(amount);
+      }
+      if (purchaseDate >= lastweek) {
+        weekCnt = weekCnt + 1;
+        weekAmount = Number(weekAmount) + Number(amount);
+      }
+
+      monthCnt = monthCnt + 1;
+      monthAmount = Number(monthAmount) + Number(amount);
+
+      flag = true;
+
+    });
+    console.log(productID);
+    var productRecord = db.collection('Products')
+      .doc(productID)
+      .get();
+    productRecord.then((changes) => {
+      pName = changes.data().ProductName;
+      console.log(pName);
+      lastPurshasedDetails = pName + lastPurshasedDetails;
+      console.log(lastPurshasedDetails);
+
+          document.getElementById("lastPurchased").innerHTML = lastPurshasedDetails;
+    });
+
+    document.getElementById("todayPurchase").innerHTML = todayCnt;
+    document.getElementById("todayPurchaseAmount").innerHTML = todayAmount.toLocaleString('en-IN', curFormat);
+
+    document.getElementById("yesterdayPurchase").innerHTML = yesterdayCnt;
+    document.getElementById("yesterdayPurchaseAmount").innerHTML = yesterdayAmount.toLocaleString('en-IN', curFormat);
+
+    document.getElementById("weekPurchase").innerHTML = weekCnt;
+    document.getElementById("weekPurchaseAmount").innerHTML = weekAmount.toLocaleString('en-IN', curFormat);
+
+    document.getElementById("monthPurchase").innerHTML = monthCnt;
+    document.getElementById("monthPurchaseAmount").innerHTML = monthAmount.toLocaleString('en-IN', curFormat);
+
+
+    document.getElementById("cardPurchase").style.display = "block";
+  });
+
+
+}
+
+function ShowInventory(filter) {
+  localStorage.setItem("inventoryFiler", filter);
+  window.location.href = "inventory.html";
+
+
+}
 
 function PopulateOrderSummary() {
   // console.log('in PopulateTodaysOrder');
@@ -185,12 +350,12 @@ function PopulateOrderSummary() {
   //    DBrows =
   var flag = false;
   // console.log(userID);
-  var statusList = ['Pending', 'Packed','On The Way', 'Delivered'];
+  var statusList = ['Pending', 'Packed', 'On The Way', 'Delivered'];
 
   db.collection('OrderDetails')
     // .where("orderBy", "==", userID)
     //  .where("orderDate", "<=", todayDate)
-    .where("orderStatus","in",statusList)
+    .where("orderStatus", "in", statusList)
     .where("orderDate", ">=", currentMonth)
     .onSnapshot(snapshot => {
       let changes = snapshot.docChanges();
@@ -206,74 +371,66 @@ function PopulateOrderSummary() {
 
         if (orderdate.getDate() === todayDate.getDate() && orderdate.getMonth() === todayDate.getMonth() && orderdate.getYear() === todayDate.getYear()) {
           todayCnt = todayCnt + 1;
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             todayAmount = Number(todayAmount) + Number(orderDetails.totalAmount);
-          }else {
-            todayAmount = Number(todayAmount) +Number(orderDetails.discountedprize)
+          } else {
+            todayAmount = Number(todayAmount) + Number(orderDetails.discountedprize)
           }
           //todayAmount = Number(todayAmount) + Number(orderDetails.totalAmount);
         } else if (orderdate.getDate() === yesterdayDate.getDate() && orderdate.getMonth() === yesterdayDate.getMonth() && orderdate.getYear() === yesterdayDate.getYear()) {
 
           yesterdayCnt = yesterdayCnt + 1;
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             yesterdayAmount = Number(yesterdayAmount) + Number(orderDetails.totalAmount);
-          }else {
-            yesterdayAmount = Number(yesterdayAmount) +Number(orderDetails.discountedprize)
+          } else {
+            yesterdayAmount = Number(yesterdayAmount) + Number(orderDetails.discountedprize)
           }
           //yesterdayAmount = Number(yesterdayAmount) + Number(orderDetails.totalAmount);
         } else if (orderdate.getDate() === day3.getDate() && orderdate.getMonth() === day3.getMonth() && orderdate.getYear() === day3.getYear()) {
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             day3Amt = Number(day3Amt) + Number(orderDetails.totalAmount);
-          }else {
-            day3Amt = Number(day3Amt) +Number(orderDetails.discountedprize)
+          } else {
+            day3Amt = Number(day3Amt) + Number(orderDetails.discountedprize)
           }
           //day3Amt = Number(day3Amt) + Number(orderDetails.totalAmount);
         } else if (orderdate.getDate() === day4.getDate() && orderdate.getMonth() === day4.getMonth() && orderdate.getYear() === day4.getYear()) {
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             day4Amt = Number(day4Amt) + Number(orderDetails.totalAmount);
-          }else {
-            day4Amt = Number(day4Amt) +Number(orderDetails.discountedprize)
+          } else {
+            day4Amt = Number(day4Amt) + Number(orderDetails.discountedprize)
           }
           //day4Amt = Number(day4Amt) + Number(orderDetails.totalAmount);
         } else if (orderdate.getDate() === day5.getDate() && orderdate.getMonth() === day5.getMonth() && orderdate.getYear() === day5.getYear()) {
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             day5Amt = Number(day5Amt) + Number(orderDetails.totalAmount);
-          }else {
-            day5Amt = Number(day5Amt) +Number(orderDetails.discountedprize)
+          } else {
+            day5Amt = Number(day5Amt) + Number(orderDetails.discountedprize)
           }
           //day5Amt = Number(day5Amt) + Number(orderDetails.totalAmount);
         } else if (orderdate.getDate() === day6.getDate() && orderdate.getMonth() === day6.getMonth() && orderdate.getYear() === day6.getYear()) {
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             day6Amt = Number(day6Amt) + Number(orderDetails.totalAmount);
-          }else {
-            day6Amt = Number(day6Amt) +Number(orderDetails.discountedprize)
+          } else {
+            day6Amt = Number(day6Amt) + Number(orderDetails.discountedprize)
           }
           //day6Amt = Number(day6Amt) + Number(orderDetails.totalAmount);
         } else if (orderdate.getDate() === day7.getDate() && orderdate.getMonth() === day7.getMonth() && orderdate.getYear() === day7.getYear()) {
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             day7Amt = Number(day7Amt) + Number(orderDetails.totalAmount);
-          }else {
-            day7Amt = Number(day7Amt) +Number(orderDetails.discountedprize)
+          } else {
+            day7Amt = Number(day7Amt) + Number(orderDetails.discountedprize)
           }
-        //  day7Amt = Number(day7Amt) + Number(orderDetails.totalAmount);
+          //  day7Amt = Number(day7Amt) + Number(orderDetails.totalAmount);
         }
 
 
         if (orderdate >= lastweek) {
           weekCnt = weekCnt + 1;
 
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             weekAmount = Number(weekAmount) + Number(orderDetails.totalAmount);
-          }else {
-            weekAmount = Number(weekAmount) +Number(orderDetails.discountedprize)
+          } else {
+            weekAmount = Number(weekAmount) + Number(orderDetails.discountedprize)
           }
           //weekAmount = Number(weekAmount) + Number(orderDetails.totalAmount);
         }
@@ -281,13 +438,12 @@ function PopulateOrderSummary() {
 
           monthCnt = monthCnt + 1;
 
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             monthAmount = Number(monthAmount) + Number(orderDetails.totalAmount);
-          }else {
-            monthAmount = Number(monthAmount) +Number(orderDetails.discountedprize)
+          } else {
+            monthAmount = Number(monthAmount) + Number(orderDetails.discountedprize)
           }
-        //monthAmount = Number(monthAmount) + Number(orderDetails.totalAmount);
+          //monthAmount = Number(monthAmount) + Number(orderDetails.totalAmount);
 
         }
         dateArr = [
@@ -404,16 +560,13 @@ function renderProducts(productRec, index, productID) {
   //var span1 = document.createElement("span");
   //span1.setAttribute("class", "material-icons-outlined");
   //span1.setAttribute("style", "font-size: 2rem; color: #1D741B;");
-  if(productRec.VegNonVeg === "Veg")
-  {
-        imgVegNonVeg.setAttribute("src", "../img/veg.png");
-  }
-  else
-  {
-         imgVegNonVeg.setAttribute("src", "../img/non-veg.png");
+  if (productRec.VegNonVeg === "Veg") {
+    imgVegNonVeg.setAttribute("src", "../img/veg.png");
+  } else {
+    imgVegNonVeg.setAttribute("src", "../img/non-veg.png");
   }
 
-//  div1_3.appendChild(imgVegNonVeg);
+  //  div1_3.appendChild(imgVegNonVeg);
   div3.appendChild(div1_3);
 
   var h1 = document.createElement("h5");
@@ -447,7 +600,7 @@ function renderProducts(productRec, index, productID) {
   div6.setAttribute("class", "");
   div6.setAttribute("style", "text-align: center;");
   var aa = document.createElement("a");
-  aa.setAttribute("href", "createProduct.html?id="+productID);
+  aa.setAttribute("href", "createProduct.html?id=" + productID);
 
   var span2 = document.createElement("span");
   span2.setAttribute("class", "material-icons-outlined");
@@ -473,18 +626,16 @@ function GetRegistrationRequest() {
 
       changes.forEach(change => {
         flag = true;
-        if(cnt < 2)
+        if (cnt < 2)
           renderRegistrationRequest(change.doc.data(), cnt);
         cnt = cnt + 1;
       });
 
       document.getElementById("registrationCnt").innerHTML = "Registered request : " + cnt;
-      if(flag=== true)
-      {
+      if (flag === true) {
         document.getElementById("userRegistration").style.display = "block";
 
-      }
-      else {
+      } else {
         document.getElementById("userRegistration").style.display = "none";
 
 
@@ -681,11 +832,11 @@ function getLastOrder() {
     day: 'numeric'
   };
 
-  var statusList = ['Pending', 'Packed','On The Way', 'Delivered'];
+  var statusList = ['Pending', 'Packed', 'On The Way', 'Delivered'];
 
   db.collection('OrderDetails')
     // .where("orderBy", "==", userID)
-    .where("orderStatus","in",statusList)
+    .where("orderStatus", "in", statusList)
     .orderBy("orderDate", 'desc')
     .limit(1)
     .onSnapshot(snapshot => {
@@ -701,10 +852,9 @@ function getLastOrder() {
         // console.log(oorderdate);
         orderdate = oorderdate.toLocaleDateString("en-US", options);
         // console.log(orderdate);
-        if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-        {
+        if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
           todayAmount = Number(orderDetails.totalAmount);
-        }else {
+        } else {
           todayAmount = Number(orderDetails.discountedprize)
         }
         //todayAmount = Number(orderDetails.totalAmount);
@@ -725,10 +875,10 @@ function PopulateDeliveryCard() {
   var index = 0;
   var flag = false;
   // console.log('PopulateDeliveryCard');
-  var statusList = ['Pending', 'Packed','On The Way', 'Delivered'];
+  var statusList = ['Pending', 'Packed', 'On The Way', 'Delivered'];
 
   db.collection('OrderDetails')
-  .where("orderStatus","in",statusList)
+    .where("orderStatus", "in", statusList)
     //.where("orderBy", "==", userID)
     .orderBy("deliveryDate", "desc")
     .limit(4)
@@ -787,10 +937,10 @@ function getNextDelivery() {
 
       if (flag === false) {
 
-        var statusList = ['Pending', 'Packed','On The Way', 'Delivered'];
+        var statusList = ['Pending', 'Packed', 'On The Way', 'Delivered'];
 
         db.collection('OrderDetails')
-          .where("orderStatus","in",statusList)
+          .where("orderStatus", "in", statusList)
           .where("deliveryDate", "<=", today)
           .orderBy("deliveryDate", "desc")
           .limit(1)
@@ -1018,10 +1168,10 @@ function PopulateDeliverySummary() {
   var deliverydate = new Date();
 
   //    DBrows =
-  var statusList = ['Pending', 'Packed','On The Way', 'Delivered'];
+  var statusList = ['Pending', 'Packed', 'On The Way', 'Delivered'];
 
   db.collection('OrderDetails')
-    .where("orderStatus","in",statusList)
+    .where("orderStatus", "in", statusList)
     .where("deliveryDate", "<=", dayP7)
     .where("deliveryDate", ">=", dayM7)
     .onSnapshot(snapshot => {
@@ -1035,136 +1185,121 @@ function PopulateDeliverySummary() {
         //console.log(orderDetails[i].totalAmount);
         if (deliverydate.getDate() === todayDate.getDate() && deliverydate.getMonth() === todayDate.getMonth() && deliverydate.getYear() === todayDate.getYear()) {
           todayCnt = todayCnt + 1;
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             todayAmount = Number(todayAmount) + Number(orderDetails.totalAmount);
-          }else {
+          } else {
             todayAmount = Number(todayAmount) + Number(orderDetails.discountedprize)
           }
           //todayAmount = Number(todayAmount) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayP1.getDate() && deliverydate.getMonth() === dayP1.getMonth() && deliverydate.getYear() === dayP1.getYear()) {
           dayP1Cnt = dayP1Cnt + 1;
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             dayP1Amt = Number(dayP1Amt) + Number(orderDetails.totalAmount);
-          }else {
+          } else {
             dayP1Amt = Number(dayP1Amt) + Number(orderDetails.discountedprize)
           }
           //dayP1Amt = Number(dayP1Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayP2.getDate() && deliverydate.getMonth() === dayP2.getMonth() && deliverydate.getYear() === dayP2.getYear()) {
           dayP2Cnt = dayP2Cnt + 1;
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             dayP2Amt = Number(dayP2Amt) + Number(orderDetails.totalAmount);
-          }else {
+          } else {
             dayP2Amt = Number(dayP2Amt) + Number(orderDetails.discountedprize)
           }
           //dayP2Amt = Number(dayP2Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayP3.getDate() && deliverydate.getMonth() === dayP3.getMonth() && deliverydate.getYear() === dayP3.getYear()) {
           dayP3Cnt = dayP3Cnt + 1;
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             dayP3Amt = Number(dayP3Amt) + Number(orderDetails.totalAmount);
-          }else {
+          } else {
             dayP3Amt = Number(dayP3Amt) + Number(orderDetails.discountedprize)
           }
           //dayP3Amt = Number(dayP3Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayP4.getDate() && deliverydate.getMonth() === dayP4.getMonth() && deliverydate.getYear() === dayP4.getYear()) {
           dayP4Cnt = dayP4Cnt + 1;
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             dayP4Amt = Number(dayP4Amt) + Number(orderDetails.totalAmount);
-          }else {
+          } else {
             dayP4Amt = Number(dayP4Amt) + Number(orderDetails.discountedprize)
           }
           //dayP4Amt = Number(dayP4Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayP5.getDate() && deliverydate.getMonth() === dayP5.getMonth() && deliverydate.getYear() === dayP5.getYear()) {
           dayP5Cnt = dayP5Cnt + 1;
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             dayP5Amt = Number(dayP5Amt) + Number(orderDetails.totalAmount);
-          }else {
+          } else {
             dayP5Amt = Number(dayP5Amt) + Number(orderDetails.discountedprize)
           }
           //dayP5Amt = Number(dayP5Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayP6.getDate() && deliverydate.getMonth() === dayP6.getMonth() && deliverydate.getYear() === dayP6.getYear()) {
           dayP6Cnt = dayP6Cnt + 1;
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             dayP6Amt = Number(dayP6Amt) + Number(orderDetails.totalAmount);
-          }else {
+          } else {
             dayP6Amt = Number(dayP6Amt) + Number(orderDetails.discountedprize)
           }
           //dayP6Amt = Number(dayP6Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayP7.getDate() && deliverydate.getMonth() === dayP7.getMonth() && deliverydate.getYear() === dayP7.getYear()) {
           dayP7Cnt = dayP7Cnt + 1;
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             dayP7Amt = Number(dayP7Amt) + Number(orderDetails.totalAmount);
-          }else {
+          } else {
             dayP7Amt = Number(dayP7Amt) + Number(orderDetails.discountedprize)
           }
           //dayP7Amt = Number(dayP7Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayM1.getDate() && deliverydate.getMonth() === dayM1.getMonth() && deliverydate.getYear() === dayM1.getYear()) {
           dayM1Cnt = dayM1Cnt + 1;
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             dayM1Amt = Number(dayM1Amt) + Number(orderDetails.totalAmount);
-          }else {
+          } else {
             dayM1Amt = Number(dayM1Amt) + Number(orderDetails.discountedprize)
           }
           //dayM1Amt = Number(dayM1Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayM2.getDate() && deliverydate.getMonth() === dayM2.getMonth() && deliverydate.getYear() === dayM2.getYear()) {
           dayM2Cnt = dayM2Cnt + 1;
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             dayM2Amt = Number(dayM2Amt) + Number(orderDetails.totalAmount);
-          }else {
+          } else {
             dayM2Amt = Number(dayM2Amt) + Number(orderDetails.discountedprize)
           }
           //dayM2Amt = Number(dayM2Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayM3.getDate() && deliverydate.getMonth() === dayM3.getMonth() && deliverydate.getYear() === dayM3.getYear()) {
           dayM3Cnt = dayM3Cnt + 1;
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             dayM3Amt = Number(dayM3Amt) + Number(orderDetails.totalAmount);
-          }else {
+          } else {
             dayM3Amt = Number(dayM3Amt) + Number(orderDetails.discountedprize)
           }
           //dayM3Amt = Number(dayM3Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayM4.getDate() && deliverydate.getMonth() === dayM4.getMonth() && deliverydate.getYear() === dayM4.getYear()) {
           dayM4Cnt = dayM4Cnt + 1;
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             dayM4Amt = Number(dayM4Amt) + Number(orderDetails.totalAmount);
-          }else {
+          } else {
             dayM4Amt = Number(dayM4Amt) + Number(orderDetails.discountedprize)
           }
           //dayM4Amt = Number(dayM4Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayM5.getDate() && deliverydate.getMonth() === dayM5.getMonth() && deliverydate.getYear() === dayM5.getYear()) {
           dayM5Cnt = dayM5Cnt + 1;
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             dayM5Amt = Number(dayM5Amt) + Number(orderDetails.totalAmount);
-          }else {
+          } else {
             dayM5Amt = Number(dayM5Amt) + Number(orderDetails.discountedprize)
           }
           //dayM5Amt = Number(dayM5Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayM6.getDate() && deliverydate.getMonth() === dayM6.getMonth() && deliverydate.getYear() === dayM6.getYear()) {
           dayM6Cnt = dayM6Cnt + 1;
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             dayM6Amt = Number(dayM6Amt) + Number(orderDetails.totalAmount);
-          }else {
+          } else {
             dayM6Amt = Number(dayM6Amt) + Number(orderDetails.discountedprize)
           }
           //dayM6Amt = Number(dayM6Amt) + Number(orderDetails.totalAmount);
         } else if (deliverydate.getDate() === dayM7.getDate() && deliverydate.getMonth() === dayM7.getMonth() && deliverydate.getYear() === dayM7.getYear()) {
           dayM7Cnt = dayM7Cnt + 1;
-          if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')
-          {
+          if (orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN') {
             dayM7Amt = Number(dayM7Amt) + Number(orderDetails.totalAmount);
-          }else {
+          } else {
             dayM7Amt = Number(dayM7Amt) + Number(orderDetails.discountedprize)
           }
           //dayM7Amt = Number(dayM7Amt) + Number(orderDetails.totalAmount);
@@ -1192,23 +1327,23 @@ function PopulateDeliverySummary() {
       ];
 
 
-        dateArrDelivery = [
-          dayP7,
-          dayP6,
-          dayP5,
-          dayP4,
-          dayP3,
-          dayP2,
-          dayP1,
-          todayDate,
-          dayM1,
-          dayM2,
-          dayM3,
-          dayM4,
-          dayM5,
-          dayM6,
-          dayM7
-        ];
+      dateArrDelivery = [
+        dayP7,
+        dayP6,
+        dayP5,
+        dayP4,
+        dayP3,
+        dayP2,
+        dayP1,
+        todayDate,
+        dayM1,
+        dayM2,
+        dayM3,
+        dayM4,
+        dayM5,
+        dayM6,
+        dayM7
+      ];
 
       deliveryChart(arrAmtDelivery, dateArrDelivery);
     });
@@ -1272,7 +1407,7 @@ function deliveryChart(arrAmt, dateArr) {
     },
     axisX: {
       valueFormatString: "DD",
-      interval: 1//,
+      interval: 1 //,
       //intervalType: "month"
     },
     axisY: {
@@ -1305,6 +1440,7 @@ function changeGraphType1(type) {
   // console.log(chart2.options.data[0].type);
   chart2.render();
 }
+
 function changeGraphType(type) {
   // console.log(type);
   var chartType = document.getElementById('chartContainer');
