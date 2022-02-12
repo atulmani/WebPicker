@@ -2348,6 +2348,13 @@ input[type=number] {
   height: 350px;
 }
 
+.dashboard-card#cardInventory.active {
+  height: 350px;
+}
+
+.dashboard-card#cardPurchase.active {
+  height: 350px;
+}
 .dashboard-card#productDiv.active {
   height: 512px;
 }
