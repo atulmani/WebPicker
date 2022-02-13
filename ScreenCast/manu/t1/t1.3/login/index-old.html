@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Web Picker">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Mobile & Web App Design & Development | Artificial Intelligence, Analytics, Cloud & IOT | DOOH, SAAS & Retail / Corp Communication Solutions | Business Promotion, SEO, ORM, Press Release, Social Media | Bangalore | Delhi | Lucknow | Pune | Varanasi">
+  <meta name="keywords" content="Mobile & Web App Design & Development | Artificial Intelligence, Analytics, Cloud & IOT | DOOH, SAAS & Retail / Corp Communication Solutions | Business Promotion, SEO, ORM, Press Release, Social Media | Bangalore | Delhi | Lucknow | Pune | Varanasi">
+  <title>Hyper Cloud | A - App Design & Development | B - Business Intelligence | C - Content Management | D - Digital Marketing</title>
+
+  <link rel="shortcut icon" href="../img/logo.png">
+
+  <!-- Font Awesome cdn file -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <!-- Owl Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+  <!-- Bootstrap css -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+  <!-- Your Own Style -->
+  <link rel="stylesheet" href="../css/styles.css">
+
+</head>
+
+<body>
+  <!-- Navbar - Start -->
+  <nav class="navbar navbar-expand-lg sticky-top" style="padding:4px;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="https://HyperCloudAdvertising.com">
+        <img src="../img/logo/logo-text.png" width="100px" alt="">
+      </a>
+
+      <div class="navbar-toggler" data-toggle="collapse" data-target="#collapsibleNavbar1">
+        <span>
+       <i class="fa fa-reorder" style="color:#1638A0;font-size: 1.6rem;" ></i>
+     </span>
+   </div>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="nav navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-home"></i></a>
+          </li>
+          <li class="nav-item">
+            <div class="dropdown">
+              <div onclick="ddIndustries()" class="dropbtn">Industries
+                <i class="fa fa-caret-down"></i>
+              </div>
+              <div id="myDropdown" class="dropdown-content">
+                <a href="#government">CORPORATE COMMUNICATION</a>
+                <a href="#IndustriesWeServe">DOOH & OUTDOOR</a>
+                <a href="#government">EDUCATION</a>
+                <a href="#IndustriesWeServe">GOVERNMENT</a>
+                <a href="#government">RETAIL & LAST MILE</a>
+                <a href="#IndustriesWeServe">TRANSPORTATION</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="#WhyToUse">Features</a> -->
+            <div class="dropdown">
+              <div onclick="ddFeatures()" class="dropbtn">Concepts
+                <i class="fa fa-caret-down"></i>
+              </div>
+              <div id="myDropdown1" class="dropdown-content">
+                <a href="#aipowered">ADs ANALYTICS</a>
+                <a href="#WhyToUse">AI-POWERED</a>
+                <a href="#aipowered">EASY TO CUSTOMIZE</a>
+                <a href="#WhyToUse">FAST AND NO LAGS</a>
+                <a href="#aipowered">SEAMLESS INTEGRATION</a>
+                <a href="#WhyToUse">SECURED CLOUD BASED</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contacts">Contact us</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#hiw">How We Work</a>
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#projects">Projects</a>
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="contacts">Contact Us</a>
+          </li> -->
+        </ul>
+        <!-- <div class="nav-divider">
+          <a href="contacts" style="padding-right: 10px; "><button class="mybutton button5">Connect<i class="fas fa-arrow-right"></i> </button></a>
+        </div> -->
+
+      </div>
+    </div>
+  </nav>
+
+  <div class="small navbar-bottom-mobile">
+    <ul>
+      <a type="button" href="../#">
+        <span><i class="fas fa-home"></i></span> <br> <span> Home </span>
+      </a>
+      <a type="button" href="../#WhyToUse">
+        <span><i class="fas fa-tasks"></i></span> <br> <span> Services </span>
+      </a>
+      <!-- <a type="button" href="login">
+        <span><i class="fas fa-user"></i></span> <br> <span> Login </span>
+      </a> -->
+      <a type="button" href="../contacts">
+        <span><i class="fas fa-id-badge"></i></span> <br> <span> Contact Us </span>
+      </a>
+      <a type="button" data-toggle="collapse" data-target="#collapsibleNavbar1">
+        <span><i class="fas fa-list"></i></span> <br> <span> More </span>
+      </a>
+
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse more-button-links" id="collapsibleNavbar1">
+        <ul class="">
+          <li class="">
+            <a class="" href="../#">Home</a>
+          </li>
+          <li class="">
+            <a class="" href="../#IndustriesWeServe">Industries</a>
+          </li>
+          <!-- <li class="">
+            <a class="" href="login">Login</a>
+          </li> -->
+          <li class="">
+            <a class="" href="../#WhyToUse">Services</a>
+          </li>
+          <li class="">
+            <a class="" href="../contacts">Contact</a>
+          </li>
+
+          <li class="">
+            <a class="" href="../#">login</a>
+          </li>
+        </ul>
+      </div>
+
+  </div>
+  <!-- Navbar - End -->
+
+
+  <div class="full-content">
+    <div class="forms-container">
+      <div class="signin-signup">
+        <!-- <form class="signin-form" action="./admin/dashboard.html" method=""> -->
+        <div class="form signin-form">
+          <h2 class="title">Sign in</h2>
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input id="txtEmail_Signin" type="email" placeholder="Email" required name="" value="">
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input id="txtPass_Signin" type="password" maxlength="30" placeholder="Password" required name="" value=""/>
+            <!-- <i class="fa fa-eye-slash" id="toggleLoginEye"></i> -->
+          </div>
+
+          <div id='errorMessage_Login' class="" style="text-align: center; color:Red; font-size: 0.9rem; font-weight: bold; display:none;" >
+            <br>
+          </div>
+
+          <button id="btnSignin" class="mybutton button5"> LOGIN using Email <i class="fas fa-arrow-right"></i> </button>
+
+          <div class="">
+            OR
+          </div>
+
+          <div class="">
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input id="txtPhone_Signin" type="text" placeholder="Mobile" required name="" value="+919822752885">
+            </div>
+            <div id='recaptcha-container'></div>
+            <button id="btnSendOTP" class="mybutton button5"> Send Code <i class="fas fa-arrow-right"></i> </button>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input id="txtVerificationCode" type="number" placeholder="Please enter Verification Code" required name="" value="">
+            </div>
+            <button id="btnSigninUsingOTP" class="mybutton button5"> LOGIN using OTP <i class="fas fa-arrow-right"></i> </button>
+          </div>
+
+          <p class="social-text">Or Sign in with social platforms</p>
+          <div class="social-media">
+            <a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+                <!-- <input id="googleSignInButton" type="button" name="Google Sign in">Google Sign in </input> -->
+
+                <!-- <br> -->
+               <i class="fab fa-google"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        <!-- </form> -->
+        </div>
+
+        <!-- <form class="signup-form" action="./admin/dashboard.html"  method=""> -->
+        <div class="form signup-form">
+          <h2 class="title">Sign up</h2>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input id="txtFullname_Signup" type="text" maxlength="30" required placeholder="Full Name" name="" value="">
+          </div>
+          <div class="input-field">
+            <i class="fas fa-phone"></i>
+            <input id="txtPhone_Signup" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="10" type="number" placeholder="Mobile No." required name="" value="">
+          </div>
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input id="txtEmail_Signup" type="email" placeholder="Email" required name="" value="">
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input id="txtPass_Signup" type="password" maxlength="30" placeholder="Password" required name="" value="">
+            <!-- <i class="fa fa-eye-slash" id="toggleSignupEye"></i> -->
+          </div>
+          <div id='errorMessage_Signup' class="" style="text-align: center; color:Red; font-size: 0.9rem; font-weight: bold; display:none;" >
+            <br>
+          </div>
+          <button id="btnSignup" class="mybutton button5"> REGISTER <i class="fas fa-arrow-right"></i> </button>
+          <p class="social-text">Or Sign up with social platforms</p>
+          <div class="social-media">
+            <a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        <!-- </form> -->
+      </div>
+      </div>
+    </div>
+
+    <div class="panels-container">
+      <div class="panel left-panel">
+        <div class="content">
+          <h3>New Here ?</h3>
+          <p> Request you to please connect with us to start your journey! </p>
+          <!-- <button type="" name="" class="btn transparent" id="signup_btn">Sign up</button> -->
+          <!-- <button class="mybutton button5" id="signup_btn"> Sign up <i class="fas fa-arrow-right"></i> </button> -->
+          <a href="../contacts"> <button class="mybutton button5" id="signup_btn" style="z-index:999;"> Contact us <i class="fas fa-arrow-right"></i> </button></a>
+        </div>
+
+        <img src="../img/signin.svg" class="image" alt="">
+      </div>
+
+
+      <div class="panel right-panel">
+        <div class="content">
+          <h3>One of us ?</h3>
+          <p> If you have already registered with us, you can
+            login to visit your dashboard. </p>
+          <!-- <button type="" name="" class="btn transparent" id="signin_btn">Sign in</button> -->
+          <button class="mybutton button5" id="signin_btn"> Sign in <i class="fas fa-arrow-right"></i> </button>
+        </div>
+
+        <img src="../img/register.svg" class="image" alt="">
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Section - Start -->
+  <section id="footer">
+    <br /><br />
+
+    <div class="row no-gutters" style="text-align: center;">
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="links-sitemaps">
+          <h5>SITEMAPS</h5>
+          <ul class="">
+            <li class="">
+              <a class="" href="../#">Home</a>
+            </li>
+            <li class="">
+              <a class="" href="../#IndustriesWeServe">Services</a>
+            </li>
+            <li class="">
+              <a class="" href="../#WhyToUse">Why Us</a>
+              <!-- <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#one">One</a></li>  -->
+            </li>
+            <li class="">
+              <a class="" href="../#hiw">How We Work</a>
+            </li>
+            <li class="">
+              <a class="" href="../#">Projects</a>
+            </li>
+            <li class="">
+              <a class="" href="#">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="links-sitemaps">
+          <h5>OTHERS</h5>
+          <ul class="">
+            <li class="">
+              <a class="" href="../#">Jion us officialy</a>
+            </li>
+            <li class="">
+              <a class="" href="../#">Refer a friend</a>
+            </li>
+            <li class="">
+              <a class="" href="../#">Channel Partner</a>
+            </li>
+          </ul>
+        </div><br><br>
+
+        <div class="links-sitemaps">
+          <h5>INFORMATION</h5>
+          <ul class="">
+            <li class="">
+              <a class="" href="../#">Terms & Conditions</a>
+            </li>
+            <li class="">
+              <a class="" href="../#">Privacy & Policy</a>
+            </li>
+            <li class="">
+              <a class="" href="../#">FAQ's</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="footer-last">
+          <img src="../img/logo/logo-text.png" width="110px" alt="">
+          <br><br>
+          <h5 class="git">Get in Touch</h5>
+          <a href="#" class="footer-no">+91 915 255 2222</a>
+          <br>
+          <a href="mailto:Connect@HyperCloudAdvertising.com" class="footer-email">Connect@HyperCloudAdvertising.com</a><br><br>
+          <hr>
+          <div class="social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="Copyright">
+        <h6>Design & Developed By <a style='decoration:none;color:white;' href="https://webpicker.in"> Web Picker </a></h6>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Footer Section - end -->
+
+  <!-- Jquery order should be higher from normal javascript  -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+  <!-- Owl Carousel JQuery -->
+  <!-- <script src="js/jquery.min.js"></script> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+
+  <!-- Javascript to Populate Map - Start  -->
+  <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script> -->
+
+  <!-- Firebase Services -->
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+
+  <script src="../js/firebase.js"></script>
+  <script src="../js/firebase-login.js"></script>
+  <script src="../js/login.js"></script>
+
+  <!-- Owl Carousel Javascript  -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script> -->
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
