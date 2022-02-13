@@ -274,7 +274,100 @@
   <!-- Banner Section - End -->
 
   <!-- Login - Start -->
-  
+
+  <main class="full-login-page-main" id="fullLoginMain">
+    <div class="box">
+      <div class="inner-box">
+
+        <div class="forms-wrap">
+          <div class="signing-form sign-in-form">
+
+            <div class="sign-in-form-logo">
+              <img src="../img/logo/logofit-text-treanparent.png" alt="">
+            </div>
+
+            <div class="sign-in-form-heading">
+              <h2>Welcome Back</h2>
+              <h6>Not registered yet?</h6>
+              <span class="toggle">Sign up</span>
+            </div>
+
+            <div class="sign-in-form-actual-form">
+              <div class="input-wrap">
+                <input type="email" required class="input-field" id="loginEmailtxt" name="" value="">
+                <label for="loginEmailtxt">Email</label>
+              </div>
+
+              <div class="input-wrap">
+                <input type="password" required style="letter-spacing: 1px;" class="input-field" id="loginPasswordtxt" name="" value="">
+                <label for="loginPasswordtxt">Password</label>
+              </div>
+
+              <button class="mybutton button5 sign-btn">Sign In</button>
+
+              <p class="sign-in-form-text"><br>
+                Forgotten your password or your login details?
+                <a href="#">Get help</a> signing in
+              </p>
+            </div>
+          </div>
+
+          <div class="signing-form sign-up-form">
+
+            <div class="sign-in-form-logo">
+              <img src="../img/logo/logofit-text-treanparent.png" alt="">
+            </div>
+
+            <div class="sign-in-form-heading">
+              <h2>Get Started</h2>
+              <h6>Already have an account?</h6>
+              <span class="toggle">Sign in</span>
+            </div>
+
+            <div class="sign-in-form-actual-form">
+
+              <div class="input-wrap">
+                <input type="text" required class="input-field" id="loginNametxt" name="" value="">
+                <label for="loginNametxt">Name</label>
+              </div>
+
+              <div class="input-wrap">
+                <input type="number" required pattern=".{10,}" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input-field" id="loginPhonetxt" name="" value="">
+                <label for="loginPhonetxt">Phone</label>
+              </div>
+
+              <div class="input-wrap">
+                <input type="email" required class="input-field" id="loginEmailtxt" name="" value="">
+                <label for="loginEmailtxt">Email</label>
+              </div>
+
+              <div class="input-wrap">
+                <input type="password" required style="letter-spacing: 1px;" class="input-field" id="loginPasswordtxt" name="" value="">
+                <label for="loginPasswordtxt">Password</label>
+              </div>
+
+              <button class="mybutton button5 sign-btn">Sign Up</button>
+
+              <p class="sign-in-form-text"><br>
+                By signing up, I agree to the
+                <a href="#">Terms & Services</a> and
+                <a href="#">Privacy Policy</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="login-carousel">
+          <div class="large" style="text-align: center;">
+            <img src="../img/services/1.png" width="60%" alt="">
+          </div>
+          <h4>Create Your Own Website</h4>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
 
   <!-- Login - End -->
 
@@ -434,6 +527,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <script src="../js/main.js"></script>
+  <script src="../js/login.js"></script>
 
   <!-- Owl Carousel Javascript  -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
