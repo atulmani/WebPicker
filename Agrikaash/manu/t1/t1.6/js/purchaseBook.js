@@ -108,7 +108,7 @@ function filterFunction() {
     //console.log(document.getElementById("hfSearchID" + i).value);
     //console.log(a[i].textContent);
     //console.log(a[i].innerText);
-  //  console.log(document.getElementById("hfSearchID" + i));
+    //  console.log(document.getElementById("hfSearchID" + i));
     txtValue = a[i].innerText + " " + document.getElementById("hfSearchID" + i).value;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       a[i].style.display = "";
@@ -311,7 +311,7 @@ function populateProductData(bType, pType) {
       DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     }
   }
-//  console.log(DBrows);
+  //  console.log(DBrows);
   // DBrows.then((changes) => {
   DBrows.then((snapshot) => {
     //let changes = snapshot.docChanges();
@@ -541,14 +541,12 @@ function changeFilter() {
 }
 
 function renderProductNew(doc, index) {
-  // console.log(doc, index);
+  // cons
   var productlist = doc.data().ProductDetails;
   var productWeightUnit = doc.data().ProductWeightUnit;
-  if(productWeightUnit === undefined)
-  {
-      productWeightUnit = productlist[0].ProductWeight.split(" ")[1];
+  if (productWeightUnit === undefined) {
+    productWeightUnit = productlist[0].ProductWeight.split(" ")[1];
   }
-  // console.log( productWeightUnit);
   var div1 = document.createElement("div");
   div1.setAttribute("class", "col-sm-12");
   div1.setAttribute("id", "mainDiv" + index);
@@ -558,7 +556,6 @@ function renderProductNew(doc, index) {
 
   var table1 = document.createElement("table");
   table1.setAttribute("width", "100%");
-
   var tr1 = document.createElement("tr");
 
   var td1 = document.createElement("td");
@@ -570,6 +567,12 @@ function renderProductNew(doc, index) {
   hfID.setAttribute("type", "hidden");
   hfID.setAttribute("value", doc.id);
   td1.appendChild(hfID);
+
+  var hfUnit = document.createElement("input");
+  hfUnit.setAttribute("id", "hfUnit" + index);
+  hfUnit.setAttribute("type", "hidden");
+  hfUnit.setAttribute("value", productWeightUnit);
+  td1.appendChild(hfUnit);
 
   var s1 = document.createElement("small");
   s1.setAttribute("class", "product-names");
@@ -583,7 +586,6 @@ function renderProductNew(doc, index) {
   s2.setAttribute("style", "font-size: 0.8rem; color: rgba(0,0,0,0.5);");
   s2.innerHTML = doc.data().Brand;
   td1.appendChild(s2);
-
 
   var img1 = document.createElement("img");
   img1.setAttribute("src", doc.data().ProductImageURL);
@@ -604,10 +606,183 @@ function renderProductNew(doc, index) {
   div3.setAttribute("style", "padding: 0 5px;");
 
   var div4 = document.createElement("div");
-  div4.setAttribute("class", "col-6");
-  div4.setAttribute("style", "padding: 0 5px;pointer-events: none");
+  div4.setAttribute("class", "col-sm-12");
 
-  var input1 = document.createElement("input");
+  var ta = document.createElement("textarea");
+  ta.setAttribute("name", "");
+  ta.setAttribute("placeholder", "Purchased from");
+  ta.setAttribute("style", "width: 100%;resize: none;outline:none;height: 70px;padding: 0 10px;color: #666;border:none;border:1px solid #ddd;");
+  ta.setAttribute("id", "purchanshedFrom" + index);
+
+  div4.appendChild(ta);
+  div3.appendChild(div4);
+
+  var div5 = document.createElement("div");
+  div5.setAttribute("class", "col-6");
+
+  var s7 = document.createElement("small");
+  s7.setAttribute("style", "color:#666;font-size: 0.7rem;margin: 0;");
+  s7.innerHTML = "Price per " + productWeightUnit;
+  div5.appendChild(s7);
+
+  var div6 = document.createElement("div");
+  div6.setAttribute("class", "inventory-scrap-input");
+  div6.setAttribute("style", "margin:0;");
+
+  var span11 = document.createElement("span");
+  span11.setAttribute("style", "font-size: 2rem; color: #666;");
+  span11.innerHTML = "₹";
+  div6.appendChild(span11);
+
+  var input11 = document.createElement("input");
+  input11.setAttribute("maxlength", "4");
+  input11.setAttribute("style", "width: 80%;font-size: 2rem;");
+  input11.setAttribute("oninput", "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);");
+  input11.setAttribute("placeholder", "0");
+  input11.setAttribute("type", "number");
+  input11.setAttribute("readonly", "true");
+
+  // input11.setAttribute("name", "");
+  //input11.setAttribute("value", "");
+  input11.setAttribute("min", "0");
+  input11.setAttribute("id", "unitPrize" + index);
+
+  div6.appendChild(input11);
+
+  div5.appendChild(div6);
+  div3.appendChild(div5);
+
+  var div7 = document.createElement("div");
+  div7.setAttribute("class", "col-6");
+
+  var s8 = document.createElement("small");
+  s8.setAttribute("style", "color:#666;font-size: 0.7rem;");
+  s8.innerHTML = "Quantity";
+  div7.appendChild(s8);
+
+  var div8 = document.createElement("div");
+  div8.setAttribute("class", "inventory-scrap-input");
+
+  var input21 = document.createElement("input");
+  input21.setAttribute("maxlength", "4");
+  input21.setAttribute("style", "width: 80%;font-size: 2rem;");
+  input21.setAttribute("oninput", "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);");
+  input21.setAttribute("placeholder", "0");
+  input21.setAttribute("type", "number");
+
+  input21.setAttribute("readonly", "true");
+  // input21.setAttribute("value", "");
+  input21.setAttribute("min", "0");
+  input21.setAttribute("id", "quantity" + index);
+
+  div8.appendChild(input21);
+  div7.appendChild(div8);
+  div3.appendChild(div7);
+
+
+  var div9 = document.createElement("div");
+  div9.setAttribute("class", "col-12");
+  div9.setAttribute("style", "display:flex;justify-content: space-between; align-items: center;");
+
+  var div10 = document.createElement("div");
+  div10.setAttribute("class", "");
+
+  var s9 = document.createElement("small");
+  s9.setAttribute("style", "color:#666;font-size: 0.8rem;");
+  s9.innerHTML = "Available Qty :  ";
+
+  var span31 = document.createElement("span");
+  span31.setAttribute("id", "quantityDisplay" + index);
+  var availableQuantity;
+  if (doc.data().AvailableQuantity === undefined) {
+    availableQuantity = 0;
+  } else {
+    availableQuantity = doc.data().AvailableQuantity;
+  }
+
+  if (Number(availableQuantity) < 20) {
+    span31.setAttribute("style", "font-size: 1.4rem;color: red;font-weight: bold;");
+  } else if (availableQuantity < 50) {
+    span31.setAttribute("style", "font-size: 1.4rem;color: orange;font-weight: bold;");
+  } else {
+    span31.setAttribute("style", "font-size: 1.4rem;color: #88CA5E;font-weight: bold;");
+  }
+  span31.innerHTML = availableQuantity +" " + productWeightUnit;
+  s9.appendChild(span31);
+  div10.appendChild(s9);
+
+  var hfQty = document.createElement("input");
+  hfQty.setAttribute("id", "hfAvailableQty" + index);
+  hfQty.setAttribute("type", "hidden");
+  hfQty.setAttribute("value", availableQuantity);
+  div10.appendChild(hfQty);
+
+  div9.appendChild(div10);
+
+  div3.appendChild(div9);
+
+
+  var div11 = document.createElement("div");
+  div11.setAttribute("class", "col-12");
+  div11.setAttribute("style", "display:flex;justify-content: space-between; align-items: center;");
+
+  var msg = document.createElement("small");
+  msg.setAttribute("style", "color:red;font-size: 0.7rem;");
+  msg.setAttribute("id", "msg" + index);
+  msg.innerHTML = "";
+  div11.appendChild(msg);
+
+
+  var button = document.createElement("button");
+  button.setAttribute("class", "mybutton button5");
+  button.setAttribute("style", "width: 80px;");
+  button.setAttribute("id", "btnSave" + index);
+  button.setAttribute("onclick", "SetPurchaseDetails(" + index + ")");
+
+  button.innerHTML = "Add";
+  div11.appendChild(button);
+  div3.appendChild(div11);
+
+  td2.appendChild(div3);
+  tr1.appendChild(td2);
+  table1.appendChild(tr1);
+  div2.appendChild(table1);
+
+  div1.appendChild(div2);
+
+  document.getElementById("productRow").appendChild(div1);
+
+}
+
+function renderProductNewOld(doc, index) {
+
+
+  //
+  // div3.appendChild(div8);
+  //
+  //
+  // div3.appendChild(div10);
+
+
+
+  div3.appendChild(div12);
+
+  var divMsg = document.createElement("div");
+  divMsg.setAttribute("class", "col-12");
+
+  divMsg.appendChild(msg);
+  div3.appendChild(divMsg);
+
+  td2.appendChild(div3);
+
+  tr1.appendChild(td2);
+  table1.appendChild(tr1);
+
+  div2.appendChild(table1);
+  div1.appendChild(div2);
+
+
+  /*var input1 = document.createElement("input");
   input1.setAttribute("type", "radio");
   if(productWeightUnit.toUpperCase() === "KG")
     input1.setAttribute("checked", true);
@@ -744,156 +919,38 @@ function renderProductNew(doc, index) {
 
   div7.appendChild(l4);
   div3.appendChild(div7);
+*/
 
-  var div8 = document.createElement("div");
-  div8.setAttribute("class", "col-6");
-
-  var s7 = document.createElement("small");
-  s7.setAttribute("style", "color:#666;font-size: 0.7rem;margin: 0;");
-  s7.innerHTML = "Price per unit";
-  div8.appendChild(s7);
-
-  var div9 = document.createElement("div");
-  div9.setAttribute("class", "inventory-scrap-input");
-  div9.setAttribute("style", "margin:0;");
-
-  var span11 = document.createElement("span");
-  span11.setAttribute("style", "font-size: 2rem; color: #666;");
-  span11.innerHTML = "₹";
-  div9.appendChild(span11);
-
-  var input11 = document.createElement("input");
-  input11.setAttribute("maxlength", "4");
-  input11.setAttribute("style", "width: 80%;font-size: 2rem;");
-  input11.setAttribute("oninput", "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);");
-  input11.setAttribute("placeholder", "0");
-  input11.setAttribute("type", "number");
-  input11.setAttribute("readonly", "true");
-
-  // input11.setAttribute("name", "");
-  //input11.setAttribute("value", "");
-  input11.setAttribute("min", "0");
-  input11.setAttribute("id", "unitPrize" + index);
-
-  div9.appendChild(input11);
-  div8.appendChild(div9);
-  div3.appendChild(div8);
-
-  var div10 = document.createElement("div");
-  div10.setAttribute("class", "col-6");
-
-  var s8 = document.createElement("small");
-  s8.setAttribute("style", "color:#666;font-size: 0.7rem;");
-  s8.innerHTML = "Quantity";
-  div10.appendChild(s8);
-
-  var div11 = document.createElement("div");
-  div11.setAttribute("class", "inventory-scrap-input");
-
-  var input21 = document.createElement("input");
-  input21.setAttribute("maxlength", "4");
-  input21.setAttribute("style", "width: 80%;font-size: 2rem;");
-  input21.setAttribute("oninput", "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);");
-  input21.setAttribute("placeholder", "0");
-  input21.setAttribute("type", "number");
-
-  input21.setAttribute("readonly", "true");
-  // input21.setAttribute("value", "");
-  input21.setAttribute("min", "0");
-  input21.setAttribute("id", "quantity" + index);
-
-  div11.appendChild(input21);
-  div10.appendChild(div11);
-  div3.appendChild(div10);
-
-  var div12 = document.createElement("div");
-  div12.setAttribute("class", "col-12");
-  div12.setAttribute("style", "display:flex;justify-content: space-between; align-items: center;");
-
-  var div13 = document.createElement("div");
-  div13.setAttribute("class", "");
-
-  var s9 = document.createElement("small");
-  s9.setAttribute("style", "color:#666;font-size: 0.8rem;");
-  s9.innerHTML = "Available Qty :  ";
-
-  var span31 = document.createElement("span");
-  span31.setAttribute("id", "quantityDisplay" + index);
-  var availableQuantity;
-  if (doc.data().AvailableQuantity === undefined) {
-    availableQuantity = 0;
-  } else {
-    availableQuantity = doc.data().AvailableQuantity;
-  }
-  if (Number(availableQuantity) < 20) {
-    span31.setAttribute("style", "font-size: 1.4rem;color: red;font-weight: bold;");
-  } else if (availableQuantity < 50) {
-    span31.setAttribute("style", "font-size: 1.4rem;color: orange;font-weight: bold;");
-  } else {
-    span31.setAttribute("style", "font-size: 1.4rem;color: #88CA5E;font-weight: bold;");
-  }
-  span31.innerHTML = availableQuantity;
-
-  s9.appendChild(span31);
-  div13.appendChild(s9);
-
-  div12.appendChild(div13);
-
-  var button = document.createElement("button");
-  button.setAttribute("class", "mybutton button5");
-  button.setAttribute("style", "width: 80px;");
-  button.setAttribute("id", "btnSave" + index);
-  button.setAttribute("onclick", "SetPurchaseDetails(" + index + ")");
-
-  button.innerHTML = "Add";
-  div12.appendChild(button);
-
-  div3.appendChild(div12);
-
-  var divMsg = document.createElement("div");
-  divMsg.setAttribute("class", "col-12");
-
-  var msg = document.createElement("small");
-  msg.setAttribute("style", "color:red;font-size: 0.7rem;");
-  msg.setAttribute("id", "msg" + index);
-  msg.innerHTML = "";
-  divMsg.appendChild(msg);
-  div3.appendChild(divMsg);
-
-  td2.appendChild(div3);
-
-  tr1.appendChild(td2);
-  table1.appendChild(tr1);
-
-  div2.appendChild(table1);
-  div1.appendChild(div2);
-
-  document.getElementById("productRow").appendChild(div1);
 }
 
 function SetPurchaseDetails(index) {
   // console.log(index);
   var hfid = document.getElementById("hfID" + index);
-  var cbKG = document.getElementById("KG" + index);
-  var cbDozen = document.getElementById("Dozen" + index);
-  var cbPiece = document.getElementById("Piece" + index);
-  var cbQuintal = document.getElementById("Quintal" + index);
+  var hfunit = document.getElementById("hfUnit" + index);
+  //
+  // var cbKG = document.getElementById("KG" + index);
+  // var cbDozen = document.getElementById("Dozen" + index);
+  // var cbPiece = document.getElementById("Piece" + index);
+  // var cbQuintal = document.getElementById("Quintal" + index);
   var inputunitPrize = document.getElementById("unitPrize" + index);
   var inputquantity = document.getElementById("quantity" + index);
+  var purchanshedFrom = document.getElementById("purchanshedFrom" + index);
+  var hfAvailableQty = document.getElementById("hfAvailableQty" + index);
   var inputquantityDisplay = document.getElementById("quantityDisplay" + index);
   var btnSave = document.getElementById("btnSave" + index);
   var msg = document.getElementById("msg" + index);
   var unit = "";
-  if (cbKG.checked) {
-    unit = "KG";
-  } else if (cbDozen.checked) {
-    unit = "Dozen";
-  } else if (cbPiece.checked) {
-    unit = "Piece";
-  } else if (cbQuintal.checked) {
-    unit = "Quintal";
-  }
-
+  var purchashedfrom = document.getElementById("purchanshedFrom"+index);
+  // if (cbKG.checked) {
+  //   unit = "KG";
+  // } else if (cbDozen.checked) {
+  //   unit = "Dozen";
+  // } else if (cbPiece.checked) {
+  //   unit = "Piece";
+  // } else if (cbQuintal.checked) {
+  //   unit = "Quintal";
+  // }
+  unit = hfunit.value;
   var newQty = 0;
   if (btnSave.innerHTML === 'Add') {
     btnSave.innerHTML = "Save";
@@ -931,8 +988,13 @@ function SetPurchaseDetails(index) {
 
     } else {
       btnSave.innerHTML = "Add";
-      newQty = Number(inputquantityDisplay.innerHTML) + Number(inputquantity.value);
-      inputquantityDisplay.innerHTML = newQty;
+      console.log(inputquantityDisplay.innerHTML);
+      console.log(inputquantity.value);
+      console.log(hfid.value);
+      console.log(hfAvailableQty.value);
+      newQty = Number(hfAvailableQty.value) + Number(inputquantity.value);
+      console.log(newQty);
+      inputquantityDisplay.innerHTML = newQty +" " + unit;
 
       if (newQty < 20) {
         inputquantityDisplay.setAttribute("style", "font-size: 1.4rem;color: red;font-weight: bold;")
@@ -960,14 +1022,14 @@ function SetPurchaseDetails(index) {
           console.log(inputunitPrize.value);
           db.collection("Products").doc(hfid.value).update({
               AvailableQuantity: firebase.firestore.FieldValue.increment(Number(inputquantity.value)),
-              UnitPrice : Number(inputunitPrize.value)
+              UnitPrice: Number(inputunitPrize.value)
             })
             .then(function(docRef1) {
 
               const snapshot = db.collection('ProductsInventory').doc(hfid.value);
               snapshot.get().then((doc1) => {
                 if (doc1.exists) {
-                   console.log( 'if doc exists'  );
+                  console.log('if doc exists');
                   db.collection("ProductsInventory").doc(hfid.value).update({
                       AvailableQuantity: firebase.firestore.FieldValue.increment(Number(inputquantity.value)),
                       LastUpdatedBy: auth.currentUser.email,
@@ -981,7 +1043,7 @@ function SetPurchaseDetails(index) {
                       console.error("error adding document:", error2);
                     });
                 } else {
-                   console.log( 'if doc not exists'  );
+                  console.log('if doc not exists');
                   db.collection("ProductsInventory").doc(hfid.value).set({
                       AvailableQuantity: Number(inputquantity.value),
                       LastUpdatedBy: auth.currentUser.email,
@@ -1002,8 +1064,8 @@ function SetPurchaseDetails(index) {
               console.error("error adding document:", error1);
             });
 
-            inputunitPrize.value = 0;
-            inputquantity.value = 0;
+          inputunitPrize.value = 0;
+          inputquantity.value = 0;
 
         })
         .catch(function(error) {
