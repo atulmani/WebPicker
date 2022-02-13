@@ -1191,6 +1191,16 @@ input[type=number] {
   pointer-events: none;
 }
 
+
+.create-product-weight-inventory{
+  position: absolute;
+  left: 25%;
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500px;
+  pointer-events: none;
+}
+
 /* product page - end */
 /* cart page - start */
 .empty-cart {
@@ -2994,6 +3004,12 @@ display: inline-block;
   display: inline-block;
   padding: 2px 5px;
   color: #fff;
+}
+
+.inventory-scrap-input{
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .inventory-scrap-input input{
