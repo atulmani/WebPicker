@@ -1012,6 +1012,7 @@ function SetPurchaseDetails(index) {
           Unit: unit,
           UnitPrize: Number(inputunitPrize.value),
           QuantityPurchased: Number(inputquantity.value),
+          PurchashedFrom : purchashedfrom.value,
           CreatedBy: auth.currentUser.email,
           CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
 
