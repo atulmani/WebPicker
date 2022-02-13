@@ -571,13 +571,14 @@ function renderProductNew(doc, index) {
   selectP.setAttribute("id", "productDetails" + index);
   //selectP.setAttribute("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelectedValue" + index + "," + index + ",'" + doc.id + "'," + doc.data().MinimumQty + ")");
 
-  //selectP.addEventListener("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelectedValue" + index + ","+index+")");
+  selectP.setAttribute("onchange", "mySelectionChange("+ index +")");
   var indexnew = -1;
   var mrp = 0;
   var finalPrize = 0;
   var qtyNew = doc.data().MinimumQty;
   for (const val of productlist) {
     var option = document.createElement("option");
+    option.setAttribute('style', 'color: black')
     option.value = val.ProductFinalPrise + ":" + val.ProductMRP;
     var productPurchasePrice = val.ProductPurchasePrice;
     if (productPurchasePrice === undefined || productPurchasePrice === "")
@@ -589,17 +590,31 @@ function renderProductNew(doc, index) {
       };
     var margin = 0;
     if(productPurchasePrice === 0 )
-    margin = "NA";
+    {
+      option.setAttribute("style","color: red;");
+      margin = "NA";
+    }
     else {
       margin = Number(val.ProductFinalPrise) - Number(productPurchasePrice);
       margin = margin *100 /Number(productPurchasePrice) ;
+      if(margin < 10)
+      {
+        option.setAttribute("style","color: red;");
+
+      }
       margin = margin.toLocaleString('en-IN', curFormat);
 
       margin = margin +"%";
     }
+    if(margin === "NA")
+    {
+      option.setAttribute("style","color: red;");
+    }
+
     option.text = val.ProductWeight + " - " + "Rs." + productPurchasePrice + "/" + val.ProductFinalPrise + "("+margin+")";
     selectP.appendChild(option);
   }
+
 
   td2.appendChild(selectP);
   var div1_4 = document.createElement("div");
@@ -637,10 +652,26 @@ function renderProductNew(doc, index) {
 
   //  anchor.appendChild(div1);
   document.getElementById("productRow").appendChild(div1);
-
+  mySelectionChange(index)
 }
 
+function mySelectionChange(index)
+{
 
+  var element = document.getElementById("productDetails" + index);
+  element.setAttribute("style","color: black;");
+  for (int = 0 ; int < element.options.length ;int++)
+  {
+//    console.log(element.options[int].style.color);
+    if(element.options[int].selected && element.options[int].style.color === "red")
+    {
+  //    console.log("is red");
+      element.setAttribute("style","color: red;");
+    }
+
+
+  }
+}
 function GetProductDetails(productID) {
   window.location.href = "createProduct.html?id=" + productID.value;
 }
