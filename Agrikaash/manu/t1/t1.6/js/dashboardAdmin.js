@@ -187,29 +187,30 @@ function populatePurchaseSummary() {
       qty = change.data().QuantityPurchased;
       unitPrize = change.data().UnitPrize;
       amount = Number(qty) * Number(unitPrize);
-      if (flag === false) {
-        // console.log(change.data().ProductId);
-        productID = change.data().ProductId
-        lastPurshasedDetails = "(Qty : " +qty+ ":: Amount : " + amount.toLocaleString('en-IN', curFormat) + ")"
-        console.log(lastPurshasedDetails);
-      }
-      if (purchaseDate.getDate() === todayDate.getDate() && purchaseDate.getMonth() === todayDate.getMonth() && purchaseDate.getYear() === todayDate.getYear()) {
-        todayCnt = todayCnt + 1;
-        todayAmount = Number(todayAmount) + Number(amount);
-      } else if (purchaseDate.getDate() === yesterdayDate.getDate() && purchaseDate.getMonth() === yesterdayDate.getMonth() && purchaseDate.getYear() === yesterdayDate.getYear()) {
-        yesterdayCnt = yesterdayCnt + 1;
-        yesterdayAmount = Number(yesterdayAmount) + Number(amount);
-      }
-      if (purchaseDate >= lastweek) {
-        weekCnt = weekCnt + 1;
-        weekAmount = Number(weekAmount) + Number(amount);
-      }
+      if (qty > 0) {
+        if (flag === false) {
+          // console.log(change.data().ProductId);
+          productID = change.data().ProductId
+          lastPurshasedDetails = "(Qty : " + qty + ":: Amount : " + amount.toLocaleString('en-IN', curFormat) + ")"
+          console.log(lastPurshasedDetails);
+        }
+        if (purchaseDate.getDate() === todayDate.getDate() && purchaseDate.getMonth() === todayDate.getMonth() && purchaseDate.getYear() === todayDate.getYear()) {
+          todayCnt = todayCnt + 1;
+          todayAmount = Number(todayAmount) + Number(amount);
+        } else if (purchaseDate.getDate() === yesterdayDate.getDate() && purchaseDate.getMonth() === yesterdayDate.getMonth() && purchaseDate.getYear() === yesterdayDate.getYear()) {
+          yesterdayCnt = yesterdayCnt + 1;
+          yesterdayAmount = Number(yesterdayAmount) + Number(amount);
+        }
+        if (purchaseDate >= lastweek) {
+          weekCnt = weekCnt + 1;
+          weekAmount = Number(weekAmount) + Number(amount);
+        }
 
-      monthCnt = monthCnt + 1;
-      monthAmount = Number(monthAmount) + Number(amount);
+        monthCnt = monthCnt + 1;
+        monthAmount = Number(monthAmount) + Number(amount);
 
-      flag = true;
-
+        flag = true;
+      }
     });
     console.log(productID);
     var productRecord = db.collection('Products')
@@ -218,10 +219,10 @@ function populatePurchaseSummary() {
     productRecord.then((changes) => {
       pName = changes.data().ProductName;
       console.log(pName);
-      lastPurshasedDetails = pName + "<br>" +lastPurshasedDetails;
+      lastPurshasedDetails = pName + "<br>" + lastPurshasedDetails;
       console.log(lastPurshasedDetails);
 
-          document.getElementById("lastPurchased").innerHTML = lastPurshasedDetails;
+      document.getElementById("lastPurchased").innerHTML = lastPurshasedDetails;
     });
 
     document.getElementById("todayPurchase").innerHTML = todayCnt;
@@ -249,9 +250,10 @@ function ShowInventory(filter) {
 
 
 }
+
 function ShowPurchase(filter) {
   localStorage.setItem("PurchaseFiler", filter);
-  window.location.href = "purchaseBook.html";
+  window.location.href = "purchaseDetail.html";
 
 
 }
