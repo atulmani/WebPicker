@@ -710,13 +710,17 @@ h6{
   color: #161d65;
 }
 .faqsec{
-  color:#000;
-  background: rgb(52, 141, 203, 0.7);
-  border-radius: 60px 60px 60px 60px;
+  color:#fff;
+  background: linear-gradient(to right,#161d65, #348DCB);
+  border-radius: 8px 8px 8px 8px;
+}
+
+.faqsec:hover{
+  color:#fff;
 }
 .srchcl{
   color: #fff;
-  border-color: #348DCB;
+  border-color: #000;
   margin-left: 1%;
 }
 .srchcl:hover{
@@ -726,6 +730,7 @@ h6{
 
 .btncl:hover{
   background-color: #348DCB;
+  width:30px;
 }
 
 
@@ -1008,11 +1013,490 @@ h6{
   border-radius: 50%;
 }
 
+.morePage{
+  height:80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+
+/* table */
+
+.content-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  /* width: 400px; */
+  width:inherit;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+  background: linear-gradient(to right,#161d65, #348DCB);
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+  /* background-color: #f3f3f3; */
+}
+
+.content-table tbody tr:last-of-type {
+  border-bottom: 2px solid #161d65;
+}
+
+.content-table tbody tr.active-row {
+  font-weight: bold;
+  color: #161d65;
+}
+.alpharow{
+  /* background: #f3f3f3; */
+  background: linear-gradient(to right,#161d65, #348DCB);
+  color: #fff;
+}
+
+.menu-list-tags{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background: linear-gradient(to right,#161d65, #348DCB);
+  height:60px;
+  border-radius: 0 60px 60px 0;
+
+}
+
+.menu-list-tags a{
+  /* background: #fff; */
+  width: 100%;
+  text-align: center;
+  color:#ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:60px;
+  font-size: 0.9rem
+}
+
+.menu-list-tags a span{
+  font-size: 1rem
+}
+
+
+
+.menu-list-tags a:hover{
+  color:#fff;
+  text-decoration: none;
+}
+
+.menu-list-tags a.active{
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+@media (max-width: 850px) {
+  .menu-list-tags a.active{
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+
+}
+
+.menu-list-tags a.active span {
+
+  font-size: 1.2rem;
+
+}
+
+@media (max-width: 850px) {
+
+  .menu-list-tags a.active span {
+
+    font-size: 1.5rem;
+
+  }
+
+}
+
+.menu-list-parent{
+  padding: 0 180px 40px 0;
+
+}
+
+@media (max-width: 850px) {
+  .menu-list-parent{
+    padding: 4% 4% 2% 0;
+
+  }
+
+}
+
+
+
+.menu-list-hr{
+  border-top: 6px solid #000;
+  margin: 0;
+  width: 33.3%;
+}
+
+.menu-tag-items{
+  width: 100%;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.anchor-tag{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.anchor-tag a{
+  text-align: center;
+  /* background: red; */
+  width: 100%;
+  margin:  5px;
+  color: #555
+}
+
+@media (max-width:850px) {
+  .category-box{
+    padding: 0 2% 2% 2%;
+  }
+}
+
+/* ticket */
+
+@media (max-width:850px) {
+  .ticketword{
+    position: relative;
+    top: 10px;
+  }
+}
+
+@media (max-width:850px) {
+  .participantword{
+    position: relative;
+    top: 10px;
+  }
+}
+.ticket-div{
+  /* border: 2px solid black; */
+  height:inherit;
+  border-radius: 12px 12px 0px 0px;
+  position: relative;
+  top: 28px;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+.ticket-head{
+  text-align: center;
+  background: linear-gradient(to right,#161d65, #348DCB);
+  color:#fff;
+  /* font-size: 0.2rem; */
+  /* box-shadow: 0px 3px 20px #000; */
+  border-radius: 12px 12px 0px 0px;
+
+
+}
+
+.buttonclass{
+  position:absolute;
+  top:8px;
+  right:4px;
+  font-size:0.8rem;
+  border-radius: 60px;
+}
+
+@media (max-width:850px) {
+  .buttonclass{
+    position: absolute;
+    top:24px;
+    right: 5px;
+  }
+
+}
+
+
+.ticket-foot{
+  text-align: center;
+  background: linear-gradient(to right,#161d65, #348DCB);
+  color:#fff;
+  /* font-size: 0.2rem; */
+  /* box-shadow: 0px 3px 20px #000; */
+  border-radius: 0px 0px 12px 12px;
+
+}
+
+.ticket-mid{
+  /* border: 2px solid red; */
+  text-align: center;
+  color:#000;
+  position: relative;
+}
+
+.ticket-mid hr{
+  /* border: 2px solid red; */
+border: none;
+border-bottom: 1px solid #ccc;
+position: relative;
+top:-12px;
+
+}
+
+.ticket-mid h5{
+
+position: relative;
+top:-15px;
+
+}
+
+.participantidbelow{
+
+position: relative;
+top:-2px;
+color: #ccc;
+z-index: 1000;
+
+}
+
+.participantid{
+  /* position: absolute;
+  top:16px; */
+}
+
+.ticket-mid img{
+
+position: relative;
+top:-10px;
+height: 100px;
+width:100px;
+
+}
+
+.ticket-mid-below{
+  display: flex;
+}
+
+.spandiv{
+  /* border-bottom: 2px solid red; */
+  display:flex;
+  width:100%;
+  position: relative;
+  top: -28px;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+.spandivthings{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.lower-tiket{
+  display: flex;
+  justify-content: space-around;
+  /* border: 2px solid red; */
+
+}
+
+.lower-tiket span{
+  padding-right: 4px;
+  position: relative;
+  /* top: 12px; */
+}
+
+.lower-tiket p{
+  position: relative;
+  top: 8px;
+}
+
+.lower-tiket-2{
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.lower-tiket-2 span{
+  padding-right: 4px;
+  position: relative;
+  top: -5px;
+  font-size: 1rem;
+
+}
+
+.lower-tiket-2 p{
+  padding-right: 4px;
+  position: relative;
+  top: -7px;
+  font-size: 0.9rem;
+
+}
+
+.lower-tiket-after{
+  display:flex;
+
+  width: 100%;
+
+  justify-content: center;
+
+
+}
+.lower-tiket-after p{
+ /* position: relative;
+ top:5px; */
+}
+
+/* dashboard starts */
+.dashboard-card{
+  background: linear-gradient(to right,#161d65, #348DCB);
+  margin: 25px 25px;
+  padding: 15px 10px;
+  border-radius: 10px;
+  height: 75px;
+  overflow-y: hidden;
+  transition: 1s;
+  position: relative;
+
+  /* width:100%; */
+}
+.namebox{
+padding:2%;
+background:#eee;
+border-radius:40px;
+margin-bottom: 15px;
+
+}
+
+.nameboxhead{
+
+  display:inline-block;
+  position:relative;
+  left:35px;
+}
+
+@media (max-width:850px) {
+
+.nameboxhead{
+
+  display:inline-block;
+  position:relative;
+  top:10px;
+
+}
+}
+
+
+
+.listhead{
+position:relative;
+left:-200px;
+}
+
+@media (max-width:850px) {
+  .listhead{
+  position:relative;
+  left:-40px;
+  }
+}
+
+.dashboard-card.orgname.active{
+  height: 370px;
+}
+
+.dashboard-card .arrow-down{
+  position: absolute;
+  right: 20px;
+  /* top: -3px; */
+  /* transform: translateY(-20px); */
+  transition: 1s;
+}
+
+.dashboard-card .arrow-down span{
+  transition: 1s;
+}
+
+.dashboard-card div .order-icon{
+  font-size: 2.4rem;
+}
+
+.dashboard-sub-heading{
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #ccc;
+}
+
+.dashboard-card .details{
+  padding-left: 20px;
+}
+
+.dashboard-card .details h4{
+  margin: 0 auto;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.dashboard-card .details p{
+  margin: 0 auto;
+}
+
+.dashboard-card-order{
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+}
+
+.dashboard-card-order div p{
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.dashboard-card-delivery{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  margin: 10px auto;
+}
+
+.dashboard-card-delivery div h5{
+  color: #000;
+  margin-top: 7px;
+  padding-left: 5px;
+}
 /*
-.circleimg{
-  padding-left: 30px;
+@media (max-width:850px) {
+  .playerpartner{
+    font-size: 0.6rem
+  }
+
 } */
+
+/* dashboard ends */
+/* ticket ends */
+
+/* this starts */
 
 
 /*************** login - End *************/
