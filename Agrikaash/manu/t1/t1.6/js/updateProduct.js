@@ -9,7 +9,7 @@ var pID;
 
 var buisinessType = "";
 var productType = "";
-
+var flagSearch = true;
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
@@ -134,10 +134,12 @@ function myChangeEvent() {
   var productList = [];
   var prodCnt = 0;
   var callCount = 1;
+  var displayCnt = 0;
   for (i = 0; i < a.length; i++) {
     txtValue = a[i].innerText + " " + document.getElementById("hfSearchID" + i).value;
     //    txtValue = a[i].textContent || a[i].innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      displayCnt = displayCnt + 1;
       noFlag = true;;
       a[i].style.display = "";
       hfid = a[i].getElementsByTagName("input")[0];
@@ -166,6 +168,7 @@ function myChangeEvent() {
   console.log("before display none");
   document.getElementById("idItem").style.display = "none";
   document.getElementById("myInput").children[0].blur();
+  document.getElementById("itemCnt").innerHTML =  displayCnt;
   // myDropdown.classList.remove("show");
   // serachDiv.classList.remove("open");
 }
@@ -236,7 +239,7 @@ function showItem(itemname) {
       renderProductNew(doc, 0);
       document.getElementById("idItem").style.display = "none";
       document.getElementById("myInput").children[0].blur();
-
+      document.getElementById("itemCnt").innerHTML = 1;
 
     }
   });
@@ -303,6 +306,8 @@ function populateProductData(bType, pType) {
 
       //console.log(change.doc.data());
       if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
+      // if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All') && filter === 'All' && flagSearch === true)
+
       {
         var anchorB = document.createElement("button");
         anchorB.setAttribute("onclick", "showItem('" + change.doc.id + "')");
@@ -598,7 +603,7 @@ function renderProductNew(doc, index) {
       td2.appendChild(s2);
       var b2 = document.createElement("br");
       td2.appendChild(b2);
-  // 
+  //
   // td2.innerHTML = "<small class='product-names'>" + doc.data().ProductName + "</small><br>" +
   //   "<small style='font-size: 0.8rem; color: rgba(0,0,0,0.5);'>" + doc.data().Brand + "</small><br>";
 
