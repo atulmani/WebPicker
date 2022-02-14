@@ -85,6 +85,161 @@ function emptyDiv(div) {
   div.innerHTML = '';
 }
 
+
+function inputSearchFocus() {
+  document.getElementById("idItem").style.display = "block";
+  document.getElementById("wrongSearch").style.display="none";
+
+}
+
+function filterFunction() {
+  console.log('hi');
+  var input, filter, ul, li, a, i;
+  var search ;
+  input = document.getElementById("myInput");
+  filter = input.children[0].value.toUpperCase();
+  //  console.log(filter);
+  div = document.getElementById("idItem");
+  a = div.getElementsByTagName("button");
+  for (i = 0; i < a.length; i++) {
+    //console.log(document.getElementById("hfSearchID" + i).value);
+    //console.log(a[i].textContent);
+    //console.log(a[i].innerText);
+    txtValue =  a[i].innerText  + " " + document.getElementById("hfSearchID" + i).value ;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+
+
+
+function myChangeEvent() {
+  console.log('myChangeEvent');
+  document.getElementById("wrongSearch").style.display="none";
+
+  document.getElementById("productRow").innerHTML = "";
+  var noFlag= false;
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.children[0].value.toUpperCase();
+  div = document.getElementById("idItem");
+  a = div.getElementsByTagName("button");
+  var hfid = "";
+  var productList = [];
+  var prodCnt = 0;
+  var callCount = 1;
+  for (i = 0; i < a.length; i++) {
+    txtValue =  a[i].innerText  + " " + document.getElementById("hfSearchID" + i).value ;
+//    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      noFlag = true;;
+      a[i].style.display = "";
+      hfid = a[i].getElementsByTagName("input")[0];
+      productList.push(hfid.value);
+      prodCnt = prodCnt + 1;
+      if (prodCnt === 10) {
+        RenderProductByProducrID(productList, callCount);
+        productList = [];
+        prodCnt = 0;
+        callCount = callCount + 1;
+      }
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+  if (productList.length > 0) {
+
+    RenderProductByProducrID(productList, callCount);
+  }
+  console.log(noFlag);
+  if(noFlag === false)
+  {
+    document.getElementById("searchKeyText").innerHTML = filter;
+    document.getElementById("wrongSearch").style.display="block";
+
+  }
+  console.log("before display none");
+  document.getElementById("idItem").style.display = "none";
+  document.getElementById("myInput").children[0].blur();
+  // myDropdown.classList.remove("show");
+  // serachDiv.classList.remove("open");
+}
+
+
+
+function RenderProductByProducrID(productList, callCount) {
+
+  var DBrows = db.collection("Products")
+    .where("__name__", "in", productList)
+    .get();
+  DBrows.then((changes) => {
+    var index = Number(callCount) * 10;
+    var selectedindex = -1;
+    var selectdedItem;
+    //productCategory.push('All');
+    changes.forEach(change => {
+      //console.log('in for loop');
+      var pCategory = change.data().productType;
+      //productCategory.push(pCategory)
+      //console.log(pCategory);
+      if (cartItems != null) {
+        selectedIndex = cartItems.findIndex(a => a.ProductID === change.id);
+
+        if (selectedIndex >= 0) {
+          selectdedItem = cartItems[selectedIndex];
+        } else {
+          selectdedItem = null;
+        }
+      } else {
+        selectdedItem = null;
+      }
+      renderProductNew(change, index, selectdedItem);
+      index = index + 1;
+    });
+  });
+
+
+}
+
+
+function showItem(itemname) {
+
+  // var myDropdown = document.getElementById('myDropdown');
+  // var serachDiv = document.getElementById('serachDiv');
+
+  //console.log(itemname);
+
+  const snapshot = db.collection('Products').doc(itemname);
+  snapshot.get().then(async (doc) => {
+    if (doc.exists) {
+
+      var pCategory = doc.data().productType;
+
+      if (cartItems != null) {
+        selectedIndex = cartItems.findIndex(a => a.ProductID === doc.id);
+
+        if (selectedIndex >= 0) {
+          selectdedItem = cartItems[selectedIndex];
+        } else {
+          selectdedItem = null;
+        }
+      } else {
+        selectdedItem = null;
+      }
+
+      document.getElementById("productRow").innerHTML = "";
+      renderProductNew(doc, 0);
+      document.getElementById("idItem").style.display = "none";
+      document.getElementById("myInput").children[0].blur();
+
+
+    }
+  });
+}
+
 function populateProductData(bType, pType) {
   //var DBrows = db.collection("Products").where("OrganizationId", "==", Number(organizationid)).get();
   var divPType = document.getElementById('productCategory');
@@ -126,12 +281,46 @@ function populateProductData(bType, pType) {
     var selectedindex = -1;
     var selectdedItem;
     productCategory.push('All');
+    var productName = "";
+    var searchKey = "";
     changes.forEach(change => {
       //if (change.type == 'added')
       {
         var pCategory = change.doc.data().productType;
         productCategory.push(pCategory)
 
+      }
+      productName = change.doc.data().ProductName;
+      if(change.doc.data().SearchKey === undefined || change.doc.data().SearchKey === "")
+      {
+        searchKey = productName;
+      }
+      else {
+          searchKey = change.doc.data().SearchKey;
+      }
+
+      //console.log(change.doc.data());
+      if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
+      {
+        var anchorB = document.createElement("button");
+        anchorB.setAttribute("onclick", "showItem('" + change.doc.id + "')");
+        anchorB.innerHTML = productName;
+
+        var hfID = document.createElement("input");
+        hfID.setAttribute("type", "hidden");
+        hfID.setAttribute("id", "hdID" + index);
+        hfID.setAttribute("value", change.doc.id);
+
+        anchorB.appendChild(hfID);
+
+        var hfSearchID = document.createElement("input");
+        hfSearchID.setAttribute("type", "hidden");
+        hfSearchID.setAttribute("id", "hfSearchID" + index);
+        hfSearchID.setAttribute("value", searchKey);
+
+        anchorB.appendChild(hfSearchID);
+
+        document.getElementById("idItem").appendChild(anchorB);
       }
       renderProductNew(change.doc, index);
       index = index + 1;
@@ -217,7 +406,7 @@ function renderProductCategory1(productCategory) {
   }
 }
 
-function callFunction(productType, objid) {
+function callFunctionOld(productType, objid) {
   console.log(objid);
   clearSelection();
   document.getElementById('loading').style.display = 'block';
@@ -231,6 +420,55 @@ function callFunction(productType, objid) {
   objid.setAttribute("class", "category-list-menu active");
 
   populateProductData(cType, productType);
+  //renderProductNew(doc, index, selectedItem)
+}
+
+function callFunction(productType, objid) {
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('hfpType').value = productType;
+
+  var e = document.getElementById("businessType");
+  var cType = e.options[e.selectedIndex].text;
+  //console.log(cType);
+  //console.log(productType);
+  // var cType = document.getElementById('businessType').SelectedValue;
+  //objid.setAttribute("class", "category-list-menu active");
+  if(productType === 'All')
+  {
+    var anchor = document.getElementById("allAnchor");
+    anchor.setAttribute("class", "active");
+
+    anchor = document.getElementById("FruitAnchor");
+    anchor.setAttribute("class", "");
+
+    anchor = document.getElementById("VegetableAnchor");
+    anchor.setAttribute("class", "");
+
+  }else if(productType === 'Vegetable')
+  {
+    var anchor = document.getElementById("allAnchor");
+    anchor.setAttribute("class", "");
+
+    anchor = document.getElementById("FruitAnchor");
+    anchor.setAttribute("class", "");
+
+    anchor = document.getElementById("VegetableAnchor");
+    anchor.setAttribute("class", "active");
+
+  }
+  else if(productType === 'Fruit')
+  {
+    var anchor = document.getElementById("allAnchor");
+    anchor.setAttribute("class", "");
+
+    anchor = document.getElementById("FruitAnchor");
+    anchor.setAttribute("class", "active");
+
+    anchor = document.getElementById("VegetableAnchor");
+    anchor.setAttribute("class", "");
+
+  }
+  populateProductData(cType, productType, false);
   //renderProductNew(doc, index, selectedItem)
 }
 
@@ -330,17 +568,53 @@ function renderProductNew(doc, index) {
   var selectP = document.createElement("select");
   selectP.name = "productDetails";
   selectP.id = "productDetails" + index;
-  //selectP.addEventListener("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelectedValue" + index + ","+index+")");
+  selectP.setAttribute("id", "productDetails" + index);
+  //selectP.setAttribute("onchange", "mySelectionChange(" + "productDetails" + index + "," + "mrp" + index + "," + "final" + index + "," + "hfSelectedValue" + index + "," + index + ",'" + doc.id + "'," + doc.data().MinimumQty + ")");
+
+  selectP.setAttribute("onchange", "mySelectionChange("+ index +")");
   var indexnew = -1;
   var mrp = 0;
   var finalPrize = 0;
   var qtyNew = doc.data().MinimumQty;
   for (const val of productlist) {
     var option = document.createElement("option");
+    option.setAttribute('style', 'color: black')
     option.value = val.ProductFinalPrise + ":" + val.ProductMRP;
-    option.text = val.ProductWeight + " - " + "Rs." + val.ProductFinalPrise;
+    var productPurchasePrice = val.ProductPurchasePrice;
+    if (productPurchasePrice === undefined || productPurchasePrice === "")
+      productPurchasePrice = 0
+
+      var curFormat = {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 1
+      };
+    var margin = 0;
+    if(productPurchasePrice === 0 )
+    {
+      option.setAttribute("style","color: red;");
+      margin = "NA";
+    }
+    else {
+      margin = Number(val.ProductFinalPrise) - Number(productPurchasePrice);
+      margin = margin *100 /Number(productPurchasePrice) ;
+      if(margin < 10)
+      {
+        option.setAttribute("style","color: red;");
+
+      }
+      margin = margin.toLocaleString('en-IN', curFormat);
+
+      margin = margin +"%";
+    }
+    if(margin === "NA")
+    {
+      option.setAttribute("style","color: red;");
+    }
+
+    option.text = val.ProductWeight + " - " + "Rs." + productPurchasePrice + "/" + val.ProductFinalPrise + "("+margin+")";
     selectP.appendChild(option);
   }
+
 
   td2.appendChild(selectP);
   var div1_4 = document.createElement("div");
@@ -350,8 +624,12 @@ function renderProductNew(doc, index) {
   // div1_4.innerHTML = "<h5>₹" + "<span id='mrp" + index + "' >" + productlist[0].ProductMRP + "</span>" + "</h5>" +
   //   "<small>₹ " + "<span id='final" + index + "'>" + productlist[0].ProductFinalPrise + "</span></small>";
 
-  div1_4.innerHTML = "<large>" + "<span><b>Type :  </b>" + doc.data().CustomerBusinessType + "</span>" + "<large><br>" +
-    "<large>" + "<span><b>Category :  </b>" + doc.data().productType + "</span>" + "<large><br><br>";
+  // div1_4.innerHTML = "<large>" + "<span><b>Type :  </b>" + doc.data().CustomerBusinessType + "</span>" + "<large><br>" +
+  //   "<large>" + "<span><b>Category :  </b>" + doc.data().productType + "</span>" + "<large><br><br>";
+
+
+    div1_4.innerHTML = "<large>" + "<span><b>Location :  </b>" + doc.data().ProductLocation + "</span>" + "<large><br>" +
+      "<large>" + "<span><b>Category :  </b>" + doc.data().productType + "</span>" + "<large><br><br>";
 
   var spanDelete = document.createElement('span');
   spanDelete.setAttribute("id", "btnDelete" + index);
@@ -374,12 +652,27 @@ function renderProductNew(doc, index) {
 
   //  anchor.appendChild(div1);
   document.getElementById("productRow").appendChild(div1);
-
+  mySelectionChange(index)
 }
 
+function mySelectionChange(index)
+{
 
+  var element = document.getElementById("productDetails" + index);
+  element.setAttribute("style","color: black;");
+  for (int = 0 ; int < element.options.length ;int++)
+  {
+//    console.log(element.options[int].style.color);
+    if(element.options[int].selected && element.options[int].style.color === "red")
+    {
+  //    console.log("is red");
+      element.setAttribute("style","color: red;");
+    }
+
+
+  }
+}
 function GetProductDetails(productID) {
-  console.log(productID.value);
   window.location.href = "createProduct.html?id=" + productID.value;
 }
 

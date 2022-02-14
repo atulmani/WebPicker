@@ -118,7 +118,7 @@
     </div>
   </nav>
 
-  <div class="small navbar-mobile">
+  <div class="small navbar-mobile" style="height: 100px;">
     <div class="navbar-mobile-menu">
       <a href="#" data-toggle="collapse" data-target="#collapsibleNavbar1">
         <span class="material-icons-outlined">
@@ -126,7 +126,8 @@
         </span>
       </a>
       <a href="#">
-        <h4 style="text-transform: uppercase;">Agrikaash</h4>
+        <img src="../img/logo/hori-logo-white-text.png" width="150px" alt="">
+        <!-- <h4 style="text-transform: uppercase;">Agrikaash</h4> -->
       </a>
 
       <a href="../notification/index.html" style="padding-right: 10px;">
@@ -144,6 +145,19 @@
       <input type="text" name="" placeholder="Search Here..." value="">
       <i class="fas fa-search"></i>
     </div> -->
+    <div class="">
+      <div class="" id="myInput" style="padding: 10px 0;position:relative;">
+        <input type="search" name="" class="new_search-box" value="" placeholder="Search 100+ products" onfocus="inputSearchFocus()" onkeyup="filterFunction()" onchange="myChangeEvent();">
+        <div class="new_search-box-seach-icon">
+          <span class="material-icons-outlined">
+            youtube_searched_for
+          </span>
+        </div>
+      </div>
+      <div class="intelligence" id="idItem" style='display:none'>
+
+      </div>
+    </div>
   </div>
 
   <div class="small navbar-mobile-bottom">
@@ -363,65 +377,71 @@
         <div class="row no-gutters" style="background: #ddd;">
           <div class="col-md-12 col-md-offset-1">
             <input type="hidden" id="categoryCnt" value=0>
-            <div id="category-list" class="owl-carousel owl-theme" style="padding:5px 0;">
-              <!-- <div   class="owl-carousel-inner"> -->
-              <!-- <div class="item">
-              <a class="category-list-menu active">
-                <h5>All</h5>
-              </a>
-            </div>
-            <div class="item">
-              <a class="category-list-menu">
-                <h5>Vegtable</h5>
-              </a>
-            </div>
-            <div class="item">
-              <a class="category-list-menu">
-                <h5>Fruits</h5>
-              </a>
-            </div>
-            <div class="item">
-              <a class="category-list-menu">
-                <h5>Goat</h5>
-              </a>
-            </div>
-            <div class="item">
-              <a class="category-list-menu">
-                <h5>Pearl</h5>
-              </a>
-            </div>
-            <div class="item">
-              <a class="category-list-menu">
-                <h5>Honey</h5>
-              </a>
-            </div> -->
-              <!-- </div> -->
+            <div id="category-list" class="owl-carousel owl-theme" style="padding:5px 0;display: none;">
+
             </div>
           </div>
         </div>
 
-        <div class="category-list-sub-menu" style="background: #f4f4f4;">
+        <div class="new_category-list">
+          <!-- <a href="javascript:callFunction('All','')" id="allAnchor" class="active">All</a>
+          <a href="javascript:callFunction('Vegetable','')" id="VegetableAnchor">Vegetable</a>
+          <a href="javascript:callFunction('Fruit','')" id="FruitAnchor">Fruit</a> -->
 
-          <div class="" id='divbusinessType'>
-            <select class="city-selector" id="businessType" onchange="changCustomerType();" style="background: rgba(255,255,255,0.6);border: 1px solid #aaa;" name="">
-              <option value="All">All</option>
-              <option value="Small">Small</option>
-              <option value="Medium">Medium</option>
-              <option value="Large">Large</option>
-            </select>
-
-            <span class="material-icons-outlined city-selector-icon">
-              storefront
-            </span>
-          </div>
-
-          <div class="">
-            <h5 id="itemCnt">0 Items</h5>
-          </div>
+          <button onclick="callFunction('All','')" id="allAnchor" class="active">All</button>
+          <button onclick="callFunction('Vegetable','')" id="VegetableAnchor">Vegetable</button>
+          <button onclick="callFunction('Fruit','')" id="FruitAnchor">Fruit</button>
 
         </div>
       </div>
 
+      <div class="" id="wrongSearch" style="text-align: center;display:none" ><br><br>
+        <img src="../img/no_search_product.svg" width="80%" alt=""><br><br><br>
+        <h5 class="small-text" >No products found for '<span id="searchKeyText"></span>'</h5><br><br>
+      </div>
+
+      <div class="search-parent-div" style="position:relative; top: -30px;padding: 0 15px; display:none;" id="myDropdown">
+        <div class="search" id="serachDiv">
+          <div class="" id="myInput">
+            <input type="search" class="search-box" onkeyup="filterFunction()" onchange="myChangeEvent();" />
+          </div>
+          <span class="search-button" onclick="showSearchInput()">
+            <span class="search-icon"></span>
+          </span>
+        </div>
+      </div>
+
+      <div class="category-list-sub-menu" style="background: #f4f4f4;">
+
+        <div class="" id='divbusinessType' style="display: none;">
+          <select class="city-selector" id="businessType" onchange="changCustomerType();" style="background: rgba(255,255,255,0.6);border: 1px solid #aaa;" name="">
+            <option value="All">All</option>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+          </select>
+
+          <span class="material-icons-outlined city-selector-icon">
+            storefront
+          </span>
+        </div>
+
+        <div class="" style="">
+          <h5 id="itemCnt">0 Items</h5>
+        </div>
+
+      </div>
+
+
+      <!-- <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Search Item</button>
+        <div id="myDropdown" class="dropdown-content">
+          <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+          <div id="idItem">
+
+          </div>
+        </div>
+      </div> -->
 
       <div class="row no-gutters">
         <div class="product-menu">

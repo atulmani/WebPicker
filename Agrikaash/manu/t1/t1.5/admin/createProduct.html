@@ -126,7 +126,8 @@
         </span>
       </a>
       <a href="#">
-        <h4 style="text-transform: uppercase;">Agrikaash</h4>
+        <img src="../img/logo/hori-logo-white-text.png" width="150px" alt="">
+        <!-- <h4 style="text-transform: uppercase;">Agrikaash</h4> -->
       </a>
 
       <a href="../notification/index.html" style="padding-right: 10px;">
@@ -163,13 +164,13 @@
       <a href="">
 
       </a>
-      <a href="orderList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="orderStatus.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <span class="material-icons-outlined">
           horizontal_split
         </span>
         <small>Orders</small>
       </a>
-      <a href="cartNew.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="payments.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <span class="material-icons-outlined">
           currency_rupee
         </span>
@@ -233,7 +234,7 @@
           </div>
           <div class="content">
             <h5>Notifications</h5>
-            <small>All your active notifications</small>
+            <small>Notification Setup</small>
           </div>
           <div class="">
             <!-- <span class="notification">10</span> -->
@@ -266,7 +267,7 @@
       <hr class="hr" />
 
       <li class="">
-        <a href="dashboard.html" class="left-navigation">
+        <a href="report.html" class="left-navigation">
           <div class="">
             <span class="material-icons-outlined">
               landscape
@@ -417,6 +418,28 @@
 
               <div class="col-sm-12">
                 <hr>
+                <div class="" style="display:flex; justify-content: space-between;align-items: center;">
+                  <span>Location Available</span>
+                  <div class="">
+                    <select id="locationCity" class="city-selector" style="border: 1px solid #aaa;" name="">
+                      <option value="All">All</option>
+                      <option value="Varanasi">Varanasi</option>
+                      <option value="Noida">Noida</option>
+                      <option value="Lucknow">Lucknow</option>
+                      <option value="Gorakhpur">Gorakhpur</option>
+                      <option value="Deoria">Deoria</option>
+
+                    </select>
+
+                    <span class="material-icons-outlined city-selector-icon">
+                      filter_list
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-12">
+                <hr>
                 <div class="form-control">
                   <input type="text" id="brand" required value="Agrikaash" maxlength="40">
                   <label>Brand Name</label>
@@ -425,8 +448,15 @@
 
               <div class="col-sm-12" style="background: rgba(135,202,93,0.1);">
                 <div class="form-control" style="background: transparent;">
-                  <input type="text" id="productName" required style="background: transparent;" value="" maxlength="40">
+                  <input type="text" id="productName" required style="background: transparent;" onchange="copySearchKey();" value="" maxlength="100">
                   <label style="color: #ff5757;">Product Name</label>
+                </div>
+              </div>
+
+              <div class="col-sm-12" >
+                <div class="form-control" style="background: transparent;">
+                  <input type="text" id="searchKey" required style="background: transparent;" value="" maxlength="400">
+                  <label style="color: #ff5757;">searchKey</label>
                 </div>
               </div>
 
@@ -459,7 +489,7 @@
                   <div class="">
                     <select id="productType" class="city-selector" style="border: 1px solid #aaa;" name="">
                       <option value="Vegetable">Vegetable</option>
-                      <option value="Vegetable">Vegetable & Fruits</option>
+                      <option value="Vegetable & Fruits">Vegetable & Fruits</option>
                       <option value="Fruit">Fruit</option>
                       <option value="Pearl">Pearl</option>
                       <option value="Goat Products">Goat Products</option>
@@ -508,25 +538,47 @@
                 </center>
               </div>
 
+              <div class="col-sm-12" style="display:none;">
+                <hr>
+                <div class="form-control">
+                  <input type="number" min="1" id="purchasePrize" required value="" maxlength="40">
+                  <label>Purchanse Prize Per Unit</label>
+                </div><br>
+              </div>
+
+
               <div id="row1" class="col-lg-12">
                 <div class="row no-gutters">
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
                       <input type="text" required value="" maxlength="40" id="productWeight1">
                       <label style="color: #ff5757;">Weight</label>
                     </div>
                   </div>
 
-                  <div class="col-4">
+
+                  <div class="col-3">
                     <div class="form-control">
-                      <input type="text" required value="" maxlength="40" id="productMRP1">
-                      <label style="color: #ff5757;">MRP</label>
+                      <input type="number" required value="" maxlength="40" id="purchasePrice1">
+                      <label style="color: #ff5757;">Pr. Price</label>
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="form-control">
+
+                      <input type="text" required value="" maxlength="40" disabled id="productMRP1" style="display:none">
+                      <!-- <label style="color: #ff5757;" style="display:none">MRP</label> -->
+
+
+                      <input type="text" required value="" maxlength="40" disabled id="profitPercentage1" >
+                      <label style="color: #ff5757;">Margin</label>
                     </div>
                   </div>
 
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
-                      <input type="text" required value="" maxlength="40" id="productFinalPrise1">
+
+                      <input type="text" required value="" maxlength="40" onchange="setMRP(1);" id="productFinalPrise1">
                       <label style="color: #ff5757;">Our Price</label>
                     </div>
                   </div>
@@ -535,23 +587,34 @@
 
               <div id="row2" class="col-sm-12" style="display:none;">
                 <div class="row no-gutters">
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
                       <input type="text" required value="" maxlength="40" id="productWeight2">
                       <label style="color: #ff5757;">Weight</label>
                     </div>
                   </div>
-
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
-                      <input type="text" required value="" maxlength="40" id="productMRP2">
-                      <label style="color: #ff5757;">MRP</label>
+                      <input type="number" required value="" maxlength="40" id="purchasePrice2">
+                      <label style="color: #ff5757;">Pr. Price</label>
                     </div>
                   </div>
 
-                  <div class="col-4">
+
+                  <div class="col-3">
                     <div class="form-control">
-                      <input type="text" required value="" maxlength="40" id="productFinalPrise2">
+                      <input type="text" required value="" maxlength="40" disabled id="productMRP2" style="display:none">
+                      <!-- <label style="color: #ff5757;" style="display:none">MRP</label> -->
+
+
+                      <input type="text" required value="" maxlength="40" disabled id="profitPercentage2" >
+                      <label style="color: #ff5757;">Margin</label>
+                    </div>
+                  </div>
+
+                  <div class="col-3">
+                    <div class="form-control">
+                      <input type="text" required value="" maxlength="40" onchange="setMRP(2);" id="productFinalPrise2">
                       <label style="color: #ff5757;">Our Price</label>
                     </div>
                   </div>
@@ -561,23 +624,34 @@
 
               <div id="row3" class="col-sm-12" style="display:none;">
                 <div class="row no-gutters">
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
                       <input type="text" required value="" maxlength="40" id="productWeight3">
                       <label style="color: #ff5757;">Weight</label>
                     </div>
                   </div>
 
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
-                      <input type="text" required value="" maxlength="40" id="productMRP3">
-                      <label style="color: #ff5757;">MRP</label>
+                      <input type="number" required value="" maxlength="40" id="purchasePrice3">
+                      <label style="color: #ff5757;">Pr. Price</label>
                     </div>
                   </div>
 
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
-                      <input type="text" required value="" maxlength="40" id="productFinalPrise3">
+                      <input type="text" required value="" maxlength="40" disabled id="productMRP3" style="display:none">
+                      <!-- <label style="color: #ff5757;" style="display:none">MRP</label> -->
+
+
+                      <input type="text" required value="" maxlength="40" disabled id="profitPercentage3" >
+                      <label style="color: #ff5757;">Margin</label>
+                    </div>
+                  </div>
+
+                  <div class="col-3">
+                    <div class="form-control">
+                      <input type="text" required value="" maxlength="40" onchange="setMRP(3);" id="productFinalPrise3">
                       <label style="color: #ff5757;">Our Price</label>
                     </div>
                   </div>
@@ -587,23 +661,34 @@
 
               <div id="row4" class="col-sm-12" style="display:none;">
                 <div class="row no-gutters">
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
                       <input type="text" required value="" maxlength="40" id="productWeight4">
                       <label style="color: #ff5757;">Weight</label>
                     </div>
                   </div>
 
-                  <div class="col-4">
+
+                  <div class="col-3">
                     <div class="form-control">
-                      <input type="text" required value="" maxlength="40" id="productMRP4">
-                      <label style="color: #ff5757;">MRP</label>
+                      <input type="number" required value="" maxlength="40" id="purchasePrice4">
+                      <label style="color: #ff5757;">Pr. Price</label>
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="form-control">
+                      <input type="text" required value="" maxlength="40" disabled id="productMRP4" style="display:none">
+                      <!-- <label style="color: #ff5757;" style="display:none">MRP</label> -->
+
+
+                      <input type="text" required value="" maxlength="40" disabled id="profitPercentage4" >
+                      <label style="color: #ff5757;">Margin</label>
                     </div>
                   </div>
 
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
-                      <input type="text" required value="" maxlength="40" id="productFinalPrise4">
+                      <input type="text" required value="" maxlength="40"  onchange="setMRP(4);" id="productFinalPrise4">
                       <label style="color: #ff5757;">Our Price</label>
                     </div>
                   </div>
@@ -613,23 +698,35 @@
 
               <div id="row5" class="col-sm-12" style="display:none;">
                 <div class="row no-gutters">
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
                       <input type="text" required value="" maxlength="40" id="productWeight5">
                       <label style="color: #ff5757;">Weight</label>
                     </div>
                   </div>
 
-                  <div class="col-4">
+
+                  <div class="col-3">
                     <div class="form-control">
-                      <input type="text" required value="" maxlength="40" id="productMRP5">
-                      <label style="color: #ff5757;">MRP</label>
+                      <input type="number" required value="" maxlength="40" id="purchasePrice5">
+                      <label style="color: #ff5757;">Pr. Price</label>
                     </div>
                   </div>
 
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="form-control">
-                      <input type="text" required value="" maxlength="40" id="productFinalPrise5">
+                      <input type="text" required value="" maxlength="40" disabled id="productMRP5" style="display:none">
+                      <!-- <label style="color: #ff5757;" style="display:none">MRP</label> -->
+
+
+                      <input type="text" required value="" maxlength="40" disabled id="profitPercentage5" >
+                      <label style="color: #ff5757;">Margin</label>
+                    </div>
+                  </div>
+
+                  <div class="col-3">
+                    <div class="form-control">
+                      <input type="text" required value="" maxlength="40" onchange="setMRP(5);" id="productFinalPrise5">
                       <label style="color: #ff5757;">Our Price</label>
                     </div>
                   </div>

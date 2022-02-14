@@ -129,7 +129,8 @@
         </span>
       </a>
       <a href="#">
-        <h4 style="text-transform: uppercase;">Agrikaash</h4>
+        <img src="../img/logo/hori-logo-white-text.png" width="150px" alt="">
+        <!-- <h4 style="text-transform: uppercase;">Agrikaash</h4> -->
       </a>
 
       <a href="../notification" style="padding-right: 10px;">
@@ -362,6 +363,21 @@
     <!-- side navbar - end -->
 
     <div class="col-lg-10 col-md-10 col-sm-12">
+
+      <div class="order-menu-list">
+        <div class="" onclick="GetOrder('Pending');">
+          <h5>Pending</h5>
+        </div>
+        <div class="" onclick="GetOrder('Delivered');">
+          <h5>Delivered</h5>
+        </div>
+        <div class="" onclick="GetOrder('Cancelled');">
+          <h5>Cancelled</h5>
+        </div>
+      </div>
+      <hr class="order-menu-list-hr" id="orderMenuListHr" />
+
+
       <div class="category-list-sub-menu">
 
         <div class="" id='divbusinessType'>
@@ -379,6 +395,12 @@
           </span>
         </div>
 
+        <div class="">
+          <div onclick="exportFile();">
+          <img src="../img/excel.png" width="30px" alt="">
+        </div>
+        </div>
+
         <div class="" style="text-align: right;">
           <h5 style="margin: 0 auto" id="orderCount">0 Orders</h5>
           <small id="dateRangelbl" style="margin: 0 auto; color: #aaa;font-size: 0.7rem; font-weight: bold;"></small>
@@ -387,11 +409,117 @@
       </div>
 
       <div class="" style="padding: 0 10px;">
+        <div class="dashboard-card order-status" id="card1110" style="display:none;">
+          <div class="" style="display:flex;align-items: center;" onclick="showHideCard(card1110,cardarrow1110)">
+            <div class="arrow-down">
+              <span class="material-icons-outlined" id="cardarrow1110">keyboard_arrow_down</span>
+              <input type="hidden" id="hfOrderID0" value="DMX2enZWtS5kbHd5BBJz">
+            </div>
+            <div class="">
+              <span class="material-icons-outlined order-icon" style="font-size: 3rem; color: #F8D210;">
+                history_toggle_off
+              </span>
+            </div>
+            <div class="details">
+              <h4 style="color: #F8D210">Pending</h4>
+              <p class="small-text dashboard-sub-heading">Delivery: Feb 4, 2022 | 6 : 10 AM - 1 Items</p>
+            </div>
+          </div>
+          <div class="dashboard-card-expand"><hr>
+            <div class="dashboard-card-order">
+              <div class="">
+                <h5 class="small-text" style="margin: 0 auto;">Order Number</h5>
+                <small>1643373070419</small>
+              </div>
+              <div class="">
+                <h5 class="small-text" style="margin: 0 auto;">Order Date</h5>
+                <small>Jan 28, 2022</small>
+              </div>
+            </div>
+            <br>
+            <div class="dashboard-card-order">
+              <div class="">
+                <h5 class="small-text" style="margin: 0 auto;">Total Amount</h5>
+                <small>₹28</small>
+              </div>
+              <div class="">
+                <h5 class="small-text" style="margin: 0 auto;">Payable Amount</h5>
+                <small><span style="font-size: 1.2rem;color: #1D741B;">28 </span> (Off none)</small>
+              </div>
+            </div>
+            <br>
+            <div class="" style="display:flex;align-items:center;justify-content: space-between;padding-top: 10px;">
+              <a href="orderSummary.html?id=DMX2enZWtS5kbHd5BBJz&amp;action=cancel">
+                <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
+                  Cancel
+                  <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
+                    delete_forever
+                  </span>
+                </button>
+              </a>
+              <a href="orderSummary.html?id=DMX2enZWtS5kbHd5BBJz&amp;action=view">
+                <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
+                  More
+                  <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
+                    edit
+                  </span>
+                </button>
+              </a>
+            </div><hr>
+
+
+            <!-- Added elements - start -->
+
+            <div class="progress-bar-div">
+              <div class="active">
+                <h5>Pending</h5>
+                <div class="step">
+                </div>
+                <small>4 Jan 2022</small><br>
+                <small class="time">03 : 00 am</small>
+              </div>
+
+              <div class="cancelled">
+                <h5>Confirm</h5>
+                <div class="step center">
+                </div>
+                <div class="line">
+                </div>
+                <small>4 Jan 2022</small><br>
+                <small class="time">03 : 00 am</small>
+              </div>
+
+              <div class="active">
+                <h5>On The Way</h5>
+                <div class="step center">
+                </div>
+                <div class="line center">
+                </div>
+                <small>4 Jan 2022</small><br>
+                <small class="time">03 : 00 am</small>
+              </div>
+
+              <div class="">
+                <h5>Deliverd</h5>
+                <div class="step right">
+                </div>
+                <div class="line right">
+                </div>
+                <small>4 Jan 2022</small><br>
+                <small class="time">03 : 00 am</small>
+              </div>
+            </div>
+
+            <!-- Added elements - end -->
+
+
+          </div>
+        </div>
         <div id="orderListDiv">
         </div>
-        <div class="dashboard-card order-status" style="display:none">
-          <div class="" style="display:flex;align-items: center;">
-            <div class="arrow-down">
+        <div class="dashboard-card order-status" id="id1" style="display:none;" >
+          <div class=""   style="display:flex;align-items: center;" onclick="showHideCard(id1,id2)">
+            <div class="arrow-down" >
               <span class="material-icons-outlined">
                 keyboard_arrow_down
               </span>
@@ -402,13 +530,13 @@
                 check_circle
               </span>
             </div>
-            <div class="details">
+            <div class="details" >
               <h4 style="color: #1D741B">Deliverd</h4>
               <p class="small-text dashboard-sub-heading" id="lastOrder">Delivery date: 10th Dec 2022 - 2697 Items</p>
             </div>
           </div>
 
-          <div class="dashboard-card-expand">
+          <div class="dashboard-card-expand" id="id2">
             <hr>
 
             <div class="dashboard-card-order">
@@ -611,6 +739,7 @@
   <script src="../js/main.js"></script>
   <script src="../js/fb-logout.js"></script>
   <script src="../js/orderList.js"></script>
+  <script src="../js/common.js"></script>
   <!-- <script src="../js/chart.js"></script> -->
   <!-- <script src="../js/products.js"></script> -->
   <!-- <script src="../js/chart2.js"></script> -->

@@ -4,7 +4,8 @@ var cartItems = [];
 var productCategory = [];
 var isAdmin = false;
 var userBusinessCategory = "";
-
+var userLocation = "";
+var productLocation = [];
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
@@ -17,8 +18,8 @@ auth.onAuthStateChanged(firebaseUser => {
       //promise2.then(console.log(productCategory));
 
       var siteNotification = localStorage.getItem("notificationCount");
-      document.getElementById("notificationCnt").innerHTML=siteNotification;
-      document.getElementById("notificationCnt1").innerHTML=siteNotification;
+      document.getElementById("notificationCnt").innerHTML = siteNotification;
+      document.getElementById("notificationCnt1").innerHTML = siteNotification;
 
 
     } else {
@@ -40,6 +41,12 @@ function GetProfileData(user) {
       if (doc.exists) {
         //console.log('Document ref id: ' + doc.data().uid);
         userRole = doc.data().UserRole;
+        userLocation = doc.data().Address;
+        if (userLocation != undefined)
+          productLocation = ['All', userLocation];
+        else {
+          productLocation = ['All'];
+        }
         //console.log(doc.data().CustomerType);
         userBusinessCategory = doc.data().CustomerType;
         //  console.log(userBusinessCategory);
@@ -49,6 +56,8 @@ function GetProfileData(user) {
           if (business.options[i].value === userBusinessCategory)
             business.options[i].selected = true;
         }
+
+
         if (userRole != undefined) {
           if (userRole.findIndex(e => e.Value === "Admin") >= 0) {
             isAdmin = true;
@@ -79,10 +88,10 @@ function GetProfileData(user) {
         var promise = getCartItemNo();
         // var promise2 = promise.then(populateProductData('', '', true));
         var promise2 = promise.then(populateProductData(userBusinessCategory, '', true));
-      //  GetNotificationList();
-      var siteNotification = localStorage.getItem("notificationCount");
-      document.getElementById("notificationCnt").innerHTML=siteNotification;
-      document.getElementById("notificationCnt1").innerHTML=siteNotification;
+        //  GetNotificationList();
+        var siteNotification = localStorage.getItem("notificationCount");
+        document.getElementById("notificationCnt").innerHTML = siteNotification;
+        document.getElementById("notificationCnt1").innerHTML = siteNotification;
 
 
       }
@@ -106,7 +115,7 @@ function GetNotificationList() {
   const DBrows = db.collection('Notification')
     .where("Status", '==', 'Active')
     .where('ValidityTill', ">=", today)
-    //.orderBy('CreatedTimestamp', 'desc');
+  //.orderBy('CreatedTimestamp', 'desc');
 
   DBrows.onSnapshot((snapshot) => {
     let changes = snapshot.docChanges();
@@ -132,9 +141,8 @@ function GetNotificationList() {
       }
     });
 
-    if(flag === true)
-    {
-      document.getElementById("notificationCnt").innerHTML=index;
+    if (flag === true) {
+      document.getElementById("notificationCnt").innerHTML = index;
     }
 
   });
@@ -161,6 +169,143 @@ async function getCartItemNo() {
   });
 };
 
+function myChangeEvent() {
+  console.log('myChnageEvent');
+  document.getElementById("wrongSearch").style.display="none";
+
+  document.getElementById("productRow").innerHTML = "";
+  var noFlag= false;
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.children[0].value.toUpperCase();
+  div = document.getElementById("idItem");
+  a = div.getElementsByTagName("button");
+  var hfid = "";
+  var productList = [];
+  var prodCnt = 0;
+  var callCount = 1;
+  for (i = 0; i < a.length; i++) {
+    //txtValue = a[i].textContent || a[i].innerText;
+    txtValue =  a[i].innerText  + " " + document.getElementById("hfSearchID" + i).value ;
+
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      noFlag = true;;
+      a[i].style.display = "";
+      hfid = a[i].getElementsByTagName("input")[0];
+      productList.push(hfid.value);
+      prodCnt = prodCnt + 1;
+      if (prodCnt === 10) {
+        RenderProductByProducrID(productList, callCount);
+        productList = [];
+        prodCnt = 0;
+        callCount = callCount + 1;
+      }
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+  if (productList.length > 0) {
+
+    RenderProductByProducrID(productList, callCount);
+  }
+  console.log(noFlag);
+  if(noFlag === false)
+  {
+    document.getElementById("searchKeyText").innerHTML = filter;
+    document.getElementById("wrongSearch").style.display="block";
+
+  }
+  console.log("before display none");
+  document.getElementById("idItem").style.display = "none";
+  document.getElementById("myInput").children[0].blur();
+  // myDropdown.classList.remove("show");
+  // serachDiv.classList.remove("open");
+}
+
+
+function myChangeEventOld() {
+  console.log('myChnageEvent');
+  document.getElementById("productRow").innerHTML = "";
+
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.children[0].value.toUpperCase();
+  div = document.getElementById("myDropdown");
+  a = div.getElementsByTagName("button");
+  var hfid = "";
+  var productList = [];
+  var prodCnt = 0;
+  var callCount = 1;
+  for (i = 0; i < a.length; i++) {
+    //txtValue = a[i].textContent || a[i].innerText;
+    txtValue =  a[i].innerText  + " " + document.getElementById("hfSearchID" + i).value ;
+
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+      hfid = a[i].getElementsByTagName("input")[0];
+      productList.push(hfid.value);
+      prodCnt = prodCnt + 1;
+      if (prodCnt === 10) {
+        RenderProductByProducrID(productList, callCount);
+        productList = [];
+        prodCnt = 0;
+        callCount = callCount + 1;
+      }
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+  if (productList.length > 0) {
+
+    RenderProductByProducrID(productList, callCount);
+  }
+
+
+  myDropdown.classList.remove("show");
+  serachDiv.classList.remove("open");
+}
+
+function RenderProductByProducrID(productList, callCount) {
+
+  var DBrows = db.collection("Products")
+    .where("__name__", "in", productList)
+    //    .where("ProductLocation", "in", productLocation)
+    //.orderBy("ProductName")
+    .get();
+  DBrows.then((changes) => {
+    var index = Number(callCount) * 10;
+    var selectedindex = -1;
+    var selectdedItem;
+    //productCategory.push('All');
+    changes.forEach(change => {
+      //console.log('in for loop');
+      var pCategory = change.data().productType;
+      //productCategory.push(pCategory)
+      //console.log(pCategory);
+      if (cartItems != null) {
+        selectedIndex = cartItems.findIndex(a => a.ProductID === change.id);
+
+        if (selectedIndex >= 0) {
+          selectdedItem = cartItems[selectedIndex];
+        } else {
+          selectdedItem = null;
+        }
+      } else {
+        selectdedItem = null;
+      }
+      renderProductNew(change, index, selectdedItem);
+      index = index + 1;
+    });
+  });
+
+  var myDropdown = document.getElementById('myDropdown');
+  var serachDiv = document.getElementById('serachDiv');
+  myDropdown.classList.remove("show");
+  serachDiv.classList.remove("open");
+
+
+}
+
 function emptyDiv(div) {
   div.innerHTML = '';
 }
@@ -183,23 +328,37 @@ async function populateProductData(bType, pType, flag) {
   //console.log(bType);
   if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
   {
+    document.getElementById("idItem").innerHTML = "";
+
     console.log('All', 'All');
-    DBrows = db.collection("Products").get();
+    DBrows = db.collection("Products")
+      .where("ProductLocation", "in", productLocation)
+      .orderBy("ProductName").get();
   } else if ((pType === '' || pType === 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
     console.log('All', bType);
     prodType = ['All', bType];
-    DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).get();
+    DBrows = db.collection("Products")
+      .where("CustomerBusinessType", "in", prodType)
+      .where("ProductLocation", "in", productLocation)
+      .orderBy("ProductName").get();
   } else if ((pType != '' && pType != 'All') && (bType === '' || bType === 'All')) //select one customer businessType
   {
 
-    console.log(pType, 'All');
-    DBrows = db.collection("Products").where("productType", "==", pType).get();
+    //console.log(pType, 'All');
+    DBrows = db.collection("Products")
+      .where("productType", "==", pType)
+      .where("ProductLocation", "in", productLocation)
+      .orderBy("ProductName").get();
   } else if ((pType != '' && pType != 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
     console.log(pType, 'All');
     prodType = ['All', bType];
-    DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).get();
+    DBrows = db.collection("Products")
+      .where("productType", "==", pType)
+      .where("CustomerBusinessType", "in", prodType)
+      .where("ProductLocation", "in", productLocation)
+      .orderBy("ProductName").get();
   }
 
   DBrows.then((changes) => {
@@ -207,6 +366,8 @@ async function populateProductData(bType, pType, flag) {
     var index = 0;
     var selectedindex = -1;
     var selectdedItem;
+    var productName ;
+    var searchKey;
     productCategory.push('All');
     changes.forEach(change => {
       //if (change.type == 'added')
@@ -226,6 +387,37 @@ async function populateProductData(bType, pType, flag) {
           selectdedItem = null;
         }
       }
+
+      productName = change.data().ProductName;
+      if(change.data().SearchKey === undefined || change.data().SearchKey === "")
+      {
+        searchKey = productName;
+      }
+      else {
+          searchKey = change.data().SearchKey;
+      }
+
+
+      if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
+      {
+        var anchorB = document.createElement("button");
+        anchorB.setAttribute("onclick", "showItem('" + change.id + "')");
+        anchorB.innerHTML = productName;
+
+        var hfID = document.createElement("input");
+        hfID.setAttribute("type", "hidden");
+        hfID.setAttribute("id", "hdID" + index);
+        hfID.setAttribute("value", change.id);
+        anchorB.appendChild(hfID);
+
+          var hfSearchID = document.createElement("input");
+          hfSearchID.setAttribute("type", "hidden");
+          hfSearchID.setAttribute("id", "hfSearchID" + index);
+          hfSearchID.setAttribute("value", searchKey);
+          anchorB.appendChild(hfSearchID);
+
+        document.getElementById("idItem").appendChild(anchorB);
+      }
       renderProductNew(change, index, selectdedItem);
       index = index + 1;
 
@@ -240,6 +432,7 @@ async function populateProductData(bType, pType, flag) {
       //   myNode.removeChild(myNode.lastElementChild);
       // }
       var unique = productCategory.filter(onlyUnique);
+
       //console.log(unique);
       renderProductCategory(unique, pType);
       document.getElementById("categoryCnt").value = unique.length;
@@ -249,6 +442,12 @@ async function populateProductData(bType, pType, flag) {
     //    init_carousel();
     //  });
   });
+  console.log("before remove");
+  // var myDropdown = document.getElementById('myDropdown');
+  // var serachDiv = document.getElementById('serachDiv');
+  // myDropdown.classList.remove("show");
+  // serachDiv.classList.remove("open");
+
 }
 
 function onlyUnique(value, index, self) {
@@ -276,7 +475,7 @@ function onlyUnique(value, index, self) {
 // });
 
 function renderProductCategory(productCategory, pType) {
-  console.log(pType);
+  //console.log(pType);
   //var div = document.getElementById('category-list');
 
   for (i = 0; i < productCategory.length; i++) {
@@ -310,7 +509,7 @@ function renderProductCategory(productCategory, pType) {
 
 }
 
-function clearSelection() {
+function clearSelectionOld() {
   console.log('in clearSelection');
   var cnt = document.getElementById("categoryCnt").value;
   //console.log(document.getElementById("categoryCnt").value);
@@ -320,7 +519,21 @@ function clearSelection() {
   }
 }
 
-function callFunction(productType, objid) {
+function clearSelection() {
+  console.log('in clearSelection');
+  //console.log(document.getElementById("categoryCnt").value);
+  var anchor = document.getElementById("allAnchor");
+  anchor.setAttribute("class", "");
+
+  anchor = document.getElementById("FruitAnchor");
+  anchor.setAttribute("class", "");
+
+  anchor = document.getElementById("VegetableAnchor");
+  anchor.setAttribute("class", "");
+
+}
+
+function callFunctionOld(productType, objid) {
   console.log(objid);
   clearSelection();
   document.getElementById('loading').style.display = 'block';
@@ -336,6 +549,55 @@ function callFunction(productType, objid) {
   populateProductData(cType, productType, false);
   //renderProductNew(doc, index, selectedItem)
 }
+
+function callFunction(productType, objid) {
+  //console.log('objid');
+  //console.log('productType');
+  //clearSelection();
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('hfpType').value = productType;
+
+  var e = document.getElementById("businessType");
+  var cType = e.options[e.selectedIndex].text;
+  //console.log(cType);
+  //console.log(productType);
+  // var cType = document.getElementById('businessType').SelectedValue;
+  //objid.setAttribute("class", "category-list-menu active");
+  if (productType === 'All') {
+    var anchor = document.getElementById("allAnchor");
+    anchor.setAttribute("class", "active");
+
+    anchor = document.getElementById("FruitAnchor");
+    anchor.setAttribute("class", "");
+
+    anchor = document.getElementById("VegetableAnchor");
+    anchor.setAttribute("class", "");
+
+  } else if (productType === 'Vegetable') {
+    var anchor = document.getElementById("allAnchor");
+    anchor.setAttribute("class", "");
+
+    anchor = document.getElementById("FruitAnchor");
+    anchor.setAttribute("class", "");
+
+    anchor = document.getElementById("VegetableAnchor");
+    anchor.setAttribute("class", "active");
+
+  } else if (productType === 'Fruit') {
+    var anchor = document.getElementById("allAnchor");
+    anchor.setAttribute("class", "");
+
+    anchor = document.getElementById("FruitAnchor");
+    anchor.setAttribute("class", "active");
+
+    anchor = document.getElementById("VegetableAnchor");
+    anchor.setAttribute("class", "");
+
+  }
+  populateProductData(cType, productType, false);
+  //renderProductNew(doc, index, selectedItem)
+}
+
 
 function changCustomerType() {
   document.getElementById('loading').style.display = 'block';
@@ -478,7 +740,7 @@ function renderProductNew(doc, index, selectedItem) {
 
   } else {
 
-    div1_4.innerHTML = "<h5>" + "<span id='mrp" + index + "' >" + Number(productlist[0].ProductMRP).toLocaleString('en-IN', curFormat)  + "</span>" + "</h5>" +
+    div1_4.innerHTML = "<h5>" + "<span id='mrp" + index + "' >" + Number(productlist[0].ProductMRP).toLocaleString('en-IN', curFormat) + "</span>" + "</h5>" +
       "<small> " + "<span id='final" + index + "'>" + Number(productlist[0].ProductFinalPrise).toLocaleString('en-IN', curFormat) + "</span></small>";
 
   }
@@ -505,7 +767,9 @@ function renderProductNew(doc, index, selectedItem) {
   buttonA.setAttribute('href', '#');
   buttonA.setAttribute("id", "btnAddtoCart" + index);
   // buttonA.setAttribute("onclick", "addToCart(" + doc.data().MinimumQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "'," + index + ")");
-  buttonA.addEventListener("click", function(e){addToCart(e, doc.data().MinimumQty, doc.data().ProductName, doc.id, selectP[selectP.selectedIndex].text, index)}, false);
+  buttonA.addEventListener("click", function(e) {
+    addToCart(e, doc.data().MinimumQty, doc.data().ProductName, doc.id, selectP[selectP.selectedIndex].text, index)
+  }, false);
 
   var addToCartBtn = document.createElement('button');
   addToCartBtn.setAttribute('class', 'mybutton button5');
@@ -951,7 +1215,7 @@ function mySelectionChange(productdetails, mrp, final, hfSelected, index, lprodu
 
 function AddUpdateCart(itemName, itemSelect, itemQuantity, productID, itemQualityStatus) {
 
-console.log(userID);
+  console.log(userID);
   itemIndex = cartItems.findIndex(a => a.ProductID === productID && a.SelectedsubItem === itemSelect);
   if (itemIndex >= 0)
     cartItems.splice(itemIndex, 1);
@@ -1000,4 +1264,122 @@ var removeByAttr = function(arr, attr, value) {
     }
   }
   return arr;
+}
+
+
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+// function myFunction() {
+//   document.getElementById("myDropdown").classList.toggle("show");
+// }
+
+function showSearchInput() {
+  var myDropdown = document.getElementById('myDropdown');
+  var serachDiv = document.getElementById('serachDiv');
+  myDropdown.classList.toggle("show");
+  serachDiv.classList.toggle("open");
+  // console.log(document.getElementById("myInput").children[0]);
+  console.log(document.getElementById("myInput").children[0].value);
+  if (serachDiv.classList.contains('open')) {
+    document.getElementById("myInput").children[0].focus();
+
+    if (document.getElementById("myInput").children[0].value === "") {
+      console.log("get all element");
+      //  myChangeEvent();
+      //populateProductData(userBusinessCategory, '', true);
+      //myDropdown.classList.remove("show");
+      //serachDiv.classList.remove("open");
+
+    }
+  }
+
+}
+
+function showItem(itemname) {
+
+  var myDropdown = document.getElementById('myDropdown');
+  var serachDiv = document.getElementById('serachDiv');
+
+  console.log(itemname);
+
+  const snapshot = db.collection('Products').doc(itemname);
+  snapshot.get().then(async (doc) => {
+    if (doc.exists) {
+
+      var pCategory = doc.data().productType;
+
+      if (cartItems != null) {
+        selectedIndex = cartItems.findIndex(a => a.ProductID === doc.id);
+
+        if (selectedIndex >= 0) {
+          selectdedItem = cartItems[selectedIndex];
+        } else {
+          selectdedItem = null;
+        }
+      } else {
+        selectdedItem = null;
+      }
+
+      document.getElementById("productRow").innerHTML = "";
+
+      //document.getElementById("idItem").innerHTML ="";
+
+      renderProductNew(doc, 0, selectdedItem);
+      var myDropdown = document.getElementById('myDropdown');
+      var serachDiv = document.getElementById('serachDiv');
+
+      myDropdown.classList.remove("show");
+      serachDiv.classList.remove("open");
+      console.log("before none");
+      document.getElementById("idItem").style.display = "none";
+      document.getElementById("myInput").children[0].blur();
+
+
+    }
+  });
+}
+
+function inputSearchFocus() {
+  document.getElementById("idItem").style.display = "block";
+  document.getElementById("wrongSearch").style.display="none";
+
+}
+
+function filterFunction() {
+  console.log('hi');
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.children[0].value.toUpperCase();
+  //  console.log(filter);
+  div = document.getElementById("idItem");
+  a = div.getElementsByTagName("button");
+  for (i = 0; i < a.length; i++) {
+    //txtValue = a[i].textContent || a[i].innerText;
+    txtValue =  a[i].innerText  + " " + document.getElementById("hfSearchID" + i).value ;
+
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+
+function filterFunctionOld() {
+  console.log('hi');
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.children[0].value.toUpperCase();
+  div = document.getElementById("myDropdown");
+  a = div.getElementsByTagName("button");
+  for (i = 0; i < a.length; i++) {
+    //txtValue = a[i].textContent || a[i].innerText;
+    txtValue =  a[i].innerText  + " " + document.getElementById("hfSearchID" + i).value ;
+
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
 }

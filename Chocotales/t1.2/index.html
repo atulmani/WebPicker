@@ -22,10 +22,9 @@
     href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
     rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Font Awesome cdn file -->
@@ -34,7 +33,6 @@
 
   <!-- Owl Stylesheets -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
   <!-- Bootstrap css -->
@@ -89,13 +87,28 @@
     <div class="collapse navbar-collapse" style="z-index:999;background" id="collapsibleNavbar">
       <ul class="nav navbar-nav" style="position: absolute;right: 4%;">
         <li class="nav-item">
-          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="index.html">
+            <span class="material-icons-outlined">
+              other_houses
+            </span>
+            Home
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.html#products">Products</a>
+          <a class="nav-link" href="index.html#products">
+            <span class="material-icons-outlined">
+              category
+            </span>
+            Products
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.html#footer">Contact us</a>
+          <a class="nav-link" href="index.html#footer">
+            <span class="material-icons-outlined">
+              phone_in_talk
+            </span>
+            Contact us
+          </a>
           <!-- <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#one">One</a></li>  -->
         </li>
         </li>
@@ -105,19 +118,19 @@
 
   <div class="small navbar-mobile-bottom">
     <div class="navbar-mobile-bottom-menu">
-      <a href="#" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+      <a href="#" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <i class="fas fa-home"></i>
         <small>Home</small>
       </a>
-      <a href="#products" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+      <a href="#products" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <i class="fas fa-th-large"></i>
         <small>Products</small>
       </a>
-      <a href="#whyus" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+      <a href="#whyus" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <i class="fab fa-buffer"></i>
         <small>Why us</small>
       </a>
-      <a href="#footer" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+      <a href="#footer" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <i class="fas fa-phone-alt"></i>
         <small>Contact</small>
       </a>
@@ -155,6 +168,46 @@
               <img src="./img/3m.png" width="100%" alt="">
             </div>
           </div>
+          <!-- <div class="">
+            <div class="large">
+              <img src="./img/10d.png" width="100%" alt="">
+            </div>
+            <div class="small">
+              <img src="./img/3m.png" width="100%" alt="">
+            </div>
+          </div>
+          <div class="">
+            <div class="large">
+              <img src="./img/9d.png" width="100%" alt="">
+            </div>
+            <div class="small">
+              <img src="./img/4m.png" width="100%" alt="">
+            </div>
+          </div>
+          <div class="">
+            <div class="large">
+              <img src="./img/8d.png" width="100%" alt="">
+            </div>
+            <div class="small">
+              <img src="./img/5m.png" width="100%" alt="">
+            </div>
+          </div> -->
+          <!-- <div class="">
+            <div class="large">
+              <img src="./img/6d.png" width="100%" alt="">
+            </div>
+            <div class="small">
+              <img src="./img/6m.png" width="100%" alt="">
+            </div>
+          </div> -->
+          <!-- <div class="">
+            <div class="large">
+              <img src="./img/7d.png" width="100%" alt="">
+            </div>
+            <div class="small">
+              <img src="./img/7m.png" width="100%" alt="">
+            </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -166,14 +219,13 @@
   <!-- ingradients - start -->
   <section id="products">
     <div class="container">
+      <div class="heading"><br>
+        <h4>Ingredients</h4>
+        <hr>
+      </div><br>
       <div class="row no-gutters">
         <div class="col-md-12 col-md-offset-1">
           <div id="ingradients-list1" class="owl-carousel owl-theme">
-            <div class="ingradients-item">
-              <div class="ingradients-card">
-                <img src="./img/ingradients1.png" alt="">
-              </div>
-            </div>
             <div class="ingradients-item">
               <div class="ingradients-card">
                 <img src="./img/ingradients2.png" alt="">
@@ -212,6 +264,11 @@
             <div class="ingradients-item">
               <div class="ingradients-card">
                 <img src="./img/ingradients9.png" alt="">
+              </div>
+            </div>
+            <div class="ingradients-item">
+              <div class="ingradients-card">
+                <img src="./img/ingradients1.png" alt="">
               </div>
             </div>
           </div>
@@ -546,7 +603,7 @@
             <!-- <iframe width="100%" height="auto" src="./img/video2.mp4">
             </iframe> -->
             <video width="100%" height="auto" controls autoplay>
-              <source src="img/video2.mp4" type="video/mp4">
+              <source src="img/video3.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -720,11 +777,11 @@
           <div class="col-lg-8 col-md-6 col-sm-12">
             <div class="shiping-div-2">
               <p>
-                Every single chocolates are made fresh at our chocolate
-                factory in Jaipur, in small batches, by hand.
-                We make our very best effort to ensure that every
-                order goes out within 24-72 hours during business days.
-                Please note additional time is needed during peak holiday rush.
+                Every single chocolate is made fresh at our chocolate
+                 factory in Delhi, in small batches, by hand.
+                 We make our very best effort to ensure that every
+                 order goes out within 24-96 hours during business days.
+                 Please note additional time is needed during the peak holiday rush.
               </p>
             </div>
           </div>
@@ -743,8 +800,13 @@
               <p>
                 Our shipping days are Monday to Thursday,
                 to avoid your chocolate being in transit over the weekend.
-                Please note that local and national holidays may affect the
-                delivery date / timeline of your order delivery.
+                Please note that local and national holidays may
+                affect the delivery date/timeline of your order delivery
+                depending on where we are shipping to.
+                All orders are sent out with dry ice to ensure your
+                chocolates stay cold during transit.
+                However, despite that, we cannot guarantee
+                that your chocolate will not melt, especially during the hot summer days.
               </p>
             </div>
           </div>
@@ -766,6 +828,7 @@
                 dry ice to ensure your chocolates stay cold during transit.
                 However despite that we cannot guarantee that your chocolate
                 will not melt, specially during the hot summer days.
+
               </p>
             </div>
           </div>
@@ -776,18 +839,17 @@
             <div class="shiping-div-1">
               <img src="./img/shiping-destination.svg" alt="">
               <h5>DELIVERY DESTINATIONS</h5>
-              <small>Not Beyond Delhi NCR</small>
+              <small>Selected Location</small>
             </div>
           </div>
           <div class="col-lg-8 col-md-6 col-sm-12">
             <div class="shiping-div-2">
               <p>
-                We currently deliver to pin codes in Delhi NCR. <br><br>
+                We currently deliver to selected locations only.
                 As our products are chocolates which need timely
                 deliveries and in the current scenarios we are
                 facing delay in deliveries, so we are at present
-                not servicing areas beyond Delhi NCR. We will open
-                this channel shortly!
+                are delivering only at the selected pin codes.
               </p>
             </div>
           </div>
@@ -807,9 +869,7 @@
                 As a retailer of perishable food items,
                 we are unable to accept returns. However,
                 if you have any issues or complaints with your purchase,
-                please <a href="#contactus">contact us</a> .We are here to help! <br><br>
-                *We are not responsible for wrong shipping addresses or invalid addresses.
-                Any returned items due to the wrong address being given will be charged appropriately.
+                please contact us .We are here to help!
               </p>
             </div>
           </div>
@@ -850,13 +910,9 @@
           <div class="col-lg-8 col-md-6 col-sm-12">
             <div class="shiping-div-2">
               <p>
-                We do offer you the possibility to add a personalized message to your order.
-                This can be done when selecting the delivery options for your order. <br><br>
-                Once you have entered the delivery address, you will find a field at
-                the bottom of the page namely 'Add Personalized Message,’ where you can enter your message. <br><br>
-                Note: Only one message can be entered per order.
-                At the current time, it is not possible to write
-                multiple messages, so if you wish to do so you will have to submit two or more separate orders.
+                We do offer you the possibility to add a personalized message
+                 to your order. This can be done while placing an order
+                 through call or through email you can share the texts with us.
               </p>
             </div>
           </div>
@@ -872,11 +928,13 @@
           <div class="col-lg-8 col-md-6 col-sm-12">
             <div class="shiping-div-2">
               <p>
-                Every single chocolates are made fresh at our chocolate
-                factory in Jaipur, in small batches, by hand.
-                We make our very best effort to ensure that every
-                order goes out within 24-96 hours during business days.
-                Please note additional time is needed during peak holiday rush.
+                Every single chocolate is made fresh at our
+                chocolate factory in Delhi, in small batches,
+                by hand. We make our very best effort to
+                ensure that every order goes out within
+                24-96 hours during business days.
+                Please note additional time is needed during
+                the peak holiday rush.
               </p>
             </div>
           </div>
@@ -893,11 +951,12 @@
             <div class="shiping-div-2">
               <p>
                 Our shipping days are Monday through Thursday,
-                to avoid your chocolate being in a transit facility
-                over the weekend. This is to prevent the chocolates
-                from melting in transit or a shipping facility that
-                is not temperature controlled. Shipping can take anywhere
-                between 24-96 Hours depending on where we are shipping to.
+                to avoid your chocolate being in a transit
+                facility over the weekend. This is to prevent the
+                chocolates from melting in transit or a shipping
+                facility that is not temperature controlled.
+                Shipping can take anywhere between 24-96 hours
+                depending on where we are shipping to.
               </p>
             </div>
           </div>
@@ -913,7 +972,8 @@
           <div class="col-lg-8 col-md-6 col-sm-12">
             <div class="shiping-div-2">
               <p>
-                You can find your order status in ‘My account’ --> ‘My orders’
+                You can check your order status through the tracking
+                ID we will share once the order is dispatched.
               </p>
             </div>
           </div>
@@ -929,9 +989,10 @@
           <div class="col-lg-8 col-md-6 col-sm-12">
             <div class="shiping-div-2">
               <p>
-                I want to place a ‘Bulk Order’ for products, who should I contact? <br><br>
-                For bulk order inquiry, please fill in the ‘Bulk /Institutional form .’
-                A client relationship team member will promptly revert to your query within 24 hrs.
+                You can fill in the form under
+                “ Bulk and Institutional Orders”, A client
+                relationship team member will promptly
+                revert to your query within 24 hrs.
               </p>
             </div>
           </div>
@@ -947,16 +1008,19 @@
           <div class="col-lg-8 col-md-6 col-sm-12">
             <div class="shiping-div-2">
               <p>
-                Your order needs to be placed at least 10 days in advance
-                if you want a bulk order. Please contact us by sending an
-                email on-------------or by calling us on----------- to speak
-                with someone from our client relationship team. <br><br>
-                Note:- In some cases involving customisation, the above timeline may be extended.
-                A delivery lead time and delivery date will only be offered once the order is
-                fully confirmed and supported by the necessary advance payment. <br><br>
-                For any further assistance, please contact us by sending an email
-                on-------- or by calling us on -----------to speak with someone
-                from our client relationship team.
+                Your order needs to be placed at least 15 days
+                in advance if you want a bulk order. Please
+                contact us by sending an email on
+                help@chococtales.co.in
+                or by calling us on
+                8858237328/ 8587026187 to speak with
+                someone from our client relationship team.
+                <br />
+                Note: In some cases involving customization, the
+                above timeline may be extended. A delivery lead
+                time and delivery date will only be offered once
+                the order is fully confirmed and supported by
+                the necessary advance payment.
               </p>
             </div>
           </div>
@@ -979,9 +1043,7 @@
           <div class="col-lg-8 col-md-6 col-sm-12">
             <div class="shiping-div-2">
               <p>
-                You can pay on the website using the following
-                methods: Debit Card- Mastercard, Visa, Diners Club,
-                Credit Card- Mastercard, Visa, American Express Wallets- PayTM Cash on Delivery
+                You can either do Paytm or any other UPI payment.
               </p>
             </div>
           </div>
@@ -1031,9 +1093,10 @@
           <div class="col-lg-8 col-md-6 col-sm-12">
             <div class="shiping-div-2">
               <p>
-                Your selected payment method will be charged when your order
-                is placed. An order confirmation email will be sent to
-                you containing all the necessary details of your order.
+                Your selected payment method will be
+                charged when your order is placed.
+                An order confirmation email will be sent
+                to you containing all the necessary details of your order.
               </p>
             </div>
           </div>

@@ -1024,6 +1024,15 @@ function deleteCartItem(e, itemSizeObj, productID, deleteID) {
         itemdelete = document.getElementById(deleteID);
         getCartItemNo();
         itemdelete.remove();
+
+        if (item.length === 0) {
+          document.getElementById("blankCartMessage").style.display = "block";
+          document.getElementById("btnCheckOut").style.display = "none";
+          document.getElementById('itemCount').innerHTML = 0 + ' Items';
+          document.getElementById('totalAmount').innerHTML = '₹ 0';
+
+        }
+
         //itemdelete.load(location.href + itemdelete); //to relooad a page
         //var but = document.createElement("button");
         //but.setAttribute

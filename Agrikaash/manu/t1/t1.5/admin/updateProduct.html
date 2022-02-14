@@ -118,7 +118,7 @@
     </div>
   </nav>
 
-  <div class="small navbar-mobile">
+  <div class="small navbar-mobile" style="height: 100px;">
     <div class="navbar-mobile-menu">
       <a href="#" data-toggle="collapse" data-target="#collapsibleNavbar1">
         <span class="material-icons-outlined">
@@ -126,7 +126,8 @@
         </span>
       </a>
       <a href="#">
-        <h4 style="text-transform: uppercase;">Agrikaash</h4>
+        <img src="../img/logo/hori-logo-white-text.png" width="150px" alt="">
+        <!-- <h4 style="text-transform: uppercase;">Agrikaash</h4> -->
       </a>
 
       <a href="../notification/notificationSetup.html" style="padding-right: 10px;">
@@ -139,16 +140,33 @@
       </a>
       <!-- <a href="#"><img src="../img/logo.png" width="30px" alt=""> </a> -->
       <!-- <a href="#" style="padding-right: 0px;"><i class="fas fa-user user-icon"></i></a> -->
+
+
     </div>
     <!-- <div class="navbar-mobile-search-bar">
       <input type="text" name="" placeholder="Search Here..." value="">
       <i class="fas fa-search"></i>
     </div> -->
+
+    <div class="">
+
+      <div class="" id="myInput" style="padding: 10px 0;position:relative;">
+        <input type="search" name="" class="new_search-box" value="" placeholder="Search 100+ products" onfocus="inputSearchFocus()" onkeyup="filterFunction()" onchange="myChangeEvent();">
+        <div class="new_search-box-seach-icon">
+          <span class="material-icons-outlined">
+            youtube_searched_for
+          </span>
+        </div>
+      </div>
+      <div class="intelligence" id="idItem" style='display:none'>
+
+      </div>
+    </div>
   </div>
 
   <div class="small navbar-mobile-bottom">
     <div class="navbar-mobile-bottom-menu" id="divBottomNavBar">
-      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a " style="display:flex; flex-direction:column;">
         <span class="material-icons-outlined">
           home
         </span>
@@ -169,7 +187,7 @@
         </span>
         <small>Orders</small>
       </a>
-      <a href="dashboard.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="payments.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <span class="material-icons-outlined">
           currency_rupee
         </span>
@@ -233,7 +251,7 @@
           </div>
           <div class="content">
             <h5>Notifications</h5>
-            <small>All your active notifications</small>
+            <small>Notification Setup</small>
           </div>
           <div class="">
             <!-- <span class="notification">10</span> -->
@@ -266,7 +284,7 @@
       <hr class="hr" />
 
       <li class="">
-        <a href="dashboard.html" class="left-navigation">
+        <a href="report.html" class="left-navigation">
           <div class="">
             <span class="material-icons-outlined">
               landscape
@@ -364,7 +382,26 @@
         <div class="row no-gutters" style="background: #ddd;">
           <div class="col-md-12 col-md-offset-1">
             <input type="hidden" id="categoryCnt" value=0>
-            <div id="category-list" class="owl-carousel owl-theme" style="padding:5px 0;">
+            <div class="new_category-list">
+              <!-- <a href="javascript:callFunction('All','')" id="allAnchor" class="active">All</a>
+              <a href="javascript:callFunction('Vegetable','')" id="VegetableAnchor">Vegetable</a>
+              <a href="javascript:callFunction('Fruit','')" id="FruitAnchor">Fruit</a> -->
+
+
+              <button onclick="callFunction('All','')" id="allAnchor" class="active">All</button>
+              <button onclick="callFunction('Vegetable','')" id="VegetableAnchor">Vegetable</button>
+              <button onclick="callFunction('Fruit','')" id="FruitAnchor">Fruit</button>
+
+            </div>
+
+
+            <div class="" id="wrongSearch" style="text-align: center;display:none"><br><br>
+              <img src="../img/no_search_product.svg" width="80%" alt=""><br><br><br>
+              <h5 class="small-text">No products found for '<span id="searchKeyText"></span>'</h5><br><br>
+            </div>
+
+
+            <div id="category-list" class="owl-carousel owl-theme" style="padding:5px 0;display:none;">
               <!-- <div   class="owl-carousel-inner"> -->
               <!-- <div class="item">
                 <a class="category-list-menu active">
@@ -467,8 +504,76 @@
               <input type="hidden" id="hfpType" />
             </div>
           </div>
+
+          <div class="row no-gutters">
+            <!-- <div class="col-sm-12" id="mainDiv0" style="padding: 5px;">
+              <div class="product-list-div Vegetable">
+                <table width="100%">
+                  <tr>
+                    <td width="45%" class="product-img-td">
+                      <input id="hfID0" type="hidden" value="cbKcIDVRjFNykzVmpkUW">
+                      <img src="https://firebasestorage.googleapis.com/v0/b/agrikaash-uat.appspot.com/o/ProductImages%2FcbKcIDVRjFNykzVmpkUW%2FcbKcIDVRjFNykzVmpkUW_1.png?alt=media&amp;token=c4609df9-2732-48ff-a4bf-2681c42a668a" width="100%" class="product-img" alt="Product">
+                      <i onclick="GetProductDetails(hfID0);" class="far fa-edit address-edit-icon" style="padding: 0 5px 0 5px;"></i>
+                      <div class="veg-nonVeg-div">
+                        <img src="../img/veg.png" width="100%" alt="">
+                      </div>
+                    </td>
+                    <td width="55%" valign="top" class="product-names-div">
+                      <small class="product-names">Shimla Mirch (Capsicum Green HY) A Grade</small>
+                      <br>
+                      <small style="font-size: 0.8rem; color: rgba(0,0,0,0.5);">Agrikaash</small>
+                      <br>
+                      <select name="productDetails" id="productDetails0">
+                        <option value="47:50">1 KG - Rs.47</option>
+                      </select>
+                      <div class="product-price">
+                        <large><span><b>Type :  </b>All</span><large><br><large><span><b>Category :  </b>Vegetable</span><large><br><br></large></large></large></large>
+                        <span id="btnDelete0" onclick="deleteProduct(hfID0,mainDiv0);" class="material-icons" style="cursor:pointer;padding: 0 20px 0 5px;">delete_outline</span>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="product-graph">
+
+              </div>
+            </div> -->
+          </div>
+
+          <!-- <div class="row no-gutters">
+            <div class="col-sm-12" id="mainDiv0" style="padding: 5px;">
+              <div class="product-list-div Fruit">
+                <table width="100%">
+                  <tr>
+                    <td width="45%" class="product-img-td"><input id="hfID0" type="hidden" value="i3gu5YLPVf7hknFoXmpb"><img
+                        src="https://firebasestorage.googleapis.com/v0/b/agrikaash-uat.appspot.com/o/ProductImages%2Fi3gu5YLPVf7hknFoXmpb%2Fi3gu5YLPVf7hknFoXmpb_1.png?alt=media&amp;token=66305e0b-f798-4837-882e-7bc616113a00" width="100%"
+                        class="product-img" alt="Product"><i onclick="GetProductDetails(hfID0);" class="far fa-edit address-edit-icon" style="padding: 0 5px 0 5px;"></i>
+                      <div class="veg-nonVeg-div"><img src="../img/veg.png" width="100%" alt=""></div>
+                    </td>
+                    <td width="55%" valign="top" class="product-names-div"><small class="product-names">Banana</small><br><small style="font-size: 0.8rem; color: rgba(0,0,0,0.5);">Agrikaash</small><br><select name="productDetails"
+                        id="productDetails0" class="option-margin-select">
+                        <option value="160:176" class="option-margin">5 Dozen - Rs.150/160(6.7%)</option>
+                        <option value="371:408">10 Dozen - Rs.300/371(23.7%)</option>
+                        <option value="11:12">2PC - Rs.10/11(10%)</option>
+                      </select>
+                      <div class="product-price">
+                        <large><span><b>Location : </b>Varanasi</span>
+                          <large><br>
+                            <large><span><b>Category : </b>Fruit</span>
+                              <large><br><br></large>
+                            </large>
+                          </large>
+                        </large><span id="btnDelete0" onclick="deleteProduct(hfID0,mainDiv0);" class="material-icons" style="cursor:pointer;padding: 0 20px 0 5px;">delete_outline</span>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div> -->
+
           <div class="row no-gutters" id='productRow'><br>
-            
+
           </div>
 
           <br>
