@@ -10,7 +10,13 @@
 
   <title>Agro-dolu-t1.1 - ProductDetail</title>
 
-  <link rel="shortcut icon" href="img/logo.png">
+  <link rel="shortcut icon" href="/img/logo.png">
+
+
+  <!-- Google Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
 
 
   <!-- Google fonts -->
@@ -41,81 +47,296 @@
 
 <body>
 
-  <!-- before navbar - start -->
-  <div class="before-nav">
-    <div class="before-nav-information">
-      <a href="../login/login.html"> <span> Login </span> <i class="fas fa-sign-in-alt"></i> </a> <span></span>
+    <!-- before navbar - start -->
+    <div class="before-nav">
+      <div class="before-nav-information">
+        <a href="./login/login.html"> <span> <i class="fas fa-user"></i> Login </span> </a> <span></span>
+        <a class="" href="contactus.html"> <button style="border-radius:20px; font-size:0.7rem; background: #fff; color:#161d65; opacity:900;" class="btn btncl" type="button" name="button">We are hiring</button> </a>
+
+      </div>
+
+      <div class="icons">
+        <a class="" href="contactus.html"><button style="border-radius:20px; font-size:0.7rem; background: #fff; color:#161d65; opacity:900;" class="btn btncl" type="button" name="button">Plans & Pricing</button> </a>
+        <a href="https://www.facebook.com/TournamentPlanner/?ti=as"> <i class="fab fa-facebook-f"></i> </a>
+        <a href="https://twitter.com/TPLIVE7/status/1144269372854288385?s=08"> <i class="fab fa-twitter"></i> </a>
+        <a href=""> <i class="fab fa-tumblr"></i> </a>
+        <a href=""> <i class="fab fa-instagram"></i> </a>
+      </div>
+    </div>
+    <!-- Navbar - Start -->
+
+    <nav class="navbar navbar-expand-lg sticky-top large ">
+      <a class="navbar-brand" href="#banner">
+        <img class="small" style="height:60px;" src="../img/logo.png" alt="">
+        <img class="large" style="height:60px;" src="../img/logolg.png" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+        <!-- <span>
+         <i class="fa fa-reorder fa-2x " style="color:#1638A0;" ></i>
+       </span> -->
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="nav navbar-nav ml-auto ">
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html"> <i class="fas fa-home"></i> Home </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../allevent.html"> <i class="fas fa-calendar-week"></i> Events</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../profile.html"><i class="fas fa-user"></i> Inbox</a>
+            <!-- <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#one">One</a></li>  -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../orgList.html"> <i class="fas fa-cubes"></i> Clubs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../sidenav.html"><i class="fas fa-ellipsis-v"></i> More</a>
+          </li>
+        </ul>
+
+
+      </div>
+
+    </nav>
+    <hr class="large" /> <br class="large" />
+
+    <!-- Navbar - End -->
+    <div class="small navbar-mobile">
+      <div class="navbar-mobile-menu">
+        <a href="#" data-toggle="collapse" data-target="#collapsibleNavbar1">
+          <span class="material-icons-outlined">
+            menu
+          </span>
+        </a>
+        <a href="#">
+          <h4 style="">TPLiVE</h4>
+        </a>
+
+        <a href="../notification/index.html" style="padding-right: 10px;">
+          <span class="material-icons-outlined" style="color: #fff;">
+            notifications
+          </span>
+          <div class="notification-count">
+            <span class="" id="notificationCnt">0</span>
+          </div>
+        </a>
+
+      </div>
 
     </div>
 
-    <div class="icons">
-      <a href="https://www.facebook.com/TournamentPlanner/?ti=as"> <i class="fab fa-facebook-f"></i> </a>
-      <a href="https://twitter.com/TPLIVE7/status/1144269372854288385?s=08"> <i class="fab fa-twitter"></i> </a>
-      <a href=""> <i class="fab fa-tumblr"></i> </a>
-      <a href=""> <i class="fab fa-instagram"></i> </a>
+    <!-- bottom bardown -->
+    <div class="small navbar-mobile-bottom">
+      <div class="navbar-mobile-bottom-menu" id="divBottomNavBar">
+        <a href="index.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+          <span class="material-icons-outlined">
+            home
+          </span>
+          <small>Home</small>
+        </a>
+        <a href="allevent.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+          <span class="material-icons-outlined">
+            emoji_events
+          </span>
+          <small>Events</small>
+        </a>
+        <a href="">
+
+        </a>
+        <a href="orgList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+          <span class="material-icons-outlined">
+            category
+          </span>
+          <small>Clubs</small>
+        </a>
+        <a href="" class="navbar-mobile-bottom-menu-a" data-toggle="collapse" data-target="#collapsibleNavbar1" style="display:flex; flex-direction:column;">
+          <span class="material-icons-outlined">
+            read_more
+          </span>
+          <small id='small4'>More</small>
+          <span class="navbar-cart-no" id="cartItemNo">0</span>
+        </a>
+      </div>
+      <a class="new-user" href="profile.html">
+        <span class="material-icons-outlined">
+          person
+        </span>
+      </a>
     </div>
-  </div>
+    <!-- bottom bardown -->
+    <!-- side nav bar -->
 
+    <div class="collapse navbar-collapse more-button-links" id="collapsibleNavbar1">
+      <!-- <div class="pop-up-close-btn">
+       <span class="material-icons-outlined">
+         close
+       </span>
+     </div> -->
+      <ul class="">
+        <li class="">
+          <a href="../login/profile.html" style="text-decoration: none;" class="">
+            <div class="left-nav-first">
+              <img id="profilePic" src="./img/userlog.png" width="" alt="">
+              <h5 id="profileName"></h5>
+              <small> Create Your Profile <Profile></Profile></small>
+            </div>
+          </a>
+        </li>
+        <hr class="hr" />
 
-  <!-- Navbar - Start -->
-  <nav class="navbar navbar-expand-lg sticky-top ">
-    <a class="navbar-brand" href="#banner">
-      <img class="small" style="height:60px;" src="../img/logo.png" alt="">
-      <img class="large" style="height:60px;" src="../img/logolg.png" alt="">
+        <li class="linesec">
+          <a href="dashboard.html" class="left-navigation">
+            <div class="">
+              <span style="color: #fff;" class="material-icons-outlined">
+                manage_accounts
+              </span>
+            </div>
+            <div class="content">
+              <h5 style="color:#fff;">My Account</h5>
+              <small style="color: #fff;">Details on the dashboard</small>
+            </div>
+            <div class="">
+              <span style="color: #fff;" class="material-icons arrow-right">
+                keyboard_double_arrow_right
+              </span>
+            </div>
+          </a>
+        </li>
+        <hr class="hr" />
 
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-      <span class="navbar-toggler-icon"></span>
-      <!-- <span>
-       <i class="fa fa-reorder fa-2x " style="color:#1638A0;" ></i>
-     </span> -->
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <span class="navbar-text">
-        <h5 ><strong> TPLiVE</strong></h5>
-      </span>
-      <ul class="nav navbar-nav ml-auto ">
-        <li class="nav-item">
-          <a class="nav-link" href="../index.html">Home</a>
+        <li class="linesec">
+          <a href="../notification/index.html" class="left-navigation">
+            <div class="">
+              <span style="color: #fff;" class="material-icons-outlined">
+                notifications_active
+              </span>
+            </div>
+            <div class="content">
+              <h5 style="color: #fff;">Notifications</h5>
+              <small style="color: #fff;">All your active notifications</small>
+            </div>
+            <div class="">
+              <span class="notification" id="notificationCnt1">0</span>
+            </div>
+          </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="">Services</a>
+        <hr class="hr" />
+
+        <li class="linesec">
+          <a href="sidenav.html" class="left-navigation">
+            <div class="">
+              <span style="color: #fff;" class="material-icons-outlined">
+                sports_soccer
+              </span>
+            </div>
+            <div class="content">
+              <h5 style="color: #fff;">More Sports</h5>
+              <small style="color: #fff;">Know about more sports</small>
+            </div>
+            <div class="">
+              <span style="color: #fff;" class="material-icons arrow-right">
+                keyboard_double_arrow_right
+              </span>
+            </div>
+          </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#portfolio">Event Details</a>
+        <hr class="hr" />
+
+        <li class="linesec">
+          <a href="#" class="left-navigation">
+            <div class="">
+              <span style="color: #fff;" class="material-icons-outlined">
+                help_outline
+              </span>
+            </div>
+            <div class="content">
+              <h5 style="color: #fff;">24x7 Help & Support</h5>
+              <small style="color: #fff;">Customer support, FAQ</small>
+            </div>
+            <div class="">
+              <span style="color: #fff;" class="material-icons arrow-right">
+                keyboard_double_arrow_right
+              </span>
+            </div>
+          </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../aboutus.html">About us</a>
+        <hr class="hr" />
+
+        <li class="linesec">
+          <a href="#" id="btnLogout" class="left-navigation">
+            <div class="">
+              <span style="color: #fff;" class="material-icons-outlined">
+                logout
+              </span>
+            </div>
+            <div class="content">
+              <h5 style="color: #fff;">Sign Up</h5>
+              <small style="color: #fff;">Sign up to register </small>
+            </div>
+            <div class="">
+              <span style="color: #fff;" class="material-icons arrow-right">
+                keyboard_double_arrow_right
+              </span>
+            </div>
+          </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../contactus.html">Contact us</a>
-        </li>
+        <hr class="hr" />
+
       </ul>
-
     </div>
-  </nav>
-  <div class="small bardown">
-    <ul>
-      <li><a href="../index.html"> <span> <i style="color:#fff;" class="fas fa-home"></i></span> <br> Home</a> </li>
-      <li><a href="./index.html"> <span> <i style="color:#fff;" class="far fa-calendar-alt"></i></span> <br> Events </a></li>
-      <li><a href="./Order/coustomerInfo.html;"> <span> <i style="color:#fff;" class="far fa-comment-dots"></i></span> <br> Inbox </a> </li>
-      <li><a href=""> <span> <i style="color:#fff;" class="fas fa-users"></i></span> <br> Clubs </a> </li>
-      <li><a href=""> <span> <i style="color:#fff;" class="fas fa-list"></i></span> <br> More </a> </li>
-    </ul>
-  </div>
-  <!-- Navbar - End -->
+
+    <!-- side nav bar ends -->
+
 
   <!-- Banner Section - Start -->
   <div class="row no-gutters">
-    <div style="padding:2% 2% 2% 2%;" class="col-lg-8 ">
-      <img id="event-image" style="width:100%;border-radius:10px;" src="../img/1.png" alt=""><br><br>
-      <img style="width:100%;border-radius:10px;" src="../img/pager4.jpg" alt="">
+    <div class="col-lg-8 ">
+      <div style="position: relative; float:left;" class="large menu-list-parent">
+        <div  class="menu-list-tags">
+
+          <!-- <div  style="" class="menu-tag-items"> -->
+            <a class="active" href="">
+              <span style="position:relative; right:6px; " class="material-icons-outlined">info</span>
+              Details
+            </a>
+          <!-- </div> -->
+
+
+          <!-- <div style="" class="menu-tag-items"> -->
+            <a href="entries.html">
+              <span style="position:relative;  right:6px;" class="material-icons-outlined">directions_run</span>Entries</a>
+          <!-- </div> -->
+
+
+          <!-- <div style="" class="menu-tag-items"> -->
+            <a href="participant.html">
+              <span style="position:relative;  right:10px;" class="material-icons-outlined">sports_kabaddi</span>Participants</a>
+          <!-- </div> -->
+
+        </div>
+      </div>
+
+      <div style="" class="small menu-list-parent">
+        <div class="menu-list-tags">
+          <a style="color:#fff; font-size:1.2rem;" href="#"> <span style=";font-size:1.3rem; padding-right:4px;" class="material-icons-outlined">info</span>  Details</a>
+          <a style="color:color:#ccc;" href="#"> <span style="font-size:1rem; padding-right:4px;" class="material-icons-outlined">directions_run</span>  Entries</a>
+          <a style="color:color:#ccc;" href="#"> <span style="font-size:1rem; padding-right:4px;" class="material-icons-outlined">sports_kabaddi</span>  Participants</a>
+
+        </div>
+      </div>
+
+      <div class="" style="padding:2%;">
+        <img id="event-image" style="width:100%;border-radius:10px;" src="../img/1.png" alt=""><br><br>
+      </div>
+      <!-- <img style="width:100%;border-radius:10px;" src="../img/pager4.jpg" alt=""> -->
     </div>
 
-    <div style="padding: 2% 2% 0 2%;" class="col-lg-4">
+    <div style="padding: 0 2%;" class="col-lg-4">
 
 
-      <div style="border: 2px solid #7DB5DA; " class="firstbox">
+      <div style="border: 3px solid #161d65; " class="firstbox">
         <h4 id="eventName" style="font-weight:1000; font-size:1.2rem;color:#348DCB;">PLAYUPBEAT BADMINTON CHAMPS
         </h4>
         <hr>
@@ -125,18 +346,25 @@
               Sept'21</span> </li>
           <!-- <li><i style="color:#348DCB;" class="fab fa-google-play"></i> <span id="venue" class="textheadleft"></span> </li> -->
           <li><i style="color:#348DCB;" class="fas fa-rupee-sign"></i> <span class="textheadleft">Price: ₹</span> <span style="color:#889;" id="event-price" class="textheadleft">1000</span>
-            <span style="padding-left:30%;">
-              <a id="booking" href="../checkout/step1-auth.html">
-              <button style="background-color:#348DCB;color:#fff; font-size:0.8rem;" type="button" name="button" id="booking" class="btn"> Register Now <i class="fas fa-angle-double-right"></i>
+          </li><br>
+
+          <li>
+          <span style="float:left;">  <a id="booking" href="../checkout/step1-auth.html">
+            <button style="background-color:#348DCB;color:#fff; font-size:0.8rem;" type="button" name="button" id="booking" class="btn"> Register  <i class="fas fa-angle-double-right"></i>
+            </button>
+            </a></span>
+
+            <span style="float:right;">  <a id="booking" href="../checkout/step1-auth.html">
+              <button style="background-color:#348DCB;color:#fff; font-size:0.8rem;" type="button" name="button" id="booking" class="btn">Pay Now <i class="fas fa-angle-double-right"></i>
               </button>
-              </a>
-            </span>
-          </li>
+              </a></span>
+            </li><br>
+
         </ul>
 
       </div><br><br>
 
-      <div style="border: 2px solid #7DB5DA;" class="secbox">
+      <div style="border: 3px solid #161d65;" class="secbox">
         <h4 style="font-weight:1000;color:#348DCB">Event Guide</h4>
         <hr>
         <ul>
@@ -146,7 +374,7 @@
           <li><i class="fas fa-headset"></i> <span class="textheadleft">Event Status : <span id="eventstatus" class="textheadright">Upcomming</span> </span></li>
         </ul>
       </div><br><br>
-      <div style="border: 2px solid #7DB5DA;" class="thirdbox">
+      <div style="border: 3px solid #161d65;" class="thirdbox">
         <ul>
           <li> <span style="color:#348DCB;"> Have a question? <span style="padding-left:30%;"><a href="#"><button style="background-color:#348DCB;color:#348DCB;  text-align:center; font-size:0.7rem;display:none;" type="button" name="button"
                     class="btn"> ASK NOW
@@ -170,21 +398,6 @@
       </span>
       <hr style="background:#348DCB;">
       <p id="para" style="font-weight:300;color:#333C5D;">
-        In case of any technical issue during registration, please get in touch with TPLiVE Whatsapp Support: 8484 966 096
-
-        There will be 3 categories of matches
-        MS (Men’s Singles)
-        MD (Men’s Doubles)
-        MD65+ (Men’s Doubles)
-        A player can participate in multiple categories in the tournament
-
-        All participants are advised to be present 15 mins before to the venue of the tournament and report your attendance
-
-
-
-        Match fixtures and timings will be updated one day before the tournament
-
-
 
         Grace wait period will be 10 mins after which the participant/team will be disqualified, and the opponent will be declared winner for that match
         Trophies and medals will be awarded for the finalists of each category
@@ -233,118 +446,446 @@
   </div>
 
 
+<br><br>
+<div class="row no-gutters">
+  <div style="padding: 2%;" class="col-lg-12">
+
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Category</th>
+          <th>Gender</th>
+          <th>Fees</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Boys Double Under11</td>
+          <td>M</td>
+          <td>600</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>BD U14</td>
+          <td>M</td>
+          <td>600</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>BD U17</td>
+          <td>M</td>
+          <td>600</td>
+        </tr>
+
+        <tr>
+          <td>4</td>
+          <td>Boys Double Under11</td>
+          <td>M</td>
+          <td>300</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>BS U14</td>
+          <td>M</td>
+          <td>300</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>BS U17</td>
+          <td>M</td>
+          <td>300</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>GD U11</td>
+          <td>F</td>
+          <td>600</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>GD U14</td>
+          <td>F</td>
+          <td>600</td>
+        </tr>
+
+        <tr>
+          <td>9</td>
+          <td>GD U17</td>
+          <td>F</td>
+          <td>600</td>
+        </tr>
+
+        <tr>
+          <td>10</td>
+          <td>GS U11</td>
+          <td>F</td>
+          <td>300</td>
+        </tr>
+
+        <tr>
+          <td>11</td>
+          <td>GS U14</td>
+          <td>F</td>
+          <td>300</td>
+        </tr>
+
+        <tr>
+          <td>12</td>
+          <td>GS U17</td>
+          <td>F</td>
+          <td>300</td>
+        </tr>
+
+        <tr>
+          <td>13</td>
+          <td>MD</td>
+          <td>M</td>
+          <td>600</td>
+        </tr>
+
+        <tr>
+          <td>14</td>
+          <td>MD 35+</td>
+          <td>M</td>
+          <td>600</td>
+        </tr>
+
+        <tr>
+          <td>15</td>
+          <td>MD 40+</td>
+          <td>M</td>
+          <td>600</td>
+        </tr>
+
+        <tr>
+          <td>16</td>
+          <td>MD 45+</td>
+          <td>M</td>
+          <td>600</td>
+        </tr>
+
+        <tr>
+          <td>17</td>
+          <td>MD 50+</td>
+          <td>M</td>
+          <td>600</td>
+        </tr>
+
+        <tr>
+          <td>18</td>
+          <td>MS 35+</td>
+          <td>M</td>
+          <td>600</td>
+        </tr>
+
+        <tr>
+          <td>19</td>
+          <td>MS 40+</td>
+          <td>M</td>
+          <td>600</td>
+        </tr>
+
+        <tr>
+          <td>20</td>
+          <td>MS 45+</td>
+          <td>M</td>
+          <td>600</td>
+        </tr>
+
+        <tr>
+          <td>21</td>
+          <td>MS 50+</td>
+          <td>M</td>
+          <td>600</td>
+        </tr>
+
+        <tr>
+          <td>22</td>
+          <td>WD </td>
+          <td>W</td>
+          <td>600</td>
+        </tr>
+
+        <tr>
+          <td>23</td>
+          <td>WD 35+ </td>
+          <td>W</td>
+          <td>600</td>
+        </tr>
+
+        <tr>
+          <td>24</td>
+          <td>WS 35+ </td>
+          <td>W</td>
+          <td>600</td>
+        </tr>
+
+        <tr>
+          <td>25</td>
+          <td>XD </td>
+          <td>X</td>
+          <td>600</td>
+        </tr>
+
+        <tr>
+          <td>26</td>
+          <td>XD 35+ </td>
+          <td>X</td>
+          <td>600</td>
+        </tr>
+
+        <tr>
+          <td>27</td>
+          <td>XD 35+ </td>
+          <td>X</td>
+          <td>600</td>
+        </tr>
+
+        <tr>
+          <td>28</td>
+          <td>XD 35+ </td>
+          <td>X</td>
+          <td>600</td>
+        </tr>
+
+
+
+
+
+
+
+
+
+
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
+
+<section >
+  <div class="row no-gutters">
+    <div style="padding: 2%;" class="col-lg-12">
+      <div style="border: 2px solid #161d65;" class="secbox">
+        <div style="display:inline-block;" class="">
+          <h4 style="font-weight:1000;color:#348DCB">Rules & Regulations </h4>
+          <hr>
+          </div>
+          <ul>
+            <li><p>We request you to kindly go through the rules and regulations before participating in the event.</p> </li>
+            <li> <h6> Every player as well Guardian is requested wear mask and frequently use sanitizer. </h6> </li>
+            <li> <h6>All Covid protocols must be followed</h6> </li>
+
+          </ul>
+
+
+      </div>
+    </div>
+
+    <div style="padding: 2%;" class="col-lg-12">
+      <div style="border: 2px solid #161d65;" class="secbox">
+        <div style="display:inline-block;" class="">
+          <h4 style="font-weight:1000;color:#348DCB">Disclaimer </h4>
+          <hr>
+          </div>
+        <ul>
+          <li> <p>TournamentPlanner LiVE has not verified the above information and also is not responsible of any information which may be get changed or modified or any incorrect information. Please contact to the organiser for any discrepancy.</p> </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<br><br>
+
+<div class="">
+  <div style="padding:0 3%; display:inline-block;" class="cardheading">
+    <h4 style="font-weight:1000;color:#333C5D;">Our Partners <span style="padding-left: 2px; position: relative;top: 5px; color:#348DCB;" class="material-icons-outlined">
+        handshake
+      </span></h4>
+    <hr>
+  </div>
+  <div class="row no-gutters">
+    <div class="col-md-12 col-md-offset-1">
+      <div id="partners-carousel" class="owl-carousel owl-theme">
+        <div class="partners-item">
+          <img src="../img/i.png" width="100%" alt="">
+        </div>
+        <div class="partners-item">
+          <img src="../img/tcs.png" width="100%" alt="">
+        </div>
+        <div class="partners-item">
+          <img src="../img/pdsm.png" width="100%" alt="">
+        </div>
+        <div class="partners-item">
+          <img src="../img/p.png" width="100%" alt="">
+        </div>
+        <div class="partners-item">
+          <img src="../img/ims.png" width="100%" alt="">
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
   <!-- Banner Section - End -->
 
-  <!-- *******************FOOTER SECTION STARTS************************************** -->
+      <!-- *******************FOOTER SECTION STARTS************************************** -->
 
-  <section id="footer">
-    <!-- <div style="background-color:#373435;" class="row no-gutters"> -->
-    <div style="background-color:#333C5D; font-family: 'Baloo 2', cursive; letter-spacing:1.5px;" class="row no-gutters">
-      <div style="padding:30px 50px;" class="col-lg-6 col-md-12 col-sm-12">
+      <section id="footer" style="background:#333C5D;">
+        <!-- <div style="background-color:#373435;" class="row no-gutters"> -->
+        <div class="" style="background:linear-gradient(to right,#161d65, #348DCB); padding:2% 7%;text-align: center; border-radius:12px;">
+        <div style="background:; font-family: 'Baloo 2', cursive; letter-spacing:1.5px;" class="row no-gutters">
+          <div style="padding:30px 50px;" class="col-lg-6 col-md-12 col-sm-12">
 
-        <span>
-          <h3 style="text-align:left;color:#fff; font-weight:1000;">TPLiVE</h3>
-        </span>
-        <hr style="background-color:#fff;height:2px;">
+            <span>
+              <h3 style="text-align:left;color:#fff; font-weight:1000;">TPLiVE</h3>
+            </span>
+            <hr style="background-color:#fff;height:2px;">
 
-        <p style="text-align:left;font-size:1rem; color:#fff;">TPLiVE is a startup whose aspiration is to join hands with Digital India and Go-Green. Our mission is to automate the process of creating any kind of events like Educational, Sports &
-          Fitness, Art, Music, Dance & Drama, Cultural, Online Shopping and many more...
+            <p style="text-align:left;font-size:1rem; color:#fff;">TPLiVE is a startup whose aspiration is to join hands with Digital India and Go-Green. Our mission is to automate the process of creating any kind of events like Educational, Sports &
+              Fitness, Art, Music, Dance & Drama, Cultural, Online Shopping and many more...
 
-          Organizing any Tournament manually is always a challenge starting from registration forms distribution & collection, payment collection, draws & match schedule preparation & publish, umpire & score management, publish result till prize
-          distribution.
+              Organizing any Tournament manually is always a challenge starting from registration forms distribution & collection, payment collection, draws & match schedule preparation & publish, umpire & score management, publish result till prize
+              distribution.
 
-          Our product aims at eliminating all the challenges faced by the Organizers and the Participants. This Mobile-Enabled Product is designed in an inventive way to ensure uninterrupted and smooth usage. Through this, application users can
-          interact and keep themselves updated about upcoming tournaments, LiVE match updates, results and other Sports related events.
+              Our product aims at eliminating all the challenges faced by the Organizers and the Participants. This Mobile-Enabled Product is designed in an inventive way to ensure uninterrupted and smooth usage. Through this, application users can
+              interact and keep themselves updated about upcoming tournaments, LiVE match updates, results and other Sports related events.
 
-        </p>
-        <br><br>
-        <h4 style="text-align:left;color:#fff;font-weight:1000;">Objective</h4>
-        <hr style="background-color:#fff; height:2px;">
-        <p style="text-align:left; font-size:1rem;color:#fff;">We will be happy to provide our services to all the Tournament Organizers from District & State Sports Committees, Sports Academies, Schools, Corporates, Townships, Societies and every enthusiastic Sports lover to encourage Sports with health and happiness in their locality.
+            </p>
+            <br><br>
+            <h4 style="text-align:left;color:#fff;font-weight:1000;">Objective</h4>
+            <hr style="background-color:#fff; height:2px;">
+            <p style="text-align:left; font-size:1rem;color:#fff;">We will be happy to provide our services to all the Tournament Organizers from District & State Sports Committees, Sports Academies, Schools, Corporates, Townships, Societies and every enthusiastic Sports lover to encourage Sports with health and happiness in their locality.
 
-Please reach out to us through whatsapp or email or to meet us at our any upcoming events.</p>
+    Please reach out to us through whatsapp or email or to meet us at our any upcoming events.</p>
 
-      </div>
-      <div class="col-lg-6 col-md-12 col-sm-12 large" style=" padding: 10% 8%;">
-        <div class="" style="background:#348DCB; padding: 10px 20px;text-align: center; border-radius:12px;">
+  </div> <hr style="background-color: #fff;" class="small"/>
+          <div class="col-lg-6 col-md-12 col-sm-12 large" style=" padding: 10% 8%;">
+            <div class="row no-gutters">
+              <div class="col-lg-12">
+                <div class="" style="background:linear-gradient(to right,#161d65, #348DCB); padding: 10px 20px;text-align: center; border-radius:12px;">
 
-          <ul style="text-align:center;letter-spacing:2px;color:#fff;" class="footer-styles">
-            <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="../aboutus.html">About Us</a></li>
-            <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="../contactus.html">Contact Us</a> </li>
-            <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="#">Terms & condition</a> </li>
-            <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="#">FAQ's</a> </li>
-            <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="#">Privacy Policy</a> </li>
+                  <ul style="text-align:center;letter-spacing:2px;color:#fff;" class="footer-styles">
+                    <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="aboutus.html">About Us</a></li>
+                    <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="contactus.html">Contact Us</a> </li>
+                    <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="termsandcondition.html">Terms & condition</a> </li>
+                    <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="faq.html">FAQ's</a> </li>
+                    <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="privacyPolicy.html">Privacy Policy</a> </li>
 
-          </ul><br class="large" />
+                  </ul><br class="large" />
 
-          <ul style="text-align:left; " class="footer-styles">
-            <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="../login/login.html">Organiser Login</a> </li>
-            <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="../login/login.html">Umpire Login</a> </li>
+                  <ul style="text-align:left; " class="footer-styles">
+                    <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="login/login.html">Organiser Login</a> </li>
+                    <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="login/login.html">Umpire Login</a> </li>
 
-            <li class="footer-li"> <a href="https://www.facebook.com/crop.queens/"><i style="font-size:18px; color:#fff" class="fab fa-facebook-f"></i></a></li>
-            <li class="footer-li"> <a href="https://www.instagram.com/cropqueens/"><i style="font-size:18px; color:#fff" class="fab fa-instagram"></i></a></li>
-            <li class="footer-li"> <a href="#"><i style="font-size:18px; color:#fff" class="fab fa-youtube"></i></a> </li>
+                    <li class="footer-li"> <a href="https://www.facebook.com/crop.queens/"><i style="font-size:18px; color:#fff" class="fab fa-facebook-f"></i></a></li>
+                    <li class="footer-li"> <a href="https://www.instagram.com/cropqueens/"><i style="font-size:18px; color:#fff" class="fab fa-instagram"></i></a></li>
+                    <li class="footer-li"> <a href="#"><i style="font-size:18px; color:#fff" class="fab fa-youtube"></i></a> </li>
 
-          </ul>
+                  </ul>
+
+                </div>
+              </div>
+
+
+
+            </div><br class="large" /><br class="large" />
+                <div class="row no-gutters">
+                  <div class="col-lg-12">
+                    <div class="" style="background:linear-gradient(to right,#161d65, #348DCB); padding:2% 7%;text-align: center; border-radius:12px;">
+
+                      <ul style="text-align:center;letter-spacing:2px;color:#fff;" class="footer-styles">
+                        <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="calculator.html">Calculator</a> </li>
+                <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="contactus.html">Pricing</a> </li>
+                <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="contactus.html">Join Us</a> </li>
+                <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="privacyPolicy.html">Disclaimer</a> </li>
+
+                      </ul><br class="large" />
+
+                      <ul style="text-align:left; " class="footer-styles">
+                        <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="refundCancel.html">Refund & Cancellation</a> </li>
+                      </ul>
+
+                    </div>
+                  </div>
+
+                  <!-- for phone -->
+
+
+                    </div>
+              </div>
+
+
+
+            </div> <br class="small" /> <br class="small" />
+
+
+            <div class="col-lg-6 col-md-12 col-sm-12 small" style="padding:3% 8%;">
+              <div style=" padding:0px; text-align:center; border-radius: 12px; ">
+
+
+                <ul style="" class="footer-styles-phone">
+                  <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="aboutus.html">About Us</a></li>
+                  <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="contactus.html">Terms & Condition</a> </li>
+                  <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="contactus.html">Contact Us</a> </li>
+
+
+
+                </ul>
+
+                <ul class="footer-styles-phone">
+                  <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="contactus.html">Join Us</a> </li>
+                  <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="privacyPolicy.html">Privacy Policy</a> </li>
+                 <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="login.html">Organiser Login</a> </li>
+
+                </ul>
+
+                <ul class="footer-styles-phone" >
+
+                  <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="login.html">Umpire Login</a> </li>
+                  <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="faq.html">FAQ's</a> </li>
+                 <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="calculator.html">Calculator</a> </li>
+
+                </ul>
+
+                <ul class="footer-styles-phone">
+                  <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="refundCancel.html">Refund & Cancellation</a> </li>
+                  <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="contactus.html">Pricing</a> </li>
+                 <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="privacyPolicy.html">Disclaimer</a> </li>
+
+                </ul>
+
+
+                <ul style="" class="footer-styles-phone">
+                  <li class="footer-li-phone"> <a href="https://www.facebook.com/crop.queens/"><i style="font-size:18px; color:#fff" class="fab fa-facebook-f"></i></a></li>
+                  <li class="footer-li-phone"> <a href="https://www.instagram.com/cropqueens/"><i style="font-size:18px; color:#fff" class="fab fa-instagram"></i></a> </li>
+                  <li class="footer-li-phone"> <a href="#"><i style="font-size:18px; color:#fff" class="fab fa-youtube"></i></a> </li>
+
+                </ul>
+              </div>
+            </div>
+            <br class="small" /> <br class="small" /> <hr style="border:none; border-bottom: 1px solid #fff;" class="small" />
+            <br><br>
+
+
+
+  </div>
+        <div style="background:#348DCB;font-size:10px;padding:0.5% 0;font-family: 'Baloo 2', cursive; color:#fff;" class="">
+          Copyright © Tournament Planner LiVE - (TPLiVE)
+
 
         </div>
-      </div>
 
-      <!-- for phone -->
-
-      <div class="col-lg-6 col-md-12 col-sm-12 small" style="padding:3% 8%;">
-        <div style="background:#348DCB; padding:20px; text-align:center; border-radius: 12px;display: inline-block;">
-
-
-          <ul style="text-align:left;" class="footer-styles-phone">
-            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="../aboutus.html">About Us</a></li>
-            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="../contactus.html">Contact Us</a> </li>
-            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="../termsandcondition.html">Terms & condition</a> </li>
-            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="#">FAQ's</a> </li>
-            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="#">Privacy Policy</a> </li>
-            <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="../login/login.html">Organiser Login</a> </li>
-            <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="../login/login.html">Umpire Login</a> </li>
-
-          </ul>
-
-          <ul style="text-align:left;" class="footer-styles">
-            <li class="footer-li"> <a href="https://www.facebook.com/crop.queens/"><i style="font-size:18px; color:#fff" class="fab fa-facebook-f"></i></a></li>
-            <li class="footer-li"> <a href="https://www.instagram.com/cropqueens/"><i style="font-size:18px; color:#fff" class="fab fa-instagram"></i></a> </li>
-            <li class="footer-li"> <a href="#"><i style="font-size:18px; color:#fff" class="fab fa-youtube"></i></a> </li>
-
-          </ul>
-        </div><br><br><br><br>
-      </div>
-
-
-    </div>
-
-    <div style="background:#348DCB;font-size:10px;padding:0.5% 0;font-family: 'Baloo 2', cursive; color:#fff;" class="">
-      Copyright © Academy Planner, Powered by TPLiVE
-
-
-    </div>
-
-  </section>
-
-
-  <!-- *******************FOOTER SECTION STARTS************************************** -->
-
-
-
-
-
-
-
-
-
-
-  <!-- Footer Section - Start -->
-
-
-  <!-- Footer Section - end -->
+      </section>
+    <!-- Footer Section - end -->
 
   <!-- WebPicker Facebook Messenger Chat Plugin Code - Start -->
   <div id="fb-root"></div>
@@ -383,7 +924,7 @@ Please reach out to us through whatsapp or email or to meet us at our any upcomi
 
   <!-- Javascript to Populate Map - Start  -->
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
-
+  <script src="../js/main.js"></script>
   <!-- Firebase Services -->
   <!-- <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
