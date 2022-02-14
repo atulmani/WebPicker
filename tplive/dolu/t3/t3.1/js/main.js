@@ -345,6 +345,34 @@ $(function () {
       });
 
       $(document).ready(function() {
+        var owl = $('#olist');
+        owl.owlCarousel({
+          margin: 20,
+          loop: true,
+          autoplay: true,
+          smartSpeed:3000,
+          autoplayTimeout: 3500,
+          autoplayHoverPause: true,
+          nav:false,
+          // dots:true,
+          stagePadding: 70,
+          responsive: {
+            0: {
+              items: 1
+            },
+            600: {
+              items: 2
+            },
+            1000: {
+              items: 6
+            }
+          }
+        });
+      });
+
+
+
+      $(document).ready(function() {
         var owl = $('#allevent-list');
         owl.owlCarousel({
           margin: 20,
