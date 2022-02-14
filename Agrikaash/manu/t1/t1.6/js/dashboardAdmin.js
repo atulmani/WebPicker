@@ -218,7 +218,7 @@ function populatePurchaseSummary() {
     productRecord.then((changes) => {
       pName = changes.data().ProductName;
       console.log(pName);
-      lastPurshasedDetails = pName + lastPurshasedDetails;
+      lastPurshasedDetails = pName + "<br>" +lastPurshasedDetails;
       console.log(lastPurshasedDetails);
 
           document.getElementById("lastPurchased").innerHTML = lastPurshasedDetails;
@@ -246,6 +246,12 @@ function populatePurchaseSummary() {
 function ShowInventory(filter) {
   localStorage.setItem("inventoryFiler", filter);
   window.location.href = "inventory.html";
+
+
+}
+function ShowPurchase(filter) {
+  localStorage.setItem("PurchaseFiler", filter);
+  window.location.href = "purchaseBook.html";
 
 
 }
