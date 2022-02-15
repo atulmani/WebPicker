@@ -55,6 +55,7 @@ function populatePurchaseDetails() {
 
   todayDate = refDate;
   var index = 0;
+  var tAmount = 0;
   var snapshot;
   var DBrows;
   var fromDate;
@@ -130,6 +131,14 @@ function populatePurchaseDetails() {
     day: 'numeric'
   };
 
+
+    var curFormat = {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    };
+
   if (fromDate === 'Today') {
     document.getElementById('dateRangelbl').innerHTML = "Purchase for Today";
   } else if (fromDate === toDate) {
@@ -151,18 +160,19 @@ function populatePurchaseDetails() {
       if (change.data().QuantityPurchased > 0) {
         const doc1 = await db.collection('Products').doc(change.data().ProductId).get();
         if (doc1.exists) {
-
+          tAmount = tAmount + Number(change.data().QuantityPurchased) * Number(change.data().UnitPrize);
           renderPurchaseBook(change.data(), doc1.data().ProductName, i);
           i = i + 1;
 
         }
 
       }
-      document.getElementById("itemCnt").innerHTML = i + " Items";
+      document.getElementById("itemCnt").innerHTML = i + " Purchase (" +tAmount.toLocaleString('en-IN', curFormat)+ ")" ;
 
     });
 
-    document.getElementById("itemCnt").innerHTML = i + " Items";
+    document.getElementById("itemCnt").innerHTML = i + " Purchase (" +tAmount.toLocaleString('en-IN', curFormat)+ ")" ;
+
     document.getElementById('loading').style.display = 'none';
   });
 
