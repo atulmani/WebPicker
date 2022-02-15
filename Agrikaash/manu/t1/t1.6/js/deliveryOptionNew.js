@@ -177,6 +177,21 @@ function GetProfileData(user) {
         //  document.getElementById('headerProfilePic').src = doc.data().ImageURL;
         document.getElementById('displayName').innerHTML = doc.data().displayName;
         document.getElementById('EmailID').value = doc.data().EmailID;
+        var deliverySlot = doc.data().PreferredTimeSlot;
+        console.log(deliverySlot);
+        if(deliverySlot != undefined && deliverySlot != "")
+        {
+          var oDeliveryTime = document.getElementById("DeliveryTime");
+          for(cnt = 0 ; cnt < oDeliveryTime.options.length ; cnt++ )
+          {
+            console.log(oDeliveryTime.options[cnt].text);
+            if(oDeliveryTime.options[cnt].text === deliverySlot)
+            {
+              oDeliveryTime.options[cnt].selected = true;
+            }
+          }
+
+        }
       }
     })
     .catch(function(error) {
@@ -455,6 +470,7 @@ function UpdateDeliveryDate() {
   tempDate.setDate(tempDate.getDate() + 1);
   delDate.options[0].text = tempDate.toLocaleDateString();
   delDate.options[0].value = tempDate.toLocaleDateString();
+   delDate.options[0].selected = true;
 
   tempDate.setDate(tempDate.getDate() + 1);
   delDate.options[1].text = tempDate.toLocaleDateString();
@@ -479,7 +495,7 @@ function UpdateDeliveryDate() {
   tempDate.setDate(tempDate.getDate() + 1);
   delDate.options[6].text = tempDate.toLocaleDateString();
   delDate.options[6].value = tempDate.toLocaleDateString();
-  delDate.options[6].selected = true;
+  // delDate.options[6].selected = true;
 
 }
 
