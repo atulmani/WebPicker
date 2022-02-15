@@ -354,7 +354,7 @@ function populateDeliveryAddress(selectedOrder) {
   var dDate = new Date(selectedOrder.deliveryDate.seconds * 1000);
   var delDate = dDate.toLocaleDateString("en-US", options);
   //document.getElementById('DeliveryDate').innerHTML = delDate;
-
+  document.getElementById("orderID").innerHTML = selectedOrder.orderNumber;
   //document.getElementById('DeliveryTime').innerHTML = selectedOrder.deliveryTime;
   document.getElementById('orderStatus').innerHTML = selectedOrder.orderStatus;
   document.getElementById('PaymentStatus').innerHTML = selectedOrder.paymentStatus;
