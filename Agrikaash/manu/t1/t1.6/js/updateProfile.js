@@ -45,14 +45,11 @@ function GetRegistrationRequest() {
       var userRole = doc.data().UserRole;
       var companyName = doc.data().CompanyName;
       var gstNumber = doc.data().GSTNumber;
-      var preferredTimeSlot = doc.data().ProferredTimeSlot;
+      var preferredTimeSlot = doc.data().PreferredTimeSlot;
 
       document.getElementById('userName').value = displayName;
-      console.log("1");
       document.getElementById('profileName').innerHTML = displayName;
-      console.log("2");
       document.getElementById('userEmail').innerHTML = userEmail;
-      console.log(phone);
       if (phone != undefined)
         document.getElementById('userPhone').value = phone;
 
@@ -72,11 +69,9 @@ function GetRegistrationRequest() {
           ocity.options[i].selected = true;
       }
 
-      console.log(userRole);
       if (userRole != undefined && userRole.findIndex(e => e.Text === 'Admin') < 0 ) {
         UpdateCartItem();
         isAdmin = false;
-        console.log("is admin");
         updateWallet();
         if (companyName != undefined) {
           var compName = document.getElementById('companyName')
@@ -84,7 +79,6 @@ function GetRegistrationRequest() {
             if (compName.options[i].text === companyName)
               compName.options[i].selected = true;
         }
-
         if (preferredTimeSlot != undefined) {
           var timeSlot = document.getElementById('DeliveryTime');
           for (i = 0; i < timeSlot.options.length; i++) {
