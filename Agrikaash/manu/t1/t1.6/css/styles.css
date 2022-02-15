@@ -2373,6 +2373,11 @@ input[type=number] {
   height: 400px;
 }
 
+
+.dashboard-card#cardAddress.active {
+  height: 500px;
+}
+
 .dashboard-card.order-status.active {
   height: 500px;
 }
