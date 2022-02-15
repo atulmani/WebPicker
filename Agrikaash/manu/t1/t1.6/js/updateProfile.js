@@ -71,6 +71,7 @@ function GetRegistrationRequest() {
         if (ocity.options[i].value === address)
           ocity.options[i].selected = true;
       }
+
       console.log(userRole);
       if (userRole != undefined && userRole.findIndex(e => e.Text === 'Admin') < 0 ) {
         UpdateCartItem();
@@ -93,7 +94,7 @@ function GetRegistrationRequest() {
           }
         }
         if (gstNumber != undefined) {
-          document.getElementById('userGST').text =gstNumber;
+          document.getElementById('userGST').value =gstNumber;
         }
 
         document.getElementById("City").value = address;
