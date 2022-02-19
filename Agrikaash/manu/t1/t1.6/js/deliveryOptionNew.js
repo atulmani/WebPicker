@@ -72,11 +72,16 @@ function getWalletDetails() {
       walletamount = doc1.data().WalletAmount;
       var totalAmt = document.getElementById('hftotalAmount').value
       if (Number(walletamount) > Number(totalAmt)) {
-        document.getElementById("divPayment").style.display = "block";
+        document.getElementById("divPayment").style.height = "100%";
+        document.getElementById("divPayment").style.opacity = "1";
+        document.getElementById("divPayment").style.pointerEvents = "all";
         document.getElementById("walletAmount").innerHTML = doc1.data().WalletAmount.toLocaleString('en-IN', curFormat);
         document.getElementById("hfWalletAmount").value = doc1.data().WalletAmount;
       }else {
         document.getElementById("PayOption1").checked= true;
+        document.getElementById("divPayment").style.height = "0%";
+        document.getElementById("divPayment").style.opacity = "0";
+        document.getElementById("divPayment").style.pointerEvents = "none";
       }
     }
   });
