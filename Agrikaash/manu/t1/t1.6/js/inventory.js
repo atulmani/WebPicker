@@ -142,10 +142,12 @@ function myChangeEvent() {
   var productList = [];
   var prodCnt = 0;
   var callCount = 1;
+  var displayCnt = 0;
   for (i = 0; i < a.length; i++) {
     txtValue = a[i].innerText + " " + document.getElementById("hfSearchID" + i).value;
     //    txtValue = a[i].textContent || a[i].innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      displayCnt = displayCnt + 1;
       noFlag = true;;
       a[i].style.display = "";
       hfid = a[i].getElementsByTagName("input")[0];
@@ -169,11 +171,12 @@ function myChangeEvent() {
   if (noFlag === false) {
     document.getElementById("searchKeyText").innerHTML = filter;
     document.getElementById("wrongSearch").style.display = "block";
-
+    document.getElementById("itemCnt").innerHTML = "0 Items";
   }
   console.log("before display none");
   document.getElementById("idItem").style.display = "none";
   document.getElementById("myInput").children[0].blur();
+  document.getElementById("itemCnt").innerHTML = displayCnt + " Items";
   // myDropdown.classList.remove("show");
   // serachDiv.classList.remove("open");
 }
@@ -247,6 +250,7 @@ function showItem(itemname) {
       renderProductNew(doc, 0);
       document.getElementById("idItem").style.display = "none";
       document.getElementById("myInput").children[0].blur();
+      document.getElementById("itemCnt").innerHTML = "1 Items";
 
 
     }
@@ -274,7 +278,7 @@ function populateProductData(bType, pType) {
   if (filter === "overbooked") {
     DBrows = db.collection("Products").where("AvailableQuantity", "<", 0).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
   } else if (filter === "noinventory") {
-    DBrows = db.collection("Products").where("AvailableQuantity", "==", 0).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+    DBrows = db.collection("Products").where("AvailableQuantity", "==", 0).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
   } else if (filter === "lowinventory") {
     DBrows = db.collection("Products").where("AvailableQuantity", "<", 20).where("AvailableQuantity", ">", 0).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
   } else if (filter === "highinventory") {
@@ -283,7 +287,7 @@ function populateProductData(bType, pType) {
   {
     console.log("in loop1");
     if (filter === "All") {
-      DBrows = db.collection("Products").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Low") {
       DBrows = db.collection("Products").where("AvailableQuantity", "<", 20).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Medium") {
@@ -297,38 +301,38 @@ function populateProductData(bType, pType) {
     console.log("in loop2");
     prodType = ['All', bType]
     if (filter === "All") {
-      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Low") {
-      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", "<", 20).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", "<", 20).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Medium") {
-      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "High") {
-      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     }
   } else if ((pType != '' && pType != 'All') && (bType === '' || bType === 'All')) //select one customer businessType
   {
     console.log("in loop3 : ", filter);
     if (filter === "All") {
-      DBrows = db.collection("Products").where("productType", "==", pType).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Low") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", "<", 20).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", "<", 20).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Medium") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "High") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", ">=", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", ">=", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     }
   } else if ((pType != '' && pType != 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
     console.log("in loop4");
     prodType = ['All', bType];
     if (filter === "All") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Low") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", "<", 20).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", "<", 20).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Medium") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "High") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     }
 
   }
@@ -574,6 +578,24 @@ function changeFilter() {
   populateProductData(buisinessType, productType);
 }
 
+function formatValue(index) {
+  var weight = document.getElementById("scrapQty" + index);
+  var unit = document.getElementById("unit" + index);
+
+  if (weight.value.length === 0) {
+    unit.style.transform = 'translateX(6px)';
+  } else if (weight.value.length === 1) {
+    unit.style.transform = 'translateX(12px)';
+  } else if (weight.value.length === 2) {
+    unit.style.transform = 'translateX(26px)';
+  } else if (weight.value.length === 3) {
+    unit.style.transform = 'translateX(47px)';
+  } else {
+    unit.style.transform = 'translateX(63px)';
+  }
+}
+
+
 function renderProductNew(doc, index) {
   // console.log(doc, index);
   var productlist = doc.data().ProductDetails;
@@ -598,14 +620,18 @@ function renderProductNew(doc, index) {
 
   var div3 = document.createElement("div");
   div3.setAttribute("class", "inventory-quantity-level");
-  if (availableQty < 20) {
-    div3.innerHTML = "Low Vol.";
+  if (availableQty < 0) {
+    div3.innerHTML = "Over Booked";
+  } else if (availableQty === 0) {
+    div3.innerHTML = "No Volume";
+  } else if (availableQty < 20) {
+    div3.innerHTML = "Low Volume";
   } else if (availableQty < 50) {
     div3.setAttribute("style", "background:orange;");
-    div3.innerHTML = "Medium Vol.";
+    div3.innerHTML = "Medium Volume";
   } else {
     div3.setAttribute("style", "background: #88CA5E;");
-    div3.innerHTML = "High Vol.";
+    div3.innerHTML = "High Volume";
   }
   div2.appendChild(div3);
 
@@ -641,23 +667,24 @@ function renderProductNew(doc, index) {
   div4.setAttribute("class", "row no-gutters");
 
   var div5 = document.createElement("div");
-  div5.setAttribute("class", "col-5");
+  div5.setAttribute("class", "col-12");
 
   var s1 = document.createElement("small");
   s1.setAttribute("class", "product-names");
   s1.innerHTML = doc.data().ProductName;
   div5.appendChild(s1);
-
+  var b1 = document.createElement("br");
+  div5.appendChild(b1);
 
   var s2 = document.createElement("small");
   s2.setAttribute("style", "font-size: 0.8rem; color: rgba(0,0,0,0.5);");
-  s2.innerHTML = doc.data().Brand;
+  s2.innerHTML = " " + doc.data().Brand;
   div5.appendChild(s2);
 
   div4.appendChild(div5);
 
   var div6 = document.createElement("div");
-  div6.setAttribute("class", "col-7");
+  div6.setAttribute("class", "col-12");
 
 
   var div7 = document.createElement("div");
@@ -690,22 +717,36 @@ function renderProductNew(doc, index) {
   var input11 = document.createElement("input");
   input11.setAttribute("maxlength", "4");
 
-  input11.setAttribute("style", "width: 80%;font-size: 2rem;");
+  input11.setAttribute("style", "width: 40%;font-size: 2rem;");
   input11.setAttribute("oninput", "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);");
   input11.setAttribute("placeholder", "0");
   input11.setAttribute("type", "number");
   input11.setAttribute("readonly", "true");
   input11.setAttribute("onchange", "updateScrap(" + index + ")");
   input11.setAttribute("min", "0");
+  input11.setAttribute("maxlength", "4");
+
+  input11.setAttribute("onkeyup", "formatValue(" + index + ")");
   input11.setAttribute("id", "scrapQty" + index);
   div8.appendChild(input11);
+
+  var s88 = document.createElement("span");
+  s88.setAttribute("class", "create-product-weight-inventory");
+  s88.setAttribute("style", "font-size: 0.7rem; color: #666;");
+  s88.setAttribute("id", "unit" + index);
+  s88.innerHTML = productWeightUnit;
+  div8.appendChild(s88);
 
   var s10 = document.createElement("span");
   s10.setAttribute("style", "padding: 0 10px;font-size: 1.2rem; color: #666;");
   s10.setAttribute("class", "material-icons-outlined");
   s10.setAttribute("id", "edit" + index);
-
-  s10.setAttribute("onclick", "editSracpQty(" + index + ")");
+  // if(availableQty <= 0 )
+  // {
+  //   console.log(doc.data().ProductName);
+  //   div8.setAttribute("disabled", true);
+  // }
+  s10.setAttribute("onclick", "editSracpQty(" + availableQty + "," + index + ")");
   s10.innerHTML = "edit";
   div8.appendChild(s10);
 
@@ -721,7 +762,8 @@ function renderProductNew(doc, index) {
   var s11 = document.createElement("small");
 
   s11.setAttribute("style", "color:#666;font-size: 0.7rem;");
-  s11.innerHTML = today;
+  s11.setAttribute("id", "message" + index);
+  s11.innerHTML = "";
 
   div6.appendChild(s11);
   div4.appendChild(div6);
@@ -734,70 +776,81 @@ function renderProductNew(doc, index) {
   div1.appendChild(div2);
 
   document.getElementById("productRow").appendChild(div1);
+  formatValue(index);
 }
 
 async function updateScrap(index) {
+
   var weightUnit = document.getElementById("weightUnit" + index);
   var edit = document.getElementById("edit" + index);
   var scrap = document.getElementById("scrapQty" + index);
   var qty = document.getElementById("qty" + index);
   var hfID = document.getElementById("hfID" + index);
+  var msg = document.getElementById("message" + index);
   var cntItem = 0;
-  if (scrap.value != 0) {
-    //update inventory
-    var doc = await db.collection("ProductsInventory").doc(hfID.value).get();
-    console.log(cntItem);
-    if (doc.exists) {
-      console.log(doc.data().AvailableQuantity);
-      cntItem = Number(doc.data().AvailableQuantity) - Number(scrap.value);
-      console.log(doc.id, cntItem);
-      const updateInventory = await db.collection("ProductsInventory").doc(hfID.value).update({
-        AvailableQuantity: Number(cntItem),
-        LastUpdatedBy: auth.currentUser.email,
-        LastUpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
-      });
-    } else {
-      console.log(cntItem, doc.id);
-      const addInventory = await db.collection("ProductsInventory").doc(hfID.value).set({
-        AvailableQuantity: Number(cntItem),
-        LastUpdatedBy: auth.currentUser.email,
-        LastUpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
-      });
-    }
-    console.log(doc.id, cntItem);
-    const productawait = await db.collection("Products").doc(hfID.value).update({
-      AvailableQuantity: Number(cntItem)
-    });
+  console.log((qty.innerHTML),(scrap.value));
+  if (Number(qty.innerHTML) < Number(scrap.value)) {
+    msg.innerHTML = "scrap can not be > Inventory";
+    console.log("not able to change as scrap quantity > total Quantity");
+  } else {
 
-    const purchaseQty = await db.collection("PurchaseBook").add({
-      ProductId: hfID.value,
-      QuantityPurchased: (-1 * Number(scrap.value)),
-      Unit: weightUnit.innerHTML,
-      UnitPrize: 0,
-      Remarks: 'Scraped product by Admin',
-      CreatedBy: auth.currentUser.email,
-      CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
-    });
-    console.log(purchaseQty.id);
+    if (scrap.value != 0) {
+      //update inventory
+      var doc = await db.collection("ProductsInventory").doc(hfID.value).get();
+      console.log(cntItem);
+      if (doc.exists) {
+        // console.log(doc.data().AvailableQuantity);
+        cntItem = Number(qty.innerHTML) - Number(scrap.value);
+        console.log(doc.id, cntItem);
+        const updateInventory = await db.collection("ProductsInventory").doc(hfID.value).update({
+          AvailableQuantity: Number(cntItem),
+          LastUpdatedBy: auth.currentUser.email,
+          LastUpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+        });
+      } else {
+        console.log(cntItem, doc.id);
+        const addInventory = await db.collection("ProductsInventory").doc(hfID.value).set({
+          AvailableQuantity: Number(cntItem),
+          LastUpdatedBy: auth.currentUser.email,
+          LastUpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+        });
+      }
+      console.log(doc.id, cntItem);
+      const productawait = await db.collection("Products").doc(hfID.value).update({
+        AvailableQuantity: Number(cntItem)
+      });
+
+      const purchaseQty = await db.collection("PurchaseBook").add({
+        ProductId: hfID.value,
+        QuantityPurchased: (-1 * Number(scrap.value)),
+        Unit: weightUnit.innerHTML,
+        UnitPrize: 0,
+        Remarks: 'Scraped product by Admin',
+        CreatedBy: auth.currentUser.email,
+        CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+      });
+      console.log(purchaseQty.id);
+
+    }
+    qty.innerHTML = cntItem;
+    edit.setAttribute("style", "padding: 0 10px;font-size: 1.2rem; color: #88CA5E;");
+    edit.innerHTML = "check";
+    scrap.value = "0";
+    msg.innerHTML = "Inventory Updated";
 
   }
-  qty.innerHTML = cntItem;
-  edit.setAttribute("style", "padding: 0 10px;font-size: 1.2rem; color: #88CA5E;");
-  edit.innerHTML = "check";
-  scrap.value = "0";
-
   setTimeout(function() {
     edit.setAttribute("style", "padding: 0 10px;font-size: 1.2rem; color: #666;");
     edit.innerHTML = "edit";
-
+    scrap.value = "0";
+    msg.innerHTML = "";
   }, 5000);
-
-
+  formatValue(index);
 }
 
-function editSracpQty(index) {
-  console.log(index);
-  if (document.getElementById("edit" + index).innerHTML === "edit") {
+function editSracpQty(qty, index) {
+  console.log(index, qty);
+  if (document.getElementById("edit" + index).innerHTML === "edit" && qty > 0) {
     var scrap = document.getElementById("scrapQty" + index);
     scrap.removeAttribute("readonly");
     scrap.focus();

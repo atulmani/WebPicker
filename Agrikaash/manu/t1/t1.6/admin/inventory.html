@@ -172,7 +172,7 @@
         </span>
         <small>Home</small>
       </a>
-      <a href="updateProduct.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+      <a href="updateProduct.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <span class="material-icons-outlined">
           category
         </span>
@@ -440,7 +440,7 @@
 
         <div class="category-list-sub-menu" style="background: #f4f4f4;">
           <div class="" id='divbusinessType' style="display:none;">
-            <select class="city-selector" id="businessType"  style="background: rgba(255,255,255,0.6);border: 1px solid #aaa;" name="">
+            <select class="city-selector" id="businessType" style="background: rgba(255,255,255,0.6);border: 1px solid #aaa;" name="">
               <option value="All">All</option>
               <option value="Small">Small</option>
               <option value="Medium">Medium</option>
@@ -473,6 +473,40 @@
         </div>
       </div>
 
+      <div class="row no-gutters">
+        <div class="col-sm-12">
+          <!-- <div class="product-list-div Vegetable" style="padding: 0 0 10px 0;">
+            <div class="inventory-quantity-level" style="background: #88CA5E;">High Volume</div>
+            <table width="100%">
+              <tr>
+                <td width="35%" class="product-img-td"><input id="hfID1" type="hidden" value="x9qNlzd83wpQIZS5QsUf"><img
+                    src="https://firebasestorage.googleapis.com/v0/b/agrikaash-uat.appspot.com/o/ProductImages%2Fx9qNlzd83wpQIZS5QsUf%2Fx9qNlzd83wpQIZS5QsUf_1.png?alt=media&amp;token=573a7e05-469e-4238-8d23-edde0352aa5d" width="100%"
+                    class="product-img" alt="Product"></td>
+                <td width="65%" valign="top" class="product-names-div">
+                  <div class="row no-gutters">
+                    <div class="col-12"><small class="product-names">Onion Nasik A Grade</small><small style="font-size: 0.8rem; color: rgba(0,0,0,0.5);"> Agrikaash</small></div>
+                    <div class="col-12">
+                      <div class="">
+                        <span style="font-size: 3rem; color: #666;" id="qty1">108</span>
+                        <span style="font-size: 0.7rem; color: #666;" id="weightUnit1">KG</span>
+                      </div>
+                      <div class="inventory-scrap-input">
+                        <small style="color:#666;font-size: 0.7rem;font-weight: bold;">Scrap Qty : </small>
+                        <input maxlength="4" style="font-size: 2rem;" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="0" type="number" onchange="updateScrap(1)"
+                          onkeyup="formatValue(1)" id="scrapQty1">
+                        <span class="create-product-weight-inventory" style="font-size: 0.7rem; color: rgb(102, 102, 102); transform: translateX(6px);" id="unit1">KG</span>
+                      </div>
+                      <span style="padding: 0 10px;font-size: 1.2rem; color: #666;" class="material-icons-outlined" id="edit1" onclick="editSracpQty(108,1)">edit</span>
+                      <small style="color:#666;font-size: 0.7rem;" id="message1"></small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div> -->
+      </div>
+
       <div class="row no-gutters" style="padding: 2%;" id="divDetails">
 
         <div class="col-sm-12">
@@ -503,6 +537,7 @@
 
             </div>
           </div> -->
+
           <div class="col-sm-12">
             <div class="product-menu">
 
@@ -510,41 +545,6 @@
               </div>
               <input type="hidden" id="hfpType" />
             </div>
-          </div>
-
-          <div class="row no-gutters">
-            <!-- <div class="col-sm-12" id="mainDiv0" style="padding: 5px;">
-              <div class="product-list-div Vegetable">
-                <table width="100%">
-                  <tr>
-                    <td width="45%" class="product-img-td">
-                      <input id="hfID0" type="hidden" value="cbKcIDVRjFNykzVmpkUW">
-                      <img src="https://firebasestorage.googleapis.com/v0/b/agrikaash-uat.appspot.com/o/ProductImages%2FcbKcIDVRjFNykzVmpkUW%2FcbKcIDVRjFNykzVmpkUW_1.png?alt=media&amp;token=c4609df9-2732-48ff-a4bf-2681c42a668a" width="100%" class="product-img" alt="Product">
-                      <i onclick="GetProductDetails(hfID0);" class="far fa-edit address-edit-icon" style="padding: 0 5px 0 5px;"></i>
-                      <div class="veg-nonVeg-div">
-                        <img src="../img/veg.png" width="100%" alt="">
-                      </div>
-                    </td>
-                    <td width="55%" valign="top" class="product-names-div">
-                      <small class="product-names">Shimla Mirch (Capsicum Green HY) A Grade</small>
-                      <br>
-                      <small style="font-size: 0.8rem; color: rgba(0,0,0,0.5);">Agrikaash</small>
-                      <br>
-                      <select name="productDetails" id="productDetails0">
-                        <option value="47:50">1 KG - Rs.47</option>
-                      </select>
-                      <div class="product-price">
-                        <large><span><b>Type :  </b>All</span><large><br><large><span><b>Category :  </b>Vegetable</span><large><br><br></large></large></large></large>
-                        <span id="btnDelete0" onclick="deleteProduct(hfID0,mainDiv0);" class="material-icons" style="cursor:pointer;padding: 0 20px 0 5px;">delete_outline</span>
-                      </div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              <div class="product-graph">
-
-              </div>
-            </div> -->
           </div>
 
           <div class="row no-gutters">
@@ -666,167 +666,167 @@
             </div>
           </div> -->
 
-          <div class="row no-gutters" id='productRow'><br>
+            <div class="row no-gutters" id='productRow'><br>
+
+            </div>
+
+            <br>
 
           </div>
 
-          <br>
-
-        </div>
-
-        <div class="row no-gutters">
-          <div class="col-lg-12 col-md-12 col-sm-12">
-            <!-- <center>
+          <div class="row no-gutters">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <!-- <center>
             <div id='loading' class="loader"></div>
           </center> -->
-            <div class="" id="loading">
-              <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-              <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_ukfgwgr8.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+              <div class="" id="loading">
+                <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_ukfgwgr8.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
 
 
-  <!-- Map Section - Start -->
-  <!-- <section id="map">
+    <!-- Map Section - Start -->
+    <!-- <section id="map">
 
   </section> -->
-  <!-- Map Section - End -->
+    <!-- Map Section - End -->
 
-  <!-- Footer Section - Start -->
-  <br class="small" /><br class="small" /><br class="small" />
-  <section id="footer" class="large">
-    <hr>
-    <br /><br />
-    <div class="container">
-      <div class="row no-gutters">
-        <div class="col-lg-3 col-md-6 col-sm-12">
-          <div class="footer-list">
-            <h5>Get to Know us</h5>
-            <ul>
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Careers</a></li>
-              <li><a href="#">Press Releases</a></li>
-              <li><a href="#">Gift A Smile</a></li>
-            </ul>
+    <!-- Footer Section - Start -->
+    <br class="small" /><br class="small" /><br class="small" />
+    <section id="footer" class="large">
+      <hr>
+      <br /><br />
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="footer-list">
+              <h5>Get to Know us</h5>
+              <ul>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Press Releases</a></li>
+                <li><a href="#">Gift A Smile</a></li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
-          <div class="footer-list">
-            <h5>Connect With us</h5>
-            <ul>
-              <li><a href="#">Facebook</a></li>
-              <li><a href="#">Instagram</a></li>
-              <li><a href="#">Messenger</a></li>
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">Google</a></li>
-            </ul>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="footer-list">
+              <h5>Connect With us</h5>
+              <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Messenger</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Google</a></li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
-          <div class="footer-list">
-            <h5>Make Money With us</h5>
-            <ul>
-              <li><a href="#">Sell on Agrikaash</a></li>
-              <li><a href="#">Become a Affiliate</a></li>
-              <li><a href="#">Advertise Your Products</a></li>
-              <li><a href="#">Agrikaash Global Selling</a></li>
-            </ul>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="footer-list">
+              <h5>Make Money With us</h5>
+              <ul>
+                <li><a href="#">Sell on Agrikaash</a></li>
+                <li><a href="#">Become a Affiliate</a></li>
+                <li><a href="#">Advertise Your Products</a></li>
+                <li><a href="#">Agrikaash Global Selling</a></li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
-          <div class="">
-            <img src="../img/logo.png" width="30%" alt="">
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="">
+              <img src="../img/logo.png" width="30%" alt="">
+            </div>
+            <hr>
+            <h6 style="text-align:left;font-size: 0.9rem; font-weight: bold;">Conetct With us</h6>
+            <div class="social">
+              <i class="fab fa-facebook-messenger"></i>
+              <i class="fab fa-facebook-f"></i>
+              <i class="fab fa-google-plus-g"></i>
+              <i class="fab fa-instagram"></i>
+              <i class="fab fa-twitter"></i>
+            </div>
           </div>
-          <hr>
-          <h6 style="text-align:left;font-size: 0.9rem; font-weight: bold;">Conetct With us</h6>
-          <div class="social">
-            <i class="fab fa-facebook-messenger"></i>
-            <i class="fab fa-facebook-f"></i>
-            <i class="fab fa-google-plus-g"></i>
-            <i class="fab fa-instagram"></i>
-            <i class="fab fa-twitter"></i>
-          </div>
-        </div>
-      </div><br>
-    </div>
-    <div class="copy-write">
-      <center>
-        <span>© Copyright 2021 </span>
-        <span style="font-family: 'Great Vibes'"> Web Picker</span>
-      </center>
-    </div>
-  </section>
+        </div><br>
+      </div>
+      <div class="copy-write">
+        <center>
+          <span>© Copyright 2021 </span>
+          <span style="font-family: 'Great Vibes'"> Web Picker</span>
+        </center>
+      </div>
+    </section>
 
-  <!-- Footer Section - end -->
+    <!-- Footer Section - end -->
 
-  <!-- Jquery order should be higher from normal javascript  -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- Jquery order should be higher from normal javascript  -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
-  <!-- Owl Carousel JQuery -->
-  <!-- <script src="js/jquery.min.js"></script> -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Owl Carousel JQuery -->
+    <!-- <script src="js/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <!-- Javascript to Populate Map - Start  -->
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
+    <!-- Javascript to Populate Map - Start  -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
 
 
-  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
 
-  <script src="../js/main.js"></script>
-  <script src="../js/firebase.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/firebase.js"></script>
 
-  <!-- <script src="../js/chart.js"></script> -->
-  <script src="../js/inventory.js"></script>
-  <script src="../js/fb-logout.js"></script>
-  <!-- <script src="../js/chart2.js"></script> -->
+    <!-- <script src="../js/chart.js"></script> -->
+    <script src="../js/inventory.js"></script>
+    <script src="../js/fb-logout.js"></script>
+    <!-- <script src="../js/chart2.js"></script> -->
 
-  <!-- Owl Carousel Javascript  -->
-  <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+    <!-- Owl Carousel Javascript  -->
+    <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-  <script type="text/javascript">
-    // $(document).ready(function(){
-    //   $('#anchorAll').click(function() {
-    //     // hideall();
-    //     // $('.all').toggle("slide");
-    //     console.log('clicked All');
-    //     $('.Goat').show();
-    //     $('.Vegetable').show();
-    //     $('.Pearl').show();
-    //     $('.Fruit').show();
-    //   });
-    //   $('#anchorGoatProducts').click(function() {
-    //     hideall();
-    //     $('.Goat').show("slide");
-    //   });
-    //   $('#anchorVegetable').click(function() {
-    //     hideall();
-    //     $('.Vegetable').show("slide");
-    //   });
-    //   // $('#3').click(function() {
-    //   //   hideall();
-    //   //   $('.third').show("slide");
-    //   // });
-    // });
-    //
-    // function hideall(){
-    //   $('.Goat').hide();
-    //   $('.Vegetable').hide();
-    //   $('.Pearl').hide();
-    //   $('.Fruit').hide();
-    // };
-  </script>
+    <script type="text/javascript">
+      // $(document).ready(function(){
+      //   $('#anchorAll').click(function() {
+      //     // hideall();
+      //     // $('.all').toggle("slide");
+      //     console.log('clicked All');
+      //     $('.Goat').show();
+      //     $('.Vegetable').show();
+      //     $('.Pearl').show();
+      //     $('.Fruit').show();
+      //   });
+      //   $('#anchorGoatProducts').click(function() {
+      //     hideall();
+      //     $('.Goat').show("slide");
+      //   });
+      //   $('#anchorVegetable').click(function() {
+      //     hideall();
+      //     $('.Vegetable').show("slide");
+      //   });
+      //   // $('#3').click(function() {
+      //   //   hideall();
+      //   //   $('.third').show("slide");
+      //   // });
+      // });
+      //
+      // function hideall(){
+      //   $('.Goat').hide();
+      //   $('.Vegetable').hide();
+      //   $('.Pearl').hide();
+      //   $('.Fruit').hide();
+      // };
+    </script>
 
 
 </body>

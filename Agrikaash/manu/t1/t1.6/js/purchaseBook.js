@@ -10,6 +10,8 @@ var pID;
 var buisinessType = "";
 var productType = "";
 var filter = "All";
+var flagSearch = true;
+
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
@@ -28,7 +30,7 @@ auth.onAuthStateChanged(firebaseUser => {
   }
 });
 
-function GetProfileData(user) {
+async function GetProfileData(user) {
   // const ref = db.collection("Users").doc(user.uid);
 
   const snapshot = db.collection('UserList').doc(user.uid);
@@ -64,6 +66,7 @@ function GetProfileData(user) {
             });
           });
           // console.log("before call populateProductData 2");
+
           populateProductData('', '');
         } else {
           document.getElementById('confirmationMessage').style.display = "block";
@@ -104,12 +107,13 @@ function filterFunction() {
   //  console.log(filter);
   div = document.getElementById("idItem");
   a = div.getElementsByTagName("button");
+  //console.log(a.length);
   for (i = 0; i < a.length; i++) {
-    //console.log(document.getElementById("hfSearchID" + i).value);
-    //console.log(a[i].textContent);
-    //console.log(a[i].innerText);
-  //  console.log(document.getElementById("hfSearchID" + i));
-    txtValue = a[i].innerText + " " + document.getElementById("hfSearchID" + i).value;
+    var lsItem = a[i].children[1];
+    //txtValue = a[i].innerText + " " + document.getElementById("hfSearchID" + i).value;
+    txtValue = a[i].innerText +" " + lsItem.value;
+
+    // txtValue = a[i].innerText + " " + document.getElementById("hfSearchID" + i).value;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       a[i].style.display = "";
     } else {
@@ -134,11 +138,15 @@ function myChangeEvent() {
   var hfid = "";
   var productList = [];
   var prodCnt = 0;
+  var displayCnt = 0;
   var callCount = 1;
   for (i = 0; i < a.length; i++) {
-    txtValue = a[i].innerText + " " + document.getElementById("hfSearchID" + i).value;
+    var lsItem = a[i].children[1];
+    //txtValue = a[i].innerText + " " + document.getElementById("hfSearchID" + i).value;
+    txtValue = a[i].innerText +" " + lsItem.value;
     //    txtValue = a[i].textContent || a[i].innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      displayCnt = displayCnt + 1;
       noFlag = true;;
       a[i].style.display = "";
       hfid = a[i].getElementsByTagName("input")[0];
@@ -167,6 +175,9 @@ function myChangeEvent() {
   console.log("before display none");
   document.getElementById("idItem").style.display = "none";
   document.getElementById("myInput").children[0].blur();
+  document.getElementById("itemCnt").innerHTML = displayCnt +" Items" ;
+
+
   // myDropdown.classList.remove("show");
   // serachDiv.classList.remove("open");
 }
@@ -183,7 +194,7 @@ function RenderProductByProducrID(productList, callCount) {
     var selectedindex = -1;
     var selectdedItem;
     //productCategory.push('All');
-    changes.forEach(change => {
+    changes.forEach(async change => {
       //console.log('in for loop');
       var pCategory = change.data().productType;
       //productCategory.push(pCategory)
@@ -200,8 +211,67 @@ function RenderProductByProducrID(productList, callCount) {
         selectdedItem = null;
       }
       // console.log("before call 1");
-      renderProductNew(change, index);
-      index = index + 1;
+      ////////////////////
+
+      var docPurchase = await db.collection("PurchaseBook").where("ProductId", "==", change.id).orderBy('CreatedTimestamp', 'desc').limit(10);
+      docPurchase.onSnapshot((docP) => {
+        qtyP = 0;
+        prizeP = 0;
+        dateP = "";
+        dateN = "";
+        avgPrize = 0;
+        index1 = 0;
+        productPurchase = "";
+        dateDisplay = undefined;
+        docP.forEach(changeP => {
+          // dateP = new Date(changeP.data().CreatedTimestamp * 1000);
+          dateP = changeP.data().CreatedTimestamp.toDate();
+          var qtyIn = changeP.data().QuantityPurchased;
+          if (qtyIn > 0) {
+            if (index1 != 0) {
+              if (dateP.getDate() === dateN.getDate() && dateP.getMonth() === dateN.getMonth() && dateP.getYear() === dateN.getYear()) {
+                qtyP = Number(qtyP) + Number(changeP.data().QuantityPurchased);
+                prizeP = Number(prizeP) + (Number(changeP.data().UnitPrize * Number(changeP.data().QuantityPurchased)));
+              }
+
+            } else {
+              dateDisplay = dateP;
+              qtyP = Number(qtyP) + Number(changeP.data().QuantityPurchased);
+              prizeP = Number(prizeP) + (Number(changeP.data().UnitPrize * Number(changeP.data().QuantityPurchased)));
+            }
+            dateN = dateP;
+            index1 = index1 + 1;
+          }
+
+        });
+        avgPrize = Number(prizeP) / Number(qtyP);
+        //console.log("avgPrize", avgPrize);
+        if (avgPrize > 0) {
+          productPurchase = {
+            productID: change.id,
+            displayDate: dateDisplay,
+            Quantity: qtyP,
+            AvgPrize: avgPrize
+          };
+        } else {
+          productPurchase = {
+            productID: change.id,
+            displayDate: '',
+            Quantity: 0,
+            AvgPrize: 0
+          };
+        }
+
+
+        renderProductNew(change, index, productPurchase);
+        index = index + 1;
+      });
+
+
+
+
+      // renderProductNew(change, index);
+      // index = index + 1;
     });
   });
 
@@ -237,7 +307,63 @@ function showItem(itemname) {
       document.getElementById("productRow").innerHTML = "";
       // console.log("before call 2");
 
-      renderProductNew(doc, 0);
+      ////////////////////
+
+      var docPurchase = await db.collection("PurchaseBook").where("ProductId", "==", doc.id).orderBy('CreatedTimestamp', 'desc').limit(10);
+      docPurchase.onSnapshot((docP) => {
+        qtyP = 0;
+        prizeP = 0;
+        dateP = "";
+        dateN = "";
+        avgPrize = 0;
+        index1 = 0;
+        productPurchase = "";
+        dateDisplay = undefined;
+        docP.forEach(changeP => {
+          // dateP = new Date(changeP.data().CreatedTimestamp * 1000);
+          dateP = changeP.data().CreatedTimestamp.toDate();
+          var qtyIn = changeP.data().QuantityPurchased;
+          if (qtyIn > 0) {
+            if (index1 != 0) {
+              if (dateP.getDate() === dateN.getDate() && dateP.getMonth() === dateN.getMonth() && dateP.getYear() === dateN.getYear()) {
+                qtyP = Number(qtyP) + Number(changeP.data().QuantityPurchased);
+                prizeP = Number(prizeP) + (Number(changeP.data().UnitPrize * Number(changeP.data().QuantityPurchased)));
+              }
+
+            } else {
+              dateDisplay = dateP;
+              qtyP = Number(qtyP) + Number(changeP.data().QuantityPurchased);
+              prizeP = Number(prizeP) + (Number(changeP.data().UnitPrize * Number(changeP.data().QuantityPurchased)));
+            }
+            dateN = dateP;
+            index1 = index1 + 1;
+          }
+
+        });
+        avgPrize = Number(prizeP) / Number(qtyP);
+        console.log("avgPrize", avgPrize);
+        if (avgPrize > 0) {
+          productPurchase = {
+            productID: doc.id,
+            displayDate: dateDisplay,
+            Quantity: qtyP,
+            AvgPrize: avgPrize
+          };
+        } else {
+          productPurchase = {
+            productID: doc.id,
+            displayDate: '',
+            Quantity: 0,
+            AvgPrize: 0
+          };
+        }
+
+
+        renderProductNew(doc, 0, productPurchase);
+//        index = index + 1;
+      });
+
+      //renderProductNew(doc, 0);
       document.getElementById("idItem").style.display = "none";
       document.getElementById("myInput").children[0].blur();
 
@@ -246,10 +372,11 @@ function showItem(itemname) {
   });
 }
 
-function populateProductData(bType, pType) {
+async function populateProductData(bType, pType) {
   console.log('populateProductData', bType, pType);
   buisinessType = bType;
   productType = pType;
+  var productPurchase;
   //var DBrows = db.collection("Products").where("OrganizationId", "==", Number(organizationid)).get();
   var divPType = document.getElementById('productCategory');
   var divPList = document.getElementById('productRow');
@@ -281,22 +408,22 @@ function populateProductData(bType, pType) {
     if (filter === "All") {
       DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Low") {
-      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", "<", 20).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", "<", 20).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Medium") {
-      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "High") {
-      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     }
   } else if ((pType != '' && pType != 'All') && (bType === '' || bType === 'All')) //select one customer businessType
   {
     if (filter === "All") {
       DBrows = db.collection("Products").where("productType", "==", pType).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Low") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", "<", 20).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", "<", 20).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Medium") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "High") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", ">=", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", ">=", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     }
   } else if ((pType != '' && pType != 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
@@ -304,26 +431,29 @@ function populateProductData(bType, pType) {
     if (filter === "All") {
       DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Low") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", "<", 20).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", "<", 20).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Medium") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "High") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 50).orderBy("Status").orderBy("AvailableQuantity").orderBy('CreatedTimestamp', 'desc').get();
     }
   }
-//  console.log(DBrows);
+  //  console.log(DBrows);
   // DBrows.then((changes) => {
   DBrows.then((snapshot) => {
     //let changes = snapshot.docChanges();
 
     var item = [];
     var index = 0;
+    var index1 = 0;
     var selectedindex = -1;
     var selectdedItem;
     productCategory.push('All');
     var productName = "";
     var searchKey = "";
-    snapshot.forEach(change => {
+    var lastPurchasedBy = "";
+    productPurchase = "";
+    snapshot.forEach(async (change) => {
       //if (change.type == 'added')
       {
         var pCategory = change.data().productType;
@@ -336,9 +466,11 @@ function populateProductData(bType, pType) {
       } else {
         searchKey = change.data().SearchKey;
       }
+      // productPurchase = await getPurchaseDetails(change.id);
+      ///////////////////
+      // if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
+      if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All') && filter === 'All' && flagSearch === true)
 
-      //console.log(change.doc.data());
-      if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
       {
         var anchorB = document.createElement("button");
         anchorB.setAttribute("onclick", "showItem('" + change.id + "')");
@@ -361,12 +493,86 @@ function populateProductData(bType, pType) {
         document.getElementById("idItem").appendChild(anchorB);
       }
       // console.log("before call 3");
+      ////////////////////
 
-      renderProductNew(change, index);
-      index = index + 1;
+      var docPurchase = await db.collection("PurchaseBook").where("ProductId", "==", change.id).orderBy('CreatedTimestamp', 'desc').limit(10);
+      docPurchase.onSnapshot((docP) => {
+        qtyP = 0;
+        prizeP = 0;
+        dateP = "";
+        dateN = "";
+        avgPrize = 0;
+        index1 = 0;
+        productPurchase = "";
+        dateDisplay = undefined;
+        docP.forEach(changeP => {
+          // dateP = new Date(changeP.data().CreatedTimestamp * 1000);
+          dateP = changeP.data().CreatedTimestamp.toDate();
+          var qtyIn = changeP.data().QuantityPurchased;
+          if (qtyIn > 0) {
+            if (index1 != 0) {
+              if (dateP.getDate() === dateN.getDate() && dateP.getMonth() === dateN.getMonth() && dateP.getYear() === dateN.getYear()) {
+                qtyP = Number(qtyP) + Number(changeP.data().QuantityPurchased);
+                prizeP = Number(prizeP) + (Number(changeP.data().UnitPrize * Number(changeP.data().QuantityPurchased)));
+              }
+
+            } else {
+              lastPurchasedBy = changeP.data().CreatedBy;
+              dateDisplay = dateP;
+              qtyP = Number(qtyP) + Number(changeP.data().QuantityPurchased);
+              prizeP = Number(prizeP) + (Number(changeP.data().UnitPrize * Number(changeP.data().QuantityPurchased)));
+            }
+            dateN = dateP;
+            index1 = index1 + 1;
+          }
+
+        });
+        avgPrize = Number(prizeP) / Number(qtyP);
+        // console.log("avgPrize", avgPrize);
+        if (avgPrize > 0) {
+          productPurchase = {
+            lastPurchasedBy : lastPurchasedBy,
+            productID: change.id,
+            displayDate: dateDisplay,
+            Quantity: qtyP,
+            AvgPrize: avgPrize
+          };
+        } else {
+          productPurchase = {
+            lastPurchasedBy : '',
+            productID: change.id,
+            displayDate: '',
+            Quantity: 0,
+            AvgPrize: 0
+          };
+        }
+
+
+        renderProductNew(change, index, productPurchase);
+        index = index + 1;
+        document.getElementById("itemCnt").innerHTML = index + " Items";
+
+        if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All') && filter === 'All' && flagSearch === true) {
+          flagSearch = false;
+        }
+        if (filter === 'overbooked' || filter === 'noinventory' || filter === "lowinventory" || filter === 'highinventory') {
+          filter = "All";
+          pType = '';
+          bType = '';
+
+          document.getElementById("allAnchor").setAttribute("class", "");
+          document.getElementById("VegetableAnchor").setAttribute("class", "");
+          document.getElementById("FruitAnchor").setAttribute("class", "");
+
+        }
+
+      });
+      console.log("test", index);
+      document.getElementById("itemCnt").innerHTML = index + " Items";
 
     });
     document.getElementById("itemCnt").innerHTML = index + " Items";
+
     var unique = productCategory.filter(onlyUnique);
     renderProductCategory(unique, pType);
     document.getElementById("categoryCnt").value = unique.length;
@@ -377,7 +583,70 @@ function populateProductData(bType, pType) {
     //  });
   });
 }
-
+//
+// async function getPurchaseDetails(productID)
+// {
+//   var qtyP = 0;
+//   var prizeP = 0;
+//   var dateP;
+//   var dateN;
+//   var avgPrize = 0;
+//   var index = 0;
+//   var dateDisplay;
+//
+//   var docPurchase = await db.collection("PurchaseBook").where("ProductId", "==", productID).orderBy('CreatedTimestamp', 'desc').limit(10);
+//   docPurchase.onSnapshot((docP) => {
+//      qtyP = 0;
+//      prizeP = 0;
+//      dateP = "";
+//      dateN = "";
+//      avgPrize = 0;
+//      index = 0;
+//      dateDisplay = undefined;
+//     docP.forEach(changeP => {
+//       // dateP = new Date(changeP.data().CreatedTimestamp.seconds * 1000);
+//       dateP = changeP.data().CreatedTimestamp.toDate();
+//       console.log(dateP);
+//       var qtyIn = changeP.data().QuantityPurchased;
+//       if (qtyIn > 0) {
+//         if (index != 0) {
+//           if (dateP.getDate() === dateN.getDate() && dateP.getMonth() === dateN.getMonth() && dateP.getYear() === dateN.getYear()) {
+//             qtyP = Number(qtyP) + Number(changeP.data().QuantityPurchased);
+//             prizeP = Number(prizeP) + Number(changeP.data().UnitPrize);
+//           }
+//
+//         } else {
+//           dateDisplay = dateP;
+//           qtyP = Number(qtyP) + Number(changeP.data().QuantityPurchased);
+//           prizeP = Number(prizeP) + Number(changeP.data().UnitPrize);
+//         }
+//         dateN = dateP;
+//         index = index + 1;
+//       }
+//
+//     });
+//     console.log(productID);
+//     console.log(dateDisplay);
+//     console.log(qtyP);
+//     console.log(prizeP);
+//     avgPrize = Number(prizeP) / Number(qtyP);
+//
+//       var purchaseDetails  ;
+//       if(dateDisplay != undefined)
+//       {
+//         return ({
+//           productID : productID,
+//           displayDate :dateDisplay,
+//           Quantity :  qtyP,
+//           AvgPrize :avgPrize
+//         })
+//       }
+//       else {
+//         return 0;
+//       }
+//   });
+//
+// }
 function onlyUnique(value, index, self) {
   return self.indexOf(value) === index;
 }
@@ -540,15 +809,30 @@ function changeFilter() {
   populateProductData(buisinessType, productType);
 }
 
-function renderProductNew(doc, index) {
-  // console.log(doc, index);
+function renderProductNew(doc, index, productPurchase) {
+
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
+
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+
+  // console.log(productPurchase);
+  //if(productPurchase != 0 )
+
+  // cons
   var productlist = doc.data().ProductDetails;
   var productWeightUnit = doc.data().ProductWeightUnit;
-  if(productWeightUnit === undefined)
-  {
-      productWeightUnit = productlist[0].ProductWeight.split(" ")[1];
+  if (productWeightUnit === undefined) {
+    productWeightUnit = productlist[0].ProductWeight.split(" ")[1];
   }
-  // console.log( productWeightUnit);
   var div1 = document.createElement("div");
   div1.setAttribute("class", "col-sm-12");
   div1.setAttribute("id", "mainDiv" + index);
@@ -558,7 +842,6 @@ function renderProductNew(doc, index) {
 
   var table1 = document.createElement("table");
   table1.setAttribute("width", "100%");
-
   var tr1 = document.createElement("tr");
 
   var td1 = document.createElement("td");
@@ -570,6 +853,12 @@ function renderProductNew(doc, index) {
   hfID.setAttribute("type", "hidden");
   hfID.setAttribute("value", doc.id);
   td1.appendChild(hfID);
+
+  var hfUnit = document.createElement("input");
+  hfUnit.setAttribute("id", "hfUnit" + index);
+  hfUnit.setAttribute("type", "hidden");
+  hfUnit.setAttribute("value", productWeightUnit);
+  td1.appendChild(hfUnit);
 
   var s1 = document.createElement("small");
   s1.setAttribute("class", "product-names");
@@ -583,7 +872,6 @@ function renderProductNew(doc, index) {
   s2.setAttribute("style", "font-size: 0.8rem; color: rgba(0,0,0,0.5);");
   s2.innerHTML = doc.data().Brand;
   td1.appendChild(s2);
-
 
   var img1 = document.createElement("img");
   img1.setAttribute("src", doc.data().ProductImageURL);
@@ -604,10 +892,229 @@ function renderProductNew(doc, index) {
   div3.setAttribute("style", "padding: 0 5px;");
 
   var div4 = document.createElement("div");
-  div4.setAttribute("class", "col-6");
-  div4.setAttribute("style", "padding: 0 5px;pointer-events: none");
+  div4.setAttribute("class", "col-sm-12");
 
-  var input1 = document.createElement("input");
+  var ta = document.createElement("textarea");
+  ta.setAttribute("name", "");
+  ta.setAttribute("placeholder", "Purchased from");
+  ta.setAttribute("style", "width: 100%;resize: none;outline:none;height: 30px;padding: 0 10px;color: #666;border:none;border:1px solid #ddd;");
+  ta.setAttribute("id", "purchanshedFrom" + index);
+  ta.setAttribute("maxLength", "20");
+
+  div4.appendChild(ta);
+  div3.appendChild(div4);
+
+
+  var divA = document.createElement("div");
+  divA.setAttribute("class", "col-12");
+  divA.setAttribute("style", "display:flex;justify-content: space-between; align-items: center;");
+
+  var hfA1 = document.createElement("input");
+  hfA1.setAttribute("type", "hidden");
+  hfA1.setAttribute("id", "lstDate" + index);
+  if (productPurchase.Quantity === 0) {
+    hfA1.setAttribute("value", "");
+  }
+  else {
+
+    hfA1.setAttribute("value", productPurchase.displayDate);
+  }
+  divA.appendChild(hfA1);
+
+  var hfA2 = document.createElement("input");
+  hfA2.setAttribute("type", "hidden");
+  hfA2.setAttribute("id", "lstQty" + index);
+  hfA2.setAttribute("value", productPurchase.Quantity);
+  divA.appendChild(hfA2);
+
+
+  var hfA3 = document.createElement("input");
+  hfA3.setAttribute("type", "hidden");
+  hfA3.setAttribute("id", "lstAvg" + index);
+  hfA3.setAttribute("value", productPurchase.AvgPrize);
+  divA.appendChild(hfA3);
+
+  var msgA = document.createElement("small");
+  msgA.setAttribute("style", "color:red;font-size: 0.7rem;");
+  msgA.setAttribute("id", "msgP" + index);
+  if (productPurchase.Quantity === 0) {
+    msgA.innerHTML = "<strong>Last purchashed on : NA";
+  } else {
+    msgA.innerHTML = "<strong>Last purchashed on : " + productPurchase.displayDate.toLocaleDateString("en-US", options) +
+      " <br>" + productPurchase.Quantity + " " + productWeightUnit + " @ " + Number(productPurchase.AvgPrize).toLocaleString('en-IN', curFormat) +
+       "<br> Last Purchased By : " +productPurchase.lastPurchasedBy +"</strong>";
+  }
+  divA.appendChild(msgA);
+  div3.appendChild(divA);
+
+
+
+  var div5 = document.createElement("div");
+  div5.setAttribute("class", "col-6");
+
+  var s7 = document.createElement("small");
+  s7.setAttribute("style", "color:#666;font-size: 0.7rem;margin: 0;");
+  s7.innerHTML = "Price per " + productWeightUnit;
+  div5.appendChild(s7);
+
+  var div6 = document.createElement("div");
+  div6.setAttribute("class", "inventory-scrap-input");
+  div6.setAttribute("style", "margin:0;");
+
+  var span11 = document.createElement("span");
+  span11.setAttribute("style", "font-size: 2rem; color: #666;");
+  span11.innerHTML = "₹";
+  div6.appendChild(span11);
+
+  var input11 = document.createElement("input");
+  input11.setAttribute("maxlength", "4");
+  input11.setAttribute("style", "width: 80%;font-size: 2rem;");
+  input11.setAttribute("oninput", "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);");
+  input11.setAttribute("placeholder", "0");
+  input11.setAttribute("type", "number");
+  input11.setAttribute("readonly", "true");
+
+  // input11.setAttribute("name", "");
+  //input11.setAttribute("value", "");
+  input11.setAttribute("min", "0");
+  input11.setAttribute("id", "unitPrize" + index);
+
+  div6.appendChild(input11);
+
+  div5.appendChild(div6);
+  div3.appendChild(div5);
+
+  var div7 = document.createElement("div");
+  div7.setAttribute("class", "col-6");
+
+  var s8 = document.createElement("small");
+  s8.setAttribute("style", "color:#666;font-size: 0.7rem;");
+  s8.innerHTML = "Quantity";
+  div7.appendChild(s8);
+
+  var div8 = document.createElement("div");
+  div8.setAttribute("class", "inventory-scrap-input");
+
+  var input21 = document.createElement("input");
+  input21.setAttribute("maxlength", "4");
+  input21.setAttribute("style", "width: 80%;font-size: 2rem;");
+  input21.setAttribute("oninput", "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);");
+  input21.setAttribute("placeholder", "0");
+  input21.setAttribute("type", "number");
+
+  input21.setAttribute("readonly", "true");
+  // input21.setAttribute("value", "");
+  input21.setAttribute("min", "0");
+  input21.setAttribute("id", "quantity" + index);
+
+  div8.appendChild(input21);
+  div7.appendChild(div8);
+  div3.appendChild(div7);
+
+
+  var div9 = document.createElement("div");
+  div9.setAttribute("class", "col-12");
+  div9.setAttribute("style", "display:flex;justify-content: space-between; align-items: center;");
+
+  var div10 = document.createElement("div");
+  div10.setAttribute("class", "");
+
+  var s9 = document.createElement("small");
+  s9.setAttribute("style", "color:#666;font-size: 0.8rem;");
+  s9.innerHTML = "Available Qty :  ";
+
+  var span31 = document.createElement("span");
+  span31.setAttribute("id", "quantityDisplay" + index);
+  var availableQuantity;
+  if (doc.data().AvailableQuantity === undefined) {
+    availableQuantity = 0;
+  } else {
+    availableQuantity = doc.data().AvailableQuantity;
+  }
+
+  if (Number(availableQuantity) < 20) {
+    span31.setAttribute("style", "font-size: 1.4rem;color: red;font-weight: bold;");
+  } else if (availableQuantity < 50) {
+    span31.setAttribute("style", "font-size: 1.4rem;color: orange;font-weight: bold;");
+  } else {
+    span31.setAttribute("style", "font-size: 1.4rem;color: #88CA5E;font-weight: bold;");
+  }
+  span31.innerHTML = availableQuantity + " " + productWeightUnit;
+  s9.appendChild(span31);
+  div10.appendChild(s9);
+
+  var hfQty = document.createElement("input");
+  hfQty.setAttribute("id", "hfAvailableQty" + index);
+  hfQty.setAttribute("type", "hidden");
+  hfQty.setAttribute("value", availableQuantity);
+  div10.appendChild(hfQty);
+
+  div9.appendChild(div10);
+
+  div3.appendChild(div9);
+
+
+  var div11 = document.createElement("div");
+  div11.setAttribute("class", "col-12");
+  div11.setAttribute("style", "display:flex;justify-content: space-between; align-items: center;");
+
+  var msg = document.createElement("small");
+  msg.setAttribute("style", "color:red;font-size: 0.7rem;");
+  msg.setAttribute("id", "msg" + index);
+  msg.innerHTML = "";
+  div11.appendChild(msg);
+
+
+  var button = document.createElement("button");
+  button.setAttribute("class", "mybutton button5");
+  button.setAttribute("style", "width: 80px;");
+  button.setAttribute("id", "btnSave" + index);
+  button.setAttribute("onclick", "SetPurchaseDetails(" + index + ")");
+
+  button.innerHTML = "Add";
+  div11.appendChild(button);
+  div3.appendChild(div11);
+
+  td2.appendChild(div3);
+  tr1.appendChild(td2);
+  table1.appendChild(tr1);
+  div2.appendChild(table1);
+
+  div1.appendChild(div2);
+
+  document.getElementById("productRow").appendChild(div1);
+
+}
+
+function renderProductNewOld(doc, index) {
+
+
+  //
+  // div3.appendChild(div8);
+  //
+  //
+  // div3.appendChild(div10);
+
+
+
+  div3.appendChild(div12);
+
+  var divMsg = document.createElement("div");
+  divMsg.setAttribute("class", "col-12");
+
+  divMsg.appendChild(msg);
+  div3.appendChild(divMsg);
+
+  td2.appendChild(div3);
+
+  tr1.appendChild(td2);
+  table1.appendChild(tr1);
+
+  div2.appendChild(table1);
+  div1.appendChild(div2);
+
+
+  /*var input1 = document.createElement("input");
   input1.setAttribute("type", "radio");
   if(productWeightUnit.toUpperCase() === "KG")
     input1.setAttribute("checked", true);
@@ -744,156 +1251,56 @@ function renderProductNew(doc, index) {
 
   div7.appendChild(l4);
   div3.appendChild(div7);
+*/
 
-  var div8 = document.createElement("div");
-  div8.setAttribute("class", "col-6");
-
-  var s7 = document.createElement("small");
-  s7.setAttribute("style", "color:#666;font-size: 0.7rem;margin: 0;");
-  s7.innerHTML = "Price per unit";
-  div8.appendChild(s7);
-
-  var div9 = document.createElement("div");
-  div9.setAttribute("class", "inventory-scrap-input");
-  div9.setAttribute("style", "margin:0;");
-
-  var span11 = document.createElement("span");
-  span11.setAttribute("style", "font-size: 2rem; color: #666;");
-  span11.innerHTML = "₹";
-  div9.appendChild(span11);
-
-  var input11 = document.createElement("input");
-  input11.setAttribute("maxlength", "4");
-  input11.setAttribute("style", "width: 80%;font-size: 2rem;");
-  input11.setAttribute("oninput", "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);");
-  input11.setAttribute("placeholder", "0");
-  input11.setAttribute("type", "number");
-  input11.setAttribute("readonly", "true");
-
-  // input11.setAttribute("name", "");
-  //input11.setAttribute("value", "");
-  input11.setAttribute("min", "0");
-  input11.setAttribute("id", "unitPrize" + index);
-
-  div9.appendChild(input11);
-  div8.appendChild(div9);
-  div3.appendChild(div8);
-
-  var div10 = document.createElement("div");
-  div10.setAttribute("class", "col-6");
-
-  var s8 = document.createElement("small");
-  s8.setAttribute("style", "color:#666;font-size: 0.7rem;");
-  s8.innerHTML = "Quantity";
-  div10.appendChild(s8);
-
-  var div11 = document.createElement("div");
-  div11.setAttribute("class", "inventory-scrap-input");
-
-  var input21 = document.createElement("input");
-  input21.setAttribute("maxlength", "4");
-  input21.setAttribute("style", "width: 80%;font-size: 2rem;");
-  input21.setAttribute("oninput", "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);");
-  input21.setAttribute("placeholder", "0");
-  input21.setAttribute("type", "number");
-
-  input21.setAttribute("readonly", "true");
-  // input21.setAttribute("value", "");
-  input21.setAttribute("min", "0");
-  input21.setAttribute("id", "quantity" + index);
-
-  div11.appendChild(input21);
-  div10.appendChild(div11);
-  div3.appendChild(div10);
-
-  var div12 = document.createElement("div");
-  div12.setAttribute("class", "col-12");
-  div12.setAttribute("style", "display:flex;justify-content: space-between; align-items: center;");
-
-  var div13 = document.createElement("div");
-  div13.setAttribute("class", "");
-
-  var s9 = document.createElement("small");
-  s9.setAttribute("style", "color:#666;font-size: 0.8rem;");
-  s9.innerHTML = "Available Qty :  ";
-
-  var span31 = document.createElement("span");
-  span31.setAttribute("id", "quantityDisplay" + index);
-  var availableQuantity;
-  if (doc.data().AvailableQuantity === undefined) {
-    availableQuantity = 0;
-  } else {
-    availableQuantity = doc.data().AvailableQuantity;
-  }
-  if (Number(availableQuantity) < 20) {
-    span31.setAttribute("style", "font-size: 1.4rem;color: red;font-weight: bold;");
-  } else if (availableQuantity < 50) {
-    span31.setAttribute("style", "font-size: 1.4rem;color: orange;font-weight: bold;");
-  } else {
-    span31.setAttribute("style", "font-size: 1.4rem;color: #88CA5E;font-weight: bold;");
-  }
-  span31.innerHTML = availableQuantity;
-
-  s9.appendChild(span31);
-  div13.appendChild(s9);
-
-  div12.appendChild(div13);
-
-  var button = document.createElement("button");
-  button.setAttribute("class", "mybutton button5");
-  button.setAttribute("style", "width: 80px;");
-  button.setAttribute("id", "btnSave" + index);
-  button.setAttribute("onclick", "SetPurchaseDetails(" + index + ")");
-
-  button.innerHTML = "Add";
-  div12.appendChild(button);
-
-  div3.appendChild(div12);
-
-  var divMsg = document.createElement("div");
-  divMsg.setAttribute("class", "col-12");
-
-  var msg = document.createElement("small");
-  msg.setAttribute("style", "color:red;font-size: 0.7rem;");
-  msg.setAttribute("id", "msg" + index);
-  msg.innerHTML = "";
-  divMsg.appendChild(msg);
-  div3.appendChild(divMsg);
-
-  td2.appendChild(div3);
-
-  tr1.appendChild(td2);
-  table1.appendChild(tr1);
-
-  div2.appendChild(table1);
-  div1.appendChild(div2);
-
-  document.getElementById("productRow").appendChild(div1);
 }
 
 function SetPurchaseDetails(index) {
   // console.log(index);
   var hfid = document.getElementById("hfID" + index);
-  var cbKG = document.getElementById("KG" + index);
-  var cbDozen = document.getElementById("Dozen" + index);
-  var cbPiece = document.getElementById("Piece" + index);
-  var cbQuintal = document.getElementById("Quintal" + index);
+  var hfunit = document.getElementById("hfUnit" + index);
+  // var hfunit = document.getElementById("hfUnit" + index);
+  //
+  // var cbKG = document.getElementById("KG" + index);
+  // var cbDozen = document.getElementById("Dozen" + index);
+  // var cbPiece = document.getElementById("Piece" + index);
+  // var cbQuintal = document.getElementById("Quintal" + index);
   var inputunitPrize = document.getElementById("unitPrize" + index);
   var inputquantity = document.getElementById("quantity" + index);
+  var purchanshedFrom = document.getElementById("purchanshedFrom" + index);
+  var hfAvailableQty = document.getElementById("hfAvailableQty" + index);
   var inputquantityDisplay = document.getElementById("quantityDisplay" + index);
   var btnSave = document.getElementById("btnSave" + index);
   var msg = document.getElementById("msg" + index);
   var unit = "";
-  if (cbKG.checked) {
-    unit = "KG";
-  } else if (cbDozen.checked) {
-    unit = "Dozen";
-  } else if (cbPiece.checked) {
-    unit = "Piece";
-  } else if (cbQuintal.checked) {
-    unit = "Quintal";
-  }
+  var purchashedfrom = document.getElementById("purchanshedFrom" + index);
+  var lastDate = document.getElementById("lstDate" + index);
+  var lstQty = document.getElementById("lstQty" + index);
+  var lstAvg = document.getElementById("lstAvg" + index);
+  var msgP = document.getElementById("msgP" + index);
 
+/*
+msgA.setAttribute("id", "msgP" + index);
+if (productPurchase.Quantity === 0) {
+  msgA.innerHTML = "<strong>Last purchashed on : NA";
+} else {
+  msgA.innerHTML = "<strong>Last purchashed on : " + productPurchase.displayDate.toLocaleDateString("en-US", options) +
+    " <br>" + productPurchase.Quantity + " " + productWeightUnit + " @ " + Number(productPurchase.AvgPrize).toLocaleString('en-IN', curFormat); + "</strong>";
+}
+
+*/
+    var curFormat = { style: 'currency',
+          currency: 'INR',
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 2 };
+
+    var options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    };
+
+  unit = hfunit.value;
   var newQty = 0;
   if (btnSave.innerHTML === 'Add') {
     btnSave.innerHTML = "Save";
@@ -931,8 +1338,44 @@ function SetPurchaseDetails(index) {
 
     } else {
       btnSave.innerHTML = "Add";
-      newQty = Number(inputquantityDisplay.innerHTML) + Number(inputquantity.value);
-      inputquantityDisplay.innerHTML = newQty;
+      var today = new Date().toLocaleDateString("en-US", options);
+
+      console.log(inputquantityDisplay.innerHTML);
+      console.log(inputquantity.value);
+      console.log(hfid.value);
+      console.log(hfAvailableQty.value);
+      newQty = Number(hfAvailableQty.value) + Number(inputquantity.value);
+      console.log(newQty);
+      inputquantityDisplay.innerHTML = newQty + " " + unit;
+      var qty11 = "";
+      var prize11 = "";
+      var avg11 = "";
+      console.log(today);
+      console.log(lastDate);
+      if(today === new Date(lastDate.value).toLocaleDateString("en-US", options))
+      {
+        qty11 = Number(lstQty.value) +  newQty;
+        prize11 = Number(lstAvg.value) * Number(lstQty.value) +  newQty * Number(inputunitPrize.value);
+        avg11 =  Number(prize11)/Number(qty11);
+
+//        var lastDate = document.getElementById("lstDate" + index);
+        lstQty.value = qty11;
+        lstAvg.value = avg11
+
+      }
+      else {
+        qty11 = Number(inputquantity.value);
+        prize11 =   Number(inputquantity.value) * Number(inputunitPrize.value);
+        avg11 =  Number(inputunitPrize.value);
+
+        lstQty.value = qty11;
+        lstAvg.value = avg11 ;
+        lastDate.value = new Date();
+
+      }
+
+      msgP.innerHTML = "<strong>Last purchashed on : " + today +
+        " <br>" + qty11 + " " + unit + " @ " + Number(avg11).toLocaleString('en-IN', curFormat); + "</strong>";
 
       if (newQty < 20) {
         inputquantityDisplay.setAttribute("style", "font-size: 1.4rem;color: red;font-weight: bold;")
@@ -950,6 +1393,7 @@ function SetPurchaseDetails(index) {
           Unit: unit,
           UnitPrize: Number(inputunitPrize.value),
           QuantityPurchased: Number(inputquantity.value),
+          PurchashedFrom: purchashedfrom.value,
           CreatedBy: auth.currentUser.email,
           CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
 
@@ -960,14 +1404,14 @@ function SetPurchaseDetails(index) {
           console.log(inputunitPrize.value);
           db.collection("Products").doc(hfid.value).update({
               AvailableQuantity: firebase.firestore.FieldValue.increment(Number(inputquantity.value)),
-              UnitPrice : Number(inputunitPrize.value)
+              UnitPrice: Number(inputunitPrize.value)
             })
             .then(function(docRef1) {
 
               const snapshot = db.collection('ProductsInventory').doc(hfid.value);
               snapshot.get().then((doc1) => {
                 if (doc1.exists) {
-                   console.log( 'if doc exists'  );
+                  console.log('if doc exists');
                   db.collection("ProductsInventory").doc(hfid.value).update({
                       AvailableQuantity: firebase.firestore.FieldValue.increment(Number(inputquantity.value)),
                       LastUpdatedBy: auth.currentUser.email,
@@ -981,7 +1425,7 @@ function SetPurchaseDetails(index) {
                       console.error("error adding document:", error2);
                     });
                 } else {
-                   console.log( 'if doc not exists'  );
+                  console.log('if doc not exists');
                   db.collection("ProductsInventory").doc(hfid.value).set({
                       AvailableQuantity: Number(inputquantity.value),
                       LastUpdatedBy: auth.currentUser.email,
@@ -1002,8 +1446,8 @@ function SetPurchaseDetails(index) {
               console.error("error adding document:", error1);
             });
 
-            inputunitPrize.value = 0;
-            inputquantity.value = 0;
+          inputunitPrize.value = 0;
+          inputquantity.value = 0;
 
         })
         .catch(function(error) {

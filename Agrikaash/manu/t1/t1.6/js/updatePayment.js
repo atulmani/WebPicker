@@ -197,7 +197,7 @@ function userListChange() {
           var noFlag = true;
           changes.forEach(change => {
             noFlag = false;
-            console.log("in first loop");
+            //console.log("in first loop");
 
             renderOrder(change.data(), change.id, i);
             i = i + 1;

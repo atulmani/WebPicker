@@ -589,11 +589,21 @@ function renderOrder(orderid, order, index) {
   var odeldate = new Date(dt.seconds * 1000);
   var delDate = odeldate.toLocaleDateString("en-US", options);
 
+  var odt = order.orderDate;
+  var oOrderdate = new Date(odt.seconds * 1000);
+  var orderDate = oOrderdate.toLocaleDateString("en-US", options);
+
   var p1 = document.createElement("p");
   p1.setAttribute("class", "small-text dashboard-sub-heading");
   p1.innerHTML = "Delivery: " + delDate + " | " + order.deliveryTime + " - " + order.totalItems + " Items";
-
   div5.appendChild(p1);
+
+
+  var p11 = document.createElement("p");
+  p11.setAttribute("class", "small-text dashboard-sub-heading");
+  p11.innerHTML = "Order Date: " + orderDate;
+
+  div5.appendChild(p11);
   div2.appendChild(div5);
   div1.appendChild(div2);
 
@@ -630,10 +640,6 @@ function renderOrder(orderid, order, index) {
   h3.setAttribute("style", "margin: 0 auto;");
   h3.innerHTML = "Order Date";
   div9.appendChild(h3);
-
-  var odt = order.orderDate;
-  var oOrderdate = new Date(odt.seconds * 1000);
-  var orderDate = oOrderdate.toLocaleDateString("en-US", options);
 
   var small2 = document.createElement("small");
   small2.innerHTML = orderDate;

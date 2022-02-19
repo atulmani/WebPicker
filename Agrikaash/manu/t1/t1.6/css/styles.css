@@ -1191,6 +1191,16 @@ input[type=number] {
   pointer-events: none;
 }
 
+
+.create-product-weight-inventory{
+  position: absolute;
+  left: 25%;
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500px;
+  pointer-events: none;
+}
+
 /* product page - end */
 /* cart page - start */
 .empty-cart {
@@ -2349,11 +2359,11 @@ input[type=number] {
 }
 
 .dashboard-card#cardInventory.active {
-  height: 350px;
+  height: 365px;
 }
 
 .dashboard-card#cardPurchase.active {
-  height: 350px;
+  height: 365px;
 }
 .dashboard-card#productDiv.active {
   height: 512px;
@@ -2361,6 +2371,11 @@ input[type=number] {
 
 .dashboard-card#userRegistration.active {
   height: 400px;
+}
+
+
+.dashboard-card#cardAddress.active {
+  height: 500px;
 }
 
 .dashboard-card.order-status.active {
@@ -2994,6 +3009,12 @@ display: inline-block;
   display: inline-block;
   padding: 2px 5px;
   color: #fff;
+}
+
+.inventory-scrap-input{
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .inventory-scrap-input input{

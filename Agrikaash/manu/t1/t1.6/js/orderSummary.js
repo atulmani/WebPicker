@@ -343,7 +343,7 @@ function getOrderDetails() {
     });
 }
 
-function populateDeliveryAddress(selectedOrder) {
+async function populateDeliveryAddress(selectedOrder) {
   //console.log(document.getElementById('DeliveryDate'));
 
   var options = {
@@ -354,7 +354,7 @@ function populateDeliveryAddress(selectedOrder) {
   var dDate = new Date(selectedOrder.deliveryDate.seconds * 1000);
   var delDate = dDate.toLocaleDateString("en-US", options);
   //document.getElementById('DeliveryDate').innerHTML = delDate;
-
+  document.getElementById("orderID").innerHTML = selectedOrder.orderNumber;
   //document.getElementById('DeliveryTime').innerHTML = selectedOrder.deliveryTime;
   document.getElementById('orderStatus').innerHTML = selectedOrder.orderStatus;
   document.getElementById('PaymentStatus').innerHTML = selectedOrder.paymentStatus;
@@ -385,6 +385,8 @@ function populateDeliveryAddress(selectedOrder) {
   amt = amt.toLocaleString('en-IN', curFormat);
 
   document.getElementById('paymentAmount').innerHTML = amt;
+  document.getElementById('hfpaymentAmount').value = selectedOrder.totalAmount;
+
   //console.log(selectedOrder.discountedprize );
   //console.log(selectedOrder.totalAmount);
   //if (selectedOrder.discountedprize === 'NaN' || selectedOrder.discountedprize === "0" || selectedOrder.discountedprize === "")
@@ -427,7 +429,24 @@ function populateDeliveryAddress(selectedOrder) {
   //console.log(dDate);
   //console.log(tempDate);
   //console.log(selectedOrder.orderStatus);
-
+  if(selectedOrder.paymentStatus === 'Pending')
+  {
+    //get wallet details
+    const snapshot = await db.collection('UserWallet').doc(userID);
+    snapshot.get().then(async (doc1) => {
+      if (doc1.exists) {
+        //console.log(walletDetails);
+        walletamount = doc1.data().WalletAmount;
+        if(Number(walletamount) > 0)
+        {
+         document.getElementById("paymentPendingAmount").innerHTML= amt;
+          document.getElementById("divPayment").style.display = "block";
+          document.getElementById("walletAmount").innerHTML= doc1.data().WalletAmount.toLocaleString('en-IN', curFormat);
+          document.getElementById("hfWalletAmount").value= doc1.data().WalletAmount;
+        }
+      }
+    });
+  }
   //order can be cancelled only if order status is Pending and delivery Date is > todays date
   if (selectedOrder.orderStatus === 'Pending' && dDate >= tempDate) {
     console.log('if enabled');
@@ -444,6 +463,53 @@ function populateDeliveryAddress(selectedOrder) {
     document.getElementById("oDeliveryTime").disabled = true;
 
   }
+}
+function updatePayment()
+{
+  //update payment Status
+  db.collection("OrderDetails").doc(orderID).update({
+      paymentStatus: 'Completed',
+      UpdatedBy: auth.currentUser.email,
+      UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+    })
+    .then(function(docRef) {
+      console.log("Data added sucessfully in the document: " + orderID);
+      var orderChanges = [];
+
+      orderChanges.push({
+        OrderStage: 7,
+        OrderStatus: '',
+        PaymentStatus: 'Payment Status Changed to Completed by User',
+        DeliverySlot: '',
+        DeliveryDate: '',
+        ChangedTimeStamp: new Date()
+      });
+      UpdateOrderTrackingDetails(orderChanges, orderID);
+
+      var amt = document.getElementById('hfpaymentAmount').value
+      updateWalletDetails(userID, Number(amt), 'delete');
+
+      //    window.location.href = "orderStatus.html"
+      // console.log(Date.parse(eventstart))
+      document.getElementById("Message").style.display = "block";
+      // btnTextWithLoader[0].style.display = 'block';
+      // btnLoader[0].style.display = 'none';
+      document.getElementById("btnUpdatePayment").setAttribute("disabled","true");
+      // Hide alert after 3 seconds
+      setTimeout(function() {
+        document.getElementById("Message").style.display = 'none';
+
+      }, 4000);
+      getOrderDetails();
+
+      document.getElementById("PaymentMessage").style.display="block";
+
+    })
+    .catch(function(error) {
+      console.error("error updatign order:", error);
+    });
+
+
 }
 
 function populateOrderItems(selectedOrder) {
