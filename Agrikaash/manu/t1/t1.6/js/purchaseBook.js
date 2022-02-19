@@ -451,6 +451,7 @@ async function populateProductData(bType, pType) {
     productCategory.push('All');
     var productName = "";
     var searchKey = "";
+    var lastPurchasedBy = "";
     productPurchase = "";
     snapshot.forEach(async (change) => {
       //if (change.type == 'added')
@@ -516,6 +517,7 @@ async function populateProductData(bType, pType) {
               }
 
             } else {
+              lastPurchasedBy = changeP.data().CreatedBy;
               dateDisplay = dateP;
               qtyP = Number(qtyP) + Number(changeP.data().QuantityPurchased);
               prizeP = Number(prizeP) + (Number(changeP.data().UnitPrize * Number(changeP.data().QuantityPurchased)));
@@ -529,6 +531,7 @@ async function populateProductData(bType, pType) {
         // console.log("avgPrize", avgPrize);
         if (avgPrize > 0) {
           productPurchase = {
+            lastPurchasedBy : lastPurchasedBy,
             productID: change.id,
             displayDate: dateDisplay,
             Quantity: qtyP,
@@ -536,6 +539,7 @@ async function populateProductData(bType, pType) {
           };
         } else {
           productPurchase = {
+            lastPurchasedBy : '',
             productID: change.id,
             displayDate: '',
             Quantity: 0,
@@ -937,7 +941,8 @@ function renderProductNew(doc, index, productPurchase) {
     msgA.innerHTML = "<strong>Last purchashed on : NA";
   } else {
     msgA.innerHTML = "<strong>Last purchashed on : " + productPurchase.displayDate.toLocaleDateString("en-US", options) +
-      " <br>" + productPurchase.Quantity + " " + productWeightUnit + " @ " + Number(productPurchase.AvgPrize).toLocaleString('en-IN', curFormat); + "</strong>";
+      " <br>" + productPurchase.Quantity + " " + productWeightUnit + " @ " + Number(productPurchase.AvgPrize).toLocaleString('en-IN', curFormat) +
+       "<br> Last Purchased By : " +productPurchase.lastPurchasedBy +"</strong>";
   }
   divA.appendChild(msgA);
   div3.appendChild(divA);
