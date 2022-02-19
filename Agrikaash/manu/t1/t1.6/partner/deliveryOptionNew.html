@@ -484,8 +484,17 @@
               <h4>Pay Later</h4> -->
             </div>
 
+            <!-- <div class="order-summary" id="divPayment" style="display:none;"> -->
+            <div class="delivery-options" id="divPayment" >
+                <input type="hidden" id="hfWalletAmount">
+
+                <input type="radio" checked name="delOption" value="From Wallet" id='PayOption0'>
+                <h4>Wallet Amount :   <span id="walletAmount"></span></h4>
+              </div>
+
+
             <div class="delivery-options">
-              <input type="radio" checked name="delOption" value="Pay Later" id='PayOption1'>
+              <input type="radio" name="delOption" value="Pay Later" id='PayOption1'>
               <span class="material-icons">
                 savings
               </span>
