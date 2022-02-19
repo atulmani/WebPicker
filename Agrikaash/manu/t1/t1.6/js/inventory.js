@@ -278,7 +278,7 @@ function populateProductData(bType, pType) {
   if (filter === "overbooked") {
     DBrows = db.collection("Products").where("AvailableQuantity", "<", 0).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
   } else if (filter === "noinventory") {
-    DBrows = db.collection("Products").where("AvailableQuantity", "==", 0).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+    DBrows = db.collection("Products").where("AvailableQuantity", "==", 0).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
   } else if (filter === "lowinventory") {
     DBrows = db.collection("Products").where("AvailableQuantity", "<", 20).where("AvailableQuantity", ">", 0).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
   } else if (filter === "highinventory") {
@@ -287,7 +287,7 @@ function populateProductData(bType, pType) {
   {
     console.log("in loop1");
     if (filter === "All") {
-      DBrows = db.collection("Products").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Low") {
       DBrows = db.collection("Products").where("AvailableQuantity", "<", 20).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Medium") {
@@ -301,7 +301,7 @@ function populateProductData(bType, pType) {
     console.log("in loop2");
     prodType = ['All', bType]
     if (filter === "All") {
-      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Low") {
       DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", "<", 20).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Medium") {
@@ -313,7 +313,7 @@ function populateProductData(bType, pType) {
   {
     console.log("in loop3 : ", filter);
     if (filter === "All") {
-      DBrows = db.collection("Products").where("productType", "==", pType).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Low") {
       DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", "<", 20).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Medium") {
@@ -326,7 +326,7 @@ function populateProductData(bType, pType) {
     console.log("in loop4");
     prodType = ['All', bType];
     if (filter === "All") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Low") {
       DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", "<", 20).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Medium") {
@@ -673,7 +673,8 @@ function renderProductNew(doc, index) {
   s1.setAttribute("class", "product-names");
   s1.innerHTML = doc.data().ProductName;
   div5.appendChild(s1);
-
+  var b1 = document.createElement("br");
+  div5.appendChild(b1);
 
   var s2 = document.createElement("small");
   s2.setAttribute("style", "font-size: 0.8rem; color: rgba(0,0,0,0.5);");
