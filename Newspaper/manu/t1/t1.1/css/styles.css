@@ -712,6 +712,16 @@ h6{
   font-weight: bolder;
 }
 
+.footer-feild{
+  text-align: left;
+}
+
+@media (max-width: 850px) {
+  .footer-feild{
+    text-align: center;
+  }
+}
+
 .footer-feild h5{
   font-weight:bolder;
 }
