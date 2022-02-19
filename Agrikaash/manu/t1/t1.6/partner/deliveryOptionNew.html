@@ -362,7 +362,7 @@
     </div>
     <!-- side navbar - end -->
 
-      <div class="col-lg-10 col-md-10 col-sm-12">
+    <div class="col-lg-10 col-md-10 col-sm-12">
       <div class="row no-gutters large" style="padding: 2%;">
         <img id="headerProfilePic" src="" style="width: 100px; height: 100px;border-radius: 50%;" alt="">
         <h5 id="displayName"> </h5>
@@ -485,12 +485,15 @@
             </div>
 
             <!-- <div class="order-summary" id="divPayment" style="display:none;"> -->
-            <div class="delivery-options" id="divPayment" >
-                <input type="hidden" id="hfWalletAmount">
 
-                <input type="radio" checked name="delOption" value="From Wallet" id='PayOption0'>
-                <h4>Wallet Amount :   <span id="walletAmount"></span></h4>
-              </div>
+            <div class="delivery-options" id="divPayment">
+              <input type="radio" checked name="delOption" value="From Wallet" id='PayOption0'>
+              <span class="material-icons">
+                account_balance_wallet
+              </span>
+              <h4>Wallet Amount : <span id="walletAmount"></span></h4>
+              <input type="hidden" id="hfWalletAmount">
+            </div>
 
 
             <div class="delivery-options">
@@ -503,7 +506,7 @@
             <div class="delivery-options">
               <input type="radio" name="delOption" value="Cash on Delivery" id='PayOption2'>
               <span class="material-icons">
-                account_balance_wallet
+                shopping_bag
               </span>
               <h4>Cash on Delivery</h4>
             </div>
