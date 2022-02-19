@@ -423,7 +423,7 @@ blink{
 }
 
 .buttonTransparent {
-  background: none;
+  background: #fff;
   border: 1px solid #bbb;
   color: #666;
   border-radius: 20px;
@@ -2344,6 +2344,10 @@ input[type=number] {
   height: 75px;
   overflow-y: hidden;
   transition: 1s;
+}
+
+.dashboard-card.active{
+  background: #d4f2ff;
 }
 
 .dashboard-card#cardOrder.active {
