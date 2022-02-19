@@ -389,6 +389,32 @@
 
               <div class="" style="padding: 10px;">
 
+                <div class="order-summary" id="divPayment" style="display:none;">
+                  <h5 class="small-text" style="margin: 0 auto;">Complete Payment</h5>
+                  <div class="">
+                    <div class="" style="display:flex;justify-content: space-between;">
+                      <div class="">
+
+                        <input id="cbSelect" checked disabled type="checkbox">Pay from Wallet </input><br>
+                        Wallet Amount : <span id="walletAmount">345</span><br>
+                        <input type="hidden" id="hfWalletAmount">
+                        <!-- <span class="walletAmount" id="paymentPendingAmount"></span><br> -->
+                        Payable Amount : <span id="paymentPendingAmount"></span><br>
+                        </div>
+                      <div class="">
+                        <div class="" style="display:flex;align-items:center;justify-content: space-between;padding-top: 10px; ">
+                          <button class="mybutton button5" onClick="updatePayment();" id="btnUpdatePayment" style="padding-bottom: 7px;margin: auto 10px; visibility: visible;">
+                            Update Payment
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="">
+                      <span id="PaymentMessage" style="color: #aaa;font-size:0.9rem; display:none;"> Payment Status Completed</span>
+                    </div>
+                  </div>
+                </div><br>
+
                 <div class="order-summary" id="divCancel" style="display:none;">
                   <h5 class="small-text" style="margin: 0 auto;">Select reason for Cancellation</h5>
                   <div class="">
@@ -530,7 +556,7 @@
 
                       <div class="">
                         <h5 class="small-text" style="margin: 0 auto;">Amount</h5>
-                        <!-- <a href='' id="todayCount">0</a><br> -->
+                        <input type="hidden" id="hfpaymentAmount">
                         <small> <span id="paymentAmount"></span> </small>
                       </div>
                     </div><br>
