@@ -228,6 +228,12 @@ function renderPurchaseBook( purchaseDetails,productName, index) {
 
   div3.appendChild(p1);
 
+  var p11 = document.createElement("p");
+  p11.setAttribute("class", "small-text dashboard-sub-heading");
+  p11.innerHTML = "Puchased By: " + purchaseDetails.CreatedBy;
+
+  div3.appendChild(p11);
+
   div2.appendChild(div3);
 
   div1.appendChild(div2);
