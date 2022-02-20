@@ -112,15 +112,15 @@ function populateInventorySummary() {
 
     });
 
-    document.getElementById("inventoryCnt").innerHTML = positiveCount;
+    document.getElementById("inventoryCnt").innerHTML = negativeCount + zeroCount;
     document.getElementById("overbookedCount").innerHTML = negativeCount;
     document.getElementById("noVolumnCount").innerHTML = zeroCount;
     document.getElementById("lowVolumnCount").innerHTML = lowCount;
     document.getElementById("highVolumnCount").innerHTML = highCount;
 
+    document.getElementById("cardInventory").style.display = "block";
 
   });
-  document.getElementById("cardInventory").style.display = "block";
 
 }
 
@@ -176,6 +176,7 @@ function populatePurchaseSummary() {
   var pName = "";
   var displayamount = "";
   var productID = "";
+  var purchasedon="";
   var DBRows = db.collection('PurchaseBook')
     .where("CreatedTimestamp", ">=", currentMonth)
     .orderBy("CreatedTimestamp", "desc")
@@ -192,7 +193,9 @@ function populatePurchaseSummary() {
           // console.log(change.data().ProductId);
           productID = change.data().ProductId
           lastPurshasedDetails = "(Qty : " + qty + ":: Amount : " + amount.toLocaleString('en-IN', curFormat) + ")"
-          console.log(lastPurshasedDetails);
+          // purchasedon = change.data().CreatedTimestamp;
+          purchasedon = new Date(change.data().CreatedTimestamp.seconds * 1000);
+          console.log(purchasedon);
         }
         if (purchaseDate.getDate() === todayDate.getDate() && purchaseDate.getMonth() === todayDate.getMonth() && purchaseDate.getYear() === todayDate.getYear()) {
           todayCnt = todayCnt + 1;
@@ -219,7 +222,7 @@ function populatePurchaseSummary() {
     productRecord.then((changes) => {
       pName = changes.data().ProductName;
       console.log(pName);
-      lastPurshasedDetails = pName + "<br>" + lastPurshasedDetails;
+      lastPurshasedDetails = " On :"+purchasedon.toLocaleDateString("en-US", options) +" <br>" + pName + "<br>" + lastPurshasedDetails;
       console.log(lastPurshasedDetails);
 
       document.getElementById("lastPurchased").innerHTML = lastPurshasedDetails;
@@ -542,10 +545,10 @@ function PopulateProductSummary() {
             document.getElementById("productCnt").innerHTML = "Product Count : " + cnt;
           });
         });
+        document.getElementById("productDiv").style.display = "block";
 
     });
 
-  document.getElementById("productDiv").style.display = "block";
 }
 
 function renderProducts(productRec, index, productID) {
