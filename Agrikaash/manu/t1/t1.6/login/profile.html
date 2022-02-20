@@ -521,8 +521,8 @@
 
               <div class="dashboard-card" id="cardAddress">
                 <!-- <div class="dashboard-card" id="cardInventory" onclick="showHideCard(cardInventory, cardInventoryArrow)" > -->
-                <div class="" style="display:flex;align-items: center;">
-                  <div class="arrow-down" onclick="showHideCard(cardAddress, cardAddressArrow)">
+                <div class="" onclick="showHideCard(cardAddress, cardAddressArrow)" style="display:flex;align-items: center;">
+                  <div class="arrow-down">
                     <span id="cardAddressArrow" class="material-icons-outlined">
                       keyboard_arrow_down
                     </span>
@@ -538,6 +538,7 @@
                     <p class="small-text dashboard-sub-heading" id="Inventory">Branch Name : <span id="branchNameHeader"></span> </p>
                   </div>
                 </div>
+                <hr>
 
                 <div class="add-address-card">
                   <div class="row no-gutters">
@@ -606,7 +607,7 @@
                     <span>Current Balance <strong>Rs.</strong> </span> <span id="WalletDetails" style="font-weight:bold;"></span>
                   </div>
                 </div>
-              </div>
+              </div><br>
 
               <button class="mybutton button5" onclick="SaveDetailsPartner();">Update Profile</button><br>
               <Label id="confirmationMessage" style="display:none;"> Your profile details have been updated successfully.</Label>
@@ -788,6 +789,18 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    const inputs = document.querySelectorAll('.form-control input');
+    const labels = document.querySelectorAll('.form-control label');
+
+    labels.forEach(label => {
+      label.innerHTML = label.innerText
+        .split('')
+        .map((letter, idx) => `<span style="transition-delay: ${idx * 50}ms">${letter}</span>`)
+        .join('');
+    });
+  </script>
 
 </body>
 
