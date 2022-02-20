@@ -1304,6 +1304,7 @@ if (productPurchase.Quantity === 0) {
   var newQty = 0;
   if (btnSave.innerHTML === 'Add') {
     btnSave.innerHTML = "Save";
+    btnSave.style.background = '#88CA5E';
     inputunitPrize.removeAttribute("readonly");
     inputquantity.removeAttribute("readonly");
   } else {
@@ -1317,6 +1318,7 @@ if (productPurchase.Quantity === 0) {
         msg.innerHTML = '';
       }, 5000);
       btnSave.innerHTML = "Add";
+      btnSave.style.background = '#f58634';
       inputunitPrize.setAttribute("readonly", true);
       inputquantity.setAttribute("readonly", true);
 
