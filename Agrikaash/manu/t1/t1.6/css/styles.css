@@ -1828,7 +1828,8 @@ input[type=number] {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: rgba(136,202,94,0.1);
+  background: #fff;
+  /* background: rgba(136,202,94,0.1); */
   padding: 10px 0 0 0;
 }
 
@@ -2377,9 +2378,8 @@ input[type=number] {
   height: 400px;
 }
 
-
 .dashboard-card#cardAddress.active {
-  height: 500px;
+  height: 400px;
 }
 
 .dashboard-card.order-status.active {
