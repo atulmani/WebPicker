@@ -34,7 +34,7 @@ function GetProfileData(user) {
         }
 
         //  document.getElementById('headerProfilePic').src = doc.data().ImageURL;
-          document.getElementById('profileName').innerHTML = doc.data().displayName;
+        document.getElementById('profileName').innerHTML = doc.data().displayName;
       }
     })
     .catch(function(error) {
@@ -75,11 +75,12 @@ function SaveNotification() {
 
   var userTypes = [];
   var users = [];
+  var notificationType = "";
   var notificationCode = Date.now();
 
-    if (userTypeAll.checked) {
-      userTypes.push("All");
-    }
+  if (userTypeAll.checked) {
+    userTypes.push("All");
+  }
   if (userTypeSmall.checked) {
     userTypes.push("Small");
   }
@@ -88,6 +89,13 @@ function SaveNotification() {
   }
   if (userTypeLage.checked) {
     userTypes.push("Large");
+  }
+  if (document.getElementById("Offer").checked) {
+    notificationType = "Offer";
+  } else if (document.getElementById("NewLaunch").checked) {
+    notificationType = "NewLaunch";
+  } else if (document.getElementById("Updates").checked) {
+    notificationType = "Updates";
   }
 
   for (i = 0; i < userList.options.length; i++) {
@@ -110,6 +118,7 @@ function SaveNotification() {
         NotificationName: notificationName.value,
         Description: description.value,
         UserType: userTypes,
+        NotificationType: notificationType,
         UserList: users,
         ValidityTill: firebase.firestore.Timestamp.fromDate(new Date(Date.parse(validity.value))),
         Status: 'Active',
@@ -129,6 +138,7 @@ function SaveNotification() {
         NotificationCode: notificationCode,
         Description: description.value,
         UserType: userTypes,
+        NotificationType: notificationType,
         UserList: users,
         ValidityTill: firebase.firestore.Timestamp.fromDate(new Date(Date.parse(validity.value))),
         Status: 'Active',
@@ -148,21 +158,20 @@ function SaveNotification() {
 
   }
   GetNotificationList();
-  document.getElementById("createNotificationDiv").style.display="none";
-  document.getElementById("mapNotificationDiv").style.display="none";
-  document.getElementById("divSaveButton").style.display="none";
+  document.getElementById("createNotificationDiv").style.display = "none";
+  document.getElementById("mapNotificationDiv").style.display = "none";
+  document.getElementById("divSaveButton").style.display = "none";
 }
 
-function AddNotification()
-{
-  document.getElementById("createNotificationDiv").style.display="block";
-  document.getElementById("mapNotificationDiv").style.display="block";
-  document.getElementById("divSaveButton").style.display="block";
+function AddNotification() {
+  document.getElementById("createNotificationDiv").style.display = "block";
+  document.getElementById("mapNotificationDiv").style.display = "block";
+  document.getElementById("divSaveButton").style.display = "block";
   document.getElementById("hfNotificationID").value = "";
 
   var userListCnt = document.getElementById("userList");
-    for (i = 0; i < userListCnt.options.length; i++) {
-        userListCnt.options[i].selected = false;
+  for (i = 0; i < userListCnt.options.length; i++) {
+    userListCnt.options[i].selected = false;
   }
   document.getElementById("NotificationName").value = "";
   document.getElementById("description").value = "";
@@ -191,8 +200,7 @@ function GetNotificationDetails(notificationID) {
       userList = doc.data().UserList;
 
       document.getElementById("hfNotificationID").value = doc.id;
-      var userListCnt = document.getElementById("userList");
-      {
+      var userListCnt = document.getElementById("userList"); {
         for (i = 0; i < userListCnt.options.length; i++) {
           index = userList.findIndex(e => e.userName === userListCnt.options[i].text);
           if (index >= 0)
@@ -206,7 +214,16 @@ function GetNotificationDetails(notificationID) {
 
       var userTypes = [];
       userTypes = doc.data().UserType;
-      console.log(userTypes.includes("Small"));
+      var notificationType = doc.data().NotificationType;
+      if (notificationType === "Offer") {
+        document.getElementById("Offer").checked = true;
+      } else if (notificationType === "NewLaunch") {
+        document.getElementById("NewLaunch").checked = true;
+      } else if (notificationType === "Updates") {
+        document.getElementById("Updates").checked = true;
+      }
+
+      //console.log(userTypes.includes("Small"));
       if (userTypes.includes("All")) {
         document.getElementById("All").checked = true;
       }
@@ -236,9 +253,9 @@ function GetNotificationDetails(notificationID) {
     }
   });
 
-  document.getElementById("createNotificationDiv").style.display="block";
-  document.getElementById("mapNotificationDiv").style.display="block";
-  document.getElementById("divSaveButton").style.display="block";
+  document.getElementById("createNotificationDiv").style.display = "block";
+  document.getElementById("mapNotificationDiv").style.display = "block";
+  document.getElementById("divSaveButton").style.display = "block";
 
 }
 
@@ -259,128 +276,122 @@ function GetNotificationList() {
 
   });
 }
-function ChangeActive1(hfNotificationDocID,index,flag)
-{
+
+function ChangeActive1(hfNotificationDocID, index, flag) {
   console.log('in ChangeActive', hfNotificationDocID.value);
 
 
-    var cbActive = document.getElementById("isActive" + index);
-    var status = "";
-    if (flag != true)
-      status = "Active";
-    else
-      status = "In active";
+  var cbActive = document.getElementById("isActive" + index);
+  var status = "";
+  if (flag != true)
+    status = "Active";
+  else
+    status = "In active";
 
-    console.log(status);
-    if (hfNotificationDocID.value != null && hfNotificationDocID.value != '') {
-      db.collection("Notification").doc(hfNotificationDocID.value).update({
-          Status: status
-        })
-        .then((docRef) => {
-          console.log("Data added sucessfully in the document: ");
-          console.log("eventstart")
-          GetNotificationList();
-          // console.log(Date.parse(eventstart))
-        })
-        .catch((error) => {
-          console.error("error adding document:", error);
-        });
-    }
+  console.log(status);
+  if (hfNotificationDocID.value != null && hfNotificationDocID.value != '') {
+    db.collection("Notification").doc(hfNotificationDocID.value).update({
+        Status: status
+      })
+      .then((docRef) => {
+        console.log("Data added sucessfully in the document: ");
+        console.log("eventstart")
+        GetNotificationList();
+        // console.log(Date.parse(eventstart))
+      })
+      .catch((error) => {
+        console.error("error adding document:", error);
+      });
+  }
 
 }
-function renderNotification(change, index)
-{
+
+function renderNotification(change, index) {
   var doc = change.doc.data();
 
 
-    var curFormat = { style: 'currency',
-          currency: 'INR',
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 2 };
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
 
-    var options = {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    };
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
 
   var ValidityTill = new Date(doc.ValidityTill.seconds * 1000);
   //ValidityTill = ValidityTill.toLocaleDateString("en-US", options);
   var today = new Date();
   var div1 = document.createElement("div");
-  div1.setAttribute("class","add-address-card");
+  div1.setAttribute("class", "add-address-card");
 
-  if(doc.Status === "Active" && ValidityTill >= today)
-  {
-    div1.setAttribute("style","margin: 10px 0;background: rgba(67, 204, 104,0.1);");
-  }
-  else
-  {
-    div1.setAttribute("style","margin: 10px 0;background: rgba(255, 87, 87,0.05);");
+  if (doc.Status === "Active" && ValidityTill >= today) {
+    div1.setAttribute("style", "margin: 10px 0;background: rgba(67, 204, 104,0.1);");
+  } else {
+    div1.setAttribute("style", "margin: 10px 0;background: rgba(255, 87, 87,0.05);");
   }
 
   var div2 = document.createElement("div");
-  div2.setAttribute("class","offers-card");
+  div2.setAttribute("class", "offers-card");
 
   var div3 = document.createElement("div");
-  div3.setAttribute("class","");
+  div3.setAttribute("class", "");
 
   var hf = document.createElement("input");
-  hf.setAttribute("type","hidden");
-  hf.setAttribute("id","hfNotificationDocID" + index);
-  hf.setAttribute("value",change.doc.id );
+  hf.setAttribute("type", "hidden");
+  hf.setAttribute("id", "hfNotificationDocID" + index);
+  hf.setAttribute("value", change.doc.id);
   div3.appendChild(hf);
 
   var img1 = document.createElement("img");
-  img1.setAttribute("style","width: 80px;height: 80px;");
-  img1.setAttribute("alt","");
+  img1.setAttribute("style", "width: 80px;height: 80px;");
+  img1.setAttribute("alt", "");
 
-  if( ValidityTill >= today && doc.Status === "Active")
-  {
-    img1.setAttribute("src","../img/discount1.jpg");
-  }
-  else
-  {
-    img1.setAttribute("src","../img/discount3.jpg");
+  if (doc.NotificationType === "Offer") {
+    img1.setAttribute("src", "../img/discount1.jpg");
+  } else if (doc.NotificationType === "NewLaunch") {
+    img1.setAttribute("src", "../img/discount3.jpg");
+  } else {//if (doc.NotificationType === "Updates") {
+    img1.setAttribute("src", "../img/discount3.jpg");
   }
 
   div3.appendChild(img1);
   div2.appendChild(div3);
 
   var div4 = document.createElement("div");
-  div4.setAttribute("class","offers-card-details");
+  div4.setAttribute("class", "offers-card-details");
 
   var anchor1 = document.createElement("div");
   //anchor1.setAttribute("onclick","ChangeActive1();");
-if(doc.Status === "Active")
+  if (doc.Status === "Active")
     anchor1.setAttribute("onclick", "ChangeActive1(" + "hfNotificationDocID" + index + "," + index + ",true);");
   else
     anchor1.setAttribute("onclick", "ChangeActive1(" + "hfNotificationDocID" + index + "," + index + ",false);");
 
   var span1 = document.createElement("span");
-  if(doc.Status === "Active" && ValidityTill >= today)
-  {
-    span1.setAttribute("style","color: green;");
-  }
-  else {
-    span1.setAttribute("style","color: #ff5757;");
+  if (doc.Status === "Active" && ValidityTill >= today) {
+    span1.setAttribute("style", "color: green;");
+  } else {
+    span1.setAttribute("style", "color: #ff5757;");
   }
 
   var span2 = document.createElement("span");
-  span2.setAttribute("class","material-icons-outlined");
-  if(doc.Status === "Active" && ValidityTill >= today)
-  {
-    span2.setAttribute("style","color: green;position: relative; top: 1.1px;");
-    span2.innerHTML="check";
+  span2.setAttribute("class", "material-icons-outlined");
+  if (doc.Status === "Active" && ValidityTill >= today) {
+    span2.setAttribute("style", "color: green;position: relative; top: 1.1px;");
+    span2.innerHTML = "check";
     span1.appendChild(span2);
     span1.innerHTML = span1.innerHTML + "ACTIVE";
-  }
-  else {
-      span2.setAttribute("style","color: #ff5757;position: relative; top: 1.1px;");
-      span2.innerHTML="close";
-      span1.appendChild(span2);
+  } else {
+    span2.setAttribute("style", "color: #ff5757;position: relative; top: 1.1px;");
+    span2.innerHTML = "close";
+    span1.appendChild(span2);
 
-      span1.innerHTML = span1.innerHTML + "INACTIVE";
+    span1.innerHTML = span1.innerHTML + "INACTIVE";
   }
   anchor1.appendChild(span1);
   div4.appendChild(anchor1);
@@ -388,17 +399,17 @@ if(doc.Status === "Active")
   // var br1 = document.createElement("br");
   // div4.appendChild(br1);
 
-  var small1 =document.createElement("small");
-  small1.innerHTML="Code : " + doc.NotificationCode;
+  var small1 = document.createElement("small");
+  small1.innerHTML = "Code : " + doc.NotificationCode;
   div4.appendChild(small1);
 
   var h51 = document.createElement("h5");
-  h51.innerHTML= doc.NotificationName;
+  h51.innerHTML = doc.NotificationName;
 
   div4.appendChild(h51);
 
   var span31 = document.createElement("span");
-    span31.innerHTML=doc.Description ;
+  span31.innerHTML = doc.Description;
   div4.appendChild(span31);
   var br21 = document.createElement("br");
   div4.appendChild(br21);
@@ -409,25 +420,25 @@ if(doc.Status === "Active")
   div2.appendChild(div4);
 
   var div5 = document.createElement("div");
-  div5.setAttribute("class","offers-card-edit-delete-div");
+  div5.setAttribute("class", "offers-card-edit-delete-div");
 
-    var span5 = document.createElement("span");
-    span5.setAttribute("onclick", "GetNotificationDetails(" + "hfNotificationDocID" + index + ");");
-    span5.setAttribute("class","material-icons-outlined");
-    span5.setAttribute("style","color: green;padding-bottom: 20px;");
-    span5.innerHTML = "edit";
-    div5.appendChild(span5);
+  var span5 = document.createElement("span");
+  span5.setAttribute("onclick", "GetNotificationDetails(" + "hfNotificationDocID" + index + ");");
+  span5.setAttribute("class", "material-icons-outlined");
+  span5.setAttribute("style", "color: green;padding-bottom: 20px;");
+  span5.innerHTML = "edit";
+  div5.appendChild(span5);
 
-    var span6 = document.createElement("span");
-    span6.setAttribute("class","material-icons-outlined");
-    span6.setAttribute("onclick", "deleteNotification(" + "hfNotificationDocID" + index + ");");
-    span6.setAttribute("style","color: red;padding-top: 20px;");
-    span6.innerHTML = "delete";
-    div5.appendChild(span6);
+  var span6 = document.createElement("span");
+  span6.setAttribute("class", "material-icons-outlined");
+  span6.setAttribute("onclick", "deleteNotification(" + "hfNotificationDocID" + index + ");");
+  span6.setAttribute("style", "color: red;padding-top: 20px;");
+  span6.innerHTML = "delete";
+  div5.appendChild(span6);
 
-    div2.appendChild(div5);
+  div2.appendChild(div5);
 
-    div1.appendChild(div2);
+  div1.appendChild(div2);
 
-    document.getElementById("divNotificationList").appendChild(div1);
+  document.getElementById("divNotificationList").appendChild(div1);
 }
