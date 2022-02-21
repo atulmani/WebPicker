@@ -6,6 +6,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
+
 
 /* <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,6 +79,12 @@ h6 {
   font-weight: 700;
   font-family: 'Oswald', sans-serif;
   letter-spacing: 0.5px;
+}
+
+small{
+  font-size: 0.8rem;
+  font-weight: lighter;
+  color: #666;
 }
 
 /********** class selectors ************/
@@ -615,14 +624,16 @@ h6 {
 
 .nav-link {
   color: rgba(225, 0, 50, 1);
-  padding: 4px 10px;
+  padding: 6px 10px 0px 10px;
   margin: 0 5px;
   text-align: center;
 }
 
 .nav-link.active,
 .nav-link:hover {
-  color: #888;
+  color: #fff;
+  background-color: #034687;
+  border-radius: 4px;
 }
 
 .nav-link span {
@@ -793,6 +804,85 @@ h6 {
 .company-profile-content hr {
   border: none;
   border-bottom: 1px solid #ddd;
+}
+
+.project-progress-status{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+.project-progress-status .indicator-div{
+  width: 35px;
+  height: 35px;
+  padding: 3px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.project-progress-status .indicator-div div{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  opacity: 0.5;
+  cursor: pointer;
+  filter: grayscale(0.5);
+  transition: 0.5s;
+}
+
+.project-progress-status .indicator-div.active{
+  border: 4px solid #034687;
+}
+
+.project-progress-status .indicator-div.active div{
+  opacity: 1;
+  filter: grayscale(0);
+}
+
+.project-progress-status .indicator-div.red div{
+  background: red;
+}
+
+.project-progress-status .indicator-div.yellow div{
+  background: yellow;
+}
+
+.project-progress-status .indicator-div.green div{
+  background: green;
+}
+
+.project-progress-state{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+.project-progress-state h6{
+  font-size: 0.8rem;
+  font-weight: normal;
+  color: #666;
+  background: #ccc;
+  padding: 10px;
+  cursor: pointer;
+  width: 80px;
+}
+
+.project-progress-state h6.active{
+  background: #034687;
+  color: #fff;
+}
+
+.toggle-switch span{
+  font-size: 3rem;
+  cursor: pointer;
+  color: #ff5757;
+  transition: 0.5s;
+}
+
+.toggle-switch.on span{
+  color: green;
 }
 
 .project-card {
@@ -1950,26 +2040,34 @@ h6 {
 }
 
 .project-menu-list h5 {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   background: #fff;
   width: 100%;
-  height: 46px;
+  height: 65px;
   cursor: pointer;
   color: #666;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: bold;
+}
+
+.project-menu-list h5 span{
+  position: absolute;
+  font-size: 3rem;
+  pointer-events: none;
+  color: rgba(3,70,135,0.2);
 }
 
 .project-menu-list-hr {
   border: none;
-  border-bottom: 4px solid #E10032;
+  border-bottom: 6px solid #E10032;
   margin: 0;
   position: relative;
-  top: -10px;
-  width: 33.3%;
+  top: -14px;
+  width: 25%;
   transition: 0.7s;
 }
 
