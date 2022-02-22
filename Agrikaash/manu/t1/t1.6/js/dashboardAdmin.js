@@ -176,7 +176,7 @@ function populatePurchaseSummary() {
   var pName = "";
   var displayamount = "";
   var productID = "";
-  var purchasedon="";
+  var purchasedon = "";
   var DBRows = db.collection('PurchaseBook')
     .where("CreatedTimestamp", ">=", currentMonth)
     .orderBy("CreatedTimestamp", "desc")
@@ -190,7 +190,7 @@ function populatePurchaseSummary() {
       amount = Number(qty) * Number(unitPrize);
       if (qty > 0) {
         if (flag === false) {
-          // console.log(change.data().ProductId);
+          console.log(change.data().ProductId);
           productID = change.data().ProductId
           lastPurshasedDetails = "(Qty : " + qty + ":: Amount : " + amount.toLocaleString('en-IN', curFormat) + ")"
           // purchasedon = change.data().CreatedTimestamp;
@@ -216,32 +216,36 @@ function populatePurchaseSummary() {
       }
     });
     console.log(productID);
-    var productRecord = db.collection('Products')
-      .doc(productID)
-      .get();
-    productRecord.then((changes) => {
-      pName = changes.data().ProductName;
-      console.log(pName);
-      lastPurshasedDetails = " On :"+purchasedon.toLocaleDateString("en-US", options) +" <br>" + pName + "<br>" + lastPurshasedDetails;
-      console.log(lastPurshasedDetails);
+    if (productID != '' && productID != undefined) {
+      var productRecord = db.collection('Products')
+        .doc(productID)
+        .get();
+      productRecord.then((changes) => {
+        pName = changes.data().ProductName;
+        console.log(pName);
+        lastPurshasedDetails = " On :" + purchasedon.toLocaleDateString("en-US", options) + " <br>" + pName + "<br>" + lastPurshasedDetails;
+        console.log(lastPurshasedDetails);
 
-      document.getElementById("lastPurchased").innerHTML = lastPurshasedDetails;
-    });
+        document.getElementById("lastPurchased").innerHTML = lastPurshasedDetails;
+      });
 
-    document.getElementById("todayPurchase").innerHTML = todayCnt;
-    document.getElementById("todayPurchaseAmount").innerHTML = todayAmount.toLocaleString('en-IN', curFormat);
+      document.getElementById("todayPurchase").innerHTML = todayCnt;
+      document.getElementById("todayPurchaseAmount").innerHTML = todayAmount.toLocaleString('en-IN', curFormat);
 
-    document.getElementById("yesterdayPurchase").innerHTML = yesterdayCnt;
-    document.getElementById("yesterdayPurchaseAmount").innerHTML = yesterdayAmount.toLocaleString('en-IN', curFormat);
+      document.getElementById("yesterdayPurchase").innerHTML = yesterdayCnt;
+      document.getElementById("yesterdayPurchaseAmount").innerHTML = yesterdayAmount.toLocaleString('en-IN', curFormat);
 
-    document.getElementById("weekPurchase").innerHTML = weekCnt;
-    document.getElementById("weekPurchaseAmount").innerHTML = weekAmount.toLocaleString('en-IN', curFormat);
+      document.getElementById("weekPurchase").innerHTML = weekCnt;
+      document.getElementById("weekPurchaseAmount").innerHTML = weekAmount.toLocaleString('en-IN', curFormat);
 
-    document.getElementById("monthPurchase").innerHTML = monthCnt;
-    document.getElementById("monthPurchaseAmount").innerHTML = monthAmount.toLocaleString('en-IN', curFormat);
+      document.getElementById("monthPurchase").innerHTML = monthCnt;
+      document.getElementById("monthPurchaseAmount").innerHTML = monthAmount.toLocaleString('en-IN', curFormat);
 
 
-    document.getElementById("cardPurchase").style.display = "block";
+      document.getElementById("cardPurchase").style.display = "block";
+    } else {
+      document.getElementById("cardPurchase").style.display = "none";
+    }
   });
 
 
@@ -545,7 +549,7 @@ function PopulateProductSummary() {
             document.getElementById("productCnt").innerHTML = "Product Count : " + cnt;
           });
         });
-        document.getElementById("productDiv").style.display = "block";
+      document.getElementById("productDiv").style.display = "block";
 
     });
 
