@@ -14,15 +14,6 @@
 
   <link rel="shortcut icon" href="https://HyperCloudDigital.com/img/logo/logo.png">
 
-  <!-- Google Icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-
   <!-- Font Awesome cdn file -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -37,11 +28,11 @@
 
   <!-- Your Own Style -->
   <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
 
 </head>
 
-<body>
-
+<body onload="getSiteURL()">
   <div class="sticky-top">
     <div class="before-navbar">
       <div class="follow-div">
@@ -99,20 +90,20 @@
       </div>
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="nav navbar-nav ml-auto">
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="#">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html">
               <span class="material-icons-outlined">
                 home
               </span>
               <small>Home</small>
             </a>
-          </li> -->
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="#project">
               <span class="material-icons-outlined">
                 leaderboard
               </span>
-              <small>Industries</small>
+              <small>Portfolio</small>
             </a>
           </li>
           <li class="nav-item">
@@ -120,15 +111,15 @@
               <span class="material-icons-outlined">
                 category
               </span>
-              <small>Services</small>
+              <small>Partners</small>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#capabilities">
+            <a class="nav-link" href="projects.html">
               <span class="material-icons-outlined">
                 cloud_upload
               </span>
-              <small>Digital</small>
+              <small>Projects</small>
             </a>
           </li>
           <li class="nav-item">
@@ -136,7 +127,7 @@
               <span class="material-icons-outlined">
                 smart_toy
               </span>
-              <small>Careers</small>
+              <small>Invoices</small>
             </a>
           </li>
           <li class="nav-item">
@@ -163,25 +154,25 @@
 
   <div class="small navbar-bottom-mobile">
     <ul>
-      <a type="button" href="#project">
+      <a type="button" href="dashboard.html">
         <span class="material-icons-outlined">
-          category
+          home
         </span>
-        <br> <span> Services </span>
+        <br> <span> Home </span>
       </a>
-      <a type="button" href="../careers">
+      <a type="button" href="partners.html">
         <span class="material-icons-outlined">
           smart_toy
-        </span> <br> <span> Careers </span>
+        </span> <br> <span> Partners </span>
       </a>
       <!-- <a type="button" href="login">
         <span><i class="fas fa-user"></i></span> <br> <span> Login </span>
       </a> -->
-      <a type="button" href="contacts">
+      <a type="button" href="projects.html">
         <span class="material-icons-outlined">
-          phone_in_talk
+          category
         </span>
-        <br> <span> Contact Us </span>
+        <br> <span> Projects </span>
       </a>
       <a type="button" data-toggle="collapse" data-target="#collapsibleNavbar1">
         <span class="material-icons-outlined">
@@ -216,173 +207,282 @@
 
   </div>
 
-
   <!-- Navbar - End -->
 
-  <!-- Banner Section - Start -->
-  <section id="banner" style="background: #fff;">
-    <br><br>
-    <div style="container-fluid">
-      <div class="row no-gutters">
-        <div class="col-md-12 col-md-offset-1">
-          <div id="banner-list" class="owl-carousel owl-theme">
+  <!-- Body Content Details - start -->
+  <section>
+    <div class="row no-gutters" style="padding: 1%;">
+      <!-- Left Pane - Start -->
+      <div class="col-lg-3 col-md-6 col-sm-12 large" style="padding: 1%;">
+        <div class="stocks-display">
+          <div class="stocks-display-card">
             <div class="">
-              <div class="large">
-                <!-- <img src="https://HyperCloudAdvertising.com/img/banner/1.png" width="100%" alt=""> -->
-                <img src="../img/banner/1.png" width="100%" alt="">
-              </div>
-              <div class="small">
-                <img src="../img/banner/1m.png" width="100%" alt="">
-              </div>
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
             </div>
 
             <div class="">
-              <div class="large">
-                <img src="../img/banner/2.png" width="100%" alt="">
-              </div>
-              <div class="small">
-                <img src="../img/banner/2m.png" width="100%" alt="">
-              </div>
-            </div>
-            <div class="">
-              <div class="large">
-                <img src="../img/banner/3.png" width="100%" alt="">
-              </div>
-              <div class="small">
-                <img src="../img/banner/3m.png" width="100%" alt="">
-              </div>
-            </div>
-            <div class="">
-              <div class="large">
-                <img src="../img/banner/4.png" width="100%" alt="">
-              </div>
-              <div class="small">
-                <img src="../img/banner/4m.png" width="100%" alt="">
-              </div>
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
             </div>
           </div>
-          <!-- <div class="owl-nav">
-            <div class="owl-left"></div>
-            <div class="owl-right"></div>
-          </div> -->
-        </div>
-      </div>
-    </div>
-    <br><br><br><br>
-    <!-- <img src="./img/education.png" width="100%" alt=""> -->
-  </section>
-  <!-- Banner Section - End -->
+          <hr>
 
-  <!-- Login - Start -->
-
-  <main class="full-login-page-main" id="fullLoginMain">
-    <div class="box">
-      <div class="inner-box">
-
-        <div class="forms-wrap">
-          <div class="signing-form sign-in-form">
-
-            <div class="sign-in-form-logo">
-              <img src="../img/logo/logofit-text-treanparent.png" alt="">
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
             </div>
 
-            <div class="sign-in-form-heading">
-              <h2>Welcome Back</h2>
-              <h6>Not registered yet?</h6>
-              <span class="toggle" style="font-size:1.1rem; padding-left:10px; ">
-                Sign up
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
+            </div>
+
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
+            </div>
+
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
+            </div>
+
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
+            </div>
+
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
+            </div>
+
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
+            </div>
+
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
+            </div>
+
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
+            </div>
+
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+
+          <div class="stocks-display-card">
+            <div class="">
+              <h5>State Bank of India</h5>
+              <small>NSC - 4 x 462.38</small>
+            </div>
+
+            <div class="">
+              <h5 style="color: #444;">5012.75</h5>
+              <small style="color: green;">+ 2.25 (0.47%)</small>
+            </div>
+          </div>
+          <hr>
+        </div>
+      </div>
+      <!-- Left Pane - End -->
+
+      <!-- Middle Pane - Start -->
+      <div class="col-lg-6 col-md-6 col-sm-12" style="padding: 1%;">
+        <div class="book-details-card" style="margin-top: 0;">
+          <div class="" style="display: flex; align-items: center;justify-content: space-between;">
+            <div class="">
+              <small style="font-size: 0.9rem;font-weight: 500;" id="partnerID" ><span id="partnerID"></span></small>
+              <input type="text" name="" readonly class="project-details-name" id="partnerNameID" value="GreenPack LLP Private Limited">
+            </div>
+            <div class="project-details-edit-icon">
+              <span id="partnerNameEditBtn" class="material-icons-outlined" >
+                edit
+              </span>
+              <span id="partnerNameCheckBtn" class="material-icons-outlined" style="display:none;" >
+                task_alt
               </span>
             </div>
-
-            <div class="sign-in-form-actual-form">
-              <div class="input-wrap">
-                <!-- <input type="email" required class="input-field" id="loginEmailtxt" name="" value=""> -->
-                <input type="number" required class="input-field" id="userPhoneNo" name="" value="">
-                <label for="userPhoneNo">Phone</label>
-              </div>
-              <div id='recaptcha-container'></div>
-
-              <!-- <div class="input-wrap">
-                <input type="password" required style="letter-spacing: 1px;" class="input-field" id="loginPasswordtxt" name="" value="">
-                <label for="loginPasswordtxt">Password</label>
-              </div> -->
-
-              <button class="mybutton button5 sign-btn" id="btnSendOTP" >
-                Send OTP >>
-              </button>
-
-              <div class="input-wrap">
-                <input type="number" required style="letter-spacing: 1px;" class="input-field" id="txtVerificationCode" name="" value="">
-                <label for="txtVerificationCode">Verification Code</label>
-              </div>
-
-              <button class="mybutton button5 sign-btn"  id="btnSigninUsingOTP">
-                Sign In
-              </button>
-
-              <p class="sign-in-form-text"><br>
-                Forgotten your password or your login details?
-                <a href="#">Get help</a> signing in
-              </p>
-            </div>
           </div>
 
-          <div class="signing-form sign-up-form">
+          <div>
+            <span class="book-details-card-time">
+              <span class="material-icons-outlined">
+                access_time_filled
+              </span>
+              <small id="partnerDateID"></small>
+              <span class="material-icons-outlined">
+                location_on
+              </span>
+              <small id="locationID"> Varanasi </small>
+            </span>
+          </div>
+        </div><br>
 
-            <div class="sign-in-form-logo">
-              <img src="../img/logo/logofit-text-treanparent.png" alt="">
+        <div id="activeInactiveDiv" class="book-details-card" style="margin-top: 0;">
+          <div class="" style="display: flex; align-items: center;justify-content: space-between;">
+            <div class="">
+              <div class="" style="display:inline-flex;align-items:center;">
+                <span class="toggle-span" style="position:relative;top: -3px;padding: 0 10px;">
+                  Client
+                </span>
+                <div class="toggle-switch off" id="partnerToggleSwitchDiv" onclick="toggleSwitch(partnerToggleSwitchDiv, partnerToggleSwitch)">
+                  <span id="partnerToggleSwitch" class="material-icons-outlined">toggle_on</span>
+                </div>
+                <span class="toggle-span" style="position:relative;top: -3px;padding: 0 10px;">
+                  Vendor
+                </span>
+              </div>
             </div>
-
-            <div class="sign-in-form-heading">
-              <h2>Get Started</h2>
-              <h6>Already have an account?</h6>
-              <span class="toggle">Sign in</span>
-            </div>
-
-            <div class="sign-in-form-actual-form">
-
-              <div class="input-wrap">
-                <input type="text" required class="input-field" id="loginNametxt" name="" value="">
-                <label for="loginNametxt">Name</label>
+            <div class="" style="display:inline-flex;align-items:center;">
+              <span class="toggle-span" style="position:relative;top: -3px;padding: 0 10px;">
+                Active
+              </span>
+              <div class="toggle-switch off" id="projectToggleSwitchDiv" onclick="toggleSwitch(projectToggleSwitchDiv, projectToggleSwitch)">
+                <span id="projectToggleSwitch" class="material-icons-outlined">toggle_on</span>
               </div>
-
-              <div class="input-wrap">
-                <input type="number" required pattern=".{10,}" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input-field" id="loginPhonetxt" name="" value="">
-                <label for="loginPhonetxt">Phone</label>
-              </div>
-
-              <div class="input-wrap">
-                <input type="email" required class="input-field" id="loginEmailtxt" name="" value="">
-                <label for="loginEmailtxt">Email</label>
-              </div>
-
-              <div class="input-wrap">
-                <input type="password" required style="letter-spacing: 1px;" class="input-field" id="loginPasswordtxt" name="" value="">
-                <label for="loginPasswordtxt">Password</label>
-              </div>
-
-              <button class="mybutton button5 sign-btn">Sign Up</button>
-
-              <p class="sign-in-form-text"><br>
-                By signing up, I agree to the
-                <a href="#">Terms & Services</a> and
-                <a href="#">Privacy Policy</a>
-              </p>
+              <span class="toggle-span" style="position:relative;top: -3px;padding: 0 10px;">
+                Inactive
+              </span>
             </div>
           </div>
         </div>
 
-        <div class="login-carousel">
-          <div class="large" style="text-align: center;">
-            <img src="../img/services/1.png" width="60%" alt="">
-          </div>
-          <h4>Create Your Own Website</h4>
-        </div>
+        <div id="partnerDetailsDiv" class="" style="background: #fff;height: 400px;">
 
+          <div class="project-details-form-heading">
+            <h4>Partner Details</h4>
+
+            <a href="book.html">
+              <button style="width: 150px;height: 40px;" class="mybutton button5">
+                <span style="position: relative; top: -7px;">Save</span>
+                <span style="position: relative; top: 1px;transition: transform 0.5s;" class="material-icons-outlined right">
+                  keyboard_arrow_right
+                </span>
+              </button>
+            </a>
+          </div>
+
+          <div class="row no-gutters">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="project-details-form-feild">
+                <input type="text" required name="" value="">
+                <label for="">Partner POC Name</label>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="project-details-form-feild">
+                <input type="text" required name="" value="">
+                <label for="">Partner POC Mobile</label>
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="project-details-form-feild">
+                <input type="text" required name="" value="">
+                <label for="">Partner Details</label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <!-- Middle Pane - End -->
+
+      <!-- Right Pane - Start -->
+      <div class="col-lg-3 col-md-6" style="padding: 1%;">
+        <div class="" style="background: #fff; height: 185px;">
+
+        </div>
+        <br>
+        <div class="" style="background: #fff; height: 185px;">
+
+        </div>
+        <br>
+        <div class="" style="background: #fff; height: 185px;">
+
+        </div>
+      </div>
+      <!-- Right Pane - End -->
+
     </div>
-  </main>
-  <!-- Login - End -->
+  </section>
+
+  <!-- Body Content Details - End -->
 
   <!-- Thanks - start -->
   <section id="thanks">
@@ -700,6 +800,7 @@
 
   <!-- Footer Section - end -->
 
+
   <!-- Jquery order should be higher from normal javascript  -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
@@ -715,14 +816,15 @@
 
   <script src="../js/main.js"></script>
   <script src="../js/firebase.js"></script>
-  <script src="../js/login.js"></script>
+  <script src="../js/sa/partnerDetails.js"></script>
 
   <!-- Owl Carousel Javascript  -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
 
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script> -->
 
 </body>
 
