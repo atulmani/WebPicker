@@ -246,6 +246,7 @@ function RenderProductByProducrID(productList, callCount) {
         });
         avgPrize = Number(prizeP) / Number(qtyP);
         //console.log("avgPrize", avgPrize);
+
         if (avgPrize > 0) {
           productPurchase = {
             productID: change.id,
@@ -261,7 +262,7 @@ function RenderProductByProducrID(productList, callCount) {
             AvgPrize: 0
           };
         }
-
+        console.log(productPurchase);
 
         renderProductNew(change, index, productPurchase);
         index = index + 1;
@@ -1356,8 +1357,8 @@ if (productPurchase.Quantity === 0) {
       console.log(lastDate);
       if(today === new Date(lastDate.value).toLocaleDateString("en-US", options))
       {
-        qty11 = Number(lstQty.value) +  newQty;
-        prize11 = Number(lstAvg.value) * Number(lstQty.value) +  newQty * Number(inputunitPrize.value);
+        qty11 = Number(lstQty.value) +  Number(inputquantity.value);
+        prize11 = Number(lstAvg.value) * Number(lstQty.value) +  Number(inputquantity.value) * Number(inputunitPrize.value);
         avg11 =  Number(prize11)/Number(qty11);
 
 //        var lastDate = document.getElementById("lstDate" + index);
