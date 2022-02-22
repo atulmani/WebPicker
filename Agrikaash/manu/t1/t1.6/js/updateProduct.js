@@ -560,7 +560,7 @@ function renderProductNew(doc, index) {
   var i1 = document.createElement("i");
   i1.setAttribute("onclick", "GetProductDetails(" + "hfID" + index + ");");
   i1.setAttribute("class", "far fa-edit address-edit-icon");
-  i1.setAttribute("style", "padding: 0 5px 0 5px;");
+  i1.setAttribute("style", "padding: 0 5px 0 5px;bottom:20px;z-index:10;");
 
   td1.appendChild(i1);
 
