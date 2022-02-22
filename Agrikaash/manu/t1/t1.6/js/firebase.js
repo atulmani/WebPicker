@@ -1,15 +1,24 @@
+//uat
+// const firebaseConfig = {
+//   apiKey: "AIzaSyDu3knstap4guAHD26pXrXDge7Z4nmrbHg",
+//   authDomain: "agrikaash-uat.firebaseapp.com",
+//   projectId: "agrikaash-uat",
+// //  databaseURL: "https://agrikaash-uat.firebaseio.com",
+//   storageBucket: "agrikaash-uat.appspot.com",
+//   messagingSenderId: "531120657109",
+//   appId: "1:531120657109:web:13d50a355ac0da2370485c"
+// };
 
+//production
 const firebaseConfig = {
-  apiKey: "AIzaSyDu3knstap4guAHD26pXrXDge7Z4nmrbHg",
-  authDomain: "agrikaash-uat.firebaseapp.com",
-  projectId: "agrikaash-uat",
-//  databaseURL: "https://agrikaash-uat.firebaseio.com",
-  storageBucket: "agrikaash-uat.appspot.com",
-  messagingSenderId: "531120657109",
-  appId: "1:531120657109:web:13d50a355ac0da2370485c"
+  apiKey: "AIzaSyCenit0gTzcMLNEZHrVdb3TrrdU1-MkJVE",
+  authDomain: "agrikaashapp.firebaseapp.com",
+  projectId: "agrikaashapp",
+  storageBucket: "agrikaashapp.appspot.com",
+  messagingSenderId: "993534029428",
+  appId: "1:993534029428:web:18147f606242dca52feb21",
+  measurementId: "G-C5K618E0VC"
 };
-
-
 // const firebaseConfig = {
 //   apiKey: "AIzaSyDvjwDlU-4LvFVxRqabc4DUhoblQBZKpiI",
 //   authDomain: "agrikaash-dev.firebaseapp.com",
