@@ -529,6 +529,8 @@ function setMRP(index) {
     minimumFractionDigits: 0,
     maximumFractionDigits: 2
   };
+  if(purchasePrise != 0 && purchasePrise != undefined)
+  {
   if (Number(purchasePrise) === purchasePrise) {
 
     profitPercentage = (finalPrise - purchasePrise) * 100 / purchasePrise;
@@ -539,6 +541,10 @@ function setMRP(index) {
     }
     document.getElementById("profitPercentage" + index).value = profitPercentage.toLocaleString('en-IN', curPercentageFormat) + "%";
   }
+}
+else {
+  document.getElementById("profitPercentage" + index).value = "NA";
+}
   mrp = mrp.toLocaleString('en-IN', curFormat);
   productMRP.value = mrp;
 
@@ -828,6 +834,7 @@ function CreateUpdateProductData() {
             ProductName: productName,
             SearchKey: searchKey,
             Brand: brand,
+            AvailableQuantity : 0,
             VegNonVeg: vegNonVeg,
             MinimumQty: minimumQty,
             MaximumQty: maximumQty,
