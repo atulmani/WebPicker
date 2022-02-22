@@ -12,7 +12,11 @@ auth.onAuthStateChanged(firebaseUser => {
       GetRegistrationRequest();
 
       var siteNotification = localStorage.getItem("notificationCount");
-      document.getElementById("notificationCnt").innerHTML = siteNotification;
+      if(document.getElementById("notificationCnt") != undefined)
+        document.getElementById("notificationCnt").innerHTML = siteNotification;
+
+      f(document.getElementById("notificationCnt1") != undefined)
+        
       document.getElementById("notificationCnt1").innerHTML = siteNotification;
 
     } else {
