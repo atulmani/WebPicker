@@ -64,11 +64,11 @@ function getWalletDetails() {
     minimumFractionDigits: 0,
     maximumFractionDigits: 2
   };
-
+  console.log(userID);
   const snapshot = db.collection('UserWallet').doc(userID);
   snapshot.get().then(async (doc1) => {
     if (doc1.exists) {
-      //console.log(walletDetails);
+      console.log(walletDetails);
       walletamount = doc1.data().WalletAmount;
       var totalAmt = document.getElementById('hftotalAmount').value
       if (Number(walletamount) > Number(totalAmt)) {
@@ -83,6 +83,11 @@ function getWalletDetails() {
         document.getElementById("divPayment").style.opacity = "0";
         document.getElementById("divPayment").style.pointerEvents = "none";
       }
+    }else {
+      document.getElementById("PayOption1").checked= true;
+      document.getElementById("divPayment").style.height = "0%";
+      document.getElementById("divPayment").style.opacity = "0";
+      document.getElementById("divPayment").style.pointerEvents = "none";
     }
   });
 }
