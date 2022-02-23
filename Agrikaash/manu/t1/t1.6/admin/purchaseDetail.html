@@ -393,7 +393,7 @@
 
         <div class="category-list-sub-menu" style="background: #f4f4f4;">
 
-          <div class="" id='divbusinessType' style="display:none;">
+          <div class="city-selector-div" id='divbusinessType' style="display:none;">
             <select class="city-selector" id="businessType" onchange="changCustomerType();" style="background: rgba(255,255,255,0.6);border: 1px solid #aaa;" name="">
               <option value="All">All</option>
               <option value="Small">Small</option>
@@ -406,20 +406,21 @@
             </span>
           </div>
 
+          <div class="">
+            <div class="city-selector-div" id='divPurchase'>
+              <select class="city-selector" id="dateRange" onchange="dateRangeChange();" style="background: rgba(255,255,255,0.6);border: 1px solid #aaa;" name="">
+                <option value="Today">Today</option>
+                <option value="Yesterday">Yesterday</option>
+                <option value="Last 7 days">Last 7 days</option>
+                <option value="Current month">Current month</option>
+                <option value="Last 6 months">Last 6 months</option>
+                <!-- <option value="Custom">Custom</option> -->
+              </select>
 
-          <div class="" id='divPurchase'>
-            <select class="city-selector" id="dateRange" onchange="dateRangeChange();" style="background: rgba(255,255,255,0.6);border: 1px solid #aaa;" name="">
-              <option value="Today">Today</option>
-              <option value="Yesterday">Yesterday</option>
-              <option value="Last 7 days">Last 7 days</option>
-              <option value="Current month">Current month</option>
-              <option value="Last 6 months">Last 6 months</option>
-              <!-- <option value="Custom">Custom</option> -->
-            </select>
-
-            <span class="material-icons-outlined city-selector-icon">
-              filter_list
-            </span>
+              <span class="material-icons-outlined city-selector-icon">
+                filter_list
+              </span>
+            </div>
             <div class="row no-gutters" style="padding: 0 2%;" id="divDetails">
 
               <div class="col-sm-12">
