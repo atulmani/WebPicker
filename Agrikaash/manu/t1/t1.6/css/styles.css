@@ -1286,6 +1286,10 @@ input[type=number] {
   border: 1px solid transparent;
 }
 
+.city-selector-div{
+  position: relative;
+}
+
 .city-selector {
   background: rgba(0, 0, 0, 0.1);
   outline: none;
@@ -1296,6 +1300,7 @@ input[type=number] {
   color: #444;
   -webkit-appearance: none;
   z-index: 10;
+  width: 100%;
 }
 
 .city-selector.multi-select option {
@@ -1307,9 +1312,13 @@ input[type=number] {
   display: none;
 } */
 .city-selector-icon {
-  position: relative;
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  /* position: relative;
   top: 5px;
-  right: 35px;
+  right: 35px; */
   pointer-events: none;
 }
 
