@@ -262,20 +262,31 @@ h6{
   text-align: center;
 }
 
+.banner-content h1{
+  font-size: 5.5rem;
+  color: #fff;
+}
+
+.banner-content h2{
+  color: #fec931;
+  font-size: 3.4rem;
+  /* font-family: 'Gochi Hand'; */
+}
+
 .banner-content h6{
   color: #fec931;
   font-size: 1.4rem;
   font-family: 'Gochi Hand';
 }
 
-.banner-content h1{
-  font-size: 5.5rem;
-  color: #fff;
-}
-
 @media (max-width: 850px) {
   .banner-content h1{
-    font-size: 3rem;
+    font-size: 2.8rem;
+  }
+  .banner-content h2{
+    color: #fec931;
+    font-size: 1.4rem;
+    /* font-family: 'Gochi Hand'; */
   }
 }
 
