@@ -121,7 +121,7 @@ function populateDeliveryAddress(selectedOrder, orderPlacedBy) {
   var deliveryTime = document.getElementById('DeliveryTime');
   document.getElementById("orderBy").innerHTML = selectedOrder.orderByUserName + ":" + selectedOrder.CreatedBy;
   document.getElementById("orderDate").innerHTML = orderDate;
-  $('#datetimepickerStatus').data("DateTimePicker").minDate(new Date(oDate.getFullYear(), oDate.getMonth()   , oDate.getDate()));
+  $('#datetimepickerStatus').data("DateTimePicker").minDate(new Date(oDate.getFullYear(), oDate.getMonth(), oDate.getDate()));
 
   for (index = 0; index < oPaymentStatus.options.length; index++) {
     if (oPaymentStatus.options[index].value === selectedOrder.paymentStatus)
@@ -276,7 +276,7 @@ function populateOrderItems(selectedOrder) {
   document.getElementById("itemcount").innerHTML = i;
 }
 
-function renderOrderItem(orderItem, index, orderStatusValue) {
+async function renderOrderItem(orderItem, index, orderStatusValue) {
   //console.log(orderItem);
   var curFormat = {
     style: 'currency',
@@ -300,180 +300,191 @@ function renderOrderItem(orderItem, index, orderStatusValue) {
   td1.setAttribute('width', "45%");
   td1.setAttribute('class', "product-img-td");
 
+
   var img1 = document.createElement("img");
-  img1.setAttribute('src', orderItem.ImageURL);
-  img1.setAttribute("width", "100%");
-  img1.setAttribute("alt", "");
 
-  td1.appendChild(img1);
+  var dbproduct = await db.collection('Products').doc(orderItem.ProductID);
+  dbproduct.get().then(async (doc) => {
+    if (doc.exists) {
+      var imgSrc = doc.data().ProductImageURL;
 
-  var div3 = document.createElement('div');
-  div3.setAttribute('class', "off-div");
+      img1.setAttribute('src', imgSrc);
+      img1.setAttribute("width", "100%");
+      img1.setAttribute("alt", "");
 
-  var small1 = document.createElement('small');
-  small1.innerHTML = '20% OFF';
-
-  div3.appendChild(small1);
-  td1.appendChild(div3);
-
-  var div4 = document.createElement('div');
-  div4.setAttribute('class', "veg-nonVeg-div");
-
-  var imgVegNonVeg = document.createElement("img");
-  //console.log(orderItem.VegNonVeg);
-  if (orderItem.VegNonVeg === "Veg") {
-    imgVegNonVeg.setAttribute("src", "../img/veg.png");
-  } else if (orderItem.VegNonVeg === "NonVeg") {
-    imgVegNonVeg.setAttribute("src", "../img/non-veg.png");
-
-  }
-  imgVegNonVeg.setAttribute("width", "100%");
-  imgVegNonVeg.setAttribute("alt", "");
-
-  div4.appendChild(imgVegNonVeg);
-  td1.appendChild(div4);
-  tr1.appendChild(td1);
-
-  var td2 = document.createElement('td');
-  td2.setAttribute('width', "55%");
-  td2.setAttribute('valign', "top");
-  td2.setAttribute('class', "product-names-div");
-  //console.log(orderItem.ProductName);
-  var small2 = document.createElement('small');
-  small2.setAttribute('class', 'product-names');
-  small2.innerHTML = orderItem.ProductName;
+      td1.appendChild(img1);
 
 
-  var small3 = document.createElement('small');
-  small3.setAttribute('style', 'style="font-size: 0.8rem; color: rgba(0,0,0,0.5);');
-  small3.innerHTML = '';
-  td2.appendChild(small2);
-  td2.appendChild(small3);
 
-  //console.log(orderItem.SelectedSubItem);
-  var input1 = document.createElement('input');
-  input1.setAttribute('type', 'text');
-  input1.setAttribute('name', '');
-  input1.setAttribute("readonly", "true");
-  input1.setAttribute("id", "selectedItem" + index);
-  input1.value = orderItem.SelectedSubItem;
-  td2.appendChild(input1);
+      var div3 = document.createElement('div');
+      div3.setAttribute('class', "off-div");
 
-  var div5 = document.createElement('div');
-  div5.setAttribute('class', 'product-price');
-  //console.log(orderItem.MRP);
-  var h51 = document.createElement('h5');
-  h51.innerHTML = Number(orderItem.MRP).toLocaleString('en-IN', curFormat);
-  div5.appendChild(h51);
+      var small1 = document.createElement('small');
+      small1.innerHTML = '20% OFF';
 
-  //console.log(orderItem.UnitPrise);
-  var small4 = document.createElement('small');
-  small4.innerHTML = Number(orderItem.UnitPrise).toLocaleString('en-IN', curFormat);
-  div5.appendChild(small4);
-  td2.appendChild(div5);
+      div3.appendChild(small1);
+      td1.appendChild(div3);
 
-  var table2 = document.createElement('table');
-  var tr2 = document.createElement('tr');
-  //console.log(orderItem.Quantity);
-  var td3 = document.createElement('td');
-  td3.setAttribute('width', '50%');
-  //td3.setAttribute("colspan", "2");
+      var div4 = document.createElement('div');
+      div4.setAttribute('class', "veg-nonVeg-div");
 
+      var imgVegNonVeg = document.createElement("img");
+      //console.log(orderItem.VegNonVeg);
+      if (orderItem.VegNonVeg === "Veg") {
+        imgVegNonVeg.setAttribute("src", "../img/veg.png");
+      } else if (orderItem.VegNonVeg === "NonVeg") {
+        imgVegNonVeg.setAttribute("src", "../img/non-veg.png");
 
-  // td3.innerHTML = 'Qty : ' + '<input type="number" style="background:#f4f4f4;border:1px solid #ddd;outline: none;width: 60%;" value="' + orderItem.Quantity + '"></input>';
-  // td3.innerHTML = 'Qty : ' + '<input type="number" style="background:none;border:none;outline: none;width: 60%;" readonly value="' + orderItem.Quantity + '"></input>';
-  td3.innerHTML = 'Qty : '; //+ '<input type="number" style="background:none;border:none;outline: none;width: 60%;" readonly value="' + orderItem.Quantity + '"></input>';
+      }
+      imgVegNonVeg.setAttribute("width", "100%");
+      imgVegNonVeg.setAttribute("alt", "");
 
-  var inputQty = document.createElement("input");
-  inputQty.setAttribute("type", "number");
-  inputQty.setAttribute("id", "inQty" + index);
-  inputQty.setAttribute("style", "background:none;border:none;outline: none;width: 60%;");
-  inputQty.setAttribute("readonly", true);
-  inputQty.setAttribute("value", orderItem.Quantity);
-  inputQty.setAttribute("onChange", "onChangeQty(" + "hfProdID" + index + "," + "selectedItem" + index + "," + "inQty" + index + ",editIcon" + index + ",hfOldQty" + index + ");");
+      div4.appendChild(imgVegNonVeg);
+      td1.appendChild(div4);
+      tr1.appendChild(td1);
 
-  td3.appendChild(inputQty);
-  //
-  // var inputQty = document.createElement("input");
-  // inputQty.setAttribute("id", "inputQty" + index);
-  // inputQty.setAttribute("value", orderItem.Quantity);
-  // //inputQty.setAttribute("onchange", "updateQuantity(" + "inputQty" + index + "," + doc.data().MinimumQty + "," + doc.data().MaximumQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "' )");
-  //
-  // td3.appendChild(inputQty);
-  tr2.appendChild(td3);
-
-  var totalPrize = Number(orderItem.Quantity) * Number(orderItem.UnitPrise)
-  //  console.log(totalPrize);
-
-  //  td2.appendChild(document.createElement('br'));
-  table2.appendChild(tr2);
-
-  //tr2 = document.createElement('tr');
-  var td4 = document.createElement('td');
-  //td4.setAttribute("colspan", "2");
-  td4.innerHTML = 'Prize : ' + totalPrize;
-  tr2.appendChild(td4);
-  table2.appendChild(tr2);
-  tr2 = document.createElement('tr');
-  //console.log(orderItem.Quantity);
-  td3 = document.createElement('td');
-  td3.setAttribute('width', '50%');
-  td3.setAttribute('style', 'display: flex;');
-  //td3.setAttribute("colspan", "2");
-  var hf = document.createElement("input");
-  hf.setAttribute("id", "hfProdID" + index);
-  hf.setAttribute("type", "hidden");
-  hf.setAttribute("value", orderItem.ProductID);
-  td3.appendChild(hf);
-
-  if (orderStatusValue === 'Pending') {
-    var span2 = document.createElement('span');
-    span2.setAttribute("id", "btnDelete" + index);
-    //console.log("deleteCoupon(" + "hfCouponDocID " + index + ");");
-    span2.setAttribute("onclick", "deleteItem(" + "hfProdID" + index + "," + "selectedItem" + index + ");");
-    span2.setAttribute("class", "material-icons");
-    span2.setAttribute("style", "cursor:pointer;padding: 0 20px 0 5px;");
-    span2.innerHTML = "delete_outline";
-    td3.appendChild(span2);
-  }
+      var td2 = document.createElement('td');
+      td2.setAttribute('width', "55%");
+      td2.setAttribute('valign', "top");
+      td2.setAttribute('class', "product-names-div");
+      //console.log(orderItem.ProductName);
+      var small2 = document.createElement('small');
+      small2.setAttribute('class', 'product-names');
+      small2.innerHTML = orderItem.ProductName;
 
 
-  if (orderStatusValue === 'Pending') {
-    var divEdit = document.createElement("div");
-    divEdit.setAttribute("id", "editIcon" + index);
+      var small3 = document.createElement('small');
+      small3.setAttribute('style', 'style="font-size: 0.8rem; color: rgba(0,0,0,0.5);');
+      small3.innerHTML = '';
+      td2.appendChild(small2);
+      td2.appendChild(small3);
 
-    divEdit.setAttribute("onclick", "editItem(" + "hfProdID" + index + "," + "selectedItem" + index + "," + "inQty" + index + ",editIcon" + index + ");");
-    var span12 = document.createElement("span");
-    span12.setAttribute("class", "material-icons-outlined");
+      //console.log(orderItem.SelectedSubItem);
+      var input1 = document.createElement('input');
+      input1.setAttribute('type', 'text');
+      input1.setAttribute('name', '');
+      input1.setAttribute("readonly", "true");
+      input1.setAttribute("id", "selectedItem" + index);
+      input1.value = orderItem.SelectedSubItem;
+      td2.appendChild(input1);
 
-    span12.setAttribute("style", "position: relative;font-size: 1.2rem;padding-left: 5px;");
-    span12.innerHTML = "edit";
-    divEdit.appendChild(span12);
-    td3.appendChild(divEdit);
+      var div5 = document.createElement('div');
+      div5.setAttribute('class', 'product-price');
+      //console.log(orderItem.MRP);
+      var h51 = document.createElement('h5');
+      h51.innerHTML = Number(orderItem.MRP).toLocaleString('en-IN', curFormat);
+      div5.appendChild(h51);
 
-  }
+      //console.log(orderItem.UnitPrise);
+      var small4 = document.createElement('small');
+      small4.innerHTML = Number(orderItem.UnitPrise).toLocaleString('en-IN', curFormat);
+      div5.appendChild(small4);
+      td2.appendChild(div5);
 
-  var hfQty = document.createElement("input");
-  hfQty.setAttribute("id", "hfOldQty" + index);
-  hfQty.setAttribute("type", "hidden");
-  hfQty.setAttribute("value", orderItem.Quantity);
-
-  td3.appendChild(hfQty);
-
-  tr2.appendChild(td3);
+      var table2 = document.createElement('table');
+      var tr2 = document.createElement('tr');
+      //console.log(orderItem.Quantity);
+      var td3 = document.createElement('td');
+      td3.setAttribute('width', '50%');
+      //td3.setAttribute("colspan", "2");
 
 
-  table2.appendChild(tr2);
-  td2.appendChild(table2)
+      // td3.innerHTML = 'Qty : ' + '<input type="number" style="background:#f4f4f4;border:1px solid #ddd;outline: none;width: 60%;" value="' + orderItem.Quantity + '"></input>';
+      // td3.innerHTML = 'Qty : ' + '<input type="number" style="background:none;border:none;outline: none;width: 60%;" readonly value="' + orderItem.Quantity + '"></input>';
+      td3.innerHTML = 'Qty : '; //+ '<input type="number" style="background:none;border:none;outline: none;width: 60%;" readonly value="' + orderItem.Quantity + '"></input>';
 
-  tr1.appendChild(td2);
-  table1.appendChild(tr1);
+      var inputQty = document.createElement("input");
+      inputQty.setAttribute("type", "number");
+      inputQty.setAttribute("id", "inQty" + index);
+      inputQty.setAttribute("style", "background:none;border:none;outline: none;width: 60%;");
+      inputQty.setAttribute("readonly", true);
+      inputQty.setAttribute("value", orderItem.Quantity);
+      inputQty.setAttribute("onChange", "onChangeQty(" + "hfProdID" + index + "," + "selectedItem" + index + "," + "inQty" + index + ",editIcon" + index + ",hfOldQty" + index + ");");
 
-  div2.appendChild(table1)
+      td3.appendChild(inputQty);
+      //
+      // var inputQty = document.createElement("input");
+      // inputQty.setAttribute("id", "inputQty" + index);
+      // inputQty.setAttribute("value", orderItem.Quantity);
+      // //inputQty.setAttribute("onchange", "updateQuantity(" + "inputQty" + index + "," + doc.data().MinimumQty + "," + doc.data().MaximumQty + ",'" + doc.data().ProductName + "','" + doc.id + "','" + selectP[selectP.selectedIndex].text + "' )");
+      //
+      // td3.appendChild(inputQty);
+      tr2.appendChild(td3);
 
-  div1.appendChild(div2);
-  //console.log(div1);
-  document.getElementById('orderItems').appendChild(div1);
+      var totalPrize = Number(orderItem.Quantity) * Number(orderItem.UnitPrise)
+      //  console.log(totalPrize);
+
+      //  td2.appendChild(document.createElement('br'));
+      table2.appendChild(tr2);
+
+      //tr2 = document.createElement('tr');
+      var td4 = document.createElement('td');
+      //td4.setAttribute("colspan", "2");
+      td4.innerHTML = 'Prize : ' + totalPrize;
+      tr2.appendChild(td4);
+      table2.appendChild(tr2);
+      tr2 = document.createElement('tr');
+      //console.log(orderItem.Quantity);
+      td3 = document.createElement('td');
+      td3.setAttribute('width', '50%');
+      td3.setAttribute('style', 'display: flex;');
+      //td3.setAttribute("colspan", "2");
+      var hf = document.createElement("input");
+      hf.setAttribute("id", "hfProdID" + index);
+      hf.setAttribute("type", "hidden");
+      hf.setAttribute("value", orderItem.ProductID);
+      td3.appendChild(hf);
+
+      if (orderStatusValue === 'Pending') {
+        var span2 = document.createElement('span');
+        span2.setAttribute("id", "btnDelete" + index);
+        //console.log("deleteCoupon(" + "hfCouponDocID " + index + ");");
+        span2.setAttribute("onclick", "deleteItem(" + "hfProdID" + index + "," + "selectedItem" + index + ");");
+        span2.setAttribute("class", "material-icons");
+        span2.setAttribute("style", "cursor:pointer;padding: 0 20px 0 5px;");
+        span2.innerHTML = "delete_outline";
+        td3.appendChild(span2);
+      }
+
+
+      if (orderStatusValue === 'Pending') {
+        var divEdit = document.createElement("div");
+        divEdit.setAttribute("id", "editIcon" + index);
+
+        divEdit.setAttribute("onclick", "editItem(" + "hfProdID" + index + "," + "selectedItem" + index + "," + "inQty" + index + ",editIcon" + index + ");");
+        var span12 = document.createElement("span");
+        span12.setAttribute("class", "material-icons-outlined");
+
+        span12.setAttribute("style", "position: relative;font-size: 1.2rem;padding-left: 5px;");
+        span12.innerHTML = "edit";
+        divEdit.appendChild(span12);
+        td3.appendChild(divEdit);
+
+      }
+
+      var hfQty = document.createElement("input");
+      hfQty.setAttribute("id", "hfOldQty" + index);
+      hfQty.setAttribute("type", "hidden");
+      hfQty.setAttribute("value", orderItem.Quantity);
+
+      td3.appendChild(hfQty);
+
+      tr2.appendChild(td3);
+
+
+      table2.appendChild(tr2);
+      td2.appendChild(table2)
+
+      tr1.appendChild(td2);
+      table1.appendChild(tr1);
+
+      div2.appendChild(table1)
+
+      div1.appendChild(div2);
+      //console.log(div1);
+      document.getElementById('orderItems').appendChild(div1);
+    }
+  });
 
 }
 
@@ -482,7 +493,7 @@ function SaveOrder() {
   var btnTextWithLoader = document.getElementsByClassName('btnTextWithLoader');
   var btnLoader = document.getElementsByClassName('btnLoader');
   var orderStatusChanged = document.getElementById("statusChangedOn");
-//firebase.firestore.Timestamp.fromDate(new Date(Date.parse(validity.value)))
+  //firebase.firestore.Timestamp.fromDate(new Date(Date.parse(validity.value)))
   btnTextWithLoader[0].style.display = 'none';
   btnLoader[0].style.display = 'block';
 
@@ -684,34 +695,34 @@ function UpdateOrderTrackingDetails(orderChanges, orderID) {
       trackData = doc.data().ChangeTrack;
 
 
-    console.log(trackData);
-    console.log(trackingID);
-    //console.log(trackData[i].OrderStage);
-    console.log(orderChanges[0].OrderStage);
-    for (i = 0; i < trackData.length; i++) {
-      if (trackData[i].OrderStage < orderChanges[0].OrderStage || trackData[i].OrderStage === 7) //discount details to be saved
-        trackdataForUpdate.push(trackData[i]);
+      console.log(trackData);
+      console.log(trackingID);
+      //console.log(trackData[i].OrderStage);
+      console.log(orderChanges[0].OrderStage);
+      for (i = 0; i < trackData.length; i++) {
+        if (trackData[i].OrderStage < orderChanges[0].OrderStage || trackData[i].OrderStage === 7) //discount details to be saved
+          trackdataForUpdate.push(trackData[i]);
 
-    }
-    trackdataForUpdate.push(orderChanges[0]);
-    console.log(userID);
-    console.log(userid_order);
-    console.log(trackingID);
-    db.collection("OrderTracking").doc(trackingID).set({
-        OrderID: orderID,
-        ChangeTrack: trackdataForUpdate,
-        UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
-        UpdatedByUser: userID,
-        userID: userid_order
-      })
-      .then(function(docRef) {
-        console.log("Data added sucessfully in the document: " + userid_order);
-        //    window.location.href = "orderStatus.html"
-        // console.log(Date.parse(eventstart))
-      })
-      .catch(function(error) {
-        console.error("error updatign order:", error);
-      });
+      }
+      trackdataForUpdate.push(orderChanges[0]);
+      console.log(userID);
+      console.log(userid_order);
+      console.log(trackingID);
+      db.collection("OrderTracking").doc(trackingID).set({
+          OrderID: orderID,
+          ChangeTrack: trackdataForUpdate,
+          UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+          UpdatedByUser: userID,
+          userID: userid_order
+        })
+        .then(function(docRef) {
+          console.log("Data added sucessfully in the document: " + userid_order);
+          //    window.location.href = "orderStatus.html"
+          // console.log(Date.parse(eventstart))
+        })
+        .catch(function(error) {
+          console.error("error updatign order:", error);
+        });
     }
   });
 }
@@ -1028,8 +1039,7 @@ function deleteItem(prodID, selectedItemIndex) {
             var discount;
             modifiedOrder.orderItems = items;
             var discountValue = 0;
-            if(oldPrize != oldDiscountPrise )
-            {
+            if (oldPrize != oldDiscountPrise) {
               discountValue = Number(oldPrize) - Number(oldDiscountPrise);
             }
             if (modifiedOrder.discountDetails.coupondID != 'none' && modifiedOrder.discountDetails.coupondID != 'Select coupon') {
