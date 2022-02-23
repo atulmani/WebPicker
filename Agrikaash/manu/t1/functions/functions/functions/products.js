@@ -1,7 +1,7 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
-// Function to update UserRequest collection
+// Function to update ProductsInventory collection
 exports.updateInventoryWithOrderDetails =
 functions.https.onCall((data, context) => {
   if (!context.auth) {
@@ -56,4 +56,25 @@ functions.https.onCall((data, context) => {
       }
     });
   }
+});
+
+exports.getProductDetails =
+functions.https.onCall((data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpError(
+        "unauthenticatied",
+        "only authenticated user can call this"
+    );
+  }
+  const prodID = data.productID;
+
+  const snapshot = admin.firestore().collection("Products")
+      .doc(prodID);
+  snapshot.get().then((doc1) => {
+    if (doc1.exists) {
+      return doc1;
+    } else {
+      return "0 : no Product";
+    }
+  });
 });
