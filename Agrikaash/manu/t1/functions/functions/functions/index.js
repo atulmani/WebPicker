@@ -126,3 +126,5 @@ exports.getAllUserRequests = userRequest.getAllUserRequests;
 exports.getUserRequest = userRequest.getUserRequest;
 exports.updateInventoryWithOrderDetails =
 products.updateInventoryWithOrderDetails;
+
+exports.getProductDetails = products.getProductDetails;
