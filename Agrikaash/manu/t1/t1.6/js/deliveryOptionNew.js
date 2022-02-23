@@ -68,7 +68,7 @@ function getWalletDetails() {
   const snapshot = db.collection('UserWallet').doc(userID);
   snapshot.get().then(async (doc1) => {
     if (doc1.exists) {
-      console.log(walletDetails);
+      //console.log(walletDetails);
       walletamount = doc1.data().WalletAmount;
       var totalAmt = document.getElementById('hftotalAmount').value
       if (Number(walletamount) > Number(totalAmt)) {
