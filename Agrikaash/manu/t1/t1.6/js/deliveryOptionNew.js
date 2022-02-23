@@ -1113,7 +1113,7 @@ function createOrderItems() {
       ProductID: cartItems[i].ProductID,
       ProductName: cartItems[i].ItemName,
       SelectedSubItem: cartItems[i].SelectedsubItem,
-      ImageURL: selectedProduct.productImageURL,
+      //ImageURL: selectedProduct.productImageURL,
       VegNonVeg: selectedProduct.VegNonVeg,
       UnitPrise: sellPrize,
       MRP: MRP,
