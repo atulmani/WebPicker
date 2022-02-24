@@ -3041,3 +3041,30 @@ display: inline-block;
 
 
 /* inventory - end */
+
+/* for desktop */
+.whatsapp_float {
+  position: fixed;
+  width: 42px;
+  height: 42px;
+  bottom: 7%;
+  right: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #25d366;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 0 0 10px 0 #eee;
+  /* border: 2px solid #e10032; */
+  z-index: 100;
+  transition: 0.5s;
+}
+
+.whatsapp_float:hover{
+  text-decoration: none;
+  color: #25d366;
+  background: #fff;
+}
