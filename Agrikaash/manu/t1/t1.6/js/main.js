@@ -326,3 +326,9 @@ function exportCSVFile(Results, FileName) {
     x.click();
   }
 }
+
+function callWhatsup()
+{
+  console.log('callWhatsup');
+  window.location.href="https://api.whatsapp.com/send?phone=+919152552222";
+}
