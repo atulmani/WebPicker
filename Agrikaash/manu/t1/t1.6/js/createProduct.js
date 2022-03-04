@@ -116,7 +116,7 @@ function populateProductData() {
   //     });
   //   });
 
-
+//const
   const snapshot = db.collection('Products').doc(productID);
   snapshot.get().then(async (doc) => {
     if (doc.exists) {
