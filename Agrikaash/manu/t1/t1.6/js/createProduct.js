@@ -64,8 +64,7 @@ if (productID != null) {
   document.getElementById('hfproductID').value = productID;
   //  console.log(document.getElementById('hfproductID').value);
   populateProductData();
-}
-else {
+} else {
   GetMasterProduct();
 }
 
@@ -102,24 +101,25 @@ function SetPromotion() {
 }
 
 function selectMasterProduct() {
-//  console.log("in selectMasterProduct");
+  //  console.log("in selectMasterProduct");
   var oProduct = document.getElementById("masterProduct");
   var masterproductName = oProduct.options[oProduct.selectedIndex].innerHTML;
+  document.getElementById("masterProductID").value = oProduct.options[oProduct.selectedIndex].value;
   console.log(masterproductName);
   if (masterproductName != "New Master Product") {
     document.getElementById("masterProductName").setAttribute("disabled", true);;
     document.getElementById("masterProductName").value = masterproductName;
-  }
-  else{
+  } else {
     document.getElementById("masterProductName").value = "";
-     document.getElementById("masterProductName").removeAttribute("disabled");
+    document.getElementById("masterProductID").value = "";
+    document.getElementById("masterProductName").removeAttribute("disabled");
   }
 }
 
 function GetMasterProduct() {
   var oProduct = document.getElementById("masterProduct");
   var option = document.createElement("option");
-  option.setAttribute("value", "New Master Product");
+  option.setAttribute("value", "0");
   option.innerHTML = "New Master Product";
   oProduct.appendChild(option);
 
@@ -242,12 +242,14 @@ function populateProductData() {
       console.log(omasterProduct.options.length);
       if (doc.data().MasterProductID === undefined || doc.data().MasterProductID === "") {
         omasterProduct.options[0].selected = true;
+        document.getElementById("masterProductID").value = "0";
         document.getElementById("masterProductName").value = "";
         document.getElementById("masterProductName").setAttribute("disabled", false);
       } else {
         for (i = 0; i < omasterProduct.options.length; i++) {
           if (omasterProduct.options[i].value === doc.data().MasterProductID) {
             omasterProduct.options[i].selected = true;
+            document.getElementById("masterProductID").value = doc.data().MasterProductID;
             document.getElementById("masterProductName").value = omasterProduct.options[i].innerHTML;
           }
         }
@@ -655,16 +657,16 @@ function formatValue(index) {
     unit.style.transform = 'translateX(38px)';
   }
 }
-function CheckMasterProduct()
-{
+
+function CheckMasterProduct() {
   var omasterProduct = document.getElementById("masterProduct");
-  var masterproductID= "";
+  var masterproductID = "";
   var masterProductName = "";
   masterProductName = document.getElementById("masterProductName").value
-  if (omasterProduct.options[0].selected === false){
-      masterproductID = omasterProduct.options[omasterProduct.selectedIndex].value ;
-      CreateUpdateProductData(masterproductID);
-  } else {//create master product
+  if (omasterProduct.options[0].selected === false) {
+    masterproductID = omasterProduct.options[omasterProduct.selectedIndex].value;
+    CreateUpdateProductData(masterproductID);
+  } else { //create master product
     db.collection("ProductMaster").add({
         MasterProductName: masterProductName,
         CreatedBy: auth.currentUser.email,
@@ -673,8 +675,8 @@ function CheckMasterProduct()
         UpdatedTimestamp: ''
       })
       .then(function(docRef) {
-        document.getElementById('hfproductID').value = docRef.id;
-        CreateUpdateProductData (docRef.id);
+        document.getElementById("masterProductID").value = docRef.id;
+        CreateUpdateProductData(docRef.id);
       });
 
   }
@@ -888,7 +890,7 @@ function CreateUpdateProductData(masterProductID) {
             MaximumQty: maximumQty,
             StepQty: stepQty,
             ProductLocation: productLocationValue,
-            MasterProductID : masterProductID,
+            MasterProductID: masterProductID,
             ProductDetails: productDetails,
             ProductImageURL: ProductImageURL,
             ShortDescription: shortDescription,
@@ -927,7 +929,7 @@ function CreateUpdateProductData(masterProductID) {
             MaximumQty: maximumQty,
             StepQty: stepQty,
             ProductLocation: productLocationValue,
-            MasterProductID : masterProductID,
+            MasterProductID: masterProductID,
             ProductDetails: productDetails,
             ProductImageURL: ProductImageURL,
             Status: status,
@@ -1152,31 +1154,62 @@ document.getElementById('upload').onclick = function() {
           .then((metadata) => {
             // Updated metadata for storage resources is returned in the Promise
             console.log("metadata added on image url: " + url);
-          }).catch((error) => {
+          })
+          .catch((error) => {
             // Uh-oh, an error occurred!
           });
 
-        //Update meta data for firebase storage resources - End
+        var masterProductID = document.getElementById("masterProductID").value;
+        if (masterProductID === "" || masterProductID === "0" || masterProductID === undefined) {
+          db.collection("Products").doc(productID).update({
+              // console.log('inside db collection: ' + newEventID);
+              // EventId: newEventID,
+              ProductImageURL: ImgUrl,
+              UpdatedBy: auth.currentUser.email,
+              UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+            })
+            .then(function(docRef) {
+              document.getElementById("upload").disabled = true;
+              console.log("Data added sucessfully in the document: " + productID);
+              console.log("eventstart")
+              window.location.href = "updateProduct.html"
+              // console.log(Date.parse(eventstart))
+            })
+            .catch(function(error) {
+              console.error("error adding document:", error);
+            });
 
-        db.collection("Products").doc(productID).update({
-            // console.log('inside db collection: ' + newEventID);
-            // EventId: newEventID,
-            ProductImageURL: ImgUrl,
-            UpdatedBy: auth.currentUser.email,
-            UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
-          })
-          .then(function(docRef) {
-            document.getElementById("upload").disabled = true;
+        } else {
 
-            console.log("Data added sucessfully in the document: " + productID);
-            console.log("eventstart")
-            window.location.href = "updateProduct.html"
-            // console.log(Date.parse(eventstart))
-          })
-          .catch(function(error) {
-            console.error("error adding document:", error);
-          });
+          db.collection("ProductMaster").doc(masterProductID).update({
+              ProductImageURL: ImgUrl,
+              UpdatedBy: auth.currentUser.email,
+              UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+            })
+            .then(function(docRef) {
 
+              db.collection("Products").doc(productID).update({
+                  // console.log('inside db collection: ' + newEventID);
+                  // EventId: newEventID,
+                  ProductImageURL: ImgUrl,
+                  UpdatedBy: auth.currentUser.email,
+                  UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+                })
+                .then(function(docRef) {
+                  document.getElementById("upload").disabled = true;
+                  console.log("Data added sucessfully in the document: " + productID);
+                  console.log("eventstart")
+                  window.location.href = "updateProduct.html"
+                  // console.log(Date.parse(eventstart))
+                })
+                .catch(function(error) {
+                  console.error("error adding document:", error);
+                });
+            })
+            .catch(function(error) {
+              console.error("error adding document:", error);
+            });
+        }
       });
     });
 }
