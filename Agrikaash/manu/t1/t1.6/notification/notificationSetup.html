@@ -250,7 +250,7 @@
       <hr class="hr" />
 
       <li class="">
-        <a href="../admin/dashboard.html" class="left-navigation">
+        <a href="../admin/report.html" class="left-navigation">
           <div class="">
             <span class="material-icons-outlined">
               landscape
@@ -348,7 +348,6 @@
           <h4 style="width:100%;text-align:center;">Notification Setup</h4>
         </div>
 
-
         <div class="col-sm-12" style="padding: 10px;">
           <div class="add-address-card">
             <div class="row no-gutters" id="createNotificationDiv" style="display:none;">
@@ -379,7 +378,7 @@
               </div>
             </div>
 
-            <div class="row no-gutters" id="mapNotificationDiv" style="display:none;">
+            <div class="row no-gutters"  style="display:none;">
               <div class="col-6" style="padding: 0 5px;">
                 <input type="radio" checked class="checkbox" style="width: 0px;" name="BusinessType" id="All" value="All">
                 <label class="checkbox-label" id="All-label" for="All">
@@ -415,14 +414,44 @@
                   <span>Large</span>
                 </label>
               </div>
+              <center><br>
+                <span>OR</span>
+              </center><br>
+            </div>
+            <div class="row no-gutters" id="mapNotificationDiv" style="display:none;" >
+
+              <div class="col-6" style="padding: 0 5px;">
+                <input type="radio" class="checkbox" style="width: 0px;" name="notificationType" id="Offer" value="Offer">
+                <label class="checkbox-label" id="Offer-label" for="Offer">
+                  <i class="fas fa-plus"></i>
+                  <i class="fas fa-check"></i>
+                  <span>Offer or Discount</span>
+                </label>
+              </div>
+
+              <div class="col-6" style="padding: 0 5px;">
+                <input type="radio" class="checkbox" style="width: 0px;" name="notificationType" id="NewLaunch" value="NewLaunch">
+                <label class="checkbox-label" id="NewLaunch-label" for="NewLaunch">
+                  <i class="fas fa-plus"></i>
+                  <i class="fas fa-check"></i>
+                  <span>New Launch</span>
+                </label>
+              </div>
+
+              <div class="col-6" style="padding: 0 5px;">
+                <input type="radio" class="checkbox" style="width: 0px;" name="notificationType" id="Updates" value="Updates">
+                <label class="checkbox-label" id="Updates-label" for="Updates">
+                  <i class="fas fa-plus"></i>
+                  <i class="fas fa-check"></i>
+                  <span>Updates</span>
+                </label>
+              </div>
+
 
               <div class="col-sm-12">
-                <center><br>
-                  <span>OR</span>
-                </center><br>
                 <div class="">
                   <div class="">
-                    If no user selected, Notification will be applicable for all
+                    <strong>If no user selected, Notification will be applicable for all</strong>
 
                     <select class="city-selector multi-select" id="userList" multiple style="border: 1px solid #aaa;height: 200px;width: 100%;" name="">
                     </select>

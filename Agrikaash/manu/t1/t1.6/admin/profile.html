@@ -422,47 +422,50 @@
                 </span>
               </h4>
               <small class="small-text" style="padding: 0 10px;">
-                <input class="profile-personal-input" readonly style="width: 110px;" maxlength="10" id='userPhone' type="number" placeholder="mobile" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></input>
+                <input class="profile-personal-input" readonly style="width: 110px;" maxlength="10" id='userPhone' type="number" placeholder="mobile"
+                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></input>
                 <span class="material-icons-outlined" style="color: #f58634; font-size: 1.2rem;" onclick="editMobile();">
                   edit
                 </span>
               </small><br><br>
 
-              <div class="">
-                <!-- <input class="profile-personal-input" readonly style="width: 110px;" maxlength="100" id='companyName' type="text" placeholder="Company Name" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></input> -->
-                <select class="city-selector" name="" id="companyName">
-                  <option value="Agrikaash">Agrikaash</option>
-                  
-                  <option value="Jalan">Jalan</option>
-                  <option value="Mother Dairy">Mother Dairy</option>
-                  <option value="Reliance">Reliance</option>
-                  <option value="Spencers">Spencers</option>
-                </select>
+              <div class="" style="display:flex;flex-direction: column;align-items: center;">
+                <div class="city-selector-div">
+                  <!-- <input class="profile-personal-input" readonly style="width: 110px;" maxlength="100" id='companyName' type="text" placeholder="Company Name" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></input> -->
+                  <select class="city-selector" name="" id="companyName">
+                    <option value="Agrikaash">Agrikaash</option>
+
+                    <option value="Jalan">Jalan</option>
+                    <option value="Mother Dairy">Mother Dairy</option>
+                    <option value="Reliance">Reliance</option>
+                    <option value="Spencers">Spencers</option>
+                  </select>
 
                   <span class="material-icons-outlined city-selector-icon">
                     location_on
                   </span>
-<!--
+                  <!--
                 <span class="material-icons-outlined" style="color: #f58634; font-size: 1.2rem;" onclick="editCompany();">
                   edit
                 </span> -->
-              </div><br><br>
+                </div><br><br>
 
-              <div class="">
-                <select class="city-selector" name="" id="cityList">
-                  <option value="Varanasi">Varanasi</option>
-                  <option value="Noida">Noida</option>
-                  <option value="Lucknow">Lucknow</option>
-                  <option value="Gorakhpur">Gorakhpur</option>
-                  <option value="Deoria">Deoria</option>
-                </select>
+                <div class="city-selector-div">
+                  <select class="city-selector" name="" id="cityList">
+                    <option value="Deoria">Deoria</option>
+                    <option value="Gorakhpur">Gorakhpur</option>
+                    <option value="Lucknow">Lucknow</option>
+                    <option value="Noida">Noida</option>
+                    <option value="Varanasi">Varanasi</option>
+                  </select>
 
-                <span class="material-icons-outlined city-selector-icon">
-                  location_on
-                </span>
+                  <span class="material-icons-outlined city-selector-icon">
+                    location_on
+                  </span>
+                </div>
               </div>
 
-              <div class=""  style="display:none;">
+              <div class="" style="display:none;">
                 <select class="city-selector" name="" id="customerType">
                   <option value="All">All</option>
                   <option value="Small">Small</option>
@@ -574,7 +577,7 @@
 
 
   <!-- Footer Section - Start -->
-  <br class="small"/><br class="small"/><br class="small"/>
+  <br class="small" /><br class="small" /><br class="small" />
   <section id="footer" class="large">
     <hr>
     <br /><br />

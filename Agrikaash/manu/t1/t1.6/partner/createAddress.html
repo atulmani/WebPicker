@@ -244,7 +244,7 @@
       <hr class="hr" />
 
       <li class="">
-        <a href="../login/profile.html" class="left-navigation">
+        <a href="updatePayment.html" class="left-navigation">
           <div class="">
             <span class="material-icons-outlined">
               card_giftcard
@@ -388,10 +388,24 @@
               <label for="AddressLine2">Address Line 2</label>
             </div>
 
-            <div class="form-control col-6" style="padding: 0 5px;">
+            <div class="form-control col-6">
+              <select class="city-selector" name="" id="cityList">
+                <option value="Deoria">Deoria</option>
+                <option value="Gorakhpur">Gorakhpur</option>
+                <option value="Lucknow">Lucknow</option>
+                <option value="Noida">Noida</option>
+                <option value="Varanasi">Varanasi</option>
+              </select>
+
+              <span class="material-icons-outlined city-selector-icon">
+                location_on
+              </span>
+            </div>
+
+            <!-- <div class="form-control col-6" style="padding: 0 5px;">
               <input id="City" type="text" required value="">
               <label for="City">City</label>
-            </div>
+            </div> -->
 
             <div class="form-control col-6" style="padding: 0 5px;">
               <input id="ZipCode" type="number" maxlength="6" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required value="">

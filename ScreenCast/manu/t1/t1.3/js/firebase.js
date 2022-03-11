@@ -1,16 +1,15 @@
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
-// *********** Development Config **********
-var firebaseConfig = {
-  apiKey: "AIzaSyB7NY05st0jH8nWmUuNmQHYJGtmp9Pe0M0",
-  projectId: "hyperclouddev",
-  authDomain: "hyperclouddev.firebaseapp.com",
-  databaseURL: "https://hyperclouddev.firebaseio.com",
-  storageBucket: "hyperclouddev.appspot.com",
-  messagingSenderId: "939801651782",
-  appId: "1:939801651782:web:f63ad3e0469b27838c7847",
-  // measurementId: "G-GJCEDPVJQL"
+// *********** UAT Config **********
+const firebaseConfig = {
+  apiKey: "AIzaSyDFKLjG9Z5ezzm08QWAzfag6j-rWZ_EQkI",
+  projectId: "hyperclouduat",
+  authDomain: "hyperclouduat.firebaseapp.com",
+  databaseURL: "https://hyperclouduat.firebaseio.com",
+  storageBucket: "hyperclouduat.appspot.com",
+  messagingSenderId: "932262782431",
+  appId: "1:932262782431:web:25c69612b0d3aaafaad06a"
 };
 
 // *********** Production Config **********

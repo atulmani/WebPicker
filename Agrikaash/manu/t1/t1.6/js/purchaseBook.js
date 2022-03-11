@@ -10,6 +10,8 @@ var pID;
 var buisinessType = "";
 var productType = "";
 var filter = "All";
+var flagSearch = true;
+
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
@@ -28,7 +30,7 @@ auth.onAuthStateChanged(firebaseUser => {
   }
 });
 
-function GetProfileData(user) {
+async function GetProfileData(user) {
   // const ref = db.collection("Users").doc(user.uid);
 
   const snapshot = db.collection('UserList').doc(user.uid);
@@ -64,6 +66,7 @@ function GetProfileData(user) {
             });
           });
           // console.log("before call populateProductData 2");
+
           populateProductData('', '');
         } else {
           document.getElementById('confirmationMessage').style.display = "block";
@@ -104,12 +107,13 @@ function filterFunction() {
   //  console.log(filter);
   div = document.getElementById("idItem");
   a = div.getElementsByTagName("button");
+  //console.log(a.length);
   for (i = 0; i < a.length; i++) {
-    //console.log(document.getElementById("hfSearchID" + i).value);
-    //console.log(a[i].textContent);
-    //console.log(a[i].innerText);
-    //  console.log(document.getElementById("hfSearchID" + i));
-    txtValue = a[i].innerText + " " + document.getElementById("hfSearchID" + i).value;
+    var lsItem = a[i].children[1];
+    //txtValue = a[i].innerText + " " + document.getElementById("hfSearchID" + i).value;
+    txtValue = a[i].innerText +" " + lsItem.value;
+
+    // txtValue = a[i].innerText + " " + document.getElementById("hfSearchID" + i).value;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       a[i].style.display = "";
     } else {
@@ -134,11 +138,15 @@ function myChangeEvent() {
   var hfid = "";
   var productList = [];
   var prodCnt = 0;
+  var displayCnt = 0;
   var callCount = 1;
   for (i = 0; i < a.length; i++) {
-    txtValue = a[i].innerText + " " + document.getElementById("hfSearchID" + i).value;
+    var lsItem = a[i].children[1];
+    //txtValue = a[i].innerText + " " + document.getElementById("hfSearchID" + i).value;
+    txtValue = a[i].innerText +" " + lsItem.value;
     //    txtValue = a[i].textContent || a[i].innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      displayCnt = displayCnt + 1;
       noFlag = true;;
       a[i].style.display = "";
       hfid = a[i].getElementsByTagName("input")[0];
@@ -167,6 +175,9 @@ function myChangeEvent() {
   console.log("before display none");
   document.getElementById("idItem").style.display = "none";
   document.getElementById("myInput").children[0].blur();
+  document.getElementById("itemCnt").innerHTML = displayCnt +" Items" ;
+
+
   // myDropdown.classList.remove("show");
   // serachDiv.classList.remove("open");
 }
@@ -183,7 +194,7 @@ function RenderProductByProducrID(productList, callCount) {
     var selectedindex = -1;
     var selectdedItem;
     //productCategory.push('All');
-    changes.forEach(change => {
+    changes.forEach(async change => {
       //console.log('in for loop');
       var pCategory = change.data().productType;
       //productCategory.push(pCategory)
@@ -200,8 +211,68 @@ function RenderProductByProducrID(productList, callCount) {
         selectdedItem = null;
       }
       // console.log("before call 1");
-      renderProductNew(change, index);
-      index = index + 1;
+      ////////////////////
+
+      var docPurchase = await db.collection("PurchaseBook").where("ProductId", "==", change.id).orderBy('CreatedTimestamp', 'desc').limit(10);
+      docPurchase.onSnapshot((docP) => {
+        qtyP = 0;
+        prizeP = 0;
+        dateP = "";
+        dateN = "";
+        avgPrize = 0;
+        index1 = 0;
+        productPurchase = "";
+        dateDisplay = undefined;
+        docP.forEach(changeP => {
+          // dateP = new Date(changeP.data().CreatedTimestamp * 1000);
+          dateP = changeP.data().CreatedTimestamp.toDate();
+          var qtyIn = changeP.data().QuantityPurchased;
+          if (qtyIn > 0) {
+            if (index1 != 0) {
+              if (dateP.getDate() === dateN.getDate() && dateP.getMonth() === dateN.getMonth() && dateP.getYear() === dateN.getYear()) {
+                qtyP = Number(qtyP) + Number(changeP.data().QuantityPurchased);
+                prizeP = Number(prizeP) + (Number(changeP.data().UnitPrize * Number(changeP.data().QuantityPurchased)));
+              }
+
+            } else {
+              dateDisplay = dateP;
+              qtyP = Number(qtyP) + Number(changeP.data().QuantityPurchased);
+              prizeP = Number(prizeP) + (Number(changeP.data().UnitPrize * Number(changeP.data().QuantityPurchased)));
+            }
+            dateN = dateP;
+            index1 = index1 + 1;
+          }
+
+        });
+        avgPrize = Number(prizeP) / Number(qtyP);
+        //console.log("avgPrize", avgPrize);
+
+        if (avgPrize > 0) {
+          productPurchase = {
+            productID: change.id,
+            displayDate: dateDisplay,
+            Quantity: qtyP,
+            AvgPrize: avgPrize
+          };
+        } else {
+          productPurchase = {
+            productID: change.id,
+            displayDate: '',
+            Quantity: 0,
+            AvgPrize: 0
+          };
+        }
+        console.log(productPurchase);
+
+        renderProductNew(change, index, productPurchase);
+        index = index + 1;
+      });
+
+
+
+
+      // renderProductNew(change, index);
+      // index = index + 1;
     });
   });
 
@@ -237,7 +308,63 @@ function showItem(itemname) {
       document.getElementById("productRow").innerHTML = "";
       // console.log("before call 2");
 
-      renderProductNew(doc, 0);
+      ////////////////////
+
+      var docPurchase = await db.collection("PurchaseBook").where("ProductId", "==", doc.id).orderBy('CreatedTimestamp', 'desc').limit(10);
+      docPurchase.onSnapshot((docP) => {
+        qtyP = 0;
+        prizeP = 0;
+        dateP = "";
+        dateN = "";
+        avgPrize = 0;
+        index1 = 0;
+        productPurchase = "";
+        dateDisplay = undefined;
+        docP.forEach(changeP => {
+          // dateP = new Date(changeP.data().CreatedTimestamp * 1000);
+          dateP = changeP.data().CreatedTimestamp.toDate();
+          var qtyIn = changeP.data().QuantityPurchased;
+          if (qtyIn > 0) {
+            if (index1 != 0) {
+              if (dateP.getDate() === dateN.getDate() && dateP.getMonth() === dateN.getMonth() && dateP.getYear() === dateN.getYear()) {
+                qtyP = Number(qtyP) + Number(changeP.data().QuantityPurchased);
+                prizeP = Number(prizeP) + (Number(changeP.data().UnitPrize * Number(changeP.data().QuantityPurchased)));
+              }
+
+            } else {
+              dateDisplay = dateP;
+              qtyP = Number(qtyP) + Number(changeP.data().QuantityPurchased);
+              prizeP = Number(prizeP) + (Number(changeP.data().UnitPrize * Number(changeP.data().QuantityPurchased)));
+            }
+            dateN = dateP;
+            index1 = index1 + 1;
+          }
+
+        });
+        avgPrize = Number(prizeP) / Number(qtyP);
+        console.log("avgPrize", avgPrize);
+        if (avgPrize > 0) {
+          productPurchase = {
+            productID: doc.id,
+            displayDate: dateDisplay,
+            Quantity: qtyP,
+            AvgPrize: avgPrize
+          };
+        } else {
+          productPurchase = {
+            productID: doc.id,
+            displayDate: '',
+            Quantity: 0,
+            AvgPrize: 0
+          };
+        }
+
+
+        renderProductNew(doc, 0, productPurchase);
+//        index = index + 1;
+      });
+
+      //renderProductNew(doc, 0);
       document.getElementById("idItem").style.display = "none";
       document.getElementById("myInput").children[0].blur();
 
@@ -246,10 +373,11 @@ function showItem(itemname) {
   });
 }
 
-function populateProductData(bType, pType) {
+async function populateProductData(bType, pType) {
   console.log('populateProductData', bType, pType);
   buisinessType = bType;
   productType = pType;
+  var productPurchase;
   //var DBrows = db.collection("Products").where("OrganizationId", "==", Number(organizationid)).get();
   var divPType = document.getElementById('productCategory');
   var divPList = document.getElementById('productRow');
@@ -281,22 +409,22 @@ function populateProductData(bType, pType) {
     if (filter === "All") {
       DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Low") {
-      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", "<", 20).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", "<", 20).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Medium") {
-      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "High") {
-      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     }
   } else if ((pType != '' && pType != 'All') && (bType === '' || bType === 'All')) //select one customer businessType
   {
     if (filter === "All") {
       DBrows = db.collection("Products").where("productType", "==", pType).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Low") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", "<", 20).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", "<", 20).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Medium") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "High") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", ">=", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", ">=", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     }
   } else if ((pType != '' && pType != 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
@@ -304,11 +432,11 @@ function populateProductData(bType, pType) {
     if (filter === "All") {
       DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Low") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", "<", 20).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", "<", 20).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Medium") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "High") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 50).orderBy("Status").orderBy("AvailableQuantity").orderBy('CreatedTimestamp', 'desc').get();
     }
   }
   //  console.log(DBrows);
@@ -318,12 +446,15 @@ function populateProductData(bType, pType) {
 
     var item = [];
     var index = 0;
+    var index1 = 0;
     var selectedindex = -1;
     var selectdedItem;
     productCategory.push('All');
     var productName = "";
     var searchKey = "";
-    snapshot.forEach(change => {
+    var lastPurchasedBy = "";
+    productPurchase = "";
+    snapshot.forEach(async (change) => {
       //if (change.type == 'added')
       {
         var pCategory = change.data().productType;
@@ -336,9 +467,11 @@ function populateProductData(bType, pType) {
       } else {
         searchKey = change.data().SearchKey;
       }
+      // productPurchase = await getPurchaseDetails(change.id);
+      ///////////////////
+      // if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
+      if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All') && filter === 'All' && flagSearch === true)
 
-      //console.log(change.doc.data());
-      if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All')) //Select all products
       {
         var anchorB = document.createElement("button");
         anchorB.setAttribute("onclick", "showItem('" + change.id + "')");
@@ -361,12 +494,86 @@ function populateProductData(bType, pType) {
         document.getElementById("idItem").appendChild(anchorB);
       }
       // console.log("before call 3");
+      ////////////////////
 
-      renderProductNew(change, index);
-      index = index + 1;
+      var docPurchase = await db.collection("PurchaseBook").where("ProductId", "==", change.id).orderBy('CreatedTimestamp', 'desc').limit(10);
+      docPurchase.onSnapshot((docP) => {
+        qtyP = 0;
+        prizeP = 0;
+        dateP = "";
+        dateN = "";
+        avgPrize = 0;
+        index1 = 0;
+        productPurchase = "";
+        dateDisplay = undefined;
+        docP.forEach(changeP => {
+          // dateP = new Date(changeP.data().CreatedTimestamp * 1000);
+          dateP = changeP.data().CreatedTimestamp.toDate();
+          var qtyIn = changeP.data().QuantityPurchased;
+          if (qtyIn > 0) {
+            if (index1 != 0) {
+              if (dateP.getDate() === dateN.getDate() && dateP.getMonth() === dateN.getMonth() && dateP.getYear() === dateN.getYear()) {
+                qtyP = Number(qtyP) + Number(changeP.data().QuantityPurchased);
+                prizeP = Number(prizeP) + (Number(changeP.data().UnitPrize * Number(changeP.data().QuantityPurchased)));
+              }
+
+            } else {
+              lastPurchasedBy = changeP.data().CreatedBy;
+              dateDisplay = dateP;
+              qtyP = Number(qtyP) + Number(changeP.data().QuantityPurchased);
+              prizeP = Number(prizeP) + (Number(changeP.data().UnitPrize * Number(changeP.data().QuantityPurchased)));
+            }
+            dateN = dateP;
+            index1 = index1 + 1;
+          }
+
+        });
+        avgPrize = Number(prizeP) / Number(qtyP);
+        // console.log("avgPrize", avgPrize);
+        if (avgPrize > 0) {
+          productPurchase = {
+            lastPurchasedBy : lastPurchasedBy,
+            productID: change.id,
+            displayDate: dateDisplay,
+            Quantity: qtyP,
+            AvgPrize: avgPrize
+          };
+        } else {
+          productPurchase = {
+            lastPurchasedBy : '',
+            productID: change.id,
+            displayDate: '',
+            Quantity: 0,
+            AvgPrize: 0
+          };
+        }
+
+
+        renderProductNew(change, index, productPurchase);
+        index = index + 1;
+        document.getElementById("itemCnt").innerHTML = index + " Items";
+
+        if ((pType === '' || pType === 'All') && (bType === '' || bType === 'All') && filter === 'All' && flagSearch === true) {
+          flagSearch = false;
+        }
+        if (filter === 'overbooked' || filter === 'noinventory' || filter === "lowinventory" || filter === 'highinventory') {
+          filter = "All";
+          pType = '';
+          bType = '';
+
+          document.getElementById("allAnchor").setAttribute("class", "");
+          document.getElementById("VegetableAnchor").setAttribute("class", "");
+          document.getElementById("FruitAnchor").setAttribute("class", "");
+
+        }
+
+      });
+      console.log("test", index);
+      document.getElementById("itemCnt").innerHTML = index + " Items";
 
     });
     document.getElementById("itemCnt").innerHTML = index + " Items";
+
     var unique = productCategory.filter(onlyUnique);
     renderProductCategory(unique, pType);
     document.getElementById("categoryCnt").value = unique.length;
@@ -377,7 +584,70 @@ function populateProductData(bType, pType) {
     //  });
   });
 }
-
+//
+// async function getPurchaseDetails(productID)
+// {
+//   var qtyP = 0;
+//   var prizeP = 0;
+//   var dateP;
+//   var dateN;
+//   var avgPrize = 0;
+//   var index = 0;
+//   var dateDisplay;
+//
+//   var docPurchase = await db.collection("PurchaseBook").where("ProductId", "==", productID).orderBy('CreatedTimestamp', 'desc').limit(10);
+//   docPurchase.onSnapshot((docP) => {
+//      qtyP = 0;
+//      prizeP = 0;
+//      dateP = "";
+//      dateN = "";
+//      avgPrize = 0;
+//      index = 0;
+//      dateDisplay = undefined;
+//     docP.forEach(changeP => {
+//       // dateP = new Date(changeP.data().CreatedTimestamp.seconds * 1000);
+//       dateP = changeP.data().CreatedTimestamp.toDate();
+//       console.log(dateP);
+//       var qtyIn = changeP.data().QuantityPurchased;
+//       if (qtyIn > 0) {
+//         if (index != 0) {
+//           if (dateP.getDate() === dateN.getDate() && dateP.getMonth() === dateN.getMonth() && dateP.getYear() === dateN.getYear()) {
+//             qtyP = Number(qtyP) + Number(changeP.data().QuantityPurchased);
+//             prizeP = Number(prizeP) + Number(changeP.data().UnitPrize);
+//           }
+//
+//         } else {
+//           dateDisplay = dateP;
+//           qtyP = Number(qtyP) + Number(changeP.data().QuantityPurchased);
+//           prizeP = Number(prizeP) + Number(changeP.data().UnitPrize);
+//         }
+//         dateN = dateP;
+//         index = index + 1;
+//       }
+//
+//     });
+//     console.log(productID);
+//     console.log(dateDisplay);
+//     console.log(qtyP);
+//     console.log(prizeP);
+//     avgPrize = Number(prizeP) / Number(qtyP);
+//
+//       var purchaseDetails  ;
+//       if(dateDisplay != undefined)
+//       {
+//         return ({
+//           productID : productID,
+//           displayDate :dateDisplay,
+//           Quantity :  qtyP,
+//           AvgPrize :avgPrize
+//         })
+//       }
+//       else {
+//         return 0;
+//       }
+//   });
+//
+// }
 function onlyUnique(value, index, self) {
   return self.indexOf(value) === index;
 }
@@ -540,7 +810,24 @@ function changeFilter() {
   populateProductData(buisinessType, productType);
 }
 
-function renderProductNew(doc, index) {
+function renderProductNew(doc, index, productPurchase) {
+
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
+
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+
+  // console.log(productPurchase);
+  //if(productPurchase != 0 )
+
   // cons
   var productlist = doc.data().ProductDetails;
   var productWeightUnit = doc.data().ProductWeightUnit;
@@ -611,11 +898,57 @@ function renderProductNew(doc, index) {
   var ta = document.createElement("textarea");
   ta.setAttribute("name", "");
   ta.setAttribute("placeholder", "Purchased from");
-  ta.setAttribute("style", "width: 100%;resize: none;outline:none;height: 70px;padding: 0 10px;color: #666;border:none;border:1px solid #ddd;");
+  ta.setAttribute("style", "width: 100%;resize: none;outline:none;height: 30px;padding: 0 10px;color: #666;border:none;border:1px solid #ddd;");
   ta.setAttribute("id", "purchanshedFrom" + index);
+  ta.setAttribute("maxLength", "20");
 
   div4.appendChild(ta);
   div3.appendChild(div4);
+
+
+  var divA = document.createElement("div");
+  divA.setAttribute("class", "col-12");
+  divA.setAttribute("style", "display:flex;justify-content: space-between; align-items: center;");
+
+  var hfA1 = document.createElement("input");
+  hfA1.setAttribute("type", "hidden");
+  hfA1.setAttribute("id", "lstDate" + index);
+  if (productPurchase.Quantity === 0) {
+    hfA1.setAttribute("value", "");
+  }
+  else {
+
+    hfA1.setAttribute("value", productPurchase.displayDate);
+  }
+  divA.appendChild(hfA1);
+
+  var hfA2 = document.createElement("input");
+  hfA2.setAttribute("type", "hidden");
+  hfA2.setAttribute("id", "lstQty" + index);
+  hfA2.setAttribute("value", productPurchase.Quantity);
+  divA.appendChild(hfA2);
+
+
+  var hfA3 = document.createElement("input");
+  hfA3.setAttribute("type", "hidden");
+  hfA3.setAttribute("id", "lstAvg" + index);
+  hfA3.setAttribute("value", productPurchase.AvgPrize);
+  divA.appendChild(hfA3);
+
+  var msgA = document.createElement("small");
+  msgA.setAttribute("style", "color:red;font-size: 0.7rem;");
+  msgA.setAttribute("id", "msgP" + index);
+  if (productPurchase.Quantity === 0) {
+    msgA.innerHTML = "<strong>Last purchashed on : NA";
+  } else {
+    msgA.innerHTML = "<strong>Last purchashed on : " + productPurchase.displayDate.toLocaleDateString("en-US", options) +
+      " <br>" + productPurchase.Quantity + " " + productWeightUnit + " @ " + Number(productPurchase.AvgPrize).toLocaleString('en-IN', curFormat) +
+       "<br> Last Purchased By : " +productPurchase.lastPurchasedBy +"</strong>";
+  }
+  divA.appendChild(msgA);
+  div3.appendChild(divA);
+
+
 
   var div5 = document.createElement("div");
   div5.setAttribute("class", "col-6");
@@ -707,7 +1040,7 @@ function renderProductNew(doc, index) {
   } else {
     span31.setAttribute("style", "font-size: 1.4rem;color: #88CA5E;font-weight: bold;");
   }
-  span31.innerHTML = availableQuantity +" " + productWeightUnit;
+  span31.innerHTML = availableQuantity + " " + productWeightUnit;
   s9.appendChild(span31);
   div10.appendChild(s9);
 
@@ -927,6 +1260,7 @@ function SetPurchaseDetails(index) {
   // console.log(index);
   var hfid = document.getElementById("hfID" + index);
   var hfunit = document.getElementById("hfUnit" + index);
+  // var hfunit = document.getElementById("hfUnit" + index);
   //
   // var cbKG = document.getElementById("KG" + index);
   // var cbDozen = document.getElementById("Dozen" + index);
@@ -940,20 +1274,38 @@ function SetPurchaseDetails(index) {
   var btnSave = document.getElementById("btnSave" + index);
   var msg = document.getElementById("msg" + index);
   var unit = "";
-  var purchashedfrom = document.getElementById("purchanshedFrom"+index);
-  // if (cbKG.checked) {
-  //   unit = "KG";
-  // } else if (cbDozen.checked) {
-  //   unit = "Dozen";
-  // } else if (cbPiece.checked) {
-  //   unit = "Piece";
-  // } else if (cbQuintal.checked) {
-  //   unit = "Quintal";
-  // }
+  var purchashedfrom = document.getElementById("purchanshedFrom" + index);
+  var lastDate = document.getElementById("lstDate" + index);
+  var lstQty = document.getElementById("lstQty" + index);
+  var lstAvg = document.getElementById("lstAvg" + index);
+  var msgP = document.getElementById("msgP" + index);
+
+/*
+msgA.setAttribute("id", "msgP" + index);
+if (productPurchase.Quantity === 0) {
+  msgA.innerHTML = "<strong>Last purchashed on : NA";
+} else {
+  msgA.innerHTML = "<strong>Last purchashed on : " + productPurchase.displayDate.toLocaleDateString("en-US", options) +
+    " <br>" + productPurchase.Quantity + " " + productWeightUnit + " @ " + Number(productPurchase.AvgPrize).toLocaleString('en-IN', curFormat); + "</strong>";
+}
+
+*/
+    var curFormat = { style: 'currency',
+          currency: 'INR',
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 2 };
+
+    var options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    };
+
   unit = hfunit.value;
   var newQty = 0;
   if (btnSave.innerHTML === 'Add') {
     btnSave.innerHTML = "Save";
+    btnSave.style.background = '#88CA5E';
     inputunitPrize.removeAttribute("readonly");
     inputquantity.removeAttribute("readonly");
   } else {
@@ -967,6 +1319,7 @@ function SetPurchaseDetails(index) {
         msg.innerHTML = '';
       }, 5000);
       btnSave.innerHTML = "Add";
+      btnSave.style.background = '#f58634';
       inputunitPrize.setAttribute("readonly", true);
       inputquantity.setAttribute("readonly", true);
 
@@ -988,13 +1341,44 @@ function SetPurchaseDetails(index) {
 
     } else {
       btnSave.innerHTML = "Add";
+      var today = new Date().toLocaleDateString("en-US", options);
+
       console.log(inputquantityDisplay.innerHTML);
       console.log(inputquantity.value);
       console.log(hfid.value);
       console.log(hfAvailableQty.value);
       newQty = Number(hfAvailableQty.value) + Number(inputquantity.value);
       console.log(newQty);
-      inputquantityDisplay.innerHTML = newQty +" " + unit;
+      inputquantityDisplay.innerHTML = newQty + " " + unit;
+      var qty11 = "";
+      var prize11 = "";
+      var avg11 = "";
+      console.log(today);
+      console.log(lastDate);
+      if(today === new Date(lastDate.value).toLocaleDateString("en-US", options))
+      {
+        qty11 = Number(lstQty.value) +  Number(inputquantity.value);
+        prize11 = Number(lstAvg.value) * Number(lstQty.value) +  Number(inputquantity.value) * Number(inputunitPrize.value);
+        avg11 =  Number(prize11)/Number(qty11);
+
+//        var lastDate = document.getElementById("lstDate" + index);
+        lstQty.value = qty11;
+        lstAvg.value = avg11
+
+      }
+      else {
+        qty11 = Number(inputquantity.value);
+        prize11 =   Number(inputquantity.value) * Number(inputunitPrize.value);
+        avg11 =  Number(inputunitPrize.value);
+
+        lstQty.value = qty11;
+        lstAvg.value = avg11 ;
+        lastDate.value = new Date();
+
+      }
+
+      msgP.innerHTML = "<strong>Last purchashed on : " + today +
+        " <br>" + qty11 + " " + unit + " @ " + Number(avg11).toLocaleString('en-IN', curFormat); + "</strong>";
 
       if (newQty < 20) {
         inputquantityDisplay.setAttribute("style", "font-size: 1.4rem;color: red;font-weight: bold;")
@@ -1012,6 +1396,7 @@ function SetPurchaseDetails(index) {
           Unit: unit,
           UnitPrize: Number(inputunitPrize.value),
           QuantityPurchased: Number(inputquantity.value),
+          PurchashedFrom: purchashedfrom.value,
           CreatedBy: auth.currentUser.email,
           CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
 

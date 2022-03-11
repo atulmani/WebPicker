@@ -28,7 +28,7 @@ auth.onAuthStateChanged(firebaseUser => {
       getAllProducts();
 
       //createOrderItems();
-
+      getWalletDetails();
 
       GetCouponDetails();
 
@@ -56,7 +56,41 @@ auth.onAuthStateChanged(firebaseUser => {
   }
 });
 
+function getWalletDetails() {
 
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
+  console.log(userID);
+  const snapshot = db.collection('UserWallet').doc(userID);
+  snapshot.get().then(async (doc1) => {
+    if (doc1.exists) {
+      //console.log(walletDetails);
+      walletamount = doc1.data().WalletAmount;
+      var totalAmt = document.getElementById('hftotalAmount').value
+      if (Number(walletamount) > Number(totalAmt)) {
+        document.getElementById("divPayment").style.height = "100%";
+        document.getElementById("divPayment").style.opacity = "1";
+        document.getElementById("divPayment").style.pointerEvents = "all";
+        document.getElementById("walletAmount").innerHTML = doc1.data().WalletAmount.toLocaleString('en-IN', curFormat);
+        document.getElementById("hfWalletAmount").value = doc1.data().WalletAmount;
+      }else {
+        document.getElementById("PayOption1").checked= true;
+        document.getElementById("divPayment").style.height = "0%";
+        document.getElementById("divPayment").style.opacity = "0";
+        document.getElementById("divPayment").style.pointerEvents = "none";
+      }
+    }else {
+      document.getElementById("PayOption1").checked= true;
+      document.getElementById("divPayment").style.height = "0%";
+      document.getElementById("divPayment").style.opacity = "0";
+      document.getElementById("divPayment").style.pointerEvents = "none";
+    }
+  });
+}
 
 function GetCartList() {
   console.log('GetCartList - Starts');
@@ -177,6 +211,18 @@ function GetProfileData(user) {
         //  document.getElementById('headerProfilePic').src = doc.data().ImageURL;
         document.getElementById('displayName').innerHTML = doc.data().displayName;
         document.getElementById('EmailID').value = doc.data().EmailID;
+        var deliverySlot = doc.data().PreferredTimeSlot;
+        console.log(deliverySlot);
+        if (deliverySlot != undefined && deliverySlot != "") {
+          var oDeliveryTime = document.getElementById("DeliveryTime");
+          for (cnt = 0; cnt < oDeliveryTime.options.length; cnt++) {
+            console.log(oDeliveryTime.options[cnt].text);
+            if (oDeliveryTime.options[cnt].text === deliverySlot) {
+              oDeliveryTime.options[cnt].selected = true;
+            }
+          }
+
+        }
       }
     })
     .catch(function(error) {
@@ -455,6 +501,7 @@ function UpdateDeliveryDate() {
   tempDate.setDate(tempDate.getDate() + 1);
   delDate.options[0].text = tempDate.toLocaleDateString();
   delDate.options[0].value = tempDate.toLocaleDateString();
+  delDate.options[0].selected = true;
 
   tempDate.setDate(tempDate.getDate() + 1);
   delDate.options[1].text = tempDate.toLocaleDateString();
@@ -479,7 +526,7 @@ function UpdateDeliveryDate() {
   tempDate.setDate(tempDate.getDate() + 1);
   delDate.options[6].text = tempDate.toLocaleDateString();
   delDate.options[6].value = tempDate.toLocaleDateString();
-  delDate.options[6].selected = true;
+  // delDate.options[6].selected = true;
 
 }
 
@@ -576,7 +623,7 @@ function SaveOrder() {
   return message;
 }
 
-async function SaveOrderinDB() {
+async function SaveOrderinDB(walletFlag) {
 
   var curFormat = {
     style: 'currency',
@@ -641,10 +688,25 @@ async function SaveOrderinDB() {
   };
 
   var orderChanges = [];
+  var paymentStatus = 'Pending';
+  var walletFlag = false;
+  if (document.getElementById("PayOption0").checked) {
+    walletFlag  = true;
+    paymentStatus = 'Completed';
+    orderChanges.push({
+      OrderStage: 7,
+      OrderStatus: "",
+      PaymentStatus: "Payment completed from Wallet",
+      DeliverySlot: "",
+      DeliveryDate: "",
+      ChangedTimeStamp: new Date()
+    });
+
+  }
   orderChanges.push({
     OrderStage: 1,
     OrderStatus: 'Order Placed',
-    PaymentStatus: 'Pending',
+    PaymentStatus: paymentStatus,
     DeliverySlot: deliveryTime,
     DeliveryDate: deliveryDate,
     ChangedTimeStamp: new Date()
@@ -653,11 +715,12 @@ async function SaveOrderinDB() {
   orderChanges.push({
     OrderStage: 2,
     OrderStatus: 'Pending',
-    PaymentStatus: 'Pending',
+    PaymentStatus: paymentStatus,
     DeliverySlot: deliveryTime,
     DeliveryDate: deliveryDate,
     ChangedTimeStamp: new Date()
   });
+
   console.log(OrderItems);
   if (cartDetails.length > 0 && selectedAddress != null) {
     console.log('insert order');
@@ -674,7 +737,7 @@ async function SaveOrderinDB() {
         paymentOption: paymentOption,
         discountedprize: discountedprize,
         discountDetails: discount,
-        paymentStatus: 'Pending',
+        paymentStatus: paymentStatus,
         orderStatus: 'Pending',
         orderDate: firebase.firestore.Timestamp.fromDate(new Date()),
         orderBy: userID,
@@ -686,7 +749,7 @@ async function SaveOrderinDB() {
         UpdatedTimestamp: ''
       });
 
-    const ordertrackingAwait =await db.collection('OrderTracking')
+    const ordertrackingAwait = await db.collection('OrderTracking')
       .doc(addOrderAwait.id)
       .set({
         OrderID: addOrderAwait.id,
@@ -696,9 +759,14 @@ async function SaveOrderinDB() {
         UserID: userID
       });
 
+      console.log(prize);
+      if(walletFlag === true)
+      {
+        const wallet = await updateWalletDetails(userID, prize, 'delete',  addOrderAwait.id);
+      }
 
     const updateInventory = await updateInventoryItems();
-     cartDetails= [];
+    cartDetails = [];
     db.collection('CartDetails')
       .doc(userID)
       .update({
@@ -706,42 +774,89 @@ async function SaveOrderinDB() {
       })
       .then(function(docred) {
         console.log('cart details made blank');
-         window.location.href = "orderSummary.html?id=" + addOrderAwait.id;
+        window.location.href = "orderSummary.html?id=" + addOrderAwait.id;
       });
-  // console.log(Date.parse(eventstart))
-
+    // console.log(Date.parse(eventstart))
 
   }
 
-  async function  updateInventoryItems()
-  {
+
+
+  async function updateWalletDetails(userID, totalamount, addDelete, orderID) {
+    var currentAmount = 0;
+    const snapshot = db.collection('UserWallet').doc(userID);
+
+    var WalletDetails = [];
+
+    snapshot.get().then(async (doc) => {
+        if (doc.exists) {
+          currentAmount = doc.data().WalletAmount;
+          WalletDetails = doc.data().WalletDetails;
+        }
+        if (addDelete === 'add')
+          currentAmount = Number(currentAmount) + Number(totalamount);
+        else
+          currentAmount = Number(currentAmount) - Number(totalamount);
+        // console.log(WalletDetails);
+        if (WalletDetails === undefined)
+          WalletDetails = [];
+        WalletDetails.push({
+          orderID: orderID,
+          WalletAmount: totalamount,
+          WalletType: addDelete,
+          Date: firebase.firestore.Timestamp.fromDate(new Date())
+        });
+
+        // console.log(WalletDetails);
+        db.collection("UserWallet").doc(userID).set({
+            WalletAmount: currentAmount,
+            UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+            WalletDetails: WalletDetails,
+            UpdatedByUser: userID
+          })
+          .then(function(docRef) {
+            console.log("Data added sucessfully in the document: " + userID);
+            //    window.location.href = "orderStatus.html"
+            // console.log(Date.parse(eventstart))
+          })
+          .catch(function(error) {
+            console.error("error updatign order:", error);
+          });
+
+      })
+      .catch(function(error) {
+        // An error occurred
+        console.log(error);
+        // document.getElementById('errorMessage_Signup').innerHTML = error.message;
+        // document.getElementById('errorMessage_Signup').style.display = 'block';
+      });
+  }
+
+  async function updateInventoryItems() {
     var cntItem = 0;
-    for (index = 0 ;index < cartItems.length ; index ++)
-    {
+    for (index = 0; index < cartItems.length; index++) {
       cntItem = -1 * Number(cartDetails[index].SelectedsubItem.split(" ")[0]) * Number(cartDetails[index].Quantity);
       var doc = await db.collection("ProductsInventory").doc(cartDetails[index].ProductID).get();
       console.log(cntItem);
-      if(doc.exists)
-      {
-        console.log(doc.data().AvailableQuantity);
+      if (doc.exists) {
+        //console.log(doc.data().AvailableQuantity);
         cntItem = Number(cntItem) + Number(doc.data().AvailableQuantity);
-        console.log(doc.id, cntItem);
+        //console.log(doc.id, cntItem);
         const updateInventory = await db.collection("ProductsInventory").doc(doc.id).update({
-            AvailableQuantity: Number(cntItem),
-            LastUpdatedBy: auth.currentUser.email,
-            LastUpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
-          });
-      }
-      else {
-        console.log(cntItem, doc.id);
+          AvailableQuantity: Number(cntItem),
+          LastUpdatedBy: auth.currentUser.email,
+          LastUpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+        });
+      } else {
+        //console.log(cntItem, doc.id);
         const addInventory = await db.collection("ProductsInventory").doc(cartDetails[index].Products).set({
-            AvailableQuantity: Number(cntItem),
-            LastUpdatedBy: auth.currentUser.email,
-            LastUpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
-          });
+          AvailableQuantity: Number(cntItem),
+          LastUpdatedBy: auth.currentUser.email,
+          LastUpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+        });
       }
       console.log(doc.id, cntItem);
-      const productawait = await  db.collection("Products").doc(doc.id).update({
+      const productawait = await db.collection("Products").doc(doc.id).update({
         AvailableQuantity: Number(cntItem)
       });
     }
@@ -998,7 +1113,7 @@ function createOrderItems() {
       ProductID: cartItems[i].ProductID,
       ProductName: cartItems[i].ItemName,
       SelectedSubItem: cartItems[i].SelectedsubItem,
-      ImageURL: selectedProduct.productImageURL,
+      //ImageURL: selectedProduct.productImageURL,
       VegNonVeg: selectedProduct.VegNonVeg,
       UnitPrise: sellPrize,
       MRP: MRP,

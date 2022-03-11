@@ -121,6 +121,7 @@ function renderUsers(userDetails, userID, index) {
 
   var div1 = document.createElement("div");
   div1.setAttribute("class", "dashboard-card user-list active");
+  div1.setAttribute("style", "background:#fff;");
 
   var div2 = document.createElement("div");
   div2.setAttribute("class", "dashboard-card-order");

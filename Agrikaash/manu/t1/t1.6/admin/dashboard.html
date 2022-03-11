@@ -615,7 +615,7 @@
               </div>
               <div class="details">
                 <h4>Inventory</h4>
-                <p class="small-text dashboard-sub-heading" id="Inventory">Inventory Available for : <span id="inventoryCnt"></span> Items </p>
+                <p class="small-text dashboard-sub-heading" id="Inventory">No Inventory for : <span id="inventoryCnt"></span> Items </p>
               </div>
             </div>
 
@@ -625,17 +625,19 @@
               <div class="dashboard-card-order">
                 <div class="">
                   <h5 class="small-text">To be Purchashed </h5>
-                  <small>(Over booked)</small><br>
                   <div onClick="ShowInventory('overbooked');">
-                    <span id="overbookedCount">0 </span> Items
+                    <span id="overbookedCount">0 </span> Items<br>
+                    <small>(Over booked)</small>
+
                   </div>
                 </div>
 
                 <div class="">
-                  <h5 class="small-text">No Volume </h5>
-                  <small>( 0 Inventory )</small><br>
+                  <h5 class="small-text">Zero Volume </h5>
                   <div onClick="ShowInventory('noinventory');">
-                    <span id="noVolumnCount">0</span> Items
+                    <span id="noVolumnCount">0</span> Items <br>
+                    <small>( 0 Inventory )</small>
+
                     <!-- <small id="yesterdayAmount">₹ 0</small> -->
                   </div>
                 </div>
@@ -644,18 +646,20 @@
               <div class="dashboard-card-order">
                 <div class="">
                   <h5 class="small-text">Low Volume </h5>
-                  <small>(Less Than 20)</small><br>
+
                   <div onClick="ShowInventory('lowinventory');">
-                    <span id="lowVolumnCount">0</span> Items
+                    <span id="lowVolumnCount">0</span> Items<br>
+                    <small>(Less Than 20)</small>
                     <!-- <small id="WeekAmount">₹ 0</small> -->
                   </div>
                 </div>
 
                 <div class="">
                   <h5 class="small-text">High Volume </h5>
-                  <small>(More Than 50)</small><br>
+
                   <div onClick="ShowInventory('highinventory');">
-                    <span id="highVolumnCount">0</span> Items
+                    <span id="highVolumnCount">0</span> Items<br>
+                    <small>(More Than 50)</small>
                     <!-- <small id="monthAmount">₹ 0</small> -->
                   </div>
                 </div>
@@ -672,7 +676,7 @@
                 </a>
                 <a href="purchaseBook.html">
                   <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
-                    Update Purchase Details
+                    Purchase
                     <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
                       menu
                     </span>
@@ -701,7 +705,7 @@
               </div>
               <div class="details">
                 <h4>Purchase Details</h4>
-                <p class="small-text dashboard-sub-heading" id="Inventory">Last Purchased : <span id="lastPurchased"></span> </p>
+                <p class="small-text dashboard-sub-heading" id="Inventory">Last Purchased on <span id="lastPurchased"></span> </p>
               </div>
             </div>
 
@@ -755,7 +759,7 @@
                 </a>
                 <a href="purchaseBook.html">
                   <button class="mybutton buttonTransparent" style="padding-bottom: 7px;margin: auto 10px;">
-                    Update Purchase Details
+                    Purchase
                     <span class="material-icons-outlined" style="position: relative;top: 5px;font-size: 1.2rem;padding-left: 5px;">
                       menu
                     </span>

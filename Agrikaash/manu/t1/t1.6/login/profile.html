@@ -170,7 +170,7 @@
         </span>
         <small>Orders</small>
       </a>
-      <a href="../partner/cartNew.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="../partner/cartNew.html"  class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <span class="material-icons-outlined">
           shopping_cart
         </span>
@@ -422,14 +422,15 @@
           <div class="col-lg-9 col-md-6 col-sm-12" style="display:flex; align-items:center;justify-content:center;">
             <div class="profile-personal-div" style="text-align:center;">
               <h4 style="padding: 10px 10px 0 10px;">
-                <input class="profile-personal-input" style="color: #1D741B;" type="text" placeholder="Name" readonly id='userName'></input>
+                <input class="profile-personal-input" style="color: #1D741B;" type="text" onchange="editName();" placeholder="Name" readonly id='userName'></input>
 
                 <span class="material-icons-outlined" style="color: #f58634;" onclick="editName();">
                   edit
                 </span>
               </h4>
               <small class="small-text" style="padding: 0 10px;">
-                <input class="profile-personal-input" readonly style="width: 110px;" maxlength="10" id='userPhone' type="number" placeholder="Mobile" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></input>
+                <input class="profile-personal-input" readonly style="width: 110px;" maxlength="10" id='userPhone' type="number" placeholder="Mobile"
+                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></input>
                 <span class="material-icons-outlined" style="color: #f58634; font-size: 1.2rem;" onclick="editMobile();">
                   edit
                 </span>
@@ -446,10 +447,11 @@
                   <option value="Spencers">Spencers</option>
                 </select>
 
-                  <span class="material-icons-outlined city-selector-icon">
-                    location_on
-                  </span>
+                <span class="material-icons-outlined city-selector-icon">
+                  location_on
+                </span>
               </div>
+
 
               <!-- <small class="small-text" style="padding: 0 10px;">
                 <input class="profile-personal-input" readonly style="width: 110px;" maxlength="100" id='companyName' type="text" placeholder="Company Name" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></input>
@@ -461,12 +463,12 @@
               <br>
 
               <div class="">
-                <select class="city-selector" name="" id="cityList">
-                  <option value="Varanasi">Varanasi</option>
-                  <option value="Noida">Noida</option>
-                  <option value="Lucknow">Lucknow</option>
-                  <option value="Gorakhpur">Gorakhpur</option>
+                <select class="city-selector" name="" id="cityList" onchange="cityChange();">
                   <option value="Deoria">Deoria</option>
+                  <option value="Gorakhpur">Gorakhpur</option>
+                  <option value="Lucknow">Lucknow</option>
+                  <option value="Noida">Noida</option>
+                  <option value="Varanasi">Varanasi</option>
                 </select>
 
                 <span class="material-icons-outlined city-selector-icon">
@@ -474,7 +476,7 @@
                 </span>
               </div>
 
-              <div class="" style="display:none" >
+              <div class="" style="display:none">
                 <select class="city-selector" name="" id="customerType">
                   <option value="All">All</option>
                   <option value="Small">Small</option>
@@ -486,6 +488,110 @@
                   storefront
                 </span>
               </div><br>
+
+              <div class="">
+                <small class="small-text" style="padding: 0 10px;">
+                  <input class="profile-personal-input" readonly style="width: 200px;" maxlength="15" id='userGST' type="text" placeholder="GST"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></input>
+                  <span class="material-icons-outlined" style="color: #f58634; font-size: 1.2rem;" onclick="editGST();">
+                    edit
+                  </span>
+                </small>
+              </div><br>
+
+              <div class="" style="display:flex;align-items: center;justify-content: space-between;">
+                <div class="">
+                  <h5>Preferred Time Slot</h5>
+                </div>
+
+                <div class="">
+                  <select class="city-selector" id="DeliveryTime">
+                    <option>6 : 10 AM</option>
+                    <option>10 : 12 Noon</option>
+                    <option>12 : 4 PM</option>
+                    <option>4 : 6 PM</option>
+                  </select>
+
+                  <span class="material-icons-outlined city-selector-icon">
+                    schedule
+                  </span>
+                </div>
+              </div>
+
+
+              <div class="dashboard-card" id="cardAddress">
+                <!-- <div class="dashboard-card" id="cardInventory" onclick="showHideCard(cardInventory, cardInventoryArrow)" > -->
+                <div class="" onclick="showHideCard(cardAddress, cardAddressArrow)" style="display:flex;align-items: center;">
+                  <div class="arrow-down">
+                    <span id="cardAddressArrow" class="material-icons-outlined">
+                      keyboard_arrow_down
+                    </span>
+                  </div>
+
+                  <div class="">
+                    <span class="material-icons-outlined order-icon">
+                      text_snippet
+                    </span>
+                  </div>
+                  <div class="details">
+                    <h4>Default Delivery Address</h4>
+                    <p class="small-text dashboard-sub-heading" id="Inventory">Branch Name : <span id="branchNameHeader"></span> </p>
+                  </div>
+                </div>
+                <hr>
+
+                <div class="add-address-card">
+                  <div class="row no-gutters">
+                    <hr>
+                    <div class="form-control">
+                      <input id='branchID' type="hidden" name="" value="">
+                      <input id="branchName" type="text" required value="" maxlength="40">
+                      <label>Branch Name</label>
+                    </div>
+
+                    <div class="form-control">
+                      <input id="branchOwnerName" type="text" required maxlength="30" value="">
+                      <label>Branch Owner Name</label>
+                    </div>
+
+                    <div class="form-control">
+                      <input id="addressLine1" type="text" required maxlength="30" value="">
+                      <label for="AddressLine1">Address Line 1</label>
+                    </div>
+
+                    <div class="form-control">
+                      <input id="addressLine2" type="text" required maxlength="30" value="">
+                      <label for="AddressLine2">Address Line 2</label>
+                    </div>
+
+                    <div class="form-control col-6" style="padding: 0 5px;">
+                      <input id="City" type="text" required value="" disabled>
+                      <label for="City">City</label>
+                    </div>
+
+                    <div class="form-control col-6" style="padding: 0 5px;">
+                      <input id="ZipCode" type="number" maxlength="6" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required value="">
+                      <label for="Zip Code">Zip Code</label>
+                    </div>
+
+                    <!-- <div class="form-control">
+                    <input id="PhoneNumber" maxlength="10" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required value="">
+                    <label for="Phone Number">Phone Number</label>
+                  </div> -->
+
+                    <!-- <div class="form-control">
+                      <span id="errorMessage" style="color:red;"></span>
+                    </div> -->
+                    <div style="width: 100%;text-align: center; display:none;">
+                      <button class="mybutton button5" onclick="saveAddress();">Save Address</button>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+
+
               <div id="divWalletDetails_old" style="display:none;">
                 Your Wallet has : <span id="WalletDetails_old"></span>
               </div>
@@ -501,11 +607,13 @@
                     <span>Current Balance <strong>Rs.</strong> </span> <span id="WalletDetails" style="font-weight:bold;"></span>
                   </div>
                 </div>
-              </div>
-              
-              <button class="mybutton button5" onclick="SaveDetails();">Update Profile</button><br>
-              <Label id="confirmationMessage" style="display:none;"> Your profile details have been updated successfully.</Label>
+              </div><br>
 
+              <button class="mybutton button5" onclick="SaveDetailsPartner();">Update Profile</button><br>
+              <Label id="confirmationMessage" style="display:none;"> Your profile details have been updated successfully.</Label>
+              <div class="form-control">
+                <span id="errorMessage" style="color:red;"></span>
+              </div>
             </div>
           </div>
 
@@ -558,7 +666,7 @@
 
 
 
-      <div id='imageDiv' style="padding: 2%; display:none;" class="col-lg-6">
+      <!-- <div id='imageDiv' style="padding: 2%; display:none;" class="col-lg-6">
         <div style="border:2px solid #889; color:#6ea23f;padding:10px;">
           <center>
             <img id="myimg" src="" style="width:200px;height: 200px;border: 1px solid #aaa;" alt=""><label id="UpProgress"></label>
@@ -568,7 +676,7 @@
           <button style="background:#fbe25f; color:#6ea23f;" class="btn" id="upload" type="button" disabled name="button">Upload Image</button>
         </div>
         <br>
-      </div>
+      </div> -->
     </div>
 
     <br>
@@ -585,7 +693,7 @@
 
 
   <!-- Footer Section - Start -->
-  <br class="small"/><br class="small"/><br class="small"/>
+  <br class="small" /><br class="small" /><br class="small" />
   <section id="footer" class="large">
     <hr>
     <br /><br />
@@ -681,6 +789,18 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    const inputs = document.querySelectorAll('.form-control input');
+    const labels = document.querySelectorAll('.form-control label');
+
+    labels.forEach(label => {
+      label.innerHTML = label.innerText
+        .split('')
+        .map((letter, idx) => `<span style="transition-delay: ${idx * 50}ms">${letter}</span>`)
+        .join('');
+    });
+  </script>
 
 </body>
 

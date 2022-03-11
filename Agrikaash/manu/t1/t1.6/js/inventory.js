@@ -142,10 +142,12 @@ function myChangeEvent() {
   var productList = [];
   var prodCnt = 0;
   var callCount = 1;
+  var displayCnt = 0;
   for (i = 0; i < a.length; i++) {
     txtValue = a[i].innerText + " " + document.getElementById("hfSearchID" + i).value;
     //    txtValue = a[i].textContent || a[i].innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      displayCnt = displayCnt + 1;
       noFlag = true;;
       a[i].style.display = "";
       hfid = a[i].getElementsByTagName("input")[0];
@@ -169,11 +171,12 @@ function myChangeEvent() {
   if (noFlag === false) {
     document.getElementById("searchKeyText").innerHTML = filter;
     document.getElementById("wrongSearch").style.display = "block";
-
+    document.getElementById("itemCnt").innerHTML = "0 Items";
   }
   console.log("before display none");
   document.getElementById("idItem").style.display = "none";
   document.getElementById("myInput").children[0].blur();
+  document.getElementById("itemCnt").innerHTML = displayCnt + " Items";
   // myDropdown.classList.remove("show");
   // serachDiv.classList.remove("open");
 }
@@ -247,6 +250,7 @@ function showItem(itemname) {
       renderProductNew(doc, 0);
       document.getElementById("idItem").style.display = "none";
       document.getElementById("myInput").children[0].blur();
+      document.getElementById("itemCnt").innerHTML = "1 Items";
 
 
     }
@@ -274,7 +278,7 @@ function populateProductData(bType, pType) {
   if (filter === "overbooked") {
     DBrows = db.collection("Products").where("AvailableQuantity", "<", 0).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
   } else if (filter === "noinventory") {
-    DBrows = db.collection("Products").where("AvailableQuantity", "==", 0).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+    DBrows = db.collection("Products").where("AvailableQuantity", "==", 0).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
   } else if (filter === "lowinventory") {
     DBrows = db.collection("Products").where("AvailableQuantity", "<", 20).where("AvailableQuantity", ">", 0).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
   } else if (filter === "highinventory") {
@@ -283,7 +287,7 @@ function populateProductData(bType, pType) {
   {
     console.log("in loop1");
     if (filter === "All") {
-      DBrows = db.collection("Products").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Low") {
       DBrows = db.collection("Products").where("AvailableQuantity", "<", 20).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Medium") {
@@ -297,38 +301,38 @@ function populateProductData(bType, pType) {
     console.log("in loop2");
     prodType = ['All', bType]
     if (filter === "All") {
-      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Low") {
-      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", "<", 20).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", "<", 20).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Medium") {
-      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "High") {
-      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     }
   } else if ((pType != '' && pType != 'All') && (bType === '' || bType === 'All')) //select one customer businessType
   {
     console.log("in loop3 : ", filter);
     if (filter === "All") {
-      DBrows = db.collection("Products").where("productType", "==", pType).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Low") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", "<", 20).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", "<", 20).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Medium") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "High") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", ">=", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("AvailableQuantity", ">=", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     }
   } else if ((pType != '' && pType != 'All') && (bType != '' && bType != 'All')) //select one customer businessType
   {
     console.log("in loop4");
     prodType = ['All', bType];
     if (filter === "All") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Low") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", "<", 20).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", "<", 20).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "Medium") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 20).where("AvailableQuantity", "<", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     } else if (filter === "High") {
-      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 50).orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
+      DBrows = db.collection("Products").where("productType", "==", pType).where("CustomerBusinessType", "in", prodType).where("AvailableQuantity", ">=", 50).orderBy("AvailableQuantity").orderBy("Status").orderBy('CreatedTimestamp', 'desc').get();
     }
 
   }
@@ -669,7 +673,8 @@ function renderProductNew(doc, index) {
   s1.setAttribute("class", "product-names");
   s1.innerHTML = doc.data().ProductName;
   div5.appendChild(s1);
-
+  var b1 = document.createElement("br");
+  div5.appendChild(b1);
 
   var s2 = document.createElement("small");
   s2.setAttribute("style", "font-size: 0.8rem; color: rgba(0,0,0,0.5);");

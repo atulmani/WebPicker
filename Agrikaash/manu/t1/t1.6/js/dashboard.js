@@ -269,8 +269,8 @@ function PopulateOrderSummary() {
         //console.log(orderdate.getYear(), todayDate.getYear());
         //orderdate = oorderdate.toLocaleDateString("en-US", options);
         //orderdate = new Date(Date.parse(orderDetails.orderDate));
-        console.log(orderdate);
-        console.log(todayDate);
+        // console.log(orderdate);
+        // console.log(todayDate);
         if (orderdate.getDate() === todayDate.getDate() && orderdate.getMonth() === todayDate.getMonth() && orderdate.getYear() === todayDate.getYear()) {
           todayCnt = todayCnt + 1;
           if(orderDetails.discountedprize === '' || orderDetails.discountedprize === '0' || orderDetails.discountedprize === undefined || orderDetails.discountedprize === 'NaN')

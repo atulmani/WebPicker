@@ -746,7 +746,7 @@ function renderOrderSummary(ordSummary, index) {
   // console.log(index);
   var div1 = document.createElement("div");
   div1.setAttribute("class", "dashboard-card active");
-  div1.setAttribute("style", "height: 100%;");
+  div1.setAttribute("style", "height: 100%;background: #fff;");
 
   var div2 = document.createElement("div");
   div2.setAttribute("class", "");

@@ -343,7 +343,7 @@ function getOrderDetails() {
     });
 }
 
-function populateDeliveryAddress(selectedOrder) {
+async function populateDeliveryAddress(selectedOrder) {
   //console.log(document.getElementById('DeliveryDate'));
 
   var options = {
@@ -354,7 +354,7 @@ function populateDeliveryAddress(selectedOrder) {
   var dDate = new Date(selectedOrder.deliveryDate.seconds * 1000);
   var delDate = dDate.toLocaleDateString("en-US", options);
   //document.getElementById('DeliveryDate').innerHTML = delDate;
-
+  document.getElementById("orderID").innerHTML = selectedOrder.orderNumber;
   //document.getElementById('DeliveryTime').innerHTML = selectedOrder.deliveryTime;
   document.getElementById('orderStatus').innerHTML = selectedOrder.orderStatus;
   document.getElementById('PaymentStatus').innerHTML = selectedOrder.paymentStatus;
@@ -385,6 +385,8 @@ function populateDeliveryAddress(selectedOrder) {
   amt = amt.toLocaleString('en-IN', curFormat);
 
   document.getElementById('paymentAmount').innerHTML = amt;
+  document.getElementById('hfpaymentAmount').value = selectedOrder.totalAmount;
+
   //console.log(selectedOrder.discountedprize );
   //console.log(selectedOrder.totalAmount);
   //if (selectedOrder.discountedprize === 'NaN' || selectedOrder.discountedprize === "0" || selectedOrder.discountedprize === "")
@@ -427,7 +429,22 @@ function populateDeliveryAddress(selectedOrder) {
   //console.log(dDate);
   //console.log(tempDate);
   //console.log(selectedOrder.orderStatus);
-
+  if (selectedOrder.paymentStatus === 'Pending') {
+    //get wallet details
+    const snapshot = await db.collection('UserWallet').doc(userID);
+    snapshot.get().then(async (doc1) => {
+      if (doc1.exists) {
+        //console.log(walletDetails);
+        walletamount = doc1.data().WalletAmount;
+        if (Number(walletamount) > 0) {
+          document.getElementById("paymentPendingAmount").innerHTML = amt;
+          document.getElementById("divPayment").style.display = "block";
+          document.getElementById("walletAmount").innerHTML = doc1.data().WalletAmount.toLocaleString('en-IN', curFormat);
+          document.getElementById("hfWalletAmount").value = doc1.data().WalletAmount;
+        }
+      }
+    });
+  }
   //order can be cancelled only if order status is Pending and delivery Date is > todays date
   if (selectedOrder.orderStatus === 'Pending' && dDate >= tempDate) {
     console.log('if enabled');
@@ -446,6 +463,53 @@ function populateDeliveryAddress(selectedOrder) {
   }
 }
 
+function updatePayment() {
+  //update payment Status
+  db.collection("OrderDetails").doc(orderID).update({
+      paymentStatus: 'Completed',
+      UpdatedBy: auth.currentUser.email,
+      UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+    })
+    .then(function(docRef) {
+      console.log("Data added sucessfully in the document: " + orderID);
+      var orderChanges = [];
+
+      orderChanges.push({
+        OrderStage: 7,
+        OrderStatus: '',
+        PaymentStatus: 'Payment Status Changed to Completed by User',
+        DeliverySlot: '',
+        DeliveryDate: '',
+        ChangedTimeStamp: new Date()
+      });
+      UpdateOrderTrackingDetails(orderChanges, orderID);
+
+      var amt = document.getElementById('hfpaymentAmount').value
+      updateWalletDetails(userID, Number(amt), 'delete');
+
+      //    window.location.href = "orderStatus.html"
+      // console.log(Date.parse(eventstart))
+      document.getElementById("Message").style.display = "block";
+      // btnTextWithLoader[0].style.display = 'block';
+      // btnLoader[0].style.display = 'none';
+      document.getElementById("btnUpdatePayment").setAttribute("disabled", "true");
+      // Hide alert after 3 seconds
+      setTimeout(function() {
+        document.getElementById("Message").style.display = 'none';
+
+      }, 4000);
+      getOrderDetails();
+
+      document.getElementById("PaymentMessage").style.display = "block";
+
+    })
+    .catch(function(error) {
+      console.error("error updatign order:", error);
+    });
+
+
+}
+
 function populateOrderItems(selectedOrder) {
   var orderItem = selectedOrder.orderItems;
   //console.log(orderItem);
@@ -457,7 +521,7 @@ function populateOrderItems(selectedOrder) {
   document.getElementById("itemcount").innerHTML = i;
 }
 
-function renderOrderItem(orderItem, orderStatusValue, deliveryDate, index) {
+async function renderOrderItem(orderItem, orderStatusValue, deliveryDate, index) {
   var curFormat = {
     style: 'currency',
     currency: 'INR',
@@ -479,120 +543,131 @@ function renderOrderItem(orderItem, orderStatusValue, deliveryDate, index) {
   td1.setAttribute('width', "45%");
   td1.setAttribute('class', "product-img-td");
   var img1 = document.createElement("img");
-  img1.setAttribute('src', orderItem.ImageURL);
-  img1.setAttribute("width", "100%");
-  img1.setAttribute("alt", "");
-  td1.appendChild(img1);
-  tr1.appendChild(td1);
 
-  var td2 = document.createElement('td');
-  td2.setAttribute('width', "55%");
-  td2.setAttribute('valign', "top");
-  td2.setAttribute('class', "product-names-div");
-  td2.setAttribute('style', "text-align: left;");
+  var dbproduct = await db.collection('Products').doc(orderItem.ProductID);
+  dbproduct.get().then(async (doc) => {
+    if (doc.exists) {
+      var imgSrc = doc.data().ProductImageURL;
 
-  var div4 = document.createElement('div');
-  div4.setAttribute('class', "veg-nonVeg-div");
+      img1.setAttribute('src', imgSrc);
+      img1.setAttribute("width", "100%");
+      img1.setAttribute("alt", "");
 
-  var imgVegNonVeg = document.createElement("img");
-  //console.log(orderItem.VegNonVeg);
-  if (orderItem.VegNonVeg === "Veg") {
-    imgVegNonVeg.setAttribute("src", "../img/veg.png");
-  } else if (orderItem.VegNonVeg === "NonVeg") {
-    imgVegNonVeg.setAttribute("src", "../img/non-veg.png");
-  }
-  imgVegNonVeg.setAttribute("width", "100%");
-  imgVegNonVeg.setAttribute("alt", "");
-  div4.appendChild(imgVegNonVeg);
-  td2.appendChild(div4);
-
-  var hf = document.createElement("input");
-  hf.setAttribute("id", "hfProdID" + index);
-  hf.setAttribute("type", "hidden");
-  hf.setAttribute("value", orderItem.ProductID);
-  td2.appendChild(hf);
-
-  var small2 = document.createElement('small');
-  small2.setAttribute('class', 'product-names');
-  small2.innerHTML = orderItem.ProductName;
-  td2.appendChild(small2);
-
-  var small3 = document.createElement('small');
-  small3.setAttribute('style', 'style="font-size: 0.8rem; color: rgba(0,0,0,0.5);');
-  small3.innerHTML = '';
-  td2.appendChild(small3);
-
-  var input1 = document.createElement('input');
-  input1.setAttribute('type', 'text');
-  input1.setAttribute('name', '');
-  input1.setAttribute("id", "selectedItem" + index);
-  input1.setAttribute("readonly", true);
-  input1.value = orderItem.SelectedSubItem;
-  td2.appendChild(input1);
-
-  var div5 = document.createElement('div');
-  div5.setAttribute('class', 'product-price');
-
-  var h51 = document.createElement('h5');
-  h51.innerHTML = Number(orderItem.MRP).toLocaleString('en-IN', curFormat);
-  div5.appendChild(h51);
-
-  var small4 = document.createElement('small');
-  small4.innerHTML = Number(orderItem.UnitPrise).toLocaleString('en-IN', curFormat);
-  div5.appendChild(small4);
-  td2.appendChild(div5);
-
-  var div6 = document.createElement("div");
-  div6.setAttribute("class", "");
-  div6.setAttribute("style", "display: flex;");
-
-  var small5 = document.createElement('small');
-  small5.setAttribute("style", "font-size: 0.8rem;padding: 0 5px;")
-  small5.innerHTML = 'Qty : ' + orderItem.Quantity;
-  div6.appendChild(small5);
-  var totalPrize = Number(orderItem.Quantity) * Number(orderItem.UnitPrise)
-
-  var small6 = document.createElement('small');
-  small6.setAttribute("style", "font-size: 0.8rem;padding: 0 5px;")
-  small6.innerHTML = 'Prize : ' + Number(totalPrize).toLocaleString('en-IN', curFormat);;
-  div6.appendChild(small6);
-  td2.appendChild(div6);
+      td1.appendChild(img1);
+      tr1.appendChild(td1);
 
 
-  var options = {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  };
 
-  var dDate = new Date(deliveryDate.seconds * 1000);
+      var td2 = document.createElement('td');
+      td2.setAttribute('width', "55%");
+      td2.setAttribute('valign', "top");
+      td2.setAttribute('class', "product-names-div");
+      td2.setAttribute('style', "text-align: left;");
 
-  const tempDate = new Date();
-  tempDate.setDate(tempDate.getDate() + 2);
+      var div4 = document.createElement('div');
+      div4.setAttribute('class', "veg-nonVeg-div");
+
+      var imgVegNonVeg = document.createElement("img");
+      //console.log(orderItem.VegNonVeg);
+      if (orderItem.VegNonVeg === "Veg") {
+        imgVegNonVeg.setAttribute("src", "../img/veg.png");
+      } else if (orderItem.VegNonVeg === "NonVeg") {
+        imgVegNonVeg.setAttribute("src", "../img/non-veg.png");
+      }
+      imgVegNonVeg.setAttribute("width", "100%");
+      imgVegNonVeg.setAttribute("alt", "");
+      div4.appendChild(imgVegNonVeg);
+      td2.appendChild(div4);
+
+      var hf = document.createElement("input");
+      hf.setAttribute("id", "hfProdID" + index);
+      hf.setAttribute("type", "hidden");
+      hf.setAttribute("value", orderItem.ProductID);
+      td2.appendChild(hf);
+
+      var small2 = document.createElement('small');
+      small2.setAttribute('class', 'product-names');
+      small2.innerHTML = orderItem.ProductName;
+      td2.appendChild(small2);
+
+      var small3 = document.createElement('small');
+      small3.setAttribute('style', 'style="font-size: 0.8rem; color: rgba(0,0,0,0.5);');
+      small3.innerHTML = '';
+      td2.appendChild(small3);
+
+      var input1 = document.createElement('input');
+      input1.setAttribute('type', 'text');
+      input1.setAttribute('name', '');
+      input1.setAttribute("id", "selectedItem" + index);
+      input1.setAttribute("readonly", true);
+      input1.value = orderItem.SelectedSubItem;
+      td2.appendChild(input1);
+
+      var div5 = document.createElement('div');
+      div5.setAttribute('class', 'product-price');
+
+      var h51 = document.createElement('h5');
+      h51.innerHTML = Number(orderItem.MRP).toLocaleString('en-IN', curFormat);
+      div5.appendChild(h51);
+
+      var small4 = document.createElement('small');
+      small4.innerHTML = Number(orderItem.UnitPrise).toLocaleString('en-IN', curFormat);
+      div5.appendChild(small4);
+      td2.appendChild(div5);
+
+      var div6 = document.createElement("div");
+      div6.setAttribute("class", "");
+      div6.setAttribute("style", "display: flex;");
+
+      var small5 = document.createElement('small');
+      small5.setAttribute("style", "font-size: 0.8rem;padding: 0 5px;")
+      small5.innerHTML = 'Qty : ' + orderItem.Quantity;
+      div6.appendChild(small5);
+      var totalPrize = Number(orderItem.Quantity) * Number(orderItem.UnitPrise)
+
+      var small6 = document.createElement('small');
+      small6.setAttribute("style", "font-size: 0.8rem;padding: 0 5px;")
+      small6.innerHTML = 'Prize : ' + Number(totalPrize).toLocaleString('en-IN', curFormat);;
+      div6.appendChild(small6);
+      td2.appendChild(div6);
 
 
-  if (orderStatusValue === 'Pending' && dDate >= tempDate) {
-    var div7 = document.createElement("div");
-    div7.setAttribute("class", "");
-    div7.setAttribute("style", "float:right;");
+      var options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      };
 
-    var span2 = document.createElement('span');
-    span2.setAttribute("id", "btnDelete" + index);
+      var dDate = new Date(deliveryDate.seconds * 1000);
 
-    span2.setAttribute("onclick", "deleteItem(" + "hfProdID" + index + "," + "selectedItem" + index + "," + 'parentDiv' + index + ");");
-    span2.setAttribute("class", "material-icons");
-    span2.setAttribute("style", "cursor:pointer;padding: 0 20px 0 5px;");
-    span2.innerHTML = "delete_outline";
+      const tempDate = new Date();
+      tempDate.setDate(tempDate.getDate() + 2);
 
-    div7.appendChild(span2);
 
-    td2.appendChild(div7);
-  }
-  tr1.appendChild(td2);
-  table1.appendChild(tr1);
-  div2.appendChild(table1)
-  div1.appendChild(div2);
-  document.getElementById('orderItems').appendChild(div1);
+      if (orderStatusValue === 'Pending' && dDate >= tempDate) {
+        var div7 = document.createElement("div");
+        div7.setAttribute("class", "");
+        div7.setAttribute("style", "float:right;");
+
+        var span2 = document.createElement('span');
+        span2.setAttribute("id", "btnDelete" + index);
+
+        span2.setAttribute("onclick", "deleteItem(" + "hfProdID" + index + "," + "selectedItem" + index + "," + 'parentDiv' + index + ");");
+        span2.setAttribute("class", "material-icons");
+        span2.setAttribute("style", "cursor:pointer;padding: 0 20px 0 5px;");
+        span2.innerHTML = "delete_outline";
+
+        div7.appendChild(span2);
+
+        td2.appendChild(div7);
+      }
+      tr1.appendChild(td2);
+      table1.appendChild(tr1);
+      div2.appendChild(table1)
+      div1.appendChild(div2);
+      document.getElementById('orderItems').appendChild(div1);
+    }
+  });
 
 }
 

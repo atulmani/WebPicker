@@ -247,7 +247,7 @@
       <hr class="hr" />
 
       <li class="">
-        <a href="../login/profile.html" class="left-navigation">
+        <a href="updatePayment.html" class="left-navigation">
           <div class="">
             <span class="material-icons-outlined">
               card_giftcard
@@ -362,7 +362,7 @@
     </div>
     <!-- side navbar - end -->
 
-      <div class="col-lg-10 col-md-10 col-sm-12">
+    <div class="col-lg-10 col-md-10 col-sm-12">
       <div class="row no-gutters large" style="padding: 2%;">
         <img id="headerProfilePic" src="" style="width: 100px; height: 100px;border-radius: 50%;" alt="">
         <h5 id="displayName"> </h5>
@@ -402,7 +402,7 @@
                 <h5>Delivery Date</h5>
               </div>
 
-              <div class="">
+              <div class="city-selector-div">
                 <select class="city-selector" id="DeliveryDate" style="background: rgba(255,255,255,0.6);width: 140px;border: 1px solid #aaa;" name="">
                   <option> </option>
                   <option> </option>
@@ -424,7 +424,7 @@
                 <h5>Time Slot</h5>
               </div>
 
-              <div class="">
+              <div class="city-selector-div">
                 <select class="city-selector" id="DeliveryTime" style="background: rgba(255,255,255,0.6);width: 140px;border: 1px solid #aaa;" name="">
                   <option>6 : 10 AM</option>
                   <option>10 : 12 Noon</option>
@@ -484,8 +484,20 @@
               <h4>Pay Later</h4> -->
             </div>
 
+            <!-- <div class="order-summary" id="divPayment" style="display:none;"> -->
+
+            <div class="delivery-options" id="divPayment">
+              <input type="radio" checked name="delOption" value="From Wallet" id='PayOption0'>
+              <span class="material-icons">
+                account_balance_wallet
+              </span>
+              <h4>Wallet Amount : <span id="walletAmount"></span></h4>
+              <input type="hidden" id="hfWalletAmount">
+            </div>
+
+
             <div class="delivery-options">
-              <input type="radio" checked name="delOption" value="Pay Later" id='PayOption1'>
+              <input type="radio" name="delOption" value="Pay Later" id='PayOption1'>
               <span class="material-icons">
                 savings
               </span>
@@ -494,11 +506,11 @@
             <div class="delivery-options">
               <input type="radio" name="delOption" value="Cash on Delivery" id='PayOption2'>
               <span class="material-icons">
-                account_balance_wallet
+                shopping_bag
               </span>
               <h4>Cash on Delivery</h4>
             </div>
-            <div class="delivery-options">
+            <div class="delivery-options" style="pointer-events:none;display:none; " >
               <input type="radio" name="delOption" value="Online Payment" id='PayOption3'>
               <span class="material-icons">
                 phone_iphone
@@ -514,7 +526,7 @@
             <div class="">
               <span id="message" style="color:red; display:none;">Please select address</span>
               <h5><span id="totalAmount">0</span></h5>
-              <small><span id="itemCount">0 </span> Items</small>
+              <small><span id="itemCount">0 </span></small>
               <input type='hidden' id="hftotalAmount" />
               <input type='hidden' id="hfdiscountedAmount" />
 

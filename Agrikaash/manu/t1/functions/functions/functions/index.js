@@ -5,6 +5,7 @@ const cors = require("cors")({origin: true});
 admin.initializeApp();
 
 const userRequest = require("./userRequest.js");
+const products = require("./products.js");
 
 
 // // Create and Deploy Your First Cloud Functions
@@ -116,9 +117,14 @@ exports.newUserSignin = functions.auth.user().onCreate((user) => {
 // function for trigger using user deleted - auth
 exports.userDeleted = functions.auth.user().onDelete((user) => {
   console.log("user deleted", user.email, user.uid);
+  return admin.firestore().collection("UserRequest").doc(user.id).delete();
 });
 
 exports.updateUserRequest = userRequest.updateUserRequest;
 exports.updateUserProfileImage = userRequest.updateUserProfileImage;
 exports.getAllUserRequests = userRequest.getAllUserRequests;
 exports.getUserRequest = userRequest.getUserRequest;
+exports.updateInventoryWithOrderDetails =
+products.updateInventoryWithOrderDetails;
+
+exports.getProductDetails = products.getProductDetails;

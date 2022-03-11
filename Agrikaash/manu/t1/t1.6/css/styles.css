@@ -423,7 +423,7 @@ blink{
 }
 
 .buttonTransparent {
-  background: none;
+  background: #fff;
   border: 1px solid #bbb;
   color: #666;
   border-radius: 20px;
@@ -1286,6 +1286,10 @@ input[type=number] {
   border: 1px solid transparent;
 }
 
+.city-selector-div{
+  position: relative;
+}
+
 .city-selector {
   background: rgba(0, 0, 0, 0.1);
   outline: none;
@@ -1296,6 +1300,7 @@ input[type=number] {
   color: #444;
   -webkit-appearance: none;
   z-index: 10;
+  width: 100%;
 }
 
 .city-selector.multi-select option {
@@ -1307,9 +1312,13 @@ input[type=number] {
   display: none;
 } */
 .city-selector-icon {
-  position: relative;
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  /* position: relative;
   top: 5px;
-  right: 35px;
+  right: 35px; */
   pointer-events: none;
 }
 
@@ -1828,7 +1837,8 @@ input[type=number] {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: rgba(136,202,94,0.1);
+  background: #fff;
+  /* background: rgba(136,202,94,0.1); */
   padding: 10px 0 0 0;
 }
 
@@ -2346,6 +2356,10 @@ input[type=number] {
   transition: 1s;
 }
 
+.dashboard-card.active{
+  background: #d4f2ff;
+}
+
 .dashboard-card#cardOrder.active {
   height: 350px;
 }
@@ -2359,17 +2373,21 @@ input[type=number] {
 }
 
 .dashboard-card#cardInventory.active {
-  height: 350px;
+  height: 365px;
 }
 
 .dashboard-card#cardPurchase.active {
-  height: 350px;
+  height: 365px;
 }
 .dashboard-card#productDiv.active {
   height: 512px;
 }
 
 .dashboard-card#userRegistration.active {
+  height: 400px;
+}
+
+.dashboard-card#cardAddress.active {
   height: 400px;
 }
 
@@ -3023,3 +3041,30 @@ display: inline-block;
 
 
 /* inventory - end */
+
+/* for desktop */
+.whatsapp_float {
+  position: fixed;
+  width: 42px;
+  height: 42px;
+  bottom: 10%;
+  right: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #25d366;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 0 0 10px 0 #eee;
+  /* border: 2px solid #e10032; */
+  z-index: 999;
+  transition: 0.5s;
+}
+
+.whatsapp_float:hover{
+  text-decoration: none;
+  color: #25d366;
+  background: #fff;
+}

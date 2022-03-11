@@ -172,7 +172,7 @@
         </span>
         <small>Home</small>
       </a>
-      <a href="updateProduct.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+      <a href="updateProduct.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <span class="material-icons-outlined">
           category
         </span>
@@ -453,7 +453,7 @@
           </div>
 
 
-          <div class="" id='divInventory'>
+          <div class="city-selector-div" id='divInventory' style="width: 80%;padding-right:10px;">
             <select class="city-selector" id="filter" onchange="changeFilter();" style="background: rgba(255,255,255,0.6);border: 1px solid #aaa;" name="">
               <option value="All">All</option>
               <option value="Low">Low Vol. (Below 20)</option>
@@ -466,7 +466,7 @@
             </span>
           </div>
 
-          <div class="">
+          <div class="" style="width: 20%;">
             <h5 id="itemCnt">0 Items</h5>
           </div>
 
@@ -475,7 +475,7 @@
 
       <div class="row no-gutters">
         <div class="col-sm-12">
-          <div class="product-list-div Vegetable" style="padding: 0 0 10px 0;">
+          <!-- <div class="product-list-div Vegetable" style="padding: 0 0 10px 0;">
             <div class="inventory-quantity-level" style="background: #88CA5E;">High Volume</div>
             <table width="100%">
               <tr>
@@ -504,7 +504,7 @@
               </tr>
             </table>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <div class="row no-gutters" style="padding: 2%;" id="divDetails">
@@ -685,6 +685,12 @@
               </div>
             </div>
           </div>
+
+          <a href="purchaseBook.html" class="add-products">
+            <span class="material-icons-outlined">
+              shopping_bag
+            </span>
+          </a>
         </div>
       </div>
     </div>
