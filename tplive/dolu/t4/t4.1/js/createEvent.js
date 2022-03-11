@@ -2,20 +2,36 @@
 
 // const eventForm = document.getElementById('eventForm');
 // document.getElementById('optionalFields').style.display = 'block';
-document.getElementById('imageDiv').style.display = 'block';
-const createEventConformation = document.getElementById('createEventConformation');
+// document.getElementById('imageDiv').style.display = 'block';
+// const createEventConformation = document.getElementById('createEventConformation');
 
-const btnSave = document.getElementById('btnSave');
+// const btnSave = document.getElementById('btnSave');
 
-btnSave.addEventListener('click', CreateUpdateEventData, false);
+// btnSave.addEventListener('click', CreateUpdateEventData, false);
+//
+// function CreateUpdateEventData() {
+//   // CreateUpdateEventData.preventDefault();
+//   createEventConformation.style.display = 'block';
+// }
+//
+$(document).ready(function () {
+        if($(window).width() > 850) {
+           // $("#collapsibleNavbar1").removeClass("collapse");
+           $("#arrowOrg").addClass("active");
+           $("#eventArrow").addClass("active");
+           $("#EventRevenue").addClass("active");
+           $("#openEvents").addClass("active");
+        }
+    });
 
-function CreateUpdateEventData() {
-  // CreateUpdateEventData.preventDefault();
-  createEventConformation.style.display = 'block';
+function fullcard(arrowVar)
+{
+  // console.log(arrowVar).;
+  arrowVar.classList.toggle('active');
+
 }
-// 
-// $(document).ready(function () {
-//         if($(window).width() > 850) {
-//            $("#collapsibleNavbar1").removeClass("collapse");
-//         }
-//     });
+
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
