@@ -2,11 +2,11 @@
 function projectMenuListClick(filter) {
   var projectMenuListHr = document.getElementById('projectMenuListHr');
 
-  if (filter === 'PROPOSAL') {
+  if (filter === '1') {
     projectMenuListHr.style.transform = 'translateX(0%)';
-  } else if (filter === 'SUBMITTED') {
+  } else if (filter === '2') {
     projectMenuListHr.style.transform = 'translateX(100%)';
-  } else if (filter === 'ACTIVE') {
+  } else if (filter === '3') {
     projectMenuListHr.style.transform = 'translateX(200%)';
   } else {
     projectMenuListHr.style.transform = 'translateX(300%)';
