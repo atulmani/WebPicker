@@ -365,31 +365,42 @@
       <div class="col-lg-6 col-md-6 col-sm-12" style="padding: 1%;">
         <div class="book-details-card" style="margin-top: 0;">
           <div class="" style="display: flex; align-items: center;justify-content: space-between;">
-            <div class="">
+            <div class="" style="width: 90%;">
               <small style="font-size: 0.9rem;font-weight: 500;" id="partnerID" ><span id="partnerID"></span></small>
               <input type="text" name="" readonly class="project-details-name" id="partnerNameID" value="GreenPack LLP Private Limited">
             </div>
-            <div class="project-details-edit-icon">
-              <span id="partnerNameEditBtn" class="material-icons-outlined" >
-                edit
-              </span>
-              <span id="partnerNameCheckBtn" class="material-icons-outlined" style="display:none;" >
-                task_alt
-              </span>
+            <div class="" style="width: 10%;">
+              <div class="project-details-edit-icon">
+                <span id="partnerNameEditBtn" class="material-icons-outlined" >
+                  edit
+                </span>
+                <span id="partnerNameCheckBtn" class="material-icons-outlined" style="display:none;" >
+                  task_alt
+                </span>
+              </div>
             </div>
           </div>
 
-          <div>
-            <span class="book-details-card-time">
+          <div style="display:flex;">
+            <div class="book-details-card-time">
               <span class="material-icons-outlined">
                 access_time_filled
               </span>
               <small id="partnerDateID"></small>
+            </div>
+            <div class="book-details-card-time">
               <span class="material-icons-outlined">
                 location_on
               </span>
-              <small id="locationID"> Varanasi </small>
-            </span>
+              <select class="" id="locationSelectID" style="display:none;" name="">
+                <option value="Varanasi">Varanasi</option>
+                <option value="Pune">Pune</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Banglore">Banglore</option>
+                <option value="Lucknow">Lucknow</option>
+              </select>
+              <small id="locationID"></small>
+            </div>
           </div>
         </div><br>
 
@@ -400,7 +411,7 @@
                 <span class="toggle-span" style="position:relative;top: -3px;padding: 0 10px;">
                   Client
                 </span>
-                <div class="toggle-switch off" id="partnerToggleSwitchDiv" onclick="toggleSwitch(partnerToggleSwitchDiv, partnerToggleSwitch)">
+                <div class="toggle-switch" id="partnerToggleSwitchDiv" onclick="toggleSwitch(partnerToggleSwitchDiv, partnerToggleSwitch)">
                   <span id="partnerToggleSwitch" class="material-icons-outlined">toggle_on</span>
                 </div>
                 <span class="toggle-span" style="position:relative;top: -3px;padding: 0 10px;">
@@ -412,7 +423,7 @@
               <span class="toggle-span" style="position:relative;top: -3px;padding: 0 10px;">
                 Active
               </span>
-              <div class="toggle-switch off" id="projectToggleSwitchDiv" onclick="toggleSwitch(projectToggleSwitchDiv, projectToggleSwitch)">
+              <div class="toggle-switch" id="projectToggleSwitchDiv" onclick="toggleSwitch(projectToggleSwitchDiv, projectToggleSwitch)">
                 <span id="projectToggleSwitch" class="material-icons-outlined">toggle_on</span>
               </div>
               <span class="toggle-span" style="position:relative;top: -3px;padding: 0 10px;">
@@ -422,12 +433,12 @@
           </div>
         </div>
 
-        <div id="partnerDetailsDiv" class="" style="background: #fff;height: 400px;">
+        <div id="partnerDetailsDiv" class="" style="background: #fff;">
 
           <div class="project-details-form-heading">
             <h4>Partner Details</h4>
 
-            <a href="book.html">
+            <a href="#" onclick="updatePartnerDetails()">
               <button style="width: 150px;height: 40px;" class="mybutton button5">
                 <span style="position: relative; top: -7px;">Save</span>
                 <span style="position: relative; top: 1px;transition: transform 0.5s;" class="material-icons-outlined right">
@@ -440,22 +451,42 @@
           <div class="row no-gutters">
             <div class="col-lg-6 col-md-6 col-sm-12">
               <div class="project-details-form-feild">
-                <input type="text" required name="" value="">
+                <input type="text" id="partnerPOCNameID" required name="" value="">
                 <label for="">Partner POC Name</label>
               </div>
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12">
               <div class="project-details-form-feild">
-                <input type="text" required name="" value="">
+                <input type="text" id="partnerPOCMobileID" required name="" value="">
                 <label for="">Partner POC Mobile</label>
               </div>
             </div>
 
             <div class="col-lg-12 col-md-12 col-sm-12">
               <div class="project-details-form-feild">
-                <input type="text" required name="" value="">
+                <input type="text" id="partnerDetailsID" required name="" value="">
                 <label for="">Partner Details</label>
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="partner-details-img-div">
+                <img src="" id="partnerImg" alt="">
+                <div class="">
+                  <button style="width: 150px;height: 40px;" id="selectBtn" class="mybutton button5">
+                    <span style="position: relative; top: -7px;">Select</span>
+                    <span style="position: relative; top: 1px;transition: transform 0.5s;" class="material-icons-outlined right">
+                      keyboard_arrow_right
+                    </span>
+                  </button><br><br><br>
+                  <button style="width: 150px;height: 40px;" id="uploadBtn" class="mybutton button5">
+                    <span style="position: relative; top: -7px;">Upload</span>
+                    <span style="position: relative; top: 1px;transition: transform 0.5s;" class="material-icons-outlined right">
+                      keyboard_arrow_right
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
