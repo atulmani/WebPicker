@@ -51,6 +51,12 @@ function getParams() {
 var partnerID = document.getElementById('partnerID');
 var partnerNameID = document.getElementById('partnerNameID');
 var locationID = document.getElementById('locationID');
+var locationSelectID = document.getElementById('locationSelectID');
+var partnerDateID = document.getElementById('partnerDateID');
+var partnerPOCNameID = document.getElementById('partnerPOCNameID');
+var partnerPOCMobileID = document.getElementById('partnerPOCMobileID');
+var partnerImg = document.getElementById('partnerImg');
+var partnerDetailsID = document.getElementById('partnerDetailsID');
 var activeInactiveDiv = document.getElementById('activeInactiveDiv');
 var partnerDetailsDiv = document.getElementById('partnerDetailsDiv');
 var partnerNameEditBtn = document.getElementById('partnerNameEditBtn');
@@ -63,6 +69,7 @@ function NewPartner() {
     partnerID.innerHTML = "Partner ID: NA";
     partnerNameID.value = "Enter new Partner name";
     locationID.innerHTML = "NA";
+    locationSelectID.style.display = 'none';
     activeInactiveDiv.style.display = "none";
     partnerDetailsDiv.style.display = "none";
   }
@@ -76,6 +83,8 @@ partnerNameEditBtn.addEventListener('click', function(e) {
   var partnerName = partnerNameID.value;
   console.log("Partner Name: " + partnerName);
   partnerNameID.removeAttribute('readonly');
+  locationID.style.display = 'none';
+  locationSelectID.style.display = 'block';
   partnerNameEditBtn.style.display = "none";
   partnerNameCheckBtn.style.display = "block";
 
@@ -89,10 +98,20 @@ partnerNameCheckBtn.addEventListener('click', function(e) {
     var partnerName = partnerNameID.value;
     console.log("Partner Name: " + partnerName);
     document.getElementById('partnerNameID').readOnly = true;
+    var locationSelectValue = locationSelectID.options[locationSelectID.selectedIndex].value;
+    locationID.innerHTML = locationSelectValue;
+    locationSelectID.style.display = 'none';
+    locationID.style.display = 'block';
+    partnerNameEditBtn.style.display = "block";
     partnerNameEditBtn.style.display = "block";
     partnerNameCheckBtn.style.display = "none";
 
-    savePartnerDetails();
+    if (id === 'new') {
+      savePartnerDetails();
+    } else {
+      updatePartnerDetails();
+    }
+
   } catch (err) {
     console.log(err.message);
   }
@@ -168,12 +187,17 @@ function savePartnerDetails() {
       //     txtAmount.value = doc.data().Amount;
       //
 
+      var locationSelectID = document.getElementById('locationSelectID');
+      var locationSelectValue = locationSelectID.options[locationSelectID.selectedIndex].value;
+
+      console.log(locationSelectValue);
+
 
     db.collection("Partners").add({
         uid: "user.uid",
         partnerID: partnerID + "1234",
-        partnerName: document.getElementById('partnerNameID').value,
-        partnerLocation: document.getElementById('locationID').innerHTML,
+        partnerName: partnerNameID.value,
+        partnerLocation: locationSelectValue,
         partnerType: "CLIENT",
         partnerStatus: "ACTIVE",
         partnerPOCName: "",
@@ -211,7 +235,12 @@ function savePartnerDetails() {
 };
 
 function populatePartnersData(){
-  console.log('update data');
+
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
 
   const snapshot = db.collection('Partners').doc(id);
   snapshot.get().then(async (doc) => {
@@ -220,11 +249,107 @@ function populatePartnersData(){
 
       console.log(doc.id);
 
-      document.getElementById('partnerID').innerHTML = 'Partner ID: ' + doc.data().partnerID;
-      document.getElementById('partnerDateID').innerHTML = doc.data().CreatedTimestamp;
+      var partnerToggleSwitchDiv = document.getElementById('partnerToggleSwitchDiv');
+      var partnerToggleSwitch = document.getElementById('partnerToggleSwitch');
+      var projectToggleSwitchDiv = document.getElementById('projectToggleSwitchDiv');
+      var projectToggleSwitch = document.getElementById('projectToggleSwitch');
+
+      var odeldate = new Date(doc.data().CreatedTimestamp.seconds * 1000);
+      var delDate  = odeldate.toLocaleDateString("en-US", options);
+
+      partnerID.innerHTML = 'Partner ID: ' + doc.data().partnerID;
+      partnerNameID.value = doc.data().partnerName;
+      partnerDateID.innerHTML = delDate;
+      partnerImg.src = doc.data().PartnerImgURL;
+
+      for (var i = 0; i < locationSelectID.options.length; i++) {
+        if (locationSelectID.options[i].value === doc.data().partnerLocation) {
+          locationSelectID.options[i].selected = true;
+        }
+      }
+
+      locationID.innerHTML = doc.data().partnerLocation;
+      if (doc.data().partnerType.toUpperCase() === 'CLIENT') {
+        partnerToggleSwitch.innerHTML = 'toggle_off';
+        partnerToggleSwitchDiv.classList.add('on');
+      }
+      else if (doc.data().partnerType.toUpperCase() === 'VENDOR') {
+        partnerToggleSwitch.innerHTML = 'toggle_on';
+        partnerToggleSwitchDiv.classList.remove('on');
+      }
+
+      if (doc.data().partnerStatus.toUpperCase() === 'ACTIVE') {
+        projectToggleSwitch.innerHTML = 'toggle_off';
+        projectToggleSwitchDiv.classList.add('on');
+      }
+      else if (doc.data().partnerStatus.toUpperCase() === 'INACTIVE') {
+        projectToggleSwitch.innerHTML = 'toggle_on';
+        projectToggleSwitchDiv.classList.remove('on');
+      }
+      partnerPOCNameID.value = doc.data().partnerPOCName;
+      partnerPOCMobileID.value = doc.data().partnerPOCPhone;
+      partnerDetailsID.value = doc.data().Comment;
     }
   });
 
+};
+
+
+function updatePartnerDetails(){
+
+  var locationSelectValue = locationSelectID.options[locationSelectID.selectedIndex].value;
+
+  var partnerTypeValue = '';
+  var partnerStatusValue = '';
+
+  var partnerToggleSwitchDiv = document.getElementById('partnerToggleSwitchDiv');
+  var projectToggleSwitchDiv = document.getElementById('projectToggleSwitchDiv');
+
+  if (partnerToggleSwitchDiv.classList.contains('on')) {
+    partnerTypeValue = 'CLIENT';
+  } else {
+    partnerTypeValue = 'VENDOR';
+  };
+
+  if (projectToggleSwitchDiv.classList.contains('on')) {
+    partnerStatusValue = 'ACTIVE';
+  } else {
+    partnerStatusValue = 'INACTIVE';
+  };
+
+  db.collection("Partners").doc(id).update({
+
+      partnerName: partnerNameID.value,
+      partnerLocation: locationSelectValue,
+      partnerType: partnerTypeValue,
+      partnerStatus: partnerStatusValue,
+      partnerPOCName: partnerPOCNameID.value,
+      partnerPOCPhone: partnerPOCMobileID.value,
+      Comment: partnerDetailsID.value,
+      UpdatedBy: "user.email",
+      UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+    })
+    .then(function(docRef) {
+      console.log("Data added sucessfully in the document: ");
+
+      // db.collection("Partners").orderBy('CreatedTimestamp', 'desc')
+      //   // .where('added_at', "<", paymentData.added_at)
+      //   .limit(1).get().then(async (doc) => {
+      //     // ...
+      //     if (doc.exists) {
+      //         var partnerID = doc.data().partnerID;
+      //         console.log("Partner ID: " + partnerID);
+      //     }
+      //     console.log("Doc doesnot exists");
+      //   });
+
+
+      // window.location.href = 'projectDetails.html?id=';
+    })
+    .catch(function(error) {
+      console.log(error);
+      // console.error("error adding document:");
+    });
 };
 
 
@@ -239,6 +364,8 @@ function toggleSwitch(toggleDivId, toggleBtnId) {
   } else if (toggleBtnId.innerHTML === 'toggle_off') {
     toggleBtnId.innerHTML = 'toggle_on';
   }
+
+  updatePartnerDetails();
 }
 
 // function projectStateClick(state){
@@ -248,3 +375,70 @@ function toggleSwitch(toggleDivId, toggleBtnId) {
 //   document.getElementById('CLOSED').classList.remove('active');
 //   state.classList.add('active');
 // }
+
+//**************************INSERT Image into Storage & get image url on ui *****************************//
+
+
+var ImgName, ImgURL;
+var files = [];
+var reader;
+
+//************ Select File ****************
+document.getElementById("selectBtn").onclick = function(e) {
+  // alert('camera button click');
+  // document.getElementById("uploadImg").style.display = 'block';
+  var input = document.createElement('input');
+  input.type = 'file';
+
+  input.onchange = e => {
+    files = e.target.files;
+    reader = new FileReader();
+    reader.onload = function() {
+      document.getElementById("partnerImg").src = reader.result;
+    }
+    reader.readAsDataURL(files[0]);
+
+  }
+  input.click();
+}
+
+//************ File Upload to Cloud Storage  ****************
+document.getElementById('uploadBtn').onclick = function() {
+  ImgName = id + '.png';
+  console.log('Image Name: ' + ImgName);
+  var uploadTask = firebase.storage().ref('PartnerImages/' + ImgName).put(files[0]);
+
+  //Progress of the image upload into storageBucket
+  uploadTask.on('state_changed', function(snapshot) {
+      // var progress = (snapshot.byteTransferred / snapshot.totalBytes) * 100;
+      // document.getElementById('UpProgress').innerHTML = 'Upload'+progress+'%';
+    },
+
+    function(error) {
+      alert('error in saving the image');
+    },
+
+    function() {
+      uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
+        ImgUrl = url;
+        alert('ImgUrl: ' + ImgUrl);
+
+        db.collection("Partners").doc(id).update({
+            // console.log('inside db collection: ' + newEventID);
+            // EventId: newEventID,
+            PartnerImgURL: ImgUrl,
+            UpdatedBy: 'user.id',
+            UpdatedTimestamp: (new Date()).toString(),
+          })
+          .then((docRef) => {
+            console.log("Data added sucessfully in the document: " + docRef.toString());
+            console.log("eventstart")
+            // console.log(Date.parse(eventstart))
+          })
+          .catch((error) => {
+            console.error("error adding document:", error);
+          });
+
+      });
+    });
+}
