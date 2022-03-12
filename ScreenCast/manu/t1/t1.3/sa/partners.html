@@ -14,6 +14,9 @@
 
   <link rel="shortcut icon" href="https://HyperCloudDigital.com/img/logo/logo.png">
 
+  <!-- lottie -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
   <!-- Font Awesome cdn file -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -362,24 +365,25 @@
       <div class="col-lg-6 col-md-6 col-sm-12" style="padding: 1%;">
 
         <div class="project-menu-list">
-          <h5 onclick="menuListClick('CLIENTS')">
+          <h5 onclick="menuListClick('1')">
             CLIENTS
             <span>25</span>
           </h5>
-          <h5 onclick="menuListClick('VENDORS')">
+          <h5 onclick="menuListClick('2')">
             VENDORS
             <span>9</span>
           </h5>
-          <h5 onclick="menuListClick('INACTIVE')">
+          <h5 onclick="menuListClick('3')">
             INACTIVE
             <span>585</span>
           </h5>
+          <input type="hidden" id="clientTypeFilter">
         </div>
         <hr class="project-menu-list-hr" style="width: 33.3%;" id="partnerMenuListHr" />
 
         <div class="" style="display: flex;justify-content: space-between; align-items: center;">
           <div class="">
-            <select class="city-selector" style="background:#fff;" name="">
+            <select class="city-selector" id="partnerLocationSelect" onchange="changePartnerLocation()" style="background:#fff;" name="">
               <option value="All">All</option>
               <option value="Varanasi">Varanasi</option>
               <option value="Noida">Noida</option>
@@ -394,66 +398,40 @@
           </div>
 
           <div class="">
+            <div class="search-div" id="searchDiv">
+              <input type="text" id="searchDivInput" onblur="inputSearchBlur()" onfocus="inputSearchFocus()" onkeyup="filterFunction()" onchange="myChangeEvent();" name="" value="">
+              <div class="search-icon" onclick="toggleSearchInput()">
+                <span class="material-icons-outlined">
+                  search
+                </span>
+              </div>
+              <div class="intellisense" id="intellisense">
+
+              </div>
+            </div>
+          </div>
+
+          <div class="large">
             <button id="btnCreatePartner" class="mybutton button5">Create<i class="fas fa-arrow-right"></i> </button>
           </div>
+        </div>
+
+        <div class="" id="wrongSearch" style="text-align: center;display:none" >
+          <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_ntbn1esl.json"  background="transparent"  speed="1"  style="width: 100%; height: 100%;"  loop  autoplay></lottie-player>
+          <h5 style="color: #fff;" >No results found for '<span id="searchKeyText"></span>'</h5><br><br>
         </div>
 
         <div class="" id="populateDataDiv">
 
         </div>
-
-
-        <a href="partnerDetails.html" class="ticket-card">
-          <div class="">
-            <img src="../img/clients/8.png" alt="">
-          </div>
-          <div class="details">
-            <small>Partner ID: CL-22-100001</small>
-            <h5>GreenPack LLP</h5>
-            <span>Varanasi</span>
-            <br>
-            <small>1-Oct-2021</small>
-          </div>
-        </a>
-
-        <a href="partnerDetails.html" class="ticket-card">
-          <div class="">
-            <img src="../img/clients/4.png" alt="">
-          </div>
-          <div class="details">
-            <small>Partner ID: CL-22-100002</small>
-            <h5>American Precoat</h5>
-            <span>Noida</span>
-            <br>
-            <small>1-Nov-2021</small>
-          </div>
-        </a>
-
-        <a href="partnerDetails.html" class="ticket-card">
-          <div class="">
-            <img src="../img/clients/2.png" alt="">
-          </div>
-          <div class="details">
-            <small>Partner ID: CL-22-100003</small>
-            <h5>GrowthTrack</h5>
-            <span>Noida</span>
-            <br>
-            <small>1-Nov-2021</small>
-          </div>
-        </a>
-
-        <a href="partnerDetails.html" class="ticket-card">
-          <div class="">
-            <img src="../img/clients/3.png" alt="">
-          </div>
-          <div class="details">
-            <small>Partner ID: CL-22-100004</small>
-            <h5>Chocotale</h5>
-            <span>Delhi</span>
-            <br>
-            <small>1-Jan-2022</small>
-          </div>
-        </a>
+        
+        <div class="small">
+          <a href="partnerdetails.html?id=new" class="plus-button">
+            <span class="material-icons-outlined">
+              add
+            </span>
+          </a>
+        </div>
 
 
       </div>
