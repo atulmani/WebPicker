@@ -150,21 +150,25 @@ small{
 }
 
 .large {
+  width: 100%;
   border-radius: 0 0 0 0;
 }
 
 .small {
+  width: 0px;
   display: none;
   border-radius: 0 0 0 0;
 }
 
 @media (max-width: 1080px) {
   .large {
+    width: 0%;
     display: none;
     border-radius: 0 0 0 0;
   }
 
   .small {
+    width: 100%;
     display: block;
     border-radius: 0 0 0 0;
   }
@@ -3212,7 +3216,7 @@ input[type=number] {
   position: fixed;
   width: 42px;
   height: 42px;
-  bottom: 10%;
+  bottom: 7%;
   right: 3%;
   display: flex;
   justify-content: center;
