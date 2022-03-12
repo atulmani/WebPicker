@@ -6,7 +6,7 @@ auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
       console.log('Logged-in user email id: ' + firebaseUser.email);
-
+      //GetMasterProduct();
       GetProfileData(firebaseUser);
 
     } else {
@@ -56,7 +56,7 @@ var productID = searchParams.get('id');
 document.getElementById("productName").focus();
 
 if (productID != null) {
-
+  GetMasterProduct();
   document.getElementById('imgDiv').style.display = 'block';
 
   var obj = document.getElementById('hfproductID');
@@ -64,6 +64,9 @@ if (productID != null) {
   document.getElementById('hfproductID').value = productID;
   //  console.log(document.getElementById('hfproductID').value);
   populateProductData();
+}
+else {
+  GetMasterProduct();
 }
 
 function changeStatus() {
@@ -98,6 +101,50 @@ function SetPromotion() {
   }
 }
 
+function selectMasterProduct() {
+//  console.log("in selectMasterProduct");
+  var oProduct = document.getElementById("masterProduct");
+  var masterproductName = oProduct.options[oProduct.selectedIndex].innerHTML;
+  console.log(masterproductName);
+  if (masterproductName != "New Master Product") {
+    document.getElementById("masterProductName").setAttribute("disabled", true);;
+    document.getElementById("masterProductName").value = masterproductName;
+  }
+  else{
+    document.getElementById("masterProductName").value = "";
+     document.getElementById("masterProductName").removeAttribute("disabled");
+  }
+}
+
+function GetMasterProduct() {
+  var oProduct = document.getElementById("masterProduct");
+  var option = document.createElement("option");
+  option.setAttribute("value", "New Master Product");
+  option.innerHTML = "New Master Product";
+  oProduct.appendChild(option);
+
+  var DBrows = db.collection("ProductMaster")
+    .orderBy("MasterProductName").get();
+
+  DBrows.then((changes) => {
+    var item = [];
+    var index = 0;
+    var selectedindex = -1;
+    var selectdedItem;
+    var productName;
+    var searchKey;
+    //productCategory.push('All');
+    changes.forEach(change => {
+      console.log("check");
+      var option = document.createElement("option");
+      option.setAttribute("value", change.id);
+      option.innerHTML = change.data().MasterProductName;
+      oProduct.appendChild(option);
+
+    });
+  });
+}
+
 function populateProductData() {
 
   var flagPurchasePrize = false;
@@ -116,7 +163,7 @@ function populateProductData() {
   //     });
   //   });
 
-
+  //const
   const snapshot = db.collection('Products').doc(productID);
   snapshot.get().then(async (doc) => {
     if (doc.exists) {
@@ -187,8 +234,24 @@ function populateProductData() {
         document.getElementById("active").checked = true;
       } else if (doc.data().Status === "Inactive") {
         document.getElementById("inactive").checked = true;
-      }else if (doc.data().Status === "Out Of Stock") {
+      } else if (doc.data().Status === "Out Of Stock") {
         document.getElementById("outOfStock").checked = true;
+      }
+      var omasterProduct = document.getElementById("masterProduct");
+      console.log(doc.data().MasterProductID);
+      console.log(omasterProduct.options.length);
+      if (doc.data().MasterProductID === undefined || doc.data().MasterProductID === "") {
+        omasterProduct.options[0].selected = true;
+        document.getElementById("masterProductName").value = "";
+        document.getElementById("masterProductName").setAttribute("disabled", false);
+      } else {
+        for (i = 0; i < omasterProduct.options.length; i++) {
+          if (omasterProduct.options[i].value === doc.data().MasterProductID) {
+            omasterProduct.options[i].selected = true;
+            document.getElementById("masterProductName").value = omasterProduct.options[i].innerHTML;
+          }
+        }
+        document.getElementById("masterProductName").setAttribute("disabled", true);
       }
 
       if (doc.data().SearchKey === undefined || doc.data().SearchKey === "") {
@@ -529,22 +592,20 @@ function setMRP(index) {
     minimumFractionDigits: 0,
     maximumFractionDigits: 2
   };
-  if(purchasePrise != 0 && purchasePrise != undefined)
-  {
-  if (Number(purchasePrise) === purchasePrise) {
+  if (purchasePrise != 0 && purchasePrise != undefined) {
+    if (Number(purchasePrise) === purchasePrise) {
 
-    profitPercentage = (finalPrise - purchasePrise) * 100 / purchasePrise;
-    if (Number(profitPercentage) < 10) {
-      document.getElementById("profitPercentage" + index).style.color = "#ff5757";
-    } else {
-      document.getElementById("profitPercentage" + index).style.color = "#666";
+      profitPercentage = (finalPrise - purchasePrise) * 100 / purchasePrise;
+      if (Number(profitPercentage) < 10) {
+        document.getElementById("profitPercentage" + index).style.color = "#ff5757";
+      } else {
+        document.getElementById("profitPercentage" + index).style.color = "#666";
+      }
+      document.getElementById("profitPercentage" + index).value = profitPercentage.toLocaleString('en-IN', curPercentageFormat) + "%";
     }
-    document.getElementById("profitPercentage" + index).value = profitPercentage.toLocaleString('en-IN', curPercentageFormat) + "%";
+  } else {
+    document.getElementById("profitPercentage" + index).value = "NA";
   }
-}
-else {
-  document.getElementById("profitPercentage" + index).value = "NA";
-}
   mrp = mrp.toLocaleString('en-IN', curFormat);
   productMRP.value = mrp;
 
@@ -594,8 +655,33 @@ function formatValue(index) {
     unit.style.transform = 'translateX(38px)';
   }
 }
+function CheckMasterProduct()
+{
+  var omasterProduct = document.getElementById("masterProduct");
+  var masterproductID= "";
+  var masterProductName = "";
+  masterProductName = document.getElementById("masterProductName").value
+  if (omasterProduct.options[0].selected === false){
+      masterproductID = omasterProduct.options[omasterProduct.selectedIndex].value ;
+      CreateUpdateProductData(masterproductID);
+  } else {//create master product
+    db.collection("ProductMaster").add({
+        MasterProductName: masterProductName,
+        CreatedBy: auth.currentUser.email,
+        CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+        UpdatedBy: '',
+        UpdatedTimestamp: ''
+      })
+      .then(function(docRef) {
+        document.getElementById('hfproductID').value = docRef.id;
+        CreateUpdateProductData (docRef.id);
+      });
 
-function CreateUpdateProductData() {
+  }
+
+}
+// function CreateUpdateProductData() {
+function CreateUpdateProductData(masterProductID) {
   console.log('CreateUpdateProductData');
 
   var docCount = 0;
@@ -802,6 +888,7 @@ function CreateUpdateProductData() {
             MaximumQty: maximumQty,
             StepQty: stepQty,
             ProductLocation: productLocationValue,
+            MasterProductID : masterProductID,
             ProductDetails: productDetails,
             ProductImageURL: ProductImageURL,
             ShortDescription: shortDescription,
@@ -834,12 +921,13 @@ function CreateUpdateProductData() {
             ProductName: productName,
             SearchKey: searchKey,
             Brand: brand,
-            AvailableQuantity : 0,
+            AvailableQuantity: 0,
             VegNonVeg: vegNonVeg,
             MinimumQty: minimumQty,
             MaximumQty: maximumQty,
             StepQty: stepQty,
             ProductLocation: productLocationValue,
+            MasterProductID : masterProductID,
             ProductDetails: productDetails,
             ProductImageURL: ProductImageURL,
             Status: status,
@@ -987,8 +1075,8 @@ function CreateUpdateEventData() {
     createEventConformation.style.display = 'none';
   }, 5000);
 
-  CreateUpdateProductData();
-
+  // CreateUpdateProductData();
+  CheckMasterProduct();
   document.getElementById('imgDiv').style.display = 'block';
 
   console.log("data sending to db-completed");

@@ -416,7 +416,7 @@
                 </div>
               </div>
 
-              <div class="col-sm-12">
+              <div class="col-sm-12" style="display:none;">
                 <hr>
                 <div class="" style="display:flex; justify-content: space-between;align-items: center;">
                   <span>Location Available</span>
@@ -436,6 +436,28 @@
                     </span>
                   </div>
                 </div>
+              </div>
+
+              <div class="col-sm-12" >
+                <hr>
+                <div class="" style="display:flex; justify-content: space-between;align-items: center;">
+                  <span>Master Product</span>
+                  <div class="">
+                    <select id="masterProduct" class="city-selector" onChange="selectMasterProduct();" style="border: 1px solid #aaa;" name="">
+                      <!-- <option value="my Value">My Value</option> -->
+                    </select>
+
+                    <span class="material-icons-outlined city-selector-icon">
+                      filter_list
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="form-control">
+                  <input type="text" id="masterProductName" maxlength="100">
+                  <label>Master Product Name</label>
+                </div><br>
               </div>
 
               <div class="col-sm-12">

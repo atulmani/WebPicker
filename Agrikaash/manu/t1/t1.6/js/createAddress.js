@@ -133,7 +133,17 @@ function populateAddress(addressID) {
         document.getElementById("branchOwnerName").value = addressList[selIndex].branchOwnerName;
         document.getElementById("addressLine1").value = addressList[selIndex].addressLine1;
         document.getElementById("addressLine2").value = addressList[selIndex].addressLine2;
-        document.getElementById("City").value = addressList[selIndex].city;
+        var city = addressList[selIndex].city;
+        var oCity = document.getElementById("cityList");
+        console.log(city);
+        for(i = 0;i<oCity.options.length ;i++)
+        {
+          console.log(oCity.options[i].text);
+          if(oCity.options[i].text === city)
+          {
+            oCity.options[i].selected=true;
+          }
+        }
         document.getElementById("ZipCode").value = addressList[selIndex].ZipCode;
         document.getElementById("PhoneNumber").value = addressList[selIndex].PhoneNumber;
       }
@@ -159,7 +169,8 @@ function saveAddress() {
     branchOwnerName = document.getElementById("branchOwnerName").value;
     addressLine1 = document.getElementById("addressLine1").value;
     addressLine2 = document.getElementById("addressLine2").value;
-    city = document.getElementById("City").value;
+    var ocity = document.getElementById("cityList");
+    city = ocity.options[ocity.selectedIndex].value
     ZipCode = document.getElementById("ZipCode").value;
     PhoneNumber = document.getElementById("PhoneNumber").value;
     var message = "";
