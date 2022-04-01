@@ -1,14 +1,16 @@
+var loggedinUser = "";
+
 auth.onAuthStateChanged(firebaseUser => {
   try {
     if (firebaseUser) {
       loggedinUser = firebaseUser;
-      console.log('Logged-in user email id: ' + firebaseUser.email);
+      console.log('Logged-in user phone number: ' + loggedinUser.phoneNumber);
       // userID = firebaseUser.uid;
-      // GetUserRole(firebaseUser);
-      window.location.href = "../admin/dashboard.html";
+      // window.location.href = "profile.html";
     } else {
       loggedinUser = null;
       console.log('User has been logged out');
+
     }
   } catch (error) {
     console.log(error.message);
@@ -67,12 +69,166 @@ btnSigninUsingOTP.addEventListener('click', e => {
   console.log('Code: ' + code);
   coderesult.confirm(code).then(function(result) {
       console.log('Navigate to the dashboard/profile page');
-      window.location.assign('../admin/dashboard.html');
+      // window.location.assign('../admin/dashboard.html');
+
       var user = result.user;
       console.log(user);
+      console.log(result);
+      const snapshot = db.collection('UserList').doc(user.uid);
+      snapshot.get().then(async (doc) => {
+        if (doc.exists) {
+          window.location.assign('profile.html');
+        } else {
+          FistTimeUserSetup(user);
+
+        }
+
+
+      })
     })
     .catch(function(error) {
       // alert(error.message);
       console.error(error);
     });
 });
+
+
+function GetRegistrationRequest() {
+  // console.log(userID);
+  const snapshot = db.collection('UserList').doc(userID);
+  snapshot.get().then(async (doc) => {
+    if (doc.exists) {
+      // console.log('Document id:' + doc.id);
+      // console.log(doc.data());
+      var displayName = doc.data().displayName;
+      var userEmail = doc.data().EmailID;
+      var address = doc.data().Address;
+      var CustomerType = doc.data().CustomerType;
+      var cartIem = 0;
+      var DateOfBirth = doc.data().DateOfBirth;
+      var IDNo = doc.data().IDNo;
+      var IDType = doc.data().IDType;
+      var phone = doc.data().Phone;
+      var profileImageURL = doc.data().ProfileImageURL;
+      var userRole = doc.data().UserRole;
+
+      document.getElementById('userName').value = displayName;
+      document.getElementById('profileName').innerHTML = displayName;
+      document.getElementById('userEmail').innerHTML = userEmail;
+      document.getElementById('userPhone').value = phone;
+
+
+      if (profileImageURL != '' && profileImageURL != undefined) {
+
+        document.getElementById('profilePic').src = profileImageURL;
+        document.getElementById('profilePic_LeftNav').src = profileImageURL;
+      }
+      var ocity = document.getElementById('cityList');
+      for (i = 0; i < ocity.options.length; i++) {
+        if (ocity.options[i].value === address)
+          ocity.options[i].selected = true;
+      }
+
+
+      var userCat = document.getElementById('customerType');
+      for (i = 0; i < userCat.options.length; i++) {
+        if (CustomerType === userCat.options[i].text)
+          userCat.options[i].selected = true;
+        else
+          userCat.options[i].selected = false;
+      }
+
+
+      document.getElementById('loading').style.display = 'none';
+    } else {
+      document.getElementById('loading').style.display = 'none';
+    }
+  });
+
+}
+
+
+function SaveDetails() {
+
+  //e.preventDefault();
+  var userType = [];
+
+  {
+    userType.push({
+      Text: 'Retailer/Customer',
+      Value: 'Customer'
+    });
+  }
+
+
+  var ocustomerType = document.getElementById("customerType");
+  var customerType = ocustomerType.options[ocustomerType.selectedIndex].value;
+  var oCity = document.getElementById("cityList");
+  var city = oCity.options[oCity.selectedIndex].value;
+
+  db.collection('UserList')
+    .doc(userID)
+    .update({
+      DateOfBirth: '',
+      displayName: document.getElementById('userName').value,
+      Phone: document.getElementById('userPhone').value,
+      Address: city,
+      IDType: '',
+      IDNo: '',
+      // UserRole: userType,
+      CustomerType: customerType,
+      UpdatedBy: auth.currentUser.email,
+      UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+    })
+    .then(() => {
+
+      document.getElementById("confirmationMessage").style.display = 'block';
+    })
+    .catch(function(error) {
+      console.log("in error");
+
+    });
+
+
+  document.getElementById('userName').readOnly = true;
+  document.getElementById('userPhone').readOnly = true
+}
+
+function FistTimeUserSetup(user) {
+  
+  console.log("FistTimeUserSetup-starts");
+  console.log(auth.currentUser);
+  console.log(user.uid);
+  console.log(user.phoneNumber);
+  // var number = document.getElementById('userPhoneNo').value;
+  // var number = "+91" + number;
+
+  db.collection('UserList')
+    .doc(user.uid)
+    .set({
+      UserId: user.uid,
+      Phone: user.phoneNumber,
+      UserName: '',
+      Email: '',
+      Gender: '',
+      DateOfBirth: '',
+      Address: '',
+      City: '',
+      AlternatePhone: '',
+      State: '',
+      Country: '',
+      UserRole: '',
+      CreatedBy: user.uid,
+      CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+
+    })
+    .then(() => {
+      window.location.assign('profileSetup.html');
+      // document.getElementById("confirmationMessage").style.display = 'block';
+      console.log("error resolved");
+    })
+    .catch(function(error) {
+      console.log("in error");
+
+    });
+}
