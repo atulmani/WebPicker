@@ -30,6 +30,8 @@
   width: 100%;
   padding: 0 20px;
   transition: 1s;
+  /* border-radius: 10px; */
+  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); */
 }
 
 @media (max-width:850px) {
@@ -192,8 +194,8 @@ input[type=number] {
   padding: 3% 0;
 }
 .whitedivpro{
-  box-shadow: 0 0 25px 0 rgba(225,225,225,0.5);
-  background-color: #fff;
+  /* box-shadow: 0 0 25px 0 rgba(225,225,225,0.5); */
+  /* background-color: #ccc; */
 }
 .genderRadio{
   position: relative;
@@ -360,7 +362,8 @@ input[type=number] {
   background: rgba(0,0,0,0.1);
   outline: none;
   border: #ddd;
-  padding: 5px 40px 5px 20px;
+  padding: 5px 10px 5px 10px;
+  width: 100%;
   margin: 10px auto;
   border-radius: 4px;
   color: #444;
@@ -379,7 +382,11 @@ input[type=number] {
 
 .city-selector-icon{
   position: relative;
-  top: 5px;
-  right: 35px;
+  top: -40px;
+  float: right;
+  /* right: 35px; */
   pointer-events:none;
+}
+.display{
+  /* display: none; */
 }
