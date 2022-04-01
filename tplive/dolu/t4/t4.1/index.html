@@ -159,7 +159,7 @@
         <span class="navbar-cart-no" id="cartItemNo">0</span>
       </a>
     </div>
-    <a class="new-user" href="../login/profile.html">
+    <a id="profiletag" onclick="profileDirection(profiletag)" class="new-user" href="#">
       <span class="material-icons-outlined">
         person
       </span>
@@ -266,18 +266,18 @@
       <hr class="hr" />
 
       <li class="linesec">
-        <a href="#" id="btnLogout" class="left-navigation">
+        <a style="color:#000;" href="#" id="btnLogout" class="left-navigation">
           <div class="">
-            <span style="color: #fff;" class="material-icons-outlined">
+            <span style="color: #000;" class="material-icons-outlined">
               logout
             </span>
           </div>
           <div class="content">
-            <h5 style="color: #fff;">Sign Up</h5>
-            <small style="color: #fff;">Sign up to register </small>
+            <h5 style="color: #000;">Sign Up</h5>
+            <small style="color: #000;">Sign up to register </small>
           </div>
           <div class="">
-            <span style="color: #fff;" class="material-icons arrow-right">
+            <span style="color: #000;" class="material-icons arrow-right">
               keyboard_double_arrow_right
             </span>
           </div>
@@ -376,7 +376,7 @@
         <div style="height:60px; border-radius:60px 0 0 60px; background: linear-gradient(to right,#161d65, #348DCB)" ; class="headbox">
           <div style="color:#fff;" class="" style="margin-top: 7px;">
          <span style="top: -5px;" class="material-icons-outlined">login</span>
-        <span style="position:relative; top: -7px;">Sign in</span>
+        <span id="ifSignedIn" style="position:relative; top: -7px;">Sign in</span>
           </div>
 
           <div class="">
@@ -884,11 +884,18 @@
   <!-- Owl Carousel JQuery -->
   <!-- <script src="js/jquery.min.js"></script> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- firebase services -->
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-storage.js"></script>
 
   <!-- Javascript to Populate Map - Start  -->
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
 
-  <script src="js/main.js"></script>
+  <script src="./js/main.js"></script>
+    <script src="./js/firebase.js"></script>
+  <script src="./js/homepage.js"></script>
 
   <!-- Owl Carousel Javascript  -->
   <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
