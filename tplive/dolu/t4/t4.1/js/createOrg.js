@@ -21,8 +21,13 @@ $(document).ready(function () {
            $("#eventArrow").addClass("active");
            $("#EventRevenue").addClass("active");
            $("#openEvents").addClass("active");
+
         }
     });
+
+
+
+
 
 function fullcard(arrowVar)
 {

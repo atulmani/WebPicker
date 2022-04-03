@@ -303,6 +303,7 @@ $(function () {
           autoplayHoverPause: false,
           nav: false,
           dots: false,
+          // opacity: 0.1,
           stagePadding: 70,
           responsive: {
             0: {
