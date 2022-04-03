@@ -195,7 +195,7 @@ function SaveDetails() {
 }
 
 function FistTimeUserSetup(user) {
-  
+
   console.log("FistTimeUserSetup-starts");
   console.log(auth.currentUser);
   console.log(user.uid);
@@ -215,8 +215,8 @@ function FistTimeUserSetup(user) {
       Address: '',
       City: '',
       AlternatePhone: '',
-      State: '',
-      Country: '',
+      State: 'Uttar Pradesh',
+      Country: 'India',
       UserRole: '',
       CreatedBy: user.uid,
       CreatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
