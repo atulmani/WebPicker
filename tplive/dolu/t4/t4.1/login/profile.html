@@ -188,7 +188,7 @@
           </div>
         </a>
       </li>
-      <hr class="hr"/>
+      <hr class="hr" />
 
       <li class="linesec">
         <a href="dashboard.html" class="left-navigation">
@@ -330,82 +330,168 @@
   <div class="row no-gutters">
     <div style="padding:2%;" class="col-lg-8">
 
-        <div  class="profileCardBox">
-          <div style="width: 120px;" class="">
-            <div class="profileCircle">
-            <img style="" src="../img/propic.jpg" alt="">
+      <div class="profileCardBox">
+        <div style="width: 120px;" class="">
+          <div class="profileCircle">
+            <img id="profilePic" style="" src="../img/propic.jpg" alt="">
 
-            </div>
           </div>
-
-            <div class="">
-              <h3 id="userName"></h3>
-              <h4 id="userPhone"></h4>
-              <h4 id="city">Mumbai</h4>
-              <h4 id="state">Maharashtra, India</h4>
-            </div>
-            <div class="qrimg">
-              <img src="../img/proQR.png" alt="">
-            </div>
-
-
         </div>
 
+        <div class="">
+          <h3 id="userName"></h3>
+          <h4 id="userPhone"></h4>
+          <input type="hidden" id="hfGender">
+          <input type="hidden" id="hfName">
+          <h4 id="city">Mumbai</h4>
+          <h4 id="state">Maharashtra, India</h4>
+        </div>
+        <div class="qrimg">
+          <img src="../img/proQR.png" alt="">
+        </div>
+
+
+      </div>
+
       <br><br>
+      <div class="profileCardBox">
+        <div class="row no-gutters">
+          <div style="display:flex; justify-content:space-between; align-items:center;padding: 10px 0;" class="col-md-12">
+
+            <div class="genderRadio">
+              <input id="participant" disabled checked type="checkbox" name="role" value="PARTICIPANT">
+              <label for="participant">
+                <span class="material-icons-outlined check">
+                  check
+                </span>
+                <span class="material-icons-outlined close">
+                  close
+                </span>
+                Participant
+              </label>
+            </div>
+
+            <div class="genderRadio">
+              <input id="organiser" type="checkbox" name="role" value="ORGANIZER">
+              <label for="organiser">
+                <span class="material-icons-outlined check">
+                  check
+                </span>
+                <span class="material-icons-outlined close">
+                  close
+                </span>
+                Organiser
+              </label>
+            </div>
+
+          </div>
+
+          <br>
+          <div style="display:flex; justify-content:space-between; align-items:center;padding: 10px 0;" class="col-md-8">
+
+            <div class="genderRadio">
+              <input id="referee" type="checkbox" name="role" value="REFREE">
+              <label for="referee">
+                <span class="material-icons-outlined check">
+                  check
+                </span>
+                <span class="material-icons-outlined close">
+                  close
+                </span>
+                Referee
+              </label>
+            </div>
+
+            <div class="genderRadio">
+              <input id="coach" type="checkbox" name="role" value="COACH">
+              <label for="coach">
+                <span class="material-icons-outlined check">
+                  check
+                </span>
+                <span class="material-icons-outlined close">
+                  close
+                </span>
+                Coach
+              </label>
+            </div>
+
+
+
+          </div>
+
+
+          <div style="display:flex; justify-content:space-between; align-items:center;padding: 10px 0;" class="col-md-8">
+            <div class="genderRadio">
+              <input id="academyOwner" type="checkbox" name="role" value="ACADEMY OWNER">
+              <label for="academyOwner">
+                <span class="material-icons-outlined check">
+                  check
+                </span>
+                <span class="material-icons-outlined close">
+                  close
+                </span>
+                Academy Owner
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </div>
       <div class="profileCardBox">
         <!-- <h4 style="float:left;">Profile Details</h4> -->
         <form style="padding:2%;">
 
-<div class="form-row">
 
-<!-- <div class="form-group col-md-12">
+          <div class="form-row">
+
+            <!-- <div class="form-group col-md-12">
 <label for="inputEmail4"> Name</label>
 <input id="userName" type="text" class="form-control" placeholder="Enter your name">
 </div> -->
-<div class="form-group col-md-6">
-  <label for="inputEmail4">Date of birth</label>
-  <div class="input-group date datetimepicker11">
-  <input id="dob" type="text" placeholder="Date Of Birth" class="form-control" readonly >
-  <div class="input-group-addon input-group-prepend">
-  <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-  </div>
-  </div>
-</div>
-<div class="form-group col-md-6">
-<label for="inputPassword4">Email Id</label>
-<input id="userEmail" type="email" class="form-control" placeholder="Enter email id">
-</div>
-<!-- <div class="form-group col-md-6">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Date of birth</label>
+              <div class="input-group date datetimepicker11">
+                <input id="dob" type="text" placeholder="Date Of Birth" class="form-control" readonly>
+                <div class="input-group-addon input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Email Id</label>
+              <input id="userEmail" type="email" class="form-control" placeholder="Enter email id">
+            </div>
+            <!-- <div class="form-group col-md-6">
 <label for="inputState">Gender</label>
 <input id="userGender" type="number" class="form-control"  placeholder="Enter gender no.">
 </div> -->
 
-<!-- <div class="form-group col-md-6">
+            <!-- <div class="form-group col-md-6">
 <label for="inputPassword4">State</label>
 <input id="state" type="text" class="form-control"  placeholder="Enter your state">
 </div> -->
-<div class="form-group col-md-6">
-<label for="inputPassword4">Alternate Phone</label>
-<input id="altPh" type="number" class="form-control"  placeholder="Enter your Alternate Phone Number">
-</div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Alternate Phone</label>
+              <input id="altPh" type="number" class="form-control" placeholder="Enter your Alternate Phone Number">
+            </div>
 
-<div class="form-group col-md-6">
-<label for="inputState">Address</label>
-<input id="address" type="text" class="form-control"  placeholder="Enter your address">
-</div>
-<!-- <div class="form-group col-md-6">
+            <div class="form-group col-md-6">
+              <label for="inputState">Address</label>
+              <input id="address" type="text" class="form-control" placeholder="Enter your address">
+            </div>
+            <!-- <div class="form-group col-md-6">
 <label for="inputPassword4">Nationality</label>
 <input id="nationality" type="text" class="form-control"  placeholder="Enter phone no.">
 </div> -->
-<!-- <div class="form-group">
+            <!-- <div class="form-group">
 <label for="inputAddress">Address</label>
 <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
 </div> -->
-<!-- <div class="form-group">
+            <!-- <div class="form-group">
 <label for="inputAddress2">Address 2</label>
 <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
 </div> -->
-<!-- <div class="form-row">
+            <!-- <div class="form-row">
 <div class="form-group col-md-6">
 <label for="inputCity">City</label>
 <input type="text" class="form-control" id="inputCity">
@@ -421,19 +507,31 @@
 <input type="number" class="form-control" id="inputPassword4" placeholder="Enter phone no.">
 </div> -->
 
-</div>
+          </div>
 
-<center>
-<button type="submit" class="btn btn-primary">Save</button>
-</center>
-</form>
+          <center>
+
+
+            <div id="createEventConformation" class="col-sm-12" style="display: none;transition: 0.5s;">
+              <br>
+              <center>
+                <span id="message">Details saved successfully!</span>
+                <!-- <span ><i class="fas fa-hand-point-right"></i></span>
+                            <span> <a href="allProducts.html">Click Here</a> </span> -->
+              </center>
+            </div>
+
+            <!-- <button type="submit" onclick="updateDetails();" class="btn btn-primary">Save</button> -->
+            <button type="button" onclick="updateDetails();" class="btn btn-primary">Save</button>
+          </center>
+        </form>
       </div>
     </div>
 
     <div style="padding:2%;" class="col-lg-4">
       <div class="notificationBox">
         <h5 style="font-weight: 1000; padding:1% 2%;">Recent Participation</h5>
-        <div  class="allnotificationBoxContent" style="">
+        <div class="allnotificationBoxContent" style="">
           <div class="notificationBoxContent">
             <img src="../img/e1.png" alt="">
             <div class="notificationBoxWord">
@@ -442,7 +540,7 @@
             </div>
           </div>
         </div>
-        <div  class="allnotificationBoxContent" style="">
+        <div class="allnotificationBoxContent" style="">
           <div class="notificationBoxContent">
             <img src="../img/e2.png" alt="">
             <div class="notificationBoxWord">
@@ -451,7 +549,7 @@
             </div>
           </div>
         </div>
-        <div  class="allnotificationBoxContent" style="">
+        <div class="allnotificationBoxContent" style="">
           <div class="notificationBoxContent">
             <img src="../img/e3.png" alt="">
             <div class="notificationBoxWord">
@@ -461,7 +559,7 @@
           </div>
         </div>
 
-        <div  class="allnotificationBoxContent" style="">
+        <div class="allnotificationBoxContent" style="">
           <div class="notificationBoxContent">
             <img src="../img/e4.png" alt="">
             <div class="notificationBoxWord">
@@ -495,7 +593,9 @@
           </div>
 
           <!-- <li><h6 style="color:green;">+4.6%</h6></li> -->
-          <li><h6>51</h6></li>
+          <li>
+            <h6>51</h6>
+          </li>
 
         </ul>
 
@@ -514,7 +614,9 @@
           </div>
 
           <!-- <li><h6 style="color:green;">+4.6%</h6></li> -->
-          <li><h6>51</h6></li>
+          <li>
+            <h6>51</h6>
+          </li>
 
         </ul>
 
@@ -533,7 +635,9 @@
           </div>
 
           <!-- <li><h6 style="color:green;">+4.6%</h6></li> -->
-          <li><h6>51</h6></li>
+          <li>
+            <h6>51</h6>
+          </li>
 
         </ul>
 
@@ -714,30 +818,33 @@
   <script src="../js/bootstrap-datetimepicker.min.js"></script>
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <script>
-      $(function () {
-          $.extend(true, $.fn.datetimepicker.defaults, {
-              icons: {
-                  time: 'far fa-clock',
-                  date: 'far fa-calendar',
-                  up: 'fas fa-arrow-up',
-                  down: 'fas fa-arrow-down',
-                  previous: 'fas fa-chevron-left',
-                  next: 'fas fa-chevron-right',
-                  today: 'far fa-calendar-check-o',
-                  clear: 'far fa-trash',
-                  close: 'far fa-times'
-              }
-          });
+    $(function() {
+      $.extend(true, $.fn.datetimepicker.defaults, {
+        icons: {
+          time: 'far fa-clock',
+          date: 'far fa-calendar',
+          up: 'fas fa-arrow-up',
+          down: 'fas fa-arrow-down',
+          previous: 'fas fa-chevron-left',
+          next: 'fas fa-chevron-right',
+          today: 'far fa-calendar-check-o',
+          clear: 'far fa-trash',
+          close: 'far fa-times'
+        }
       });
-      </script>
-      <script type="text/javascript">
-      $(function () {
-              $('.datetimepicker11').datetimepicker({
-                format: 'DD-MM-YYYY',
-                ignoreReadonly: true
-              });
-          });
-      </script>
+    });
+  </script>
+  <script type="text/javascript">
+    $(function() {
+      $('.datetimepicker11').datetimepicker({
+        format: 'DD-MM-YYYY',
+        ignoreReadonly: true
+        useCurrent: true,
+        maxDate: new Date()
+
+      });
+    });
+  </script>
 </body>
 
 </html>
