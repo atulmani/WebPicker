@@ -158,7 +158,7 @@ function SaveDetails_section2() {
 
    {
      userRole.push({
-       TYPE: 'PARTICIPANT'
+       TYPE: participant.value //'PARTICIPANT'
 
      });
    }
@@ -167,7 +167,7 @@ function SaveDetails_section2() {
 
    {
      userRole.push({
-       TYPE: 'ORGANIZER'
+       TYPE: organiser.value //'ORGANIZER'
 
      });
    }
@@ -175,7 +175,7 @@ function SaveDetails_section2() {
  if(referee.checked){
    {
      userRole.push({
-       TYPE: 'REFEREE'
+       TYPE: referee.value //'REFEREE'
 
      });
    }
@@ -184,7 +184,7 @@ function SaveDetails_section2() {
  if(coach.checked){
    {
      userRole.push({
-       TYPE: 'COACH'
+       TYPE: coach.value //'COACH'
 
      });
    }
@@ -193,7 +193,7 @@ function SaveDetails_section2() {
  if(academyOwner.checked){
    {
      userRole.push({
-       TYPE: 'ACADEMYOWNER'
+       TYPE: academyOwner.value //'ACADEMY OWNER'
 
      });
    }
@@ -234,6 +234,7 @@ function SaveDetails_section3() {
  else if (female.checked) {
    genderSelected = female.value;
  }
+ console.log(dob.value);
   db.collection('UserList')
     .doc(loggedinUser.uid)
     .update({
