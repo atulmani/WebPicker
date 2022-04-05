@@ -74,15 +74,31 @@ btnSigninUsingOTP.addEventListener('click', e => {
       var user = result.user;
       console.log(user);
       console.log(result);
-      const snapshot = db.collection('UserList').doc(user.uid);
-      snapshot.get().then(async (doc) => {
-        if (doc.exists) {
+
+      var para1 = {};
+      para1 = {
+        userID: user.uid
+      };
+      const ret1 = firebase.functions().httpsCallable("getProfileDetails");
+      ret1(para1).then((result) => {
+        var record1 = result.data;
+        if (result.data.id != "0") {
           window.location.assign('profile.html');
         } else {
           console.log('FistTimeUserSetup');
           FistTimeUserSetup(user);
         }
-      })
+      });
+
+      // const snapshot = db.collection('UserList').doc(user.uid);
+      // snapshot.get().then(async (doc) => {
+      //   if (doc.exists) {
+      //     window.location.assign('profile.html');
+      //   } else {
+      //     console.log('FistTimeUserSetup');
+      //     FistTimeUserSetup(user);
+      //   }
+      // })
     })
     .catch(function(error) {
       // alert(error.message);
@@ -90,118 +106,118 @@ btnSigninUsingOTP.addEventListener('click', e => {
     });
 });
 
+//
+// function GetRegistrationRequest() {
+//   // console.log(userID);
+//   const snapshot = db.collection('UserList').doc(userID);
+//   snapshot.get().then(async (doc) => {
+//     if (doc.exists) {
+//       // console.log('Document id:' + doc.id);
+//       // console.log(doc.data());
+//       var displayName = doc.data().displayName;
+//       var userEmail = doc.data().EmailID;
+//       var address = doc.data().Address;
+//       var CustomerType = doc.data().CustomerType;
+//       var cartIem = 0;
+//       var DateOfBirth = doc.data().DateOfBirth;
+//       var IDNo = doc.data().IDNo;
+//       var IDType = doc.data().IDType;
+//       var phone = doc.data().Phone;
+//       var profileImageURL = doc.data().ProfileImageURL;
+//       var userRole = doc.data().UserRole;
+//
+//       document.getElementById('userName').value = displayName;
+//       document.getElementById('profileName').innerHTML = displayName;
+//       document.getElementById('userEmail').innerHTML = userEmail;
+//       document.getElementById('userPhone').value = phone;
+//
+//
+//       if (profileImageURL != '' && profileImageURL != undefined) {
+//
+//         document.getElementById('profilePic').src = profileImageURL;
+//         document.getElementById('profilePic_LeftNav').src = profileImageURL;
+//       }
+//       var ocity = document.getElementById('cityList');
+//       for (i = 0; i < ocity.options.length; i++) {
+//         if (ocity.options[i].value === address)
+//           ocity.options[i].selected = true;
+//       }
+//
+//
+//       var userCat = document.getElementById('customerType');
+//       for (i = 0; i < userCat.options.length; i++) {
+//         if (CustomerType === userCat.options[i].text)
+//           userCat.options[i].selected = true;
+//         else
+//           userCat.options[i].selected = false;
+//       }
+//
+//
+//       document.getElementById('loading').style.display = 'none';
+//     } else {
+//       document.getElementById('loading').style.display = 'none';
+//     }
+//   });
+//
+// }
 
-function GetRegistrationRequest() {
-  // console.log(userID);
-  const snapshot = db.collection('UserList').doc(userID);
-  snapshot.get().then(async (doc) => {
-    if (doc.exists) {
-      // console.log('Document id:' + doc.id);
-      // console.log(doc.data());
-      var displayName = doc.data().displayName;
-      var userEmail = doc.data().EmailID;
-      var address = doc.data().Address;
-      var CustomerType = doc.data().CustomerType;
-      var cartIem = 0;
-      var DateOfBirth = doc.data().DateOfBirth;
-      var IDNo = doc.data().IDNo;
-      var IDType = doc.data().IDType;
-      var phone = doc.data().Phone;
-      var profileImageURL = doc.data().ProfileImageURL;
-      var userRole = doc.data().UserRole;
-
-      document.getElementById('userName').value = displayName;
-      document.getElementById('profileName').innerHTML = displayName;
-      document.getElementById('userEmail').innerHTML = userEmail;
-      document.getElementById('userPhone').value = phone;
-
-
-      if (profileImageURL != '' && profileImageURL != undefined) {
-
-        document.getElementById('profilePic').src = profileImageURL;
-        document.getElementById('profilePic_LeftNav').src = profileImageURL;
-      }
-      var ocity = document.getElementById('cityList');
-      for (i = 0; i < ocity.options.length; i++) {
-        if (ocity.options[i].value === address)
-          ocity.options[i].selected = true;
-      }
-
-
-      var userCat = document.getElementById('customerType');
-      for (i = 0; i < userCat.options.length; i++) {
-        if (CustomerType === userCat.options[i].text)
-          userCat.options[i].selected = true;
-        else
-          userCat.options[i].selected = false;
-      }
-
-
-      document.getElementById('loading').style.display = 'none';
-    } else {
-      document.getElementById('loading').style.display = 'none';
-    }
-  });
-
-}
-
-
-function SaveDetails() {
-
-  //e.preventDefault();
-  var userType = [];
-
-  {
-    userType.push({
-      Text: 'Retailer/Customer',
-      Value: 'Customer'
-    });
-  }
-
-
-  var ocustomerType = document.getElementById("customerType");
-  var customerType = ocustomerType.options[ocustomerType.selectedIndex].value;
-  var oCity = document.getElementById("cityList");
-  var city = oCity.options[oCity.selectedIndex].value;
-
-  db.collection('UserList')
-    .doc(userID)
-    .update({
-      DateOfBirth: '',
-      displayName: document.getElementById('userName').value,
-      Phone: document.getElementById('userPhone').value,
-      Address: city,
-      IDType: '',
-      IDNo: '',
-      // UserRole: userType,
-      CustomerType: customerType,
-      UpdatedBy: auth.currentUser.email,
-      UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
-    })
-    .then(() => {
-
-      document.getElementById("confirmationMessage").style.display = 'block';
-    })
-    .catch(function(error) {
-      console.log("in error");
-    });
-  document.getElementById('userName').readOnly = true;
-  document.getElementById('userPhone').readOnly = true
-}
-
+//
+// function SaveDetails() {
+//
+//   //e.preventDefault();
+//   var userType = [];
+//
+//   {
+//     userType.push({
+//       Text: 'Retailer/Customer',
+//       Value: 'Customer'
+//     });
+//   }
+//
+//
+//   var ocustomerType = document.getElementById("customerType");
+//   var customerType = ocustomerType.options[ocustomerType.selectedIndex].value;
+//   var oCity = document.getElementById("cityList");
+//   var city = oCity.options[oCity.selectedIndex].value;
+//
+//   db.collection('UserList')
+//     .doc(userID)
+//     .update({
+//       DateOfBirth: '',
+//       displayName: document.getElementById('userName').value,
+//       Phone: document.getElementById('userPhone').value,
+//       Address: city,
+//       IDType: '',
+//       IDNo: '',
+//       // UserRole: userType,
+//       CustomerType: customerType,
+//       UpdatedBy: auth.currentUser.email,
+//       UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+//     })
+//     .then(() => {
+//
+//       document.getElementById("confirmationMessage").style.display = 'block';
+//     })
+//     .catch(function(error) {
+//       console.log("in error");
+//     });
+//   document.getElementById('userName').readOnly = true;
+//   document.getElementById('userPhone').readOnly = true
+// }
+//
 function FistTimeUserSetup(user) {
-    var para = {};
-    para = {
-      userID: loggedinUser.uid,
-      Phone: user.phoneNumber
-    };
-    console.log(para);
-    const ret = firebase.functions().httpsCallable("addUserDetails");
-    ret(para).then(result => {
-      console.log("From Function " + result);
-      window.location.assign('profileSetup.html');
-      
-    });
+  var para = {};
+  para = {
+    userID: loggedinUser.uid,
+    Phone: user.phoneNumber
+  };
+  console.log(para);
+  const ret = firebase.functions().httpsCallable("addUserDetails");
+  ret(para).then(result => {
+    console.log("From Function " + result);
+    window.location.assign('profileSetup.html');
+
+  });
 }
 // function FistTimeUserSetupOld(user) {
 //
