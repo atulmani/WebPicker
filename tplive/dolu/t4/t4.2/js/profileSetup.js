@@ -217,23 +217,23 @@ function SaveDetails_section4() {
     console.log("From Function " + result.data);
   });
 
-  db.collection('UserList')
-    .doc(loggedinUser.uid)
-    .update({
-      Address: address.value,
-      AlternatePhone:altPh.value,
-      UpdatedBy: loggedinUser.phoneNumber,
-      UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
-    })
-    .then(() => {
-
-      console.log("updated your profile");
-
-    })
-    .catch(function(error) {
-      console.log("in error");
-
-    });
+  // db.collection('UserList')
+  //   .doc(loggedinUser.uid)
+  //   .update({
+  //     Address: address.value,
+  //     AlternatePhone:altPh.value,
+  //     UpdatedBy: loggedinUser.phoneNumber,
+  //     UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+  //   })
+  //   .then(() => {
+  //
+  //     console.log("updated your profile");
+  //
+  //   })
+  //   .catch(function(error) {
+  //     console.log("in error");
+  //
+  //   });
 
 }
 
@@ -376,29 +376,29 @@ function SaveDetails_section4() {
 //
 // }
 
-function SaveDetails_section4Old() {
- var address = document.getElementById('address');
- var altPh = document.getElementById('altPh');
-
- console.log('the address is ' + address.value);
- console.log('the address is ' + altPh.value);
-
-  db.collection('UserList')
-    .doc(loggedinUser.uid)
-    .update({
-      Address: address.value,
-      AlternatePhone:altPh.value,
-      UpdatedBy: loggedinUser.phoneNumber,
-      UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
-    })
-    .then(() => {
-
-      console.log("updated your profile");
-
-    })
-    .catch(function(error) {
-      console.log("in error");
-
-    });
-
-}
+// function SaveDetails_section4Old() {
+//  var address = document.getElementById('address');
+//  var altPh = document.getElementById('altPh');
+//
+//  console.log('the address is ' + address.value);
+//  console.log('the address is ' + altPh.value);
+//
+//   db.collection('UserList')
+//     .doc(loggedinUser.uid)
+//     .update({
+//       Address: address.value,
+//       AlternatePhone:altPh.value,
+//       UpdatedBy: loggedinUser.phoneNumber,
+//       UpdatedTimestamp: firebase.firestore.Timestamp.fromDate(new Date())
+//     })
+//     .then(() => {
+//
+//       console.log("updated your profile");
+//
+//     })
+//     .catch(function(error) {
+//       console.log("in error");
+//
+//     });
+//
+// }
