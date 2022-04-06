@@ -19,22 +19,39 @@ auth.onAuthStateChanged(firebaseUser => {
   }
 });
 
+function GetProfileData()
+{
 
+    var para1 = {};
+    para1 = {
+      userID: loggedinUser.uid
+    };
+    console.log(para1);
+      const ret1 = firebase.functions().httpsCallable("getProfileDetails");
+      ret1(para1).then((result) => {
+        var record1 = result.data;
+        console.log(result.data);
+        document.getElementById('ifSignedIn').innerHTML = 'Hi '+ result.data.UserName;
+        document.getElementById('ifSignedIn').href = "login/profile.html";
+        document.getElementById("UserCity").innerHTML = result.data.City;
+      });
 
-function GetProfileData() {
-
-  const snapshot = db.collection('UserList').doc(loggedinUser.uid);
-  snapshot.get().then(async (doc) => {
-    if (doc.exists) {
-      console.log(doc.data());
-      document.getElementById('ifSignedIn').innerHTML = 'Hi '+ doc.data().UserName;
-      document.getElementById('ifSignedIn').href = "login/profile.html";
-      document.getElementById("UserCity").innerHTML = doc.data().City;
-
-      // document.getElementById('uploadFile').value = selected_value;
-    }
-  });
 }
+
+// function GetProfileDataOld() {
+//
+//   const snapshot = db.collection('UserList').doc(loggedinUser.uid);
+//   snapshot.get().then(async (doc) => {
+//     if (doc.exists) {
+//       console.log(doc.data());
+//       document.getElementById('ifSignedIn').innerHTML = 'Hi '+ doc.data().UserName;
+//       document.getElementById('ifSignedIn').href = "login/profile.html";
+//       document.getElementById("UserCity").innerHTML = doc.data().City;
+//
+//       // document.getElementById('uploadFile').value = selected_value;
+//     }
+//   });
+// }
 
 
 // var profiletag = document.getElementById('profiletag');
