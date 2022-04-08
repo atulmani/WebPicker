@@ -3,7 +3,8 @@ const admin = require("firebase-admin");
 
 admin.initializeApp();
 
-const userProfile = require("./profile.js");
+const userProfile = require("./fnProfile.js");
+const partner = require("./fnPartner.js");
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -20,3 +21,7 @@ exports.saveProfileDetailsStep2 = userProfile.saveProfileDetailsStep2;
 exports.saveProfileDetailsStep3 = userProfile.saveProfileDetailsStep3;
 exports.saveProfileDetailsStep4 = userProfile.saveProfileDetailsStep4;
 exports.updateProfileDetails = userProfile.updateProfileDetails;
+
+exports.getPartnerDetails = partner.getPartnerDetails;
+exports.updatePartnerDetails = partner.updatePartnerDetails;
+exports.addPartnerDetails = partner.addPartnerDetails;
