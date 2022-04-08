@@ -30,7 +30,56 @@ async function GetProfileData() {
     const ret1 = firebase.functions().httpsCallable("getProfileDetails");
     ret1(para1).then((result) => {
       var record1 = result.data;
-      document.getElementById("userName").innerHTML = result.data.UserName
+      console.log(result.data.UserRole.findIndex(e=> e.TYPE==="ADMIN"));
+      if(result.data.UserRole.findIndex(e=> e.TYPE==="ADMIN") >= 0){
+        console.log("in admin");
+        document.getElementById("userName").innerHTML = result.data.UserName
+        // document.getElementById("fInput").style.display="none";
+      }else {
+        console.log("not admin");
+        document.getElementById("fInput").style.display="none";
+        document.getElementById("errorMessage").style.display="block";
+      }
     });
 
 }
+
+const btnSave = document.getElementById("btnSave");
+btnSave.addEventListener('click', e => {
+  e.preventDefault();
+  console.log("in save");
+  var partnerType = "";
+  const rbAcademy = document.getElementById("Academy");
+  const rbCorporate = document.getElementById("Corporate");
+  const rbSponsor = document.getElementById("Sponsor");
+  if(rbAcademy.checked){
+    partnerType = rbAcademy.value;
+  }
+  else if(rbCorporate.checked){
+    partnerType = rbCorporate.value;
+  }
+  else if(rbSponsor.checked){
+    partnerType = rbSponsor.value;
+  }
+  console.log(document.getElementById("inputState").selectedIndex);
+  var para1 = {};
+  para1 = {
+    PartnerName: document.getElementById("partnerName").value,
+    OrganizationName: document.getElementById("orgName").value,
+    PartnerEmailID: document.getElementById("emailID").value,
+    PartnerPhone: document.getElementById("phoneNo").value,
+    City: document.getElementById("inputCity").value,
+    State: document.getElementById("inputState").options[document.getElementById("inputState").selectedIndex].value,
+    IdentityType: document.getElementById("inputIdentityType").options[document.getElementById("inputIdentityType").selectedIndex].value,
+    IdentityNumber: document.getElementById("identityNumber").value,
+    PartnerType: partnerType,
+
+  };
+    const ret1 = firebase.functions().httpsCallable("addPartnerDetails");
+    ret1(para1).then((result) => {
+      var record1 = result.data;
+      console.log("partner ID: " + result.data.partnerID);
+
+    });
+
+})
