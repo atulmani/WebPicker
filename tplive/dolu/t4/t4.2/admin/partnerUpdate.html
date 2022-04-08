@@ -228,8 +228,6 @@
   </div>
   <!-- bottom bardown -->
 
-
-
   <div style="" class="row no-gutters" style="">
 
     <div class="col-lg-2" style="padding:1% 0.5%;">
@@ -246,7 +244,6 @@
               </div>
             </a>
           </li>
-
 
           <div style="padding-left:2%; padding-bottom:1.5%;" class="">
             <li class="linesec">
@@ -547,8 +544,10 @@
           <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_wg0utmug.json" background="transparent" speed="1" style="width: 100%; height:250px;" loop autoplay></lottie-player>
         </center>
       </div>
-
-      <div class="formbox">
+      <div class="form-row" id="errorMessage" style="display:none;">
+        You do not have access to create Organization. Please reach out to <a href="../contact/index">Admin or contact Us</a>
+      </div>
+      <div class="formbox" id="fInput">
 
         <form>
 
@@ -601,19 +600,19 @@
 
             <div class="form-group col-md-6">
               <label for="inputEmail4">Organization Name</label>
-              <input type="text" class="form-control" id="inputEmail4" placeholder="Enter Organization name">
+              <input type="text" class="form-control" id="orgName" placeholder="Enter Organization name">
             </div>
             <div class="form-group col-md-6">
               <label for="inputPassword4">Partner Name</label>
-              <input type="text" class="form-control" id="inputPassword4" placeholder="Enter Partner name">
+              <input type="text" class="form-control" id="partnerName" placeholder="Enter Partner name">
             </div>
             <div class="form-group col-md-6">
               <label for="inputPassword4">Email Id</label>
-              <input type="email" class="form-control" id="inputPassword4" placeholder="Enter Email id">
+              <input type="email" class="form-control" id="emailID" placeholder="Enter Email id">
             </div>
             <div class="form-group col-md-6">
               <label for="inputPassword4">Phone No.</label>
-              <input type="number" class="form-control" id="inputPassword4" placeholder="Enter Phone no.">
+              <input type="number" class="form-control" id="phoneNo" placeholder="Enter Phone no.">
             </div>
           </div>
           <!-- <div class="form-group">
@@ -648,13 +647,13 @@
             </div>
             <div class="form-group col-md-6">
               <label for="inputPassword4">Identity No.</label>
-              <input type="number" class="form-control" id="inputPassword4" placeholder="Enter Identity Number">
+              <input type="number" class="form-control" id="identityNumber" placeholder="Enter Identity Number">
             </div>
 
           </div>
 
           <center>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
           </center>
         </form>
       </div>
