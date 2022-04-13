@@ -10,19 +10,63 @@ let autocomplete;
 let address1Field;
 let address2Field;
 let postalField;
+let latitude;
+let longitude;
 
 function initAutocomplete() {
   address1Field = document.querySelector("#ship-address");
   address2Field = document.querySelector("#address2");
   postalField = document.querySelector("#postcode");
+
+  //Get latitude & longitude
+  if (navigator.geolocation) {
+      console.log('In Geolocation if condition');
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          latitude = pos.lat;
+          longitude = pos.lng;
+          console.log('latitude: ' + latitude );
+          console.log('longitude: ' + longitude );
+        },
+        () => {
+          handleLocationError(true, infoWindow, map.getCenter());
+        }
+      );
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
+
+    // var circle = new google.maps.Circle({ center: new google.maps.LatLng(-23.544085, -46.7125434), radius: 12000 })
+    var circle = new google.maps.Circle({ center: new google.maps.LatLng(latitude, longitude), radius: 50000 })
+    // var autocomplete = new google.maps.places.Autocomplete(spaceAddress,
+    //   { types: [ 'geocode' ],
+    //   bounds: circle.getBounds(),
+    //   strictbounds: true });
+
+
   // Create the autocomplete object, restricting the search predictions to
   // addresses in the US and Canada.
   autocomplete = new google.maps.places.Autocomplete(address1Field, {
     // componentRestrictions: { country: ["us", "ca"] },
     componentRestrictions: { country: ["in"] },
     fields: ["address_components", "geometry"],
-    types: ["address"],
+    // fields: ["geometry", "icon", "name"],
+    // types: ["address"],
+    bounds: circle.getBounds(),
+    strictbounds: true,
+    types: ["geocode"],
+    // types: ["regions"],
   });
+
+
+
+
+
   address1Field.focus();
   // When the user selects an address from the drop-down, populate the
   // address fields in the form.
