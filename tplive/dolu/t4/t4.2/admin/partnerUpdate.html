@@ -661,7 +661,21 @@
             </div>
 
           </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCity">Approval Status</label>
 
+              <select id="approvalStatus" class="form-control">
+                <option value="Pending Approval" selected>Pending Approval</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputState">Comments</label>
+              <input type="text" class="form-control" id="Comments" placeholder="Enter Comments">
+            </div>
+          </div>
           <center id="saveMessage" style="display:none">
             <span id="confirmationMessage">Partner details saved Successfully !!  </span>
           </center>
