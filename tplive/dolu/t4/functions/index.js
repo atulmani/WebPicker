@@ -27,3 +27,4 @@ exports.getPartnerDetails = partner.getPartnerDetails;
 exports.updatePartnerDetails = partner.updatePartnerDetails;
 exports.addPartnerDetails = partner.addPartnerDetails;
 exports.getAllPartnerDetails = partner.getAllPartnerDetails;
+exports.getAllPartnerDetailsForOrganizer = partner.getAllPartnerDetailsForOrganizer;
