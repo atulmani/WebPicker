@@ -15,11 +15,11 @@ auth.onAuthStateChanged(async firebaseUser => {
     } else {
       loggedinUser = null;
       console.log('User has been logged out');
-      // window.location.href = "../index.html";
+      window.location.href = "../index.html";
     }
   } catch (error) {
     console.log(error.message);
-    // window.location.href = "../index.html";
+    window.location.href = "../index.html";
   }
 });
 
@@ -57,7 +57,7 @@ async function getUserList() {
     // console.log("From Function " + results.data[0].resultsid);
     for (index = 0; index < results.data.length; index++) {
       // console.log(results.data[index]);
-      console.log(results.data[index]);
+      // console.log(results.data[index]);
       var option = document.createElement("option");
       option.setAttribute("value", results.data[index].userid + ":" +
         results.data[index].UserName + ":" +
@@ -83,15 +83,26 @@ async function GetProfileData() {
     var record1 = result.data;
     console.log(result.data.UserRole.findIndex(e => e.TYPE === "ADMIN"));
     document.getElementById("userName").innerHTML = result.data.UserName
-
+    document.getElementById("Comments").innerHTML = result.data.Comments
+    var approvalStatus = document.getElementById("approvalStatus");
     if (result.data.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
       console.log("in admin");
-      console.log(partnerID);
+      // console.log(partnerID);
       document.getElementById("organizer").disabled = false;
 
       if (partnerID != "" && partnerID != undefined && partnerID != null) {
         document.getElementById("btnSave").innerHTML = "Update";
         GetPartnerDetails();
+      }
+      else {
+        for(index = 0 ;index < approvalStatus.options.length ; index++ )
+        {
+          if(approvalStatus.options[index].value === "Approved")
+          {
+            approvalStatus.options[index].selected = true;
+            break;
+          }
+        }
       }
       // document.getElementById("fInput").style.display="none";
     } else if (result.data.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
@@ -100,6 +111,8 @@ async function GetProfileData() {
       var organizationid = document.getElementById("organizer");
 
       organizationid.disabled = true;
+      approvalStatus.disabled = true;
+      document.getElementById("Comments").disabled=true;
       // console.log(loggedinUser.uid);
       document.getElementById("hfOrganizerID").value = loggedinUser.uid;
       // console.log(organizationid.options.length);
@@ -117,8 +130,16 @@ async function GetProfileData() {
         document.getElementById("btnSave").innerHTML = "Update";
         GetPartnerDetails();
       }
-
-
+      else {
+        for(index = 0 ;index < approvalStatus.options.length ; index++ )
+        {
+          if(approvalStatus.options[index].value === "Pending Approval")
+          {
+            approvalStatus.options[index].selected = true;
+            break;
+          }
+        }
+      }
     } else {
       console.log("not admin");
       document.getElementById("fInput").style.display = "none";
@@ -144,6 +165,18 @@ function GetPartnerDetails() {
     document.getElementById("emailID").value = result.data.PartnerEmailID;
     document.getElementById("phoneNo").value = result.data.PartnerPhone;
     document.getElementById("inputCity").value = result.data.City;
+    document.getElementById("Comments").value = result.data.Comments;
+    var approvalStatus = document.getElementById("approvalStatus");
+    var approvalS=result.data.ApprovalStatus;
+    for(index = 0 ;index < approvalStatus.options.length ; index++ )
+    {
+      if(approvalStatus.options[index].value === approvalS)
+      {
+        approvalStatus.options[index].selected = true;
+        break;
+      }
+    }
+
     var orgID = result.data.OrganizationID;
     // console.log(orgID);
     var organizationid = document.getElementById("organizer");
@@ -158,12 +191,12 @@ function GetPartnerDetails() {
       }
     }
 
-
     var ddlstate = document.getElementById("inputState");
     var stateVal = result.data.State;
     for (index = 0; index < ddlstate.options.length; index++) {
       if (ddlstate.options[index].innerHTML === stateVal) {
         ddlstate.options[index].selected = true;
+        break;
       }
     }
 
@@ -172,6 +205,7 @@ function GetPartnerDetails() {
     for (index = 0; index < ddlIndentity.options.length; index++) {
       if (ddlIndentity.options[index].innerHTML === identityType) {
         ddlIndentity.options[index].selected = true;
+        break;
       }
     }
 
@@ -215,9 +249,11 @@ btnSave.addEventListener('click', e => {
   var emailID = document.getElementById("emailID").value;
   var phoneNo = document.getElementById("phoneNo").value;
   var inputCity = document.getElementById("inputCity").value;
+  var comments = document.getElementById("Comments").value;
   var state = document.getElementById("inputState").options[document.getElementById("inputState").selectedIndex].value;
   var identityType = document.getElementById("inputIdentityType").options[document.getElementById("inputIdentityType").selectedIndex].value;
   var identityNumber = document.getElementById("identityNumber").value;
+  var approvalStatus = document.getElementById("approvalStatus").options[document.getElementById("approvalStatus").selectedIndex].value;
   //console.log(document.getElementById("inputState").selectedIndex);
   var confirmMessage = document.getElementById('saveMessage');
   console.log("before check");
@@ -255,6 +291,8 @@ btnSave.addEventListener('click', e => {
       IdentityType: identityType,
       IdentityNumber: identityNumber,
       PartnerType: partnerType,
+      ApprovalStatus :approvalStatus,
+      Comments :comments,
 
     };
     if (partnerID === "" || partnerID === undefined || partnerID === null) {
