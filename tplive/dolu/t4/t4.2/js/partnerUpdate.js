@@ -10,16 +10,16 @@ auth.onAuthStateChanged(async firebaseUser => {
       //console.log(firebaseUser.uid);
       console.log('Logged-in user phone number: ' + loggedinUser.phoneNumber);
 
-      GetProfileData();
-      getUserList();
+      var ret = await getUserList();
+      // GetProfileData();
     } else {
       loggedinUser = null;
       console.log('User has been logged out');
-      window.location.href = "../index.html";
+      // window.location.href = "../index.html";
     }
   } catch (error) {
     console.log(error.message);
-    window.location.href = "../index.html";
+    // window.location.href = "../index.html";
   }
 });
 
@@ -43,7 +43,7 @@ function onOrganizationSelection() {
   }
 }
 
-function getUserList() {
+async function getUserList() {
   var para2 = {};
   para2 = {
     paraRole: ['ADMIN', 'PARTICIPANT'],
@@ -68,13 +68,12 @@ function getUserList() {
       option.innerHTML = results.data[index].UserName + " : " + results.data[index].Email;
       organizer.appendChild(option);
     }
+    GetProfileData();
   });
-
-
 }
 async function GetProfileData() {
   console.log('GetProfileData - Starts');
-
+  //await getUserList();
   var para1 = {};
   para1 = {
     userID: loggedinUser.uid
@@ -83,15 +82,43 @@ async function GetProfileData() {
   ret1(para1).then((result) => {
     var record1 = result.data;
     console.log(result.data.UserRole.findIndex(e => e.TYPE === "ADMIN"));
+    document.getElementById("userName").innerHTML = result.data.UserName
+
     if (result.data.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
       console.log("in admin");
-      document.getElementById("userName").innerHTML = result.data.UserName
       console.log(partnerID);
+      document.getElementById("organizer").disabled = false;
+
       if (partnerID != "" && partnerID != undefined && partnerID != null) {
         document.getElementById("btnSave").innerHTML = "Update";
         GetPartnerDetails();
       }
       // document.getElementById("fInput").style.display="none";
+    } else if (result.data.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
+
+      console.log("Organizer");
+      var organizationid = document.getElementById("organizer");
+
+      organizationid.disabled = true;
+      // console.log(loggedinUser.uid);
+      document.getElementById("hfOrganizerID").value = loggedinUser.uid;
+      // console.log(organizationid.options.length);
+      for (index = 0; index < organizationid.options.length; index++) {
+        // console.log(organizationid.options[index].value);
+        // console.log(organizationid.options[index].value);
+        if (organizationid.options[index].value.search(loggedinUser.uid) >= 0) {
+          organizationid.options[index].selected = true;
+          onOrganizationSelection();
+          break;
+        }
+      }
+
+      if (partnerID != "" && partnerID != undefined && partnerID != null) {
+        document.getElementById("btnSave").innerHTML = "Update";
+        GetPartnerDetails();
+      }
+
+
     } else {
       console.log("not admin");
       document.getElementById("fInput").style.display = "none";
@@ -122,13 +149,11 @@ function GetPartnerDetails() {
     var organizationid = document.getElementById("organizer");
     document.getElementById("hfOrganizerID").value = orgID;
     // console.log(organizationid.options.length);
-    for(index = 0;index <organizationid.options.length ; index++ )
-    {
+    for (index = 0; index < organizationid.options.length; index++) {
       // console.log(organizationid.options[index].value);
 
-      if(organizationid.options[index].value.search(orgID) >= 0 )
-      {
-        organizationid.options[index].selected=true;
+      if (organizationid.options[index].value.search(orgID) >= 0) {
+        organizationid.options[index].selected = true;
         break;
       }
     }
@@ -220,7 +245,7 @@ btnSave.addEventListener('click', e => {
     var para1 = {};
     para1 = {
       partnerID: partnerID,
-      organizerID:organizerID,
+      organizerID: organizerID,
       PartnerName: partnerName,
       OrganizationName: orgName,
       PartnerEmailID: emailID,

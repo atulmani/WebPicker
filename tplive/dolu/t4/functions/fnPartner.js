@@ -1,4 +1,3 @@
-e:
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
@@ -173,6 +172,43 @@ exports.getAllPartnerDetails =
     });
   });
 
+
+  exports.getAllPartnerDetailsForOrganizer =
+    functions.https.onCall(async (data, context) => {
+      if (!context.auth) {
+        throw new functions.https.HttpError(
+          "unauthenticatied",
+          "only authenticated user can call this"
+        );
+      }
+      const organizerID = data.organizerID;
+
+      let resultList = [];
+
+      // var dbrows = await admin.firestore().collection("PartnerList").get();
+      // dbrows.then((changes) => {
+      return await admin.firestore().collection("PartnerList").where("OrganizationID","==",organizerID).get().then((changes) => {
+        changes.forEach(change => {
+          resultList.push({
+            resultsid: change.id,
+            PartnerName: change.data().PartnerName,
+            OrganizationID:change.data().OrganizationID,
+            OrganizationName: change.data().OrganizationName,
+            PartnerEmailID: change.data().PartnerEmailID,
+            PartnerPhone: change.data().PartnerPhone,
+            DateOfBirth: change.data().DateOfBirth,
+            City: change.data().City,
+            State: change.data().State,
+            IdentityType: change.data().IdentityType,
+            IdentityNumber: change.data().IdentityNumber,
+            PartnerType: change.data().PartnerType,
+          });
+          console.log(resultList);
+        });
+        return resultList;
+
+      });
+    });
 
 exports.addPartnerDetails =
   functions.https.onCall((data, context) => {

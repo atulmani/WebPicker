@@ -33,11 +33,17 @@ async function GetProfileData() {
     var record1 = result.data;
     console.log(result.data);
     // console.log(result.data.UserRole.findIndex(e=> e.TYPE==="ADMIN"));
+
     if (result.data.id != "0") {
+      document.getElementById("userName").innerHTML = result.data.UserName
+
       if (result.data.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
         console.log("in admin");
-        document.getElementById("userName").innerHTML = result.data.UserName
-        populatePartnerList();
+        populatePartnerList("All");
+        // document.getElementById("fInput").style.display="none";
+      } else if (result.data.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
+        console.log("organizer");
+        populatePartnerList(loggedinUser.uid);
         // document.getElementById("fInput").style.display="none";
       } else {
         console.log("not admin");
@@ -59,24 +65,29 @@ function fullcard(arrowVar) {
 
 }
 
-function populatePartnerList() {
+function populatePartnerList(userid) {
   var para = {};
+  console.log(userid);
   para = {
-    userID: loggedinUser.uid
+    organizerID: loggedinUser.uid
   };
   console.log(para);
+  var ret = "";
+  if (userid === "All") {
+    ret = firebase.functions().httpsCallable("getAllPartnerDetails");
 
-  const ret = firebase.functions().httpsCallable("getAllPartnerDetails");
+  } else {
+    ret = firebase.functions().httpsCallable("getAllPartnerDetailsForOrganizer");
+
+  }
   ret(para).then(results => {
     console.log("From Function " + results.data.length);
     // console.log("From Function " + results.data[0].resultsid);
-    for (index = 0; index < results.data.length; index++)
-    {
+    for (index = 0; index < results.data.length; index++) {
       // console.log(results.data[index]);
-      RenderPartnerDetails(index,results.data[index] );
+      RenderPartnerDetails(index, results.data[index]);
     }
   });
-
 }
 
 function RenderPartnerDetails(index, doc) {
@@ -127,17 +138,17 @@ function RenderPartnerDetails(index, doc) {
   div5.appendChild(h2);
   console.log(doc.resultsid);
   var hf = document.createElement("input");
-  hf.setAttribute("id", "hfPartnerID" + index );
+  hf.setAttribute("id", "hfPartnerID" + index);
   hf.setAttribute("type", "hidden");
-  hf.setAttribute("value",doc.resultsid );
+  hf.setAttribute("value", doc.resultsid);
   div3.appendChild(hf);
 
-    var i1 = document.createElement("i");
-    i1.setAttribute("onclick", "GetPartnerDetails(" + index + ");");
-    i1.setAttribute("class", "far fa-edit address-edit-icon");
-    i1.setAttribute("style", "padding: 0 5px 0 5px;bottom:0px;z-index:0;");
+  var i1 = document.createElement("i");
+  i1.setAttribute("onclick", "GetPartnerDetails(" + index + ");");
+  i1.setAttribute("class", "far fa-edit address-edit-icon");
+  i1.setAttribute("style", "padding: 0 5px 0 5px;bottom:0px;z-index:0;");
 
-    div3.appendChild(i1);
+  div3.appendChild(i1);
 
   div3.appendChild(div5);
 
@@ -234,8 +245,7 @@ function RenderPartnerDetails(index, doc) {
   document.getElementById("containerOrgList").appendChild(div1);
 }
 
-function GetPartnerDetails(index)
-{
+function GetPartnerDetails(index) {
   var hfid = document.getElementById("hfPartnerID" + index);
   window.location.href = "partnerUpdate.html?id=" + hfid.value;
 
