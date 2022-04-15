@@ -597,6 +597,16 @@
 
               </div>
             </div>
+            <!-- <div class="form-row"> -->
+              <div class="form-group col-md-12">
+
+              <label for="inputEmail4">Select Organizer</label>
+              <select id="organizer" class="form-control" onchange="onOrganizationSelection();">
+                <option value="0" selected>Choose Organizer</option>
+
+              </select>
+            </div>
+            <!-- </div> -->
 
             <div class="form-group col-md-6">
               <label for="inputEmail4">Organization Name</label>
@@ -652,6 +662,11 @@
 
           </div>
 
+          <center id="saveMessage" style="display:none">
+            <span id="confirmationMessage">Partner details saved Successfully !!  </span>
+          </center>
+          <input type="hidden" id="hfPartnerID">
+          <input type="hidden" id="hfOrganizerID">
           <center>
             <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
           </center>
@@ -824,8 +839,8 @@
                   <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="../login/login.html">Organiser Login</a> </li>
                   <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="../login/login.html">Umpire Login</a> </li>
 
-                  <li class="footer-li"> <a href="https://www.facebook.com/crop.queens/"><i style="font-size:18px; color:#fff" class="fab fa-facebook-f"></i></a></li>
-                  <li class="footer-li"> <a href="https://www.instagram.com/cropqueens/"><i style="font-size:18px; color:#fff" class="fab fa-instagram"></i></a></li>
+                  <li class="footer-li"> <a href="https://www.facebook.com/tp.live.75/"><i style="font-size:18px; color:#fff" class="fab fa-facebook-f"></i></a></li>
+                  <li class="footer-li"> <a href="https://www.instagram.com/tplive.in/"><i style="font-size:18px; color:#fff" class="fab fa-instagram"></i></a></li>
                   <li class="footer-li"> <a href="#"><i style="font-size:18px; color:#fff" class="fab fa-youtube"></i></a> </li>
 
                 </ul>
@@ -923,71 +938,34 @@
 
   </section>
 
-  <!-- WebPicker Facebook Messenger Chat Plugin Code - Start -->
-  <div id="fb-root"></div>
-
-  <!-- Your Chat Plugin code -->
-  <div id="fb-customer-chat" class="fb-customerchat">
-  </div>
-
-  <script>
-    var chatbox = document.getElementById('fb-customer-chat');
-    chatbox.setAttribute("page_id", "101044708888104");
-    chatbox.setAttribute("attribution", "biz_inbox");
-    window.fbAsyncInit = function() {
-      FB.init({
-        xfbml: true,
-        version: 'v11.0'
-      });
-    };
-
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
-
   <!-- Jquery order should be higher from normal javascript  -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <!-- <script src="https://code.jquery.com/jquery.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
 
   <!-- Owl Carousel JQuery -->
   <!-- <script src="js/jquery.min.js"></script> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <!-- Javascript to Populate Map - Start  -->
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
-  <!-- <script src="../js/createEvent.js"></script> -->
-  <script src="../js/main.js"></script>
-  <script src="../js/createPartner.js"></script>
-
-
   <!-- Owl Carousel Javascript  -->
-  <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
-  <!-- Banner Section - End -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://kit.fontawesome.com/12f526aa82.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/12f526aa82.js" crossorigin="anonymous"></script> -->
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-  <script src="../js/bootstrap-datetimepicker.min.js"></script>
-  <!-- <script src="../js/main.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
 
   <!-- Firebase Services -->
-
-
-  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-storage.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-functions.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-functions.js"></script>
 
   <script src="../js/main.js"></script>
   <script src="../js/firebase.js"></script>
