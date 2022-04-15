@@ -27,6 +27,8 @@ exports.getPartnerDetails =
             DateOfBirth: doc1.data().DateOfBirth,
             City: doc1.data().City,
             State: doc1.data().State,
+            ApprovalStatus: doc1.data().ApprovalStatus,
+            Comments: doc1.data().Comments,
             IdentityType: doc1.data().IdentityType,
             IdentityNumber: doc1.data().IdentityNumber,
             PartnerType: doc1.data().PartnerType,
@@ -57,7 +59,8 @@ exports.updatePartnerDetails =
     const PartnerEmailID = data.PartnerEmailID;
     const PartnerPhone = data.PartnerPhone;
     const OrganizationID = data.organizerID;
-
+    const ApprovalStatus = data.ApprovalStatus;
+    const Comments = data.Comments;
     // const DateOfBirth = data.DateOfBirth;
     const City = data.City;
     const State = data.State;
@@ -81,6 +84,8 @@ exports.updatePartnerDetails =
         IdentityType: IdentityType,
         IdentityNumber: IdentityNumber,
         PartnerType: PartnerType,
+        ApprovalStatus: ApprovalStatus,
+        Comments: Comments,
         CreatedBy: context.auth.uid,
         CreatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
       })
@@ -119,6 +124,8 @@ exports.getPartnerDetails =
             PartnerPhone: doc1.data().PartnerPhone,
             DateOfBirth: doc1.data().DateOfBirth,
             City: doc1.data().City,
+            ApprovalStatus: doc1.data().ApprovalStatus,
+            Comments: doc1.data().Comments,
             State: doc1.data().State,
             IdentityType: doc1.data().IdentityType,
             IdentityNumber: doc1.data().IdentityNumber,
@@ -160,6 +167,8 @@ exports.getAllPartnerDetails =
           PartnerPhone: change.data().PartnerPhone,
           DateOfBirth: change.data().DateOfBirth,
           City: change.data().City,
+          ApprovalStatus: change.data().ApprovalStatus,
+          Comments: change.data().Comments,
           State: change.data().State,
           IdentityType: change.data().IdentityType,
           IdentityNumber: change.data().IdentityNumber,
@@ -198,6 +207,8 @@ exports.getAllPartnerDetails =
             PartnerPhone: change.data().PartnerPhone,
             DateOfBirth: change.data().DateOfBirth,
             City: change.data().City,
+            ApprovalStatus: change.data().ApprovalStatus,
+            Comments: change.data().Comments,
             State: change.data().State,
             IdentityType: change.data().IdentityType,
             IdentityNumber: change.data().IdentityNumber,
@@ -228,6 +239,8 @@ exports.addPartnerDetails =
     const IdentityType = data.IdentityType;
     const IdentityNumber = data.IdentityNumber;
     const PartnerType = data.PartnerType;
+    const ApprovalStatus = data.ApprovalStatus;
+    const Comments = data.Comments;
     return admin.firestore().collection("PartnerList")
       .add({
         PartnerName: PartnerName,
@@ -237,6 +250,8 @@ exports.addPartnerDetails =
         PartnerPhone: PartnerPhone,
         City: City,
         State: State,
+        ApprovalStatus: ApprovalStatus,
+        Comments: Comments,
         IdentityType: IdentityType,
         IdentityNumber: IdentityNumber,
         PartnerType: PartnerType,
