@@ -21,7 +21,9 @@ exports.saveProfileDetailsStep2 = userProfile.saveProfileDetailsStep2;
 exports.saveProfileDetailsStep3 = userProfile.saveProfileDetailsStep3;
 exports.saveProfileDetailsStep4 = userProfile.saveProfileDetailsStep4;
 exports.updateProfileDetails = userProfile.updateProfileDetails;
+exports.getUserWithRole = userProfile.getUserWithRole;
 
 exports.getPartnerDetails = partner.getPartnerDetails;
 exports.updatePartnerDetails = partner.updatePartnerDetails;
 exports.addPartnerDetails = partner.addPartnerDetails;
+exports.getAllPartnerDetails = partner.getAllPartnerDetails;
