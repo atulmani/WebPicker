@@ -10,16 +10,16 @@ auth.onAuthStateChanged(async firebaseUser => {
       //console.log(firebaseUser.uid);
       console.log('Logged-in user phone number: ' + loggedinUser.phoneNumber);
 
-      GetProfileData();
-      getUserList();
+      var ret = await getUserList();
+      // GetProfileData();
     } else {
       loggedinUser = null;
       console.log('User has been logged out');
-      window.location.href = "../index.html";
+      // window.location.href = "../index.html";
     }
   } catch (error) {
     console.log(error.message);
-    window.location.href = "../index.html";
+    // window.location.href = "../index.html";
   }
 });
 
@@ -43,7 +43,7 @@ function onOrganizationSelection() {
   }
 }
 
-function getUserList() {
+async function getUserList() {
   var para2 = {};
   para2 = {
     paraRole: ['ADMIN', 'PARTICIPANT'],
@@ -68,11 +68,12 @@ function getUserList() {
       option.innerHTML = results.data[index].UserName + " : " + results.data[index].Email;
       organizer.appendChild(option);
     }
+    GetProfileData();
   });
 }
 async function GetProfileData() {
   console.log('GetProfileData - Starts');
-
+  //await getUserList();
   var para1 = {};
   para1 = {
     userID: loggedinUser.uid
@@ -99,14 +100,15 @@ async function GetProfileData() {
       var organizationid = document.getElementById("organizer");
 
       organizationid.disabled = true;
-
+      // console.log(loggedinUser.uid);
       document.getElementById("hfOrganizerID").value = loggedinUser.uid;
       // console.log(organizationid.options.length);
       for (index = 0; index < organizationid.options.length; index++) {
         // console.log(organizationid.options[index].value);
-
+        // console.log(organizationid.options[index].value);
         if (organizationid.options[index].value.search(loggedinUser.uid) >= 0) {
           organizationid.options[index].selected = true;
+          onOrganizationSelection();
           break;
         }
       }
