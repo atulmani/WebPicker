@@ -82,6 +82,7 @@ btnSigninUsingOTP.addEventListener('click', e => {
       const ret1 = firebase.functions().httpsCallable("getProfileDetails");
       ret1(para1).then((result) => {
         var record1 = result.data;
+        console.log(result.data.id);
         if (result.data.id != "0") {
           window.location.assign('profile.html');
         } else {
