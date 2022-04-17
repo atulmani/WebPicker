@@ -1,12 +1,16 @@
 $(document).ready(function () {
         if($(window).width() > 850) {
            // $("#collapsibleNavbar1").removeClass("collapse");
-           $("#arrowOrg").addClass("active");
+           $("#order1").addClass("active");
            // $("#eventArrow").addClass("active");
-           $("#EventRevenue").addClass("active");
-           $("#openEvents").addClass("active");
-           $("#CardTransaction").addClass("active");
-           $("#CardNotification").addClass("active");
+           $("#order2").addClass("active");
+           $("#order3").addClass("active");
+           $("#order4").addClass("active");
+           $("#order5").addClass("active");
+           $("#order6").addClass("active");
+           $("#order7").addClass("active");
+           // $("#order8").addClass("active");
+           // $("#order9").addClass("active");
            // $("#CardAnalytics").addClass("active");
         }
     });
