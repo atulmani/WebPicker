@@ -169,6 +169,37 @@ margin-bottom: 0;
   }
 }
 
-.column8padding{
+.category-list-sub-menu{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px 0 10px;
+}
 
+.city-selector{
+  background: rgba(0,0,0,0.1);
+  outline: none;
+  border: #ddd;
+  padding: 5px 40px 5px 20px;
+  margin: 10px auto;
+  border-radius: 4px;
+  color: #444;
+  -webkit-appearance: none;
+  z-index: 10;
+}
+
+.city-selector.multi-select option{
+  padding: 5px 0;
+  font-size: 1rem;
+}
+
+/* .city-selector::-ms-expand {
+  display: none;
+} */
+
+.city-selector-icon{
+  position: relative;
+  top: 5px;
+  right: 35px;
+  pointer-events:none;
 }
