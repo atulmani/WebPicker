@@ -1,66 +1,66 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
-exports.getEventDetails =
-  functions.https.onCall((data, context) => {
-    if (!context.auth) {
-      throw new functions.https.HttpError(
-        "unauthenticatied",
-        "only authenticated user can call this"
-      );
-    }
-    const eventID = data.EventID;
-
-    console.log("eventID ", eventID);
-    return admin.firestore().collection("EventList")
-      .doc(eventID).get().then((doc1) => {
-        if (doc1.exists) {
-          // console.log(doc1);
-          let results = {};
-          return {
-            Eventid: doc1.id,
-            EventName: doc1.data().EventName,
-            EventType: doc1.data().EventType,
-            EventStatus: doc1.data().EventStatus,
-
-            OrganizerID: doc1.data().OrganizerID,
-            OrganizerName: doc1.data().OrganizerName,
-            OrganizerEmail: doc1.data().OrganizerEmail,
-            OrganizerPhone: doc1.data().OrganizerPhone,
-            OrganizerLogo: doc1.data().OrganizerLogo,
-            EventLogo: doc1.data().EventLogo,
-
-            SportName: doc1.data().SportName,
-            EventStartDate: doc1.data().EventStartDate,
-            eventEndDate: doc1.data().EventEndDate,
-            Venue: doc1.data().Venue,
-            City: doc1.data().City,
-            State: doc1.data().State,
-            RegistrationStartDate: doc1.data().RegistrationStartDate,
-            RegistrationEndDate: doc1.data().RegistrationEndDate,
-            WithdrawalEndDate: doc1.data().WithdrawalEndDate,
-
-            PaymentMode: doc1.data().PaymentMode,
-            ApprovalStatus: doc1.data().ApprovalStatus,
-            Comments: doc1.data().Comments,
-
-            RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
-            PaymentOpenFlag: doc1.data().PaymentOpenFlag,
-            DrawPublishedFlag: doc1.data().DrawPublishedFlag,
-
-          }
-
-        } else {
-          console.log("no data");
-          return {
-            id: "0",
-            msg: "No Record"
-          };
-        }
-      });
-    console.log("before return");
-  });
-
+// exports.getEventDetails =
+//   functions.https.onCall((data, context) => {
+//     if (!context.auth) {
+//       throw new functions.https.HttpError(
+//         "unauthenticatied",
+//         "only authenticated user can call this"
+//       );
+//     }
+//     const eventID = data.EventID;
+//
+//     console.log("eventID ", eventID);
+//     return admin.firestore().collection("EventList")
+//       .doc(eventID).get().then((doc1) => {
+//         if (doc1.exists) {
+//           // console.log(doc1);
+//           let results = {};
+//           return {
+//             Eventid: doc1.id,
+//             EventName: doc1.data().EventName,
+//             EventType: doc1.data().EventType,
+//             EventStatus: doc1.data().EventStatus,
+//
+//             OrganizerID: doc1.data().OrganizerID,
+//             OrganizerName: doc1.data().OrganizerName,
+//             OrganizerEmail: doc1.data().OrganizerEmail,
+//             OrganizerPhone: doc1.data().OrganizerPhone,
+//             OrganizerLogo: doc1.data().OrganizerLogo,
+//             EventLogo: doc1.data().EventLogo,
+//
+//             SportName: doc1.data().SportName,
+//             EventStartDate: doc1.data().EventStartDate,
+//             eventEndDate: doc1.data().EventEndDate,
+//             Venue: doc1.data().Venue,
+//             City: doc1.data().City,
+//             State: doc1.data().State,
+//             RegistrationStartDate: doc1.data().RegistrationStartDate,
+//             RegistrationEndDate: doc1.data().RegistrationEndDate,
+//             WithdrawalEndDate: doc1.data().WithdrawalEndDate,
+//
+//             PaymentMode: doc1.data().PaymentMode,
+//             ApprovalStatus: doc1.data().ApprovalStatus,
+//             Comments: doc1.data().Comments,
+//
+//             RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
+//             PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+//             DrawPublishedFlag: doc1.data().DrawPublishedFlag,
+//
+//           }
+//
+//         } else {
+//           console.log("no data");
+//           return {
+//             id: "0",
+//             msg: "No Record"
+//           };
+//         }
+//       });
+//     console.log("before return");
+//   });
+//
 exports.getEventDetails =
   functions.https.onCall((data, context) => {
     if (!context.auth) {
@@ -92,7 +92,7 @@ exports.getEventDetails =
 
             SportName: doc1.data().SportName,
             EventStartDate: doc1.data().EventStartDate,
-            eventEndDate: doc1.data().EventEndDate,
+            EventEndDate: doc1.data().EventEndDate,
             Venue: doc1.data().Venue,
             City: doc1.data().City,
             State: doc1.data().State,
@@ -107,6 +107,29 @@ exports.getEventDetails =
             RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
             PaymentOpenFlag: doc1.data().PaymentOpenFlag,
             DrawPublishedFlag: doc1.data().DrawPublishedFlag,
+            //to be added
+            LocationMap: doc1.data().LocationMap,
+            VenueContact: doc1.data().VenueContact,
+            MaxEntryForParticipant: doc1.data().MaxEntryForParticipant,
+            ConvenienceCharge: doc1.data().ConvenienceCharge,
+            MiscellaneousChargeMandatory: doc1.data().MiscellaneousChargeMandatory,
+            MiscellaneousChargeRemark: doc1.data().MiscellaneousChargeRemark,
+            MiscellaneousChargeFee: doc1.data().MiscellaneousChargeFee,
+            DiscountRemark: doc1.data().DiscountRemark,
+            DiscountValue: doc1.data().DiscountValue,
+            OnlinePaymentGateway: doc1.data().OnlinePaymentGateway,
+            RegistrationCompletePostPayment: doc1.data().RegistrationCompletePostPayment,
+            NoticeBoard: doc1.data().NoticeBoard,
+            Announcement: doc1.data().Announcement,
+            RulesAndRegulation: doc1.data().RulesAndRegulation,
+            ClosedEventFlag: doc1.data().ClosedEventFlag,
+            RegistrationStatusOnFlag: doc1.data().RegistrationStatusOnFlag,
+            RegistrationCompletePostPaymentFlag: doc1.data().RegistrationCompletePostPaymentFlag,
+            OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
+            PublishDrawFlag: doc1.data().PublishDrawFlag,
+            PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+            PublishMatchScheduleFlag: doc1.data().PublishMatchScheduleFlag,
+            PublishGallaryFlag: doc1.data().PublishGallaryFlag,
 
           }
 
@@ -151,7 +174,7 @@ exports.getAllEventDetails =
 
           SportName: doc1.data().SportName,
           EventStartDate: doc1.data().EventStartDate,
-          eventEndDate: doc1.data().EventEndDate,
+          EventEndDate: doc1.data().EventEndDate,
           Venue: doc1.data().Venue,
           City: doc1.data().City,
           State: doc1.data().State,
@@ -166,6 +189,29 @@ exports.getAllEventDetails =
           RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
           PaymentOpenFlag: doc1.data().PaymentOpenFlag,
           DrawPublishedFlag: doc1.data().DrawPublishedFlag,
+          //to be added
+          LocationMap: doc1.data().LocationMap,
+          VenueContact: doc1.data().VenueContact,
+          MaxEntryForParticipant: doc1.data().MaxEntryForParticipant,
+          ConvenienceCharge: doc1.data().ConvenienceCharge,
+          MiscellaneousChargeMandatory: doc1.data().MiscellaneousChargeMandatory,
+          MiscellaneousChargeRemark: doc1.data().MiscellaneousChargeRemark,
+          MiscellaneousChargeFee: doc1.data().MiscellaneousChargeFee,
+          DiscountRemark: doc1.data().DiscountRemark,
+          DiscountValue: doc1.data().DiscountValue,
+          OnlinePaymentGateway: doc1.data().OnlinePaymentGateway,
+          RegistrationCompletePostPayment: doc1.data().RegistrationCompletePostPayment,
+          NoticeBoard: doc1.data().NoticeBoard,
+          Announcement: doc1.data().Announcement,
+          RulesAndRegulation: doc1.data().RulesAndRegulation,
+          ClosedEventFlag: doc1.data().ClosedEventFlag,
+          RegistrationStatusOnFlag: doc1.data().RegistrationStatusOnFlag,
+          RegistrationCompletePostPaymentFlag: doc1.data().RegistrationCompletePostPaymentFlag,
+          OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
+          PublishDrawFlag: doc1.data().PublishDrawFlag,
+          PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+          PublishMatchScheduleFlag: doc1.data().PublishMatchScheduleFlag,
+          PublishGallaryFlag: doc1.data().PublishGallaryFlag,
 
         });
         console.log(resultList);
@@ -207,7 +253,7 @@ exports.getAllEventDetailsForOrganizer =
 
           SportName: doc1.data().SportName,
           EventStartDate: doc1.data().EventStartDate,
-          eventEndDate: doc1.data().EventEndDate,
+          EventEndDate: doc1.data().EventEndDate,
           Venue: doc1.data().Venue,
           City: doc1.data().City,
           State: doc1.data().State,
@@ -222,6 +268,30 @@ exports.getAllEventDetailsForOrganizer =
           RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
           PaymentOpenFlag: doc1.data().PaymentOpenFlag,
           DrawPublishedFlag: doc1.data().DrawPublishedFlag,
+          //to be added
+          LocationMap: doc1.data().LocationMap,
+          VenueContact: doc1.data().VenueContact,
+          MaxEntryForParticipant: doc1.data().MaxEntryForParticipant,
+          ConvenienceCharge: doc1.data().ConvenienceCharge,
+          MiscellaneousChargeMandatory: doc1.data().MiscellaneousChargeMandatory,
+          MiscellaneousChargeRemark: doc1.data().MiscellaneousChargeRemark,
+          MiscellaneousChargeFee: doc1.data().MiscellaneousChargeFee,
+          DiscountRemark: doc1.data().DiscountRemark,
+          DiscountValue: doc1.data().DiscountValue,
+          OnlinePaymentGateway: doc1.data().OnlinePaymentGateway,
+          RegistrationCompletePostPayment: doc1.data().RegistrationCompletePostPayment,
+          NoticeBoard: doc1.data().NoticeBoard,
+          Announcement: doc1.data().Announcement,
+          RulesAndRegulation: doc1.data().RulesAndRegulation,
+          ClosedEventFlag: doc1.data().ClosedEventFlag,
+          RegistrationStatusOnFlag: doc1.data().RegistrationStatusOnFlag,
+          RegistrationCompletePostPaymentFlag: doc1.data().RegistrationCompletePostPaymentFlag,
+          OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
+          PublishDrawFlag: doc1.data().PublishDrawFlag,
+          PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+          PublishMatchScheduleFlag: doc1.data().PublishMatchScheduleFlag,
+          PublishGallaryFlag: doc1.data().PublishGallaryFlag,
+
         });
         console.log(resultList);
       });
@@ -326,33 +396,33 @@ exports.addEventDetails =
         "only authenticated user can call this"
       );
     }
-const OrganizationID = data.OrganizationID;
-const OrganizerID = data.OrganizerID;
-const SportName = data.SportName;
-const EventName = data.EventName;
-const EventOwnerName = data.EventOwnerName;
-const EventOwnerEmail = data.EventOwnerEmail;
-const EventOwnerPhone = data.EventOwnerPhone;
-const EventVenue = data.EventVenue;
-const LocationMap = data.LocationMap;
-const VenueContact = data.VenueContact;
-const ApprovalStatus = data.ApprovalStatus;
+    const OrganizationID = data.OrganizationID;
+    const OrganizerID = data.OrganizerID;
+    const SportName = data.SportName;
+    const EventName = data.EventName;
+    const EventOwnerName = data.EventOwnerName;
+    const EventOwnerEmail = data.EventOwnerEmail;
+    const EventOwnerPhone = data.EventOwnerPhone;
+    const EventVenue = data.EventVenue;
+    const LocationMap = data.LocationMap;
+    const VenueContact = data.VenueContact;
+    const ApprovalStatus = data.ApprovalStatus;
 
-console.log(data);
+    console.log(data);
 
     return admin.firestore().collection("EventList")
       .add({
-        OrganizationID :OrganizationID,
-        OrganizerID :OrganizerID,
-        SportName :SportName,
-        EventName :EventName,
-        EventOwnerName :EventOwnerName,
-        EventOwnerEmail :EventOwnerEmail,
-        EventOwnerPhone :EventOwnerPhone,
-        EventVenue :EventVenue,
-        LocationMap :LocationMap,
-        VenueContact :VenueContact,
-        ApprovalStatus :ApprovalStatus,
+        OrganizationID: OrganizationID,
+        OrganizerID: OrganizerID,
+        SportName: SportName,
+        EventName: EventName,
+        EventOwnerName: EventOwnerName,
+        EventOwnerEmail: EventOwnerEmail,
+        EventOwnerPhone: EventOwnerPhone,
+        EventVenue: EventVenue,
+        LocationMap: LocationMap,
+        VenueContact: VenueContact,
+        ApprovalStatus: ApprovalStatus,
         CreatedBy: context.auth.uid,
         CreatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
       })
@@ -1038,39 +1108,39 @@ exports.updateEventFlag_PublishSchedule =
       });
   });
 
-  exports.updateEventFlag_PublishGallery =
-    functions.https.onCall((data, context) => {
-      if (!context.auth) {
-        throw new functions.https.HttpError(
-          "unauthenticatied",
-          "only authenticated user can call this"
-        );
-      }
-      const EventID = data.EventID;
-      const PublishGalleryFlag = data.PublishGalleryFlag;
-      console.log("eventID ", EventID);
+exports.updateEventFlag_PublishGallery =
+  functions.https.onCall((data, context) => {
+    if (!context.auth) {
+      throw new functions.https.HttpError(
+        "unauthenticatied",
+        "only authenticated user can call this"
+      );
+    }
+    const EventID = data.EventID;
+    const PublishGalleryFlag = data.PublishGalleryFlag;
+    console.log("eventID ", EventID);
 
-      return admin.firestore().collection("EventList")
-        .doc(Eventid)
-        .set({
-          PublishGalleryFlag: PublishGalleryFlag,
+    return admin.firestore().collection("EventList")
+      .doc(Eventid)
+      .set({
+        PublishGalleryFlag: PublishGalleryFlag,
 
-          UpdatedBy: context.auth.uid,
-          UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
-        })
-        .then(() => {
-          console.log("Success");
-          return {
-            retCode: "0"
-          };
-        })
-        .catch(function(error) {
-          console.log("in error");
-          return {
-            retCode: "1"
-          };;
-        });
-    });
+        UpdatedBy: context.auth.uid,
+        UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
+      })
+      .then(() => {
+        console.log("Success");
+        return {
+          retCode: "0"
+        };
+      })
+      .catch(function(error) {
+        console.log("in error");
+        return {
+          retCode: "1"
+        };;
+      });
+  });
 
 exports.getAllEventForOrganizerWithStatus =
   functions.https.onCall(async (data, context) => {
