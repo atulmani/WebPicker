@@ -72,7 +72,7 @@ exports.getEventDetails =
     const EventID = data.EventID;
 
     console.log("EventID ", EventID);
-    return admin.firestore().collection("eventList")
+    return admin.firestore().collection("EventList")
       .doc(EventID).get().then((doc1) => {
         if (doc1.exists) {
           // console.log(doc1);
@@ -82,24 +82,23 @@ exports.getEventDetails =
             EventName: doc1.data().EventName,
             EventType: doc1.data().EventType,
             EventStatus: doc1.data().EventStatus,
-
+            OrganizationID: doc1.data().OrganizationID,
             OrganizerID: doc1.data().OrganizerID,
-            OrganizerName: doc1.data().OrganizerName,
-            OrganizerEmail: doc1.data().OrganizerEmail,
-            OrganizerPhone: doc1.data().OrganizerPhone,
+            EventOwnerName: doc1.data().EventOwnerName,
+            EventOwnerEmail: doc1.data().EventOwnerEmail,
+            EventOwnerPhone: doc1.data().EventOwnerPhone,
             OrganizerLogo: doc1.data().OrganizerLogo,
             EventLogo: doc1.data().EventLogo,
 
             SportName: doc1.data().SportName,
             EventStartDate: doc1.data().EventStartDate,
             EventEndDate: doc1.data().EventEndDate,
-            Venue: doc1.data().Venue,
+            EventVenue: doc1.data().EventVenue,
             City: doc1.data().City,
             State: doc1.data().State,
             RegistrationStartDate: doc1.data().RegistrationStartDate,
             RegistrationEndDate: doc1.data().RegistrationEndDate,
             WithdrawalEndDate: doc1.data().WithdrawalEndDate,
-
             PaymentMode: doc1.data().PaymentMode,
             ApprovalStatus: doc1.data().ApprovalStatus,
             Comments: doc1.data().Comments,
@@ -112,24 +111,24 @@ exports.getEventDetails =
             VenueContact: doc1.data().VenueContact,
             MaxEntryForParticipant: doc1.data().MaxEntryForParticipant,
             ConvenienceCharge: doc1.data().ConvenienceCharge,
-            MiscellaneousChargeMandatory: doc1.data().MiscellaneousChargeMandatory,
+            IsMiscellaneousChargeMandatory: doc1.data().IsMiscellaneousChargeMandatory,
             MiscellaneousChargeRemark: doc1.data().MiscellaneousChargeRemark,
-            MiscellaneousChargeFee: doc1.data().MiscellaneousChargeFee,
-            DiscountRemark: doc1.data().DiscountRemark,
+            MiscellaneousChargeFees: doc1.data().MiscellaneousChargeFees,
+            DiscountRemarks: doc1.data().DiscountRemarks,
             DiscountValue: doc1.data().DiscountValue,
-            OnlinePaymentGateway: doc1.data().OnlinePaymentGateway,
-            RegistrationCompletePostPayment: doc1.data().RegistrationCompletePostPayment,
+            OnlinePaymentModeFlag: doc1.data().OnlinePaymentModeFlag,
             NoticeBoard: doc1.data().NoticeBoard,
             Announcement: doc1.data().Announcement,
-            RulesAndRegulation: doc1.data().RulesAndRegulation,
-            ClosedEventFlag: doc1.data().ClosedEventFlag,
+            RulesAndRegulations: doc1.data().RulesAndRegulations,
+            CloseEventFlag: doc1.data().CloseEventFlag,
+
             RegistrationStatusOnFlag: doc1.data().RegistrationStatusOnFlag,
             RegistrationCompletePostPaymentFlag: doc1.data().RegistrationCompletePostPaymentFlag,
             OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
             PublishDrawFlag: doc1.data().PublishDrawFlag,
             PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
-            PublishMatchScheduleFlag: doc1.data().PublishMatchScheduleFlag,
-            PublishGallaryFlag: doc1.data().PublishGallaryFlag,
+            PublishScheduleFlag: doc1.data().PublishScheduleFlag,
+            PublishGalleryFlag: doc1.data().PublishGalleryFlag,
 
           }
 
@@ -164,24 +163,23 @@ exports.getAllEventDetails =
           EventName: doc1.data().EventName,
           EventType: doc1.data().EventType,
           EventStatus: doc1.data().EventStatus,
-
+          OrganizationID: doc1.data().OrganizationID,
           OrganizerID: doc1.data().OrganizerID,
-          OrganizerName: doc1.data().OrganizerName,
-          OrganizerEmail: doc1.data().OrganizerEmail,
-          OrganizerPhone: doc1.data().OrganizerPhone,
+          EventOwnerName: doc1.data().EventOwnerName,
+          EventOwnerEmail: doc1.data().EventOwnerEmail,
+          EventOwnerPhone: doc1.data().EventOwnerPhone,
           OrganizerLogo: doc1.data().OrganizerLogo,
           EventLogo: doc1.data().EventLogo,
 
           SportName: doc1.data().SportName,
           EventStartDate: doc1.data().EventStartDate,
           EventEndDate: doc1.data().EventEndDate,
-          Venue: doc1.data().Venue,
+          EventVenue: doc1.data().EventVenue,
           City: doc1.data().City,
           State: doc1.data().State,
           RegistrationStartDate: doc1.data().RegistrationStartDate,
           RegistrationEndDate: doc1.data().RegistrationEndDate,
           WithdrawalEndDate: doc1.data().WithdrawalEndDate,
-
           PaymentMode: doc1.data().PaymentMode,
           ApprovalStatus: doc1.data().ApprovalStatus,
           Comments: doc1.data().Comments,
@@ -194,24 +192,24 @@ exports.getAllEventDetails =
           VenueContact: doc1.data().VenueContact,
           MaxEntryForParticipant: doc1.data().MaxEntryForParticipant,
           ConvenienceCharge: doc1.data().ConvenienceCharge,
-          MiscellaneousChargeMandatory: doc1.data().MiscellaneousChargeMandatory,
+          IsMiscellaneousChargeMandatory: doc1.data().IsMiscellaneousChargeMandatory,
           MiscellaneousChargeRemark: doc1.data().MiscellaneousChargeRemark,
-          MiscellaneousChargeFee: doc1.data().MiscellaneousChargeFee,
-          DiscountRemark: doc1.data().DiscountRemark,
+          MiscellaneousChargeFees: doc1.data().MiscellaneousChargeFees,
+          DiscountRemarks: doc1.data().DiscountRemarks,
           DiscountValue: doc1.data().DiscountValue,
-          OnlinePaymentGateway: doc1.data().OnlinePaymentGateway,
-          RegistrationCompletePostPayment: doc1.data().RegistrationCompletePostPayment,
+          OnlinePaymentModeFlag: doc1.data().OnlinePaymentModeFlag,
+
           NoticeBoard: doc1.data().NoticeBoard,
           Announcement: doc1.data().Announcement,
-          RulesAndRegulation: doc1.data().RulesAndRegulation,
-          ClosedEventFlag: doc1.data().ClosedEventFlag,
-          RegistrationStatusOnFlag: doc1.data().RegistrationStatusOnFlag,
+          RulesAndRegulations: doc1.data().RulesAndRegulations,
+          CloseEventFlag: doc1.data().CloseEventFlag,
+          //RegistrationStatusOnFlag: doc1.data().RegistrationStatusOnFlag,
           RegistrationCompletePostPaymentFlag: doc1.data().RegistrationCompletePostPaymentFlag,
           OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
           PublishDrawFlag: doc1.data().PublishDrawFlag,
           PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
-          PublishMatchScheduleFlag: doc1.data().PublishMatchScheduleFlag,
-          PublishGallaryFlag: doc1.data().PublishGallaryFlag,
+          PublishScheduleFlag: doc1.data().PublishScheduleFlag,
+          PublishGalleryFlag: doc1.data().PublishGalleryFlag,
 
         });
         console.log(resultList);
@@ -243,24 +241,23 @@ exports.getAllEventDetailsForOrganizer =
           EventName: doc1.data().EventName,
           EventType: doc1.data().EventType,
           EventStatus: doc1.data().EventStatus,
-
+          OrganizationID: doc1.data().OrganizationID,
           OrganizerID: doc1.data().OrganizerID,
-          OrganizerName: doc1.data().OrganizerName,
-          OrganizerEmail: doc1.data().OrganizerEmail,
-          OrganizerPhone: doc1.data().OrganizerPhone,
+          EventOwnerName: doc1.data().EventOwnerName,
+          EventOwnerEmail: doc1.data().EventOwnerEmail,
+          EventOwnerPhone: doc1.data().EventOwnerPhone,
           OrganizerLogo: doc1.data().OrganizerLogo,
           EventLogo: doc1.data().EventLogo,
 
           SportName: doc1.data().SportName,
           EventStartDate: doc1.data().EventStartDate,
           EventEndDate: doc1.data().EventEndDate,
-          Venue: doc1.data().Venue,
+          EventVenue: doc1.data().EventVenue,
           City: doc1.data().City,
           State: doc1.data().State,
           RegistrationStartDate: doc1.data().RegistrationStartDate,
           RegistrationEndDate: doc1.data().RegistrationEndDate,
           WithdrawalEndDate: doc1.data().WithdrawalEndDate,
-
           PaymentMode: doc1.data().PaymentMode,
           ApprovalStatus: doc1.data().ApprovalStatus,
           Comments: doc1.data().Comments,
@@ -273,24 +270,24 @@ exports.getAllEventDetailsForOrganizer =
           VenueContact: doc1.data().VenueContact,
           MaxEntryForParticipant: doc1.data().MaxEntryForParticipant,
           ConvenienceCharge: doc1.data().ConvenienceCharge,
-          MiscellaneousChargeMandatory: doc1.data().MiscellaneousChargeMandatory,
+          IsMiscellaneousChargeMandatory: doc1.data().IsMiscellaneousChargeMandatory,
           MiscellaneousChargeRemark: doc1.data().MiscellaneousChargeRemark,
-          MiscellaneousChargeFee: doc1.data().MiscellaneousChargeFee,
-          DiscountRemark: doc1.data().DiscountRemark,
+          MiscellaneousChargeFees: doc1.data().MiscellaneousChargeFees,
+          DiscountRemarks: doc1.data().DiscountRemarks,
           DiscountValue: doc1.data().DiscountValue,
-          OnlinePaymentGateway: doc1.data().OnlinePaymentGateway,
-          RegistrationCompletePostPayment: doc1.data().RegistrationCompletePostPayment,
+          OnlinePaymentModeFlag: doc1.data().OnlinePaymentModeFlag,
+
           NoticeBoard: doc1.data().NoticeBoard,
           Announcement: doc1.data().Announcement,
-          RulesAndRegulation: doc1.data().RulesAndRegulation,
-          ClosedEventFlag: doc1.data().ClosedEventFlag,
-          RegistrationStatusOnFlag: doc1.data().RegistrationStatusOnFlag,
+          RulesAndRegulations: doc1.data().RulesAndRegulations,
+          CloseEventFlag: doc1.data().CloseEventFlag,
+          //RegistrationStatusOnFlag: doc1.data().RegistrationStatusOnFlag,
           RegistrationCompletePostPaymentFlag: doc1.data().RegistrationCompletePostPaymentFlag,
           OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
           PublishDrawFlag: doc1.data().PublishDrawFlag,
           PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
-          PublishMatchScheduleFlag: doc1.data().PublishMatchScheduleFlag,
-          PublishGallaryFlag: doc1.data().PublishGallaryFlag,
+          PublishScheduleFlag: doc1.data().PublishScheduleFlag,
+          PublishGalleryFlag: doc1.data().PublishGalleryFlag,
 
         });
         console.log(resultList);
@@ -449,65 +446,45 @@ exports.updateEventBasicDetails =
         "only authenticated user can call this"
       );
     }
+
     const EventID = data.EventID;
     const EventName = data.EventName;
     const EventType = data.EventType;
     const EventStatus = data.EventStatus;
     const OrganizerID = data.OrganizerID;
-    const OrganizerName = data.OrganizerName;
-    const OrganizerEmail = data.OrganizerEmail;
-    const OrganizerPhone = data.OrganizerPhone;
+    const EventOwnerName = data.EventOwnerName;
+    const EventOwnerEmail = data.EventOwnerEmail;
+    const EventOwnerPhone = data.EventOwnerPhone;
     const SportName = data.SportName;
-    const Venue = data.Venue;
-    const City = data.City
+    const EventVenue = data.EventVenue;
+    const City = data.City;
     const State = data.State;
-
-    // const OrganizerLogo =  data.OrganizerLogo;
-    // const EventLogo =  data.EventLogo;
-    // const EventStartDate = data.EventStartDate;
-    // const eventEndDate= data.EventEndDate;
-    // const RegistrationStartDate= data.RegistrationStartDate;
-    // const RegistrationEndDate= data.RegistrationEndDate;
-    // const WithdrawalEndDate= data.WithdrawalEndDate;
-    // const PaymentMode= data.PaymentMode;
-    // const ApprovalStatus= data.ApprovalStatus;
-    // const Comments= data.Comments;
-    // const RegistrationOpenFlag= data.RegistrationOpenFlag;
-    // const PaymentOpenFlag= data.PaymentOpenFlag;
-    // const DrawPublishedFlag= data.DrawPublishedFlag;
+    const OrganizationID = data.OrganizationID;
+    const LocationMap = data.LocationMap;
+    const VenueContact = data.VenueContact;
+    const ApprovalStatus = data.ApprovalStatus;
 
     console.log("eventID ", EventID);
 
     return admin.firestore().collection("EventList")
-      .doc(Eventid)
-      .set({
-        EventName: EventName,
-        EventType: EventType,
-        EventStatus: EventStatus,
-        OrganizerID: OrganizerID,
-        OrganizerName: OrganizerName,
-        OrganizerEmail: OrganizerEmail,
-        OrganizerPhone: OrganizerPhone,
-        SportName: SportName,
-        Venue: Venue,
-        City: City,
-        State: State,
+      .doc(EventID )
+      .update({
+        EventName:EventName,
+        EventType:EventType,
+        EventStatus:EventStatus,
+        OrganizerID:OrganizerID,
+        EventOwnerName:EventOwnerName,
+        EventOwnerEmail:EventOwnerEmail,
+        EventOwnerPhone:EventOwnerPhone,
+        SportName:SportName,
+        EventVenue:EventVenue,
+        City:City,
+        State:State,
+        OrganizationID:OrganizationID,
+        LocationMap:LocationMap,
+        VenueContact:VenueContact,
+        ApprovalStatus:ApprovalStatus,
 
-        // OrganizerLogo:OrganizerLogo,
-        // EventLogo:EventLogo,
-        // EventStartDate: EventStartDate,
-        // eventEndDate: EventEndDate,
-        // RegistrationStartDate: RegistrationStartDate,
-        // RegistrationEndDate: RegistrationEndDate,
-        // WithdrawalEndDate: WithdrawalEndDate,
-        //
-        // PaymentMode: PaymentMode,
-        // ApprovalStatus: ApprovalStatus,
-        // Comments: Comments,
-        //
-        // RegistrationOpenFlag: RegistrationOpenFlag,
-        // PaymentOpenFlag: PaymentOpenFlag,
-        // DrawPublishedFlag: DrawPublishedFlag,
         UpdatedBy: context.auth.uid,
         UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
       })
@@ -539,37 +516,20 @@ exports.updateEventDetails_Dates =
     const RegistrationStartDate = data.RegistrationStartDate;
     const RegistrationEndDate = data.RegistrationEndDate;
     const WithdrawalEndDate = data.WithdrawalEndDate;
-
-    // const OrganizerLogo =  data.OrganizerLogo;
-    // const EventLogo =  data.EventLogo;
-    // const PaymentMode= data.PaymentMode;
-    // const ApprovalStatus= data.ApprovalStatus;
-    // const Comments= data.Comments;
-    // const RegistrationOpenFlag= data.RegistrationOpenFlag;
-    // const PaymentOpenFlag= data.PaymentOpenFlag;
-    // const DrawPublishedFlag= data.DrawPublishedFlag;
+    const MaxEntryForParticipant = data.maxEntryForParticipant;
 
     console.log("eventID ", EventID);
+    console.log("date", new Date(EventStartDate));
 
     return admin.firestore().collection("EventList")
-      .doc(Eventid)
-      .set({
-        EventStartDate: EventStartDate,
-        EventEndDate: EventEndDate,
-        RegistrationStartDate: RegistrationStartDate,
-        RegistrationEndDate: RegistrationEndDate,
-        WithdrawalEndDate: WithdrawalEndDate,
-
-        // OrganizerLogo:OrganizerLogo,
-        // EventLogo:EventLogo,
-        //
-        // PaymentMode: PaymentMode,
-        // ApprovalStatus: ApprovalStatus,
-        // Comments: Comments,
-        //
-        // RegistrationOpenFlag: RegistrationOpenFlag,
-        // PaymentOpenFlag: PaymentOpenFlag,
-        // DrawPublishedFlag: DrawPublishedFlag,
+      .doc(EventID)
+      .update({
+        EventStartDate: admin.firestore.Timestamp.fromDate(new Date(EventStartDate)),
+        EventEndDate: admin.firestore.Timestamp.fromDate(new Date(EventEndDate)),
+        RegistrationStartDate: admin.firestore.Timestamp.fromDate(new Date(RegistrationStartDate)),
+        RegistrationEndDate: admin.firestore.Timestamp.fromDate(new Date(RegistrationEndDate)),
+        WithdrawalEndDate: admin.firestore.Timestamp.fromDate(new Date(WithdrawalEndDate)),
+        MaxEntryForParticipant:MaxEntryForParticipant,
         UpdatedBy: context.auth.uid,
         UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
       })
@@ -600,28 +560,15 @@ exports.updateEventDetails_Logo =
 
     const OrganizerLogo = data.OrganizerLogo;
     const EventLogo = data.EventLogo;
-    // const PaymentMode= data.PaymentMode;
-    // const ApprovalStatus= data.ApprovalStatus;
-    // const Comments= data.Comments;
-    // const RegistrationOpenFlag= data.RegistrationOpenFlag;
-    // const PaymentOpenFlag= data.PaymentOpenFlag;
-    // const DrawPublishedFlag= data.DrawPublishedFlag;
 
     console.log("eventID ", EventID);
 
     return admin.firestore().collection("EventList")
       .doc(Eventid)
-      .set({
+      .update({
         OrganizerLogo: OrganizerLogo,
         EventLogo: EventLogo,
 
-        // PaymentMode: PaymentMode,
-        // ApprovalStatus: ApprovalStatus,
-        // Comments: Comments,
-        //
-        // RegistrationOpenFlag: RegistrationOpenFlag,
-        // PaymentOpenFlag: PaymentOpenFlag,
-        // DrawPublishedFlag: DrawPublishedFlag,
         UpdatedBy: context.auth.uid,
         UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
       })
@@ -651,24 +598,14 @@ exports.updateEventDetails_ApprovalStatus =
     const ApprovalStatus = data.ApprovalStatus;
     const Comments = data.Comments;
 
-    // const PaymentMode= data.PaymentMode;
-    // const RegistrationOpenFlag= data.RegistrationOpenFlag;
-    // const PaymentOpenFlag= data.PaymentOpenFlag;
-    // const DrawPublishedFlag= data.DrawPublishedFlag;
-
     console.log("eventID ", EventID);
 
     return admin.firestore().collection("EventList")
-      .doc(Eventid)
-      .set({
+      .doc(EventID)
+      .update({
         ApprovalStatus: ApprovalStatus,
         Comments: Comments,
 
-        // PaymentMode: PaymentMode,
-        //
-        // RegistrationOpenFlag: RegistrationOpenFlag,
-        // PaymentOpenFlag: PaymentOpenFlag,
-        // DrawPublishedFlag: DrawPublishedFlag,
         UpdatedBy: context.auth.uid,
         UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
       })
@@ -696,7 +633,7 @@ exports.updateEventDetails_PaymentStatus =
     }
     const EventID = data.EventID;
     const OnlinePaymentModeFlag = data.OnlinePaymentModeFlag;
-    const RegistrationCompletePostPayment = data.RegistrationCompletePostPayment;
+    const RegistrationCompletePostPaymentFlag = data.RegistrationCompletePostPaymentFlag;
     const ConvenienceCharge = data.ConvenienceCharge;
     const MiscellaneousChargeRemark = data.MiscellaneousChargeRemark;
     const MiscellaneousChargeFees = data.MiscellaneousChargeFees;
@@ -706,10 +643,10 @@ exports.updateEventDetails_PaymentStatus =
     console.log("eventID ", EventID);
 
     return admin.firestore().collection("EventList")
-      .doc(Eventid)
-      .set({
+      .doc(EventID)
+      .update({
         OnlinePaymentModeFlag: OnlinePaymentModeFlag,
-        RegistrationCompletePostPayment: RegistrationCompletePostPayment,
+        RegistrationCompletePostPaymentFlag: RegistrationCompletePostPaymentFlag,
         ConvenienceCharge: ConvenienceCharge,
         MiscellaneousChargeRemark: MiscellaneousChargeRemark,
         MiscellaneousChargeFees: MiscellaneousChargeFees,
@@ -746,8 +683,8 @@ exports.updateEventDetails_NoticeBoard =
     console.log("eventID ", EventID);
 
     return admin.firestore().collection("EventList")
-      .doc(Eventid)
-      .set({
+      .doc(EventID)
+      .update({
         NoticeBoard: NoticeBoard,
 
         UpdatedBy: context.auth.uid,
@@ -780,8 +717,8 @@ exports.updateEventDetails_Announcement =
     console.log("eventID ", EventID);
 
     return admin.firestore().collection("EventList")
-      .doc(Eventid)
-      .set({
+      .doc(EventID)
+      .update({
         Announcement: Announcement,
 
         UpdatedBy: context.auth.uid,
@@ -814,8 +751,8 @@ exports.updateEventDetails_RulesAndRegulations =
     console.log("eventID ", EventID);
 
     return admin.firestore().collection("EventList")
-      .doc(Eventid)
-      .set({
+      .doc(EventID)
+      .update({
         RulesAndRegulations: RulesAndRegulations,
 
         UpdatedBy: context.auth.uid,
@@ -848,8 +785,8 @@ exports.updateEventDetails_DrawLink =
     console.log("eventID ", EventID);
 
     return admin.firestore().collection("EventList")
-      .doc(Eventid)
-      .set({
+      .doc(EventID)
+      .update({
         DrawLink: DrawLink,
 
         UpdatedBy: context.auth.uid,
@@ -882,8 +819,8 @@ exports.updateEventFlag_CloseEvent =
     console.log("eventID ", EventID);
 
     return admin.firestore().collection("EventList")
-      .doc(Eventid)
-      .set({
+      .doc(EventID)
+      .update({
         CloseEventFlag: CloseEventFlag,
 
         UpdatedBy: context.auth.uid,
@@ -913,13 +850,13 @@ exports.updateEventFlag_RegistrationOn =
       );
     }
     const EventID = data.EventID;
-    const RegistrationOnFlag = data.RegistrationOnFlag;
+    const RegistrationOpenFlag = data.RegistrationOpenFlag;
     console.log("eventID ", EventID);
 
     return admin.firestore().collection("EventList")
-      .doc(Eventid)
-      .set({
-        RegistrationOnFlag: RegistrationOnFlag,
+      .doc(EventID)
+      .update({
+        RegistrationOpenFlag: RegistrationOpenFlag,
 
         UpdatedBy: context.auth.uid,
         UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
@@ -951,8 +888,8 @@ exports.updateEventFlag_RegistrationCompletePostPayment =
     console.log("eventID ", EventID);
 
     return admin.firestore().collection("EventList")
-      .doc(Eventid)
-      .set({
+      .doc(EventID)
+      .update({
         RegistrationCompletePostPaymentFlag: RegistrationCompletePostPaymentFlag,
 
         UpdatedBy: context.auth.uid,
@@ -985,8 +922,8 @@ exports.updateEventFlag_OnlinePaymentMode =
     console.log("eventID ", EventID);
 
     return admin.firestore().collection("EventList")
-      .doc(Eventid)
-      .set({
+      .doc(EventID)
+      .update({
         OnlinePaymentModeFlag: OnlinePaymentModeFlag,
 
         UpdatedBy: context.auth.uid,
@@ -1019,8 +956,8 @@ exports.updateEventFlag_PublishDraw =
     console.log("eventID ", EventID);
 
     return admin.firestore().collection("EventList")
-      .doc(Eventid)
-      .set({
+      .doc(EventID)
+      .update({
         PublishDrawFlag: PublishDrawFlag,
 
         UpdatedBy: context.auth.uid,
@@ -1049,13 +986,13 @@ exports.updateEventFlag_PublishSeed =
       );
     }
     const EventID = data.EventID;
-    const PublishSeedFlag = data.PublishSeedFlag;
+    const PublishSeedEntryFlag = data.PublishSeedEntryFlag;
     console.log("eventID ", EventID);
 
     return admin.firestore().collection("EventList")
-      .doc(Eventid)
-      .set({
-        PublishSeedFlag: PublishSeedFlag,
+      .doc(EventID)
+      .update({
+        PublishSeedEntryFlag: PublishSeedEntryFlag,
 
         UpdatedBy: context.auth.uid,
         UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
@@ -1087,8 +1024,8 @@ exports.updateEventFlag_PublishSchedule =
     console.log("eventID ", EventID);
 
     return admin.firestore().collection("EventList")
-      .doc(Eventid)
-      .set({
+      .doc(EventID)
+      .update({
         PublishScheduleFlag: PublishScheduleFlag,
 
         UpdatedBy: context.auth.uid,
@@ -1121,8 +1058,8 @@ exports.updateEventFlag_PublishGallery =
     console.log("eventID ", EventID);
 
     return admin.firestore().collection("EventList")
-      .doc(Eventid)
-      .set({
+      .doc(EventID)
+      .update({
         PublishGalleryFlag: PublishGalleryFlag,
 
         UpdatedBy: context.auth.uid,
