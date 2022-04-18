@@ -23,99 +23,6 @@ auth.onAuthStateChanged(async firebaseUser => {
   }
 });
 
-function populateSportList() {
-  var para = {};
-  //console.log(userid);
-  para = {
-    organizerID: loggedinUser.uid
-  };
-  console.log(para);
-  var ret = firebase.functions().httpsCallable("getSportList");
-
-  ret(para).then(results => {
-    console.log("From Function " + results.data.length);
-    var sportList = document.getElementById("ddlSports");
-    // console.log("From Function " + results.data[0].resultsid);
-    for (index = 0; index < results.data.length; index++) {
-      // console.log(results.data[index]);
-      // console.log(results.data[index]);
-      var option = document.createElement("option");
-      option.setAttribute("value", results.data[index].Docid + ":" +
-        results.data[index].SportName + ":" +
-        results.data[index].SportCode);
-      option.innerHTML = results.data[index].SportName;
-      sportList.appendChild(option);
-    }
-  });
-}
-
-
-function populateOrganizationList(userid) {
-  var para = {};
-  console.log(userid);
-  para = {
-    organizerID: loggedinUser.uid
-  };
-  console.log(para);
-  var ret = "";
-  if (userid === "All") {
-    ret = firebase.functions().httpsCallable("getAllOrganizationDetails");
-
-  } else {
-    ret = firebase.functions().httpsCallable("getAllOrganizationDetailsForOrganizer");
-
-  }
-
-  ret(para).then(results => {
-    console.log("From Function " + results.data.length);
-    var organizer = document.getElementById("ddlOrganization");
-    // console.log("From Function " + results.data[0].resultsid);
-    for (index = 0; index < results.data.length; index++) {
-      // console.log(results.data[index]);
-      // console.log(results.data[index]);
-      var option = document.createElement("option");
-      option.setAttribute("value", results.data[index].resultsid + ":" +
-        results.data[index].OrganizerID + ":" +
-        results.data[index].PartnerName + ":" +
-        results.data[index].OrganizationName + ":" +
-        results.data[index].PartnerEmailID + ":" +
-        results.data[index].PartnerPhone);
-      option.innerHTML = results.data[index].OrganizationName + " : " + results.data[index].PartnerEmailID;
-      organizer.appendChild(option);
-    }
-  });
-}
-
-
-//
-// async function getUserList() {
-//   var para2 = {};
-//   para2 = {
-//     paraRole: ['ADMIN', 'PARTICIPANT'],
-//   };
-//   var organizer = document.getElementById("organizer");
-//
-//   console.log(para2);
-//   const ret2 = firebase.functions().httpsCallable("getUserWithRole");
-//   ret2(para2).then(results => {
-//     console.log("From Function " + results.data.length);
-//     // console.log("From Function " + results.data[0].resultsid);
-//     for (index = 0; index < results.data.length; index++) {
-//       // console.log(results.data[index]);
-//       // console.log(results.data[index]);
-//       var option = document.createElement("option");
-//       option.setAttribute("value", results.data[index].userid + ":" +
-//         results.data[index].UserName + ":" +
-//         results.data[index].Email + ":" +
-//         results.data[index].Phone + ":" +
-//         results.data[index].City + ":" +
-//         results.data[index].State);
-//       option.innerHTML = results.data[index].UserName + " : " + results.data[index].Email;
-//       organizer.appendChild(option);
-//     }
-//     GetProfileData();
-//   });
-// }
 
 async function GetProfileData() {
   console.log('GetProfileData - Starts');
@@ -124,7 +31,7 @@ async function GetProfileData() {
   para1 = {
     userID: loggedinUser.uid
   };
-  populateSportList();
+  //populateSportList();
   const ret1 = firebase.functions().httpsCallable("getProfileDetails");
   ret1(para1).then(async (result) => {
     var record1 = result.data;
@@ -196,6 +103,7 @@ async function GetProfileData() {
 
 }
 
+
 function onOrganizationSelection() {
   var organizer = document.getElementById("ddlOrganization");
   var val = organizer.options[organizer.selectedIndex].value;
@@ -216,24 +124,44 @@ function onOrganizationSelection() {
     document.getElementById("hfOrganizerID").value = organizerID;
   }
 }
-async function CheckForPendingEvent() {
+
+function populateOrganizationList(userid) {
   var para = {};
-  // console.log(userid);
+  console.log(userid);
   para = {
-    organizerID: loggedinUser.uid,
-    approvalStatus: 'Pending Approval',
+    organizerID: loggedinUser.uid
   };
   console.log(para);
-  var ret = firebase.functions().httpsCallable("getAllEventForOrganizerWithStatus");
+  var ret = "";
+  if (userid === "All") {
+    ret = firebase.functions().httpsCallable("getAllOrganizationDetails");
 
-  return ret(para).then(results => {
+  } else {
+    ret = firebase.functions().httpsCallable("getAllOrganizationDetailsForOrganizer");
+
+  }
+
+  ret(para).then(results => {
     console.log("From Function " + results.data.length);
+    var organizer = document.getElementById("ddlOrganization");
     // console.log("From Function " + results.data[0].resultsid);
-    return results.data.length;
+    for (index = 0; index < results.data.length; index++) {
+      // console.log(results.data[index]);
+      // console.log(results.data[index]);
+      var option = document.createElement("option");
+      option.setAttribute("value", results.data[index].resultsid + ":" +
+        results.data[index].OrganizerID + ":" +
+        results.data[index].PartnerName + ":" +
+        results.data[index].OrganizationName + ":" +
+        results.data[index].PartnerEmailID + ":" +
+        results.data[index].PartnerPhone);
+      option.innerHTML = results.data[index].OrganizationName + " : " + results.data[index].PartnerEmailID;
+      organizer.appendChild(option);
+    }
   });
-  return 0;
-
 }
+
+
 
 function GetEventDetails() {
   console.log(eventID);
@@ -246,40 +174,18 @@ function GetEventDetails() {
     var record1 = result.data;
     console.log(result.data);
 
-    /*
-    Eventid: doc1.id,
-    EventName: doc1.data().EventName,
-    EventType: doc1.data().EventType,
-    EventStatus: doc1.data().EventStatus,
-
-    OrganizerID: doc1.data().OrganizerID,
-    OrganizerName: doc1.data().OrganizerName,
-    OrganizerEmail: doc1.data().OrganizerEmail,
-    OrganizerPhone: doc1.data().OrganizerPhone,
-    OrganizerLogo: doc1.data().OrganizerLogo,
-    EventLogo: doc1.data().EventLogo,
-
-    SportName: doc1.data().SportName,
-    EventStartDate: doc1.data().EventStartDate,
-    eventEndDate: doc1.data().EventEndDate,
-    Venue: doc1.data().Venue,
-    City: doc1.data().City,
-    State: doc1.data().State,
-    RegistrationStartDate: doc1.data().RegistrationStartDate,
-    RegistrationEndDate: doc1.data().RegistrationEndDate,
-    WithdrawalEndDate: doc1.data().WithdrawalEndDate,
-
-    PaymentMode: doc1.data().PaymentMode,
-    ApprovalStatus: doc1.data().ApprovalStatus,
-    Comments: doc1.data().Comments,
-
-    RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
-    PaymentOpenFlag: doc1.data().PaymentOpenFlag,
-    DrawPublishedFlag: doc1.data().DrawPublishedFlag,
-
-    */
     document.getElementById("hfEventID").value = result.data.Eventid;
+    document.getElementById("hfOrganizerID").value = result.data.OrganizerID;
     document.getElementById("eventName").value = result.data.EventName;
+
+    var sportName = document.getElementById("ddlSports");
+    var sportNameVal = result.data.SportName;
+    for (index = 0; index < sportName.options.length; index++) {
+      if (sportName.options[index].value === sportNameVal) {
+        sportName.options[index].selected = true;
+        break;
+      }
+    }
 
     var approvalStatus = document.getElementById("approvalStatus");
     var approvalS = result.data.ApprovalStatus;
@@ -303,137 +209,206 @@ function GetEventDetails() {
         break;
       }
     }
+    /*
+    EventType: doc1.data().EventType,
+    EventStatus: doc1.data().EventStatus,
 
-    var ddlstate = document.getElementById("inputState");
-    var stateVal = result.data.State;
-    for (index = 0; index < ddlstate.options.length; index++) {
-      if (ddlstate.options[index].innerHTML === stateVal) {
-        ddlstate.options[index].selected = true;
-        break;
-      }
+    OrganizerLogo: doc1.data().OrganizerLogo,
+    EventLogo: doc1.data().EventLogo,
+
+    City: doc1.data().City,
+    State: doc1.data().State,
+
+    RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
+    PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+    DrawPublishedFlag: doc1.data().DrawPublishedFlag,
+
+    */
+    document.getElementById("eventOwnerName").value = result.data.OrganizerName;
+    document.getElementById("eventOwnerEmail").value = result.data.OrganizerEmail;
+    document.getElementById("eventOwnerPhone").value = result.data.OrganizerPhone;
+    document.getElementById("eventVenue").value = result.data.Venue;
+    document.getElementById("locationMap").value = result.data.LocationMap;
+    document.getElementById("venueContact").value = result.data.VenueContact;
+    document.getElementById("RegistrationOpenDate").value = result.data.RegistrationStartDate;
+    document.getElementById("RegistrationClosedDate").value = result.data.RegistrationEndDate;
+    document.getElementById("EventStartDate").value = result.data.EventStartDate;
+    document.getElementById("EventEndDate").value = result.data.eventEndDate;
+    document.getElementById("WithdrawalLastDate").value = result.data.WithdrawalEndDate;
+    document.getElementById("maxEntryForParticipant").value = result.data.MaxEntryForParticipant;
+    document.getElementById("ConvenienceCharge").value = result.data.ConvenienceCharge;
+    document.getElementById("MiscellaneousChargeMandatory").value = result.data.MiscellaneousChargeMandatory;
+    document.getElementById("MiscellaneousChargeRemark").value = result.data.MiscellaneousChargeRemark;
+    document.getElementById("MiscellaneousChargeFee").value = result.data.MiscellaneousChargeFee;
+    document.getElementById("DiscountRemark").value = result.data.DiscountRemark;
+    document.getElementById("DiscountValue").value = result.data.DiscountValue;
+    document.getElementById("OnlinePaymentGateway").value = result.data.OnlinePaymentGateway;
+    document.getElementById("RegistrationCompletePostPayment").value = result.data.RegistrationCompletePostPayment;
+    document.getElementById("noticeBoard").value = result.data.NoticeBoard;
+    document.getElementById("Announcement").value = result.data.Announcement;
+    document.getElementById("RulesAndRegulation").value = result.data.RulesAndRegulation;
+
+    if (result.data.ClosedEventFlag === true) {
+      document.getElementById('ClosedEvent').checked = true;
     }
 
-    var ddlIndentity = document.getElementById("inputIdentityType");
-    var identityType = result.data.IdentityType;
-    for (index = 0; index < ddlIndentity.options.length; index++) {
-      if (ddlIndentity.options[index].innerHTML === identityType) {
-        ddlIndentity.options[index].selected = true;
-        break;
-      }
+
+    if (result.data.RegistrationStatusOnFlag === true) {
+      document.getElementById('RegistrationStatusOn').checked = true;
     }
 
-    document.getElementById("identityNumber").value = result.data.IdentityNumber;
-    var organizationType = result.data.OrganizationType;
-    const rbAcademy = document.getElementById("Academy");
-    const rbCorporate = document.getElementById("Corporate");
-    const rbSponsor = document.getElementById("Sponsor");
-    if (rbAcademy.value === organizationType) {
-      rbAcademy.checked = true;
-    } else if (rbCorporate.value === organizationType) {
-      rbCorporate.checked = true;
-    } else if (rbSponsor.value === organizationType) {
-      rbSponsor.checked = true;
+    if (result.data.RegistrationCompletePostPaymentFlag === true) {
+      document.getElementById('RegistrationCompletePostPayment').checked = true;
     }
 
+    if (result.data.OnlinePaymentGatewayFlag === true) {
+      document.getElementById('OnlinePaymentGateway').checked = true;
+    }
+
+    if (result.data.PublishDrawFlag === true) {
+      document.getElementById('PublishDraw').checked = true;
+    }
+
+    if (result.data.PublishSeedEntryFlag === true) {
+      document.getElementById('PublishSeedEntry').checked = true;
+    }
+
+    if (result.data.PublishMatchScheduleFlag === true) {
+      document.getElementById('PublishMatchSchedule').checked = true;
+    }
+
+    if (result.data.PublishGallaryFlag === true) {
+      document.getElementById('PublishGallary').checked = true;
+    }
   });
 }
 
-
-
-const btnSave = document.getElementById("btnSave");
+var btnSave = document.getElementById('btnSave');
 btnSave.addEventListener('click', e => {
+  // e.preventDefault();
+  //save detailes in DB
+}
+
+var btnNext = document.getElementById('btnNext');
+btnNext.addEventListener('click', e => {
   e.preventDefault();
-  console.log("in save");
+  alert("next");
+  console.log("next");
+  document.getElementById("section1").style.display="none";
+  document.getElementById("section2").style.display="block";
+}
 
-  const ddlOrganization = document.getElementById("ddlOrganization");
-  const ddlSport = document.getElementById("ddlSports");
-  var organizerID = document.getElementById("hfOrganizerID").value;
-  var eventID = document.getElementById("hfEventID").value;
 
-  var val = ddlOrganization.options[ddlOrganization.selectedIndex].value;
-  val = val.split(":");
-  var organizationID = val[0];
-  var sportName = ddlSport.options[ddlSport.selectedIndex].innerHTML;
-  var eventName = document.getElementById("eventName").value;
-  var eventOwnerName = document.getElementById("eventOwnerName").value;
-  var eventOwnerEmail = document.getElementById("eventOwnerEmail").value;
-  var eventOwnerPhone = document.getElementById("eventOwnerPhone").value;
-  var eventVenue = document.getElementById("eventVenue").value;
+var btnSave2 = document.getElementById('btnSave2');
+btnSave2.addEventListener('click', e => {
+  // e.preventDefault();
+  //save detailes in DB
+}
 
-  var locationMap = document.getElementById("locationMap").value;
-  var venueContact = document.getElementById("venueContact").value;
+var btnNext2 = document.getElementById('btnNext2');
+btnNext2.addEventListener('click', e => {
+  // e.preventDefault();
+  document.getElementById("section2").style.display="none";
+  document.getElementById("section3").style.display="block";
+}
 
-  var approvalStatus = document.getElementById("approvalStatus").options[document.getElementById("approvalStatus").selectedIndex].value;
-  var confirmMessage = document.getElementById('saveMessage');
-  console.log("before check");
-  if ((organizerID === "" || organizerID === null) ||
-    (organizationID === "" || organizationID === null) ||
-    (sportName === "" || sportName === null) ||
-    (eventName === "" || eventName === null) ||
-    (eventOwnerName === "" || eventOwnerName === null) ||
-    (eventOwnerEmail === "" || eventOwnerEmail === null) ||
-    (eventOwnerPhone === "" || eventOwnerPhone === null) ||
-    (eventVenue === "" || eventVenue === null) ||
-    (locationMap === "" || locationMap === null)) {
-    console.log("details not filled");
-    document.getElementById("confirmationMessage").innerHTML = "Please enter all details to update";
-    confirmMessage.style.display = "block";
+var btnPrevious2 = document.getElementById('btnPrevious2');
+btnPrevious2.addEventListener('click', e => {
+  // e.preventDefault();
+  document.getElementById("section2").style.display="none";
+  document.getElementById("section1").style.display="block";
+}
 
-    setTimeout(function() {
-      confirmMessage.style.display = 'none';
-    }, 5000);
-  } else {
+var btnSave3 = document.getElementById('btnSave3');
+btnSave3.addEventListener('click', e => {
+  // e.preventDefault();
+  //save detailes in DB
+}
 
-    console.log("details  filled completly");
+var btnNext3 = document.getElementById('btnNext3');
+btnNext3.addEventListener('click', e => {
+  // e.preventDefault();
+  document.getElementById("section3").style.display="none";
+  document.getElementById("section4").style.display="block";
+}
 
-    var para1 = {};
-    para1 = {
-      EventID : eventID,
-      OrganizationID: organizationID,
-      OrganizerID: organizerID,
-      SportName: sportName,
-      EventName: eventName,
-      EventOwnerName: eventOwnerName,
-      EventOwnerEmail: eventOwnerEmail,
-      EventOwnerPhone: eventOwnerPhone,
-      EventVenue: eventVenue,
-      LocationMap: locationMap,
-      VenueContact: venueContact,
-      // OrganizationType: organizationType,
-      ApprovalStatus: approvalStatus,
-    };
-    console.log(para1);
-    if (eventID === "" || eventID === undefined || eventID === null) {
-      const ret1 = firebase.functions().httpsCallable("addEventDetails");
-      ret1(para1).then((result) => {
-        //var record1 = result.data;
-        console.log("Event ID: " + result.data.EventID);
-        if (result.data.EventID != "0") {
-          confirmMessage.style.display = "block";
+var btnPrevious3 = document.getElementById('btnPrevious3');
+btnPrevious3.addEventListener('click', e => {
+  // e.preventDefault();
+  document.getElementById("section3").style.display="none";
+  document.getElementById("section2").style.display="block";
+}
 
-          setTimeout(function() {
-            confirmMessage.style.display = 'none';
-          }, 5000);
-        }
-      });
-    } else {
-      console.log(para1);
+var btnSave4 = document.getElementById('btnSave4');
+btnSave4.addEventListener('click', e => {
+  // e.preventDefault();
+  //save detailes in DB
+}
 
-      const ret1 = firebase.functions().httpsCallable("updateEventDetails");
-      ret1(para1).then((result) => {
-        //var record1 = result.data;
-        console.log("organization ID: " + result.data.retCode);
-        if (result.data.retCode === "0") {
-          var confirmMessage = document.getElementById('saveMessage');
-          confirmMessage.style.display = "block";
+var btnNext4 = document.getElementById('btnNext4');
+btnNext4.addEventListener('click', e => {
+  // e.preventDefault();
+  document.getElementById("section4").style.display="none";
+  document.getElementById("section5").style.display="block";
+}
 
-          setTimeout(function() {
-            confirmMessage.style.display = 'none';
-          }, 5000);
-        }
-      });
+var btnPrevious4 = document.getElementById('btnPrevious4');
+btnPrevious4.addEventListener('click', e => {
+  // e.preventDefault();
+  document.getElementById("section4").style.display="none";
+  document.getElementById("section3").style.display="block";
+}
 
-    }
-  }
+var btnSave5 = document.getElementById('btnSave5');
+btnSave5.addEventListener('click', e => {
+  // e.preventDefault();
+  //save detailes in DB
+}
 
-})
+var btnNext5 = document.getElementById('btnNext5');
+btnNext5.addEventListener('click', e => {
+  // e.preventDefault();
+  document.getElementById("section5").style.display="none";
+  document.getElementById("section6").style.display="block";
+}
+
+var btnPrevious5 = document.getElementById('btnPrevious5');
+btnPrevious5.addEventListener('click', e => {
+  // e.preventDefault();
+  document.getElementById("section5").style.display="none";
+  document.getElementById("section4").style.display="block";
+}
+
+var btnSave6 = document.getElementById('btnSave6');
+btnSave6.addEventListener('click', e => {
+  // e.preventDefault();
+  //save detailes in DB
+}
+
+var btnNext6 = document.getElementById('btnNext6');
+btnNext6.addEventListener('click', e => {
+  // e.preventDefault();
+  document.getElementById("section6").style.display="none";
+  document.getElementById("section7").style.display="block";
+}
+
+var btnPrevious6 = document.getElementById('btnPrevious6');
+btnPrevious6.addEventListener('click', e => {
+  // e.preventDefault();
+  document.getElementById("section6").style.display="none";
+  document.getElementById("section5").style.display="block";
+}
+
+
+var btnSave7 = document.getElementById('btnSave7');
+btnSave7.addEventListener('click', e => {
+  // e.preventDefault();
+  //save detailes in DB
+}
+
+var btnPrevious7 = document.getElementById('btnPrevious7');
+btnPrevious7.addEventListener('click', e => {
+  // e.preventDefault();
+  document.getElementById("section7").style.display="none";
+  document.getElementById("section6").style.display="block";
+}
