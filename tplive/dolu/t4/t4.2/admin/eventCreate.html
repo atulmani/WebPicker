@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="WebPicker - A Website Design & Development platform">
+  <meta name="keywords" content="website design and development">
+  <meta name="author" content="Web Picker">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>TPLive - You Grow We Manage </title>
+
+  <link rel="shortcut icon" href="../img/logo.png">
+  <!-- Google Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome cdn file -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <!-- Owl Stylesheets -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"> -->
+
+  <!-- Bootstrap css -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+  <!-- Your Own Style -->
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <link rel="stylesheet" href="../css/admin.css">
+
+</head>
+
+<body>
+  <!-- sidenav starts -->
+
+  <div class="large navbar-mobile">
+    <div class="navbar-mobile-menu">
+
+
+      <div class="topright">
+        <div style="background:#348DCB; padding:4px 6px; border-radius:16px;box-shadow: 0 0 30px 0 rgba(0,0,0,0.5);" class="">
+          <a href="../notification/index.html">
+            <span class="material-icons-outlined">
+              logout
+            </span>
+            <h6> Logout</h6>
+          </a>
+        </div>
+
+        <div style="background:#348DCB; padding:4px 6px; border-radius:16px;box-shadow: 0 0 30px 0 rgba(0,0,0,0.5);" class="">
+          <a href="../notification/index.html">
+            <span class="material-icons-outlined">
+              group
+            </span>
+            <h6> Org Login</h6>
+          </a>
+        </div>
+      </div>
+
+      <div class="topleft">
+
+        <!-- <div style="background:#348DCB; padding:4px 6px; border-radius:16px;box-shadow: 0 0 30px 0 rgba(0,0,0,0.5);" class="">
+                  <a href="../notification/index.html" >
+                    <span class="material-icons-outlined">
+                      add_circle
+                    </span>
+                    <h6>Create Event</h6>
+                  </a>
+                </div> -->
+
+        <!-- <div style="background:#348DCB; padding:4px 6px; border-radius:16px;box-shadow: 0 0 30px 0 rgba(0,0,0,0.5);" class="">
+                  <a href="../notification/index.html" >
+                    <span class="material-icons-outlined">
+                      add_circle
+                    </span>
+                    <h6>Create Organisation</h6>
+                  </a>
+                </div> -->
+
+        <!-- <div style="background:#348DCB; padding:4px 6px; border-radius:16px;box-shadow: 0 0 30px 0 rgba(0,0,0,0.5);" class="">
+                  <a href="../notification/index.html" >
+                    <span class="material-icons-outlined">
+                      add_circle
+                    </span>
+                    <h6>Create Org Branch</h6>
+                  </a>
+                </div> -->
+
+
+
+        <!-- <div style="background:#348DCB; padding:4px 6px; border-radius:16px;box-shadow: 0 0 30px 0 rgba(0,0,0,0.5);" class="">
+                  <a href="../notification/index.html" >
+                    <span class="material-icons-outlined">
+                      add_circle
+                    </span>
+                    <h6> Event List</h6>
+                  </a>
+                </div> -->
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Navbar - Start -->
+
+  <nav style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);" class="navbar navbar-expand-lg sticky-top large ">
+    <a class="navbar-brand" href="#banner">
+      <img class="small" style="height:60px;" src="../img/logo.png" alt="">
+      <img class="large" style="height:60px;" src="../img/logolg.png" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+      <!-- <span>
+       <i class="fa fa-reorder fa-2x " style="color:#1638A0;" ></i>
+     </span> -->
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="nav navbar-nav ml-auto ">
+        <li class="nav-item">
+          <a class="nav-link" href="eventList.html"> <i style="position:relative; top:2px;" class="fa-solid fa-circle-plus"></i> Create Event</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="organizationList.html"> <i style="position:relative; top:2px;" class="fa-solid fa-circle-plus"></i> Create Org</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../login/profile.html"><i style="position:relative; top:2px;" class="fa-solid fa-circle-plus"></i> Create Org Branch </a>
+          <!-- <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#one">One</a></li>  -->
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="organizationList.html"><i style="position:relative; right:3px;" class="fa-solid fa-clipboard-list"></i>Event List </a>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </nav>
+  <!-- navbar ends -->
+
+  <!-- sidenav ends -->
+
+  <!-- sidenav lap starts -->
+  <div class="small navbar-mobile">
+    <div class="navbar-mobile-menu">
+      <a href="#" data-toggle="collapse" data-target="#collapsibleNavbar1">
+        <span class="material-icons-outlined">
+          menu
+        </span>
+      </a>
+      <a style="color:#fff;text-decoration:none;" href="#">
+        <h4>TPLiVE</h4>
+      </a>
+
+      <a href="../notification/index.html" style="padding-right: 10px;">
+        <span class="material-icons-outlined" style="color: #fff;">
+          notifications
+        </span>
+        <div class="notification-count">
+          <span class="" id="notificationCnt">0</span>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- Side navigation - ends -->
+
+  <!-- bottom bardown -->
+  <div class="small navbar-mobile-bottom">
+    <div class="navbar-mobile-bottom-menu" id="divBottomNavBar">
+      <a href="eventList.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+        <span class="material-icons-outlined">
+          home
+        </span>
+        <small>Home</small>
+      </a>
+      <a href="allevent.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <span class="material-icons-outlined">
+          emoji_events
+        </span>
+        <small>Events</small>
+      </a>
+      <a href="">
+
+      </a>
+      <a href="organizationList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+        <span class="material-icons-outlined">
+          category
+        </span>
+        <small>Clubs</small>
+      </a>
+      <a href="" class="navbar-mobile-bottom-menu-a" data-toggle="collapse" data-target="#collapsibleNavbar1" style="display:flex; flex-direction:column;">
+        <span class="material-icons-outlined">
+          read_more
+        </span>
+        <small id='small4'>More</small>
+        <span class="navbar-cart-no" id="cartItemNo">0</span>
+      </a>
+    </div>
+    <a class="new-user" href="../login/profile.html">
+      <span class="material-icons-outlined">
+        person
+      </span>
+    </a>
+  </div>
+  <!-- bottom bardown -->
+
+
+
+  <div style="" class="row no-gutters" style="">
+
+    <div class="col-lg-2" style="padding:1% 0.5%;">
+      <h4 style="font-weight:1000; font-size:1.2rem;color:#348DCB;">All Open Events
+      </h4>
+      <div class=" collapse navbar-collapse more-button-links" id="collapsibleNavbar1">
+        <ul class="">
+          <li class="">
+            <a href="../login/profile.html" style="text-decoration: none;" class="">
+              <div class="left-nav-first">
+                <img id="profilePic" src="../img/userlog.png" width="" alt="">
+                <h5 id="profileName"></h5>
+                <small> Create Your Profile <Profile></Profile></small>
+              </div>
+            </a>
+          </li>
+        </ul>
+
+
+          <div style="padding-left:2%; padding-bottom:1.5%;" class="">
+            <li class="linesec">
+              <a href="dashboard.html" class="left-navigation">
+                <div class="">
+                  <span style="color: #348DCB;" class="material-icons-outlined">
+                    manage_accounts
+                  </span>
+                </div>
+                <div class="content">
+                  <h5 style="color:#348DCB;">My Dashboard</h5>
+
+                </div>
+                <div class="">
+                  <span style="color: #348DCB;" class="material-icons arrow-right">
+                    keyboard_double_arrow_right
+                  </span>
+                </div>
+              </a>
+            </li>
+          </div>
+
+
+          <div style="padding-left:2%; padding-bottom:1.5%;" class="">
+            <li class="linesec">
+              <a href="../notification/index.html" class="left-navigation">
+                <div class="">
+                  <span style="color: #348DCB;" class="material-icons-outlined">
+                    add_circle
+                  </span>
+                </div>
+                <div class="content">
+                  <h5 style="color: #348DCB;">Create Organization</h5>
+
+                </div>
+              </a>
+            </li>
+          </div>
+
+
+          <div style="padding-left:2%; padding-bottom:1.5%;" class="">
+            <li class="linesec">
+              <a href="../VAS/sidenav.html" class="left-navigation">
+                <div class="">
+                  <span style="color: #348DCB;" class="material-icons-outlined">
+                    add_circle
+                  </span>
+                </div>
+                <div class="content">
+                  <h5 style="color: #348DCB;">Create Org Branch</h5>
+
+                </div>
+                <div class="">
+                  <span style="color: #348DCB;" class="material-icons arrow-right">
+                    keyboard_double_arrow_right
+                  </span>
+                </div>
+              </a>
+            </li>
+          </div>
+
+
+          <div style="padding-left:2%; padding-bottom:1.5%;" class="">
+            <li class="linesec">
+              <a href="#" class="left-navigation">
+                <div class="">
+                  <span style="color: #348DCB;" class="material-icons-outlined">
+                    add_circle
+                  </span>
+                </div>
+                <div class="content">
+                  <h5 style="color: #348DCB;"> Org Login</h5>
+
+                </div>
+                <div class="">
+                  <span style="color: #348DCB;" class="material-icons arrow-right">
+                    keyboard_double_arrow_right
+                  </span>
+                </div>
+              </a>
+            </li>
+          </div>
+
+
+          <div style="padding-left:2%; padding-bottom:1.5%;" class="">
+            <li class="linesec">
+              <a href="#" class="left-navigation">
+                <div class="">
+                  <span style="color: #348DCB;" class="material-icons-outlined">
+                    receipt_long
+                  </span>
+                </div>
+                <div class="content">
+                  <h5 style="color: #348DCB;">Event List</h5>
+
+                </div>
+                <div class="">
+                  <span style="color: #348DCB;" class="material-icons arrow-right">
+                    keyboard_double_arrow_right
+                  </span>
+                </div>
+              </a>
+            </li>
+          </div>
+
+
+          <div style="padding-left:2%; padding-bottom:1.5%;" class="">
+            <li class="linesec">
+              <a href="#" id="btnLogout" class="left-navigation">
+                <div class="">
+                  <span style="color: #348DCB;" class="material-icons-outlined">
+                    logout
+                  </span>
+                </div>
+                <div class="content">
+                  <h5 style="color: #348DCB;">Logout</h5>
+
+                </div>
+                <div class="">
+                  <span style="color: #348DCB;" class="material-icons arrow-right">
+                    keyboard_double_arrow_right
+                  </span>
+                </div>
+              </a>
+            </li>
+          </div>
+
+
+        </ul>
+      </div>
+      <div class="notificationBox">
+        <div class="allnotificationBoxContent" style="">
+          <div class="notificationBoxContent">
+            <img src="../img/e1.png" alt="">
+            <div class="notificationBoxWord">
+              <h6>SHUBHADA JOSHI SMRITI BADMINTON TOURNAMENT</h6>
+              <h6>By Atharva Academy</h6>
+            </div>
+          </div>
+        </div>
+        <div class="allnotificationBoxContent" style="">
+          <div class="notificationBoxContent">
+            <img src="../img/e2.png" alt="">
+            <div class="notificationBoxWord">
+              <h6>PSM - OPEN JUNIOR BADMINTON TOURNAMENT</h6>
+              <h6>By Padukone Sports Management PVT.LTD</h6>
+            </div>
+          </div>
+        </div>
+        <div class="allnotificationBoxContent" style="">
+          <div class="notificationBoxContent">
+            <img src="../img/e3.png" alt="">
+            <div class="notificationBoxWord">
+              <h6>ULTRA BADMINTON CUP 2022</h6>
+              <h6>By Elite Shuttlers</h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="allnotificationBoxContent" style="">
+          <div class="notificationBoxContent">
+            <img src="../img/e4.png" alt="">
+            <div class="notificationBoxWord">
+              <h6>PLAYUPBEAT BADMINTON CHAMPS, WHITEFIELD BANGALORE</h6>
+              <h6>By Playupbeat Sports</h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="allnotificationBoxContent" style="">
+          <div class="notificationBoxContent">
+            <img src="../img/e5.png" alt="">
+            <div class="notificationBoxWord">
+              <h6>5TH ONLINE CHESS TOURNAMENT OPEN FOR ALL</h6>
+              <h6>By Global Chess Academy</h6>
+            </div>
+          </div>
+        </div>
+
+      </div><br><br>
+      <!-- upcommingeEvents Form -->
+      <h4  style="font-weight:1000; font-size:1.2rem;color:#348DCB;">Upcomming Events
+      </h4>
+      <div class="notificationBox">
+        <div class="allnotificationBoxContent" style="">
+          <div class="notificationBoxContent">
+            <img src="../img/e1.png" alt="">
+            <div class="notificationBoxWord">
+              <h6>SHUBHADA JOSHI SMRITI BADMINTON TOURNAMENT</h6>
+              <h6>By Atharva Academy</h6>
+            </div>
+          </div>
+        </div>
+        <div class="allnotificationBoxContent" style="">
+          <div class="notificationBoxContent">
+            <img src="../img/e2.png" alt="">
+            <div class="notificationBoxWord">
+              <h6>PSM - OPEN JUNIOR BADMINTON TOURNAMENT</h6>
+              <h6>By Padukone Sports Management PVT.LTD</h6>
+            </div>
+          </div>
+        </div>
+        <div class="allnotificationBoxContent" style="">
+          <div class="notificationBoxContent">
+            <img src="../img/e3.png" alt="">
+            <div class="notificationBoxWord">
+              <h6>ULTRA BADMINTON CUP 2022</h6>
+              <h6>By Elite Shuttlers</h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="allnotificationBoxContent" style="">
+          <div class="notificationBoxContent">
+            <img src="../img/e4.png" alt="">
+            <div class="notificationBoxWord">
+              <h6>PLAYUPBEAT BADMINTON CHAMPS, WHITEFIELD BANGALORE</h6>
+              <h6>By Playupbeat Sports</h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="allnotificationBoxContent" style="">
+          <div class="notificationBoxContent">
+            <img src="../img/e5.png" alt="">
+            <div class="notificationBoxWord">
+              <h6>5TH ONLINE CHESS TOURNAMENT OPEN FOR ALL</h6>
+              <h6>By Global Chess Academy</h6>
+            </div>
+          </div>
+        </div>
+
+      </div><br><br>
+
+      <!-- highestRevenues Box -->
+      <h4  style="font-weight:1000; font-size:1.2rem;color:#348DCB;">Highest Revenues
+      </h4>
+      <div class="notificationBox">
+        <div class="allnotificationBoxContent" style="">
+          <div class="notificationBoxContent">
+            <img src="../img/e1.png" alt="">
+            <div class="notificationBoxWord">
+              <h6>Padukone Sports Management PVT.LTD</h6>
+              <span>₹ <span>45000</span> </span>
+
+            </div>
+          </div>
+        </div>
+        <div class="allnotificationBoxContent" style="">
+          <div class="notificationBoxContent">
+            <img src="../img/e2.png" alt="">
+            <div class="notificationBoxWord">
+              <h6>Atharva Academy</h6>
+              <span>₹ <span>31000</span> </span>
+            </div>
+          </div>
+        </div>
+        <div class="allnotificationBoxContent" style="">
+          <div class="notificationBoxContent">
+            <img src="../img/e3.png" alt="">
+            <div class="notificationBoxWord">
+              <h6>Elite Shuttlers</h6>
+              <span>₹ <span>27000</span> </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="allnotificationBoxContent" style="">
+          <div class="notificationBoxContent">
+            <img src="../img/e4.png" alt="">
+            <div class="notificationBoxWord">
+              <h6>Playupbeat Sports</h6>
+              <span>₹ <span>17000</span> </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="allnotificationBoxContent" style="">
+          <div class="notificationBoxContent">
+            <img src="../img/e5.png" alt="">
+            <div class="notificationBoxWord">
+              <h6>Global Chess Academy</h6>
+              <span>₹ <span>11000</span> </span>
+            </div>
+          </div>
+        </div>
+
+      </div><br><br>
+
+
+    </div>
+    <div style="padding:0 0.5%;" class="col-lg-8">
+      <!-- <h4 id="eventName" style="font-weight:1000; font-size:1.2rem;color:#348DCB;">Create/Update Organization
+            </h4> -->
+
+      <div class="lottiedivevent">
+        <center>
+          <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_zohptsiv.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+        </center>
+      </div>
+
+      <div class="formbox">
+
+        <form>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Select Organization</label>
+              <select id="ddlOrganization" onchange="onOrganizationSelection()" class="form-control">
+                <option value="0">Select Organization</option>
+              </select>
+              <input type="hidden" id="hfOrganizerID">
+              <input type="hidden" id="hfEventID">
+
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputState">Select Sport</label>
+              <select id="ddlSports" class="form-control">
+
+              </select>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Event Name</label>
+              <input type="text" class="form-control" id="eventName" placeholder="Enter event name">
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Owner Name</label>
+              <input type="text" class="form-control" id="eventOwnerName" placeholder="Enter Owner Name">
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Owner Email</label>
+              <input type="email" class="form-control" id="eventOwnerEmail" placeholder="Enter Owner Email">
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Owner Phone Number</label>
+              <input type="number" class="form-control" id="eventOwnerPhone" placeholder="Enter Owner Phone No">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputState">Event Venue</label>
+              <input type="text" class="form-control" id="eventVenue" placeholder="Enter event Venue">
+            </div>
+
+
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Venue Location Map </label>
+              <input type="text" class="form-control" id="locationMap" placeholder="Enter Venue map URL">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Venue Contact</label>
+              <input type="number" class="form-control" id="venueContact" placeholder="Enter Venue phone no.">
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="inputCity">Approval Status</label>
+
+              <select id="approvalStatus" class="form-control">
+                <option value="Pending Approval" selected>Pending Approval</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+            </div>
+
+          </div>
+          <center id="saveMessage" style="display:none">
+            <span id="confirmationMessage">Event details saved Successfully !!  </span>
+          </center>
+
+          <center>
+            <button type="submit" class="btn " id="btnSave">Save</button>
+          </center>
+      </div>
+      <!-- <div class="form-group">
+    <label for="inputAddress">Address</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+  </div> -->
+      <!-- <div class="form-group">
+    <label for="inputAddress2">Address 2</label>
+    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+  </div> -->
+      <div class="form-row">
+        <!-- <div id="eventstartdateDiv" class="form-group col-md-6 ">
+      <label for="inputPassword4" class="form-label">Start Date</label>
+      <div class="form-group">
+        <div class="input-group date datetimepicker11">
+          <input id="eventstartdate" type="text" class="form-control" readonly>
+          <div class="input-group-addon input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4" class="form-label">End Date</label>
+      <div class="form-group">
+        <div class="input-group date datetimepicker11">
+          <input id="eventenddate" type="text" class="form-control" readonly>
+          <div class="input-group-addon input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+          </div>
+        </div>
+      </div>
+    </div> -->
+        <!-- <div class="form-group col-md-6">
+      <label for="inputPassword4">Identity Type</label>
+      <input type="text" class="form-control" id="inputPassword4" placeholder="Enter email id">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Identity No.</label>
+      <input type="number" class="form-control" id="inputPassword4" placeholder="Enter phone no.">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputCity" class="form-label">Price</label>
+      <input type="text" class="form-control" id="eventprice">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputCity" class="form-label">Event Status</label>
+      <input type="text" class="form-control" id="eventstatus">
+    </div> -->
+
+      </div>
+      <!-- <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div> -->
+
+      </form>
+    </div>
+
+
+    <div style="padding:1% 0.5%;" class="col-lg-2">
+      <h4  style="font-weight:1000; font-size:1.2rem;color:#348DCB;">Recent Updates
+      </h4>
+      <div class="notificationBox">
+        <div class="notificationBoxContent">
+          <img src="../img/e1.png" alt="">
+          <span class="notificationBoxWord">NKBA created a event today.</span>
+
+        </div>
+        <div class="notificationBoxContent">
+          <img src="../img/e2.png" alt="">
+          <span class="notificationBoxWord">Aastha Badminton Academy's Super Badminton Leauge finished</span>
+
+        </div>
+        <div class="notificationBoxContent">
+          <img src="../img/e3.png" alt="">
+          <span class="notificationBoxWord">PDCSE all India Leauge is postphoned for the comming next week of this month. </span>
+
+        </div>
+
+      </div><br><br>
+
+      <h4  style="font-weight:1000; font-size:1.2rem;color:#348DCB;">Analytics
+      </h4>
+      <div class="analyticsBox">
+
+        <ul>
+
+          <span class="material-icons-outlined">
+            event_note
+          </span>
+
+          <div style="margin:0;" class="">
+            <h6 style="font-weight:bold; margin:0;">Total Events </h6>
+            <h6 style="font-size:0.7rem;">Last 30 days</h6>
+          </div>
+
+          <li>
+            <h6 style="color:green;">+34.6%</h6>
+          </li>
+          <li>
+            <h6>3454</h6>
+          </li>
+
+        </ul>
+
+      </div>
+      <br>
+
+      <div class="analyticsBox">
+
+        <ul>
+
+          <span class="material-icons-outlined">
+            business
+          </span>
+
+          <div style="margin:0;" class="">
+            <h6 style="font-weight:bold; margin:0;">Total Organisation </h6>
+            <h6 style="font-size:0.7rem;">Last 30 days</h6>
+          </div>
+
+          <li>
+            <h6 style="color:green;">+4.6%</h6>
+          </li>
+          <li>
+            <h6>51</h6>
+          </li>
+
+        </ul>
+
+      </div>
+      <br>
+
+
+      <div class="analyticsBox">
+
+        <ul>
+
+          <span class="material-icons-outlined">
+            account_balance
+          </span>
+
+          <div style="margin:0;" class="">
+            <h6 style="font-weight:bold; margin:0;">Total Revenue </h6>
+            <h6 style="font-size:0.7rem;">Last 30 days</h6>
+          </div>
+
+          <li>
+            <h6 style="color:green;">+7.6%</h6>
+          </li>
+          <p>₹</p>
+          <li>
+            <h6>68500</h6>
+          </li>
+
+        </ul>
+
+      </div>
+      <br>
+
+      <div class="dots">
+        <span class="material-icons-outlined">
+          add_circle
+        </span>
+        <h6>ADD ANALYTICS</h6>
+      </div>
+      <br>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <!-- Owl Carousel Designs - End -->
+
+
+
+  <!-- Footer Section - Start -->
+  <section id="footer" style="background:#333C5D;">
+    <!-- <div style="background-color:#373435;" class="row no-gutters"> -->
+    <div class="" style="background:linear-gradient(to right,#161d65, #348DCB); padding:2% 7%;text-align: center; border-radius:12px;">
+      <div style="background:; font-family: 'Baloo 2', cursive; letter-spacing:1.5px;" class="row no-gutters">
+        <div style="padding:30px 50px;" class="col-lg-6 col-md-12 col-sm-12">
+
+          <span>
+            <h3 style="text-align:left;color:#fff; font-weight:1000;">TPLiVE</h3>
+          </span>
+          <hr style="background-color:#fff;height:2px;">
+
+          <p style="text-align:left;font-size:1rem; color:#fff;">TPLiVE is a startup whose aspiration is to join hands with Digital India and Go-Green. Our mission is to automate the process of creating any kind of events like Educational, Sports &
+            Fitness, Art, Music, Dance & Drama, Cultural, Online Shopping and many more...
+
+            Organizing any Tournament manually is always a challenge starting from registration forms distribution & collection, payment collection, draws & match schedule preparation & publish, umpire & score management, publish result till prize
+            distribution.
+
+            Our product aims at eliminating all the challenges faced by the Organizers and the Participants. This Mobile-Enabled Product is designed in an inventive way to ensure uninterrupted and smooth usage. Through this, application users can
+            interact and keep themselves updated about upcoming tournaments, LiVE match updates, results and other Sports related events.
+
+          </p>
+          <br><br>
+          <h4 style="text-align:left;color:#fff;font-weight:1000;">Objective</h4>
+          <hr style="background-color:#fff; height:2px;">
+          <p style="text-align:left; font-size:1rem;color:#fff;">We will be happy to provide our services to all the Tournament Organizers from District & State Sports Committees, Sports Academies, Schools, Corporates, Townships, Societies and every
+            enthusiastic Sports lover to encourage Sports with health and happiness in their locality.
+
+            Please reach out to us through whatsapp or email or to meet us at our any upcoming events.</p>
+
+        </div>
+        <hr style="background-color: #fff;" class="small" />
+        <div class="col-lg-6 col-md-12 col-sm-12 large" style=" padding: 10% 8%;">
+          <div class="row no-gutters">
+            <div class="col-lg-12">
+              <div class="" style="background:linear-gradient(to right,#161d65, #348DCB); padding: 10px 20px;text-align: center; border-radius:12px;">
+
+                <ul style="text-align:center;letter-spacing:2px;color:#fff;" class="footer-styles">
+                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="aboutus.html">About Us</a></li>
+                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="contactus.html">Contact Us</a> </li>
+                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="termsandcondition.html">Terms & condition</a> </li>
+                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="faq.html">FAQ's</a> </li>
+                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="privacyPolicy.html">Privacy Policy</a> </li>
+
+                </ul><br class="large" />
+
+                <ul style="text-align:left; " class="footer-styles">
+                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="login/login.html">Organiser Login</a> </li>
+                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="login/login.html">Umpire Login</a> </li>
+
+                  <li class="footer-li"> <a href="https://www.facebook.com/crop.queens/"><i style="font-size:18px; color:#fff" class="fab fa-facebook-f"></i></a></li>
+                  <li class="footer-li"> <a href="https://www.instagram.com/cropqueens/"><i style="font-size:18px; color:#fff" class="fab fa-instagram"></i></a></li>
+                  <li class="footer-li"> <a href="#"><i style="font-size:18px; color:#fff" class="fab fa-youtube"></i></a> </li>
+
+                </ul>
+
+              </div>
+            </div>
+
+
+
+          </div><br class="large" /><br class="large" />
+          <div class="row no-gutters">
+            <div class="col-lg-12">
+              <div class="" style="background:linear-gradient(to right,#161d65, #348DCB); padding:2% 7%;text-align: center; border-radius:12px;">
+
+                <ul style="text-align:center;letter-spacing:2px;color:#fff;" class="footer-styles">
+                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="calculator.html">Calculator</a> </li>
+                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="contactus.html">Pricing</a> </li>
+                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="contactus.html">Join Us</a> </li>
+                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="privacyPolicy.html">Disclaimer</a> </li>
+
+                </ul><br class="large" />
+
+                <ul style="text-align:left; " class="footer-styles">
+                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="refundCancel.html">Refund & Cancellation</a> </li>
+                </ul>
+
+              </div>
+            </div>
+
+            <!-- for phone -->
+
+
+          </div>
+        </div>
+
+
+
+      </div> <br class="small" /> <br class="small" />
+
+
+      <div class="col-lg-6 col-md-12 col-sm-12 small" style="padding:3% 8%;">
+        <div style=" padding:0px; text-align:center; border-radius: 12px; ">
+
+
+          <ul style="" class="footer-styles-phone">
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="aboutus.html">About Us</a></li>
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="contactus.html">Terms & Condition</a> </li>
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="contactus.html">Contact Us</a> </li>
+
+
+
+          </ul>
+
+          <ul class="footer-styles-phone">
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="contactus.html">Join Us</a> </li>
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="privacyPolicy.html">Privacy Policy</a> </li>
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="login.html">Organiser Login</a> </li>
+
+          </ul>
+
+          <ul class="footer-styles-phone">
+
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="login.html">Umpire Login</a> </li>
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="faq.html">FAQ's</a> </li>
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="calculator.html">Calculator</a> </li>
+
+          </ul>
+
+          <ul class="footer-styles-phone">
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="refundCancel.html">Refund & Cancellation</a> </li>
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="contactus.html">Pricing</a> </li>
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="privacyPolicy.html">Disclaimer</a> </li>
+
+          </ul>
+
+
+          <ul style="" class="footer-styles-phone">
+            <li class="footer-li-phone"> <a href="https://www.facebook.com/crop.queens/"><i style="font-size:18px; color:#fff" class="fab fa-facebook-f"></i></a></li>
+            <li class="footer-li-phone"> <a href="https://www.instagram.com/cropqueens/"><i style="font-size:18px; color:#fff" class="fab fa-instagram"></i></a> </li>
+            <li class="footer-li-phone"> <a href="#"><i style="font-size:18px; color:#fff" class="fab fa-youtube"></i></a> </li>
+
+          </ul>
+        </div>
+      </div>
+      <br class="small" /> <br class="small" />
+      <hr style="border:none; border-bottom: 1px solid #fff;" class="small" />
+      <br><br>
+
+    </div>
+    <div style="background:#348DCB;font-size:10px;padding:0.5% 0;font-family: 'Baloo 2', cursive; color:#fff;" class="">
+      Copyright © Academy Planner, Powered by TPLiVE
+
+
+    </div>
+
+  </section>
+
+  <!-- WebPicker Facebook Messenger Chat Plugin Code - Start -->
+
+  <!-- Jquery order should be higher from normal javascript  -->
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+
+  <!-- Owl Carousel JQuery -->
+  <!-- <script src="js/jquery.min.js"></script> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+
+    <!-- Firebase Services -->
+     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-functions.js"></script>
+
+
+  <!-- Javascript to Populate Map - Start  -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
+  <script src="../js/firebase.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/eventCreate.js"></script>
+
+
+  <!-- Owl Carousel Javascript  -->
+  <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script> -->
+  <!-- Banner Section - End -->
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://kit.fontawesome.com/12f526aa82.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+
+  <!-- Firebase Services -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+
+    <script src="../js/firebase.js"></script>
+    <script src="../js/fb-admin-common.js"></script> -->
+
+  <!-- <script src="../js/bootstrap-datetimepicker.min.js"></script> -->
+
+
+  <!-- <script>
+      $(function() {
+        $.extend(true, $.fn.datetimepicker.defaults, {
+          icons: {
+            time: 'far fa-clock',
+            date: 'far fa-calendar',
+            up: 'fas fa-arrow-up',
+            down: 'fas fa-arrow-down',
+            previous: 'fas fa-chevron-left',
+            next: 'fas fa-chevron-right',
+            today: 'far fa-calendar-check-o',
+            clear: 'far fa-trash',
+            close: 'far fa-times'
+          }
+        });
+      });
+    </script>
+    <script type="text/javascript">
+      $(function() {
+        $('.datetimepicker11').datetimepicker({
+          format: 'YYYY-MM-DD',
+          ignoreReadonly: true
+        });
+      });
+    </script> -->
+
+
+</body>
+
+</html>
