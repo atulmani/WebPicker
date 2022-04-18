@@ -32,7 +32,7 @@ async function GetProfileData() {
     var record1 = result.data;
     console.log(result.data);
     if (result.data.id != "0") {
-      document.getElementById("userName").innerHTML = result.data.UserName
+      // document.getElementById("userName").innerHTML = result.data.UserName
 
       if (result.data.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
         console.log("in admin");
@@ -80,6 +80,13 @@ function populateEventList(userid) {
   });
 }
 
+function fullcard(arrowVar)
+{
+  // console.log(arrowVar).;
+  arrowVar.classList.toggle('active');
+
+}
+
 function RenderEventDetails(index, doc) {
   // console.log(index, doc);
   var div1 = document.createElement("div");
@@ -87,11 +94,11 @@ function RenderEventDetails(index, doc) {
   div1.setAttribute("style", "display: flex; justify-content: center; padding:2%");
 
   var div2 = document.createElement("div");
-  div2.setAttribute("id", "arrowOrg" + index);
+  div2.setAttribute("id", "arrowEvent" + index);
   div2.setAttribute("class", "dashboardCardBoxOrg");
 
   var div3 = document.createElement("div");
-  div3.setAttribute("onclick", "fullcard(arrowOrg" + index + ")");
+  div3.setAttribute("onclick", "fullcard(arrowEvent" + index + ")");
   div3.setAttribute("class", "");
 
   var div4 = document.createElement("div");
@@ -100,7 +107,7 @@ function RenderEventDetails(index, doc) {
   var img = document.createElement("img");
   img.setAttribute("style", "height:80px; border-radius:50%;");
   img.setAttribute("alt", "");
-  img.setAttribute("src", "../img/e1.png");
+  img.setAttribute("src", "../img/e3.png");
   // img.setAttribute("src",doc.profileImage);
 
   div4.appendChild(img);
@@ -126,15 +133,15 @@ function RenderEventDetails(index, doc) {
   var h2 = document.createElement("h6");
   h2.innerHTML = "Total Events Conducted";
   div5.appendChild(h2);
-  console.log(doc.resultsid);
+  console.log(doc.Eventid);
   var hf = document.createElement("input");
-  hf.setAttribute("id", "hfOrganizationID" + index);
+  hf.setAttribute("id", "hfEventID" + index);
   hf.setAttribute("type", "hidden");
-  hf.setAttribute("value", doc.resultsid);
+  hf.setAttribute("value", doc.Eventid);
   div3.appendChild(hf);
 
   var i1 = document.createElement("i");
-  i1.setAttribute("onclick", "GetOrganizationDetails(" + index + ");");
+  i1.setAttribute("onclick", "GetEventDetails(" + index + ");");
   i1.setAttribute("class", "far fa-edit address-edit-icon");
   i1.setAttribute("style", "padding: 0 5px 0 5px;bottom:0px;z-index:0;");
 
@@ -155,9 +162,9 @@ function RenderEventDetails(index, doc) {
 
   var span4 = document.createElement("span");
   span4.setAttribute("class", "analyticsSpanHeadValue");
-  span4.innerHTML = doc.OrganizationName;
+  span4.innerHTML = doc.EventName;
 
-  span3.innerHTML = "Organization Name :- ";
+  span3.innerHTML = "Event Name :- ";
   span3.appendChild(span4);
 
   div7.appendChild(span3);
@@ -171,9 +178,9 @@ function RenderEventDetails(index, doc) {
 
   var span6 = document.createElement("span");
   span6.setAttribute("class", "analyticsSpanHeadValue");
-  span6.innerHTML = doc.City;
+  span6.innerHTML = doc.EventVenue;
 
-  span5.innerHTML = "Location :- ";
+  span5.innerHTML = "Venue :- ";
   span5.appendChild(span6);
 
   div8.appendChild(span5);
@@ -187,14 +194,14 @@ function RenderEventDetails(index, doc) {
 
   var span8 = document.createElement("span");
   span8.setAttribute("class", "analyticsSpanHeadValue");
-  span8.innerHTML = doc.PartnerName;
+  span8.innerHTML = '30-May-2022';
+  // span8.innerHTML = doc.EventDate;
 
-  span7.innerHTML = "Owner Name :- ";
+  span7.innerHTML = "Event Date :- ";
   span7.appendChild(span8);
 
   div9.appendChild(span7);
   div6.appendChild(div9);
-
 
   var div10 = document.createElement("div");
   div10.setAttribute("class", "analyticsLineorg");
@@ -204,9 +211,9 @@ function RenderEventDetails(index, doc) {
 
   var span10 = document.createElement("span");
   span10.setAttribute("class", "analyticsSpanHeadValue");
-  span10.innerHTML = doc.PartnerEmailID;
+  span10.innerHTML = doc.EventOwnerName;
 
-  span9.innerHTML = "Email Id :- ";
+  span9.innerHTML = "Event Owner Name :- ";
   span9.appendChild(span10);
 
   div10.appendChild(span9);
@@ -220,9 +227,10 @@ function RenderEventDetails(index, doc) {
 
   var span12 = document.createElement("span");
   span12.setAttribute("class", "analyticsSpanHeadValue");
-  span12.innerHTML = doc.PartnerPhone;
+  span12.innerHTML = 'Yet to Start';
+  // span12.innerHTML = doc.EventStatus;
 
-  span11.innerHTML = "Phone No :- ";
+  span11.innerHTML = "Event Status :- ";
   span11.appendChild(span12);
 
   div11.appendChild(span11);
@@ -232,5 +240,13 @@ function RenderEventDetails(index, doc) {
 
   div1.appendChild(div2);
 
-  document.getElementById("containerOrgList").appendChild(div1);
+  document.getElementById("eventListDiv").appendChild(div1);
+}
+
+
+function GetEventDetails(index) {
+  var hfid = document.getElementById("hfEventID" + index);
+  console.log(hfid);
+  window.location.href = "eventUpdate.html?id=" + hfid.value;
+
 }
