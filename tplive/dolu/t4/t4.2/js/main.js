@@ -19,9 +19,9 @@
 // Ristrict mouse right click - end
 
 // Collapse Navbar toggle menu after clicking on menu items - Start
-$(document).on('click', function() {
-  $('.collapse').collapse('hide');
-});
+// $(document).on('click', function() {
+//   $('.collapse').collapse('hide');
+// });
 // Collapse Navbar toggle menu after clicking on menu items - End
 
 
@@ -118,242 +118,242 @@ document.addEventListener("contextmenu", function(e) {
 //               time: 4000
 //           });
 // });
-$(document).ready(function() {
-  var owl = $('#patners');
-  owl.owlCarousel({
-    margin: 20,
-    loop: true,
-    autoplay: true,
-    smartSpeed: 3000,
-    autoplayTimeout: 8500,
-    autoplayHoverPause: true,
-    nav: false,
-    // dots:true,
-    responsive: {
-      0: {
-        items: 1
-      },
-      600: {
-        items: 2
-      },
-      1000: {
-        items: 4
-      }
-    }
-  });
-});
+// $(document).ready(function() {
+//   var owl = $('#patners');
+//   owl.owlCarousel({
+//     margin: 20,
+//     loop: true,
+//     autoplay: true,
+//     smartSpeed: 3000,
+//     autoplayTimeout: 8500,
+//     autoplayHoverPause: true,
+//     nav: false,
+//     // dots:true,
+//     responsive: {
+//       0: {
+//         items: 1
+//       },
+//       600: {
+//         items: 2
+//       },
+//       1000: {
+//         items: 4
+//       }
+//     }
+//   });
+// });
 
-$(document).ready(function() {
-  var owl = $('#genre-list');
-  owl.owlCarousel({
-    margin: 20,
-    loop: true,
-    autoplay: 2000,
-    smartSpeed: 3000,
-    autoplayTimeout: 2500,
-    autoplayHoverPause: true,
-    nav: false,
-    stagePadding: 60,
-    dots: false,
-    responsive: {
-      0: {
-        items: 3,
-        margin: 120
-
-      },
-      600: {
-        items: 4,
-        margin: 10
-      },
-      1000: {
-        items: 6
-      }
-    }
-  });
-});
-
-$(document).ready(function() {
-  var owl = $('#designs-list');
-  owl.owlCarousel({
-    margin: 20,
-    loop: true,
-    autoplay: true,
-    smartSpeed: 3000,
-    autoplayTimeout: 8500,
-    autoplayHoverPause: true,
-    nav: false,
-    // dots:true,
-    responsive: {
-      0: {
-        items: 1
-      },
-      600: {
-        items: 2
-      },
-      1000: {
-        items: 4
-      }
-    }
-  });
-});
-
-$(document).ready(function() {
-  var owl = $('#partners-carousel');
-  owl.owlCarousel({
-    margin: 20,
-    loop: true,
-    autoplay: true,
-    smartSpeed: 3000,
-    autoplayTimeout: 3000,
-    autoplayHoverPause: false,
-    nav: false,
-    dots: false,
-    center: true,
-    responsive: {
-      0: {
-        items: 2
-      },
-      600: {
-        items: 3
-      },
-      1000: {
-        items: 5
-      }
-    }
-  });
-});
-
-
-
-$(document).ready(function() {
-  var owl = $('#clients-list');
-  owl.owlCarousel({
-    margin: 80,
-    nav: true,
-    loop: true,
-    autoplay: true,
-    smartSpeed: 3000,
-    autoplayTimeout: 4000,
-    autoplayHoverPause: false,
-    nav: false,
-    // dots:true,
-    responsive: {
-      0: {
-        items: 2
-      },
-      600: {
-        items: 3
-      },
-      1024: {
-        items: 4
-      }
-    }
-  });
-});
-
-$(document).ready(function() {
-  var owl = $('#banner-list');
-  owl.owlCarousel({
-    margin: 10,
-    loop: true,
-    autoplay: true,
-    smartSpeed: 3000,
-    autoplayTimeout: 2000,
-    autoplayHoverPause: false,
-    nav: false,
-    dots: false,
-    // opacity: 0.1,
-    stagePadding: 70,
-    responsive: {
-      0: {
-        items: 1
-      },
-      600: {
-        items: 2
-      },
-      1000: {
-        items: 3
-      }
-    }
-  });
-});
-
-$(document).ready(function() {
-  var owl = $('#event-list');
-  owl.owlCarousel({
-    margin: 20,
-    loop: true,
-    autoplay: true,
-    smartSpeed: 3000,
-    autoplayTimeout: 3500,
-    autoplayHoverPause: true,
-    nav: false,
-    // dots:true,
-    stagePadding: 70,
-    responsive: {
-      0: {
-        items: 1
-      },
-      600: {
-        items: 2
-      },
-      1000: {
-        items: 6
-      }
-    }
-  });
-});
-
-$(document).ready(function() {
-  var owl = $('#olist');
-  owl.owlCarousel({
-    margin: 20,
-    loop: true,
-    autoplay: true,
-    smartSpeed: 3000,
-    autoplayTimeout: 3500,
-    autoplayHoverPause: true,
-    nav: false,
-    // dots:true,
-    stagePadding: 70,
-    responsive: {
-      0: {
-        items: 1
-      },
-      600: {
-        items: 2
-      },
-      1000: {
-        items: 6
-      }
-    }
-  });
-});
+// $(document).ready(function() {
+//   var owl = $('#genre-list');
+//   owl.owlCarousel({
+//     margin: 20,
+//     loop: true,
+//     autoplay: 2000,
+//     smartSpeed: 3000,
+//     autoplayTimeout: 2500,
+//     autoplayHoverPause: true,
+//     nav: false,
+//     stagePadding: 60,
+//     dots: false,
+//     responsive: {
+//       0: {
+//         items: 3,
+//         margin: 120
+//
+//       },
+//       600: {
+//         items: 4,
+//         margin: 10
+//       },
+//       1000: {
+//         items: 6
+//       }
+//     }
+//   });
+// });
+//
+// $(document).ready(function() {
+//   var owl = $('#designs-list');
+//   owl.owlCarousel({
+//     margin: 20,
+//     loop: true,
+//     autoplay: true,
+//     smartSpeed: 3000,
+//     autoplayTimeout: 8500,
+//     autoplayHoverPause: true,
+//     nav: false,
+//     // dots:true,
+//     responsive: {
+//       0: {
+//         items: 1
+//       },
+//       600: {
+//         items: 2
+//       },
+//       1000: {
+//         items: 4
+//       }
+//     }
+//   });
+// });
+//
+// $(document).ready(function() {
+//   var owl = $('#partners-carousel');
+//   owl.owlCarousel({
+//     margin: 20,
+//     loop: true,
+//     autoplay: true,
+//     smartSpeed: 3000,
+//     autoplayTimeout: 3000,
+//     autoplayHoverPause: false,
+//     nav: false,
+//     dots: false,
+//     center: true,
+//     responsive: {
+//       0: {
+//         items: 2
+//       },
+//       600: {
+//         items: 3
+//       },
+//       1000: {
+//         items: 5
+//       }
+//     }
+//   });
+// });
 
 
+//
+// $(document).ready(function() {
+//   var owl = $('#clients-list');
+//   owl.owlCarousel({
+//     margin: 80,
+//     nav: true,
+//     loop: true,
+//     autoplay: true,
+//     smartSpeed: 3000,
+//     autoplayTimeout: 4000,
+//     autoplayHoverPause: false,
+//     nav: false,
+//     // dots:true,
+//     responsive: {
+//       0: {
+//         items: 2
+//       },
+//       600: {
+//         items: 3
+//       },
+//       1024: {
+//         items: 4
+//       }
+//     }
+//   });
+// });
+//
+// $(document).ready(function() {
+//   var owl = $('#banner-list');
+//   owl.owlCarousel({
+//     margin: 10,
+//     loop: true,
+//     autoplay: true,
+//     smartSpeed: 3000,
+//     autoplayTimeout: 2000,
+//     autoplayHoverPause: false,
+//     nav: false,
+//     dots: false,
+//     // opacity: 0.1,
+//     stagePadding: 70,
+//     responsive: {
+//       0: {
+//         items: 1
+//       },
+//       600: {
+//         items: 2
+//       },
+//       1000: {
+//         items: 3
+//       }
+//     }
+//   });
+// });
+//
+// $(document).ready(function() {
+//   var owl = $('#event-list');
+//   owl.owlCarousel({
+//     margin: 20,
+//     loop: true,
+//     autoplay: true,
+//     smartSpeed: 3000,
+//     autoplayTimeout: 3500,
+//     autoplayHoverPause: true,
+//     nav: false,
+//     // dots:true,
+//     stagePadding: 70,
+//     responsive: {
+//       0: {
+//         items: 1
+//       },
+//       600: {
+//         items: 2
+//       },
+//       1000: {
+//         items: 6
+//       }
+//     }
+//   });
+// });
+//
+// $(document).ready(function() {
+//   var owl = $('#olist');
+//   owl.owlCarousel({
+//     margin: 20,
+//     loop: true,
+//     autoplay: true,
+//     smartSpeed: 3000,
+//     autoplayTimeout: 3500,
+//     autoplayHoverPause: true,
+//     nav: false,
+//     // dots:true,
+//     stagePadding: 70,
+//     responsive: {
+//       0: {
+//         items: 1
+//       },
+//       600: {
+//         items: 2
+//       },
+//       1000: {
+//         items: 6
+//       }
+//     }
+//   });
+// });
 
-$(document).ready(function() {
-  var owl = $('#allevent-list');
-  owl.owlCarousel({
-    margin: 20,
-    loop: true,
-    autoplay: true,
-    smartSpeed: 3000,
-    autoplayTimeout: 3500,
-    autoplayHoverPause: true,
-    nav: false,
-    // dots:true,
-    stagePadding: 70,
-    responsive: {
-      0: {
-        items: 1
-      },
-      600: {
-        items: 2
-      },
-      1000: {
-        items: 6
-      }
-    }
-  });
-});
+
+//
+// $(document).ready(function() {
+//   var owl = $('#allevent-list');
+//   owl.owlCarousel({
+//     margin: 20,
+//     loop: true,
+//     autoplay: true,
+//     smartSpeed: 3000,
+//     autoplayTimeout: 3500,
+//     autoplayHoverPause: true,
+//     nav: false,
+//     // dots:true,
+//     stagePadding: 70,
+//     responsive: {
+//       0: {
+//         items: 1
+//       },
+//       600: {
+//         items: 2
+//       },
+//       1000: {
+//         items: 6
+//       }
+//     }
+//   });
+// });
