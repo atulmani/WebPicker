@@ -1,7 +1,7 @@
 var loggedinUser = "";
 let eventDocUrl = new URL(location.href);
 let searchParams = new URLSearchParams(eventDocUrl.search);
-var partnerID = searchParams.get('id');
+var organizationID = searchParams.get('id');
 
 auth.onAuthStateChanged(async firebaseUser => {
   try {
@@ -15,11 +15,11 @@ auth.onAuthStateChanged(async firebaseUser => {
     } else {
       loggedinUser = null;
       console.log('User has been logged out');
-      // window.location.href = "../index.html";
+      window.location.href = "../index.html";
     }
   } catch (error) {
     console.log(error.message);
-    // window.location.href = "../index.html";
+    window.location.href = "../index.html";
   }
 });
 
@@ -57,7 +57,7 @@ async function getUserList() {
     // console.log("From Function " + results.data[0].resultsid);
     for (index = 0; index < results.data.length; index++) {
       // console.log(results.data[index]);
-      console.log(results.data[index]);
+      // console.log(results.data[index]);
       var option = document.createElement("option");
       option.setAttribute("value", results.data[index].userid + ":" +
         results.data[index].UserName + ":" +
@@ -79,19 +79,27 @@ async function GetProfileData() {
     userID: loggedinUser.uid
   };
   const ret1 = firebase.functions().httpsCallable("getProfileDetails");
-  ret1(para1).then((result) => {
+  ret1(para1).then(async (result) => {
     var record1 = result.data;
     console.log(result.data.UserRole.findIndex(e => e.TYPE === "ADMIN"));
     document.getElementById("userName").innerHTML = result.data.UserName
-
+    document.getElementById("Comments").innerHTML = result.data.Comments
+    var approvalStatus = document.getElementById("approvalStatus");
     if (result.data.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
       console.log("in admin");
-      console.log(partnerID);
+      // console.log(organizationID);
       document.getElementById("organizer").disabled = false;
 
-      if (partnerID != "" && partnerID != undefined && partnerID != null) {
+      if (organizationID != "" && organizationID != undefined && organizationID != null) {
         document.getElementById("btnSave").innerHTML = "Update";
-        GetPartnerDetails();
+        GetOganizationDetails();
+      } else {
+        for (index = 0; index < approvalStatus.options.length; index++) {
+          if (approvalStatus.options[index].value === "Approved") {
+            approvalStatus.options[index].selected = true;
+            break;
+          }
+        }
       }
       // document.getElementById("fInput").style.display="none";
     } else if (result.data.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
@@ -100,6 +108,8 @@ async function GetProfileData() {
       var organizationid = document.getElementById("organizer");
 
       organizationid.disabled = true;
+      approvalStatus.disabled = true;
+      document.getElementById("Comments").disabled = true;
       // console.log(loggedinUser.uid);
       document.getElementById("hfOrganizerID").value = loggedinUser.uid;
       // console.log(organizationid.options.length);
@@ -113,12 +123,29 @@ async function GetProfileData() {
         }
       }
 
-      if (partnerID != "" && partnerID != undefined && partnerID != null) {
+      if (organizationID != "" && organizationID != undefined && organizationID != null) {
         document.getElementById("btnSave").innerHTML = "Update";
-        GetPartnerDetails();
+        GetOrganizationDetails();
+      } else {
+
+        ///Check for any pending OrganizationName
+
+        var checkPending =await CheckForPendingOrganization();
+        console.log(checkPending);
+        if (checkPending > 0) {
+          document.getElementById("fInput").style.display = "none";
+          document.getElementById("errorMessage").style.display = "block";
+          document.getElementById("errorMessage").innerHTML = "One Organization request is still Pending Approval from Admin. Please reach out to <a href=../contact/index>Admin or contact Us</a>";
+
+        } else {
+          for (index = 0; index < approvalStatus.options.length; index++) {
+            if (approvalStatus.options[index].value === "Pending Approval") {
+              approvalStatus.options[index].selected = true;
+              break;
+            }
+          }
+        }
       }
-
-
     } else {
       console.log("not admin");
       document.getElementById("fInput").style.display = "none";
@@ -128,26 +155,55 @@ async function GetProfileData() {
 
 }
 
-function GetPartnerDetails() {
-  console.log(partnerID);
+async function CheckForPendingOrganization() {
+  var para = {};
+  // console.log(userid);
+  para = {
+    organizerID: loggedinUser.uid,
+    approvalStatus: 'Pending Approval',
+  };
+  console.log(para);
+  var ret = firebase.functions().httpsCallable("getAllOrganizationForOrganizerWithStatus");
+
+  return ret(para).then(results => {
+    console.log("From Function " + results.data.length);
+    // console.log("From Function " + results.data[0].resultsid);
+    return results.data.length;
+  });
+  return 0;
+
+}
+
+function GetOrganizationDetails() {
+  console.log(organizationID);
   var para1 = {};
   para1 = {
-    partnerID: partnerID
+    organizationID: organizationID
   };
-  const ret1 = firebase.functions().httpsCallable("getPartnerDetails");
+  const ret1 = firebase.functions().httpsCallable("getOrganizationDetails");
   ret1(para1).then((result) => {
     var record1 = result.data;
     console.log(result.data);
-    document.getElementById("hfPartnerID").value = result.data.id;
+    document.getElementById("hfOrganizationID").value = result.data.id;
     document.getElementById("orgName").value = result.data.OrganizationName;
-    document.getElementById("partnerName").value = result.data.ParnerName;
+    document.getElementById("partnerName").value = result.data.PartnerName;
     document.getElementById("emailID").value = result.data.PartnerEmailID;
     document.getElementById("phoneNo").value = result.data.PartnerPhone;
     document.getElementById("inputCity").value = result.data.City;
-    var orgID = result.data.OrganizationID;
-    // console.log(orgID);
+    document.getElementById("Comments").value = result.data.Comments;
+    var approvalStatus = document.getElementById("approvalStatus");
+    var approvalS = result.data.ApprovalStatus;
+    for (index = 0; index < approvalStatus.options.length; index++) {
+      if (approvalStatus.options[index].value === approvalS) {
+        approvalStatus.options[index].selected = true;
+        break;
+      }
+    }
+
+    var orgID = result.data.id;
+    console.log(orgID);
     var organizationid = document.getElementById("organizer");
-    document.getElementById("hfOrganizerID").value = orgID;
+    document.getElementById("hfOrganizerID").value = result.data.OrganizerID;
     // console.log(organizationid.options.length);
     for (index = 0; index < organizationid.options.length; index++) {
       // console.log(organizationid.options[index].value);
@@ -158,12 +214,12 @@ function GetPartnerDetails() {
       }
     }
 
-
     var ddlstate = document.getElementById("inputState");
     var stateVal = result.data.State;
     for (index = 0; index < ddlstate.options.length; index++) {
       if (ddlstate.options[index].innerHTML === stateVal) {
         ddlstate.options[index].selected = true;
+        break;
       }
     }
 
@@ -172,19 +228,20 @@ function GetPartnerDetails() {
     for (index = 0; index < ddlIndentity.options.length; index++) {
       if (ddlIndentity.options[index].innerHTML === identityType) {
         ddlIndentity.options[index].selected = true;
+        break;
       }
     }
 
     document.getElementById("identityNumber").value = result.data.IdentityNumber;
-    var partnerType = result.data.PartnerType;
+    var organizationType = result.data.OrganizationType;
     const rbAcademy = document.getElementById("Academy");
     const rbCorporate = document.getElementById("Corporate");
     const rbSponsor = document.getElementById("Sponsor");
-    if (rbAcademy.value === partnerType) {
+    if (rbAcademy.value === organizationType) {
       rbAcademy.checked = true;
-    } else if (rbCorporate.value === partnerType) {
+    } else if (rbCorporate.value === organizationType) {
       rbCorporate.checked = true;
-    } else if (rbSponsor.value === partnerType) {
+    } else if (rbSponsor.value === organizationType) {
       rbSponsor.checked = true;
     }
 
@@ -195,16 +252,16 @@ const btnSave = document.getElementById("btnSave");
 btnSave.addEventListener('click', e => {
   e.preventDefault();
   console.log("in save");
-  var partnerType = "";
+  var organizationType = "";
   const rbAcademy = document.getElementById("Academy");
   const rbCorporate = document.getElementById("Corporate");
   const rbSponsor = document.getElementById("Sponsor");
   if (rbAcademy.checked) {
-    partnerType = rbAcademy.value;
+    organizationType = rbAcademy.value;
   } else if (rbCorporate.checked) {
-    partnerType = rbCorporate.value;
+    organizationType = rbCorporate.value;
   } else if (rbSponsor.checked) {
-    partnerType = rbSponsor.value;
+    organizationType = rbSponsor.value;
   }
   const ddlOrganization = document.getElementById("organizer");
   var val = ddlOrganization.options[ddlOrganization.selectedIndex].value;
@@ -215,14 +272,16 @@ btnSave.addEventListener('click', e => {
   var emailID = document.getElementById("emailID").value;
   var phoneNo = document.getElementById("phoneNo").value;
   var inputCity = document.getElementById("inputCity").value;
+  var comments = document.getElementById("Comments").value;
   var state = document.getElementById("inputState").options[document.getElementById("inputState").selectedIndex].value;
   var identityType = document.getElementById("inputIdentityType").options[document.getElementById("inputIdentityType").selectedIndex].value;
   var identityNumber = document.getElementById("identityNumber").value;
+  var approvalStatus = document.getElementById("approvalStatus").options[document.getElementById("approvalStatus").selectedIndex].value;
   //console.log(document.getElementById("inputState").selectedIndex);
   var confirmMessage = document.getElementById('saveMessage');
   console.log("before check");
   if ((organizerID === "" || organizerID === null) ||
-    (partnerType === "" || partnerType === null) ||
+    (organizationType === "" || organizationType === null) ||
     (partnerName === "" || partnerName === null) ||
     (orgName === "" || orgName === null) ||
     (emailID === "" || emailID === null) ||
@@ -244,7 +303,7 @@ btnSave.addEventListener('click', e => {
 
     var para1 = {};
     para1 = {
-      partnerID: partnerID,
+      organizationID: organizationID,
       organizerID: organizerID,
       PartnerName: partnerName,
       OrganizationName: orgName,
@@ -254,15 +313,18 @@ btnSave.addEventListener('click', e => {
       State: state,
       IdentityType: identityType,
       IdentityNumber: identityNumber,
-      PartnerType: partnerType,
+      OrganizationType: organizationType,
+      ApprovalStatus: approvalStatus,
+      Comments: comments,
 
     };
-    if (partnerID === "" || partnerID === undefined || partnerID === null) {
-      const ret1 = firebase.functions().httpsCallable("addPartnerDetails");
+    console.log(para1);
+    if (organizationID === "" || organizationID === undefined || organizationID === null) {
+      const ret1 = firebase.functions().httpsCallable("addOrganizationDetails");
       ret1(para1).then((result) => {
         //var record1 = result.data;
-        console.log("partner ID: " + result.data.partnerID);
-        if (result.data.partnerID != "0") {
+        console.log("organization ID: " + result.data.OrganizationID);
+        if (result.data.organizationID != "0") {
           confirmMessage.style.display = "block";
 
           setTimeout(function() {
@@ -273,10 +335,10 @@ btnSave.addEventListener('click', e => {
     } else {
       console.log(para1);
 
-      const ret1 = firebase.functions().httpsCallable("updatePartnerDetails");
+      const ret1 = firebase.functions().httpsCallable("updateOrganizationDetails");
       ret1(para1).then((result) => {
         //var record1 = result.data;
-        console.log("partner ID: " + result.data.retCode);
+        console.log("organization ID: " + result.data.retCode);
         if (result.data.retCode === "0") {
           var confirmMessage = document.getElementById('saveMessage');
           confirmMessage.style.display = "block";

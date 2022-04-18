@@ -10,7 +10,7 @@
 
   <title>TPLive - You Grow We Manage </title>
 
-  <link rel="shortcut icon" href="../img/logo.png">
+  <link rel="shortcut icon" href="img/logo.png">
   <!-- Google Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
@@ -72,14 +72,14 @@
             <h6> Org Login</h6>
           </a>
         </div>
-      </div>
-
-      <div class="topleft">
-
 
         <div style="background:#348DCB; padding:4px 6px; border-radius:16px;box-shadow: 0 0 30px 0 rgba(0,0,0,0.5);" class="">
           <h6>Hi! <span id="userName">test</span></h6>
         </div>
+      </div>
+
+      <div class="topleft">
+
         <!-- <div style="background:#348DCB; padding:4px 6px; border-radius:16px;box-shadow: 0 0 30px 0 rgba(0,0,0,0.5);" class="">
                   <a href="../notification/index.html" >
                     <span class="material-icons-outlined">
@@ -139,13 +139,13 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="nav navbar-nav ml-auto ">
         <li class="nav-item">
-          <a class="nav-link" href="eventList.html"> <i style="position:relative; top:2px;" class="fa-solid fa-circle-plus"></i> Create Event</a>
+          <a class="nav-link" href="eventList.html"> <i style="position:relative; top:2px;" class="fa-solid fa-circle-plus"></i> Events</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="partnerList.html"> <i style="position:relative; top:2px;" class="fa-solid fa-circle-plus"></i> Create Partner</a>
+          <a class="nav-link" href="organizationList.html"> <i style="position:relative; top:2px;" class="fa-solid fa-circle-plus"></i> Organization</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="profile.html"><i style="position:relative; top:2px;" class="fa-solid fa-circle-plus"></i> Create Partner Branch </a>
+          <a class="nav-link" href="profile.html"><i style="position:relative; top:2px;" class="fa-solid fa-circle-plus"></i> Create Org Branch </a>
           <!-- <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#one">One</a></li>  -->
         </li>
         <li class="nav-item">
@@ -188,6 +188,7 @@
 
   <!-- Side navigation - ends -->
 
+
   <!-- bottom bardown -->
   <div class="small navbar-mobile-bottom">
     <div class="navbar-mobile-bottom-menu" id="divBottomNavBar">
@@ -197,7 +198,7 @@
         </span>
         <small>Home</small>
       </a>
-      <a href="allevent.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="eventList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <span class="material-icons-outlined">
           emoji_events
         </span>
@@ -206,11 +207,11 @@
       <a href="">
 
       </a>
-      <a href="partnerList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="organizationList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <span class="material-icons-outlined">
           category
         </span>
-        <small>Partners</small>
+        <small>Clubs</small>
       </a>
       <a href="" class="navbar-mobile-bottom-menu-a" data-toggle="collapse" data-target="#collapsibleNavbar1" style="display:flex; flex-direction:column;">
         <span class="material-icons-outlined">
@@ -228,6 +229,8 @@
   </div>
   <!-- bottom bardown -->
 
+
+
   <div style="" class="row no-gutters" style="">
 
     <div class="col-lg-2" style="padding:1% 0.5%;">
@@ -244,6 +247,7 @@
               </div>
             </a>
           </li>
+
 
           <div style="padding-left:2%; padding-bottom:1.5%;" class="">
             <li class="linesec">
@@ -286,14 +290,14 @@
 
           <div style="padding-left:2%; padding-bottom:1.5%;" class="">
             <li class="linesec">
-              <a href="" class="left-navigation">
+              <a href="../VAS/sidenav.html" class="left-navigation">
                 <div class="">
                   <span style="color: #348DCB;" class="material-icons-outlined">
                     add_circle
                   </span>
                 </div>
                 <div class="content">
-                  <h5 style="color: #348DCB;">Create Partner Branch</h5>
+                  <h5 style="color: #348DCB;">Create Org Branch</h5>
 
                 </div>
                 <div class="">
@@ -315,7 +319,7 @@
                   </span>
                 </div>
                 <div class="content">
-                  <h5 style="color: #348DCB;"> Partner Login</h5>
+                  <h5 style="color: #348DCB;"> Org Login</h5>
 
                 </div>
                 <div class="">
@@ -535,143 +539,255 @@
 
 
     </div>
-    <div style="padding:0 0.5%;" class="col-lg-8">
-      <!-- <h4 id="eventName" style="font-weight:1000; font-size:1.2rem;color:#348DCB;">Create/Update Organization
-            </h4> -->
+    <div class="form-row" id="errorMessage" style="display:none;">
+      You do not have access to create Organization. Please reach out to <a href="../contact/index">Admin or contact Us</a>
+    </div>
 
-      <div class="lottiediv">
-        <center>
-          <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_wg0utmug.json" background="transparent" speed="1" style="width: 100%; height:250px;" loop autoplay></lottie-player>
-        </center>
-      </div>
-      <div class="form-row" id="errorMessage" style="display:none;">
-        You do not have access to create Organization. Please reach out to <a href="../contact/index">Admin or contact Us</a>
-      </div>
-      <div class="formbox" id="fInput">
+    <div class="col-lg-8 ">
 
-        <form>
+      <div class="cardsrow row no-gutters" id="containerOrgList">
 
-          <div class="form-row">
-            <div class="form-group col-md-12">
+        <div class="col-lg-4" style="display: flex; justify-content: center; padding:2%">
+          <div id="eventArrow" class="dashboardCardBoxOrg">
 
-              <div style="display:flex; justify-content:space-between; align-items:center;padding: 10px 0;" class="col-md-12">
+            <a style="text-decoration:none;" href="organizationUpdate.html">
+              <div class="createEventCircleorg">
+                <span class="material-icons-outlined">
+                  add_circle
+                </span>
+                <h6>Create Org</h6>
+              </div>
+            </a>
+            <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_kn1bcjbg.json" background="transparent" speed="2" style="width: 100%; height: 245px;" loop autoplay></lottie-player>
 
-                <div class="genderRadio">
-                  <input id="Academy" checked type="radio" name="role" value="Academy">
-                  <label for="Academy">
-                    <span class="material-icons-outlined check">
-                      check
-                    </span>
-                    <span class="material-icons-outlined close">
-                      close
-                    </span>
-                    Academy
-                  </label>
-                </div>
+          </div>
+        </div>
 
-                <div class="genderRadio">
-                  <input id="Corporate" type="radio" name="role" value="Corporate">
-                  <label for="Corporate">
-                    <span class="material-icons-outlined check">
-                      check
-                    </span>
-                    <span class="material-icons-outlined close">
-                      close
-                    </span>
-                    Corporate
-                  </label>
-                </div>
+        <!-- organizationBox starts -->
+        <div class="col-lg-4" style="display: flex; justify-content: center; padding:2%">
+          <div id="arrowOrg" class="dashboardCardBoxOrg">
+            <div class="" onclick="fullcard(arrowOrg)">
+              <div class="createEventCircleother">
+                <img style="height:80px; border-radius:50%;" src="../img/e1.png" alt="">
+              </div>
 
-                <div class="genderRadio">
-                  <input id="Sponsor" type="radio" name="role" value="Sponsor">
-                  <label for="Sponsor">
-                    <span class="material-icons-outlined check">
-                      check
-                    </span>
-                    <span class="material-icons-outlined close">
-                      close
-                    </span>
-                    Sponsor
-                  </label>
-                </div>
+              <div class="bigNum">
+
+                <h3><span>1200</span> <span class="material-icons-outlined">
+                    expand_more
+                  </span> </h3>
+                <h6>Total Events Conducted </h6>
 
               </div>
             </div>
-            <!-- <div class="form-row"> -->
-              <div class="form-group col-md-12">
 
-              <label for="inputEmail4">Select Organizer</label>
-              <select id="organizer" class="form-control" onchange="onOrganizationSelection();">
-                <option value="0" selected>Choose Organizer</option>
+            <!-- <div class="dashboardCardAnalytics">
+                      <div class="analyticsLineorg">
+                        <div class="analyticsTextorg">
+                          <h6>ORG NAME </h6>
 
-              </select>
-            </div>
-            <!-- </div> -->
+                        </div>
 
-            <div class="form-group col-md-6">
-              <label for="inputEmail4">Organization Name</label>
-              <input type="text" class="form-control" id="orgName" placeholder="Enter Organization name">
+                        <div class="analyticsNumorg">
+                          <h6>Purple Blue</h6>
+                        </div>
+
+                      </div>
+                      <div class="analyticsLineorg">
+                        <div class="analyticsTextorg">
+                          <h6>City</h6>
+
+                        </div>
+
+                        <div class="analyticsNumorg">
+                          <h6>Pune</h6>
+                        </div>
+
+                      </div>
+
+                      <div class="analyticsLineorg">
+                        <div class="analyticsTextorg">
+                          <h6>State</h6>
+
+                        </div>
+
+                        <div class="analyticsNumorg">
+                          <h6>Maharashtra</h6>
+                        </div>
+
+                      </div>
+
+                      <div class="analyticsLineorg">
+                        <div class="analyticsTextorg">
+                          <h6>Owner Name</h6>
+
+                        </div>
+
+                        <div class="analyticsNumorg">
+                          <h6>Kailash Khair Kadam</h6>
+                        </div>
+
+                      </div>
+
+                      <div class="analyticsLineorg">
+                        <div class="analyticsTextorg">
+                          <h6>Email Id</h6>
+
+                        </div>
+
+                        <div class="analyticsNumorg">
+                          <h6>600</h6>
+                        </div>
+
+                      </div>
+
+
+
+                      <div class="analyticsLineorg">
+                        <div class="analyticsTextorg">
+                          <h6>Phone No.</h6>
+
+                        </div>
+
+                        <div class="analyticsNumorg">
+                          <h6>7355545608</h6>
+                        </div>
+
+                      </div>
+
+                      <div class="analyticsLineorg">
+                        <div class="analyticsTextorg">
+                          <h6>Identity Type</h6>
+
+                        </div>
+
+                        <div class="analyticsNumorg">
+                          <h6>AlphaNumeric</h6>
+                        </div>
+
+                      </div>
+
+                      <div class="analyticsLineorg">
+                        <div class="analyticsTextorg">
+                          <h6>Indentity NO.</h6>
+
+                        </div>
+
+                        <div class="analyticsNumorg">
+                          <h6>15255265714</h6>
+                        </div>
+
+                      </div>
+                    </div> -->
+            <div class="dashboardCardAnalytics">
+              <div class="analyticsLineorg">
+                <span class="analyticsSpanHead">Organization Name :- <span class="analyticsSpanHeadValue">Atharva Academy</span></span>
+
+              </div>
+              <div class="analyticsLineorg">
+                <span class="analyticsSpanHead">Location :- <span class="analyticsSpanHeadValue">Pune, Maharashtra</span></span>
+
+              </div>
+
+
+
+              <div class="analyticsLineorg">
+                <span class="analyticsSpanHead">Owner Name :- <span class="analyticsSpanHeadValue">Kailah Kher Kadam</span></span>
+
+              </div>
+
+              <div class="analyticsLineorg">
+                <span class="analyticsSpanHead">Email Id :- <span class="analyticsSpanHeadValue">sanidhyap005@gmail.com</span></span>
+
+              </div>
+
+
+
+              <div class="analyticsLineorg">
+                <span class="analyticsSpanHead">Phone No :- <span class="analyticsSpanHeadValue">7355545608</span></span>
+
+              </div>
+
+              <!-- <div class="analyticsLineorg">
+                        <span class="analyticsSpanHead">Identity Type :- <span class="analyticsSpanHeadValue" >Admin</span></span>
+
+                      </div>
+
+                      <div class="analyticsLineorg">
+                        <span class="analyticsSpanHead">Identity No :- <span class="analyticsSpanHeadValue" >615743818814</span></span>
+
+                      </div> -->
             </div>
-            <div class="form-group col-md-6">
-              <label for="inputPassword4">Partner Name</label>
-              <input type="text" class="form-control" id="partnerName" placeholder="Enter Partner name">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputPassword4">Email Id</label>
-              <input type="email" class="form-control" id="emailID" placeholder="Enter Email id">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputPassword4">Phone No.</label>
-              <input type="number" class="form-control" id="phoneNo" placeholder="Enter Phone no.">
-            </div>
+
           </div>
-          <!-- <div class="form-group">
-    <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-  </div> -->
-          <!-- <div class="form-group">
-    <label for="inputAddress2">Address 2</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-  </div> -->
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="inputCity">City</label>
-              <input type="text" class="form-control" id="inputCity">
+        </div>
+        <!-- organizationBox ends -->
+
+        <div class="col-lg-4" style="display: flex; justify-content: center; padding:2%">
+          <div id="EventRevenue" class="dashboardCardBoxOrg">
+            <div class="" onclick="fullcard(EventRevenue)">
+              <div class="createEventCircleother">
+                <img style="height:80px; border-radius:50%;" src="../img/e3.png" alt="">
+              </div>
+
+              <div class="bigNum">
+
+                <h3><span>1200</span> <span class="material-icons-outlined">
+                    expand_more
+                  </span> </h3>
+                <h6>Total Events Conducted </h6>
+
+              </div>
             </div>
-            <div class="form-group col-md-6">
-              <label for="inputState">State</label>
-              <select id="inputState" class="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
-              </select>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputPassword4">Identity Type</label>
-              <!-- <input type="text" class="form-control" id="inputPassword4" placeholder="IdentityType"> -->
-              <select id="inputIdentityType" class="form-control">
-                <option value="Aadhar Card" selected>Aadhar Card</option>
-                <option value="Driving Licence">Driving Licence</option>
-                <option value="PAN">Pan</option>
-                <option value="Passport">Passport</option>
-              </select>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputPassword4">Identity No.</label>
-              <input type="number" class="form-control" id="identityNumber" placeholder="Enter Identity Number">
+
+
+
+            <div class="dashboardCardAnalytics">
+              <div class="analyticsLineorg">
+                <span class="analyticsSpanHead">Organization Name :- <span class="analyticsSpanHeadValue">Padukone Sports Management PVT.LTD</span></span>
+
+              </div>
+              <div class="analyticsLineorg">
+                <span class="analyticsSpanHead">Location :- <span class="analyticsSpanHeadValue">Pune, Maharashtra</span></span>
+
+              </div>
+
+
+              <div class="analyticsLineorg">
+                <span class="analyticsSpanHead">Owner Name :- <span class="analyticsSpanHeadValue">Kailah Kher Kadam</span></span>
+
+              </div>
+
+              <div class="analyticsLineorg">
+                <span class="analyticsSpanHead">Email Id :- <span class="analyticsSpanHeadValue">sanidhyap005@gmail.com</span></span>
+
+              </div>
+
+
+
+              <div class="analyticsLineorg">
+                <span class="analyticsSpanHead">Phone No :- <span class="analyticsSpanHeadValue">7355545608</span></span>
+
+              </div>
+
+              <!-- <div class="analyticsLineorg">
+                        <span class="analyticsSpanHead">Identity Type :- <span class="analyticsSpanHeadValue" >Admin</span></span>
+
+                      </div>
+
+                      <div class="analyticsLineorg">
+                        <span class="analyticsSpanHead">Identity No :- <span class="analyticsSpanHeadValue" >615743818814</span></span>
+                      </div> -->
+
             </div>
 
           </div>
+        </div>
 
-          <center id="saveMessage" style="display:none">
-            <span id="confirmationMessage">Partner details saved Successfully !!  </span>
-          </center>
-          <input type="hidden" id="hfPartnerID">
-          <input type="hidden" id="hfOrganizerID">
-          <center>
-            <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
-          </center>
-        </form>
       </div>
+
+
+
 
     </div>
 
@@ -788,7 +904,15 @@
     </div>
 
   </div>
+
+
+
+
+
   <!-- Owl Carousel Designs - End -->
+
+
+
   <!-- Footer Section - Start -->
   <section id="footer" style="background:#333C5D;">
     <!-- <div style="background-color:#373435;" class="row no-gutters"> -->
@@ -827,20 +951,20 @@
               <div class="" style="background:linear-gradient(to right,#161d65, #348DCB); padding: 10px 20px;text-align: center; border-radius:12px;">
 
                 <ul style="text-align:center;letter-spacing:2px;color:#fff;" class="footer-styles">
-                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="../about/index.html">About Us</a></li>
-                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="../contact/index.html">Contact Us</a> </li>
-                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="../policy/termsandcondition.html">Terms & condition</a> </li>
-                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="../faq/index.html">FAQ's</a> </li>
-                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="../policy/privacyPolicy.html">Privacy Policy</a> </li>
+                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="aboutus.html">About Us</a></li>
+                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="contactus.html">Contact Us</a> </li>
+                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="termsandcondition.html">Terms & condition</a> </li>
+                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="faq.html">FAQ's</a> </li>
+                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="privacyPolicy.html">Privacy Policy</a> </li>
 
                 </ul><br class="large" />
 
                 <ul style="text-align:left; " class="footer-styles">
-                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="../login/login.html">Organiser Login</a> </li>
-                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="../login/login.html">Umpire Login</a> </li>
+                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="login/login.html">Organiser Login</a> </li>
+                  <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="login/login.html">Umpire Login</a> </li>
 
-                  <li class="footer-li"> <a href="https://www.facebook.com/tp.live.75/"><i style="font-size:18px; color:#fff" class="fab fa-facebook-f"></i></a></li>
-                  <li class="footer-li"> <a href="https://www.instagram.com/tplive.in/"><i style="font-size:18px; color:#fff" class="fab fa-instagram"></i></a></li>
+                  <li class="footer-li"> <a href="https://www.facebook.com/crop.queens/"><i style="font-size:18px; color:#fff" class="fab fa-facebook-f"></i></a></li>
+                  <li class="footer-li"> <a href="https://www.instagram.com/cropqueens/"><i style="font-size:18px; color:#fff" class="fab fa-instagram"></i></a></li>
                   <li class="footer-li"> <a href="#"><i style="font-size:18px; color:#fff" class="fab fa-youtube"></i></a> </li>
 
                 </ul>
@@ -886,33 +1010,33 @@
 
 
           <ul style="" class="footer-styles-phone">
-            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="../about/index.html">About Us</a></li>
-            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="../contact/index.html">Terms & Condition</a> </li>
-            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="../contact/index.html">Contact Us</a> </li>
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="aboutus.html">About Us</a></li>
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="contactus.html">Terms & Condition</a> </li>
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="contactus.html">Contact Us</a> </li>
 
 
 
           </ul>
 
           <ul class="footer-styles-phone">
-            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="../contact/index.html">Join Us</a> </li>
-            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="../policy/privacyPolicy.html">Privacy Policy</a> </li>
-            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="../login/login.html">Organiser Login</a> </li>
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="contactus.html">Join Us</a> </li>
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="privacyPolicy.html">Privacy Policy</a> </li>
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="login.html">Organiser Login</a> </li>
 
           </ul>
 
           <ul class="footer-styles-phone">
 
-            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="../login/login.html">Umpire Login</a> </li>
-            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="../faq/index.html">FAQ's</a> </li>
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="login.html">Umpire Login</a> </li>
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="faq.html">FAQ's</a> </li>
             <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="calculator.html">Calculator</a> </li>
 
           </ul>
 
           <ul class="footer-styles-phone">
             <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="refundCancel.html">Refund & Cancellation</a> </li>
-            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="../contact/index.html">Pricing</a> </li>
-            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="../policy/privacyPolicy.html">Disclaimer</a> </li>
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="contactus.html">Pricing</a> </li>
+            <li class="footer-li-phone"> <a style="font-size:0.78rem; color:#fff;" href="privacyPolicy.html">Disclaimer</a> </li>
 
           </ul>
 
@@ -938,41 +1062,50 @@
 
   </section>
 
+  <!-- WebPicker Facebook Messenger Chat Plugin Code - Start -->
+  <div id="fb-root"></div>
+
+
   <!-- Jquery order should be higher from normal javascript  -->
   <!-- <script src="https://code.jquery.com/jquery.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
 
   <!-- Owl Carousel JQuery -->
   <!-- <script src="js/jquery.min.js"></script> -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+
+  <!-- Javascript to Populate Map - Start  -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
+
 
   <!-- Owl Carousel Javascript  -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
-
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script> -->
+  <!-- Banner Section - End -->
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://kit.fontawesome.com/12f526aa82.js" crossorigin="anonymous"></script> -->
+  <script src="https://kit.fontawesome.com/12f526aa82.js" crossorigin="anonymous"></script>
+
+  <!-- <script src="../js/bootstrap-datetimepicker.min.js"></script> -->
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
-
   <!-- Firebase Services -->
-  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-functions.js"></script>
 
-  <script src="../js/main.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-functions.js"></script>
+
   <script src="../js/firebase.js"></script>
-  <script src="../js/partnerUpdate.js"></script>
-  <script src="../js/bootstrap-datetimepicker.min.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/organizationList.js"></script>
+  <!-- <script src="../js/bootstrap-datetimepicker.min.js"></script> -->
 
-
+<!--
   <script>
     $(function() {
       $.extend(true, $.fn.datetimepicker.defaults, {
@@ -997,7 +1130,7 @@
         ignoreReadonly: true
       });
     });
-  </script>
+  </script> -->
 
 
 </body>

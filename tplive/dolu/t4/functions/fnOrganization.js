@@ -1,7 +1,7 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
-exports.getPartnerDetails =
+exports.getOrganizationDetails =
   functions.https.onCall((data, context) => {
     if (!context.auth) {
       throw new functions.https.HttpError(
@@ -9,27 +9,29 @@ exports.getPartnerDetails =
         "only authenticated user can call this"
       );
     }
-    const partnerID = data.partnerID;
+    const organizationID = data.OrganizationID;
 
-    console.log("partnerID ", partnerID);
-    return admin.firestore().collection("PartnerList")
-      .doc(partnerID).get().then((doc1) => {
+    console.log("organizationID ", organizationID);
+    return admin.firestore().collection("OrganizationList")
+      .doc(organizationID).get().then((doc1) => {
         if (doc1.exists) {
           // console.log(doc1);
           let results = {};
           return {
             id: doc1.id,
-            ParnerName: doc1.data().ParnerName,
-            OrganizationID:doc1.data().OrganizationID,
+            PartnerName: doc1.data().PartnerName,
+            OrganizerID:doc1.data().OrganizerID,
             OrganizationName: doc1.data().OrganizationName,
             PartnerEmailID: doc1.data().PartnerEmailID,
             PartnerPhone: doc1.data().PartnerPhone,
             DateOfBirth: doc1.data().DateOfBirth,
             City: doc1.data().City,
             State: doc1.data().State,
+            ApprovalStatus: doc1.data().ApprovalStatus,
+            Comments: doc1.data().Comments,
             IdentityType: doc1.data().IdentityType,
             IdentityNumber: doc1.data().IdentityNumber,
-            PartnerType: doc1.data().PartnerType,
+            OrganizationType: doc1.data().OrganizationType,
           }
 
         } else {
@@ -43,7 +45,7 @@ exports.getPartnerDetails =
     console.log("before return");
   });
 
-exports.updatePartnerDetails =
+exports.updateOrganizationDetails =
   functions.https.onCall((data, context) => {
     if (!context.auth) {
       throw new functions.https.HttpError(
@@ -51,36 +53,39 @@ exports.updatePartnerDetails =
         "only authenticated user can call this"
       );
     }
-    const partnerID = data.partnerID;
+    const organizationID = data.organizationID;
     const PartnerName = data.PartnerName;
     const OrganizationName = data.OrganizationName;
     const PartnerEmailID = data.PartnerEmailID;
     const PartnerPhone = data.PartnerPhone;
-    const OrganizationID = data.organizerID;
-
+    const OrganizerID = data.organizerID;
+    const ApprovalStatus = data.ApprovalStatus;
+    const Comments = data.Comments;
     // const DateOfBirth = data.DateOfBirth;
     const City = data.City;
     const State = data.State;
     const IdentityType = data.IdentityType;
     const IdentityNumber = data.IdentityNumber;
-    const PartnerType = data.PartnerType;
+    const OrganizationType = data.OrganizationType;
 
-    console.log("partnerID ", partnerID);
+    console.log("organizationID ", organizationID);
 
-    return admin.firestore().collection("PartnerList")
-      .doc(partnerID)
+    return admin.firestore().collection("OrganizationList")
+      .doc(organizationID)
       .set({
         PartnerName: PartnerName,
         OrganizationName: OrganizationName,
         PartnerEmailID: PartnerEmailID,
         PartnerPhone: PartnerPhone,
-        OrganizationID:OrganizationID,
+        OrganizerID:OrganizerID,
         // DateOfBirth: DateOfBirth,
         City: City,
         State: State,
         IdentityType: IdentityType,
         IdentityNumber: IdentityNumber,
-        PartnerType: PartnerType,
+        OrganizationType: OrganizationType,
+        ApprovalStatus: ApprovalStatus,
+        Comments: Comments,
         CreatedBy: context.auth.uid,
         CreatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
       })
@@ -94,7 +99,7 @@ exports.updatePartnerDetails =
       });
   });
 
-exports.getPartnerDetails =
+exports.getOrganizationDetails =
   functions.https.onCall((data, context) => {
     if (!context.auth) {
       throw new functions.https.HttpError(
@@ -102,27 +107,29 @@ exports.getPartnerDetails =
         "only authenticated user can call this"
       );
     }
-    const partnerID = data.partnerID;
+    const organizationID = data.organizationID;
 
-    console.log("partnerID ", partnerID);
-    return admin.firestore().collection("PartnerList")
-      .doc(partnerID).get().then((doc1) => {
+    console.log("organizationID ", organizationID);
+    return admin.firestore().collection("OrganizationList")
+      .doc(organizationID).get().then((doc1) => {
         if (doc1.exists) {
           // console.log(doc1);
           let results = {};
           return {
             id: doc1.id,
-            ParnerName: doc1.data().ParnerName,
+            PartnerName: doc1.data().PartnerName,
             OrganizationName: doc1.data().OrganizationName,
-            OrganizationID:doc1.data().OrganizationID,
+            OrganizerID:doc1.data().OrganizerID,
             PartnerEmailID: doc1.data().PartnerEmailID,
             PartnerPhone: doc1.data().PartnerPhone,
             DateOfBirth: doc1.data().DateOfBirth,
             City: doc1.data().City,
+            ApprovalStatus: doc1.data().ApprovalStatus,
+            Comments: doc1.data().Comments,
             State: doc1.data().State,
             IdentityType: doc1.data().IdentityType,
             IdentityNumber: doc1.data().IdentityNumber,
-            PartnerType: doc1.data().PartnerType,
+            OrganizationType: doc1.data().OrganizationType,
           }
 
         } else {
@@ -137,7 +144,7 @@ exports.getPartnerDetails =
   });
 
 
-exports.getAllPartnerDetails =
+exports.getAllOrganizationDetails =
   functions.https.onCall(async (data, context) => {
     if (!context.auth) {
       throw new functions.https.HttpError(
@@ -149,21 +156,23 @@ exports.getAllPartnerDetails =
 
     // var dbrows = await admin.firestore().collection("PartnerList").get();
     // dbrows.then((changes) => {
-    return await admin.firestore().collection("PartnerList").get().then((changes) => {
+    return await admin.firestore().collection("OrganizationList").orderBy("ApprovalStatus").get().then((changes) => {
       changes.forEach(change => {
         resultList.push({
           resultsid: change.id,
           PartnerName: change.data().PartnerName,
-          OrganizationID:change.data().OrganizationID,
+          OrganizerID:change.data().OrganizerID,
           OrganizationName: change.data().OrganizationName,
           PartnerEmailID: change.data().PartnerEmailID,
           PartnerPhone: change.data().PartnerPhone,
           DateOfBirth: change.data().DateOfBirth,
           City: change.data().City,
+          ApprovalStatus: change.data().ApprovalStatus,
+          Comments: change.data().Comments,
           State: change.data().State,
           IdentityType: change.data().IdentityType,
           IdentityNumber: change.data().IdentityNumber,
-          PartnerType: change.data().PartnerType,
+          OrganizationType: change.data().OrganizationType,
         });
         console.log(resultList);
       });
@@ -173,7 +182,7 @@ exports.getAllPartnerDetails =
   });
 
 
-  exports.getAllPartnerDetailsForOrganizer =
+  exports.getAllOrganizationDetailsForOrganizer =
     functions.https.onCall(async (data, context) => {
       if (!context.auth) {
         throw new functions.https.HttpError(
@@ -187,21 +196,23 @@ exports.getAllPartnerDetails =
 
       // var dbrows = await admin.firestore().collection("PartnerList").get();
       // dbrows.then((changes) => {
-      return await admin.firestore().collection("PartnerList").where("OrganizationID","==",organizerID).get().then((changes) => {
+      return await admin.firestore().collection("OrganizationList").where("OrganizerID","==",organizerID).get().then((changes) => {
         changes.forEach(change => {
           resultList.push({
             resultsid: change.id,
             PartnerName: change.data().PartnerName,
-            OrganizationID:change.data().OrganizationID,
+            OrganizerID:change.data().OrganizerID,
             OrganizationName: change.data().OrganizationName,
             PartnerEmailID: change.data().PartnerEmailID,
             PartnerPhone: change.data().PartnerPhone,
             DateOfBirth: change.data().DateOfBirth,
             City: change.data().City,
+            ApprovalStatus: change.data().ApprovalStatus,
+            Comments: change.data().Comments,
             State: change.data().State,
             IdentityType: change.data().IdentityType,
             IdentityNumber: change.data().IdentityNumber,
-            PartnerType: change.data().PartnerType,
+            OrganizationType: change.data().OrganizationType,
           });
           console.log(resultList);
         });
@@ -210,7 +221,7 @@ exports.getAllPartnerDetails =
       });
     });
 
-exports.addPartnerDetails =
+exports.addOrganizationDetails =
   functions.https.onCall((data, context) => {
     if (!context.auth) {
       throw new functions.https.HttpError(
@@ -220,40 +231,86 @@ exports.addPartnerDetails =
     }
     const PartnerName = data.PartnerName;
     const OrganizationName = data.OrganizationName;
-    const OrganizationID = data.organizerID;
+    const OrganizerID = data.organizerID;
     const PartnerEmailID = data.PartnerEmailID;
     const PartnerPhone = data.PartnerPhone;
     const City = data.City;
     const State = data.State;
     const IdentityType = data.IdentityType;
     const IdentityNumber = data.IdentityNumber;
-    const PartnerType = data.PartnerType;
-    return admin.firestore().collection("PartnerList")
+    const OrganizationType = data.OrganizationType;
+    const ApprovalStatus = data.ApprovalStatus;
+    const Comments = data.Comments;
+    return admin.firestore().collection("OrganizationList")
       .add({
         PartnerName: PartnerName,
         OrganizationName: OrganizationName,
-        OrganizationID: OrganizationID,
+        OrganizerID: OrganizerID,
         PartnerEmailID: PartnerEmailID,
         PartnerPhone: PartnerPhone,
         City: City,
         State: State,
+        ApprovalStatus: ApprovalStatus,
+        Comments: Comments,
         IdentityType: IdentityType,
         IdentityNumber: IdentityNumber,
-        PartnerType: PartnerType,
+        OrganizationType: OrganizationType,
         CreatedBy: context.auth.uid,
         CreatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
       })
       .then(function(docRef) {
         return {
-          partnerID: docRef.id
+          OrganizationID: docRef.id
         };
       })
       .catch(function(error) {
         console.log("in error");
         return {
-          partnerID: "0"
+          OrganizationID: "0"
         };
       });
 
     console.log("before return");
   });
+
+
+    exports.getAllOrganizationForOrganizerWithStatus =
+      functions.https.onCall(async (data, context) => {
+        if (!context.auth) {
+          throw new functions.https.HttpError(
+            "unauthenticatied",
+            "only authenticated user can call this"
+          );
+        }
+        const organizerID = data.organizerID;
+        const approvalStatus = data.approvalStatus;
+
+
+        let resultList = [];
+
+        // var dbrows = await admin.firestore().collection("PartnerList").get();
+        // dbrows.then((changes) => {
+        return await admin.firestore().collection("OrganizationList").where("OrganizerID","==",organizerID).where("ApprovalStatus","==",approvalStatus).get().then((changes) => {
+          changes.forEach(change => {
+            resultList.push({
+              resultsid: change.id,
+              PartnerName: change.data().PartnerName,
+              OrganizerID:change.data().OrganizerID,
+              OrganizationName: change.data().OrganizationName,
+              PartnerEmailID: change.data().PartnerEmailID,
+              PartnerPhone: change.data().PartnerPhone,
+              DateOfBirth: change.data().DateOfBirth,
+              City: change.data().City,
+              ApprovalStatus: change.data().ApprovalStatus,
+              Comments: change.data().Comments,
+              State: change.data().State,
+              IdentityType: change.data().IdentityType,
+              IdentityNumber: change.data().IdentityNumber,
+              OrganizationType: change.data().OrganizationType,
+            });
+            console.log(resultList);
+          });
+          return resultList;
+
+        });
+      });

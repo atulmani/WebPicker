@@ -26,24 +26,20 @@ async function GetProfileData() {
   var para1 = {};
   para1 = {
     userID: loggedinUser.uid
-    // userID: '35667789999'
   };
   const ret1 = firebase.functions().httpsCallable("getProfileDetails");
   ret1(para1).then((result) => {
     var record1 = result.data;
     console.log(result.data);
-    // console.log(result.data.UserRole.findIndex(e=> e.TYPE==="ADMIN"));
-
     if (result.data.id != "0") {
       document.getElementById("userName").innerHTML = result.data.UserName
 
       if (result.data.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
         console.log("in admin");
-        populatePartnerList("All");
-        // document.getElementById("fInput").style.display="none";
+        populateEventList("All");
       } else if (result.data.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
         console.log("organizer");
-        populatePartnerList(loggedinUser.uid);
+        populateEventList(loggedinUser.uid);
         // document.getElementById("fInput").style.display="none";
       } else {
         console.log("not admin");
@@ -59,13 +55,7 @@ async function GetProfileData() {
 
 }
 
-function fullcard(arrowVar) {
-  // console.log(arrowVar).;
-  arrowVar.classList.toggle('active');
-
-}
-
-function populatePartnerList(userid) {
+function populateEventList(userid) {
   var para = {};
   console.log(userid);
   para = {
@@ -74,10 +64,10 @@ function populatePartnerList(userid) {
   console.log(para);
   var ret = "";
   if (userid === "All") {
-    ret = firebase.functions().httpsCallable("getAllPartnerDetails");
+    ret = firebase.functions().httpsCallable("getAllEventDetails");
 
   } else {
-    ret = firebase.functions().httpsCallable("getAllPartnerDetailsForOrganizer");
+    ret = firebase.functions().httpsCallable("getAllEventDetailsForOrganizer");
 
   }
   ret(para).then(results => {
@@ -85,12 +75,12 @@ function populatePartnerList(userid) {
     // console.log("From Function " + results.data[0].resultsid);
     for (index = 0; index < results.data.length; index++) {
       // console.log(results.data[index]);
-      RenderPartnerDetails(index, results.data[index]);
+      RenderEventDetails(index, results.data[index]);
     }
   });
 }
 
-function RenderPartnerDetails(index, doc) {
+function RenderEventDetails(index, doc) {
   // console.log(index, doc);
   var div1 = document.createElement("div");
   div1.setAttribute("class", "col-lg-4");
@@ -138,13 +128,13 @@ function RenderPartnerDetails(index, doc) {
   div5.appendChild(h2);
   console.log(doc.resultsid);
   var hf = document.createElement("input");
-  hf.setAttribute("id", "hfPartnerID" + index);
+  hf.setAttribute("id", "hfOrganizationID" + index);
   hf.setAttribute("type", "hidden");
   hf.setAttribute("value", doc.resultsid);
   div3.appendChild(hf);
 
   var i1 = document.createElement("i");
-  i1.setAttribute("onclick", "GetPartnerDetails(" + index + ");");
+  i1.setAttribute("onclick", "GetOrganizationDetails(" + index + ");");
   i1.setAttribute("class", "far fa-edit address-edit-icon");
   i1.setAttribute("style", "padding: 0 5px 0 5px;bottom:0px;z-index:0;");
 
@@ -243,10 +233,4 @@ function RenderPartnerDetails(index, doc) {
   div1.appendChild(div2);
 
   document.getElementById("containerOrgList").appendChild(div1);
-}
-
-function GetPartnerDetails(index) {
-  var hfid = document.getElementById("hfPartnerID" + index);
-  window.location.href = "partnerUpdate.html?id=" + hfid.value;
-
 }

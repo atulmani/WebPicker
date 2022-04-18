@@ -44,6 +44,7 @@
   <link rel="stylesheet" href="css/styles.css">
 
   <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/orders.css">
 
 </head>
 
@@ -371,733 +372,449 @@
 
 
 
-      <div style="" class="row no-gutters" style="">
-
-        <div id="firstColumn" class="col-lg-2" style="padding:1% 0.5%;">
-          <h4 id="notificationBoxHeading" style="font-weight:1000; font-size:1.2rem;color:#348DCB;">All Open Events
-          </h4>
-
-          <div class="notificationBox">
-            <div  class="allnotificationBoxContent" style="">
-              <div class="notificationBoxContent">
-                <img src="img/e1.png" alt="">
-                <div class="notificationBoxWord">
-                  <h6>SHUBHADA JOSHI SMRITI BADMINTON TOURNAMENT</h6>
-                  <h6>By Atharva Academy</h6>
-                </div>
-              </div>
-            </div>
-            <div  class="allnotificationBoxContent" style="">
-              <div class="notificationBoxContent">
-                <img src="img/e2.png" alt="">
-                <div class="notificationBoxWord">
-                  <h6>PSM - OPEN JUNIOR BADMINTON TOURNAMENT</h6>
-                  <h6>By Padukone Sports Management PVT.LTD</h6>
-                </div>
-              </div>
-            </div>
-            <div  class="allnotificationBoxContent" style="">
-              <div class="notificationBoxContent">
-                <img src="img/e3.png" alt="">
-                <div class="notificationBoxWord">
-                  <h6>ULTRA BADMINTON CUP 2022</h6>
-                  <h6>By Elite Shuttlers</h6>
-                </div>
-              </div>
-            </div>
-
-            <div  class="allnotificationBoxContent" style="">
-              <div class="notificationBoxContent">
-                <img src="img/e4.png" alt="">
-                <div class="notificationBoxWord">
-                  <h6>PLAYUPBEAT BADMINTON CHAMPS, WHITEFIELD BANGALORE</h6>
-                  <h6>By Playupbeat Sports</h6>
-                </div>
-              </div>
-            </div>
-
-            <div  class="allnotificationBoxContent" style="">
-              <div class="notificationBoxContent">
-                <img src="img/e5.png" alt="">
-                <div class="notificationBoxWord">
-                  <h6>5TH ONLINE CHESS TOURNAMENT OPEN FOR ALL</h6>
-                  <h6>By Global Chess Academy</h6>
-                </div>
-              </div>
-            </div>
-
-          </div><br><br>
-
-
+      <div class="row no-gutters">
+        <div class="col-lg-2">
 
         </div>
-          <div class="col-lg-8 ">
 
-              <div class="cardsrow row no-gutters">
-                <div  class="col-lg-4" style="display: flex; justify-content: center; padding:2%">
-                  <div id="eventArrow" class="dashboardCardBox">
+        <div style="padding:4%;" class="col-lg-8">
 
-                        <div class="profilePicSet" >
-                            <img style="" src="img/propic.jpg" alt="">
-                            <!-- <h6>Create Event</h6> -->
-                        </div>
-
-                      <div class="bigNum">
-
-                        <div class="">
-                          <h5><span style="font-weight:bold;">Hi Sanidhya</span> </h5>
-                        </div>
-                        <div class="">
-                          <span id="wallet" style="" >Wallet Amount:</span>
-                          <span id="walletSymbol" style="">₹ </span>
-                          <span id="walletAmt" style="">741 </span>
-                        </div>
-
-                        <div style="" class="">
-                          <button id="addWalletMoney" style="" class="btn" type="button" name="button"> Add Money</button>
-                        </div>
-
-
-                        <!-- <h6>sanidhyap005@gmail.com</h6> -->
-
+          <div id="order1"  class="OrderPageCard" >
+            <div style="border-bottom: 2px dashed #ddd; padding-bottom:15px;"  class="" onclick="fullcard(order1)">
+              <div class="YourOrderContent">
+                  <div  class="OrderLine">
+                      <div class="ordericon">
+                        <span class="material-icons-outlined">
+                          battery_charging_full
+                          </span>
                       </div>
+                      <div class="OrderLineBelow">
+                        <h6>New Gurugram-001</h6>
+                        <h6>Mapsko Royale Ville Sector 82 Mapsko Royale Ville Sector 82 </h6>
+                        <div class="OrderLineBelowEnd">
+                          <div class="OrderLineBelowEndContent">
+                            <span>Amount :<span style="margin-left:10px">₹</span>21000 <span></span></span>
+                          </div>
+
+                          <div class="OrderLineBelowEndContent">
+                            <span>Unit :<span style="margin-left:10px">7146</span>units <span></span></span>
+
+                          </div>
 
 
-
-                    <div class="dashboardCardAnalytics">
-                      <div class="analyticsLine">
-                        <div class="analyticsText">
-                          <h6>Total No. of Events</h6>
-                          <p>Till Now</p>
                         </div>
-
-                        <div class="analyticsNum">
-                          <h6>3456</h6>
-                        </div>
-
                       </div>
-                      <div class="analyticsLine">
-                        <div class="analyticsText">
-                          <h6>No. of Events</h6>
-                          <p>This Day</p>
-                        </div>
-
-                        <div class="analyticsNum">
-                          <h6>2</h6>
-                        </div>
-
-                      </div>
-
-                      <div class="analyticsLine">
-                        <div class="analyticsText">
-                          <h6>No. of Events</h6>
-                          <p>This Week</p>
-                        </div>
-
-                        <div class="analyticsNum">
-                          <h6>14</h6>
-                        </div>
-
-                      </div>
-
-                      <div class="analyticsLine">
-                        <div class="analyticsText">
-                          <h6>No. of Events</h6>
-                          <p>This Month</p>
-                        </div>
-
-                        <div class="analyticsNum">
-                          <h6>70</h6>
-                        </div>
-
-                      </div>
-
-                      <div class="analyticsLine">
-                        <div class="analyticsText">
-                          <h6>No. of Events</h6>
-                          <p>Last Six Months</p>
-                        </div>
-
-                        <div class="analyticsNum">
-                          <h6>245</h6>
-                        </div>
-
-                      </div>
-                    </div>
-
                   </div>
-                </div>
 
-                <!-- organizationBox starts -->
-                <div class="col-lg-4" style="display: flex; justify-content: center; padding:2%">
-                  <div id="arrowOrg"  class="YourOrderCardBox" >
-                    <div  class="" onclick="fullcard(arrowOrg)">
-                      <div class="YourOrderContent">
-                          <div  class="YourOrderWord">
-                              <div class="ordericon">
-                                <span class="material-icons-outlined">
-                                  battery_charging_full
-                                  </span>
-                              </div>
-                              <h6>Your Orders</h6>
-                          </div>
-
-                            <div class="">
-                              <span class="material-icons-outlined">
-                              expand_more
-                              </span>
-
-                            </div>
-                          </div>
-
-
-
+                    <div style="display:flex;" class="">
+                      <div class="statusdiv">
+                      <h6>Completed</h6>
+                      </div>
+                      <div class="">
+                        <span class="material-icons-outlined">
+                        expand_more
+                        </span>
+                      </div>
 
                     </div>
-
-
-
-                    <div class="dashboardCardAnalytics">
-                      <div class="analyticsLineorg">
-                        <span class="analyticsSpanHead">Booked Station :- <span class="analyticsSpanHeadValue" >New Gurugram-001</span></span>
-
-                      </div>
-                      <div class="analyticsLineorg">
-                        <span class="analyticsSpanHead">Order Id :- <span class="analyticsSpanHeadValue" >65626712</span></span>
-
-                      </div>
-
-                      <div class="analyticsLineorg">
-                        <span class="analyticsSpanHead">Order Date :- <span class="analyticsSpanHeadValue" >29 March 2022 to 3 April 2022</span></span>
-
-                      </div>
-
-                      <div class="analyticsLineorg">
-                        <span class="analyticsSpanHead">Booked Slot :- <span class="analyticsSpanHeadValue" >1:00 PM to 4:00 PM</span></span>
-
-                      </div>
-
-                      <div class="analyticsLineorg">
-                        <span class="analyticsSpanHead">Time Duration :- <span class="analyticsSpanHeadValue" >30 mins</span></span>
-
-                      </div>
-
-                      <div class="analyticsLineorg">
-                        <span class="analyticsSpanHead">Unit Consumed :- <span class="analyticsSpanHeadValue" >7 Units</span></span>
-
-                      </div>
-
-                      <div class="analyticsLineorg">
-                        <span class="analyticsSpanHead">Amount :- <span class="analyticsSpanHeadValue" > <span style="margin-right:3px;">₹</span>42 </span></span>
-
-                      </div>
-
-                      <div class="analyticsLineorg">
-                        <span class="analyticsSpanHead">Status :- <span class="analyticsSpanHeadValue" >Charged</span></span>
-
-                      </div>
-
-                      <div class="analyticsLineorg">
-                        <span class="analyticsSpanHead">Action :- <span class="analyticsSpanHeadValue" >Taken</span></span>
-
-                      </div>
-
-
-
-
-
-                    </div>
-
                   </div>
+            </div>
+            <div class="dashboardCardAnalytics">
+              <div class="OrderCardDetail">
+                <div class="OrderCardDetailFeilds">
+                  <h6>Order Id</h6>
+                  <h6>234567</h6>
                 </div>
-                <!-- organizationBox ends -->
-
-                <div class="col-lg-4" style="display: flex; justify-content: center; padding:2%">
-                  <div id="EventRevenue"  class="YourOrderCardBox">
-
-                    <div onclick="fullcard(EventRevenue)" class="">
-                      <div class="YourOrderContent">
-                          <div  class="YourOrderWord">
-                              <div class="ordericon">
-                                <span class="material-icons-outlined">
-                                  location_on
-                                  </span>
-                              </div>
-                              <h6>Available Slots </h6>
-                          </div>
-
-                            <div class="">
-                              <span class="material-icons-outlined">
-                              expand_more
-                              </span>
-
-                            </div>
-                          </div>
-
-                    </div>
-
-                    <div class="dashboardCardAnalytics">
-                      <div class="analyticsLineorg">
-                        <span class="analyticsSpanHead">Station :- <span class="analyticsSpanHeadValue" >(SCG-001)/<span>DC </span><span>New Gurugram-001</span> </span></span>
-                        <!-- <span class="analyticsSpanHead">Station :- <span class="analyticsSpanHeadValue" >(SCG-001)/</span></span> -->
-
-                      </div>
-
-
-
-
-                      <div class="analyticsLine">
-                        <div class="analyticsText">
-                          <div class="">
-                            <div style="display:flex;" class="locationDiv">
-                              <h6>Location :- </h6>
-                              <h6>₹</h6>
-                              <h6>21 per hr</h6>
-                            </div>
-                            <p>Mapsko Royale Ville Sector 82  </p>
-                          </div>
-
-                        </div>
-
-                          <div style="" class="">
-                            <button style=" border-radius:6px; font-size:0.7rem; text-aign:center; background:#ddd; color:#65c032;font-weight:bolder;" class="btn" type="button" name="button"> Book now</button>
-                          </div>
-                      </div>
-
-                      <div class="analyticsLine">
-                        <div class="analyticsText">
-                          <div class="">
-                            <div style="display:flex;" class="locationDiv">
-                              <h6>Location :- </h6>
-                              <h6>₹</h6>
-                              <h6>21 per hr</h6>
-                            </div>
-                            <p>Mapsko Royale Ville Sector 82  </p>
-                          </div>
-
-                        </div>
-
-                          <div style="" class="">
-                            <button style=" border-radius:6px; font-size:0.7rem; text-aign:center; background:#ddd; color:#65c032;font-weight:bolder;" class="btn" type="button" name="button"> Book now</button>
-                          </div>
-                      </div>
-
-                      <div class="analyticsLine">
-                        <div class="analyticsText">
-                          <div class="">
-                            <div style="display:flex;" class="locationDiv">
-                              <h6>Location :- </h6>
-                              <h6>₹</h6>
-                              <h6>21 per hr</h6>
-                            </div>
-                            <p>Mapsko Royale Ville Sector 82  </p>
-                          </div>
-
-                        </div>
-
-                          <div style="" class="">
-                            <button style=" border-radius:6px; font-size:0.7rem; text-aign:center; background:#ddd; color:#65c032;font-weight:bolder;" class="btn" type="button" name="button"> Book now</button>
-                          </div>
-                      </div>
-
-                      <div class="analyticsLine">
-                        <div class="analyticsText">
-                          <div class="">
-                            <div style="display:flex;" class="locationDiv">
-                              <h6>Location :- </h6>
-                              <h6>₹</h6>
-                              <h6>21 per hr</h6>
-                            </div>
-                            <p>Mapsko Royale Ville Sector 82  </p>
-                          </div>
-
-                        </div>
-
-                          <div style="" class="">
-                            <button style=" border-radius:6px; font-size:0.7rem; text-aign:center; background:#ddd; color:#65c032;font-weight:bolder;" class="btn" type="button" name="button"> Book now</button>
-                          </div>
-                      </div>
-
-                      <div class="analyticsLine">
-                        <div class="analyticsText">
-                          <div class="">
-                            <div style="display:flex;" class="locationDiv">
-                              <h6>Location :- </h6>
-                              <h6>₹</h6>
-                              <h6>21 per hr</h6>
-                            </div>
-                            <p>Mapsko Royale Ville Sector 82  </p>
-                          </div>
-
-                        </div>
-
-                          <div style="" class="">
-                            <button style=" border-radius:6px; font-size:0.7rem; text-aign:center; background:#ddd; color:#65c032;font-weight:bolder;" class="btn" type="button" name="button"> Book now</button>
-                          </div>
-                      </div>
-
-                      
-
-
-
-
-
-
-
-
-
-                    </div>
-
-                  </div>
+                <div class="OrderCardDetailFeilds">
+                  <h6>Order Date</h6>
+                  <h6>29th June, 2022</h6>
                 </div>
-
-                <div class="col-lg-4" style="display: flex; justify-content: center; padding:2%">
-                  <div id="CardTransaction"  class="YourOrderCardBox">
-
-                    <div onclick="fullcard(CardTransaction)" class="">
-                      <div class="YourOrderContent">
-                          <div  class="YourOrderWord">
-                              <div class="ordericon">
-                                <span class="material-icons-outlined">
-                                currency_rupee
-                                </span>
-                              </div>
-                              <h6>Transactions </h6>
-                          </div>
-
-                            <div class="">
-                              <span class="material-icons-outlined">
-                              expand_more
-                              </span>
-
-                            </div>
-                          </div>
-
-                    </div>
-
-                    <div class="dashboardCardAnalytics">
-                      <div class="analyticsLineorg">
-                        <span class="analyticsSpanHead">TRANSACTION ID :- <span class="analyticsSpanHeadValue" >65626712</span></span>
-
-                      </div>
-                      <div class="analyticsLineorg">
-                        <span class="analyticsSpanHead">TRANSACTION TYPE :- <span class="analyticsSpanHeadValue" >UPI</span></span>
-
-                      </div>
-
-                      <div class="analyticsLineorg">
-                        <span class="analyticsSpanHead">AMOUNT CREDITED :- <span class="analyticsSpanHeadValue" > <span style="margin-right:3px;">₹</span>42 </span></span>
-
-                      </div>
-
-                      <div class="analyticsLineorg">
-                        <span class="analyticsSpanHead">AMOUNT DEBITED :- <span class="analyticsSpanHeadValue" > <span style="margin-right:3px;">₹</span>12 </span></span>
-
-                      </div>
-
-                      <div class="analyticsLineorg">
-                        <span class="analyticsSpanHead">	CREDITED/DEBITED ON:- <span class="analyticsSpanHeadValue" >29th March' 2022</span></span>
-
-                      </div>
-
-
-
-
-
-
-
-                    </div>
-
-                  </div>
+                <div class="OrderCardDetailFeilds">
+                  <h6>Time Duration</h6>
+                  <h6>1 Hour 30 Minutes</h6>
                 </div>
-
-                <div class="col-lg-4" style="display: flex; justify-content: center; padding:2%">
-                  <div id="CardNotification"  class="YourOrderCardBox">
-
-                    <div onclick="fullcard(CardNotification)" class="">
-                      <div class="YourOrderContent">
-                          <div  class="YourOrderWord">
-                              <div class="ordericon">
-                                <span class="material-icons-outlined">
-                                campaign
-                                </span>
-                              </div>
-                              <h6>Recent Notification </h6>
-                          </div>
-
-                            <div class="">
-                              <span class="material-icons-outlined">
-                              expand_more
-                              </span>
-
-                            </div>
-                          </div>
-
-                    </div>
-
-                    <div class="dashboardCardAnalytics">
-                      <div class="analyticsLine">
-                        <div class="analyticsText">
-                          <h6>Total No. of Events</h6>
-                          <p>Till Now</p>
-                        </div>
-
-                        <div class="analyticsNum">
-                          <h6>3456</h6>
-                        </div>
-
-                      </div>
-                      <div class="analyticsLine">
-                        <div class="analyticsText">
-                          <h6>No. of Events</h6>
-                          <p>This Day</p>
-                        </div>
-
-                        <div class="analyticsNum">
-                          <h6>2</h6>
-                        </div>
-
-                      </div>
-
-                      <div class="analyticsLine">
-                        <div class="analyticsText">
-                          <h6>No. of Events</h6>
-                          <p>This Week</p>
-                        </div>
-
-                        <div class="analyticsNum">
-                          <h6>14</h6>
-                        </div>
-
-                      </div>
-
-                      <div class="analyticsLine">
-                        <div class="analyticsText">
-                          <h6>No. of Events</h6>
-                          <p>This Month</p>
-                        </div>
-
-                        <div class="analyticsNum">
-                          <h6>70</h6>
-                        </div>
-
-                      </div>
-
-                      <div class="analyticsLine">
-                        <div class="analyticsText">
-                          <h6>No. of Events</h6>
-                          <p>Last Six Months</p>
-                        </div>
-
-                        <div class="analyticsNum">
-                          <h6>245</h6>
-                        </div>
-
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-                <div  class="col-lg-4" style="display: flex; justify-content: center; padding:2%">
-                  <div id="CardAnalytics" class="dashboardCardBox">
-
-                        <div class="profilePicSet" >
-                            <img style="" src="img/analytics.png" alt="">
-                            <!-- <h6>Create Event</h6> -->
-                        </div>
-
-                      <div class="bigNum">
-
-                        <h4><span>Analytics</span> <span class="material-icons-outlined">
-                        insights
-                      </span> </h4>
-                        <h6>Now easily check your activity</h6>
-
-                      </div>
-
-
-
-                    <div class="dashboardCardAnalytics">
-                      <div class="analyticsLine">
-                        <div class="analyticsText">
-                          <h6>Total No. of Events</h6>
-                          <p>Till Now</p>
-                        </div>
-
-                        <div class="analyticsNum">
-                          <h6>3456</h6>
-                        </div>
-
-                      </div>
-                      <div class="analyticsLine">
-                        <div class="analyticsText">
-                          <h6>No. of Events</h6>
-                          <p>This Day</p>
-                        </div>
-
-                        <div class="analyticsNum">
-                          <h6>2</h6>
-                        </div>
-
-                      </div>
-
-                      <div class="analyticsLine">
-                        <div class="analyticsText">
-                          <h6>No. of Events</h6>
-                          <p>This Week</p>
-                        </div>
-
-                        <div class="analyticsNum">
-                          <h6>14</h6>
-                        </div>
-
-                      </div>
-
-                      <div class="analyticsLine">
-                        <div class="analyticsText">
-                          <h6>No. of Events</h6>
-                          <p>This Month</p>
-                        </div>
-
-                        <div class="analyticsNum">
-                          <h6>70</h6>
-                        </div>
-
-                      </div>
-
-                      <div class="analyticsLine">
-                        <div class="analyticsText">
-                          <h6>No. of Events</h6>
-                          <p>Last Six Months</p>
-                        </div>
-
-                        <div class="analyticsNum">
-                          <h6>245</h6>
-                        </div>
-
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-
-
               </div>
 
+
+            </div>
 
           </div>
 
-          <div style="padding:4% 4%;" class="col-lg-2">
-            <!-- <h4 id="eventName" style="font-weight:1000; font-size:1.2rem;color:#348DCB;">Recent Updates
-            </h4> -->
-            <!-- <div class="notificationBox">
-              <div class="notificationBoxContent">
-                <img src="img/e1.png" alt="">
-                <span class="notificationBoxWord">NKBA created a event today.</span>
+          <div id="order2"  class="OrderPageCard" >
+            <div style="border-bottom: 2px dashed #ddd; padding-bottom:15px;"  class="" onclick="fullcard(order2)">
+              <div class="YourOrderContent">
+                  <div  class="OrderLine">
+                      <div class="ordericon">
+                        <span class="material-icons-outlined">
+                          battery_charging_full
+                          </span>
+                      </div>
+                      <div class="OrderLineBelow">
+                        <h6>New Gurugram-001</h6>
+                        <h6>Mapsko Royale Ville Sector 82 Mapsko Royale Ville Sector 82 </h6>
+                        <div class="OrderLineBelowEnd">
+                          <div class="OrderLineBelowEndContent">
+                            <span>Amount :<span style="margin-left:10px">₹</span>21000 <span></span></span>
+                          </div>
 
-              </div>
-              <div class="notificationBoxContent">
-                <img src="img/e2.png" alt="">
-                <span class="notificationBoxWord">Aastha Badminton Academy's Super Badminton Leauge finished</span>
+                          <div class="OrderLineBelowEndContent">
+                            <span>Unit :<span style="margin-left:10px">7146</span>units <span></span></span>
 
-              </div>
-              <div class="notificationBoxContent">
-                <img src="img/e3.png" alt="">
-                <span class="notificationBoxWord">PDCSE all India Leauge is postphoned for the comming next week of this month. </span>
+                          </div>
 
-              </div>
 
-            </div><br><br> -->
+                        </div>
+                      </div>
+                  </div>
 
-            <div class="analyticsBox">
+                    <div style="display:flex;" class="">
+                      <div class="statusdiv">
+                      <h6>Completed</h6>
+                      </div>
+                      <div class="">
+                        <span class="material-icons-outlined">
+                        expand_more
+                        </span>
+                      </div>
 
-              <ul>
-
-                <div class="ordericon">
-                  <span class="material-icons-outlined">
-                    event_note
-                    </span>
+                    </div>
+                  </div>
+            </div>
+            <div class="dashboardCardAnalytics">
+              <div class="OrderCardDetail">
+                <div class="OrderCardDetailFeilds">
+                  <h6>Order Id</h6>
+                  <h6>234567</h6>
                 </div>
-
-                <div style="margin:0;" class="">
-                  <h6 style="font-weight:bold; margin:0;">Total Orders </h6>
-                  <h6 style="font-size:0.7rem;">Last 30 days</h6>
+                <div class="OrderCardDetailFeilds">
+                  <h6>Order Date</h6>
+                  <h6>29th June, 2022</h6>
                 </div>
+                <div class="OrderCardDetailFeilds">
+                  <h6>Time Duration</h6>
+                  <h6>1 Hour 30 Minutes</h6>
+                </div>
+              </div>
 
-                <!-- <li><h6 style="color:green;">+34.6%</h6></li> -->
-                <li><h6>22</h6></li>
-
-              </ul>
 
             </div>
-            <br>
-
-            <div class="analyticsBox">
-
-              <ul>
-
-                <div class="ordericon">
-                  <span class="material-icons-outlined">
-                    wallet
-                    </span>
-                </div>
-
-                <div style="margin:0;" class="">
-                  <h6 style="font-weight:bold; margin:0;">Money Spent </h6>
-                  <h6 style="font-size:0.7rem;">Last 30 days</h6>
-                </div>
-
-                <!-- <li><h6 style="color:green;">+4.6%</h6></li> -->
-                <li style="display:flex;">
-                  <h6 style="margin-right:3px;">₹</h6>
-                  <h6>51</h6></li>
-
-              </ul>
-
-            </div>
-            <br>
-
-
-            <div class="analyticsBox">
-
-              <ul>
-
-                <div class="ordericon">
-                  <span class="material-icons-outlined">
-                    electrical_services
-                    </span>
-                </div>
-
-                <div style="margin:0;" class="">
-                  <h6 style="font-weight:bold; margin:0;">Total Service </h6>
-                  <h6 style="font-size:0.7rem;">Last 7 days</h6>
-                </div>
-
-                <!-- <li><h6 style="color:green;">+7.6%</h6></li> -->
-                <!-- <p>₹</p> -->
-                <li> <h6>3</h6></li>
-
-              </ul>
-
-            </div>
-            <br>
-
-            <div class="dots">
-              <span class="material-icons-outlined">
-              volunteer_activism
-              </span>
-              <h6>Refer & Invite</h6>
-            </div><br><br>
-
-
-            <br>
-
 
           </div>
 
+          <div id="order3"  class="OrderPageCard" >
+            <div style="border-bottom: 2px dashed #ddd; padding-bottom:15px;"  class="" onclick="fullcard(order3)">
+              <div class="YourOrderContent">
+                  <div  class="OrderLine">
+                      <div class="ordericon">
+                        <span class="material-icons-outlined">
+                          battery_charging_full
+                          </span>
+                      </div>
+                      <div class="OrderLineBelow">
+                        <h6>New Gurugram-001</h6>
+                        <h6>Mapsko Royale Ville Sector 82 Mapsko Royale Ville Sector 82 </h6>
+                        <div class="OrderLineBelowEnd">
+                          <div class="OrderLineBelowEndContent">
+                            <span>Amount :<span style="margin-left:10px">₹</span>21000 <span></span></span>
+                          </div>
+
+                          <div class="OrderLineBelowEndContent">
+                            <span>Unit :<span style="margin-left:10px">7146</span>units <span></span></span>
+
+                          </div>
+
+
+                        </div>
+                      </div>
+                  </div>
+
+                    <div style="display:flex;" class="">
+                      <div class="statusdiv">
+                      <h6>Completed</h6>
+                      </div>
+                      <div class="">
+                        <span class="material-icons-outlined">
+                        expand_more
+                        </span>
+                      </div>
+
+                    </div>
+                  </div>
+            </div>
+            <div class="dashboardCardAnalytics">
+              <div class="OrderCardDetail">
+                <div class="OrderCardDetailFeilds">
+                  <h6>Order Id</h6>
+                  <h6>234567</h6>
+                </div>
+                <div class="OrderCardDetailFeilds">
+                  <h6>Order Date</h6>
+                  <h6>29th June, 2022</h6>
+                </div>
+                <div class="OrderCardDetailFeilds">
+                  <h6>Time Duration</h6>
+                  <h6>1 Hour 30 Minutes</h6>
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+
+          <div id="order4"  class="OrderPageCard" >
+            <div style="border-bottom: 2px dashed #ddd; padding-bottom:15px;"  class="" onclick="fullcard(order4)">
+              <div class="YourOrderContent">
+                  <div  class="OrderLine">
+                      <div class="ordericon">
+                        <span class="material-icons-outlined">
+                          battery_charging_full
+                          </span>
+                      </div>
+                      <div class="OrderLineBelow">
+                        <h6>New Gurugram-001</h6>
+                        <h6>Mapsko Royale Ville Sector 82 Mapsko Royale Ville Sector 82 </h6>
+                        <div class="OrderLineBelowEnd">
+                          <div class="OrderLineBelowEndContent">
+                            <span>Amount :<span style="margin-left:10px">₹</span>21000 <span></span></span>
+                          </div>
+
+                          <div class="OrderLineBelowEndContent">
+                            <span>Unit :<span style="margin-left:10px">7146</span>units <span></span></span>
+
+                          </div>
+
+
+                        </div>
+                      </div>
+                  </div>
+
+                    <div style="display:flex;" class="">
+                      <div class="statusdiv">
+                      <h6>Completed</h6>
+                      </div>
+                      <div class="">
+                        <span class="material-icons-outlined">
+                        expand_more
+                        </span>
+                      </div>
+
+                    </div>
+                  </div>
+            </div>
+            <div class="dashboardCardAnalytics">
+              <div class="OrderCardDetail">
+                <div class="OrderCardDetailFeilds">
+                  <h6>Order Id</h6>
+                  <h6>234567</h6>
+                </div>
+                <div class="OrderCardDetailFeilds">
+                  <h6>Order Date</h6>
+                  <h6>29th June, 2022</h6>
+                </div>
+                <div class="OrderCardDetailFeilds">
+                  <h6>Time Duration</h6>
+                  <h6>1 Hour 30 Minutes</h6>
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+
+          <div id="order5"  class="OrderPageCard" >
+            <div style="border-bottom: 2px dashed #ddd; padding-bottom:15px;"  class="" onclick="fullcard(order5)">
+              <div class="YourOrderContent">
+                  <div  class="OrderLine">
+                      <div class="ordericon">
+                        <span class="material-icons-outlined">
+                          battery_charging_full
+                          </span>
+                      </div>
+                      <div class="OrderLineBelow">
+                        <h6>New Gurugram-001</h6>
+                        <h6>Mapsko Royale Ville Sector 82 Mapsko Royale Ville Sector 82 </h6>
+                        <div class="OrderLineBelowEnd">
+                          <div class="OrderLineBelowEndContent">
+                            <span>Amount :<span style="margin-left:10px">₹</span>21000 <span></span></span>
+                          </div>
+
+                          <div class="OrderLineBelowEndContent">
+                            <span>Unit :<span style="margin-left:10px">7146</span>units <span></span></span>
+
+                          </div>
+
+
+                        </div>
+                      </div>
+                  </div>
+
+                    <div style="display:flex;" class="">
+                      <div class="statusdiv">
+                      <h6>Completed</h6>
+                      </div>
+                      <div class="">
+                        <span class="material-icons-outlined">
+                        expand_more
+                        </span>
+                      </div>
+
+                    </div>
+                  </div>
+            </div>
+            <div class="dashboardCardAnalytics">
+              <div class="OrderCardDetail">
+                <div class="OrderCardDetailFeilds">
+                  <h6>Order Id</h6>
+                  <h6>234567</h6>
+                </div>
+                <div class="OrderCardDetailFeilds">
+                  <h6>Order Date</h6>
+                  <h6>29th June, 2022</h6>
+                </div>
+                <div class="OrderCardDetailFeilds">
+                  <h6>Time Duration</h6>
+                  <h6>1 Hour 30 Minutes</h6>
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+
+          <div id="order6"  class="OrderPageCard" >
+            <div style="border-bottom: 2px dashed #ddd; padding-bottom:15px;"  class="" onclick="fullcard(order6)">
+              <div class="YourOrderContent">
+                  <div  class="OrderLine">
+                      <div class="ordericon">
+                        <span class="material-icons-outlined">
+                          battery_charging_full
+                          </span>
+                      </div>
+                      <div class="OrderLineBelow">
+                        <h6>New Gurugram-001</h6>
+                        <h6>Mapsko Royale Ville Sector 82 Mapsko Royale Ville Sector 82 </h6>
+                        <div class="OrderLineBelowEnd">
+                          <div class="OrderLineBelowEndContent">
+                            <span>Amount :<span style="margin-left:10px">₹</span>21000 <span></span></span>
+                          </div>
+
+                          <div class="OrderLineBelowEndContent">
+                            <span>Unit :<span style="margin-left:10px">7146</span>units <span></span></span>
+
+                          </div>
+
+
+                        </div>
+                      </div>
+                  </div>
+
+                    <div style="display:flex;" class="">
+                      <div class="statusdiv">
+                      <h6>Completed</h6>
+                      </div>
+                      <div class="">
+                        <span class="material-icons-outlined">
+                        expand_more
+                        </span>
+                      </div>
+
+                    </div>
+                  </div>
+            </div>
+            <div class="dashboardCardAnalytics">
+              <div class="OrderCardDetail">
+                <div class="OrderCardDetailFeilds">
+                  <h6>Order Id</h6>
+                  <h6>234567</h6>
+                </div>
+                <div class="OrderCardDetailFeilds">
+                  <h6>Order Date</h6>
+                  <h6>29th June, 2022</h6>
+                </div>
+                <div class="OrderCardDetailFeilds">
+                  <h6>Time Duration</h6>
+                  <h6>1 Hour 30 Minutes</h6>
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+
+          <div id="order7"  class="OrderPageCard" >
+            <div style="border-bottom: 2px dashed #ddd; padding-bottom:15px;"  class="" onclick="fullcard(order7)">
+              <div class="YourOrderContent">
+                  <div  class="OrderLine">
+                      <div class="ordericon">
+                        <span class="material-icons-outlined">
+                          battery_charging_full
+                          </span>
+                      </div>
+                      <div class="OrderLineBelow">
+                        <h6>New Gurugram-001</h6>
+                        <h6>Mapsko Royale Ville Sector 82 Mapsko Royale Ville Sector 82 </h6>
+                        <div class="OrderLineBelowEnd">
+                          <div class="OrderLineBelowEndContent">
+                            <span>Amount :<span style="margin-left:10px">₹</span>21000 <span></span></span>
+                          </div>
+
+                          <div class="OrderLineBelowEndContent">
+                            <span>Unit :<span style="margin-left:10px">7146</span>units <span></span></span>
+
+                          </div>
+
+
+                        </div>
+                      </div>
+                  </div>
+
+                    <div style="display:flex;" class="">
+                      <div class="statusdiv">
+                      <h6>Completed</h6>
+                      </div>
+                      <div class="">
+                        <span class="material-icons-outlined">
+                        expand_more
+                        </span>
+                      </div>
+
+                    </div>
+                  </div>
+            </div>
+            <div class="dashboardCardAnalytics">
+              <div class="OrderCardDetail">
+                <div class="OrderCardDetailFeilds">
+                  <h6>Order Id</h6>
+                  <h6>234567</h6>
+                </div>
+                <div class="OrderCardDetailFeilds">
+                  <h6>Order Date</h6>
+                  <h6>29th June, 2022</h6>
+                </div>
+                <div class="OrderCardDetailFeilds">
+                  <h6>Time Duration</h6>
+                  <h6>1 Hour 30 Minutes</h6>
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+
+          
+
         </div>
+
+        <div class="col-lg-2">
+
+        </div>
+
+      </div>
 
 
 
