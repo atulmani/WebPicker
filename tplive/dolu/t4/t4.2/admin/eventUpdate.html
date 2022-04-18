@@ -543,8 +543,11 @@
           <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_zohptsiv.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
         </center>
       </div>
+      <!-- <div class="form-row" id="errorMessage" style="display:none;">
+        You do not have access to create Event. Please reach out to <a href="../contact/index">Admin or contact Us</a>
+      </div> -->
 
-      <div class="formbox">
+      <div class="formbox" id="fInput">
 
         <form>
           <div id="section1">
@@ -616,7 +619,7 @@
 
             <center>
               <button type="submit" class="btn " id="btnSave">Save</button>
-              <button type="submit" class="btn " id="btnNext">Next</button>
+              <button type="submit" class="btn " id="btnNext" >Next</button>
             </center>
           </div>
 
@@ -710,7 +713,7 @@
               <div class="form-group col-md-6">
                 <center>
                   <label for="inputPassword4">Miscellaneous Charge Mandatory</label>
-                  <input type="checkbox" class="form-control" id="MiscellaneousChargeMandatory?">
+                  <input type="checkbox" class="form-control" id="MiscellaneousChargeMandatory">
                 </center>
               </div>
 
@@ -888,8 +891,8 @@
 
               <div class="form-group col-md-6">
                 <center>
-                  <label for="inputPassword4">Publish Gallary</label>
-                  <input type="checkbox" class="form-control" id="PublishGallary">
+                  <label for="inputPassword4">Publish Gallery</label>
+                  <input type="checkbox" class="form-control" id="PublishGallery">
                 </center>
               </div>
             </div>
@@ -1303,10 +1306,11 @@
     <script type="text/javascript">
       $(function() {
         $('.datetimepicker11').datetimepicker({
-          format: 'DD-MM-YYYY',
+          format: 'MM-DD-YYYY',
           ignoreReadonly: true,
-          useCurrent: true,
-          maxDate: new Date()
+          useCurrent: true//,
+          // default:new Date();
+          // maxDate: new Date()
 
         });
       });
