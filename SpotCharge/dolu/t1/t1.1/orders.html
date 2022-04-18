@@ -377,7 +377,7 @@
 
         </div>
 
-        <div style="" class="col-lg-8 column8padding">
+        <div style="" class="col-lg-8 column8padding"><br>
           <div class="">
             <div class="filterDiv">
               <div  onclick="lineshow('incomplete')" class="FilterLine ">
@@ -395,6 +395,38 @@
             </div>
           <hr style="" class="hLine" id="hrLine"  />
         </div><br>
+
+        <div class="category-list-sub-menu" style="background: #f4f4f4;">
+
+          <div class="" id='divbusinessType'>
+            <div class="">
+              <select class="city-selector" id="dateRange" onchange="dateRangeChange();" style="background: rgba(255,255,255,0.6);border: 1px solid #aaa;" name="">
+                <option value="Today">Today</option>
+                <option value="Yesterday">Yesterday</option>
+                <option value="Last 7 days">Last 7 days</option>
+                <option value="Current month">Current month</option>
+                <option value="Last 6 months">Last 6 months</option>
+                <!-- <option value="Custom">Custom</option> -->
+              </select>
+
+              <span class="material-icons-outlined city-selector-icon">
+                filter_list
+              </span>
+            </div>
+            <small id="orderCount" style="position: relative;top: -12px;color: #aaa;font-size: 0.8rem; font-weight: bold;">3 Orders</small>
+            <small style="position: relative;top: -12px;color: #aaa;font-size: 0.8rem; font-weight: bold;"> - </small>
+            <small id="dateRangelbl" style="position: relative;top: -12px;color: #aaa;font-size: 0.8rem; font-weight: bold;"> Oct 18, till today</small>
+          </div>
+
+
+
+
+
+          </div>
+
+
+
+        </div>
 
             <div class="ordersOuter">
               <div class="ordersDiv">
