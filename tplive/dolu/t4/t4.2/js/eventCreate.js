@@ -175,9 +175,9 @@ async function GetProfileData() {
         console.log(checkPending);
         if (checkPending > 0) {
           document.getElementById("fInput").style.display = "none";
-          document.getElementById("errorMessage").style.display = "block";
-          document.getElementById("errorMessage").innerHTML = "One Organization request is still Pending Approval from Admin. Please reach out to <a href=../contact/index>Admin or contact Us</a>";
-
+          document.getElementById("saveMessage").style.display = "block";
+          document.getElementById("confirmationMessage").innerHTML = "One Organization request is still Pending Approval from Admin. Please reach out to <a href=../contact/index>Admin or contact Us</a>";
+          document.getElementById("btnSave").style.display = "none";
         } else {
           for (index = 0; index < approvalStatus.options.length; index++) {
             if (approvalStatus.options[index].value === "Pending Approval") {
@@ -381,7 +381,10 @@ btnSave.addEventListener('click', e => {
 
     setTimeout(function() {
       confirmMessage.style.display = 'none';
+
     }, 5000);
+
+    window.location.href = "eventList.html";
   } else {
 
     console.log("details  filled completly");
@@ -414,6 +417,8 @@ btnSave.addEventListener('click', e => {
           setTimeout(function() {
             confirmMessage.style.display = 'none';
           }, 5000);
+          window.location.href = "eventList.html";
+
         }
       });
     } else {
@@ -430,6 +435,8 @@ btnSave.addEventListener('click', e => {
           setTimeout(function() {
             confirmMessage.style.display = 'none';
           }, 5000);
+          window.location.href = "eventList.html";
+
         }
       });
 
