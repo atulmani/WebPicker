@@ -38,25 +38,25 @@ async function GetProfileData() {
     var approvalStatus = document.getElementById("approvalStatus");
     if (result.data.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
       console.log("in admin");
-      var asynccall = await populateOrganizationList("All",'Admin');
-        // if (eventID != "" && eventID != undefined && eventID != null) {
-        //
-        //   document.getElementById("hfEventID").value = eventID;
-        //   document.getElementById("btnSave").innerHTML = "Update";
-        //   GetEventDetails();
-        // } else {
-        //   for (index = 0; index < approvalStatus.options.length; index++) {
-        //     if (approvalStatus.options[index].value === "Approved") {
-        //       approvalStatus.options[index].selected = true;
-        //       break;
-        //     }
-        //   }
-        // }
+      var asynccall = await populateOrganizationList("All", 'Admin');
+      // if (eventID != "" && eventID != undefined && eventID != null) {
+      //
+      //   document.getElementById("hfEventID").value = eventID;
+      //   document.getElementById("btnSave").innerHTML = "Update";
+      //   GetEventDetails();
+      // } else {
+      //   for (index = 0; index < approvalStatus.options.length; index++) {
+      //     if (approvalStatus.options[index].value === "Approved") {
+      //       approvalStatus.options[index].selected = true;
+      //       break;
+      //     }
+      //   }
+      // }
 
     } else if (result.data.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
 
       console.log("Organizer");
-      var asynccall = await populateOrganizationList(loggedinUser.uid,'Organizer');
+      var asynccall = await populateOrganizationList(loggedinUser.uid, 'Organizer');
       // var organizationid = document.getElementById("ddlOrganization");
       // approvalStatus.disabled = true;
       //
@@ -92,8 +92,7 @@ async function GetProfileData() {
   });
 
 }
-async function CheckForPendingEvent()
-{
+async function CheckForPendingEvent() {
   var para = {};
   // console.log(userid);
   para = {
@@ -168,8 +167,7 @@ async function populateOrganizationList(userid, role) {
         results.data[index].PartnerPhone);
       option.innerHTML = results.data[index].OrganizationName + " : " + results.data[index].PartnerEmailID;
       organizer.appendChild(option);
-      if(role === 'Admin')
-      {
+      if (role === 'Admin') {
         if (eventID != "" && eventID != undefined && eventID != null) {
 
           document.getElementById("hfEventID").value = eventID;
@@ -183,9 +181,7 @@ async function populateOrganizationList(userid, role) {
             }
           }
         }
-      }
-      else if(role === 'Organizer')
-      {
+      } else if (role === 'Organizer') {
         var organizationid = document.getElementById("ddlOrganization");
         approvalStatus.disabled = true;
 
@@ -205,12 +201,12 @@ async function populateOrganizationList(userid, role) {
           GetEventDetails();
         } else {
 
-            for (index = 0; index < approvalStatus.options.length; index++) {
-              if (approvalStatus.options[index].value === "Pending Approval") {
-                approvalStatus.options[index].selected = true;
-                break;
-              }
+          for (index = 0; index < approvalStatus.options.length; index++) {
+            if (approvalStatus.options[index].value === "Pending Approval") {
+              approvalStatus.options[index].selected = true;
+              break;
             }
+          }
 
         }
       }
@@ -285,7 +281,7 @@ function GetEventDetails() {
     var organizationid = document.getElementById("ddlOrganization");
     document.getElementById("hfOrganizerID").value = result.data.OrganizerID;
     console.log(result.data.OrganizerID);
-     console.log(organizationid.options.length);
+    console.log(organizationid.options.length);
     for (index = 0; index < organizationid.options.length; index++) {
       // console.log(organizationid.options[index].value);
       console.log(organizationid.options[index].value);
@@ -316,42 +312,47 @@ function GetEventDetails() {
       day: 'numeric'
     };
 
-  //  dob = dob.toLocaleDateString("en-US", options);
+    //  dob = dob.toLocaleDateString("en-US", options);
 
     document.getElementById("eventOwnerName").value = result.data.EventOwnerName;
     document.getElementById("eventOwnerEmail").value = result.data.EventOwnerEmail;
-    if(result.data.OrganizerPhone != undefined)
+    if (result.data.OrganizerPhone != undefined)
       document.getElementById("eventOwnerPhone").value = result.data.EventOwnerPhone;
     document.getElementById("eventVenue").value = result.data.EventVenue;
     document.getElementById("locationMap").value = result.data.LocationMap;
     document.getElementById("venueContact").value = result.data.VenueContact;
 
     //section 2
-    document.getElementById("RegistrationOpenDate").value = new Date(result.data.RegistrationStartDate._seconds * 1000).toLocaleDateString("en-US", options);
-    document.getElementById("RegistrationClosedDate").value = new Date(result.data.RegistrationEndDate._seconds * 1000).toLocaleDateString("en-US", options);
-    document.getElementById("EventStartDate").value = new Date(result.data.EventStartDate._seconds * 1000).toLocaleDateString("en-US", options);
-    document.getElementById("EventEndDate").value = new Date(result.data.EventEndDate._seconds * 1000).toLocaleDateString("en-US", options);
-    document.getElementById("WithdrawalLastDate").value = new Date(result.data.WithdrawalEndDate._seconds * 1000).toLocaleDateString("en-US", options);
+    if (result.data.RegistrationStartDate != "" && result.data.RegistrationStartDate != undefined && result.data.RegistrationStartDate != null)
+      document.getElementById("RegistrationOpenDate").value = new Date(result.data.RegistrationStartDate._seconds * 1000).toLocaleDateString("en-US", options);
+    if (result.data.RegistrationEndDate != "" && result.data.RegistrationEndDate != undefined && result.data.RegistrationEndDate != null)
+      document.getElementById("RegistrationClosedDate").value = new Date(result.data.RegistrationEndDate._seconds * 1000).toLocaleDateString("en-US", options);
+    if (result.data.EventStartDate != "" && result.data.EventStartDate != undefined && result.data.EventStartDate != null)
+
+      document.getElementById("EventStartDate").value = new Date(result.data.EventStartDate._seconds * 1000).toLocaleDateString("en-US", options);
+    if (result.data.EventEndDate != "" && result.data.EventEndDate != undefined && result.data.EventEndDate != null)
+
+      document.getElementById("EventEndDate").value = new Date(result.data.EventEndDate._seconds * 1000).toLocaleDateString("en-US", options);
+    if (result.data.WithdrawalEndDate != "" && result.data.WithdrawalEndDate != undefined && result.data.WithdrawalEndDate != null)
+
+      document.getElementById("WithdrawalLastDate").value = new Date(result.data.WithdrawalEndDate._seconds * 1000).toLocaleDateString("en-US", options);
     document.getElementById("maxEntryForParticipant").value = result.data.MaxEntryForParticipant;
 
     //section 3
     document.getElementById("ConvenienceCharge").value = result.data.ConvenienceCharge;
-    if(result.data.IsMiscellaneousChargeMandatory === "YES")
-    {
-      document.getElementById("MiscellaneousChargeMandatory").checked =true;
+    if (result.data.IsMiscellaneousChargeMandatory === "YES") {
+      document.getElementById("MiscellaneousChargeMandatory").checked = true;
       // document.getElementById("MiscellaneousChargeMandatory").value = result.data.IsMiscellaneousChargeMandatory;
     }
     document.getElementById("MiscellaneousChargeRemark").value = result.data.MiscellaneousChargeRemark;
     document.getElementById("MiscellaneousChargeFee").value = result.data.MiscellaneousChargeFees;
     document.getElementById("DiscountRemark").value = result.data.DiscountRemarks;
     document.getElementById("DiscountValue").value = result.data.DiscountValue;
-    if(result.data.OnlinePaymentModeFlag === "YES")
-    {
+    if (result.data.OnlinePaymentModeFlag === "YES") {
       document.getElementById("OnlinePaymentGateway").checked = true;
       // document.getElementById("OnlinePaymentGateway").value = result.data.OnlinePaymentModeFlag;
     }
-    if(result.data.RegistrationCompletePostPaymentFlag === "YES")
-    {
+    if (result.data.RegistrationCompletePostPaymentFlag === "YES") {
       document.getElementById("RegistrationCompletePostPayment").checked = true;
       // document.getElementById("RegistrationCompletePostPayment").value = result.data.RegistrationCompletePostPayment;
     }
@@ -424,15 +425,15 @@ btnSave.addEventListener('click', e => {
   //save detailes in DB
   var para1 = {};
   para1 = {
-    EventID : eventID,
+    EventID: eventID,
     EventName: eventName,
     EventType: '',
-    EventStatus:'Open',
+    EventStatus: 'Open',
     OrganizationID: organizationID,
     OrganizerID: organizerID,
     SportName: sportName,
-    City:'',
-    State:'',
+    City: '',
+    State: '',
     EventOwnerName: eventOwnerName,
     EventOwnerEmail: eventOwnerEmail,
     EventOwnerPhone: eventOwnerPhone,
@@ -442,19 +443,19 @@ btnSave.addEventListener('click', e => {
     ApprovalStatus: approvalStatus,
   };
   console.log(para1);
-      const ret1 = firebase.functions().httpsCallable("updateEventBasicDetails");
-    ret1(para1).then((result) => {
-      //var record1 = result.data;
-      console.log("Event ID: " + result.data.retCode);
-      if (result.data.retCode === "0") {
-        var confirmMessage = document.getElementById('saveMessage');
-        confirmMessage.style.display = "block";
+  const ret1 = firebase.functions().httpsCallable("updateEventBasicDetails");
+  ret1(para1).then((result) => {
+    //var record1 = result.data;
+    console.log("Event ID: " + result.data.retCode);
+    if (result.data.retCode === "0") {
+      var confirmMessage = document.getElementById('saveMessage');
+      confirmMessage.style.display = "block";
 
-        setTimeout(function() {
-          confirmMessage.style.display = 'none';
-        }, 5000);
-      }
-    });
+      setTimeout(function() {
+        confirmMessage.style.display = 'none';
+      }, 5000);
+    }
+  });
 
 });
 
@@ -463,8 +464,8 @@ btnNext.addEventListener('click', e => {
   e.preventDefault();
   // alert("next");
   console.log("next");
-  document.getElementById("section1").style.display="none";
-  document.getElementById("section2").style.display="block";
+  document.getElementById("section1").style.display = "none";
+  document.getElementById("section2").style.display = "block";
 });
 //
 // function btnNextClick()
@@ -475,7 +476,7 @@ btnNext.addEventListener('click', e => {
 // }
 var btnSave2 = document.getElementById('btnSave2');
 btnSave2.addEventListener('click', e => {
-   e.preventDefault();
+  e.preventDefault();
   //save detailes in DB
   var EventID = document.getElementById("hfEventID").value;
 
@@ -486,47 +487,47 @@ btnSave2.addEventListener('click', e => {
   var EventEndDate = new Date(document.getElementById("EventEndDate").value);
   var WithdrawalEndDate = new Date(document.getElementById("WithdrawalLastDate").value);
   var maxEntryForParticipant = document.getElementById("maxEntryForParticipant").value;
-  if(maxEntryForParticipant === "" || maxEntryForParticipant === null || maxEntryForParticipant === undefined || maxEntryForParticipant === 0)
-    maxEntryForParticipant=-1;
+  if (maxEntryForParticipant === "" || maxEntryForParticipant === null || maxEntryForParticipant === undefined || maxEntryForParticipant === 0)
+    maxEntryForParticipant = -1;
   //save detailes in DB
   var para1 = {};
   para1 = {
-    EventID : eventID,
+    EventID: eventID,
     RegistrationStartDate: RegistrationStartDate,
     RegistrationEndDate: RegistrationEndDate,
-    EventStartDate:EventStartDate,
+    EventStartDate: EventStartDate,
     EventEndDate: EventEndDate,
     WithdrawalEndDate: WithdrawalEndDate,
     maxEntryForParticipant: maxEntryForParticipant,
   };
   console.log(para1);
-      const ret1 = firebase.functions().httpsCallable("updateEventDetails_Dates");
-    ret1(para1).then((result) => {
-      //var record1 = result.data;
-      console.log("Event ID: " + result.data.retCode);
-      if (result.data.retCode === "0") {
-        var confirmMessage = document.getElementById('saveMessage2');
-        confirmMessage.style.display = "block";
+  const ret1 = firebase.functions().httpsCallable("updateEventDetails_Dates");
+  ret1(para1).then((result) => {
+    //var record1 = result.data;
+    console.log("Event ID: " + result.data.retCode);
+    if (result.data.retCode === "0") {
+      var confirmMessage = document.getElementById('saveMessage2');
+      confirmMessage.style.display = "block";
 
-        setTimeout(function() {
-          confirmMessage.style.display = 'none';
-        }, 5000);
-      }
-    });
+      setTimeout(function() {
+        confirmMessage.style.display = 'none';
+      }, 5000);
+    }
+  });
 });
 
 var btnNext2 = document.getElementById('btnNext2');
 btnNext2.addEventListener('click', e => {
-   e.preventDefault();
-  document.getElementById("section2").style.display="none";
-  document.getElementById("section3").style.display="block";
+  e.preventDefault();
+  document.getElementById("section2").style.display = "none";
+  document.getElementById("section3").style.display = "block";
 });
 
 var btnPrevious2 = document.getElementById('btnPrevious2');
 btnPrevious2.addEventListener('click', e => {
-   e.preventDefault();
-  document.getElementById("section2").style.display="none";
-  document.getElementById("section1").style.display="block";
+  e.preventDefault();
+  document.getElementById("section2").style.display = "none";
+  document.getElementById("section1").style.display = "block";
 });
 
 var btnSave3 = document.getElementById('btnSave3');
@@ -537,157 +538,154 @@ btnSave3.addEventListener('click', e => {
   var EventID = document.getElementById("hfEventID").value;
   var ConvenienceCharge = document.getElementById("ConvenienceCharge").value;
   var IsMiscellaneousChargeMandatory = "NO";
-  if(document.getElementById("MiscellaneousChargeMandatory").checked === true)
-  {
-    IsMiscellaneousChargeMandatory="YES";
+  if (document.getElementById("MiscellaneousChargeMandatory").checked === true) {
+    IsMiscellaneousChargeMandatory = "YES";
   }
   var MiscellaneousChargeRemark = document.getElementById("MiscellaneousChargeRemark").value;
   var MiscellaneousChargeFees = document.getElementById("MiscellaneousChargeFee").value;
   var DiscountRemarks = document.getElementById("DiscountRemark").value;
   var DiscountValue = document.getElementById("DiscountValue").value;
   var OnlinePaymentModeFlag = "NO";
-  if(document.getElementById("OnlinePaymentGateway").checked === true)
-  {
-    OnlinePaymentModeFlag="YES";
+  if (document.getElementById("OnlinePaymentGateway").checked === true) {
+    OnlinePaymentModeFlag = "YES";
   }
   var RegistrationCompletePostPayment = "NO";
-  if(document.getElementById("RegistrationCompletePostPayment").checked === true)
-  {
-    RegistrationCompletePostPayment="YES";
+  if (document.getElementById("RegistrationCompletePostPayment").checked === true) {
+    RegistrationCompletePostPayment = "YES";
   }
   //save detailes in DB
   var para1 = {};
   para1 = {
-    EventID : eventID,
+    EventID: eventID,
     ConvenienceCharge: ConvenienceCharge,
     IsMiscellaneousChargeMandatory: IsMiscellaneousChargeMandatory,
     MiscellaneousChargeRemark: MiscellaneousChargeRemark,
-    MiscellaneousChargeFees:MiscellaneousChargeFees,
-    DiscountRemarks:DiscountRemarks,
-    DiscountValue:DiscountValue,
-    OnlinePaymentModeFlag:OnlinePaymentModeFlag,
-    RegistrationCompletePostPayment:RegistrationCompletePostPayment,
+    MiscellaneousChargeFees: MiscellaneousChargeFees,
+    DiscountRemarks: DiscountRemarks,
+    DiscountValue: DiscountValue,
+    OnlinePaymentModeFlag: OnlinePaymentModeFlag,
+    RegistrationCompletePostPayment: RegistrationCompletePostPayment,
   };
   console.log(para1);
-      const ret1 = firebase.functions().httpsCallable("updateEventDetails_PaymentStatus");
-    ret1(para1).then((result) => {
-      //var record1 = result.data;
-      console.log("Event ID: " + result.data.retCode);
-      if (result.data.retCode === "0") {
-        var confirmMessage = document.getElementById('saveMessage3');
-        confirmMessage.style.display = "block";
+  const ret1 = firebase.functions().httpsCallable("updateEventDetails_PaymentStatus");
+  ret1(para1).then((result) => {
+    //var record1 = result.data;
+    console.log("Event ID: " + result.data.retCode);
+    if (result.data.retCode === "0") {
+      var confirmMessage = document.getElementById('saveMessage3');
+      confirmMessage.style.display = "block";
 
-        setTimeout(function() {
-          confirmMessage.style.display = 'none';
-        }, 5000);
-      }
-    });
+      setTimeout(function() {
+        confirmMessage.style.display = 'none';
+      }, 5000);
+    }
+  });
 
 });
 
 var btnNext3 = document.getElementById('btnNext3');
 btnNext3.addEventListener('click', e => {
-   e.preventDefault();
-  document.getElementById("section3").style.display="none";
-  document.getElementById("section4").style.display="block";
+  e.preventDefault();
+  document.getElementById("section3").style.display = "none";
+  document.getElementById("section4").style.display = "block";
 });
 
 var btnPrevious3 = document.getElementById('btnPrevious3');
 btnPrevious3.addEventListener('click', e => {
-   e.preventDefault();
-  document.getElementById("section3").style.display="none";
-  document.getElementById("section2").style.display="block";
+  e.preventDefault();
+  document.getElementById("section3").style.display = "none";
+  document.getElementById("section2").style.display = "block";
 });
 
 var btnSave4 = document.getElementById('btnSave4');
 btnSave4.addEventListener('click', e => {
-   e.preventDefault();
+  e.preventDefault();
   //save detailes in DB
   var EventID = document.getElementById("hfEventID").value;
   var NoticeBoard = document.getElementById("noticeBoard").value;
   //save detailes in DB
   var para1 = {};
   para1 = {
-    EventID : eventID,
+    EventID: eventID,
     NoticeBoard: NoticeBoard,
   };
   console.log(para1);
-      const ret1 = firebase.functions().httpsCallable("updateEventDetails_NoticeBoard");
-    ret1(para1).then((result) => {
-      //var record1 = result.data;
-      console.log("Event ID: " + result.data.retCode);
-      if (result.data.retCode === "0") {
-        var confirmMessage = document.getElementById('saveMessage4');
-        confirmMessage.style.display = "block";
+  const ret1 = firebase.functions().httpsCallable("updateEventDetails_NoticeBoard");
+  ret1(para1).then((result) => {
+    //var record1 = result.data;
+    console.log("Event ID: " + result.data.retCode);
+    if (result.data.retCode === "0") {
+      var confirmMessage = document.getElementById('saveMessage4');
+      confirmMessage.style.display = "block";
 
-        setTimeout(function() {
-          confirmMessage.style.display = 'none';
-        }, 5000);
-      }
-    });
+      setTimeout(function() {
+        confirmMessage.style.display = 'none';
+      }, 5000);
+    }
+  });
 
 });
 
 var btnNext4 = document.getElementById('btnNext4');
 btnNext4.addEventListener('click', e => {
-   e.preventDefault();
-  document.getElementById("section4").style.display="none";
-  document.getElementById("section5").style.display="block";
+  e.preventDefault();
+  document.getElementById("section4").style.display = "none";
+  document.getElementById("section5").style.display = "block";
 });
 
 var btnPrevious4 = document.getElementById('btnPrevious4');
 btnPrevious4.addEventListener('click', e => {
-   e.preventDefault();
-  document.getElementById("section4").style.display="none";
-  document.getElementById("section3").style.display="block";
+  e.preventDefault();
+  document.getElementById("section4").style.display = "none";
+  document.getElementById("section3").style.display = "block";
 });
 
 var btnSave5 = document.getElementById('btnSave5');
 btnSave5.addEventListener('click', e => {
-   e.preventDefault();
+  e.preventDefault();
   //save detailes in DB
   var EventID = document.getElementById("hfEventID").value;
   var Announcement = document.getElementById("Announcement").value;
   //save detailes in DB
   var para1 = {};
   para1 = {
-    EventID : eventID,
+    EventID: eventID,
     Announcement: Announcement,
   };
   console.log(para1);
-      const ret1 = firebase.functions().httpsCallable("updateEventDetails_Announcement");
-    ret1(para1).then((result) => {
-      //var record1 = result.data;
-      console.log("Event ID: " + result.data.retCode);
-      if (result.data.retCode === "0") {
-        var confirmMessage = document.getElementById('saveMessage5');
-        confirmMessage.style.display = "block";
+  const ret1 = firebase.functions().httpsCallable("updateEventDetails_Announcement");
+  ret1(para1).then((result) => {
+    //var record1 = result.data;
+    console.log("Event ID: " + result.data.retCode);
+    if (result.data.retCode === "0") {
+      var confirmMessage = document.getElementById('saveMessage5');
+      confirmMessage.style.display = "block";
 
-        setTimeout(function() {
-          confirmMessage.style.display = 'none';
-        }, 5000);
-      }
-    });
+      setTimeout(function() {
+        confirmMessage.style.display = 'none';
+      }, 5000);
+    }
+  });
 
 });
 
 var btnNext5 = document.getElementById('btnNext5');
 btnNext5.addEventListener('click', e => {
-   e.preventDefault();
-  document.getElementById("section5").style.display="none";
-  document.getElementById("section6").style.display="block";
+  e.preventDefault();
+  document.getElementById("section5").style.display = "none";
+  document.getElementById("section6").style.display = "block";
 });
 
 var btnPrevious5 = document.getElementById('btnPrevious5');
 btnPrevious5.addEventListener('click', e => {
-   e.preventDefault();
-  document.getElementById("section5").style.display="none";
-  document.getElementById("section4").style.display="block";
+  e.preventDefault();
+  document.getElementById("section5").style.display = "none";
+  document.getElementById("section4").style.display = "block";
 });
 
 var btnSave6 = document.getElementById('btnSave6');
 btnSave6.addEventListener('click', e => {
-   e.preventDefault();
+  e.preventDefault();
   //save detailes in DB
 
   var EventID = document.getElementById("hfEventID").value;
@@ -695,38 +693,38 @@ btnSave6.addEventListener('click', e => {
   //save detailes in DB
   var para1 = {};
   para1 = {
-    EventID : eventID,
+    EventID: eventID,
     RulesAndRegulations: RulesAndRegulation,
   };
   console.log(para1);
-      const ret1 = firebase.functions().httpsCallable("updateEventDetails_RulesAndRegulations");
-    ret1(para1).then((result) => {
-      //var record1 = result.data;
-      console.log("Event ID: " + result.data.retCode);
-      if (result.data.retCode === "0") {
-        var confirmMessage = document.getElementById('saveMessage5');
-        confirmMessage.style.display = "block";
+  const ret1 = firebase.functions().httpsCallable("updateEventDetails_RulesAndRegulations");
+  ret1(para1).then((result) => {
+    //var record1 = result.data;
+    console.log("Event ID: " + result.data.retCode);
+    if (result.data.retCode === "0") {
+      var confirmMessage = document.getElementById('saveMessage5');
+      confirmMessage.style.display = "block";
 
-        setTimeout(function() {
-          confirmMessage.style.display = 'none';
-        }, 5000);
-      }
-    });
+      setTimeout(function() {
+        confirmMessage.style.display = 'none';
+      }, 5000);
+    }
+  });
 
 });
 
 var btnNext6 = document.getElementById('btnNext6');
 btnNext6.addEventListener('click', e => {
-   e.preventDefault();
-  document.getElementById("section6").style.display="none";
-  document.getElementById("section7").style.display="block";
+  e.preventDefault();
+  document.getElementById("section6").style.display = "none";
+  document.getElementById("section7").style.display = "block";
 });
 
 var btnPrevious6 = document.getElementById('btnPrevious6');
 btnPrevious6.addEventListener('click', e => {
-   e.preventDefault();
-  document.getElementById("section6").style.display="none";
-  document.getElementById("section5").style.display="block";
+  e.preventDefault();
+  document.getElementById("section6").style.display = "none";
+  document.getElementById("section5").style.display = "block";
 });
 
 //
@@ -741,36 +739,36 @@ ClosedEvent.addEventListener('click', e => {
 
   var EventID = document.getElementById("hfEventID").value;
   var ClosedEvent = 'NO';
-  if(document.getElementById("ClosedEvent").checked ===true)
+  if (document.getElementById("ClosedEvent").checked === true)
     ClosedEvent = 'YES'
   //save detailes in DB
   var para1 = {};
   para1 = {
-    EventID : EventID,
+    EventID: EventID,
     CloseEventFlag: ClosedEvent,
   };
   console.log(para1);
-      const ret1 = firebase.functions().httpsCallable("updateEventFlag_CloseEvent");
-    ret1(para1).then((result) => {
-      //var record1 = result.data;
-      console.log("Event ID: " + result.data.retCode);
-      if (result.data.retCode === "0") {
-        var confirmMessage = document.getElementById('saveMessage7');
-        document.getElementById("confirmationMessage7").value = "Flag updated for <b> Closed Event </b>";
-        confirmMessage.style.display = "block";
+  const ret1 = firebase.functions().httpsCallable("updateEventFlag_CloseEvent");
+  ret1(para1).then((result) => {
+    //var record1 = result.data;
+    console.log("Event ID: " + result.data.retCode);
+    if (result.data.retCode === "0") {
+      var confirmMessage = document.getElementById('saveMessage7');
+      document.getElementById("confirmationMessage7").value = "Flag updated for <b> Closed Event </b>";
+      confirmMessage.style.display = "block";
 
-        setTimeout(function() {
-          confirmMessage.style.display = 'none';
-        }, 5000);
-      }
-    });
+      setTimeout(function() {
+        confirmMessage.style.display = 'none';
+      }, 5000);
+    }
+  });
 
 });
 var btnPrevious7 = document.getElementById('btnPrevious7');
 btnPrevious7.addEventListener('click', e => {
   e.preventDefault();
-  document.getElementById("section7").style.display="none";
-  document.getElementById("section6").style.display="block";
+  document.getElementById("section7").style.display = "none";
+  document.getElementById("section6").style.display = "block";
 });
 
 var registrationStatusOn = document.getElementById('RegistrationStatusOn');
@@ -779,29 +777,29 @@ registrationStatusOn.addEventListener('click', e => {
 
   var EventID = document.getElementById("hfEventID").value;
   var RegistrationStatusOn = 'NO';
-  if(document.getElementById("RegistrationStatusOn").checked ===true)
+  if (document.getElementById("RegistrationStatusOn").checked === true)
     RegistrationStatusOn = 'YES'
   //save detailes in DB
   var para1 = {};
   para1 = {
-    EventID : eventID,
+    EventID: eventID,
     RegistrationOpenFlag: RegistrationStatusOn,
   };
   console.log(para1);
-      const ret1 = firebase.functions().httpsCallable("updateEventFlag_RegistrationOn");
-    ret1(para1).then((result) => {
-      //var record1 = result.data;
-      console.log("Event ID: " + result.data.retCode);
-      if (result.data.retCode === "0") {
-        var confirmMessage = document.getElementById('saveMessage7');
-        document.getElementById("confirmationMessage7").value = "Flag updated for <b> Registration Status </b>";
-        confirmMessage.style.display = "block";
+  const ret1 = firebase.functions().httpsCallable("updateEventFlag_RegistrationOn");
+  ret1(para1).then((result) => {
+    //var record1 = result.data;
+    console.log("Event ID: " + result.data.retCode);
+    if (result.data.retCode === "0") {
+      var confirmMessage = document.getElementById('saveMessage7');
+      document.getElementById("confirmationMessage7").value = "Flag updated for <b> Registration Status </b>";
+      confirmMessage.style.display = "block";
 
-        setTimeout(function() {
-          confirmMessage.style.display = 'none';
-        }, 5000);
-      }
-    });
+      setTimeout(function() {
+        confirmMessage.style.display = 'none';
+      }, 5000);
+    }
+  });
 
 });
 
@@ -812,29 +810,29 @@ registrationCompletePostPayment.addEventListener('click', e => {
 
   var EventID = document.getElementById("hfEventID").value;
   var RegistrationCompletePostPaymentFlag = 'NO';
-  if(document.getElementById("RegistrationCompletePostPayment").checked ===true)
+  if (document.getElementById("RegistrationCompletePostPayment").checked === true)
     RegistrationCompletePostPaymentFlag = 'YES'
   //save detailes in DB
   var para1 = {};
   para1 = {
-    EventID : eventID,
+    EventID: eventID,
     RegistrationCompletePostPaymentFlag: RegistrationCompletePostPaymentFlag,
   };
   console.log(para1);
-      const ret1 = firebase.functions().httpsCallable("updateEventFlag_RegistrationCompletePostPayment");
-    ret1(para1).then((result) => {
-      //var record1 = result.data;
-      console.log("Event ID: " + result.data.retCode);
-      if (result.data.retCode === "0") {
-        var confirmMessage = document.getElementById('saveMessage7');
-        document.getElementById("confirmationMessage7").value = "Flag updated for <b> Registration Complete Post Payment </b>";
-        confirmMessage.style.display = "block";
+  const ret1 = firebase.functions().httpsCallable("updateEventFlag_RegistrationCompletePostPayment");
+  ret1(para1).then((result) => {
+    //var record1 = result.data;
+    console.log("Event ID: " + result.data.retCode);
+    if (result.data.retCode === "0") {
+      var confirmMessage = document.getElementById('saveMessage7');
+      document.getElementById("confirmationMessage7").value = "Flag updated for <b> Registration Complete Post Payment </b>";
+      confirmMessage.style.display = "block";
 
-        setTimeout(function() {
-          confirmMessage.style.display = 'none';
-        }, 5000);
-      }
-    });
+      setTimeout(function() {
+        confirmMessage.style.display = 'none';
+      }, 5000);
+    }
+  });
 
 });
 
@@ -844,29 +842,29 @@ onlinePaymentGateway.addEventListener('click', e => {
 
   var EventID = document.getElementById("hfEventID").value;
   var OnlinePaymentGatewayFlag = 'NO';
-  if(document.getElementById("OnlinePaymentGateway").checked ===true)
+  if (document.getElementById("OnlinePaymentGateway").checked === true)
     OnlinePaymentGatewayFlag = 'YES'
   //save detailes in DB
   var para1 = {};
   para1 = {
-    EventID : eventID,
+    EventID: eventID,
     OnlinePaymentGatewayFlag: OnlinePaymentGatewayFlag,
   };
   console.log(para1);
-      const ret1 = firebase.functions().httpsCallable("updateEventFlag_OnlinePaymentMode");
-    ret1(para1).then((result) => {
-      //var record1 = result.data;
-      console.log("Event ID: " + result.data.retCode);
-      if (result.data.retCode === "0") {
-        var confirmMessage = document.getElementById('saveMessage7');
-        document.getElementById("confirmationMessage7").value = "Flag updated for <b> Online Payment Gateway </b>";
-        confirmMessage.style.display = "block";
+  const ret1 = firebase.functions().httpsCallable("updateEventFlag_OnlinePaymentMode");
+  ret1(para1).then((result) => {
+    //var record1 = result.data;
+    console.log("Event ID: " + result.data.retCode);
+    if (result.data.retCode === "0") {
+      var confirmMessage = document.getElementById('saveMessage7');
+      document.getElementById("confirmationMessage7").value = "Flag updated for <b> Online Payment Gateway </b>";
+      confirmMessage.style.display = "block";
 
-        setTimeout(function() {
-          confirmMessage.style.display = 'none';
-        }, 5000);
-      }
-    });
+      setTimeout(function() {
+        confirmMessage.style.display = 'none';
+      }, 5000);
+    }
+  });
 
 });
 
@@ -876,29 +874,29 @@ publishDraw.addEventListener('click', e => {
 
   var EventID = document.getElementById("hfEventID").value;
   var PublishDrawFlag = 'NO';
-  if(document.getElementById("PublishDraw").checked ===true)
+  if (document.getElementById("PublishDraw").checked === true)
     PublishDrawFlag = 'YES'
   //save detailes in DB
   var para1 = {};
   para1 = {
-    EventID : eventID,
+    EventID: eventID,
     PublishDrawFlag: PublishDrawFlag,
   };
   console.log(para1);
-      const ret1 = firebase.functions().httpsCallable("updateEventFlag_PublishDraw");
-    ret1(para1).then((result) => {
-      //var record1 = result.data;
-      console.log("Event ID: " + result.data.retCode);
-      if (result.data.retCode === "0") {
-        var confirmMessage = document.getElementById('saveMessage7');
-        document.getElementById("confirmationMessage7").value = "Flag updated for <b> Publish Draw </b>";
-        confirmMessage.style.display = "block";
+  const ret1 = firebase.functions().httpsCallable("updateEventFlag_PublishDraw");
+  ret1(para1).then((result) => {
+    //var record1 = result.data;
+    console.log("Event ID: " + result.data.retCode);
+    if (result.data.retCode === "0") {
+      var confirmMessage = document.getElementById('saveMessage7');
+      document.getElementById("confirmationMessage7").value = "Flag updated for <b> Publish Draw </b>";
+      confirmMessage.style.display = "block";
 
-        setTimeout(function() {
-          confirmMessage.style.display = 'none';
-        }, 5000);
-      }
-    });
+      setTimeout(function() {
+        confirmMessage.style.display = 'none';
+      }, 5000);
+    }
+  });
 
 });
 
@@ -908,29 +906,29 @@ publishSeedEntry.addEventListener('click', e => {
 
   var EventID = document.getElementById("hfEventID").value;
   var PublishSeedEntryFlag = 'NO';
-  if(document.getElementById("PublishSeedEntry").checked ===true)
+  if (document.getElementById("PublishSeedEntry").checked === true)
     PublishSeedEntryFlag = 'YES'
   //save detailes in DB
   var para1 = {};
   para1 = {
-    EventID : eventID,
+    EventID: eventID,
     PublishSeedEntryFlag: PublishSeedEntryFlag,
   };
   console.log(para1);
-      const ret1 = firebase.functions().httpsCallable("updateEventFlag_PublishSeed");
-    ret1(para1).then((result) => {
-      //var record1 = result.data;
-      console.log("Event ID: " + result.data.retCode);
-      if (result.data.retCode === "0") {
-        var confirmMessage = document.getElementById('saveMessage7');
-        document.getElementById("confirmationMessage7").value = "Flag updated for <b> Publish Seed </b>";
-        confirmMessage.style.display = "block";
+  const ret1 = firebase.functions().httpsCallable("updateEventFlag_PublishSeed");
+  ret1(para1).then((result) => {
+    //var record1 = result.data;
+    console.log("Event ID: " + result.data.retCode);
+    if (result.data.retCode === "0") {
+      var confirmMessage = document.getElementById('saveMessage7');
+      document.getElementById("confirmationMessage7").value = "Flag updated for <b> Publish Seed </b>";
+      confirmMessage.style.display = "block";
 
-        setTimeout(function() {
-          confirmMessage.style.display = 'none';
-        }, 5000);
-      }
-    });
+      setTimeout(function() {
+        confirmMessage.style.display = 'none';
+      }, 5000);
+    }
+  });
 
 });
 
@@ -940,29 +938,29 @@ publishMatchSchedule.addEventListener('click', e => {
 
   var EventID = document.getElementById("hfEventID").value;
   var PublishScheduleFlag = 'NO';
-  if(document.getElementById("PublishMatchSchedule").checked ===true)
+  if (document.getElementById("PublishMatchSchedule").checked === true)
     PublishScheduleFlag = 'YES'
   //save detailes in DB
   var para1 = {};
   para1 = {
-    EventID : eventID,
+    EventID: eventID,
     PublishScheduleFlag: PublishScheduleFlag,
   };
   console.log(para1);
-      const ret1 = firebase.functions().httpsCallable("updateEventFlag_PublishSchedule");
-    ret1(para1).then((result) => {
-      //var record1 = result.data;
-      console.log("Event ID: " + result.data.retCode);
-      if (result.data.retCode === "0") {
-        var confirmMessage = document.getElementById('saveMessage7');
-        document.getElementById("confirmationMessage7").value = "Flag updated for <b> Publish Match Schedule </b>";
-        confirmMessage.style.display = "block";
+  const ret1 = firebase.functions().httpsCallable("updateEventFlag_PublishSchedule");
+  ret1(para1).then((result) => {
+    //var record1 = result.data;
+    console.log("Event ID: " + result.data.retCode);
+    if (result.data.retCode === "0") {
+      var confirmMessage = document.getElementById('saveMessage7');
+      document.getElementById("confirmationMessage7").value = "Flag updated for <b> Publish Match Schedule </b>";
+      confirmMessage.style.display = "block";
 
-        setTimeout(function() {
-          confirmMessage.style.display = 'none';
-        }, 5000);
-      }
-    });
+      setTimeout(function() {
+        confirmMessage.style.display = 'none';
+      }, 5000);
+    }
+  });
 
 });
 
@@ -973,28 +971,28 @@ publishGallery.addEventListener('click', e => {
 
   var EventID = document.getElementById("hfEventID").value;
   var PublishGalleryFlag = 'NO';
-  if(document.getElementById("PublishGallery").checked ===true)
+  if (document.getElementById("PublishGallery").checked === true)
     PublishGalleryFlag = 'YES'
   //save detailes in DB
   var para1 = {};
   para1 = {
-    EventID : eventID,
+    EventID: eventID,
     PublishGalleryFlag: PublishGalleryFlag,
   };
   console.log(para1);
-      const ret1 = firebase.functions().httpsCallable("updateEventFlag_PublishGallery");
-    ret1(para1).then((result) => {
-      //var record1 = result.data;
-      console.log("Event ID: " + result.data.retCode);
-      if (result.data.retCode === "0") {
-        var confirmMessage = document.getElementById('saveMessage7');
-        document.getElementById("confirmationMessage7").value = "Flag updated for <b> Publish Gallery </b>";
-        confirmMessage.style.display = "block";
+  const ret1 = firebase.functions().httpsCallable("updateEventFlag_PublishGallery");
+  ret1(para1).then((result) => {
+    //var record1 = result.data;
+    console.log("Event ID: " + result.data.retCode);
+    if (result.data.retCode === "0") {
+      var confirmMessage = document.getElementById('saveMessage7');
+      document.getElementById("confirmationMessage7").value = "Flag updated for <b> Publish Gallery </b>";
+      confirmMessage.style.display = "block";
 
-        setTimeout(function() {
-          confirmMessage.style.display = 'none';
-        }, 5000);
-      }
-    });
+      setTimeout(function() {
+        confirmMessage.style.display = 'none';
+      }, 5000);
+    }
+  });
 
 });
