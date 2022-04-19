@@ -446,25 +446,37 @@
                       <div class="bigNum">
 
                         <div class="">
-                          <h5><span style="font-weight:bold;">Hi Sanidhya</span> </h5>
+                          <h5><span id="username" style="">Hi Sanidhya</span> </h5>
                         </div>
                         <div style="" class="">
 
-                        <div style="display:flex: margin:2px;" class="">
-                          <span id="walletSymbol"  class="material-icons-outlined ordericon">
-                          wallet
-                          </span>
-                          <span id="wallet" style="" >Wallet :</span>
-                          <span id="walletRupeeSymbol" style="">₹ </span>
-                          <span id="walletAmt" style="">741 </span>
+                        <div style="display:flex; margin:2px;" class="">
+                          <div style="position:relative; top:-13px; margin:6px;" class="ordericon">
+                            <span   class="material-icons-outlined ">
+                            wallet
+                            </span>
+                          </div>
+                          <div class="">
+                            <span id="wallet" style="" >Wallet :</span>
+                          </div>
+                          <div class="">
+                            <span id="walletRupeeSymbol" style=""> ₹ </span>
+                          </div>
+                          <div class="">
+                            <span id="walletAmt" style="">741 </span>
+                          </div>
                         </div>
                         <span id="MinAmtLine" style=""> Min amt must be ₹ 500 </span>
 
                         </div>
 
 
+                            <a href="#">
+                              <div id="addWalletMoney"class="">
+                                <h6>+ Add Money</h6>
+                              </div>
+                            </a>
 
-                          <a id="addWalletMoney" href="#">+ Add Money</a>
 
 
 
@@ -551,7 +563,7 @@
                               </div>
                               <div class="OrderLineBelow">
                                 <h6>Your Orders</h6>
-                                <h6 style="font-size:0.8rem;"><span>Last order: <span>[April 5, 2022] ₹<span></span>42</span> </span> </h6>
+                                <h6 style="font-size:0.8rem; font-weight:bold; color:#555;"><span>Last order: <span>[April 5, 2022] ₹<span></span>42</span> </span> </h6>
 
                               </div>
                           </div>
@@ -574,30 +586,30 @@
 
 
                     <div class="dashboardCardAnalytics">
-                      <div style="border-bottom:2px dashed #aaa; margin-bottom:10px;" class="OrderCardDetail">
+                      <div style="margin-bottom:10px;" class="OrderCardDetail">
                         <div class="OrderCardDetailFeilds">
-                          <h6 style="font-size:1rem;">Today</h6>
-                          <h6 style="text-align:center;font-size:1rem; font-weight:400;">0</h6>
-                          <h6 style="text-align:center;font-size:0.8rem; font-weight:400;"> <span>₹</span><span>200</span> </h6>
+                          <h6 style="font-size:1rem;">This month</h6>
+                          <h6 style="text-align:center;font-size:1rem; font-weight:bold;color:#555;">0</h6>
+                          <h6 style="text-align:center;font-size:0.8rem; font-weight:bold;color:#555;"> <span>₹</span><span>200</span> </h6>
                         </div>
                         <div class="OrderCardDetailFeilds">
-                          <h6 style="font-size:1rem;">Yesterday</h6>
-                          <h6 style="text-align:center;font-size:1rem; font-weight:400;">2</h6>
-                          <h6 style="text-align:center;font-size:0.8rem; font-weight:400;"> <span>₹</span><span>100</span> </h6>
+                          <h6 style="font-size:1rem;">Last month</h6>
+                          <h6 style="text-align:center;font-size:1rem; font-weight:bold;color:#555;">2</h6>
+                          <h6 style="text-align:center;font-size:0.8rem; font-weight:bold;color:#555;"> <span>₹</span><span>100</span> </h6>
                         </div>
 
                       </div>
                       <!-- <hr style="border:none; " /> -->
-                      <div style="border-bottom:2px dashed #aaa;" class="OrderCardDetail">
+                      <div style="" class="OrderCardDetail">
                         <div class="OrderCardDetailFeilds">
-                          <h6 style="font-size:1rem;">Last 7 days</h6>
-                          <h6 style="text-align:center;font-size:1rem; font-weight:400;">0</h6>
-                          <h6 style="text-align:center;font-size:0.8rem; font-weight:400;"> <span>₹</span><span>200</span> </h6>
+                          <h6 style="font-size:1rem;">Last 6 months</h6>
+                          <h6 style="text-align:center;font-size:1rem; font-weight:bold;color:#555;">0</h6>
+                          <h6 style="text-align:center;font-size:0.8rem; font-weight:bold;color:#555;"> <span>₹</span><span>200</span> </h6>
                         </div>
                         <div class="OrderCardDetailFeilds">
-                          <h6 style="font-size:1rem;">This Month</h6>
-                          <h6 style="text-align:center;font-size:1rem; font-weight:400;">2</h6>
-                          <h6 style="text-align:center;font-size:0.8rem; font-weight:400;"> <span>₹</span><span>100</span> </h6>
+                          <h6 style="font-size:1rem;">This Year</h6>
+                          <h6 style="text-align:center;font-size:1rem; font-weight:bold;color:#555;">2</h6>
+                          <h6 style="text-align:center;font-size:0.8rem; font-weight:bold;color:#555;"> <span>₹</span><span>100</span> </h6>
                         </div>
 
                       </div><br><br>
@@ -605,7 +617,7 @@
                       <a class="moreOrderDetails" href="#">
                         <span class="material-icons-outlined">
                         read_more
-                      </span> More Details</a>
+                      </span> <h6>More</h6> </a>
 
                     </div>
 
@@ -661,7 +673,7 @@
                         </div>
 
                           <div style="" class="">
-                            <button style=" border-radius:6px; font-size:0.7rem; text-aign:center; background:#ddd; color:#65c032;font-weight:bolder;" class="btn" type="button" name="button"> Book now</button>
+                            <button style="border: none;border-radius:6px; font-size:0.7rem; text-aign:center; background: linear-gradient(to right,#65c032, green); color:#fff;font-weight:bolder;" class="btn" type="button" name="button"> Book now</button>
                           </div>
                       </div>
 
@@ -679,7 +691,7 @@
                         </div>
 
                           <div style="" class="">
-                            <button style=" border-radius:6px; font-size:0.7rem; text-aign:center; background:#ddd; color:#65c032;font-weight:bolder;" class="btn" type="button" name="button"> Book now</button>
+                            <button style=" border: none;border-radius:6px; font-size:0.7rem; text-aign:center; background: linear-gradient(to right,#65c032, green); color:#fff;font-weight:bolder;" class="btn" type="button" name="button"> Book now</button>
                           </div>
                       </div>
 
@@ -697,7 +709,7 @@
                         </div>
 
                           <div style="" class="">
-                            <button style=" border-radius:6px; font-size:0.7rem; text-aign:center; background:#ddd; color:#65c032;font-weight:bolder;" class="btn" type="button" name="button"> Book now</button>
+                            <button style=" border: none;border-radius:6px; font-size:0.7rem; text-aign:center; background: linear-gradient(to right,#65c032, green); color:#fff;font-weight:bolder;" class="btn" type="button" name="button"> Book now</button>
                           </div>
                       </div>
 
@@ -715,14 +727,14 @@
                         </div>
 
                           <div style="" class="">
-                            <button style=" border-radius:6px; font-size:0.7rem; text-aign:center; background:#ddd; color:#65c032;font-weight:bolder;" class="btn" type="button" name="button"> Book now</button>
+                            <button style=" border: none;border-radius:6px; font-size:0.7rem; text-aign:center; background: linear-gradient(to right,#65c032, green); color:#fff;font-weight:bolder;" class="btn" type="button" name="button"> Book now</button>
                           </div>
-                      </div><br>
+                      </div>
 
-                      <a style="position:relative; top:-14px;" class="moreOrderDetails" href="#">
+                      <a style="position:relative; top:6px;" class="moreOrderDetails" href="#">
                         <span class="material-icons-outlined">
                         read_more
-                      </span> More Details</a>
+                      </span> <h6>More</h6> </a>
 
 
 
@@ -983,7 +995,7 @@
             <!-- <div class="notificationBox">
               <div class="notificationBoxContent">
                 <img src="img/e1.png" alt="">
-                <span class="notificationBoxWord">NKBA created a event today.</span>
+                <span class="notificationBoxWord">NKBA created a event This month.</span>
 
               </div>
               <div class="notificationBoxContent">
@@ -1060,7 +1072,7 @@
 
                 <div style="margin:0;" class="">
                   <h6 style="font-weight:bold; margin:0;">Total Service </h6>
-                  <h6 style="font-size:0.7rem;">Last 7 days</h6>
+                  <h6 style="font-size:0.7rem;">Last 6 months</h6>
                 </div>
 
                 <!-- <li><h6 style="color:green;">+7.6%</h6></li> -->
