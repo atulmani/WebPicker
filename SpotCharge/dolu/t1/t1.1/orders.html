@@ -377,436 +377,430 @@
 
         </div>
 
-        <div style="padding:4%;" class="col-lg-8">
+        <div style="" class="col-lg-8 column8padding"><br>
+          <div class="">
+            <div class="filterDiv">
+              <div  onclick="lineshow('incomplete')" class="FilterLine ">
+                <h6>Incomplete</h6>
+              </div>
 
-          <div id="order1"  class="OrderPageCard" >
-            <div style="border-bottom: 2px dashed #ddd; padding-bottom:15px;"  class="" onclick="fullcard(order1)">
-              <div class="YourOrderContent">
-                  <div  class="OrderLine">
-                      <div class="ordericon">
-                        <span class="material-icons-outlined">
-                          battery_charging_full
-                          </span>
+              <div  onclick="lineshow('complete')" class="FilterLine ">
+                <h6>Complete</h6>
+              </div>
+
+              <div  onclick="lineshow('declined')" class="FilterLine ">
+                <h6>Declined</h6>
+              </div>
+
+            </div>
+          <hr style="" class="hLine" id="hrLine"  />
+        </div><br>
+
+        <div class="category-list-sub-menu" style="background: #f4f4f4;">
+
+          <div class="" id='divbusinessType'>
+            <div class="">
+              <select class="city-selector" id="dateRange" onchange="dateRangeChange();" style="background: rgba(255,255,255,0.6);border: 1px solid #aaa;" name="">
+                <option value="Today">Today</option>
+                <option value="Yesterday">Yesterday</option>
+                <option value="Last 7 days">Last 7 days</option>
+                <option value="Current month">Current month</option>
+                <option value="Last 6 months">Last 6 months</option>
+                <!-- <option value="Custom">Custom</option> -->
+              </select>
+
+              <span class="material-icons-outlined city-selector-icon">
+                filter_list
+              </span>
+            </div>
+            <small id="orderCount" style="position: relative;top: -12px;color: #aaa;font-size: 0.8rem; font-weight: bold;">3 Orders</small>
+            <small style="position: relative;top: -12px;color: #aaa;font-size: 0.8rem; font-weight: bold;"> - </small>
+            <small id="dateRangelbl" style="position: relative;top: -12px;color: #aaa;font-size: 0.8rem; font-weight: bold;"> Oct 18, till today</small>
+          </div>
+
+
+
+
+
+          </div>
+
+
+
+        </div>
+
+            <div class="ordersOuter">
+              <div class="ordersDiv">
+                  <div id="incompleteOrders" class="orders"><br>
+                    <div id="order1"  class="OrderPageCard" >
+                      <div style="border-bottom: 2px dashed #ddd; padding-bottom:15px;"  class="" onclick="fullcard(order1)">
+                        <div class="YourOrderContent">
+                            <div  class="OrderLine">
+                                <div class="ordericon">
+                                  <span class="material-icons-outlined">
+                                    battery_charging_full
+                                    </span>
+                                </div>
+                                <div class="OrderLineBelow">
+                                  <h6>New Gurugram-001</h6>
+                                  <h6>Mapsko Royale Ville Sector 82 Mapsko Royale Ville Sector 82 </h6>
+                                  <div class="OrderLineBelowEnd">
+                                    <div class="OrderLineBelowEndContent">
+                                      <span>Amount :<span style="margin-left:10px">₹</span>21000 <span></span></span>
+                                    </div>
+
+                                    <div class="OrderLineBelowEndContent">
+                                      <span>Unit :<span style="margin-left:10px">7146</span>units <span></span></span>
+
+                                    </div>
+
+
+                                  </div>
+                                </div>
+                            </div>
+
+                              <div style="display:flex;" class="">
+                                <div class="statusdiv">
+                                <h6>29/06/2022</h6>
+                                </div>
+                                <div class="">
+                                  <span class="material-icons-outlined">
+                                  expand_more
+                                  </span>
+                                </div>
+
+                              </div>
+                            </div>
                       </div>
-                      <div class="OrderLineBelow">
-                        <h6>New Gurugram-001</h6>
-                        <h6>Mapsko Royale Ville Sector 82 Mapsko Royale Ville Sector 82 </h6>
-                        <div class="OrderLineBelowEnd">
-                          <div class="OrderLineBelowEndContent">
-                            <span>Amount :<span style="margin-left:10px">₹</span>21000 <span></span></span>
+                      <div class="dashboardCardAnalytics">
+                        <div class="OrderCardDetail">
+                          <div class="OrderCardDetailFeilds">
+                            <h6>Order Id</h6>
+                            <h6>234567</h6>
                           </div>
-
-                          <div class="OrderLineBelowEndContent">
-                            <span>Unit :<span style="margin-left:10px">7146</span>units <span></span></span>
-
+                          <div class="OrderCardDetailFeilds">
+                            <h6>Order Date</h6>
+                            <h6>29th June, 2022</h6>
                           </div>
-
-
+                          <div class="OrderCardDetailFeilds">
+                            <h6>Time Duration</h6>
+                            <h6>1 Hour 30 Minutes</h6>
+                          </div>
                         </div>
-                      </div>
-                  </div>
 
-                    <div style="display:flex;" class="">
-                      <div class="statusdiv">
-                      <h6>Completed</h6>
+
                       </div>
-                      <div class="">
-                        <span class="material-icons-outlined">
-                        expand_more
-                        </span>
+
+                    </div>
+                    <div id="order2"  class="OrderPageCard" >
+                      <div style="border-bottom: 2px dashed #ddd; padding-bottom:15px;"  class="" onclick="fullcard(order2)">
+                        <div class="YourOrderContent">
+                            <div  class="OrderLine">
+                                <div class="ordericon">
+                                  <span class="material-icons-outlined">
+                                    battery_charging_full
+                                    </span>
+                                </div>
+                                <div class="OrderLineBelow">
+                                  <h6>New Gurugram-001</h6>
+                                  <h6>Mapsko Royale Ville Sector 82 Mapsko Royale Ville Sector 82 </h6>
+                                  <div class="OrderLineBelowEnd">
+                                    <div class="OrderLineBelowEndContent">
+                                      <span>Amount :<span style="margin-left:10px">₹</span>21000 <span></span></span>
+                                    </div>
+
+                                    <div class="OrderLineBelowEndContent">
+                                      <span>Unit :<span style="margin-left:10px">7146</span>units <span></span></span>
+
+                                    </div>
+
+
+                                  </div>
+                                </div>
+                            </div>
+
+                              <div style="display:flex;" class="">
+                                <div class="statusdiv">
+                                <h6>11/05/2022</h6>
+                                </div>
+                                <div class="">
+                                  <span class="material-icons-outlined">
+                                  expand_more
+                                  </span>
+                                </div>
+
+                              </div>
+                            </div>
+                      </div>
+                      <div class="dashboardCardAnalytics">
+                        <div class="OrderCardDetail">
+                          <div class="OrderCardDetailFeilds">
+                            <h6>Order Id</h6>
+                            <h6>234567</h6>
+                          </div>
+                          <div class="OrderCardDetailFeilds">
+                            <h6>Order Date</h6>
+                            <h6>29th June, 2022</h6>
+                          </div>
+                          <div class="OrderCardDetailFeilds">
+                            <h6>Time Duration</h6>
+                            <h6>1 Hour 30 Minutes</h6>
+                          </div>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+                    <div id="order3"  class="OrderPageCard" >
+                      <div style="border-bottom: 2px dashed #ddd; padding-bottom:15px;"  class="" onclick="fullcard(order3)">
+                        <div class="YourOrderContent">
+                            <div  class="OrderLine">
+                                <div class="ordericon">
+                                  <span class="material-icons-outlined">
+                                    battery_charging_full
+                                    </span>
+                                </div>
+                                <div class="OrderLineBelow">
+                                  <h6>New Gurugram-001</h6>
+                                  <h6>Mapsko Royale Ville Sector 82 Mapsko Royale Ville Sector 82 </h6>
+                                  <div class="OrderLineBelowEnd">
+                                    <div class="OrderLineBelowEndContent">
+                                      <span>Amount :<span style="margin-left:10px">₹</span>21000 <span></span></span>
+                                    </div>
+
+                                    <div class="OrderLineBelowEndContent">
+                                      <span>Unit :<span style="margin-left:10px">7146</span>units <span></span></span>
+
+                                    </div>
+
+
+                                  </div>
+                                </div>
+                            </div>
+
+                              <div style="display:flex;" class="">
+                                <div class="statusdiv">
+                                <h6>03/11/2022</h6>
+                                </div>
+                                <div class="">
+                                  <span class="material-icons-outlined">
+                                  expand_more
+                                  </span>
+                                </div>
+
+                              </div>
+                            </div>
+                      </div>
+                      <div class="dashboardCardAnalytics">
+                        <div class="OrderCardDetail">
+                          <div class="OrderCardDetailFeilds">
+                            <h6>Order Id</h6>
+                            <h6>234567</h6>
+                          </div>
+                          <div class="OrderCardDetailFeilds">
+                            <h6>Order Date</h6>
+                            <h6>29th June, 2022</h6>
+                          </div>
+                          <div class="OrderCardDetailFeilds">
+                            <h6>Time Duration</h6>
+                            <h6>1 Hour 30 Minutes</h6>
+                          </div>
+                        </div>
+
+
                       </div>
 
                     </div>
                   </div>
-            </div>
-            <div class="dashboardCardAnalytics">
-              <div class="OrderCardDetail">
-                <div class="OrderCardDetailFeilds">
-                  <h6>Order Id</h6>
-                  <h6>234567</h6>
-                </div>
-                <div class="OrderCardDetailFeilds">
-                  <h6>Order Date</h6>
-                  <h6>29th June, 2022</h6>
-                </div>
-                <div class="OrderCardDetailFeilds">
-                  <h6>Time Duration</h6>
-                  <h6>1 Hour 30 Minutes</h6>
-                </div>
-              </div>
+
+                  <div style="transform:translateX(-200%);" id="completeOrders" class="orders"><br>
+                    <div id="order4"  class="OrderPageCard" >
+                      <div style="border-bottom: 2px dashed #ddd; padding-bottom:15px;"  class="" onclick="fullcard(order4)">
+                        <div class="YourOrderContent">
+                            <div  class="OrderLine">
+                                <div class="ordericon">
+                                  <span class="material-icons-outlined">
+                                    battery_charging_full
+                                    </span>
+                                </div>
+                                <div class="OrderLineBelow">
+                                  <h6>New Gurugram-001</h6>
+                                  <h6>Mapsko Royale Ville Sector 82 Mapsko Royale Ville Sector 82 </h6>
+                                  <div class="OrderLineBelowEnd">
+                                    <div class="OrderLineBelowEndContent">
+                                      <span>Amount :<span style="margin-left:10px">₹</span>21000 <span></span></span>
+                                    </div>
+
+                                    <div class="OrderLineBelowEndContent">
+                                      <span>Unit :<span style="margin-left:10px">7146</span>units <span></span></span>
+
+                                    </div>
 
 
-            </div>
+                                  </div>
+                                </div>
+                            </div>
 
-          </div>
+                              <div style="display:flex;" class="">
+                                <div class="statusdiv">
+                                <h6>02/01/2022</h6>
+                                </div>
+                                <div class="">
+                                  <span class="material-icons-outlined">
+                                  expand_more
+                                  </span>
+                                </div>
 
-          <div id="order2"  class="OrderPageCard" >
-            <div style="border-bottom: 2px dashed #ddd; padding-bottom:15px;"  class="" onclick="fullcard(order2)">
-              <div class="YourOrderContent">
-                  <div  class="OrderLine">
-                      <div class="ordericon">
-                        <span class="material-icons-outlined">
-                          battery_charging_full
-                          </span>
+                              </div>
+                            </div>
                       </div>
-                      <div class="OrderLineBelow">
-                        <h6>New Gurugram-001</h6>
-                        <h6>Mapsko Royale Ville Sector 82 Mapsko Royale Ville Sector 82 </h6>
-                        <div class="OrderLineBelowEnd">
-                          <div class="OrderLineBelowEndContent">
-                            <span>Amount :<span style="margin-left:10px">₹</span>21000 <span></span></span>
+                      <div class="dashboardCardAnalytics">
+                        <div class="OrderCardDetail">
+                          <div class="OrderCardDetailFeilds">
+                            <h6>Order Id</h6>
+                            <h6>234567</h6>
                           </div>
-
-                          <div class="OrderLineBelowEndContent">
-                            <span>Unit :<span style="margin-left:10px">7146</span>units <span></span></span>
-
+                          <div class="OrderCardDetailFeilds">
+                            <h6>Order Date</h6>
+                            <h6>29th June, 2022</h6>
                           </div>
-
-
+                          <div class="OrderCardDetailFeilds">
+                            <h6>Time Duration</h6>
+                            <h6>1 Hour 30 Minutes</h6>
+                          </div>
                         </div>
-                      </div>
-                  </div>
 
-                    <div style="display:flex;" class="">
-                      <div class="statusdiv">
-                      <h6>Completed</h6>
+
                       </div>
-                      <div class="">
-                        <span class="material-icons-outlined">
-                        expand_more
-                        </span>
+
+                    </div>
+                    <div id="order5"  class="OrderPageCard" >
+                      <div style="border-bottom: 2px dashed #ddd; padding-bottom:15px;"  class="" onclick="fullcard(order5)">
+                        <div class="YourOrderContent">
+                            <div  class="OrderLine">
+                                <div class="ordericon">
+                                  <span class="material-icons-outlined">
+                                    battery_charging_full
+                                    </span>
+                                </div>
+                                <div class="OrderLineBelow">
+                                  <h6>New Gurugram-001</h6>
+                                  <h6>Mapsko Royale Ville Sector 82 Mapsko Royale Ville Sector 82 </h6>
+                                  <div class="OrderLineBelowEnd">
+                                    <div class="OrderLineBelowEndContent">
+                                      <span>Amount :<span style="margin-left:10px">₹</span>21000 <span></span></span>
+                                    </div>
+
+                                    <div class="OrderLineBelowEndContent">
+                                      <span>Unit :<span style="margin-left:10px">7146</span>units <span></span></span>
+
+                                    </div>
+
+
+                                  </div>
+                                </div>
+                            </div>
+
+                              <div style="display:flex;" class="">
+                                <div class="statusdiv">
+                                <h6>19/12/2022</h6>
+                                </div>
+                                <div class="">
+                                  <span class="material-icons-outlined">
+                                  expand_more
+                                  </span>
+                                </div>
+
+                              </div>
+                            </div>
+                      </div>
+                      <div class="dashboardCardAnalytics">
+                        <div class="OrderCardDetail">
+                          <div class="OrderCardDetailFeilds">
+                            <h6>Order Id</h6>
+                            <h6>234567</h6>
+                          </div>
+                          <div class="OrderCardDetailFeilds">
+                            <h6>Order Date</h6>
+                            <h6>29th June, 2022</h6>
+                          </div>
+                          <div class="OrderCardDetailFeilds">
+                            <h6>Time Duration</h6>
+                            <h6>1 Hour 30 Minutes</h6>
+                          </div>
+                        </div>
+
+
                       </div>
 
                     </div>
                   </div>
-            </div>
-            <div class="dashboardCardAnalytics">
-              <div class="OrderCardDetail">
-                <div class="OrderCardDetailFeilds">
-                  <h6>Order Id</h6>
-                  <h6>234567</h6>
-                </div>
-                <div class="OrderCardDetailFeilds">
-                  <h6>Order Date</h6>
-                  <h6>29th June, 2022</h6>
-                </div>
-                <div class="OrderCardDetailFeilds">
-                  <h6>Time Duration</h6>
-                  <h6>1 Hour 30 Minutes</h6>
-                </div>
-              </div>
+
+                  <div style="transform:translateX(-400%);" id="declinedOrders" class="orders"><br>
+                    <div id="order6"  class="OrderPageCard" >
+                      <div style="border-bottom: 2px dashed #ddd; padding-bottom:15px;"  class="" onclick="fullcard(order6)">
+                        <div class="YourOrderContent">
+                            <div  class="OrderLine">
+                                <div class="ordericon">
+                                  <span class="material-icons-outlined">
+                                    battery_charging_full
+                                    </span>
+                                </div>
+                                <div class="OrderLineBelow">
+                                  <h6>New Gurugram-001</h6>
+                                  <h6>Mapsko Royale Ville Sector 82 Mapsko Royale Ville Sector 82 </h6>
+                                  <div class="OrderLineBelowEnd">
+                                    <div class="OrderLineBelowEndContent">
+                                      <span>Amount :<span style="margin-left:10px">₹</span>21000 <span></span></span>
+                                    </div>
+
+                                    <div class="OrderLineBelowEndContent">
+                                      <span>Unit :<span style="margin-left:10px">7146</span>units <span></span></span>
+
+                                    </div>
 
 
-            </div>
+                                  </div>
+                                </div>
+                            </div>
 
-          </div>
+                              <div style="display:flex;" class="">
+                                <div class="statusdiv">
+                                <h6>22/01/2022</h6>
+                                </div>
+                                <div class="">
+                                  <span class="material-icons-outlined">
+                                  expand_more
+                                  </span>
+                                </div>
 
-          <div id="order3"  class="OrderPageCard" >
-            <div style="border-bottom: 2px dashed #ddd; padding-bottom:15px;"  class="" onclick="fullcard(order3)">
-              <div class="YourOrderContent">
-                  <div  class="OrderLine">
-                      <div class="ordericon">
-                        <span class="material-icons-outlined">
-                          battery_charging_full
-                          </span>
+                              </div>
+                            </div>
                       </div>
-                      <div class="OrderLineBelow">
-                        <h6>New Gurugram-001</h6>
-                        <h6>Mapsko Royale Ville Sector 82 Mapsko Royale Ville Sector 82 </h6>
-                        <div class="OrderLineBelowEnd">
-                          <div class="OrderLineBelowEndContent">
-                            <span>Amount :<span style="margin-left:10px">₹</span>21000 <span></span></span>
+                      <div class="dashboardCardAnalytics">
+                        <div class="OrderCardDetail">
+                          <div class="OrderCardDetailFeilds">
+                            <h6>Order Id</h6>
+                            <h6>234567</h6>
                           </div>
-
-                          <div class="OrderLineBelowEndContent">
-                            <span>Unit :<span style="margin-left:10px">7146</span>units <span></span></span>
-
+                          <div class="OrderCardDetailFeilds">
+                            <h6>Order Date</h6>
+                            <h6>29th June, 2022</h6>
                           </div>
-
-
+                          <div class="OrderCardDetailFeilds">
+                            <h6>Time Duration</h6>
+                            <h6>1 Hour 30 Minutes</h6>
+                          </div>
                         </div>
-                      </div>
-                  </div>
 
-                    <div style="display:flex;" class="">
-                      <div class="statusdiv">
-                      <h6>Completed</h6>
-                      </div>
-                      <div class="">
-                        <span class="material-icons-outlined">
-                        expand_more
-                        </span>
+
                       </div>
 
                     </div>
                   </div>
-            </div>
-            <div class="dashboardCardAnalytics">
-              <div class="OrderCardDetail">
-                <div class="OrderCardDetailFeilds">
-                  <h6>Order Id</h6>
-                  <h6>234567</h6>
-                </div>
-                <div class="OrderCardDetailFeilds">
-                  <h6>Order Date</h6>
-                  <h6>29th June, 2022</h6>
-                </div>
-                <div class="OrderCardDetailFeilds">
-                  <h6>Time Duration</h6>
-                  <h6>1 Hour 30 Minutes</h6>
-                </div>
               </div>
-
-
             </div>
 
-          </div>
-
-          <div id="order4"  class="OrderPageCard" >
-            <div style="border-bottom: 2px dashed #ddd; padding-bottom:15px;"  class="" onclick="fullcard(order4)">
-              <div class="YourOrderContent">
-                  <div  class="OrderLine">
-                      <div class="ordericon">
-                        <span class="material-icons-outlined">
-                          battery_charging_full
-                          </span>
-                      </div>
-                      <div class="OrderLineBelow">
-                        <h6>New Gurugram-001</h6>
-                        <h6>Mapsko Royale Ville Sector 82 Mapsko Royale Ville Sector 82 </h6>
-                        <div class="OrderLineBelowEnd">
-                          <div class="OrderLineBelowEndContent">
-                            <span>Amount :<span style="margin-left:10px">₹</span>21000 <span></span></span>
-                          </div>
-
-                          <div class="OrderLineBelowEndContent">
-                            <span>Unit :<span style="margin-left:10px">7146</span>units <span></span></span>
-
-                          </div>
-
-
-                        </div>
-                      </div>
-                  </div>
-
-                    <div style="display:flex;" class="">
-                      <div class="statusdiv">
-                      <h6>Completed</h6>
-                      </div>
-                      <div class="">
-                        <span class="material-icons-outlined">
-                        expand_more
-                        </span>
-                      </div>
-
-                    </div>
-                  </div>
-            </div>
-            <div class="dashboardCardAnalytics">
-              <div class="OrderCardDetail">
-                <div class="OrderCardDetailFeilds">
-                  <h6>Order Id</h6>
-                  <h6>234567</h6>
-                </div>
-                <div class="OrderCardDetailFeilds">
-                  <h6>Order Date</h6>
-                  <h6>29th June, 2022</h6>
-                </div>
-                <div class="OrderCardDetailFeilds">
-                  <h6>Time Duration</h6>
-                  <h6>1 Hour 30 Minutes</h6>
-                </div>
-              </div>
-
-
-            </div>
-
-          </div>
-
-          <div id="order5"  class="OrderPageCard" >
-            <div style="border-bottom: 2px dashed #ddd; padding-bottom:15px;"  class="" onclick="fullcard(order5)">
-              <div class="YourOrderContent">
-                  <div  class="OrderLine">
-                      <div class="ordericon">
-                        <span class="material-icons-outlined">
-                          battery_charging_full
-                          </span>
-                      </div>
-                      <div class="OrderLineBelow">
-                        <h6>New Gurugram-001</h6>
-                        <h6>Mapsko Royale Ville Sector 82 Mapsko Royale Ville Sector 82 </h6>
-                        <div class="OrderLineBelowEnd">
-                          <div class="OrderLineBelowEndContent">
-                            <span>Amount :<span style="margin-left:10px">₹</span>21000 <span></span></span>
-                          </div>
-
-                          <div class="OrderLineBelowEndContent">
-                            <span>Unit :<span style="margin-left:10px">7146</span>units <span></span></span>
-
-                          </div>
-
-
-                        </div>
-                      </div>
-                  </div>
-
-                    <div style="display:flex;" class="">
-                      <div class="statusdiv">
-                      <h6>Completed</h6>
-                      </div>
-                      <div class="">
-                        <span class="material-icons-outlined">
-                        expand_more
-                        </span>
-                      </div>
-
-                    </div>
-                  </div>
-            </div>
-            <div class="dashboardCardAnalytics">
-              <div class="OrderCardDetail">
-                <div class="OrderCardDetailFeilds">
-                  <h6>Order Id</h6>
-                  <h6>234567</h6>
-                </div>
-                <div class="OrderCardDetailFeilds">
-                  <h6>Order Date</h6>
-                  <h6>29th June, 2022</h6>
-                </div>
-                <div class="OrderCardDetailFeilds">
-                  <h6>Time Duration</h6>
-                  <h6>1 Hour 30 Minutes</h6>
-                </div>
-              </div>
-
-
-            </div>
-
-          </div>
-
-          <div id="order6"  class="OrderPageCard" >
-            <div style="border-bottom: 2px dashed #ddd; padding-bottom:15px;"  class="" onclick="fullcard(order6)">
-              <div class="YourOrderContent">
-                  <div  class="OrderLine">
-                      <div class="ordericon">
-                        <span class="material-icons-outlined">
-                          battery_charging_full
-                          </span>
-                      </div>
-                      <div class="OrderLineBelow">
-                        <h6>New Gurugram-001</h6>
-                        <h6>Mapsko Royale Ville Sector 82 Mapsko Royale Ville Sector 82 </h6>
-                        <div class="OrderLineBelowEnd">
-                          <div class="OrderLineBelowEndContent">
-                            <span>Amount :<span style="margin-left:10px">₹</span>21000 <span></span></span>
-                          </div>
-
-                          <div class="OrderLineBelowEndContent">
-                            <span>Unit :<span style="margin-left:10px">7146</span>units <span></span></span>
-
-                          </div>
-
-
-                        </div>
-                      </div>
-                  </div>
-
-                    <div style="display:flex;" class="">
-                      <div class="statusdiv">
-                      <h6>Completed</h6>
-                      </div>
-                      <div class="">
-                        <span class="material-icons-outlined">
-                        expand_more
-                        </span>
-                      </div>
-
-                    </div>
-                  </div>
-            </div>
-            <div class="dashboardCardAnalytics">
-              <div class="OrderCardDetail">
-                <div class="OrderCardDetailFeilds">
-                  <h6>Order Id</h6>
-                  <h6>234567</h6>
-                </div>
-                <div class="OrderCardDetailFeilds">
-                  <h6>Order Date</h6>
-                  <h6>29th June, 2022</h6>
-                </div>
-                <div class="OrderCardDetailFeilds">
-                  <h6>Time Duration</h6>
-                  <h6>1 Hour 30 Minutes</h6>
-                </div>
-              </div>
-
-
-            </div>
-
-          </div>
-
-          <div id="order7"  class="OrderPageCard" >
-            <div style="border-bottom: 2px dashed #ddd; padding-bottom:15px;"  class="" onclick="fullcard(order7)">
-              <div class="YourOrderContent">
-                  <div  class="OrderLine">
-                      <div class="ordericon">
-                        <span class="material-icons-outlined">
-                          battery_charging_full
-                          </span>
-                      </div>
-                      <div class="OrderLineBelow">
-                        <h6>New Gurugram-001</h6>
-                        <h6>Mapsko Royale Ville Sector 82 Mapsko Royale Ville Sector 82 </h6>
-                        <div class="OrderLineBelowEnd">
-                          <div class="OrderLineBelowEndContent">
-                            <span>Amount :<span style="margin-left:10px">₹</span>21000 <span></span></span>
-                          </div>
-
-                          <div class="OrderLineBelowEndContent">
-                            <span>Unit :<span style="margin-left:10px">7146</span>units <span></span></span>
-
-                          </div>
-
-
-                        </div>
-                      </div>
-                  </div>
-
-                    <div style="display:flex;" class="">
-                      <div class="statusdiv">
-                      <h6>Completed</h6>
-                      </div>
-                      <div class="">
-                        <span class="material-icons-outlined">
-                        expand_more
-                        </span>
-                      </div>
-
-                    </div>
-                  </div>
-            </div>
-            <div class="dashboardCardAnalytics">
-              <div class="OrderCardDetail">
-                <div class="OrderCardDetailFeilds">
-                  <h6>Order Id</h6>
-                  <h6>234567</h6>
-                </div>
-                <div class="OrderCardDetailFeilds">
-                  <h6>Order Date</h6>
-                  <h6>29th June, 2022</h6>
-                </div>
-                <div class="OrderCardDetailFeilds">
-                  <h6>Time Duration</h6>
-                  <h6>1 Hour 30 Minutes</h6>
-                </div>
-              </div>
-
-
-            </div>
-
-          </div>
-
-          
 
         </div>
 
@@ -984,8 +978,9 @@
 
     <!-- Javascript to Populate Map - Start  -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
-    <script src="js/createEvent.js"></script>
+    <!-- <script src="js/createEvent.js"></script> -->
     <script src="js/main.js"></script>
+    <script src="js/orders.js"></script>
 
 
     <!-- Owl Carousel Javascript  -->
@@ -1000,7 +995,7 @@
     <script src="https://kit.fontawesome.com/12f526aa82.js" crossorigin="anonymous"></script>
 
 
-    <script src="js/main.js"></script>
+    <!-- <script src="js/main.js"></script> -->
     <!-- firebase services -->
 
 
