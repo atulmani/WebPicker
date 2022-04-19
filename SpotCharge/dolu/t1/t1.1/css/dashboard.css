@@ -539,11 +539,6 @@ left:-200px;
 
 .ordericon span{
 
-
-    /* height: 30px; */
-    /* width: 30px; */
-    /* padding: 2%; */
-    /* margin-top: 4px; */
     background: #ddd;
     padding: 3px 3px;
     color: #65c032;
@@ -713,7 +708,9 @@ left:-200px;
 
 #wallet{
   font-weight:bolder;
-  font-size:1rem;
+  font-size:1.2rem;
+  position: relative;
+  top: -6px;
 }
 
 @media (max-width:850px) {
@@ -724,14 +721,16 @@ left:-200px;
   }
 }
 
-#walletSymbol{
+#walletRupeeSymbol{
   font-weight:bolder;
-  font-size:1rem;
+  font-size:1.2rem;
   margin-right:3px;
+  position: relative;
+  top: -6px;
 }
 
 @media (max-width:850px) {
-  #walletSymbol {
+  #walletRupeeSymbol {
     margin-bottom: 0;
     font-size:1.5rem;
     margin-right:3px;
@@ -739,9 +738,25 @@ left:-200px;
   }
 }
 
+#walletSymbol{
+  background: #ddd;
+  color: #65c032;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  padding: 3px;
+  margin: 3px;
+}
+
+@media (max-width:850px) {
+  #walletSymbol{
+    font-size: 1.5rem;
+  }
+}
 #walletAmt{
   font-weight:bolder;
-  font-size:1rem;
+  font-size:1.2rem;
+  position: relative;
+  top: -6px;
 }
 
 @media (max-width:850px) {
@@ -758,6 +773,66 @@ text-aign:center;
 background:#ddd;
 color:#65c032;
 font-weight:1000;
+padding: 2px 6px;
+position:relative;
+top:-18px;
+text-decoration: none;
+}
+
+.moreOrderDetails{
+  border-radius:6px;
+  font-size:0.9rem;
+  display: flex;
+  text-align:center;
+  width: 45%;
+  background:#ddd;
+  color:#65c032;
+  font-weight:1000;
+  /* padding: 2px 0 0 0; */
+  text-decoration: none;
+}
+
+@media (max-width:850px) {
+ .moreOrderDetails{
+   font-size:1rem;
+   width: 35%;
+ }
+}
+.moreOrderDetails span{
+  padding: 0;
+  margin:0 4px;
+  position: relative;
+  top:-1px;
+}
+
+@media (max-width:850px) {
+  .moreOrderDetails span{
+    top:0px;
+  }
+}
+
+@media (max-width:850px) {
+  #addWalletMoney {
+    position:relative;
+    top:-23px;
+  }
+}
+
+#MinAmtLine{
+
+position:relative;
+top:-16px;
+color:#aaa;
+font-size: 0.6rem;
+}
+
+@media (max-width:850px) {
+  #MinAmtLine{
+  font-size:0.7rem;
+  position:relative;
+  top:-18px;
+  color:#aaa;
+  }
 }
 
 .bigNum h6{
@@ -950,7 +1025,7 @@ color: #fff;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 0px;
   border-left: 2px solid #65c032;
   padding-left: 2%;
 }
@@ -966,8 +1041,8 @@ color: #fff;
   font-size: 0.8rem;
 } */
 .analyticsText p{
-  font-size: 0.7rem;
-  margin: 0;
+  font-size: 0.8rem;
+  margin-bottom: 2px;
   color: #aaa;
 }
 
