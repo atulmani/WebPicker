@@ -602,3 +602,241 @@ h6{
 
 
 /* new login - page */
+
+
+/* Profile - start */
+
+.full-profile-div{
+  background: #ededed;
+  padding: 10px;
+}
+
+.profile-card-div{
+  background: #fff;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.profile-card-div .content{
+  padding: 10px;
+}
+
+.user-name{
+  display: grid;
+  grid-template-columns: 15% 80% 5%;
+}
+
+.user-name .user-logo{
+  width: 100%;
+  height: 55px;
+  background: linear-gradient(to right, #65c032, #0fa400);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-name .user-logo h4{
+  position: relative;
+  top: 5px;
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: lighter;
+}
+
+.user-name .details{
+  padding: 10px 15px;
+}
+
+.user-name .details h5{
+  font-size: 1.3rem;
+  color: #666;
+  font-weight: 600;
+}
+
+.user-name .details p{
+  margin: 0;
+  color: #aaa;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.user-name .edit{
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.user-name .edit span{
+  color: #666;
+  font-size: 1.3rem;
+}
+
+.edit-profile-div{
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background: rgba(101, 192, 50,0.2);
+}
+
+.edit-profile-div small{
+  margin: 0;
+  width: 60%;
+  font-size: 1rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.edit-profile-div div{
+  width: 40%;
+}
+
+.dots{
+  border-radius: 10px;
+  text-align: center;
+  padding: 3%;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(to right,#65c032, green);
+}
+
+.dots h6{
+  position: relative;
+  top: 8px;
+  padding-left: 8px;
+}
+
+.dots:hover span{
+  color: #fff;
+}
+
+.dots:hover h6{
+  color: #fff;
+}
+
+.address-div{
+  display: grid;
+  grid-template-columns: 17% 83%;
+  padding: 15px;
+}
+
+.address-div .icon{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border-radius: 10px;
+  background: #65c032;
+  color: #fff;
+}
+
+.address-div .icon span{
+  font-size: 1.5rem;
+}
+
+.address-div .address-text{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0px 0px 20px;
+}
+
+.address-div .address-text h5{
+  font-size: 1rem;
+  color: #444;
+  font-weight: 600;
+}
+
+.address-div .address-text div{
+  text-align: right;
+  position: relative;
+  top: -3px;
+}
+
+.address-div .address-text div span{
+  color: #ccc;
+}
+
+.add-address{
+  border-top: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.add-address small{
+  font-size: 1rem;
+  color: #888;
+}
+
+.add-address small:nth-child(2){
+  padding-left: 10px;
+  position: relative;
+  top: -2px;
+}
+
+.vehicle-div .heading{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.vehicle-div .heading h5{
+  font-size: 1rem;
+  color: #555;
+  font-weight: 600;
+}
+
+.vehicle-div .heading div span{
+  color: #65c032;
+  font-size: 1rem;
+}
+
+.vehicle-div .heading div small{
+  color: #65c032;
+  font-size: 1rem;
+  position: relative;
+  top: -2px;
+  font-weight: 600;
+}
+
+.vehicle-card{
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+}
+
+.vehicle-card div{
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.vehicle-card div span{
+  font-size: 2.5rem;
+  color: #888;
+}
+
+.vehicle-card div h5{
+  margin: 0;
+  font-size: 1rem;
+  color: #222;
+  font-weight: 600;
+  padding-top: 15px;
+}
+
+.vehicle-card div small{
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Profile - end */
