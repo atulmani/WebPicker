@@ -125,11 +125,9 @@ async function GetProfileData() {
     userID: loggedinUser.uid
   };
   populateSportList();
-  const ret1 = firebase.functions().httpsCallable("getProfileDetails");
-  ret1(para1).then(async (result) => {
-    var record1 = result.data;
+  var userProfile =JSON.parse( localStorage.getItem("userProfile"));
     var approvalStatus = document.getElementById("approvalStatus");
-    if (result.data.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
+    if (userProfile.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
       console.log("in admin");
       populateOrganizationList("All");
 
@@ -146,7 +144,7 @@ async function GetProfileData() {
           }
         }
       }
-    } else if (result.data.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
+    } else if (userProfile.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
 
       console.log("Organizer");
       populateOrganizationList(loggedinUser.uid);
@@ -192,9 +190,88 @@ async function GetProfileData() {
       document.getElementById("fInput").style.display = "none";
       document.getElementById("errorMessage").style.display = "block";
     }
-  });
 
 }
+
+// async function GetProfileDataOld() {
+//   console.log('GetProfileData - Starts');
+//   //await getUserList();
+//   var para1 = {};
+//   para1 = {
+//     userID: loggedinUser.uid
+//   };
+//   populateSportList();
+//   var siteNotification = localStorage.getItem("notificationCount");
+//   const userProfile = firebase.functions().httpsCallable("userProfile");
+//   ret1(para1).then(async (result) => {
+//     var record1 = result.data;
+//     var approvalStatus = document.getElementById("approvalStatus");
+//     if (result.data.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
+//       console.log("in admin");
+//       populateOrganizationList("All");
+//
+//       if (eventID != "" && eventID != undefined && eventID != null) {
+//
+//         document.getElementById("hfEventID").value = eventID;
+//         document.getElementById("btnSave").innerHTML = "Update";
+//         GetEventDetails();
+//       } else {
+//         for (index = 0; index < approvalStatus.options.length; index++) {
+//           if (approvalStatus.options[index].value === "Approved") {
+//             approvalStatus.options[index].selected = true;
+//             break;
+//           }
+//         }
+//       }
+//     } else if (result.data.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
+//
+//       console.log("Organizer");
+//       populateOrganizationList(loggedinUser.uid);
+//       var organizationid = document.getElementById("ddlOrganization");
+//       approvalStatus.disabled = true;
+//
+//       document.getElementById("hfOrganizerID").value = loggedinUser.uid;
+//       for (index = 0; index < organizationid.options.length; index++) {
+//         if (organizationid.options[index].value.search(loggedinUser.uid) >= 0) {
+//           organizationid.options[index].selected = true;
+//           onOrganizationSelection();
+//           break;
+//         }
+//       }
+//
+//       if (eventID != "" && eventID != undefined && eventID != null) {
+//
+//         document.getElementById("hfEventID").value = eventID;
+//         document.getElementById("btnSave").innerHTML = "Update";
+//         GetEventDetails();
+//       } else {
+//
+//         ///Check for any pending OrganizationName
+//
+//         var checkPending = await CheckForPendingEvent();
+//         console.log(checkPending);
+//         if (checkPending > 0) {
+//           document.getElementById("fInput").style.display = "none";
+//           document.getElementById("saveMessage").style.display = "block";
+//           document.getElementById("confirmationMessage").innerHTML = "One Organization request is still Pending Approval from Admin. Please reach out to <a href=../contact/index>Admin or contact Us</a>";
+//           document.getElementById("btnSave").style.display = "none";
+//         } else {
+//           for (index = 0; index < approvalStatus.options.length; index++) {
+//             if (approvalStatus.options[index].value === "Pending Approval") {
+//               approvalStatus.options[index].selected = true;
+//               break;
+//             }
+//           }
+//         }
+//       }
+//     } else {
+//       console.log("not admin");
+//       document.getElementById("fInput").style.display = "none";
+//       document.getElementById("errorMessage").style.display = "block";
+//     }
+//   });
+//
+// }
 
 function onOrganizationSelection() {
   var organizer = document.getElementById("ddlOrganization");
