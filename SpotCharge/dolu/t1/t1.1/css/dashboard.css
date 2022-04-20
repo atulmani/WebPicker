@@ -539,22 +539,21 @@ left:-200px;
 
 .ordericon span{
 
-
-    /* height: 30px; */
-    /* width: 30px; */
-    /* padding: 2%; */
-    /* margin-top: 4px; */
-    background: #ddd;
-    padding: 3px 3px;
-    color: #65c032;
+    /* background: #ddd; */
+    /* padding: 3px 3px; */
+    color: #fff;
     width: auto;
     border-radius: 50%;
+    font-size: 1.4rem;
 
 }
 .ordericon{
-  /* height: 50px;
-  width: 50px; */
-  /* background: red; */
+  height: 35px;
+  width: 35px;
+  background: linear-gradient(to right,#65c032, green);
+  border-radius: 50%;
+  padding: 6px;
+  font-weight: lighter;
 }
 
 
@@ -565,7 +564,7 @@ left:-200px;
 .YourOrderWord h6:nth-child(2){
   font-weight: bold;
   margin-left: 10px;
-  margin-top: 3px;
+  margin-top: 8px;
   font-size: 1rem;
 }
 
@@ -593,9 +592,10 @@ left:-200px;
 }
 .analyticsBox span{
   margin: 0;
-  position: relative;
-  top: -3px;
-  color: #65c032;
+  /* position: relative; */
+  /* top: -3px; */
+  /* color: #65c032; */
+
 }
 .analyticsBox p{
   font-size: 1rem;
@@ -645,7 +645,7 @@ left:-200px;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  height: 7rem;
+  height: 9rem;
   width: 100%;
   transition: 1s;
   overflow: hidden;
@@ -655,7 +655,7 @@ left:-200px;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  height: 3rem;
+  height: 4rem;
   width: 100%;
   transition: 1s;
   overflow: hidden;
@@ -694,74 +694,208 @@ left:-200px;
   float: right;
   bottom: 5.3rem;
   text-align: right;
+
 }
 
 .bigNum h3{
   margin-bottom: 0;
 }
 .bigNum h5{
-  margin-bottom: 0;
+  /* margin-bottom: 10px; */
+
   font-weight: bold;
 }
 
 @media (max-width:850px) {
   .bigNum h5{
     margin-bottom: 0;
+    line-height: 32px;
     /* font-size: 2rem; */
+  }
+}
+#username{
+  font-weight:bold;
+}
+
+@media (max-width:850px) {
+  #username {
+
+    letter-spacing: 2px;
   }
 }
 
 #wallet{
   font-weight:bolder;
-  font-size:1rem;
+  font-size:1.2rem;
+  position: relative;
+  top: -4px;
 }
 
 @media (max-width:850px) {
   #wallet {
     margin-bottom: 0;
     font-size:1.5rem;
+    top: -6px;
+    letter-spacing: 2px;
+    /* font-size: 2rem; */
+  }
+}
+
+#walletRupeeSymbol{
+  font-weight:bolder;
+  font-size:1.2rem;
+  margin-right:3px;
+  position: relative;
+  top: -4px;
+}
+
+@media (max-width:850px) {
+  #walletRupeeSymbol {
+    margin-bottom: 0;
+    font-size:1.5rem;
+    margin-right:3px;
+    top: -6px;
     /* font-size: 2rem; */
   }
 }
 
 #walletSymbol{
-  font-weight:bolder;
-  font-size:1rem;
-  margin-right:3px;
+  /* background: #ddd; */
+  /* color: #65c032; */
+  /* border-radius: 50%; */
+  /* font-size: 1.3rem; */
+  /* padding: 3px; */
+  /* margin: 3px; */
 }
 
 @media (max-width:850px) {
-  #walletSymbol {
-    margin-bottom: 0;
-    font-size:1.5rem;
-    margin-right:3px;
-    /* font-size: 2rem; */
+  #walletSymbol{
+    font-size: 1.5rem;
   }
 }
-
 #walletAmt{
   font-weight:bolder;
-  font-size:1rem;
+  font-size:1.2rem;
+  position: relative;
+  top: -4px;
 }
 
 @media (max-width:850px) {
   #walletAmt {
     margin-bottom: 0;
     font-size:1.5rem;
+    top: -6px;
   }
 }
 
 #addWalletMoney{
-border-radius:6px;
-font-size:0.7rem;
-text-aign:center;
-background:#ddd;
-color:#65c032;
+border-radius:20px;
+font-size:0.8rem;
+display: flex;
+text-align:center;
+justify-content: center;
+height: 30px;
+background: linear-gradient(to right,#65c032, green);
+
 font-weight:1000;
+padding: 3px 10px;
+position:relative;
+top:-28px;
+text-decoration: none;
+letter-spacing: 1px;
+}
+#addWalletMoney h6{
+color:#fff;
+font-weight: bold;
+position: relative;
+top: 4px;
+}
+
+@media (max-width:850px) {
+  #addWalletMoney {
+    position:relative;
+    top:-20px;
+    width: 70%;
+    left:60px;
+    /* width: 150px; */
+    /* line-height: 32px; */
+  }
+}
+.moreOrderDetails{
+  border-radius:20px;
+
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  height:30px;
+  width: 35%;
+  background: linear-gradient(to right,#65c032, green);
+  color:#fff;
+  font-weight:1000;
+  /* padding: 2px 0 0 0; */
+  text-decoration: none;
+}
+
+.moreOrderDetails h6{
+  font-size:0.8rem;
+  text-align:center;
+  font-weight: bold;
+  position: relative;
+  top: 7px;
+  /* pointer-events: none !important; */
+}
+
+@media (max-width:850px) {
+ .moreOrderDetails{
+   font-size:1rem;
+   width: 35%;
+ }
+}
+.moreOrderDetails span{
+  padding: 0;
+  margin-right: 4px;
+  position: relative;
+  left: -3px;
+  top: 3px;
+  /* top:-1px; */
+}
+
+@media (max-width:850px) {
+  .moreOrderDetails span{
+    top:3px;
+  }
+}
+
+@media (max-width:850px) {
+  .moreOrderDetails h6{
+    height: 60px;
+    top:7px;
+  }
+}
+
+
+
+#MinAmtLine{
+
+position:relative;
+top:-34px;
+color:#555;
+font-size: 0.6rem;
+font-weight: bold;
+}
+
+@media (max-width:850px) {
+  #MinAmtLine{
+  font-size:0.8rem;
+  position:relative;
+  top:-28px;
+  color:#555;
+  font-weight: bold;
+  }
 }
 
 .bigNum h6{
-  color: #aaa;
+  color: #555;
   margin-bottom: 0;
   float: left;
 }
@@ -941,7 +1075,7 @@ color: #fff;
 .dashboardCardAnalytics{
   display: flex;
   flex-direction: column;
-  margin-top: 15px;
+  margin-top: 18px;
   /* justify-content: space-between; */
   width: 100%;
 }
@@ -950,7 +1084,7 @@ color: #fff;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 0px;
   border-left: 2px solid #65c032;
   padding-left: 2%;
 }
@@ -966,9 +1100,9 @@ color: #fff;
   font-size: 0.8rem;
 } */
 .analyticsText p{
-  font-size: 0.7rem;
-  margin: 0;
-  color: #aaa;
+  font-size: 0.8rem;
+  margin-bottom: 2px;
+  color: #555;
 }
 
 .locationDiv h6:nth-child(1){
@@ -1026,7 +1160,7 @@ color: #fff;
 .analyticsTextorg p{
   font-size: 0.7rem;
   margin: 0;
-  color: #aaa;
+  color: #555;
 }
 .analyticsSpanHead{
   font-weight: bold;
@@ -1038,7 +1172,7 @@ color: #fff;
   margin: 0;
   font-weight: normal;
   padding-left: 4px;
-  /* color: #aaa; */
+  /* color: #555; */
 }
 
 
@@ -1076,7 +1210,7 @@ color: #fff;
 .allorgName{
   /* position: relative; */
   /* left:2.5rem; */
-  color: #aaa;
+  color: #555;
   /* padding-right: 50px; */
 
 }
@@ -1101,14 +1235,14 @@ color: #fff;
 }
 
 .notificationBoxWord h6:nth-child(2){
-  color: #aaa;
+  color: #555;
   padding-left :2%;
   /* color:#333C5D; */
   font-size: 0.7rem;
 }
 
 .notificationBoxWord span{
-  color: #aaa;
+  color: #555;
   font-weight: normal;
   /* padding-left :2%; */
   /* color:#333C5D; */
