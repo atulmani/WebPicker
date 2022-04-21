@@ -26,6 +26,10 @@ body{
   font-family: 'Poppins', sans-serif;
 }
 
+a{
+  text-decoration: none;
+}
+
 h1{
   font-size: 3rem;
   font-weight: bold;
@@ -631,7 +635,7 @@ h6{
 .user-name .user-logo{
   width: 100%;
   height: 55px;
-  background: linear-gradient(to right, #65c032, #0fa400);
+  background: #65c032;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -641,7 +645,7 @@ h6{
 .user-name .user-logo h4{
   position: relative;
   top: 5px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #fff;
   font-weight: 500;
 }
@@ -677,19 +681,22 @@ h6{
 .edit-profile-div{
   display: flex;
   align-items: center;
-  padding: 10px 20px;
+  padding: 0 20px;
   background: rgba(101, 192, 50,0.2);
 }
 
 .edit-profile-div small{
   margin: 0;
   width: 60%;
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: #666;
   font-weight: 500;
 }
 
 .edit-profile-div div{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 40%;
 }
 
