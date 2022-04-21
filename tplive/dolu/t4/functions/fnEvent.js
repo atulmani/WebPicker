@@ -1137,14 +1137,15 @@ exports.getAllEventForOrganizerWithStatus =
 
 
 exports.getAllEventWithStatus =
-    functions.https.onCall(async (data, context) => {
-      if (!context.auth) {
-        throw new functions.https.HttpError(
-          "unauthenticatied",
-          "only authenticated user can call this"
-        );
-      }
+     functions.https.onCall(async (data, context) => {
+    //   if (!context.auth) {
+    //     throw new functions.https.HttpError(
+    //       "unauthenticatied",
+    //       "only authenticated user can call this"
+    //     );
+    //   }
       const approvalStatus = data.approvalStatus;
+      const range = data.selectionRange;
 
 
       let resultList = [];
