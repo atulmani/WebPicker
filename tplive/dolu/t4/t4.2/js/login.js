@@ -83,6 +83,22 @@ btnSigninUsingOTP.addEventListener('click', e => {
       ret1(para1).then((result) => {
         var record1 = result.data;
         console.log(result.data.id);
+        var userRole = {
+          id:result.data.id,
+          Address: result.data.Address,
+          AlternatePhone: result.data.AlternatePhone,
+          City: result.data.City,
+          Country: result.data.Country,
+          DateOfBirth: result.data.DateOfBirth,
+          Email: result.data.Email,
+          Gender: result.data.Gender,
+          Phone: result.data.Phone,
+          State: result.data.State,
+          UserName: result.data.UserName,
+          UserRole : result.data.UserRole,
+        }
+        console.log(userRole);
+        localStorage.setItem("userProfile", JSON.stringify(userRole));
         if (result.data.id != "0") {
           window.location.assign('profile.html');
         } else {

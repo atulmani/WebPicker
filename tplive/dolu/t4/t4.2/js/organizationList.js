@@ -19,29 +19,20 @@ auth.onAuthStateChanged(async firebaseUser => {
   }
 });
 
-
 async function GetProfileData() {
   console.log('GetProfileData - Starts');
+  var userProfile =JSON.parse( localStorage.getItem("userProfile"));
 
-  var para1 = {};
-  para1 = {
-    userID: loggedinUser.uid
-    // userID: '35667789999'
-  };
-  const ret1 = firebase.functions().httpsCallable("getProfileDetails");
-  ret1(para1).then((result) => {
-    var record1 = result.data;
-    console.log(result.data);
-    // console.log(result.data.UserRole.findIndex(e=> e.TYPE==="ADMIN"));
+  if (userProfile != undefined && underProfile != "" && userProfile != null) {
 
-    if (result.data.id != "0") {
-      document.getElementById("userName").innerHTML = result.data.UserName
+    if (userProfile.id != "0") {
+      document.getElementById("userName").innerHTML = userProfile.UserName
 
-      if (result.data.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
+      if (userProfile.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
         console.log("in admin");
         populateOrganizationList("All");
         // document.getElementById("fInput").style.display="none";
-      } else if (result.data.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
+      } else if (userProfile.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
         console.log("organizer");
         populateOrganizationList(loggedinUser.uid);
         // document.getElementById("fInput").style.display="none";
@@ -55,9 +46,49 @@ async function GetProfileData() {
       document.getElementById("containerOrgList").style.display = "none";
       document.getElementById("errorMessage").style.display = "block";
     }
-  });
-
+  } else {
+    window.location.assign('../index.html');
+  }
 }
+//
+// async function GetProfileDataOld() {
+//   console.log('GetProfileData - Starts');
+//
+//   var para1 = {};
+//   para1 = {
+//     userID: loggedinUser.uid
+//     // userID: '35667789999'
+//   };
+//   const ret1 = firebase.functions().httpsCallable("getProfileDetails");
+//   ret1(para1).then((result) => {
+//     var record1 = result.data;
+//     console.log(result.data);
+//     // console.log(result.data.UserRole.findIndex(e=> e.TYPE==="ADMIN"));
+//
+//     if (result.data.id != "0") {
+//       document.getElementById("userName").innerHTML = result.data.UserName
+//
+//       if (result.data.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
+//         console.log("in admin");
+//         populateOrganizationList("All");
+//         // document.getElementById("fInput").style.display="none";
+//       } else if (result.data.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
+//         console.log("organizer");
+//         populateOrganizationList(loggedinUser.uid);
+//         // document.getElementById("fInput").style.display="none";
+//       } else {
+//         console.log("not admin");
+//         document.getElementById("containerOrgList").style.display = "none";
+//         document.getElementById("errorMessage").style.display = "block";
+//       }
+//     } else {
+//       console.log("not admin");
+//       document.getElementById("containerOrgList").style.display = "none";
+//       document.getElementById("errorMessage").style.display = "block";
+//     }
+//   });
+//
+// }
 
 function fullcard(arrowVar) {
   // console.log(arrowVar).;

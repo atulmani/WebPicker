@@ -73,19 +73,14 @@ async function getUserList() {
 }
 async function GetProfileData() {
   console.log('GetProfileData - Starts');
-  //await getUserList();
-  var para1 = {};
-  para1 = {
-    userID: loggedinUser.uid
-  };
-  const ret1 = firebase.functions().httpsCallable("getProfileDetails");
-  ret1(para1).then(async (result) => {
-    var record1 = result.data;
-    console.log(result.data.UserRole.findIndex(e => e.TYPE === "ADMIN"));
-    document.getElementById("userName").innerHTML = result.data.UserName
-    document.getElementById("Comments").innerHTML = result.data.Comments
+  var userProfile =JSON.parse( localStorage.getItem("userProfile"));
+
+  if (userProfile != undefined && underProfile != "" && userProfile != null) {
+
+    document.getElementById("userName").innerHTML = userProfile.UserName
+    document.getElementById("Comments").innerHTML = userProfile.Comments
     var approvalStatus = document.getElementById("approvalStatus");
-    if (result.data.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
+    if (userProfile.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
       console.log("in admin");
       // console.log(organizationID);
       document.getElementById("organizer").disabled = false;
@@ -102,7 +97,7 @@ async function GetProfileData() {
         }
       }
       // document.getElementById("fInput").style.display="none";
-    } else if (result.data.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
+    } else if (userProfile.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
 
       console.log("Organizer");
       var organizationid = document.getElementById("organizer");
@@ -151,9 +146,95 @@ async function GetProfileData() {
       document.getElementById("fInput").style.display = "none";
       document.getElementById("errorMessage").style.display = "block";
     }
-  });
-
+  }
+  else {
+    window.location.assign('../index.html');
+  }
 }
+
+// async function GetProfileData() {
+//   console.log('GetProfileData - Starts');
+//   //await getUserList();
+//   var para1 = {};
+//   para1 = {
+//     userID: loggedinUser.uid
+//   };
+//   const ret1 = firebase.functions().httpsCallable("getProfileDetails");
+//   ret1(para1).then(async (result) => {
+//     var record1 = result.data;
+//     console.log(result.data.UserRole.findIndex(e => e.TYPE === "ADMIN"));
+//     document.getElementById("userName").innerHTML = result.data.UserName
+//     document.getElementById("Comments").innerHTML = result.data.Comments
+//     var approvalStatus = document.getElementById("approvalStatus");
+//     if (result.data.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
+//       console.log("in admin");
+//       // console.log(organizationID);
+//       document.getElementById("organizer").disabled = false;
+//
+//       if (organizationID != "" && organizationID != undefined && organizationID != null) {
+//         document.getElementById("btnSave").innerHTML = "Update";
+//         GetOganizationDetails();
+//       } else {
+//         for (index = 0; index < approvalStatus.options.length; index++) {
+//           if (approvalStatus.options[index].value === "Approved") {
+//             approvalStatus.options[index].selected = true;
+//             break;
+//           }
+//         }
+//       }
+//       // document.getElementById("fInput").style.display="none";
+//     } else if (result.data.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
+//
+//       console.log("Organizer");
+//       var organizationid = document.getElementById("organizer");
+//
+//       organizationid.disabled = true;
+//       approvalStatus.disabled = true;
+//       document.getElementById("Comments").disabled = true;
+//       // console.log(loggedinUser.uid);
+//       document.getElementById("hfOrganizerID").value = loggedinUser.uid;
+//       // console.log(organizationid.options.length);
+//       for (index = 0; index < organizationid.options.length; index++) {
+//         // console.log(organizationid.options[index].value);
+//         // console.log(organizationid.options[index].value);
+//         if (organizationid.options[index].value.search(loggedinUser.uid) >= 0) {
+//           organizationid.options[index].selected = true;
+//           onOrganizationSelection();
+//           break;
+//         }
+//       }
+//
+//       if (organizationID != "" && organizationID != undefined && organizationID != null) {
+//         document.getElementById("btnSave").innerHTML = "Update";
+//         GetOrganizationDetails();
+//       } else {
+//
+//         ///Check for any pending OrganizationName
+//
+//         var checkPending =await CheckForPendingOrganization();
+//         console.log(checkPending);
+//         if (checkPending > 0) {
+//           document.getElementById("fInput").style.display = "none";
+//           document.getElementById("errorMessage").style.display = "block";
+//           document.getElementById("errorMessage").innerHTML = "One Organization request is still Pending Approval from Admin. Please reach out to <a href=../contact/index>Admin or contact Us</a>";
+//
+//         } else {
+//           for (index = 0; index < approvalStatus.options.length; index++) {
+//             if (approvalStatus.options[index].value === "Pending Approval") {
+//               approvalStatus.options[index].selected = true;
+//               break;
+//             }
+//           }
+//         }
+//       }
+//     } else {
+//       console.log("not admin");
+//       document.getElementById("fInput").style.display = "none";
+//       document.getElementById("errorMessage").style.display = "block";
+//     }
+//   });
+//
+// }
 
 async function CheckForPendingOrganization() {
   var para = {};
