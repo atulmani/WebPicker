@@ -337,15 +337,17 @@
 
 
       <div style="border: 3px solid #161d65; " class="firstbox">
-        <h4 id="eventName" style="font-weight:1000; font-size:1.2rem;color:#348DCB;">PLAYUPBEAT BADMINTON CHAMPS
+        <input type="hidden" id="hfEventID">
+        <input type="hidden" id="hfOrganizerID">
+        <h4 id="eventName" style="font-weight:1000; font-size:1.2rem;color:#348DCB;">
         </h4>
         <hr>
         <ul>
-          <li><i style="color:#348DCB;" class="far fa-bookmark"></i><span class="textheadleft">Organiser: </span><span style="color:#889;" id="organiser-name" class="textheadleft">Krishal Shetty</span></li>
-          <li><i style="color:#348DCB;" class="far fa-calendar"></i> <span class="textheadleft">Date:</span> <span id="start-time" class="textheadleft"></span> <span style="color:#889;" id="end-time" class="textheadleft">14 Sept'21 to 17
+          <li><i style="color:#348DCB;" class="far fa-bookmark"></i><span class="textheadleft">Organiser: </span><span style="color:#889;" id="organisername" class="textheadleft">Krishal Shetty</span></li>
+          <li><i style="color:#348DCB;" class="far fa-calendar"></i> <span class="textheadleft">Date:</span> <span id="eventstartdate" class="textheadleft"></span> <span style="color:#889;" id="eventenddate" class="textheadleft">14 Sept'21 to 17
               Sept'21</span> </li>
           <!-- <li><i style="color:#348DCB;" class="fab fa-google-play"></i> <span id="venue" class="textheadleft"></span> </li> -->
-          <li><i style="color:#348DCB;" class="fas fa-rupee-sign"></i> <span class="textheadleft">Price: ₹</span> <span style="color:#889;" id="event-price" class="textheadleft">1000</span>
+          <li><i style="color:#348DCB;" class="fas fa-rupee-sign"></i> <span class="textheadleft">Price: ₹</span> <span style="color:#889;" id="eventprice" class="textheadleft">1000</span>
           </li><br>
 
           <li>
@@ -368,9 +370,9 @@
         <h4 style="font-weight:1000;color:#348DCB">Event Guide</h4>
         <hr>
         <ul>
-          <li><i class="fas fa-play-circle"></i> <span class="textheadleft">Venue : <span id="event-mode" class="textheadright">NKBA Pune</span> </span> </li>
-          <li><i class="fab fa-app-store"></i> <span class="textheadleft">Categories : <span id="age" class="textheadright"> MS, MD, MD(65+) </span> </span> </li>
-          <li><i class="fas fa-language"></i> <span class="textheadleft">Withdrawal Date : <span id="language" class="textheadright">13Sept'21</span> </span> </li>
+          <li><i class="fas fa-play-circle"></i> <span class="textheadleft">Venue : <span id="eventVenue" class="textheadright">NKBA Pune</span> </span> </li>
+          <li><i class="fab fa-app-store"></i> <span class="textheadleft">Categories : <span id="eventCategory" class="textheadright"> MS, MD, MD(65+) </span> </span> </li>
+          <li><i class="fas fa-language"></i> <span class="textheadleft">Withdrawal Date : <span id="withdrawalDate" class="textheadright">13Sept'21</span> </span> </li>
           <li><i class="fas fa-headset"></i> <span class="textheadleft">Event Status : <span id="eventstatus" class="textheadright">Upcomming</span> </span></li>
         </ul>
       </div><br><br>
@@ -380,8 +382,8 @@
                     class="btn"> ASK NOW
                     <i class="fas fa-angle-double-right"></i></button></a></span></span><br> <span style="color:#889; font-size:0.74rem">Ask the organiser anything!</span>
             <br>
-            <span style="font-size:0.9rem;color:#348DCB;">Email: </span> <span id="organiser-email" style="font-size:0.9rem;color:#889;">krishalpal123@gmail.com</span><br>
-            <span style="font-size:0.9rem;color:#348DCB;">Contact: </span> <span id="organiser-phone" style="font-size:0.9rem;color:#889;">+91 7355534789</span>
+            <span style="font-size:0.9rem;color:#348DCB;">Email: </span> <span id="organiserEmail" style="font-size:0.9rem;color:#889;">krishalpal123@gmail.com</span><br>
+            <span style="font-size:0.9rem;color:#348DCB;">Contact: </span> <span id="organiserPhone" style="font-size:0.9rem;color:#889;">+91 7355534789</span>
 
           </li>
 
@@ -397,7 +399,7 @@
         <h3 style="color:#348DCB;">About the event</h3>
       </span>
       <hr style="background:#348DCB;">
-      <p id="para" style="font-weight:300;color:#333C5D;">
+      <p style="font-weight:300;color:#333C5D;" id="RulesAndRegulation">
 
         Grace wait period will be 10 mins after which the participant/team will be disqualified, and the opponent will be declared winner for that match
         Trophies and medals will be awarded for the finalists of each category
