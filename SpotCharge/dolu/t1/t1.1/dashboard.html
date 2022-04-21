@@ -28,6 +28,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
 
+
   <!-- Font Awesome cdn file -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -450,23 +451,21 @@
                         </div>
                         <div style="" class="">
 
-                        <div style="display:flex; margin:2px;" class="">
-                          <div style="position:relative; top:-13px; margin:6px;" class="ordericon">
-                            <span   class="material-icons-outlined ">
-                            wallet
-                            </span>
+                        <div style="display:flex; margin:2px;" class="walletthings">
+                          <div style="" class="walletPng">
+                            <img style="" src="img/wallet.png" alt="">
                           </div>
-                          <div class="">
+                          <!-- <div class="small">
                             <span id="wallet" style="" >Wallet :</span>
-                          </div>
+                          </div> -->
                           <div class="">
                             <span id="walletRupeeSymbol" style=""> ₹ </span>
                           </div>
                           <div class="">
-                            <span id="walletAmt" style="">741 </span>
+                            <span id="walletAmt" style="">74109.25 </span>
                           </div>
                         </div>
-                        <span id="MinAmtLine" style=""> Min amt must be ₹ 500 </span>
+                        <span id="MinAmtLine" style=""> Min wallet amt must be ₹ 500 </span>
 
                         </div>
 
@@ -556,8 +555,8 @@
                     <div  class="" onclick="fullcard(arrowOrg)">
                       <div class="YourOrderContent">
                           <div  class="OrderLine">
-                              <div class="ordericon">
-                                <span class="material-icons-outlined">
+                              <div style="background:#ddd;" class="ordericon">
+                                <span style="color:green;" class="material-icons-outlined">
                                   battery_charging_full
                                   </span>
                               </div>
@@ -586,7 +585,8 @@
 
 
                     <div class="dashboardCardAnalytics">
-                      <div style="margin-bottom:10px;" class="OrderCardDetail">
+                      <div style="margin:20px 8px;" class="OrderCardDetail">
+
                         <div class="OrderCardDetailFeilds">
                           <h6 style="font-size:1rem;">This month</h6>
                           <h6 style="text-align:center;font-size:1rem; font-weight:bold;color:#555;">0</h6>
@@ -595,7 +595,7 @@
                         <div class="OrderCardDetailFeilds">
                           <h6 style="font-size:1rem;">Last month</h6>
                           <h6 style="text-align:center;font-size:1rem; font-weight:bold;color:#555;">2</h6>
-                          <h6 style="text-align:center;font-size:0.8rem; font-weight:bold;color:#555;"> <span>₹</span><span>100</span> </h6>
+                          <h6 style="text-align:center;font-size:0.8rem; font-weight:bold;color:#555;"> <span>₹</span><span>12000</span> </h6>
                         </div>
 
                       </div>
@@ -604,19 +604,19 @@
                         <div class="OrderCardDetailFeilds">
                           <h6 style="font-size:1rem;">Last 6 months</h6>
                           <h6 style="text-align:center;font-size:1rem; font-weight:bold;color:#555;">0</h6>
-                          <h6 style="text-align:center;font-size:0.8rem; font-weight:bold;color:#555;"> <span>₹</span><span>200</span> </h6>
+                          <h6 style="text-align:center;font-size:0.8rem; font-weight:bold;color:#555;"> <span>₹</span><span>123000</span> </h6>
                         </div>
                         <div class="OrderCardDetailFeilds">
                           <h6 style="font-size:1rem;">This Year</h6>
                           <h6 style="text-align:center;font-size:1rem; font-weight:bold;color:#555;">2</h6>
-                          <h6 style="text-align:center;font-size:0.8rem; font-weight:bold;color:#555;"> <span>₹</span><span>100</span> </h6>
+                          <h6 style="text-align:center;font-size:0.8rem; font-weight:bold;color:#555;"> <span>₹</span><span>23023455.25</span> </h6>
                         </div>
 
                       </div><br><br>
 
                       <a class="moreOrderDetails" href="#">
                         <span class="material-icons-outlined">
-                        read_more
+                        menu
                       </span> <h6>More</h6> </a>
 
                     </div>
@@ -631,7 +631,7 @@
                     <div onclick="fullcard(EventRevenue)" class="">
                       <div class="YourOrderContent">
                           <div  class="YourOrderWord">
-                              <div class="ordericon">
+                              <div style="background:#ff4800;" class="ordericon">
                                 <span class="material-icons-outlined">
                                   location_on
                                   </span>
@@ -731,9 +731,9 @@
                           </div>
                       </div>
 
-                      <a style="position:relative; top:6px;" class="moreOrderDetails" href="#">
+                      <a style="position:relative; top:4px;" class="moreOrderDetails" href="#">
                         <span class="material-icons-outlined">
-                        read_more
+                        menu
                       </span> <h6>More</h6> </a>
 
 
@@ -757,8 +757,8 @@
                     <div onclick="fullcard(CardTransaction)" class="">
                       <div class="YourOrderContent">
                           <div  class="YourOrderWord">
-                              <div class="ordericon">
-                                <span class="material-icons-outlined">
+                              <div style="background:#5ed56d;" class="ordericon">
+                                <span style="color:#494949;" style="" class="material-icons-outlined">
                                 currency_rupee
                                 </span>
                               </div>
@@ -811,7 +811,7 @@
                   </div>
                 </div>
 
-                <div class="col-lg-4" style="display: flex; justify-content: center; padding:2%">
+                <!-- <div class="col-lg-4" style="display: flex; justify-content: center; padding:2%">
                   <div id="CardNotification"  class="YourOrderCardBox">
 
                     <div onclick="fullcard(CardNotification)" class="">
@@ -897,7 +897,7 @@
                     </div>
 
                   </div>
-                </div>
+                </div> -->
 
                 <div  class="col-lg-4" style="display: flex; justify-content: center; padding:2%">
                   <div id="CardAnalytics" class="dashboardCardBox">
@@ -907,12 +907,12 @@
                             <!-- <h6>Create Event</h6> -->
                         </div>
 
-                      <div class="bigNum">
+                      <div class="bigNum"><br>
 
-                        <h4><span>Analytics</span> <span class="material-icons-outlined">
+                        <h4><span style="font-weight:bold;">Analytics</span> <span class="material-icons-outlined">
                         insights
                       </span> </h4>
-                        <h6>Now easily check your activity</h6>
+                        <h6 style="font-size:0.8rem;font-weight:600; color:#555;">Now easily check your activity</h6>
 
                       </div>
 
@@ -1015,19 +1015,19 @@
 
               <ul>
 
-                <div class="ordericon">
-                  <span class="material-icons-outlined">
+                <div style="background: #74ccab;" class="ordericon">
+                  <span  class="material-icons-outlined">
                     event_note
                     </span>
                 </div>
 
                 <div style="margin:0;" class="">
-                  <h6 style="font-weight:bold; margin:0;">Total Orders </h6>
-                  <h6 style="font-size:0.7rem;">Last 30 days</h6>
+                  <h6 style="font-weight:bold; margin:0;font-size:1rem;">Total Orders </h6>
+                  <h6 style="font-size:0.8rem;font-weight:600; color:#555;">Last 30 days</h6>
                 </div>
 
                 <!-- <li><h6 style="color:green;">+34.6%</h6></li> -->
-                <li><h6>22</h6></li>
+                <li><h6 style="font-size:0.8rem;font-weight:600; color:#555;">22</h6></li>
 
               </ul>
 
@@ -1038,21 +1038,21 @@
 
               <ul>
 
-                <div class="ordericon">
-                  <span class="material-icons-outlined">
+                <div style="background: #dcde10;" class="ordericon">
+                  <span style="color:#34a11a;" class="material-icons-outlined">
                     wallet
                     </span>
                 </div>
 
                 <div style="margin:0;" class="">
-                  <h6 style="font-weight:bold; margin:0;">Money Spent </h6>
-                  <h6 style="font-size:0.7rem;">Last 30 days</h6>
+                  <h6 style="font-weight:bold; margin:0;font-size:1rem;">Money Spent </h6>
+                  <h6 style="font-size:0.8rem;font-weight:600; color:#555;">Last 30 days</h6>
                 </div>
 
                 <!-- <li><h6 style="color:green;">+4.6%</h6></li> -->
                 <li style="display:flex;">
                   <h6 style="margin-right:3px;">₹</h6>
-                  <h6>51</h6></li>
+                  <h6 style="font-size:0.8rem;font-weight:600; color:#555;">51</h6></li>
 
               </ul>
 
@@ -1071,13 +1071,13 @@
                 </div>
 
                 <div style="margin:0;" class="">
-                  <h6 style="font-weight:bold; margin:0;">Total Service </h6>
-                  <h6 style="font-size:0.7rem;">Last 6 months</h6>
+                  <h6 style="font-weight:bold; margin:0;font-size:1rem;">Total Service </h6>
+                  <h6 style="font-size:0.8rem;font-weight:600; color:#555;">Last 6 months</h6>
                 </div>
 
                 <!-- <li><h6 style="color:green;">+7.6%</h6></li> -->
                 <!-- <p>₹</p> -->
-                <li> <h6>3</h6></li>
+                <li> <h6 style="font-size:0.8rem;font-weight:600; color:#555;">3</h6></li>
 
               </ul>
 
