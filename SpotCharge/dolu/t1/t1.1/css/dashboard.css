@@ -579,7 +579,7 @@ left:-200px;
 
 .analyticsBox ul{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   margin: 0;
   /* text-align: justify; */
@@ -662,7 +662,7 @@ left:-200px;
 }
 
 .YourOrderCardBox.active{
-  height:19.5rem;
+  height:21.5rem;
 }
 .dashboardCardBox.active{
   height:19.5rem;
@@ -715,6 +715,7 @@ left:-200px;
 }
 #username{
   font-weight:bold;
+  letter-spacing: 2px;
 }
 
 @media (max-width:850px) {
@@ -723,7 +724,25 @@ left:-200px;
     letter-spacing: 2px;
   }
 }
+.walletPng{
+  position:relative;
+  top:-13px;
+  margin:6px;
+}
 
+.walletPng img{
+  height:28px;
+  position:relative;
+  top:-6px;
+}
+
+@media (max-width:850px) {
+  .walletPng img{
+    height:35px;
+    position:relative;
+    /* bottom: 12px; */
+  }
+}
 #wallet{
   font-weight:bolder;
   font-size:1.2rem;
@@ -735,8 +754,8 @@ left:-200px;
   #wallet {
     margin-bottom: 0;
     font-size:1.5rem;
-    top: -6px;
-    letter-spacing: 2px;
+    top: -8px;
+    letter-spacing: 1.5px;
     /* font-size: 2rem; */
   }
 }
@@ -746,7 +765,7 @@ left:-200px;
   font-size:1.2rem;
   margin-right:3px;
   position: relative;
-  top: -4px;
+  top: -9px;
 }
 
 @media (max-width:850px) {
@@ -754,7 +773,8 @@ left:-200px;
     margin-bottom: 0;
     font-size:1.5rem;
     margin-right:3px;
-    top: -6px;
+    top: -8px;
+    /* letter-spacing: 2px; */
     /* font-size: 2rem; */
   }
 }
@@ -767,6 +787,14 @@ left:-200px;
   /* padding: 3px; */
   /* margin: 3px; */
 }
+.walletthings{
+  line-height: 40px;
+}
+@media (max-width:850px) {
+  .walletthings{
+    /* line-height: 0; */
+  }
+}
 
 @media (max-width:850px) {
   #walletSymbol{
@@ -777,14 +805,16 @@ left:-200px;
   font-weight:bolder;
   font-size:1.2rem;
   position: relative;
-  top: -4px;
+  top: -9px;
+  letter-spacing: 2px;
 }
 
 @media (max-width:850px) {
   #walletAmt {
     margin-bottom: 0;
     font-size:1.5rem;
-    top: -6px;
+    top: -8px;
+
   }
 }
 
@@ -796,14 +826,14 @@ text-align:center;
 justify-content: center;
 height: 30px;
 background: linear-gradient(to right,#65c032, green);
-
 font-weight:1000;
 padding: 3px 10px;
 position:relative;
-top:-28px;
+top:-25px;
 text-decoration: none;
 letter-spacing: 1px;
 }
+
 #addWalletMoney h6{
 color:#fff;
 font-weight: bold;
@@ -813,17 +843,13 @@ top: 4px;
 
 @media (max-width:850px) {
   #addWalletMoney {
-    position:relative;
-    top:-20px;
+    top:-24px;
     width: 70%;
-    left:60px;
-    /* width: 150px; */
-    /* line-height: 32px; */
+    float: right;
   }
 }
 .moreOrderDetails{
   border-radius:20px;
-
   display: flex;
   justify-content: center;
   text-align: center;
@@ -849,6 +875,7 @@ top: 4px;
  .moreOrderDetails{
    font-size:1rem;
    width: 35%;
+   text-decoration: none;
  }
 }
 .moreOrderDetails span{
@@ -887,8 +914,10 @@ font-weight: bold;
 @media (max-width:850px) {
   #MinAmtLine{
   font-size:0.8rem;
-  position:relative;
-  top:-28px;
+  top: -29px;
+  /* position:relative; */
+  /* top:-27px; */
+  /* margin-top: 4px; */
   color:#555;
   font-weight: bold;
   }
@@ -961,23 +990,33 @@ color: #fff;
 .profilePicSet{
   border-radius: 50%;
   position: relative;
-  left: 2%;
+  /* left: 2%; */
   height:90px;
   width: 90px;
+  top:7%;
 }
 
 @media (max-width:850px) {
   .profilePicSet{
-    left: 5%;
+    /* left: 2%; */
+    /* top: 14%; */
+    top: 1%;
 
   }
 }
+
 .profilePicSet img{
   border-radius: 50%;
-  height:90px;
-  width: 90px;
+  height:100px;
+  width: 100px;
 }
+@media (max-width:850px) {
+  .profilePicSet img{
 
+    height:126px;
+    width: 126px;
+  }
+}
 .createEventCircle h6{
   font-size: 0.7rem;
   color: green;
@@ -1101,6 +1140,7 @@ color: #fff;
 } */
 .analyticsText p{
   font-size: 0.8rem;
+  font-weight: bold;
   margin-bottom: 2px;
   color: #555;
 }
@@ -1149,7 +1189,7 @@ color: #fff;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 15px;
   border-left: 2px solid #65c032;
   padding-left: 2%;
 }
@@ -1170,9 +1210,9 @@ color: #fff;
 .analyticsSpanHeadValue{
   font-size: 0.8rem;
   margin: 0;
-  font-weight: normal;
+  font-weight: bold;
   padding-left: 4px;
-  /* color: #555; */
+  color: #555;
 }
 
 
