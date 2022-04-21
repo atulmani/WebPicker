@@ -28,7 +28,7 @@ async function GetProfileData() {
   console.log('GetProfileData - Starts');
   populateSportList();
   var userProfile =JSON.parse( localStorage.getItem("userProfile"));
-  if(userProfile != undefined && underProfile != "" userProfile != null )
+  if(userProfile != undefined && userProfile != "" && userProfile != null )
   {
     var approvalStatus = document.getElementById("approvalStatus");
     if (userProfile.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
@@ -756,6 +756,13 @@ btnPrevious6.addEventListener('click', e => {
   document.getElementById("section5").style.display = "block";
 });
 
+
+
+var btnNext7 = document.getElementById('btnNext7');
+btnNext7.addEventListener('click', e => {
+  e.preventDefault();
+  window.location.href="eventList.html";
+});
 //
 // var btnSave7 = document.getElementById('btnSave7');
 // btnSave7.addEventListener('click', e => {
