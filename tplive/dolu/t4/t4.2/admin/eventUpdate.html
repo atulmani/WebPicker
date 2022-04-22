@@ -906,6 +906,16 @@
             </center>
           </div>
 
+          <div id="divCategorySetup">
+
+            <div class="form-group col-md-12">
+              <center>
+                <br>
+                <button type="submit" style="width:30%" class="btn " id="btnCategorySetup"> Setup Category</button>
+              </center>
+            </div>
+          </div>
+
 
           <!-- <div class="form-group">
     <label for="inputAddress">Address</label>
@@ -1308,9 +1318,10 @@
         $('.datetimepicker11').datetimepicker({
           format: 'MM-DD-YYYY',
           ignoreReadonly: true,
-          useCurrent: true//,
-          // default:new Date();
-          // maxDate: new Date()
+          useCurrent: true,//,
+          defaultDate: new Date()//,
+
+           // maxDate: new Date()
 
         });
       });
