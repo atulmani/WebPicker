@@ -9,7 +9,7 @@ const firebaseConfig = {
   databaseURL: "https://hyperclouduat.firebaseio.com",
   storageBucket: "hyperclouduat.appspot.com",
   messagingSenderId: "932262782431",
-  appId: "1:932262782431:web:25c69612b0d3aaafaad06a"
+  appId: "1:932262782431:web:25c69612b0d3aaafaad06a",
 };
 
 // *********** Production Config **********
@@ -30,3 +30,4 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const auth = firebase.auth();
 const storage = firebase.storage();
+const analytics = firebase.analytics();
