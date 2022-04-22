@@ -55,7 +55,8 @@ async function GetProfileData() {
       document.getElementById("hfName").value = result.data.UserName;
       document.getElementById("userPhone").innerHTML = result.data.Phone;
       document.getElementById("state").innerHTML = result.data.State + ", " + result.data.Country;
-
+      if(result.data.DateOfBirth != null)
+      {
       var dob = new Date(result.data.DateOfBirth._seconds * 1000);
       var options = {
         year: 'numeric',
@@ -66,6 +67,7 @@ async function GetProfileData() {
       dob = dob.toLocaleDateString("en-US", options);
 
       document.getElementById("dob").value = dob;
+    }
       document.getElementById("city").innerHTML = result.data.City;
       document.getElementById("altPh").value = result.data.AlternatePhone;
       document.getElementById("address").value = result.data.Address;
@@ -215,6 +217,7 @@ function updateDetails()
       Gender: genderSelected,
       DateOfBirth: new Date(Date.parse(dob.value)),
     };
+    console.log(para1);
       const ret1 = firebase.functions().httpsCallable("updateProfileDetails");
       ret1(para1).then((result) => {
         createEventConformation.style.display = "block";
@@ -224,7 +227,7 @@ function updateDetails()
       console.log("updated your profile");
     })
     .catch(function(error) {
-      console.log("in error");
+      console.log("in error", error);
 
     });
 

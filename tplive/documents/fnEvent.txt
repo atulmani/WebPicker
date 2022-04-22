@@ -1,0 +1,22 @@
+getEventDetails : Get event details based on EvenyID
+getAllEventDetails : get all events from eventList collection
+getAllEventDetailsForOrganizer : get all event for Given OrganerID
+getAllEventForOrganizerWithStatus : get all event for Given OrganerID for given status
+addEventDetails: add event details in collection with basic details
+updateEventBasicDetails : update event details in collection with basic details
+updateEventDetails_Dates : update event details in collection for all date related details
+updateEventDetails_Logo : update event logo details in EventList collection 
+updateEventDetails_ApprovalStatus : update approval status in  eventList Collection
+updateEventDetails_PaymentStatus : update payoardment details status in  eventList Collection
+updateEventDetails_NoticeBoard : update noticeBoarc details in  eventList Collection
+updateEventDetails_Announcement : update announcement details in  eventList Collection
+updateEventDetails_RulesAndRegulations : update rules and regulations  in  eventList Collection
+updateEventDetails_DrawLink : update draw link  in  eventList Collection
+updateEventFlag_CloseEvent : update flag for eventClose status in  eventList Collection
+updateEventFlag_RegistrationOn : update flag for registration start status in  eventList Collection
+updateEventFlag_RegistrationCompletePostPayment : update flag for registration complete after payment  in  eventList Collection
+updateEventFlag_OnlinePaymentMode : update flag for online payment  in  eventList Collection
+updateEventFlag_PublishDraw : update flag for draw publish status in  eventList Collection
+updateEventFlag_PublishSeed : update flag for publish seed in draw status in  eventList Collection
+updateEventFlag_PublishSchedule : update flag for publish schedule status in  eventList Collection
+updateEventFlag_PublishGallery : update flag for publish gallery status in  eventList Collection

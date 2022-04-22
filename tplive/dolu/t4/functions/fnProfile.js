@@ -266,3 +266,50 @@ exports.saveProfileDetailsStep4 =
             return "1";
           });
     });
+
+
+    exports.getUserWithRole =
+      functions.https.onCall(async (data, context) => {
+        if (!context.auth) {
+          throw new functions.https.HttpError(
+            "unauthenticatied",
+            "only authenticated user can call this"
+          );
+        }
+        let resultList = [];
+
+        const roleList = data.paraRole;
+        console.log(roleList);
+        // var dbrows = await admin.firestore().collection("PartnerList").get();
+        // dbrows.then((changes) => {
+        return await admin.firestore().collection("UserList").get().then((changes) => {
+          changes.forEach(change => {
+              for (index = 0 ; index < roleList.length; index++ )
+              {
+                // findIndex(e => e.TYPE === "ADMIN")
+                if(change.data().UserRole.findIndex(e => e.TYPE === roleList[index]) >= 0)
+                {
+                  console.log(roleList[index]);
+                  resultList.push({
+                    userid: change.id,
+                    Address: change.data().Address,
+                    AlternatePhone: change.data().AlternatePhone,
+                    City: change.data().City,
+                    Country: change.data().Country,
+                    DateOfBirth: change.data().DateOfBirth,
+                    Email: change.data().Email,
+                    Gender: change.data().Gender,
+                    Phone: change.data().Phone,
+                    State: change.data().State,
+                    UserName: change.data().UserName,
+                    UserRole: change.data().UserRole,
+                  });
+                  break;
+                }
+              }
+            console.log(resultList);
+          });
+          return resultList;
+
+        });
+      });
