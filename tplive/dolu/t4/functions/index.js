@@ -59,3 +59,5 @@ exports.updateEventFlag_PublishSchedule = events.updateEventFlag_PublishSchedule
 exports.updateEventFlag_PublishGallery = events.updateEventFlag_PublishGallery;
 exports.getAllEventForOrganizerWithStatus = events.getAllEventForOrganizerWithStatus;
 exports.getAllEventWithStatus = events.getAllEventWithStatus;
+exports.getEventCategoryDetails = events.getEventCategoryDetails;
+exports.setEventCategoryDetails = events.setEventCategoryDetails;
