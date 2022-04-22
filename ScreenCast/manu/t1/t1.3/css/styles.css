@@ -772,20 +772,30 @@ input:valid .input-field i {
   line-height: 2;
 }
 
-@media (max-width: 1080px) {
-  .nav-item {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.hamburger-menu{
+  position:absolute;
+  right: 0;
 }
+
 
 .nav-link {
   color: rgba(225, 0, 50, 1);
   padding: 4px 10px;
   margin: 0 5px;
   text-align: center;
+}
+
+@media (max-width: 1080px) {
+  .nav-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hamburger-menu{
+    position: static;
+  }
+
 }
 
 .nav-link.active,
