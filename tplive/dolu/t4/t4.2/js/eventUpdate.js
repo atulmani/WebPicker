@@ -769,6 +769,16 @@ btnNext7.addEventListener('click', e => {
 //    e.preventDefault();
 //   //save detailes in DB
 // });
+var btnCategorySetup = document.getElementById('btnCategorySetup');
+btnCategorySetup.addEventListener('click', e => {
+  e.preventDefault();
+
+  console.log('btnCategorySetup clicked');
+  console.log(document.getElementById("hfEventID").value);
+   window.location.href="categorySetup.html?id=" + document.getElementById("hfEventID").value;
+});
+
+
 var ClosedEvent = document.getElementById('ClosedEvent');
 ClosedEvent.addEventListener('click', e => {
   e.preventDefault();
