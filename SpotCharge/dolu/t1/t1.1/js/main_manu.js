@@ -20,7 +20,6 @@
    // sideNavbar - start
 
    var hamberIcon = document.getElementById('hamberIcon');
-   var closeBtn = document.getElementById('closeBtn');
    var fullContent = document.getElementById('fullContent');
    var sideNavbar = document.getElementById('sideNavbar');
 
