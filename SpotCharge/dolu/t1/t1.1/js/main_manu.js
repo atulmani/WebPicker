@@ -1,11 +1,4 @@
 
-// Collapse Navbar toggle menu after clicking on menu items - Start
-$(document).on('click', function() {
-  document.getElementById('sideNavbar').classList.remove('open');
-});
-// Collapse Navbar toggle menu after clicking on menu items - End
-
-
 // Menu's nav-link highlighted those are active - start
   $(".nav .nav-link").on("click", function() {
     $(".nav").find(".active").removeClass("active");
@@ -28,6 +21,7 @@ $(document).on('click', function() {
 
    var hamberIcon = document.getElementById('hamberIcon');
    var closeBtn = document.getElementById('closeBtn');
+   var fullContent = document.getElementById('fullContent');
    var sideNavbar = document.getElementById('sideNavbar');
 
    hamberIcon.addEventListener('click', sideNavbarOpen, false);
@@ -36,7 +30,7 @@ $(document).on('click', function() {
      sideNavbar.classList.add('open');
    }
 
-   closeBtn.addEventListener('click', sideNavbarClose, false);
+   fullContent.addEventListener('click', sideNavbarClose, false);
 
    function sideNavbarClose(){
      sideNavbar.classList.remove('open');
