@@ -292,22 +292,21 @@ h6{
 .side-navbar ul li b{
   display: none;
   position: absolute;
-  height: 20px;
+  height: 10px;
   width: 100%;
   background: #fff;
 }
 
-.side-navbar ul li.active b,
-.side-navbar ul li:hover b{
+.side-navbar ul li.active b{
   display: block;
 }
 
 .side-navbar ul li b:nth-child(1){
-  top: -20px;
+  top: -10px;
 }
 
 .side-navbar ul li b:nth-child(2){
-  bottom: -20px;
+  bottom: -10px;
 }
 
 .side-navbar ul li b::before{
@@ -815,6 +814,7 @@ h6{
 }
 
 .vehicle-card{
+  position: relative;
   border-radius: 8px;
   background: #fff;
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
@@ -822,6 +822,130 @@ h6{
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.vehicle-card .wave{
+  display: none;
+}
+
+.vehicle-card.charging .wave{
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 500px;
+  width: 500px;
+  animation: 11s linear infinite reverse wave;
+  transition: 10s;
+  transform-origin: 50%, 48%;
+  border-radius: 40%;
+  margin-left: -130px;
+  opacity: 0.2;
+}
+
+.vehicle-card.charging .wave.wave2{
+  animation: 7s linear infinite wave;
+  opacity: 0.3;
+}
+
+.vehicle-card.charging .wave.wave3{
+  animation: 9s linear infinite wave;
+  opacity: 0.4;
+}
+
+.vehicle-card.charging .wave.b1{
+  bottom: -495px;
+  background: linear-gradient(to right, #f20c0c, #eb2a2a);
+}
+
+.vehicle-card.charging .wave.b2{
+  bottom: -470px;
+  background: linear-gradient(to right, #D11313, #E32D2D);
+}
+
+.vehicle-card.charging .wave.b3{
+  bottom: -445px;
+  background: linear-gradient(to right, #eb8817, #ed9939);
+}
+
+.vehicle-card.charging .wave.b4{
+  bottom: -418px;
+  background: linear-gradient(to right, #e6ce20, #e6d34c);
+}
+
+.vehicle-card.charging .wave.b5{
+  bottom: -400px;
+  background: linear-gradient(to right, #a1eb17, #b0e64c);
+}
+
+.vehicle-card.charging .wave.b6{
+  bottom: -365px;
+  background: linear-gradient(to right, #21c708, #39b327);
+}
+
+@media (max-width: 1080px) {
+  .vehicle-card.charging .wave{
+    margin-left: -170px;
+  }
+
+  .vehicle-card.charging .wave.b1{
+    bottom: -500px;
+    background: linear-gradient(to right, #f20c0c, #eb2a2a);
+  }
+
+  .vehicle-card.charging .wave.b2{
+    bottom: -474px;
+    background: linear-gradient(to right, #D11313, #E32D2D);
+  }
+
+  .vehicle-card.charging .wave.b3{
+    bottom: -454px;
+    background: linear-gradient(to right, #eb8817, #ed9939);
+  }
+
+  .vehicle-card.charging .wave.b4{
+    bottom: -434px;
+    background: linear-gradient(to right, #e6ce20, #e6d34c);
+  }
+
+  .vehicle-card.charging .wave.b5{
+    bottom: -414px;
+    background: linear-gradient(to right, #a1eb17, #b0e64c);
+  }
+
+  .vehicle-card.charging .wave.b6{
+    bottom: -374px;
+    background: linear-gradient(to right, #21c708, #39b327);
+  }
+}
+
+@keyframes wave {
+  0%{
+    transform: rotate(0deg);
+  }100%{
+    transform: rotate(360deg);
+  }
+}
+
+.vehicle-card .battery{
+  display: none;
+  position: absolute;
+  z-index: 5;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.vehicle-card.charging .battery{
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vehicle-card .battery span{
+  font-size: 0.9rem;
 }
 
 .vehicle-card div{
@@ -831,7 +955,7 @@ h6{
   justify-content: center;
 }
 
-.vehicle-card div span{
+.vehicle-card div .material-symbols-outlined{
   padding: 0px 0 20px 0;
   font-size: 2.5rem;
   color: #65c032;
