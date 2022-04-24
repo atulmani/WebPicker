@@ -540,7 +540,11 @@ h6{
   text-align: right;
   padding: 0 5%;
   display: block;
-  width: 60%;
+  width: 47%;
+}
+
+.car-image img{
+  height: 500px;
 }
 
 .car-div{
@@ -739,11 +743,11 @@ h6{
 .address-div .icon{
   position: relative;
   top: 3px;
-  width: 100%;
+  width: 33px;
+  height: 33px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 33px;
   border-radius: 10px;
   background: #65c032;
   color: #fff;
