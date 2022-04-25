@@ -305,7 +305,7 @@
 
 
           <!-- <div style="" class="menu-tag-items"> -->
-            <a href="entries.html">
+            <a href="eventEntries.html">
               <span style="position:relative;  right:6px;" class="material-icons-outlined">directions_run</span>Entries</a>
           <!-- </div> -->
 
@@ -321,14 +321,14 @@
       <div style="" class="small menu-list-parent">
         <div class="menu-list-tags">
           <a style="color:#fff; font-size:1.2rem;" href="#"> <span style=";font-size:1.3rem; padding-right:4px;" class="material-icons-outlined">info</span>  Details</a>
-          <a style="color:color:#ccc;" href="#"> <span style="font-size:1rem; padding-right:4px;" class="material-icons-outlined">directions_run</span>  Entries</a>
+          <a style="color:color:#ccc;" href="eventEntries.html"> <span style="font-size:1rem; padding-right:4px;" class="material-icons-outlined">directions_run</span>  Entries</a>
           <a style="color:color:#ccc;" href="#"> <span style="font-size:1rem; padding-right:4px;" class="material-icons-outlined">sports_kabaddi</span>  Participants</a>
 
         </div>
       </div>
 
       <div class="" style="padding:2%;">
-        <img id="event-image" style="width:100%;border-radius:10px;" src="./img/1.png" alt=""><br><br>
+        <img id="event-image" style="width:100%;border-radius:10px;" src="img/1.png" alt=""><br><br>
       </div>
       <!-- <img style="width:100%;border-radius:10px;" src="../img/pager4.jpg" alt=""> -->
     </div>
@@ -344,20 +344,20 @@
         <hr>
         <ul>
           <li><i style="color:#348DCB;" class="far fa-bookmark"></i><span class="textheadleft">Organiser: </span><span style="color:#889;" id="organisername" class="textheadleft">Krishal Shetty</span></li>
-          <li><i style="color:#348DCB;" class="far fa-calendar"></i> <span class="textheadleft">Date:</span> <span id="eventstartdate" class="textheadleft"></span> <span style="color:#889;" id="eventenddate" class="textheadleft">14 Sept'21 to 17
-              Sept'21</span> </li>
+          <li><i style="color:#348DCB;" class="far fa-calendar"></i> <span class="textheadleft">Date:</span> <span id="eventstartdate" class="textheadleft"></span> -  <span style="color:#889;" id="eventenddate" class="textheadleft">
+              </span> </li>
           <!-- <li><i style="color:#348DCB;" class="fab fa-google-play"></i> <span id="venue" class="textheadleft"></span> </li> -->
           <li><i style="color:#348DCB;" class="fas fa-rupee-sign"></i> <span class="textheadleft">Price: ₹</span> <span style="color:#889;" id="eventprice" class="textheadleft">1000</span>
           </li><br>
 
           <li>
-          <span style="float:left;">  <a id="booking" href="./checkout/step1-auth.html">
-            <button style="background-color:#348DCB;color:#fff; font-size:0.8rem;" type="button" name="button" id="booking" class="btn"> Register  <i class="fas fa-angle-double-right"></i>
+          <span style="float:left;">  <a id="booking" onclick="btnBookingClick();">
+            <button style="background-color:#348DCB;color:#fff; font-size:0.8rem;" type="button" name="button" id="btnBooking" class="btn"> Register  <i class="fas fa-angle-double-right"></i>
             </button>
             </a></span>
 
             <span style="float:right;">  <a id="booking" href="./checkout/step1-auth.html">
-              <button style="background-color:#348DCB;color:#fff; font-size:0.8rem;" type="button" name="button" id="booking" class="btn">Pay Now <i class="fas fa-angle-double-right"></i>
+              <button style="background-color:#348DCB;color:#fff; font-size:0.8rem;" type="button" name="button" id="bookingPayment" class="btn">Pay Now <i class="fas fa-angle-double-right"></i>
               </button>
               </a></span>
             </li><br>
@@ -461,8 +461,8 @@
           <th>Fees</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
+      <tbody id="eventCategoryDetails">
+        <!-- <tr>
           <td>1</td>
           <td>Boys Double Under11</td>
           <td>M</td>
@@ -650,7 +650,7 @@
           <td>XD 35+ </td>
           <td>X</td>
           <td>600</td>
-        </tr>
+        </tr> -->
 
       </tbody>
     </table>
