@@ -14,6 +14,8 @@ const userProfile = require("./fnProfile.js");
 const organization = require("./fnOrganization.js");
 const events = require("./fnEvent.js");
 const common = require("./fnCommon.js");
+const entry = require("./fnEntry.js");
+const registration = require("./fnRegistration.js");
 // const functions = require("firebase-functions");
 
 exports.addMasterSportName = common.addMasterSportName;
@@ -60,4 +62,14 @@ exports.updateEventFlag_PublishGallery = events.updateEventFlag_PublishGallery;
 exports.getAllEventForOrganizerWithStatus = events.getAllEventForOrganizerWithStatus;
 exports.getAllEventWithStatus = events.getAllEventWithStatus;
 exports.getEventCategoryDetails = events.getEventCategoryDetails;
-exports.setEventCategoryDetails = events.setEventCategoryDetails;
+
+
+exports.logEntryAdd = entry.logEntryAdd;
+exports.logEntryDelete = entry.logEntryDelete;
+exports.getAllEventEntryCount = entry.getAllEventEntryCount;
+exports.getEventEntryCountForCategory = entry.getEventEntryCountForCategory;
+
+
+exports.getApplicableEvent = registration.getApplicableEvent;
+exports.registerEvent = registration.registerEvent;
+exports.getAllRegisteredEventList = registration.getAllRegisteredEventList;
