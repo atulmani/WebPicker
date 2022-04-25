@@ -23,7 +23,7 @@ function GetProfileData()
 {
   var userProfile =JSON.parse( localStorage.getItem("userProfile"));
 
-  if(userProfile != undefined && underProfile != "" userProfile != null )
+  if(userProfile != undefined && userProfile != "" && userProfile != null )
   {
         document.getElementById('ifSignedIn').innerHTML = 'Hi '+ userProfile.UserName;
         document.getElementById('ifSignedIn').href = "login/profile.html";
