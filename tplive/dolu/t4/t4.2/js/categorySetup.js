@@ -102,11 +102,6 @@ btnSaveinDB.addEventListener('click', e => {
   };
   const ret1 = firebase.functions().httpsCallable("setEventCategoryDetails");
   ret1(para1).then((result) => {
-    // var record1 = result.data;
-    // console.log(result.data);
-    //
-    // document.getElementById("hfEventID").value = result.data.Eventid;
-    // valList = result.data.CategoryDetails;
 
   });
 });
@@ -125,6 +120,7 @@ btnSave.addEventListener('click', e => {
   var referenceDate = document.getElementById("ReferenceDate").value;
   var oddlDateRef = document.getElementById("ddlDateRef");
   var dateRef = oddlDateRef.options[oddlDateRef.selectedIndex].value;
+  var fees = document.getElementById("fees").value
 console.log(valList);
   if(valList != null && valList != undefined)
   {
@@ -140,9 +136,10 @@ else {
   valList.push({
     CategoryName: categoryName,
     Gender: gender,
+    Fees : Number(fees),
     EventType: eventType,
-    MaxTeamSize: maxTeamSize,
-    ReferenceDate: referenceDate,
+    MaxTeamSize: Number(maxTeamSize),
+    ReferenceDate: new Date(referenceDate),
     DateRefType: dateRef
 
   });
@@ -155,8 +152,21 @@ else {
 
 
 function renderCategory(obj, index) {
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
+
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+
   var div1 = document.createElement("div");
-  div1.setAttribute("class", "form-group col-md-6");
+  div1.setAttribute("class", "form-group col-md-12");
 
   var div2 = document.createElement("div");
   div2.setAttribute("class", "item");
@@ -185,9 +195,11 @@ function renderCategory(obj, index) {
   var br1 = document.createElement("br");
   p1.appendChild(br1);
 
+  // var refdate = new Date(obj.ReferenceDate.seconds * 1000);
+  var refdate = new Date(obj.ReferenceDate._seconds * 1000);
   var span2 = document.createElement("span");
   span2.setAttribute("style", "letter-spacing:1px;");
-  span2.innerHTML = "Born " + obj.DateRefType + " : " + obj.ReferenceDate;
+  span2.innerHTML = "Born " + obj.DateRefType + " : " + refdate.toLocaleDateString("en-US", options);
 
   p1.appendChild(span2);
   var br2 = document.createElement("br");
@@ -200,6 +212,14 @@ function renderCategory(obj, index) {
   p1.appendChild(span3);
   var br3 = document.createElement("br");
   p1.appendChild(br3);
+
+  var span4 = document.createElement("span");
+  span4.setAttribute("style", "letter-spacing:1px;");
+  span4.innerHTML = "Fee :" + obj.Fees.toLocaleString('en-IN', curFormat);;
+
+  p1.appendChild(span4);
+  var br4 = document.createElement("br");
+  p1.appendChild(br4);
 
   var i1 = document.createElement("i");
   i1.setAttribute("onclick", "EditCategoryDetails(" + index + ");");
