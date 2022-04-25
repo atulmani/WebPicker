@@ -579,6 +579,7 @@ h6{
   }
 
   .login-card-outter{
+    height: 600px;
     box-shadow: 0 0 0 0 rgba(0,0,0,0);
   }
 }
