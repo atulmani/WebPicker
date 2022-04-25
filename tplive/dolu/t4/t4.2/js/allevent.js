@@ -5,32 +5,33 @@ window.onload = function() {
   GetEventList();
 };
 //
-// auth.onAuthStateChanged(async firebaseUser => {
-//   try {
-//     if (firebaseUser) {
-//       loggedinUser = firebaseUser;
-//       //console.log(firebaseUser.uid);
-//       console.log('Logged-in user phone number: ' + loggedinUser.phoneNumber);
-//
-//       GetProfileData();
-//     } else {
-//       loggedinUser = null;
-//
-//     }
-//
-//     GetEventList();
-//   } catch (error) {
-//     console.log(error.message);
-//     // window.location.href = "../index.html";
-//   }
-// });
+auth.onAuthStateChanged(async firebaseUser => {
+  try {
+    if (firebaseUser) {
+      loggedinUser = firebaseUser;
+      //console.log(firebaseUser.uid);
+      console.log('Logged-in user phone number: ' + loggedinUser.phoneNumber);
+
+      GetProfileData();
+    } else {
+      loggedinUser = null;
+
+    }
+
+    GetEventList();
+  } catch (error) {
+    console.log(error.message);
+    // window.location.href = "../index.html";
+  }
+});
 
 async function GetProfileData() {
   console.log('GetProfileData - Starts');
   var userProfile = JSON.parse(localStorage.getItem("userProfile"));
   if (userProfile != undefined && userProfile != "" && userProfile != null) {
     if (userProfile.id != "0") {
-      // document.getElementById("userName").innerHTML = result.data.UserName
+      document.getElementById("userName").innerHTML = userProfile.UserName;
+      document.getElementById("userlocation").innerHTML = userProfile.City;
 
       if (userProfile.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
         console.log("in admin");
@@ -161,7 +162,7 @@ function RenderEventDetails(index, doc) {
 
   var span5 = document.createElement("span");
   span5.setAttribute("style", "letter-spacing:1px;line-height:14px;")
-  span5.innerHTML = "Prize : ";
+  span5.innerHTML = "Fees : ";
   // span1.innerHTML = doc.NumberOfEvent;
   p1.appendChild(span5);
 
@@ -169,7 +170,7 @@ function RenderEventDetails(index, doc) {
   var span6 = document.createElement("span");
   span6.setAttribute("style", "font-weight:bold");
   span6.setAttribute("id", "homepage_eventprize" + index);
-  span6.innerHTML = doc.EventPrizeRange;
+  span6.innerHTML = doc.MinimumFee +"-"+ doc.MaximumFee;
   p1.appendChild(span6);
   div5.appendChild(p1);
 
