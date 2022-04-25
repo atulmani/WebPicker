@@ -11,9 +11,6 @@ Colors:
 
 */
 
-
-
-/* admin - start */
 /* login page - start */
 
 .main_header{
@@ -538,21 +535,19 @@ left:-200px;
 }
 
 .ordericon span{
-
-    /* background: #ddd; */
-    /* padding: 3px 3px; */
-    color: #fff;
+    color: #444;
     width: auto;
     border-radius: 50%;
-    font-size: 1.4rem;
-
+    font-size: 1.2rem;
 }
 .ordericon{
+  display: flex;
+  justify-content: center;
+  align-items:center;
   height: 35px;
   width: 35px;
-  background: linear-gradient(to right,#65c032, green);
-  border-radius: 50%;
-  padding: 6px;
+  background: rgba(84,204,203,0.3);
+  border-radius: 10px;
   font-weight: lighter;
 }
 
@@ -860,6 +855,11 @@ top: 4px;
   font-weight:1000;
   /* padding: 2px 0 0 0; */
   text-decoration: none;
+}
+
+.moreOrderDetails:hover{
+  text-decoration: none;
+  color: #fff;
 }
 
 .moreOrderDetails h6{
@@ -1172,11 +1172,8 @@ color: #fff;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* justify-content: flex-start; */
-
-  /* margin-right: 4px; */
   margin-bottom: 8px;
-  border-left: 2px solid #65c032;
+  border-left: 2px solid rgba(84,204,203,0.8);
   padding-left: 2%;
 }
 .analyticsNumorg h6{
@@ -1190,7 +1187,7 @@ color: #fff;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 15px;
-  border-left: 2px solid #65c032;
+  border-left: 2px solid rgba(84,204,203,0.8);
   padding-left: 2%;
 }
 .analyticsTextorg h6{

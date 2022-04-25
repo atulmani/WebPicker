@@ -3,7 +3,7 @@
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  height: 5rem;
+  height: 6rem;
   width: 100%;
   transition: 1s;
   overflow: hidden;
@@ -12,7 +12,7 @@
 }
 
 .OrderPageCard.active{
-  height:15rem;
+  height:17rem;
 }
 
 
@@ -30,7 +30,7 @@
   font-weight: bold;
   margin-left: 10px;
   margin-top: 1px;
-  margin-bottom: 0;
+  margin-bottom: 3px;
   font-size: 1rem;
 
 }
@@ -38,15 +38,16 @@
 .OrderLineBelow h6:nth-child(2){
   /* font-weight: bold; */
   margin-left: 10px;
-  font-size: 0.7rem;
-  color: #aaa;
-  margin-bottom: 0;
+  font-size: 0.8rem;
+  color: #494949;
+  margin-bottom: 3px;
+  font-weight: bolder;
 
 }
 
 .OrderLineBelowEnd{
   display: flex;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
 }
 /*
 .OrderLineBelowEndContent div:nth-child(1) h6{
@@ -61,7 +62,7 @@
   /* font-weight: bold; */
   margin-left: 10px;
   margin-bottom: 0;
-  font-size: 0.8rem;
+  font-size: 1rem;
   /* background: red; */
 }
 
@@ -75,26 +76,25 @@
 }
 
 .statusdiv{
-  background: #ddd;
-  color: #65c032;
+  /* background: #65c032; */
+  color: #000;
   /* margin: 0; */
-  display: inline-block;
+  /* display: inline-block; */
   height: 24px;
-  width: 70px;
-  border-radius: 14px;
+  width: 65px;
+  border-radius: 4px;
   display: flex;
-  /* text-align: center; */
+  text-align: center;
   justify-content: center;
-  /* padding: 3px; */
-  /* position: relative; */
+
 }
 .statusdiv h6{
-  margin: 4px 0;
-  display: inline-block;
-  /* position: relative; */
-  /* top: -3px; */
-  font-size: 0.8rem;
+
+  position: relative;
+  top: 4px;
+  font-size: 0.9rem;
   font-weight: bolder;
+
 
 }
 
@@ -137,7 +137,7 @@ margin-bottom: 0;
 
 .hLine{
   border: none;
-  border-bottom: 3px solid red;
+  border-bottom: 3px solid orange;
   width:33.3%;
   margin: 0;
   transition: 1s
@@ -160,6 +160,7 @@ margin-bottom: 0;
   transition: 1s;
   padding: 0 20px;
 
+
 }
 
 @media (max-width:850px) {
@@ -173,10 +174,16 @@ margin-bottom: 0;
 .category-list-sub-menu{
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 5px 10px 0 10px;
+  /* justify-content: center; */
+  padding: 5px 10px 0 100px;
+  /* margin: 0 3px; */
 }
+@media (max-width:850px) {
+  .category-list-sub-menu{
 
+    padding: 5px 10px 0 30px;
+  }
+}
 .city-selector{
   background: rgba(0,0,0,0.1);
   outline: none;
@@ -203,4 +210,22 @@ margin-bottom: 0;
   top: 5px;
   right: 35px;
   pointer-events:none;
+}
+
+.icon{
+  position: relative;
+  top: 3px;
+  width: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 33px;
+  border-radius: 10px;
+  background: #65c032;
+  color: #fff;
+}
+
+ .icon span{
+  font-size: 1.2rem;
 }

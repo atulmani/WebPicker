@@ -17,8 +17,3 @@ function fullcard(arrowVar)
   arrowVar.classList.toggle('active');
 
 }
-
-  const myChart = new Chart(
-    document.getElementById('myChart'),
-    config
-  );
