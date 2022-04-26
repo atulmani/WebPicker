@@ -79,7 +79,7 @@ function RenderEventDetails(index, doc) {
 
   var anchor = document.createElement("a");
   anchor.setAttribute("style", "text-decoration:none;");
-  anchor.setAttribute("href", "EventDetail.html?id=" + doc.Eventid);
+  anchor.setAttribute("href", "eventDetail.html?id=" + doc.Eventid);
 
   var div2 = document.createElement("div");
   div2.setAttribute("class", "item");
