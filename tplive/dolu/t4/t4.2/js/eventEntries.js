@@ -12,6 +12,7 @@ window.onload = function() {
   } else {
     localStorage.setItem("EventID", eventID);
   }
+  document.getElementById("hfEventID").value = eventID; 
   getEventDetails();
   getEventCategory();
 };
@@ -131,3 +132,10 @@ function renderCategory(index, CategoryName, EntryCnt) {
 
   document.getElementById("tdCategory").appendChild(tr);
 }
+
+
+function btnBookingClick()
+{
+  //e.preventDefault();
+  window.location.href = "eventRegistration.html?id=" + document.getElementById("hfEventID").value;
+};
