@@ -73,3 +73,4 @@ exports.getEventEntryCountForCategory = entry.getEventEntryCountForCategory;
 exports.getApplicableEvent = registration.getApplicableEvent;
 exports.registerEvent = registration.registerEvent;
 exports.getAllRegisteredEventList = registration.getAllRegisteredEventList;
+exports.getParticipants = registration.getParticipants;
