@@ -312,7 +312,7 @@
 
 
           <!-- <div style="" class="menu-tag-items"> -->
-          <a href="eventParticipant.html">
+          <a href="participantDetail.html">
             <span style="position:relative;  right:10px;" class="material-icons-outlined">sports_kabaddi</span>Participants</a>
           <!-- </div> -->
 
@@ -321,9 +321,10 @@
 
       <div style="" class="small menu-list-parent">
         <div class="menu-list-tags">
+          <fInput type="hidden" id="hfEventID">
           <a style="color:#fff; font-size:1.2rem;" href="#"> <span style=";font-size:1.3rem; padding-right:4px;" class="material-icons-outlined">info</span> Details</a>
           <a style="color:color:#ccc;" href="#"> <span style="font-size:1rem; padding-right:4px;" class="material-icons-outlined">directions_run</span> Entries</a>
-          <a style="color:color:#ccc;" href="#"> <span style="font-size:1rem; padding-right:4px;" class="material-icons-outlined">sports_kabaddi</span> Participants</a>
+          <a style="color:color:#ccc;" href="participantDetail.html"> <span style="font-size:1rem; padding-right:4px;" class="material-icons-outlined">sports_kabaddi</span> Participants</a>
 
         </div>
       </div>
@@ -534,15 +535,15 @@
           </li><br>
 
           <li>
-            <span style="float:left;"> <a id="booking" href="./checkout/step1-auth.html">
+            <span style="float:left;"> <div onclick="btnBookingClick();">
                 <button style="background-color:#348DCB;color:#fff; font-size:0.8rem;" type="button" name="button" id="booking" class="btn"> Register <i class="fas fa-angle-double-right"></i>
                 </button>
-              </a></span>
+              </div></span>
 
-            <span style="float:right;"> <a id="booking" href="./checkout/step1-auth.html">
+            <span style="float:right;"> <div  onclick="btnBookingClick();">
                 <button style="background-color:#348DCB;color:#fff; font-size:0.8rem;" type="button" name="button" id="booking" class="btn">Pay Now <i class="fas fa-angle-double-right"></i>
                 </button>
-              </a></span>
+              </div></span>
           </li><br>
 
         </ul>
