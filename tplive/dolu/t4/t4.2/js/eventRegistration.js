@@ -13,6 +13,7 @@ auth.onAuthStateChanged(async firebaseUser => {
       //var ret = await getUserList();
       GetEventList();
       GetAllRegisteredEventList();
+      GetProfileData();
     } else {
       loggedinUser = null;
       console.log('User has been logged out');
@@ -23,6 +24,31 @@ auth.onAuthStateChanged(async firebaseUser => {
     //window.location.href = "index.html";
   }
 });
+
+async function GetProfileData() {
+  console.log('GetProfileData - Starts');
+  var userProfile = JSON.parse(localStorage.getItem("userProfile"));
+  if (userProfile != undefined && userProfile != "" && userProfile != null) {
+    if (userProfile.id != "0") {
+      console.log(userProfile.UserName);
+
+      document.getElementById("userName").value = userProfile.UserName;
+      // document.getElementById("userlocation").innerHTML = userProfile.City;
+
+      // if (userProfile.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
+      //   console.log("in admin");
+      // } else if (userProfile.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
+      //   console.log("organizer");
+      //   // document.getElementById("fInput").style.display="none";
+      // } else {
+      //   console.log("not admin");
+      //   document.getElementById("containerOrgList").style.display = "none";
+      //   document.getElementById("errorMessage").style.display = "block";
+      // }
+    }
+  }
+
+}
 
 function GetEventList() {
   console.log(eventID);
@@ -51,6 +77,40 @@ function GetEventList() {
   });
 }
 
+function renderEntry()
+{
+  document.getElementById("tdRegistereEvent").innerHTML="";
+  for (index = 0; index < RegisteredEventList.length; index++) {
+    var tr = document.createElement("tr");
+    var td1 = document.createElement("td");
+    td1.innerHTML = (index + 1);
+    tr.appendChild(td1)
+
+    var td2 = document.createElement("td");
+    td2.innerHTML = RegisteredEventList[index].CategoryName;
+    tr.appendChild(td2)
+
+    var td3 = document.createElement("td");
+    td3.innerHTML = RegisteredEventList[index].Fees;
+    tr.appendChild(td3)
+
+    var td4 = document.createElement("td");
+    td4.innerHTML = RegisteredEventList[index].PaymentStatus;
+    tr.appendChild(td4)
+
+    var td4 = document.createElement("td");
+    if (RegisteredEventList[index].PartnerList != undefined && RegisteredEventList[index].PartnerList != "") {
+      td4.innerHTML = RegisteredEventList[index].PartnerList;
+    } else {
+      td4.innerHTML = "-";
+    }
+    tr.appendChild(td4)
+
+
+    document.getElementById("tdRegistereEvent").appendChild(tr);
+  }
+
+}
 function GetAllRegisteredEventList() {
   console.log(eventID);
   var para2 = {};
@@ -63,35 +123,7 @@ function GetAllRegisteredEventList() {
   ret2(para2).then((result1) => {
     console.log(result1.data);
     RegisteredEventList = result1.data;
-    for (index = 0; index < result1.data.length; index++) {
-      var tr = document.createElement("tr");
-      var td1 = document.createElement("td");
-      td1.innerHTML = (index + 1);
-      tr.appendChild(td1)
-
-      var td2 = document.createElement("td");
-      td2.innerHTML = result1.data[index].CategoryName;
-      tr.appendChild(td2)
-
-      var td3 = document.createElement("td");
-      td3.innerHTML = result1.data[index].Fees;
-      tr.appendChild(td3)
-
-      var td4 = document.createElement("td");
-      td4.innerHTML = result1.data[index].PaymentStatus;
-      tr.appendChild(td4)
-
-      var td4 = document.createElement("td");
-      if (result1.data[index].PartnerList != undefined && result1.data[index].PartnerList != "") {
-        td4.innerHTML = result1.data[index].PartnerList;
-      } else {
-        td4.innerHTML = "-";
-      }
-      tr.appendChild(td4)
-
-
-      document.getElementById("tdRegistereEvent").appendChild(tr);
-    }
+    renderEntry();
     //console.log(result.data);
   });
 }
@@ -118,7 +150,7 @@ btnSave.addEventListener('click', e => {
   var categoryValue = catList.options[catList.selectedIndex].value;
   var categoryText = catList.options[catList.selectedIndex].innerHTML;
   var split = categoryValue.split(":");
-
+console.log(document.getElementById("userName").value);
 var iPos = RegisteredEventList.findIndex(e=>e.CategoryName === split[0]);
 if(iPos < 0 )
 {
@@ -126,6 +158,7 @@ if(iPos < 0 )
   para1 = {
     EventID: eventID,
     ParticipantID: loggedinUser.uid,
+    ParticipantName: document.getElementById("userName").value,
     CategoryName: split[0],
     EventType: split[1],
     Fees: Number(split[2]),
@@ -140,6 +173,7 @@ if(iPos < 0 )
     RegisteredEventList.push({
       EventID: eventID,
       ParticipantID: loggedinUser.uid,
+      ParticipantName: document.getElementById("userName").value,
       CategoryName: split[0],
       EventType: split[1],
       Fees: Number(split[2]),
@@ -154,6 +188,7 @@ if(iPos < 0 )
     var message = document.getElementById("saveMessage");
     message.style.display = "block";
 
+renderEntry();
     setTimeout(function() {
       message.style.display = 'none';
     }, 5000);
