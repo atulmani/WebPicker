@@ -63,6 +63,7 @@ exports.registerEvent =
     }
     const EventID = data.EventID;
     const ParticipantID = data.ParticipantID;
+    const ParticipantName = data.ParticipantName;
     const CategoryName = data.CategoryName;
     const EventType = data.EventType;
     const Fees = data.Fees;
@@ -73,6 +74,7 @@ exports.registerEvent =
       .add({
         EventID: EventID,
         ParticipantID: ParticipantID,
+        ParticipantName: ParticipantName,
         CategoryName: CategoryName,
         EventType: EventType,
         Fees: Fees,
@@ -132,3 +134,40 @@ exports.registerEvent =
 
         });
     });
+
+
+
+    exports.getParticipants =
+      functions.https.onCall(async (data, context) => {
+        // if (!context.auth) {
+        //   throw new functions.https.HttpError(
+        //     "unauthenticatied",
+        //     "only authenticated user can call this"
+        //   );
+        // }
+        const EventID = data.EventID;
+
+        let resultList = [];
+
+        // var dbrows = await admin.firestore().collection("PartnerList").get();
+        // dbrows.then((changes) => {
+        return await admin.firestore().collection("EventRegistrationDetails").where("EventID", "==", EventID).get().then((changes) => {
+          changes.forEach(doc1 => {
+
+            resultList.push({
+              EventID: doc1.data().EventID,
+              CategoryName: doc1.data().CategoryName,
+              ParticipantID: doc1.data().ParticipantID,
+              ParticipantName: doc1.data().ParticipantName,
+              EventType: doc1.data().EventType,
+              Gender: doc1.data().Gender,
+              PaymentStatus: doc1.data().PaymentStatus,
+              Fees: Number(doc1.data().Fees),
+
+            });
+            console.log(resultList);
+          });
+          return resultList;
+
+        });
+      });
