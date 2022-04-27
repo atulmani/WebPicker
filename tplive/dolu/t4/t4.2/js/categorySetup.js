@@ -215,7 +215,7 @@ function renderCategory(obj, index) {
 
   var span4 = document.createElement("span");
   span4.setAttribute("style", "letter-spacing:1px;");
-  span4.innerHTML = "Fee :" + obj.Fees.toLocaleString('en-IN', curFormat);;
+  span4.innerHTML = "Fee :" + obj.Fees.toLocaleString('en-IN', curFormat);
 
   p1.appendChild(span4);
   var br4 = document.createElement("br");
