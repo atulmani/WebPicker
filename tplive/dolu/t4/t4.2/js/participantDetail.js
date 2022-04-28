@@ -6,15 +6,17 @@ var categortList = [];
 var EntryList = [];
 auth.onAuthStateChanged(async firebaseUser => {
   try {
+    if (eventID === "" || eventID === undefined || eventID === null)
+      eventID = localStorage.getItem("EventID");
+    console.log(eventID);
+
     if (firebaseUser) {
       loggedinUser = firebaseUser;
       //console.log(firebaseUser.uid);
       console.log('Logged-in user phone number: ' + loggedinUser.phoneNumber);
-      if (eventID === "" || eventID === undefined || eventID === null)
-        eventID = localStorage.getItem("EventID");
-      console.log(eventID);
 
       GetProfileData();
+
     } else {
       loggedinUser = null;
 
@@ -24,6 +26,9 @@ auth.onAuthStateChanged(async firebaseUser => {
     console.log(error.message);
     // window.location.href = "../index.html";
   }
+  getAllCategory();
+  getallPartcipant();
+
 });
 
 
@@ -31,8 +36,8 @@ auth.onAuthStateChanged(async firebaseUser => {
 async function GetProfileData() {
   console.log('GetProfileData - Starts');
   var userProfile = JSON.parse(localStorage.getItem("userProfile"));
-  getAllCategory();
-  getallPartcipant();
+  // getAllCategory();
+  // getallPartcipant();
   // if (userProfile != undefined && userProfile != "" && userProfile != null) {
   //   if (userProfile.id != "0") {
   //     document.getElementById("userName").innerHTML = userProfile.UserName;
@@ -118,14 +123,18 @@ function renderEntry(doc, Category) {
     maximumFractionDigits: 2
   };
 
+  console.log(doc);
+  // console.log(Category);
   document.getElementById("Category").innerHTML = Category;
   document.getElementById("Category1").innerHTML = Category;
   var cnt =0;
-  document.getElementById("diventry").innerHTML = "<thead>  <tr>   <th>#</th>   <th>Participant</th>    <th>Amount</th>  <th>Payment</th>   </tr>  </thead>";
+  //document.getElementById("diventry").innerHTML = "<thead>  <tr>   <th>#</th>   <th>Participant</th>    <th>Amount</th>  <th>Payment</th>   </tr>  </thead>";
   document.getElementById("diventry").innerHTML = "";
+  document.getElementById("diventry1").innerHTML = "";
   for (index = 0; index < doc.length; index++) {
     if (Category === "All" || Category === doc[index].CategoryName) {
       cnt = cnt + 1;
+      //Mobile
       var tr = document.createElement("tr");
       tr.setAttribute("class", "");
       var td1 = document.createElement("td");
@@ -150,7 +159,34 @@ function renderEntry(doc, Category) {
       }
       tr.appendChild(td4);
 
+      //desktop
+      var tr1 = document.createElement("tr");
+      tr1.setAttribute("class", "");
+      var td11 = document.createElement("td");
+      td11.innerHTML = index + 1;
+      tr1.appendChild(td11);
+
+      var td21 = document.createElement("td");
+      td21.innerHTML = doc[index].ParticipantName;
+      tr1.appendChild(td21);
+
+      var td31 = document.createElement("td");
+      td31.innerHTML = doc[index].Fees.toLocaleString('en-IN', curFormat);
+      tr1.appendChild(td31);
+
+      var td41 = document.createElement("td");
+      if (doc[index].PaymentStatus === "Pending") {
+
+        td41.innerHTML = "Click to Pay";
+      } else {
+        td41.innerHTML = doc[index].PaymentStatus;
+
+      }
+      tr1.appendChild(td41);
+
+      // console.log(tr.innerHTML);
       document.getElementById("diventry").appendChild(tr);
+      document.getElementById("diventry1").appendChild(tr1);
     }
   }
   document.getElementById("totalCount").innerHTML = cnt;
@@ -159,6 +195,6 @@ function renderEntry(doc, Category) {
 }
 
 function getPartcipantForEvent(eventName) {
-  console.log(eventName);
+  // console.log(eventName);
 renderEntry(EntryList,eventName);
 }
