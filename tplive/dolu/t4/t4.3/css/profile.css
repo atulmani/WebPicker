@@ -1,0 +1,97 @@
+.profileCardBox{
+
+  padding: 13px 10px 0 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  /* height: 7rem; */
+  width: 100%;
+  transition: 1s;
+  display: flex;
+  position: relative;
+  justify-content: space-around;
+  /* align-items: center; */
+  /* overflow: hidden; */
+  width: 100%;
+
+}
+
+@media (max-width:850px) {
+.profileCardBox{
+  justify-content: space-between;
+}
+}
+
+.profileCircle{
+ border-radius: 50%;
+ box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+ /* background: skyblue; */
+ height: 180px;
+ width: 180px;
+ position: absolute;
+ /* left:3%; */
+ top:-20px;
+ /* padding: 2%; */
+ /* background: linear-gradient(to right,#161d65, #348DCB);
+  */
+  /* border: 3px solid #348DCB; */
+}
+
+.profileCircle img{
+  height:100%;
+  width:100%;
+  border-radius:50%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 850px) {
+  .profileCircle{
+    height: 120px;
+    width: 120px;
+    top:0px;
+    left: -2px;
+  }
+}
+
+@media (max-width: 850px) {
+  .profileCircle img{
+    height: 120px;
+    width: 120px;
+    top:-20px;
+  }
+}
+
+@media (max-width: 850px) {
+  .profileCardBox h3{
+    font-size: 1rem;
+  }
+}
+@media (max-width: 850px) {
+  .profileCardBox h4{
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 850px) {
+  .profileCardBox h5{
+    font-size: 0.8rem;
+  }
+}
+.profileCardBox h5{
+  font-size: 0.9rem;
+}
+.profileCardBox h4{
+  font-size: 1rem;
+  /* font-weight: bold; */
+  font-weight: bold;
+  /* color: #aaa; */
+}
+
+@media (max-width:850px) {
+  .qrimg img{
+    height: 50px;
+    width: 50px;
+  }
+}
+.rowAlignDiv{
+  display: flex;
+}
