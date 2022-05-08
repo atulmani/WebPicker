@@ -25,6 +25,27 @@
 // Collapse Navbar toggle menu after clicking on menu items - End
 
 
+// sideNavbar - start
+
+var hamberIcon = document.getElementById('hamberIcon');
+var fullContent = document.getElementById('fullContent');
+var sideNavbar = document.getElementById('sideNavbar');
+
+hamberIcon.addEventListener('click', sideNavbarOpen, false);
+
+function sideNavbarOpen(){
+  sideNavbar.classList.add('open');
+}
+
+fullContent.addEventListener('click', sideNavbarClose, false);
+
+function sideNavbarClose(){
+  sideNavbar.classList.remove('open');
+}
+
+
+// sideNavbar - end
+
 // Menu's nav-link highlighted those are active - start
 $(".nav .nav-link").on("click", function() {
   $(".nav").find(".active").removeClass("active");
@@ -143,35 +164,35 @@ document.addEventListener("contextmenu", function(e) {
 //   });
 // });
 
-// $(document).ready(function() {
-//   var owl = $('#genre-list');
-//   owl.owlCarousel({
-//     margin: 20,
-//     loop: true,
-//     autoplay: 2000,
-//     smartSpeed: 3000,
-//     autoplayTimeout: 2500,
-//     autoplayHoverPause: true,
-//     nav: false,
-//     stagePadding: 60,
-//     dots: false,
-//     responsive: {
-//       0: {
-//         items: 3,
-//         margin: 120
-//
-//       },
-//       600: {
-//         items: 4,
-//         margin: 10
-//       },
-//       1000: {
-//         items: 6
-//       }
-//     }
-//   });
-// });
-//
+$(document).ready(function() {
+  var owl = $('#genre-list');
+  owl.owlCarousel({
+    margin: 20,
+    loop: true,
+    autoplay: 2000,
+    smartSpeed: 3000,
+    autoplayTimeout: 2500,
+    autoplayHoverPause: true,
+    nav: false,
+    stagePadding: 60,
+    dots: false,
+    responsive: {
+      0: {
+        items: 3,
+        margin: 120
+
+      },
+      600: {
+        items: 4,
+        margin: 10
+      },
+      1000: {
+        items: 6
+      }
+    }
+  });
+});
+
 // $(document).ready(function() {
 //   var owl = $('#designs-list');
 //   owl.owlCarousel({
@@ -251,59 +272,59 @@ document.addEventListener("contextmenu", function(e) {
 //   });
 // });
 //
-// $(document).ready(function() {
-//   var owl = $('#banner-list');
-//   owl.owlCarousel({
-//     margin: 10,
-//     loop: true,
-//     autoplay: true,
-//     smartSpeed: 3000,
-//     autoplayTimeout: 2000,
-//     autoplayHoverPause: false,
-//     nav: false,
-//     dots: false,
-//     // opacity: 0.1,
-//     stagePadding: 70,
-//     responsive: {
-//       0: {
-//         items: 1
-//       },
-//       600: {
-//         items: 2
-//       },
-//       1000: {
-//         items: 3
-//       }
-//     }
-//   });
-// });
-//
-// $(document).ready(function() {
-//   var owl = $('#event-list');
-//   owl.owlCarousel({
-//     margin: 20,
-//     loop: true,
-//     autoplay: true,
-//     smartSpeed: 3000,
-//     autoplayTimeout: 3500,
-//     autoplayHoverPause: true,
-//     nav: false,
-//     // dots:true,
-//     stagePadding: 70,
-//     responsive: {
-//       0: {
-//         items: 1
-//       },
-//       600: {
-//         items: 2
-//       },
-//       1000: {
-//         items: 6
-//       }
-//     }
-//   });
-// });
-//
+$(document).ready(function() {
+  var owl = $('#banner-list');
+  owl.owlCarousel({
+    margin: 10,
+    loop: true,
+    autoplay: true,
+    smartSpeed: 3000,
+    autoplayTimeout: 5000,
+    autoplayHoverPause: false,
+    nav: false,
+    dots: false,
+    // opacity: 0.1,
+    stagePadding: 70,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 2
+      },
+      1000: {
+        items: 3
+      }
+    }
+  });
+});
+
+$(document).ready(function() {
+  var owl = $('#event-list');
+  owl.owlCarousel({
+    margin: 20,
+    loop: true,
+    autoplay: false,
+    smartSpeed: 3000,
+    autoplayTimeout: 3500,
+    autoplayHoverPause: true,
+    nav: false,
+    dots:false,
+    stagePadding: 70,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 2
+      },
+      1000: {
+        items: 4
+      }
+    }
+  });
+});
+
 // $(document).ready(function() {
 //   var owl = $('#olist');
 //   owl.owlCarousel({
