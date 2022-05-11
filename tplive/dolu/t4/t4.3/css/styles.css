@@ -85,7 +85,9 @@ h6{
 }
 
 .nav-item{
-  /* width: 110px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0 20px;
   margin: 0 10px;
   border-radius: 55px;
@@ -93,16 +95,18 @@ h6{
 
 .nav-link{
   position: relative;
-  top: 1px;
+  top: 2px;
   color:#333C5D;
   font-size: 0.9rem;
   text-align: center;
   font-weight: 900;
 }
 
-.nav-link i{
-  color: #348DCB;
-  padding-right: 5px;
+.nav-link small{
+  position: relative;
+  top: -7px;
+  font-size: 0.95rem;
+  padding-left: 5px;
 }
 
 .nav-item.active{
@@ -1031,7 +1035,7 @@ h6{
   position: fixed;
   top: 0;
   left: 0;
-  width: 90%;
+  width: 85%;
   z-index: 999;
   background: #fff;
   box-shadow: 0 0 200px 0 rgba(0,0,0,0.8);
@@ -1084,11 +1088,13 @@ h6{
 
 .profile-logo-details span{
   font-weight: bold;
+  font-size: 1rem;
 }
 
 .profile-logo-details div small{
   color: #ddd;
   padding: 0 5px;
+  font-size: 0.85rem;
   border-radius: 8px;
 }
 
@@ -1112,12 +1118,21 @@ h6{
   width: 100%;
   list-style: none;
   transition: 0.5s;
+  position: relative;
 }
 
 .side-navbar ul li.active,
 .side-navbar ul li:hover{
   background: #348DCB;
   border-radius: 10px 0 0 10px;
+}
+
+.side-navbar ul li div{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-40%);
+  color: #161d65;
 }
 
 .side-navbar ul li b{
@@ -1164,6 +1179,7 @@ h6{
   display: flex;
   text-decoration: none;
   color: #348DCB;
+  font-size: 1.1rem;
   align-items: center;
   transition: 0.5s;
 }
@@ -1177,6 +1193,7 @@ h6{
 
 .side-navbar ul li a span{
   width: 40px;
+  font-size: 1.6rem;
 }
 
 .side-navbar ul li.active a span,
