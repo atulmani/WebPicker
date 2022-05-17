@@ -33,7 +33,33 @@ exports.logEntryAdd = functions.firestore.document('/EventRegistrationDetails/{i
           });
         }
 
+      }).
+    then(async (rec) => {
+      var allentryCount = 0;
+      await admin.firestore().collection("EventAllEntryLog").where("EventID", "==", inputData.EventID).get().then(async (changes) => {
+        changes.forEach(doc1 => {
+          docID = doc1.id;
+          allentryCount = Number(doc1.data().EntryCount);
+        });
+
+        if (docID != "") {
+          await admin.firestore().collection("EventAllEntryLog").doc(docID).set({
+            EventID: inputData.EventID,
+            EntryCount: allentryCount + 1,
+          });
+        } else {
+
+          await admin.firestore().collection("EventAllEntryLog").add({
+            EventID: inputData.EventID,
+            EntryCount: 1,
+          });
+        }
+
       });
+    });
+
+
+
   });
 
 
@@ -60,65 +86,113 @@ exports.logEntryDelete = functions.firestore.document('/EventRegistrationDetails
             EntryCount: entryCount - 1,
           });
         }
-      });
+      }).
+    then(async (rec) => {
+      var allentryCount = 0;
+      //  const entryLogID =
+      console.log(inputData.EventID);
+      await admin.firestore().collection("EventAllEntryLog").where("EventID", "==", inputData.EventID)
+        .get().then(async (changes) => {
+          changes.forEach(doc1 => {
+            docID = doc1.id;
+            allentryCount = Number(doc1.data().EntryCount);
+          });
+          if (docID != "" && docID != undefined) {
+            await admin.firestore().collection("EventAllEntryLog").doc(docID).set({
+              EventID: inputData.EventID,
+              EntryCount: allentryCount - 1,
+            });
+          }
+        });
+    });
+
+
   });
 
 
-  exports.getAllEventEntryCount =
-    functions.https.onCall(async (data, context) => {
-      // if (!context.auth) {
-      //   throw new functions.https.HttpError(
-      //     "unauthenticatied",
-      //     "only authenticated user can call this"
-      //   );
-      // }
-      const EventID = data.EventID;
+exports.getEventsEntryCount =
+  functions.https.onCall(async (data, context) => {
+    // if (!context.auth) {
+    //   throw new functions.https.HttpError(
+    //     "unauthenticatied",
+    //     "only authenticated user can call this"
+    //   );
+    // }
+    const EventID = data.EventID;
 
-      let resultList = [];
+    let resultList = [];
 
-      // var dbrows = await admin.firestore().collection("PartnerList").get();
-      // dbrows.then((changes) => {
-      return await admin.firestore().collection("EventEntryLog").where("EventID", "==", EventID).get().then((changes) => {
+    // var dbrows = await admin.firestore().collection("PartnerList").get();
+    // dbrows.then((changes) => {
+    return await admin.firestore().collection("EventEntryLog").where("EventID", "==", EventID).get().then((changes) => {
+      changes.forEach(doc1 => {
+        resultList.push({
+          EventID: doc1.data().EventID,
+          CategoryName: doc1.data().CategoryName,
+          EntryCount: Number(doc1.data().EntryCount),
+        });
+        console.log(resultList);
+      });
+      return resultList;
+
+    });
+  });
+
+
+exports.getAllEventEntryCount =
+  functions.https.onCall(async (data, context) => {
+    // if (!context.auth) {
+    //   throw new functions.https.HttpError(
+    //     "unauthenticatied",
+    //     "only authenticated user can call this"
+    //   );
+    // }
+    //const EventID = data.EventID;
+
+    let resultList = [];
+
+    // var dbrows = await admin.firestore().collection("PartnerList").get();
+    // dbrows.then((changes) => {
+    return await admin.firestore().collection("EventAllEntryLog").get().then((changes) => {
+      changes.forEach(doc1 => {
+        resultList.push({
+          EventID: doc1.data().EventID,
+          EntryCount: Number(doc1.data().EntryCount),
+        });
+        console.log(resultList);
+      });
+      return resultList;
+
+    });
+  });
+
+
+exports.getEventEntryCountForCategory =
+  functions.https.onCall(async (data, context) => {
+    // if (!context.auth) {
+    //   throw new functions.https.HttpError(
+    //     "unauthenticatied",
+    //     "only authenticated user can call this"
+    //   );
+    // }
+    const EventID = data.EventID;
+    const CategoryName = data.CategoryName;
+
+    let resultList = [];
+
+    // var dbrows = await admin.firestore().collection("PartnerList").get();
+    // dbrows.then((changes) => {
+    return await admin.firestore().collection("EventEntryLog").where("EventID", "==", EventID)
+      .where("CategoryName", "==", CategoryName).get().then((changes) => {
         changes.forEach(doc1 => {
           resultList.push({
             EventID: doc1.data().EventID,
             CategoryName: doc1.data().CategoryName,
-            EntryCount: Number(doc1.data().EntryCount),
+            EntryCount: Number(doc1.data().EventStatus),
           });
           console.log(resultList);
         });
         return resultList;
 
       });
-    });
-
-
-    exports.getEventEntryCountForCategory =
-      functions.https.onCall(async (data, context) => {
-        // if (!context.auth) {
-        //   throw new functions.https.HttpError(
-        //     "unauthenticatied",
-        //     "only authenticated user can call this"
-        //   );
-        // }
-        const EventID = data.EventID;
-        const CategoryName = data.CategoryName;
-
-        let resultList = [];
-
-        // var dbrows = await admin.firestore().collection("PartnerList").get();
-        // dbrows.then((changes) => {
-        return await admin.firestore().collection("EventEntryLog").where("EventID", "==", EventID)
-        .where("CategoryName","==",CategoryName).get().then((changes) => {
-          changes.forEach(doc1 => {
-            resultList.push({
-              EventID: doc1.data().EventID,
-              CategoryName: doc1.data().CategoryName,
-              EntryCount: Number(doc1.data().EventStatus),
-            });
-            console.log(resultList);
-          });
-          return resultList;
-
-        });
-      });
+  });
