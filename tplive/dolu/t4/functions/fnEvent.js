@@ -445,7 +445,7 @@ exports.getAllEventDetails =
           PublishGalleryFlag: doc1.data().PublishGalleryFlag,
 
         });
-        console.log(resultList);
+        //console.log(resultList);
       });
       return resultList;
 
