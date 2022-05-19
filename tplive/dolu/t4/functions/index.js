@@ -38,6 +38,11 @@ exports.getAllOrganizationDetails = organization.getAllOrganizationDetails;
 exports.getAllOrganizationDetailsForOrganizer = organization.getAllOrganizationDetailsForOrganizer;
 exports.getAllOrganizationForOrganizerWithStatus = organization.getAllOrganizationForOrganizerWithStatus;
 
+exports.logEventAdd = events.logEventAdd;
+exports.logEntryDelete = events.logEntryDelete;
+exports.getEventSummaryBySport = events.getEventSummaryBySport;
+exports.getEventSummaryByCity = events.getEventSummaryByCity;
+
 exports.getEventDetails = events.getEventDetails;
 exports.getAllEventDetails = events.getAllEventDetails;
 exports.getAllEventDetailsForOrganizer = events.getAllEventDetailsForOrganizer;
@@ -64,11 +69,12 @@ exports.getAllEventWithStatus = events.getAllEventWithStatus;
 exports.getEventCategoryDetails = events.getEventCategoryDetails;
 
 
+
 exports.logEntryAdd = entry.logEntryAdd;
 exports.logEntryDelete = entry.logEntryDelete;
 exports.getAllEventEntryCount = entry.getAllEventEntryCount;
 exports.getEventEntryCountForCategory = entry.getEventEntryCountForCategory;
-
+exports.getEventsEntryCount = entry.getEventsEntryCount;
 
 exports.getApplicableEvent = registration.getApplicableEvent;
 exports.registerEvent = registration.registerEvent;

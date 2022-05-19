@@ -111,16 +111,36 @@
       </div>
       <ul class="nav navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="index.html"> <i class="fas fa-home"></i> Home </a>
+          <a class="nav-link" href="index.html">
+            <span class="material-symbols-outlined">
+              home
+            </span>
+            <small>Home</small>
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="allevent.html"> <i class="fas fa-calendar-week"></i> Events</a>
+          <a class="nav-link" href="allevent.html">
+            <span class="material-symbols-outlined">
+              redeem
+            </span>
+            <small>Events</small>
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="event/orgList.html"> <i class="fas fa-cubes"></i> Contact us</a>
+          <a class="nav-link" href="event/orgList.html">
+            <span class="material-symbols-outlined">
+              group_work
+            </span>
+            <small>Contact us</small>
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-ellipsis-v"></i> More</a>
+          <a class="nav-link" href="#">
+            <span class="material-symbols-outlined">
+              more_vert
+            </span>
+            <small>More</small>
+          </a>
         </li>
       </ul>
 
@@ -233,26 +253,37 @@
     </div>
 
   <div class="side-navbar mobile small" id="sideNavbar">
-    <div class="closeBtn">
+    <!-- <div class="closeBtn">
       <span class="material-symbols-outlined" id="closeBtn">
         close
       </span>
-    </div>
+    </div> -->
 
-    <div class="" style="display: flex; align-items:center;justify-content:flex-end;width:100%;padding-right: 10px;">
-      <div class="profile-logo-details">
-        <span>Atul Tripathi</span>
-        <div class="">
-          <small>Participant</small>
-          <small class="active">Organizer</small>
-          <small>Umpire</small>
+    <div class="profile-logo-parent-div">
+      <div class="" style="display:flex;align-items: center;width: 100%;">
+        <div class="profile-logo">
+          <span>AT</span>
+        </div>
+
+        <div class="profile-logo-details">
+          <span>Atul Tripathi</span>
+          <div class="">
+            <small>Participant</small>
+            <small class="active">Organizer</small>
+            <small>Umpire</small>
+          </div>
         </div>
       </div>
 
-      <div class="profile-logo">
-        <span>AT</span>
+
+      <div class="" style="color: #fff;">
+        <span class="material-symbols-outlined">
+          chevron_right
+        </span>
       </div>
-    </div><hr class="side-navbar-hr"/>
+
+    </div>
+    <hr class="side-navbar-hr"/>
 
     <ul>
       <li>
@@ -264,6 +295,11 @@
           </span>
           <small>Dashboard</small>
         </a>
+        <div class="">
+          <span class="material-symbols-outlined">
+            chevron_right
+          </span>
+        </div>
       </li>
 
       <li>
@@ -275,6 +311,11 @@
           </span>
           <small>Book</small>
         </a>
+        <div class="">
+          <span class="material-symbols-outlined">
+            chevron_right
+          </span>
+        </div>
       </li>
 
       <li>
@@ -286,6 +327,11 @@
           </span>
           <small>Orders</small>
         </a>
+        <div class="">
+          <span class="material-symbols-outlined">
+            chevron_right
+          </span>
+        </div>
       </li>
 
       <li>
@@ -297,6 +343,11 @@
           </span>
           <small>Notification</small>
         </a>
+        <div class="">
+          <span class="material-symbols-outlined">
+            chevron_right
+          </span>
+        </div>
       </li>
 
       <li class="active">
@@ -308,6 +359,11 @@
           </span>
           <small>Profile</small>
         </a>
+        <div class="">
+          <span class="material-symbols-outlined">
+            chevron_right
+          </span>
+        </div>
       </li>
 
       <li>
@@ -319,6 +375,11 @@
           </span>
           <small>Help</small>
         </a>
+        <div class="">
+          <span class="material-symbols-outlined">
+            chevron_right
+          </span>
+        </div>
       </li>
 
       <li>
@@ -330,6 +391,11 @@
           </span>
           <small>Refer a Friend</small>
         </a>
+        <div class="">
+          <span class="material-symbols-outlined">
+            chevron_right
+          </span>
+        </div>
       </li>
 
       <li>
@@ -341,6 +407,11 @@
           </span>
           <small>Logout</small>
         </a>
+        <div class="">
+          <span class="material-symbols-outlined">
+            chevron_right
+          </span>
+        </div>
       </li>
     </ul>
   </div>
@@ -364,7 +435,7 @@
 
     <div class="" style="position:relative;">
 
-    <div  class="bannerbox">
+    <div  class="bannerbox container">
       <div class="row no-gutters">
       <div class="bannerboxsmallparent col-lg-3 col-md-6 col-6">
 
@@ -418,13 +489,140 @@
 
   <div class="container">
     <div class="placeholder1"></div>
-  </div><br><br><br>
+  </div><br>
+
+  <section id="city">
+    <div class="container">
+      <div class="row no-gutters">
+
+        <div class="col-md-12 col-md-offset-1"><br>
+          <div id="genre-location-list" class="owl-carousel owl-theme">
+            <div class="item">
+              <div class="genre-locoation-card active">
+                <div class="">
+                  <img src="./img/Puneicon.png" alt="">
+                </div>
+                <h2>Pune</h2>
+                <h3>4 Events</h3>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="genre-locoation-card">
+                <div class="">
+                  <img src="./img/Bangloreicon.png" alt="">
+                </div>
+                <h2>Banglore</h2>
+                <h3>63 Events</h3>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="genre-locoation-card">
+                <div class="">
+                  <img src="./img/Chennaiicon.png" alt="">
+                </div>
+                <h2>Chennai</h2>
+                <h3>82 Events</h3>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="genre-locoation-card">
+                <div class="">
+                  <img src="./img/Mumbaiicon.png" alt="">
+                </div>
+                <h2>Mumbai</h2>
+                <h3>29 Events</h3>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="genre-locoation-card">
+                <div class="">
+                  <img src="./img/Hyderabadicon.png" alt="">
+                </div>
+                <h2>Hyderabad</h2>
+                <h3>3 Events</h3>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="genre-locoation-card">
+                <div class="">
+                  <img src="./img/delhiicon.png" alt="">
+                </div>
+                <h2>Delhi</h2>
+                <h3>71 Events</h3>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="genre-locoation-card">
+                <div class="">
+                  <img src="./img/Lucknowicon.png" alt="">
+                </div>
+                <h2>Lucknow</h2>
+                <h3>35 Events</h3>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="genre-locoation-card">
+                <div class="">
+                  <img src="./img/Jaipuricon.png" alt="">
+                </div>
+                <h2>Jaipur</h2>
+                <h3>02 Events</h3>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="genre-locoation-card">
+                <div class="">
+                  <img src="./img/Ahemdabadicon.png" alt="">
+                </div>
+                <h2>Ahemdabad</h2>
+                <h3>91 Events</h3>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="genre-locoation-card">
+                <div class="">
+                  <img src="./img/Chandigarhicon.png" alt="">
+                </div>
+                <h2>Chandigarh</h2>
+                <h3>1 Events</h3>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="genre-locoation-card">
+                <div class="">
+                  <img src="./img/Kolkataicon.png" alt="">
+                </div>
+                <h2>Kolkata</h2>
+                <h3>12 Events</h3>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section><br><br>
 
 
   <!-- events section -->
 
 
-  <section id="designs" style="background-color:#fff;text-align: left;">
+  <section id="designs" style="text-align: left;position:relative;">
+    <br>
+    <div class="wave">
+
+    </div>
     <div class="container">
       <div class="heading">
         <span class="material-symbols-outlined">
@@ -458,11 +656,21 @@
                       <span style="font-weight: lighter;font-size: 0.7rem;">Nikhil Kanetkar Badminton Academy</span>
                     </h3>
                     <div class="description">
-                      <span> Banglore </span>
-                      <br>
-                      <span> Sept'21 | 09:00 AM </span>
-                      <br>
-                      <span><strong> ₹ 4999 </strong></span>
+                      <div class="">
+                        <span class="material-symbols-outlined">
+                          assistant_navigation
+                        </span>
+                        <small> Banglore </small>
+                      </div>
+                      <div class="">
+                        <span class="material-symbols-outlined">
+                          calendar_month
+                        </span>
+                        <small> Sept'21 | 09:00 AM </small>
+                      </div>
+                      <div class="">
+                        <small><strong> ₹ 4999 </strong></small>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -532,153 +740,161 @@
                 </div>
               </div>
             </a>
-            <!-- 5th item -->
-            <a style="text-decoration:none;" href="event/productDetail.html">
-              <div class="item">
-                <div class="post-slide">
 
-                  <div class="post-img">
-                    <img style="border-radius:5%;" src="img/card5.png" alt="" width="100%">
-                  </div>
-                  <div class="post-content">
-                    <h3 class="post-title">
-                      CONSTRUCTION | POPULAR
-                    </h3>
-                    <p class="description">
-                      <span style="letter-spacing:1px;"><span style="font-weight:bold">Venue</span>: Online </span>
-                      <br>
-                      <span style="letter-spacing:1px;line-height:30px;"><span style="font-weight:bold">Date</span>: Sept'21 - 29 Sep'21 </span>
-                      <br>
-                      <span style="letter-spacing:1px;line-height:14px;"><span style="font-weight:bold">Price</span>: ₹ 4999 - ₹ 9999 </span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <!-- 6th item -->
-            <a style="text-decoration:none;" href="event/productDetail.html">
-              <div class="item">
-                <div class="post-slide">
-
-                  <div class="post-img">
-                    <img style="border-radius:5%;" src="img/card6.png" alt="" width="100%">
-                  </div>
-                  <div class="post-content">
-                    <h3 class="post-title">
-                      CONSTRUCTION | POPULAR
-                    </h3>
-                    <p class="description">
-                      <span style="letter-spacing:1px;"><span style="font-weight:bold">Venue</span>: Online </span>
-                      <br>
-                      <span style="letter-spacing:1px;line-height:30px;"><span style="font-weight:bold">Date</span>: Sept'21 - 29 Sep'21 </span>
-                      <br>
-                      <span style="letter-spacing:1px;line-height:14px;"><span style="font-weight:bold">Price</span>: ₹ 4999 onwards </span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </a>
           </div>
         </div>
       </div>
     </div>
+    <br><br>
   </section><br><br>
 
   <section id="genre">
 
-    <div style="padding:0 3%; display:inline-block;" class="cardheading">
-      <h4 style="font-weight:1000;"> Browse Events By Genre <i style="color: #348DCB;" class="fas fa-play-circle"></i></h4>
-      <hr>
-    </div><br><br>
+    <div class="container">
 
-    <div class="container-fluid">
-      <div style="" class="row no-gutters">
+      <div class="heading">
+        <span class="material-symbols-outlined">
+          pentagon
+        </span>
+        <h4 style="font-weight:1000;"> Browse Events By Genre</h4>
+      </div><br>
 
-        <div id="genre-list" class="owl-carousel owl-theme">
+      <div class="row no-guttters large">
 
-          <div class="item">
-
-            <div class="circleimg" style="display: flex; justify-content: center; border-radius: 12px;">
-              <img style="height:100px; width:auto;" src="img/i1.png" class="card-img-top" alt="...">
-
-            </div><br>
-            <h6 style="text-align: center; font-weight: 900;">Badminton</h6>
-
+        <div class="col-lg-2 col-md-6 col-sm-4" style="padding: 10px;">
+          <div class="genre-card">
+            <div class="img-div">
+              <img src="./img/genre1.png" alt="">
+            </div>
+            <h2>Badminton</h2>
+            <h3>142 Events</h3>
           </div>
+        </div>
 
-          <div class="item">
-
-            <div class="circleimg" style="display: flex; justify-content: center; border-radius: 12px;">
-              <img style="height:100px; width:auto;" src="img/i2.png" class="card-img-top" alt="...">
-            </div><br>
-            <h6 style="text-align: center; font-weight: 900;">Table Tennis</h6>
-
+        <div class="col-lg-2 col-md-6 col-sm-4" style="padding: 10px;">
+          <div class="genre-card">
+            <div class="img-div">
+              <img src="./img/genre3.png" alt="">
+            </div>
+            <h2>Table Tenis</h2>
+            <h3>64 Events</h3>
           </div>
+        </div>
 
-          <div class="item">
-
-            <div class="circleimg" style="display: flex; justify-content: center; border-radius: 12px;">
-              <img style="height:100px; width:auto;" src="img/i3.png" class="card-img-top" alt="...">
-            </div><br>
-            <h6 style="text-align: center; font-weight: 900;">Carrom</h6>
-
+        <div class="col-lg-2 col-md-6 col-sm-4" style="padding: 10px;">
+          <div class="genre-card">
+            <div class="img-div">
+              <img src="./img/genre2.png" alt="">
+            </div>
+            <h2>Chess</h2>
+            <h3>05 Events</h3>
           </div>
+        </div>
 
-          <div class="item">
-
-            <div class="circleimg" style="display: flex; justify-content: center; border-radius: 12px;">
-              <img style="height:100px; width:auto;" src="img/i4.png" class="card-img-top" alt="...">
-            </div><br>
-            <p style="text-align: center; font-weight: 900;font-size: 0.8rem;">Marathon</p>
-
+        <div class="col-lg-2 col-md-6 col-sm-4" style="padding: 10px;">
+          <div class="genre-card">
+            <div class="img-div">
+              <img src="./img/genre5.png" alt="">
+            </div>
+            <h2>Carrom</h2>
+            <h3>71 Events</h3>
           </div>
+        </div>
 
-          <div class="item">
-
-            <div class="circleimg" style="display: flex; justify-content: center; border-radius: 12px;">
-              <img style="height:100px; width:auto;" src="img/i5.png" class="card-img-top" alt="...">
-            </div><br>
-            <h6 style="text-align: center; font-weight: 900;">Cricket</h6>
-
-
-
+        <div class="col-lg-2 col-md-6 col-sm-4" style="padding: 10px;">
+          <div class="genre-card">
+            <div class="img-div">
+              <img src="./img/genre4.png" alt="">
+            </div>
+            <h2>Marathon</h2>
+            <h3>460 Events</h3>
           </div>
+        </div>
 
-          <div class="item">
-
-            <div class="circleimg" style="display: flex; justify-content: center; border-radius: 12px;">
-              <img style="height:100px; width:auto;" src="img/i6.png" class="card-img-top" alt="...">
-            </div><br>
-            <h6 style="text-align: center; font-weight: 900;">Chess</h6>
-
+        <div class="col-lg-2 col-md-6 col-sm-4" style="padding: 10px;">
+          <div class="genre-card">
+            <div class="img-div">
+              <img src="./img/genre6.png" alt="">
+            </div>
+            <h2>Skating</h2>
+            <h3>38 Events</h3>
           </div>
         </div>
 
       </div>
-    </div>
 
+      <div class="small">
+        <div class="row no-gutters">
+          <div class="col-6" style="padding: 10px;">
+            <div class="genre-card">
+              <div class="img-div">
+                <img src="./img/genre1.png" alt="">
+              </div>
+              <h2>Badminton</h2>
+              <h3>142 Events</h3>
+            </div>
+          </div>
 
-    <br><br>
-    <div style="padding:0 4%;" class="large">
-      <a href="#">
-        <button class="mybutton button5" style=" font-size: 0.8rem; position:relative; float: right;border-radius:16px;" type="button" name="button">Show more</button>
-      </a>
-    </div>
+          <div class="col-6" style="padding: 10px;">
+            <div class="genre-card">
+              <div class="img-div">
+                <img src="./img/genre3.png" alt="">
+              </div>
+              <h2>Table Tenis</h2>
+              <h3>64 Events</h3>
+            </div>
+          </div>
 
-    <center>
-      <div style="padding:0 4%;" class="small">
-        <a href="#">
-          <button class="mybutton button5" style=" font-size: 0.8rem; position:relative; float: right;border-radius:16px;" type="button" name="button">Show more</button>
-        </a>
+          <div class="col-6" style="padding: 10px;">
+            <div class="genre-card">
+              <div class="img-div">
+                <img src="./img/genre2.png" alt="">
+              </div>
+              <h2>Chess</h2>
+              <h3>05 Events</h3>
+            </div>
+          </div>
+
+          <div class="col-6" style="padding: 10px;">
+            <div class="genre-card">
+              <div class="img-div">
+                <img src="./img/genre5.png" alt="">
+              </div>
+              <h2>Carrom</h2>
+              <h3>71 Events</h3>
+            </div>
+          </div>
+
+          <div class="col-6" style="padding: 10px;">
+            <div class="genre-card">
+              <div class="img-div">
+                <img src="./img/genre4.png" alt="">
+              </div>
+              <h2>Marathon</h2>
+              <h3>460 Events</h3>
+            </div>
+          </div>
+
+          <div class="col-6" style="padding: 10px;">
+            <div class="genre-card">
+              <div class="img-div">
+                <img src="./img/genre6.png" alt="">
+              </div>
+              <h2>Skating</h2>
+              <h3>38 Events</h3>
+            </div>
+          </div>
+        </div>
       </div>
-    </center>
+
+    </div>
 
 
   </section><br><br>
 
   <section>
     <div class="container-fluid">
-      <div style="background: linear-gradient(to right,#161d65, #348DCB)" class="large row no-gutters">
+      <div style="background: rgba(0,0,0,0.5) url('./img/event3.png');background-blend-mode: darken;background-position:center ;background-repeat: no-repeat;background-attachment: fixed;" class="large row no-gutters">
         <div style=" padding: 2.5% 4%;color: #fff;" style="" class="col-lg-6">
           <h3>Tired of standing in queue??</h3>
           <hr style="background-color: #fff;"><br><br>
@@ -714,7 +930,7 @@
     <div class="small">
 
       <div class="container-fluid">
-        <div style="background: linear-gradient(to right,#161d65, #348DCB)" class="row no-gutters">
+        <div style="background: #348DCB" class="row no-gutters">
           <div style="display:flex; flex-direction: column; padding: 2.5% 4%;color: #fff;" style="" class="col-sm-12">
             <h3>Tired of standing in queue??</h3>
             <hr style="background-color: #fff;"><br><br>
@@ -782,108 +998,79 @@
   <!-- *******************FOOTER SECTION STARTS************************************** -->
 
   <section id="footer">
-    <div class="container-fluid">
-      <div style="background: linear-gradient(to right,#161d65, #348DCB); font-family: 'Baloo 2', cursive; letter-spacing:1.5px;" class="row no-gutters">
-        <div style="padding:30px 50px;" class="col-lg-6 col-md-6 col-sm-12">
 
-          <span>
-            <h3 style="text-align:left;color:#fff; font-weight:1000;">TPLiVE</h3>
-          </span>
-          <hr style="background-color:#fff;height:2px;">
+    <div class="container"><br><br>
 
-          <p style="text-align:left;font-size:1rem; color:#fff;">TPLiVE is a startup whose aspiration is to join hands with Digital India and Go-Green. Our mission is to automate the process of creating any kind of events like Educational, Sports &
-            Fitness, Art, Music, Dance & Drama, Cultural, Online Shopping and many more...
+      <div class="footer-logo">
+        <img src="./img/TPLIVE-FULL-LOGO-FOOTER.png" width="230px" alt="">
+      </div><br><br>
 
-            Organizing any Tournament manually is always a challenge starting from registration forms distribution & collection, payment collection, draws & match schedule preparation & publish, umpire & score management, publish result till prize
-            distribution.
+      <div class="row no-gutters">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="footer-details large">
+            <p>
+              Paytm Insider is a platform that helps you discover and buy the best in events, travel and food in your city. We strive to curate experiences that are worth your time and money, possibly something you have never tried before.
+            </p><br>
 
-            Our product aims at eliminating all the challenges faced by the Organizers and the Participants. This Mobile-Enabled Product is designed in an inventive way to ensure uninterrupted and smooth usage. Through this, application users can
-            interact and keep themselves updated about upcoming tournaments, LiVE match updates, results and other Sports related events.
-
-          </p>
-          <br><br>
-          <h4 style="text-align:left;color:#fff;font-weight:1000;">Objective</h4>
-          <hr style="background-color:#fff; height:2px;">
-          <p style="text-align:left; font-size:1rem;color:#fff;">We will be happy to provide our services to all the Tournament Organizers from District & State Sports Committees, Sports Academies, Schools, Corporates, Townships, Societies and every
-            enthusiastic Sports lover to encourage Sports with health and happiness in their locality.
-
-            Please reach out to us through whatsapp or email or to meet us at our any upcoming events.</p>
-
-        </div>
-
-        <hr style="border:none; border-bottom: 2px solid #fff;" class="small" />
-
-
-        <div class="col-lg-6 col-md-6 col-sm-12" style=" padding: 10% 8%;">
-          <div class="footer-links-box">
-
-            <ul style="text-align:center;letter-spacing:2px;color:#fff;" class="footer-styles">
-              <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="about/index.html">About Us</a></li>
-              <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="policy/termsandcondition.html">Terms & condition</a> </li>
-              <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="contact/index.html">Contact Us</a> </li>
-              <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="faq/index.html">FAQ's</a> </li>
-              <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="policy/privacyPolicy.html">Privacy Policy</a> </li>
-
-            </ul><br class="large"/>
-
-              <ul style="text-align:center;letter-spacing:2px;color:#fff;" class="footer-styles">
-
-                <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="login/login.html">Organiser Login</a> </li>
-                <li class=""> <a style="font-size:0.78rem; color:#fff;" href="login/index.html">Umpire Login</a> </li>
-                <li class="footer-li"> <a style="font-size:0.78rem; color:#fff;" href="admin/dashboard.html">Admin</a> </li>
-                <li class=""> <a href="https://www.facebook.com/crop.queens/"><i style="font-size:18px; color:#fff" class="fab fa-facebook-f"></i></a></li>
-                <li class=""> <a href="https://www.instagram.com/cropqueens/"><i style="font-size:18px; color:#fff" class="fab fa-instagram"></i></a></li>
-                <li class=""> <a href="#"><i style="font-size:18px; color:#fff" class="fab fa-youtube"></i></a> </li>
-
-
-              </ul>
-
-
+            <h3>FOR EVENT ORGANIZERS</h3>
+            <p>
+              Paytm Insider is built by the same team that created Bacardi NH7 Weekender (us) and we sure know what goes into putting together a great experience. Our technology, marketing and customer support can help you build a community of not just ticket buyers, but also fans.
+            </p>
           </div>
+
+
         </div>
 
-        <!-- for phone -->
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="footer-links" style="padding-top: 0;">
+            <div class="">
+              <a href="#">About Us</a>
+            </div>
+            <div class="">
+              <a href="#">Terms & condition</a>
+            </div>
+            <div class="">
+              <a href="#">Contact Us</a>
+            </div>
+            <div class="">
+              <a href="#">FAQ's</a>
+            </div>
+            <div class="">
+              <a href="#">Privacy Policy</a>
+            </div>
+          </div><br>
 
-        <hr style="border:none; border-bottom: 2px solid #fff;" class="small" />
-          <br><br><br><br>
+          <div class="">
+
+          </div><br>
+
+          <div class="footer-links footer-details">
+
+            <h3>FOR EVENT ORGANIZERS</h3>
+
+            <div class="">
+              <a href="#">Organiser Login</a>
+            </div>
+            <div class="">
+              <a href="#">Umpire Login</a>
+            </div>
+            <div class="">
+              <a href="#">Admin</a>
+            </div>
+          </div>
+
+        </div>
       </div>
-    </div>
-    <div style="background:#161d65;font-size:10px;padding:0.5% 0;font-family: 'Baloo 2', cursive; color:#fff;" class="">
+    </div><br><br>
+
+    <div class="copy-right">
       Copyright © Tournament Planner LiVE - (TPLiVE)
-      <br class="small"/><br class="small"/><br class="small"/><br class="small"/><br class="small"/><br class="small"/>
+      <br class="small"/><br class="small"/><br class="small"/><br class="small"/><br class="small"/>
     </div>
 
   </section>
   </div>
   <!-- Footer Section - end -->
-
-  <!-- WebPicker Facebook Messenger Chat Plugin Code - Start -->
-  <!-- <div id="fb-root"></div> -->
-
-  <!-- Your Chat Plugin code -->
-  <!-- <div id="fb-customer-chat" class="fb-customerchat">
-  </div>
-
-  <script>
-    var chatbox = document.getElementById('fb-customer-chat');
-    chatbox.setAttribute("page_id", "101044708888104");
-    chatbox.setAttribute("attribution", "biz_inbox");
-    window.fbAsyncInit = function() {
-      FB.init({
-        xfbml: true,
-        version: 'v11.0'
-      });
-    };
-
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script> -->
 
   <!-- Jquery order should be higher from normal javascript  -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

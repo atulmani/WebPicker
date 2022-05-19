@@ -1,0 +1,20 @@
+{
+  "name": "TPLiVE",
+  "version": "1.0.0",
+  "description": "TPLiVE - You Grow , We Manage.",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server -c-1 -p 3000"
+  },
+  "keywords": [
+    "TPLIVE",
+    "Tournament Planner",
+    "Draws",
+    "Matched"
+  ],
+  "author": "TPLIve Powered by HyperCloud",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^0.10.0"
+  }
+}

@@ -1,6 +1,151 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
+exports.logEventAdd = functions.firestore.document('/EventList/{id}')
+  .onCreate(async (snap, context) => {
+    const id = context.params.id;
+    const inputData = snap.data();
+    console.log(inputData);
+    var docID = "";
+    var entryCount = 0;
+    await admin.firestore().collection("EventSummaryBySports").where("SportName", "==", inputData.SportName)
+      .get().then(async (changes) => {
+        changes.forEach(doc1 => {
+          docID = doc1.id;
+          eventCount = Number(doc1.data().EventCount);
+        });
+
+        if (docID != "" & docID != undefined) {
+          await admin.firestore().collection("EventSummaryBySports").doc(docID).set({
+            SportName: inputData.SportName,
+            EventCount: eventCount + 1,
+          });
+        } else {
+
+          await admin.firestore().collection("EventSummaryBySports").add({
+            SportName: inputData.SportName,
+            EventCount: 1,
+          });
+        }
+
+      });
+
+    if (inputData.City != null && inputData.City != undefined && inputData.City != "") {
+      await admin.firestore().collection("EventSummaryByCity").where("City", "==", inputData.City)
+        .get().then(async (changes) => {
+          changes.forEach(doc1 => {
+            docID = doc1.id;
+            eventCount = Number(doc1.data().EventCount);
+          });
+
+          if (docID != "" & docID != undefined) {
+            await admin.firestore().collection("EventSummaryByCity").doc(docID).set({
+              City: inputData.City,
+              EventCount: eventCount + 1,
+            });
+          } else {
+
+            await admin.firestore().collection("EventSummaryByCity").add({
+              City: inputData.City,
+              EventCount: 1,
+            });
+          }
+
+        });
+    }
+  });
+
+
+exports.logEventDelete = functions.firestore.document('/EventList/{id}')
+  .onDelete(async (snap, context) => {
+    const id = context.params.id;
+    const inputData = snap.data();
+    console.log(inputData);
+    var docID = "";
+    var eventCount = 0;
+    await admin.firestore().collection("EventSummaryBySports").where("SportName", "==", inputData.SportName)
+      .get().then(async (changes) => {
+        changes.forEach(doc1 => {
+          docID = doc1.id;
+          eventCount = Number(doc1.data().EventCount);
+        });
+        if (docID != "" && docID != undefined) {
+          await admin.firestore().collection("EventSummaryBySports").doc(docID).set({
+            SportName: inputData.SportName,
+            EventCount: eventCount - 1,
+          });
+        }
+      });
+    if (inputData.City != null && inputData.City != undefined && inputData.City != "") {
+      await admin.firestore().collection("EventSummaryByCity").where("City", "==", inputData.City)
+        .get().then(async (changes) => {
+          changes.forEach(doc1 => {
+            docID = doc1.id;
+            eventCount = Number(doc1.data().EventCount);
+          });
+          if (docID != "" && docID != undefined) {
+            await admin.firestore().collection("EventSummaryByCity").doc(docID).set({
+              City: inputData.City,
+              EventCount: eventCount - 1,
+            });
+          }
+        });
+    }
+  });
+
+
+
+exports.getEventSummaryBySport =
+  functions.https.onCall(async (data, context) => {
+    // if (!context.auth) {
+    //   throw new functions.https.HttpError(
+    //     "unauthenticatied",
+    //     "only authenticated user can call this"
+    //   );
+    // }
+    let resultList = [];
+
+    // var dbrows = await admin.firestore().collection("PartnerList").get();
+    // dbrows.then((changes) => {
+    return await admin.firestore().collection("EventSummaryBySports").get().then((changes) => {
+        changes.forEach(doc1 => {
+          resultList.push({
+            SportName: doc1.data().SportName,
+            EventCount: Number(doc1.data().EventCount),
+          });
+          console.log(resultList);
+        });
+        return resultList;
+
+      });
+  });
+
+
+  exports.getEventSummaryByCity =
+    functions.https.onCall(async (data, context) => {
+      // if (!context.auth) {
+      //   throw new functions.https.HttpError(
+      //     "unauthenticatied",
+      //     "only authenticated user can call this"
+      //   );
+      // }
+
+      let resultList = [];
+
+      // var dbrows = await admin.firestore().collection("PartnerList").get();
+      // dbrows.then((changes) => {
+      return await admin.firestore().collection("EventSummaryByCity").get().then((changes) => {
+          changes.forEach(doc1 => {
+            resultList.push({
+              City: doc1.data().City,
+              EventCount: Number(doc1.data().EventCount),
+            });
+            console.log(resultList);
+          });
+          return resultList;
+
+        });
+    });
 // exports.getEventDetails =
 //   functions.https.onCall((data, context) => {
 //     if (!context.auth) {
@@ -160,7 +305,7 @@ exports.getEventDetails =
     return admin.firestore().collection("EventList")
       .doc(EventID).get().then((doc1) => {
         if (doc1.exists) {
-          // console.log(doc1);
+           console.log(doc1);
           let results = {};
           return {
             Eventid: doc1.id,
@@ -232,12 +377,12 @@ exports.getEventDetails =
 
 exports.getAllEventDetails =
   functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-      throw new functions.https.HttpError(
-        "unauthenticatied",
-        "only authenticated user can call this"
-      );
-    }
+    // if (!context.auth) {
+    //   throw new functions.https.HttpError(
+    //     "unauthenticatied",
+    //     "only authenticated user can call this"
+    //   );
+    // }
     let resultList = [];
 
     // var dbrows = await admin.firestore().collection("PartnerList").get();
@@ -300,7 +445,7 @@ exports.getAllEventDetails =
           PublishGalleryFlag: doc1.data().PublishGalleryFlag,
 
         });
-        console.log(resultList);
+        //console.log(resultList);
       });
       return resultList;
 

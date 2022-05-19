@@ -193,6 +193,33 @@ $(document).ready(function() {
   });
 });
 
+$(document).ready(function() {
+  var owl = $('#genre-location-list');
+  owl.owlCarousel({
+    margin: 20,
+    loop: false,
+    autoplay: false,
+    smartSpeed: 1000,
+    autoplayTimeout: 2500,
+    autoplayHoverPause: false,
+    nav: false,
+    stagePadding: 60,
+    dots: false,
+    responsive: {
+      0: {
+        items: 2,
+        stagePadding: 30,
+      },
+      600: {
+        items: 4
+      },
+      1000: {
+        items: 7
+      }
+    }
+  });
+});
+
 // $(document).ready(function() {
 //   var owl = $('#designs-list');
 //   owl.owlCarousel({
@@ -303,17 +330,18 @@ $(document).ready(function() {
   var owl = $('#event-list');
   owl.owlCarousel({
     margin: 20,
-    loop: true,
+    loop: false,
     autoplay: false,
-    smartSpeed: 3000,
+    smartSpeed: 1000,
     autoplayTimeout: 3500,
-    autoplayHoverPause: true,
+    autoplayHoverPause: false,
     nav: false,
     dots:false,
     stagePadding: 70,
     responsive: {
       0: {
-        items: 1
+        items: 1,
+        stagePadding: 30
       },
       600: {
         items: 2
