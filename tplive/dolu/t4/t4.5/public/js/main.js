@@ -16,13 +16,13 @@ if ('serviceWorker' in navigator) {
       console.log(err);
     });
 }
-
-window.addEventListener('beforeinstallpromt', function(event){
-  console.log('beforeinstallpromt fierd');
-  event.preventDefault();
-  deferredPrompt=event;
-  return false;
-});
+//
+// window.addEventListener('beforeinstallpromt', function(event){
+//   console.log('beforeinstallpromt fierd');
+//   event.preventDefault();
+//   deferredPrompt=event;
+//   return false;
+// });
 // Ristrict mouse right click - start
 
 // With jQuery
@@ -240,6 +240,59 @@ $(document).ready(function() {
       },
       1000: {
         items: 7
+      }
+    }
+  });
+});
+
+$(document).ready(function() {
+  var owl = $('#genre-location-list-new');
+  owl.owlCarousel({
+    margin: 20,
+    loop: false,
+    autoplay: false,
+    smartSpeed: 1000,
+    autoplayTimeout: 2500,
+    autoplayHoverPause: false,
+    nav: false,
+    stagePadding: 60,
+    dots: false,
+    responsive: {
+      0: {
+        items: 2,
+        stagePadding: 30,
+      },
+      600: {
+        items: 4
+      },
+      1000: {
+        items: 7
+      }
+    }
+  });
+});
+
+$(document).ready(function() {
+  var owl = $('#partners-carousel');
+  owl.owlCarousel({
+    margin: 20,
+    loop: true,
+    autoplay: true,
+    smartSpeed: 3000,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: false,
+    nav: false,
+    dots: false,
+    center: true,
+    responsive: {
+      0: {
+        items: 2
+      },
+      600: {
+        items: 3
+      },
+      1000: {
+        items: 5
       }
     }
   });

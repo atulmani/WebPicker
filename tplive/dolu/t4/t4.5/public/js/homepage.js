@@ -217,8 +217,8 @@ function RenderEventDetails(index, doc, entryCount) {
   if (doc.EventLogo != "" && doc.EventLogo != undefined && doc.EventLogo != null) {
     img.setAttribute("src", doc.EventLogo);
   } else {
-    console.log("/img/e3.png");
-    img.setAttribute("src", "/img/e3.png");
+    console.log("./img/e3.png");
+    img.setAttribute("src", "./img/e3.png");
   }
 
   div5.appendChild(img);
@@ -321,9 +321,6 @@ function RenderEventDetails(index, doc, entryCount) {
 
 }
 
-function getTournamentSummaryByCity() {
-
-}
 //
 // function GetProfileDataOld()
 // {
