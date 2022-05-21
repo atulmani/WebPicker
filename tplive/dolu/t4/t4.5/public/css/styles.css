@@ -512,11 +512,10 @@ h6{
 }
 
 .copy-right{
-  background: linear-gradient(to right, #348DCB,#161d65);
   font-size:0.9rem;
   padding:0.5% 0;
   font-family: 'Baloo 2', cursive;
-  color:#fff;
+  color:#aaa;
   text-align: center;
 }
 
