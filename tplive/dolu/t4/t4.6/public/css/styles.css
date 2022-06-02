@@ -722,14 +722,14 @@ h6{
 .genre-locoation-card.active h3{
   color: #888;
 }
-
+/*
 .background-img-div{
   background: rgba(0,0,0,0.5) url('../img/1.png');
   background-blend-mode: darken;
   background-position:center ;
   background-repeat: no-repeat;
   background-attachment: fixed;
-}
+} */
 
 .games-section{
   background-color: #0093E9;
