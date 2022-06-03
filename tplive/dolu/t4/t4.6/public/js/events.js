@@ -213,6 +213,22 @@ function getEventList(filter) {
 
 function RenderEventDetails(index, doc, entryCount) {
   console.log(doc);
+  var curFormat = {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  };
+
+  var options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+  //
+  // var refdate = new Date(obj.ReferenceDate._seconds * 1000);
+  // var dt =  refdate.toLocaleDateString("en-US", options);
+  // var amt = obj.Fees.toLocaleString('en-IN', curFormat);
 
   var div0 = document.createElement("div");
   div0.setAttribute("class", "col-lg-3 col-md-6 col-sm-12");
@@ -294,7 +310,8 @@ function RenderEventDetails(index, doc, entryCount) {
 
   var h31 = document.createElement("h3");
   if (doc.EventStartDate != undefined && doc.EventStartDate != "" && doc.EventStartDate != null) {
-    h31.innerHTML = doc.EventStartDate;
+    var refdate = new Date(doc.EventStartDate._seconds * 1000);
+    h31.innerHTML = refdate.toLocaleDateString("en-US", options);;
   } else {
     h31.innerHTML = "-";
   }
@@ -309,7 +326,20 @@ function RenderEventDetails(index, doc, entryCount) {
   div8.setAttribute("class", "");
 
   var h32 = document.createElement("h3");
-  h32.innerHTML = doc.MinimumFee + " - " + doc.MaximumFee;
+  // obj.Fees.toLocaleString('en-IN', curFormat)
+  if (doc.MinimumFee != null && doc.MinimumFee != undefined && doc.MinimumFee != "") {
+    if (doc.MaximumFee != null && doc.MaximumFee != undefined && doc.MaximumFee != "") {
+      if (doc.MinimumFee != doc.MaximumFee) {
+        h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat) + " - " + doc.MaximumFee.toLocaleString('en-IN', curFormat);
+      } else {
+        h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat);
+      }
+    } else {
+      h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat);
+    }
+  } else {
+    h32.innerHTML = "-";
+  }
   div8.appendChild(h32);
 
   var h42 = document.createElement("h4");
