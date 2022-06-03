@@ -17,7 +17,7 @@ inputSlider.oninput = (() => {
   let minValue = inputSlider.min;
   let difference = maxValue - minValue;
   sliderValue.textContent = value;
-  sliderValue.style.left = ((value-minValue)*100/difference) + '%';
+  sliderValue.style.left = ((value - minValue) * 100 / difference) + '%';
   sliderValue.classList.add('show');
 });
 
@@ -100,73 +100,73 @@ function getTournamentSummary() {
   //   })
   //   .then(function(rec) {
   //
-      var para2 = {};
-      para2 = {
-        userID: ""
-      };
-      console.log(para2);
-      const ret2 = firebase.functions().httpsCallable("getEventSummaryByCity");
-      ret2(para2).then(results => {
-          console.log("From Function " + results.data.length);
-          // console.log("From Function " + results.data[0].resultsid);
-          for (index = 0; index < results.data.length; index++) {
-            console.log(results.data[index].City);
-            console.log(results.data[index].EventCount);
-            // var div1 = document.createElement("div");
-            // div1.setAttribute("class", "item");
-            //
-            // var div2 = document.createElement("div");
-            // div2.setAttribute("class", "genre-locoation-card");
-            //
-            // var h1 = document.createElement("h2");
-            // h1.innerHTML = results.data[index].City;
-            // div2.appendChild(h1);
-            //
-            // var h2 = document.createElement("h3");
-            // h2.innerHTML = results.data[index].EventCount + " Events";
-            // div2.appendChild(h2);
-            //
-            // div1.appendChild(div2);
-            // cityList.appendChild(div1);
+  var para2 = {};
+  para2 = {
+    userID: ""
+  };
+  console.log(para2);
+  const ret2 = firebase.functions().httpsCallable("getEventSummaryByCity");
+  ret2(para2).then(results => {
+      console.log("From Function " + results.data.length);
+      // console.log("From Function " + results.data[0].resultsid);
+      for (index = 0; index < results.data.length; index++) {
+        console.log(results.data[index].City);
+        console.log(results.data[index].EventCount);
+        // var div1 = document.createElement("div");
+        // div1.setAttribute("class", "item");
+        //
+        // var div2 = document.createElement("div");
+        // div2.setAttribute("class", "genre-locoation-card");
+        //
+        // var h1 = document.createElement("h2");
+        // h1.innerHTML = results.data[index].City;
+        // div2.appendChild(h1);
+        //
+        // var h2 = document.createElement("h3");
+        // h2.innerHTML = results.data[index].EventCount + " Events";
+        // div2.appendChild(h2);
+        //
+        // div1.appendChild(div2);
+        // cityList.appendChild(div1);
 
-            if (results.data[index].City === "Pune") {
-              document.getElementById("puneCnt1").innerHTML = results.data[index].EventCount;
-            } else if (results.data[index].City === "Bangalore") {
-              document.getElementById("bangaloreCnt1").innerHTML = results.data[index].EventCount;
-            } else if (results.data[index].City === "Mysore") {
-              document.getElementById("mysoreCnt1").innerHTML = results.data[index].EventCount;
-            } else if (results.data[index].City === "Chennai") {
-              document.getElementById("chennaiCnt1").innerHTML = results.data[index].EventCount;
-            } else if (results.data[index].City === "Mumbai") {
-              document.getElementById("mumbaiCnt1").innerHTML = results.data[index].EventCount;
-            } else if (results.data[index].City === "Hyderabad") {
-              document.getElementById("hyderabadCnt1").innerHTML = results.data[index].EventCount;
-            } else if (results.data[index].City === "Delhi") {
-              document.getElementById("delhiCnt1").innerHTML = results.data[index].EventCount;
-            } else if (results.data[index].City === "Lucknow") {
-              document.getElementById("lucknowCnt1").innerHTML = results.data[index].EventCount;
-            } else if (results.data[index].City === "Jaipur") {
-              document.getElementById("jaipurCnt1").innerHTML = results.data[index].EventCount;
-            } else if (results.data[index].City === "Ahemdabad") {
-              document.getElementById("ahemdabadCnt1").innerHTML = results.data[index].EventCount;
-            } else if (results.data[index].City === "Chandigarh") {
-              document.getElementById("chandigarhCnt1").innerHTML = results.data[index].EventCount;
-            } else if (results.data[index].City === "Kolkata") {
-              document.getElementById("kolkataCnt1").innerHTML = results.data[index].EventCount;
-            }
+        if (results.data[index].City === "Pune") {
+          document.getElementById("puneCnt1").innerHTML = results.data[index].EventCount;
+        } else if (results.data[index].City === "Bangalore") {
+          document.getElementById("bangaloreCnt1").innerHTML = results.data[index].EventCount;
+        } else if (results.data[index].City === "Mysore") {
+          document.getElementById("mysoreCnt1").innerHTML = results.data[index].EventCount;
+        } else if (results.data[index].City === "Chennai") {
+          document.getElementById("chennaiCnt1").innerHTML = results.data[index].EventCount;
+        } else if (results.data[index].City === "Mumbai") {
+          document.getElementById("mumbaiCnt1").innerHTML = results.data[index].EventCount;
+        } else if (results.data[index].City === "Hyderabad") {
+          document.getElementById("hyderabadCnt1").innerHTML = results.data[index].EventCount;
+        } else if (results.data[index].City === "Delhi") {
+          document.getElementById("delhiCnt1").innerHTML = results.data[index].EventCount;
+        } else if (results.data[index].City === "Lucknow") {
+          document.getElementById("lucknowCnt1").innerHTML = results.data[index].EventCount;
+        } else if (results.data[index].City === "Jaipur") {
+          document.getElementById("jaipurCnt1").innerHTML = results.data[index].EventCount;
+        } else if (results.data[index].City === "Ahemdabad") {
+          document.getElementById("ahemdabadCnt1").innerHTML = results.data[index].EventCount;
+        } else if (results.data[index].City === "Chandigarh") {
+          document.getElementById("chandigarhCnt1").innerHTML = results.data[index].EventCount;
+        } else if (results.data[index].City === "Kolkata") {
+          document.getElementById("kolkataCnt1").innerHTML = results.data[index].EventCount;
+        }
 
-            // $('#genre-location-list').trigger('add.owl.carousel', [div1]).trigger('refresh.owl.carousel');
+        // $('#genre-location-list').trigger('add.owl.carousel', [div1]).trigger('refresh.owl.carousel');
 
-          }
+      }
 
 
-        })
-        .then(rec => {
-          getEventList('All');
-        })
-        .catch(err => {
-        console.log(err);
-        });
+    })
+    .then(rec => {
+      getEventList('All');
+    })
+    .catch(err => {
+      console.log(err);
+    });
 
 }
 
@@ -233,6 +233,7 @@ function RenderEventDetails(index, doc, entryCount) {
   var div0 = document.createElement("div");
   div0.setAttribute("class", "col-lg-3 col-md-6 col-sm-12");
 
+
   var div1 = document.createElement("div");
   div1.setAttribute("class", "item");
   div1.setAttribute("style", "margin: 30px 0 100px 0;");
@@ -273,24 +274,59 @@ function RenderEventDetails(index, doc, entryCount) {
   var div3 = document.createElement("div");
   div3.setAttribute("class", "event-card-content");
 
+  var div4 = document.createElement("div");
+  div4.setAttribute("class", "event-schedule-div");
+
   var h1 = document.createElement("h1");
   h1.setAttribute("class", "event-name");
   h1.innerHTML = doc.EventName;
-  div3.appendChild(h1);
+  div4.appendChild(h1);
 
   var h2 = document.createElement("h2");
   h2.setAttribute("class", "event-organiser");
   h2.innerHTML = doc.EventOwnerName;
-  div3.appendChild(h2);
-
-  var div4 = document.createElement("div");
-  div4.setAttribute("class", "event-schedule-div");
+  div4.appendChild(h2);
 
   var div5 = document.createElement("div");
-  div5.setAttribute("class", "details");
+  div5.setAttribute("style", "position: relative;");
+
+  var h11 = document.createElement("h3");
+  h11.setAttribute("class", "rating");
 
   var div6 = document.createElement("div");
   div6.setAttribute("class", "");
+  var rating = doc.rating;
+  if (rating === undefined || rating === "" || rating === null) {
+    rating = 5;
+  }
+  for (irat = 1; irat <= 5; irat++) {
+    var span = document.createElement("span");
+    span.setAttribute("class", "material-symbols-outlined");
+    if (irat <= rating) {
+      span.innerHTML = "star";
+    } else {
+      span.innerHTML = "grade";
+    }
+    div6.appendChild(span);
+  }
+  h11.appendChild(div6);
+
+  var small = document.createElement("small");
+  var ratingcnt = doc.ratingCount;
+  if (ratingcnt === undefined || ratingcnt === "" || ratingcnt === null) {
+    ratingcnt = 100;
+  }
+  small.innerHTML = ratingcnt;
+  h11.appendChild(small);
+  div5.appendChild(h11);
+
+  div4.appendChild(div5);
+
+  var div7 = document.createElement("div");
+  div7.setAttribute("class", "details");
+
+  var div8 = document.createElement("div");
+  div8.setAttribute("class", "");
 
   var h3 = document.createElement("h3");
   if (doc.City != undefined && doc.City != "" && doc.City != null) {
@@ -298,15 +334,15 @@ function RenderEventDetails(index, doc, entryCount) {
   } else {
     h3.innerHTML = "-";
   }
-  div6.appendChild(h3);
+  div8.appendChild(h3);
 
   var h4 = document.createElement("h4");
   h4.innerHTML = "Location";
-  div6.appendChild(h4);
-  div5.appendChild(div6);
+  div8.appendChild(h4);
+  div7.appendChild(div8);
 
-  var div7 = document.createElement("div");
-  div7.setAttribute("class", "");
+  var div9 = document.createElement("div");
+  div9.setAttribute("class", "");
 
   var h31 = document.createElement("h3");
   if (doc.EventStartDate != undefined && doc.EventStartDate != "" && doc.EventStartDate != null) {
@@ -315,15 +351,15 @@ function RenderEventDetails(index, doc, entryCount) {
   } else {
     h31.innerHTML = "-";
   }
-  div7.appendChild(h31);
+  div9.appendChild(h31);
 
   var h41 = document.createElement("h4");
   h41.innerHTML = "Event Date";
-  div7.appendChild(h41);
-  div5.appendChild(div7);
+  div9.appendChild(h41);
+  div7.appendChild(div9);
 
-  var div8 = document.createElement("div");
-  div8.setAttribute("class", "");
+  var div10 = document.createElement("div");
+  div10.setAttribute("class", "");
 
   var h32 = document.createElement("h3");
   // obj.Fees.toLocaleString('en-IN', curFormat)
@@ -340,21 +376,21 @@ function RenderEventDetails(index, doc, entryCount) {
   } else {
     h32.innerHTML = "-";
   }
-  div8.appendChild(h32);
+  div10.appendChild(h32);
 
   var h42 = document.createElement("h4");
   h42.innerHTML = "Entry Fee";
-  div8.appendChild(h42);
+  div10.appendChild(h42);
+  div7.appendChild(div10);
+  div4.appendChild(div7);
 
-  div5.appendChild(div8);
-  div4.appendChild(div5);
+  var div11 = document.createElement("div");
+  div11.setAttribute("class", "row");
 
-  var div9 = document.createElement("div");
-  div9.setAttribute("class", "row");
-
-  var div10 = document.createElement("div");
-  div10.setAttribute("class", "col-5");
+  var div12 = document.createElement("div");
+  div12.setAttribute("class", "col-5");
   var button1 = document.createElement("button");
+
   if (doc.PublishDrawFlag === 'YES') {
     button1.setAttribute("type", "button");
     button1.setAttribute("onclick", "btnClickEvent(" + doc.SportName + "," + doc.EventCode + ")");
@@ -363,7 +399,7 @@ function RenderEventDetails(index, doc, entryCount) {
     button1.setAttribute("name", "button");
 
     button1.innerHTML = "Draw";
-  }else  if (doc.RegistrationOpenFlag === 'YES') {
+  } else if (doc.RegistrationOpenFlag === 'YES') {
     button1.setAttribute("type", "button");
     button1.setAttribute("onclick", "btnClickEvent(" + doc.SportName + "," + doc.EventCode + ")");
     button1.setAttribute("class", "mybutton button5 event-card-button");
@@ -371,7 +407,7 @@ function RenderEventDetails(index, doc, entryCount) {
     button1.setAttribute("name", "button");
 
     button1.innerHTML = "book";
-  }  else {
+  } else {
     button1.setAttribute("type", "button");
     button1.setAttribute("onclick", "btnClickEvent(" + doc.SportName + "," + doc.EventCode + ")");
     button1.setAttribute("class", "mybutton button5 event-card-button");
@@ -379,11 +415,11 @@ function RenderEventDetails(index, doc, entryCount) {
     button1.innerHTML = "Details";
   }
 
-  div10.appendChild(button1);
-  div9.appendChild(div10);
+  div12.appendChild(button1);
+  div11.appendChild(div12);
 
-  var div11 = document.createElement("div");
-  div11.setAttribute("class", "col-7");
+  var div13 = document.createElement("div");
+  div13.setAttribute("class", "col-7");
 
   var button2 = document.createElement("button");
   button2.setAttribute("type", "button");
@@ -392,9 +428,9 @@ function RenderEventDetails(index, doc, entryCount) {
   button2.setAttribute("name", "button");
 
   button2.innerHTML = "<img src='https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fmultipleuser.png?alt=media&token=61647294-0f92-492a-86cf-0c1cb57cd1ef' alt=''> " + entryCount;
-  div11.appendChild(button2);
-  div9.appendChild(div11);
-  div4.appendChild(div9);
+  div13.appendChild(button2);
+  div11.appendChild(div13);
+  div4.appendChild(div11);
   div3.appendChild(div4);
   anchor.appendChild(div3);
   div1.appendChild(anchor);

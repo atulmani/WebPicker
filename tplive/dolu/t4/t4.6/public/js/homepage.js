@@ -209,172 +209,206 @@ function RenderEventDetails(index, doc, entryCount) {
   // var refdate = new Date(obj.ReferenceDate._seconds * 1000);
   // var dt =  refdate.toLocaleDateString("en-US", options);
   // var amt = obj.Fees.toLocaleString('en-IN', curFormat);
+var div1 = document.createElement("div");
+div1.setAttribute("class", "item");
+div1.setAttribute("style", "margin: 30px 0 100px 0;");
 
-  var div1 = document.createElement("div");
-  div1.setAttribute("class", "item");
-  div1.setAttribute("style", "margin: 30px 0 100px 0;");
+var anchor = document.createElement("a");
+anchor.setAttribute("href", "https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA");
+anchor.setAttribute("class", "event-card");
 
-  var anchor = document.createElement("a");
-  anchor.setAttribute("href", "https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA");
-  anchor.setAttribute("class", "event-card");
+var div2 = document.createElement("div");
+div2.setAttribute("class", "event-card-img");
 
-  var div2 = document.createElement("div");
-  div2.setAttribute("class", "event-card-img");
+var img = document.createElement("img");
+img.setAttribute("alt", "");
 
-  var img = document.createElement("img");
-  img.setAttribute("alt", "");
-
-  if (doc.EventBannerURL != undefined && doc.EventBannerURL != null && doc.EventBannerURL != "") {
-    img.setAttribute("src", doc.EventBannerURL);
+if (doc.EventBannerURL != undefined && doc.EventBannerURL != null && doc.EventBannerURL != "") {
+  img.setAttribute("src", doc.EventBannerURL);
+} else {
+  if (doc.SportName === 'Badminton') {
+    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Fbadminton.jpg?alt=media&token=11777b62-d45c-45ef-837b-abbafd633c7e");
+  } else if (doc.SportName === 'Carrom') {
+    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Fcarrom.jpg?alt=media&token=ca3eac1d-2078-4f4f-b40b-6ef65f111746");
+  } else if (doc.SportName === 'Chess') {
+    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Fchess.jpg?alt=media&token=51ac7ea2-5af1-4f3e-8334-0f96a90f0058");
+  } else if (doc.SportName === 'Squash') {
+    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Fsquash.jpg?alt=media&token=19f9f32d-b143-4fa4-b6c7-b4afe8ff46f3");
+  } else if (doc.SportName === 'Table Tennis') {
+    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Ftabeltennis.jpg?alt=media&token=d7e6b3cb-d873-4de2-be51-2fa9ff250950");
+  } else if (doc.SportName === 'Tennis') {
+    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Ftennis.jpg?alt=media&token=9120fa6d-c05a-468c-945f-eb651de8a533");
   } else {
-    if (doc.SportName === 'Badminton') {
-      img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Fbadminton.jpg?alt=media&token=11777b62-d45c-45ef-837b-abbafd633c7e");
-    } else if (doc.SportName === 'Carrom') {
-      img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Fcarrom.jpg?alt=media&token=ca3eac1d-2078-4f4f-b40b-6ef65f111746");
-    } else if (doc.SportName === 'Chess') {
-      img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Fchess.jpg?alt=media&token=51ac7ea2-5af1-4f3e-8334-0f96a90f0058");
-    } else if (doc.SportName === 'Squash') {
-      img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Fsquash.jpg?alt=media&token=19f9f32d-b143-4fa4-b6c7-b4afe8ff46f3");
-    } else if (doc.SportName === 'Table Tennis') {
-      img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Ftabeltennis.jpg?alt=media&token=d7e6b3cb-d873-4de2-be51-2fa9ff250950");
-    } else if (doc.SportName === 'Tennis') {
-      img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Ftennis.jpg?alt=media&token=9120fa6d-c05a-468c-945f-eb651de8a533");
-    } else {
-      img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Fbadminton.jpg?alt=media&token=11777b62-d45c-45ef-837b-abbafd633c7e");
-    }
+    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Fbadminton.jpg?alt=media&token=11777b62-d45c-45ef-837b-abbafd633c7e");
   }
-  div2.appendChild(img);
+}
+div2.appendChild(img);
 
-  anchor.appendChild(div2);
+anchor.appendChild(div2);
 
-  var div3 = document.createElement("div");
-  div3.setAttribute("class", "event-card-content");
+var div3 = document.createElement("div");
+div3.setAttribute("class", "event-card-content");
 
-  var h1 = document.createElement("h1");
-  h1.setAttribute("class", "event-name");
-  h1.innerHTML = doc.EventName;
-  div3.appendChild(h1);
+var div4 = document.createElement("div");
+div4.setAttribute("class", "event-schedule-div");
 
-  var h2 = document.createElement("h2");
-  h2.setAttribute("class", "event-organiser");
-  h2.innerHTML = doc.EventOwnerName;
-  div3.appendChild(h2);
+var h1 = document.createElement("h1");
+h1.setAttribute("class", "event-name");
+h1.innerHTML = doc.EventName;
+div4.appendChild(h1);
 
-  var div4 = document.createElement("div");
-  div4.setAttribute("class", "event-schedule-div");
+var h2 = document.createElement("h2");
+h2.setAttribute("class", "event-organiser");
+h2.innerHTML = doc.EventOwnerName;
+div4.appendChild(h2);
 
-  var div5 = document.createElement("div");
-  div5.setAttribute("class", "details");
+var div5 = document.createElement("div");
+div5.setAttribute("style", "position: relative;");
 
-  var div6 = document.createElement("div");
-  div6.setAttribute("class", "");
+var h11 = document.createElement("h3");
+h11.setAttribute("class", "rating");
 
-  var h3 = document.createElement("h3");
-  if (doc.City != undefined && doc.City != "" && doc.City != null) {
-    h3.innerHTML = doc.City;
+var div6 = document.createElement("div");
+div6.setAttribute("class", "");
+var rating = doc.rating;
+if (rating === undefined || rating === "" || rating === null) {
+  rating = 5;
+}
+for (irat = 1; irat <= 5; irat++) {
+  var span = document.createElement("span");
+  span.setAttribute("class", "material-symbols-outlined");
+  if (irat <= rating) {
+    span.innerHTML = "star";
   } else {
-    h3.innerHTML = "-";
+    span.innerHTML = "grade";
   }
-  div6.appendChild(h3);
+  div6.appendChild(span);
+}
+h11.appendChild(div6);
 
-  var h4 = document.createElement("h4");
-  h4.innerHTML = "Location";
-  div6.appendChild(h4);
-  div5.appendChild(div6);
+var small = document.createElement("small");
+var ratingcnt = doc.ratingCount;
+if (ratingcnt === undefined || ratingcnt === "" || ratingcnt === null) {
+  ratingcnt = 100;
+}
+small.innerHTML = ratingcnt;
+h11.appendChild(small);
+div5.appendChild(h11);
 
-  var div7 = document.createElement("div");
-  div7.setAttribute("class", "");
+div4.appendChild(div5);
 
-  var h31 = document.createElement("h3");
-  if (doc.EventStartDate != undefined && doc.EventStartDate != "" && doc.EventStartDate != null) {
-    var refdate = new Date(doc.EventStartDate._seconds * 1000);
-    h31.innerHTML = refdate.toLocaleDateString("en-US", options);;
-  } else {
-    h31.innerHTML = "-";
-  }
-  div7.appendChild(h31);
+var div7 = document.createElement("div");
+div7.setAttribute("class", "details");
 
-  var h41 = document.createElement("h4");
-  h41.innerHTML = "Event Date";
-  div7.appendChild(h41);
-  div5.appendChild(div7);
+var div8 = document.createElement("div");
+div8.setAttribute("class", "");
 
-  var div8 = document.createElement("div");
-  div8.setAttribute("class", "");
+var h3 = document.createElement("h3");
+if (doc.City != undefined && doc.City != "" && doc.City != null) {
+  h3.innerHTML = doc.City;
+} else {
+  h3.innerHTML = "-";
+}
+div8.appendChild(h3);
 
-  var h32 = document.createElement("h3");
-  // obj.Fees.toLocaleString('en-IN', curFormat)
-  if (doc.MinimumFee != null && doc.MinimumFee != undefined && doc.MinimumFee != "") {
-    if (doc.MaximumFee != null && doc.MaximumFee != undefined && doc.MaximumFee != "") {
-      if (doc.MinimumFee != doc.MaximumFee) {
-        h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat) + " - " + doc.MaximumFee.toLocaleString('en-IN', curFormat);
-      } else {
-        h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat);
-      }
+var h4 = document.createElement("h4");
+h4.innerHTML = "Location";
+div8.appendChild(h4);
+div7.appendChild(div8);
+
+var div9 = document.createElement("div");
+div9.setAttribute("class", "");
+
+var h31 = document.createElement("h3");
+if (doc.EventStartDate != undefined && doc.EventStartDate != "" && doc.EventStartDate != null) {
+  var refdate = new Date(doc.EventStartDate._seconds * 1000);
+  h31.innerHTML = refdate.toLocaleDateString("en-US", options);;
+} else {
+  h31.innerHTML = "-";
+}
+div9.appendChild(h31);
+
+var h41 = document.createElement("h4");
+h41.innerHTML = "Event Date";
+div9.appendChild(h41);
+div7.appendChild(div9);
+
+var div10 = document.createElement("div");
+div10.setAttribute("class", "");
+
+var h32 = document.createElement("h3");
+// obj.Fees.toLocaleString('en-IN', curFormat)
+if (doc.MinimumFee != null && doc.MinimumFee != undefined && doc.MinimumFee != "") {
+  if (doc.MaximumFee != null && doc.MaximumFee != undefined && doc.MaximumFee != "") {
+    if (doc.MinimumFee != doc.MaximumFee) {
+      h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat) + " - " + doc.MaximumFee.toLocaleString('en-IN', curFormat);
     } else {
       h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat);
     }
   } else {
-    h32.innerHTML = "-";
+    h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat);
   }
-  div8.appendChild(h32);
+} else {
+  h32.innerHTML = "-";
+}
+div10.appendChild(h32);
 
-  var h42 = document.createElement("h4");
-  h42.innerHTML = "Entry Fee";
-  div8.appendChild(h42);
-  div5.appendChild(div8);
-  div4.appendChild(div5);
+var h42 = document.createElement("h4");
+h42.innerHTML = "Entry Fee";
+div10.appendChild(h42);
+div7.appendChild(div10);
+div4.appendChild(div7);
 
-  var div9 = document.createElement("div");
-  div9.setAttribute("class", "row");
+var div11 = document.createElement("div");
+div11.setAttribute("class", "row");
 
-  var div10 = document.createElement("div");
-  div10.setAttribute("class", "col-5");
-  var button1 = document.createElement("button");
+var div12 = document.createElement("div");
+div12.setAttribute("class", "col-5");
+var button1 = document.createElement("button");
 
-  if (doc.PublishDrawFlag === 'YES') {
-    button1.setAttribute("type", "button");
-    button1.setAttribute("onclick", "btnClickEvent(" + doc.SportName + "," + doc.EventCode + ")");
-    button1.setAttribute("class", "mybutton button5 event-card-button");
-    button1.setAttribute("style", "background: linear-gradient(to right,#73e336,#08bf1a);");
-    button1.setAttribute("name", "button");
+if (doc.PublishDrawFlag === 'YES') {
+  button1.setAttribute("type", "button");
+  button1.setAttribute("onclick", "btnClickEvent(" + doc.SportName + "," + doc.EventCode + ")");
+  button1.setAttribute("class", "mybutton button5 event-card-button");
+  button1.setAttribute("style", "background: linear-gradient(to right,#73e336,#08bf1a);");
+  button1.setAttribute("name", "button");
 
-    button1.innerHTML = "Draw";
-  }else  if (doc.RegistrationOpenFlag === 'YES') {
-    button1.setAttribute("type", "button");
-    button1.setAttribute("onclick", "btnClickEvent(" + doc.SportName + "," + doc.EventCode + ")");
-    button1.setAttribute("class", "mybutton button5 event-card-button");
-    button1.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
-    button1.setAttribute("name", "button");
+  button1.innerHTML = "Draw";
+} else if (doc.RegistrationOpenFlag === 'YES') {
+  button1.setAttribute("type", "button");
+  button1.setAttribute("onclick", "btnClickEvent(" + doc.SportName + "," + doc.EventCode + ")");
+  button1.setAttribute("class", "mybutton button5 event-card-button");
+  button1.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
+  button1.setAttribute("name", "button");
 
-    button1.innerHTML = "book";
-  }  else {
-    button1.setAttribute("type", "button");
-    button1.setAttribute("onclick", "btnClickEvent(" + doc.SportName + "," + doc.EventCode + ")");
-    button1.setAttribute("class", "mybutton button5 event-card-button");
-    button1.setAttribute("name", "button");
-    button1.innerHTML = "Details";
-  }
+  button1.innerHTML = "book";
+} else {
+  button1.setAttribute("type", "button");
+  button1.setAttribute("onclick", "btnClickEvent(" + doc.SportName + "," + doc.EventCode + ")");
+  button1.setAttribute("class", "mybutton button5 event-card-button");
+  button1.setAttribute("name", "button");
+  button1.innerHTML = "Details";
+}
 
-  div10.appendChild(button1);
-  div9.appendChild(div10);
+div12.appendChild(button1);
+div11.appendChild(div12);
 
-  var div11 = document.createElement("div");
-  div11.setAttribute("class", "col-7");
+var div13 = document.createElement("div");
+div13.setAttribute("class", "col-7");
 
-  var button2 = document.createElement("button");
-  button2.setAttribute("type", "button");
-  button2.setAttribute("class", "mybutton button5 event-card-button entries");
-  button2.setAttribute("style", "background:none;border: 1px solid #ddd;color:#aaa;");
-  button2.setAttribute("name", "button");
+var button2 = document.createElement("button");
+button2.setAttribute("type", "button");
+button2.setAttribute("class", "mybutton button5 event-card-button entries");
+button2.setAttribute("style", "background:none;border: 1px solid #ddd;color:#aaa;");
+button2.setAttribute("name", "button");
 
-  button2.innerHTML = "<img src='https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fmultipleuser.png?alt=media&token=61647294-0f92-492a-86cf-0c1cb57cd1ef' alt=''> " + entryCount;
-  div11.appendChild(button2);
-  div9.appendChild(div11);
-  div4.appendChild(div9);
-  div3.appendChild(div4);
-  anchor.appendChild(div3);
-  div1.appendChild(anchor);
+button2.innerHTML = "<img src='https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fmultipleuser.png?alt=media&token=61647294-0f92-492a-86cf-0c1cb57cd1ef' alt=''> " + entryCount;
+div13.appendChild(button2);
+div11.appendChild(div13);
+div4.appendChild(div11);
+div3.appendChild(div4);
+anchor.appendChild(div3);
+div1.appendChild(anchor);
   $('#event-list-new').trigger('add.owl.carousel', [div1]).trigger('refresh.owl.carousel');
 
 }

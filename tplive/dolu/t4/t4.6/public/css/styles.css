@@ -438,14 +438,14 @@ h6{
   top: 0px;
   width: 100%;
   padding: 30px;
-  height: 300px;
+  /* height: 300px; */
   z-index: 10;
 }
 
 .event-card .event-card-img img{
   width: 100%;
   border-radius: 15px;
-  height: 100%;
+  /* height: auto; */
   box-shadow: 0 20px 20px 0 rgba(0,0,0,0.1);
 }
 
@@ -455,7 +455,7 @@ h6{
   background: #fff;
   border-radius: 15px;
   padding: 200px 20px 15px 20px;
-  height: 420px;
+  height: 430px;
   text-align: center;
   z-index: 5;
 }
@@ -487,8 +487,10 @@ h6{
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  position: absolute;
   top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .event-card-content .rating small{
@@ -521,7 +523,7 @@ h6{
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding-top: 10px;
+  padding-top: 30px;
 }
 
 .event-card .event-card-content .details div{
