@@ -332,15 +332,7 @@ function RenderEventDetails(index, doc, entryCount) {
   div10.setAttribute("class", "col-5");
   var button1 = document.createElement("button");
 
-  if (doc.RegistrationOpenFlag === 'YES') {
-    button1.setAttribute("type", "button");
-    button1.setAttribute("onclick", "btnClickEvent(" + doc.SportName + "," + doc.EventCode + ")");
-    button1.setAttribute("class", "mybutton button5 event-card-button");
-    button1.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
-    button1.setAttribute("name", "button");
-
-    button1.innerHTML = "book";
-  } else if (doc.PublishDrawFlag === 'YES') {
+  if (doc.PublishDrawFlag === 'YES') {
     button1.setAttribute("type", "button");
     button1.setAttribute("onclick", "btnClickEvent(" + doc.SportName + "," + doc.EventCode + ")");
     button1.setAttribute("class", "mybutton button5 event-card-button");
@@ -348,7 +340,15 @@ function RenderEventDetails(index, doc, entryCount) {
     button1.setAttribute("name", "button");
 
     button1.innerHTML = "Draw";
-  } else {
+  }else  if (doc.RegistrationOpenFlag === 'YES') {
+    button1.setAttribute("type", "button");
+    button1.setAttribute("onclick", "btnClickEvent(" + doc.SportName + "," + doc.EventCode + ")");
+    button1.setAttribute("class", "mybutton button5 event-card-button");
+    button1.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
+    button1.setAttribute("name", "button");
+
+    button1.innerHTML = "book";
+  }  else {
     button1.setAttribute("type", "button");
     button1.setAttribute("onclick", "btnClickEvent(" + doc.SportName + "," + doc.EventCode + ")");
     button1.setAttribute("class", "mybutton button5 event-card-button");
