@@ -214,8 +214,35 @@ div1.setAttribute("class", "item");
 div1.setAttribute("style", "margin: 30px 0 100px 0;");
 
 var anchor = document.createElement("a");
-anchor.setAttribute("href", "https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA");
-anchor.setAttribute("class", "event-card");
+var scode = "";
+if (doc.SportName === 'Badminton') {
+  scode = 'BD';
+}else if(doc.SportName === 'Table Tennis') {
+  scode = 'TT';
+} else if (doc.SportName === 'Chess') {
+  scode = 'CH';
+} else if (doc.SportName === 'Skating') {
+  scode = 'SK';
+} else if (doc.SportName === 'Squash') {
+  scode = 'SQ';
+} else if (doc.SportName === 'Marathon') {
+  scode = 'MA';
+} else if (doc.SportName === 'Tennis') {
+  scode = 'TN';
+} else if (doc.SportName === 'Swimming') {
+  scode = 'SW';
+} else {
+  scode = 'BD';
+}
+
+console.log(doc.EventCode);
+console.log(scode);
+if (doc.EventCode != undefined && doc.EventCode != "" && doc.EventCode != null) {
+  anchor.setAttribute("href", "https://tournamentplanner.in/screens/TPLive_TournamentDetails.aspx??SCode=" + scode + "&TCode=" + doc.EventCode);
+} else {
+
+  anchor.setAttribute("href", "https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA");
+}anchor.setAttribute("class", "event-card");
 
 var div2 = document.createElement("div");
 div2.setAttribute("class", "event-card-img");
@@ -227,7 +254,7 @@ if (doc.EventBannerURL != undefined && doc.EventBannerURL != null && doc.EventBa
   img.setAttribute("src", doc.EventBannerURL);
 } else {
   if (doc.SportName === 'Badminton') {
-    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Fbadminton.jpg?alt=media&token=11777b62-d45c-45ef-837b-abbafd633c7e");
+    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Fbadminton.webp?alt=media&token=dc3c7662-a53f-4dad-9a40-b2d782fef290");
   } else if (doc.SportName === 'Carrom') {
     img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Fcarrom.jpg?alt=media&token=ca3eac1d-2078-4f4f-b40b-6ef65f111746");
   } else if (doc.SportName === 'Chess') {
@@ -436,7 +463,7 @@ function btnClickEvent(SportName, EventCode) {
 
     window.location.href = "https://tournamentplanner.in/screens/TPLive_TournamentDetails.aspx?SCode=" + sCode + "&TCode=" + EventCode;
   } else {
-    window.location.href = "https://tournamentplanner.in/screens/TPLive_TournamentDetails.aspx?SCode=BD&TCode=TP_BD10187";
+    window.location.href = "https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA";
   }
 }
 

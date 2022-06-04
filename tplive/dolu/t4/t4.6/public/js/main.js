@@ -465,8 +465,11 @@ $(document).ready(function() {
         margin: 10,
         stagePadding: 20,
       },
+      1200: {
+        stagePadding: 40
+      },
       1400: {
-        items: 3
+        items: 3,
       }
     }
   });

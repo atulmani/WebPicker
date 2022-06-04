@@ -234,7 +234,7 @@ exports.getEventDetails_forAdmin =
             EventOwnerPhone: doc1.data().EventOwnerPhone,
             OrganizerLogo: doc1.data().OrganizerLogo,
             EventLogo: doc1.data().EventLogo,
-
+            EventCode: doc1.data().EventCode,
             MinimumFee: doc1.data().MinimumFee,
             MaximumFee: doc1.data().MaximumFee,
             SportName: doc1.data().SportName,
@@ -319,6 +319,8 @@ exports.getEventDetails =
             EventOwnerPhone: doc1.data().EventOwnerPhone,
             OrganizerLogo: doc1.data().OrganizerLogo,
             EventLogo: doc1.data().EventLogo,
+            EventCode: doc1.data().EventCode,
+
             MinimumFee: doc1.data().MinimumFee,
             MaximumFee: doc1.data().MaximumFee,
 
@@ -401,6 +403,8 @@ exports.getAllEventDetails =
           EventOwnerPhone: doc1.data().EventOwnerPhone,
           OrganizerLogo: doc1.data().OrganizerLogo,
           EventLogo: doc1.data().EventLogo,
+          EventCode: doc1.data().EventCode,
+
           MinimumFee: doc1.data().MinimumFee,
           MaximumFee: doc1.data().MaximumFee,
 
@@ -481,6 +485,8 @@ exports.getAllEventDetailsForOrganizer =
           EventOwnerPhone: doc1.data().EventOwnerPhone,
           OrganizerLogo: doc1.data().OrganizerLogo,
           EventLogo: doc1.data().EventLogo,
+          EventCode: doc1.data().EventCode,
+
           MinimumFee: doc1.data().MinimumFee,
           MaximumFee: doc1.data().MaximumFee,
 
@@ -639,7 +645,7 @@ exports.addEventDetails =
     const LocationMap = data.LocationMap;
     const VenueContact = data.VenueContact;
     const ApprovalStatus = data.ApprovalStatus;
-
+    const EventCode = data.EventCode;
     console.log(data);
 
     return admin.firestore().collection("EventList")
@@ -655,6 +661,7 @@ exports.addEventDetails =
         LocationMap: LocationMap,
         VenueContact: VenueContact,
         ApprovalStatus: ApprovalStatus,
+        EventCode: EventCode,
         CreatedBy: context.auth.uid,
         CreatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
       })
@@ -692,6 +699,7 @@ exports.updateEventBasicDetails =
     const EventOwnerPhone = data.EventOwnerPhone;
     const SportName = data.SportName;
     const EventVenue = data.EventVenue;
+    const EventCode = data.EventCode;
     const City = data.City;
     const State = data.State;
     const OrganizationID = data.OrganizationID;
@@ -713,6 +721,7 @@ exports.updateEventBasicDetails =
         EventOwnerPhone: EventOwnerPhone,
         SportName: SportName,
         EventVenue: EventVenue,
+        EventCode: EventCode,
         City: City,
         State: State,
         OrganizationID: OrganizationID,
@@ -1428,6 +1437,7 @@ exports.getAllEventForOrganizerWithStatus =
           OrganizerPhone: doc1.data().OrganizerPhone,
           OrganizerLogo: doc1.data().OrganizerLogo,
           EventLogo: doc1.data().EventLogo,
+          EventCode: doc1.data().EventCode,
 
           SportName: doc1.data().SportName,
           EventStartDate: doc1.data().EventStartDate,
@@ -1485,6 +1495,7 @@ exports.getAllEventWithStatus =
           EventOwnerPhone: doc1.data().EventOwnerPhone,
           OrganizerLogo: doc1.data().OrganizerLogo,
           EventLogo: doc1.data().EventLogo,
+          EventCode: doc1.data().EventCode,
           MinimumFee: doc1.data().MinimumFee,
           MaximumFee: doc1.data().MaximumFee,
 
