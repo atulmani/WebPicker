@@ -256,17 +256,17 @@ if (doc.EventBannerURL != undefined && doc.EventBannerURL != null && doc.EventBa
   if (doc.SportName === 'Badminton') {
     img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Fbadminton.webp?alt=media&token=dc3c7662-a53f-4dad-9a40-b2d782fef290");
   } else if (doc.SportName === 'Carrom') {
-    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Fcarrom.jpg?alt=media&token=ca3eac1d-2078-4f4f-b40b-6ef65f111746");
+    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Fcarrom.webp?alt=media&token=17b1bca8-2dfd-4798-8b4f-7341e8d00656");
   } else if (doc.SportName === 'Chess') {
-    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Fchess.jpg?alt=media&token=51ac7ea2-5af1-4f3e-8334-0f96a90f0058");
+    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Fchess.webp?alt=media&token=52189920-5092-4747-bada-2d6278b10c8e");
   } else if (doc.SportName === 'Squash') {
-    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Fsquash.jpg?alt=media&token=19f9f32d-b143-4fa4-b6c7-b4afe8ff46f3");
+    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Fsquash.webp?alt=media&token=4c021b09-e8b5-462e-a653-0fc5f3387e7d");
   } else if (doc.SportName === 'Table Tennis') {
-    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Ftabeltennis.jpg?alt=media&token=d7e6b3cb-d873-4de2-be51-2fa9ff250950");
+    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Ftabletennis.webp?alt=media&token=32d3e0bd-7109-4420-a171-df346b0c37f9");
   } else if (doc.SportName === 'Tennis') {
-    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Ftennis.jpg?alt=media&token=9120fa6d-c05a-468c-945f-eb651de8a533");
+    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Ftennis.webp?alt=media&token=5ea0dbac-50b2-4e96-a323-47c3ac812c13");
   } else {
-    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FEvent%2Fbadminton.jpg?alt=media&token=11777b62-d45c-45ef-837b-abbafd633c7e");
+    img.setAttribute("src", "https://https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Fbadminton.webp?alt=media&token=dc3c7662-a53f-4dad-9a40-b2d782fef290");
   }
 }
 div2.appendChild(img);
