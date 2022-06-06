@@ -499,13 +499,13 @@ h6{
   font-weight: normal;
   position: relative;
   top: 3px;
-  padding-left: 10px;
+  padding-left: 5px;
 }
 
 .event-card-content .rating div span{
   color: #fbba9c;
   font-size: 0.8rem;
-  width: 6px;
+  width: 13px;
 }
 
 .event-card-content .rating div span.grade{
@@ -726,11 +726,12 @@ h6{
 }
 
 .background-img-div{
-  background: rgba(0,0,0,0.5) url('https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fbanner1.png?alt=media&token=41420dbb-a850-4070-b4f7-c4acf6655170');
+  background: rgba(0,0,0,0.5) url('https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fbackground-banner.webp?alt=media&token=77b7ed4f-6fe7-43dc-86f7-3237acd50fe5');
   background-blend-mode: darken;
-  background-position:center ;
+  background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-size: cover;
 }
 
 .games-section{

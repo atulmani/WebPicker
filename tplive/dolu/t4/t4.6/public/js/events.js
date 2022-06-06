@@ -19,6 +19,8 @@ inputSlider.oninput = (() => {
   sliderValue.textContent = value;
   sliderValue.style.left = ((value - minValue) * 100 / difference) + '%';
   sliderValue.classList.add('show');
+  console.log(value);
+  getEventListForYear(value);
 });
 
 inputSlider.onblur = (() => {
@@ -162,7 +164,10 @@ function getTournamentSummary() {
 
     })
     .then(rec => {
-      getEventList('All');
+      var dt = new Date();
+      var year = dt.getFullYear();
+      getEventListForYear(year);
+      // getEventList('All');
     })
     .catch(err => {
       console.log(err);
@@ -170,6 +175,45 @@ function getTournamentSummary() {
 
 }
 
+
+function getEventListForYear(filter) {
+  var para = {};
+  // console.log(userid);
+  para = {
+    year: filter
+  };
+  console.log(para);
+  var ret = "";
+  ret = firebase.functions().httpsCallable("getAllEventDetailsForYears");
+
+  ret(para).then(results => {
+    console.log("From Function " + results.data.length);
+
+    var para3 = {};
+    para3 = {
+      EventID: ""
+    };
+    console.log(para3);
+    const ret3 = firebase.functions().httpsCallable("getAllEventEntryCount");
+    ret3().then(results1 => {
+      console.log("From Function getEventsEntryCount recLength : " + results1.data.length);
+      console.log(results1.data);
+      // console.log("From Function " + results.data[0].resultsid);
+document.getElementById("eventListDiv").innerHTML = "";
+      for (index = 0; index < results.data.length; index++) {
+        var entryCount = 0;
+        console.log(results.data[index]);
+        var indEntry = results1.data.findIndex(e => e.EventID === results.data[index].Eventid);
+        console.log(indEntry);
+        if (indEntry >= 0)
+          entryCount = Number(results1.data[indEntry].EntryCount);
+
+        // console.log(results.data[index]);
+        RenderEventDetails(index, results.data[index], entryCount);
+      }
+    });
+  });
+}
 
 function getEventList(filter) {
   var para = {};
