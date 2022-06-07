@@ -42,6 +42,21 @@ async function GetProfileData() {
     const ret1 = firebase.functions().httpsCallable("getProfileDetails");
     ret1(para1).then((result) => {
       var record1 = result.data;
+      var userRole = {
+        id:result.data.id,
+        Address: result.data.Address,
+        AlternatePhone: result.data.AlternatePhone,
+        City: result.data.City,
+        Country: result.data.Country,
+        DateOfBirth: result.data.DateOfBirth,
+        Email: result.data.Email,
+        Gender: result.data.Gender,
+        Phone: result.data.Phone,
+        State: result.data.State,
+        UserName: result.data.UserName,
+        UserRole : result.data.UserRole,
+      }
+      console.log(userRole);
       console.log("UserName: " + result.data.UserName);
 
       if (result.data.ProfilePic != undefined)

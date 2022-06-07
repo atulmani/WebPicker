@@ -176,16 +176,19 @@ function SaveDetails_section2() {
 function SaveDetails_section3() {
  var dob = document.getElementById('dob');
  console.log('the date is ' + dob.value);
- if(dob.value === "")
-  dob.value = new Date();
+ var dobval = new Date();
+ if(dob.value != "")
+  dobval = new Date(dob.value);
+
  var cityList = document.getElementById('cityList');
  var locationSelectValue = cityList.options[cityList.selectedIndex].value;
  console.log('the selected city is ' + locationSelectValue);
-
+console.log(new Date(dob.value));
+console.log(dob.value);
  var para = {};
  para = {
    userID: loggedinUser.uid,
-   DateOfBirth: dob.value,
+   DateOfBirth: dobval,
    City: locationSelectValue,
    State:"Uttar Pradesh",
    Country:"India",

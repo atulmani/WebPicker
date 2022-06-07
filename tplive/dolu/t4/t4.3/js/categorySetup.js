@@ -95,6 +95,7 @@ var btnSaveinDB = document.getElementById("btnSaveinDB");
 btnSaveinDB.addEventListener('click', e => {
   e.preventDefault();
   console.log(eventID);
+  console.log(valList);
   var para1 = {};
   para1 = {
     EventID: eventID,

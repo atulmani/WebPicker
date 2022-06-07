@@ -15,11 +15,11 @@ auth.onAuthStateChanged(async firebaseUser => {
     } else {
       loggedinUser = null;
       console.log('User has been logged out');
-      window.location.href = "../index.html";
+    //  window.location.href = "../index.html";
     }
   } catch (error) {
     console.log(error.message);
-    window.location.href = "../index.html";
+    //window.location.href = "../index.html";
   }
 });
 
@@ -126,6 +126,7 @@ async function GetProfileData() {
   };
   populateSportList();
   var userProfile =JSON.parse( localStorage.getItem("userProfile"));
+  console.log(userProfile);
     var approvalStatus = document.getElementById("approvalStatus");
     if (userProfile.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
       console.log("in admin");
@@ -357,6 +358,9 @@ function GetEventDetails() {
     */
     document.getElementById("hfEventID").value = result.data.Eventid;
     document.getElementById("eventName").value = result.data.EventName;
+    document.getElementById("sportCode").value = result.data.SportCode;
+    document.getElementById("eventCode").value = result.data.EventCode;
+    document.getElementById("city").value = result.data.City;
 
     var approvalStatus = document.getElementById("approvalStatus");
     var approvalS = result.data.ApprovalStatus;
@@ -436,6 +440,9 @@ btnSave.addEventListener('click', e => {
   var eventOwnerEmail = document.getElementById("eventOwnerEmail").value;
   var eventOwnerPhone = document.getElementById("eventOwnerPhone").value;
   var eventVenue = document.getElementById("eventVenue").value;
+  var eventCode = document.getElementById("eventCode").value;
+  var sportCode = document.getElementById("sportCode").value;
+  var city = document.getElementById("city").value;
 
   var locationMap = document.getElementById("locationMap").value;
   var venueContact = document.getElementById("venueContact").value;
@@ -461,7 +468,7 @@ btnSave.addEventListener('click', e => {
 
     }, 5000);
 
-    window.location.href = "eventList.html";
+    //window.location.href = "eventList.html";
   } else {
 
     console.log("details  filled completly");
@@ -479,6 +486,9 @@ btnSave.addEventListener('click', e => {
       EventVenue: eventVenue,
       LocationMap: locationMap,
       VenueContact: venueContact,
+      EventCode: eventCode,
+      SportCode: sportCode,
+      City: city,
       // OrganizationType: organizationType,
       ApprovalStatus: approvalStatus,
     };

@@ -6,7 +6,7 @@ auth.onAuthStateChanged(firebaseUser => {
       loggedinUser = firebaseUser;
       console.log('Logged-in user phone number: ' + loggedinUser.phoneNumber);
        userID = firebaseUser.uid;
-       window.location.href = "profile.html";
+       //window.location.href = "profile.html";
     } else {
       loggedinUser = null;
       console.log('User has been logged out');
