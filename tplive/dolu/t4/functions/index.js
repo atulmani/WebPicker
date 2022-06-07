@@ -42,7 +42,6 @@ exports.logEventAdd = events.logEventAdd;
 exports.logEntryDelete = events.logEntryDelete;
 exports.getEventSummaryBySport = events.getEventSummaryBySport;
 exports.getEventSummaryByCity = events.getEventSummaryByCity;
-
 exports.getEventDetails = events.getEventDetails;
 exports.getAllEventDetails = events.getAllEventDetails;
 exports.getAllEventDetailsForOrganizer = events.getAllEventDetailsForOrganizer;
@@ -67,6 +66,8 @@ exports.updateEventFlag_PublishGallery = events.updateEventFlag_PublishGallery;
 exports.getAllEventForOrganizerWithStatus = events.getAllEventForOrganizerWithStatus;
 exports.getAllEventWithStatus = events.getAllEventWithStatus;
 exports.getEventCategoryDetails = events.getEventCategoryDetails;
+exports.getAllEventDetailsForYears = events.getAllEventDetailsForYears;
+exports.setEventCategoryDetails = events.setEventCategoryDetails;
 
 
 
@@ -80,3 +81,6 @@ exports.getApplicableEvent = registration.getApplicableEvent;
 exports.registerEvent = registration.registerEvent;
 exports.getAllRegisteredEventList = registration.getAllRegisteredEventList;
 exports.getParticipants = registration.getParticipants;
+
+
+exports.storePostData = common.storePostData;

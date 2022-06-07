@@ -235,6 +235,7 @@ exports.getEventDetails_forAdmin =
             OrganizerLogo: doc1.data().OrganizerLogo,
             EventLogo: doc1.data().EventLogo,
             EventCode: doc1.data().EventCode,
+            SportCode: doc1.data().SportCode,
             MinimumFee: doc1.data().MinimumFee,
             MaximumFee: doc1.data().MaximumFee,
             SportName: doc1.data().SportName,
@@ -320,6 +321,7 @@ exports.getEventDetails =
             OrganizerLogo: doc1.data().OrganizerLogo,
             EventLogo: doc1.data().EventLogo,
             EventCode: doc1.data().EventCode,
+            SportCode: doc1.data().SportCode,
 
             MinimumFee: doc1.data().MinimumFee,
             MaximumFee: doc1.data().MaximumFee,
@@ -377,6 +379,94 @@ exports.getEventDetails =
     console.log("before return");
   });
 
+exports.getAllEventDetailsForYears =
+  functions.https.onCall(async (data, context) => {
+    // if (!context.auth) {
+    //   throw new functions.https.HttpError(
+    //     "unauthenticatied",
+    //     "only authenticated user can call this"
+    //   );
+    // }
+    let resultList = [];
+
+    const Year = data.year;
+
+    var sDate = new Date(Year, 0, 1, 0,0,0,0);
+    var eDate = new Date(Year, 11, 31, 23,59,0,0);
+
+    // var dbrows = await admin.firestore().collection("PartnerList").get();
+    // dbrows.then((changes) => {
+    return await admin.firestore().collection("EventList")
+    .where("EventStartDate",">=", sDate)
+    .where("EventStartDate","<=", eDate)
+    .get().then((changes) => {
+      changes.forEach(doc1 => {
+        resultList.push({
+          Eventid: doc1.id,
+          EventName: doc1.data().EventName,
+          EventType: doc1.data().EventType,
+          EventStatus: doc1.data().EventStatus,
+          OrganizationID: doc1.data().OrganizationID,
+          OrganizerID: doc1.data().OrganizerID,
+          EventOwnerName: doc1.data().EventOwnerName,
+          EventOwnerEmail: doc1.data().EventOwnerEmail,
+          EventOwnerPhone: doc1.data().EventOwnerPhone,
+          OrganizerLogo: doc1.data().OrganizerLogo,
+          EventLogo: doc1.data().EventLogo,
+          EventCode: doc1.data().EventCode,
+          SportCode: doc1.data().SportCode,
+
+          MinimumFee: doc1.data().MinimumFee,
+          MaximumFee: doc1.data().MaximumFee,
+
+          SportName: doc1.data().SportName,
+          EventStartDate: doc1.data().EventStartDate,
+          EventEndDate: doc1.data().EventEndDate,
+          EventVenue: doc1.data().EventVenue,
+          City: doc1.data().City,
+          State: doc1.data().State,
+          RegistrationStartDate: doc1.data().RegistrationStartDate,
+          RegistrationEndDate: doc1.data().RegistrationEndDate,
+          WithdrawalEndDate: doc1.data().WithdrawalEndDate,
+          PaymentMode: doc1.data().PaymentMode,
+          ApprovalStatus: doc1.data().ApprovalStatus,
+          Comments: doc1.data().Comments,
+
+          RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
+          PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+          DrawPublishedFlag: doc1.data().DrawPublishedFlag,
+          //to be added
+          LocationMap: doc1.data().LocationMap,
+          VenueContact: doc1.data().VenueContact,
+          MaxEntryForParticipant: doc1.data().MaxEntryForParticipant,
+          ConvenienceCharge: doc1.data().ConvenienceCharge,
+          IsMiscellaneousChargeMandatory: doc1.data().IsMiscellaneousChargeMandatory,
+          MiscellaneousChargeRemark: doc1.data().MiscellaneousChargeRemark,
+          MiscellaneousChargeFees: doc1.data().MiscellaneousChargeFees,
+          DiscountRemarks: doc1.data().DiscountRemarks,
+          DiscountValue: doc1.data().DiscountValue,
+          OnlinePaymentModeFlag: doc1.data().OnlinePaymentModeFlag,
+
+          NoticeBoard: doc1.data().NoticeBoard,
+          Announcement: doc1.data().Announcement,
+          RulesAndRegulations: doc1.data().RulesAndRegulations,
+          CloseEventFlag: doc1.data().CloseEventFlag,
+          //RegistrationStatusOnFlag: doc1.data().RegistrationStatusOnFlag,
+          RegistrationCompletePostPaymentFlag: doc1.data().RegistrationCompletePostPaymentFlag,
+          OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
+          PublishDrawFlag: doc1.data().PublishDrawFlag,
+          PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+          PublishScheduleFlag: doc1.data().PublishScheduleFlag,
+          PublishGalleryFlag: doc1.data().PublishGalleryFlag,
+
+        });
+        //console.log(resultList);
+      });
+      return resultList;
+
+    });
+  });
+
 exports.getAllEventDetails =
   functions.https.onCall(async (data, context) => {
     // if (!context.auth) {
@@ -404,6 +494,7 @@ exports.getAllEventDetails =
           OrganizerLogo: doc1.data().OrganizerLogo,
           EventLogo: doc1.data().EventLogo,
           EventCode: doc1.data().EventCode,
+          SportCode: doc1.data().SportCode,
 
           MinimumFee: doc1.data().MinimumFee,
           MaximumFee: doc1.data().MaximumFee,
@@ -486,6 +577,7 @@ exports.getAllEventDetailsForOrganizer =
           OrganizerLogo: doc1.data().OrganizerLogo,
           EventLogo: doc1.data().EventLogo,
           EventCode: doc1.data().EventCode,
+          SportCode: doc1.data().SportCode,
 
           MinimumFee: doc1.data().MinimumFee,
           MaximumFee: doc1.data().MaximumFee,
@@ -646,6 +738,8 @@ exports.addEventDetails =
     const VenueContact = data.VenueContact;
     const ApprovalStatus = data.ApprovalStatus;
     const EventCode = data.EventCode;
+    const SportCode = data.SportCode;
+    const City = data.City;
     console.log(data);
 
     return admin.firestore().collection("EventList")
@@ -662,6 +756,8 @@ exports.addEventDetails =
         VenueContact: VenueContact,
         ApprovalStatus: ApprovalStatus,
         EventCode: EventCode,
+        SportCode: SportCode,
+        City: City,
         CreatedBy: context.auth.uid,
         CreatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
       })
@@ -700,6 +796,7 @@ exports.updateEventBasicDetails =
     const SportName = data.SportName;
     const EventVenue = data.EventVenue;
     const EventCode = data.EventCode;
+    const SportCode = data.SportCode;
     const City = data.City;
     const State = data.State;
     const OrganizationID = data.OrganizationID;
@@ -722,6 +819,7 @@ exports.updateEventBasicDetails =
         SportName: SportName,
         EventVenue: EventVenue,
         EventCode: EventCode,
+        SportCode: SportCode,
         City: City,
         State: State,
         OrganizationID: OrganizationID,
@@ -1438,6 +1536,7 @@ exports.getAllEventForOrganizerWithStatus =
           OrganizerLogo: doc1.data().OrganizerLogo,
           EventLogo: doc1.data().EventLogo,
           EventCode: doc1.data().EventCode,
+          SportCode: doc1.data().SportCode,
 
           SportName: doc1.data().SportName,
           EventStartDate: doc1.data().EventStartDate,
@@ -1496,6 +1595,7 @@ exports.getAllEventWithStatus =
           OrganizerLogo: doc1.data().OrganizerLogo,
           EventLogo: doc1.data().EventLogo,
           EventCode: doc1.data().EventCode,
+          SportCode: doc1.data().SportCode,
           MinimumFee: doc1.data().MinimumFee,
           MaximumFee: doc1.data().MaximumFee,
 
