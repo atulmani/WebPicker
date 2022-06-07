@@ -265,7 +265,7 @@ function RenderEventDetails(index, doc, entryCount) {
   };
 
   var options = {
-    year: 'numeric',
+    // year: 'numeric',
     month: 'short',
     day: 'numeric'
   };
@@ -319,8 +319,8 @@ function RenderEventDetails(index, doc, entryCount) {
   var img = document.createElement("img");
   img.setAttribute("alt", "");
 
-  if (doc.EventBannerURL != undefined && doc.EventBannerURL != null && doc.EventBannerURL != "") {
-    img.setAttribute("src", doc.EventBannerURL);
+  if (doc.EventLogo != undefined && doc.EventLogo != null && doc.EventLogo != "") {
+    img.setAttribute("src", doc.EventLogo);
   } else {
     if (doc.SportName === 'Badminton') {
       img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Fbadminton.webp?alt=media&token=dc3c7662-a53f-4dad-9a40-b2d782fef290");
@@ -437,7 +437,9 @@ function RenderEventDetails(index, doc, entryCount) {
   if (doc.MinimumFee != null && doc.MinimumFee != undefined && doc.MinimumFee != "") {
     if (doc.MaximumFee != null && doc.MaximumFee != undefined && doc.MaximumFee != "") {
       if (doc.MinimumFee != doc.MaximumFee) {
-        h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat) + " - " + doc.MaximumFee.toLocaleString('en-IN', curFormat);
+        // h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat) + " - " + doc.MaximumFee.toLocaleString('en-IN', curFormat);
+        h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat) ;
+
       } else {
         h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat);
       }

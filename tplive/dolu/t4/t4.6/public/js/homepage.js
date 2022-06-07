@@ -201,7 +201,8 @@ function RenderEventDetails(index, doc, entryCount) {
   };
 
   var options = {
-    year: 'numeric',
+    // year: 'numeric',
+    // year: 'numeric',
     month: 'short',
     day: 'numeric'
   };
@@ -238,7 +239,7 @@ if (doc.SportName === 'Badminton') {
 console.log(doc.EventCode);
 console.log(scode);
 if (doc.EventCode != undefined && doc.EventCode != "" && doc.EventCode != null) {
-  anchor.setAttribute("href", "https://tournamentplanner.in/screens/TPLive_TournamentDetails.aspx??SCode=" + scode + "&TCode=" + doc.EventCode);
+  anchor.setAttribute("href", "https://tournamentplanner.in/screens/TPLive_TournamentDetails.aspx?SCode=" + scode + "&TCode=" + doc.EventCode);
 } else {
 
   anchor.setAttribute("href", "https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA");
@@ -249,9 +250,9 @@ div2.setAttribute("class", "event-card-img");
 
 var img = document.createElement("img");
 img.setAttribute("alt", "");
-
-if (doc.EventBannerURL != undefined && doc.EventBannerURL != null && doc.EventBannerURL != "") {
-  img.setAttribute("src", doc.EventBannerURL);
+console.log(doc.EventLogo);
+if (doc.EventLogo != undefined && doc.EventLogo != null && doc.EventLogo != "") {
+  img.setAttribute("src", doc.EventLogo);
 } else {
   if (doc.SportName === 'Badminton') {
     img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Fbadminton.webp?alt=media&token=dc3c7662-a53f-4dad-9a40-b2d782fef290");
@@ -349,7 +350,8 @@ div9.setAttribute("class", "");
 var h31 = document.createElement("h3");
 if (doc.EventStartDate != undefined && doc.EventStartDate != "" && doc.EventStartDate != null) {
   var refdate = new Date(doc.EventStartDate._seconds * 1000);
-  h31.innerHTML = refdate.toLocaleDateString("en-US", options);;
+  // h31.innerHTML = refdate.toLocaleDateString("en-US", options);;
+  h31.innerHTML = refdate.toLocaleDateString("en-IN", options);;
 } else {
   h31.innerHTML = "-";
 }
@@ -368,7 +370,8 @@ var h32 = document.createElement("h3");
 if (doc.MinimumFee != null && doc.MinimumFee != undefined && doc.MinimumFee != "") {
   if (doc.MaximumFee != null && doc.MaximumFee != undefined && doc.MaximumFee != "") {
     if (doc.MinimumFee != doc.MaximumFee) {
-      h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat) + " - " + doc.MaximumFee.toLocaleString('en-IN', curFormat);
+      // h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat) + " - " + doc.MaximumFee.toLocaleString('en-IN', curFormat);
+      h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat) ;
     } else {
       h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat);
     }
