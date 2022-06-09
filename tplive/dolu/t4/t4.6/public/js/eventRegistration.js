@@ -17,11 +17,11 @@ auth.onAuthStateChanged(async firebaseUser => {
     } else {
       loggedinUser = null;
       console.log('User has been logged out');
-      //window.location.href = "index.html";
+      window.location.href = "../login/index.html";
     }
   } catch (error) {
     console.log(error.message);
-    //window.location.href = "index.html";
+    window.location.href = "../login/index.html";
   }
 });
 

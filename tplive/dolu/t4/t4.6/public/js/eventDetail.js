@@ -22,6 +22,7 @@ auth.onAuthStateChanged(async firebaseUser => {
       GetProfileData();
     } else {
       loggedinUser = null;
+      window.location.href = "../login/index.html";
 
     }
 

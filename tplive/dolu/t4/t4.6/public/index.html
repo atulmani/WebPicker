@@ -568,6 +568,7 @@
 
           <div class="col-md-12 col-md-offset-1">
             <div id="genre-location-list-new" class="owl-carousel owl-theme">
+              <!-- <div class="item" onclick="getLocationEvent('Pune', 'puneCnt1');"> -->
               <div class="item">
                 <div class="genre-locoation-card">
                   <div class="">
@@ -834,508 +835,425 @@
 
             </div>
 
+          </div>
+        </div><br><br>
       </div>
-  </div><br><br>
-  </div>
-  </section>
+    </section>
 
-  <section id="genre"><br><br>
+    <section id="genre"><br><br>
 
-    <div class="container">
+      <div class="container">
 
-      <div class="heading">
-        <span class="material-symbols-outlined">
-          pentagon
-        </span>
-        <h4 style="font-weight:1000;"> Browse Events By Genre</h4>
-      </div><br>
+        <div class="heading">
+          <span class="material-symbols-outlined">
+            pentagon
+          </span>
+          <h4 style="font-weight:1000;"> Browse Events By Genre</h4>
+        </div><br>
 
-      <div class="row no-guttters sports-large-div">
+        <div class="row no-guttters sports-large-div">
 
-        <div class="col-lg-2 col-md-4 col-sm-6" style="padding: 10px;">
-          <div class="genre-card">
-            <div class="img-div">
-              <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fgenre_badminton.png?alt=media&token=be920f7f-e6e9-4dbf-8c8e-915079fc7d11" alt="">
-            </div>
-            <h2>Badminton</h2>
-            <h3><span id="badmintonCnt">0</span> Events</h3>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-sm-6" style="padding: 10px;">
-          <div class="genre-card">
-            <div class="img-div">
-              <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fgenre_tt.png?alt=media&token=7fe7e2ea-ebd2-450a-ab13-aa6034121033" alt="">
-            </div>
-            <h2>Table Tenis</h2>
-            <h3><span id="ttCnt">0</span> Events</h3>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-sm-6" style="padding: 10px;">
-          <div class="genre-card">
-            <div class="img-div">
-              <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fgenre_marathon.png?alt=media&token=edfe165a-8bbe-4100-962a-c8cbb7769c62" alt="">
-            </div>
-            <h2>Tennis</h2>
-            <h3><span id="marathonCnt">0</span> Events</h3>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-sm-6" style="padding: 10px;">
-          <div class="genre-card">
-            <div class="img-div">
-              <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fgenre_skating.png?alt=media&token=dfdc1a99-53f1-4220-80c4-1ee2299357e8" alt="">
-            </div>
-            <h2>Squash</h2>
-            <h3><span id="skatingCnt">0</span> Events</h3>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-sm-6" style="padding: 10px;">
-          <div class="genre-card">
-            <div class="img-div">
-              <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fgenre_chess.png?alt=media&token=e4655669-2582-4f3d-b660-854d5c44ee67" alt="">
-            </div>
-            <h2>Chess</h2>
-            <h3><span id="chessCnt">0</span> Events</h3>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-sm-6" style="padding: 10px;">
-          <div class="genre-card">
-            <div class="img-div">
-              <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fgenre_carrom.png?alt=media&token=6bbfc30c-5d80-448d-9e03-f43a2e9b7d83" alt="">
-            </div>
-            <h2>Carrom</h2>
-            <h3><span id="carromCnt">0</span> Events</h3>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="sports-small-div">
-        <div class="row no-gutters">
-          <div class="col-4" style="padding: 10px;">
+          <div class="col-lg-2 col-md-4 col-sm-6" style="padding: 10px;">
             <div class="genre-card">
               <div class="img-div">
                 <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fgenre_badminton.png?alt=media&token=be920f7f-e6e9-4dbf-8c8e-915079fc7d11" alt="">
               </div>
               <h2>Badminton</h2>
-              <h3><span id="badmintonCntSmall">0</span> Events</h3>
+              <h3><span id="badmintonCnt">0</span> Events</h3>
             </div>
           </div>
 
-          <div class="col-4" style="padding: 10px;">
+          <div class="col-lg-2 col-md-4 col-sm-6" style="padding: 10px;">
             <div class="genre-card">
               <div class="img-div">
                 <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fgenre_tt.png?alt=media&token=7fe7e2ea-ebd2-450a-ab13-aa6034121033" alt="">
               </div>
               <h2>Table Tenis</h2>
-              <h3><span id="ttCntSmall">0</span> Events</h3>
+              <h3><span id="ttCnt">0</span> Events</h3>
             </div>
           </div>
 
-          <div class="col-4" style="padding: 10px;">
+          <div class="col-lg-2 col-md-4 col-sm-6" style="padding: 10px;">
             <div class="genre-card">
               <div class="img-div">
                 <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fgenre_marathon.png?alt=media&token=edfe165a-8bbe-4100-962a-c8cbb7769c62" alt="">
               </div>
               <h2>Tennis</h2>
-              <h3><span id="marathonCntSmall">0</span> Events</h3>
+              <h3><span id="marathonCnt">0</span> Events</h3>
             </div>
           </div>
 
-          <div class="col-4" style="padding: 10px;">
+          <div class="col-lg-2 col-md-4 col-sm-6" style="padding: 10px;">
             <div class="genre-card">
               <div class="img-div">
                 <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fgenre_skating.png?alt=media&token=dfdc1a99-53f1-4220-80c4-1ee2299357e8" alt="">
               </div>
               <h2>Squash</h2>
-              <h3><span id="skatingCntSmall">0</span> Events</h3>
+              <h3><span id="skatingCnt">0</span> Events</h3>
             </div>
           </div>
 
-          <div class="col-4" style="padding: 10px;">
+          <div class="col-lg-2 col-md-4 col-sm-6" style="padding: 10px;">
             <div class="genre-card">
               <div class="img-div">
                 <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fgenre_chess.png?alt=media&token=e4655669-2582-4f3d-b660-854d5c44ee67" alt="">
               </div>
               <h2>Chess</h2>
-              <h3><span id="chessCntSmall">0</span> Events</h3>
+              <h3><span id="chessCnt">0</span> Events</h3>
             </div>
           </div>
 
-          <div class="col-4" style="padding: 10px;">
+          <div class="col-lg-2 col-md-4 col-sm-6" style="padding: 10px;">
             <div class="genre-card">
               <div class="img-div">
                 <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fgenre_carrom.png?alt=media&token=6bbfc30c-5d80-448d-9e03-f43a2e9b7d83" alt="">
               </div>
               <h2>Carrom</h2>
-              <h3><span id="carromCntSmall">0</span> Events</h3>
+              <h3><span id="carromCnt">0</span> Events</h3>
             </div>
           </div>
 
         </div>
-      </div>
 
-      <div class="row no-gutters" style="display:none;">
-
-        <div class="col-md-12 col-md-offset-1"><br>
-          <div id="genre-location-list" class="owl-carousel owl-theme">
-            <div class="item">
-              <div class="genre-locoation-card">
-                <h2>Pune</h2>
-                <h3>4 Events</h3>
+        <div class="sports-small-div">
+          <div class="row no-gutters">
+            <div class="col-4" style="padding: 10px;">
+              <div class="genre-card">
+                <div class="img-div">
+                  <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fgenre_badminton.png?alt=media&token=be920f7f-e6e9-4dbf-8c8e-915079fc7d11" alt="">
+                </div>
+                <h2>Badminton</h2>
+                <h3><span id="badmintonCntSmall">0</span> Events</h3>
               </div>
             </div>
 
-            <!-- <div class="item">
-                <div class="genre-locoation-card">
-                  <h2>Banglore</h2>
-                  <h3>63 Events</h3>
+            <div class="col-4" style="padding: 10px;">
+              <div class="genre-card">
+                <div class="img-div">
+                  <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fgenre_tt.png?alt=media&token=7fe7e2ea-ebd2-450a-ab13-aa6034121033" alt="">
                 </div>
+                <h2>Table Tenis</h2>
+                <h3><span id="ttCntSmall">0</span> Events</h3>
               </div>
-
-              <div class="item">
-                <div class="genre-locoation-card">
-                  <h2>Chennai</h2>
-                  <h3>82 Events</h3>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="genre-locoation-card">
-                  <h2>Mumbai</h2>
-                  <h3>29 Events</h3>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="genre-locoation-card">
-                  <h2>Hydrabad</h2>
-                  <h3>3 Events</h3>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="genre-locoation-card">
-                  <h2>Delhi</h2>
-                  <h3>71 Events</h3>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="genre-locoation-card">
-                  <h2>Lucknow</h2>
-                  <h3>35 Events</h3>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="genre-locoation-card">
-                  <h2>Nagpur</h2>
-                  <h3>432 Events</h3>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="genre-locoation-card">
-                  <h2>Jaipur</h2>
-                  <h3>02 Events</h3>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="genre-locoation-card">
-                  <h2>Ahemdabad</h2>
-                  <h3>91 Events</h3>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="genre-locoation-card">
-                  <h2>Chandigarh</h2>
-                  <h3>1 Events</h3>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="genre-locoation-card">
-                  <h2>Kolkata</h2>
-                  <h3>12 Events</h3>
-                </div>
-              </div> -->
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-    <br><br>
-    <div class="container">
-      <!-- <div class="placeholder1"></div> -->
-
-      <div class="dashboardCardBoxoffer">
-        <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
-          </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img style="width:100%; height:100%;" src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fads1.png?alt=media&token=10c9e659-304b-43ff-9a6d-d9c0dcafce8d" class="d-block w-100" alt="...">
             </div>
-            <div class="carousel-item">
-              <img style="width:100%; height:100%;" src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fads2.png?alt=media&token=47130dab-a825-4836-92e2-1dc395ff653b" class="d-block w-100" alt="...">
+
+            <div class="col-4" style="padding: 10px;">
+              <div class="genre-card">
+                <div class="img-div">
+                  <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fgenre_marathon.png?alt=media&token=edfe165a-8bbe-4100-962a-c8cbb7769c62" alt="">
+                </div>
+                <h2>Tennis</h2>
+                <h3><span id="marathonCntSmall">0</span> Events</h3>
+              </div>
+            </div>
+
+            <div class="col-4" style="padding: 10px;">
+              <div class="genre-card">
+                <div class="img-div">
+                  <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fgenre_skating.png?alt=media&token=dfdc1a99-53f1-4220-80c4-1ee2299357e8" alt="">
+                </div>
+                <h2>Squash</h2>
+                <h3><span id="skatingCntSmall">0</span> Events</h3>
+              </div>
+            </div>
+
+            <div class="col-4" style="padding: 10px;">
+              <div class="genre-card">
+                <div class="img-div">
+                  <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fgenre_chess.png?alt=media&token=e4655669-2582-4f3d-b660-854d5c44ee67" alt="">
+                </div>
+                <h2>Chess</h2>
+                <h3><span id="chessCntSmall">0</span> Events</h3>
+              </div>
+            </div>
+
+            <div class="col-4" style="padding: 10px;">
+              <div class="genre-card">
+                <div class="img-div">
+                  <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fgenre_carrom.png?alt=media&token=6bbfc30c-5d80-448d-9e03-f43a2e9b7d83" alt="">
+                </div>
+                <h2>Carrom</h2>
+                <h3><span id="carromCntSmall">0</span> Events</h3>
+              </div>
             </div>
 
           </div>
-
-
-        </div>
-      </div>
-    </div><br>
-
-
-  </section><br><br>
-
-  <section>
-    <div class="container-fluid background-img-div">
-      <div class="large row no-gutters">
-        <div style=" padding: 2.5% 4%;color: #fff;" style="" class="col-lg-6">
-          <h3>Tired of standing in queue??</h3>
-          <hr style="background-color: #fff;"><br><br>
-          <p class="text-para">Organizing any Tournament manually is always a challenge starting from registration forms distribution & collection, payment collection, draws & match schedule preparation & publish, umpire & score management, publish
-            result till prize
-            distribution. Our product aims at eliminating all the challenges faced by the Organizers and the Participants. This Mobile-Enabled Product is designed in an inventive way to ensure uninterrupted and smooth usage. Through this,
-            application
-            users can interact and keep themselves updated about upcoming tournaments, LiVE match updates, results and other Sports related events.</p><br><br>
-          <div style="display:flex; justify-content: space-around;" class="">
-            <a href="#" style="text-align: center;">
-              <!-- <img style="border-radius: 8px;" src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fapple_app_store_white_background.png?alt=media&token=e5bac2ae-c176-4c7b-852c-c0d35e854e30" width="150px" alt=""> -->
-            </a>
-            <a href="#" style="text-align: center;">
-              <!-- <img style="border-radius: 8px;" src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fgoogle_play_store_white_background.png?alt=media&token=c7b4e8e8-158e-4106-b39e-ee15bad0f7aa" width="150px" alt=""> -->
-            </a><br>
-
-          </div>
-        </div>
-
-        <div style=";padding-top:10%;" class="col-lg-6">
-
-          <div class="">
-
-            <img class="" style=" border-radius:60px 0 0 60px; position: relative; float: right;" src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fwight_bg.gif?alt=media&token=3e9c6097-2205-4c66-b99e-5d9d84aa2503"
-              alt="">
-
-
-          </div>
-
         </div>
 
       </div>
-    </div>
-    <div class="small">
-
-      <div class="container-fluid">
-        <div class="row no-gutters background-img-div">
-          <div style="display:flex; flex-direction: column; padding: 2.5% 4%;color: #fff;" style="" class="col-sm-12">
-            <h3>Tired of standing in queue??</h3>
-            <hr style="background-color: #fff;"><br><br>
-            <p>Organizing any Tournament manually is always a challenge starting from registration forms distribution & collection, payment collection, draws & match schedule preparation & publish, umpire & score management, publish result till
-              prize
-              distribution. Our product aims at eliminating all the challenges faced by the Organizers and the Participants. This Mobile-Enabled Product is designed in an inventive way to ensure uninterrupted and smooth usage. Through this,
-              application
-              users can interact and keep themselves updated about upcoming tournaments, LiVE match updates, results and other Sports related events.</p>
-
-
-          </div>
-          <div style="display:flex; justify-content:center;padding: 0 0 10px 30px;" class="col-sm-12">
-
-            <img class="" style=" border-radius: 30px 0 0 30px; width:100%;" src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fwight_bg.gif?alt=media&token=3e9c6097-2205-4c66-b99e-5d9d84aa2503" alt="">
-
-
-
-          </div>
-
-
-
-        </div>
-      </div>
-    </div>
-  </section><br><br>
-
-  <section style="display: none;">
-    <div class="games-section"><br><br>
+      <br><br>
       <div class="container">
 
-        <div class="heading" style="color: #fff;">
-          <span class="material-symbols-outlined">
-            scoreboard
-          </span>
-          <h4 style="font-weight:1000;">Your Playground</h4>
-        </div><br>
-
         <div class="row no-gutters">
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            <!-- <iframe src="http://bit.lyio-space" width="100%" height="200" style="border:none;">
-              </iframe> -->
-          </div>
+          <div class="col-md-12 col-md-offset-1">
+            <div id="ads-carousel" class="owl-carousel owl-theme">
+              <div class="carousel-item active">
+                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fads_1.webp?alt=media&token=ad6f917b-4815-4bcc-9f0e-2267bad236fd" width="100%" alt="">
+              </div>
 
-          <div class="col-lg-3 col-md-4 col-sm-6">
+              <div class="carousel-item active">
+                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fads_5.gif?alt=media&token=eedd115c-1eda-4a25-8780-a6bc6b7b7a24" width="100%" alt="">
+              </div>
 
-          </div>
-        </div>
+              <div class="carousel-item active">
+                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fads_2.gif?alt=media&token=c1d785ff-c517-43c0-91af-991006516f56" width="100%" alt="">
+              </div>
 
-      </div><br><br>
-    </div>
-  </section><br><br>
+              <div class="carousel-item active">
+                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fads_6.webp?alt=media&token=ebad3a28-a3b8-4195-900e-bfdc69b2cdfd" width="100%" alt="">
+              </div>
 
+              <div class="carousel-item active">
+                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fads_3.webp?alt=media&token=0b7333f9-2065-4368-96e8-11822611a7c3" width="100%" alt="">
+              </div>
 
-  <div class="container-fluid">
-    <div class="heading">
-      <span class="material-symbols-outlined">
-        handshake
-      </span>
-      <h4 style="font-weight:1000;">Our Partners</h4>
-    </div><br>
-
-    <div class="container-fluid">
-      <div class="row no-gutters">
-        <div class="col-md-12 col-md-offset-1">
-          <div id="partners-carousel" class="owl-carousel owl-theme">
-            <div class="partners-item">
-              <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F1.webp?alt=media&token=b5fabe4f-04d9-48c1-b5de-1d866ba16dec" width="100%" alt="">
+              <div class="carousel-item active">
+                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fads_4.gif?alt=media&token=25d2bf86-e4af-432b-b45a-35f6d5f113e6" width="100%" alt="">
+              </div>
             </div>
-            <div class="partners-item">
-              <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F2.webp?alt=media&token=795936a1-319a-4773-b5a4-fd0d34d80387" width="100%" alt="">
-            </div>
-            <div class="partners-item">
-              <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F3.webp?alt=media&token=110e2d74-d64b-4df3-843c-ddfa4520975b" width="100%" alt="">
-            </div>
-            <div class="partners-item">
-              <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F4.webp?alt=media&token=1e927be4-c7b9-4e9c-b1df-54e9547c01d5" width="100%" alt="">
-            </div>
-            <div class="partners-item">
-              <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F5.webp?alt=media&token=76349655-d153-472c-83c4-4819e7d307bd" width="100%" alt="">
-            </div>
-            <div class="partners-item">
-              <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F6.webp?alt=media&token=32aa6ba3-7f84-480e-a520-d508edea1e7b" width="100%" alt="">
-            </div>
-            <div class="partners-item">
-              <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F7.webp?alt=media&token=bd2c3083-c421-407d-8544-e0765717d666" width="100%" alt="">
-            </div>
-            <div class="partners-item">
-              <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F8.webp?alt=media&token=493d79a9-d5b0-424e-b30f-4a195bb22995" width="100%" alt="">
-            </div>
-            <div class="partners-item">
-              <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F9.webp?alt=media&token=39cb3405-d4c9-4a02-b757-4f1aea1b02a7" width="100%" alt="">
-            </div>
-
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- events section -->
-
-
-  <!-- *******************FOOTER SECTION STARTS************************************** -->
-
-  <section id="footer" class="large">
-
-    <div class="container"><br><br>
-
-      <div class="footer-logo">
-        <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FTPLiVE_text_white.png?alt=media&token=43d05afa-91ac-4875-b860-3cbbed3be17a" width="230px" alt="">
       </div><br>
 
-      <div class="hr">
 
-      </div>
-      <br>
+    </section><br><br>
 
-      <div class="row no-gutters">
-        <div class="col-lg-6 col-md-6 col-sm-12">
-          <div class="footer-details footer-large">
-            <p>
-              Paytm Insider is a platform that helps you discover and buy the best in events, travel and food in your city. We strive to curate experiences that are worth your time and money, possibly something you have never tried before.
-            </p><br>
+    <section>
+      <div class="container-fluid background-img-div">
+        <div class="large row no-gutters">
+          <div style=" padding: 2.5% 4%;color: #fff;" style="" class="col-lg-6">
+            <h3>Tired of standing in queue??</h3>
+            <hr style="background-color: #fff;"><br><br>
+            <p class="text-para">Organizing any Tournament manually is always a challenge starting from registration forms distribution & collection, payment collection, draws & match schedule preparation & publish, umpire & score management, publish
+              result till prize
+              distribution. Our product aims at eliminating all the challenges faced by the Organizers and the Participants. This Mobile-Enabled Product is designed in an inventive way to ensure uninterrupted and smooth usage. Through this,
+              application
+              users can interact and keep themselves updated about upcoming tournaments, LiVE match updates, results and other Sports related events.</p><br><br>
+            <div style="display:flex; justify-content: space-around;" class="">
+              <a href="#" style="text-align: center;">
+                <!-- <img style="border-radius: 8px;" src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fapple_app_store_white_background.png?alt=media&token=e5bac2ae-c176-4c7b-852c-c0d35e854e30" width="150px" alt=""> -->
+              </a>
+              <a href="#" style="text-align: center;">
+                <!-- <img style="border-radius: 8px;" src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fgoogle_play_store_white_background.png?alt=media&token=c7b4e8e8-158e-4106-b39e-ee15bad0f7aa" width="150px" alt=""> -->
+              </a><br>
 
-            <h3>FOR EVENT ORGANIZERS</h3>
-            <p>
-              Paytm Insider is built by the same team that created Bacardi NH7 Weekender (us) and we sure know what goes into putting together a great experience. Our technology, marketing and customer support can help you build a community of not
-              just ticket buyers, but also fans.
-            </p>
-          </div>
-
-
-        </div>
-
-        <div class="col-lg-6 col-md-6 col-sm-12">
-          <div class="footer-links" style="padding-top: 0;">
-            <div class="" style="border: none;">
-              <a href="https://tournamentplanner.in/screens/TPLive_Aboutus.aspx">About Us</a>
-            </div>
-            <div class="">
-              <a href="https://tournamentplanner.in/screens/TPLive_Terms.aspx">Terms & condition</a>
-            </div>
-            <div class="">
-              <a href="https://tournamentplanner.in/screens/TPLive_Contactus.aspx">Contact Us</a>
-            </div>
-            <div class="">
-              <a href="https://tournamentplanner.in/screens/TPLive_FAQ.aspx">FAQ's</a>
-            </div>
-            <div class="">
-              <a href="https://tournamentplanner.in/screens/TPLive_PrivacyPolicy.aspx">Privacy Policy</a>
-            </div>
-          </div><br>
-
-          <div class="" style="display:flex; justify-content: center;">
-            <div class="icons footer">
-              <a href="https://www.facebook.com/TournamentPlanner/?ti=as"> <i class="fab fa-facebook-f"></i> </a>
-              <a href="https://twitter.com/TPLIVE7/status/1144269372854288385?s=08"> <i class="fab fa-twitter"></i> </a>
-              <a href="https://www.youtube.com/channel/UCNkSsrEoWHJ_eWvLSQiGNug"> <i class="fa-brands fa-youtube"></i> </a>
-              <a href="https://www.instagram.com/tplive.in/"> <i class="fab fa-instagram"></i> </a>
-            </div>
-          </div><br>
-
-          <div class="footer-links footer-details">
-
-            <h3 style="text-align:center;">FOR EVENT ORGANIZERS</h3><br>
-
-            <div class="" style="border: none;">
-              <a href="#">Organiser Login</a>
-            </div>
-            <!-- <div class="">
-                <a href="#">Umpire Login</a>
-              </div> -->
-            <div class="">
-              <a href="#">Sponsor Login</a>
             </div>
           </div>
 
+          <div style=";padding-top:10%;" class="col-lg-6">
+
+            <div class="">
+
+              <img class="" style=" border-radius:60px 0 0 60px; position: relative; float: right;"
+                src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fwight_bg.gif?alt=media&token=3e9c6097-2205-4c66-b99e-5d9d84aa2503" alt="">
+
+
+            </div>
+
+          </div>
+
         </div>
-      </div><br><br>
-
-      <div class="copy-right">
-        Copyright © Tournament Planner LiVE
-        <br class="small" /><br class="small" /><br class="small" /><br><br>
       </div>
+      <div class="small">
 
+        <div class="container-fluid">
+          <div class="row no-gutters background-img-div">
+            <div style="display:flex; flex-direction: column; padding: 2.5% 4%;color: #fff;" style="" class="col-sm-12">
+              <h3>Tired of standing in queue??</h3>
+              <hr style="background-color: #fff;"><br><br>
+              <p>Organizing any Tournament manually is always a challenge starting from registration forms distribution & collection, payment collection, draws & match schedule preparation & publish, umpire & score management, publish result till
+                prize
+                distribution. Our product aims at eliminating all the challenges faced by the Organizers and the Participants. This Mobile-Enabled Product is designed in an inventive way to ensure uninterrupted and smooth usage. Through this,
+                application
+                users can interact and keep themselves updated about upcoming tournaments, LiVE match updates, results and other Sports related events.</p>
+
+
+            </div>
+            <div style="display:flex; justify-content:center;padding: 0 0 10px 30px;" class="col-sm-12">
+
+              <img class="" style=" border-radius: 30px 0 0 30px; width:100%;" src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fwight_bg.gif?alt=media&token=3e9c6097-2205-4c66-b99e-5d9d84aa2503" alt="">
+
+
+
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </section><br><br>
+
+    <section style="display: none;">
+      <div class="games-section"><br><br>
+        <div class="container">
+
+          <div class="heading" style="color: #fff;">
+            <span class="material-symbols-outlined">
+              scoreboard
+            </span>
+            <h4 style="font-weight:1000;">Your Playground</h4>
+          </div><br>
+
+          <div class="row no-gutters">
+            <div class="col-lg-3 col-md-4 col-sm-6">
+              <!-- <iframe src="http://bit.lyio-space" width="100%" height="200" style="border:none;">
+              </iframe> -->
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-6">
+
+            </div>
+          </div>
+
+        </div><br><br>
+      </div>
+    </section><br><br>
+
+
+    <div class="container-fluid">
+      <div class="heading">
+        <span class="material-symbols-outlined">
+          handshake
+        </span>
+        <h4 style="font-weight:1000;">Our Partners</h4>
+      </div><br>
+
+      <div class="container-fluid">
+        <div class="row no-gutters">
+          <div class="col-md-12 col-md-offset-1">
+            <div id="partners-carousel" class="owl-carousel owl-theme">
+              <div class="partners-item">
+                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F1.webp?alt=media&token=b5fabe4f-04d9-48c1-b5de-1d866ba16dec" width="100%" alt="">
+              </div>
+              <div class="partners-item">
+                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F2.webp?alt=media&token=795936a1-319a-4773-b5a4-fd0d34d80387" width="100%" alt="">
+              </div>
+              <div class="partners-item">
+                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F3.webp?alt=media&token=110e2d74-d64b-4df3-843c-ddfa4520975b" width="100%" alt="">
+              </div>
+              <div class="partners-item">
+                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F4.webp?alt=media&token=1e927be4-c7b9-4e9c-b1df-54e9547c01d5" width="100%" alt="">
+              </div>
+              <div class="partners-item">
+                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F5.webp?alt=media&token=76349655-d153-472c-83c4-4819e7d307bd" width="100%" alt="">
+              </div>
+              <div class="partners-item">
+                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F6.webp?alt=media&token=32aa6ba3-7f84-480e-a520-d508edea1e7b" width="100%" alt="">
+              </div>
+              <div class="partners-item">
+                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F7.webp?alt=media&token=bd2c3083-c421-407d-8544-e0765717d666" width="100%" alt="">
+              </div>
+              <div class="partners-item">
+                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F8.webp?alt=media&token=493d79a9-d5b0-424e-b30f-4a195bb22995" width="100%" alt="">
+              </div>
+              <div class="partners-item">
+                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F9.webp?alt=media&token=39cb3405-d4c9-4a02-b757-4f1aea1b02a7" width="100%" alt="">
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <!-- events section -->
 
-  </section>
-  <div class="last-div">
-    <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FTPLiVE_text.png?alt=media&token=9a964030-c7ac-4a0c-80ed-02f8546c2577" width="140px" alt="">
-    <a href="https://tournamentplanner.in/screens/TPLive_Terms.aspx">Terms & Conditions | Privacy Policy</a>
-    <small>Version 2.54.0</small>
-    <br class="small" /><br class="small" />
-  </div>
+
+    <!-- *******************FOOTER SECTION STARTS************************************** -->
+
+    <section id="footer" class="large">
+
+      <div class="container"><br><br>
+
+        <div class="footer-logo">
+          <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FTPLiVE_text_white.png?alt=media&token=43d05afa-91ac-4875-b860-3cbbed3be17a" width="230px" alt="">
+        </div><br>
+
+        <div class="hr">
+
+        </div>
+        <br>
+
+        <div class="row no-gutters">
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="footer-details footer-large">
+              <p>
+                Paytm Insider is a platform that helps you discover and buy the best in events, travel and food in your city. We strive to curate experiences that are worth your time and money, possibly something you have never tried before.
+              </p><br>
+
+              <h3>FOR EVENT ORGANIZERS</h3>
+              <p>
+                Paytm Insider is built by the same team that created Bacardi NH7 Weekender (us) and we sure know what goes into putting together a great experience. Our technology, marketing and customer support can help you build a community of not
+                just ticket buyers, but also fans.
+              </p>
+            </div>
+
+
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="footer-links" style="padding-top: 0;">
+              <div class="" style="border: none;">
+                <a href="https://tournamentplanner.in/screens/TPLive_Aboutus.aspx">About Us</a>
+              </div>
+              <div class="">
+                <a href="https://tournamentplanner.in/screens/TPLive_Terms.aspx">Terms & condition</a>
+              </div>
+              <div class="">
+                <a href="https://tournamentplanner.in/screens/TPLive_Contactus.aspx">Contact Us</a>
+              </div>
+              <div class="">
+                <a href="https://tournamentplanner.in/screens/TPLive_FAQ.aspx">FAQ's</a>
+              </div>
+              <div class="">
+                <a href="https://tournamentplanner.in/screens/TPLive_PrivacyPolicy.aspx">Privacy Policy</a>
+              </div>
+            </div><br>
+
+            <div class="" style="display:flex; justify-content: center;">
+              <div class="icons footer">
+                <a href="https://www.facebook.com/TournamentPlanner/?ti=as"> <i class="fab fa-facebook-f"></i> </a>
+                <a href="https://twitter.com/TPLIVE7/status/1144269372854288385?s=08"> <i class="fab fa-twitter"></i> </a>
+                <a href="https://www.youtube.com/channel/UCNkSsrEoWHJ_eWvLSQiGNug"> <i class="fa-brands fa-youtube"></i> </a>
+                <a href="https://www.instagram.com/tplive.in/"> <i class="fab fa-instagram"></i> </a>
+              </div>
+            </div><br>
+
+            <div class="footer-links footer-details">
+
+              <h3 style="text-align:center;">FOR EVENT ORGANIZERS</h3><br>
+
+              <div class="" style="border: none;">
+                <a href="#">Organiser Login</a>
+              </div>
+              <!-- <div class="">
+                <a href="#">Umpire Login</a>
+              </div> -->
+              <div class="">
+                <a href="#">Sponsor Login</a>
+              </div>
+            </div>
+
+          </div>
+        </div><br><br>
+
+        <div class="copy-right">
+          Copyright © Tournament Planner LiVE
+          <br class="small" /><br class="small" /><br class="small" /><br><br>
+        </div>
+
+      </div>
+
+
+    </section>
+    <div class="last-div">
+      <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2FTPLiVE_text.png?alt=media&token=9a964030-c7ac-4a0c-80ed-02f8546c2577" width="140px" alt="">
+      <a href="https://tournamentplanner.in/screens/TPLive_Terms.aspx">Terms & Conditions | Privacy Policy</a>
+      <small>Version 2.54.0</small>
+      <br class="small" /><br class="small" />
+    </div>
   </div>
   <!-- Footer Section - end -->
 

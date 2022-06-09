@@ -299,6 +299,34 @@ $(document).ready(function() {
   });
 });
 
+$(document).ready(function() {
+  var owl = $('#ads-carousel');
+  owl.owlCarousel({
+    margin: 40,
+    loop: true,
+    autoplay: true,
+    smartSpeed: 2000,
+    autoplayTimeout: 4000,
+    autoplayHoverPause: false,
+    nav: false,
+    dots: true,
+    stagePadding: 30,
+    touchDrag  : false,
+    mouseDrag  : false,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 1
+      },
+      1000: {
+        items: 1
+      }
+    }
+  });
+});
+
 // $(document).ready(function() {
 //   var owl = $('#designs-list');
 //   owl.owlCarousel({

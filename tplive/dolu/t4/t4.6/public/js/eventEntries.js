@@ -8,11 +8,11 @@ window.onload = function() {
   if (eventID === "" || eventID === undefined || eventID === null)
     eventID = localStorage.getItem("EventID");
   if (eventID === "" || eventID === undefined || eventID === null) {
-    window.location.href = "allevemt.html";
+    window.location.href = "eventList.html";
   } else {
     localStorage.setItem("EventID", eventID);
   }
-  document.getElementById("hfEventID").value = eventID; 
+  document.getElementById("hfEventID").value = eventID;
   getEventDetails();
   getEventCategory();
 };

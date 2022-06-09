@@ -85,8 +85,6 @@ function getTournamentSummary() {
       const ret2 = firebase.functions().httpsCallable("getEventSummaryByCity");
       ret2(para2).then(results => {
           console.log("From Function " + results.data.length);
-
-
           var cityList = document.getElementById("genre-location-list");
           // console.log("From Function " + results.data[0].resultsid);
           for (index = 0; index < results.data.length; index++) {
@@ -155,12 +153,12 @@ function getEventList(filter) {
   var para = {};
   // console.log(userid);
   para = {
-    organizerID: ""
+    eventStatus: "Active",
   };
   console.log(para);
   var ret = "";
   //if (filter === "All") {
-  ret = firebase.functions().httpsCallable("getAllEventDetails");
+  ret = firebase.functions().httpsCallable("getAllEventWithEventStatus");
 
   //}
   ret(para).then(results => {
@@ -191,6 +189,64 @@ function getEventList(filter) {
   });
 }
 
+function getLocationEvent(location, cnt)
+{
+  console.log(location);
+  console.log(document.getElementById(cnt).innerHTML);
+  if(Number(document.getElementById(cnt).innerHTML) > 0 )
+  {
+    var para = {};
+    // console.log(userid);
+    para = {
+      City: location
+    };
+    console.log(para);
+    var ret = "";
+    //if (filter === "All") {
+    ret = firebase.functions().httpsCallable("getAllEventDetailsByCity");
+
+    //}
+    ret(para).then(results => {
+      console.log("From Function " + results.data.length);
+
+      var para3 = {};
+      para3 = {
+        EventID: ""
+      };
+      console.log(para3);
+      const ret3 = firebase.functions().httpsCallable("getAllEventEntryCount");
+      ret3().then(results1 => {
+        console.log("From Function getEventsEntryCount recLength : " + results1.data.length);
+        console.log(results1.data);
+        // console.log("From Function " + results.data[0].resultsid);
+        removeallItem();
+        for (index = 0; index < results.data.length; index++) {
+          var entryCount = 0;
+          console.log(results.data[index]);
+          var indEntry = results1.data.findIndex(e => e.EventID === results.data[index].Eventid);
+          console.log(indEntry);
+          if (indEntry >= 0)
+            entryCount = Number(results1.data[indEntry].EntryCount);
+
+          // console.log(results.data[index]);
+          RenderEventDetails(index, results.data[index], entryCount);
+        }
+      });
+    });
+  }
+}
+function removeallItem()
+{
+  $('#event-list-new').length;
+//   var $carousel = $(".edit-manage-carousel");
+// for (var i =0; i<100; i++) {
+//   $carousel.trigger('remove.owl.carousel', i );
+// }
+  console.log($('#event-list-new').length);
+  // document.getElementById("event-list-new").innerHTML="";
+//  var indexToRemove = 1;
+//  $('.event-list-new').owlCarousel('remove', indexToRemove).owlCarousel('update');
+}
 function RenderEventDetails(index, doc, entryCount) {
   console.log(doc);
   var curFormat = {
@@ -429,7 +485,7 @@ div13.setAttribute("class", "col-7");
 var button2 = document.createElement("button");
 button2.setAttribute("type", "button");
 button2.setAttribute("class", "mybutton button5 event-card-button entries");
-button2.setAttribute("style", "background:none;border: 1px solid #ddd;color:#aaa;");
+button2.setAttribute("style", "background:none;border: 1px solid #ddd;color:#aaa;display:none; ");
 button2.setAttribute("name", "button");
 
 button2.innerHTML = "<img src='https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fmultipleuser.png?alt=media&token=61647294-0f92-492a-86cf-0c1cb57cd1ef' alt=''> " + entryCount;

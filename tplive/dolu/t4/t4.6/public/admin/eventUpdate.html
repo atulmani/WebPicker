@@ -144,7 +144,7 @@
           <!-- <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#one">One</a></li>  -->
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="organizationList.html"><i style="position:relative; right:3px;" class="fa-solid fa-clipboard-list"></i>Event List </a>
+          <a class="nav-link" href="eventList.html"><i style="position:relative; right:3px;" class="fa-solid fa-clipboard-list"></i>Event List </a>
         </li>
 
       </ul>
@@ -554,7 +554,8 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="inputEmail4">Select Organization</label>
-                <select id="ddlOrganization" onchange="onOrganizationSelection()" disabled class="form-control">
+                <!-- <select id="ddlOrganization" onchange="onOrganizationSelection()" disabled class="form-control"> -->
+                <select id="ddlOrganization" onclick="onOrganizationSelection()" disabled class="form-control">
                   <option value="0">Select Organization</option>
                 </select>
                 <input type="hidden" id="hfOrganizerID">
@@ -566,6 +567,15 @@
                 <select id="ddlSports" disabled class="form-control">
 
                 </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Event Code (TP_XXXXXX)</label>
+                <input type="text" class="form-control" id="eventCode" placeholder="Event Code">
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">SportCode (BD/TT)</label>
+                <input type="text" class="form-control" id="sportCode" placeholder="Sport Code ">
               </div>
 
               <div class="form-group col-md-6">
@@ -600,6 +610,11 @@
               <div class="form-group col-md-6">
                 <label for="inputPassword4">Venue Contact</label>
                 <input type="number" class="form-control" id="venueContact" placeholder="Enter Venue phone no.">
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">City</label>
+                <input type="text" class="form-control" id="city" placeholder="Enter City">
               </div>
 
               <div class="form-group col-md-6">
@@ -1293,40 +1308,40 @@
     <script src="https://kit.fontawesome.com/12f526aa82.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
 
     <script src="../js/bootstrap-datetimepicker.min.js"></script>
 
     <script>
-      $(function() {
-        $.extend(true, $.fn.datetimepicker.defaults, {
-          icons: {
-            time: 'far fa-clock',
-            date: 'far fa-calendar',
-            up: 'fas fa-arrow-up',
-            down: 'fas fa-arrow-down',
-            previous: 'fas fa-chevron-left',
-            next: 'fas fa-chevron-right',
-            today: 'far fa-calendar-check-o',
-            clear: 'far fa-trash',
-            close: 'far fa-times'
-          }
-        });
+    $(function() {
+      $.extend(true, $.fn.datetimepicker.defaults, {
+        icons: {
+          time: 'far fa-clock',
+          date: 'far fa-calendar',
+          up: 'fas fa-arrow-up',
+          down: 'fas fa-arrow-down',
+          previous: 'fas fa-chevron-left',
+          next: 'fas fa-chevron-right',
+          today: 'far fa-calendar-check-o',
+          clear: 'far fa-trash',
+          close: 'far fa-times'
+        }
       });
-    </script>
-    <script type="text/javascript">
-      $(function() {
-        $('.datetimepicker11').datetimepicker({
-          format: 'MM-DD-YYYY',
-          ignoreReadonly: true,
-          useCurrent: true,//,
-          defaultDate: new Date()//,
 
-           // maxDate: new Date()
+    });
+  </script>
+  <script type="text/javascript">
+    $(function() {
+      $('.datetimepicker11').datetimepicker({
+        format: 'MM-DD-YYYY',
+        ignoreReadonly: true,
+        useCurrent: true, //,
+        defaultDate: new Date()
+        // maxDate: new Date() //,
 
-        });
       });
+    });
+
     </script>
 
 </body>

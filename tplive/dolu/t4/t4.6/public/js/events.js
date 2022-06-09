@@ -497,7 +497,7 @@ function RenderEventDetails(index, doc, entryCount) {
   var button2 = document.createElement("button");
   button2.setAttribute("type", "button");
   button2.setAttribute("class", "mybutton button5 event-card-button entries");
-  button2.setAttribute("style", "background:none;border: 1px solid #ddd;color:#aaa;");
+  button2.setAttribute("style", "background:none;border: 1px solid #ddd;color:#aaa;display:none;");
   button2.setAttribute("name", "button");
 
   button2.innerHTML = "<img src='https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fmultipleuser.png?alt=media&token=61647294-0f92-492a-86cf-0c1cb57cd1ef' alt=''> " + entryCount;

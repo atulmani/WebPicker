@@ -15,7 +15,7 @@ auth.onAuthStateChanged(async firebaseUser => {
     } else {
       loggedinUser = null;
       console.log('User has been logged out');
-    //  window.location.href = "../index.html";
+      window.location.href = "../login/index.html";
     }
   } catch (error) {
     console.log(error.message);
@@ -448,6 +448,7 @@ btnSave.addEventListener('click', e => {
   var venueContact = document.getElementById("venueContact").value;
 
   var approvalStatus = document.getElementById("approvalStatus").options[document.getElementById("approvalStatus").selectedIndex].value;
+  var eventStatus = document.getElementById("eventStatus").options[document.getElementById("eventStatus").selectedIndex].value;
   var confirmMessage = document.getElementById('saveMessage');
   console.log("before check");
   if ((organizerID === "" || organizerID === null) ||
@@ -489,6 +490,7 @@ btnSave.addEventListener('click', e => {
       EventCode: eventCode,
       SportCode: sportCode,
       City: city,
+      EventStatus: eventStatus,
       // OrganizationType: organizationType,
       ApprovalStatus: approvalStatus,
     };

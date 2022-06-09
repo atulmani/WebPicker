@@ -622,7 +622,6 @@ h6{
   border-radius: 10px;
   border: 1px solid #ddd;
   padding: 20px;
-  height: 180px;
 }
 
 .genre-card:hover .img-div{
@@ -634,10 +633,6 @@ h6{
 }
 
 @media (max-width: 1000px) {
-  .genre-card .img-div{
-    height: 80px;
-  }
-
   .genre-card .img-div img{
     width: 100%;
   }
@@ -2681,14 +2676,15 @@ color: #aaa;
   background: rgba(52,141,203,0.8);
 }
 
-.dashboardCardBoxoffer{
-  /* padding: 10px; */
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-  width: 100%;
-  transition: 1s;
+#ads-carousel .owl-item{
+  transition: 2s;
   overflow: hidden;
-  font-family: 'Baloo Da 2', cursive;
+  margin: 30px 0;
+  border-radius: 10px;
+}
+
+#ads-carousel .owl-item.active{
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
 #designs{

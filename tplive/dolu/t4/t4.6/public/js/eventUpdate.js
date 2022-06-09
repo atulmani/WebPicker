@@ -2,7 +2,7 @@ var loggedinUser = "";
 let eventDocUrl = new URL(location.href);
 let searchParams = new URLSearchParams(eventDocUrl.search);
 var eventID = searchParams.get('id');
-
+var userProfile = "";
 auth.onAuthStateChanged(async firebaseUser => {
   try {
     if (firebaseUser) {
@@ -11,45 +11,96 @@ auth.onAuthStateChanged(async firebaseUser => {
       console.log('Logged-in user phone number: ' + loggedinUser.phoneNumber);
 
       //var ret = await getUserList();
-      GetProfileData();
+      populateSportList()
+      .then(function (rec){
+        GetProfileData()
+        .then(function (up){
+          console.log(userProfile);
+          if (userProfile != undefined && userProfile != "" && userProfile != null) {
+            var approvalStatus = document.getElementById("approvalStatus");
+            if (userProfile.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
+              console.log("in admin");
+              //populateOrganizationList("All", 'Admin')
+              //.then(function (res1){
+                console.log(eventID);
+                if (eventID != "" && eventID != undefined && eventID != null) {
+
+                  document.getElementById("hfEventID").value = eventID;
+                  document.getElementById("btnSave").innerHTML = "Update";
+                  GetEventDetails()
+                  .then(function (){
+                    populateOrganizationList("All", 'Admin' );
+
+                    console.log("after GetEventDetails 1");
+                  });
+                }
+              //});
+
+            } else if (userProfile.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
+
+              console.log("Organizer");
+            //  populateOrganizationList(loggedinUser.uid, 'Organizer')
+            //  .then(function (res1){
+                console.log(eventID);
+                if (eventID != "" && eventID != undefined && eventID != null) {
+
+                  document.getElementById("hfEventID").value = eventID;
+                  document.getElementById("btnSave").innerHTML = "Update";
+                  GetEventDetails().then(function (){
+                    console.log("after GetEventDetails 2");
+                    populateOrganizationList("All", 'Admin' );
+
+                  });
+                }
+              //});
+
+            } else {
+              console.log("not admin");
+              document.getElementById("fInput").style.display = "none";
+              document.getElementById("errorMessage").style.display = "block";
+            }
+          } else {
+            window.location.assign('../login/index.html');
+          }
+        });
+      });
+
     } else {
       loggedinUser = null;
       console.log('User has been logged out');
-      window.location.href = "../index.html";
+      //window.location.href = "../login/index.html";
     }
   } catch (error) {
     console.log(error.message);
-    window.location.href = "../index.html";
+    //window.location.href = "../login/index.html";
   }
 });
 
 
 async function GetProfileData() {
   console.log('GetProfileData - Starts');
-  populateSportList();
-  var userProfile =JSON.parse( localStorage.getItem("userProfile"));
-  if(userProfile != undefined && userProfile != "" && userProfile != null )
-  {
-    var approvalStatus = document.getElementById("approvalStatus");
-    if (userProfile.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
-      console.log("in admin");
-      var asynccall = await populateOrganizationList("All", 'Admin');
-
-    } else if (userProfile.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
-
-      console.log("Organizer");
-      var asynccall = await populateOrganizationList(loggedinUser.uid, 'Organizer');
-
-    } else {
-      console.log("not admin");
-      document.getElementById("fInput").style.display = "none";
-      document.getElementById("errorMessage").style.display = "block";
-    }
-}
-else {
-    window.location.assign('../index.html');
-  }
-
+  //populateSportList();
+  userProfile = JSON.parse(localStorage.getItem("userProfile"));
+  // if (userProfile != undefined && userProfile != "" && userProfile != null) {
+  //   var approvalStatus = document.getElementById("approvalStatus");
+  //   if (userProfile.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
+  //     console.log("in admin");
+  //     //var asynccall = await populateOrganizationList("All", 'Admin');
+  //
+  //   } else if (userProfile.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
+  //
+  //     console.log("Organizer");
+  //   //  var asynccall = await populateOrganizationList(loggedinUser.uid, 'Organizer');
+  //
+  //   } else {
+  //     console.log("not admin");
+  //     document.getElementById("fInput").style.display = "none";
+  //     document.getElementById("errorMessage").style.display = "block";
+  //   }
+  // } else {
+  //   window.location.assign('../login/index.html');
+  // }
+return ;
 }
 
 //
@@ -140,7 +191,27 @@ async function CheckForPendingEvent() {
 
 
 }
-
+//
+// function onOrganizationSelection1() {
+//   var organizer = document.getElementById("ddlOrganization");
+//   var val = organizer.options[organizer.selectedIndex].value;
+//   val = val.split(":");
+//   console.log(val);
+//
+//   if (organizer.selectedIndex > 0) {
+//     var organizationID = val[0];
+//     var organizerID = val[1];
+//     var partnerName = val[2];
+//     var organizationName = val[3];
+//     var email = val[4];
+//     var phone = val[5].replace("+91", "");
+//
+//     document.getElementById("eventOwnerName").value = partnerName;
+//     document.getElementById("eventOwnerEmail").value = email;
+//     document.getElementById("eventOwnerPhone").value = phone;
+//     document.getElementById("hfOrganizerID").value = organizerID;
+//   }
+// }
 
 function onOrganizationSelection() {
   var organizer = document.getElementById("ddlOrganization");
@@ -163,7 +234,7 @@ function onOrganizationSelection() {
   }
 }
 
-async function populateOrganizationList(userid, role) {
+function populateOrganizationList(userid, role) {
   var para = {};
   console.log(userid);
   para = {
@@ -181,7 +252,7 @@ async function populateOrganizationList(userid, role) {
   }
 
   ret(para).then(results => {
-    console.log("From Function populateOrganizationList" + results.data.length);
+    console.log("From Function populateOrganizationList " + results.data);
     var organizer = document.getElementById("ddlOrganization");
     // console.log("From Function " + results.data[0].resultsid);
     for (index = 0; index < results.data.length; index++) {
@@ -195,56 +266,72 @@ async function populateOrganizationList(userid, role) {
         results.data[index].PartnerEmailID + ":" +
         results.data[index].PartnerPhone);
       option.innerHTML = results.data[index].OrganizationName + " : " + results.data[index].PartnerEmailID;
-      organizer.appendChild(option);
-      if (role === 'Admin') {
-        if (eventID != "" && eventID != undefined && eventID != null) {
 
-          document.getElementById("hfEventID").value = eventID;
-          document.getElementById("btnSave").innerHTML = "Update";
-          GetEventDetails();
-        } else {
-          for (index = 0; index < approvalStatus.options.length; index++) {
-            if (approvalStatus.options[index].value === "Approved") {
-              approvalStatus.options[index].selected = true;
-              break;
-            }
-          }
-        }
-      } else if (role === 'Organizer') {
-        var organizationid = document.getElementById("ddlOrganization");
-        approvalStatus.disabled = true;
 
-        document.getElementById("hfOrganizerID").value = loggedinUser.uid;
-        for (index = 0; index < organizationid.options.length; index++) {
-          if (organizationid.options[index].value.search(loggedinUser.uid) >= 0) {
-            organizationid.options[index].selected = true;
-            onOrganizationSelection();
-            break;
-          }
-        }
-
-        if (eventID != "" && eventID != undefined && eventID != null) {
-
-          document.getElementById("hfEventID").value = eventID;
-          document.getElementById("btnSave").innerHTML = "Update";
-          GetEventDetails();
-        } else {
-
-          for (index = 0; index < approvalStatus.options.length; index++) {
-            if (approvalStatus.options[index].value === "Pending Approval") {
-              approvalStatus.options[index].selected = true;
-              break;
-            }
-          }
-
-        }
+      if(document.getElementById("hfOrganizerID").value === results.data[index].OrganizerID)
+      {
+        option.selected = true;
       }
+      organizer.appendChild(option);
+
+      //
+      // if (role === 'Admin') {
+      //   if (eventID != "" && eventID != undefined && eventID != null) {
+      //
+      //     document.getElementById("hfEventID").value = eventID;
+      //     document.getElementById("btnSave").innerHTML = "Update";
+      //     // GetEventDetails();
+      //   } else {
+      //     for (index = 0; index < approvalStatus.options.length; index++) {
+      //       if (approvalStatus.options[index].value === "Approved") {
+      //         approvalStatus.options[index].selected = true;
+      //         break;
+      //       }
+      //     }
+      //   }
+      // } else if (role === 'Organizer') {
+      //   var organizationid = document.getElementById("ddlOrganization");
+      //   approvalStatus.disabled = true;
+      //
+      //   document.getElementById("hfOrganizerID").value = loggedinUser.uid;
+      //   for (index = 0; index < organizationid.options.length; index++) {
+      //     if (organizationid.options[index].value.search(loggedinUser.uid) >= 0) {
+      //       organizationid.options[index].selected = true;
+      //       // onOrganizationSelection();
+      //       break;
+      //     }
+      //   }
+      //   if (eventID != "" && eventID != undefined && eventID != null) {
+      //
+      //     document.getElementById("hfEventID").value = eventID;
+      //     document.getElementById("btnSave").innerHTML = "Update";
+      //     //     GetEventDetails();
+      //   } else {
+      //
+      //     for (index = 0; index < approvalStatus.options.length; index++) {
+      //       if (approvalStatus.options[index].value === "Pending Approval") {
+      //         approvalStatus.options[index].selected = true;
+      //         break;
+      //       }
+      //     }
+      //
+      //   }
+      //
+      // }
     }
   });
+  return;
+  // console.log(eventID);
+  // if (eventID != "" && eventID != undefined && eventID != null) {
+  //
+  //   document.getElementById("hfEventID").value = eventID;
+  //   document.getElementById("btnSave").innerHTML = "Update";
+  //   GetEventDetails();
+  // }
 }
 
 
-function populateSportList() {
+async function populateSportList() {
   var para = {};
   //console.log(userid);
   para = {
@@ -268,16 +355,18 @@ function populateSportList() {
       sportList.appendChild(option);
     }
   });
+  return ;
 }
 
 
 
-function GetEventDetails() {
+async function GetEventDetails() {
   console.log(eventID);
   var para1 = {};
   para1 = {
     EventID: eventID
   };
+
   const ret1 = firebase.functions().httpsCallable("getEventDetails");
   ret1(para1).then((result) => {
     var record1 = result.data;
@@ -342,14 +431,17 @@ function GetEventDetails() {
     };
 
     //  dob = dob.toLocaleDateString("en-US", options);
-
+    console.log(result.data.City);
     document.getElementById("eventOwnerName").value = result.data.EventOwnerName;
+    document.getElementById("city").value = result.data.City;
     document.getElementById("eventOwnerEmail").value = result.data.EventOwnerEmail;
     if (result.data.OrganizerPhone != undefined)
       document.getElementById("eventOwnerPhone").value = result.data.EventOwnerPhone;
     document.getElementById("eventVenue").value = result.data.EventVenue;
     document.getElementById("locationMap").value = result.data.LocationMap;
     document.getElementById("venueContact").value = result.data.VenueContact;
+    document.getElementById("eventCode").value = result.data.EventCode;
+    document.getElementById("sportCode").value = result.data.SportCode;
 
     //section 2
     if (result.data.RegistrationStartDate != "" && result.data.RegistrationStartDate != undefined && result.data.RegistrationStartDate != null)
@@ -427,11 +519,12 @@ function GetEventDetails() {
       document.getElementById('PublishGallery').checked = true;
     }
   });
+  console.log("from GetEventDetails End");
+  return;
 }
 
-var btnSave = document.getElementById('btnSave');
-btnSave.addEventListener('click', e => {
-  e.preventDefault();
+function saveBasicDetails()
+{
   var ddlOrganization = document.getElementById("ddlOrganization");
   var val = ddlOrganization.options[ddlOrganization.selectedIndex].value;
   val = val.split(":");
@@ -448,8 +541,11 @@ btnSave.addEventListener('click', e => {
   var eventOwnerPhone = document.getElementById("eventOwnerPhone").value;
   var eventVenue = document.getElementById("eventVenue").value;
   var locationMap = document.getElementById("locationMap").value;
+  var eventCode = document.getElementById("eventCode").value;
+  var sportCode = document.getElementById("sportCode").value;
   var venueContact = document.getElementById("venueContact").value;
   var ddlapprovalStatus = document.getElementById("approvalStatus");
+  var city = document.getElementById("city").value;
   var approvalStatus = ddlapprovalStatus.options[ddlapprovalStatus.selectedIndex].value;
   //save detailes in DB
   var para1 = {};
@@ -461,12 +557,14 @@ btnSave.addEventListener('click', e => {
     OrganizationID: organizationID,
     OrganizerID: organizerID,
     SportName: sportName,
-    City: '',
+    City: city,
     State: '',
     EventOwnerName: eventOwnerName,
     EventOwnerEmail: eventOwnerEmail,
     EventOwnerPhone: eventOwnerPhone,
     EventVenue: eventVenue,
+    EventCode: eventCode,
+    SportCode: sportCode,
     LocationMap: locationMap,
     VenueContact: venueContact,
     ApprovalStatus: approvalStatus,
@@ -485,6 +583,12 @@ btnSave.addEventListener('click', e => {
       }, 5000);
     }
   });
+}
+var btnSave = document.getElementById('btnSave');
+btnSave.addEventListener('click', e => {
+  e.preventDefault();
+  saveBasicDetails();
+
 
 });
 
@@ -761,7 +865,7 @@ btnPrevious6.addEventListener('click', e => {
 var btnNext7 = document.getElementById('btnNext7');
 btnNext7.addEventListener('click', e => {
   e.preventDefault();
-  window.location.href="eventList.html";
+  window.location.href = "eventList.html";
 });
 //
 // var btnSave7 = document.getElementById('btnSave7');
@@ -775,7 +879,7 @@ btnCategorySetup.addEventListener('click', e => {
 
   console.log('btnCategorySetup clicked');
   console.log(document.getElementById("hfEventID").value);
-   window.location.href="categorySetup.html?id=" + document.getElementById("hfEventID").value;
+  window.location.href = "categorySetup.html?id=" + document.getElementById("hfEventID").value;
 });
 
 
