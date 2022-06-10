@@ -394,6 +394,15 @@ async function GetEventDetails() {
       }
     }
 
+
+    var objeventStatus = document.getElementById("eventStatus");
+    var eventstatus = result.data.EventStatus;
+    for (index = 0; index < objeventStatus.options.length; index++) {
+      if (objeventStatus.options[index].value === eventstatus) {
+        objeventStatus.options[index].selected = true;
+        break;
+      }
+    }
     var Eventid = result.data.Eventid;
     console.log(Eventid);
     var organizationid = document.getElementById("ddlOrganization");
@@ -435,7 +444,7 @@ async function GetEventDetails() {
     document.getElementById("eventOwnerName").value = result.data.EventOwnerName;
     document.getElementById("city").value = result.data.City;
     document.getElementById("eventOwnerEmail").value = result.data.EventOwnerEmail;
-    if (result.data.OrganizerPhone != undefined)
+    if (result.data.EventOwnerPhone != undefined)
       document.getElementById("eventOwnerPhone").value = result.data.EventOwnerPhone;
     document.getElementById("eventVenue").value = result.data.EventVenue;
     document.getElementById("locationMap").value = result.data.LocationMap;
@@ -545,8 +554,10 @@ function saveBasicDetails()
   var sportCode = document.getElementById("sportCode").value;
   var venueContact = document.getElementById("venueContact").value;
   var ddlapprovalStatus = document.getElementById("approvalStatus");
+  var ddleventStatus = document.getElementById("eventStatus");
   var city = document.getElementById("city").value;
   var approvalStatus = ddlapprovalStatus.options[ddlapprovalStatus.selectedIndex].value;
+  var eventStatus = ddleventStatus.options[ddleventStatus.selectedIndex].value;
   //save detailes in DB
   var para1 = {};
   para1 = {
@@ -568,6 +579,7 @@ function saveBasicDetails()
     LocationMap: locationMap,
     VenueContact: venueContact,
     ApprovalStatus: approvalStatus,
+    EventStatus: eventStatus,
   };
   console.log(para1);
   const ret1 = firebase.functions().httpsCallable("updateEventBasicDetails");

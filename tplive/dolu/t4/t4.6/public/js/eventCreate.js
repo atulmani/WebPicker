@@ -128,12 +128,12 @@ async function GetProfileData() {
   var userProfile =JSON.parse( localStorage.getItem("userProfile"));
   console.log(userProfile);
     var approvalStatus = document.getElementById("approvalStatus");
+    var eventStatus = document.getElementById("eventStatus");
     if (userProfile.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
       console.log("in admin");
       populateOrganizationList("All");
 
       if (eventID != "" && eventID != undefined && eventID != null) {
-
         document.getElementById("hfEventID").value = eventID;
         document.getElementById("btnSave").innerHTML = "Update";
         GetEventDetails();
@@ -367,6 +367,15 @@ function GetEventDetails() {
     for (index = 0; index < approvalStatus.options.length; index++) {
       if (approvalStatus.options[index].value === approvalS) {
         approvalStatus.options[index].selected = true;
+        break;
+      }
+    }
+
+    var objeventStatus = document.getElementById("eventStatus");
+    var eventstatus = result.data.EventStatus;
+    for (index = 0; index < objeventStatus.options.length; index++) {
+      if (objeventStatus.options[index].value === eventstatus) {
+        objeventStatus.options[index].selected = true;
         break;
       }
     }

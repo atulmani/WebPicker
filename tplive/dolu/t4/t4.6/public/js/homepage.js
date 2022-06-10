@@ -85,7 +85,7 @@ function getTournamentSummary() {
       const ret2 = firebase.functions().httpsCallable("getEventSummaryByCity");
       ret2(para2).then(results => {
           console.log("From Function " + results.data.length);
-          var cityList = document.getElementById("genre-location-list");
+          // var cityList = document.getElementById("genre-location-list-new");
           // console.log("From Function " + results.data[0].resultsid);
           for (index = 0; index < results.data.length; index++) {
             console.log(results.data[index].City);
@@ -105,7 +105,7 @@ function getTournamentSummary() {
             div2.appendChild(h2);
 
             div1.appendChild(div2);
-            cityList.appendChild(div1);
+            // cityList.appendChild(div1);
 
             if (results.data[index].City === "Pune") {
               document.getElementById("puneCnt1").innerHTML = results.data[index].EventCount;
@@ -133,7 +133,7 @@ function getTournamentSummary() {
               document.getElementById("kolkataCnt1").innerHTML = results.data[index].EventCount;
             }
 
-            $('#genre-location-list').trigger('add.owl.carousel', [div1]).trigger('refresh.owl.carousel');
+            // $('#genre-location-list').trigger('add.owl.carousel', [div1]).trigger('refresh.owl.carousel');
 
           }
 

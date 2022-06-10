@@ -162,7 +162,8 @@ function RenderEventDetails(index, doc) {
   div5.appendChild(h1);
 
   var h2 = document.createElement("h6");
-  h2.innerHTML = "Total Events Conducted";
+  // h2.innerHTML = "Total Events Conducted";
+  h2.innerHTML = doc.EventCode;
   div5.appendChild(h2);
   console.log(doc.Eventid);
   var hf = document.createElement("input");
