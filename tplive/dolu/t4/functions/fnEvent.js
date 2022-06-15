@@ -980,8 +980,8 @@ exports.setEventCategoryDetails =
     }
     const EventID = data.EventID;
     const CategoryDetails = data.CategoryDetails;
-    var iMin;
-    var iMax;
+    var iMin = 0;
+    var iMax = 0;
     for (index = 0; index < data.CategoryDetails.length; index++) {
       if (index === 0) {
         iMin = data.CategoryDetails[index].Fees;
