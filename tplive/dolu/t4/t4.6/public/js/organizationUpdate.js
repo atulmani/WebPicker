@@ -75,7 +75,7 @@ async function GetProfileData() {
   console.log('GetProfileData - Starts');
   var userProfile =JSON.parse( localStorage.getItem("userProfile"));
 
-  if (userProfile != undefined && underProfile != "" && userProfile != null) {
+  if (userProfile != undefined && userProfile != "" && userProfile != null) {
 
     document.getElementById("userName").innerHTML = userProfile.UserName
     document.getElementById("Comments").innerHTML = userProfile.Comments
