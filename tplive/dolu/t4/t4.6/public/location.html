@@ -24,13 +24,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
 
   <!-- Font Awesome cdn file -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
   <!-- Owl Stylesheets -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+  <!-- lottie file cdn -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
   <!-- Bootstrap css -->
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
@@ -68,7 +71,7 @@
     <div class="icons">
       <a href="https://www.facebook.com/TournamentPlanner/?ti=as"> <i class="fab fa-facebook-f"></i> </a>
       <a href="https://twitter.com/TPLIVE7/status/1144269372854288385?s=08"> <i class="fab fa-twitter"></i> </a>
-      <a href="https://www.youtube.com/channel/UCNkSsrEoWHJ_eWvLSQiGNug"> <i class="fa-brands fa-youtube"></i> </a>
+      <a href="https://www.youtube.com/channel/UCNkSsrEoWHJ_eWvLSQiGNug"> <i class="fab fa-youtube"></i> </a>
       <a href="https://www.instagram.com/tplive.in/"> <i class="fab fa-instagram"></i> </a>
     </div>
 
@@ -122,7 +125,7 @@
 
   <nav class="navbar navbar-expand-lg sticky-top large ">
     <a class="navbar-brand" href="#banner">
-      <img class="large" style="height:50px;" src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Flogolg.png?alt=media&token=7f8f2695-bb5b-46b0-9e5f-f4d0175df913" alt="">
+      <img class="large" style="height:50px;" src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2FTPLiVE_text.png?alt=media&token=c9c9a277-6117-4161-af68-46f32e0f00f6" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
@@ -148,7 +151,7 @@
         <li class="nav-item">
           <b></b>
           <b></b>
-          <a class="nav-link" href="events.html">
+          <a class="nav-link" href="https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA">
             <span class="material-symbols-outlined">
               redeem
             </span>
@@ -185,14 +188,14 @@
   <div class="small navbar-mobile sticky-top">
     <div class="navbar-mobile-menu">
       <div class="" style="display:flex;align-items: center;">
-        <a href="#" id="hamberIcon">
+        <!-- <a href="#" id="hamberIcon">
           <span class="material-symbols-outlined" style="color: #161d65;">
             menu
           </span>
-        </a>
+        </a> -->
 
-        <a href="index.html">
-          <img style="height: 54px;padding-left: 10px;" src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Flogolg.png?alt=media&token=7f8f2695-bb5b-46b0-9e5f-f4d0175df913" alt="">
+        <a href="#">
+          <img style="height: 45px;" src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2FTPLiVE_text.png?alt=media&token=c9c9a277-6117-4161-af68-46f32e0f00f6" alt="">
         </a>
       </div>
 
@@ -203,7 +206,7 @@
           </span>
         </a>
 
-        <a href="notification/index.html" style="position:relative;">
+        <a href="https://tournamentplanner.in/screens/TPLive_ProfileAUTH.aspx" style="position:relative;">
           <span class="material-symbols-outlined">
             notifications
           </span>
@@ -226,13 +229,13 @@
   <!-- bottom bardown -->
   <div class="small navbar-mobile-bottom">
     <div class="navbar-mobile-bottom-menu" id="divBottomNavBar">
-      <a href="index.html" class="navbar-mobile-bottom-menu-a active" style="display:flex; flex-direction:column;">
+      <a href="index.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <span class="material-symbols-outlined">
           home
         </span>
         <small>Home</small>
       </a>
-      <a href="events.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <span class="material-symbols-outlined">
           redeem
         </span>
@@ -247,7 +250,7 @@
         </span>
         <small>Clubs</small>
       </a>
-      <a href="more.html" class="navbar-mobile-bottom-menu-a" data-toggle="collapse" data-target="#collapsibleNavbar1" style="display:flex; flex-direction:column;">
+      <a href="more.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <span class="material-symbols-outlined">
           apps
         </span>
@@ -720,56 +723,48 @@
       </div>
     </section><br class="large" /><br>
 
-    <hr>
-    <br>
-    <div class="container-fluid">
-      <div class="heading">
+    <div class="container-fluid" style="background: #348DCB;"><br>
+      <div class="heading" style="color: #fff;">
         <span class="material-symbols-outlined">
           handshake
         </span>
         <h4 style="font-weight:1000;">Our Partners</h4>
       </div><br>
-
-      <div class="container-fluid">
-        <div class="row no-gutters">
-          <div class="col-md-12 col-md-offset-1">
-            <div id="partners-carousel" class="owl-carousel owl-theme">
-              <div class="partners-item">
-                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F1.webp?alt=media&token=b5fabe4f-04d9-48c1-b5de-1d866ba16dec" width="100%" alt="">
-              </div>
-              <div class="partners-item">
-                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F2.webp?alt=media&token=795936a1-319a-4773-b5a4-fd0d34d80387" width="100%" alt="">
-              </div>
-              <div class="partners-item">
-                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F3.webp?alt=media&token=110e2d74-d64b-4df3-843c-ddfa4520975b" width="100%" alt="">
-              </div>
-              <div class="partners-item">
-                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F4.webp?alt=media&token=1e927be4-c7b9-4e9c-b1df-54e9547c01d5" width="100%" alt="">
-              </div>
-              <div class="partners-item">
-                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F5.webp?alt=media&token=76349655-d153-472c-83c4-4819e7d307bd" width="100%" alt="">
-              </div>
-              <div class="partners-item">
-                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F6.webp?alt=media&token=32aa6ba3-7f84-480e-a520-d508edea1e7b" width="100%" alt="">
-              </div>
-              <div class="partners-item">
-                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F7.webp?alt=media&token=bd2c3083-c421-407d-8544-e0765717d666" width="100%" alt="">
-              </div>
-              <div class="partners-item">
-                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F8.webp?alt=media&token=493d79a9-d5b0-424e-b30f-4a195bb22995" width="100%" alt="">
-              </div>
-              <div class="partners-item">
-                <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F9.webp?alt=media&token=39cb3405-d4c9-4a02-b757-4f1aea1b02a7" width="100%" alt="">
-              </div>
-
+      <div class="row no-gutters partners-div">
+        <div class="col-md-12 col-md-offset-1">
+          <div id="partners-carousel" class="owl-carousel owl-theme">
+            <div class="partners-item">
+              <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F1.webp?alt=media&token=b5fabe4f-04d9-48c1-b5de-1d866ba16dec" width="100%" alt="">
             </div>
+            <div class="partners-item">
+              <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F2.webp?alt=media&token=795936a1-319a-4773-b5a4-fd0d34d80387" width="100%" alt="">
+            </div>
+            <div class="partners-item">
+              <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F3.webp?alt=media&token=110e2d74-d64b-4df3-843c-ddfa4520975b" width="100%" alt="">
+            </div>
+            <div class="partners-item">
+              <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F4.webp?alt=media&token=1e927be4-c7b9-4e9c-b1df-54e9547c01d5" width="100%" alt="">
+            </div>
+            <div class="partners-item">
+              <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F5.webp?alt=media&token=76349655-d153-472c-83c4-4819e7d307bd" width="100%" alt="">
+            </div>
+            <div class="partners-item">
+              <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F6.webp?alt=media&token=32aa6ba3-7f84-480e-a520-d508edea1e7b" width="100%" alt="">
+            </div>
+            <div class="partners-item">
+              <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F7.webp?alt=media&token=bd2c3083-c421-407d-8544-e0765717d666" width="100%" alt="">
+            </div>
+            <div class="partners-item">
+              <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F8.webp?alt=media&token=493d79a9-d5b0-424e-b30f-4a195bb22995" width="100%" alt="">
+            </div>
+            <div class="partners-item">
+              <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fpartner%2F9.webp?alt=media&token=39cb3405-d4c9-4a02-b757-4f1aea1b02a7" width="100%" alt="">
+            </div>
+
           </div>
         </div>
-      </div>
+      </div><br>
     </div>
-
-    <!-- events section -->
-
 
     <!-- *******************FOOTER SECTION STARTS************************************** -->
 
@@ -778,20 +773,38 @@
       <div class="container"><br><br>
 
         <div class="footer-logo">
-          <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Flogolg.png?alt=media&token=7f8f2695-bb5b-46b0-9e5f-f4d0175df913" width="230px" alt="">
-        </div><br><br>
+          <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2FTPLiVE_text_white.png?alt=media&token=e3da3106-55cc-4e10-b32b-1e8af5d61963" width="230px" alt="">
+        </div><br>
+
+        <div class="hr">
+
+        </div>
+        <br>
 
         <div class="row no-gutters">
           <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="footer-details footer-large">
               <p>
-                Paytm Insider is a platform that helps you discover and buy the best in events, travel and food in your city. We strive to curate experiences that are worth your time and money, possibly something you have never tried before.
+                Welcome to Tournament Planner LiVE. <br> TPLiVE is a platform that helps you
+                to discover and book the variety of Sports Events you like in your city.
+                TPLiVE is a startup whose aspiration is to join hands with
+                Digital India and Go-Green. Our mission is to automate the
+                process of creating any kind of Sports events and many more...
               </p><br>
 
               <h3>FOR EVENT ORGANIZERS</h3>
-              <p>
-                Paytm Insider is built by the same team that created Bacardi NH7 Weekender (us) and we sure know what goes into putting together a great experience. Our technology, marketing and customer support can help you build a community of not
-                just ticket buyers, but also fans.
+              <p>Organizing any Event manually is always a challenge starting from booking, payment collection,
+                fixture & schedule preparation, score management and publish the result till prize distribution.
+                Our product aims at eliminating all the challenges faced by the
+                Organizers and the Participants. This Mobile-Enabled Product is designed in an
+                innovative way to ensure uninterrupted and smooth usage. Through this,
+                application users can interact and keep themselves updated about upcoming events,
+                LiVE scores & updates, results and other Sports related details.
+
+                We will be happy to provide our services to all the Event Organizers from
+                District & State Sports Associations, Sports Academies, Schools, Corporates,
+                Townships, Societies and every enthusiastic Sports lover to encourage Sports
+                with health and happiness in their locality.
               </p>
             </div>
 
@@ -804,13 +817,13 @@
                 <a href="https://tournamentplanner.in/screens/TPLive_Aboutus.aspx">About Us</a>
               </div>
               <div class="">
-                <a href="https://tournamentplanner.in/screens/TPLive_Terms.aspx">Terms & condition</a>
-              </div>
-              <div class="">
                 <a href="https://tournamentplanner.in/screens/TPLive_Contactus.aspx">Contact Us</a>
               </div>
               <div class="">
                 <a href="https://tournamentplanner.in/screens/TPLive_FAQ.aspx">FAQ's</a>
+              </div>
+              <div class="">
+                <a href="https://tournamentplanner.in/screens/TPLive_Terms.aspx">Terms & condition</a>
               </div>
               <div class="">
                 <a href="https://tournamentplanner.in/screens/TPLive_PrivacyPolicy.aspx">Privacy Policy</a>
@@ -821,23 +834,24 @@
               <div class="icons footer">
                 <a href="https://www.facebook.com/TournamentPlanner/?ti=as"> <i class="fab fa-facebook-f"></i> </a>
                 <a href="https://twitter.com/TPLIVE7/status/1144269372854288385?s=08"> <i class="fab fa-twitter"></i> </a>
-                <a href="https://www.youtube.com/channel/UCNkSsrEoWHJ_eWvLSQiGNug"> <i class="fa-brands fa-youtube"></i> </a>
+                <a href="https://www.youtube.com/channel/UCNkSsrEoWHJ_eWvLSQiGNug"> <i class="fab fa-youtube"></i> </a>
                 <a href="https://www.instagram.com/tplive.in/"> <i class="fab fa-instagram"></i> </a>
               </div>
             </div><br>
 
             <div class="footer-links footer-details">
+              <br><br>
 
               <h3 style="text-align:center;">FOR EVENT ORGANIZERS</h3><br>
 
               <div class="" style="border: none;">
-                <a href="#">Organiser Login</a>
+                <a href="https://tournamentplanner.in/Screens/admin/TP_Login.aspx">Organizer's</a>
               </div>
               <!-- <div class="">
                 <a href="#">Umpire Login</a>
               </div> -->
               <div class="">
-                <a href="#">Sponsor Login</a>
+                <a href="https://tournamentplanner.in/Screens/admin/TP_Login.aspx">Sponsor's</a>
               </div>
             </div>
 
@@ -854,9 +868,9 @@
 
     </section>
     <div class="last-div">
-      <img src="https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Flogolg.png?alt=media&token=7f8f2695-bb5b-46b0-9e5f-f4d0175df913" width="140px" alt="">
+      <img src="https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2FTPLiVE_text.png?alt=media&token=c9c9a277-6117-4161-af68-46f32e0f00f6" width="140px" alt="">
       <a href="https://tournamentplanner.in/screens/TPLive_Terms.aspx">Terms & Conditions | Privacy Policy</a>
-      <small>Version 2.54.0</small>
+      <small>Version 2.0</small>
       <br class="small" /><br class="small" />
     </div>
   </div>

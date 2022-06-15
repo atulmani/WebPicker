@@ -185,16 +185,15 @@ function getEventList(filter) {
         // console.log(results.data[index]);
         RenderEventDetails(index, results.data[index], entryCount);
       }
+      document.getElementById('loading').style.display = 'none';
     });
   });
 }
 
-function getLocationEvent(location, cnt)
-{
+function getLocationEvent(location, cnt) {
   console.log(location);
   console.log(document.getElementById(cnt).innerHTML);
-  if(Number(document.getElementById(cnt).innerHTML) > 0 )
-  {
+  if (Number(document.getElementById(cnt).innerHTML) > 0) {
     var para = {};
     // console.log(userid);
     para = {
@@ -235,18 +234,19 @@ function getLocationEvent(location, cnt)
     });
   }
 }
-function removeallItem()
-{
+
+function removeallItem() {
   $('#event-list-new').length;
-//   var $carousel = $(".edit-manage-carousel");
-// for (var i =0; i<100; i++) {
-//   $carousel.trigger('remove.owl.carousel', i );
-// }
+  //   var $carousel = $(".edit-manage-carousel");
+  // for (var i =0; i<100; i++) {
+  //   $carousel.trigger('remove.owl.carousel', i );
+  // }
   console.log($('#event-list-new').length);
   // document.getElementById("event-list-new").innerHTML="";
-//  var indexToRemove = 1;
-//  $('.event-list-new').owlCarousel('remove', indexToRemove).owlCarousel('update');
+  //  var indexToRemove = 1;
+  //  $('.event-list-new').owlCarousel('remove', indexToRemove).owlCarousel('update');
 }
+
 function RenderEventDetails(index, doc, entryCount) {
   console.log(doc);
   var curFormat = {
@@ -266,241 +266,251 @@ function RenderEventDetails(index, doc, entryCount) {
   // var refdate = new Date(obj.ReferenceDate._seconds * 1000);
   // var dt =  refdate.toLocaleDateString("en-US", options);
   // var amt = obj.Fees.toLocaleString('en-IN', curFormat);
-var div1 = document.createElement("div");
-div1.setAttribute("class", "item");
-div1.setAttribute("style", "margin: 30px 0 100px 0;");
+  var div1 = document.createElement("div");
+  div1.setAttribute("class", "item");
+  div1.setAttribute("style", "margin: 30px 0 100px 0;");
 
-var anchor = document.createElement("a");
-var scode = "";
-if (doc.SportName === 'Badminton') {
-  scode = 'BD';
-}else if(doc.SportName === 'Table Tennis') {
-  scode = 'TT';
-} else if (doc.SportName === 'Chess') {
-  scode = 'CH';
-} else if (doc.SportName === 'Skating') {
-  scode = 'SK';
-} else if (doc.SportName === 'Squash') {
-  scode = 'SQ';
-} else if (doc.SportName === 'Marathon') {
-  scode = 'MA';
-} else if (doc.SportName === 'Tennis') {
-  scode = 'TN';
-} else if (doc.SportName === 'Swimming') {
-  scode = 'SW';
-} else {
-  scode = 'BD';
-}
-
-console.log(doc.EventCode);
-console.log(scode);
-if (doc.EventCode != undefined && doc.EventCode != "" && doc.EventCode != null) {
-  anchor.setAttribute("href", "https://tournamentplanner.in/screens/TPLive_TournamentDetails.aspx?SCode=" + scode + "&TCode=" + doc.EventCode);
-} else {
-
-  anchor.setAttribute("href", "https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA");
-}anchor.setAttribute("class", "event-card");
-
-var div2 = document.createElement("div");
-div2.setAttribute("class", "event-card-img");
-
-var img = document.createElement("img");
-img.setAttribute("alt", "");
-console.log(doc.EventLogo);
-if (doc.EventLogo != undefined && doc.EventLogo != null && doc.EventLogo != "") {
-  img.setAttribute("src", doc.EventLogo);
-} else {
+  var anchor0 = document.createElement("a");
+  var anchor = document.createElement("div");
+  var scode = "";
   if (doc.SportName === 'Badminton') {
-    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Fbadminton.webp?alt=media&token=dc3c7662-a53f-4dad-9a40-b2d782fef290");
-  } else if (doc.SportName === 'Carrom') {
-    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Fcarrom.webp?alt=media&token=17b1bca8-2dfd-4798-8b4f-7341e8d00656");
-  } else if (doc.SportName === 'Chess') {
-    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Fchess.webp?alt=media&token=52189920-5092-4747-bada-2d6278b10c8e");
-  } else if (doc.SportName === 'Squash') {
-    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Fsquash.webp?alt=media&token=4c021b09-e8b5-462e-a653-0fc5f3387e7d");
+    scode = 'BD';
   } else if (doc.SportName === 'Table Tennis') {
-    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Ftabletennis.webp?alt=media&token=32d3e0bd-7109-4420-a171-df346b0c37f9");
+    scode = 'TT';
+  } else if (doc.SportName === 'Chess') {
+    scode = 'CH';
+  } else if (doc.SportName === 'Skating') {
+    scode = 'SK';
+  } else if (doc.SportName === 'Squash') {
+    scode = 'SQ';
+  } else if (doc.SportName === 'Marathon') {
+    scode = 'MA';
   } else if (doc.SportName === 'Tennis') {
-    img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Ftennis.webp?alt=media&token=5ea0dbac-50b2-4e96-a323-47c3ac812c13");
+    scode = 'TN';
+  } else if (doc.SportName === 'Swimming') {
+    scode = 'SW';
   } else {
-    img.setAttribute("src", "https://https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Fbadminton.webp?alt=media&token=dc3c7662-a53f-4dad-9a40-b2d782fef290");
+    scode = 'BD';
   }
-}
-div2.appendChild(img);
 
-anchor.appendChild(div2);
-
-var div3 = document.createElement("div");
-div3.setAttribute("class", "event-card-content");
-
-var div4 = document.createElement("div");
-div4.setAttribute("class", "event-schedule-div");
-
-var h1 = document.createElement("h1");
-h1.setAttribute("class", "event-name");
-h1.innerHTML = doc.EventName;
-div4.appendChild(h1);
-
-var h2 = document.createElement("h2");
-h2.setAttribute("class", "event-organiser");
-h2.innerHTML = doc.EventOwnerName;
-div4.appendChild(h2);
-
-var div5 = document.createElement("div");
-div5.setAttribute("style", "position: relative;");
-
-var h11 = document.createElement("h3");
-h11.setAttribute("class", "rating");
-
-var div6 = document.createElement("div");
-div6.setAttribute("class", "");
-var rating = doc.rating;
-if (rating === undefined || rating === "" || rating === null) {
-  rating = 5;
-}
-for (irat = 1; irat <= 5; irat++) {
-  var span = document.createElement("span");
-  span.setAttribute("class", "material-symbols-outlined");
-  if (irat <= rating) {
-    span.innerHTML = "star";
+  console.log(doc.EventCode);
+  console.log(scode);
+  if (doc.EventCode != undefined && doc.EventCode != "" && doc.EventCode != null) {
+    anchor0.setAttribute("href", "https://tournamentplanner.in/screens/TPLive_TournamentDetails.aspx?SCode=" + scode + "&TCode=" + doc.EventCode);
   } else {
-    span.innerHTML = "grade";
+
+    anchor0.setAttribute("href", "https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA");
   }
-  div6.appendChild(span);
-}
-h11.appendChild(div6);
+  anchor.setAttribute("class", "event-card");
 
-var small = document.createElement("small");
-var ratingcnt = doc.ratingCount;
-if (ratingcnt === undefined || ratingcnt === "" || ratingcnt === null) {
-  ratingcnt = 100;
-}
-small.innerHTML = ratingcnt;
-h11.appendChild(small);
-div5.appendChild(h11);
+  var div2 = document.createElement("div");
+  div2.setAttribute("class", "event-card-img");
+  var sportCode = "";
+  var img = document.createElement("img");
+  img.setAttribute("alt", "");
+  console.log(doc.EventLogo);
+  if (doc.EventLogo != undefined && doc.EventLogo != null && doc.EventLogo != "") {
+    img.setAttribute("src", doc.EventLogo);
+  } else {
+    if (doc.SportName === 'Badminton') {
+      sportCode = "BD";
+      img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Fbadminton.webp?alt=media&token=dc3c7662-a53f-4dad-9a40-b2d782fef290");
+    } else if (doc.SportName === 'Carrom') {
+      sportCode = "CR";
+      img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Fcarrom.webp?alt=media&token=17b1bca8-2dfd-4798-8b4f-7341e8d00656");
+    } else if (doc.SportName === 'Chess') {
+      sportCode = "CH";
 
-div4.appendChild(div5);
+      img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Fchess.webp?alt=media&token=52189920-5092-4747-bada-2d6278b10c8e");
+    } else if (doc.SportName === 'Squash') {
+      sportCode = "SQ";
 
-var div7 = document.createElement("div");
-div7.setAttribute("class", "details");
+      img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Fsquash.webp?alt=media&token=4c021b09-e8b5-462e-a653-0fc5f3387e7d");
+    } else if (doc.SportName === 'Table Tennis') {
+      sportCode = "TT";
 
-var div8 = document.createElement("div");
-div8.setAttribute("class", "");
+      img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Ftabletennis.webp?alt=media&token=32d3e0bd-7109-4420-a171-df346b0c37f9");
+    } else if (doc.SportName === 'Tennis') {
+      sportCode = "TN";
 
-var h3 = document.createElement("h3");
-if (doc.City != undefined && doc.City != "" && doc.City != null) {
-  h3.innerHTML = doc.City;
-} else {
-  h3.innerHTML = "-";
-}
-div8.appendChild(h3);
+      img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Ftennis.webp?alt=media&token=5ea0dbac-50b2-4e96-a323-47c3ac812c13");
+    } else {
+      sportCode = "BD";
 
-var h4 = document.createElement("h4");
-h4.innerHTML = "Location";
-div8.appendChild(h4);
-div7.appendChild(div8);
+      img.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fevent%2Fbadminton.webp?alt=media&token=dc3c7662-a53f-4dad-9a40-b2d782fef290");
+    }
+  }
+  div2.appendChild(img);
 
-var div9 = document.createElement("div");
-div9.setAttribute("class", "");
+  anchor.appendChild(div2);
 
-var h31 = document.createElement("h3");
-if (doc.EventStartDate != undefined && doc.EventStartDate != "" && doc.EventStartDate != null) {
-  var refdate = new Date(doc.EventStartDate._seconds * 1000);
-  // h31.innerHTML = refdate.toLocaleDateString("en-US", options);;
-  h31.innerHTML = refdate.toLocaleDateString("en-IN", options);;
-} else {
-  h31.innerHTML = "-";
-}
-div9.appendChild(h31);
+  var div3 = document.createElement("div");
+  div3.setAttribute("class", "event-card-content");
 
-var h41 = document.createElement("h4");
-h41.innerHTML = "Event Date";
-div9.appendChild(h41);
-div7.appendChild(div9);
+  var div4 = document.createElement("div");
+  div4.setAttribute("class", "event-schedule-div");
 
-var div10 = document.createElement("div");
-div10.setAttribute("class", "");
+  var h1 = document.createElement("h1");
+  h1.setAttribute("class", "event-name");
+  h1.innerHTML = doc.EventName;
+  div4.appendChild(h1);
 
-var h32 = document.createElement("h3");
-// obj.Fees.toLocaleString('en-IN', curFormat)
-if (doc.MinimumFee != null && doc.MinimumFee != undefined && doc.MinimumFee != "") {
-  if (doc.MaximumFee != null && doc.MaximumFee != undefined && doc.MaximumFee != "") {
-    if (doc.MinimumFee != doc.MaximumFee) {
-      // h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat) + " - " + doc.MaximumFee.toLocaleString('en-IN', curFormat);
-      h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat) ;
+  var h2 = document.createElement("h2");
+  h2.setAttribute("class", "event-organiser");
+  h2.innerHTML = doc.EventOwnerName;
+  div4.appendChild(h2);
+
+  var div5 = document.createElement("div");
+  div5.setAttribute("style", "position: relative;");
+
+  var h11 = document.createElement("h3");
+  h11.setAttribute("class", "rating");
+
+  var div6 = document.createElement("div");
+  div6.setAttribute("class", "");
+  var rating = doc.rating;
+  if (rating === undefined || rating === "" || rating === null) {
+    rating = 5;
+  }
+  for (irat = 1; irat <= 5; irat++) {
+    var span = document.createElement("span");
+    span.setAttribute("class", "material-symbols-outlined");
+    if (irat <= rating) {
+      span.innerHTML = "star";
+    } else {
+      span.innerHTML = "grade";
+    }
+    div6.appendChild(span);
+  }
+  h11.appendChild(div6);
+
+  var small = document.createElement("small");
+  var ratingcnt = doc.ratingCount;
+  if (ratingcnt === undefined || ratingcnt === "" || ratingcnt === null) {
+    ratingcnt = 100;
+  }
+  small.innerHTML = ratingcnt;
+  h11.appendChild(small);
+  div5.appendChild(h11);
+
+  div4.appendChild(div5);
+
+  var div7 = document.createElement("div");
+  div7.setAttribute("class", "details");
+
+  var div8 = document.createElement("div");
+  div8.setAttribute("class", "");
+
+  var h3 = document.createElement("h3");
+  if (doc.City != undefined && doc.City != "" && doc.City != null) {
+    h3.innerHTML = doc.City;
+  } else {
+    h3.innerHTML = "-";
+  }
+  div8.appendChild(h3);
+
+  var h4 = document.createElement("h4");
+  h4.innerHTML = "Location";
+  div8.appendChild(h4);
+  div7.appendChild(div8);
+
+  var div9 = document.createElement("div");
+  div9.setAttribute("class", "");
+
+  var h31 = document.createElement("h3");
+  if (doc.EventStartDate != undefined && doc.EventStartDate != "" && doc.EventStartDate != null) {
+    var refdate = new Date(doc.EventStartDate._seconds * 1000);
+    // h31.innerHTML = refdate.toLocaleDateString("en-US", options);;
+    h31.innerHTML = refdate.toLocaleDateString("en-IN", options);;
+  } else {
+    h31.innerHTML = "-";
+  }
+  div9.appendChild(h31);
+
+  var h41 = document.createElement("h4");
+  h41.innerHTML = "Event Date";
+  div9.appendChild(h41);
+  div7.appendChild(div9);
+
+  var div10 = document.createElement("div");
+  div10.setAttribute("class", "");
+
+  var h32 = document.createElement("h3");
+  // obj.Fees.toLocaleString('en-IN', curFormat)
+  if (doc.MinimumFee != null && doc.MinimumFee != undefined && doc.MinimumFee != "") {
+    if (doc.MaximumFee != null && doc.MaximumFee != undefined && doc.MaximumFee != "") {
+      if (doc.MinimumFee != doc.MaximumFee) {
+        // h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat) + " - " + doc.MaximumFee.toLocaleString('en-IN', curFormat);
+        h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat);
+      } else {
+        h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat);
+      }
     } else {
       h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat);
     }
   } else {
-    h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat);
+    h32.innerHTML = "-";
   }
-} else {
-  h32.innerHTML = "-";
-}
-div10.appendChild(h32);
+  div10.appendChild(h32);
 
-var h42 = document.createElement("h4");
-h42.innerHTML = "Entry Fee";
-div10.appendChild(h42);
-div7.appendChild(div10);
-div4.appendChild(div7);
+  var h42 = document.createElement("h4");
+  h42.innerHTML = "Entry Fee";
+  div10.appendChild(h42);
+  div7.appendChild(div10);
+  div4.appendChild(div7);
 
-var div11 = document.createElement("div");
-div11.setAttribute("class", "row");
+  var div11 = document.createElement("div");
+  div11.setAttribute("class", "row");
 
-var div12 = document.createElement("div");
-div12.setAttribute("class", "col-5");
-var button1 = document.createElement("button");
-
-if (doc.PublishDrawFlag === 'YES') {
+  var div12 = document.createElement("div");
+  div12.setAttribute("class", "col-5");
+  var button1 = document.createElement("button");
   button1.setAttribute("type", "button");
-  button1.setAttribute("onclick", "btnClickEvent(" + doc.SportName + "," + doc.EventCode + ")");
+  button1.setAttribute("onclick", "btnClickEvent('" + doc.SportName + "','" + doc.EventCode + "')");
   button1.setAttribute("class", "mybutton button5 event-card-button");
-  button1.setAttribute("style", "background: linear-gradient(to right,#73e336,#08bf1a);");
-  button1.setAttribute("name", "button");
 
-  button1.innerHTML = "Draw";
-} else if (doc.RegistrationOpenFlag === 'YES') {
-  button1.setAttribute("type", "button");
-  button1.setAttribute("onclick", "btnClickEvent(" + doc.SportName + "," + doc.EventCode + ")");
-  button1.setAttribute("class", "mybutton button5 event-card-button");
-  button1.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
-  button1.setAttribute("name", "button");
+  if (doc.PublishDrawFlag === 'YES') {
+    button1.setAttribute("style", "background: linear-gradient(to right,#73e336,#08bf1a);");
+    button1.setAttribute("name", "button");
 
-  button1.innerHTML = "book";
-} else {
-  button1.setAttribute("type", "button");
-  button1.setAttribute("onclick", "btnClickEvent(" + doc.SportName + "," + doc.EventCode + ")");
-  button1.setAttribute("class", "mybutton button5 event-card-button");
-  button1.setAttribute("name", "button");
-  button1.innerHTML = "Details";
-}
+    button1.innerHTML = "Draw";
+  } else if (doc.RegistrationOpenFlag === 'YES') {
+    button1.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
+    button1.setAttribute("name", "button");
 
-div12.appendChild(button1);
-div11.appendChild(div12);
+    button1.innerHTML = "book";
+  } else {
+    button1.setAttribute("name", "button");
+    button1.innerHTML = "Details";
+  }
 
-var div13 = document.createElement("div");
-div13.setAttribute("class", "col-7");
+  div12.appendChild(button1);
+  div11.appendChild(div12);
 
-var button2 = document.createElement("button");
-button2.setAttribute("type", "button");
-button2.setAttribute("class", "mybutton button5 event-card-button entries");
-button2.setAttribute("style", "background:none;border: 1px solid #ddd;color:#aaa;display:none; ");
-button2.setAttribute("name", "button");
+  var div13 = document.createElement("div");
+  div13.setAttribute("class", "col-7");
 
-button2.innerHTML = "<img src='https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fmultipleuser.png?alt=media&token=61647294-0f92-492a-86cf-0c1cb57cd1ef' alt=''> " + entryCount;
-div13.appendChild(button2);
-div11.appendChild(div13);
-div4.appendChild(div11);
-div3.appendChild(div4);
-anchor.appendChild(div3);
-div1.appendChild(anchor);
+  var button2 = document.createElement("button");
+  button2.setAttribute("type", "button");
+  button2.setAttribute("class", "mybutton button5 event-card-button entries");
+  button2.setAttribute("style", "background:none;border: 1px solid #ddd;color:#aaa;display:none; ");
+  button2.setAttribute("name", "button");
+
+  button2.innerHTML = "<img src='https://firebasestorage.googleapis.com/v0/b/tplive-uat-f9355.appspot.com/o/img%2Fmultipleuser.png?alt=media&token=61647294-0f92-492a-86cf-0c1cb57cd1ef' alt=''> " + entryCount;
+  div13.appendChild(button2);
+  div11.appendChild(div13);
+  div4.appendChild(div11);
+  div3.appendChild(div4);
+  anchor.appendChild(div3);
+  // anchor0.appendChild(anchor);
+  div1.appendChild(anchor);
   $('#event-list-new').trigger('add.owl.carousel', [div1]).trigger('refresh.owl.carousel');
 
 }
 
 function btnClickEvent(SportName, EventCode) {
   var sCode = "";
+  console.log("in btnClickEvent");
   if (EventCode != undefined && EventCode != null && EventCode != "") {
     if (SportName === 'Badminton') {
       sCode = 'BD';

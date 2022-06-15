@@ -52,15 +52,15 @@ var deferredPrompt;
 
 // sideNavbar - start
 
-var hamberIcon = document.getElementById('hamberIcon');
+// var hamberIcon = document.getElementById('hamberIcon');
 var fullContent = document.getElementById('fullContent');
 var sideNavbar = document.getElementById('sideNavbar');
 
-hamberIcon.addEventListener('click', sideNavbarOpen, false);
-
-function sideNavbarOpen(){
-  sideNavbar.classList.add('open');
-}
+// hamberIcon.addEventListener('click', sideNavbarOpen, false);
+//
+// function sideNavbarOpen(){
+//   sideNavbar.classList.add('open');
+// }
 
 fullContent.addEventListener('click', sideNavbarClose, false);
 
@@ -260,7 +260,7 @@ $(document).ready(function() {
     responsive: {
       0: {
         items: 4,
-        stagePadding: 20,
+        stagePadding: 30,
         margin: 5,
       },
       600: {
@@ -310,7 +310,7 @@ $(document).ready(function() {
     autoplayHoverPause: false,
     nav: false,
     dots: true,
-    stagePadding: 30,
+    stagePadding: 10,
     touchDrag  : false,
     mouseDrag  : false,
     responsive: {
@@ -434,6 +434,33 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+  var owl = $('#banner-list-new');
+  owl.owlCarousel({
+    margin: 10,
+    loop: true,
+    autoplay: true,
+    smartSpeed: 3000,
+    autoplayTimeout: 5000,
+    autoplayHoverPause: false,
+    nav: false,
+    dots: false,
+    // opacity: 0.1,
+    stagePadding: 50,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 1
+      },
+      1000: {
+        items: 1
+      }
+    }
+  });
+});
+
+$(document).ready(function() {
   var owl = $('#event-list');
   owl.owlCarousel({
     margin: 20,
@@ -444,17 +471,16 @@ $(document).ready(function() {
     autoplayHoverPause: false,
     nav: false,
     dots:false,
-    stagePadding: 70,
+    stagePadding: 30,
     responsive: {
       0: {
-        items: 1,
-        stagePadding: 30
+        items: 2,
       },
       600: {
-        items: 2
+        items: 4
       },
       1000: {
-        items: 4
+        items: 8
       }
     }
   });

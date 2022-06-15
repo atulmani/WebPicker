@@ -421,6 +421,18 @@ h6{
   position: all;
 }
 
+.loading{
+  width: 40%;
+  height: 40%;
+}
+
+@media (max-width: 850px) {
+  .loading{
+    width: 70%;
+    height: 70%;
+  }
+}
+
 #event-new{
   background: #348DCB;
 }
@@ -437,7 +449,7 @@ h6{
   left: 0;
   top: 0px;
   width: 100%;
-  padding: 30px;
+  padding: 0 30px;
   /* height: 300px; */
   z-index: 10;
 }
@@ -451,11 +463,11 @@ h6{
 
 .event-card .event-card-content{
   position: relative;
-  top: 80px;
+  top: 50px;
   background: #fff;
   border-radius: 15px;
-  padding: 200px 20px 15px 20px;
-  height: 430px;
+  padding: 0px 20px 15px 20px;
+  height: 410px;
   text-align: center;
   z-index: 5;
 }
@@ -466,7 +478,7 @@ h6{
   }
 
   .event-card .event-card-content{
-    height: 380px;
+    height: 350px;
   }
 
 }
@@ -661,6 +673,7 @@ h6{
   border: 1px solid #ddd;
   border-radius: 10px;
   text-align: center;
+  color: #161d65;
 }
 
 .genre-locoation-card:hover,
@@ -759,6 +772,7 @@ h6{
 
 .text-para{
   text-align: justify;
+  font-size: 1.8rem;
 }
 
 /* Footer Section - Start */
@@ -1379,6 +1393,28 @@ h6{
   /* display: none; */
 }
 }
+
+.partners-div{
+  position: relative;
+}
+
+.partners-div::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -10px;
+  width: 80%;
+  height: 170px;
+  background: #fff;
+  border-radius: 0 10px 10px 0;
+}
+
+@media (max-width: 500px) {
+  .partners-div::before{
+    height: 120px;
+  }
+}
+
 .owl-item .partners-item img {
   opacity: 0.5;
   transition: 3s;
@@ -1416,7 +1452,7 @@ h6{
   align-items: center;
   justify-content: space-between;
   position: relative;
-  padding: 0 10px;
+  padding: 3px 10px;
 }
 
 .navbar-mobile-menu .navbar-search-icon{
@@ -1681,7 +1717,7 @@ h6{
 }
 
 .navbar-mobile-bottom-menu .navbar-mobile-bottom-menu-a{
-  color: #fff;
+  color: #ccc;
   font-size: 0.9rem;
   text-align: center;
   text-decoration: none;
@@ -1698,6 +1734,14 @@ h6{
 
 .navbar-mobile-bottom-menu .navbar-mobile-bottom-menu-a.active{
   color: #fff;
+}
+
+.navbar-mobile-bottom-menu .navbar-mobile-bottom-menu-a.active span{
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
 }
 
 .new-user{
@@ -2684,7 +2728,7 @@ color: #aaa;
 }
 
 #ads-carousel .owl-item.active{
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
 #designs{
@@ -2965,3 +3009,71 @@ color: #aaa;
 
 
 /* more page - end */
+
+
+/* new index page - start */
+
+.event-display-card{
+  position: relative;
+  height: 400px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.event-display-card .content{
+  position: relative;
+  background: linear-gradient(to right, #2d2b4c 90%, rgba(0,0,0,0));
+  color: #fff;
+  height: 400px;
+  width: 120%;
+  padding: 60px 80px 60px 40px;
+  z-index: 5;
+}
+
+.event-display-card .content h1{
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.event-display-card .content h2{
+  font-size: 1rem;
+  color: #aaa;
+  font-weight: 500;
+}
+
+.event-display-card .content h3{
+  font-size: 1.1rem;
+  color: #ccc;
+  font-weight: lighter;
+  padding: 10px 0;
+  line-height: 25px;
+  width: 340px;
+}
+
+.event-display-card .content button{
+  position: fixed;
+  bottom: 40px;
+  width: 150px;
+  font-size: 1rem;
+  height: 40px;
+  text-transform: capitalize;
+  background: #348DCB;
+  color: #fff;
+}
+
+.event-display-card .image{
+  position: relative;
+  z-index: 2;
+}
+
+.event-display-card .image img{
+  width: 100%;
+}
+
+.new-event-card{
+  border-radius: 10px;
+}
+
+
+/* new index page - end */
