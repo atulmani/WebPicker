@@ -438,14 +438,14 @@ $(document).ready(function() {
   owl.owlCarousel({
     margin: 10,
     loop: true,
-    autoplay: true,
+    autoplay: false,
     smartSpeed: 3000,
-    autoplayTimeout: 5000,
+    autoplayTimeout: 15000,
     autoplayHoverPause: false,
     nav: false,
     dots: false,
     // opacity: 0.1,
-    stagePadding: 50,
+    stagePadding: 30,
     responsive: {
       0: {
         items: 1
