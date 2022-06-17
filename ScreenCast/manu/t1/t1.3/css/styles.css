@@ -735,31 +735,99 @@ input:valid .input-field i {
 
   .more-button-links {
     position: fixed;
-    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(3, 70, 135, 0.95);
-    z-index: 50;
+    background: #eff1fe;
+    z-index: 999;
     text-align: center;
-    height: 92.5%;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 -100px 1000px 500px rgba(0,0,0,0.2);
+    padding: 10px;
+    overflow-y: auto;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
   }
 
-  .more-button-links ul {
-    position: relative;
-    top: calc(50% - 140px);
-    display: list-item;
+  .more-button-links.open {
+    height: 30%;
+    opacity: 1;
+    pointer-events: all;
   }
 
-  .more-button-links ul li {
-    list-style: none;
+  .highlighter{
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 5px;
+    border-radius: 5px;
+    background: #e10032;
+  }
+
+  .closeBtn{
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    font-size: 1rem;
+    background: #dcdeff;
+    color: #e10032;
+    width: 23px;
+    height: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .more-button-links h5{
+    color: #034687;
     font-size: 1.5rem;
-    line-height: 2.5;
+    padding-top: 20px;
+    font-weight: 500;
   }
 
-  .more-button-links ul li a {
-    color: #fff;
+  .more-links{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #444;
+    padding: 10px 0;
+    text-decoration: none;
   }
+
+  .more-links:hover{
+    text-decoration: none;
+  }
+
+  .more-links span{
+    font-size: 1.5rem;
+    background: #dcdeff;
+    color: #E10032;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0;
+    text-decoration: none;
+  }
+
+  .more-links h5{
+    position: relative;
+    top: -10px;
+    margin: 0;
+    color: #034687;
+    font-size: 0.8rem;
+    font-weight: normal;
+    text-decoration: none;
+  }
+
 }
 
 .navbar-brand {
@@ -3171,7 +3239,7 @@ input[type=number] {
   font-size: 30px;
   box-shadow: 0 0 10px 0 #eee;
   /* border: 2px solid #e10032; */
-  z-index: 100;
+  z-index: 10;
   transition: 0.5s;
 }
 
@@ -3179,6 +3247,12 @@ input[type=number] {
   text-decoration: none;
   color: #25d366;
   background: #fff;
+}
+
+@media (max-width: 1080px) {
+  .whatsapp_float{
+    bottom: 12%;
+  }
 }
 
 

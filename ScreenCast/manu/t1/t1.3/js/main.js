@@ -59,6 +59,30 @@ function ddFeatures() {
   document.getElementById("myDropdown1").classList.toggle("show");
 }
 
+// more button click - start
+
+  var moreButton = document.getElementById('moreButton');
+  var moreButtonLinks = document.getElementById('moreButtonLinks');
+  var fullContent = document.getElementById('fullContent');
+
+  moreButton.addEventListener('click', sideNavbarOpen, false);
+
+  function sideNavbarOpen(){
+    moreButtonLinks.classList.add('open');
+  }
+
+  moreButtonLinks.addEventListener('click', sideNavbarClose, false);
+  fullContent.addEventListener('click', sideNavbarClose, false);
+
+  function sideNavbarClose(){
+    moreButtonLinks.classList.remove('open');
+  }
+
+
+
+// more button click - end
+
+
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(event) {
   if (!event.target.matches('.dropbtn')) {
