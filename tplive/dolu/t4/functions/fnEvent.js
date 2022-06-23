@@ -551,6 +551,168 @@ exports.getAllEventDetails =
     });
   });
 
+exports.getAllEventWithEventStatusAndLocation =
+  functions.https.onCall(async (data, context) => {
+    // if (!context.auth) {
+    //   throw new functions.https.HttpError(
+    //     "unauthenticatied",
+    //     "only authenticated user can call this"
+    //   );
+    // }
+    let resultList = [];
+
+    const City = data.City;
+    const Status = data.eventStatus;
+
+    // var dbrows = await admin.firestore().collection("PartnerList").get();
+    // dbrows.then((changes) => {
+    if(City === "" || City === 'All')
+    {
+      return await admin.firestore().collection("EventList")
+      .where("EventStatus","==", Status)
+      .orderBy("EventStartDate","desc").get().then((changes) => {
+        changes.forEach(doc1 => {
+          resultList.push({
+            Eventid: doc1.id,
+            EventName: doc1.data().EventName,
+            EventType: doc1.data().EventType,
+            EventStatus: doc1.data().EventStatus,
+            OrganizationID: doc1.data().OrganizationID,
+            OrganizerID: doc1.data().OrganizerID,
+            EventOwnerName: doc1.data().EventOwnerName,
+            EventOwnerEmail: doc1.data().EventOwnerEmail,
+            EventOwnerPhone: doc1.data().EventOwnerPhone,
+            OrganizerLogo: doc1.data().OrganizerLogo,
+            EventLogo: doc1.data().EventLogo,
+            EventCode: doc1.data().EventCode,
+            SportCode: doc1.data().SportCode,
+
+            MinimumFee: doc1.data().MinimumFee,
+            MaximumFee: doc1.data().MaximumFee,
+
+            SportName: doc1.data().SportName,
+            EventStartDate: doc1.data().EventStartDate,
+            EventEndDate: doc1.data().EventEndDate,
+            EventVenue: doc1.data().EventVenue,
+            City: doc1.data().City,
+            State: doc1.data().State,
+            RegistrationStartDate: doc1.data().RegistrationStartDate,
+            RegistrationEndDate: doc1.data().RegistrationEndDate,
+            WithdrawalEndDate: doc1.data().WithdrawalEndDate,
+            PaymentMode: doc1.data().PaymentMode,
+            ApprovalStatus: doc1.data().ApprovalStatus,
+            EventStatus: doc1.data().EventStatus,
+            Comments: doc1.data().Comments,
+
+            RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
+            PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+            DrawPublishedFlag: doc1.data().DrawPublishedFlag,
+            //to be added
+            LocationMap: doc1.data().LocationMap,
+            VenueContact: doc1.data().VenueContact,
+            MaxEntryForParticipant: doc1.data().MaxEntryForParticipant,
+            ConvenienceCharge: doc1.data().ConvenienceCharge,
+            IsMiscellaneousChargeMandatory: doc1.data().IsMiscellaneousChargeMandatory,
+            MiscellaneousChargeRemark: doc1.data().MiscellaneousChargeRemark,
+            MiscellaneousChargeFees: doc1.data().MiscellaneousChargeFees,
+            DiscountRemarks: doc1.data().DiscountRemarks,
+            DiscountValue: doc1.data().DiscountValue,
+            OnlinePaymentModeFlag: doc1.data().OnlinePaymentModeFlag,
+
+            NoticeBoard: doc1.data().NoticeBoard,
+            Announcement: doc1.data().Announcement,
+            RulesAndRegulations: doc1.data().RulesAndRegulations,
+            CloseEventFlag: doc1.data().CloseEventFlag,
+            //RegistrationStatusOnFlag: doc1.data().RegistrationStatusOnFlag,
+            RegistrationCompletePostPaymentFlag: doc1.data().RegistrationCompletePostPaymentFlag,
+            OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
+            PublishDrawFlag: doc1.data().PublishDrawFlag,
+            PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+            PublishScheduleFlag: doc1.data().PublishScheduleFlag,
+            PublishGalleryFlag: doc1.data().PublishGalleryFlag,
+
+          });
+          //console.log(resultList);
+        });
+        return resultList;
+
+      });
+
+    }else {
+      return await admin.firestore().collection("EventList")
+      .where("EventStatus","==", Status)
+      .where("City","==", City)
+      .orderBy("EventStartDate","desc").get().then((changes) => {
+        changes.forEach(doc1 => {
+          resultList.push({
+            Eventid: doc1.id,
+            EventName: doc1.data().EventName,
+            EventType: doc1.data().EventType,
+            EventStatus: doc1.data().EventStatus,
+            OrganizationID: doc1.data().OrganizationID,
+            OrganizerID: doc1.data().OrganizerID,
+            EventOwnerName: doc1.data().EventOwnerName,
+            EventOwnerEmail: doc1.data().EventOwnerEmail,
+            EventOwnerPhone: doc1.data().EventOwnerPhone,
+            OrganizerLogo: doc1.data().OrganizerLogo,
+            EventLogo: doc1.data().EventLogo,
+            EventCode: doc1.data().EventCode,
+            SportCode: doc1.data().SportCode,
+
+            MinimumFee: doc1.data().MinimumFee,
+            MaximumFee: doc1.data().MaximumFee,
+
+            SportName: doc1.data().SportName,
+            EventStartDate: doc1.data().EventStartDate,
+            EventEndDate: doc1.data().EventEndDate,
+            EventVenue: doc1.data().EventVenue,
+            City: doc1.data().City,
+            State: doc1.data().State,
+            RegistrationStartDate: doc1.data().RegistrationStartDate,
+            RegistrationEndDate: doc1.data().RegistrationEndDate,
+            WithdrawalEndDate: doc1.data().WithdrawalEndDate,
+            PaymentMode: doc1.data().PaymentMode,
+            ApprovalStatus: doc1.data().ApprovalStatus,
+            EventStatus: doc1.data().EventStatus,
+            Comments: doc1.data().Comments,
+
+            RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
+            PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+            DrawPublishedFlag: doc1.data().DrawPublishedFlag,
+            //to be added
+            LocationMap: doc1.data().LocationMap,
+            VenueContact: doc1.data().VenueContact,
+            MaxEntryForParticipant: doc1.data().MaxEntryForParticipant,
+            ConvenienceCharge: doc1.data().ConvenienceCharge,
+            IsMiscellaneousChargeMandatory: doc1.data().IsMiscellaneousChargeMandatory,
+            MiscellaneousChargeRemark: doc1.data().MiscellaneousChargeRemark,
+            MiscellaneousChargeFees: doc1.data().MiscellaneousChargeFees,
+            DiscountRemarks: doc1.data().DiscountRemarks,
+            DiscountValue: doc1.data().DiscountValue,
+            OnlinePaymentModeFlag: doc1.data().OnlinePaymentModeFlag,
+
+            NoticeBoard: doc1.data().NoticeBoard,
+            Announcement: doc1.data().Announcement,
+            RulesAndRegulations: doc1.data().RulesAndRegulations,
+            CloseEventFlag: doc1.data().CloseEventFlag,
+            //RegistrationStatusOnFlag: doc1.data().RegistrationStatusOnFlag,
+            RegistrationCompletePostPaymentFlag: doc1.data().RegistrationCompletePostPaymentFlag,
+            OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
+            PublishDrawFlag: doc1.data().PublishDrawFlag,
+            PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+            PublishScheduleFlag: doc1.data().PublishScheduleFlag,
+            PublishGalleryFlag: doc1.data().PublishGalleryFlag,
+
+          });
+          //console.log(resultList);
+        });
+        return resultList;
+
+      });
+
+    }
+      });
+
   exports.getAllEventDetailsByCity =
     functions.https.onCall(async (data, context) => {
       // if (!context.auth) {
@@ -1675,7 +1837,8 @@ exports.getAllEventWithStatus =
 
     // var dbrows = await admin.firestore().collection("PartnerList").get();
     // dbrows.then((changes) => {
-    return await admin.firestore().collection("EventList").where("ApprovalStatus", "==", approvalStatus).get().then((changes) => {
+    return await admin.firestore().collection("EventList").where("EventStatus", "in", eventStatusList).orderBy("EventStartDate","desc").get()
+    .then((changes) => {
       changes.forEach(doc1 => {
         resultList.push({
           Eventid: doc1.id,
@@ -1745,7 +1908,7 @@ exports.getAllEventWithStatus =
 
 
 
-  exports.getAllEventWithEventStatus =
+  exports.getAllEventWithEventStatus1 =
     functions.https.onCall(async (data, context) => {
       //   if (!context.auth) {
       //     throw new functions.https.HttpError(
@@ -1766,7 +1929,8 @@ exports.getAllEventWithStatus =
 
       // var dbrows = await admin.firestore().collection("PartnerList").get();
       // dbrows.then((changes) => {
-      return await admin.firestore().collection("EventList").where("EventStatus", "in", eventStatusList).get().then((changes) => {
+      return await admin.firestore().collection("EventList").where("EventStatus", "in", eventStatusList).orderBy("EventStartDate","desc").get()
+      .then((changes) => {
         changes.forEach(doc1 => {
           resultList.push({
             Eventid: doc1.id,
@@ -1833,3 +1997,95 @@ exports.getAllEventWithStatus =
 
       });
     });
+
+
+
+      exports.getAllEventWithEventStatus =
+        functions.https.onCall(async (data, context) => {
+          //   if (!context.auth) {
+          //     throw new functions.https.HttpError(
+          //       "unauthenticatied",
+          //       "only authenticated user can call this"
+          //     );
+          //   }
+          const eventStatus = data.eventStatus;
+
+          var eventStatusList = [];
+          if(eventStatus === 'All'){
+            eventStatusList = ['Active','Inactive','Closed'];
+          }
+          else {
+            eventStatusList = [eventStatus];
+          }
+          let resultList = [];
+
+          // var dbrows = await admin.firestore().collection("PartnerList").get();
+          // dbrows.then((changes) => {
+          return await admin.firestore().collection("EventList").where("EventStatus", "in", eventStatusList).get()
+          .then((changes) => {
+            changes.forEach(doc1 => {
+              resultList.push({
+                Eventid: doc1.id,
+                EventName: doc1.data().EventName,
+                EventType: doc1.data().EventType,
+                EventStatus: doc1.data().EventStatus,
+                OrganizationID: doc1.data().OrganizationID,
+                OrganizerID: doc1.data().OrganizerID,
+                EventOwnerName: doc1.data().EventOwnerName,
+                EventOwnerEmail: doc1.data().EventOwnerEmail,
+                EventOwnerPhone: doc1.data().EventOwnerPhone,
+                OrganizerLogo: doc1.data().OrganizerLogo,
+                EventLogo: doc1.data().EventLogo,
+                EventCode: doc1.data().EventCode,
+                SportCode: doc1.data().SportCode,
+                MinimumFee: doc1.data().MinimumFee,
+                MaximumFee: doc1.data().MaximumFee,
+
+                SportName: doc1.data().SportName,
+                EventStartDate: doc1.data().EventStartDate,
+                EventEndDate: doc1.data().EventEndDate,
+                EventVenue: doc1.data().EventVenue,
+                City: doc1.data().City,
+                State: doc1.data().State,
+                RegistrationStartDate: doc1.data().RegistrationStartDate,
+                RegistrationEndDate: doc1.data().RegistrationEndDate,
+                WithdrawalEndDate: doc1.data().WithdrawalEndDate,
+                PaymentMode: doc1.data().PaymentMode,
+                ApprovalStatus: doc1.data().ApprovalStatus,
+                EventStatus: doc1.data().EventStatus,
+                Comments: doc1.data().Comments,
+
+                RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
+                PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+                DrawPublishedFlag: doc1.data().DrawPublishedFlag,
+                //to be added
+                LocationMap: doc1.data().LocationMap,
+                VenueContact: doc1.data().VenueContact,
+                MaxEntryForParticipant: doc1.data().MaxEntryForParticipant,
+                ConvenienceCharge: doc1.data().ConvenienceCharge,
+                IsMiscellaneousChargeMandatory: doc1.data().IsMiscellaneousChargeMandatory,
+                MiscellaneousChargeRemark: doc1.data().MiscellaneousChargeRemark,
+                MiscellaneousChargeFees: doc1.data().MiscellaneousChargeFees,
+                DiscountRemarks: doc1.data().DiscountRemarks,
+                DiscountValue: doc1.data().DiscountValue,
+                OnlinePaymentModeFlag: doc1.data().OnlinePaymentModeFlag,
+                NoticeBoard: doc1.data().NoticeBoard,
+                Announcement: doc1.data().Announcement,
+                RulesAndRegulations: doc1.data().RulesAndRegulations,
+                CloseEventFlag: doc1.data().CloseEventFlag,
+
+                RegistrationStatusOnFlag: doc1.data().RegistrationStatusOnFlag,
+                RegistrationCompletePostPaymentFlag: doc1.data().RegistrationCompletePostPaymentFlag,
+                OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
+                PublishDrawFlag: doc1.data().PublishDrawFlag,
+                PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+                PublishScheduleFlag: doc1.data().PublishScheduleFlag,
+                PublishGalleryFlag: doc1.data().PublishGalleryFlag,
+
+              });
+              console.log(resultList);
+            });
+            return resultList;
+
+          });
+        });

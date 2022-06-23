@@ -287,25 +287,29 @@ exports.saveProfileDetailsStep4 =
               for (index = 0 ; index < roleList.length; index++ )
               {
                 // findIndex(e => e.TYPE === "ADMIN")
-                if(change.data().UserRole.findIndex(e => e.TYPE === roleList[index]) >= 0)
+                if(change.data().UserRole != null && change.data().UserRole != undefined)
                 {
-                  console.log(roleList[index]);
-                  resultList.push({
-                    userid: change.id,
-                    Address: change.data().Address,
-                    AlternatePhone: change.data().AlternatePhone,
-                    City: change.data().City,
-                    Country: change.data().Country,
-                    DateOfBirth: change.data().DateOfBirth,
-                    Email: change.data().Email,
-                    Gender: change.data().Gender,
-                    Phone: change.data().Phone,
-                    State: change.data().State,
-                    UserName: change.data().UserName,
-                    UserRole: change.data().UserRole,
-                  });
-                  break;
+                  if(change.data().UserRole.findIndex(e => e.TYPE === roleList[index]) >= 0)
+                  {
+                    console.log(roleList[index]);
+                    resultList.push({
+                      userid: change.id,
+                      Address: change.data().Address,
+                      AlternatePhone: change.data().AlternatePhone,
+                      City: change.data().City,
+                      Country: change.data().Country,
+                      DateOfBirth: change.data().DateOfBirth,
+                      Email: change.data().Email,
+                      Gender: change.data().Gender,
+                      Phone: change.data().Phone,
+                      State: change.data().State,
+                      UserName: change.data().UserName,
+                      UserRole: change.data().UserRole,
+                    });
+                    break;
+                  }
                 }
+
               }
             console.log(resultList);
           });

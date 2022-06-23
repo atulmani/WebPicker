@@ -70,6 +70,8 @@ exports.getAllEventDetailsForYears = events.getAllEventDetailsForYears;
 exports.setEventCategoryDetails = events.setEventCategoryDetails;
 exports.getAllEventDetailsByCity = events.getAllEventDetailsByCity;
 exports.getAllEventWithEventStatus = events.getAllEventWithEventStatus;
+exports.getAllEventWithEventStatus1 = events.getAllEventWithEventStatus1;
+exports.getAllEventWithEventStatusAndLocation = events.getAllEventWithEventStatusAndLocation;
 
 
 
