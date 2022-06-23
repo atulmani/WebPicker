@@ -3,14 +3,17 @@
 
 <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RRM25JW0R6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RRM25JW0R6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'G-RRM25JW0R6');
-</script>
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-RRM25JW0R6');
+  </script>
   <meta charset="utf-8">
   <meta name="author" content="Hyper Cloud Digital Solutions">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -192,7 +195,7 @@
         </span>
         <br> <span> Contact Us </span>
       </a>
-      <a type="button" data-toggle="collapse" data-target="#collapsibleNavbar1">
+      <a type="button" id="moreButton">
         <span class="material-icons-outlined">
           vertical_split
         </span>
@@ -200,523 +203,553 @@
       </a>
 
       <!-- Navbar links -->
-      <div class="collapse navbar-collapse more-button-links" id="collapsibleNavbar1">
-        <ul class="">
-          <li class="">
-            <a class="" href="../#">Home</a>
-          </li>
-          <li class="">
-            <a class="" href="../#project">Industries</a>
-          </li>
-          <!-- <li class="">
-            <a class="" href="login">Login</a>
-          </li> -->
-          <li class="">
-            <a class="" href="../#project">Services</a>
-          </li>
-          <li class="">
-            <a class="" href="../contacts">Contact</a>
-          </li>
-          <!-- <li class="">
-            <a class="" href="../login">Login</a>
-          </li> -->
-        </ul>
+      <div class="more-button-links" id="moreButtonLinks">
+        <div class="highlighter"></div>
+
+        <span class="material-icons-outlined closeBtn" id="closeBtn">
+          close
+        </span>
+
+        <h5>Shortcuts</h5><br>
+
+        <div class="row no-gutters">
+          <div class="col-3">
+            <a href="../#project" class="more-links">
+              <span class="material-icons-outlined" style="color: #E10032;">
+                leaderboard
+              </span>
+              <h5>Industries</h5>
+            </a>
+          </div>
+
+          <div class="col-3">
+            <a href="../#capabilities" class="more-links">
+              <span class="material-icons-outlined" style="color: #E10032;">
+                cloud_upload
+              </span>
+              <h5>Digital</h5>
+            </a>
+          </div>
+
+          <div class="col-3">
+            <a href="../#profile" class="more-links">
+              <span class="material-icons-outlined" style="color: #E10032;">
+                touch_app
+              </span>
+              <h5>About us</h5>
+            </a>
+          </div>
+
+          <div class="col-3">
+            <a href="../contacts" class="more-links">
+              <span class="material-icons-outlined" style="color: #E10032;">
+                phone_in_talk
+              </span>
+              <h5>Contact us</h5>
+            </a>
+          </div>
+
+        </div>
+
       </div>
 
   </div>
+
+
   <!-- Navbar - End -->
 
   <!-- Banner Section - Start -->
-  <section id="banner" style="background: #fff;">
-    <br><br>
-    <div style="container-fluid">
-      <div class="row no-gutters">
-        <div class="col-md-12 col-md-offset-1">
-          <div id="banner-list" class="owl-carousel owl-theme">
-            <div class="">
-              <div class="large">
-                <!-- <img src="https://HyperCloudAdvertising.com/img/banner/1.png" width="100%" alt=""> -->
-                <img src="../img/banner/1.png" width="100%" alt="">
+  <div class="" id="fullContent">
+    <section id="banner" style="background: #fff;">
+      <br><br>
+      <div style="container-fluid">
+        <div class="row no-gutters">
+          <div class="col-md-12 col-md-offset-1">
+            <div id="banner-list" class="owl-carousel owl-theme">
+              <div class="">
+                <div class="large">
+                  <!-- <img src="https://HyperCloudAdvertising.com/img/banner/1.png" width="100%" alt=""> -->
+                  <img src="../img/banner/1.webp" width="100%" alt="">
+                </div>
+                <div class="small">
+                  <img src="../img/banner/1m.webp" width="100%" alt="">
+                </div>
               </div>
-              <div class="small">
-                <img src="../img/banner/1m.png" width="100%" alt="">
-              </div>
-            </div>
 
-            <div class="">
-              <div class="large">
-                <img src="../img/banner/2.png" width="100%" alt="">
+              <div class="">
+                <div class="large">
+                  <img src="../img/banner/2.webp" width="100%" alt="">
+                </div>
+                <div class="small">
+                  <img src="../img/banner/2m.webp" width="100%" alt="">
+                </div>
               </div>
-              <div class="small">
-                <img src="../img/banner/2m.png" width="100%" alt="">
+              <div class="">
+                <div class="large">
+                  <img src="../img/banner/3.webp" width="100%" alt="">
+                </div>
+                <div class="small">
+                  <img src="../img/banner/3m.webp" width="100%" alt="">
+                </div>
+              </div>
+              <div class="">
+                <div class="large">
+                  <img src="../img/banner/4.webp" width="100%" alt="">
+                </div>
+                <div class="small">
+                  <img src="../img/banner/4m.webp" width="100%" alt="">
+                </div>
               </div>
             </div>
-            <div class="">
-              <div class="large">
-                <img src="../img/banner/3.png" width="100%" alt="">
-              </div>
-              <div class="small">
-                <img src="../img/banner/3m.png" width="100%" alt="">
-              </div>
-            </div>
-            <div class="">
-              <div class="large">
-                <img src="../img/banner/4.png" width="100%" alt="">
-              </div>
-              <div class="small">
-                <img src="../img/banner/4m.png" width="100%" alt="">
-              </div>
-            </div>
-          </div>
-          <!-- <div class="owl-nav">
+            <!-- <div class="owl-nav">
             <div class="owl-left"></div>
             <div class="owl-right"></div>
           </div> -->
+          </div>
         </div>
       </div>
-    </div>
-    <br><br><br><br>
-    <!-- <img src="./img/education.png" width="100%" alt=""> -->
-  </section>
+      <br><br><br><br>
+      <!-- <img src="./img/education.png" width="100%" alt=""> -->
+    </section>
 
-  <!-- Banner Section - End -->
+    <!-- Banner Section - End -->
 
-  <!-- positions - start -->
+    <!-- positions - start -->
 
-  <div class="container" style="color:#fff">
-    <center>
+    <div class="container" style="color:#fff">
+      <center>
+        <br>
+        <h2 style="margin-bottom:0;">JOBS</h2>
+        <h6 style="margin-top:0;font-weight:bold;">Positions</h6>
+        <br>
+      </center>
+      <div class="row no-gutters">
+        <div class="col-lg-5 col-md-6 col-sm-12">
+          <div class="positions-img">
+            <img src="../img/career/1.png" width="100%" alt="">
+          </div>
+        </div>
+        <div class="col-lg-7 col-md-6 col-sm-12">
+          <div class="positions-content">
+            <h5 class="positions-content-header">Creative Interns</h5>
+            <h6 class="positions-content-subheading">On Job Trainee</h6>
+            <div class>
+              <h6>3 Streams to choose</h6>
+              <h6 class="heading" style="padding-top:10px;">1. Web & Mobile App Designing</h6>
+              <small class="content">- Basics: Layout and Visuals, Iconography and Typography, UI Element</small><br>
+              <small class="content">- Theme: Logo, Colors</small><br>
+              <small class="content">- Design: Responsive, HTML5, CSS3, Bootstrap, JQuery, Javascript</small><br>
+            </div>
+            <div class="">
+              <h6 class="heading">2. Web & Mobile App Development</h6>
+              <small class="content">- Basics: App Components, Mobile based card design</small><br>
+              <small class="content">- Cloud Services: Authentication services, NoSQL Database, Rest API</small><br>
+              <small class="content">- Development: Domain & Hosting, Live projects</small><br>
+            </div>
+            <div class="">
+              <h6 class="heading">3. Digital marketing & Business Promotion</h6>
+              <small class="content">- Basics: App Analysis & Review, Post & Video Creation, Organic & Paid Marketing</small><br>
+              <small class="content">- Services: Content & Copy Writing, SEO, Google services Integration</small><br>
+              <small class="content">- Development: On-Page & Off-Page SEO, Social Media Integration, Live projects</small><br>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <br>
-      <h2 style="margin-bottom:0;">JOBS</h2>
-      <h6 style="margin-top:0;font-weight:bold;">Positions</h6>
+      <hr><br>
+
+      <div class="row no-gutters">
+        <div class="col-lg-5 col-md-6 col-sm-12">
+          <div class="positions-img">
+            <img src="../img/career/2.png" width="100%" alt="">
+          </div>
+        </div>
+        <div class="col-lg-7 col-md-6 col-sm-12">
+          <div class="positions-content">
+            <h5 class="positions-content-header">Emerging Writers</h5>
+            <h6 class="positions-content-subheading">Work from home</h6>
+            <div class>
+              <h6 class="heading" style="padding:10px 0;">Job Description</h6>
+              <small class="content">- Produce well-researched content for publication online</small><br>
+              <small class="content">- Writing clear marketing copy to promote our products/services</small><br>
+              <small class="content">- Develop related content for multiple platforms, such as websites, email marketing, product descriptions, campaigns, videos and blogs</small><br>
+              <small class="content">- Promote content on social media</small><br>
+              <small class="content">- Ability to work independently with little or no daily supervision</small><br>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <br>
-    </center>
-    <div class="row no-gutters">
-      <div class="col-lg-5 col-md-6 col-sm-12">
-        <div class="positions-img">
-          <img src="../img/career/1.png" width="100%" alt="">
+      <hr><br>
+
+      <div class="row no-gutters">
+        <div class="col-lg-5 col-md-6 col-sm-12">
+          <div class="positions-img">
+            <img src="../img/career/3.png" width="100%" alt="">
+          </div>
         </div>
-      </div>
-      <div class="col-lg-7 col-md-6 col-sm-12">
-        <div class="positions-content">
-          <h5 class="positions-content-header">Creative Interns</h5>
-          <h6 class="positions-content-subheading">On Job Trainee</h6>
-          <div class>
-            <h6>3 Streams to choose</h6>
-            <h6 class="heading" style="padding-top:10px;">1. Web & Mobile App Designing</h6>
-            <small class="content">- Basics: Layout and Visuals, Iconography and Typography, UI Element</small><br>
-            <small class="content">- Theme: Logo, Colors</small><br>
-            <small class="content">- Design: Responsive, HTML5, CSS3, Bootstrap, JQuery, Javascript</small><br>
-          </div>
-          <div class="">
-            <h6 class="heading">2. Web & Mobile App Development</h6>
-            <small class="content">- Basics: App Components, Mobile based card design</small><br>
-            <small class="content">- Cloud Services: Authentication services, NoSQL Database, Rest API</small><br>
-            <small class="content">- Development: Domain & Hosting, Live projects</small><br>
-          </div>
-          <div class="">
-            <h6 class="heading">3. Digital marketing & Business Promotion</h6>
-            <small class="content">- Basics: App Analysis & Review, Post & Video Creation, Organic & Paid Marketing</small><br>
-            <small class="content">- Services: Content & Copy Writing, SEO, Google services Integration</small><br>
-            <small class="content">- Development: On-Page & Off-Page SEO, Social Media Integration, Live projects</small><br>
+        <div class="col-lg-7 col-md-6 col-sm-12">
+          <div class="positions-content">
+            <h5 class="positions-content-header">Digital Marketing Analyst</h5>
+            <h6 class="positions-content-subheading">Work from home</h6>
+            <div class>
+              <h6 class="heading" style="padding:10px 0;">Job Description</h6>
+              <small class="content">- Collecting and analyzing customer, marketing, and web behavioral data</small><br>
+              <small class="content">- Testing campaigns, analyzing key metrics, and identifying opportunities to increase campaign performance</small><br>
+              <small class="content">- Developing and presenting learnings from your analysis, including actionable insights and recommendations</small><br>
+              <small class="content">- Developing digital campaign and web measurement strategies</small><br>
+              <small class="content">- Ability to work independently with little or no daily supervision</small><br>
+            </div>
           </div>
         </div>
       </div>
+
+      <br>
+      <hr><br>
+
+      <div class="advertisement">
+        <table>
+          <tr>
+            <td>
+              <img src="../img/tmp1/3.png" width="50%" alt="">
+            </td>
+            <td>
+              <h6>Rebound of</h6>
+              <h4 style="font-size:1.2rem;">Check our new Advertising methods launched all over the world</h4>
+            </td>
+          </tr>
+        </table>
+      </div><br>
     </div>
 
-    <br>
-    <hr><br>
-
-    <div class="row no-gutters">
-      <div class="col-lg-5 col-md-6 col-sm-12">
-        <div class="positions-img">
-          <img src="../img/career/2.png" width="100%" alt="">
-        </div>
-      </div>
-      <div class="col-lg-7 col-md-6 col-sm-12">
-        <div class="positions-content">
-          <h5 class="positions-content-header">Emerging Writers</h5>
-          <h6 class="positions-content-subheading">Work from home</h6>
-          <div class>
-            <h6 class="heading" style="padding:10px 0;">Job Description</h6>
-            <small class="content">- Produce well-researched content for publication online</small><br>
-            <small class="content">- Writing clear marketing copy to promote our products/services</small><br>
-            <small class="content">- Develop related content for multiple platforms, such as websites, email marketing, product descriptions, campaigns, videos and blogs</small><br>
-            <small class="content">- Promote content on social media</small><br>
-            <small class="content">- Ability to work independently with little or no daily supervision</small><br>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <br>
-    <hr><br>
-
-    <div class="row no-gutters">
-      <div class="col-lg-5 col-md-6 col-sm-12">
-        <div class="positions-img">
-          <img src="../img/career/3.png" width="100%" alt="">
-        </div>
-      </div>
-      <div class="col-lg-7 col-md-6 col-sm-12">
-        <div class="positions-content">
-          <h5 class="positions-content-header">Digital Marketing Analyst</h5>
-          <h6 class="positions-content-subheading">Work from home</h6>
-          <div class>
-            <h6 class="heading" style="padding:10px 0;">Job Description</h6>
-            <small class="content">- Collecting and analyzing customer, marketing, and web behavioral data</small><br>
-            <small class="content">- Testing campaigns, analyzing key metrics, and identifying opportunities to increase campaign performance</small><br>
-            <small class="content">- Developing and presenting learnings from your analysis, including actionable insights and recommendations</small><br>
-            <small class="content">- Developing digital campaign and web measurement strategies</small><br>
-            <small class="content">- Ability to work independently with little or no daily supervision</small><br>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <br>
-    <hr><br>
-
-    <div class="advertisement">
-      <table>
-        <tr>
-          <td>
-            <img src="../img/tmp1/3.png" width="50%" alt="">
-          </td>
-          <td>
-            <h6>Rebound of</h6>
-            <h4 style="font-size:1.2rem;">Check our new Advertising methods launched all over the world</h4>
-          </td>
-        </tr>
-      </table>
-    </div><br>
-  </div>
 
 
+    <!-- positions - end -->
 
-  <!-- positions - end -->
-
-  <!-- Thanks - start -->
-  <section id="thanks">
-    <br><br>
-    <div class="">
-      <!-- <div class="large">
+    <!-- Thanks - start -->
+    <section id="thanks">
+      <br><br>
+      <div class="">
+        <!-- <div class="large">
         <div class="service-circle5"></div>
       </div>
       <div class="small">
         <div class="service-circle4"></div>
       </div> -->
-      <div class="row no-gutters">
-        <div class="col-lg-9 col-md-9 col-sm-12">
-          <div class="thanks-container">
-            <div class="large">
-              <div class="services-heading">
-                <h2>Thank You for <br> choosing us</h2><br>
-              </div><br>
-            </div>
-            <div class="small">
-              <div class="services-heading" style="text-align: center;">
-                <h2>Thank You for choosing us</h2><br>
+        <div class="row no-gutters">
+          <div class="col-lg-9 col-md-9 col-sm-12">
+            <div class="thanks-container">
+              <div class="large">
+                <div class="services-heading">
+                  <h2>Thank You for <br> choosing us</h2><br>
+                </div><br>
+              </div>
+              <div class="small">
+                <div class="services-heading" style="text-align: center;">
+                  <h2>Thank You for choosing us</h2><br>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="row no-gutters thankyou-smart">
-            <!-- <div class="col-lg-1 col-md-1 col-sm-12">
+            <div class="row no-gutters thankyou-smart">
+              <!-- <div class="col-lg-1 col-md-1 col-sm-12">
             </div> -->
-            <div class="col-lg-2 col-md-2 col-sm-12 thankyou-smart-div" style="padding: 0 10px;">
-              <span style="color: #E10032; font-size: 1.2rem;">
-                <img src="../img/thankyou/s.png" width="20px" height="20px" alt="">
-                100% </span>
-              <h5>Specific</h5>
-              <span>
-                <!-- Clear What needs to be achieved -->
-                coherent on what needs to be achieved
-              </span>
-              <hr class="small" />
+              <div class="col-lg-2 col-md-2 col-sm-12 thankyou-smart-div" style="padding: 0 10px;">
+                <span style="color: #E10032; font-size: 1.2rem;">
+                  <img src="../img/thankyou/s.png" width="20px" height="20px" alt="">
+                  100% </span>
+                <h5>Specific</h5>
+                <span>
+                  <!-- Clear What needs to be achieved -->
+                  coherent on what needs to be achieved
+                </span>
+                <hr class="small" />
+              </div>
+
+              <div class="col-lg-2 col-md-2 col-sm-12 thankyou-smart-div" style="padding: 0 10px;">
+                <span style="color: #E10032; font-size: 1.2rem;">
+                  <img src="../img/thankyou/m.png" width="20px" height="20px" alt="">
+                  100% </span>
+                <h5>Measurable</h5>
+                <span>metric with a target that indicate success</span>
+                <hr class="small" />
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-12 thankyou-smart-div" style="padding: 0 10px;">
+                <span style="color: #E10032; font-size: 1.2rem;">
+                  <img src="../img/thankyou/a.png" width="20px" height="20px" alt="">
+                  100% </span>
+                <h5>Achievable</h5>
+                <span>attaining the realistic target set
+                  <!-- Challenging target but realistic -->
+                </span>
+                <hr class="small" />
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-12 thankyou-smart-div" style="padding: 0 10px;">
+                <span style="color: #E10032; font-size: 1.2rem;">
+                  <img src="../img/thankyou/r.png" width="20px" height="20px" alt="">
+                  100% </span>
+                <h5>Relevant</h5>
+                <span>
+                  <!-- Consistent and higher level goals -->
+                  relative and pertinent valuable goals
+                </span>
+                <hr class="small" />
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-12 thankyou-smart-div" style="border:none; padding:0px 10px;">
+                <span style="color: #E10032; font-size: 1.2rem;">
+                  <img src="../img/thankyou/t.png" width="20px" height="20px" alt="">
+                  100% </span>
+                <h5>Time-bound</h5>
+                <span>swift and prompt ways to achieve the goals
+                  <!-- Date for when the goal needs to be achieved -->
+                </span>
+                <hr class="small" />
+              </div>
+              <div class="col-lg-1 col-md-1 col-sm-12">
+              </div>
             </div>
 
-            <div class="col-lg-2 col-md-2 col-sm-12 thankyou-smart-div" style="padding: 0 10px;">
-              <span style="color: #E10032; font-size: 1.2rem;">
-                <img src="../img/thankyou/m.png" width="20px" height="20px" alt="">
-                100% </span>
-              <h5>Measurable</h5>
-              <span>metric with a target that indicate success</span>
-              <hr class="small" />
+
+            <br><br>
+            <div class="large thanks-container">
+              <a href="../contacts">
+                <button class="mybutton button5">
+                  <div class="" style="display: flex;align-items: center;justify-content: center;">
+                    <span style="">Let's Connect</span>
+                    <span class="material-icons-outlined">
+                      keyboard_double_arrow_right
+                    </span>
+                  </div>
+                </button>
+              </a>
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-12 thankyou-smart-div" style="padding: 0 10px;">
-              <span style="color: #E10032; font-size: 1.2rem;">
-                <img src="../img/thankyou/a.png" width="20px" height="20px" alt="">
-                100% </span>
-              <h5>Achievable</h5>
-              <span>attaining the realistic target set
-                <!-- Challenging target but realistic -->
-              </span>
-              <hr class="small" />
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-12 thankyou-smart-div" style="padding: 0 10px;">
-              <span style="color: #E10032; font-size: 1.2rem;">
-                <img src="../img/thankyou/r.png" width="20px" height="20px" alt="">
-                100% </span>
-              <h5>Relevant</h5>
-              <span>
-                <!-- Consistent and higher level goals -->
-                relative and pertinent valuable goals
-              </span>
-              <hr class="small" />
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-12 thankyou-smart-div" style="border:none; padding:0px 10px;">
-              <span style="color: #E10032; font-size: 1.2rem;">
-                <img src="../img/thankyou/t.png" width="20px" height="20px" alt="">
-                100% </span>
-              <h5>Time-bound</h5>
-              <span>swift and prompt ways to achieve the goals
-                <!-- Date for when the goal needs to be achieved -->
-              </span>
-              <hr class="small" />
-            </div>
-            <div class="col-lg-1 col-md-1 col-sm-12">
-            </div>
+            <!-- </div> -->
           </div>
-
-
-          <br><br>
-          <div class="large thanks-container">
-            <a href="../contacts">
-              <button class="mybutton button5">
-                <div class="" style="display: flex;align-items: center;justify-content: center;">
-                  <span style="">Let's Connect</span>
-                  <span class="material-icons-outlined">
-                    keyboard_double_arrow_right
-                  </span>
-                </div>
-              </button>
-            </a>
-          </div>
-          <!-- </div> -->
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-12">
-          <div class="thanks-svg-div">
-            <img src="../img/thanks-1.svg" width="90%" alt="">
+          <div class="col-lg-3 col-md-3 col-sm-12">
+            <div class="thanks-svg-div">
+              <img src="../img/thanks-1.svg" width="90%" alt="">
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- thanks - end -->
+    <!-- thanks - end -->
 
-  <!-- partners - start -->
-  <section id="partners">
-    <br><br><br><br>
-    <!-- <br><br>
+    <!-- partners - start -->
+    <section id="partners">
+      <br><br><br><br>
+      <!-- <br><br>
     <div class="patners-heading">
       <h4><strong> Our Partners </strong></h4>
       <br>
     </div>
     <br> -->
-    <div class="container">
-      <div class="row no-gutters">
-        <div class="col-md-12 col-md-offset-1">
-          <div id="partners-carousel" class="owl-carousel owl-theme">
-            <!-- <div class="partners-item">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-md-12 col-md-offset-1">
+            <div id="partners-carousel" class="owl-carousel owl-theme">
+              <!-- <div class="partners-item">
               <img src="https://HyperCloudAdvertising.com/img/clients/1.png" width="100%" alt="">
             </div> -->
-            <div class="partners-item">
-              <img src="../img/clients/2.png" width="100%" alt="">
-            </div>
-            <div class="partners-item">
-              <img src="../img/clients/14.png" width="100%" alt="">
-            </div>
-            <div class="partners-item">
-              <img src="../img/clients/8.png" width="100%" alt="">
-            </div>
-            <div class="partners-item">
-              <img src="../img/clients/4.png" width="100%" alt="">
-            </div>
-            <div class="partners-item">
-              <img src="../img/clients/5.png" width="100%" alt="">
-            </div>
-            <div class="partners-item">
-              <img src="../img/clients/15.png" width="100%" alt="">
-            </div>
-            <div class="partners-item">
-              <img src="../img/clients/6.png" width="100%" alt="">
-            </div>
-            <div class="partners-item">
-              <img src="../img/clients/3.png" width="100%" alt="">
-            </div>
-            <div class="partners-item">
-              <img src="../img/clients/7.png" width="100%" alt="">
-            </div>
-            <div class="partners-item">
-              <img src="../img/clients/9.png" width="100%" alt="">
-            </div>
-            <div class="partners-item">
-              <img src="../img/clients/10.png" width="100%" alt="">
-            </div>
-            <div class="partners-item">
-              <img src="../img/clients/11.png" width="100%" alt="">
-            </div>
-            <div class="partners-item">
-              <img src="../img/clients/12.png" width="100%" alt="">
-            </div>
-            <div class="partners-item">
-              <img src="../img/clients/13.png" width="100%" alt="">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br>
-  </section>
-  <!-- partners - end -->
-
-  <!-- Footer Section - Start -->
-  <section id="footer">
-    <br>
-    <div class="row no-gutters" style="padding: 10px 20px;">
-      <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="footer-logo-div">
-          <img src="../img/logo/fulllengthlogo-whitetext.png" width="120px" alt="">
-          <div class="">
-            <br>
-            <div style="font-size: 0.9rem; font-weight: 800;"> Digitech Solutions, Simplified</div>
-            <p>
-              Envisage & Innovate the most Curated Solutions for our valuable Customers
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="row no-gutters">
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="footer-links">
-              <h5>Industries</h5>
-              <div class="">
-                <a class="" href="../#project">Agriculture</a>
+              <div class="partners-item">
+                <img src="../img/clients/2.png" width="100%" alt="">
               </div>
-              <div class="">
-                <a class="" href="../#project">Education</a>
+              <div class="partners-item">
+                <img src="../img/clients/14.png" width="100%" alt="">
               </div>
-              <div class="">
-                <a class="" href="../#project">Media & Technology</a>
+              <div class="partners-item">
+                <img src="../img/clients/8.png" width="100%" alt="">
               </div>
-              <div class="">
-                <a class="" href="../#project">Mobility & Hospitality</a>
+              <div class="partners-item">
+                <img src="../img/clients/4.png" width="100%" alt="">
               </div>
-              <div class="">
-                <a class="" href="../#project">Retail</a>
+              <div class="partners-item">
+                <img src="../img/clients/5.png" width="100%" alt="">
               </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="footer-links">
-              <h5>Services</h5>
-              <div class="">
-                <a class="" href="../#project">Consulting</a>
+              <div class="partners-item">
+                <img src="../img/clients/15.png" width="100%" alt="">
               </div>
-              <div class="">
-                <a class="" href="../#project">Cloud Based Solutions</a>
+              <div class="partners-item">
+                <img src="../img/clients/6.png" width="100%" alt="">
               </div>
-              <div class="">
-                <a class="" href="../#project">Advertising Solutions</a>
+              <div class="partners-item">
+                <img src="../img/clients/3.png" width="100%" alt="">
               </div>
-              <div class="">
-                <a class="" href="../#project">Automation & AI</a>
+              <div class="partners-item">
+                <img src="../img/clients/7.png" width="100%" alt="">
               </div>
-              <div class="">
-                <a class="" href="../#project">Analytics & Insights</a>
+              <div class="partners-item">
+                <img src="../img/clients/9.png" width="100%" alt="">
               </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-12 col-sm-12">
-            <div class="footer-links">
-              <h5>About Us</h5>
-              <div class="">
-                <a class="" href="../#project">Services</a>
+              <div class="partners-item">
+                <img src="../img/clients/10.png" width="100%" alt="">
               </div>
-              <div class="">
-                <a class="" href="../#capabilities">Capabilities</a>
+              <div class="partners-item">
+                <img src="../img/clients/11.png" width="100%" alt="">
               </div>
-              <div class="">
-                <a class="" href="../careers">Careers</a>
+              <div class="partners-item">
+                <img src="../img/clients/12.png" width="100%" alt="">
               </div>
-              <div class="">
-                <a class="" href="../#">Privacy Policy</a>
-              </div>
-              <div class="">
-                <a class="" href="../#">Disclaimer</a>
+              <div class="partners-item">
+                <img src="../img/clients/13.png" width="100%" alt="">
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-md-3 col-sm-12">
-        <div class="footer-links" style="text-align: center;">
-          <h5 class="footer-contact-us">Contact Us</h5>
-          <div class="">
-            <div class="footer-connect">
-              <span class="material-icons-outlined">
-                phone
-              </span>
-              <span>+91 915 255 2222</span>
-            </div>
+      <br>
+    </section>
+    <!-- partners - end -->
 
-            <div class="footer-connect">
-              <span class="material-icons-outlined">
-                phone
-              </span>
-              <span>+91 874 900 1111</span>
+    <!-- Footer Section - Start -->
+    <section id="footer">
+      <br>
+      <div class="row no-gutters" style="padding: 10px 20px;">
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <div class="footer-logo-div">
+            <img src="../img/logo/fulllengthlogo-whitetext.png" width="120px" alt="">
+            <div class="">
+              <br>
+              <div style="font-size: 0.9rem; font-weight: 800;"> Digitech Solutions, Simplified</div>
+              <p>
+                Envisage & Innovate the most Curated Solutions for our valuable Customers
+              </p>
             </div>
-            <br>
-            <div class="footer-connect">
-              <span class="material-icons-outlined">
-                mark_email_read
-              </span>
-              <span style="position:relative;top: -3px;">Connect@HyperCloudDigital.com</span>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="row no-gutters">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <div class="footer-links">
+                <h5>Industries</h5>
+                <div class="">
+                  <a class="" href="../#project">Agriculture</a>
+                </div>
+                <div class="">
+                  <a class="" href="../#project">Education</a>
+                </div>
+                <div class="">
+                  <a class="" href="../#project">Media & Technology</a>
+                </div>
+                <div class="">
+                  <a class="" href="../#project">Mobility & Hospitality</a>
+                </div>
+                <div class="">
+                  <a class="" href="../#project">Retail</a>
+                </div>
+              </div>
             </div>
-            <br>
-            <div class="social">
-              <a href="https://www.facebook.com/HyperCloudDigital/">
-                <i class="fab fa-facebook-f" style="display:flex;justify-content:center;align-items:center;"></i>
-              </a>
-              <a href="https://www.instagram.com/HyperCloudDigital/">
-                <i class="fab fa-instagram" style="display:flex;justify-content:center;align-items:center;"></i>
-              </a>
-              <a href="https://www.linkedin.com/company/hyper-cloud-advertising">
-                <i class="fab fa-linkedin-in" style="display:flex;justify-content:center;align-items:center;"></i>
-              </a>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <div class="footer-links">
+                <h5>Services</h5>
+                <div class="">
+                  <a class="" href="../#project">Consulting</a>
+                </div>
+                <div class="">
+                  <a class="" href="../#project">Cloud Based Solutions</a>
+                </div>
+                <div class="">
+                  <a class="" href="../#project">Advertising Solutions</a>
+                </div>
+                <div class="">
+                  <a class="" href="../#project">Automation & AI</a>
+                </div>
+                <div class="">
+                  <a class="" href="../#project">Analytics & Insights</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+              <div class="footer-links">
+                <h5>About Us</h5>
+                <div class="">
+                  <a class="" href="../#project">Services</a>
+                </div>
+                <div class="">
+                  <a class="" href="../#capabilities">Capabilities</a>
+                </div>
+                <div class="">
+                  <a class="" href="../careers">Careers</a>
+                </div>
+                <div class="">
+                  <a class="" href="../#">Privacy Policy</a>
+                </div>
+                <div class="">
+                  <a class="" href="../#">Disclaimer</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12">
+          <div class="footer-links" style="text-align: center;">
+            <h5 class="footer-contact-us">Contact Us</h5>
+            <div class="">
+              <div class="footer-connect">
+                <span class="material-icons-outlined">
+                  phone
+                </span>
+                <span>+91 915 255 2222</span>
+              </div>
+
+              <div class="footer-connect">
+                <span class="material-icons-outlined">
+                  phone
+                </span>
+                <span>+91 874 900 1111</span>
+              </div>
+              <br>
+              <div class="footer-connect">
+                <span class="material-icons-outlined">
+                  mark_email_read
+                </span>
+                <span style="position:relative;top: -3px;">Connect@HyperCloudDigital.com</span>
+              </div>
+              <br>
+              <div class="social">
+                <a href="https://www.facebook.com/HyperCloudDigital/">
+                  <i class="fab fa-facebook-f" style="display:flex;justify-content:center;align-items:center;"></i>
+                </a>
+                <a href="https://www.instagram.com/HyperCloudDigital/">
+                  <i class="fab fa-instagram" style="display:flex;justify-content:center;align-items:center;"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/hyper-cloud-advertising">
+                  <i class="fab fa-linkedin-in" style="display:flex;justify-content:center;align-items:center;"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <br>
+      <br>
 
-    <a href="https://api.whatsapp.com/send?phone=+919152552222" class="whatsapp_float" target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-whatsapp"></i>
-    </a>
+      <a href="https://api.whatsapp.com/send?phone=+919152552222" class="whatsapp_float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+      </a>
 
-    <div class="row no-gutters copyright" style="border-bottom: 12px solid white">
+      <div class="row no-gutters copyright" style="border-bottom: 12px solid white">
 
-      <div class="col-lg-6 col-md-6 col-sm-12">
-        <span>© Copyright 2022 </span>
-        <span>
-          Hyper Cloud Advertising Pvt. Ltd. All rights reserved.
-        </span>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <span>© Copyright 2022 </span>
+          <span>
+            Hyper Cloud Advertising Pvt. Ltd. All rights reserved.
+          </span>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 large" style="text-align: right;">
+          <span>
+            Terms & Conditions | Privacy Policy | Disclaimer
+          </span>
+        </div>
+
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-12 large" style="text-align: right;">
-        <span>
-          Terms & Conditions | Privacy Policy | Disclaimer
-        </span>
-      </div>
 
-    </div>
+      <br class="small" /><br class="small" />
 
-    </div>
-    <br class="small" /><br class="small" />
-
-  </section>
+    </section>
+  </div>
 
   <!-- Footer Section - end -->
 
