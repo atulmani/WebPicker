@@ -12,6 +12,17 @@ auth.onAuthStateChanged(firebaseUser => {
       loggedinUser = null;
       console.log('User has been logged out');
     }
+    userLocation = localStorage['userLocation'];
+    if(userLocation === "" || userLocation === undefined || userLocation === null)
+    {
+      document.getElementById('location').innerHTML = userLocation;
+      document.getElementById('location1').innerHTML = userLocation;
+    }else {
+
+      document.getElementById('location').innerHTML = userLocation;
+      document.getElementById('location1').innerHTML = userLocation;
+    }
+
     getTournamentSummary();
 
   } catch (error) {
@@ -101,6 +112,7 @@ function locationSelect(location)
   console.log(locationlist);
   // console.log(JSON.parse(locationlist));
   localStorage['userLocation'] =  location;
+  window.location.href = "index.html";
   // caches.open('userDetails').then(function(cache) {
   //   console.log("userLocation", JSON.parse(locationlist));
   //     // cache.put("userLocation", JSON.parse(locationlist));

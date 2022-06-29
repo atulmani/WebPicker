@@ -8,18 +8,22 @@ auth.onAuthStateChanged(firebaseUser => {
     userLocation = localStorage['userLocation'];
     if (firebaseUser) {
       loggedinUser = firebaseUser;
-      console.log('Logged-in user email id: ' + firebaseUser.email);
+      // console.log('Logged-in user email id: ' + firebaseUser.email);
       // userID = firebaseUser.uid;
       // GetUserRole(firebaseUser);
-      GetProfileData();
+      GetProfileData()
+      .then(function (rec){
+          getTournamentSummary();
+      });
 
 
       //document.getElementById('ifSignedIn').innerHTML = 'Hi Sanidhya';
     } else {
       loggedinUser = null;
-      console.log('User has been logged out');
+      // console.log('User has been logged out');
+      getTournamentSummary();
     }
-    getTournamentSummary();
+
 
   } catch (error) {
     console.log(error.message);
@@ -27,7 +31,7 @@ auth.onAuthStateChanged(firebaseUser => {
   }
 });
 
-function GetProfileData() {
+async function GetProfileData() {
   var userProfile = JSON.parse(localStorage.getItem("userProfile"));
   if (userProfile != undefined && userProfile != "" && userProfile != null) {
     if(userLocation === "")
@@ -43,21 +47,21 @@ function GetProfileData() {
     // document.getElementById('ifSignedIn').href = "login/profile.html";
     // document.getElementById("UserCity").innerHTML = userProfile.City;
   }
-
+  return;
 }
 
 function getInstallationPrompt()
 {
-  console.log("in getInstallationPrompt");
+  // console.log("in getInstallationPrompt");
   if(deferredPrompt){
     deferredPrompt.prompt();
 
     deferredPrompt.userChoice.then(function(choiceResult){
-      console.log(choiceResult.outcome);
+      // console.log(choiceResult.outcome);
       if(choiceResult.outcome === "dismissed"){
-        console.log("user cancelled installation");
+        // console.log("user cancelled installation");
       }else{
-        console.log("user added to home screen");
+        // console.log("user added to home screen");
       }
     });
 
@@ -180,15 +184,20 @@ function getTournamentSummary() {
 
 function getEventList(filter) {
   var para = {};
-   console.log(userLocation);
+   // console.log(userLocation);
    if(userLocation === undefined || userLocation === "" || userLocation === null){
      userLocation="All";
+     document.getElementById('location').innerHTML = "Location";
+     document.getElementById('location').innerHTML = "Location";
+   }else{
+     document.getElementById('location').innerHTML = userLocation;
+     document.getElementById('location1').innerHTML = userLocation;
    }
   para = {
     eventStatus: "Active",
     City : userLocation,
   };
-   console.log(para);
+   // console.log(para);
   var ret = "";
   //if (filter === "All") {
 
@@ -196,10 +205,10 @@ function getEventList(filter) {
   // document.getElementById("thumbs").innerHTML="";
 
   ret = firebase.functions().httpsCallable("getAllEventWithEventStatusAndLocation");
-  console.log('getAllEventWithEventStatusAndLocation');
+  // console.log('getAllEventWithEventStatusAndLocation');
   //}
   ret(para).then(results => {
-     console.log("From Function " + results.data.length);
+     // console.log("From Function " + results.data.length);
 
     var para3 = {};
     para3 = {
@@ -213,7 +222,7 @@ function getEventList(filter) {
       // console.log("From Function " + results.data[0].resultsid);
       for (index = 0; index < results.data.length; index++) {
         var entryCount = 0;
-         console.log(results.data[index].EventCode);
+         // console.log(results.data[index].EventCode);
         var indEntry = results1.data.findIndex(e => e.EventID === results.data[index].Eventid);
         // console.log(indEntry);
         if (indEntry >= 0)
@@ -222,51 +231,105 @@ function getEventList(filter) {
         // console.log(results.data[index]);
         RenderEventDetails(index, results.data[index], entryCount);
       }
-      document.getElementById('loading').style.display = 'none';
+      // document.getElementById('loading').style.display = 'none';
+    })
+    .then(function (res){
+        //activate first item of both pard items
+        var bigimage = $("#big");
+        var thumbs = $("#thumbs");
+        var bigList =bigimage.data("owl.carousel").$element.context.firstElementChild.firstChild;
+        var bigIndex = 0;
+        for (i = 0 ; i<bigList.childNodes.length ; i++)
+        {
+          if(!bigList.childNodes[i].classList.contains('cloned')){
+            bigIndex = i;
+            break;
+          }
+        }
+        // console.log(bigIndex);
+        bigimage
+        .find(".owl-item")
+        .removeClass("active")
+        .eq(bigIndex)
+        .addClass("active");
+
+        thumbs
+          .find(".owl-item")
+          .removeClass("current")
+          .eq(0)
+          .addClass("current");
+
     });
   });
 }
 
 function getLocationEvent(location, cnt) {
-  console.log(location);
-  console.log(document.getElementById(cnt).innerHTML);
+  // console.log(location);
+  // console.log(document.getElementById(cnt).innerHTML);
   if (Number(document.getElementById(cnt).innerHTML) > 0) {
     var para = {};
     // console.log(userid);
     para = {
       City: location
     };
-    console.log(para);
+    // console.log(para);
     var ret = "";
     //if (filter === "All") {
     ret = firebase.functions().httpsCallable("getAllEventDetailsByCity");
 
     //}
     ret(para).then(results => {
-      console.log("From Function " + results.data.length);
+      // console.log("From Function " + results.data.length);
 
       var para3 = {};
       para3 = {
         EventID: ""
       };
-      console.log(para3);
+      // console.log(para3);
       const ret3 = firebase.functions().httpsCallable("getAllEventEntryCount");
       ret3().then(results1 => {
-        console.log("From Function getEventsEntryCount recLength : " + results1.data.length);
-        console.log(results1.data);
+        // console.log("From Function getEventsEntryCount recLength : " + results1.data.length);
+        // console.log(results1.data);
         // console.log("From Function " + results.data[0].resultsid);
         removeallItem();
         for (index = 0; index < results.data.length; index++) {
           var entryCount = 0;
-          console.log(results.data[index]);
+          // console.log(results.data[index]);
           var indEntry = results1.data.findIndex(e => e.EventID === results.data[index].Eventid);
-          console.log(indEntry);
+          // console.log(indEntry);
           if (indEntry >= 0)
             entryCount = Number(results1.data[indEntry].EntryCount);
 
           // console.log(results.data[index]);
           RenderEventDetails(index, results.data[index], entryCount);
         }
+      })
+      .then(function (res){
+        //activate first item of both pard items
+        var bigimage = $("#big");
+        var thumbs = $("#thumbs");
+        var bigList =bigimage.data("owl.carousel").$element.context.firstElementChild.firstChild;
+        var bigIndex = 0;
+        for (i = 0 ; i<bigList.childNodes.length ; i++)
+        {
+          if(!bigList.childNodes[i].classList.contains('cloned')){
+            bigIndex = i;
+            break;
+          }
+        }
+        // console.log(bigIndex);
+        bigimage
+        .find(".owl-item")
+        .removeClass("active")
+        .eq(bigIndex)
+        .addClass("active");
+
+        thumbs
+          .find(".owl-item")
+          .removeClass("current")
+          .eq(0)
+          .addClass("current");
+
       });
     });
   }
@@ -278,13 +341,13 @@ function removeallItem() {
   // for (var i =0; i<100; i++) {
   //   $carousel.trigger('remove.owl.carousel', i );
   // }
-  console.log($('#event-list-new').length);
+  // console.log($('#event-list-new').length);
   // document.getElementById("event-list-new").innerHTML="";
   //  var indexToRemove = 1;
   //  $('.event-list-new').owlCarousel('remove', indexToRemove).owlCarousel('update');
 }
 function cartEventClick(eventcode){
-  console.log(eventcode);
+  // console.log(eventcode);
 }
 
 function RenderEventDetails(index, doc, entryCount) {
@@ -297,7 +360,7 @@ function RenderEventDetails(index, doc, entryCount) {
   };
 
   var options = {
-    // year: 'numeric',
+    year: '2-digit',
     // year: 'numeric',
     month: 'short',
     day: 'numeric'
@@ -384,7 +447,7 @@ var div1_4 = document.createElement("div");
 div1_4.setAttribute("class", "col-lg-5 col-md-12 col-sm-12" );
 
 var div1_5 = document.createElement("div");
-div1_5.setAttribute("class", "content large" );
+div1_5.setAttribute("class", "content" );
 
 var h1_1 = document.createElement("h1");
 h1_1.innerHTML = doc.EventName;
@@ -433,7 +496,7 @@ div1_8.setAttribute("class", "details");
 
 var div1_9 = document.createElement("div");
 div1_9.setAttribute("class", "");
-console.log(doc.City);
+// console.log(doc.City);
 var h1_3 = document.createElement("h3");
 h1_3.innerHTML = doc.City;
 div1_9.appendChild(h1_3);
@@ -446,7 +509,7 @@ div1_8.appendChild(div1_9);
 
 var div1_10 = document.createElement("div");
 div1_10.setAttribute("class", "");
-console.log(doc.EventStartDate);
+// console.log(doc.EventStartDate);
 var h1_5 = document.createElement("h3");
 if (doc.EventStartDate != undefined && doc.EventStartDate != "" && doc.EventStartDate != null) {
   var refdate = new Date(doc.EventStartDate._seconds * 1000);
@@ -463,41 +526,43 @@ div1_8.appendChild(div1_10);
 
 var div1_11 = document.createElement("div");
 div1_11.setAttribute("class", "");
-
+// console.log(doc.MinimumFee);
 var h1_7 = document.createElement("h3");
 if (doc.MinimumFee != null && doc.MinimumFee != undefined && doc.MinimumFee != "") {
   if (doc.MaximumFee != null && doc.MaximumFee != undefined && doc.MaximumFee != "") {
     if (doc.MinimumFee != doc.MaximumFee) {
-        console.log(doc.MinimumFee);
+        // console.log(doc.MinimumFee);
       // h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat) + " - " + doc.MaximumFee.toLocaleString('en-IN', curFormat);
-      h1_7.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat);
+      h1_7.innerHTML = Number(doc.MinimumFee).toLocaleString('en-IN', curFormat);
     } else {
-      console.log(doc.MinimumFee);
-      h1_7.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat);
+      // console.log(doc.MinimumFee);
+      h1_7.innerHTML = Number(doc.MinimumFee).toLocaleString('en-IN', curFormat);
     }
   } else {
-    console.log(doc.MinimumFee);
-    h1_7.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat);
+    // console.log(doc.MinimumFee);
+    h1_7.innerHTML = Number(doc.MinimumFee).toLocaleString('en-IN', curFormat);
   }
 } else {
-  console.log(doc.MinimumFee);
+  // console.log(doc.MinimumFee);
   h1_7.innerHTML = "-";
 }
+// console.log(h1_7);
 div1_11.appendChild(h1_7);
-
+// console.log(div1_11);
 var h1_8 = document.createElement("h4");
 h1_8.innerHTML = "Entry Fee";
+// console.log(h1_8);
 div1_11.appendChild(h1_8);
-
+// console.log(div1_11);
 div1_8.appendChild(div1_11);
-div1_5.appendChild(h1_8);
+div1_5.appendChild(div1_8);
 
 var div1_12 = document.createElement("div");
 div1_12.setAttribute("class", "button-div");
 
 var button1 = document.createElement("button");
 button1.setAttribute("type", "button");
-console.log(doc.EventCode);
+// console.log(doc.EventCode);
 button1.setAttribute("onclick", "btnClickEvent('" + doc.SportName + "','" + doc.EventCode + "')");
 button1.setAttribute("class", "mybutton button5 event-card-button");
 button1.setAttribute("name", "button");
@@ -578,15 +643,24 @@ div1_14.appendChild(div1_15);
 div1_3.appendChild(div1_14);
 
 var div1_16 = document.createElement("div");
-div1_16.setAttribute("class","col-sm-12");
+div1_16.setAttribute("class","col-lg-12 col-md-12 col-sm-12");
 
 var div1_17 = document.createElement("div");
-div1_17.setAttribute("class","mobile-content small");
-
-
+div1_17.setAttribute("class","mobile-content");
+var div1_171 = document.createElement("div");
+div1_171.setAttribute("class","mobile-content-below-div");
+// doc.EventName = doc.EventName.toLowerCase();
+// doc.EventName ="ecl puECL PUYVAST - PSM OPEN JUNIOR e BADMINTON TOURNAMENTgggggg ggg ff"
 var h1_11 = document.createElement("h1");
-h1_11.innerHTML = doc.EventName;
-div1_17.appendChild(h1_11);
+if(doc.EventName.length < 70){
+  h1_11.innerHTML = doc.EventName;
+}else {
+  var ename = doc.EventName.substr(0,66);
+  ename = ename + " ...";
+  h1_11.innerHTML = ename;
+}
+
+div1_171.appendChild(h1_11);
 
 var div1_18 = document.createElement("div");
 div1_18.setAttribute("class", "button-div");
@@ -626,6 +700,7 @@ div1_19.appendChild(h1_51);
 
 var span11 = document.createElement("span");
 span11.setAttribute("style","color: #fff;position:relative;left: -0px;padding-right: 10px;font-size: 1.3rem;");
+span11.innerHTML = '|';
 div1_19.appendChild(span11);
 
 var h1_52 = document.createElement("h5");
@@ -647,7 +722,8 @@ if (doc.MinimumFee != null && doc.MinimumFee != undefined && doc.MinimumFee != "
 div1_19.appendChild(h1_52);
 
 div1_18.appendChild(div1_19);
-div1_17.appendChild(div1_18);
+div1_171.appendChild(div1_18);
+div1_17.appendChild(div1_171);
 div1_16.appendChild(div1_17);
 div1_3.appendChild(div1_16);
 div1_2.appendChild(div1_3);
@@ -671,8 +747,8 @@ function RenderEventDetailsOld2(index, doc, entryCount) {
   };
 
   var options = {
-    // year: 'numeric',
-    // year: 'numeric',
+    // year: 'short',
+    year: 'numeric',
     month: 'short',
     day: 'numeric'
   };
@@ -924,7 +1000,7 @@ function RenderEventDetailsOld2(index, doc, entryCount) {
 
 function btnClickEvent(SportName, EventCode) {
   var sCode = "";
-  console.log("in btnClickEvent");
+  // console.log("in btnClickEvent");
   if (EventCode != undefined && EventCode != null && EventCode != "") {
     if (SportName === 'Badminton') {
       sCode = 'BD';
@@ -951,7 +1027,7 @@ function btnClickEvent(SportName, EventCode) {
 }
 
 function RenderEventDetailsOld(index, doc, entryCount) {
-  console.log('hi');
+  // console.log('hi');
 
   // var options = {
   //   year: 'numeric',
@@ -1044,11 +1120,11 @@ function RenderEventDetailsOld1(index, doc, entryCount) {
   var img = document.createElement("img");
   img.setAttribute("width", "100%");
   img.setAttribute("alt", "");
-  console.log(doc.EventLogo);
+  // console.log(doc.EventLogo);
   if (doc.EventLogo != "" && doc.EventLogo != undefined && doc.EventLogo != null) {
     img.setAttribute("src", doc.EventLogo);
   } else {
-    console.log("./img/e3.png");
+    // console.log("./img/e3.png");
     img.setAttribute("src", "./img/event1.webp");
   }
 

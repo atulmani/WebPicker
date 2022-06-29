@@ -53,8 +53,8 @@ workbox.routing.registerRoute(
 workbox.routing.registerRoute(
   // registerRoute(
   new RegExp('.*\\.(?:html)'),
-  // new workbox.strategies.NetworkFirst({
-  new workbox.strategies.StaleWhileRevalidate({
+  new workbox.strategies.NetworkFirst({
+  // new workbox.strategies.StaleWhileRevalidate({
     cacheName: 'html-cache' //added by anita
   }),
 );
@@ -178,35 +178,35 @@ self.addEventListener('fetch', (event) => {
   else if (event.request.url.includes('us-central1-tpliveapp.cloudfunctions.net')) {
     // console.log("getEventSummaryBySport");
     //caching start -- network first
-    // const networkFirst = new workbox.strategies.NetworkFirst();
-    // event.respondWith(
-    //   fetch(event.request)
-    //   .then(function(res) {
-    //     return caches.open("myDynamic")
-    //       .then(function(cache) {
-    //         cache.put(event.request.url, res.clone());
-    //         return res;
-    //       })
-    //   })
-    //   .catch(function(err) {
-    //     return caches.match(event.request.url);
-    //   })
-    // )
+    const networkFirst = new workbox.strategies.NetworkFirst();
+    event.respondWith(
+      fetch(event.request)
+      .then(function(res) {
+        return caches.open("myDynamic")
+          .then(function(cache) {
+            cache.put(event.request.url, res.clone());
+            return res;
+          })
+      })
+      .catch(function(err) {
+        return caches.match(event.request.url);
+      })
+    )
     //caching end -- network first
 
 //caching start -- staleWhileRevalidate
-    event.respondWith(
-  caches.open('mysite-dynamic').then(function (cache) {
-    return cache.match(event.request.url).then(function (response) {
-      var fetchPromise = fetch(event.request)
-      .then(function (networkResponse) {
-        cache.put(event.request.url, networkResponse.clone());
-        return networkResponse;
-      });
-      return response || fetchPromise;
-    });
-  }),
-  );
+  //   event.respondWith(
+  // caches.open('mysite-dynamic').then(function (cache) {
+  //   return cache.match(event.request.url).then(function (response) {
+  //     var fetchPromise = fetch(event.request)
+  //     .then(function (networkResponse) {
+  //       cache.put(event.request.url, networkResponse.clone());
+  //       return networkResponse;
+  //     });
+  //     return response || fetchPromise;
+  //   });
+  // }),
+  // );
 
   //caching end -- staleWhileRevalidate
 

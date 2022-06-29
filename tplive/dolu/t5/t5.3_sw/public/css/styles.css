@@ -517,10 +517,12 @@ h6{
   justify-content: center;
   flex-direction: column;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid transparent;
   border-radius: 10px;
   text-align: center;
   color: #161d65;
+  cursor: pointer;
+  transition: 0.5s;
 }
 
 .genre-locoation-card:hover,
@@ -740,7 +742,7 @@ h6{
   position: relative;
   display: flex;
   justify-content: space-between;
-  /* background: #333C5D; */
+  background: #333C5D;
   /* background: linear-gradient(to right, #348DCB,#161d65); */
   font-family: 'Baloo 2', cursive;
   padding: 0px 22px;
@@ -1554,7 +1556,8 @@ h6{
 
 .navbar-mobile-bottom{
   position: fixed;
-  background: linear-gradient(to right,#161d65, #348DCB);
+  background: #333C5D;
+  /* background: linear-gradient(to right,#161d65, #348DCB); */
   /* background: #f4f4f4; */
   bottom: 0;
   width: 100%;
@@ -1570,7 +1573,7 @@ h6{
 }
 
 .navbar-mobile-bottom-menu .navbar-mobile-bottom-menu-a{
-  color: #ccc;
+  color: #aaa;
   font-size: 0.9rem;
   text-align: center;
   text-decoration: none;
@@ -2823,6 +2826,7 @@ color: #aaa;
   border: 1px solid #ddd;
   border-radius: 10px;
   height: 200px;
+  text-decoration: none;
   transition: 0.5s;
 }
 
@@ -2987,7 +2991,7 @@ color: #aaa;
 .mobile-content .button-div{
   position: relative;
   bottom: 0;
-  padding: 10px 20px 0 0;
+  padding: 5px 20px 0 0;
 }
 
 .event-display-card .content button,
@@ -3046,26 +3050,33 @@ color: #aaa;
 }
 
 .mobile-content{
+  display: none;
   position: relative;
   top: -30px;
-  z-index: 10;
+  z-index: 999;
   background: linear-gradient(to top, #2d2b4c 70% , rgba(0,0,0,0));
   width: 100%;
   padding: 40px 10px 10px 10px;
   border-radius: 0 0 10px 10px;
 }
 
+.mobile-content .mobile-content-below-div{
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
 
-@media (max-width: 850px) {
-  #thumbs{
-    position: relative;
-    top: -20px;
+@media (max-width: 992px) {
+  .mobile-content{
+    display: block;
+    height: 140px;
   }
 }
 
 .mobile-content h1{
   font-size: 1.1rem;
   color: #fff;
+  text-transform: capitalize;
 }
 
 .mobile-content h2{
@@ -3121,7 +3132,7 @@ color: #aaa;
 
 @media (max-width: 1100px) {
   .event-display-card{
-    height: 450px;
+    height: auto;
   }
 
   .event-display-card .content{
@@ -3133,15 +3144,15 @@ color: #aaa;
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 992px) {
   .event-display-card .content{
-    position: absolute;
+    display: none;
   }
 }
 
 @media (max-width: 600px) {
   .event-display-card .image img{
-    height: auto;
+    height: 300px;
   }
 
   .event-display-card{
@@ -3151,23 +3162,36 @@ color: #aaa;
   .event-display-card .content{
     height: auto;
   }
+
+  .mobile-content{
+    height: 150px;
+  }
 }
 
 .new-event-card{
   border-radius: 10px;
   overflow: hidden;
   transform: scale(0.85);
+  opacity: 0.7;
+  transition: 1s;
+  filter: grayscale(0.5);
 }
 
-.new-event-card.active{
+#thumbs .item .new-event-card{
+  cursor: pointer;
+}
+
+#thumbs .current .item .new-event-card{
   transform: scale(1);
+  opacity: 1;
+  filter: grayscale(0);
 }
 
 .new-event-card span{
   opacity: 0;
 }
 
-.new-event-card.active span{
+#thumbs .current .item .new-event-card span{
   transition: 0.5s;
   opacity: 1;
 }
@@ -3177,7 +3201,7 @@ color: #aaa;
   top:0;
   left:0;
   width: 100%;
-  height: 8px;
+  height: 5px;
   border-radius: 10px;
   background: linear-gradient(to right, #348DCB, #fff);
   animation: animate1 6s linear infinite;
@@ -3196,7 +3220,7 @@ color: #aaa;
   position: absolute;
   top:0;
   right: 0;
-  width: 8px;
+  width: 5px;
   height: 100%;
   border-radius: 10px;
   background: linear-gradient(to bottom, #348DCB, #fff);
@@ -3218,7 +3242,7 @@ color: #aaa;
   bottom: 0;
   left:0;
   width: 100%;
-  height: 8px;
+  height: 5px;
   border-radius: 10px;
   background: linear-gradient(to left, #348DCB, #fff);
   animation: animate3 6s linear infinite;
@@ -3236,7 +3260,7 @@ color: #aaa;
   position: absolute;
   top:0;
   left: 0;
-  width: 8px;
+  width: 5px;
   height: 100%;
   border-radius: 10px;
   background: linear-gradient(to top, #348DCB, #fff);
@@ -3252,9 +3276,16 @@ color: #aaa;
   }
 }
 
-#thumbs .item{
-  cursor: pointer;
-  margin: 40px 0;
+#thumbs{
+  margin-top: 12px;
+}
+
+@media (max-width: 500px) {
+  #thumbs{
+    margin-top: 0px;
+    position: relative;
+    top: -20px;
+  }
 }
 
 /* new index page - end */
