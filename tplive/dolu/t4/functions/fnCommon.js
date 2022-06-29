@@ -2,7 +2,9 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
 exports.addMasterSportName =
-  functions.https.onCall((data, context) => {
+  functions
+  .region('asia-south1')
+  .https.onCall((data, context) => {
     if (!context.auth) {
       throw new functions.https.HttpError(
         "unauthenticatied",
@@ -37,7 +39,9 @@ exports.addMasterSportName =
 
 
 exports.getSportList =
-  functions.https.onCall(async (data, context) => {
+  functions
+  .region('asia-south1')
+  .https.onCall(async (data, context) => {
     if (!context.auth) {
       throw new functions.https.HttpError(
         "unauthenticatied",
@@ -62,7 +66,9 @@ exports.getSportList =
   });
 
 
-  exports.storePostData = functions.https.onRequest(function(request, response) {
+  exports.storePostData = functions
+  .region('asia-south1')
+  .https.onRequest(function(request, response) {
     cors(request, response, function() {
       var uuid = UUID();
 

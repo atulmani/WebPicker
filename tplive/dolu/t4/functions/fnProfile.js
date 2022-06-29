@@ -2,7 +2,9 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
 // Function to get user record
-exports.getUserRequest = functions.runWith({
+exports.getUserRequest = functions
+.region('asia-south1')
+.runWith({
   allowInvalidAppCheckToken: true,
 }).https.onCall((data, context) => {
   if (!context.auth) {
@@ -25,7 +27,9 @@ exports.getUserRequest = functions.runWith({
 });
 
 exports.getProfileDetails =
-  functions.https.onCall((data, context) => {
+  functions
+  .region('asia-south1')
+  .https.onCall((data, context) => {
     if (!context.auth) {
       throw new functions.https.HttpError(
           "unauthenticatied",
@@ -65,7 +69,9 @@ exports.getProfileDetails =
   });
 
 exports.addUserDetails =
-  functions.https.onCall((data, context) => {
+  functions
+  .region('asia-south1')
+  .https.onCall((data, context) => {
     if (!context.auth) {
       throw new functions.https.HttpError(
           "unauthenticatied",
@@ -96,7 +102,9 @@ exports.addUserDetails =
   });
 
 exports.saveProfileDetailsStep1 =
-  functions.https.onCall((data, context) => {
+  functions
+  .region('asia-south1')
+  .https.onCall((data, context) => {
     if (!context.auth) {
       throw new functions.https.HttpError(
           "unauthenticatied",
@@ -130,7 +138,9 @@ exports.saveProfileDetailsStep1 =
   });
 
 exports.saveProfileDetailsStep2 =
-  functions.https.onCall((data, context) => {
+  functions
+  .region('asia-south1')
+  .https.onCall((data, context) => {
     if (!context.auth) {
       throw new functions.https.HttpError(
           "unauthenticatied",
@@ -159,7 +169,9 @@ exports.saveProfileDetailsStep2 =
   });
 
 exports.saveProfileDetailsStep3 =
-  functions.https.onCall((data, context) => {
+  functions
+  .region('asia-south1')
+  .https.onCall((data, context) => {
     if (!context.auth) {
       throw new functions.https.HttpError(
           "unauthenticatied",
@@ -195,7 +207,9 @@ exports.saveProfileDetailsStep3 =
   });
 
 exports.saveProfileDetailsStep4 =
-  functions.https.onCall((data, context) => {
+  functions
+  .region('asia-south1')
+  .https.onCall((data, context) => {
     if (!context.auth) {
       throw new functions.https.HttpError(
           "unauthenticatied",
@@ -227,7 +241,9 @@ exports.saveProfileDetailsStep4 =
 
 
   exports.updateProfileDetails =
-    functions.https.onCall((data, context) => {
+    functions
+    .region('asia-south1')
+    .https.onCall((data, context) => {
       if (!context.auth) {
         throw new functions.https.HttpError(
             "unauthenticatied",
@@ -269,7 +285,9 @@ exports.saveProfileDetailsStep4 =
 
 
     exports.getUserWithRole =
-      functions.https.onCall(async (data, context) => {
+      functions
+      .region('asia-south1')
+      .https.onCall(async (data, context) => {
         if (!context.auth) {
           throw new functions.https.HttpError(
             "unauthenticatied",

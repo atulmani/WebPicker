@@ -2,7 +2,9 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
 exports.getOrganizationDetails =
-  functions.https.onCall((data, context) => {
+  functions
+  .region('asia-south1')
+  .https.onCall((data, context) => {
     if (!context.auth) {
       throw new functions.https.HttpError(
         "unauthenticatied",
@@ -20,7 +22,7 @@ exports.getOrganizationDetails =
           return {
             id: doc1.id,
             PartnerName: doc1.data().PartnerName,
-            OrganizerID:doc1.data().OrganizerID,
+            OrganizerID: doc1.data().OrganizerID,
             OrganizationName: doc1.data().OrganizationName,
             PartnerEmailID: doc1.data().PartnerEmailID,
             PartnerPhone: doc1.data().PartnerPhone,
@@ -46,7 +48,9 @@ exports.getOrganizationDetails =
   });
 
 exports.updateOrganizationDetails =
-  functions.https.onCall((data, context) => {
+  functions
+  .region('asia-south1')
+  .https.onCall((data, context) => {
     if (!context.auth) {
       throw new functions.https.HttpError(
         "unauthenticatied",
@@ -77,7 +81,7 @@ exports.updateOrganizationDetails =
         OrganizationName: OrganizationName,
         PartnerEmailID: PartnerEmailID,
         PartnerPhone: PartnerPhone,
-        OrganizerID:OrganizerID,
+        OrganizerID: OrganizerID,
         // DateOfBirth: DateOfBirth,
         City: City,
         State: State,
@@ -91,16 +95,22 @@ exports.updateOrganizationDetails =
       })
       .then(() => {
         console.log("Success");
-        return {retCode : "0"};
+        return {
+          retCode: "0"
+        };
       })
       .catch(function(error) {
         console.log("in error");
-        return {retCode : "1"};;
+        return {
+          retCode: "1"
+        };;
       });
   });
 
 exports.getOrganizationDetails =
-  functions.https.onCall((data, context) => {
+  functions
+  .region('asia-south1')
+  .https.onCall((data, context) => {
     if (!context.auth) {
       throw new functions.https.HttpError(
         "unauthenticatied",
@@ -119,7 +129,7 @@ exports.getOrganizationDetails =
             id: doc1.id,
             PartnerName: doc1.data().PartnerName,
             OrganizationName: doc1.data().OrganizationName,
-            OrganizerID:doc1.data().OrganizerID,
+            OrganizerID: doc1.data().OrganizerID,
             PartnerEmailID: doc1.data().PartnerEmailID,
             PartnerPhone: doc1.data().PartnerPhone,
             DateOfBirth: doc1.data().DateOfBirth,
@@ -145,7 +155,9 @@ exports.getOrganizationDetails =
 
 
 exports.getAllOrganizationDetails =
-  functions.https.onCall(async (data, context) => {
+  functions
+  .region('asia-south1')
+  .https.onCall(async (data, context) => {
     if (!context.auth) {
       throw new functions.https.HttpError(
         "unauthenticatied",
@@ -161,7 +173,7 @@ exports.getAllOrganizationDetails =
         resultList.push({
           resultsid: change.id,
           PartnerName: change.data().PartnerName,
-          OrganizerID:change.data().OrganizerID,
+          OrganizerID: change.data().OrganizerID,
           OrganizationName: change.data().OrganizationName,
           PartnerEmailID: change.data().PartnerEmailID,
           PartnerPhone: change.data().PartnerPhone,
@@ -182,47 +194,51 @@ exports.getAllOrganizationDetails =
   });
 
 
-  exports.getAllOrganizationDetailsForOrganizer =
-    functions.https.onCall(async (data, context) => {
-      if (!context.auth) {
-        throw new functions.https.HttpError(
-          "unauthenticatied",
-          "only authenticated user can call this"
-        );
-      }
-      const organizerID = data.organizerID;
+exports.getAllOrganizationDetailsForOrganizer =
+  functions
+  .region('asia-south1')
+  .https.onCall(async (data, context) => {
+    if (!context.auth) {
+      throw new functions.https.HttpError(
+        "unauthenticatied",
+        "only authenticated user can call this"
+      );
+    }
+    const organizerID = data.organizerID;
 
-      let resultList = [];
+    let resultList = [];
 
-      // var dbrows = await admin.firestore().collection("PartnerList").get();
-      // dbrows.then((changes) => {
-      return await admin.firestore().collection("OrganizationList").where("OrganizerID","==",organizerID).get().then((changes) => {
-        changes.forEach(change => {
-          resultList.push({
-            resultsid: change.id,
-            PartnerName: change.data().PartnerName,
-            OrganizerID:change.data().OrganizerID,
-            OrganizationName: change.data().OrganizationName,
-            PartnerEmailID: change.data().PartnerEmailID,
-            PartnerPhone: change.data().PartnerPhone,
-            DateOfBirth: change.data().DateOfBirth,
-            City: change.data().City,
-            ApprovalStatus: change.data().ApprovalStatus,
-            Comments: change.data().Comments,
-            State: change.data().State,
-            IdentityType: change.data().IdentityType,
-            IdentityNumber: change.data().IdentityNumber,
-            OrganizationType: change.data().OrganizationType,
-          });
-          console.log(resultList);
+    // var dbrows = await admin.firestore().collection("PartnerList").get();
+    // dbrows.then((changes) => {
+    return await admin.firestore().collection("OrganizationList").where("OrganizerID", "==", organizerID).get().then((changes) => {
+      changes.forEach(change => {
+        resultList.push({
+          resultsid: change.id,
+          PartnerName: change.data().PartnerName,
+          OrganizerID: change.data().OrganizerID,
+          OrganizationName: change.data().OrganizationName,
+          PartnerEmailID: change.data().PartnerEmailID,
+          PartnerPhone: change.data().PartnerPhone,
+          DateOfBirth: change.data().DateOfBirth,
+          City: change.data().City,
+          ApprovalStatus: change.data().ApprovalStatus,
+          Comments: change.data().Comments,
+          State: change.data().State,
+          IdentityType: change.data().IdentityType,
+          IdentityNumber: change.data().IdentityNumber,
+          OrganizationType: change.data().OrganizationType,
         });
-        return resultList;
-
+        console.log(resultList);
       });
+      return resultList;
+
     });
+  });
 
 exports.addOrganizationDetails =
-  functions.https.onCall((data, context) => {
+  functions
+  .region('asia-south1')
+  .https.onCall((data, context) => {
     if (!context.auth) {
       throw new functions.https.HttpError(
         "unauthenticatied",
@@ -274,43 +290,45 @@ exports.addOrganizationDetails =
   });
 
 
-    exports.getAllOrganizationForOrganizerWithStatus =
-      functions.https.onCall(async (data, context) => {
-        if (!context.auth) {
-          throw new functions.https.HttpError(
-            "unauthenticatied",
-            "only authenticated user can call this"
-          );
-        }
-        const organizerID = data.organizerID;
-        const approvalStatus = data.approvalStatus;
+exports.getAllOrganizationForOrganizerWithStatus =
+  functions
+  .region('asia-south1')
+  .https.onCall(async (data, context) => {
+    if (!context.auth) {
+      throw new functions.https.HttpError(
+        "unauthenticatied",
+        "only authenticated user can call this"
+      );
+    }
+    const organizerID = data.organizerID;
+    const approvalStatus = data.approvalStatus;
 
 
-        let resultList = [];
+    let resultList = [];
 
-        // var dbrows = await admin.firestore().collection("PartnerList").get();
-        // dbrows.then((changes) => {
-        return await admin.firestore().collection("OrganizationList").where("OrganizerID","==",organizerID).where("ApprovalStatus","==",approvalStatus).get().then((changes) => {
-          changes.forEach(change => {
-            resultList.push({
-              resultsid: change.id,
-              PartnerName: change.data().PartnerName,
-              OrganizerID:change.data().OrganizerID,
-              OrganizationName: change.data().OrganizationName,
-              PartnerEmailID: change.data().PartnerEmailID,
-              PartnerPhone: change.data().PartnerPhone,
-              DateOfBirth: change.data().DateOfBirth,
-              City: change.data().City,
-              ApprovalStatus: change.data().ApprovalStatus,
-              Comments: change.data().Comments,
-              State: change.data().State,
-              IdentityType: change.data().IdentityType,
-              IdentityNumber: change.data().IdentityNumber,
-              OrganizationType: change.data().OrganizationType,
-            });
-            console.log(resultList);
-          });
-          return resultList;
-
+    // var dbrows = await admin.firestore().collection("PartnerList").get();
+    // dbrows.then((changes) => {
+    return await admin.firestore().collection("OrganizationList").where("OrganizerID", "==", organizerID).where("ApprovalStatus", "==", approvalStatus).get().then((changes) => {
+      changes.forEach(change => {
+        resultList.push({
+          resultsid: change.id,
+          PartnerName: change.data().PartnerName,
+          OrganizerID: change.data().OrganizerID,
+          OrganizationName: change.data().OrganizationName,
+          PartnerEmailID: change.data().PartnerEmailID,
+          PartnerPhone: change.data().PartnerPhone,
+          DateOfBirth: change.data().DateOfBirth,
+          City: change.data().City,
+          ApprovalStatus: change.data().ApprovalStatus,
+          Comments: change.data().Comments,
+          State: change.data().State,
+          IdentityType: change.data().IdentityType,
+          IdentityNumber: change.data().IdentityNumber,
+          OrganizationType: change.data().OrganizationType,
         });
+        console.log(resultList);
       });
+      return resultList;
+
+    });
+  });

@@ -1,7 +1,9 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
-exports.logEntryAdd = functions.firestore.document('/EventRegistrationDetails/{id}')
+exports.logEntryAdd = functions
+    .region('asia-south1')
+    .firestore.document('/EventRegistrationDetails/{id}')
   .onCreate(async (snap, context) => {
     const id = context.params.id;
     const inputData = snap.data();
@@ -63,7 +65,9 @@ exports.logEntryAdd = functions.firestore.document('/EventRegistrationDetails/{i
   });
 
 
-exports.logEntryDelete = functions.firestore.document('/EventRegistrationDetails/{id}')
+exports.logEntryDelete = functions
+  .region('asia-south1')
+  .firestore.document('/EventRegistrationDetails/{id}')
   .onDelete(async (snap, context) => {
     const id = context.params.id;
     const inputData = snap.data();
@@ -111,7 +115,9 @@ exports.logEntryDelete = functions.firestore.document('/EventRegistrationDetails
 
 
 exports.getEventsEntryCount =
-  functions.https.onCall(async (data, context) => {
+  functions
+  .region('asia-south1')
+  .https.onCall(async (data, context) => {
     // if (!context.auth) {
     //   throw new functions.https.HttpError(
     //     "unauthenticatied",
@@ -140,7 +146,9 @@ exports.getEventsEntryCount =
 
 
 exports.getAllEventEntryCount =
-  functions.https.onCall(async (data, context) => {
+  functions
+  .region('asia-south1')
+  .https.onCall(async (data, context) => {
     // if (!context.auth) {
     //   throw new functions.https.HttpError(
     //     "unauthenticatied",
@@ -168,7 +176,9 @@ exports.getAllEventEntryCount =
 
 
 exports.getEventEntryCountForCategory =
-  functions.https.onCall(async (data, context) => {
+  functions
+  .region('asia-south1')
+  .https.onCall(async (data, context) => {
     // if (!context.auth) {
     //   throw new functions.https.HttpError(
     //     "unauthenticatied",
