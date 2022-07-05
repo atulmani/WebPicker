@@ -8,17 +8,18 @@ exports.logEventAdd = functions
     const id = context.params.id;
     const inputData = snap.data();
     console.log(inputData);
-    var docID = "";
+    var docIDSport = "";
+    var docIDCity = "";
     var entryCount = 0;
     await admin.firestore().collection("EventSummaryBySports").where("SportName", "==", inputData.SportName)
       .get().then(async (changes) => {
         changes.forEach(doc1 => {
-          docID = doc1.id;
+          docIDSport = doc1.id;
           eventCount = Number(doc1.data().EventCount);
         });
 
-        if (docID != "" & docID != undefined) {
-          await admin.firestore().collection("EventSummaryBySports").doc(docID).set({
+        if (docIDSport != "" & docIDSport != undefined) {
+          await admin.firestore().collection("EventSummaryBySports").doc(docIDSport).set({
             SportName: inputData.SportName,
             EventCount: eventCount + 1,
           });
@@ -36,12 +37,12 @@ exports.logEventAdd = functions
       await admin.firestore().collection("EventSummaryByCity").where("City", "==", inputData.City)
         .get().then(async (changes) => {
           changes.forEach(doc1 => {
-            docID = doc1.id;
+            docIDCity = doc1.id;
             eventCount = Number(doc1.data().EventCount);
           });
 
-          if (docID != "" & docID != undefined) {
-            await admin.firestore().collection("EventSummaryByCity").doc(docID).set({
+          if (docIDCity != "" & docIDCity != undefined) {
+            await admin.firestore().collection("EventSummaryByCity").doc(docIDCity).set({
               City: inputData.City,
               EventCount: eventCount + 1,
             });
@@ -65,16 +66,18 @@ exports.logEventDelete = functions
     const id = context.params.id;
     const inputData = snap.data();
     console.log(inputData);
-    var docID = "";
+    var docIDSport = "";
+    var docIDCity = "";
+
     var eventCount = 0;
     await admin.firestore().collection("EventSummaryBySports").where("SportName", "==", inputData.SportName)
       .get().then(async (changes) => {
         changes.forEach(doc1 => {
-          docID = doc1.id;
+          docIDSport = doc1.id;
           eventCount = Number(doc1.data().EventCount);
         });
-        if (docID != "" && docID != undefined) {
-          await admin.firestore().collection("EventSummaryBySports").doc(docID).set({
+        if (docIDSport != "" && docIDSport != undefined) {
+          await admin.firestore().collection("EventSummaryBySports").doc(docIDSport).set({
             SportName: inputData.SportName,
             EventCount: eventCount - 1,
           });
@@ -84,11 +87,11 @@ exports.logEventDelete = functions
       await admin.firestore().collection("EventSummaryByCity").where("City", "==", inputData.City)
         .get().then(async (changes) => {
           changes.forEach(doc1 => {
-            docID = doc1.id;
+            docIDCity = doc1.id;
             eventCount = Number(doc1.data().EventCount);
           });
-          if (docID != "" && docID != undefined) {
-            await admin.firestore().collection("EventSummaryByCity").doc(docID).set({
+          if (docIDCity != "" && docIDCity != undefined) {
+            await admin.firestore().collection("EventSummaryByCity").doc(docIDCity).set({
               City: inputData.City,
               EventCount: eventCount - 1,
             });
@@ -245,6 +248,7 @@ exports.getEventDetails_forAdmin =
             OrganizerLogo: doc1.data().OrganizerLogo,
             EventLogo: doc1.data().EventLogo,
             EventCode: doc1.data().EventCode,
+            EventMode: doc1.data().EventMode,
             SportCode: doc1.data().SportCode,
             MinimumFee: doc1.data().MinimumFee,
             MaximumFee: doc1.data().MaximumFee,
@@ -332,8 +336,10 @@ exports.getEventDetails =
             EventOwnerEmail: doc1.data().EventOwnerEmail,
             EventOwnerPhone: doc1.data().EventOwnerPhone,
             OrganizerLogo: doc1.data().OrganizerLogo,
+            CategoryDetails:doc1.data().CategoryDetails,
             EventLogo: doc1.data().EventLogo,
             EventCode: doc1.data().EventCode,
+            EventMode: doc1.data().EventMode,
             SportCode: doc1.data().SportCode,
 
             MinimumFee: doc1.data().MinimumFee,
@@ -430,6 +436,7 @@ exports.getAllEventDetailsForYears =
             OrganizerLogo: doc1.data().OrganizerLogo,
             EventLogo: doc1.data().EventLogo,
             EventCode: doc1.data().EventCode,
+            EventMode: doc1.data().EventMode,
             SportCode: doc1.data().SportCode,
 
             MinimumFee: doc1.data().MinimumFee,
@@ -513,6 +520,7 @@ exports.getAllEventDetails =
           OrganizerLogo: doc1.data().OrganizerLogo,
           EventLogo: doc1.data().EventLogo,
           EventCode: doc1.data().EventCode,
+          EventMode: doc1.data().EventMode,
           SportCode: doc1.data().SportCode,
 
           MinimumFee: doc1.data().MinimumFee,
@@ -600,6 +608,8 @@ exports.getAllEventWithEventStatusAndLocation =
               OrganizerLogo: doc1.data().OrganizerLogo,
               EventLogo: doc1.data().EventLogo,
               EventCode: doc1.data().EventCode,
+              EventMode: doc1.data().EventMode,
+
               SportCode: doc1.data().SportCode,
 
               MinimumFee: doc1.data().MinimumFee,
@@ -657,7 +667,7 @@ exports.getAllEventWithEventStatusAndLocation =
           } else {
             return await admin.firestore().collection("EventList")
               .orderBy("EventStatus")
-              .where("EventStatus", "!=", Status)
+              .where("EventStatus", "not-in", ['ACTIVE','Active','active', 'INACTIVE', 'Inactive', 'inactive'])
               .orderBy("EventStartDate", "desc").limit(10 - cntResult).get().then((changes) => {
                 changes.forEach(doc1 => {
                   resultList.push({
@@ -673,6 +683,8 @@ exports.getAllEventWithEventStatusAndLocation =
                     OrganizerLogo: doc1.data().OrganizerLogo,
                     EventLogo: doc1.data().EventLogo,
                     EventCode: doc1.data().EventCode,
+                    EventMode: doc1.data().EventMode,
+
                     SportCode: doc1.data().SportCode,
 
                     MinimumFee: doc1.data().MinimumFee,
@@ -745,6 +757,8 @@ exports.getAllEventWithEventStatusAndLocation =
               OrganizerLogo: doc1.data().OrganizerLogo,
               EventLogo: doc1.data().EventLogo,
               EventCode: doc1.data().EventCode,
+              EventMode: doc1.data().EventMode,
+
               SportCode: doc1.data().SportCode,
 
               MinimumFee: doc1.data().MinimumFee,
@@ -804,7 +818,7 @@ exports.getAllEventWithEventStatusAndLocation =
           } else {
             return await admin.firestore().collection("EventList")
               .orderBy("EventStatus")
-              .where("EventStatus", "!=", Status)
+              .where("EventStatus", "not-in", ['ACTIVE','Active','active', 'INACTIVE', 'Inactive', 'inactive'])
               .where("City", "==", City)
               .orderBy("EventStartDate", "desc").limit(10 - cntResult).get().then((changes) => {
                 changes.forEach(doc1 => {
@@ -821,6 +835,8 @@ exports.getAllEventWithEventStatusAndLocation =
                     OrganizerLogo: doc1.data().OrganizerLogo,
                     EventLogo: doc1.data().EventLogo,
                     EventCode: doc1.data().EventCode,
+                    EventMode: doc1.data().EventMode,
+
                     SportCode: doc1.data().SportCode,
 
                     MinimumFee: doc1.data().MinimumFee,
@@ -912,6 +928,8 @@ exports.getAllEventDetailsByCity =
             OrganizerLogo: doc1.data().OrganizerLogo,
             EventLogo: doc1.data().EventLogo,
             EventCode: doc1.data().EventCode,
+            EventMode: doc1.data().EventMode,
+
             SportCode: doc1.data().SportCode,
 
             MinimumFee: doc1.data().MinimumFee,
@@ -998,6 +1016,8 @@ exports.getAllEventDetailsForOrganizer =
           OrganizerLogo: doc1.data().OrganizerLogo,
           EventLogo: doc1.data().EventLogo,
           EventCode: doc1.data().EventCode,
+          EventMode: doc1.data().EventMode,
+
           SportCode: doc1.data().SportCode,
 
           MinimumFee: doc1.data().MinimumFee,
@@ -1163,6 +1183,8 @@ exports.addEventDetails =
     const ApprovalStatus = data.ApprovalStatus;
     const EventStatus = data.EventStatus;
     const EventCode = data.EventCode;
+    const EventMode = data.EventMode;
+
     const SportCode = data.SportCode;
     const City = data.City;
     console.log(data);
@@ -1182,8 +1204,10 @@ exports.addEventDetails =
         ApprovalStatus: ApprovalStatus,
         EventStatus: EventStatus,
         EventCode: EventCode,
+        EventMode:EventMode,
         SportCode: SportCode,
         City: City,
+        EventStartDate: admin.firestore.Timestamp.fromDate(new Date()),
         CreatedBy: context.auth.uid,
         CreatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
       })
@@ -1224,6 +1248,7 @@ exports.updateEventBasicDetails =
     const SportName = data.SportName;
     const EventVenue = data.EventVenue;
     const EventCode = data.EventCode;
+    const EventMode = data.EventMode;
     const SportCode = data.SportCode;
     const City = data.City;
     const State = data.State;
@@ -1247,6 +1272,7 @@ exports.updateEventBasicDetails =
         SportName: SportName,
         EventVenue: EventVenue,
         EventCode: EventCode,
+        EventMode: EventMode,
         SportCode: SportCode,
         City: City,
         State: State,
@@ -1607,6 +1633,42 @@ exports.updateEventDetails_Announcement =
       });
   });
 
+
+  exports.updateEventDetails_EventMode =
+    functions
+    .region('asia-south1')
+    .https.onCall((data, context) => {
+      if (!context.auth) {
+        throw new functions.https.HttpError(
+          "unauthenticatied",
+          "only authenticated user can call this"
+        );
+      }
+      const EventID = data.EventID;
+      const Announcement = data.EventMode;
+      console.log("eventID ", EventID);
+
+      return admin.firestore().collection("EventList")
+        .doc(EventID)
+        .update({
+          EventMode: EventMode,
+
+          UpdatedBy: context.auth.uid,
+          UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
+        })
+        .then(() => {
+          console.log("Success");
+          return {
+            retCode: "0"
+          };
+        })
+        .catch(function(error) {
+          console.log("in error");
+          return {
+            retCode: "1"
+          };;
+        });
+    });
 exports.updateEventDetails_RulesAndRegulations =
   functions
   .region('asia-south1')
@@ -2003,6 +2065,7 @@ exports.getAllEventForOrganizerWithStatus =
           OrganizerLogo: doc1.data().OrganizerLogo,
           EventLogo: doc1.data().EventLogo,
           EventCode: doc1.data().EventCode,
+          EventMode: doc1.data().EventMode,
           SportCode: doc1.data().SportCode,
 
           SportName: doc1.data().SportName,
@@ -2066,6 +2129,7 @@ exports.getAllEventWithStatus =
             OrganizerLogo: doc1.data().OrganizerLogo,
             EventLogo: doc1.data().EventLogo,
             EventCode: doc1.data().EventCode,
+            EventMode: doc1.data().EventMode,
             SportCode: doc1.data().SportCode,
             MinimumFee: doc1.data().MinimumFee,
             MaximumFee: doc1.data().MaximumFee,
@@ -2159,6 +2223,7 @@ exports.getAllEventWithEventStatus1 =
             OrganizerLogo: doc1.data().OrganizerLogo,
             EventLogo: doc1.data().EventLogo,
             EventCode: doc1.data().EventCode,
+            EventMode: doc1.data().EventMode,
             SportCode: doc1.data().SportCode,
             MinimumFee: doc1.data().MinimumFee,
             MaximumFee: doc1.data().MaximumFee,
@@ -2252,6 +2317,7 @@ exports.getAllEventWithEventStatus =
             OrganizerLogo: doc1.data().OrganizerLogo,
             EventLogo: doc1.data().EventLogo,
             EventCode: doc1.data().EventCode,
+            EventMode: doc1.data().EventMode,
             SportCode: doc1.data().SportCode,
             MinimumFee: doc1.data().MinimumFee,
             MaximumFee: doc1.data().MaximumFee,

@@ -8,7 +8,7 @@ if (!window.Promise) {
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
-    .register('/sw.js')
+    .register('./sw.js')
     .then(function () {
       console.log('Service worker registered!');
     })
@@ -88,14 +88,14 @@ document.addEventListener("contextmenu", function(e) {
 // Menu's nav-link highlighted those are active - end
 
 // fixed-top or sticky-top navbar background change on windows scrolling - start
-// $(window).scroll(function(){
-//     var scroll = $(window).scrollTop();
-//     if(scroll < 70){
-//         $('.sticky-top').removeClass("sticky");
-//     } else{
-//         $('.sticky-top').addClass("sticky");
-//     }
-// });
+$(window).scroll(function(){
+    var scroll = $(window).scrollTop();
+    if(scroll < 70){
+        $('.sticky-top').removeClass("sticky");
+    } else{
+        $('.sticky-top').addClass("sticky");
+    }
+});
 // fixed-top or sticky-top navbar background change on windows scrolling - end
 
 
@@ -249,7 +249,7 @@ $(document).ready(function() {
   var owl = $('#genre-location-list-new');
   owl.owlCarousel({
     margin: 20,
-    loop: false,
+    loop: true,
     autoplay: false,
     smartSpeed: 1000,
     autoplayTimeout: 2500,
@@ -259,8 +259,9 @@ $(document).ready(function() {
     dots: false,
     responsive: {
       0: {
-        items: 2,
-        stagePadding: 30,
+        items: 4,
+        stagePadding: 20,
+        margin: 5,
       },
       600: {
         items: 4
@@ -431,6 +432,45 @@ $(document).ready(function() {
   });
 });
 
+$(document).ready(function() {
+  var owl = $('#event-list-new');
+  owl.owlCarousel({
+    margin: 30,
+    loop: true,
+    autoplay: false,
+    smartSpeed: 1000,
+    autoplayTimeout: 3500,
+    autoplayHoverPause: false,
+    nav: false,
+    dots:false,
+    stagePadding: 150,
+    responsive: {
+      0: {
+        items: 1,
+        stagePadding: 30,
+        margin: 20,
+      },
+      500: {
+        items: 1,
+        stagePadding: 80,
+        margin: 20,
+      },
+      800: {
+        items: 2,
+        stagePadding: 30,
+        margin: 20,
+      },
+      1000: {
+        items: 3,
+        margin: 10,
+        stagePadding: 20,
+      },
+      1400: {
+        items: 3
+      }
+    }
+  });
+});
 // $(document).ready(function() {
 //   var owl = $('#olist');
 //   owl.owlCarousel({

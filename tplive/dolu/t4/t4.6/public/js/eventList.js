@@ -22,6 +22,7 @@ auth.onAuthStateChanged(async firebaseUser => {
 async function GetProfileData() {
   console.log('GetProfileData - Starts');
   var userProfile =JSON.parse( localStorage.getItem("userProfile"));
+  console.log(userProfile);
   if(userProfile != undefined && userProfile != "" && userProfile != null )
   {
     if (userProfile.id != "0") {

@@ -18,5 +18,8 @@
   "devDependencies": {
     "http-server": "^14.1.0",
     "workbox-cli": "^6.5.3"
+  },
+  "dependencies": {
+    "web-push": "^3.5.0"
   }
 }

@@ -108,9 +108,9 @@ function getTournamentSummary() {
             // cityList.appendChild(div1);
 
             if (results.data[index].City === "Pune") {
-              document.getElementById("puneCnt1").innerHTML = results.data[index].EventCount;
+              // document.getElementById("puneCnt1").innerHTML = results.data[index].EventCount;
             } else if (results.data[index].City === "Bangalore") {
-              document.getElementById("bangaloreCnt1").innerHTML = results.data[index].EventCount;
+              // document.getElementById("bangaloreCnt1").innerHTML = results.data[index].EventCount;
             } else if (results.data[index].City === "Mysore") {
               document.getElementById("mysoreCnt1").innerHTML = results.data[index].EventCount;
             } else if (results.data[index].City === "Chennai") {
@@ -149,6 +149,27 @@ function getTournamentSummary() {
   });
 }
 
+  //
+  // function addEvent()
+  // {
+  //   console.log('in addEvent');
+  //   var owlitem = document.getElementsByClassName(".owl-item");
+  //   console.log(owlitem.length);
+  //   for (let i=0; i < owlitem.length; i++) {
+  //     console.log(owlitem[i]);
+  //      owlitem[i].addEventListener("click",functionClick);
+  //   }
+  //
+  // }
+
+  function functionClick(e)
+  {
+    console.log('thumb clicked');
+    e.preventDefault();
+    var number = $(this).index();
+    bigimage.data("owl.carousel").to(number, 300, true);
+  }
+
 function getEventList(filter) {
   var para = {};
   // console.log(userid);
@@ -185,6 +206,8 @@ function getEventList(filter) {
         // console.log(results.data[index]);
         RenderEventDetails(index, results.data[index], entryCount);
       }
+      // console.log("before addEvent");
+      // addEvent();
       document.getElementById('loading').style.display = 'none';
     });
   });
@@ -801,4 +824,9 @@ function profileDirection(profiletag) {
   //     //window.location.href = "../index.html";
   //   }
   // });
+}
+
+function showbanner(index)
+{
+  console.log(index);
 }

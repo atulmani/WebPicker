@@ -20,3 +20,16 @@ updateEventFlag_PublishDraw : update flag for draw publish status in  eventList 
 updateEventFlag_PublishSeed : update flag for publish seed in draw status in  eventList Collection
 updateEventFlag_PublishSchedule : update flag for publish schedule status in  eventList Collection
 updateEventFlag_PublishGallery : update flag for publish gallery status in  eventList Collection
+
+
+
+--insall for web push notification
+npm install --save web-push 
+npm run web-push generate-vapid-keys
+
+
+Public Key:
+BO09ExBaWhFLWYFWpHcTsroKX4yITS4vf5t6CIVm3upRiBRfIf66fUVqgw55l2zGubtWk1xs7L-mChRncsBWI0M
+
+Private Key:
+C0vfrwtCoaYQFnEp3ALekkct9p4Vcc-O9TrvqGsLG3I

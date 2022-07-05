@@ -38,7 +38,8 @@ function getTournamentSummary() {
     userID: ""
   };
   console.log(para1);
-  const ret1 = firebase.functions().httpsCallable("getEventSummaryBySport");
+  const ret1 = firebase.functions().httpsCallable("/getEventSummaryBySport");
+  console.log("before call");
   ret1(para1).then(results => {
       console.log("From Function " + results.data.length);
       var sportList = document.getElementById("ddlSports");
@@ -108,6 +109,9 @@ function getTournamentSummary() {
           getEventList('All');
         });
 
+    }).
+    catch(err =>{
+      console.log(err);
     });
 }
 
@@ -151,8 +155,40 @@ function getEventList(filter) {
   });
 }
 
-
 function RenderEventDetails(index, doc, entryCount) {
+  console.log('hi');
+
+  // var options = {
+  //   year: 'numeric',
+  //   month: 'short',
+  //   day: 'numeric'
+  // };
+  //
+  // var curFormat = {
+  //   style: 'currency',
+  //   currency: 'INR',
+  //   minimumFractionDigits: 0,
+  //   maximumFractionDigits: 2
+  // };
+
+  // var divItem = document.createElement('div');
+  // divItem.setAttribute('class', 'item');
+  // divItem.setAttribute('style', 'margin: 100px 0 30px 0;background:red');
+
+  // var anchor = document.createElement('a');
+  // anchor.setAttribute('href', 'eventDetails.html?id=' + doc.Eventid);
+  // anchor.setAttribute('class', 'event-card');
+  // divItem.appendChild(anchor);
+
+  // var divEventCardImg = document.createElement('div');
+  // divEventCardImg.setAttribute('class', 'event-card-img');
+  // anchor.appendChild(divEventCardImg);
+
+  // $('#event-list-new').trigger('add.owl.carousel', [divItem]).trigger('refresh.owl.carousel');
+}
+
+
+function RenderEventDetailsOld(index, doc, entryCount) {
   // console.log(index, doc);
 
   var options = {
@@ -218,7 +254,7 @@ function RenderEventDetails(index, doc, entryCount) {
     img.setAttribute("src", doc.EventLogo);
   } else {
     console.log("./img/e3.png");
-    img.setAttribute("src", "./img/e3.png");
+    img.setAttribute("src", "./img/event1.webp");
   }
 
   div5.appendChild(img);
