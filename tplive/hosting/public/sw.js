@@ -5,14 +5,14 @@ importScripts(
 importScripts('js/idb.js');
 importScripts('js/utility.js');
 
+// workbox.setConfig({
 
 // To avoid async issues, we load strategies before we call it in the event listener
 //
-// workbox.setConfig({
 //   debug: true,
 // });
 
-const SW_VERSION = '1.0.0.2';
+const SW_VERSION = '1.0.0.5';
 
 addEventListener('message', (event) => {
   if (event.data.type === 'GET_VERSION') {
@@ -145,11 +145,11 @@ workbox.routing.registerRoute("/",
       new RegExp('.*\\.(?:png|jpg|jpeg|svg|gif)*'),
       new workbox.strategies.CacheFirst({
         cacheName: 'image-cache',
-        plugins: [
-          new workbox.expiration.ExpirationPlugin({
-            maxEntries: 10,
-          }),
-        ],
+        // plugins: [
+        //   new workbox.expiration.ExpirationPlugin({
+        //     maxEntries: 40,
+        //   }),
+        // ],
       }),
     );
 

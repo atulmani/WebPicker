@@ -54,5 +54,4 @@ const db = firebase.firestore();
 const auth = firebase.auth();
 const storage = firebase.storage();
 // const functions =firebase.functions();
-// const functions =firebase.app().functions("asia-south1");
 const functions = fireObj.functions("asia-south1");

@@ -7,7 +7,7 @@ auth.onAuthStateChanged(async firebaseUser => {
       //console.log(firebaseUser.uid);
       console.log('Logged-in user phone number: ' + loggedinUser.phoneNumber);
 
-      GetProfileData();
+  //    GetProfileData();
     } else {
       loggedinUser = null;
       console.log('User has been logged out');
@@ -50,6 +50,48 @@ async function GetProfileData() {
   }
 }
 
+function changestatus(status)
+{
+  var btnActive = document.getElementById("btnActive");
+  var btnClose = document.getElementById("btnClose");
+  var btnOthers = document.getElementById("btnOthers");
+
+  btnActive.classList.remove("active");
+  btnClose.classList.remove("active");
+  btnOthers.classList.remove("active");
+
+
+  if(status === 'Active'){
+    btnActive.classList.add("active");
+  } else if(status === 'Closed'){
+    btnClose.classList.add("active");
+  }else if(status === 'Others'){
+    btnOthers.classList.add("active");
+  }
+
+}
+
+
+function changestatussmall(status)
+{
+  var btnActiveSmall = document.getElementById("btnActiveSmall");
+  var btnCloseSmall = document.getElementById("btnCloseSmall");
+  var btnOthersSmall = document.getElementById("btnOthersSmall");
+
+  btnActiveSmall.classList.remove("active");
+  btnCloseSmall.classList.remove("active");
+  btnOthersSmall.classList.remove("active");
+
+
+  if(status === 'Active'){
+    btnActiveSmall.classList.add("active");
+  } else if(status === 'Closed'){
+    btnCloseSmall.classList.add("active");
+  }else if(status === 'Others'){
+    btnOthersSmall.classList.add("active");
+  }
+
+}
 //
 // async function GetProfileDataOld() {
 //   console.log('GetProfileData - Starts');

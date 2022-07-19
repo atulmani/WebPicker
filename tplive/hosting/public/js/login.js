@@ -5,8 +5,8 @@ auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       loggedinUser = firebaseUser;
       console.log('Logged-in user phone number: ' + loggedinUser.phoneNumber);
-       userID = firebaseUser.uid;
-       //window.location.href = "profile.html";
+      userID = firebaseUser.uid;
+      //window.location.href = "profile.html";
     } else {
       loggedinUser = null;
       console.log('User has been logged out');
@@ -33,39 +33,65 @@ var btnSendOTP = document.getElementById('btnSendOTP');
 
 btnSendOTP.addEventListener('click', e => {
   e.preventDefault();
+  // console.log('clicked');
+  document.getElementById('btnSendOTPSpan').style.display = 'none';
+  document.getElementById('btnSendOTPLoad').style.display = 'block';
   // function phoneAuth() {
   var number = document.getElementById('userPhoneNo').value;
-  var number = "+91" + number;
-  console.log('Phone No: ' + number);
+  console.log(number.length);
+  if (number.length < 10) {
+    document.getElementById('altspan').innerHTML = "Please enter valid phone number";
+    document.getElementById('altspan').style.display = 'block';
 
-  auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
-    .then(() => {
+    document.getElementById('btnSendOTPSpan').style.display = 'block';
+    document.getElementById('btnSendOTPLoad').style.display = 'none';
 
-      auth.signInWithPhoneNumber(number, window.recaptchaVerifier)
-        .then(function(confirmationResult) {
-          window.confirmationResult = confirmationResult;
-          coderesult = confirmationResult;
-          console.log('coderesult: ' + coderesult);
-          console.log('confirmationResult.verificationId ' + confirmationResult.verificationId);
-          console.log('Message sent');
-          document.getElementById('firstslide').style.transform = 'translateX(-100%)';
-          document.getElementById('secondslide').style.transform = 'translateX(-100%)';
+  } else {
 
-        })
-        .catch(function(error) {
-          console.log('Error Sending OTP: ' + error.message);
-          document.getElementById('altspan').innerHTML = error.message;
-          document.getElementById('altspan').style.display = 'block';
+    // if (number.search("+") < 0) {
+    number = "+91" + number;
+    // }
+    console.log('Phone No: ' + number);
 
-        })
-    });
+    auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
+      .then(() => {
+
+        auth.signInWithPhoneNumber(number, window.recaptchaVerifier)
+          .then(function(confirmationResult) {
+            window.confirmationResult = confirmationResult;
+            coderesult = confirmationResult;
+            console.log('coderesult: ' + coderesult);
+            console.log('confirmationResult.verificationId ' + confirmationResult.verificationId);
+            console.log('Message sent');
+            document.getElementById('firstslide').style.transform = 'translateX(-100%)';
+            document.getElementById('secondslide').style.transform = 'translateX(-100%)';
+            document.getElementById('btnSendOTPSpan').style.display = 'block';
+            document.getElementById('btnSendOTPLoad').style.display = 'none';
+          })
+          .catch(function(error) {
+            console.log('Error Sending OTP: ' + error.message);
+            document.getElementById('altspan').innerHTML = error.message;
+            document.getElementById('altspan').style.display = 'block';
+            document.getElementById('btnSendOTPSpan').style.display = 'block';
+            document.getElementById('btnSendOTPLoad').style.display = 'none';
+          })
+      });
+  }
 });
 
 var btnSigninUsingOTP = document.getElementById('btnSigninUsingOTP');
 
 btnSigninUsingOTP.addEventListener('click', e => {
   e.preventDefault();
-  var code = document.getElementById('txtVerificationCode').value;
+  document.getElementById('btnSigninUsingOTPSpan').style.display = 'none';
+  document.getElementById('btnSigninUsingOTPLoad').style.display = 'block';
+  // var code = document.getElementById('txtVerificationCode').value;
+  var code = document.getElementById("otpLetter1").value +
+          document.getElementById("otpLetter2").value +
+          document.getElementById("otpLetter3").value +
+          document.getElementById("otpLetter4").value +
+          document.getElementById("otpLetter5").value +
+          document.getElementById("otpLetter6").value
   console.log('Code: ' + code);
   coderesult.confirm(code).then(function(result) {
       console.log('Navigate to the dashboard/profile page');
@@ -85,7 +111,7 @@ btnSigninUsingOTP.addEventListener('click', e => {
         var record1 = result.data;
         console.log(result.data.id);
         var userRole = {
-          id:result.data.id,
+          id: result.data.id,
           Address: result.data.Address,
           AlternatePhone: result.data.AlternatePhone,
           City: result.data.City,
@@ -96,11 +122,13 @@ btnSigninUsingOTP.addEventListener('click', e => {
           Phone: result.data.Phone,
           State: result.data.State,
           UserName: result.data.UserName,
-          UserRole : result.data.UserRole,
+          UserRole: result.data.UserRole,
         }
         console.log(userRole);
         localStorage.setItem("userProfile", JSON.stringify(userRole));
         if (result.data.id != "0") {
+          document.getElementById('btnSigninUsingOTPSpan').style.display = 'block';
+          document.getElementById('btnSigninUsingOTPLoad').style.display = 'none';
           window.location.assign('profile.html');
         } else {
           console.log('FistTimeUserSetup');
@@ -117,10 +145,15 @@ btnSigninUsingOTP.addEventListener('click', e => {
       //     FistTimeUserSetup(user);
       //   }
       // })
+
     })
     .catch(function(error) {
       // alert(error.message);
+      document.getElementById('btnSigninUsingOTPSpan').style.display = 'block';
+      document.getElementById('btnSigninUsingOTPLoad').style.display = 'none';
       console.error(error);
+      document.getElementById('altspanotp').style.display = 'block';
+      document.getElementById('altspanotp').innerHTML = error.message;
     });
 });
 
@@ -238,6 +271,23 @@ function FistTimeUserSetup(user) {
 
   });
 }
+
+
+function setOtp(index) {
+  var val = document.getElementById('otpLetter' + (index)).value;
+  // console.log('val : ' + val + " index : " + index);
+  if (val === '' || val === null) {
+    if (index != 1) {
+      document.getElementById('otpLetter' + (index - 1)).select();
+    }
+  } else {
+    if (index != 6) {
+      document.getElementById('otpLetter' + (index + 1)).select();
+    }
+  }
+
+}
+
 // function FistTimeUserSetupOld(user) {
 //
 //   console.log("FistTimeUserSetup-starts");

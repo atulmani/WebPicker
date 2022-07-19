@@ -71,7 +71,8 @@ function GetEventDetails() {
     month: 'short',
     day: 'numeric'
   };
-  const ret1 = firebase.functions().httpsCallable("getEventDetails");
+  // const ret1 = firebase.functions().httpsCallable("getEventDetails");
+  const ret1 = functions.httpsCallable("getEventDetails");
   ret1(para1).then((result) => {
     var record1 = result.data;
     console.log(result.data);
@@ -226,7 +227,8 @@ function GetEventCategory() {
   };
   var catList ="";
   console.log(para1);
-  const ret1 = firebase.functions().httpsCallable("getEventCategoryDetails");
+  // const ret1 = firebase.functions().httpsCallable("getEventCategoryDetails");
+  const ret1 = functions.httpsCallable("getEventCategoryDetails");
   ret1(para1).then((result) => {
     var record1 = result.data;
     console.log(result.data);
