@@ -10,6 +10,7 @@
 
 // Your web app's Firebase configuration
 // const firebaseConfig = {
+//   apiKey: "AIzaSyCCwcmd-j8LgBcItu7okMGNt-epPMVx9V0",
 //   authDomain: "tplive-uat-f9355.firebaseapp.com",
 //   projectId: "tplive-uat-f9355",
 //   databaseURL: "https://tplive-uat-f9355.firebaseio.com",
@@ -22,6 +23,7 @@
 //production
 // Your web app's Firebase configuration
 // const firebaseConfig = {
+//   apiKey: "AIzaSyAtdZg3yc_bT8S6o24ob5B3yUjEqzP5WV0",
 //   authDomain: "tpliveapp.firebaseapp.com",
 //   projectId: "tpliveapp",
 //   databaseURL: "https://tpliveapp.firebaseio.com",
@@ -33,6 +35,7 @@
 
 
 const firebaseConfig = {
+  apiKey: "AIzaSyCdr0rrIhy5OczzdSaHKaOA6tnztelN9SE",
   authDomain: "tplive-prod.firebaseapp.com",
   projectId: "tplive-prod",
   databaseURL: "https://tplive-prod.firebaseio.com",
