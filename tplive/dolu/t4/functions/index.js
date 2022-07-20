@@ -82,6 +82,7 @@ exports.getEventDetails_forAdmin = events.getEventDetails_forAdmin;
 
 exports.logEntryAdd = entry.logEntryAdd;
 exports.logEntryDelete = entry.logEntryDelete;
+exports.logEntryUpdate = entry.logEntryUpdate;
 exports.getAllEventEntryCount = entry.getAllEventEntryCount;
 exports.getEventEntryCountForCategory = entry.getEventEntryCountForCategory;
 exports.getEventsEntryCount = entry.getEventsEntryCount;

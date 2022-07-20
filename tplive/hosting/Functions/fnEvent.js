@@ -255,6 +255,7 @@ exports.getEventDetails_forAdmin =
             EventCode: doc1.data().EventCode,
             EventMode: doc1.data().EventMode,
             SportCode: doc1.data().SportCode,
+            EntryCount: doc1.data().EntryCount,
             CategoryDetails : doc1.data().CategoryDetails,
             MinimumFee: doc1.data().MinimumFee,
             MaximumFee: doc1.data().MaximumFee,
@@ -353,7 +354,7 @@ exports.getEventDetails =
             EventCode: doc1.data().EventCode,
             EventMode: doc1.data().EventMode,
             SportCode: doc1.data().SportCode,
-
+            EntryCount: doc1.data().EntryCount,
             MinimumFee: doc1.data().MinimumFee,
             MaximumFee: doc1.data().MaximumFee,
 
@@ -456,6 +457,7 @@ exports.getAllEventDetailsForYears =
             EventCode: doc1.data().EventCode,
             EventMode: doc1.data().EventMode,
             SportCode: doc1.data().SportCode,
+            EntryCount: doc1.data().EntryCount,
             CategoryDetails : doc1.data().CategoryDetails,
 
             MinimumFee: doc1.data().MinimumFee,
@@ -547,6 +549,7 @@ exports.getAllEventDetails =
           EventCode: doc1.data().EventCode,
           EventMode: doc1.data().EventMode,
           SportCode: doc1.data().SportCode,
+          EntryCount: doc1.data().EntryCount,
           CategoryDetails : doc1.data().CategoryDetails,
 
           MinimumFee: doc1.data().MinimumFee,
@@ -641,6 +644,7 @@ exports.getAllEventWithEventStatusAndLocation =
 
               EventCode: doc1.data().EventCode,
               EventMode: doc1.data().EventMode,
+              EntryCount: doc1.data().EntryCount,
               CategoryDetails : doc1.data().CategoryDetails,
 
               SportCode: doc1.data().SportCode,
@@ -723,6 +727,7 @@ exports.getAllEventWithEventStatusAndLocation =
 
                     EventCode: doc1.data().EventCode,
                     EventMode: doc1.data().EventMode,
+                    EntryCount: doc1.data().EntryCount,
                     CategoryDetails : doc1.data().CategoryDetails,
 
                     SportCode: doc1.data().SportCode,
@@ -804,6 +809,7 @@ exports.getAllEventWithEventStatusAndLocation =
 
               EventCode: doc1.data().EventCode,
               EventMode: doc1.data().EventMode,
+              EntryCount: doc1.data().EntryCount,
               CategoryDetails : doc1.data().CategoryDetails,
 
               SportCode: doc1.data().SportCode,
@@ -889,6 +895,7 @@ exports.getAllEventWithEventStatusAndLocation =
 
                     EventCode: doc1.data().EventCode,
                     EventMode: doc1.data().EventMode,
+                    EntryCount: doc1.data().EntryCount,
                     CategoryDetails : doc1.data().CategoryDetails,
 
                     SportCode: doc1.data().SportCode,
@@ -989,6 +996,7 @@ exports.getAllEventDetailsByCity =
 
             EventCode: doc1.data().EventCode,
             EventMode: doc1.data().EventMode,
+            EntryCount: doc1.data().EntryCount,
             CategoryDetails : doc1.data().CategoryDetails,
 
             SportCode: doc1.data().SportCode,
@@ -1084,6 +1092,7 @@ exports.getAllEventDetailsForOrganizer =
 
           EventCode: doc1.data().EventCode,
           EventMode: doc1.data().EventMode,
+          EntryCount: doc1.data().EntryCount,
           CategoryDetails : doc1.data().CategoryDetails,
 
           SportCode: doc1.data().SportCode,
@@ -1275,6 +1284,7 @@ exports.addEventDetails =
         EventMode:EventMode,
         SportCode: SportCode,
         City: City,
+        EntryCount:0,
         EventLogo:'',
         ThumbImage1 : '',
         ThumbImage2 : '',
@@ -2191,6 +2201,7 @@ exports.getAllEventForOrganizerWithStatus =
           EventCode: doc1.data().EventCode,
           EventMode: doc1.data().EventMode,
           SportCode: doc1.data().SportCode,
+          EntryCount: doc1.data().EntryCount,
           CategoryDetails : doc1.data().CategoryDetails,
 
           SportName: doc1.data().SportName,
@@ -2262,6 +2273,7 @@ exports.getAllEventWithStatus =
             EventCode: doc1.data().EventCode,
             EventMode: doc1.data().EventMode,
             SportCode: doc1.data().SportCode,
+            EntryCount: doc1.data().EntryCount,
             MinimumFee: doc1.data().MinimumFee,
             MaximumFee: doc1.data().MaximumFee,
             CategoryDetails : doc1.data().CategoryDetails,
@@ -2363,6 +2375,7 @@ exports.getAllEventWithEventStatus1 =
             EventCode: doc1.data().EventCode,
             EventMode: doc1.data().EventMode,
             SportCode: doc1.data().SportCode,
+            EntryCount: doc1.data().EntryCount,
             MinimumFee: doc1.data().MinimumFee,
             MaximumFee: doc1.data().MaximumFee,
             CategoryDetails : doc1.data().CategoryDetails,
@@ -2464,6 +2477,7 @@ exports.getAllEventWithEventStatus =
             EventCode: doc1.data().EventCode,
             EventMode: doc1.data().EventMode,
             SportCode: doc1.data().SportCode,
+            EntryCount: doc1.data().EntryCount,
             MinimumFee: doc1.data().MinimumFee,
             MaximumFee: doc1.data().MaximumFee,
             CategoryDetails : doc1.data().CategoryDetails,
