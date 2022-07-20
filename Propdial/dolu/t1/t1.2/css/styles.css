@@ -22,12 +22,7 @@ body{
   width: 100%;
   margin: 0;
   padding: 0;
-  /* background: #eeefee; */
-  /* font-family: 'Poppins', sans-serif; */
-  font-family: 'Baloo Da 2', cursive;
-/* font-family: 'Fugaz One', cursive; */
-/* font-family: 'Pacifico', cursive; */
-/* background: #fefefe; */
+  font-family: 'Quicksand';
 }
 
 a{
@@ -73,6 +68,7 @@ h6{
   background-color: #fff;
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
   padding: 0 20px;
+  height: 80px;
 }
 
 .navbar-brand{
@@ -91,27 +87,25 @@ h6{
 }
 
 .nav-item{
-  width: 120px;
+  padding: 0 10px;
   line-height: 2;
 }
 
 .nav-link {
-
   padding: 4px 10px;
   margin: 0 5px;
   text-align: center;
   background: none;
   transition: 0.8s;
   border-radius: 55px;
-  /* background: #DC948B; */
-  color: #DC948B;
+  color: #444;
+  /* color: #DC948B; */
   font-weight: bolder;
 }
 
 .nav-link.active,
 .nav-link:hover {
-  background: #DC948B;
-  color: #fff;
+  color: #EB542E;
 }
 
 .nav-link span {
@@ -123,13 +117,8 @@ h6{
 .nav-link small {
   position: relative;
   top: -1px;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 500;
-  /* color: #4d9623; */
-}
-
-.sticky {
-  transition: all 0.9s ease-in-out;
 }
 
 .navbar-mobile{
@@ -144,6 +133,7 @@ h6{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 100%;
 }
 
 .navbar-mobile-menu a{
@@ -376,8 +366,97 @@ h6{
   color: #4CD7D0;
 }
 
+.footer{
+  background: #282d32;
+  padding: 0 10px;
+  z-index: 10;
+}
 
-/* navbar end */
+.footer-list{
+  text-align: center;
+  position: relative;
+}
+
+.footer-list img{
+  width: 70%;
+}
+
+.footer-list h1{
+  position: relative;
+  color: #fff;
+  font-size: 2rem;
+}
+
+.footer-list h1::before{
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  width: 100px;
+  height: 4px;
+  background: #4CD7D0;
+  border-radius: 4px;
+}
+
+.footer-list p{
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.footer-list div{
+  position: relative;
+  height: 45px;
+}
+
+.footer-list div::before{
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  border-bottom: 1px dashed #666;
+  padding: 10px 0;
+  width: 50px;
+}
+
+.footer-list a{
+  position: relative;
+  top: 10px;
+  font-size: 0.9rem;
+  color: #ddd;
+  text-decoration: none;
+}
+
+.footer-list a:hover{
+  color: #fff;
+}
+
+.footer-list a span{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.footer hr{
+  border: none;
+  border-top: 1px solid #aaa;
+}
+
+.copyright{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copyright p{
+  color: #eee;
+  font-size: 0.8rem;
+}
+
+/* navbar and footer end */
 
 .large{
   width: 100% ;
@@ -421,6 +500,7 @@ h6{
 .button5 {
   background: linear-gradient(to right,#DC948B, #E4947C);
   /* background: #85cb0b; */
+  background: #EB542E;
   color: #fff;
   text-decoration: none;
   border-radius: 55px;
@@ -469,7 +549,7 @@ h6{
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 80px);
   overflow: hidden;
 }
 
@@ -533,7 +613,7 @@ h6{
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #65c032;
+  color: #EB542E;
   font-size: 1.2rem;
 }
 
@@ -555,7 +635,7 @@ h6{
 }
 
 .signin-signup-form .social-text small{
-  color: #65c032;
+  color: #EB542E;
 }
 
 .signin-signup-form .social-text small:hover{
@@ -576,14 +656,14 @@ h6{
   height: 500px;
 }
 
-.car-div{
+/* .car-div{
   position: absolute;
   width: 100%;
   height: 7%;
-  background: #65c032;
+  background: #EB542E;
   color: #fff;
   display: none;
-}
+} */
 
 .login-above-logo{
   display: none;
@@ -595,10 +675,10 @@ h6{
     display: none;
   }
 
-  .car-div{
+  /* .car-div{
     bottom: 0;
     display: block;
-  }
+  } */
 
   .login-above-logo{
     display: block;
@@ -614,7 +694,7 @@ h6{
   }
 }
 
-.car-div a{
+/* .car-div a{
   position: absolute;
   right: 10px;
   top: 50%;
@@ -627,7 +707,7 @@ h6{
   position: relative;
   top: -5px;
   font-weight: 600;
-}
+} */
 
 
 /* new login - page */
@@ -844,12 +924,12 @@ h6{
 }
 
 .vehicle-div .heading div span{
-  color: #65c032;
+  color: #EB542E;
   font-size: 1rem;
 }
 
 .vehicle-div .heading div small{
-  color: #65c032;
+  color: #EB542E;
   font-size: 1rem;
   position: relative;
   top: -2px;
@@ -1344,7 +1424,7 @@ h6{
 .last-div a{
   margin-top: 10px;
   font-size: 0.9rem;
-  color: #65c032;
+  color: #EB542E;
 }
 
 .last-div small{
