@@ -535,6 +535,7 @@ exports.getAllEventDetails =
           EventType: doc1.data().EventType,
           EventStatus: doc1.data().EventStatus,
           OrganizationID: doc1.data().OrganizationID,
+          OrganizationName: doc1.data().OrganizationName,
           OrganizerID: doc1.data().OrganizerID,
           EventOwnerName: doc1.data().EventOwnerName,
           EventOwnerEmail: doc1.data().EventOwnerEmail,
@@ -983,6 +984,7 @@ exports.getAllEventDetailsByCity =
             EventType: doc1.data().EventType,
             EventStatus: doc1.data().EventStatus,
             OrganizationID: doc1.data().OrganizationID,
+            OrganizationName: doc1.data().OrganizationName,
             OrganizerID: doc1.data().OrganizerID,
             EventOwnerName: doc1.data().EventOwnerName,
             EventOwnerEmail: doc1.data().EventOwnerEmail,
@@ -1079,6 +1081,7 @@ exports.getAllEventDetailsForOrganizer =
           EventType: doc1.data().EventType,
           EventStatus: doc1.data().EventStatus,
           OrganizationID: doc1.data().OrganizationID,
+          OrganizationName: doc1.data().OrganizationName,
           OrganizerID: doc1.data().OrganizerID,
           EventOwnerName: doc1.data().EventOwnerName,
           EventOwnerEmail: doc1.data().EventOwnerEmail,
@@ -1249,6 +1252,7 @@ exports.addEventDetails =
     }
     const OrganizationID = data.OrganizationID;
     const OrganizerID = data.OrganizerID;
+    const OrganizationName = data.OrganizationName;
     const SportName = data.SportName;
     const EventName = data.EventName;
     const EventOwnerName = data.EventOwnerName;
@@ -1270,6 +1274,7 @@ exports.addEventDetails =
       .add({
         OrganizationID: OrganizationID,
         OrganizerID: OrganizerID,
+        OrganizationName: OrganizationName,
         SportName: SportName,
         EventName: EventName,
         EventOwnerName: EventOwnerName,
@@ -1326,6 +1331,7 @@ exports.updateEventBasicDetails =
     const EventName = data.EventName;
     const EventType = data.EventType;
     const OrganizerID = data.OrganizerID;
+    const OrganizationName = data.OrganizationName;
     const EventOwnerName = data.EventOwnerName;
     const EventOwnerEmail = data.EventOwnerEmail;
     const EventOwnerPhone = data.EventOwnerPhone;
@@ -1350,6 +1356,7 @@ exports.updateEventBasicDetails =
         EventName: EventName,
         EventType: EventType,
         OrganizerID: OrganizerID,
+        OrganizationName: OrganizationName,
         EventOwnerName: EventOwnerName,
         EventOwnerEmail: EventOwnerEmail,
         EventOwnerPhone: EventOwnerPhone,

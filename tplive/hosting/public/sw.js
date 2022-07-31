@@ -12,7 +12,7 @@ importScripts('js/utility.js');
 //   debug: true,
 // });
 
-const SW_VERSION = '1.0.0.5';
+const SW_VERSION = '1.0.0.6';
 
 addEventListener('message', (event) => {
   if (event.data.type === 'GET_VERSION') {
@@ -142,7 +142,7 @@ workbox.routing.registerRoute("/",
     // Demonstrates a custom cache name for a route.
     workbox.routing.registerRoute(
       // registerRoute(
-      new RegExp('.*\\.(?:png|jpg|jpeg|svg|gif)*'),
+      new RegExp('.*\\.(?:png|jpg|jpeg|svg|gif|webp)*'),
       new workbox.strategies.CacheFirst({
         cacheName: 'image-cache',
         // plugins: [

@@ -14,8 +14,8 @@ exports.logEntryAdd = functions
     //  const entryLogID =
     console.log(inputData.EventID);
     const EventID = inputData.EventID;
-    await admin.firestore().collection("EventRegistrationDetails").doc(EventID).update({
-        EntryCount: admin.firestore().FieldValue.increment(1)
+    await admin.firestore().collection("EventList").doc(EventID).update({
+        EntryCount: admin.firestore.FieldValue.increment(1)
     });
 
     await admin.firestore().collection("EventEntryLog").where("EventID", "==", inputData.EventID)
@@ -83,8 +83,8 @@ exports.logEntryDelete = functions
     //  const entryLogID =
     console.log(inputData.EventID);
 const EventID = inputData.EventID;
-    await admin.firestore().collection("EventRegistrationDetails").doc(EventID).update({
-        EntryCount: admin.firestore().FieldValue.increment(-1)
+    await admin.firestore().collection("EventList").doc(EventID).update({
+        EntryCount: admin.firestore.FieldValue.increment(-1)
     });
 
     await admin.firestore().collection("EventEntryLog").where("EventID", "==", inputData.EventID)
@@ -129,22 +129,23 @@ const EventID = inputData.EventID;
     .firestore.document('/EventRegistrationDetails/{id}')
     .onUpdate(async (snap, context) => {
       const id = context.params.id;
-      const inputData = snap.data();
+//      const inputData = snap.data();
 
       const before = snap.before;  // DataSnapshot before the change
       const after = snap.after;
 
-      console.log(inputData);
+      console.log(before);
+      console.log(after);
       // const entryLog = admin.firestore().collection("EventEntryLog");
       var docID = "";
       var entryCount = 0;
       //  const entryLogID =
-      console.log(inputData.EventID);
-      const EventID = inputData.EventID;
+      console.log(before.EventID);
+      const EventID = before.EventID;
       if(snap.before.CategoryName != "" && snap.after.CategoryName  === "")
       {
-        await admin.firestore().collection("EventRegistrationDetails").doc(EventID).update({
-            EntryCount: admin.firestore().FieldValue.increment(-1)
+        await admin.firestore().collection("EventList").doc(EventID).update({
+            EntryCount: admin.firestore.FieldValue.increment(-1)
         });
 
       }

@@ -593,8 +593,9 @@
             <div class="row no-gutters">
               <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="dropdown-div">
-                  <select class="" name="" style="background: #fff;">
-                    <option value="Banglore">Banglore</option>
+                  <select class="" name="" id="citySelect1" onclick="SelectCityChange1()" style="background: #fff;">
+                    <option value="All">All</option>
+                    <option value="Bangalore">Bangalore</option>
                     <option value="Pune">Pune</option>
                     <option value="Delhi">Delhi</option>
                     <option value="Chennai">Chennai</option>
@@ -630,20 +631,20 @@
                   <div class="filter-btn-div">
                     <button type="button" id='btnActive' class="mybutton buttonTransparent active" onclick="changestatus('Active')" name="button">ACTIVE</button>
                     <div class="indicator"></div>
-                    <span>23</span>
-                    <span class="half">23</span>
+                    <span id="active3"></span>
+                    <span class="half" id="active4"></span>
                   </div>
                   <div class="filter-btn-div">
                     <button type="button" id='btnClose' class="mybutton buttonTransparent" onclick="changestatus('Closed')" name="button">CLOSED</button>
                     <div class="indicator"></div>
-                    <span>52</span>
-                    <span class="half">52</span>
+                    <span id="close3"></span>
+                    <span class="half" id="close4"></span>
                   </div>
                   <div class="filter-btn-div">
                     <button type="button" id='btnOthers' class="mybutton buttonTransparent" onclick="changestatus('Others')" name="button">OTHERS</button>
                     <div class="indicator"></div>
-                    <span>194</span>
-                    <span class="half">194</span>
+                    <span id="others3"></span>
+                    <span class="half" id="others4"></span>
                   </div>
                 </div>
               </div>
@@ -665,8 +666,9 @@
             <div class="row no-gutters">
               <div class="col-6">
                 <div class="dropdown-div">
-                  <select class="" name="" style="background: #fff;">
-                    <option value="Banglore">Banglore</option>
+                  <select class="" name="" id="citySelect2" onclick="SelectCityChange2()" style="background: #fff;">
+                    <option value="All">All</option>
+                    <option value="Bangalore">Bangalore</option>
                     <option value="Pune">Pune</option>
                     <option value="Delhi">Delhi</option>
                     <option value="Chennai">Chennai</option>
@@ -702,20 +704,20 @@
                   <div class="filter-btn-div">
                     <button type="button" id='btnActiveSmall' class="mybutton buttonTransparent active" onclick="changestatussmall('Active')" name="button">ACTIVE</button>
                     <div class="indicator"></div>
-                    <span>24</span>
-                    <span class="half">24</span>
+                    <span id="active1"></span>
+                    <span class="half" id="active2"></span>
                   </div>
                   <div class="filter-btn-div">
                     <button type="button" id='btnCloseSmall' class="mybutton buttonTransparent" onclick="changestatussmall('Closed')" name="button">CLOSED</button>
                     <div class="indicator"></div>
-                    <span>64</span>
-                    <span class="half">64</span>
+                    <span id="close1"></span>
+                    <span class="half" id="close2"></span>
                   </div>
                   <div class="filter-btn-div">
                     <button type="button" id='btnOthersSmall' class="mybutton buttonTransparent" onclick="changestatussmall('Others')" name="button">OTHERS</button>
                     <div class="indicator"></div>
-                    <span>163</span>
-                    <span class="half">163</span>
+                    <span id="others1"></span>
+                    <span class="half" id="others2"></span>
                   </div>
                 </div>
               </div>
@@ -733,7 +735,7 @@
             </div>
           </div><hr class="large"/><br class="small"/>
 
-          <div class="row no-gutters">
+          <div class="row no-gutters" id="eventPlaceholder">
 
             <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 10px 15px;">
               <div class="event-list-card" style="border: none;">
@@ -861,7 +863,6 @@
                 </div>
               </div>
             </div>
-
 
           </div>
 

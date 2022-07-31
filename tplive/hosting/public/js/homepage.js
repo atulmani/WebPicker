@@ -217,8 +217,8 @@ function getEventList(filter) {
     };
     // console.log(para3);
     // const ret3 = firebase.functions().httpsCallable("getAllEventEntryCount");
-    const ret3 = functions.httpsCallable("getAllEventEntryCount");
-    ret3().then(results1 => {
+    // const ret3 = functions.httpsCallable("getAllEventEntryCount");
+    // ret3().then(results1 => {
       // console.log("From Function getEventsEntryCount recLength : " + results1.data.length);
       // console.log(results1.data);
       // console.log("From Function " + results.data[0].resultsid);
@@ -226,13 +226,13 @@ function getEventList(filter) {
       for (index = 0; index < results.data.length; index++) {
         var entryCount = 0;
          // console.log(results.data[index].EventCode);
-        var indEntry = results1.data.findIndex(e => e.EventID === results.data[index].Eventid);
+        // var indEntry = results1.data.findIndex(e => e.EventID === results.data[index].Eventid);
         // console.log(indEntry);
-        if (indEntry >= 0)
-          entryCount = Number(results1.data[indEntry].EntryCount);
+        // if (indEntry >= 0)
+          // entryCount = Number(results1.data[indEntry].EntryCount);
 
         // console.log(results.data[index]);
-         RenderEventDetails(index, results.data[index], entryCount);
+         RenderEventDetails(index, results.data[index], results.data[index].EntryCount);
       }
       // document.getElementById('loading').style.display = 'none';
     })
@@ -265,7 +265,7 @@ function getEventList(filter) {
           document.getElementById('eventLoading').style.display = 'none';
 
     });
-  });
+  // });
 }
 
 function getLocationEvent(location, cnt) {
@@ -359,7 +359,9 @@ function cartEventClick(eventcode){
 
 function RenderEventDetails(index, doc, entryCount) {
    console.log("Event Code : " + doc.EventCode + " :: EventStatus " + doc.EventStatus);
-
+   if(entryCount === undefined || entryCount === null || entryCount === ""){
+     entryCount = 0;
+   }
   var curFormat = {
     style: 'currency',
     currency: 'INR',

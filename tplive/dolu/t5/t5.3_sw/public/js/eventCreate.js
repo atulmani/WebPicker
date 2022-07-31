@@ -448,6 +448,10 @@ btnSave.addEventListener('click', e => {
   var val = ddlOrganization.options[ddlOrganization.selectedIndex].value;
   val = val.split(":");
   var organizationID = val[0];
+
+  // var organizationName = ddlOrganization.options[ddlOrganization.selectedIndex].text;
+  var organizationName = val[3];;
+
   var sportName = ddlSport.options[ddlSport.selectedIndex].innerHTML;
   var eventName = document.getElementById("eventName").value;
   var eventOwnerName = document.getElementById("eventOwnerName").value;
@@ -493,6 +497,7 @@ btnSave.addEventListener('click', e => {
       EventID : eventID,
       OrganizationID: organizationID,
       OrganizerID: organizerID,
+      OrganizationName: organizationName,
       SportName: sportName,
       EventName: eventName,
       EventOwnerName: eventOwnerName,
