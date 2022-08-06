@@ -422,65 +422,65 @@
             <div class="menu-list active" id="Basic" onclick="addPropertyMenu('Basic')">
               <h1>Basic</h1>
             </div>
-            <div class="menu-list" id="Source" onclick="addPropertyMenu('Source')">
-              <h1>Source</h1>
+            <div class="menu-list" id="Details" onclick="addPropertyMenu('Details')">
+              <h1>Details</h1>
             </div>
-            <div class="menu-list" id="Category" onclick="addPropertyMenu('Category')">
-              <h1>Category</h1>
+            <div class="menu-list" id="Occupancy" onclick="addPropertyMenu('Occupancy')">
+              <h1>Occupancy</h1>
             </div>
-            <div class="menu-list" id="Flag" onclick="addPropertyMenu('Flag')">
-              <h1>Flag</h1>
+            <div class="menu-list" id="History" onclick="addPropertyMenu('History')">
+              <h1>History</h1>
             </div>
             <div class="menu-indicator" id="menuIndicator"></div>
           </div>
 
+          <div class="row no-gutters" style="margin: 10px 0;">
+
+            <div class="col-lg-6 col-md-6 col-sm-12" style="background: rgb(188, 236, 224, 0.5); padding: 10px 10px 0 10px;">
+              <div class="switch" style="height: calc(100% - 10px);">
+                <span class="active" id="ResidentialText" style="color: #59981A">Residential</span>
+
+                <div class="switch-button Residential" id="propertyTypeToggleBtn" onclick="propertyToggleClick(propertyTypeToggleBtn)">
+                  <div class="switch-button-inner"></div>
+                </div>
+
+                <span id="CommercialText" style="color: #EB542E">Commercial</span>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12" style="background: rgb(188, 236, 224, 0.5); padding: 10px 10px 0 10px;">
+              <div class="details-radio">
+
+                <div class="row no-gutters">
+
+                  <div class="col-6" style="padding: 0 5px;">
+                    <input type="checkbox" checked class="checkbox" style="width: 0px;" name="BusinessType" id="Rent" value="Rent">
+                    <label class="checkbox-label" id="Rent-label" for="Rent">
+                      <i class="fas fa-plus"></i>
+                      <i class="fas fa-check"></i>
+                      <span>Rent</span>
+                    </label>
+                  </div>
+
+                  <div class="col-6" style="padding: 0 5px;">
+                    <input type="checkbox" class="checkbox" style="width: 0px;" name="BusinessType" id="Sale" value="Sale">
+                    <label class="checkbox-label" id="Sale-label" for="Sale">
+                      <i class="fas fa-plus"></i>
+                      <i class="fas fa-check"></i>
+                      <span>Sale</span>
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
           <div class="add-property-inner">
-            <div class="section basic-details">
+            <div class="section basic-details" id="section1">
 
               <div class="row no-gutters">
-
-                <div class="col-lg-6 col-md-6 col-sm-12" style="background: rgb(188, 236, 224, 0.5); padding: 10px 10px 0 10px;">
-                  <div class="switch" style="height: calc(100% - 10px);">
-                    <span class="active" id="ResidentialText" style="color: #59981A">Residential</span>
-
-                    <div class="switch-button Residential" id="propertyTypeToggleBtn" onclick="propertyToggleClick(propertyTypeToggleBtn)">
-                      <div class="switch-button-inner"></div>
-                    </div>
-
-                    <span id="CommercialText" style="color: #EB542E">Commercial</span>
-                  </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12" style="background: rgb(188, 236, 224, 0.5); padding: 10px 10px 0 10px;">
-                  <div class="details-radio">
-
-                    <div class="row no-gutters">
-
-                      <div class="col-6" style="padding: 0 5px;">
-                        <input type="checkbox" checked class="checkbox" style="width: 0px;" name="BusinessType" id="Rent" value="Rent">
-                        <label class="checkbox-label" id="Rent-label" for="Rent">
-                          <i class="fas fa-plus"></i>
-                          <i class="fas fa-check"></i>
-                          <span>Rent</span>
-                        </label>
-                      </div>
-
-                      <div class="col-6" style="padding: 0 5px;">
-                        <input type="checkbox" checked class="checkbox" style="width: 0px;" name="BusinessType" id="Sale" value="Sale">
-                        <label class="checkbox-label" id="Sale-label" for="Sale">
-                          <i class="fas fa-plus"></i>
-                          <i class="fas fa-check"></i>
-                          <span>Sale</span>
-                        </label>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-
-              </div><br>
-
-              <div class="row no-gutters">
-                <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 10px;">
                   <h1 class="owner-heading">Property Name</h1>
                   <div class="location-search">
                     <input type="text" required placeholder="Search Your Property Location..." name="" value="">
@@ -536,22 +536,258 @@
                 <div class="col-12">
                   <div class="section-btn">
                     <div class=""></div>
-                    <button type="button" name="button" class="mybutton button5">Next</button>
+                    <button type="button" name="button" onclick="addPropertyMenu('Details')" class="mybutton button5">Next</button>
                   </div>
                 </div>
               </div>
 
             </div>
 
-            <div class="section">
+            <div class="section" id="section2">
+
+              <div class="row no-gutters">
+                <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 10px;">
+                  <h1 class="owner-heading">Locality</h1>
+                  <div class="location-search">
+                    <select class="" name="">
+                      <option value="" selected disabled>Choose Your Locality</option>
+                      <option value="">Pune</option>
+                      <option value="">Banglore</option>
+                      <option value="">Chennai</option>
+                      <option value="">Hyderabad</option>
+                      <option value="">Pimple Saudagar</option>
+                    </select>
+                    <div class="underline"></div>
+                    <span class="material-symbols-outlined">
+                      local_library
+                    </span>
+                  </div><br>
+
+                  <h1 class="owner-heading">Society</h1>
+                  <div class="location-search">
+                    <input type="text" required placeholder="Enter Society Name.." name="" value="">
+                    <div class="underline"></div>
+                    <span class="material-symbols-outlined">
+                      holiday_village
+                    </span>
+                  </div><br>
+
+                  <h1 class="owner-heading">Property Type</h1>
+                  <div class="location-search">
+
+                    <select class="" name="">
+                      <option value="" selected disabled>Choose Property Type</option>
+                      <option value="">Appartment</option>
+                      <option value="">Builder floor</option>
+                      <option value="">Vila</option>
+                      <option value="">Row house</option>
+                      <option value="">Duplex</option>
+                    </select>
+
+                    <div class="underline"></div>
+                    <span class="material-symbols-outlined">
+                      format_list_bulleted
+                    </span>
+                  </div><br>
+
+                  <h1 class="owner-heading">Unit Number</h1>
+                  <div class="location-search">
+                    <input type="text" required placeholder="Enter Unit Number..." name="" value="">
+                    <div class="underline"></div>
+                    <span class="material-symbols-outlined">
+                      location_away
+                    </span>
+                  </div><br>
+
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 10px;">
+                  <h1 class="owner-heading">BHK</h1>
+                  <div class="location-search">
+                    <select class="" name="">
+                      <option value="" selected disabled>Choose BHK</option>
+                      <option value="">1 BHK</option>
+                      <option value="">2 BHK</option>
+                      <option value="">3 BHK</option>
+                      <option value="">4 BHK</option>
+                      <option value="">5 BHK</option>
+                    </select>
+                    <div class="underline"></div>
+                    <span class="material-symbols-outlined">
+                      bedroom_parent
+                    </span>
+                  </div><br>
+
+                  <h1 class="owner-heading">No. of Bedrooms</h1>
+                  <div class="location-search">
+                    <input type="number" required placeholder="Count of Bedroms..." name="" value="" min="0">
+                    <div class="underline"></div>
+                    <span class="material-symbols-outlined">
+                      bed
+                    </span>
+                  </div><br>
+
+                  <h1 class="owner-heading">No. of Bathrooms</h1>
+                  <div class="location-search">
+                    <input type="number" required placeholder="Count of Bathrooms..." name="" value="" min="0">
+                    <div class="underline"></div>
+                    <span class="material-symbols-outlined">
+                      bathtub
+                    </span>
+                  </div><br>
+
+                  <h1 class="owner-heading">No. of Balcony</h1>
+                  <div class="location-search">
+                    <input type="number" required placeholder="Count of Balcony..." name="" value="" min="0">
+                    <div class="underline"></div>
+                    <span class="material-symbols-outlined">
+                      balcony
+                    </span>
+                  </div><br>
+
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 10px;">
+                  <h1 class="owner-heading">Area ( SqFt )</h1>
+                  <div class="location-search">
+                    <input type="text" required placeholder="Area in SqFt..." name="" value="">
+                    <div class="underline"></div>
+                    <span class="material-symbols-outlined">
+                      crop_square
+                    </span>
+                  </div><br>
+
+                  <h1 class="owner-heading">Car Parking</h1>
+                  <div class="row no-gutters">
+                    <div class="col-6" style="padding: 5px;">
+                      <input type="radio" required class="checkbox" style="width: 0px;" name="CarParking" id="Open" value="Open">
+                      <label class="checkbox-label" id="Open-label" for="Open">
+                        <i class="fas fa-plus"></i>
+                        <i class="fas fa-check"></i>
+                        <span>Open</span>
+                      </label>
+                    </div>
+                    <div class="col-6" style="padding: 5px;">
+                      <input type="radio" required checked class="checkbox" style="width: 0px;" name="CarParking" id="Closed" value="Closed">
+                      <label class="checkbox-label" id="Closed-label" for="Closed">
+                        <i class="fas fa-plus"></i>
+                        <i class="fas fa-check"></i>
+                        <span>Closed</span>
+                      </label>
+                    </div>
+
+                  </div>
+
+                  <h1 class="owner-heading">Power Backup</h1>
+                  <div class="row no-gutters">
+                    <div class="col-6" style="padding: 5px;">
+                      <input type="radio" required class="checkbox" style="width: 0px;" name="PowerBackup" id="PowerBackupYes" value="PowerBackupYes">
+                      <label class="checkbox-label" id="PowerBackupYes-label" for="PowerBackupYes">
+                        <i class="fas fa-plus"></i>
+                        <i class="fas fa-check"></i>
+                        <span>Yes</span>
+                      </label>
+                    </div>
+                    <div class="col-6" style="padding: 5px;">
+                      <input type="radio" required checked class="checkbox" style="width: 0px;" name="PowerBackup" id="PowerBackupNo" value="PowerBackupNo">
+                      <label class="checkbox-label" id="PowerBackupNo-label" for="PowerBackupNo">
+                        <i class="fas fa-plus"></i>
+                        <i class="fas fa-check"></i>
+                        <span>No</span>
+                      </label>
+                    </div>
+
+                  </div><br>
+
+                  <h1 class="owner-heading">Age Of Construction</h1>
+                  <div class="location-search">
+                    <input type="text" required placeholder="Construction Age Here..." name="" value="">
+                    <div class="underline"></div>
+                    <span class="material-symbols-outlined">
+                      engineering
+                    </span>
+                  </div><br>
+
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="row no-gutters" style="padding: 0 10px;">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                      <h1 class="owner-heading">Furninshed</h1>
+                      <div class="row no-gutters">
+                        <div class="col-4" style="padding: 5px;">
+                          <input type="radio" required class="checkbox" style="width: 0px;" name="Furninshed" id="FurninshedFully" value="FurninshedFully">
+                          <label class="checkbox-label" id="FurninshedFully-label" for="FurninshedFully">
+                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-check"></i>
+                            <span>Fully</span>
+                          </label>
+                        </div>
+                        <div class="col-4" style="padding: 5px;">
+                          <input type="radio" required class="checkbox" style="width: 0px;" name="Furninshed" id="FurninshedSemi" value="FurninshedSemi">
+                          <label class="checkbox-label" id="FurninshedSemi-label" for="FurninshedSemi">
+                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-check"></i>
+                            <span>Semi</span>
+                          </label>
+                        </div>
+                        <div class="col-4" style="padding: 5px;">
+                          <input type="radio" required checked class="checkbox" style="width: 0px;" name="Furninshed" id="FurninshedNot" value="FurninshedNot">
+                          <label class="checkbox-label" id="FurninshedNot-label" for="FurninshedNot">
+                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-check"></i>
+                            <span>Not</span>
+                          </label>
+                        </div>
+
+                      </div><br>
+                    </div>
+
+                    <div class="col-lg-1 col-md-1">
+
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                      <h1 class="owner-heading">Property Description</h1>
+
+                      <div class="location-search">
+                        <textarea name="name" required placeholder="Write Any Other Information Here..." rows="8" cols="80"></textarea>
+                        <!-- <div class="underline"></div> -->
+                        <span class="material-symbols-outlined">
+                          description
+                        </span>
+                      </div><br>
+
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row no-gutters section-btn-div">
+                <div class="col-6" style="padding: 5px;">
+                  <div class="section-btn">
+                    <button type="button" name="button" onclick="addPropertyMenu('Basic')" class="mybutton button5">Back</button>
+                    <div class=""></div>
+                  </div>
+                </div>
+
+                <div class="col-6" style="padding: 5px;">
+                  <div class="section-btn">
+                    <div class=""></div>
+                    <button type="button" name="button" onclick="addPropertyMenu('Category')" class="mybutton button5">Next</button>
+                  </div>
+                </div>
+              </div>
 
             </div>
 
-            <div class="section">
+            <div class="section" id="section3">
 
             </div>
 
-            <div class="section">
+            <div class="section" id="section4">
 
             </div>
 
