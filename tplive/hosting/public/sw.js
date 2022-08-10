@@ -12,7 +12,7 @@ importScripts('js/utility.js');
 //   debug: true,
 // });
 
-const SW_VERSION = '1.0.0.6';
+const SW_VERSION = '1.0.0.9';
 
 addEventListener('message', (event) => {
   if (event.data.type === 'GET_VERSION') {
@@ -278,7 +278,7 @@ workbox.routing.registerRoute("/",
         }),
       );
     });
-
+////notification start
 
     //action for notification
     self.addEventListener('notificationclick', function(event) {
@@ -297,3 +297,33 @@ workbox.routing.registerRoute("/",
     self.addEventListener('notificationclose', function(event) {
       console.log("notification was cancelled", event);
     });
+
+
+    // urlB64ToUint8Array is a magic function that will encode the base64 public key
+    // to Array buffer which is needed by the subscription option
+    const urlB64ToUint8Array = base64String => {
+      const padding = '='.repeat((4 - (base64String.length % 4)) % 4)
+      const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/')
+      const rawData = atob(base64)
+      const outputArray = new Uint8Array(rawData.length)
+      for (let i = 0; i < rawData.length; ++i) {
+        outputArray[i] = rawData.charCodeAt(i)
+      }
+      return outputArray
+    }
+
+    self.addEventListener('activate', async () => {
+      // This will be called only once when the service worker is activated.
+      try {
+        const applicationServerKey = urlB64ToUint8Array(
+          'BM7qrbCqVaHxNmpCKIbR4oqcWAwNyx8WSSkUjQtmOokcWB6d8gkG-RGbgb5hTpo3tNvaEQ-uE0l8JgNq9D5FCn0'
+        )
+        const options = { applicationServerKey, userVisibleOnly: true }
+        const subscription = await self.registration.pushManager.subscribe(options)
+        console.log(JSON.stringify(subscription))
+      } catch (err) {
+        console.log('Error', err)
+      }
+    })
+
+////notification end

@@ -12,7 +12,7 @@ importScripts('js/utility.js');
 //   debug: true,
 // });
 
-const SW_VERSION = '1.0.0.7';
+const SW_VERSION = '1.0.0.9';
 
 addEventListener('message', (event) => {
   if (event.data.type === 'GET_VERSION') {

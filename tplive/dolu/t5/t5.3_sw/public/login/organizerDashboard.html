@@ -86,7 +86,7 @@
 
 
   <!-- Your Own Style -->
-  <link rel="stylesheet" href="/css/profile.css">
+  <!-- <link rel="stylesheet" href="/css/profile.css"> -->
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="manifest" href="/manifest.json">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -107,7 +107,7 @@
 
 </head>
 
-<body>
+<body style="background: #efefef;">
 
   <!-- small bardown -->
 
@@ -198,7 +198,7 @@
         <li class="nav-item">
           <b></b>
           <b></b>
-          <a class="nav-link" href="https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA">
+          <a class="nav-link" href="../admin/eventList.html">
             <span class="material-symbols-outlined">
               redeem
             </span>
@@ -281,7 +281,7 @@
         </span>
         <small>Home</small>
       </a>
-      <a href="https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="../admin/eventList.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
         <span class="material-symbols-outlined">
           redeem
         </span>
@@ -556,46 +556,138 @@
     </div>
 
     </div>
-  </div> --><br><br><br>
+  </div> -->
 
-    <div class="row no-gutters">
-      <div style="padding:2%;" class="col-lg-8">
+    <div class="" style="padding: 10px;">
+      <div class="profileCardBox">
+        <div class="container-fluid" style="padding: 10px;">
+          <div class="row no-gutters">
+            <div style="padding:0 2%;" class="col-lg-3 col-md-6 col-sm-12">
 
-        <div class="profileCardBox">
-          <div style="width: 120px;" class="">
-            <div class="profileCircle">
-              <img id="profilePic" style="" src="/img/propic.jpg" alt="">
+              <div class="profile-heading-card">
+                <div class="">
+                  <div class="profileCircle">
+                    <img id="profilePic" style="" src="/img/propic.jpg" alt="">
+
+                  </div>
+                </div>
+
+                <div class="" style="padding: 10px;">
+                  <textarea class="profile-user-name" readonly id="userName">Pravararchith Rudrakshala Matam</textarea>
+                  <h2 id="userPhone"></h2>
+                  <input type="hidden" id="hfGender">
+                  <input type="hidden" id="hfName">
+                  <input readonly class="profile-user-lacation" type="text" id="city"></input>
+                  <input readonly class="profile-user-lacation" type="text" id="state"></input>
+                  <span class="profile-user-edit">
+                    <span class="material-symbols-outlined" style="font-size: 0.7rem;">
+                      edit
+                    </span>
+                    Edit
+                  </span>
+                </div>
+                <!-- <div class="qrimg">
+        <img src="/img/proQR.png" alt="">
+      </div> -->
+
+
+              </div>
 
             </div>
-          </div>
 
-          <div class="">
-            <h3 id="userName"></h3>
-            <h4 id="userPhone"></h4>
-            <input type="hidden" id="hfGender">
-            <input type="hidden" id="hfName">
-            <h4 id="city">Mumbai</h4>
-            <h4 id="state">Maharashtra, India</h4>
-          </div>
-          <div class="qrimg">
-            <img src="/img/proQR.png" alt="">
-          </div>
+            <div class="col-lg-9 col-md-6 col-sm-12">
+
+              <div class="checkbox-div">
+                <div class="item1">
+                  <input type="checkbox" checked class="checkbox" style="width: 0px;" name="role" id="Participant" value="Participant">
+                  <label class="checkbox-label" id="Participant-label" for="Participant">
+                    <i class="fas fa-plus" style="padding-right: 0;font-size: 0.5rem;"></i>
+                    <i class="fas fa-check" style="padding-right: 0;font-size: 0.5rem;"></i>
+                    <span style="font-size: 0.7rem;">Participant</span>
+                  </label>
+                </div>
+                <div class="item2">
+                  <input type="checkbox" class="checkbox" style="width: 0px;" name="role" id="Organiser" value="Organiser">
+                  <label class="checkbox-label" id="Organiser-label" for="Organiser">
+                    <i class="fas fa-plus" style="padding-right: 0;font-size: 0.5rem;"></i>
+                    <i class="fas fa-check" style="padding-right: 0;font-size: 0.5rem;"></i>
+                    <span style="font-size: 0.7rem;">Organiser</span>
+                  </label>
+                </div>
+                <div class="item3" style="display: none;">
+                  <input type="checkbox" class="checkbox" style="width: 0px;" name="role" id="Referee" value="Referee">
+                  <label class="checkbox-label" id="Referee-label" for="Referee">
+                    <i class="fas fa-plus" style="padding-right: 0;font-size: 0.5rem;"></i>
+                    <i class="fas fa-check" style="padding-right: 0;font-size: 0.5rem;"></i>
+                    <span style="font-size: 0.7rem;">Referee</span>
+                  </label>
+                </div>
+                <div class="item4" style="display: none;">
+                  <input type="checkbox" class="checkbox" style="width: 0px;" name="role" id="Coach" value="Coach">
+                  <label class="checkbox-label" id="Coach-label" for="Coach">
+                    <i class="fas fa-plus" style="padding-right: 0;font-size: 0.5rem;"></i>
+                    <i class="fas fa-check" style="padding-right: 0;font-size: 0.5rem;"></i>
+                    <span style="font-size: 0.7rem;">Coach</span>
+                  </label>
+                </div>
+                <div class="item5" style="display: none;">
+                  <input type="checkbox" class="checkbox" style="width: 0px;" name="role" id="AcademyOwner" value="AcademyOwner">
+                  <label class="checkbox-label" id="AcademyOwner-label" for="AcademyOwner">
+                    <i class="fas fa-plus" style="padding-right: 0;font-size: 0.5rem;"></i>
+                    <i class="fas fa-check" style="padding-right: 0;font-size: 0.5rem;"></i>
+                    <span style="font-size: 0.7rem;">Owner</span>
+                  </label>
+                </div>
+                <div class="item6" style="display: none;">
+                  <input type="checkbox" class="checkbox" style="width: 0px;" name="role" id="Extra" value="Extra">
+                  <label class="checkbox-label" id="Extra-label" for="Extra">
+                    <i class="fas fa-plus" style="padding-right: 0;font-size: 0.5rem;"></i>
+                    <i class="fas fa-check" style="padding-right: 0;font-size: 0.5rem;"></i>
+                    <span style="font-size: 0.7rem;">Extra</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="container-fluid" style="padding: 0 10px;">
+                <div class="row no-gutters" style="height: auto;">
+                  <div class="col-lg-3 col-md-6 col-sm-12" style="padding: 5px;">
+                    <label class="profile-input-label" for="inputEmail4">Date of birth</label>
+                    <div class="input-group date datetimepicker11">
+                      <input id="dob" style="height: 30px;background: #efefef;" type="text" placeholder="Date Of Birth" class="form-control" readonly>
+                      <div class="input-group-addon input-group-prepend">
+                        <span class="input-group-text" style="border-radius: 0 4px 4px 0;background: #efefef;"><i style="color: #348DCB;" class="fas fa-calendar"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-6 col-sm-12" style="padding: 5px;">
+                    <div class="" style="position: relative;">
+                      <label class="profile-input-label" for="inputPassword4">Email Id</label>
+                      <input id="userEmail" required type="email" class="profile-input" placeholder="Enter email id">
+                      <b class="input-underline"></b>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-12 col-sm-12" style="padding: 5px;">
+                    <div class="" style="position: relative;">
+                      <label class="profile-input-label" for="inputState">Address</label>
+                      <input id="address" required type="text" class="profile-input" placeholder="Enter your address">
+                      <b class="input-underline"></b>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 
-        </div>
-
-        <br><br>
-        <div class="profileCardBox">
+              <!-- <div class="profileCardBox">
           <div class="row no-gutters">
             <div style="display:flex; justify-content:space-between; align-items:center;padding: 10px 0;" class="col-md-12">
 
               <div class="genderRadio">
                 <input id="participant" disabled checked type="checkbox" name="role" value="PARTICIPANT">
                 <label for="participant">
-                  <span class="material-icons-outlined check">
+                  <span class="material-symbols-outlined check">
                     check
                   </span>
-                  <span class="material-icons-outlined close">
+                  <span class="material-symbols-outlined close">
                     close
                   </span>
                   Participant
@@ -605,10 +697,10 @@
               <div class="genderRadio">
                 <input id="organiser" type="checkbox" name="role" value="ORGANIZER">
                 <label for="organiser">
-                  <span class="material-icons-outlined check">
+                  <span class="material-symbols-outlined check">
                     check
                   </span>
-                  <span class="material-icons-outlined close">
+                  <span class="material-symbols-outlined close">
                     close
                   </span>
                   Organiser
@@ -623,10 +715,10 @@
               <div class="genderRadio">
                 <input id="referee" type="checkbox" name="role" value="REFREE">
                 <label for="referee">
-                  <span class="material-icons-outlined check">
+                  <span class="material-symbols-outlined check">
                     check
                   </span>
-                  <span class="material-icons-outlined close">
+                  <span class="material-symbols-outlined close">
                     close
                   </span>
                   Referee
@@ -636,10 +728,10 @@
               <div class="genderRadio">
                 <input id="coach" type="checkbox" name="role" value="COACH">
                 <label for="coach">
-                  <span class="material-icons-outlined check">
+                  <span class="material-symbols-outlined check">
                     check
                   </span>
-                  <span class="material-icons-outlined close">
+                  <span class="material-symbols-outlined close">
                     close
                   </span>
                   Coach
@@ -655,10 +747,10 @@
               <div class="genderRadio">
                 <input id="academyOwner" type="checkbox" name="role" value="ACADEMY OWNER">
                 <label for="academyOwner">
-                  <span class="material-icons-outlined check">
+                  <span class="material-symbols-outlined check">
                     check
                   </span>
-                  <span class="material-icons-outlined close">
+                  <span class="material-symbols-outlined close">
                     close
                   </span>
                   Academy Owner
@@ -667,18 +759,14 @@
             </div>
           </div>
 
-        </div>
-        <div class="profileCardBox">
-          <!-- <h4 style="float:left;">Profile Details</h4> -->
+        </div> -->
+
+              <!-- <div class="profileCardBox">
           <form style="padding:2%;">
 
 
             <div class="form-row">
 
-              <!-- <div class="form-group col-md-12">
-<label for="inputEmail4"> Name</label>
-<input id="userName" type="text" class="form-control" placeholder="Enter your name">
-</div> -->
               <div class="form-group col-md-6">
                 <label for="inputEmail4">Date of birth</label>
                 <div class="input-group date datetimepicker11">
@@ -692,15 +780,7 @@
                 <label for="inputPassword4">Email Id</label>
                 <input id="userEmail" type="email" class="form-control" placeholder="Enter email id">
               </div>
-              <!-- <div class="form-group col-md-6">
-<label for="inputState">Gender</label>
-<input id="userGender" type="number" class="form-control"  placeholder="Enter gender no.">
-</div> -->
 
-              <!-- <div class="form-group col-md-6">
-<label for="inputPassword4">State</label>
-<input id="state" type="text" class="form-control"  placeholder="Enter your state">
-</div> -->
               <div class="form-group col-md-6">
                 <label for="inputPassword4">Alternate Phone</label>
                 <input id="altPh" type="number" class="form-control" placeholder="Enter your Alternate Phone Number">
@@ -710,33 +790,6 @@
                 <label for="inputState">Address</label>
                 <input id="address" type="text" class="form-control" placeholder="Enter your address">
               </div>
-              <!-- <div class="form-group col-md-6">
-<label for="inputPassword4">Nationality</label>
-<input id="nationality" type="text" class="form-control"  placeholder="Enter phone no.">
-</div> -->
-              <!-- <div class="form-group">
-<label for="inputAddress">Address</label>
-<input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-</div> -->
-              <!-- <div class="form-group">
-<label for="inputAddress2">Address 2</label>
-<input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-</div> -->
-              <!-- <div class="form-row">
-<div class="form-group col-md-6">
-<label for="inputCity">City</label>
-<input type="text" class="form-control" id="inputCity">
-</div>
-
-</div>
-<div class="form-group col-md-6">
-<label for="inputPassword4">Identity Type</label>
-<input type="text" class="form-control" id="inputPassword4" placeholder="Enter email id">
-</div>
-<div class="form-group col-md-6">
-<label for="inputPassword4">Identity No.</label>
-<input type="number" class="form-control" id="inputPassword4" placeholder="Enter phone no.">
-</div> -->
 
             </div>
 
@@ -747,141 +800,455 @@
                 <br>
                 <center>
                   <span id="message">Details saved successfully!</span>
-                  <!-- <span ><i class="fas fa-hand-point-right"></i></span>
-                            <span> <a href="allProducts.html">Click Here</a> </span> -->
                 </center>
               </div>
 
-              <!-- <button type="submit" onclick="updateDetails();" class="btn btn-primary">Save</button> -->
               <button type="button" onclick="updateDetails();" class="btn btn-primary">Save</button>
             </center>
           </form>
+        </div> -->
+            </div>
+          </div>
         </div>
       </div>
+    </div>
 
-      <div style="padding:2%;" class="col-lg-4">
-        <div class="notificationBox">
-          <h5 style="font-weight: 1000; padding:1% 2%;">Recent Participation</h5>
-          <div class="allnotificationBoxContent" style="">
-            <div class="notificationBoxContent">
-              <img src="/img/e1.png" alt="">
-              <div class="notificationBoxWord">
-                <h6>SHUBHADA JOSHI SMRITI BADMINTON TOURNAMENT</h6>
-                <h6>By Atharva Academy</h6>
+    <div class="container-fluid" style="padding: 10px;">
+      <div class="row no-gutters">
+        <div class="col-lg-6 col-md-6 col-sm-12 recent-participation">
+
+          <div class="analytics-div">
+            <h1>Recent Participation</h1>
+          </div>
+
+          <div class="row no-gutters">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="ticket-div">
+                <div class="ticket-head">
+                  <h1>SHUBDHA JOSHI SMIRITI BADMINTON TOURNAMENT</h1>
+                  <h2>BY ATHARVA BADMINTON ACADEMY</h2>
+                  <h3>Surbhi Layout, Yelhanka (Bengaluru)</h3>
+                </div>
+
+                <div class="ticket-mid">
+                  <div class="" style="position: relative;">
+                    <h1 class="participantid">Participant Name : Krishan Pathak</h1>
+                    <h2 class="participantidbelow">Scan the QR code to see your detail</h2>
+                    <img src="../img/qr.jpg" alt="">
+                    <button style="" class="ticket-share" type="button" name="button">
+                      <span class="material-symbols-outlined">
+                        share
+                      </span>
+                      Share
+                    </button>
+                  </div>
+                  <hr />
+                  <div class="ticket-mid-below">
+                    <div class="spandiv">
+                      <div class="spandivthings">
+                        <span style="" class="material-symbols-outlined">
+                          calendar_month
+                        </span>
+                        <div class="">
+                          <p>Oct 16</p>
+                          <small>Saturday</small>
+                        </div>
+                      </div>
+
+                      <div class="spandivthings">
+                        <span style="" class="material-symbols-outlined">
+                          schedule
+                        </span>
+                        <div class="">
+                          <p>5:15</p>
+                          <small>PM</small>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div style="border: none;" class="spandiv">
+                      <div class="spandivthings">
+                        <span class="material-symbols-outlined">
+                          qr_code_scanner
+                        </span>
+                        <div class="">
+                          <p>Payment</p>
+                          <small>Status</small>
+                        </div>
+                      </div>
+
+                      <div class="spandivthings">
+                        <span style="color:green;display:none;" class="material-symbols-outlined">
+                          verified
+                        </span>
+                        <div class="" style="display:none;">
+                          <p style="top: 1px;">Done</p>
+                        </div>
+
+                        <span style="color:red;" style="" class="material-symbols-outlined">
+                          dangerous
+                        </span>
+                        <div class="">
+                          <p style="top:1px;">Pending</p>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="" class="ticket-foot">
+                <div style="" class="lower-tiket">
+                  <div style="" class="lower-tiket-after">
+
+
+                    <div style="text-align:center;min-height:80px;" class="">
+                      <div style="" class="">
+                        <span style="position:relative; top:6px;" class="material-symbols-outlined">
+                          category
+                        </span>
+                        <span style="">Category</span>
+                      </div>
+                      <p>Men's singles, Men's doubles, Mixed doubles, Men's singles, Men's doubles, Mixed doubles</p>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="ticket-div">
+                <div class="ticket-head">
+                  <h1>SHUBDHA JOSHI SMIRITI BADMINTON TOURNAMENT</h1>
+                  <h2>BY ATHARVA BADMINTON ACADEMY</h2>
+                  <h3>Surbhi Layout, Yelhanka (Bengaluru)</h3>
+                </div>
+
+                <div class="ticket-mid">
+                  <div class="" style="position: relative;">
+                    <h1 class="participantid">Participant Name : Krishan Pathak</h1>
+                    <h2 class="participantidbelow">Scan the QR code to see your detail</h2>
+                    <img src="../img/qr.jpg" alt="">
+                    <button style="" class="ticket-share" type="button" name="button">
+                      <span class="material-symbols-outlined">
+                        share
+                      </span>
+                      Share
+                    </button>
+                  </div>
+                  <hr />
+                  <div class="ticket-mid-below">
+                    <div class="spandiv">
+                      <div class="spandivthings">
+                        <span style="" class="material-symbols-outlined">
+                          calendar_month
+                        </span>
+                        <div class="">
+                          <p>Oct 16</p>
+                          <small>Saturday</small>
+                        </div>
+                      </div>
+
+                      <div class="spandivthings">
+                        <span style="" class="material-symbols-outlined">
+                          schedule
+                        </span>
+                        <div class="">
+                          <p>5:15</p>
+                          <small>PM</small>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div style="border: none;" class="spandiv">
+                      <div class="spandivthings">
+                        <span class="material-symbols-outlined">
+                          qr_code_scanner
+                        </span>
+                        <div class="">
+                          <p>Payment</p>
+                          <small>Status</small>
+                        </div>
+                      </div>
+
+                      <div class="spandivthings">
+                        <span style="color:green;display:none;" class="material-symbols-outlined">
+                          verified
+                        </span>
+                        <div class="" style="display:none;">
+                          <p style="top: 1px;">Done</p>
+                        </div>
+
+                        <span style="color:red;" style="" class="material-symbols-outlined">
+                          dangerous
+                        </span>
+                        <div class="">
+                          <p style="top:1px;">Pending</p>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="" class="ticket-foot">
+                <div style="" class="lower-tiket">
+                  <div style="" class="lower-tiket-after">
+
+
+                    <div style="text-align:center;min-height:80px;" class="">
+                      <div style="" class="">
+                        <span style="position:relative; top:6px;" class="material-symbols-outlined">
+                          category
+                        </span>
+                        <span style="">Category</span>
+                      </div>
+                      <p>Men's singles, Men's doubles, Mixed doubles, Men's singles, Men's doubles, Mixed doubles</p>
+                    </div>
+
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="allnotificationBoxContent" style="">
-            <div class="notificationBoxContent">
-              <img src="/img/e2.png" alt="">
-              <div class="notificationBoxWord">
-                <h6>PSM - OPEN JUNIOR BADMINTON TOURNAMENT</h6>
-                <h6>By Padukone Sports Management PVT.LTD</h6>
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="analytics-div">
+            <h1>Upcoming Events</h1>
+          </div><br>
+
+          <div class="row no-gutters">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="event-list-card">
+                <div class="">
+                  <h1>SBA Cup Badmiton Cup Hi Tournament 2022 BADMINTON Tournament</h1>
+                  <h2>Sudhanshu Badminton Academy</h2>
+                  <h3>29 Mar'22 to 3 Apr'22 | Banglore</h3>
+                </div>
+
+                <div class="event-id">
+                  <h5>TP_BD10196</h5>
+                </div>
+
+                <div class="second-div">
+                  <h4>6865</h4>
+                  <div class="" style="position: relative;display: flex;align-items: center;justify-content: space-between;">
+                    <div class="">
+                      <span style="color: green;">₹1,52,000</span><br>
+                      <small>( 525 )</small>
+                    </div>
+                    <span class="entries-pipe" style="font-weight: lighter;font-size: 2rem;">|</span>
+                    <div class="">
+                      <span style="color: orange;">₹1,10,000</span><br>
+                      <small>( 200 )</small>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="allnotificationBoxContent" style="">
-            <div class="notificationBoxContent">
-              <img src="/img/e3.png" alt="">
-              <div class="notificationBoxWord">
-                <h6>ULTRA BADMINTON CUP 2022</h6>
-                <h6>By Elite Shuttlers</h6>
+
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="event-list-card">
+                <div class="">
+                  <h1>SBA Cup Badmiton Cup Hi Tournament 2022 BADMINTON Tournament</h1>
+                  <h2>Sudhanshu Badminton Academy</h2>
+                  <h3>29 Mar'22 to 3 Apr'22 | Banglore</h3>
+                </div>
+
+                <div class="event-id">
+                  <h5>TP_BD10196</h5>
+                </div>
+
+                <div class="second-div">
+                  <h4>6865</h4>
+                  <div class="" style="position: relative;display: flex;align-items: center;justify-content: space-between;">
+                    <div class="">
+                      <span style="color: green;">₹1,52,000</span><br>
+                      <small>( 525 )</small>
+                    </div>
+                    <span class="entries-pipe" style="font-weight: lighter;font-size: 2rem;">|</span>
+                    <div class="">
+                      <span style="color: orange;">₹1,10,000</span><br>
+                      <small>( 200 )</small>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row no-gutters">
+        <div style="padding:2%;" class="col-lg-4">
+
+          <div class="analytics-div">
+            <h1>Recent Participation</h1>
           </div>
 
-          <div class="allnotificationBoxContent" style="">
-            <div class="notificationBoxContent">
-              <img src="/img/e4.png" alt="">
-              <div class="notificationBoxWord">
-                <h6>PLAYUPBEAT BADMINTON CHAMPS, WHITEFIELD BANGALORE</h6>
-                <h6>By Playupbeat Sports</h6>
+          <div class="row no-gutters">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="event-list-card">
+                <div class="">
+                  <h1>SBA Cup Badmiton Tournament 2022 BADMINTON Tournament</h1>
+                  <h2>Sudhanshu Badminton Academy</h2>
+                  <h3>29 Mar'22 to 3 Apr'22 | Banglore</h3>
+                </div>
+
+                <div class="event-id">
+                  <h5>TP_BD10196</h5>
+                </div>
+
+                <div class="second-div">
+                  <h4>6865</h4>
+                  <div class="" style="position: relative;display: flex;align-items: center;justify-content: space-between;">
+                    <div class="">
+                      <span style="color: green;">₹1,52,000</span><br>
+                      <small>( 525 )</small>
+                    </div>
+                    <span class="entries-pipe" style="font-weight: lighter;font-size: 2rem;">|</span>
+                    <div class="">
+                      <span style="color: orange;">₹1,10,000</span><br>
+                      <small>( 200 )</small>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+
+            </div>
           </div>
-          <!-- <div class="dots">
-          <span class="material-icons-outlined">
-          add_circle
-          </span>
-          <h6>ADD ANALYTICS</h6>
-        </div> -->
 
 
-
-        </div><br><br>
-
-        <div class="analyticsBox">
-
-          <ul>
-
-            <span class="material-icons-outlined">
-              business
-            </span>
-
-            <div style="margin:0;" class="">
-              <h6 style="font-weight:bold; margin:0;">Total Matches Played </h6>
-              <h6 style="font-size:0.7rem;">Till Now</h6>
+          <div class="notificationBox">
+            <h5 style="font-weight: 1000; padding:1% 2%;">Recent Participation</h5>
+            <div class="allnotificationBoxContent" style="">
+              <div class="notificationBoxContent">
+                <img src="/img/e1.png" alt="">
+                <div class="notificationBoxWord">
+                  <h6>SHUBHADA JOSHI SMRITI BADMINTON TOURNAMENT</h6>
+                  <h6>By Atharva Academy</h6>
+                </div>
+              </div>
+            </div>
+            <div class="allnotificationBoxContent" style="">
+              <div class="notificationBoxContent">
+                <img src="/img/e2.png" alt="">
+                <div class="notificationBoxWord">
+                  <h6>PSM - OPEN JUNIOR BADMINTON TOURNAMENT</h6>
+                  <h6>By Padukone Sports Management PVT.LTD</h6>
+                </div>
+              </div>
+            </div>
+            <div class="allnotificationBoxContent" style="">
+              <div class="notificationBoxContent">
+                <img src="/img/e3.png" alt="">
+                <div class="notificationBoxWord">
+                  <h6>ULTRA BADMINTON CUP 2022</h6>
+                  <h6>By Elite Shuttlers</h6>
+                </div>
+              </div>
             </div>
 
-            <!-- <li><h6 style="color:green;">+4.6%</h6></li> -->
-            <li>
-              <h6>51</h6>
-            </li>
-
-          </ul>
-
-        </div><br>
-        <div class="analyticsBox">
-
-          <ul>
-
-            <span class="material-icons-outlined">
-              business
-            </span>
-
-            <div style="margin:0;" class="">
-              <h6 style="font-weight:bold; margin:0;">Total Matches Win </h6>
-              <h6 style="font-size:0.7rem;">Till Now</h6>
+            <div class="allnotificationBoxContent" style="">
+              <div class="notificationBoxContent">
+                <img src="/img/e4.png" alt="">
+                <div class="notificationBoxWord">
+                  <h6>PLAYUPBEAT BADMINTON CHAMPS, WHITEFIELD BANGALORE</h6>
+                  <h6>By Playupbeat Sports</h6>
+                </div>
+              </div>
             </div>
-
-            <!-- <li><h6 style="color:green;">+4.6%</h6></li> -->
-            <li>
-              <h6>51</h6>
-            </li>
-
-          </ul>
-
-        </div><br>
-        <div class="analyticsBox">
-
-          <ul>
-
-            <span class="material-icons-outlined">
-              business
-            </span>
-
-            <div style="margin:0;" class="">
-              <h6 style="font-weight:bold; margin:0;">Total Matches Lost </h6>
-              <h6 style="font-size:0.7rem;">Last 30 days</h6>
-            </div>
-
-            <!-- <li><h6 style="color:green;">+4.6%</h6></li> -->
-            <li>
-              <h6>51</h6>
-            </li>
-
-          </ul>
-
-        </div><br>
-        <!-- <div class="dots">
-        <span class="material-icons-outlined">
+            <!-- <div class="dots">
+        <span class="material-symbols-outlined">
         add_circle
         </span>
         <h6>ADD ANALYTICS</h6>
       </div> -->
+
+
+
+          </div><br><br>
+
+          <div class="analyticsBox">
+
+            <ul>
+
+              <span class="material-symbols-outlined">
+                business
+              </span>
+
+              <div style="margin:0;" class="">
+                <h6 style="font-weight:bold; margin:0;">Total Matches Played </h6>
+                <h6 style="font-size:0.7rem;">Till Now</h6>
+              </div>
+
+              <!-- <li><h6 style="color:green;">+4.6%</h6></li> -->
+              <li>
+                <h6>51</h6>
+              </li>
+
+            </ul>
+
+          </div><br>
+          <div class="analyticsBox">
+
+            <ul>
+
+              <span class="material-symbols-outlined">
+                business
+              </span>
+
+              <div style="margin:0;" class="">
+                <h6 style="font-weight:bold; margin:0;">Total Matches Win </h6>
+                <h6 style="font-size:0.7rem;">Till Now</h6>
+              </div>
+
+              <!-- <li><h6 style="color:green;">+4.6%</h6></li> -->
+              <li>
+                <h6>51</h6>
+              </li>
+
+            </ul>
+
+          </div><br>
+          <div class="analyticsBox">
+
+            <ul>
+
+              <span class="material-symbols-outlined">
+                business
+              </span>
+
+              <div style="margin:0;" class="">
+                <h6 style="font-weight:bold; margin:0;">Total Matches Lost </h6>
+                <h6 style="font-size:0.7rem;">Last 30 days</h6>
+              </div>
+
+              <!-- <li><h6 style="color:green;">+4.6%</h6></li> -->
+              <li>
+                <h6>51</h6>
+              </li>
+
+            </ul>
+
+          </div><br>
+          <!-- <div class="dots">
+      <span class="material-symbols-outlined">
+      add_circle
+      </span>
+      <h6>ADD ANALYTICS</h6>
+    </div> -->
+        </div>
       </div>
-
-
     </div>
 
 
