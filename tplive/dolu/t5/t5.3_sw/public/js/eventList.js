@@ -204,7 +204,8 @@ function addCreateEventDiv()
   div1.setAttribute("class","col-lg-4 col-md-6 col-sm-12");
   div1.setAttribute("style","padding: 10px 15px;");
 
-  var div2 = document.createElement("div");
+  var div2 = document.createElement("a");
+  div2.setAttribute("href","eventCreate.html");
   div2.setAttribute("class","event-list-card");
   div2.setAttribute("style","border: none;");
 

@@ -201,7 +201,7 @@
             <span class="material-symbols-outlined">
               redeem
             </span>
-            <small>Events</small>
+            <small>Orgs</small>
           </a>
         </li>
         <li class="nav-item">
@@ -591,14 +591,38 @@
         <div class="col-lg-8 col-md-8 col-sm-12 card-col-div">
           <div class="large">
             <div class="row no-gutters">
+
+              <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="filter-btn">
+                  <div class="filter-btn-div">
+                    <button type="button" id='btnActive' class="mybutton buttonTransparent active" onclick="changestatus('Active')" name="button">ACTIVE</button>
+                    <div class="indicator"></div>
+                    <span id="active3"></span>
+                    <span class="half" id="active4"></span>
+                  </div>
+                  <div class="filter-btn-div">
+                    <button type="button" id='btnClose' class="mybutton buttonTransparent" onclick="changestatus('Closed')" name="button">CLOSED</button>
+                    <div class="indicator"></div>
+                    <span id="close3"></span>
+                    <span class="half" id="close4"></span>
+                  </div>
+                  <div class="filter-btn-div">
+                    <button type="button" id='btnOthers' class="mybutton buttonTransparent" onclick="changestatus('Others')" name="button">OTHERS</button>
+                    <div class="indicator"></div>
+                    <span id="others3"></span>
+                    <span class="half" id="others4"></span>
+                  </div>
+                </div>
+              </div>
+
               <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="dropdown-div">
                   <select class="" name="" id="citySelect1" onclick="SelectCityChange1()" style="background: #fff;">
-                    <option value="All">All</option>
-                    <option value="Bangalore">Bangalore</option>
-                    <option value="Pune">Pune</option>
-                    <option value="Delhi">Delhi</option>
-                    <option value="Chennai">Chennai</option>
+                    <option value="ALL">ALL</option>
+                    <option value="BANGALORE">BANGALORE</option>
+                    <option value="PUNE">PUNE</option>
+                    <option value="DELHI">DELHI</option>
+                    <option value="CHENNAI">CHENNAI</option>
                   </select>
 
                   <div class="icon">
@@ -627,35 +651,20 @@
               </div>
 
               <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="filter-btn">
-                  <div class="filter-btn-div">
-                    <button type="button" id='btnActive' class="mybutton buttonTransparent active" onclick="changestatus('Active')" name="button">ACTIVE</button>
-                    <div class="indicator"></div>
-                    <span id="active3"></span>
-                    <span class="half" id="active4"></span>
-                  </div>
-                  <div class="filter-btn-div">
-                    <button type="button" id='btnClose' class="mybutton buttonTransparent" onclick="changestatus('Closed')" name="button">CLOSED</button>
-                    <div class="indicator"></div>
-                    <span id="close3"></span>
-                    <span class="half" id="close4"></span>
-                  </div>
-                  <div class="filter-btn-div">
-                    <button type="button" id='btnOthers' class="mybutton buttonTransparent" onclick="changestatus('Others')" name="button">OTHERS</button>
-                    <div class="indicator"></div>
-                    <span id="others3"></span>
-                    <span class="half" id="others4"></span>
-                  </div>
-                </div>
-              </div>
+                <div class="dropdown-div">
+                  <select class="" name="" style="background: #fff;">
+                    <option value="ALL">ALL</option>
+                    <option value="BADMINTON">BADMINTON</option>
+                    <option value="TABLE TENNIS">TABLE TENNIS</option>
+                    <option value="CARROM">CARROM</option>
+                    <option value="TENNIS">TENNIS</option>
+                  </select>
 
-              <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="filter-search">
-                  <input type="text" placeholder="Search..." name="" value="">
-                  <b></b>
-                  <span class="material-symbols-outlined">
-                    content_paste_search
-                  </span>
+                  <div class="icon">
+                    <span class="material-symbols-outlined">
+                      keyboard_command_key
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -738,14 +747,14 @@
           <div class="row no-gutters" id="eventPlaceholder">
 
             <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 10px 15px;">
-              <div class="event-list-card" style="border: none;">
+              <a href="eventCreate.html" class="event-list-card" style="border: none;">
                 <div class="add-new">
                   <span class="material-symbols-outlined">
                     add
                   </span>
                   <h1>Create Event</h1>
                 </div>
-              </div>
+              </a>
             </div>
 
             <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 10px 15px;">

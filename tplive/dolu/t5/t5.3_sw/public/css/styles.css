@@ -1357,32 +1357,44 @@ h6 {
   border: 2px solid #333C5D;
 }
 
-.side-navbar.mobile {
-  height: 0;
-  opacity: 0;
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 85%;
-  z-index: 999;
+.side-navbar{
   background: #fff;
-  box-shadow: 0 0 200px 0 rgba(0, 0, 0, 0.8);
-  overflow-y: auto;
-  transition: 1s;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 0 10px 10px 0;
+  height: 100%;
+  overflow: hidden;
 }
 
-.side-navbar.mobile.open {
-  height: 100vh;
-  opacity: 1;
-  pointer-events: all;
-}
+@media (max-width: 850px) {
 
-.side-navbar.mobile .closeBtn {
-  position: absolute;
-  top: 15px;
-  left: 10px;
-  color: #fff;
+  .side-navbar.mobile {
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 85%;
+    z-index: 999;
+    box-shadow: 0 0 200px 0 rgba(0, 0, 0, 0.8);
+    overflow-y: auto;
+    border-radius: 0;
+    transition: 1s;
+  }
+
+  .side-navbar.mobile.open {
+    height: 100vh;
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .side-navbar.mobile .closeBtn {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    color: #fff;
+  }
+
 }
 
 .profile-logo-parent-div {
@@ -1463,6 +1475,7 @@ h6 {
   top: 50%;
   transform: translateY(-40%);
   color: #161d65;
+  pointer-events: none;
 }
 
 .side-navbar ul li.active div {
@@ -3362,16 +3375,16 @@ h6 {
   }
 }
 
-.form .txt_field,
-.formpro .txt_field {
+.txt_field {
   position: relative;
   border-bottom: 2px solid #adadad;
   margin: 30px 0;
 }
 
-.txt_field input {
+.txt_field input,
+.txt_field select {
   width: 100%;
-  padding: 0 5px 0 30px;
+  padding: 0 5px 0 5px;
   height: 40px;
   font-size: 1rem;
   border: none;
@@ -3380,15 +3393,23 @@ h6 {
   letter-spacing: 5px;
 }
 
+.txt_field select{
+  background: #efefef;
+}
+
 .txt_field label {
   position: absolute;
   top: 50%;
-  left: 30px;
+  left: 5px;
   color: #adadad;
   transform: translateY(-50%);
   font-size: 1rem;
   pointer-events: none;
   transition: .5s;
+}
+
+.txt_field label.login-phone-label{
+  left: 30px;
 }
 
 .txt_field label.labelsize {
@@ -3397,7 +3418,7 @@ h6 {
 
 .txt_field input:focus~label.labelsize,
 .txt_field input:valid~label.labelsize {
-  font-size: 16px;
+  font-size: 0.9rem;
 }
 
 .txt_field span::before {
@@ -3412,10 +3433,18 @@ h6 {
 }
 
 .txt_field input:focus~label,
-.txt_field input:valid~label {
-  left: 0px;
+.txt_field input:valid~label,
+.txt_field select:focus~label,
+.txt_field select:valid~label {
+  left: 5px;
   top: -5px;
   color: #2691d9;
+}
+
+.txt_field select:focus~label,
+.txt_field select:valid~label{
+  top: -10px;
+  font-size: 0.9rem;
 }
 
 .txt_field input:focus~span::before,
@@ -3773,6 +3802,12 @@ input[type=number] {
   align-items: center;
   justify-content: space-between;
   height: 120px;
+  text-decoration: none;
+  color: #161d65;
+}
+
+.event-list-card:hover{
+  color: #161d65;
 }
 
 .event-list-card .add-new {
@@ -4040,13 +4075,25 @@ input[type=number] {
   margin: 0;
 }
 
-.item1 {
-  grid-area: Participant;
+/* .Participant {
+  grid-area: 1 / 1 / span 1 / span 1;
 }
+.Organizer {
+  grid-area: 1 / 2 / span 1 / span 1;
+}
+.Referee {
+  grid-area: 1 / 3 / span 1 / span 1;
+}
+.Umpire {
+  grid-area: 2 / 1 / span 1 / span 1;
+}
+.Sponser {
+  grid-area: 2 / 2 / span 1 / span 1;
+} */
 
 .checkbox-div {
   display: grid;
-  grid-template-areas: 'Participant 2 3 4 5 6';
+  grid-template-columns: auto auto auto auto;
 }
 
 .checkbox-div div {
@@ -4054,30 +4101,41 @@ input[type=number] {
   padding: 10px 3px;
 }
 
-@media (max-width: 1100px) {
-  .checkbox-div {
-    grid-template-areas:
-      'Participant 2 3'
-      '4 5 6';
+/* @media (max-width: 1100px) {
+  .Participant {
+    grid-area: 1 / 1 / span 1 / span 1;
+  }
+  .Organizer {
+    grid-area: 1 / 2 / span 1 / span 1;
+  }
+  .Referee {
+    grid-area: 1 / 3 / span 1 / span 1;
+  }
+  .Umpire {
+    grid-area: 2 / 1 / span 1 / span 1;
+  }
+  .Sponser {
+    grid-area: 2 / 2 / span 1 / span 1;
   }
 }
 
 @media (max-width: 850px) {
-  .checkbox-div {
-    grid-template-areas:
-      'Participant 2'
-      '3 4'
-      '5 6';
+  .Participant {
+    grid-area: 1 / 1 / span 1 / span 1;
   }
-}
-
-@media (max-width: 770px) {
-  .checkbox-div {
-    grid-template-areas:
-      'Participant 2 3'
-      '4 5 6';
+  .Organizer {
+    grid-area: 1 / 2 / span 1 / span 1;
   }
-}
+  .Referee {
+    grid-area: 1 / 3 / span 1 / span 1;
+  }
+  .Umpire {
+    grid-area: 2 / 1 / span 1 / span 1;
+  }
+  .Sponser {
+    grid-area: 2 / 2 / span 1 / span 1;
+  }
+} */
 
 .role-btn-edit-icon{
   position: absolute;
@@ -4442,3 +4500,97 @@ input[type=number] {
 }
 
 /* profile page - end */
+
+/* role page - start */
+
+.role-outter-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.role-div{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+}
+
+.role-inner-div{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(100% - 40px);
+}
+
+.role-input-div{
+  padding: 10px;
+}
+
+.role-save-btn{
+  position: absolute;
+  bottom: 25px;
+  width: calc(100% - 40px);
+  text-align: center;
+}
+
+@media (max-width: 850px) {
+  .role-div{
+    padding: 10px;
+  }
+
+  .role-inner-div{
+    width: calc(100% - 20px);
+  }
+
+  .role-save-btn{
+    position: relative;
+    top: -10px;
+    width: 100%;
+  }
+
+  .role-input-div{
+    padding: 10px 5px;
+  }
+
+  .role-shadow-div{
+    position: relative;
+    height: 250px;
+    padding-left: 10px;
+  }
+}
+
+/* role page - end */
+
+/* create event - start */
+
+.create-event-div{
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+}
+
+/* create event - end */
+
+/* update event page - start */
+
+.update-event-outter{
+  width: 100%;
+  background: red;
+  /* overflow: hidden; */
+}
+
+.update-event-inner{
+  width: 300%;
+  display: flex;
+}
+
+.update-event-inner .update-event-form{
+  width: 100%;
+}
+
+/* update event page - end */

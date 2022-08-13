@@ -121,15 +121,15 @@ function subscribePush() {
 
 // sideNavbar - start
 
-// var hamberIcon = document.getElementById('hamberIcon');
+var hamberIcon = document.getElementById('hamberIcon');
 var fullContent = document.getElementById('fullContent');
 var sideNavbar = document.getElementById('sideNavbar');
 
-// hamberIcon.addEventListener('click', sideNavbarOpen, false);
-//
-// function sideNavbarOpen(){
-//   sideNavbar.classList.add('open');
-// }
+hamberIcon.addEventListener('click', sideNavbarOpen, false);
+
+function sideNavbarOpen(){
+  sideNavbar.classList.add('open');
+}
 
 fullContent.addEventListener('click', sideNavbarClose, false);
 
