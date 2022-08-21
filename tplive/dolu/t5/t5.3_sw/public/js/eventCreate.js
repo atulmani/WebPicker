@@ -128,72 +128,72 @@ async function GetProfileData() {
     userID: loggedinUser.uid
   };
   populateSportList();
-  var userProfile =JSON.parse( localStorage.getItem("userProfile"));
+  var userProfile = JSON.parse(localStorage.getItem("userProfile"));
   console.log(userProfile);
-    var approvalStatus = document.getElementById("approvalStatus");
-    var eventStatus = document.getElementById("eventStatus");
-    if (userProfile.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
-      console.log("in admin");
-      populateOrganizationList("All");
+  var approvalStatus = document.getElementById("approvalStatus");
+  var eventStatus = document.getElementById("eventStatus");
+  if (userProfile.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0) {
+    console.log("in admin");
+    populateOrganizationList("All");
 
-      if (eventID != "" && eventID != undefined && eventID != null) {
-        document.getElementById("hfEventID").value = eventID;
-        document.getElementById("btnSave").innerHTML = "Update";
-        GetEventDetails();
+    if (eventID != "" && eventID != undefined && eventID != null) {
+      document.getElementById("hfEventID").value = eventID;
+      document.getElementById("btnSave").innerHTML = "Update";
+      GetEventDetails();
+    } else {
+      // for (index = 0; index < approvalStatus.options.length; index++) {
+      //   if (approvalStatus.options[index].value === "Approved") {
+      //     approvalStatus.options[index].selected = true;
+      //     break;
+      //   }
+      // }
+    }
+  } else if (userProfile.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
+
+    console.log("Organizer");
+    populateOrganizationList(loggedinUser.uid);
+    var organizationid = document.getElementById("ddlOrganization");
+    approvalStatus.disabled = true;
+
+    document.getElementById("hfOrganizerID").value = loggedinUser.uid;
+    for (index = 0; index < organizationid.options.length; index++) {
+      if (organizationid.options[index].value.search(loggedinUser.uid) >= 0) {
+        organizationid.options[index].selected = true;
+        onOrganizationSelection();
+        break;
+      }
+    }
+
+    if (eventID != "" && eventID != undefined && eventID != null) {
+
+      document.getElementById("hfEventID").value = eventID;
+      document.getElementById("btnSave").innerHTML = "Update";
+      GetEventDetails();
+    } else {
+
+      ///Check for any pending OrganizationName
+
+      var checkPending = await CheckForPendingEvent();
+      console.log(checkPending);
+      if (checkPending > 0) {
+        document.getElementById("fInput").style.display = "none";
+        document.getElementById("saveMessage").style.display = "block";
+        document.getElementById("confirmationMessage").innerHTML = "One Organization request is still Pending Approval from Admin. Please reach out to <a href=../contact/index>Admin or contact Us</a>";
+        document.getElementById("btnSave").style.display = "none";
       } else {
         for (index = 0; index < approvalStatus.options.length; index++) {
-          if (approvalStatus.options[index].value === "Approved") {
+          if (approvalStatus.options[index].value === "Pending Approval") {
             approvalStatus.options[index].selected = true;
             break;
           }
         }
       }
-    } else if (userProfile.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
-
-      console.log("Organizer");
-      populateOrganizationList(loggedinUser.uid);
-      var organizationid = document.getElementById("ddlOrganization");
-      approvalStatus.disabled = true;
-
-      document.getElementById("hfOrganizerID").value = loggedinUser.uid;
-      for (index = 0; index < organizationid.options.length; index++) {
-        if (organizationid.options[index].value.search(loggedinUser.uid) >= 0) {
-          organizationid.options[index].selected = true;
-          onOrganizationSelection();
-          break;
-        }
-      }
-
-      if (eventID != "" && eventID != undefined && eventID != null) {
-
-        document.getElementById("hfEventID").value = eventID;
-        document.getElementById("btnSave").innerHTML = "Update";
-        GetEventDetails();
-      } else {
-
-        ///Check for any pending OrganizationName
-
-        var checkPending = await CheckForPendingEvent();
-        console.log(checkPending);
-        if (checkPending > 0) {
-          document.getElementById("fInput").style.display = "none";
-          document.getElementById("saveMessage").style.display = "block";
-          document.getElementById("confirmationMessage").innerHTML = "One Organization request is still Pending Approval from Admin. Please reach out to <a href=../contact/index>Admin or contact Us</a>";
-          document.getElementById("btnSave").style.display = "none";
-        } else {
-          for (index = 0; index < approvalStatus.options.length; index++) {
-            if (approvalStatus.options[index].value === "Pending Approval") {
-              approvalStatus.options[index].selected = true;
-              break;
-            }
-          }
-        }
-      }
-    } else {
-      console.log("not admin");
-      document.getElementById("fInput").style.display = "none";
-      document.getElementById("errorMessage").style.display = "block";
     }
+  } else {
+    console.log("not admin");
+    document.getElementById("fInput").style.display = "none";
+    document.getElementById("errorMessage").style.display = "block";
+  }
 
 }
 
@@ -457,17 +457,17 @@ btnSave.addEventListener('click', e => {
   var eventOwnerName = document.getElementById("eventOwnerName").value;
   var eventOwnerEmail = document.getElementById("eventOwnerEmail").value;
   var eventOwnerPhone = document.getElementById("eventOwnerPhone").value;
-  var eventVenue = document.getElementById("eventVenue").value;
+  var eventVenue = "";//document.getElementById("eventVenue").value;
   var eventCode = document.getElementById("eventCode").value;
   var sportCode = document.getElementById("sportCode").value;
   var city = document.getElementById("city").value;
 
-  var locationMap = document.getElementById("locationMap").value;
-  var venueContact = document.getElementById("venueContact").value;
+  var locationMap = "";//document.getElementById("locationMap").value;
+  var venueContact = "";//document.getElementById("venueContact").value;
 
-  var approvalStatus = document.getElementById("approvalStatus").options[document.getElementById("approvalStatus").selectedIndex].value;
-  var eventStatus = document.getElementById("eventStatus").options[document.getElementById("eventStatus").selectedIndex].value;
-  var confirmMessage = document.getElementById('saveMessage');
+  var approvalStatus = "Approved";//document.getElementById("approvalStatus").options[document.getElementById("approvalStatus").selectedIndex].value;
+  var eventStatus = "Open";//document.getElementById("eventStatus").options[document.getElementById("eventStatus").selectedIndex].value;
+  var confirmMessage = "";//document.getElementById('saveMessage');
   console.log("before check");
   if ((organizerID === "" || organizerID === null) ||
     (organizationID === "" || organizationID === null) ||
@@ -475,14 +475,12 @@ btnSave.addEventListener('click', e => {
     (eventName === "" || eventName === null) ||
     (eventOwnerName === "" || eventOwnerName === null) ||
     (eventOwnerEmail === "" || eventOwnerEmail === null) ||
-    (eventOwnerPhone === "" || eventOwnerPhone === null) ||
-    (eventVenue === "" || eventVenue === null) ||
-    (locationMap === "" || locationMap === null)) {
+    (eventOwnerPhone === "" || eventOwnerPhone === null)) {
     console.log("details not filled");
     document.getElementById("confirmationMessage").innerHTML = "Please enter all details to update";
     confirmMessage.style.display = "block";
 
-    setTimeout(function() {
+    setTimeout(function () {
       confirmMessage.style.display = 'none';
 
     }, 5000);
@@ -492,9 +490,12 @@ btnSave.addEventListener('click', e => {
 
     console.log("details  filled completly");
 
+    var EventStartDate = new Date(document.getElementById("EventStartDate").value);
+    var EventEndDate = new Date(document.getElementById("EventEndDate").value);
+
     var para1 = {};
     para1 = {
-      EventID : eventID,
+      EventID: eventID,
       OrganizationID: organizationID,
       OrganizerID: organizerID,
       OrganizationName: organizationName,
@@ -512,6 +513,8 @@ btnSave.addEventListener('click', e => {
       EventMode: 'OPEN',
       SportCode: sportCode,
       City: city,
+      EventStartDate: EventStartDate,
+      EventEndDate: EventEndDate,
 
 
       // OrganizationType: organizationType,
@@ -527,7 +530,7 @@ btnSave.addEventListener('click', e => {
         if (result.data.EventID != "0") {
           confirmMessage.style.display = "block";
 
-          setTimeout(function() {
+          setTimeout(function () {
             confirmMessage.style.display = 'none';
           }, 5000);
           window.location.href = "eventList.html";
@@ -546,7 +549,7 @@ btnSave.addEventListener('click', e => {
           var confirmMessage = document.getElementById('saveMessage');
           confirmMessage.style.display = "block";
 
-          setTimeout(function() {
+          setTimeout(function () {
             confirmMessage.style.display = 'none';
           }, 5000);
           window.location.href = "eventList.html";
