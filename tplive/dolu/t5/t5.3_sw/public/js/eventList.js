@@ -192,8 +192,7 @@ function SelectCityChange2() {
 
   poulateEventByCity(cityName)
 }
-function addCreateEventDiv()
-{
+function addCreateEventDiv() {
   changestatussmall('Active');
   changestatus('Active');
   cntActive = 0;
@@ -201,19 +200,19 @@ function addCreateEventDiv()
   cntOthers = 0;
 
   var div1 = document.createElement("div");
-  div1.setAttribute("class","col-lg-4 col-md-6 col-sm-12");
-  div1.setAttribute("style","padding: 10px 15px;");
+  div1.setAttribute("class", "col-lg-4 col-md-6 col-sm-12");
+  div1.setAttribute("style", "padding: 10px 15px;");
 
   var div2 = document.createElement("a");
-  div2.setAttribute("href","eventCreate.html");
-  div2.setAttribute("class","event-list-card");
-  div2.setAttribute("style","border: none;");
+  div2.setAttribute("href", "eventCreate.html");
+  div2.setAttribute("class", "event-list-card");
+  div2.setAttribute("style", "border: none;");
 
   var div3 = document.createElement("div");
-  div3.setAttribute("class","add-new");
+  div3.setAttribute("class", "add-new");
 
   var span1 = document.createElement("span");
-  span1.setAttribute("class","material-symbols-outlined");
+  span1.setAttribute("class", "material-symbols-outlined");
   span1.innerHTML = "add";
   div3.appendChild(span1);
 
@@ -244,7 +243,7 @@ function poulateEventByCity(cityName) {
   }
   ret(para).then(results => {
     console.log("From Function " + results.data.length);
-    document.getElementById("eventPlaceholder").innerHTML="";
+    document.getElementById("eventPlaceholder").innerHTML = "";
     addCreateEventDiv();
     // console.log("From Function " + results.data[0].resultsid);
     for (index = 0; index < results.data.length; index++) {
@@ -293,7 +292,7 @@ function populateEventList(userid) {
   ret(para).then(results => {
     console.log("From Function " + results.data.length);
     // console.log("From Function " + results.data[0].resultsid);
-    document.getElementById("eventPlaceholder").innerHTML="";
+    document.getElementById("eventPlaceholder").innerHTML = "";
     addCreateEventDiv();
 
     for (index = 0; index < results.data.length; index++) {
@@ -366,8 +365,9 @@ function RenderEventDetails(index, doc) {
   }
 
 
-  var div2 = document.createElement("div");
+  var div2 = document.createElement("a");
   div2.setAttribute("class", "event-list-card");
+  div2.setAttribute("href", "eventDetails.html");
   if (doc.EventStatus === 'Active') {
 
     div2.setAttribute("style", "border-top: 3px solid green;");

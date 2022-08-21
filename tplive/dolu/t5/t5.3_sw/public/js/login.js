@@ -18,7 +18,7 @@ auth.onAuthStateChanged(firebaseUser => {
   }
 });
 
-window.onload = function() {
+window.onload = function () {
   render();
 }
 
@@ -57,7 +57,7 @@ btnSendOTP.addEventListener('click', e => {
       .then(() => {
 
         auth.signInWithPhoneNumber(number, window.recaptchaVerifier)
-          .then(function(confirmationResult) {
+          .then(function (confirmationResult) {
             window.confirmationResult = confirmationResult;
             coderesult = confirmationResult;
             console.log('coderesult: ' + coderesult);
@@ -68,7 +68,7 @@ btnSendOTP.addEventListener('click', e => {
             document.getElementById('btnSendOTPSpan').style.display = 'block';
             document.getElementById('btnSendOTPLoad').style.display = 'none';
           })
-          .catch(function(error) {
+          .catch(function (error) {
             console.log('Error Sending OTP: ' + error.message);
             document.getElementById('altspan').innerHTML = error.message;
             document.getElementById('altspan').style.display = 'block';
@@ -87,67 +87,84 @@ btnSigninUsingOTP.addEventListener('click', e => {
   document.getElementById('btnSigninUsingOTPLoad').style.display = 'block';
   // var code = document.getElementById('txtVerificationCode').value;
   var code = document.getElementById("otpLetter1").value +
-          document.getElementById("otpLetter2").value +
-          document.getElementById("otpLetter3").value +
-          document.getElementById("otpLetter4").value +
-          document.getElementById("otpLetter5").value +
-          document.getElementById("otpLetter6").value
+    document.getElementById("otpLetter2").value +
+    document.getElementById("otpLetter3").value +
+    document.getElementById("otpLetter4").value +
+    document.getElementById("otpLetter5").value +
+    document.getElementById("otpLetter6").value
   console.log('Code: ' + code);
-  coderesult.confirm(code).then(function(result) {
-      console.log('Navigate to the dashboard/profile page');
-      // window.location.assign('../admin/dashboard.html');
+  coderesult.confirm(code).then(function (result) {
+    console.log('Navigate to the dashboard/profile page');
+    // window.location.assign('../admin/dashboard.html');
 
-      var user = result.user;
-      console.log(user);
-      console.log(result);
+    var user = result.user;
+    console.log(user);
+    console.log(result);
 
-      var para1 = {};
-      para1 = {
-        userID: user.uid
-      };
-      // const ret1 = firebase.functions().httpsCallable("getProfileDetails");
-      const ret1 = functions.httpsCallable("getProfileDetails");
-      ret1(para1).then((result) => {
-        var record1 = result.data;
-        console.log(result.data.id);
-        var userRole = {
-          id: result.data.id,
-          Address: result.data.Address,
-          AlternatePhone: result.data.AlternatePhone,
-          City: result.data.City,
-          Country: result.data.Country,
-          DateOfBirth: result.data.DateOfBirth,
-          Email: result.data.Email,
-          Gender: result.data.Gender,
-          Phone: result.data.Phone,
-          State: result.data.State,
-          UserName: result.data.UserName,
-          UserRole: result.data.UserRole,
+    var para1 = {};
+    para1 = {
+      userID: user.uid
+    };
+    // const ret1 = firebase.functions().httpsCallable("getProfileDetails");
+    const ret1 = functions.httpsCallable("getProfileDetails");
+    ret1(para1).then((result) => {
+      var record1 = result.data;
+      console.log(result.data.id);
+      var userRole = {
+        id: result.data.id,
+        Address: result.data.Address,
+        AlternatePhone: result.data.AlternatePhone,
+        City: result.data.City,
+        Country: result.data.Country,
+        DateOfBirth: result.data.DateOfBirth,
+        Email: result.data.Email,
+        Gender: result.data.Gender,
+        Phone: result.data.Phone,
+        State: result.data.State,
+        UserName: result.data.UserName,
+        UserRole: result.data.UserRole,
+      }
+      console.log(userRole);
+      localStorage.setItem("userProfile", JSON.stringify(userRole));
+      if (result.data.id != "0") {
+        document.getElementById('btnSigninUsingOTPSpan').style.display = 'block';
+        document.getElementById('btnSigninUsingOTPLoad').style.display = 'none';
+        // window.location.assign('profile.html');
+        console.log(userRole.UserRole);
+        if (userRole.UserRole.find(e => e.TYPE === "ADMIN")) {
+          console.log("is admin");
+          window.location.assign('/admin/dashboard.html');
+        } else if (userRole.UserRole.find(e => e.TYPE === "PARTICIPANT")) {
+          console.log("is PARTICIPANT");
+
+          window.location.assign('/admin/dashboard.html');
+        } else if (userRole.UserRole.find(e => e.TYPE === "ORGANIZER")) {
+          console.log("is ORGANIZER");
+
+          window.location.assign('/admin/dashboard.html');
+        } else if (userRole.UserRole.find(e => e.TYPE === "REFREE")) {
+          console.log("is REFREE");
+
+          window.location.assign('/admin/dashboard.html');
         }
-        console.log(userRole);
-        localStorage.setItem("userProfile", JSON.stringify(userRole));
-        if (result.data.id != "0") {
-          document.getElementById('btnSigninUsingOTPSpan').style.display = 'block';
-          document.getElementById('btnSigninUsingOTPLoad').style.display = 'none';
-          window.location.assign('profile.html');
-        } else {
-          console.log('FistTimeUserSetup');
-          FistTimeUserSetup(user);
-        }
-      });
+      } else {
+        console.log('FistTimeUserSetup');
+        FistTimeUserSetup(user);
+      }
+    });
 
-      // const snapshot = db.collection('UserList').doc(user.uid);
-      // snapshot.get().then(async (doc) => {
-      //   if (doc.exists) {
-      //     window.location.assign('profile.html');
-      //   } else {
-      //     console.log('FistTimeUserSetup');
-      //     FistTimeUserSetup(user);
-      //   }
-      // })
+    // const snapshot = db.collection('UserList').doc(user.uid);
+    // snapshot.get().then(async (doc) => {
+    //   if (doc.exists) {
+    //     window.location.assign('profile.html');
+    //   } else {
+    //     console.log('FistTimeUserSetup');
+    //     FistTimeUserSetup(user);
+    //   }
+    // })
 
-    })
-    .catch(function(error) {
+  })
+    .catch(function (error) {
       // alert(error.message);
       document.getElementById('btnSigninUsingOTPSpan').style.display = 'block';
       document.getElementById('btnSigninUsingOTPLoad').style.display = 'none';
