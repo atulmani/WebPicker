@@ -12,7 +12,8 @@
 
   <link rel="shortcut icon" href="../img/logo_manu_transparent.png">
   <!-- Google Icons -->
-  <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet"
+    href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 
@@ -21,7 +22,8 @@
   <!-- Google fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
 
 
   <!-- Font Awesome cdn file -->
@@ -31,7 +33,8 @@
   <!-- Owl Stylesheets -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
   <!-- Bootstrap css -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -104,7 +107,8 @@
         <img style="height:40px; position:relative;top:4px;" src="../img/logo.png" alt="">
       </a>
 
-      <a href="notification/index.html" style="padding-right: 10px;position:relative;display:flex;justify-content: space-between;">
+      <a href="notification/index.html"
+        style="padding-right: 10px;position:relative;display:flex;justify-content: space-between;">
         <span class="material-symbols-outlined">
           notifications
         </span>
@@ -175,7 +179,8 @@
 
               <div style="display:flex; justify-content: space-between; margin: 0; width:100%;" class="">
 
-                <span style="font-weight: bolder;padding-top: 4px ;background:#fff;color:rgb(235, 84, 46); height: 30px; width: 30px; border-radius:50%; text-align: center; justify-content:center; margin-top: 6px;">
+                <span
+                  style="font-weight: bolder;padding-top: 4px ;background:#fff;color:rgb(235, 84, 46); height: 30px; width: 30px; border-radius:50%; text-align: center; justify-content:center; margin-top: 6px;">
                   AT
                 </span>
 
@@ -302,7 +307,8 @@
 
               <div style="display:flex; justify-content: space-between; margin: 0; width:100%;" class="">
 
-                <span style="font-weight: bolder;padding-top: 4px ;background:#fff;color:rgb(235, 84, 46); height: 36px; width: 36px; border-radius:50%; text-align: center; justify-content:center; margin-top: 6px;">
+                <span
+                  style="font-weight: bolder;padding-top: 4px ;background:#fff;color:rgb(235, 84, 46); height: 36px; width: 36px; border-radius:50%; text-align: center; justify-content:center; margin-top: 6px;">
                   AT
                 </span>
 
@@ -436,25 +442,29 @@
 
           <div class="row no-gutters" style="margin: 10px 0;">
 
-            <div class="col-lg-6 col-md-6 col-sm-12" style="background: rgb(188, 236, 224, 0.5); padding: 10px 10px 0 10px;">
+            <div class="col-lg-6 col-md-6 col-sm-12"
+              style="background: rgb(188, 236, 224, 0.5); padding: 10px 10px 0 10px;">
               <div class="switch" style="height: calc(100% - 10px);">
                 <span class="active" id="ResidentialText" style="color: #59981A">Residential</span>
 
-                <div class="switch-button Residential" id="propertyTypeToggleBtn" onclick="propertyToggleClick(propertyTypeToggleBtn)">
+                <div class="switch-button Residential" id="propertyTypeToggleBtn"
+                  onclick="propertyToggleClick(propertyTypeToggleBtn)">
                   <div class="switch-button-inner"></div>
                 </div>
 
                 <span id="CommercialText" style="color: #EB542E">Commercial</span>
               </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12" style="background: rgb(188, 236, 224, 0.5); padding: 10px 10px 0 10px;">
+            <div class="col-lg-6 col-md-6 col-sm-12"
+              style="background: rgb(188, 236, 224, 0.5); padding: 10px 10px 0 10px;">
               <div class="details-radio">
 
                 <div class="row no-gutters">
 
                   <div class="col-6" style="padding: 0 5px;">
-                    <input type="checkbox" checked class="checkbox" style="width: 0px;" name="BusinessType" id="Rent" value="Rent">
-                    <label class="checkbox-label" id="Rent-label" for="Rent">
+                    <input type="checkbox" checked class="checkbox" style="width: 0px;" name="BusinessType"
+                      id="businessTypeRent" value="Rent">
+                    <label class="checkbox-label" onclick="openRentSection()" id="Rent-label" for="businessTypeRent">
                       <i class="fas fa-plus"></i>
                       <i class="fas fa-check"></i>
                       <span>Rent</span>
@@ -462,8 +472,9 @@
                   </div>
 
                   <div class="col-6" style="padding: 0 5px;">
-                    <input type="checkbox" class="checkbox" style="width: 0px;" name="BusinessType" id="Sale" value="Sale">
-                    <label class="checkbox-label" id="Sale-label" for="Sale">
+                    <input type="checkbox" checked class="checkbox" style="width: 0px;" name="BusinessType"
+                      id="businessTypeSale" value="Sale">
+                    <label class="checkbox-label" onclick="openSaleSection()" id="Sale-label" for="businessTypeSale">
                       <i class="fas fa-plus"></i>
                       <i class="fas fa-check"></i>
                       <span>Sale</span>
@@ -536,7 +547,8 @@
                 <div class="col-12">
                   <div class="section-btn">
                     <div class=""></div>
-                    <button type="button" name="button" onclick="addPropertyMenu('Details')" class="mybutton button5">Next</button>
+                    <button type="button" name="button" onclick="addPropertyMenu('Details')"
+                      class="mybutton button5">Next</button>
                   </div>
                 </div>
               </div>
@@ -545,230 +557,494 @@
 
             <div class="section" id="section2">
 
-              <div class="row no-gutters">
-                <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 10px;">
-                  <h1 class="owner-heading">Locality</h1>
-                  <div class="location-search">
-                    <select class="" name="">
-                      <option value="" selected disabled>Choose Your Locality</option>
-                      <option value="">Pune</option>
-                      <option value="">Banglore</option>
-                      <option value="">Chennai</option>
-                      <option value="">Hyderabad</option>
-                      <option value="">Pimple Saudagar</option>
-                    </select>
-                    <div class="underline"></div>
-                    <span class="material-symbols-outlined">
-                      local_library
-                    </span>
-                  </div><br>
+              <section id="section2ResidencialSection">
 
-                  <h1 class="owner-heading">Society</h1>
-                  <div class="location-search">
-                    <input type="text" required placeholder="Enter Society Name.." name="" value="">
-                    <div class="underline"></div>
-                    <span class="material-symbols-outlined">
-                      holiday_village
-                    </span>
-                  </div><br>
+                <div class="row no-gutters">
+                  <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 10px;">
+                    <h1 class="owner-heading">Locality</h1>
+                    <div class="location-search">
+                      <select class="" name="">
+                        <option value="" selected disabled>Choose Your Locality</option>
+                        <option value="">Pune</option>
+                        <option value="">Banglore</option>
+                        <option value="">Chennai</option>
+                        <option value="">Hyderabad</option>
+                        <option value="">Pimple Saudagar</option>
+                      </select>
+                      <div class="underline"></div>
+                      <span class="material-symbols-outlined">
+                        local_library
+                      </span>
+                    </div><br>
 
-                  <h1 class="owner-heading">Property Type</h1>
-                  <div class="location-search">
+                    <h1 class="owner-heading">Society</h1>
+                    <div class="location-search">
+                      <input type="text" required placeholder="Enter Society Name.." name="" value="">
+                      <div class="underline"></div>
+                      <span class="material-symbols-outlined">
+                        holiday_village
+                      </span>
+                    </div><br>
 
-                    <select class="" name="">
-                      <option value="" selected disabled>Choose Property Type</option>
-                      <option value="">Appartment</option>
-                      <option value="">Builder floor</option>
-                      <option value="">Vila</option>
-                      <option value="">Row house</option>
-                      <option value="">Duplex</option>
-                    </select>
+                    <h1 class="owner-heading">Property Type</h1>
+                    <div class="location-search">
 
-                    <div class="underline"></div>
-                    <span class="material-symbols-outlined">
-                      format_list_bulleted
-                    </span>
-                  </div><br>
+                      <select class="" name="">
+                        <option value="" selected disabled>Choose Property Type</option>
+                        <option value="">Appartment</option>
+                        <option value="">Builder floor</option>
+                        <option value="">Vila</option>
+                        <option value="">Row house</option>
+                        <option value="">Duplex</option>
+                      </select>
 
-                  <h1 class="owner-heading">Unit Number</h1>
-                  <div class="location-search">
-                    <input type="text" required placeholder="Enter Unit Number..." name="" value="">
-                    <div class="underline"></div>
-                    <span class="material-symbols-outlined">
-                      location_away
-                    </span>
-                  </div><br>
+                      <div class="underline"></div>
+                      <span class="material-symbols-outlined">
+                        format_list_bulleted
+                      </span>
+                    </div><br>
 
-                </div>
+                    <h1 class="owner-heading">Unit Number</h1>
+                    <div class="location-search">
+                      <input type="text" required placeholder="Enter Unit Number..." name="" value="">
+                      <div class="underline"></div>
+                      <span class="material-symbols-outlined">
+                        location_away
+                      </span>
+                    </div><br>
 
-                <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 10px;">
-                  <h1 class="owner-heading">BHK</h1>
-                  <div class="location-search">
-                    <select class="" name="">
-                      <option value="" selected disabled>Choose BHK</option>
-                      <option value="">1 BHK</option>
-                      <option value="">2 BHK</option>
-                      <option value="">3 BHK</option>
-                      <option value="">4 BHK</option>
-                      <option value="">5 BHK</option>
-                    </select>
-                    <div class="underline"></div>
-                    <span class="material-symbols-outlined">
-                      bedroom_parent
-                    </span>
-                  </div><br>
-
-                  <h1 class="owner-heading">No. of Bedrooms</h1>
-                  <div class="location-search">
-                    <input type="number" required placeholder="Count of Bedroms..." name="" value="" min="0">
-                    <div class="underline"></div>
-                    <span class="material-symbols-outlined">
-                      bed
-                    </span>
-                  </div><br>
-
-                  <h1 class="owner-heading">No. of Bathrooms</h1>
-                  <div class="location-search">
-                    <input type="number" required placeholder="Count of Bathrooms..." name="" value="" min="0">
-                    <div class="underline"></div>
-                    <span class="material-symbols-outlined">
-                      bathtub
-                    </span>
-                  </div><br>
-
-                  <h1 class="owner-heading">No. of Balcony</h1>
-                  <div class="location-search">
-                    <input type="number" required placeholder="Count of Balcony..." name="" value="" min="0">
-                    <div class="underline"></div>
-                    <span class="material-symbols-outlined">
-                      balcony
-                    </span>
-                  </div><br>
-
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 10px;">
-                  <h1 class="owner-heading">Area ( SqFt )</h1>
-                  <div class="location-search">
-                    <input type="text" required placeholder="Area in SqFt..." name="" value="">
-                    <div class="underline"></div>
-                    <span class="material-symbols-outlined">
-                      crop_square
-                    </span>
-                  </div><br>
-
-                  <h1 class="owner-heading">Car Parking</h1>
-                  <div class="row no-gutters">
-                    <div class="col-6" style="padding: 5px;">
-                      <input type="radio" required class="checkbox" style="width: 0px;" name="CarParking" id="Open" value="Open">
-                      <label class="checkbox-label" id="Open-label" for="Open">
-                        <i class="fas fa-plus"></i>
-                        <i class="fas fa-check"></i>
-                        <span>Open</span>
-                      </label>
-                    </div>
-                    <div class="col-6" style="padding: 5px;">
-                      <input type="radio" required checked class="checkbox" style="width: 0px;" name="CarParking" id="Closed" value="Closed">
-                      <label class="checkbox-label" id="Closed-label" for="Closed">
-                        <i class="fas fa-plus"></i>
-                        <i class="fas fa-check"></i>
-                        <span>Closed</span>
-                      </label>
-                    </div>
+                    <h1 class="owner-heading">BHK</h1>
+                    <div class="location-search">
+                      <select class="" name="">
+                        <option value="" selected disabled>Choose BHK</option>
+                        <option value="">1 BHK</option>
+                        <option value="">2 BHK</option>
+                        <option value="">3 BHK</option>
+                        <option value="">4 BHK</option>
+                        <option value="">5 BHK</option>
+                      </select>
+                      <div class="underline"></div>
+                      <span class="material-symbols-outlined">
+                        bedroom_parent
+                      </span>
+                    </div><br>
 
                   </div>
 
-                  <h1 class="owner-heading">Power Backup</h1>
-                  <div class="row no-gutters">
-                    <div class="col-6" style="padding: 5px;">
-                      <input type="radio" required class="checkbox" style="width: 0px;" name="PowerBackup" id="PowerBackupYes" value="PowerBackupYes">
-                      <label class="checkbox-label" id="PowerBackupYes-label" for="PowerBackupYes">
-                        <i class="fas fa-plus"></i>
-                        <i class="fas fa-check"></i>
-                        <span>Yes</span>
-                      </label>
-                    </div>
-                    <div class="col-6" style="padding: 5px;">
-                      <input type="radio" required checked class="checkbox" style="width: 0px;" name="PowerBackup" id="PowerBackupNo" value="PowerBackupNo">
-                      <label class="checkbox-label" id="PowerBackupNo-label" for="PowerBackupNo">
-                        <i class="fas fa-plus"></i>
-                        <i class="fas fa-check"></i>
-                        <span>No</span>
-                      </label>
-                    </div>
+                  <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 10px;">
 
-                  </div><br>
+                    <h1 class="owner-heading">No. of Bedrooms</h1>
+                    <div class="location-search">
+                      <input type="number" required placeholder="Count of Bedroms..." name="" value="" min="0">
+                      <div class="underline"></div>
+                      <span class="material-symbols-outlined">
+                        bed
+                      </span>
+                    </div><br>
 
-                  <h1 class="owner-heading">Age Of Construction</h1>
-                  <div class="location-search">
-                    <input type="text" required placeholder="Construction Age Here..." name="" value="">
-                    <div class="underline"></div>
-                    <span class="material-symbols-outlined">
-                      engineering
-                    </span>
-                  </div><br>
+                    <h1 class="owner-heading">No. of Bathrooms</h1>
+                    <div class="location-search">
+                      <input type="number" required placeholder="Count of Bathrooms..." name="" value="" min="0">
+                      <div class="underline"></div>
+                      <span class="material-symbols-outlined">
+                        bathtub
+                      </span>
+                    </div><br>
 
-                </div>
+                    <h1 class="owner-heading">No. of Balcony</h1>
+                    <div class="location-search">
+                      <input type="number" required placeholder="Count of Balcony..." name="" value="" min="0">
+                      <div class="underline"></div>
+                      <span class="material-symbols-outlined">
+                        balcony
+                      </span>
+                    </div><br>
 
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                  <div class="row no-gutters" style="padding: 0 10px;">
-                    <div class="col-lg-5 col-md-5 col-sm-12">
-                      <h1 class="owner-heading">Furninshed</h1>
-                      <div class="row no-gutters">
-                        <div class="col-4" style="padding: 5px;">
-                          <input type="radio" required class="checkbox" style="width: 0px;" name="Furninshed" id="FurninshedFully" value="FurninshedFully">
-                          <label class="checkbox-label" id="FurninshedFully-label" for="FurninshedFully">
-                            <i class="fas fa-plus"></i>
-                            <i class="fas fa-check"></i>
-                            <span>Fully</span>
-                          </label>
-                        </div>
-                        <div class="col-4" style="padding: 5px;">
-                          <input type="radio" required class="checkbox" style="width: 0px;" name="Furninshed" id="FurninshedSemi" value="FurninshedSemi">
-                          <label class="checkbox-label" id="FurninshedSemi-label" for="FurninshedSemi">
-                            <i class="fas fa-plus"></i>
-                            <i class="fas fa-check"></i>
-                            <span>Semi</span>
-                          </label>
-                        </div>
-                        <div class="col-4" style="padding: 5px;">
-                          <input type="radio" required checked class="checkbox" style="width: 0px;" name="Furninshed" id="FurninshedNot" value="FurninshedNot">
-                          <label class="checkbox-label" id="FurninshedNot-label" for="FurninshedNot">
-                            <i class="fas fa-plus"></i>
-                            <i class="fas fa-check"></i>
-                            <span>Not</span>
-                          </label>
-                        </div>
+                    <h1 class="owner-heading">Floors</h1>
+                    <div class="location-search">
 
-                      </div><br>
-                    </div>
+                      <select class="" name="">
+                        <option value="" selected disabled>No. of Floors</option>
+                        <option value="">Ground</option>
+                        <option value="">1st</option>
+                        <option value="">2nd</option>
+                        <option value="">3rd</option>
+                        <option value="">4th</option>
+                        <option value="">5th</option>
+                        <option value="">6th</option>
+                        <option value="">7th</option>
+                        <option value="">8th</option>
+                        <option value="">9th</option>
+                        <option value="">10th</option>
+                        <option value="">11th</option>
+                        <option value="">12th</option>
+                        <option value="">13th</option>
+                        <option value="">14th</option>
+                        <option value="">15th</option>
+                        <option value="">16th</option>
+                        <option value="">17th</option>
+                        <option value="">18th</option>
+                        <option value="">19th</option>
+                        <option value="">20th</option>
+                        <option value="">21st</option>
+                        <option value="">22nd</option>
+                        <option value="">23rd</option>
+                        <option value="">24th</option>
+                        <option value="">25th</option>
+                        <option value="">26th</option>
+                        <option value="">27th</option>
+                        <option value="">28th</option>
+                        <option value="">29th</option>
+                        <option value="">30th</option>
+                        <option value="">31st</option>
+                        <option value="">32nd</option>
+                        <option value="">33rd</option>
+                        <option value="">34th</option>
+                        <option value="">35th</option>
+                        <option value="">36th</option>
+                        <option value="">37th</option>
+                        <option value="">38th</option>
+                        <option value="">39th</option>
+                        <option value="">40th</option>
+                        <option value="">41st</option>
+                        <option value="">42nd</option>
+                        <option value="">43rd</option>
+                        <option value="">44th</option>
+                        <option value="">45th</option>
+                        <option value="">46th</option>
+                        <option value="">47th</option>
+                        <option value="">48th</option>
+                        <option value="">49th</option>
+                        <option value="">50th</option>
+                      </select>
 
-                    <div class="col-lg-1 col-md-1">
+                      <div class="underline"></div>
+                      <span class="material-symbols-outlined">
+                        stairs
+                      </span>
+                    </div><br>
 
-                    </div>
+                    <h1 class="owner-heading">Power Backup</h1>
+                    <div class="row no-gutters">
+                      <div class="col-6" style="padding: 5px;">
+                        <input type="radio" required class="checkbox" style="width: 0px;" name="PowerBackup"
+                          id="PowerBackupYes" value="PowerBackupYes">
+                        <label class="checkbox-label" id="PowerBackupYes-label" for="PowerBackupYes">
+                          <i class="fas fa-plus"></i>
+                          <i class="fas fa-check"></i>
+                          <span>Yes</span>
+                        </label>
+                      </div>
+                      <div class="col-6" style="padding: 5px;">
+                        <input type="radio" required checked class="checkbox" style="width: 0px;" name="PowerBackup"
+                          id="PowerBackupNo" value="PowerBackupNo">
+                        <label class="checkbox-label" id="PowerBackupNo-label" for="PowerBackupNo">
+                          <i class="fas fa-plus"></i>
+                          <i class="fas fa-check"></i>
+                          <span>No</span>
+                        </label>
+                      </div>
 
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                      <h1 class="owner-heading">Property Description</h1>
-
-                      <div class="location-search">
-                        <textarea name="name" required placeholder="Write Any Other Information Here..." rows="8" cols="80"></textarea>
-                        <!-- <div class="underline"></div> -->
-                        <span class="material-symbols-outlined">
-                          description
-                        </span>
-                      </div><br>
-
-                    </div>
+                    </div><br>
 
                   </div>
+
+                  <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 10px;">
+                    <h1 class="owner-heading">Built Up Area</h1>
+                    <div class="location-search">
+                      <input type="number" required placeholder="Area in SqFt..." name="" value="">
+                      <div class="underline"></div>
+                      <select name="" style="position: absolute;right: 0;width: auto;padding-right: 16px;" id="">
+                        <option value="">SqFt</option>
+                        <option value="">SqMtr</option>
+                        <option value="">SqYd</option>
+                      </select>
+                      <span class="material-symbols-outlined" style="color: #666;font-size: 1.1rem;right: 1px;">
+                        expand_more
+                      </span>
+                    </div><br>
+
+                    <h1 class="owner-heading">Carpet Area</h1>
+                    <div class="location-search">
+                      <input type="number" required placeholder="Area in SqFt..." name="" value="">
+                      <div class="underline"></div>
+                      <select name="" style="position: absolute;right: 0;width: auto;padding-right: 16px;" id="">
+                        <option value="">SqFt</option>
+                        <option value="">SqMtr</option>
+                        <option value="">SqYd</option>
+                      </select>
+                      <span class="material-symbols-outlined" style="color: #666;font-size: 1.1rem;right: 1px;">
+                        expand_more
+                      </span>
+                    </div><br>
+
+                    <h1 class="owner-heading">Car Parking</h1>
+                    <div class="row no-gutters">
+                      <div class="col-6" style="padding: 5px;">
+                        <input type="radio" required class="checkbox" style="width: 0px;" name="CarParking"
+                          id="carParkingOpen" value="Open">
+                        <label class="checkbox-label" onclick="closeCarParkingClosedDiv()" id="Open-label"
+                          for="carParkingOpen">
+                          <i class="fas fa-plus"></i>
+                          <i class="fas fa-check"></i>
+                          <span>Open</span>
+                        </label>
+                      </div>
+                      <div class="col-6" style="padding: 5px;">
+                        <input type="radio" required checked class="checkbox" style="width: 0px;" name="CarParking"
+                          id="carParkingClosed" value="Closed">
+                        <label class="checkbox-label" onclick="openCarParkingClosedDiv()" id="Closed-label"
+                          for="carParkingClosed">
+                          <i class="fas fa-plus"></i>
+                          <i class="fas fa-check"></i>
+                          <span>Closed</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="car-parking-closed-outter open" id="extraCarParkingClosed">
+                      <div class="car-parking-closed">
+                        <div class="row no-gutters">
+                          <div class="col-6" style="padding: 5px;">
+                            <input type="checkbox" required class="checkbox" style="width: 0px;" name="CarParkingClosed"
+                              id="Basment1" value="Basment1">
+                            <label class="checkbox-label" id="Basment1-label" for="Basment1">
+                              <i class="fas fa-plus"></i>
+                              <i class="fas fa-check"></i>
+                              <span>Basment 1</span>
+                            </label>
+                            <div class="car-parking-options-badge">
+                              <h1>1</h1>
+                            </div>
+                          </div>
+
+                          <div class="col-6" style="padding: 5px;">
+                            <input type="checkbox" required class="checkbox" style="width: 0px;" name="CarParkingClosed"
+                              id="Basment2" value="Basment2">
+                            <label class="checkbox-label" id="Basment2-label" for="Basment2">
+                              <i class="fas fa-plus"></i>
+                              <i class="fas fa-check"></i>
+                              <span>Basment 2</span>
+                            </label>
+                            <div class="car-parking-options-badge">
+                              <h1>1</h1>
+                            </div>
+                          </div>
+
+                          <div class="col-6" style="padding: 5px;">
+                            <input type="checkbox" required class="checkbox" style="width: 0px;" name="CarParkingClosed"
+                              id="Basment3" value="Basment3">
+                            <label class="checkbox-label" id="Basment3-label" for="Basment3">
+                              <i class="fas fa-plus"></i>
+                              <i class="fas fa-check"></i>
+                              <span>Basment 3</span>
+                            </label>
+                            <div class="car-parking-options-badge">
+                              <h1>1</h1>
+                            </div>
+                          </div>
+
+                          <div class="col-6" style="padding: 5px;">
+                            <input type="checkbox" required class="checkbox" style="width: 0px;" name="CarParkingClosed"
+                              id="Stilt" value="Stilt">
+                            <label class="checkbox-label" id="Stilt-label" for="Stilt">
+                              <i class="fas fa-plus"></i>
+                              <i class="fas fa-check"></i>
+                              <span>Stilt</span>
+                            </label>
+                            <div class="car-parking-options-badge">
+                              <h1>1</h1>
+                            </div>
+                          </div>
+
+                          <div class="col-6" style="padding: 5px;">
+                            <input type="checkbox" required class="checkbox" style="width: 0px;" name="CarParkingClosed"
+                              id="Shade" value="Shade">
+                            <label class="checkbox-label" id="Shade-label" for="Shade">
+                              <i class="fas fa-plus"></i>
+                              <i class="fas fa-check"></i>
+                              <span>Shade</span>
+                            </label>
+                            <div class="car-parking-options-badge">
+                              <h1>1</h1>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <h1 class="owner-heading">Bike Parking</h1>
+                    <div class="row no-gutters">
+                      <div class="col-6" style="padding: 5px;">
+                        <input type="radio" required class="checkbox" style="width: 0px;" name="BikeParking"
+                          id="BikeParkingOpen" value="Open">
+                        <label class="checkbox-label" id="BikeParkingOpen-label" for="BikeParkingOpen">
+                          <i class="fas fa-plus"></i>
+                          <i class="fas fa-check"></i>
+                          <span>Open</span>
+                        </label>
+                      </div>
+                      <div class="col-6" style="padding: 5px;">
+                        <input type="radio" required checked class="checkbox" style="width: 0px;" name="BikeParking"
+                          id="BikeParkingClosed" value="BikeParkingClosed">
+                        <label class="checkbox-label" id="BikeParkingClosed-label" for="BikeParkingClosed">
+                          <i class="fas fa-plus"></i>
+                          <i class="fas fa-check"></i>
+                          <span>Closed</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <h1 class="owner-heading" style="padding-top: 10px;">No. Of Parking</h1>
+                    <div class="location-search">
+                      <input type="number" required placeholder="No. Of Parking..." name="" value="">
+                      <div class="underline"></div>
+                      <span class="material-symbols-outlined">
+                        padding
+                      </span>
+                    </div><br>
+
+                    <h1 class="owner-heading">Year of Constuction</h1>
+                    <div class="location-search">
+                      <select class="" name="" id="yearOfConstructionSelect" onchange="ageOfPropertyCalc()">
+                        <option value="" selected disabled>Year of Constuction</option>
+                        <option value="">1990</option>
+                        <option value="">1991</option>
+                        <option value="">1992</option>
+                        <option value="">1993</option>
+                        <option value="">1994</option>
+                        <option value="">1995</option>
+                        <option value="">1996</option>
+                        <option value="">1997</option>
+                        <option value="">1998</option>
+                        <option value="">1999</option>
+                        <option value="">2000</option>
+                        <option value="">2001</option>
+                        <option value="">2002</option>
+                        <option value="">2003</option>
+                        <option value="">2004</option>
+                        <option value="">2005</option>
+                        <option value="">2006</option>
+                        <option value="">2007</option>
+                        <option value="">2008</option>
+                        <option value="">2009</option>
+                        <option value="">2010</option>
+                        <option value="">2011</option>
+                        <option value="">2012</option>
+                        <option value="">2013</option>
+                        <option value="">2014</option>
+                        <option value="">2015</option>
+                        <option value="">2016</option>
+                        <option value="">2017</option>
+                        <option value="">2018</option>
+                        <option value="">2019</option>
+                        <option value="">2020</option>
+                        <option value="">2021</option>
+                        <option value="">2022</option>
+                      </select>
+
+                      <span class="material-symbols-outlined">
+                        engineering
+                      </span>
+                    </div><br>
+
+                    <h1 class="owner-heading" style="padding-top: 10px;">Age of property ( Current year - year of
+                      construction )</h1>
+                    <div class="location-search">
+                      <input type="number" id="ageOfConstructionInput" required disabled placeholder="Age of property"
+                        name="" value="">
+                      <div class="underline"></div>
+                      <span class="material-symbols-outlined">
+                        padding
+                      </span>
+                    </div><br>
+
+                  </div>
+
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="row no-gutters" style="padding: 0 10px;">
+                      <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h1 class="owner-heading">Furninshed</h1>
+                        <div class="row no-gutters">
+                          <div class="col-4" style="padding: 5px;">
+                            <input type="radio" required class="checkbox" style="width: 0px;" name="Furninshed"
+                              id="FurninshedFully" value="FurninshedFully">
+                            <label class="checkbox-label" id="FurninshedFully-label" for="FurninshedFully">
+                              <i class="fas fa-plus"></i>
+                              <i class="fas fa-check"></i>
+                              <span>Fully</span>
+                            </label>
+                          </div>
+                          <div class="col-4" style="padding: 5px;">
+                            <input type="radio" required class="checkbox" style="width: 0px;" name="Furninshed"
+                              id="FurninshedSemi" value="FurninshedSemi">
+                            <label class="checkbox-label" id="FurninshedSemi-label" for="FurninshedSemi">
+                              <i class="fas fa-plus"></i>
+                              <i class="fas fa-check"></i>
+                              <span>Semi</span>
+                            </label>
+                          </div>
+                          <div class="col-4" style="padding: 5px;">
+                            <input type="radio" required checked class="checkbox" style="width: 0px;" name="Furninshed"
+                              id="FurninshedNot" value="FurninshedNot">
+                            <label class="checkbox-label" id="FurninshedNot-label" for="FurninshedNot">
+                              <i class="fas fa-plus"></i>
+                              <i class="fas fa-check"></i>
+                              <span>Not</span>
+                            </label>
+                          </div>
+
+                        </div><br>
+                      </div>
+
+                      <div class="col-lg-1 col-md-1">
+
+                      </div>
+
+                      <div class="col-lg-6 col-md-6 col-sm-12">
+                        <h1 class="owner-heading">Property Description</h1>
+
+                        <div class="location-search">
+                          <textarea name="name" required placeholder="Write Any Other Information Here..." rows="8"
+                            cols="80"></textarea>
+                          <!-- <div class="underline"></div> -->
+                          <span class="material-symbols-outlined">
+                            description
+                          </span>
+                        </div><br>
+
+                      </div>
+
+                    </div>
+                  </div>
+
                 </div>
 
-              </div>
+                <div id="rentSection" style="display: block;">
+                  <h2>RENT</h2><br><br><br>
+                  <hr>
+                </div>
+
+                <div id="saleSection" style="display: none;">
+                  <h2>SALE</h2><br><br><br>
+                  <hr>
+                </div>
+
+              </section>
+
+              <section id="section2CommercialSection" style="display: none;">
+
+                <h2>Commercial</h2><br><br><br>
+                <hr>
+
+              </section>
 
               <div class="row no-gutters section-btn-div">
                 <div class="col-6" style="padding: 5px;">
                   <div class="section-btn">
-                    <button type="button" name="button" onclick="addPropertyMenu('Basic')" class="mybutton button5">Back</button>
+                    <button type="button" name="button" onclick="addPropertyMenu('Basic')"
+                      class="mybutton button5">Back</button>
                     <div class=""></div>
                   </div>
                 </div>
@@ -776,7 +1052,8 @@
                 <div class="col-6" style="padding: 5px;">
                   <div class="section-btn">
                     <div class=""></div>
-                    <button type="button" name="button" onclick="addPropertyMenu('Category')" class="mybutton button5">Next</button>
+                    <button type="button" name="button" onclick="addPropertyMenu('Category')"
+                      class="mybutton button5">Next</button>
                   </div>
                 </div>
               </div>
@@ -816,7 +1093,8 @@
           <div class="footer-list">
             <h1>Get in Touch</h1><br><br>
             <div class="" style="height: 70px;">
-              <a href="#" style="display: flex; align-items: center;position: absolute; left: 50%; transform: translateX(-50%);">
+              <a href="#"
+                style="display: flex; align-items: center;position: absolute; left: 50%; transform: translateX(-50%);">
                 <span class="material-symbols-outlined" style="background: #ff4444;">
                   call
                 </span>
@@ -825,7 +1103,8 @@
             </div>
 
             <div class="" style="height: 70px;">
-              <a href="#" style="display: flex; align-items: center;position: absolute; left: 50%; transform: translateX(-50%);">
+              <a href="#"
+                style="display: flex; align-items: center;position: absolute; left: 50%; transform: translateX(-50%);">
                 <span class="material-symbols-outlined" style="background: #08aad1;">
                   mail
                 </span>
@@ -834,7 +1113,8 @@
             </div>
 
             <div class="" style="height: 70px;">
-              <a href="#" style="display: flex; align-items: center;position: absolute; left: 50%; transform: translateX(-50%);">
+              <a href="#"
+                style="display: flex; align-items: center;position: absolute; left: 50%; transform: translateX(-50%);">
                 <span class="material-symbols-outlined" style="background: #199d0e;">
                   phone
                 </span>
@@ -914,7 +1194,9 @@
 
 
   <!-- Jquery order should be higher from normal javascript  -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
 
   <!-- Owl Carousel JQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -926,11 +1208,15 @@
   <!-- Owl Carousel Javascript  -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
 
   <!-- JavaScript Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
 
 
 </body>

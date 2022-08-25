@@ -67,6 +67,8 @@ function propertyToggleClick(propertyType) {
 
   var ResidentialText = document.getElementById('ResidentialText');
   var CommercialText = document.getElementById('CommercialText');
+  var section2ResidencialSection = document.getElementById('section2ResidencialSection');
+  var section2CommercialSection = document.getElementById('section2CommercialSection');
 
   ResidentialText.classList.remove('active');
   CommercialText.classList.remove('active');
@@ -75,10 +77,67 @@ function propertyToggleClick(propertyType) {
     propertyType.classList.remove('Residential');
     propertyType.classList.add('Commercial');
     CommercialText.classList.add('active');
+    section2ResidencialSection.style.display = 'none';
+    section2CommercialSection.style.display = 'block';
   } else if (propertyType.classList.contains('Commercial')) {
     propertyType.classList.remove('Commercial');
     propertyType.classList.add('Residential');
     ResidentialText.classList.add('active');
+    section2ResidencialSection.style.display = 'block';
+    section2CommercialSection.style.display = 'none';
   }
+
+}
+
+function openRentSection() {
+  var rentSection = document.getElementById('rentSection');
+  var businessTypeRent = document.getElementById('businessTypeRent');
+  var businessTypeSale = document.getElementById('businessTypeSale');
+
+  if (businessTypeRent.checked) {
+    rentSection.style.display = 'none';
+  } else {
+    rentSection.style.display = 'block';
+  }
+
+  // if (businessTypeRent.checked) {
+  //   if (!businessTypeSale.checked) {
+  //     businessTypeRent.checked = true;
+  //     console.log('check');
+  //   }
+  // }
+
+}
+
+function openSaleSection() {
+  var saleSection = document.getElementById('saleSection');
+  var businessTypeRent = document.getElementById('businessTypeRent');
+  var businessTypeSale = document.getElementById('businessTypeSale');
+
+  if (businessTypeSale.checked) {
+    saleSection.style.display = 'none';
+  } else {
+    saleSection.style.display = 'block';
+  }
+}
+
+function closeCarParkingClosedDiv() {
+  var extraCarParkingClosed = document.getElementById('extraCarParkingClosed');
+  extraCarParkingClosed.classList.remove('open');
+}
+
+function openCarParkingClosedDiv() {
+  var extraCarParkingClosed = document.getElementById('extraCarParkingClosed');
+  extraCarParkingClosed.classList.add('open');
+}
+
+function ageOfPropertyCalc() {
+  var yearOfConstructionSelect = document.getElementById('yearOfConstructionSelect');
+  var ageOfConstructionInput = document.getElementById('ageOfConstructionInput');
+
+  var yearValue = yearOfConstructionSelect.options[yearOfConstructionSelect.selectedIndex].text;
+  var dt = new Date();
+
+  ageOfConstructionInput.value = dt.getFullYear() - Number(yearValue);
 
 }

@@ -190,7 +190,7 @@ h6 {
 
 .navbar-mobile-bottom-menu-a.active span {
   font-variation-settings:
-    'FILL'1
+    'FILL' 1
 }
 
 .navbar-mobile-bottom-menu-a small {
@@ -225,7 +225,7 @@ h6 {
 
 .new-user.active span {
   font-variation-settings:
-    'FILL'1
+    'FILL' 1
 }
 
 .side-navbar {
@@ -949,7 +949,7 @@ h6 {
   justify-content: center;
 }
 
-.extra-service div{
+.extra-service div {
   position: relative;
   top: 3px;
 }
@@ -960,7 +960,7 @@ h6 {
   color: #4CD7D0;
 }
 
-.extra-service h1{
+.extra-service h1 {
   font-size: 1rem;
   color: #666;
   margin: 0;
@@ -1030,7 +1030,9 @@ h6 {
   opacity: 0.3;
 }
 
-.newWave.wave1.battery1, .newWave.wave2.battery1, .newWave.wave3.battery1 {
+.newWave.wave1.battery1,
+.newWave.wave2.battery1,
+.newWave.wave3.battery1 {
   height: 10%;
   background: linear-gradient(to right, #f20c0c, #eb2a2a);
 }
@@ -1047,7 +1049,9 @@ h6 {
   animation: newWave1 4s ease-in-out infinite;
 }
 
-.newWave.wave1.battery2, .newWave.wave2.battery2, .newWave.wave3.battery2 {
+.newWave.wave1.battery2,
+.newWave.wave2.battery2,
+.newWave.wave3.battery2 {
   height: 20%;
   background: linear-gradient(to right, #f20c0c, #eb2a2a);
 }
@@ -1064,7 +1068,9 @@ h6 {
   animation: newWave1 4s ease-in-out infinite;
 }
 
-.newWave.wave1.battery3, .newWave.wave2.battery3, .newWave.wave3.battery3 {
+.newWave.wave1.battery3,
+.newWave.wave2.battery3,
+.newWave.wave3.battery3 {
   height: 30%;
   background: linear-gradient(to right, #eb8817, #ed9939)
 }
@@ -1081,7 +1087,9 @@ h6 {
   animation: newWave2 4s ease-in-out infinite;
 }
 
-.newWave.wave1.battery4, .newWave.wave2.battery4, .newWave.wave3.battery4 {
+.newWave.wave1.battery4,
+.newWave.wave2.battery4,
+.newWave.wave3.battery4 {
   height: 40%;
   background: linear-gradient(to right, #eb8817, #ed9939)
 }
@@ -1098,7 +1106,9 @@ h6 {
   animation: newWave2 4s ease-in-out infinite;
 }
 
-.newWave.wave1.battery5, .newWave.wave2.battery5, .newWave.wave3.battery5 {
+.newWave.wave1.battery5,
+.newWave.wave2.battery5,
+.newWave.wave3.battery5 {
   height: 50%;
   background: linear-gradient(to right, #e6ce20, #e6d34c);
 }
@@ -1115,7 +1125,9 @@ h6 {
   animation: newWave2 4s ease-in-out infinite;
 }
 
-.newWave.wave1.battery6, .newWave.wave2.battery6, .newWave.wave3.battery6 {
+.newWave.wave1.battery6,
+.newWave.wave2.battery6,
+.newWave.wave3.battery6 {
   height: 60%;
   background: linear-gradient(to right, #e6ce20, #e6d34c);
 }
@@ -1132,7 +1144,9 @@ h6 {
   animation: newWave3 4s ease-in-out infinite;
 }
 
-.newWave.wave1.battery7, .newWave.wave2.battery7, .newWave.wave3.battery7 {
+.newWave.wave1.battery7,
+.newWave.wave2.battery7,
+.newWave.wave3.battery7 {
   height: 70%;
   background: linear-gradient(to right, #9FF1F5, #ea542f);
 }
@@ -1149,7 +1163,9 @@ h6 {
   animation: newWave3 4s ease-in-out infinite;
 }
 
-.newWave.wave1.battery8, .newWave.wave2.battery8, .newWave.wave3.battery8 {
+.newWave.wave1.battery8,
+.newWave.wave2.battery8,
+.newWave.wave3.battery8 {
   height: 80%;
   background: linear-gradient(to right, #4CD7D0, #b0e64c);
 }
@@ -1166,7 +1182,9 @@ h6 {
   animation: newWave3 4s ease-in-out infinite;
 }
 
-.newWave.wave1.battery9, .newWave.wave2.battery9, .newWave.wave3.battery9 {
+.newWave.wave1.battery9,
+.newWave.wave2.battery9,
+.newWave.wave3.battery9 {
   height: 90%;
   background: linear-gradient(to right, #DC948B, #E4947C);
 }
@@ -1183,7 +1201,9 @@ h6 {
   animation: newWave3 4s ease-in-out infinite;
 }
 
-.newWave.wave1.battery10, .newWave.wave2.battery10, .newWave.wave3.battery10 {
+.newWave.wave1.battery10,
+.newWave.wave2.battery10,
+.newWave.wave3.battery10 {
   height: 110%;
   background: linear-gradient(to right, #21c708, #39b327);
 }
@@ -1201,7 +1221,9 @@ h6 {
 }
 
 @keyframes newWave1 {
-  0%, 100% {
+
+  0%,
+  100% {
     clip-path: polygon(0 11%, 9% 6%, 21% 1%, 33% 2%, 43% 8%, 53% 14%, 67% 18%, 78% 16%, 88% 12%, 100% 8%, 100% 100%, 0 100%);
   }
 
@@ -1211,7 +1233,9 @@ h6 {
 }
 
 @keyframes newWave2 {
-  0%, 100% {
+
+  0%,
+  100% {
     clip-path: polygon(0 37%, 7% 25%, 15% 13%, 24% 6%, 35% 4%, 44% 9%, 53% 16%, 61% 23%, 71% 29%, 80% 29%, 88% 23%, 94% 18%, 100% 14%, 100% 100%, 0 100%);
   }
 
@@ -1221,7 +1245,9 @@ h6 {
 }
 
 @keyframes newWave3 {
-  0%, 100% {
+
+  0%,
+  100% {
     clip-path: polygon(0 21%, 7% 13%, 16% 7%, 26% 2%, 38% 2%, 48% 7%, 57% 15%, 66% 21%, 75% 25%, 85% 25%, 94% 23%, 100% 16%, 100% 100%, 0 100%);
   }
 
@@ -1231,7 +1257,9 @@ h6 {
 }
 
 @keyframes newWave4 {
-  0%, 100% {
+
+  0%,
+  100% {
     clip-path: polygon(0 21%, 7% 13%, 16% 7%, 26% 2%, 38% 2%, 48% 7%, 57% 15%, 66% 21%, 75% 25%, 85% 25%, 94% 23%, 100% 16%, 100% 100%, 0 100%);
   }
 
@@ -1450,10 +1478,10 @@ h6 {
 
 .material-symbols-outlined {
   font-variation-settings:
-    'FILL'0,
-    'wght'400,
-    'GRAD'0,
-    'opsz'48
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
 }
 
 /* Profile - end */
@@ -2188,6 +2216,7 @@ h6 {
   justify-content: center;
   text-align: center;
   cursor: pointer;
+
   width: 100%;
   border-radius: 0 50px 50px 0;
   border-right: 1px solid #666;
@@ -2277,7 +2306,7 @@ h6 {
   transition: 0.5s;
 }
 
-.switch span.active{
+.switch span.active {
   font-size: 1.1rem;
   opacity: 1;
 }
@@ -2413,6 +2442,10 @@ h6 {
   -webkit-appearance: none;
 }
 
+.location-search input:disabled {
+  background: #efefef;
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -2425,22 +2458,22 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-.location-search select{
+.location-search select {
   background: #eee;
   -webkit-appearance: none;
 }
 
-.location-search select option{
+.location-search select option {
   color: #000;
   font-weight: bold;
 }
 
-.location-search select option:disabled{
+.location-search select option:disabled {
   color: #aaa;
   font-weight: normal;
 }
 
-.location-search textarea{
+.location-search textarea {
   resize: none;
   height: 100px;
   border: 1px solid #ddd;
@@ -2450,13 +2483,13 @@ input[type=number] {
   transition: 0.5s;
 }
 
-.location-search textarea::placeholder{
+.location-search textarea::placeholder {
   color: #aaa;
   font-weight: normal;
 }
 
 .location-search textarea:focus,
-.location-search textarea:valid{
+.location-search textarea:valid {
   border: 1px solid #4CD7D0;
 }
 
@@ -2491,61 +2524,102 @@ input[type=number] {
   color: #EB542E;
 }
 
-/* admin dashboard page - start */
+.car-parking-closed-outter {
+  height: 0px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  transition: 1s;
+}
 
-.admin-property-count-card{
+.car-parking-closed-outter.open {
+  height: 200px;
+}
+
+.car-parking-closed {
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  padding: 23px 5px;
+  height: 200px;
+}
+
+.car-parking-options-badge {
+  position: absolute;
+  top: -5px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  background: #ff5757;
+  border-radius: 50%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  border-radius: 20px;
-  box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
-  padding: 20px;
-  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
 }
 
-.admin-property-count-card:hover{
-  text-decoration: none;
-}
-
-.admin-property-count-card div{
+.car-parking-options-badge h1 {
+  font-size: 0.8rem;
+  font-weight: bolder;
   position: relative;
   top: 5px;
 }
 
-.admin-property-count-card h1{
+/* add property page - end */
+
+/* admin dashboard page - start */
+
+.admin-property-count-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-decoration: none;
+}
+
+.admin-property-count-card:hover {
+  text-decoration: none;
+}
+
+.admin-property-count-card div {
+  position: relative;
+  top: 5px;
+}
+
+.admin-property-count-card h1 {
   font-size: 2rem;
   color: #EB542E;
   margin: 0;
 }
 
-.admin-property-count-card h2{
+.admin-property-count-card h2 {
   font-size: 0.9rem;
   color: #aaa;
 }
 
-.admin-property-count-card span{
+.admin-property-count-card span {
   font-size: 2.7rem;
   color: #aaa;
 }
 
+
 @media (max-width: 850px) {
-  .admin-property-count-card{
+  .admin-property-count-card {
     padding: 10px;
   }
 
-  .admin-property-count-card h1{
+  .admin-property-count-card h1 {
     font-size: 1.2rem;
   }
 
-  .admin-property-count-card h2{
+  .admin-property-count-card h2 {
     font-size: 0.8rem;
   }
 
-  .admin-property-count-card span{
+  .admin-property-count-card span {
     font-size: 2rem;
   }
 }
 
 /* admin dashboard page - end */
-
-/* add property page - end */
