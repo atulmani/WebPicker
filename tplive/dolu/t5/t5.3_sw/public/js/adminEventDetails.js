@@ -40,3 +40,29 @@ function eventDetailsFormSlide(eventForm) {
     }
 
 }
+
+function saveEventStatus() {
+    //save detailes in DB
+    var EventID = document.getElementById("hfEventID").value;
+
+    var para1 = {};
+    para1 = {
+        EventID: eventID,
+        EventStatus: EventStatus,
+    };
+    console.log(para1);
+    // const ret1 = firebase.functions().httpsCallable("updateEventDetails_Dates");
+    const ret1 = functions.httpsCallable("updateEventDetails_EventStatus");
+    ret1(para1).then((result) => {
+        //var record1 = result.data;
+        console.log("Event ID: " + result.data.retCode);
+        if (result.data.retCode === "0") {
+            var confirmMessage = document.getElementById('saveMessage2');
+            confirmMessage.style.display = "block";
+
+            setTimeout(function () {
+                confirmMessage.style.display = 'none';
+            }, 5000);
+        }
+    });
+});

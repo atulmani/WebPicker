@@ -477,6 +477,8 @@ btnSave.addEventListener('click', e => {
     (eventOwnerEmail === "" || eventOwnerEmail === null) ||
     (eventOwnerPhone === "" || eventOwnerPhone === null)) {
     console.log("details not filled");
+    var confirmMessage = document.getElementById('saveMessage');
+
     document.getElementById("confirmationMessage").innerHTML = "Please enter all details to update";
     confirmMessage.style.display = "block";
 
