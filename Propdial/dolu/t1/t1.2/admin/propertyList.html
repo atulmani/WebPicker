@@ -52,13 +52,14 @@
         <a class="navbar-brand" href="#banner">
             <img style="height:60px;" src="../img/logo.png" alt="">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <button class="navbar-toggler" title="hambergericon" type="button" data-toggle="collapse"
+            data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" style="position:absolute;right: 20px;" id="collapsibleNavbar">
             <ul class="nav navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="dashboard.html">
+                    <a class="nav-link" href="/admin/dashboard.html">
                         <span class="material-icons-outlined">
                             home
                         </span>
@@ -66,9 +67,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/admin/propertyList.html">
                         <span class="material-icons-outlined">
-                            category
+                            receipt_long
                         </span>
                         <small>Properties</small>
                     </a>
@@ -76,17 +77,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <span class="material-icons-outlined">
-                            touch_app
+                            category
                         </span>
-                        <small>About us</small>
+                        <small>Clients</small>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <span class="material-icons-outlined">
-                            phone_in_talk
+                            handyman
                         </span>
-                        <small>Contact us</small>
+                        <small>Enquiries</small>
                     </a>
                 </li>
 
@@ -118,44 +119,42 @@
             </a>
 
         </div>
-
     </div>
 
     <!-- bottom bardown - ends -->
 
     <div class="small navbar-mobile-bottom">
         <div class="navbar-mobile-bottom-menu" id="divBottomNavBar">
-            <a href="dashboard.html" class="navbar-mobile-bottom-menu-a active"
-                style="display:flex; flex-direction:column;">
+            <a href="dashboard.html" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
                 <span class="material-symbols-outlined">
                     home
                 </span>
-                <small>Dashboard</small>
+                <small>Home</small>
             </a>
-            <a href="dashboard.html" class="navbar-mobile-bottom-menu-a " style="display:flex; flex-direction:column;">
+            <a href="propertyList.html" class="navbar-mobile-bottom-menu-a active"
+                style="display:flex; flex-direction:column;">
                 <span class="material-symbols-outlined">
-                    event
+                    receipt_long
                 </span>
-                <small>Property</small>
+                <small>List</small>
             </a>
             <a href="">
 
             </a>
-            <a href="orders.html" class="navbar-mobile-bottom-menu-a " style="display:flex; flex-direction:column;">
+            <a href="#" class="navbar-mobile-bottom-menu-a " style="display:flex; flex-direction:column;">
                 <span class="material-symbols-outlined">
                     category
                 </span>
-                <small>Visits</small>
+                <small>Clients</small>
             </a>
-            <a href="../contactUs.html" class="navbar-mobile-bottom-menu-a"
-                style="display:flex; flex-direction:column;">
+            <a href="#" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
                 <span class="material-symbols-outlined">
                     handyman
                 </span>
                 <small>Enquiries</small>
             </a>
         </div>
-        <a class="new-user " href="login/profile.html">
+        <a class="new-user " href="/login/profile.html">
             <span class="material-symbols-outlined">
                 person
             </span>
@@ -177,7 +176,7 @@
 
                     <li style="background: #EB542E;" class="active">
 
-                        <a href="dashboard.html">
+                        <a href="/login/profile.html">
 
 
                             <div style="display:flex; justify-content: space-between; margin: 0; width:100%;" class="">
@@ -262,7 +261,7 @@
                     </li>
 
                     <li>
-                        <a href="./login/index.html">
+                        <a href="/login/index.html">
                             <b></b>
                             <b></b>
                             <span class="material-symbols-outlined">
@@ -284,7 +283,7 @@
 
                     <li style="background: #EB542E;" class="active">
 
-                        <a href="dashboard.html">
+                        <a href="/login/profile.html">
 
 
                             <div style="display:flex; justify-content: space-between; margin: 0; width:100%;" class="">
@@ -369,7 +368,7 @@
                     </li>
 
                     <li>
-                        <a href="./login/index.html">
+                        <a href="/login/index.html">
                             <b></b>
                             <b></b>
                             <span class="material-symbols-outlined">
@@ -453,7 +452,7 @@
                         <div class="large">
                             <div class="row no-gutters">
 
-                                <div class="col-lg-3 col-md-6 col-sm-6" style="padding: 5px;">
+                                <!-- <div class="col-lg-3 col-md-6 col-sm-6" style="padding: 5px;">
                                     <div class="filter-btn">
                                         <div class="filter-btn-div">
                                             <button type="button" id='btnActive'
@@ -467,7 +466,7 @@
                                         <div class="filter-btn-div">
                                             <button type="button" id='btnClose' class="mybutton buttonTransparent"
                                                 onclick="changestatus('Closed')" name="button"
-                                                style="border-left: 1px solid #333C5D;border-right: 1px solid #333C5D;">CLOSED</button>
+                                                style="border-left: 1px solid #333C5D;border-right: 1px solid #333C5D;">INACTIVE</button>
                                             <div class="indicator"></div>
                                             <span id="close3" style="right: 5px;"></span>
                                             <span class="half" style="right: 5px;" id="close4"></span>
@@ -481,36 +480,35 @@
                                             <span class="half" style="right: 5px;" id="others4"></span>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="col-lg-3 col-md-6 col-sm-6" style="padding: 5px;">
+                                    <div style="position: relative;top: 5px;">
+                                        <div class="row no-gutters">
 
-                                    <div class="row no-gutters">
+                                            <div class="col-6" style="padding: 0 5px;">
+                                                <input type="checkbox" checked class="checkbox" style="width: 0px;"
+                                                    name="propertyFilterCard" id="businessTypeResidentialLarge"
+                                                    value="Residential">
+                                                <label class="checkbox-label" for="businessTypeResidentialLarge">
+                                                    <i class="fas fa-plus"></i>
+                                                    <i class="fas fa-check"></i>
+                                                    <span>Residential</span>
+                                                </label>
+                                            </div>
 
-                                        <div class="col-6" style="padding: 0 5px;">
-                                            <input type="checkbox" checked class="checkbox" style="width: 0px;"
-                                                name="propertyFilterCard" id="businessTypeResidential"
-                                                value="Residential">
-                                            <label class="checkbox-label" id="Residential-label"
-                                                for="businessTypeResidential">
-                                                <i class="fas fa-plus"></i>
-                                                <i class="fas fa-check"></i>
-                                                <span>Residential</span>
-                                            </label>
+                                            <div class="col-6" style="padding: 0 5px;">
+                                                <input type="checkbox" checked class="checkbox" style="width: 0px;"
+                                                    name="propertyFilterCard" id="businessTypeCommercialLarge"
+                                                    value="Commercial">
+                                                <label class="checkbox-label" for="businessTypeCommercialLarge">
+                                                    <i class="fas fa-plus"></i>
+                                                    <i class="fas fa-check"></i>
+                                                    <span>Commercial</span>
+                                                </label>
+                                            </div>
+
                                         </div>
-
-                                        <div class="col-6" style="padding: 0 5px;">
-                                            <input type="checkbox" checked class="checkbox" style="width: 0px;"
-                                                name="propertyFilterCard" id="businessTypeCommercial"
-                                                value="Commercial">
-                                            <label class="checkbox-label" id="Commercial-label"
-                                                for="businessTypeCommercial">
-                                                <i class="fas fa-plus"></i>
-                                                <i class="fas fa-check"></i>
-                                                <span>Commercial</span>
-                                            </label>
-                                        </div>
-
                                     </div>
 
                                 </div>
@@ -556,7 +554,39 @@
 
                         <div class="small">
                             <div class="row no-gutters">
-                                <div class="col-6" style="padding: 5px 10px;">
+
+                                <div class="col-12" style="padding: 5px 0;">
+                                    <div style="position: relative;top: 5px;">
+                                        <div class="row no-gutters">
+
+                                            <div class="col-6" style="padding: 0 5px;">
+                                                <input type="checkbox" checked class="checkbox" style="width: 0px;"
+                                                    name="propertyFilterCard" id="businessTypeResidentialSmall"
+                                                    value="Residential">
+                                                <label class="checkbox-label" for="businessTypeResidentialSmall">
+                                                    <i class="fas fa-plus"></i>
+                                                    <i class="fas fa-check"></i>
+                                                    <span>Residential</span>
+                                                </label>
+                                            </div>
+
+                                            <div class="col-6" style="padding: 0 5px;">
+                                                <input type="checkbox" checked class="checkbox" style="width: 0px;"
+                                                    name="propertyFilterCard" id="businessTypeCommercialSmall"
+                                                    value="Commercial">
+                                                <label class="checkbox-label" for="businessTypeCommercialSmall">
+                                                    <i class="fas fa-plus"></i>
+                                                    <i class="fas fa-check"></i>
+                                                    <span>Commercial</span>
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-6" style="padding: 5px 5px 5px 0;">
                                     <div class="dropdown-div">
                                         <select class="" name="" id="citySelect2" onclick="SelectCityChange2()"
                                             style="background: #fff;">
@@ -575,7 +605,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6" style="padding: 5px 10px;">
+                                <div class="col-6" style="padding: 5px 0 5px 5px;">
                                     <div class="dropdown-div">
                                         <select class="" name="" style="background: #fff;">
                                             <option value="2022">2022</option>
@@ -592,7 +622,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12" style="padding: 10px 10px 5px 10px;">
+                                <!-- <div class="col-12" style="padding: 10px 0px 5px 0px;">
                                     <div class="filter-btn">
                                         <div class="filter-btn-div">
                                             <button type="button" id='btnActiveSmall'
@@ -604,7 +634,7 @@
                                         </div>
                                         <div class="filter-btn-div">
                                             <button type="button" id='btnCloseSmall' class="mybutton buttonTransparent"
-                                                onclick="changestatussmall('Closed')" name="button">CLOSED</button>
+                                                onclick="changestatussmall('Closed')" name="button">INACTIVE</button>
                                             <div class="indicator"></div>
                                             <span id="close1"></span>
                                             <span class="half" id="close2"></span>
@@ -617,153 +647,155 @@
                                             <span class="half" id="others2"></span>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <div class="filter-search">
-                                        <input type="text" placeholder="Search..." name="" value="">
-                                        <b></b>
-                                        <span class="material-symbols-outlined">
-                                            content_paste_search
-                                        </span>
-                                    </div>
-                                </div>
+                                </div> -->
 
                             </div>
                         </div>
-                        <hr class="large" /><br class="small" />
+                        <hr>
+
+                        <a href="createProperty.html" class="small property-list-add-property">
+                            <span class="material-symbols-outlined">
+                                add
+                            </span>
+                        </a>
 
                         <div class="row no-gutters" id="eventPlaceholder">
 
-                            <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 10px 15px;">
-                                <a href="createProperty.html" class="event-list-card" style="border: none;">
-                                    <div class="add-new">
-                                        <span class="material-symbols-outlined">
-                                            add
-                                        </span>
-                                        <h1>Create Event</h1>
-                                    </div>
-                                </a>
+                            <div class="col-lg-4 col-md-6 col-sm-12 large">
+                                <div class="property-card-col-div">
+                                    <a href="createProperty.html" class="event-list-card" style="border: none;">
+                                        <div class="add-new">
+                                            <span class="material-symbols-outlined">
+                                                add
+                                            </span>
+                                            <h1>Create Event</h1>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 10px 15px;">
-                                <a href="propertyDetails.html" class="event-list-card">
-                                    <div class="">
-                                        <h1>Pimple Saudagar, Pune - Daffodils Society</h1>
-                                        <h2>Atul Tripathi</h2>
-                                        <h3>29 Mar'22 | RENT</h3>
-                                    </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="property-card-col-div">
+                                    <a href="propertyDetails.html" class="event-list-card">
+                                        <div class="">
+                                            <h1>Pimple Saudagar, Pune - Daffodils Society</h1>
+                                            <h2>Atul Tripathi</h2>
+                                            <h3>29 Mar'22 | RENT</h3>
+                                        </div>
 
-                                    <div class="event-id residential">
-                                        <h5>RESIDENTIAL</h5>
-                                    </div>
+                                        <div class="event-id residential">
+                                            <h5>RESIDENTIAL</h5>
+                                        </div>
 
-                                    <div class="second-div">
-                                        <h4>D2 - 201</h4>
-                                        <div class=""
-                                            style="position: relative;display: flex;align-items: center;justify-content: space-between;">
-                                            <div class="">
-                                                <span style="color: green;">₹1,52,000</span>
-                                            </div>
-                                            <span class="entries-pipe"
-                                                style="font-weight: lighter;font-size: 2rem;">|</span>
-                                            <div class="">
-                                                <span style="color: orange;">₹1,10,000</span>
+                                        <div class="second-div">
+                                            <h4>D2 - 201</h4>
+                                            <div class=""
+                                                style="position: relative;display: flex;align-items: center;justify-content: space-between;">
+                                                <div class="">
+                                                    <span style="color: green;">₹1,52,000</span>
+                                                </div>
+                                                <span class="entries-pipe"
+                                                    style="font-weight: lighter;font-size: 2rem;">|</span>
+                                                <div class="">
+                                                    <span style="color: orange;">₹1,10,000</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-12" style="padding:10px 15px;">
-                                <a href="propertyDetails.html" class="event-list-card">
-                                    <div class="">
-                                        <h1>Hinjewaadi, Pune - High Mont Society</h1>
-                                        <h2>Anita Tripathi</h2>
-                                        <h3>29 Mar'22 | RENT - SALE</h3>
-                                    </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="property-card-col-div">
+                                    <a href="propertyDetails.html" class="event-list-card">
+                                        <div class="">
+                                            <h1>Hinjewaadi, Pune - High Mont Society</h1>
+                                            <h2>Anita Tripathi</h2>
+                                            <h3>29 Mar'22 | RENT - SALE</h3>
+                                        </div>
 
-                                    <div class="event-id commercial">
-                                        <h5>COMMERCIAL</h5>
-                                    </div>
+                                        <div class="event-id commercial">
+                                            <h5>COMMERCIAL</h5>
+                                        </div>
 
-                                    <div class="second-div">
-                                        <h4>A - 504</h4>
-                                        <div class=""
-                                            style="position: relative;display: flex;align-items: center;justify-content: space-between;">
-                                            <div class="">
-                                                <span style="color: green;">₹1,52,000</span>
-                                            </div>
-                                            <span class="entries-pipe"
-                                                style="font-weight: lighter;font-size: 2rem;">|</span>
-                                            <div class="">
-                                                <span style="color: orange;">₹1,10,000</span>
+                                        <div class="second-div">
+                                            <h4>A - 504</h4>
+                                            <div class=""
+                                                style="position: relative;display: flex;align-items: center;justify-content: space-between;">
+                                                <div class="">
+                                                    <span style="color: green;">₹1,52,000</span>
+                                                </div>
+                                                <span class="entries-pipe"
+                                                    style="font-weight: lighter;font-size: 2rem;">|</span>
+                                                <div class="">
+                                                    <span style="color: orange;">₹1,10,000</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 10px 15px;">
-                                <a href="propertyDetails.html" class="event-list-card">
-                                    <div class="">
-                                        <h1>SBA Cup Badmiton Tournament 2022 BADMINTON Tournament</h1>
-                                        <h2>Sudhanshu Badminton Academy</h2>
-                                        <h3>29 Mar'22 to 3 Apr'22 | Banglore</h3>
-                                    </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="property-card-col-div">
+                                    <a href="propertyDetails.html" class="event-list-card">
+                                        <div class="">
+                                            <h1>Pimple Saudagar, Pune - Daffodils Society</h1>
+                                            <h2>Atul Tripathi</h2>
+                                            <h3>29 Mar'22 | RENT</h3>
+                                        </div>
 
-                                    <div class="event-id">
-                                        <h5>TP_BD10196</h5>
-                                    </div>
+                                        <div class="event-id residential">
+                                            <h5>RESIDENTIAL</h5>
+                                        </div>
 
-                                    <div class="second-div">
-                                        <h4>6865</h4>
-                                        <div class=""
-                                            style="position: relative;display: flex;align-items: center;justify-content: space-between;">
-                                            <div class="">
-                                                <span style="color: green;">₹1,52,000</span><br>
-                                                <small>( 525 )</small>
-                                            </div>
-                                            <span class="entries-pipe"
-                                                style="font-weight: lighter;font-size: 2rem;">|</span>
-                                            <div class="">
-                                                <span style="color: orange;">₹1,10,000</span><br>
-                                                <small>( 200 )</small>
+                                        <div class="second-div">
+                                            <h4>D2 - 201</h4>
+                                            <div class=""
+                                                style="position: relative;display: flex;align-items: center;justify-content: space-between;">
+                                                <div class="">
+                                                    <span style="color: green;">₹1,52,000</span>
+                                                </div>
+                                                <span class="entries-pipe"
+                                                    style="font-weight: lighter;font-size: 2rem;">|</span>
+                                                <div class="">
+                                                    <span style="color: orange;">₹1,10,000</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 10px 15px;">
-                                <a href="propertyDetails.html" class="event-list-card">
-                                    <div class="">
-                                        <h1>SBA Cup Badmiton Tournament 2022 BADMINTON Tournament</h1>
-                                        <h2>Sudhanshu Badminton Academy</h2>
-                                        <h3>29 Mar'22 to 3 Apr'22 | Banglore</h3>
-                                    </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="property-card-col-div">
+                                    <a href="propertyDetails.html" class="event-list-card">
+                                        <div class="">
+                                            <h1>Pimple Saudagar, Pune - Daffodils Society</h1>
+                                            <h2>Atul Tripathi</h2>
+                                            <h3>29 Mar'22 | RENT</h3>
+                                        </div>
 
-                                    <div class="event-id">
-                                        <h5>TP_BD10196</h5>
-                                    </div>
+                                        <div class="event-id residential">
+                                            <h5>RESIDENTIAL</h5>
+                                        </div>
 
-                                    <div class="second-div">
-                                        <h4>6865</h4>
-                                        <div class=""
-                                            style="position: relative;display: flex;align-items: center;justify-content: space-between;">
-                                            <div class="">
-                                                <span style="color: green;">₹1,52,000</span><br>
-                                                <small>( 525 )</small>
-                                            </div>
-                                            <span class="entries-pipe"
-                                                style="font-weight: lighter;font-size: 2rem;">|</span>
-                                            <div class="">
-                                                <span style="color: orange;">₹1,10,000</span><br>
-                                                <small>( 200 )</small>
+                                        <div class="second-div">
+                                            <h4>D2 - 201</h4>
+                                            <div class=""
+                                                style="position: relative;display: flex;align-items: center;justify-content: space-between;">
+                                                <div class="">
+                                                    <span style="color: green;">₹1,52,000</span>
+                                                </div>
+                                                <span class="entries-pipe"
+                                                    style="font-weight: lighter;font-size: 2rem;">|</span>
+                                                <div class="">
+                                                    <span style="color: orange;">₹1,10,000</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
 
                         </div>
@@ -787,7 +819,8 @@
                     <div class="footer-list">
                         <img src="../img/logo.png" width="100%" alt=""><br><br>
                         <h1>Corporate Office</h1><br>
-                        <p>#204, 2nd Floor, Vipul Trade Centre, Sector-48 Sohna Road, Gurugram-122018, Haryana, India
+                        <p>#204, 2nd Floor, Vipul Trade Centre, Sector-48 Sohna Road, Gurugram-122018, Haryana,
+                            India
                         </p>
                     </div>
                 </div>

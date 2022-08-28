@@ -217,6 +217,11 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
+}
+
+.new-user:hover {
+  text-decoration: none;
 }
 
 .new-user span {
@@ -714,7 +719,7 @@ h6 {
 
 .profile-card-div {
   background: #fff;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   margin: 10px 0;
 }
@@ -2588,6 +2593,7 @@ input[type=number] {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   padding: 20px;
   text-decoration: none;
+  background: #fff;
 }
 
 .admin-property-count-card:hover {
@@ -3097,6 +3103,43 @@ input[type=number] {
   top: 5px;
   color: #EB542E;
   font-size: 2rem;
+}
+
+.property-card-col-div {
+  padding: 10px 15px;
+}
+
+@media (max-width: 850px) {
+  .property-card-col-div {
+    padding: 10px 0;
+  }
+}
+
+.property-list-add-property {
+  position: fixed;
+  right: 10px;
+  bottom: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: #fff;
+  background: #EB542E;
+  box-shadow: 0 -5px 10px 0 rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  text-decoration: none;
+}
+
+.property-list-add-property:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.property-list-add-property span {
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 /* property list page - end */
