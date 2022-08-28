@@ -9,7 +9,7 @@
 const admin = require("firebase-admin");
 
 admin.initializeApp();
-const cors = require('cors')({origin: true});
+const cors = require('cors')({ origin: true });
 
 const userProfile = require("./fnProfile.js");
 const organization = require("./fnOrganization.js");
@@ -76,7 +76,7 @@ exports.getAllEventWithEventStatusAndLocation = events.getAllEventWithEventStatu
 exports.updateEventDetails_EventMode = events.updateEventDetails_EventMode;
 exports.updateEvent_EventDetails = events.updateEvent_EventDetails;
 exports.getEventDetails_forAdmin = events.getEventDetails_forAdmin;
-
+exports.updateEventDetails_EventStatus = events.updateEventDetails_EventStatus;
 
 
 

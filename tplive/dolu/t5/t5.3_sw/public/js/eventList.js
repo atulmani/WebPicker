@@ -367,7 +367,7 @@ function RenderEventDetails(index, doc) {
 
   var div2 = document.createElement("a");
   div2.setAttribute("class", "event-list-card");
-  div2.setAttribute("href", "eventDetails.html");
+  div2.setAttribute("href", "eventDetails.html?id=" + doc.Eventid);
   if (doc.EventStatus === 'Active') {
 
     div2.setAttribute("style", "border-top: 3px solid green;");

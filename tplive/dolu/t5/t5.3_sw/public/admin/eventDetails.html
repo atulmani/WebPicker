@@ -760,7 +760,7 @@
         <div class="col-lg-10 col-md-10 col-sm-12" style="padding: 10px 0;">
 
           <div class="analytics-div" style="text-align: center ;">
-            <h1>SBA Cup Badmiton Cup Hi Tournament 2022 BADMINTON Tournament ( Event Details )</h1>
+            <h1><span id="eventName"> </span> ( Event Details )</h1>
           </div>
           <hr style="border: none;border-top: 1px solid #888;" />
 
@@ -786,21 +786,10 @@
 
                         <div class="col-6 event-label-div">
 
-                          <input type="radio" class="checkbox" style="width: 0px;" name="EventStatus" id="Inactive"
-                            value="Inactive">
-                          <label class="checkbox-label" id="Inactive-label" for="Inactive">
-                            <i class="fas fa-plus" style="padding-right: 2px;font-size: 0.6rem;"></i>
-                            <i class="fas fa-check" style="padding-right: 2px;font-size: 0.6rem;"></i>
-                            <span>Inactive</span>
-                          </label>
-
-                        </div>
-
-                        <div class="col-6 event-label-div">
-
                           <input type="radio" class="checkbox" style="width: 0px;" name="EventStatus" id="Active"
                             value="Active">
-                          <label class="checkbox-label" id="Active-label" for="Active">
+                          <label onclick="saveEventStatus('Active')" class="checkbox-label" id="Active-label"
+                            for="Active">
                             <i class="fas fa-plus" style="padding-right: 2px;font-size: 0.6rem;"></i>
                             <i class="fas fa-check" style="padding-right: 2px;font-size: 0.6rem;"></i>
                             <span>Active</span>
@@ -810,9 +799,24 @@
 
                         <div class="col-6 event-label-div">
 
+                          <input type="radio" class="checkbox" style="width: 0px;" name="EventStatus" id="Inactive"
+                            value="Inactive">
+                          <label onclick="saveEventStatus('Inactive')" class="checkbox-label" id="Inactive-label"
+                            for="Inactive">
+                            <i class="fas fa-plus" style="padding-right: 2px;font-size: 0.6rem;"></i>
+                            <i class="fas fa-check" style="padding-right: 2px;font-size: 0.6rem;"></i>
+                            <span>Inactive</span>
+                          </label>
+
+                        </div>
+
+
+                        <div class="col-6 event-label-div">
+
                           <input type="radio" class="checkbox" style="width: 0px;" name="EventStatus" id="Closed"
                             value="Closed">
-                          <label class="checkbox-label" id="Closed-label" for="Closed">
+                          <label onclick="saveEventStatus('Closed')" class="checkbox-label" id="Closed-label"
+                            for="Closed">
                             <i class="fas fa-plus" style="padding-right: 2px;font-size: 0.6rem;"></i>
                             <i class="fas fa-check" style="padding-right: 2px;font-size: 0.6rem;"></i>
                             <span>Closed</span>
@@ -824,7 +828,8 @@
 
                           <input type="radio" class="checkbox" style="width: 0px;" name="EventStatus" id="Onhold"
                             value="Onhold">
-                          <label class="checkbox-label" id="Onhold-label" for="Onhold">
+                          <label onclick="saveEventStatus('HOLD')" class="checkbox-label" id="Onhold-label"
+                            for="Onhold">
                             <i class="fas fa-plus" style="padding-right: 2px;font-size: 0.6rem;"></i>
                             <i class="fas fa-check" style="padding-right: 2px;font-size: 0.6rem;"></i>
                             <span>Onhold</span>
@@ -836,7 +841,8 @@
 
                           <input type="radio" class="checkbox" style="width: 0px;" name="EventStatus" id="Cancelled"
                             value="Cancelled">
-                          <label class="checkbox-label" id="Cancelled-label" for="Cancelled">
+                          <label onclick="saveEventStatus('Cancelled')" class="checkbox-label" id="Cancelled-label"
+                            for="Cancelled">
                             <i class="fas fa-plus" style="padding-right: 2px;font-size: 0.6rem;"></i>
                             <i class="fas fa-check" style="padding-right: 2px;font-size: 0.6rem;"></i>
                             <span>Cancelled</span>
@@ -860,7 +866,7 @@
 
                           <input type="radio" class="checkbox" style="width: 0px;" name="EventMode" id="Open"
                             value="Open">
-                          <label class="checkbox-label" id="Open-label" for="Open">
+                          <label onclick="saveEventMode('Open')" class="checkbox-label" id="Open-label" for="Open">
                             <i class="fas fa-plus" style="padding-right: 2px;font-size: 0.6rem;"></i>
                             <i class="fas fa-check" style="padding-right: 2px;font-size: 0.6rem;"></i>
                             <span>Open</span>
@@ -872,7 +878,8 @@
 
                           <input type="radio" class="checkbox" style="width: 0px;" name="EventMode" id="Fixture"
                             value="Fixture">
-                          <label class="checkbox-label" id="Fixture-label" for="Fixture">
+                          <label class="checkbox-label" onclick="saveEventMode('Fixture')" id="Fixture-label"
+                            for="Fixture">
                             <i class="fas fa-plus" style="padding-right: 2px;font-size: 0.6rem;"></i>
                             <i class="fas fa-check" style="padding-right: 2px;font-size: 0.6rem;"></i>
                             <span>Fixture</span>
@@ -884,7 +891,7 @@
 
                           <input type="radio" class="checkbox" style="width: 0px;" name="EventMode" id="Book"
                             value="Book">
-                          <label class="checkbox-label" id="Book-label" for="Book">
+                          <label class="checkbox-label" onclick="saveEventMode('Book')" id="Book-label" for="Book">
                             <i class="fas fa-plus" style="padding-right: 2px;font-size: 0.6rem;"></i>
                             <i class="fas fa-check" style="padding-right: 2px;font-size: 0.6rem;"></i>
                             <span>Book</span>
@@ -1169,7 +1176,7 @@
 
                         <div class="event-detail-input-div">
                           <label for="">Organization / Club</label>
-                          <input type="text" placeholder="Organization Name..." required>
+                          <input type="text" id="organizationName" placeholder="Organization Name..." required>
                         </div>
 
                       </div>
@@ -1178,7 +1185,7 @@
 
                         <div class="event-detail-input-div">
                           <label for="">Event Name</label>
-                          <input type="text" placeholder="Enter Here..." required>
+                          <input type="text" id="eventNametb" placeholder="Enter Here..." required>
                         </div>
 
                       </div>
@@ -1187,7 +1194,7 @@
 
                         <div class="event-detail-input-div">
                           <label for="">Venue Address</label>
-                          <input type="text" placeholder="Full Address..." required>
+                          <input type="text" id="venueName" placeholder="Full Address..." required>
                         </div>
 
                       </div>
@@ -1196,7 +1203,7 @@
 
                         <div class="event-detail-input-div">
                           <label for="">Venue POC Name & Contact</label>
-                          <input type="text" placeholder="Name & Contact Here..." required>
+                          <input type="text" id="valueContact" placeholder="Name & Contact Here..." required>
                         </div>
 
                       </div>
@@ -1205,7 +1212,7 @@
 
                         <div class="event-detail-input-div">
                           <label for="">Venue Map Google Link</label>
-                          <input type="text" placeholder="Enter Map URL..." required>
+                          <input type="text" id="valueMap" placeholder="Enter Map URL..." required>
                         </div>
 
                       </div>
@@ -1233,7 +1240,7 @@
                         <div class="event-detail-input-div">
                           <label for="">Registration Closed Date</label>
                           <div class="input-group date datetimepicker11">
-                            <input id="RegistrationOpenDate"
+                            <input id="RegistrationClosedDate"
                               style="height: 35px; background: #efefef; border-right: 1px solid #ddd;" type="text"
                               placeholder="Registration Open Date" class="form-control" readonly>
                             <div class="input-group-addon input-group-prepend">
@@ -1251,7 +1258,7 @@
                         <div class="event-detail-input-div">
                           <label for="">Registration Withdraw Date</label>
                           <div class="input-group date datetimepicker11">
-                            <input id="RegistrationOpenDate"
+                            <input id="RegistrationWithdrawDate"
                               style="height: 35px; background: #efefef; border-right: 1px solid #ddd;" type="text"
                               placeholder="Registration Open Date" class="form-control" readonly>
                             <div class="input-group-addon input-group-prepend">
@@ -1269,7 +1276,7 @@
                         <div class="event-detail-input-div">
                           <label for="">Event Start Date</label>
                           <div class="input-group date datetimepicker11">
-                            <input id="RegistrationOpenDate"
+                            <input id="EventStartDate"
                               style="height: 35px; background: #efefef; border-right: 1px solid #ddd;" type="text"
                               placeholder="Registration Open Date" class="form-control" readonly>
                             <div class="input-group-addon input-group-prepend">
@@ -1287,7 +1294,7 @@
                         <div class="event-detail-input-div">
                           <label for="">Event End Date</label>
                           <div class="input-group date datetimepicker11">
-                            <input id="RegistrationOpenDate"
+                            <input id="EventEndDate"
                               style="height: 35px; background: #efefef; border-right: 1px solid #ddd;" type="text"
                               placeholder="Registration Open Date" class="form-control" readonly>
                             <div class="input-group-addon input-group-prepend">
@@ -1304,7 +1311,7 @@
 
                         <div class="event-detail-input-div">
                           <label for="">MaxEntryLimit by One participant</label>
-                          <input type="number" class="" value="0" required>
+                          <input id="maxEntry" type="number" class="" value="0" required>
                         </div>
 
                       </div>
@@ -1797,7 +1804,6 @@
     <script src="/js/firebase.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/adminEventDetails.js"></script>
-    <script src="/js/bootstrap-datetimepicker.min.js"></script>
 
     <!-- Owl Carousel Javascript  -->
     <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
@@ -1812,7 +1818,7 @@
       crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
-
+    <script src="/js/bootstrap-datetimepicker.min.js"></script>
     <script>
       $(function () {
         $.extend(true, $.fn.datetimepicker.defaults, {
