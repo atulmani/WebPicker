@@ -469,13 +469,16 @@ btnSave.addEventListener('click', e => {
   var eventStatus = "Open";//document.getElementById("eventStatus").options[document.getElementById("eventStatus").selectedIndex].value;
   var confirmMessage = "";//document.getElementById('saveMessage');
   console.log("before check");
-  if ((organizerID === "" || organizerID === null) ||
-    (organizationID === "" || organizationID === null) ||
+  // if ((organizerID === "" || organizerID === null) ||
+  //   (organizationID === "" || organizationID === null) ||
+  //   (sportName === "" || sportName === null) ||
+  //   (eventName === "" || eventName === null) ||
+  //   (eventOwnerName === "" || eventOwnerName === null) ||
+  //   (eventOwnerEmail === "" || eventOwnerEmail === null) ||
+  //   (eventOwnerPhone === "" || eventOwnerPhone === null)) {
+  if (
     (sportName === "" || sportName === null) ||
-    (eventName === "" || eventName === null) ||
-    (eventOwnerName === "" || eventOwnerName === null) ||
-    (eventOwnerEmail === "" || eventOwnerEmail === null) ||
-    (eventOwnerPhone === "" || eventOwnerPhone === null)) {
+    (eventName === "" || eventName === null)) {
     console.log("details not filled");
     var confirmMessage = document.getElementById('saveMessage');
 
