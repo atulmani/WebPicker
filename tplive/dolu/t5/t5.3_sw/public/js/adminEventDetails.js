@@ -147,7 +147,193 @@ function saveEventMode(val) {
     });
 
 };
+function SaveRegistrationflag() {
+    console.log('SaveRegistrationflag');
+    var obj = document.getElementById('RegistrationToggleBtn');
+    var flag = "";
+    if (obj.classList.contains('on')) {
+        flag = 'YES';
+    } else {
+        flag = 'NO';
+    }
 
+
+    document.getElementById("hfEventID").value = eventID;
+    var para1 = {};
+    para1 = {
+        EventID: eventID,
+        RegistrationOpenFlag: flag,
+    };
+    console.log(para1);
+    const ret1 = functions.httpsCallable("updateEventFlag_RegistrationOn");
+    ret1(para1).then((result) => {
+    });
+};
+
+function SavePaymentflag() {
+    console.log('SavePaymentflag');
+    var obj = document.getElementById('paymentToggleBtn');
+    var flag = "";
+    if (obj.classList.contains('on')) {
+        flag = 'YES';
+    } else {
+        flag = 'NO';
+    }
+
+
+    document.getElementById("hfEventID").value = eventID;
+    var para1 = {};
+    para1 = {
+        EventID: eventID,
+        OnlinePaymentModeFlag: flag,
+    };
+    console.log(para1);
+    const ret1 = functions.httpsCallable("updateEventFlag_OnlinePaymentMode");
+    ret1(para1).then((result) => {
+    });
+};
+
+function SaveShowParticipantflag() {
+    console.log('SaveRegistrationflag');
+    var obj = document.getElementById('showParticipantToggleBtn');
+    var flag = "";
+    if (obj.classList.contains('on')) {
+        flag = 'YES';
+    } else {
+        flag = 'NO';
+    }
+
+
+    document.getElementById("hfEventID").value = eventID;
+    var para1 = {};
+    para1 = {
+        EventID: eventID,
+        ShowParticipantFlag: flag,
+    };
+    console.log(para1);
+    const ret1 = functions.httpsCallable("updateEventFlag_ShowParticipant");
+    ret1(para1).then((result) => {
+    });
+};
+
+
+function SaveShowParticipantPostPaymentflag() {
+    var obj = document.getElementById('showPostPaymentToggleBtn');
+    var flag = "";
+    if (obj.classList.contains('on')) {
+        flag = 'YES';
+    } else {
+        flag = 'NO';
+    }
+
+
+    document.getElementById("hfEventID").value = eventID;
+    var para1 = {};
+    para1 = {
+        EventID: eventID,
+        ShowParticipantPostPaymentFlag: flag,
+    };
+    console.log(para1);
+    const ret1 = functions.httpsCallable("updateEventFlag_ShowParticipantPostPayment");
+    ret1(para1).then((result) => {
+    });
+};
+
+
+function SaveDrawPublishedFlag() {
+
+    var obj = document.getElementById('DrawsToggleBtn');
+    var flag = "";
+    if (obj.classList.contains('on')) {
+        flag = 'YES';
+    } else {
+        flag = 'NO';
+    }
+
+
+    document.getElementById("hfEventID").value = eventID;
+    var para1 = {};
+    para1 = {
+        EventID: eventID,
+        DrawPublishedFlag: flag,
+    };
+    console.log(para1);
+    const ret1 = functions.httpsCallable("updateEventFlag_PublishDraw");
+    ret1(para1).then((result) => {
+    });
+};
+
+
+function SavePublishSeedFlag() {
+
+    var obj = document.getElementById('SeedToggleBtn');
+    var flag = "";
+    if (obj.classList.contains('on')) {
+        flag = 'YES';
+    } else {
+        flag = 'NO';
+    }
+
+
+    document.getElementById("hfEventID").value = eventID;
+    var para1 = {};
+    para1 = {
+        EventID: eventID,
+        PublishSeedEntryFlag: flag,
+    };
+    console.log(para1);
+    const ret1 = functions.httpsCallable("updateEventFlag_PublishSeed");
+    ret1(para1).then((result) => {
+    });
+};
+
+
+function SavePublishResultFlag() {
+
+    var obj = document.getElementById('ResultToggleBtn');
+    var flag = "";
+    if (obj.classList.contains('on')) {
+        flag = 'YES';
+    } else {
+        flag = 'NO';
+    }
+
+
+    document.getElementById("hfEventID").value = eventID;
+    var para1 = {};
+    para1 = {
+        EventID: eventID,
+        PublishResultFlag: flag,
+    };
+    console.log(para1);
+    const ret1 = functions.httpsCallable("updateEventFlag_PublishResult");
+    ret1(para1).then((result) => {
+    });
+};
+
+
+function SavePublishGalleryFlag() {
+
+    var obj = document.getElementById('gallaryToggleBtn');
+    var flag = "";
+    if (obj.classList.contains('on')) {
+        flag = 'YES';
+    } else {
+        flag = 'NO';
+    }
+
+
+    document.getElementById("hfEventID").value = eventID;
+    var para1 = {};
+    para1 = {
+        EventID: eventID,
+        PublishGalleryFlag: flag,
+    };
+    console.log(para1);
+    const ret1 = functions.httpsCallable("updateEventFlag_PublishGallery");
+    ret1(para1).then((result) => {
+    });
+};
 function getEventDetails() {
 
     document.getElementById("hfEventID").value = eventID;
@@ -213,7 +399,94 @@ function getEventDetails() {
 
             document.getElementById("maxEntry").value = result.data.MaxEntryForParticipant;
 
+            if (result.data.RegistrationOpenFlag === 'YES') {
+                document.getElementById("RegistrationToggleBtn").classList.remove('off');
+                document.getElementById("RegistrationToggleBtn").classList.add('on');
+                document.getElementById("RegistrationOn").classList.add('active');
 
+            } else {
+                document.getElementById("RegistrationToggleBtn").classList.remove('on');
+                document.getElementById("RegistrationToggleBtn").classList.add('off');
+                document.getElementById("RegistrationOff").classList.add('active');
+            }
+
+            if (result.data.OnlinePaymentModeFlag === 'YES') {
+                document.getElementById("paymentToggleBtn").classList.remove('off');
+                document.getElementById("paymentToggleBtn").classList.add('on');
+                document.getElementById("PaymentOn").classList.add('active');
+
+            } else {
+                document.getElementById("paymentToggleBtn").classList.remove('on');
+                document.getElementById("paymentToggleBtn").classList.add('off');
+                document.getElementById("PaymentOff").classList.add('active');
+            }
+
+            if (result.data.ShowParticipantFlag === 'YES') {
+                document.getElementById("showParticipantToggleBtn").classList.remove('off');
+                document.getElementById("showParticipantToggleBtn").classList.add('on');
+                document.getElementById("ShowParticipantsOn").classList.add('active');
+
+            } else {
+                document.getElementById("showParticipantToggleBtn").classList.remove('on');
+                document.getElementById("showParticipantToggleBtn").classList.add('off');
+                document.getElementById("ShowParticipantsOff").classList.add('active');
+            }
+
+            if (result.data.ShowParticipantPostPaymentFlag === 'YES') {
+                document.getElementById("showPostPaymentToggleBtn").classList.remove('off');
+                document.getElementById("showPostPaymentToggleBtn").classList.add('on');
+                document.getElementById("ShowParticipantsPostPaymentOn").classList.add('active');
+
+            } else {
+                document.getElementById("showPostPaymentToggleBtn").classList.remove('on');
+                document.getElementById("showPostPaymentToggleBtn").classList.add('off');
+                document.getElementById("ShowParticipantsPostPaymentOff").classList.add('active');
+            }
+
+
+            if (result.data.DrawPublishedFlag === 'YES') {
+                document.getElementById("DrawsToggleBtn").classList.remove('off');
+                document.getElementById("DrawsToggleBtn").classList.add('on');
+                document.getElementById("DrawsOn").classList.add('active');
+
+            } else {
+                document.getElementById("DrawsToggleBtn").classList.remove('on');
+                document.getElementById("DrawsToggleBtn").classList.add('off');
+                document.getElementById("DrawsOff").classList.add('active');
+            }
+
+            if (result.data.PublishSeedEntryFlag === 'YES') {
+                document.getElementById("SeedToggleBtn").classList.remove('off');
+                document.getElementById("SeedToggleBtn").classList.add('on');
+                document.getElementById("SeedOn").classList.add('active');
+
+            } else {
+                document.getElementById("SeedToggleBtn").classList.remove('on');
+                document.getElementById("SeedToggleBtn").classList.add('off');
+                document.getElementById("SeedOff").classList.add('active');
+            }
+
+            if (result.data.PublishResultFlag === 'YES') {
+                document.getElementById("ResultToggleBtn").classList.remove('off');
+                document.getElementById("ResultToggleBtn").classList.add('on');
+                document.getElementById("ResultOn").classList.add('active');
+
+            } else {
+                document.getElementById("ResultToggleBtn").classList.remove('on');
+                document.getElementById("ResultToggleBtn").classList.add('off');
+                document.getElementById("ResultOff").classList.add('active');
+            }
+
+            if (result.data.PublishGalleryFlag === 'YES') {
+                document.getElementById("gallaryToggleBtn").classList.remove('off');
+                document.getElementById("gallaryToggleBtn").classList.add('on');
+                document.getElementById("GalleryOn").classList.add('active');
+
+            } else {
+                document.getElementById("gallaryToggleBtn").classList.remove('on');
+                document.getElementById("gallaryToggleBtn").classList.add('off');
+                document.getElementById("GalleryOff").classList.add('active');
+            }
 
         }
     });

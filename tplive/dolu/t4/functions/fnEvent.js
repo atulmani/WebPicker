@@ -277,6 +277,8 @@ exports.getEventDetails_forAdmin =
               RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
               PaymentOpenFlag: doc1.data().PaymentOpenFlag,
               DrawPublishedFlag: doc1.data().DrawPublishedFlag,
+              ShowParticipantFlag: doc1.data().ShowParticipantFlag,
+              ShowParticipantPostPaymentFlag: doc1.data().ShowParticipantPostPaymentFlag,
               //to be added
               LocationMap: doc1.data().LocationMap,
               VenueContact: doc1.data().VenueContact,
@@ -298,6 +300,7 @@ exports.getEventDetails_forAdmin =
               OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
               PublishDrawFlag: doc1.data().PublishDrawFlag,
               PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+              PublishResultFlag: doc1.data().PublishResultFlag,
               PublishScheduleFlag: doc1.data().PublishScheduleFlag,
               PublishGalleryFlag: doc1.data().PublishGalleryFlag,
 
@@ -375,6 +378,8 @@ exports.getEventDetails =
 
               RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
               PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+              ShowParticipantFlag: doc1.data().ShowParticipantFlag,
+              ShowParticipantPostPaymentFlag: doc1.data().ShowParticipantPostPaymentFlag,
               DrawPublishedFlag: doc1.data().DrawPublishedFlag,
               //to be added
               LocationMap: doc1.data().LocationMap,
@@ -397,6 +402,7 @@ exports.getEventDetails =
               OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
               PublishDrawFlag: doc1.data().PublishDrawFlag,
               PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+              PublishResultFlag: doc1.data().PublishResultFlag,
               PublishScheduleFlag: doc1.data().PublishScheduleFlag,
               PublishGalleryFlag: doc1.data().PublishGalleryFlag,
 
@@ -480,6 +486,8 @@ exports.getAllEventDetailsForYears =
 
               RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
               PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+              ShowParticipantFlag: doc1.data().ShowParticipantFlag,
+              ShowParticipantPostPaymentFlag: doc1.data().ShowParticipantPostPaymentFlag,
               DrawPublishedFlag: doc1.data().DrawPublishedFlag,
               //to be added
               LocationMap: doc1.data().LocationMap,
@@ -502,6 +510,7 @@ exports.getAllEventDetailsForYears =
               OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
               PublishDrawFlag: doc1.data().PublishDrawFlag,
               PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+              PublishResultFlag: doc1.data().PublishResultFlag,
               PublishScheduleFlag: doc1.data().PublishScheduleFlag,
               PublishGalleryFlag: doc1.data().PublishGalleryFlag,
 
@@ -573,6 +582,8 @@ exports.getAllEventDetails =
 
             RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
             PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+            ShowParticipantFlag: doc1.data().ShowParticipantFlag,
+            ShowParticipantPostPaymentFlag: doc1.data().ShowParticipantPostPaymentFlag,
             DrawPublishedFlag: doc1.data().DrawPublishedFlag,
             //to be added
             LocationMap: doc1.data().LocationMap,
@@ -595,6 +606,7 @@ exports.getAllEventDetails =
             OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
             PublishDrawFlag: doc1.data().PublishDrawFlag,
             PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+            PublishResultFlag: doc1.data().PublishResultFlag,
             PublishScheduleFlag: doc1.data().PublishScheduleFlag,
             PublishGalleryFlag: doc1.data().PublishGalleryFlag,
 
@@ -670,6 +682,8 @@ exports.getAllEventWithEventStatusAndLocation =
 
                 RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
                 PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+                ShowParticipantFlag: doc1.data().ShowParticipantFlag,
+                ShowParticipantPostPaymentFlag: doc1.data().ShowParticipantPostPaymentFlag,
                 DrawPublishedFlag: doc1.data().DrawPublishedFlag,
                 //to be added
                 LocationMap: doc1.data().LocationMap,
@@ -692,6 +706,7 @@ exports.getAllEventWithEventStatusAndLocation =
                 OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
                 PublishDrawFlag: doc1.data().PublishDrawFlag,
                 PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+                PublishResultFlag: doc1.data().PublishResultFlag,
                 PublishScheduleFlag: doc1.data().PublishScheduleFlag,
                 PublishGalleryFlag: doc1.data().PublishGalleryFlag,
 
@@ -753,6 +768,8 @@ exports.getAllEventWithEventStatusAndLocation =
 
                       RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
                       PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+                      ShowParticipantFlag: doc1.data().ShowParticipantFlag,
+                      ShowParticipantPostPaymentFlag: doc1.data().ShowParticipantPostPaymentFlag,
                       DrawPublishedFlag: doc1.data().DrawPublishedFlag,
                       //to be added
                       LocationMap: doc1.data().LocationMap,
@@ -775,6 +792,7 @@ exports.getAllEventWithEventStatusAndLocation =
                       OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
                       PublishDrawFlag: doc1.data().PublishDrawFlag,
                       PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+                      PublishResultFlag: doc1.data().PublishResultFlag,
                       PublishScheduleFlag: doc1.data().PublishScheduleFlag,
                       PublishGalleryFlag: doc1.data().PublishGalleryFlag,
 
@@ -835,6 +853,8 @@ exports.getAllEventWithEventStatusAndLocation =
 
                 RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
                 PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+                ShowParticipantFlag: doc1.data().ShowParticipantFlag,
+                ShowParticipantPostPaymentFlag: doc1.data().ShowParticipantPostPaymentFlag,
                 DrawPublishedFlag: doc1.data().DrawPublishedFlag,
                 //to be added
                 LocationMap: doc1.data().LocationMap,
@@ -857,6 +877,7 @@ exports.getAllEventWithEventStatusAndLocation =
                 OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
                 PublishDrawFlag: doc1.data().PublishDrawFlag,
                 PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+                PublishResultFlag: doc1.data().PublishResultFlag,
                 PublishScheduleFlag: doc1.data().PublishScheduleFlag,
                 PublishGalleryFlag: doc1.data().PublishGalleryFlag,
 
@@ -921,6 +942,8 @@ exports.getAllEventWithEventStatusAndLocation =
 
                       RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
                       PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+                      ShowParticipantFlag: doc1.data().ShowParticipantFlag,
+                      ShowParticipantPostPaymentFlag: doc1.data().ShowParticipantPostPaymentFlag,
                       DrawPublishedFlag: doc1.data().DrawPublishedFlag,
                       //to be added
                       LocationMap: doc1.data().LocationMap,
@@ -943,6 +966,7 @@ exports.getAllEventWithEventStatusAndLocation =
                       OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
                       PublishDrawFlag: doc1.data().PublishDrawFlag,
                       PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+                      PublishResultFlag: doc1.data().PublishResultFlag,
                       PublishScheduleFlag: doc1.data().PublishScheduleFlag,
                       PublishGalleryFlag: doc1.data().PublishGalleryFlag,
 
@@ -1023,6 +1047,8 @@ exports.getAllEventDetailsByCity =
 
               RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
               PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+              ShowParticipantFlag: doc1.data().ShowParticipantFlag,
+              ShowParticipantPostPaymentFlag: doc1.data().ShowParticipantPostPaymentFlag,
               DrawPublishedFlag: doc1.data().DrawPublishedFlag,
               //to be added
               LocationMap: doc1.data().LocationMap,
@@ -1045,6 +1071,7 @@ exports.getAllEventDetailsByCity =
               OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
               PublishDrawFlag: doc1.data().PublishDrawFlag,
               PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+              PublishResultFlag: doc1.data().PublishResultFlag,
               PublishScheduleFlag: doc1.data().PublishScheduleFlag,
               PublishGalleryFlag: doc1.data().PublishGalleryFlag,
 
@@ -1120,6 +1147,8 @@ exports.getAllEventDetailsForOrganizer =
 
             RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
             PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+            ShowParticipantFlag: doc1.data().ShowParticipantFlag,
+            ShowParticipantPostPaymentFlag: doc1.data().ShowParticipantPostPaymentFlag,
             DrawPublishedFlag: doc1.data().DrawPublishedFlag,
             //to be added
             LocationMap: doc1.data().LocationMap,
@@ -1142,6 +1171,7 @@ exports.getAllEventDetailsForOrganizer =
             OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
             PublishDrawFlag: doc1.data().PublishDrawFlag,
             PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+            PublishResultFlag: doc1.data().PublishResultFlag,
             PublishScheduleFlag: doc1.data().PublishScheduleFlag,
             PublishGalleryFlag: doc1.data().PublishGalleryFlag,
 
@@ -2026,42 +2056,6 @@ exports.updateEventFlag_OnlinePaymentMode =
         });
     });
 
-exports.updateEventFlag_PublishDraw =
-  functions
-    .region('asia-south1')
-    .https.onCall((data, context) => {
-      if (!context.auth) {
-        throw new functions.https.HttpError(
-          "unauthenticatied",
-          "only authenticated user can call this"
-        );
-      }
-      const EventID = data.EventID;
-      const PublishDrawFlag = data.PublishDrawFlag;
-      console.log("eventID ", EventID);
-
-      return admin.firestore().collection("EventList")
-        .doc(EventID)
-        .update({
-          PublishDrawFlag: PublishDrawFlag,
-
-          UpdatedBy: context.auth.uid,
-          UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
-        })
-        .then(() => {
-          console.log("Success");
-          return {
-            retCode: "0"
-          };
-        })
-        .catch(function (error) {
-          console.log("in error");
-          return {
-            retCode: "1"
-          };;
-        });
-    });
-
 exports.updateEventFlag_PublishSeed =
   functions
     .region('asia-south1')
@@ -2080,6 +2074,154 @@ exports.updateEventFlag_PublishSeed =
         .doc(EventID)
         .update({
           PublishSeedEntryFlag: PublishSeedEntryFlag,
+
+          UpdatedBy: context.auth.uid,
+          UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
+        })
+        .then(() => {
+          console.log("Success");
+          return {
+            retCode: "0"
+          };
+        })
+        .catch(function (error) {
+          console.log("in error");
+          return {
+            retCode: "1"
+          };;
+        });
+    });
+
+
+exports.updateEventFlag_PublishResult =
+  functions
+    .region('asia-south1')
+    .https.onCall((data, context) => {
+      if (!context.auth) {
+        throw new functions.https.HttpError(
+          "unauthenticatied",
+          "only authenticated user can call this"
+        );
+      }
+      const EventID = data.EventID;
+      const PublishResultFlag = data.PublishResultFlag;
+      console.log("eventID ", EventID);
+
+      return admin.firestore().collection("EventList")
+        .doc(EventID)
+        .update({
+          PublishResultFlag: PublishResultFlag,
+
+          UpdatedBy: context.auth.uid,
+          UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
+        })
+        .then(() => {
+          console.log("Success");
+          return {
+            retCode: "0"
+          };
+        })
+        .catch(function (error) {
+          console.log("in error");
+          return {
+            retCode: "1"
+          };;
+        });
+    });
+
+
+exports.updateEventFlag_ShowParticipantPostPayment =
+  functions
+    .region('asia-south1')
+    .https.onCall((data, context) => {
+      if (!context.auth) {
+        throw new functions.https.HttpError(
+          "unauthenticatied",
+          "only authenticated user can call this"
+        );
+      }
+      const EventID = data.EventID;
+      const ShowParticipantPostPaymentFlag = data.ShowParticipantPostPaymentFlag;
+      console.log("eventID ", EventID);
+
+      return admin.firestore().collection("EventList")
+        .doc(EventID)
+        .update({
+          ShowParticipantPostPaymentFlag: ShowParticipantPostPaymentFlag,
+
+          UpdatedBy: context.auth.uid,
+          UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
+        })
+        .then(() => {
+          console.log("Success");
+          return {
+            retCode: "0"
+          };
+        })
+        .catch(function (error) {
+          console.log("in error");
+          return {
+            retCode: "1"
+          };;
+        });
+    });
+
+
+exports.updateEventFlag_ShowParticipant =
+  functions
+    .region('asia-south1')
+    .https.onCall((data, context) => {
+      if (!context.auth) {
+        throw new functions.https.HttpError(
+          "unauthenticatied",
+          "only authenticated user can call this"
+        );
+      }
+      const EventID = data.EventID;
+      const ShowParticipantFlag = data.ShowParticipantFlag;
+      console.log("eventID ", EventID);
+
+      return admin.firestore().collection("EventList")
+        .doc(EventID)
+        .update({
+          ShowParticipantFlag: ShowParticipantFlag,
+
+          UpdatedBy: context.auth.uid,
+          UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
+        })
+        .then(() => {
+          console.log("Success");
+          return {
+            retCode: "0"
+          };
+        })
+        .catch(function (error) {
+          console.log("in error");
+          return {
+            retCode: "1"
+          };;
+        });
+    });
+
+
+exports.updateEventFlag_PublishDraw =
+  functions
+    .region('asia-south1')
+    .https.onCall((data, context) => {
+      if (!context.auth) {
+        throw new functions.https.HttpError(
+          "unauthenticatied",
+          "only authenticated user can call this"
+        );
+      }
+      const EventID = data.EventID;
+      const DrawPublishedFlag = data.DrawPublishedFlag;
+      console.log("eventID ", EventID);
+
+      return admin.firestore().collection("EventList")
+        .doc(EventID)
+        .update({
+          DrawPublishedFlag: DrawPublishedFlag,
 
           UpdatedBy: context.auth.uid,
           UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
@@ -2342,6 +2484,8 @@ exports.getAllEventWithStatus =
 
               RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
               PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+              ShowParticipantFlag: doc1.data().ShowParticipantFlag,
+              ShowParticipantPostPaymentFlag: doc1.data().ShowParticipantPostPaymentFlag,
               DrawPublishedFlag: doc1.data().DrawPublishedFlag,
               //to be added
               LocationMap: doc1.data().LocationMap,
@@ -2364,6 +2508,7 @@ exports.getAllEventWithStatus =
               OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
               PublishDrawFlag: doc1.data().PublishDrawFlag,
               PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+              PublishResultFlag: doc1.data().PublishResultFlag,
               PublishScheduleFlag: doc1.data().PublishScheduleFlag,
               PublishGalleryFlag: doc1.data().PublishGalleryFlag,
 
@@ -2444,6 +2589,8 @@ exports.getAllEventWithEventStatus1 =
 
               RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
               PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+              ShowParticipantFlag: doc1.data().ShowParticipantFlag,
+              ShowParticipantPostPaymentFlag: doc1.data().ShowParticipantPostPaymentFlag,
               DrawPublishedFlag: doc1.data().DrawPublishedFlag,
               //to be added
               LocationMap: doc1.data().LocationMap,
@@ -2466,6 +2613,7 @@ exports.getAllEventWithEventStatus1 =
               OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
               PublishDrawFlag: doc1.data().PublishDrawFlag,
               PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+              PublishResultFlag: doc1.data().PublishResultFlag,
               PublishScheduleFlag: doc1.data().PublishScheduleFlag,
               PublishGalleryFlag: doc1.data().PublishGalleryFlag,
 
@@ -2546,6 +2694,8 @@ exports.getAllEventWithEventStatus =
 
               RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
               PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+              ShowParticipantFlag: doc1.data().ShowParticipantFlag,
+              ShowParticipantPostPaymentFlag: doc1.data().ShowParticipantPostPaymentFlag,
               DrawPublishedFlag: doc1.data().DrawPublishedFlag,
               //to be added
               LocationMap: doc1.data().LocationMap,
@@ -2568,6 +2718,7 @@ exports.getAllEventWithEventStatus =
               OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
               PublishDrawFlag: doc1.data().PublishDrawFlag,
               PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+              PublishResultFlag: doc1.data().PublishResultFlag,
               PublishScheduleFlag: doc1.data().PublishScheduleFlag,
               PublishGalleryFlag: doc1.data().PublishGalleryFlag,
 

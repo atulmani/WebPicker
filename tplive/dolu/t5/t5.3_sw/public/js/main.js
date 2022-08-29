@@ -146,7 +146,8 @@ function propertyToggleClick(propertyType, leftTXT, rightTXT) {
 
   var leftTXTVar = document.getElementById(leftTXT);
   var rightTXTVar = document.getElementById(rightTXT);
-
+  // var propertyType = document.getElementById(objToggle);
+  // console.log('propertyType', objToggle);
   leftTXTVar.classList.remove('active');
   rightTXTVar.classList.remove('active');
 
