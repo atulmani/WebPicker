@@ -2649,7 +2649,8 @@ input[type=number] {
   position: relative;
 }
 
-.dropdown-div select {
+.dropdown-div select,
+.dropdown-div input {
   background: #efefef;
   border: none;
   outline: none;
@@ -2759,46 +2760,10 @@ input[type=number] {
   /* color: rgba(255,255,255,0.1); */
 }
 
-.filter-search {
-  position: relative;
-}
-
 .filter-search input {
-  border: none;
-  outline: none;
-  background: none;
-  border-bottom: 1px solid #ddd;
-  font-size: 0.9rem;
-  height: 35px;
-  width: 100%;
-  padding-right: 25px;
-  -webkit-appearance: none;
-}
-
-.filter-search b {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: #333C5D;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: 0.5s;
-}
-
-.filter-search input:focus~b {
-  transform: scaleX(1);
-}
-
-.filter-search span {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #aaa;
-  pointer-events: none;
-  font-size: 1.4rem;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 @media (max-width: 770px) {
@@ -3117,7 +3082,7 @@ input[type=number] {
 
 .property-list-add-property {
   position: fixed;
-  right: 10px;
+  right: 3%;
   bottom: 10%;
   display: flex;
   justify-content: center;
@@ -3142,6 +3107,77 @@ input[type=number] {
   font-weight: bold;
 }
 
+.property-list-filter-div {
+  position: relative;
+  display: flex;
+}
+
+.property-list-filter-inner-div {
+  width: 100%;
+}
+
+@media (max-width: 850px) {
+  .property-list-filter-div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .property-list-filter-inner-div.year {
+    width: 35%;
+  }
+
+  .property-list-filter-inner-div.search {
+    width: 65%;
+  }
+}
+
+.property-list-filter-div .advance-search {
+  position: absolute;
+  bottom: -30px;
+  right: 0;
+}
+
+.property-list-filter-div .advance-search h1 {
+  font-size: 0.8rem;
+  color: #348DCB;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.advance-search-pop-up-div {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  padding: 10px;
+  transition: 1s;
+}
+
+.advance-search-pop-up-div .pop-up-div-form {
+  position: relative;
+  background: #fff;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  width: 70%;
+  height: 70%;
+}
+
+.pop-up-div-form .close-pop-up-form {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.pop-up-div-form .close-pop-up-form span {
+  font-size: 1.8rem;
+}
+
 /* property list page - end */
 
 /* create property page - start */
@@ -3149,6 +3185,18 @@ input[type=number] {
 .all-heading {
   font-size: 1.8rem;
   color: #EB542E;
+}
+
+.property-form-border-div {
+  padding: 20px;
+  border-right: 2px solid #ededed;
+}
+
+@media (max-width: 850px) {
+  .property-form-border-div {
+    padding: 10px 0;
+    border: none;
+  }
 }
 
 /* create property page - end */
