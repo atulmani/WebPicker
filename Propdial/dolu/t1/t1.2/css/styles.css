@@ -2536,6 +2536,21 @@ input[type=number] {
   transform: scale(1);
 }
 
+.age-of-property-div {
+  position: absolute;
+}
+
+.age-of-property-div h1 {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.age-of-property-div h1 small {
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: bold;
+}
+
 .owner-heading {
   font-size: 1.1rem;
   color: #EB542E;
@@ -2579,6 +2594,24 @@ input[type=number] {
   font-weight: bolder;
   position: relative;
   top: 5px;
+}
+
+.unit-number-and-furnished-div {
+  display: flex;
+}
+
+.unit-number-and-furnished-div .unit-number-and-furnished-inner-div {
+  width: 100%;
+}
+
+@media (max-width: 850px) {
+  .unit-number-and-furnished-div {
+    flex-direction: column;
+  }
+
+  .unit-number-and-furnished-div .unit-number-and-furnished-inner-div {
+    padding: 10px 0;
+  }
 }
 
 /* add property page - end */

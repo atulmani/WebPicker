@@ -89,23 +89,37 @@ function propertyToggleClick(propertyType) {
 
 }
 
-function openRentSection() {
+function openRentSection(cb1, cb2, objType) {
   var rentSection = document.getElementById('rentSection');
-  var businessTypeRent = document.getElementById('businessTypeRent');
-  var businessTypeSale = document.getElementById('businessTypeSale');
+  var saleSection = document.getElementById('saleSection');
+  var cb1Cnt = document.getElementById(cb1);
+  var cb2Cnt = document.getElementById(cb2);
 
-  if (businessTypeRent.checked) {
+
+  if (cb1Cnt.checked && !cb2Cnt.checked) {
+    console.log(cb1Cnt.checked);
+    console.log(cb2Cnt.checked);
+    cb1Cnt.checked = false;
+    cb1Cnt.setAttribute('checked', true);
+  }
+  //  console.log("cb1.checked", cb1.checked)
+  if (objType === 'Rent' && !cb1Cnt.checked) {
     rentSection.style.display = 'none';
+    //console.log('openRentSection');
+
   } else {
     rentSection.style.display = 'block';
   }
 
-  // if (businessTypeRent.checked) {
-  //   if (!businessTypeSale.checked) {
-  //     businessTypeRent.checked = true;
-  //     console.log('check');
-  //   }
-  // }
+
+  if (objType === 'Sale' && !cb1Cnt.checked) {
+    saleSection.style.display = 'none';
+    //console.log('openRentSection');
+
+  } else {
+    saleSection.style.display = 'block';
+  }
+
 
 }
 
@@ -133,11 +147,11 @@ function openCarParkingClosedDiv() {
 
 function ageOfPropertyCalc() {
   var yearOfConstructionSelect = document.getElementById('yearOfConstructionSelect');
-  var ageOfConstructionInput = document.getElementById('ageOfConstructionInput');
+  var ageOfPropertyCount = document.getElementById('ageOfPropertyCount');
 
   var yearValue = yearOfConstructionSelect.options[yearOfConstructionSelect.selectedIndex].text;
   var dt = new Date();
 
-  ageOfConstructionInput.value = dt.getFullYear() - Number(yearValue);
+  ageOfPropertyCount.innerHTML = dt.getFullYear() - Number(yearValue);
 
 }
