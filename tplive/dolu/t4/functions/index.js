@@ -9,7 +9,7 @@
 const admin = require("firebase-admin");
 
 admin.initializeApp();
-const cors = require('cors')({origin: true});
+const cors = require('cors')({ origin: true });
 
 const userProfile = require("./fnProfile.js");
 const organization = require("./fnOrganization.js");
@@ -60,7 +60,6 @@ exports.updateEventFlag_CloseEvent = events.updateEventFlag_CloseEvent;
 exports.updateEventFlag_RegistrationOn = events.updateEventFlag_RegistrationOn;
 exports.updateEventFlag_RegistrationCompletePostPayment = events.updateEventFlag_RegistrationCompletePostPayment;
 exports.updateEventFlag_OnlinePaymentMode = events.updateEventFlag_OnlinePaymentMode;
-exports.updateEventFlag_PublishDraw = events.updateEventFlag_PublishDraw;
 exports.updateEventFlag_PublishSeed = events.updateEventFlag_PublishSeed;
 exports.updateEventFlag_PublishSchedule = events.updateEventFlag_PublishSchedule;
 exports.updateEventFlag_PublishGallery = events.updateEventFlag_PublishGallery;
@@ -74,11 +73,25 @@ exports.getAllEventWithEventStatus = events.getAllEventWithEventStatus;
 exports.getAllEventWithEventStatus1 = events.getAllEventWithEventStatus1;
 exports.getAllEventWithEventStatusAndLocation = events.getAllEventWithEventStatusAndLocation;
 exports.updateEventDetails_EventMode = events.updateEventDetails_EventMode;
+exports.updateEvent_EventDetails = events.updateEvent_EventDetails;
+exports.getEventDetails_forAdmin = events.getEventDetails_forAdmin;
+exports.updateEventDetails_EventStatus = events.updateEventDetails_EventStatus;
+exports.updateEventFlag_ShowParticipant = events.updateEventFlag_ShowParticipant;
+exports.updateEventFlag_ShowParticipantPostPayment = events.updateEventFlag_ShowParticipantPostPayment;
+exports.updateEventFlag_PublishDraw = events.updateEventFlag_PublishDraw;
+exports.updateEventFlag_PublishResult = events.updateEventFlag_PublishResult;
+
+
+
+
+
+
 
 
 
 exports.logEntryAdd = entry.logEntryAdd;
 exports.logEntryDelete = entry.logEntryDelete;
+exports.logEntryUpdate = entry.logEntryUpdate;
 exports.getAllEventEntryCount = entry.getAllEventEntryCount;
 exports.getEventEntryCountForCategory = entry.getEventEntryCountForCategory;
 exports.getEventsEntryCount = entry.getEventsEntryCount;

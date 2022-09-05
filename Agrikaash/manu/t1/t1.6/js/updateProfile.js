@@ -16,7 +16,7 @@ auth.onAuthStateChanged(firebaseUser => {
         document.getElementById("notificationCnt").innerHTML = siteNotification;
 
       f(document.getElementById("notificationCnt1") != undefined)
-        
+
       document.getElementById("notificationCnt1").innerHTML = siteNotification;
 
     } else {

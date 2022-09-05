@@ -1,6 +1,5 @@
 // Your web app's Firebase configuration
 // const firebaseConfig = {
-//   apiKey: "AIzaSyC8xoYejrqfJflk70HMw877vd3cbUrG3so",
 //   authDomain: "tpliveapp-dev-56bb5.firebaseapp.com",
 //   projectId: "tpliveapp-dev-56bb5",
 //   databaseURL: "https://tpliveapp-dev-56bb5.firebaseio.com",
@@ -54,5 +53,4 @@ const db = firebase.firestore();
 const auth = firebase.auth();
 const storage = firebase.storage();
 // const functions =firebase.functions();
-// const functions =firebase.app().functions("asia-south1");
 const functions = fireObj.functions("asia-south1");

@@ -217,8 +217,8 @@ function getEventList(filter) {
     };
     // console.log(para3);
     // const ret3 = firebase.functions().httpsCallable("getAllEventEntryCount");
-    const ret3 = functions.httpsCallable("getAllEventEntryCount");
-    ret3().then(results1 => {
+    // const ret3 = functions.httpsCallable("getAllEventEntryCount");
+    // ret3().then(results1 => {
       // console.log("From Function getEventsEntryCount recLength : " + results1.data.length);
       // console.log(results1.data);
       // console.log("From Function " + results.data[0].resultsid);
@@ -226,13 +226,13 @@ function getEventList(filter) {
       for (index = 0; index < results.data.length; index++) {
         var entryCount = 0;
          // console.log(results.data[index].EventCode);
-        var indEntry = results1.data.findIndex(e => e.EventID === results.data[index].Eventid);
+        // var indEntry = results1.data.findIndex(e => e.EventID === results.data[index].Eventid);
         // console.log(indEntry);
-        if (indEntry >= 0)
-          entryCount = Number(results1.data[indEntry].EntryCount);
+        // if (indEntry >= 0)
+          // entryCount = Number(results1.data[indEntry].EntryCount);
 
         // console.log(results.data[index]);
-         RenderEventDetails(index, results.data[index], entryCount);
+         RenderEventDetails(index, results.data[index], results.data[index].EntryCount);
       }
       // document.getElementById('loading').style.display = 'none';
     })
@@ -265,7 +265,7 @@ function getEventList(filter) {
           document.getElementById('eventLoading').style.display = 'none';
 
     });
-  });
+  // });
 }
 
 function getLocationEvent(location, cnt) {
@@ -358,7 +358,10 @@ function cartEventClick(eventcode){
 }
 
 function RenderEventDetails(index, doc, entryCount) {
-  // console.log(doc);
+   console.log("Event Code : " + doc.EventCode + " :: EventStatus " + doc.EventStatus);
+   if(entryCount === undefined || entryCount === null || entryCount === ""){
+     entryCount = 0;
+   }
   var curFormat = {
     style: 'currency',
     currency: 'INR',
@@ -397,42 +400,50 @@ var sportCode = "";
   img11.setAttribute("alt","");
   if (doc.EventLogo != undefined && doc.EventLogo != null && doc.EventLogo != "") {
     img11.setAttribute("src", doc.EventLogo);
+    // img11.setAttribute("src", "./img/event/test_banner.png");
+
     if(doc.EventBannerLogo != undefined && doc.EventBannerLogo != null && doc.EventBannerLogo != "")
     {
       imgurl = doc.EventBannerLogo;
+      // imgurl = "./img/event/test_banner.png";
+
     }else{
       imgurl = doc.EventLogo;
+      // imgurl = "./img/event/test_banner.png";
+
     }
 
   } else {
     if (doc.SportName.toUpperCase() === 'BADMINTON') {
       sportCode = "BD";
-      imgurl = "./img/event/badminton.webp";
-      img11.setAttribute("src", "./img/event/badminton.webp");
+      imgurl = "https://firebasestorage.googleapis.com/v0/b/tplive-prod.appspot.com/o/img%2Fevent%2Fbadminton.webp?alt=media&token=e6aad2a0-7715-4714-991b-82042fd12b41";
+      // imgurl = "./img/event/test_banner.png";
+      // img11.setAttribute("src", "./img/event/test_banner.png");
+      img11.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-prod.appspot.com/o/img%2Fevent%2Fbadminton.webp?alt=media&token=e6aad2a0-7715-4714-991b-82042fd12b41");
     } else if (doc.SportName.toUpperCase() === 'CARROM') {
       sportCode = "CR";
-      imgurl = "./img/event/carrom.webp";
-      img11.setAttribute("src", "./img/event/carrom.webp");
+      imgurl = "https://firebasestorage.googleapis.com/v0/b/tplive-prod.appspot.com/o/img%2Fevent%2Fcarrom.webp?alt=media&token=e7d92e92-bfe1-4ed9-9064-62d8e6a7dda6";
+      img11.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-prod.appspot.com/o/img%2Fevent%2Fcarrom.webp?alt=media&token=e7d92e92-bfe1-4ed9-9064-62d8e6a7dda6");
     } else if (doc.SportName.toUpperCase() === 'CHESS') {
       sportCode = "CH";
-      imgurl = "./img/event/chess.webp";
-      img11.setAttribute("src", "./img/event/chess.webp");
+      imgurl = "https://firebasestorage.googleapis.com/v0/b/tplive-prod.appspot.com/o/img%2Fevent%2Fchess.webp?alt=media&token=9d10730d-3a38-435f-9bb7-c89aa2334b2c";
+      img11.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-prod.appspot.com/o/img%2Fevent%2Fchess.webp?alt=media&token=9d10730d-3a38-435f-9bb7-c89aa2334b2c");
     } else if (doc.SportName.toUpperCase() === 'SQUASH') {
       sportCode = "SQ";
-      imgurl = "./img/event/squash.webp";
-      img11.setAttribute("src", "./img/event/squash.webp");
+      imgurl = "https://firebasestorage.googleapis.com/v0/b/tplive-prod.appspot.com/o/img%2Fevent%2Fsquash.webp?alt=media&token=89e9d559-8cab-4504-a123-26ee966e88b0";
+      img11.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-prod.appspot.com/o/img%2Fevent%2Fsquash.webp?alt=media&token=89e9d559-8cab-4504-a123-26ee966e88b0");
     } else if (doc.SportName.toUpperCase() === 'TABLE TENNIS') {
       sportCode = "TT";
-      imgurl = "./img/event/tabletennis.webp";
-      img11.setAttribute("src", "./img/event/tabletennis.webp");
+      imgurl = "https://firebasestorage.googleapis.com/v0/b/tplive-prod.appspot.com/o/img%2Fevent%2Ftabletennis.webp?alt=media&token=8f1dd9cb-95c8-4b0e-b30d-aedbd8386984";
+      img11.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-prod.appspot.com/o/img%2Fevent%2Ftabletennis.webp?alt=media&token=8f1dd9cb-95c8-4b0e-b30d-aedbd8386984");
     } else if (doc.SportName.toUpperCase() === 'TENNIS') {
       sportCode = "TN";
-      imgurl = "./img/event/tennis.webp";
-      img11.setAttribute("src", "./img/event/tennis.webp");
+      imgurl = "https://firebasestorage.googleapis.com/v0/b/tplive-prod.appspot.com/o/img%2Fevent%2Ftennis.webp?alt=media&token=72fdf3fc-3bb6-4994-8b84-32780c57abec";
+      img11.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-prod.appspot.com/o/img%2Fevent%2Ftennis.webp?alt=media&token=72fdf3fc-3bb6-4994-8b84-32780c57abec");
     } else {
       sportCode = "BD";
-      imgurl = "./img/event/badminton.webp";
-      img11.setAttribute("src", "./img/event/badminton.webp");
+      imgurl = "https://firebasestorage.googleapis.com/v0/b/tplive-prod.appspot.com/o/img%2Fevent%2Fbadminton.webp?alt=media&token=e6aad2a0-7715-4714-991b-82042fd12b41";
+      img11.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/tplive-prod.appspot.com/o/img%2Fevent%2Fbadminton.webp?alt=media&token=e6aad2a0-7715-4714-991b-82042fd12b41");
     }
   }
 
@@ -591,6 +602,9 @@ if (  doc.EventMode.toUpperCase() === 'FIXTURE') {
 } else if (doc.EventStatus.toUpperCase() === 'HOLD') {
   button1.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
   button1.innerHTML = "<span>On Hold</span>";
+}else if (doc.EventStatus.toUpperCase() === 'CANCELLED') {
+  button1.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
+  button1.innerHTML = "<span>Cancelled</span>";
 } else {
   button1.innerHTML = "<span>Details</span>";
 }
@@ -722,13 +736,15 @@ if (doc.EventMode.toUpperCase() === 'FIXTURE') {
   button11.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
   button11.innerHTML = "<span>Book</span>";
 }else if (doc.EventStatus.toUpperCase() === 'CLOSED') {
-  button1.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
-  button1.innerHTML = "<span>Closed</span>";
+  button11.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
+  button11.innerHTML = "<span>Closed</span>";
 } else if (doc.EventStatus.toUpperCase() === 'HOLD') {
   button11.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
   button11.innerHTML = "<span>On Hold</span>";
-}
- else {
+}else if (doc.EventStatus.toUpperCase() === 'CANCELLED') {
+  button11.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
+  button11.innerHTML = "<span>Cancelled</span>";
+} else {
   button11.innerHTML = "<span>Details</span>";
 }
 

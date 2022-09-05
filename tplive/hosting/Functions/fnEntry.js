@@ -13,6 +13,11 @@ exports.logEntryAdd = functions
     var entryCount = 0;
     //  const entryLogID =
     console.log(inputData.EventID);
+    const EventID = inputData.EventID;
+    await admin.firestore().collection("EventList").doc(EventID).update({
+        EntryCount: admin.firestore.FieldValue.increment(1)
+    });
+
     await admin.firestore().collection("EventEntryLog").where("EventID", "==", inputData.EventID)
       .where("CategoryName", "==", inputData.CategoryName).get().then(async (changes) => {
         changes.forEach(doc1 => {
@@ -77,6 +82,11 @@ exports.logEntryDelete = functions
     var entryCount = 0;
     //  const entryLogID =
     console.log(inputData.EventID);
+const EventID = inputData.EventID;
+    await admin.firestore().collection("EventList").doc(EventID).update({
+        EntryCount: admin.firestore.FieldValue.increment(-1)
+    });
+
     await admin.firestore().collection("EventEntryLog").where("EventID", "==", inputData.EventID)
       .where("CategoryName", "==", inputData.CategoryName).get().then(async (changes) => {
         changes.forEach(doc1 => {
@@ -112,6 +122,70 @@ exports.logEntryDelete = functions
 
 
   });
+
+
+  exports.logEntryUpdate = functions
+    .region('asia-south1')
+    .firestore.document('/EventRegistrationDetails/{id}')
+    .onUpdate(async (snap, context) => {
+      const id = context.params.id;
+//      const inputData = snap.data();
+
+      const before = snap.before;  // DataSnapshot before the change
+      const after = snap.after;
+
+      console.log(before);
+      console.log(after);
+      // const entryLog = admin.firestore().collection("EventEntryLog");
+      var docID = "";
+      var entryCount = 0;
+      //  const entryLogID =
+      console.log(before.EventID);
+      const EventID = before.EventID;
+      if(snap.before.CategoryName != "" && snap.after.CategoryName  === "")
+      {
+        await admin.firestore().collection("EventList").doc(EventID).update({
+            EntryCount: admin.firestore.FieldValue.increment(-1)
+        });
+
+      }
+
+      // await admin.firestore().collection("EventEntryLog").where("EventID", "==", inputData.EventID)
+      //   .where("CategoryName", "==", inputData.CategoryName).get().then(async (changes) => {
+      //     changes.forEach(doc1 => {
+      //       docID = doc1.id;
+      //       entryCount = Number(doc1.data().EntryCount);
+      //     });
+      //     if (docID != "" && docID != undefined) {
+      //       await admin.firestore().collection("EventEntryLog").doc(docID).set({
+      //         EventID: inputData.EventID,
+      //         CategoryName: inputData.CategoryName,
+      //         EntryCount: entryCount - 1,
+      //       });
+      //     }
+      //   }).
+      // then(async (rec) => {
+      //   var allentryCount = 0;
+      //   //  const entryLogID =
+      //   console.log(inputData.EventID);
+      //   await admin.firestore().collection("EventAllEntryLog").where("EventID", "==", inputData.EventID)
+      //     .get().then(async (changes) => {
+      //       changes.forEach(doc1 => {
+      //         docID = doc1.id;
+      //         allentryCount = Number(doc1.data().EntryCount);
+      //       });
+      //       if (docID != "" && docID != undefined) {
+      //         await admin.firestore().collection("EventAllEntryLog").doc(docID).set({
+      //           EventID: inputData.EventID,
+      //           EntryCount: allentryCount - 1,
+      //         });
+      //       }
+      //     });
+      // });
+
+
+    });
+
 
 
 exports.getEventsEntryCount =

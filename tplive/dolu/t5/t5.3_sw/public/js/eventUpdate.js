@@ -541,11 +541,14 @@ function saveBasicDetails()
 {
   var ddlOrganization = document.getElementById("ddlOrganization");
   var val = ddlOrganization.options[ddlOrganization.selectedIndex].value;
+  var organizationName
   val = val.split(":");
   if (ddlOrganization.selectedIndex > 0) {
     var organizationID = val[0];
     var organizerID = val[1];
+    organizationName = val[3];
   }
+
   var EventID = document.getElementById("hfEventID").value;
   var ddlSports = document.getElementById("ddlSports");
   var sportName = ddlSports.options[ddlSports.selectedIndex].text;
@@ -571,6 +574,7 @@ function saveBasicDetails()
     EventType: '',
     EventStatus: 'Open',
     OrganizationID: organizationID,
+    OrganizationName: organizationName,
     OrganizerID: organizerID,
     SportName: sportName,
     City: city,

@@ -238,6 +238,7 @@ exports.getEventDetails_forAdmin =
           return {
             Eventid: doc1.id,
             EventName: doc1.data().EventName,
+            EventDetails: doc1.data().EventDetails,
             EventType: doc1.data().EventType,
             EventStatus: doc1.data().EventStatus,
             OrganizationID: doc1.data().OrganizationID,
@@ -247,9 +248,15 @@ exports.getEventDetails_forAdmin =
             EventOwnerPhone: doc1.data().EventOwnerPhone,
             OrganizerLogo: doc1.data().OrganizerLogo,
             EventLogo: doc1.data().EventLogo,
+            ThumbImage1 : doc1.data().ThumbImage1,
+            ThumbImage2 : doc1.data().ThumbImage2,
+            ThumbImage3 : doc1.data().ThumbImage3,
+            ThumbImage4 : doc1.data().ThumbImage4,
             EventCode: doc1.data().EventCode,
             EventMode: doc1.data().EventMode,
             SportCode: doc1.data().SportCode,
+            EntryCount: doc1.data().EntryCount,
+            CategoryDetails : doc1.data().CategoryDetails,
             MinimumFee: doc1.data().MinimumFee,
             MaximumFee: doc1.data().MaximumFee,
             SportName: doc1.data().SportName,
@@ -328,6 +335,7 @@ exports.getEventDetails =
           return {
             Eventid: doc1.id,
             EventName: doc1.data().EventName,
+            EventDetails: doc1.data().EventDetails,
             EventType: doc1.data().EventType,
             EventStatus: doc1.data().EventStatus,
             OrganizationID: doc1.data().OrganizationID,
@@ -336,11 +344,17 @@ exports.getEventDetails =
             EventOwnerEmail: doc1.data().EventOwnerEmail,
             EventOwnerPhone: doc1.data().EventOwnerPhone,
             OrganizerLogo: doc1.data().OrganizerLogo,
+            CategoryDetails:doc1.data().CategoryDetails,
             EventLogo: doc1.data().EventLogo,
+            ThumbImage1 : doc1.data().ThumbImage1,
+            ThumbImage2 : doc1.data().ThumbImage2,
+            ThumbImage3 : doc1.data().ThumbImage3,
+            ThumbImage4 : doc1.data().ThumbImage4,
+
             EventCode: doc1.data().EventCode,
             EventMode: doc1.data().EventMode,
             SportCode: doc1.data().SportCode,
-
+            EntryCount: doc1.data().EntryCount,
             MinimumFee: doc1.data().MinimumFee,
             MaximumFee: doc1.data().MaximumFee,
 
@@ -425,6 +439,7 @@ exports.getAllEventDetailsForYears =
           resultList.push({
             Eventid: doc1.id,
             EventName: doc1.data().EventName,
+            EventDetails: doc1.data().EventDetails,
             EventType: doc1.data().EventType,
             EventStatus: doc1.data().EventStatus,
             OrganizationID: doc1.data().OrganizationID,
@@ -434,9 +449,16 @@ exports.getAllEventDetailsForYears =
             EventOwnerPhone: doc1.data().EventOwnerPhone,
             OrganizerLogo: doc1.data().OrganizerLogo,
             EventLogo: doc1.data().EventLogo,
+            ThumbImage1 : doc1.data().ThumbImage1,
+            ThumbImage2 : doc1.data().ThumbImage2,
+            ThumbImage3 : doc1.data().ThumbImage3,
+            ThumbImage4 : doc1.data().ThumbImage4,
+
             EventCode: doc1.data().EventCode,
             EventMode: doc1.data().EventMode,
             SportCode: doc1.data().SportCode,
+            EntryCount: doc1.data().EntryCount,
+            CategoryDetails : doc1.data().CategoryDetails,
 
             MinimumFee: doc1.data().MinimumFee,
             MaximumFee: doc1.data().MaximumFee,
@@ -509,18 +531,27 @@ exports.getAllEventDetails =
         resultList.push({
           Eventid: doc1.id,
           EventName: doc1.data().EventName,
+          EventDetails: doc1.data().EventDetails,
           EventType: doc1.data().EventType,
           EventStatus: doc1.data().EventStatus,
           OrganizationID: doc1.data().OrganizationID,
+          OrganizationName: doc1.data().OrganizationName,
           OrganizerID: doc1.data().OrganizerID,
           EventOwnerName: doc1.data().EventOwnerName,
           EventOwnerEmail: doc1.data().EventOwnerEmail,
           EventOwnerPhone: doc1.data().EventOwnerPhone,
           OrganizerLogo: doc1.data().OrganizerLogo,
           EventLogo: doc1.data().EventLogo,
+          ThumbImage1 : doc1.data().ThumbImage1,
+          ThumbImage2 : doc1.data().ThumbImage2,
+          ThumbImage3 : doc1.data().ThumbImage3,
+          ThumbImage4 : doc1.data().ThumbImage4,
+
           EventCode: doc1.data().EventCode,
           EventMode: doc1.data().EventMode,
           SportCode: doc1.data().SportCode,
+          EntryCount: doc1.data().EntryCount,
+          CategoryDetails : doc1.data().CategoryDetails,
 
           MinimumFee: doc1.data().MinimumFee,
           MaximumFee: doc1.data().MaximumFee,
@@ -597,6 +628,7 @@ exports.getAllEventWithEventStatusAndLocation =
             resultList.push({
               Eventid: doc1.id,
               EventName: doc1.data().EventName,
+              EventDetails: doc1.data().EventDetails,
               EventType: doc1.data().EventType,
               EventStatus: doc1.data().EventStatus,
               OrganizationID: doc1.data().OrganizationID,
@@ -606,8 +638,15 @@ exports.getAllEventWithEventStatusAndLocation =
               EventOwnerPhone: doc1.data().EventOwnerPhone,
               OrganizerLogo: doc1.data().OrganizerLogo,
               EventLogo: doc1.data().EventLogo,
+              ThumbImage1 : doc1.data().ThumbImage1,
+              ThumbImage2 : doc1.data().ThumbImage2,
+              ThumbImage3 : doc1.data().ThumbImage3,
+              ThumbImage4 : doc1.data().ThumbImage4,
+
               EventCode: doc1.data().EventCode,
               EventMode: doc1.data().EventMode,
+              EntryCount: doc1.data().EntryCount,
+              CategoryDetails : doc1.data().CategoryDetails,
 
               SportCode: doc1.data().SportCode,
 
@@ -672,6 +711,7 @@ exports.getAllEventWithEventStatusAndLocation =
                   resultList.push({
                     Eventid: doc1.id,
                     EventName: doc1.data().EventName,
+                    EventDetails: doc1.data().EventDetails,
                     EventType: doc1.data().EventType,
                     EventStatus: doc1.data().EventStatus,
                     OrganizationID: doc1.data().OrganizationID,
@@ -681,8 +721,15 @@ exports.getAllEventWithEventStatusAndLocation =
                     EventOwnerPhone: doc1.data().EventOwnerPhone,
                     OrganizerLogo: doc1.data().OrganizerLogo,
                     EventLogo: doc1.data().EventLogo,
+                    ThumbImage1 : doc1.data().ThumbImage1,
+                    ThumbImage2 : doc1.data().ThumbImage2,
+                    ThumbImage3 : doc1.data().ThumbImage3,
+                    ThumbImage4 : doc1.data().ThumbImage4,
+
                     EventCode: doc1.data().EventCode,
                     EventMode: doc1.data().EventMode,
+                    EntryCount: doc1.data().EntryCount,
+                    CategoryDetails : doc1.data().CategoryDetails,
 
                     SportCode: doc1.data().SportCode,
 
@@ -746,6 +793,7 @@ exports.getAllEventWithEventStatusAndLocation =
             resultList.push({
               Eventid: doc1.id,
               EventName: doc1.data().EventName,
+              EventDetails: doc1.data().EventDetails,
               EventType: doc1.data().EventType,
               EventStatus: doc1.data().EventStatus,
               OrganizationID: doc1.data().OrganizationID,
@@ -755,8 +803,15 @@ exports.getAllEventWithEventStatusAndLocation =
               EventOwnerPhone: doc1.data().EventOwnerPhone,
               OrganizerLogo: doc1.data().OrganizerLogo,
               EventLogo: doc1.data().EventLogo,
+              ThumbImage1 : doc1.data().ThumbImage1,
+              ThumbImage2 : doc1.data().ThumbImage2,
+              ThumbImage3 : doc1.data().ThumbImage3,
+              ThumbImage4 : doc1.data().ThumbImage4,
+
               EventCode: doc1.data().EventCode,
               EventMode: doc1.data().EventMode,
+              EntryCount: doc1.data().EntryCount,
+              CategoryDetails : doc1.data().CategoryDetails,
 
               SportCode: doc1.data().SportCode,
 
@@ -824,6 +879,7 @@ exports.getAllEventWithEventStatusAndLocation =
                   resultList.push({
                     Eventid: doc1.id,
                     EventName: doc1.data().EventName,
+                    EventDetails: doc1.data().EventDetails,
                     EventType: doc1.data().EventType,
                     EventStatus: doc1.data().EventStatus,
                     OrganizationID: doc1.data().OrganizationID,
@@ -833,8 +889,15 @@ exports.getAllEventWithEventStatusAndLocation =
                     EventOwnerPhone: doc1.data().EventOwnerPhone,
                     OrganizerLogo: doc1.data().OrganizerLogo,
                     EventLogo: doc1.data().EventLogo,
+                    ThumbImage1 : doc1.data().ThumbImage1,
+                    ThumbImage2 : doc1.data().ThumbImage2,
+                    ThumbImage3 : doc1.data().ThumbImage3,
+                    ThumbImage4 : doc1.data().ThumbImage4,
+
                     EventCode: doc1.data().EventCode,
                     EventMode: doc1.data().EventMode,
+                    EntryCount: doc1.data().EntryCount,
+                    CategoryDetails : doc1.data().CategoryDetails,
 
                     SportCode: doc1.data().SportCode,
 
@@ -917,17 +980,26 @@ exports.getAllEventDetailsByCity =
           resultList.push({
             Eventid: doc1.id,
             EventName: doc1.data().EventName,
+            EventDetails: doc1.data().EventDetails,
             EventType: doc1.data().EventType,
             EventStatus: doc1.data().EventStatus,
             OrganizationID: doc1.data().OrganizationID,
+            OrganizationName: doc1.data().OrganizationName,
             OrganizerID: doc1.data().OrganizerID,
             EventOwnerName: doc1.data().EventOwnerName,
             EventOwnerEmail: doc1.data().EventOwnerEmail,
             EventOwnerPhone: doc1.data().EventOwnerPhone,
             OrganizerLogo: doc1.data().OrganizerLogo,
             EventLogo: doc1.data().EventLogo,
+            ThumbImage1 : doc1.data().ThumbImage1,
+            ThumbImage2 : doc1.data().ThumbImage2,
+            ThumbImage3 : doc1.data().ThumbImage3,
+            ThumbImage4 : doc1.data().ThumbImage4,
+
             EventCode: doc1.data().EventCode,
             EventMode: doc1.data().EventMode,
+            EntryCount: doc1.data().EntryCount,
+            CategoryDetails : doc1.data().CategoryDetails,
 
             SportCode: doc1.data().SportCode,
 
@@ -1005,17 +1077,26 @@ exports.getAllEventDetailsForOrganizer =
         resultList.push({
           Eventid: doc1.id,
           EventName: doc1.data().EventName,
+          EventDetails: doc1.data().EventDetails,
           EventType: doc1.data().EventType,
           EventStatus: doc1.data().EventStatus,
           OrganizationID: doc1.data().OrganizationID,
+          OrganizationName: doc1.data().OrganizationName,
           OrganizerID: doc1.data().OrganizerID,
           EventOwnerName: doc1.data().EventOwnerName,
           EventOwnerEmail: doc1.data().EventOwnerEmail,
           EventOwnerPhone: doc1.data().EventOwnerPhone,
           OrganizerLogo: doc1.data().OrganizerLogo,
           EventLogo: doc1.data().EventLogo,
+          ThumbImage1 : doc1.data().ThumbImage1,
+          ThumbImage2 : doc1.data().ThumbImage2,
+          ThumbImage3 : doc1.data().ThumbImage3,
+          ThumbImage4 : doc1.data().ThumbImage4,
+
           EventCode: doc1.data().EventCode,
           EventMode: doc1.data().EventMode,
+          EntryCount: doc1.data().EntryCount,
+          CategoryDetails : doc1.data().CategoryDetails,
 
           SportCode: doc1.data().SportCode,
 
@@ -1171,6 +1252,7 @@ exports.addEventDetails =
     }
     const OrganizationID = data.OrganizationID;
     const OrganizerID = data.OrganizerID;
+    const OrganizationName = data.OrganizationName;
     const SportName = data.SportName;
     const EventName = data.EventName;
     const EventOwnerName = data.EventOwnerName;
@@ -1192,6 +1274,7 @@ exports.addEventDetails =
       .add({
         OrganizationID: OrganizationID,
         OrganizerID: OrganizerID,
+        OrganizationName: OrganizationName,
         SportName: SportName,
         EventName: EventName,
         EventOwnerName: EventOwnerName,
@@ -1206,6 +1289,13 @@ exports.addEventDetails =
         EventMode:EventMode,
         SportCode: SportCode,
         City: City,
+        EntryCount:0,
+        EventLogo:'',
+        ThumbImage1 : '',
+        ThumbImage2 : '',
+        ThumbImage3 : '',
+        ThumbImage4 : '',
+
         EventStartDate: admin.firestore.Timestamp.fromDate(new Date()),
         CreatedBy: context.auth.uid,
         CreatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
@@ -1241,6 +1331,7 @@ exports.updateEventBasicDetails =
     const EventName = data.EventName;
     const EventType = data.EventType;
     const OrganizerID = data.OrganizerID;
+    const OrganizationName = data.OrganizationName;
     const EventOwnerName = data.EventOwnerName;
     const EventOwnerEmail = data.EventOwnerEmail;
     const EventOwnerPhone = data.EventOwnerPhone;
@@ -1265,6 +1356,7 @@ exports.updateEventBasicDetails =
         EventName: EventName,
         EventType: EventType,
         OrganizerID: OrganizerID,
+        OrganizationName: OrganizationName,
         EventOwnerName: EventOwnerName,
         EventOwnerEmail: EventOwnerEmail,
         EventOwnerPhone: EventOwnerPhone,
@@ -1446,6 +1538,10 @@ exports.updateEventDetails_Logo =
 
     const OrganizerLogo = data.OrganizerLogo;
     const EventLogo = data.EventLogo;
+    const ThumbImage1 = data.ThumbImage1;
+    const ThumbImage2 = data.ThumbImage2;
+    const ThumbImage3 = data.ThumbImage3;
+    const ThumbImage4 = data.ThumbImage4;
 
     console.log("eventID ", EventID);
 
@@ -1454,6 +1550,10 @@ exports.updateEventDetails_Logo =
       .update({
         OrganizerLogo: OrganizerLogo,
         EventLogo: EventLogo,
+        ThumbImage1 : ThumbImage1,
+        ThumbImage2 : ThumbImage2,
+        ThumbImage3 : ThumbImage3,
+        ThumbImage4 : ThumbImage4,
 
         UpdatedBy: context.auth.uid,
         UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
@@ -2029,6 +2129,42 @@ exports.updateEventFlag_PublishGallery =
       });
   });
 
+
+  exports.updateEvent_EventDetails =
+    functions
+    .region('asia-south1')
+    .https.onCall((data, context) => {
+      if (!context.auth) {
+        throw new functions.https.HttpError(
+          "unauthenticatied",
+          "only authenticated user can call this"
+        );
+      }
+      const EventID = data.EventID;
+      const EventDetails = data.EventDetails;
+      console.log("eventID ", EventID);
+
+      return admin.firestore().collection("EventList")
+        .doc(EventID)
+        .update({
+          EventDetails: EventDetails,
+          UpdatedBy: context.auth.uid,
+          UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
+        })
+        .then(() => {
+          console.log("Success");
+          return {
+            retCode: "0"
+          };
+        })
+        .catch(function(error) {
+          console.log("in error");
+          return {
+            retCode: "1"
+          };;
+        });
+    });
+
 exports.getAllEventForOrganizerWithStatus =
   functions
   .region('asia-south1')
@@ -2052,6 +2188,7 @@ exports.getAllEventForOrganizerWithStatus =
         resultList.push({
           Eventid: doc1.id,
           EventName: doc1.data().EventName,
+          EventDetails: doc1.data().EventDetails,
           EventType: doc1.data().EventType,
           EventStatus: doc1.data().EventStatus,
           MinimumFee: doc1.data().MinimumFee,
@@ -2063,9 +2200,16 @@ exports.getAllEventForOrganizerWithStatus =
           OrganizerPhone: doc1.data().OrganizerPhone,
           OrganizerLogo: doc1.data().OrganizerLogo,
           EventLogo: doc1.data().EventLogo,
+          ThumbImage1 : doc1.data().ThumbImage1,
+          ThumbImage2 : doc1.data().ThumbImage2,
+          ThumbImage3 : doc1.data().ThumbImage3,
+          ThumbImage4 : doc1.data().ThumbImage4,
+
           EventCode: doc1.data().EventCode,
           EventMode: doc1.data().EventMode,
           SportCode: doc1.data().SportCode,
+          EntryCount: doc1.data().EntryCount,
+          CategoryDetails : doc1.data().CategoryDetails,
 
           SportName: doc1.data().SportName,
           EventStartDate: doc1.data().EventStartDate,
@@ -2118,6 +2262,7 @@ exports.getAllEventWithStatus =
           resultList.push({
             Eventid: doc1.id,
             EventName: doc1.data().EventName,
+            EventDetails: doc1.data().EventDetails,
             EventType: doc1.data().EventType,
             EventStatus: doc1.data().EventStatus,
             OrganizationID: doc1.data().OrganizationID,
@@ -2127,11 +2272,18 @@ exports.getAllEventWithStatus =
             EventOwnerPhone: doc1.data().EventOwnerPhone,
             OrganizerLogo: doc1.data().OrganizerLogo,
             EventLogo: doc1.data().EventLogo,
+            ThumbImage1 : doc1.data().ThumbImage1,
+            ThumbImage2 : doc1.data().ThumbImage2,
+            ThumbImage3 : doc1.data().ThumbImage3,
+            ThumbImage4 : doc1.data().ThumbImage4,
+
             EventCode: doc1.data().EventCode,
             EventMode: doc1.data().EventMode,
             SportCode: doc1.data().SportCode,
+            EntryCount: doc1.data().EntryCount,
             MinimumFee: doc1.data().MinimumFee,
             MaximumFee: doc1.data().MaximumFee,
+            CategoryDetails : doc1.data().CategoryDetails,
 
             SportName: doc1.data().SportName,
             EventStartDate: doc1.data().EventStartDate,
@@ -2212,6 +2364,7 @@ exports.getAllEventWithEventStatus1 =
           resultList.push({
             Eventid: doc1.id,
             EventName: doc1.data().EventName,
+            EventDetails: doc1.data().EventDetails,
             EventType: doc1.data().EventType,
             EventStatus: doc1.data().EventStatus,
             OrganizationID: doc1.data().OrganizationID,
@@ -2221,11 +2374,18 @@ exports.getAllEventWithEventStatus1 =
             EventOwnerPhone: doc1.data().EventOwnerPhone,
             OrganizerLogo: doc1.data().OrganizerLogo,
             EventLogo: doc1.data().EventLogo,
+            ThumbImage1 : doc1.data().ThumbImage1,
+            ThumbImage2 : doc1.data().ThumbImage2,
+            ThumbImage3 : doc1.data().ThumbImage3,
+            ThumbImage4 : doc1.data().ThumbImage4,
+
             EventCode: doc1.data().EventCode,
             EventMode: doc1.data().EventMode,
             SportCode: doc1.data().SportCode,
+            EntryCount: doc1.data().EntryCount,
             MinimumFee: doc1.data().MinimumFee,
             MaximumFee: doc1.data().MaximumFee,
+            CategoryDetails : doc1.data().CategoryDetails,
 
             SportName: doc1.data().SportName,
             EventStartDate: doc1.data().EventStartDate,
@@ -2306,6 +2466,7 @@ exports.getAllEventWithEventStatus =
           resultList.push({
             Eventid: doc1.id,
             EventName: doc1.data().EventName,
+            EventDetails: doc1.data().EventDetails,
             EventType: doc1.data().EventType,
             EventStatus: doc1.data().EventStatus,
             OrganizationID: doc1.data().OrganizationID,
@@ -2315,11 +2476,18 @@ exports.getAllEventWithEventStatus =
             EventOwnerPhone: doc1.data().EventOwnerPhone,
             OrganizerLogo: doc1.data().OrganizerLogo,
             EventLogo: doc1.data().EventLogo,
+            ThumbImage1 : doc1.data().ThumbImage1,
+            ThumbImage2 : doc1.data().ThumbImage2,
+            ThumbImage3 : doc1.data().ThumbImage3,
+            ThumbImage4 : doc1.data().ThumbImage4,
+
             EventCode: doc1.data().EventCode,
             EventMode: doc1.data().EventMode,
             SportCode: doc1.data().SportCode,
+            EntryCount: doc1.data().EntryCount,
             MinimumFee: doc1.data().MinimumFee,
             MaximumFee: doc1.data().MaximumFee,
+            CategoryDetails : doc1.data().CategoryDetails,
 
             SportName: doc1.data().SportName,
             EventStartDate: doc1.data().EventStartDate,

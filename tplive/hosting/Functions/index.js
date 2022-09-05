@@ -74,11 +74,15 @@ exports.getAllEventWithEventStatus = events.getAllEventWithEventStatus;
 exports.getAllEventWithEventStatus1 = events.getAllEventWithEventStatus1;
 exports.getAllEventWithEventStatusAndLocation = events.getAllEventWithEventStatusAndLocation;
 exports.updateEventDetails_EventMode = events.updateEventDetails_EventMode;
+exports.updateEvent_EventDetails = events.updateEvent_EventDetails;
+exports.getEventDetails_forAdmin = events.getEventDetails_forAdmin;
+
 
 
 
 exports.logEntryAdd = entry.logEntryAdd;
 exports.logEntryDelete = entry.logEntryDelete;
+exports.logEntryUpdate = entry.logEntryUpdate;
 exports.getAllEventEntryCount = entry.getAllEventEntryCount;
 exports.getEventEntryCountForCategory = entry.getEventEntryCountForCategory;
 exports.getEventsEntryCount = entry.getEventsEntryCount;

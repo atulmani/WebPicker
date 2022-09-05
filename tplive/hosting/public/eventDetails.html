@@ -61,18 +61,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-
   <!-- lottie file cdn -->
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
   <!-- Bootstrap css -->
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-
-
-
 
   <!-- Your Own Style -->
   <link rel="stylesheet" href="css/styles.css">
@@ -98,7 +92,6 @@
 <body>
 
   <!-- small bardown -->
-
 
   <!-- before navbar - start -->
   <!-- <section style="background: linear-gradient(#333C5D 95%,rgba(0,0,0,0));"> -->
@@ -174,7 +167,7 @@
 
       </div>
       <ul class="nav navbar-nav">
-        <!-- <li class="nav-item active">
+        <li class="nav-item">
           <b></b>
           <b></b>
           <a class="nav-link" href="index.html">
@@ -183,7 +176,7 @@
             </span>
             <small>Home</small>
           </a>
-        </li> -->
+        </li>
         <li class="nav-item">
           <b></b>
           <b></b>
@@ -542,20 +535,24 @@
           </div>
 
           <div class="" style="text-align: right;position: relative;z-index: 5;">
-            <img class="event-details-big-image" id="eventLogo" src="./img/banner1.png" alt="">
+            <img class="event-details-big-image" id="eventLogo"  src="./img/banner1.png" alt="">
             <div class="" style="display: flex; justify-content: center;">
               <div class="small-img-row">
                 <div class="small-img-col">
-                  <img id="thumb1" src="./img/banner1.png" width="100%" alt="" class="small-img">
+                  <!-- <img id="thumb1" src="./img/banner1.png" width="100%" alt="" class="small-img"> -->
+                  <img id="thumb1" src="" width="100%" alt="" class="small-img">
                 </div>
                 <div class="small-img-col">
-                  <img src="https://firebasestorage.googleapis.com/v0/b/tplive-prod.appspot.com/o/img%2Fevent%2FTP_BD10185.webp?alt=media&token=320616be-0f1d-4775-add1-a9e95bf39c8a" width="100%" alt="" class="small-img">
+                  <!-- <img id="thumb2" src="https://firebasestorage.googleapis.com/v0/b/tplive-prod.appspot.com/o/img%2Fevent%2FTP_BD10185.webp?alt=media&token=320616be-0f1d-4775-add1-a9e95bf39c8a" width="100%" alt="" class="small-img"> -->
+                  <img id="thumb2" src="" width="100%" alt="" class="small-img">
                 </div>
                 <div class="small-img-col">
-                  <img src="https://firebasestorage.googleapis.com/v0/b/tplive-prod.appspot.com/o/img%2Fevent%2FTP_BD10185.webp?alt=media&token=320616be-0f1d-4775-add1-a9e95bf39c8a" width="100%" alt="" class="small-img">
+                  <!-- <img id="thumb3" src="https://firebasestorage.googleapis.com/v0/b/tplive-prod.appspot.com/o/img%2Fevent%2FTP_BD10185.webp?alt=media&token=320616be-0f1d-4775-add1-a9e95bf39c8a" width="100%" alt="" class="small-img"> -->
+                  <img id="thumb3" src="" width="100%" alt="" class="small-img">
                 </div>
                 <div class="small-img-col">
-                  <img src="https://firebasestorage.googleapis.com/v0/b/tplive-prod.appspot.com/o/img%2Fevent%2FTP_BD10185.webp?alt=media&token=320616be-0f1d-4775-add1-a9e95bf39c8a" width="100%" alt="" class="small-img">
+                  <!-- <img id="thumb4" src="https://firebasestorage.googleapis.com/v0/b/tplive-prod.appspot.com/o/img%2Fevent%2FTP_BD10185.webp?alt=media&token=320616be-0f1d-4775-add1-a9e95bf39c8a" width="100%" alt="" class="small-img"> -->
+                  <img id="thumb4" src="" width="100%" alt="" class="small-img">
                 </div>
               </div>
             </div>
@@ -574,7 +571,7 @@
                 <span class="material-symbols-outlined">
                   notifications_active
                 </span>
-                <h1 class="blink">Online payment Online payment is mandatory to confirm your entry</h1>
+                <h1 id="announcement" class="blink">Online payment Online payment is mandatory to confirm your entry</h1>
               </div>
             </div>
           </div>
@@ -594,7 +591,7 @@
               <li>
                 <i class="far fa-calendar"></i>
                 <span class="textheadleft">Date:</span>
-                <span id="eventstartdate" class="textheadleft"></span> <span id="dateLink">-</span> <span style="color:#889;" id="eventenddate" class="textheadleft"></span>
+                <span id="eventstartdate" class="textheadleft"></span>  <span style="color:#889;" id="eventenddate" class="textheadleft"></span>
               </li>
               <!-- <li><i style="color:#348DCB;" class="fab fa-google-play"></i> <span id="venue" class="textheadleft"></span> </li> -->
               <li>
@@ -604,13 +601,13 @@
 
               <li class="large" style="padding-bottom: 20px;">
                 <span style="float:left;"> <a id="booking" onclick="btnBookingClick();">
-                    <button type="button" name="button" id="btnBooking" class="mybutton button5" style="background: #348DCB;">
+                    <button type="button" id="btn1" name="button" id="btnBooking" class="mybutton button5" style="background: #348DCB;">
                       Register
                     </button>
                   </a></span>
 
                 <span style="float:right;"> <a id="booking" href="./checkout/step1-auth.html">
-                    <button type="button" name="button" id="bookingPayment" class="mybutton button5" style="background: #348DCB;">
+                    <button type="button" id="btn2" name="button" id="bookingPayment" class="mybutton button5" style="background: #348DCB;">
                       Pay Now
                     </button>
                   </a></span>
@@ -677,7 +674,7 @@
             <h4 style="font-weight:1000;">About Event</h4>
           </div>
 
-          <h2 class="event-details">
+          <h2 class="event-details" id="EventDetails">
             Grace wait period will be 10 mins after which the participant/team will be disqualified, and the opponent will be declared winner for that match
             Trophies and medals will be awarded for the finalists of each category
             There will be a cash prize too for the winners and the runners up of each category
@@ -726,7 +723,7 @@
               </tr>
             </thead>
             <tbody id="eventCategoryDetails">
-              <tr>
+              <!-- <tr>
                 <td>1</td>
                 <td>Boys Double Under11</td>
                 <td>M</td>
@@ -743,7 +740,7 @@
                 <td>BD U17</td>
                 <td>M</td>
                 <td>600</td>
-              </tr>
+              </tr> -->
 
             </tbody>
           </table>
@@ -753,6 +750,7 @@
               <h4 style="font-weight:1000;color:#348DCB">Rules & Regulations </h4>
               <hr>
             </div>
+            <div id="RulesAndRegulations"></div>
             <ul>
               <li>
                 <p>We request you to kindly go through the rules and regulations before participating in the event.</p>
