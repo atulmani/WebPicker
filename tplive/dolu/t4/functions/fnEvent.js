@@ -645,6 +645,7 @@ exports.getAllEventWithEventStatusAndLocation =
                 EventType: doc1.data().EventType,
                 EventStatus: doc1.data().EventStatus,
                 OrganizationID: doc1.data().OrganizationID,
+                OrganizationName: doc1.data().OrganizationName,
                 OrganizerID: doc1.data().OrganizerID,
                 EventOwnerName: doc1.data().EventOwnerName,
                 EventOwnerEmail: doc1.data().EventOwnerEmail,
@@ -1350,7 +1351,7 @@ exports.addEventDetails =
       console.log("before return");
     });
 
-exports.updateEventBasicDetails =
+exports.updateEventBasicDetailsOld =
   functions
     .region('asia-south1')
     .https.onCall((data, context) => {
@@ -1408,6 +1409,65 @@ exports.updateEventBasicDetails =
           ApprovalStatus: ApprovalStatus,
           EventStatus: EventStatus,
 
+          UpdatedBy: context.auth.uid,
+          UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
+        })
+        .then(() => {
+          console.log("Success");
+          return {
+            retCode: "0"
+          };
+        })
+        .catch(function (error) {
+          console.log("in error");
+          return {
+            retCode: "1"
+          };;
+        });
+    });
+
+exports.updateEventBasicDetails =
+  functions
+    .region('asia-south1')
+    .https.onCall((data, context) => {
+      if (!context.auth) {
+        throw new functions.https.HttpError(
+          "unauthenticatied",
+          "only authenticated user can call this"
+        );
+      }
+
+
+      const EventID = data.EventID;
+      const EventName = data.EventName;
+      const EventVenue = data.EventVenue;
+      const VenueContact = data.VenueContact;
+      const LocationMap = data.LocationMap;
+      const RegistrationStartDate = data.RegistrationStartDate;
+      const RegistrationEndDate = data.RegistrationEndDate;
+      const WithdrawalEndDate = data.WithdrawalEndDate;
+      const EventStartDate = data.EventStartDate;
+      const EventEndDate = data.EventEndDate;
+      const MaxEntryForParticipant = data.MaxEntryForParticipant;
+
+      const OrganizationName = data.OrganizationName;
+
+      console.log("eventID ", EventID);
+
+      return admin.firestore().collection("EventList")
+        .doc(EventID)
+        .update({
+          EventName: EventName,
+          EventVenue: EventVenue,
+          VenueContact: VenueContact,
+          LocationMap: LocationMap,
+          OrganizationName: OrganizationName,
+          RegistrationStartDate: admin.firestore.Timestamp.fromDate(new Date(RegistrationStartDate)),
+          RegistrationEndDate: admin.firestore.Timestamp.fromDate(new Date(RegistrationEndDate)),
+          WithdrawalEndDate: admin.firestore.Timestamp.fromDate(new Date(WithdrawalEndDate)),
+          EventStartDate: admin.firestore.Timestamp.fromDate(new Date(EventStartDate)),
+          EventEndDate: admin.firestore.Timestamp.fromDate(new Date(EventEndDate)),
+          MaxEntryForParticipant: MaxEntryForParticipant,
           UpdatedBy: context.auth.uid,
           UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
         })
