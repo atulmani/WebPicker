@@ -5,6 +5,8 @@ var cntOthers = 0;
 
 auth.onAuthStateChanged(async firebaseUser => {
   try {
+    document.getElementById('loadingFullDiv').style.display = 'block';
+
     if (firebaseUser) {
       loggedinUser = firebaseUser;
       //console.log(firebaseUser.uid);
@@ -318,6 +320,7 @@ function populateEventList(userid) {
     document.getElementById("others3").innerHTML = cntOthers;
     document.getElementById("others4").innerHTML = cntOthers;
 
+    document.getElementById('loadingFullDiv').style.display = 'none';
   });
 }
 
@@ -367,7 +370,7 @@ function RenderEventDetails(index, doc) {
 
   var div2 = document.createElement("a");
   div2.setAttribute("class", "event-list-card");
-  div2.setAttribute("href", "eventDetails.html?id=" + doc.Eventid);
+  div2.setAttribute("href", "eventSetup.html?id=" + doc.Eventid);
   if (doc.EventStatus === 'Active') {
 
     div2.setAttribute("style", "border-top: 3px solid green;");
@@ -445,7 +448,7 @@ function RenderEventDetails(index, doc) {
   var completedPayment = 123400;
   var span1 = document.createElement("span");
   span1.setAttribute("style", "color: green;");
-  span1.innerHTML = Number(completedPayment).toLocaleString('en-IN', curFormat)
+  span1.innerHTML = Number(completedPayment).toLocaleString('en-IN', curFormat);
 
   div7.appendChild(span1);
   var br1 = document.createElement("br");
@@ -651,6 +654,6 @@ function RenderEventDetails(index, doc) {
 function GetEventDetails(index) {
   var hfid = document.getElementById("hfEventID" + index);
   console.log(hfid);
-  window.location.href = "eventUpdate.html?id=" + hfid.value;
+  window.location.href = "eventSetup.html?id=" + hfid.value;
 
 }

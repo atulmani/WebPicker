@@ -82,7 +82,7 @@
 
 
   <!-- lottie file cdn -->
-  <!-- <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
   <!-- Bootstrap css -->
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
@@ -92,8 +92,8 @@
 
 
   <!-- Your Own Style -->
+  <!-- <link rel="stylesheet" href="/css/profile.css"> -->
   <link rel="stylesheet" href="/css/styles.css">
-  <link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css">
   <link rel="manifest" href="/manifest.json">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -158,7 +158,7 @@
           </span>
         </a>
 
-        <a href="../login/profile.html">
+        <a href="https://tournamentplanner.in/screens/TPLive_ProfileAUTH.aspx">
           <span class="material-symbols-outlined">
             person
           </span>
@@ -182,9 +182,10 @@
 
   <nav class="navbar navbar-expand-lg sticky-top large ">
     <a class="navbar-brand" href="https://tplive.in">
-      <img class="large" style="height:50px;" src="/img/TPLiVE_text_white.png" alt="TPLiVE">
+      <img class="large" style="height:50px;" src="../img/TPLiVE_text_white.png" alt="TPLiVE">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <button title="collapse" class="navbar-toggler" type="button" data-toggle="collapse"
+      data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
       <!-- <span>
        <i class="fa fa-reorder fa-2x " style="color:#1638A0;" ></i>
@@ -208,12 +209,11 @@
         <li class="nav-item">
           <b></b>
           <b></b>
-          <a class="nav-link"
-            href="https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA">
+          <a class="nav-link" href="../admin/eventList.html">
             <span class="material-symbols-outlined">
               redeem
             </span>
-            <small>Orgs</small>
+            <small>Events</small>
           </a>
         </li>
         <li class="nav-item">
@@ -253,13 +253,14 @@
         </a> -->
 
         <a href="#">
-          <img style="height: 45px;" src="/img/TPLiVE_text_white.png" alt="TPLiVE">
+          <img style="height: 45px;" src="./img/TPLiVE_text_white.png" alt="TPLiVE">
       </div>
 
       <div class="" style="display:flex;align-items: center;">
-        <a id="hamberIcon" href="#" style="padding-right: 10px;">
+        <a href="https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA"
+          style="padding-right: 10px;">
           <span class="material-symbols-outlined navbar-search-icon">
-            menu
+            manage_search
           </span>
         </a>
 
@@ -292,8 +293,8 @@
         </span>
         <small>Home</small>
       </a>
-      <a href="https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA"
-        class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+      <a href="../admin/eventList.html" class="navbar-mobile-bottom-menu-a"
+        style="display:flex; flex-direction:column;">
         <span class="material-symbols-outlined">
           redeem
         </span>
@@ -317,7 +318,7 @@
       </a>
     </div>
     <!-- <a id="profiletag" onclick="profileDirection(profiletag)" class="new-user"> -->
-    <a href="../login/profile.html" class="new-user">
+    <a href="https://tournamentplanner.in/screens/TPLive_ProfileAUTH.aspx" class="new-user">
       <span class="material-symbols-outlined">
         person
       </span>
@@ -449,7 +450,7 @@
         <li class="active">
           <b></b>
           <b></b>
-          <a href="../login/profile.html">
+          <a href="#">
             <span class="material-symbols-outlined">
               person
             </span>
@@ -523,10 +524,10 @@
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img style="width:100%; height:100%;" src="/img/ads_1.webp" class="d-block w-100" alt="...">
+                <img style="width:100%; height:100%;" src="./img/ads_1.webp" class="d-block w-100" alt="...">
               </div>
               <div class="carousel-item">
-                <img style="width:100%; height:100%;" src="/img/ads_5.gif" class="d-block w-100" alt="...">
+                <img style="width:100%; height:100%;" src="./img/ads_5.gif" class="d-block w-100" alt="...">
               </div>
 
             </div>
@@ -537,322 +538,133 @@
       </div>
     </div>
 
+    <!-- roles page - start -->
 
-    <!-- page - start -->
-    <div class="container-fluid">
+    <br>
+    <div class="container">
       <div class="row no-gutters">
+        <div class="col-lg-6 col-md-6 col-sm-12">
 
-        <div class="col-lg-2 col-md-2 col-sm-12">
+          <div class="role-outter-div">
+            <div class="role-div"><br>
+              <div class="analytics-div">
+                <h1 style="text-align: center;">Select Your Role</h1>
+              </div><br>
 
-          <div class="side-navbar mobile" id="sideNavbar">
+              <div class="role-shadow-div">
+                <div class="role-inner-div">
 
-            <ul>
+                  <div class="row no-gutters">
 
-              <li>
-                <b></b>
-                <b></b>
-                <a href="dashboard.html">
-                  <span class="material-symbols-outlined">
-                    home
-                  </span>
-                  <small>Dashboard</small>
-                </a>
-                <div class="">
-                  <span class="material-symbols-outlined">
-                    chevron_right
-                  </span>
-                </div>
-              </li>
-
-              <li class="active">
-                <b></b>
-                <b></b>
-                <a href="#">
-                  <span class="material-symbols-outlined">
-                    event_note
-                  </span>
-                  <small>Create Event</small>
-                </a>
-                <div class="">
-                  <span class="material-symbols-outlined">
-                    chevron_right
-                  </span>
-                </div>
-              </li>
-
-              <li>
-                <a href="#">
-                  <b></b>
-                  <b></b>
-                  <span class="material-symbols-outlined">
-                    notifications
-                  </span>
-                  <small>Notification</small>
-                </a>
-                <div class="">
-                  <span class="material-symbols-outlined">
-                    chevron_right
-                  </span>
-                </div>
-              </li>
-
-              <li>
-                <b></b>
-                <b></b>
-                <a href="../login/profile.html">
-                  <span class="material-symbols-outlined">
-                    person
-                  </span>
-                  <small>Profile</small>
-                </a>
-                <div class="">
-                  <span class="material-symbols-outlined">
-                    chevron_right
-                  </span>
-                </div>
-              </li>
-
-              <li>
-                <a href="#">
-                  <b></b>
-                  <b></b>
-                  <span class="material-symbols-outlined">
-                    handyman
-                  </span>
-                  <small>Help</small>
-                </a>
-                <div class="">
-                  <span class="material-symbols-outlined">
-                    chevron_right
-                  </span>
-                </div>
-              </li>
-
-              <li>
-                <a href="#">
-                  <b></b>
-                  <b></b>
-                  <span class="material-symbols-outlined">
-                    supervisor_account
-                  </span>
-                  <small>Refer a Friend</small>
-                </a>
-                <div class="">
-                  <span class="material-symbols-outlined">
-                    chevron_right
-                  </span>
-                </div>
-              </li>
-
-              <li>
-                <a href="#">
-                  <b></b>
-                  <b></b>
-                  <span class="material-symbols-outlined">
-                    logout
-                  </span>
-                  <small>Logout</small>
-                </a>
-                <div class="">
-                  <span class="material-symbols-outlined">
-                    chevron_right
-                  </span>
-                </div>
-              </li>
-            </ul>
-
-            <div class="" style="padding: 10px;">
-              <div class="dashboardCardBoxoffer">
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                  <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                      class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                      aria-label="Slide 2"></button>
-                    <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
-                  </div>
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img style="width:100%; height:100%;" src="/img/ads_1.webp" class="d-block w-100" alt="...">
+                    <div class="col-lg-6 col-md-12 col-sm-12" style="padding: 10px;">
+                      <div class="" style="position: relative;">
+                        <label style="font-size: 1rem;" class="profile-input-label" for="userName">Name</label>
+                        <input id="userName" required type="text" class="profile-input" placeholder="Enter Your Name">
+                        <b class="input-underline"></b>
+                      </div>
                     </div>
-                    <div class="carousel-item">
-                      <img style="width:100%; height:100%;" src="/img/ads_5.gif" class="d-block w-100" alt="...">
+
+                    <div class="col-lg-6 col-md-12 col-sm-12" style="padding: 10px;">
+                      <div class="" style="position: relative;">
+                        <label style="font-size: 1rem;" class="profile-input-label" for="inputPassword4">Email
+                          Id</label>
+                        <input id="userEmail" required type="email" class="profile-input" placeholder="Enter email id">
+                        <b class="input-underline"></b>
+                      </div>
+                    </div>
+
+                  </div><br>
+
+                  <div class="row no-gutters">
+                    <div class="col-4 role-input-div">
+                      <div class="Participant" style="width: 100%;">
+                        <input type="radio" class="checkbox" style="width: 0px;" name="role" id="Participant"
+                          value="Participant">
+                        <label class="checkbox-label" id="Participant-label" for="Participant">
+                          <i class="fas fa-plus" style="padding-right: 0;font-size: 0.6rem;"></i>
+                          <i class="fas fa-check" style="padding-right: 0;font-size: 0.6rem;"></i>
+                          <span style="font-size: 0.8rem;">Participant</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-4 role-input-div">
+                      <div class="Organizer" style="width: 100%;">
+                        <input type="radio" class="checkbox" style="width: 0px;" name="role" id="Organizer"
+                          value="Organizer">
+                        <label class="checkbox-label" id="Organizer-label" for="Organizer">
+                          <i class="fas fa-plus" style="padding-right: 0;font-size: 0.6rem;"></i>
+                          <i class="fas fa-check" style="padding-right: 0;font-size: 0.6rem;"></i>
+                          <span style="font-size: 0.8rem;">Organizer</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-4 role-input-div">
+                      <div class="Referee" style="width: 100%;">
+                        <input type="radio" class="checkbox" style="width: 0px;" name="role" id="Referee"
+                          value="Referee">
+                        <label class="checkbox-label" id="Referee-label" for="Referee">
+                          <i class="fas fa-plus" style="padding-right: 0;font-size: 0.6rem;"></i>
+                          <i class="fas fa-check" style="padding-right: 0;font-size: 0.6rem;"></i>
+                          <span style="font-size: 0.8rem;">Referee</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-4 role-input-div">
+                      <div class="Umpire" style="width: 100%;">
+                        <input type="radio" class="checkbox" style="width: 0px;" name="role" id="Umpire" value="Umpire">
+                        <label class="checkbox-label" id="Umpire-label" for="Umpire">
+                          <i class="fas fa-plus" style="padding-right: 0;font-size: 0.6rem;"></i>
+                          <i class="fas fa-check" style="padding-right: 0;font-size: 0.6rem;"></i>
+                          <span style="font-size: 0.8rem;">Umpire</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-4 role-input-div">
+                      <div class="Sponser" style="width: 100%;">
+                        <input type="radio" class="checkbox" style="width: 0px;" name="role" id="Sponser"
+                          value="Sponser">
+                        <label class="checkbox-label" id="Sponser-label" for="Sponser">
+                          <i class="fas fa-plus" style="padding-right: 0;font-size: 0.6rem;"></i>
+                          <i class="fas fa-check" style="padding-right: 0;font-size: 0.6rem;"></i>
+                          <span style="font-size: 0.8rem;">Sponser</span>
+                        </label>
+                      </div>
                     </div>
 
                   </div>
-
 
                 </div>
               </div>
+
+              <div class="role-save-btn"><br><br><br>
+                <button type="button" class="mybutton button5" style="width: 100px;" name="button">NEXT</button>
+              </div>
+
             </div>
           </div>
 
         </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
 
-        <div class="col-lg-10 col-md-10 col-sm-12" style="padding: 10px 20px;">
-
-          <div class="analytics-div">
-            <h1>Create Event</h1>
-          </div><br>
-
-          <div class="create-event-div"><br>
-            <div class="container-fluid">
-              <div class="row no-gutters">
-
-                <div class="col-lg-6 col-md-6 col-sm-12">
-
-                  <div class="" style="position: relative;">
-                    <div class="txt_field" style="margin: 15px 0;border: none;">
-                      <select id="ddlOrganization" onchange="onOrganizationSelection()" class=""
-                        style="letter-spacing: 1px;" name="">
-                        <!-- <option value="">Padukone Sports Management</option>
-                        <option value="">PPBA</option>
-                        <option value="">Sudhanshu Badminton Academy</option> -->
-                      </select>
-                      <span></span>
-                      <label class="labelsize">Select Organization</label>
-                    </div>
-                    <input type="hidden" id="hfOrganizerID">
-                    <input type="hidden" id="hfEventID">
-                    <input type="hidden" id="eventOwnerName">
-                    <input type="hidden" id="eventOwnerEmail">
-                    <input type="hidden" id="eventOwnerPhone">
-                    <input type="hidden" id="hfOrganizerID">
-
-                  </div>
-
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-sm-12">
-
-                  <div class="" style="position: relative;">
-                    <div class="txt_field" style="margin: 15px 0;border: none;">
-                      <select class="" id="ddlSports" style="letter-spacing: 1px;" name="">
-                        <!-- <option value="">Badminton</option>
-                        <option value="">Table Tennis</option>
-                        <option value="">Skating</option> -->
-                      </select>
-                      <span></span>
-                      <label class="labelsize">Select Sport</label>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-sm-12">
-
-                  <div class="" style="position: relative;">
-                    <div class="txt_field" style="margin: 15px 0;">
-                      <input type="text" id="eventCode" style="letter-spacing: 1px;" required name="" value="">
-                      <span></span>
-                      <label class="labelsize">Event Code (TP_BDXXXXXX)</label>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-sm-12">
-
-                  <div class="" style="position: relative;">
-                    <div class="txt_field" style="margin: 15px 0;">
-                      <input type="text" id="sportCode" style="letter-spacing: 1px;" required name="" value="">
-                      <span></span>
-                      <label class="labelsize">Sport Code(BD/TT/QZ)</label>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-sm-12">
-
-                  <div class="" style="position: relative;">
-                    <div class="txt_field" style="margin: 15px 0;">
-                      <!-- <select class="" style="letter-spacing: 1px;" name="">
-                        <option value="">Pune</option>
-                        <option value="">Mumbai</option>
-                        <option value="">Skating</option>
-                      </select> -->
-                      <input type="text" id="city" style="letter-spacing: 1px;" required name="" value="">
-
-                      <span></span>
-                      <label class="labelsize">City</label>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-sm-12">
-
-                  <div class="" style="position: relative;">
-                    <div class="txt_field" style="margin: 15px 0;">
-                      <input type="text" id="eventName" style="letter-spacing: 1px;" required name="" value="">
-                      <span></span>
-                      <label class="labelsize">Event Name</label>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-sm-12">
-
-                  <div class="txt_field" style="margin: 15px 0;border: none;">
-                    <div class="input-group date datetimepicker11">
-                      <input style="border-radius: 0;letter-spacing: 1px;background: #efefef;" id="EventStartDate"
-                        type="text" placeholder="Event Start Date" class="form-control" readonly>
-                      <div class="input-group-addon input-group-prepend">
-                        <span class="input-group-text"
-                          style="background: #efefef;margin-left: 1px;border-radius: 0;height: 40px;border: 1px solid #ddd;"><i
-                            class="fas fa-calendar"></i></span>
-                      </div>
-                    </div>
-                    <label class="labelsize" style="left: 5px;top: -10px;color: #2691d9;">Event Start Date</label>
-                  </div>
-
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-sm-12">
-
-                  <div class="txt_field" style="margin: 15px 0;border: none;">
-                    <div class="input-group date datetimepicker11">
-                      <input style="border-radius: 0;letter-spacing: 1px;background: #efefef;" id="EventEndDate"
-                        type="text" placeholder="Event End Date" class="form-control" readonly>
-                      <div class="input-group-addon input-group-prepend">
-                        <span class="input-group-text"
-                          style="background: #efefef;margin-left: 1px;border-radius: 0;height: 40px;border: 1px solid #ddd;"><i
-                            class="fas fa-calendar"></i></span>
-                      </div>
-                    </div>
-                    <label class="labelsize" style="left: 5px;top: -10px;color: #2691d9;">Event End Date</label>
-                  </div>
-
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-sm-12"><br>
-
-                  <button type="button" style="width: 100px;" id="btnSave" class="mybutton button5"
-                    name="button">CREATE</button>
-
-                </div>
-                <center id="saveMessage" style="display:none">
-                  <span id="confirmationMessage">Event details saved Successfully !! </span>
-                </center>
-
-              </div>
-            </div><br>
-          </div><br>
+          <div class="" style="display: flex; justify-content: center; align-items: center;">
+            <!-- <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_4lp8gs4c.json"  background="transparent"  speed="0.5"  style="width: 50%; height: 50%;"  loop  autoplay></lottie-player> -->
+            <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_wzrthmvn.json" background="transparent"
+              speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+          </div>
 
         </div>
-
       </div>
     </div>
+    <br>
+
+    <!-- roles page - end -->
 
 
-    <!-- page - end -->
-
-
-
-
-
+    <!-- *******************FOOTER SECTION STARTS************************************** -->
 
 
     <div class="" style="background: #333C5D;">
@@ -863,39 +675,41 @@
           </span>
           <h4 style="font-weight:1000;">Our Partners</h4>
         </div><br>
-        <div class="row no-gutters partners-div">
-          <div class="col-md-12 col-md-offset-1">
-            <div id="partners-carousel" class="owl-carousel owl-theme">
-              <div class="partners-item">
-                <img src="/img/partner/1.png" width="100%" alt="">
-              </div>
-              <div class="partners-item">
-                <img src="/img/partner/2.png" width="100%" alt="">
-              </div>
-              <div class="partners-item">
-                <img src="/img/partner/3.png" width="100%" alt="">
-              </div>
-              <div class="partners-item">
-                <img src="/img/partner/4.png" width="100%" alt="">
-              </div>
-              <div class="partners-item">
-                <img src="/img/partner/5.png" width="100%" alt="">
-              </div>
-              <div class="partners-item">
-                <img src="/img/partner/6.png" width="100%" alt="">
-              </div>
-              <div class="partners-item">
-                <img src="/img/partner/7.png" width="100%" alt="">
-              </div>
-              <div class="partners-item">
-                <img src="/img/partner/8.png" width="100%" alt="">
-              </div>
-              <div class="partners-item">
-                <img src="/img/partner/9.png" width="100%" alt="">
-              </div>
+        <div class="container-fluid">
+          <div class="row no-gutters partners-div">
+            <div class="col-md-12 col-md-offset-1">
+              <div id="partners-carousel" class="owl-carousel owl-theme">
+                <div class="partners-item">
+                  <img src="/img/partner/1.png" width="100%" alt="">
+                </div>
+                <div class="partners-item">
+                  <img src="/img/partner/2.png" width="100%" alt="">
+                </div>
+                <div class="partners-item">
+                  <img src="/img/partner/3.png" width="100%" alt="">
+                </div>
+                <div class="partners-item">
+                  <img src="/img/partner/4.png" width="100%" alt="">
+                </div>
+                <div class="partners-item">
+                  <img src="/img/partner/5.png" width="100%" alt="">
+                </div>
+                <div class="partners-item">
+                  <img src="/img/partner/6.png" width="100%" alt="">
+                </div>
+                <div class="partners-item">
+                  <img src="/img/partner/7.png" width="100%" alt="">
+                </div>
+                <div class="partners-item">
+                  <img src="/img/partner/8.png" width="100%" alt="">
+                </div>
+                <div class="partners-item">
+                  <img src="/img/partner/9.png" width="100%" alt="">
+                </div>
 
-            </div>
-          </div><br><br>
+              </div>
+            </div><br><br>
+          </div>
         </div>
       </div><br><br>
     </div>
@@ -916,83 +730,86 @@
         </div>
         <br>
 
-        <div class="row no-gutters">
-          <div class="col-lg-6 col-md-6 col-sm-12">
-            <div class="footer-details footer-large">
-              <p>
-                Welcome to Tournament Planner LiVE. <br> TPLiVE is a platform that helps you
-                to discover and book the variety of Sports Events you like in your city.
-                TPLiVE is a startup whose aspiration is to join hands with
-                Digital India and Go-Green. Our mission is to automate the
-                process of creating any kind of Sports events and many more...
-              </p><br>
+        <div class="container-fluid">
+          <div class="row no-gutters">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="footer-details footer-large">
+                <p>
+                  Welcome to Tournament Planner LiVE. <br> TPLiVE is a platform that helps you
+                  to discover and book the variety of Sports Events you like in your city.
+                  TPLiVE is a startup whose aspiration is to join hands with
+                  Digital India and Go-Green. Our mission is to automate the
+                  process of creating any kind of Sports events and many more...
+                </p><br>
 
-              <h3>FOR EVENT ORGANIZERS</h3>
-              <p>Organizing any Event manually is always a challenge starting from booking, payment collection,
-                fixture & schedule preparation, score management and publish the result till prize distribution.
-                Our product aims at eliminating all the challenges faced by the
-                Organizers and the Participants. This Mobile-Enabled Product is designed in an
-                innovative way to ensure uninterrupted and smooth usage. Through this,
-                application users can interact and keep themselves updated about upcoming events,
-                LiVE scores & updates, results and other Sports related details.
+                <h3>FOR EVENT ORGANIZERS</h3>
+                <p>Organizing any Event manually is always a challenge starting from booking, payment collection,
+                  fixture & schedule preparation, score management and publish the result till prize distribution.
+                  Our product aims at eliminating all the challenges faced by the
+                  Organizers and the Participants. This Mobile-Enabled Product is designed in an
+                  innovative way to ensure uninterrupted and smooth usage. Through this,
+                  application users can interact and keep themselves updated about upcoming events,
+                  LiVE scores & updates, results and other Sports related details.
 
-                We will be happy to provide our services to all the Event Organizers from
-                District & State Sports Associations, Sports Academies, Schools, Corporates,
-                Townships, Societies and every enthusiastic Sports lover to encourage Sports
-                with health and happiness in their locality.
-              </p>
+                  We will be happy to provide our services to all the Event Organizers from
+                  District & State Sports Associations, Sports Academies, Schools, Corporates,
+                  Townships, Societies and every enthusiastic Sports lover to encourage Sports
+                  with health and happiness in their locality.
+                </p>
+              </div>
+
+
             </div>
 
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="footer-links" style="padding-top: 0;">
+                <div class="" style="border: none;">
+                  <a href="https://tournamentplanner.in/screens/TPLive_Aboutus.aspx">About Us</a>
+                </div>
+                <div class="">
+                  <a href="https://tournamentplanner.in/screens/TPLive_Contactus.aspx">Contact Us</a>
+                </div>
+                <div class="">
+                  <a href="https://tournamentplanner.in/screens/TPLive_FAQ.aspx">FAQ's</a>
+                </div>
+                <div class="">
+                  <a href="https://tournamentplanner.in/screens/TPLive_Terms.aspx">Terms & condition</a>
+                </div>
+                <div class="">
+                  <a href="https://tournamentplanner.in/screens/TPLive_PrivacyPolicy.aspx">Privacy Policy</a>
+                </div>
+              </div><br>
 
-          </div>
+              <div class="" style="display:flex; justify-content: center;">
+                <div class="icons footer">
+                  <a href="https://www.facebook.com/TournamentPlanner/?ti=as"> <i class="fab fa-facebook-f"></i> </a>
+                  <a href="https://twitter.com/TPLIVE7/status/1144269372854288385?s=08"> <i class="fab fa-twitter"></i>
+                  </a>
+                  <a href="https://www.youtube.com/channel/UCNkSsrEoWHJ_eWvLSQiGNug"> <i class="fab fa-youtube"></i>
+                  </a>
+                  <a href="https://www.instagram.com/tplive.in/"> <i class="fab fa-instagram"></i> </a>
+                </div>
+              </div><br>
 
-          <div class="col-lg-6 col-md-6 col-sm-12">
-            <div class="footer-links" style="padding-top: 0;">
-              <div class="" style="border: none;">
-                <a href="https://tournamentplanner.in/screens/TPLive_Aboutus.aspx">About Us</a>
-              </div>
-              <div class="">
-                <a href="https://tournamentplanner.in/screens/TPLive_Contactus.aspx">Contact Us</a>
-              </div>
-              <div class="">
-                <a href="https://tournamentplanner.in/screens/TPLive_FAQ.aspx">FAQ's</a>
-              </div>
-              <div class="">
-                <a href="https://tournamentplanner.in/screens/TPLive_Terms.aspx">Terms & condition</a>
-              </div>
-              <div class="">
-                <a href="https://tournamentplanner.in/screens/TPLive_PrivacyPolicy.aspx">Privacy Policy</a>
-              </div>
-            </div><br>
+              <div class="footer-links footer-details">
+                <br><br>
 
-            <div class="" style="display:flex; justify-content: center;">
-              <div class="icons footer">
-                <a href="https://www.facebook.com/TournamentPlanner/?ti=as"> <i class="fab fa-facebook-f"></i> </a>
-                <a href="https://twitter.com/TPLIVE7/status/1144269372854288385?s=08"> <i class="fab fa-twitter"></i>
-                </a>
-                <a href="https://www.youtube.com/channel/UCNkSsrEoWHJ_eWvLSQiGNug"> <i class="fab fa-youtube"></i> </a>
-                <a href="https://www.instagram.com/tplive.in/"> <i class="fab fa-instagram"></i> </a>
-              </div>
-            </div><br>
+                <h3 style="text-align:center;">FOR EVENT ORGANIZERS</h3><br>
 
-            <div class="footer-links footer-details">
-              <br><br>
-
-              <h3 style="text-align:center;">FOR EVENT ORGANIZERS</h3><br>
-
-              <div class="" style="border: none;">
-                <a href="https://tournamentplanner.in/Screens/admin/TP_Login.aspx">Organizer's</a>
-              </div>
-              <!-- <div class="">
+                <div class="" style="border: none;">
+                  <a href="https://tournamentplanner.in/Screens/admin/TP_Login.aspx">Organizer's</a>
+                </div>
+                <!-- <div class="">
                   <a href="#">Umpire Login</a>
                 </div> -->
-              <div class="">
-                <a href="https://tournamentplanner.in/Screens/admin/TP_Login.aspx">Sponsor's</a>
+                <div class="">
+                  <a href="https://tournamentplanner.in/Screens/admin/TP_Login.aspx">Sponsor's</a>
+                </div>
               </div>
-            </div>
 
-          </div>
-        </div><br><br>
+            </div>
+          </div><br><br>
+        </div>
 
         <div class="copy-right">
           Copyright © Tournament Planner LiVE
@@ -1020,24 +837,28 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Javascript to Populate Map - Start  -->
-    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCwcmd-j8LgBcItu7okMGNt-epPMVx9V0"></script> -->
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEuOj88D5Hi9bmOVK9f0lfTsSMEfvv9WA"></script>
 
     <!-- Firebase Services -->
     <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-storage.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-functions.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-functions.js"></script>
 
-    <script src="/js/firebase.js"></script>
+
     <script src="/js/main.js"></script>
-    <script src="/js/eventCreate.js"></script>
+    <script src="/js/firebase.js"></script>
+    <script src="/js/profile.js"></script>
+    <script src="/js/logout.js"></script>
+
+    <!-- <script src="../js/profileConfig.js"></script> -->
 
     <!-- Owl Carousel Javascript  -->
     <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
       crossorigin="anonymous"></script>
@@ -1045,8 +866,9 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"></script>
 
-    <script src="/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
 
+    <script src="/js/bootstrap-datetimepicker.min.js"></script>
     <script>
       $(function () {
         $.extend(true, $.fn.datetimepicker.defaults, {
@@ -1062,22 +884,19 @@
             close: 'far fa-times'
           }
         });
-
       });
     </script>
     <script type="text/javascript">
       $(function () {
         $('.datetimepicker11').datetimepicker({
-          format: 'MM-DD-YYYY',
+          format: 'DD-MM-YYYY',
           ignoreReadonly: true,
-          useCurrent: true, //,
-          defaultDate: new Date()
-          // maxDate: new Date() //,
+          useCurrent: true,
+          maxDate: new Date()
 
         });
       });
     </script>
-
 </body>
 
 </html>

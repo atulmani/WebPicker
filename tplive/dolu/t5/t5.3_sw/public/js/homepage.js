@@ -12,9 +12,9 @@ auth.onAuthStateChanged(firebaseUser => {
       // userID = firebaseUser.uid;
       // GetUserRole(firebaseUser);
       GetProfileData()
-      .then(function (rec){
+        .then(function (rec) {
           getTournamentSummary();
-      });
+        });
 
 
       //document.getElementById('ifSignedIn').innerHTML = 'Hi Sanidhya';
@@ -34,8 +34,7 @@ auth.onAuthStateChanged(firebaseUser => {
 async function GetProfileData() {
   var userProfile = JSON.parse(localStorage.getItem("userProfile"));
   if (userProfile != undefined && userProfile != "" && userProfile != null) {
-    if(userLocation === "")
-    {
+    if (userLocation === "") {
       userLocation = userProfile.City;
       localStorage['userLocation'] = userLocation;
     }
@@ -50,17 +49,16 @@ async function GetProfileData() {
   return;
 }
 
-function getInstallationPrompt()
-{
+function getInstallationPrompt() {
   // console.log("in getInstallationPrompt");
-  if(deferredPrompt){
+  if (deferredPrompt) {
     deferredPrompt.prompt();
 
-    deferredPrompt.userChoice.then(function(choiceResult){
+    deferredPrompt.userChoice.then(function (choiceResult) {
       // console.log(choiceResult.outcome);
-      if(choiceResult.outcome === "dismissed"){
+      if (choiceResult.outcome === "dismissed") {
         // console.log("user cancelled installation");
-      }else{
+      } else {
         // console.log("user added to home screen");
       }
     });
@@ -184,20 +182,20 @@ function getTournamentSummary() {
 
 function getEventList(filter) {
   var para = {};
-   console.log(userLocation);
-   if(userLocation === undefined || userLocation === "" || userLocation === null){
-     userLocation="All";
-     document.getElementById('location').innerHTML = "Location";
-     document.getElementById('location').innerHTML = "Location";
-   }else{
-     document.getElementById('location').innerHTML = userLocation;
-     document.getElementById('location1').innerHTML = userLocation;
-   }
+  console.log(userLocation);
+  if (userLocation === undefined || userLocation === "" || userLocation === null) {
+    userLocation = "All";
+    document.getElementById('location').innerHTML = "Location";
+    document.getElementById('location').innerHTML = "Location";
+  } else {
+    document.getElementById('location').innerHTML = userLocation;
+    document.getElementById('location1').innerHTML = userLocation;
+  }
   para = {
     eventStatus: "Active",
-    City : userLocation,
+    City: userLocation,
   };
-   // console.log(para);
+  // console.log(para);
   var ret = "";
   //if (filter === "All") {
 
@@ -209,7 +207,7 @@ function getEventList(filter) {
   // console.log('getAllEventWithEventStatusAndLocation');
   //}
   ret(para).then(results => {
-     // console.log("From Function " + results.data);
+    // console.log("From Function " + results.data);
 
     var para3 = {};
     para3 = {
@@ -219,50 +217,49 @@ function getEventList(filter) {
     // const ret3 = firebase.functions().httpsCallable("getAllEventEntryCount");
     // const ret3 = functions.httpsCallable("getAllEventEntryCount");
     // ret3().then(results1 => {
-      // console.log("From Function getEventsEntryCount recLength : " + results1.data.length);
-      // console.log(results1.data);
-      // console.log("From Function " + results.data[0].resultsid);
-      console.log(results.data.length);
-      for (index = 0; index < results.data.length; index++) {
-        var entryCount = 0;
-         // console.log(results.data[index].EventCode);
-        // var indEntry = results1.data.findIndex(e => e.EventID === results.data[index].Eventid);
-        // console.log(indEntry);
-        // if (indEntry >= 0)
-          // entryCount = Number(results1.data[indEntry].EntryCount);
+    // console.log("From Function getEventsEntryCount recLength : " + results1.data.length);
+    // console.log(results1.data);
+    // console.log("From Function " + results.data[0].resultsid);
+    console.log(results.data.length);
+    for (index = 0; index < results.data.length; index++) {
+      var entryCount = 0;
+      // console.log(results.data[index].EventCode);
+      // var indEntry = results1.data.findIndex(e => e.EventID === results.data[index].Eventid);
+      // console.log(indEntry);
+      // if (indEntry >= 0)
+      // entryCount = Number(results1.data[indEntry].EntryCount);
 
-        // console.log(results.data[index]);
-         RenderEventDetails(index, results.data[index], results.data[index].EntryCount);
-      }
-      // document.getElementById('loading').style.display = 'none';
-    })
-    .then(function (res){
-        //activate first item of both pard items
-        var bigimage = $("#big");
-        var thumbs = $("#thumbs");
-        var bigList =bigimage.data("owl.carousel").$element.context.firstElementChild.firstChild;
-        var bigIndex = 0;
-        for (i = 0 ; i<bigList.childNodes.length ; i++)
-        {
-          if(!bigList.childNodes[i].classList.contains('cloned')){
-            bigIndex = i;
-            break;
-          }
+      // console.log(results.data[index]);
+      RenderEventDetails(index, results.data[index], results.data[index].EntryCount);
+    }
+    // document.getElementById('loading').style.display = 'none';
+  })
+    .then(function (res) {
+      //activate first item of both pard items
+      var bigimage = $("#big");
+      var thumbs = $("#thumbs");
+      var bigList = bigimage.data("owl.carousel").$element.context.firstElementChild.firstChild;
+      var bigIndex = 0;
+      for (i = 0; i < bigList.childNodes.length; i++) {
+        if (!bigList.childNodes[i].classList.contains('cloned')) {
+          bigIndex = i;
+          break;
         }
-        // console.log(bigIndex);
-        bigimage
+      }
+      // console.log(bigIndex);
+      bigimage
         .find(".owl-item")
         .removeClass("active")
         .eq(bigIndex)
         .addClass("active");
 
-        thumbs
-          .find(".owl-item")
-          .removeClass("current")
-          .eq(0)
-          .addClass("current");
+      thumbs
+        .find(".owl-item")
+        .removeClass("current")
+        .eq(0)
+        .addClass("current");
 
-          document.getElementById('eventLoading').style.display = 'none';
+      document.getElementById('eventLoading').style.display = 'none';
 
     });
   // });
@@ -311,33 +308,32 @@ function getLocationEvent(location, cnt) {
           RenderEventDetails(index, results.data[index], entryCount);
         }
       })
-      .then(function (res){
-        //activate first item of both pard items
-        var bigimage = $("#big");
-        var thumbs = $("#thumbs");
-        var bigList =bigimage.data("owl.carousel").$element.context.firstElementChild.firstChild;
-        var bigIndex = 0;
-        for (i = 0 ; i<bigList.childNodes.length ; i++)
-        {
-          if(!bigList.childNodes[i].classList.contains('cloned')){
-            bigIndex = i;
-            break;
+        .then(function (res) {
+          //activate first item of both pard items
+          var bigimage = $("#big");
+          var thumbs = $("#thumbs");
+          var bigList = bigimage.data("owl.carousel").$element.context.firstElementChild.firstChild;
+          var bigIndex = 0;
+          for (i = 0; i < bigList.childNodes.length; i++) {
+            if (!bigList.childNodes[i].classList.contains('cloned')) {
+              bigIndex = i;
+              break;
+            }
           }
-        }
-        // console.log(bigIndex);
-        bigimage
-        .find(".owl-item")
-        .removeClass("active")
-        .eq(bigIndex)
-        .addClass("active");
+          // console.log(bigIndex);
+          bigimage
+            .find(".owl-item")
+            .removeClass("active")
+            .eq(bigIndex)
+            .addClass("active");
 
-        thumbs
-          .find(".owl-item")
-          .removeClass("current")
-          .eq(0)
-          .addClass("current");
+          thumbs
+            .find(".owl-item")
+            .removeClass("current")
+            .eq(0)
+            .addClass("current");
 
-      });
+        });
     });
   }
 }
@@ -353,15 +349,15 @@ function removeallItem() {
   //  var indexToRemove = 1;
   //  $('.event-list-new').owlCarousel('remove', indexToRemove).owlCarousel('update');
 }
-function cartEventClick(eventcode){
+function cartEventClick(eventcode) {
   // console.log(eventcode);
 }
 
 function RenderEventDetails(index, doc, entryCount) {
-   console.log("Event Code : " + doc.EventCode + " :: EventStatus " + doc.EventStatus);
-   if(entryCount === undefined || entryCount === null || entryCount === ""){
-     entryCount = 0;
-   }
+  console.log("Event Code : " + doc.EventCode + " :: EventStatus " + doc.EventStatus);
+  if (entryCount === undefined || entryCount === null || entryCount === "") {
+    entryCount = 0;
+  }
   var curFormat = {
     style: 'currency',
     currency: 'INR',
@@ -377,11 +373,11 @@ function RenderEventDetails(index, doc, entryCount) {
   };
   //Adding item in thumb card item start
   var div11 = document.createElement("div");
-  div11.setAttribute("class","item " + doc.EventCode);
+  div11.setAttribute("class", "item " + doc.EventCode);
   // div11.setAttribute("onclick","cartEventClick('"+doc.EventCode+"')"  );
 
   var div12 = document.createElement("div");
-  div12.setAttribute("class","new-event-card");
+  div12.setAttribute("class", "new-event-card");
 
   var span11 = document.createElement("span");
   div12.appendChild(span11);
@@ -392,22 +388,21 @@ function RenderEventDetails(index, doc, entryCount) {
   var span13 = document.createElement("span");
   div12.appendChild(span13);
   //var scode = "";
-var sportCode = "";
+  var sportCode = "";
   var span14 = document.createElement("span");
   div12.appendChild(span14);
   var imgurl = "";
   var img11 = document.createElement("img");
-  img11.setAttribute("alt","");
+  img11.setAttribute("alt", "");
   if (doc.EventLogo != undefined && doc.EventLogo != null && doc.EventLogo != "") {
     img11.setAttribute("src", doc.EventLogo);
     // img11.setAttribute("src", "./img/event/test_banner.png");
 
-    if(doc.EventBannerLogo != undefined && doc.EventBannerLogo != null && doc.EventBannerLogo != "")
-    {
+    if (doc.EventBannerLogo != undefined && doc.EventBannerLogo != null && doc.EventBannerLogo != "") {
       imgurl = doc.EventBannerLogo;
       // imgurl = "./img/event/test_banner.png";
 
-    }else{
+    } else {
       imgurl = doc.EventLogo;
       // imgurl = "./img/event/test_banner.png";
 
@@ -451,53 +446,54 @@ var sportCode = "";
   div11.appendChild(div12);
 
   $('#thumbs').trigger('add.owl.carousel', [div11]).trigger('refresh.owl.carousel');
-//Adding item in thumb card item end
-//Adding item in banner card item starts
-var div1_1 = document.createElement("div");
-div1_1.setAttribute("class", "item " + doc.EventCode);
+  //Adding item in thumb card item end
+  //Adding item in banner card item starts
+  var div1_1 = document.createElement("div");
+  div1_1.setAttribute("class", "item " + doc.EventCode);
 
-var div1_2 = document.createElement("div");
-div1_2.setAttribute("class", "event-display-card" );
+  var div1_2 = document.createElement("div");
+  div1_2.setAttribute("class", "event-display-card");
 
-var div1_3 = document.createElement("div");
-div1_3.setAttribute("class", "row no-gutters" );
+  var div1_3 = document.createElement("div");
+  div1_3.setAttribute("class", "row no-gutters");
 
-var div1_4 = document.createElement("div");
-div1_4.setAttribute("class", "col-lg-5 col-md-12 col-sm-12" );
+  var div1_4 = document.createElement("div");
+  div1_4.setAttribute("class", "col-lg-5 col-md-12 col-sm-12");
 
-var div1_5 = document.createElement("div");
-div1_5.setAttribute("class", "content" );
+  var div1_5 = document.createElement("div");
+  div1_5.setAttribute("class", "content");
 
-var h1_1 = document.createElement("h1");
-h1_1.innerHTML = doc.EventName;
-div1_5.appendChild(h1_1);
+  var h1_1 = document.createElement("h1");
+  h1_1.innerHTML = doc.EventName;
+  div1_5.appendChild(h1_1);
+  console.log(doc.OrganizationName);
+  var h1_2 = document.createElement("h2");
+  if (doc.OrganizationName != null && doc.OrganizationName != undefined)
+    h1_2.innerHTML = doc.OrganizationName;
+  div1_5.appendChild(h1_2);
 
-var h1_2 = document.createElement("h2");
-h1_2.innerHTML = doc.EventOwnerName;
-div1_5.appendChild(h1_2);
+  var div1_6 = document.createElement("div");
+  div1_6.setAttribute("style", "position: relative;");
 
-var div1_6 = document.createElement("div");
-div1_6.setAttribute("style", "position: relative;" );
+  var h1_3 = document.createElement("h3");
+  h1_3.setAttribute("class", "rating");
 
-var h1_3 = document.createElement("h3");
-h1_3.setAttribute("class", "rating");
-
-var div1_7 = document.createElement("div");
-div1_7.setAttribute("class", "");
-var rating = doc.rating;
-if (rating === undefined || rating === "" || rating === null) {
-  rating = 5;
-}
-for (irat = 1; irat <= 5; irat++) {
-  var span = document.createElement("span");
-  span.setAttribute("class", "material-symbols-outlined");
-  if (irat <= rating) {
-    span.innerHTML = "star";
-  } else {
-    span.innerHTML = "grade";
+  var div1_7 = document.createElement("div");
+  div1_7.setAttribute("class", "");
+  var rating = doc.rating;
+  if (rating === undefined || rating === "" || rating === null) {
+    rating = 5;
   }
-  div1_7.appendChild(span);
-}
+  for (irat = 1; irat <= 5; irat++) {
+    var span = document.createElement("span");
+    span.setAttribute("class", "material-symbols-outlined");
+    if (irat <= rating) {
+      span.innerHTML = "star";
+    } else {
+      span.innerHTML = "grade";
+    }
+    div1_7.appendChild(span);
+  }
 
   var small = document.createElement("small");
   var ratingcnt = doc.ratingCount;
@@ -506,326 +502,323 @@ for (irat = 1; irat <= 5; irat++) {
   }
   small.innerHTML = ratingcnt;
   div1_7.appendChild(small);
-h1_3.appendChild(div1_7);
-div1_6.appendChild(h1_3);
-div1_5.appendChild(div1_6);
+  h1_3.appendChild(div1_7);
+  div1_6.appendChild(h1_3);
+  div1_5.appendChild(div1_6);
 
-var div1_8 = document.createElement("div");
-div1_8.setAttribute("class", "details");
+  var div1_8 = document.createElement("div");
+  div1_8.setAttribute("class", "details");
 
-var div1_9 = document.createElement("div");
-div1_9.setAttribute("class", "");
-// console.log(doc.City);
-var h1_3 = document.createElement("h3");
-h1_3.innerHTML = doc.City;
-div1_9.appendChild(h1_3);
+  var div1_9 = document.createElement("div");
+  div1_9.setAttribute("class", "");
+  // console.log(doc.City);
+  var h1_3 = document.createElement("h3");
+  h1_3.innerHTML = doc.City;
+  div1_9.appendChild(h1_3);
 
-var h1_4 = document.createElement("h4");
-h1_4.innerHTML = "Location";
-div1_9.appendChild(h1_4);
+  var h1_4 = document.createElement("h4");
+  h1_4.innerHTML = "Location";
+  div1_9.appendChild(h1_4);
 
-div1_8.appendChild(div1_9);
+  div1_8.appendChild(div1_9);
 
-var div1_10 = document.createElement("div");
-div1_10.setAttribute("class", "");
-// console.log(doc.EventStartDate);
-var h1_5 = document.createElement("h3");
-if (doc.EventStartDate != undefined && doc.EventStartDate != "" && doc.EventStartDate != null) {
-  var refdate = new Date(doc.EventStartDate._seconds * 1000);
-  h1_5.innerHTML = refdate.toLocaleDateString("en-IN", options);;
-} else {
-  h1_5.innerHTML = "-";
-}
-div1_10.appendChild(h1_5);
+  var div1_10 = document.createElement("div");
+  div1_10.setAttribute("class", "");
+  // console.log(doc.EventStartDate);
+  var h1_5 = document.createElement("h3");
+  if (doc.EventStartDate != undefined && doc.EventStartDate != "" && doc.EventStartDate != null) {
+    var refdate = new Date(doc.EventStartDate._seconds * 1000);
+    h1_5.innerHTML = refdate.toLocaleDateString("en-IN", options);;
+  } else {
+    h1_5.innerHTML = "-";
+  }
+  div1_10.appendChild(h1_5);
 
-var h1_6 = document.createElement("h4");
-h1_6.innerHTML = "Event Date";
-div1_10.appendChild(h1_6);
-div1_8.appendChild(div1_10);
+  var h1_6 = document.createElement("h4");
+  h1_6.innerHTML = "Event Date";
+  div1_10.appendChild(h1_6);
+  div1_8.appendChild(div1_10);
 
-var div1_11 = document.createElement("div");
-div1_11.setAttribute("class", "");
-// console.log(doc.MinimumFee);
-var h1_7 = document.createElement("h3");
-if (doc.MinimumFee != null && doc.MinimumFee != undefined && doc.MinimumFee != "") {
-  if (doc.MaximumFee != null && doc.MaximumFee != undefined && doc.MaximumFee != "") {
-    if (doc.MinimumFee != doc.MaximumFee) {
+  var div1_11 = document.createElement("div");
+  div1_11.setAttribute("class", "");
+  // console.log(doc.MinimumFee);
+  var h1_7 = document.createElement("h3");
+  if (doc.MinimumFee != null && doc.MinimumFee != undefined && doc.MinimumFee != "") {
+    if (doc.MaximumFee != null && doc.MaximumFee != undefined && doc.MaximumFee != "") {
+      if (doc.MinimumFee != doc.MaximumFee) {
         // console.log(doc.MinimumFee);
-      // h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat) + " - " + doc.MaximumFee.toLocaleString('en-IN', curFormat);
-      h1_7.innerHTML = Number(doc.MinimumFee).toLocaleString('en-IN', curFormat);
+        // h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat) + " - " + doc.MaximumFee.toLocaleString('en-IN', curFormat);
+        h1_7.innerHTML = Number(doc.MinimumFee).toLocaleString('en-IN', curFormat);
+      } else {
+        // console.log(doc.MinimumFee);
+        h1_7.innerHTML = Number(doc.MinimumFee).toLocaleString('en-IN', curFormat);
+      }
     } else {
       // console.log(doc.MinimumFee);
       h1_7.innerHTML = Number(doc.MinimumFee).toLocaleString('en-IN', curFormat);
     }
   } else {
     // console.log(doc.MinimumFee);
-    h1_7.innerHTML = Number(doc.MinimumFee).toLocaleString('en-IN', curFormat);
+    h1_7.innerHTML = "-";
   }
-} else {
-  // console.log(doc.MinimumFee);
-  h1_7.innerHTML = "-";
-}
-// console.log(h1_7);
-div1_11.appendChild(h1_7);
-// console.log(div1_11);
-var h1_8 = document.createElement("h4");
-h1_8.innerHTML = "Entry Fee";
-// console.log(h1_8);
-div1_11.appendChild(h1_8);
-// console.log(div1_11);
-div1_8.appendChild(div1_11);
-div1_5.appendChild(div1_8);
+  // console.log(h1_7);
+  div1_11.appendChild(h1_7);
+  // console.log(div1_11);
+  var h1_8 = document.createElement("h4");
+  h1_8.innerHTML = "Entry Fee";
+  // console.log(h1_8);
+  div1_11.appendChild(h1_8);
+  // console.log(div1_11);
+  div1_8.appendChild(div1_11);
+  div1_5.appendChild(div1_8);
 
-var div1_12 = document.createElement("div");
-div1_12.setAttribute("class", "button-div");
+  var div1_12 = document.createElement("div");
+  div1_12.setAttribute("class", "button-div");
 
-var button1 = document.createElement("button");
-button1.setAttribute("type", "button");
-// console.log(doc.EventCode);
-button1.setAttribute("onclick", "btnClickEvent('" + doc.SportName + "','" + doc.EventCode + "')");
-button1.setAttribute("class", "mybutton button5 event-card-button");
-button1.setAttribute("name", "button");
-if(doc.EventMode === undefined || doc.EventMode === null)
-{
-  doc.EventMode = "";
-}
-// console.log(doc.EventMode);
-if (  doc.EventMode.toUpperCase() === 'FIXTURE') {
-  button1.setAttribute("style", "background: linear-gradient(to right,#73e336,#08bf1a);");
-  button1.innerHTML = "<span>Draw</span>";
-} else if (doc.EventMode.toUpperCase() === 'BOOK') {
-  button1.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
-  button1.innerHTML = "<span>Book</span>";
-} else if (doc.EventStatus.toUpperCase() === 'CLOSED') {
-  button1.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
-  button1.innerHTML = "<span>Closed</span>";
-} else if (doc.EventStatus.toUpperCase() === 'HOLD') {
-  button1.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
-  button1.innerHTML = "<span>On Hold</span>";
-}else if (doc.EventStatus.toUpperCase() === 'CANCELLED') {
-  button1.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
-  button1.innerHTML = "<span>Cancelled</span>";
-} else {
-  button1.innerHTML = "<span>Details</span>";
-}
-
-
-// if (doc.PublishDrawFlag === 'YES') {
-//   button1.setAttribute("style", "background: linear-gradient(to right,#73e336,#08bf1a);");
-//   button1.innerHTML = "<span>Draw</span>";
-// } else if (doc.RegistrationOpenFlag === 'YES') {
-//   button1.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
-//   button1.innerHTML = "<span>Book</span>";
-// } else {
-//   button1.innerHTML = "<span>Details</span>";
-// }
-div1_12.appendChild(button1);
-// if (doc.SportName === 'Badminton') {
-//   scode = 'BD';
-// } else if (doc.SportName === 'Table Tennis') {
-//   scode = 'TT';
-// } else if (doc.SportName === 'Chess') {
-//   scode = 'CH';
-// } else if (doc.SportName === 'Skating') {
-//   scode = 'SK';
-// } else if (doc.SportName === 'Squash') {
-//   scode = 'SQ';
-// } else if (doc.SportName === 'Marathon') {
-//   scode = 'MA';
-// } else if (doc.SportName === 'Tennis') {
-//   scode = 'TN';
-// } else if (doc.SportName === 'Swimming') {
-//   scode = 'SW';
-// } else {
-//   scode = 'BD';
-// }
-// console.log(doc);
-var today = new Date();
-if(doc.EventStartDate != undefined && doc.EventStartDate != "" && doc.EventStartDate != null &&
-  doc.EventEndDate != undefined && doc.EventEndDate != "" && doc.EventEndDate != null  )
-  {
-var flagLive = false;
-var liveURL = "";
-var sDate = new Date(doc.EventStartDate._seconds * 1000);
-var eDate = new Date(doc.EventEndDate._seconds * 1000 + 60*60*24*1000);
-    // console.log(new Date(sDate) <= new Date(today));
-  // console.log("startdate : " +  doc.EventStartDate + ":: enddate : " + doc.EventEndDate + ":: doc.EventStatus " + doc.EventStatus  );
-if(sDate <= today && eDate >= today && doc.EventStatus.toUpperCase() === 'ACTIVE' ){
-
-  var anchor = document.createElement("a");
-  anchor.setAttribute("class","circle blink");
-  if (doc.EventCode != undefined && doc.EventCode != "" && doc.EventCode != null) {
-    if(doc.EventMode.toUpperCase() === 'FIXTURE')
-    {
-      liveURL = "https://tournamentplanner.in/screens/TPLive_Draws.aspx?SCode=" + sportCode + "&TCode=" + doc.EventCode;
-      anchor.setAttribute("href", "https://tournamentplanner.in/screens/TPLive_Draws.aspx?SCode=" + sportCode + "&TCode=" + doc.EventCode);
-    }
-    else {
-      liveURL = "https://tournamentplanner.in/screens/TPLive_TournamentDetails.aspx?SCode=" + sportCode + "&TCode=" + doc.EventCode;
-      anchor.setAttribute("href", "https://tournamentplanner.in/screens/TPLive_TournamentDetails.aspx?SCode=" + sportCode + "&TCode=" + doc.EventCode);
-    }
+  var button1 = document.createElement("button");
+  button1.setAttribute("type", "button");
+  // console.log(doc.EventCode);
+  button1.setAttribute("onclick", "btnClickEvent('" + doc.SportName + "','" + doc.EventCode + "')");
+  button1.setAttribute("class", "mybutton button5 event-card-button");
+  button1.setAttribute("name", "button");
+  if (doc.EventMode === undefined || doc.EventMode === null) {
+    doc.EventMode = "";
+  }
+  // console.log(doc.EventMode);
+  if (doc.EventMode.toUpperCase() === 'FIXTURE') {
+    button1.setAttribute("style", "background: linear-gradient(to right,#73e336,#08bf1a);");
+    button1.innerHTML = "<span>Draw</span>";
+  } else if (doc.EventMode.toUpperCase() === 'BOOK') {
+    button1.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
+    button1.innerHTML = "<span>Book</span>";
+  } else if (doc.EventStatus.toUpperCase() === 'CLOSED') {
+    button1.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
+    button1.innerHTML = "<span>Closed</span>";
+  } else if (doc.EventStatus.toUpperCase() === 'HOLD') {
+    button1.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
+    button1.innerHTML = "<span>On Hold</span>";
+  } else if (doc.EventStatus.toUpperCase() === 'CANCELLED') {
+    button1.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
+    button1.innerHTML = "<span>Cancelled</span>";
   } else {
-
-    liveURL = "https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA";
-    anchor.setAttribute("href", "https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA");
+    button1.innerHTML = "<span>Details</span>";
   }
-  flagLive = true;
-  var div1_13 = document.createElement("div");
-  div1_13.setAttribute("class","");
-  anchor.appendChild(div1_13);
 
-  var h1_a = document.createElement("h1");
-  h1_a.innerHTML = "Live";
-  anchor.appendChild(h1_a);
 
-  div1_12.appendChild(anchor);
-}
-}
+  // if (doc.PublishDrawFlag === 'YES') {
+  //   button1.setAttribute("style", "background: linear-gradient(to right,#73e336,#08bf1a);");
+  //   button1.innerHTML = "<span>Draw</span>";
+  // } else if (doc.RegistrationOpenFlag === 'YES') {
+  //   button1.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
+  //   button1.innerHTML = "<span>Book</span>";
+  // } else {
+  //   button1.innerHTML = "<span>Details</span>";
+  // }
+  div1_12.appendChild(button1);
+  // if (doc.SportName === 'Badminton') {
+  //   scode = 'BD';
+  // } else if (doc.SportName === 'Table Tennis') {
+  //   scode = 'TT';
+  // } else if (doc.SportName === 'Chess') {
+  //   scode = 'CH';
+  // } else if (doc.SportName === 'Skating') {
+  //   scode = 'SK';
+  // } else if (doc.SportName === 'Squash') {
+  //   scode = 'SQ';
+  // } else if (doc.SportName === 'Marathon') {
+  //   scode = 'MA';
+  // } else if (doc.SportName === 'Tennis') {
+  //   scode = 'TN';
+  // } else if (doc.SportName === 'Swimming') {
+  //   scode = 'SW';
+  // } else {
+  //   scode = 'BD';
+  // }
+  // console.log(doc);
+  var today = new Date();
+  if (doc.EventStartDate != undefined && doc.EventStartDate != "" && doc.EventStartDate != null &&
+    doc.EventEndDate != undefined && doc.EventEndDate != "" && doc.EventEndDate != null) {
+    var flagLive = false;
+    var liveURL = "";
+    var sDate = new Date(doc.EventStartDate._seconds * 1000);
+    var eDate = new Date(doc.EventEndDate._seconds * 1000 + 60 * 60 * 24 * 1000);
+    // console.log(new Date(sDate) <= new Date(today));
+    // console.log("startdate : " +  doc.EventStartDate + ":: enddate : " + doc.EventEndDate + ":: doc.EventStatus " + doc.EventStatus  );
+    if (sDate <= today && eDate >= today && doc.EventStatus.toUpperCase() === 'ACTIVE') {
 
-div1_5.appendChild(div1_12);
-div1_4.appendChild(div1_5);
-div1_3.appendChild(div1_4);
+      var anchor = document.createElement("a");
+      anchor.setAttribute("class", "circle blink");
+      if (doc.EventCode != undefined && doc.EventCode != "" && doc.EventCode != null) {
+        if (doc.EventMode.toUpperCase() === 'FIXTURE') {
+          liveURL = "https://tournamentplanner.in/screens/TPLive_Draws.aspx?SCode=" + sportCode + "&TCode=" + doc.EventCode;
+          anchor.setAttribute("href", "https://tournamentplanner.in/screens/TPLive_Draws.aspx?SCode=" + sportCode + "&TCode=" + doc.EventCode);
+        }
+        else {
+          liveURL = "https://tournamentplanner.in/screens/TPLive_TournamentDetails.aspx?SCode=" + sportCode + "&TCode=" + doc.EventCode;
+          anchor.setAttribute("href", "https://tournamentplanner.in/screens/TPLive_TournamentDetails.aspx?SCode=" + sportCode + "&TCode=" + doc.EventCode);
+        }
+      } else {
 
-var div1_14 = document.createElement("div");
-div1_14.setAttribute("class","col-lg-7 col-md-12 col-sm-12");
+        liveURL = "https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA";
+        anchor.setAttribute("href", "https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA");
+      }
+      flagLive = true;
+      var div1_13 = document.createElement("div");
+      div1_13.setAttribute("class", "");
+      anchor.appendChild(div1_13);
 
-var div1_15 = document.createElement("div");
-div1_15.setAttribute("class","image");
+      var h1_a = document.createElement("h1");
+      h1_a.innerHTML = "Live";
+      anchor.appendChild(h1_a);
 
-var img1_2 = document.createElement("img");
-img1_2.setAttribute("src",imgurl);
-img1_2.setAttribute("width","100%");
-img1_2.setAttribute("alt","");
-div1_15.appendChild(img1_2);
-div1_14.appendChild(div1_15);
-div1_3.appendChild(div1_14);
+      div1_12.appendChild(anchor);
+    }
+  }
 
-var div1_16 = document.createElement("div");
-div1_16.setAttribute("class","col-lg-12 col-md-12 col-sm-12");
+  div1_5.appendChild(div1_12);
+  div1_4.appendChild(div1_5);
+  div1_3.appendChild(div1_4);
 
-var div1_17 = document.createElement("div");
-div1_17.setAttribute("class","mobile-content");
-var div1_171 = document.createElement("div");
-div1_171.setAttribute("class","mobile-content-below-div");
-// doc.EventName = doc.EventName.toLowerCase();
-// doc.EventName ="ecl puECL PUYVAST - PSM OPEN JUNIOR e BADMINTON TOURNAMENTgggggg ggg ff"
-var h1_11 = document.createElement("h1");
-if(doc.EventName.length < 70){
-  h1_11.innerHTML = doc.EventName;
-}else {
-  var ename = doc.EventName.substr(0,66);
-  ename = ename + " ...";
-  h1_11.innerHTML = ename;
-}
+  var div1_14 = document.createElement("div");
+  div1_14.setAttribute("class", "col-lg-7 col-md-12 col-sm-12");
 
-div1_171.appendChild(h1_11);
+  var div1_15 = document.createElement("div");
+  div1_15.setAttribute("class", "image");
 
-var div1_18 = document.createElement("div");
-div1_18.setAttribute("class", "button-div");
+  var img1_2 = document.createElement("img");
+  img1_2.setAttribute("src", imgurl);
+  img1_2.setAttribute("width", "100%");
+  img1_2.setAttribute("alt", "");
+  div1_15.appendChild(img1_2);
+  div1_14.appendChild(div1_15);
+  div1_3.appendChild(div1_14);
 
-var button11 = document.createElement("button");
-button11.setAttribute("type", "button");
-button11.setAttribute("onclick", "btnClickEvent('" + doc.SportName + "','" + doc.EventCode + "')");
-button11.setAttribute("class", "mybutton button5 event-card-button");
-button11.setAttribute("name", "button");
-// console.log(doc.EventMode);
-if (doc.EventMode.toUpperCase() === 'FIXTURE') {
-  button11.setAttribute("style", "background: linear-gradient(to right,#73e336,#08bf1a);");
-  button11.innerHTML = "<span>Draw</span>";
-} else if (doc.EventMode.toUpperCase() === 'BOOK') {
-  button11.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
-  button11.innerHTML = "<span>Book</span>";
-}else if (doc.EventStatus.toUpperCase() === 'CLOSED') {
-  button11.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
-  button11.innerHTML = "<span>Closed</span>";
-} else if (doc.EventStatus.toUpperCase() === 'HOLD') {
-  button11.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
-  button11.innerHTML = "<span>On Hold</span>";
-}else if (doc.EventStatus.toUpperCase() === 'CANCELLED') {
-  button11.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
-  button11.innerHTML = "<span>Cancelled</span>";
-} else {
-  button11.innerHTML = "<span>Details</span>";
-}
+  var div1_16 = document.createElement("div");
+  div1_16.setAttribute("class", "col-lg-12 col-md-12 col-sm-12");
 
-div1_18.appendChild(button11);
+  var div1_17 = document.createElement("div");
+  div1_17.setAttribute("class", "mobile-content");
+  var div1_171 = document.createElement("div");
+  div1_171.setAttribute("class", "mobile-content-below-div");
+  // doc.EventName = doc.EventName.toLowerCase();
+  // doc.EventName ="ecl puECL PUYVAST - PSM OPEN JUNIOR e BADMINTON TOURNAMENTgggggg ggg ff"
+  var h1_11 = document.createElement("h1");
+  if (doc.EventName.length < 70) {
+    h1_11.innerHTML = doc.EventName;
+  } else {
+    var ename = doc.EventName.substr(0, 66);
+    ename = ename + " ...";
+    h1_11.innerHTML = ename;
+  }
 
-var div1_19 = document.createElement("div");
-div1_19.setAttribute("class", "");
-div1_19.setAttribute("style", "display: flex; align-items: center;");
+  div1_171.appendChild(h1_11);
 
-var h1_51 = document.createElement("h5");
+  var div1_18 = document.createElement("div");
+  div1_18.setAttribute("class", "button-div");
 
-  h1_51.setAttribute("style","color: #fff; position:relative; top: 5px; left: -0px;padding-right: 10px;")
+  var button11 = document.createElement("button");
+  button11.setAttribute("type", "button");
+  button11.setAttribute("onclick", "btnClickEvent('" + doc.SportName + "','" + doc.EventCode + "')");
+  button11.setAttribute("class", "mybutton button5 event-card-button");
+  button11.setAttribute("name", "button");
+  // console.log(doc.EventMode);
+  if (doc.EventMode.toUpperCase() === 'FIXTURE') {
+    button11.setAttribute("style", "background: linear-gradient(to right,#73e336,#08bf1a);");
+    button11.innerHTML = "<span>Draw</span>";
+  } else if (doc.EventMode.toUpperCase() === 'BOOK') {
+    button11.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
+    button11.innerHTML = "<span>Book</span>";
+  } else if (doc.EventStatus.toUpperCase() === 'CLOSED') {
+    button11.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
+    button11.innerHTML = "<span>Closed</span>";
+  } else if (doc.EventStatus.toUpperCase() === 'HOLD') {
+    button11.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
+    button11.innerHTML = "<span>On Hold</span>";
+  } else if (doc.EventStatus.toUpperCase() === 'CANCELLED') {
+    button11.setAttribute("style", "background: linear-gradient(to right,#ff5f95, #e62525);");
+    button11.innerHTML = "<span>Cancelled</span>";
+  } else {
+    button11.innerHTML = "<span>Details</span>";
+  }
 
-if (doc.EventStartDate != undefined && doc.EventStartDate != "" && doc.EventStartDate != null) {
-  var refdate = new Date(doc.EventStartDate._seconds * 1000);
-  h1_51.innerHTML = refdate.toLocaleDateString("en-IN", options);;
-} else {
-  h1_51.innerHTML = "-";
-}
-div1_19.appendChild(h1_51);
+  div1_18.appendChild(button11);
 
-var span11 = document.createElement("span");
-  if(flagLive){
+  var div1_19 = document.createElement("div");
+  div1_19.setAttribute("class", "");
+  div1_19.setAttribute("style", "display: flex; align-items: center;");
 
-    span11.setAttribute("style","color: #fff;position:relative;left: -0px;padding-right: 35px;font-size: 1.3rem;");
+  var h1_51 = document.createElement("h5");
+
+  h1_51.setAttribute("style", "color: #fff; position:relative; top: 5px; left: -0px;padding-right: 10px;")
+
+  if (doc.EventStartDate != undefined && doc.EventStartDate != "" && doc.EventStartDate != null) {
+    var refdate = new Date(doc.EventStartDate._seconds * 1000);
+    h1_51.innerHTML = refdate.toLocaleDateString("en-IN", options);;
+  } else {
+    h1_51.innerHTML = "-";
+  }
+  div1_19.appendChild(h1_51);
+
+  var span11 = document.createElement("span");
+  if (flagLive) {
+
+    span11.setAttribute("style", "color: #fff;position:relative;left: -0px;padding-right: 35px;font-size: 1.3rem;");
   }
   else {
-    span11.setAttribute("style","color: #fff;position:relative;left: -0px;padding-right: 10px;font-size: 1.3rem;");
+    span11.setAttribute("style", "color: #fff;position:relative;left: -0px;padding-right: 10px;font-size: 1.3rem;");
   }
-span11.innerHTML = '|';
-div1_19.appendChild(span11);
-if(!flagLive ){
-  var h1_52 = document.createElement("h5");
-  h1_52.setAttribute("style","color: #fff;position: relative;top: 5px;")
-  if (doc.MinimumFee != null && doc.MinimumFee != undefined && doc.MinimumFee != "") {
-    if (doc.MaximumFee != null && doc.MaximumFee != undefined && doc.MaximumFee != "") {
-      if (doc.MinimumFee != doc.MaximumFee) {
-        // h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat) + " - " + doc.MaximumFee.toLocaleString('en-IN', curFormat);
-        h1_52.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat);
+  span11.innerHTML = '|';
+  div1_19.appendChild(span11);
+  if (!flagLive) {
+    var h1_52 = document.createElement("h5");
+    h1_52.setAttribute("style", "color: #fff;position: relative;top: 5px;")
+    if (doc.MinimumFee != null && doc.MinimumFee != undefined && doc.MinimumFee != "") {
+      if (doc.MaximumFee != null && doc.MaximumFee != undefined && doc.MaximumFee != "") {
+        if (doc.MinimumFee != doc.MaximumFee) {
+          // h32.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat) + " - " + doc.MaximumFee.toLocaleString('en-IN', curFormat);
+          h1_52.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat);
+        } else {
+          h1_52.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat);
+        }
       } else {
         h1_52.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat);
       }
     } else {
-      h1_52.innerHTML = doc.MinimumFee.toLocaleString('en-IN', curFormat);
+      h1_52.innerHTML = "-";
     }
+    div1_19.appendChild(h1_52);
+
   } else {
-    h1_52.innerHTML = "-";
+    var divL1 = document.createElement("div");
+    divL1.setAttribute("class", "");
+    var anchorL = document.createElement("a");
+    anchorL.setAttribute("class", "circle blink");
+    anchorL.setAttribute("href", liveURL);
+    var divL2 = document.createElement("div");
+    divL2.setAttribute("class", "");
+    divL2.setAttribute("style", "top: 15px;");
+    anchorL.appendChild(divL2);
+
+    var hL = document.createElement("h1");
+    hL.innerHTML = "Live";
+    anchorL.appendChild(hL);
+    divL1.appendChild(anchorL);
+    div1_19.appendChild(divL1);
   }
-  div1_19.appendChild(h1_52);
-
-}else {
-  var divL1 = document.createElement("div");
-  divL1.setAttribute("class","");
-  var anchorL = document.createElement("a");
-  anchorL.setAttribute("class","circle blink");
-  anchorL.setAttribute("href",liveURL);
-  var divL2 = document.createElement("div");
-  divL2.setAttribute("class","");
-  divL2.setAttribute("style","top: 15px;");
-  anchorL.appendChild(divL2);
-
-  var hL = document.createElement("h1");
-  hL.innerHTML = "Live";
-  anchorL.appendChild(hL);
-  divL1.appendChild(anchorL);
-  div1_19.appendChild(divL1);
-}
 
 
 
-div1_18.appendChild(div1_19);
-div1_171.appendChild(div1_18);
-div1_17.appendChild(div1_171);
-div1_16.appendChild(div1_17);
-div1_3.appendChild(div1_16);
-div1_2.appendChild(div1_3);
-div1_1.appendChild(div1_2);
-// $('#event-list-new').trigger('add.owl.carousel', [div1]).trigger('refresh.owl.carousel');
-$('#big').trigger('add.owl.carousel', [div1_1]).trigger('refresh.owl.carousel');
+  div1_18.appendChild(div1_19);
+  div1_171.appendChild(div1_18);
+  div1_17.appendChild(div1_171);
+  div1_16.appendChild(div1_17);
+  div1_3.appendChild(div1_16);
+  div1_2.appendChild(div1_3);
+  div1_1.appendChild(div1_2);
+  // $('#event-list-new').trigger('add.owl.carousel', [div1]).trigger('refresh.owl.carousel');
+  $('#big').trigger('add.owl.carousel', [div1_1]).trigger('refresh.owl.carousel');
 
-//Adding item in banner card item end
+  //Adding item in banner card item end
 
 
 }
@@ -1387,7 +1380,7 @@ function profileDirection(profiletag) {
 // }
 
 
-$(document).ready(function() {
+$(document).ready(function () {
   var bigimage = $("#big");
   var thumbs = $("#thumbs");
   // var totalslides = 4;
@@ -1398,8 +1391,8 @@ $(document).ready(function() {
       items: 1,
       // slideSpeed: 2000,
       smartSpeed: 3000,
-      autoplayTimeout: 10000,
-      nav: false,
+      autoplayTimeout: 15000,
+      nav: true,
       autoplay: true,
       dots: false,
       loop: true,
@@ -1414,7 +1407,7 @@ $(document).ready(function() {
     .on("changed.owl.carousel", syncPosition);
 
   thumbs
-    .on("initialized.owl.carousel", function() {
+    .on("initialized.owl.carousel", function () {
       thumbs
         .find(".owl-item")
         // .first()
@@ -1442,7 +1435,7 @@ $(document).ready(function() {
       responsive: {
         0: {
           items: 2,
-           slideby: 2
+          slideby: 2
         },
         600: {
           items: 4,
@@ -1459,26 +1452,26 @@ $(document).ready(function() {
       },
     })
     .on("changed.owl.carousel", syncPosition2);
-    var prePosition = -1;
-    var firstPosition = -1;
+  var prePosition = -1;
+  var firstPosition = -1;
   function syncPosition(el) {
     // console.log('in syncPosition');
     //if loop is set to false, then you have to uncomment the next line
-    var current = el.item.index ;
-    var count = el.item.count -1;
+    var current = el.item.index;
+    var count = el.item.count - 1;
     // console.log(el);
     var tCode = "";
     var thumbIndex = 0;
     // console.log('prePosition : ' + prePosition + ' :: current : '+ current );
     // var tCount = bigimage.data("owl.carousel").$element.context.firstElementChild.firstChild.childNodes.length ;
-     // console.log(tCount);
+    // console.log(tCount);
     if (current != null) {
       tCode = bigimage.data("owl.carousel").$element.context.firstElementChild.firstChild.childNodes[current].childNodes[0].classList[1];
       for (j = 0; j < thumbs.data("owl.carousel").$element.context.firstElementChild.firstChild.childNodes.length; j++) {
         if (!thumbs.data("owl.carousel").$element.context.firstElementChild.firstChild.childNodes[j].classList.contains('cloned')) {
           if (thumbs.data("owl.carousel").$element.context.firstElementChild.firstChild.childNodes[j].childNodes[0].classList[1] === tCode) {
             thumbIndex = j;
-            if(firstPosition === -1){
+            if (firstPosition === -1) {
               firstPosition = thumbIndex;
             }
             break;
@@ -1497,7 +1490,7 @@ $(document).ready(function() {
       //   syncedSecondary = true;
       // }
       // prePosition = current;
-    }else {
+    } else {
       // prePosition = 0;
 
     }
@@ -1517,9 +1510,9 @@ $(document).ready(function() {
       .removeClass("current")
       .eq(thumbIndex)
       .addClass("current");
-      //.addClass("active");
+    //.addClass("active");
 
-  //  thumbs.data("owl.carousel").to(thumbIndex, 100, true);
+    //  thumbs.data("owl.carousel").to(thumbIndex, 100, true);
 
     var onscreen = thumbs.find(".owl-item.active").length - 1;
     var start = thumbs
@@ -1531,9 +1524,9 @@ $(document).ready(function() {
       .find(".owl-item.active")
       .last()
       .index();
-      // console.log('thumbIndex : '+ thumbIndex + " :: firstPosition : " + firstPosition + " :: start : " + start + " :: end : " + end );
-      // console.log('thumbIndex : '+ thumbIndex + " :: start : " + start + " :: end : " + end );
-    if( thumbIndex === firstPosition){
+    // console.log('thumbIndex : '+ thumbIndex + " :: firstPosition : " + firstPosition + " :: start : " + start + " :: end : " + end );
+    // console.log('thumbIndex : '+ thumbIndex + " :: start : " + start + " :: end : " + end );
+    if (thumbIndex === firstPosition) {
       thumbs.data("owl.carousel").to(0, 100, true);
     }
     else if (thumbIndex > end) {
@@ -1549,42 +1542,41 @@ $(document).ready(function() {
   function syncPosition2(el) {
     // console.log('in syncPosition2');
     var number = el.item.index;
-     // console.log('number : ', number, ":: syncedSecondary" , syncedSecondary);
-     // console.log(el);
+    // console.log('number : ', number, ":: syncedSecondary" , syncedSecondary);
+    // console.log(el);
 
-////
-if(number != null)
-{
-// console.log(number);
-var thumbList =thumbs.data("owl.carousel").$element.context.firstElementChild.firstChild.childNodes[number];
-  // console.log(thumbList);
-var tCode = thumbList.firstChild.classList[1];
-// console.log(tCode);
-var bigList =bigimage.data("owl.carousel").$element.context.firstElementChild.firstChild;
-var bigIndex = 0;
-for (j = 0; j < bigimage.data("owl.carousel").$element.context.firstElementChild.firstChild.childNodes.length; j++) {
-  if (!bigimage.data("owl.carousel").$element.context.firstElementChild.firstChild.childNodes[j].classList.contains('cloned')) {
-    if (bigimage.data("owl.carousel").$element.context.firstElementChild.firstChild.childNodes[j].childNodes[0].classList[1] === tCode) {
-      bigIndex = j;
+    ////
+    if (number != null) {
+      // console.log(number);
+      var thumbList = thumbs.data("owl.carousel").$element.context.firstElementChild.firstChild.childNodes[number];
+      // console.log(thumbList);
+      var tCode = thumbList.firstChild.classList[1];
+      // console.log(tCode);
+      var bigList = bigimage.data("owl.carousel").$element.context.firstElementChild.firstChild;
+      var bigIndex = 0;
+      for (j = 0; j < bigimage.data("owl.carousel").$element.context.firstElementChild.firstChild.childNodes.length; j++) {
+        if (!bigimage.data("owl.carousel").$element.context.firstElementChild.firstChild.childNodes[j].classList.contains('cloned')) {
+          if (bigimage.data("owl.carousel").$element.context.firstElementChild.firstChild.childNodes[j].childNodes[0].classList[1] === tCode) {
+            bigIndex = j;
 
-      break;
+            break;
+          }
+        }
+      }
+      // console.log(bigIndex);
+      bigimage
+        .find(".owl-item")
+        .removeClass("active")
+        .eq(bigIndex)
+        .addClass("active");
     }
-  }
-}
-// console.log(bigIndex);
-bigimage
-.find(".owl-item")
-.removeClass("active")
-.eq(bigIndex)
-.addClass("active");
-}
-else {
-  if (syncedSecondary) {
-      bigimage.data("owl.carousel").to(number, 100, true);
-     // bigimage.data("owl.carousel").to(0, 100, true);
-  }
-}
-/////
+    else {
+      if (syncedSecondary) {
+        bigimage.data("owl.carousel").to(number, 100, true);
+        // bigimage.data("owl.carousel").to(0, 100, true);
+      }
+    }
+    /////
 
 
     // else{
@@ -1592,11 +1584,11 @@ else {
     // }
   }
 
-  thumbs.on("click", ".owl-item", function(e) {
+  thumbs.on("click", ".owl-item", function (e) {
     e.preventDefault();
     var number = $(this).index();
-    if(number != 0 )
-    bigimage.data("owl.carousel").to(number, 300, true);
+    if (number != 0)
+      bigimage.data("owl.carousel").to(number, 300, true);
   });
 
 

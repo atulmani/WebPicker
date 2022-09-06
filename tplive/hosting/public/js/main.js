@@ -5,7 +5,7 @@ if (!window.Promise) {
   window.Promise = Promise;
 }
 
-window.addEventListener('beforeinstallpromt', function(event) {
+window.addEventListener('beforeinstallpromt', function (event) {
   // console.log('beforeinstallpromt fierd');
   event.preventDefault();
   deferredPrompt = event;
@@ -40,19 +40,19 @@ function displayConfirmNotification1() {
       image: "/img/4.png",
       //tag:"confirm-notification",
       actions: [{
-          action: "confirm",
-          title: "Confirm",
-          icon: "/img/TPLiVE-96x96.png"
-        },
-        {
-          action: "cancel",
-          title: "Cancel",
-          icon: "/img/TPLiVE-96x96.png"
-        },
+        action: "confirm",
+        title: "Confirm",
+        icon: "/img/TPLiVE-96x96.png"
+      },
+      {
+        action: "cancel",
+        title: "Cancel",
+        icon: "/img/TPLiVE-96x96.png"
+      },
       ]
     };
     navigator.serviceWorker.ready
-      .then(function(swreg) {
+      .then(function (swreg) {
         // console.log('before no/tification');
         swreg.showNotification("Subscription Successful!!", options);
         // new Notification("Subscription Successful!!", options);
@@ -62,7 +62,7 @@ function displayConfirmNotification1() {
 }
 
 function askForNotification() {
-  Notification.requestPermission(function(result) {
+  Notification.requestPermission(function (result) {
     // console.log('user choice', result);
     if (result != 'granted') {
       // console.log('Permission not grated');
@@ -79,14 +79,14 @@ function askForNotification() {
 function subscribePush() {
   //Subscribes user to Push notifications
   registration.pushManager.subscribe({
-      userVisibleOnly: true //Set user to see every notification
-    })
-    .then(function(subscription) {
+    userVisibleOnly: true //Set user to see every notification
+  })
+    .then(function (subscription) {
       toast('Subscribed successfully.');
       console.info('Push notification subscribed.');
       // console.log(subscription);
     })
-    .catch(function(error) {
+    .catch(function (error) {
       console.error('Push notification subscription error: ', error);
     });
 }
@@ -121,15 +121,15 @@ function subscribePush() {
 
 // sideNavbar - start
 
-// var hamberIcon = document.getElementById('hamberIcon');
+var hamberIcon = document.getElementById('hamberIcon');
 var fullContent = document.getElementById('fullContent');
 var sideNavbar = document.getElementById('sideNavbar');
 
-// hamberIcon.addEventListener('click', sideNavbarOpen, false);
-//
-// function sideNavbarOpen(){
-//   sideNavbar.classList.add('open');
-// }
+hamberIcon.addEventListener('click', sideNavbarOpen, false);
+
+function sideNavbarOpen() {
+  sideNavbar.classList.add('open');
+}
 
 fullContent.addEventListener('click', sideNavbarClose, false);
 
@@ -140,8 +140,33 @@ function sideNavbarClose() {
 
 // sideNavbar - end
 
+// switch - start
+
+function propertyToggleClick(propertyType, leftTXT, rightTXT) {
+
+  var leftTXTVar = document.getElementById(leftTXT);
+  var rightTXTVar = document.getElementById(rightTXT);
+  // var propertyType = document.getElementById(objToggle);
+  // console.log('propertyType', objToggle);
+  leftTXTVar.classList.remove('active');
+  rightTXTVar.classList.remove('active');
+
+  if (propertyType.classList.contains('on')) {
+    propertyType.classList.remove('on');
+    propertyType.classList.add('off');
+    rightTXTVar.classList.add('active');
+  } else if (propertyType.classList.contains('off')) {
+    propertyType.classList.remove('off');
+    propertyType.classList.add('on');
+    leftTXTVar.classList.add('active');
+  }
+
+}
+
+// switch - end
+
 // Menu's nav-link highlighted those are active - start
-$(".nav .nav-link").on("click", function() {
+$(".nav .nav-link").on("click", function () {
   $(".nav").find(".active").removeClass("active");
   $(this).addClass("active");
 });
@@ -150,14 +175,14 @@ function btclr() {
   srchcl.style.background = "#348DCB";
 }
 
-document.addEventListener("contextmenu", function(e) {
+document.addEventListener("contextmenu", function (e) {
   e.preventDefault();
 }, false);
 
 // Menu's nav-link highlighted those are active - end
 
 // fixed-top or sticky-top navbar background change on windows scrolling - start
-$(window).scroll(function() {
+$(window).scroll(function () {
   var scroll = $(window).scrollTop();
   if (scroll < 70) {
     $('.sticky-top').removeClass("sticky");
@@ -166,7 +191,7 @@ $(window).scroll(function() {
   }
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
   var owl = $('#genre-list');
   owl.owlCarousel({
     margin: 20,
@@ -195,7 +220,7 @@ $(document).ready(function() {
   });
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
   var owl = $('#genre-location-list');
   owl.owlCarousel({
     margin: 20,
@@ -222,7 +247,7 @@ $(document).ready(function() {
   });
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
   var owl = $('#genre-location-list-new');
   owl.owlCarousel({
     margin: 20,
@@ -250,7 +275,7 @@ $(document).ready(function() {
   });
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
   var owl = $('#partners-carousel');
   owl.owlCarousel({
     margin: 20,
@@ -276,7 +301,7 @@ $(document).ready(function() {
   });
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
   var owl = $('#ads-carousel');
   owl.owlCarousel({
     margin: 40,
@@ -383,7 +408,7 @@ $(document).ready(function() {
 //   });
 // });
 //
-$(document).ready(function() {
+$(document).ready(function () {
   var owl = $('#banner-list');
   owl.owlCarousel({
     margin: 10,
@@ -410,7 +435,7 @@ $(document).ready(function() {
   });
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
   var owl = $('#banner-list-new');
   owl.owlCarousel({
     margin: 10,
