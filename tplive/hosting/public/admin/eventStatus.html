@@ -388,7 +388,7 @@
                         </div><br>
 
                         <ul>
-                            <li>
+                            <li class="active">
                                 <b></b>
                                 <b></b>
                                 <a href="eventStatus.html">
@@ -436,7 +436,7 @@
                                 </div>
                             </li>
 
-                            <li class="active">
+                            <li>
                                 <a href="eventCategory.html">
                                     <b></b>
                                     <b></b>
@@ -587,224 +587,381 @@
                     </div>
                     <hr style="border: none;border-top: 1px solid #888;" />
 
-                    <!-- event category & fees - start -->
-                    <div class="update-event-form" id="EventCategoryForm4">
+                    <!-- status form - start -->
+                    <div class="update-event-form" id="EventStatusForm1">
 
                         <div class="event-detail-main-menu-heading">
-                            <h1>CATEGORY & FEES</h1>
+                            <h1>EVENT STATUS</h1>
                         </div><br>
 
-                        <div class="category-save-div">
-                            <button type="button" style="width: 100px;" onclick="SaveCategory();"
-                                class="mybutton button5">SAVE</button>
-                        </div>
+                        <div class="white-div">
+                            <div class="row no-gutters">
+                                <div class="col-lg-4 col-md-6 col-sm-12 event-status-right-border"><br>
+                                    <input type="hidden" id="hfEventID">
+                                    <div class="txt_field" style="margin: 15px 0;border: none;">
+                                        <label class="labelsize active" style="top: -10px;">Status</label>
+                                    </div>
 
-                        <div class="white-div"><br>
+                                    <div class="row no-gutters">
 
-                            <div class="categoryAndFees-category-section">
-                                <input type="hidden" id="hfEventID">
-                                <!-- <div class="row no-gutters" id="CategoryDetailsDiv"> -->
-                                <div class="row no-gutters">
+                                        <div class="col-6 event-label-div">
 
-                                    <div class="col-lg-4 col-md-6 col-sm-12" onclick="ShowAddCategory();">
-                                        <div class="category-card add-category">
-                                            <span class="material-symbols-outlined">
-                                                add
-                                            </span>
-                                            <h1>ADD CATEGORY</h1>
-                                        </div><br>
+                                            <input type="radio" class="checkbox" style="width: 0px;" name="EventStatus"
+                                                id="Active" value="Active">
+                                            <label onclick="saveEventStatus('Active')" class="checkbox-label"
+                                                id="Active-label" for="Active">
+                                                <i class="fas fa-plus"
+                                                    style="padding-right: 2px;font-size: 0.6rem;"></i>
+                                                <i class="fas fa-check"
+                                                    style="padding-right: 2px;font-size: 0.6rem;"></i>
+                                                <span>Active</span>
+                                            </label>
 
+                                        </div>
+
+                                        <div class="col-6 event-label-div">
+
+                                            <input type="radio" class="checkbox" style="width: 0px;" name="EventStatus"
+                                                id="Inactive" value="Inactive">
+                                            <label onclick="saveEventStatus('Inactive')" class="checkbox-label"
+                                                id="Inactive-label" for="Inactive">
+                                                <i class="fas fa-plus"
+                                                    style="padding-right: 2px;font-size: 0.6rem;"></i>
+                                                <i class="fas fa-check"
+                                                    style="padding-right: 2px;font-size: 0.6rem;"></i>
+                                                <span>Inactive</span>
+                                            </label>
+
+                                        </div>
+
+
+                                        <div class="col-6 event-label-div">
+
+                                            <input type="radio" class="checkbox" style="width: 0px;" name="EventStatus"
+                                                id="Closed" value="Closed">
+                                            <label onclick="saveEventStatus('Closed')" class="checkbox-label"
+                                                id="Closed-label" for="Closed">
+                                                <i class="fas fa-plus"
+                                                    style="padding-right: 2px;font-size: 0.6rem;"></i>
+                                                <i class="fas fa-check"
+                                                    style="padding-right: 2px;font-size: 0.6rem;"></i>
+                                                <span>Closed</span>
+                                            </label>
+
+                                        </div>
+
+                                        <div class="col-6 event-label-div">
+
+                                            <input type="radio" class="checkbox" style="width: 0px;" name="EventStatus"
+                                                id="Onhold" value="Onhold">
+                                            <label onclick="saveEventStatus('HOLD')" class="checkbox-label"
+                                                id="Onhold-label" for="Onhold">
+                                                <i class="fas fa-plus"
+                                                    style="padding-right: 2px;font-size: 0.6rem;"></i>
+                                                <i class="fas fa-check"
+                                                    style="padding-right: 2px;font-size: 0.6rem;"></i>
+                                                <span>Onhold</span>
+                                            </label>
+
+                                        </div>
+
+                                        <div class="col-6 event-label-div">
+
+                                            <input type="radio" class="checkbox" style="width: 0px;" name="EventStatus"
+                                                id="Cancelled" value="Cancelled">
+                                            <label onclick="saveEventStatus('Cancelled')" class="checkbox-label"
+                                                id="Cancelled-label" for="Cancelled">
+                                                <i class="fas fa-plus"
+                                                    style="padding-right: 2px;font-size: 0.6rem;"></i>
+                                                <i class="fas fa-check"
+                                                    style="padding-right: 2px;font-size: 0.6rem;"></i>
+                                                <span>Cancelled</span>
+                                            </label>
+
+                                        </div>
 
                                     </div>
 
-                                    <div id="divAddCategory" style="display: none;" class="col-lg-4 col-md-6 col-sm-12">
+                                </div>
 
-                                        <div class="category-card" style="position: relative;">
-                                            <input type="text" id="catNameAdd" placeholder="Category Name"
-                                                class="category-name">
-                                            <div class="gender-event-div">
-                                                <div>
-                                                    <small style="display: none;">MALE</small>
-                                                    <select name="" id="genderAdd">
-                                                        <option value="">MALE</option>
-                                                        <option value="">FEMAL</option>
-                                                        <option value="">MIXED</option>
-                                                    </select>
-                                                </div>
-                                                <span>|</span>
-                                                <div>
-                                                    <small style="display: none;">SINGLE</small>
-                                                    <select name="" id="catTypeAdd">
-                                                        <option value="">SINGLE</option>
-                                                        <option value="">DOUBLE</option>
-                                                        <option value="">TEAM</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="born-before-div">
-                                                <h3 onclick="changeDateRef('add')">
-                                                    <span>Born</span>
-                                                    <div id="dateRefFlagadd" class="before">
-                                                        <span> Before </span>
-                                                        <span class="material-symbols-outlined">
-                                                            keyboard_arrow_down
-                                                        </span>
-                                                        <span> After </span>
-                                                    </div>
-                                                    <span>:</span>
-                                                </h3>
-                                                <h4 style="display: none;width: 100%;">1 Jan 2007</h4>
-                                                <div class="input-group date datetimepicker11"
-                                                    style="width: 70%;opacity: 1;pointer-events: all;">
-                                                    <input id="RegistrationOpenDateAdd"
-                                                        style="height: 35px; background: #fff; border-right: 1px solid #ddd;"
-                                                        type="text" placeholder="Cut Off Date" class="form-control"
-                                                        readonly>
-                                                    <div id="divDtVal20" class="input-group-addon input-group-prepend">
-                                                        <span class="input-group-text"
-                                                            style="height: 35px; background: #fff; border: none; border-radius: 0 4px 4px 0;"><i
-                                                                class="fas fa-calendar"
-                                                                style="font-size: 0.9em; color: #666;"></i></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="born-before-div">
-                                                <h3>Fees : </h3>
-                                                <input type="text" id="feeAdd" value="₹0">
-                                            </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12 event-status-left-border"><br>
 
+                                    <div class="txt_field" style="margin: 15px 0;border: none;">
+                                        <label class="labelsize active" style="top: -10px;">Mode</label>
+                                    </div>
 
+                                    <div class="row no-gutters">
 
-                                            <div class="category-card-edit" onclick="addCategory();">
-                                                <div>
-                                                    <span class="material-symbols-outlined">
-                                                        delete
-                                                    </span>
-                                                    <small>DELETE</small>
-                                                </div>
-                                                <span id="errorMessage" class="errorMessage" style="display:none;">Enter
-                                                    All details</span>
-                                                <div style="text-align: right;">
-                                                    <span class="material-symbols-outlined">
-                                                        edit_square
-                                                    </span>
-                                                    <small>ADD</small>
-                                                </div>
-                                            </div>
-                                        </div><br>
+                                        <div class="col-6 event-label-div">
+
+                                            <input type="radio" class="checkbox" style="width: 0px;" name="EventMode"
+                                                id="Open" value="Open">
+                                            <label onclick="saveEventMode('Open')" class="checkbox-label"
+                                                id="Open-label" for="Open">
+                                                <i class="fas fa-plus"
+                                                    style="padding-right: 2px;font-size: 0.6rem;"></i>
+                                                <i class="fas fa-check"
+                                                    style="padding-right: 2px;font-size: 0.6rem;"></i>
+                                                <span>Open</span>
+                                            </label>
+
+                                        </div>
+
+                                        <div class="col-6 event-label-div">
+
+                                            <input type="radio" class="checkbox" style="width: 0px;" name="EventMode"
+                                                id="Fixture" value="Fixture">
+                                            <label class="checkbox-label" onclick="saveEventMode('Fixture')"
+                                                id="Fixture-label" for="Fixture">
+                                                <i class="fas fa-plus"
+                                                    style="padding-right: 2px;font-size: 0.6rem;"></i>
+                                                <i class="fas fa-check"
+                                                    style="padding-right: 2px;font-size: 0.6rem;"></i>
+                                                <span>Fixture</span>
+                                            </label>
+
+                                        </div>
+
+                                        <div class="col-6" style="padding: 5px 10px;">
+
+                                            <input type="radio" class="checkbox" style="width: 0px;" name="EventMode"
+                                                id="Book" value="Book">
+                                            <label class="checkbox-label" onclick="saveEventMode('Book')"
+                                                id="Book-label" for="Book">
+                                                <i class="fas fa-plus"
+                                                    style="padding-right: 2px;font-size: 0.6rem;"></i>
+                                                <i class="fas fa-check"
+                                                    style="padding-right: 2px;font-size: 0.6rem;"></i>
+                                                <span>Book</span>
+                                            </label>
+
+                                        </div>
 
                                     </div>
-                                    <!-- 
-                                    <div class="col-lg-4 col-md-6 col-sm-12" id="catDiv0">
-                                        <div class="category-card"><input type="text" id="catID0" class="category-name"
-                                                readonly="true"><input type="hidden" id="catNameID0"
-                                                class="category-name" value="BS U11">
-                                            <div class="gender-event-div">
-                                                <div><small id="gender0">MALE</small><select id="selectGender0"
-                                                        style="display:none;">
-                                                        <option value="MALE" selected="true">MALE</option>
-                                                        <option value="FEMALE">FEMALE</option>
-                                                        <option value="MIXED">MIXED</option>
-                                                    </select></div><span>|</span>
-                                                <div><small id="catType0">SINGLE</small><select id="selectType0"
-                                                        style="display:none;">
-                                                        <option value="SINGLE">SINGLE</option>
-                                                        <option value="DOUBLE">DOUBLE</option>
-                                                        <option value="TEAM">TEAM</option>
-                                                    </select></div>
-                                            </div>
-                                            <div class="born-before-div">
-                                                <h3 onclick="changeDateRef(0)"><span>Born</span>
-                                                    <div id="dateRefFlag0" class="before"><span>Before</span><span
-                                                            class="material-symbols-outlined">keyboard_arrow_down</span><span>After</span>
-                                                    </div><span>:</span>
-                                                </h3>
-                                                <h4 id="refDate0" style="width: 100%;">6 Sept 22</h4>
-                                                <div id="dtDiv0" class="input-group date datetimepicker11"
-                                                    style="width: 70%;opacity: 0;pointer-events: none;"><input
-                                                        id="RegistrationOpenDate0"
-                                                        style="height: 35px; background: #fff; border-right: 1px solid #ddd;"
-                                                        type="text" placeholder="Reg Start Date" class="form-control"
-                                                        readonly="true" value="6 Sept 22">
-                                                    <div class="input-group-addon input-group-prepend"><span
-                                                            class="input-group-text"
-                                                            style="height: 35px; background: #fff; border: none; border - radius: 0 4px 4px 0"><i
-                                                                class="fas fa-calendar"
-                                                                style="font-size: 0.9em; color: #666;"></i></span></div>
-                                                </div>
-                                            </div>
-                                            <div class="born-before-div">
-                                                <h3>Fees : </h3><input type="text" readonly="true" id="fee0">
-                                            </div>
-                                            <div class="category-card-edit" onclick="SetEditMode(0);">
-                                                <div>
-                                                    <span class="material-symbols-outlined">
-                                                        delete
-                                                    </span>
-                                                    <small>DELETE</small>
-                                                </div>
-                                                <span id="errorMessage" class="errorMessage">Enter
-                                                    All details</span>
-                                                <div style="text-align: right;">
-                                                    <span class="material-symbols-outlined">edit_square</span>
-                                                    <small id="button0">Edit</small>
-                                                </div>
-                                            </div>
-                                        </div><br>
-                                    </div> -->
 
-                                    <div class="row no-gutters" id="CategoryDetailsDiv"></div>
-                                    <!-- <div class="col-lg-4 col-md-6 col-sm-12">
-                    
-                                             <div class="category-card">
-                                              <input type="text" readonly value="BS - U15" class="category-name">
-                                              <div class="gender-event-div">
-                                                <div>
-                                                  <small>MALE</small>
-                                                  <select style="display: none;" name="" id="">
-                                                    <option value="">MALE</option>
-                                                    <option value="">FEMAL</option>
-                                                    <option value="">MIXED</option>
-                                                  </select>
-                                                </div>
-                                                <span>|</span>
-                                                <div>
-                                                  <small>SINGLE</small>
-                                                  <select style="display: none;" name="" id="">
-                                                    <option value="">SINGLE</option>
-                                                    <option value="">DOUBLE</option>
-                                                    <option value="">TEAM</option>
-                                                  </select>
-                                                </div>
-                                              </div>
-                                              <div class="born-before-div">
-                                                <h3>Born Before : </h3>
-                                                <input type="text" readonly value="1 Jan 2007">
-                                              </div>
-                                              <div class="born-before-div">
-                                                <h3>Fees : </h3>
-                                                <input type="text" readonly value="₹0">
-                                              </div>
-                    
-                                              <div class="category-card-edit">
-                                                <span class="material-symbols-outlined">
-                                                  edit_square
-                                                </span>
-                                                <small>EDIT</small>
-                                              </div>
-                                            </div><br>
-                    
-                                          </div>  -->
+                                </div>
 
+                                <div class="col-lg-12 col-md-12 col-sm-12"><br>
+                                    <hr class="event-update-hr" />
+
+                                    <div class="txt_field"
+                                        style="margin: 15px 0;border: none;display: flex;justify-content: space-between;align-items: center;">
+
+                                        <label class="labelsize active"
+                                            style="position: relative;top: 10px;">Registration</label>
+
+                                        <div style="display: flex; justify-content: center;">
+                                            <div class="switch" style="height: calc(100% - 10px);">
+                                                <span class="" id="RegistrationOn" style="color: #59981A">On</span>
+
+                                                <div class="switch-button off" id="RegistrationToggleBtn"
+                                                    onclick="propertyToggleClick(RegistrationToggleBtn, 'RegistrationOn', 'RegistrationOff');SaveRegistrationflag();">
+                                                    <div class="switch-button-inner"></div>
+                                                </div>
+
+                                                <span class="active" id="RegistrationOff"
+                                                    style="color: #EB542E">Off</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <hr class="event-update-hr" />
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                                    <div class="txt_field"
+                                        style="margin: 15px 0;border: none;display: flex;justify-content: space-between;align-items: center;">
+
+                                        <label class="labelsize active"
+                                            style="position: relative;top: 10px;">Payment</label>
+
+                                        <div style="display: flex; justify-content: center;">
+                                            <div class="switch" style="height: calc(100% - 10px);">
+                                                <span class="" id="PaymentOn" style="color: #59981A">On</span>
+
+                                                <div class="switch-button off" id="paymentToggleBtn"
+                                                    onclick="propertyToggleClick(paymentToggleBtn, 'PaymentOn', 'PaymentOff');SavePaymentflag();">
+                                                    <div class="switch-button-inner"></div>
+                                                </div>
+
+                                                <span class="active" id="PaymentOff" style="color: #EB542E">Off</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <hr class="event-update-hr" />
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                                    <div class="txt_field"
+                                        style="margin: 15px 0;border: none;display: flex;justify-content: space-between;align-items: center;">
+
+                                        <label class="labelsize active" style="position: relative;top: 10px;">Show
+                                            Participants</label>
+
+                                        <div style="display: flex; justify-content: center;">
+                                            <div class="switch" style="height: calc(100% - 10px);">
+                                                <span class="" id="ShowParticipantsOn" style="color: #59981A">On</span>
+
+                                                <div class="switch-button off" id="showParticipantToggleBtn"
+                                                    onclick="propertyToggleClick(showParticipantToggleBtn, 'ShowParticipantsOn', 'ShowParticipantsOff');SaveShowParticipantflag();">
+                                                    <div class="switch-button-inner"></div>
+                                                </div>
+
+                                                <span class="active" id="ShowParticipantsOff"
+                                                    style="color: #EB542E">Off</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <hr class="event-update-hr" />
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                                    <div class="txt_field"
+                                        style="margin: 15px 0;border: none;display: flex;justify-content: space-between;align-items: center;">
+
+                                        <label class="labelsize active" style="position: relative;top: 10px;">Show
+                                            Participants Post
+                                            Payment</label>
+
+                                        <div style="display: flex; justify-content: center;">
+                                            <div class="switch" style="height: calc(100% - 10px);">
+                                                <span class="" id="ShowParticipantsPostPaymentOn"
+                                                    style="color: #59981A">On</span>
+
+                                                <div class="switch-button off" id="showPostPaymentToggleBtn"
+                                                    onclick="propertyToggleClick(showPostPaymentToggleBtn, 'ShowParticipantsPostPaymentOn', 'ShowParticipantsPostPaymentOff');SaveShowParticipantPostPaymentflag();">
+                                                    <div class="switch-button-inner"></div>
+                                                </div>
+
+                                                <span class="active" id="ShowParticipantsPostPaymentOff"
+                                                    style="color: #EB542E">Off</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <hr class="event-update-hr" />
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                                    <div class="txt_field"
+                                        style="margin: 15px 0;border: none;display: flex;justify-content: space-between;align-items: center;">
+
+                                        <label class="labelsize active"
+                                            style="position: relative;top: 10px;">Draws</label>
+
+                                        <div style="display: flex; justify-content: center;">
+                                            <div class="switch" style="height: calc(100% - 10px);">
+                                                <span class="" id="DrawsOn" style="color: #59981A">On</span>
+
+                                                <div class="switch-button off" id="DrawsToggleBtn"
+                                                    onclick="propertyToggleClick(DrawsToggleBtn, 'DrawsOn', 'DrawsOff');SaveDrawPublishedFlag();">
+                                                    <div class="switch-button-inner"></div>
+                                                </div>
+
+                                                <span class="active" id="DrawsOff" style="color: #EB542E">Off</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <hr class="event-update-hr" />
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                                    <div class="txt_field"
+                                        style="margin: 15px 0;border: none;display: flex;justify-content: space-between;align-items: center;">
+
+                                        <label class="labelsize active"
+                                            style="position: relative;top: 10px;">Seed</label>
+
+                                        <div style="display: flex; justify-content: center;">
+                                            <div class="switch" style="height: calc(100% - 10px);">
+                                                <span class="" id="SeedOn" style="color: #59981A">On</span>
+
+                                                <div class="switch-button off" id="SeedToggleBtn"
+                                                    onclick="propertyToggleClick(SeedToggleBtn, 'SeedOn', 'SeedOff');SavePublishSeedFlag();">
+                                                    <div class="switch-button-inner"></div>
+                                                </div>
+
+                                                <span class="active" id="SeedOff" style="color: #EB542E">Off</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <hr class="event-update-hr" />
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                                    <div class="txt_field"
+                                        style="margin: 15px 0;border: none;display: flex;justify-content: space-between;align-items: center;">
+
+                                        <label class="labelsize active"
+                                            style="position: relative;top: 10px;">Result</label>
+
+                                        <div style="display: flex; justify-content: center;">
+                                            <div class="switch" style="height: calc(100% - 10px);">
+                                                <span class="" id="ResultOn" style="color: #59981A">On</span>
+
+                                                <div class="switch-button off" id="ResultToggleBtn"
+                                                    onclick="propertyToggleClick(ResultToggleBtn, 'ResultOn', 'ResultOff');SavePublishResultFlag();">
+                                                    <div class="switch-button-inner"></div>
+                                                </div>
+
+                                                <span class="active" id="ResultOff" style="color: #EB542E">Off</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <hr class="event-update-hr" />
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                                    <div class="txt_field"
+                                        style="margin: 15px 0;border: none;display: flex;justify-content: space-between;align-items: center;">
+
+                                        <label class="labelsize active"
+                                            style="position: relative;top: 10px;">Gallery</label>
+
+                                        <div style="display: flex; justify-content: center;">
+                                            <div class="switch" style="height: calc(100% - 10px);">
+                                                <span class="" id="GalleryOn" style="color: #59981A">On</span>
+
+                                                <div class="switch-button off" id="gallaryToggleBtn"
+                                                    onclick="propertyToggleClick(gallaryToggleBtn, 'GalleryOn', 'GalleryOff');SavePublishGalleryFlag();">
+                                                    <div class="switch-button-inner"></div>
+                                                </div>
+
+                                                <span class="active" id="GalleryOff" style="color: #EB542E">Off</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
 
                                 </div>
 
                             </div>
-
-                        </div>
+                        </div><br>
+                        <center id="saveMessage" style="display:none">
+                            <span id="confirmationMessage">Event details saved Successfully !! </span>
+                        </center>
 
                     </div>
-                    <!-- event category & fees - start -->
+                    <!-- status form - end -->
                 </div>
 
             </div>
@@ -1000,7 +1157,7 @@
 
         <script src="/js/firebase.js"></script>
         <script src="/js/main.js"></script>
-        <script src="/js/eventCategory.js"></script>
+        <script src="/js/eventStatus.js"></script>
 
         <!-- Owl Carousel Javascript  -->
         <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
@@ -1037,7 +1194,7 @@
         <script type="text/javascript">
             $(function () {
                 $('.datetimepicker11').datetimepicker({
-                    format: 'DD-MM-YYYY',
+                    format: 'MM-DD-YYYY',
                     ignoreReadonly: true,
                     useCurrent: true, //,
                     defaultDate: new Date()

@@ -328,7 +328,7 @@
             </a>
         </div>
         <!-- <a id="profiletag" onclick="profileDirection(profiletag)" class="new-user"> -->
-        <a href="../login/profile.html" class="new-user">
+        <a href="/login/profile.html" class="new-user">
             <span class="material-symbols-outlined">
                 person
             </span>
@@ -378,7 +378,6 @@
                                     <span id="userName"></span>
                                     <small id="userContact"></small>
                                 </div>
-
                             </div>
                             <div class="" style="color: #fff;">
                                 <span class="material-symbols-outlined">
@@ -420,7 +419,7 @@
                                 </div>
                             </li>
 
-                            <li>
+                            <li class="active">
                                 <a href="eventSetup.html">
                                     <b></b>
                                     <b></b>
@@ -436,7 +435,7 @@
                                 </div>
                             </li>
 
-                            <li class="active">
+                            <li>
                                 <a href="eventCategory.html">
                                     <b></b>
                                     <b></b>
@@ -587,224 +586,359 @@
                     </div>
                     <hr style="border: none;border-top: 1px solid #888;" />
 
-                    <!-- event category & fees - start -->
-                    <div class="update-event-form" id="EventCategoryForm4">
+                    <!-- event setup form - start -->
+                    <div class="update-event-form" id="EventSetupForm3">
 
                         <div class="event-detail-main-menu-heading">
-                            <h1>CATEGORY & FEES</h1>
+                            <h1>EVENT SETUP</h1>
                         </div><br>
 
-                        <div class="category-save-div">
-                            <button type="button" style="width: 100px;" onclick="SaveCategory();"
-                                class="mybutton button5">SAVE</button>
-                        </div>
+                        <div style="width: 100%;display: flex; justify-content: center;">
+
+                            <div class="event-details-sub-menu-parent-div">
+                                <div class="filter-btn" style="flex-direction: column;">
+                                    <div style="display: flex ;width: 100%;">
+                                        <div class="filter-btn-div event-details-sub-menu">
+                                            <button type="button" id='btnDetails'
+                                                class="mybutton buttonTransparent active"
+                                                onclick="changestatus('Details')" name="button">DETAILS</button>
+                                            <div class="indicator"></div>
+                                            <span id="active3"></span>
+                                            <span class="half" id="active4"></span>
+                                        </div>
+                                        <div class="filter-btn-div event-details-sub-menu">
+                                            <button type="button" id='btnNotice' class="mybutton buttonTransparent"
+                                                onclick="changestatus('Notice')" name="button">NOTICE
+                                                BOARD</button>
+                                            <div class="indicator"></div>
+                                            <span id="close3"></span>
+                                            <span class="half" id="close4"></span>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex ;width: 100%;">
+                                        <div class="filter-btn-div event-details-sub-menu">
+                                            <button type="button" id='btnAnnouncement'
+                                                class="mybutton buttonTransparent"
+                                                onclick="changestatus('Announcement')"
+                                                name="button">ANNOUNCEMENT</button>
+                                            <div class="indicator"></div>
+                                            <span id="close3"></span>
+                                            <span class="half" id="close4"></span>
+                                        </div>
+                                        <div class="filter-btn-div event-details-sub-menu">
+                                            <button type="button" id='btnRegulation' class="mybutton buttonTransparent"
+                                                onclick="changestatus('Regulation')" name="button">RULES &
+                                                REGULATIONS</button>
+                                            <div class="indicator"></div>
+                                            <span id="others3"></span>
+                                            <span class="half" id="others4"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div><br>
 
                         <div class="white-div"><br>
 
-                            <div class="categoryAndFees-category-section">
-                                <input type="hidden" id="hfEventID">
-                                <!-- <div class="row no-gutters" id="CategoryDetailsDiv"> -->
+                            <div id='detailsDiv' class="event-setup-details-section">
                                 <div class="row no-gutters">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
 
-                                    <div class="col-lg-4 col-md-6 col-sm-12" onclick="ShowAddCategory();">
-                                        <div class="category-card add-category">
-                                            <span class="material-symbols-outlined">
-                                                add
-                                            </span>
-                                            <h1>ADD CATEGORY</h1>
-                                        </div><br>
+                                        <div class="event-detail-input-div">
+                                            <label for="">Organization / Club</label>
+                                            <input type="text" id="organizationName" placeholder="Organization Name..."
+                                                required>
+                                            <input type="hidden" id="hfEventID">
+                                        </div>
 
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+
+                                        <div class="event-detail-input-div">
+                                            <label for="">Event Name</label>
+                                            <input type="text" id="eventNametb" placeholder="Enter Here..." required>
+                                        </div>
 
                                     </div>
 
-                                    <div id="divAddCategory" style="display: none;" class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
 
-                                        <div class="category-card" style="position: relative;">
-                                            <input type="text" id="catNameAdd" placeholder="Category Name"
-                                                class="category-name">
-                                            <div class="gender-event-div">
-                                                <div>
-                                                    <small style="display: none;">MALE</small>
-                                                    <select name="" id="genderAdd">
-                                                        <option value="">MALE</option>
-                                                        <option value="">FEMAL</option>
-                                                        <option value="">MIXED</option>
-                                                    </select>
-                                                </div>
-                                                <span>|</span>
-                                                <div>
-                                                    <small style="display: none;">SINGLE</small>
-                                                    <select name="" id="catTypeAdd">
-                                                        <option value="">SINGLE</option>
-                                                        <option value="">DOUBLE</option>
-                                                        <option value="">TEAM</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="born-before-div">
-                                                <h3 onclick="changeDateRef('add')">
-                                                    <span>Born</span>
-                                                    <div id="dateRefFlagadd" class="before">
-                                                        <span> Before </span>
-                                                        <span class="material-symbols-outlined">
-                                                            keyboard_arrow_down
-                                                        </span>
-                                                        <span> After </span>
-                                                    </div>
-                                                    <span>:</span>
-                                                </h3>
-                                                <h4 style="display: none;width: 100%;">1 Jan 2007</h4>
-                                                <div class="input-group date datetimepicker11"
-                                                    style="width: 70%;opacity: 1;pointer-events: all;">
-                                                    <input id="RegistrationOpenDateAdd"
-                                                        style="height: 35px; background: #fff; border-right: 1px solid #ddd;"
-                                                        type="text" placeholder="Cut Off Date" class="form-control"
-                                                        readonly>
-                                                    <div id="divDtVal20" class="input-group-addon input-group-prepend">
-                                                        <span class="input-group-text"
-                                                            style="height: 35px; background: #fff; border: none; border-radius: 0 4px 4px 0;"><i
-                                                                class="fas fa-calendar"
-                                                                style="font-size: 0.9em; color: #666;"></i></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="born-before-div">
-                                                <h3>Fees : </h3>
-                                                <input type="text" id="feeAdd" value="₹0">
-                                            </div>
-
-
-
-                                            <div class="category-card-edit" onclick="addCategory();">
-                                                <div>
-                                                    <span class="material-symbols-outlined">
-                                                        delete
-                                                    </span>
-                                                    <small>DELETE</small>
-                                                </div>
-                                                <span id="errorMessage" class="errorMessage" style="display:none;">Enter
-                                                    All details</span>
-                                                <div style="text-align: right;">
-                                                    <span class="material-symbols-outlined">
-                                                        edit_square
-                                                    </span>
-                                                    <small>ADD</small>
-                                                </div>
-                                            </div>
-                                        </div><br>
+                                        <div class="event-detail-input-div">
+                                            <label for="">Venue Address</label>
+                                            <input type="text" id="venueName" placeholder="Full Address..." required>
+                                        </div>
 
                                     </div>
-                                    <!-- 
-                                    <div class="col-lg-4 col-md-6 col-sm-12" id="catDiv0">
-                                        <div class="category-card"><input type="text" id="catID0" class="category-name"
-                                                readonly="true"><input type="hidden" id="catNameID0"
-                                                class="category-name" value="BS U11">
-                                            <div class="gender-event-div">
-                                                <div><small id="gender0">MALE</small><select id="selectGender0"
-                                                        style="display:none;">
-                                                        <option value="MALE" selected="true">MALE</option>
-                                                        <option value="FEMALE">FEMALE</option>
-                                                        <option value="MIXED">MIXED</option>
-                                                    </select></div><span>|</span>
-                                                <div><small id="catType0">SINGLE</small><select id="selectType0"
-                                                        style="display:none;">
-                                                        <option value="SINGLE">SINGLE</option>
-                                                        <option value="DOUBLE">DOUBLE</option>
-                                                        <option value="TEAM">TEAM</option>
-                                                    </select></div>
-                                            </div>
-                                            <div class="born-before-div">
-                                                <h3 onclick="changeDateRef(0)"><span>Born</span>
-                                                    <div id="dateRefFlag0" class="before"><span>Before</span><span
-                                                            class="material-symbols-outlined">keyboard_arrow_down</span><span>After</span>
-                                                    </div><span>:</span>
-                                                </h3>
-                                                <h4 id="refDate0" style="width: 100%;">6 Sept 22</h4>
-                                                <div id="dtDiv0" class="input-group date datetimepicker11"
-                                                    style="width: 70%;opacity: 0;pointer-events: none;"><input
-                                                        id="RegistrationOpenDate0"
-                                                        style="height: 35px; background: #fff; border-right: 1px solid #ddd;"
-                                                        type="text" placeholder="Reg Start Date" class="form-control"
-                                                        readonly="true" value="6 Sept 22">
-                                                    <div class="input-group-addon input-group-prepend"><span
-                                                            class="input-group-text"
-                                                            style="height: 35px; background: #fff; border: none; border - radius: 0 4px 4px 0"><i
-                                                                class="fas fa-calendar"
-                                                                style="font-size: 0.9em; color: #666;"></i></span></div>
-                                                </div>
-                                            </div>
-                                            <div class="born-before-div">
-                                                <h3>Fees : </h3><input type="text" readonly="true" id="fee0">
-                                            </div>
-                                            <div class="category-card-edit" onclick="SetEditMode(0);">
-                                                <div>
-                                                    <span class="material-symbols-outlined">
-                                                        delete
-                                                    </span>
-                                                    <small>DELETE</small>
-                                                </div>
-                                                <span id="errorMessage" class="errorMessage">Enter
-                                                    All details</span>
-                                                <div style="text-align: right;">
-                                                    <span class="material-symbols-outlined">edit_square</span>
-                                                    <small id="button0">Edit</small>
-                                                </div>
-                                            </div>
-                                        </div><br>
-                                    </div> -->
 
-                                    <div class="row no-gutters" id="CategoryDetailsDiv"></div>
-                                    <!-- <div class="col-lg-4 col-md-6 col-sm-12">
-                    
-                                             <div class="category-card">
-                                              <input type="text" readonly value="BS - U15" class="category-name">
-                                              <div class="gender-event-div">
-                                                <div>
-                                                  <small>MALE</small>
-                                                  <select style="display: none;" name="" id="">
-                                                    <option value="">MALE</option>
-                                                    <option value="">FEMAL</option>
-                                                    <option value="">MIXED</option>
-                                                  </select>
-                                                </div>
-                                                <span>|</span>
-                                                <div>
-                                                  <small>SINGLE</small>
-                                                  <select style="display: none;" name="" id="">
-                                                    <option value="">SINGLE</option>
-                                                    <option value="">DOUBLE</option>
-                                                    <option value="">TEAM</option>
-                                                  </select>
-                                                </div>
-                                              </div>
-                                              <div class="born-before-div">
-                                                <h3>Born Before : </h3>
-                                                <input type="text" readonly value="1 Jan 2007">
-                                              </div>
-                                              <div class="born-before-div">
-                                                <h3>Fees : </h3>
-                                                <input type="text" readonly value="₹0">
-                                              </div>
-                    
-                                              <div class="category-card-edit">
-                                                <span class="material-symbols-outlined">
-                                                  edit_square
-                                                </span>
-                                                <small>EDIT</small>
-                                              </div>
-                                            </div><br>
-                    
-                                          </div>  -->
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
 
+                                        <div class="event-detail-input-div">
+                                            <label for="">Venue POC Name & Contact</label>
+                                            <input type="text" id="vanueContact" placeholder="Name & Contact Here..."
+                                                required>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+
+                                        <div class="event-detail-input-div">
+                                            <label for="">Venue Map Google Link</label>
+                                            <input type="text" id="vanueMap" placeholder="Enter Map URL..." required>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+
+                                        <div class="event-detail-input-div">
+                                            <label for="">Registration Open Date</label>
+                                            <div class="input-group date datetimepicker11">
+                                                <input id="RegistrationOpenDate"
+                                                    style="height: 35px; background: #efefef; border-right: 1px solid #ddd;"
+                                                    type="text" placeholder="Registration Open Date"
+                                                    class="form-control" readonly>
+                                                <div class="input-group-addon input-group-prepend">
+                                                    <span class="input-group-text"
+                                                        style="height: 35px; background: #efefef; border: none; border-radius: 0 4px 4px 0;"><i
+                                                            class="fas fa-calendar"
+                                                            style="font-size: 0.9em; color: #666;"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+
+                                        <div class="event-detail-input-div">
+                                            <label for="">Registration Closed Date</label>
+                                            <div class="input-group date datetimepicker11">
+                                                <input id="RegistrationClosedDate"
+                                                    style="height: 35px; background: #efefef; border-right: 1px solid #ddd;"
+                                                    type="text" placeholder="Registration Open Date"
+                                                    class="form-control" readonly>
+                                                <div class="input-group-addon input-group-prepend">
+                                                    <span class="input-group-text"
+                                                        style="height: 35px; background: #efefef; border: none; border-radius: 0 4px 4px 0;"><i
+                                                            class="fas fa-calendar"
+                                                            style="font-size: 0.9em; color: #666;"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+
+                                        <div class="event-detail-input-div">
+                                            <label for="">Registration Withdraw Date</label>
+                                            <div class="input-group date datetimepicker11">
+                                                <input id="RegistrationWithdrawDate"
+                                                    style="height: 35px; background: #efefef; border-right: 1px solid #ddd;"
+                                                    type="text" placeholder="Registration Open Date"
+                                                    class="form-control" readonly>
+                                                <div class="input-group-addon input-group-prepend">
+                                                    <span class="input-group-text"
+                                                        style="height: 35px; background: #efefef; border: none; border-radius: 0 4px 4px 0;"><i
+                                                            class="fas fa-calendar"
+                                                            style="font-size: 0.9em; color: #666;"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+
+                                        <div class="event-detail-input-div">
+                                            <label for="">Event Start Date</label>
+                                            <div class="input-group date datetimepicker11">
+                                                <input id="EventStartDate"
+                                                    style="height: 35px; background: #efefef; border-right: 1px solid #ddd;"
+                                                    type="text" placeholder="Registration Open Date"
+                                                    class="form-control" readonly>
+                                                <div class="input-group-addon input-group-prepend">
+                                                    <span class="input-group-text"
+                                                        style="height: 35px; background: #efefef; border: none; border-radius: 0 4px 4px 0;"><i
+                                                            class="fas fa-calendar"
+                                                            style="font-size: 0.9em; color: #666;"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+
+                                        <div class="event-detail-input-div">
+                                            <label for="">Event End Date</label>
+                                            <div class="input-group date datetimepicker11">
+                                                <input id="EventEndDate"
+                                                    style="height: 35px; background: #efefef; border-right: 1px solid #ddd;"
+                                                    type="text" placeholder="Registration Open Date"
+                                                    class="form-control" readonly>
+                                                <div class="input-group-addon input-group-prepend">
+                                                    <span class="input-group-text"
+                                                        style="height: 35px; background: #efefef; border: none; border-radius: 0 4px 4px 0;"><i
+                                                            class="fas fa-calendar"
+                                                            style="font-size: 0.9em; color: #666;"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+
+                                        <div class="event-detail-input-div">
+                                            <label for="">MaxEntryLimit by One participant</label>
+                                            <input id="maxEntry" type="number" class="" value="0" required>
+                                        </div>
+
+                                    </div>
+
+                                    <div id="errorMsg" style="display:none;" class="col-lg-6 col-md-6 col-sm-12"><br>
+
+                                        <div class="event-detail-input-div">
+                                            <div></div>
+                                            <span id="errorMssage"></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12"><br>
+
+                                        <div class="event-details-save-btn-div">
+                                            <div></div>
+                                            <button class="mybutton button5 event-details-save-btn"
+                                                onclick="SaveEventDetails();" type="button">SAVE</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div id="noticeDiv" style="display:none;" class="event-setup-notice-board-section">
+
+                                <div class="row no-gutter">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="event-detail-input-div">
+                                            <label for="">Notice Board</label><br>
+                                            <small>( The below details will be displayed on Event Details page under
+                                                Notice Period
+                                                Section. User ; for new line seperator.)</small><br><br>
+                                            <textarea name="" id="noticeBoard" class=""></textarea>
+                                        </div>
+                                    </div>
+                                    <div id="errorMsgNotice" style="display:none;"
+                                        class="col-lg-12 col-md-12 col-sm-12"><br>
+
+                                        <div class="event-detail-input-div">
+                                            <div></div>
+                                            <span id="errorMssageNotice"></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12"><br>
+
+                                        <div class="event-details-save-btn-div">
+                                            <div></div>
+                                            <button class="mybutton button5 event-details-save-btn"
+                                                onclick="SaveNotice();" type="button">SAVE</button>
+                                        </div>
+
+                                    </div>
 
                                 </div>
 
                             </div>
 
-                        </div>
+                            <div id="accouncementDiv" style="display:none;" class="event-setup-announcement-section">
 
-                    </div>
-                    <!-- event category & fees - start -->
+                                <div class="row no-gutter">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="event-detail-input-div">
+                                            <label for="">Announcement</label>
+                                            <input type="text" id="accouncement" required placeholder="">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="add-more-line">
+                                            <div></div>
+                                            <a href="">ADD ONE MORE LINE</a>
+                                        </div>
+                                    </div>
+                                    <div id="errorMsgAnnouncement" style="display:none;"
+                                        class="col-lg-12 col-md-12 col-sm-12"><br>
+
+                                        <div class="event-detail-input-div">
+                                            <div></div>
+                                            <span id="errorMssageAnnouncement"></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12"><br>
+
+                                        <div class="event-details-save-btn-div">
+                                            <div></div>
+                                            <button class="mybutton button5 event-details-save-btn"
+                                                onclick="SaveAnnouncement();" type="button">SAVE</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div id="regulationDiv" style="display:none;" class="event-setup-announcement-section">
+
+                                <div class="row no-gutter">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="event-detail-input-div">
+                                            <label for="">Rules & Regulations</label>
+                                            <input type="text" id="rulesAndRegulation" required placeholder="">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="add-more-line">
+                                            <div></div>
+                                            <a href="">ADD ONE MORE LINE</a>
+                                        </div>
+                                    </div>
+                                    <div id="errorMsgRegulation" style="display:none;"
+                                        class="col-lg-12 col-md-12 col-sm-12"><br>
+
+                                        <div class="event-detail-input-div">
+                                            <div></div>
+                                            <span id="errorMssageRegulation"></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12"><br>
+
+                                        <div class="event-details-save-btn-div">
+                                            <div></div>
+                                            <button class="mybutton button5 event-details-save-btn"
+                                                onclick="SaveRegulation();" type="button">SAVE</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <br>
+                        </div>
+                    </div><br>
+                    <!-- event setup form - end -->
                 </div>
 
             </div>
@@ -1000,7 +1134,7 @@
 
         <script src="/js/firebase.js"></script>
         <script src="/js/main.js"></script>
-        <script src="/js/eventCategory.js"></script>
+        <script src="/js/eventSetup.js"></script>
 
         <!-- Owl Carousel Javascript  -->
         <!-- <script src="owlcarousel/owl.carousel.js"></script> -->
@@ -1037,7 +1171,7 @@
         <script type="text/javascript">
             $(function () {
                 $('.datetimepicker11').datetimepicker({
-                    format: 'DD-MM-YYYY',
+                    format: 'MM-DD-YYYY',
                     ignoreReadonly: true,
                     useCurrent: true, //,
                     defaultDate: new Date()

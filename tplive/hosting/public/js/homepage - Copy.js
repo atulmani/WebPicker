@@ -466,7 +466,7 @@ function RenderEventDetails(index, doc, entryCount) {
   var h1_1 = document.createElement("h1");
   h1_1.innerHTML = doc.EventName;
   div1_5.appendChild(h1_1);
-  console.log(doc.OrganizationName);
+
   var h1_2 = document.createElement("h2");
   if (doc.OrganizationName != null && doc.OrganizationName != undefined)
     h1_2.innerHTML = doc.OrganizationName;
@@ -1391,8 +1391,8 @@ $(document).ready(function () {
       items: 1,
       // slideSpeed: 2000,
       smartSpeed: 3000,
-      autoplayTimeout: 15000,
-      nav: true,
+      autoplayTimeout: 10000,
+      nav: false,
       autoplay: true,
       dots: false,
       loop: true,
@@ -1423,7 +1423,7 @@ $(document).ready(function () {
       // loop: true,
       // rewind: true,
       // slideSpeed: 500,
-      autoplayTimeout: 15000,
+      autoplayTimeout: 10000,
       margin: 0,
       stagePadding: 30,
       autoplay: true,

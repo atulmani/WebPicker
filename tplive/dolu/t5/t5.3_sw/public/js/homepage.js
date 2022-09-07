@@ -1423,7 +1423,7 @@ $(document).ready(function () {
       // loop: true,
       // rewind: true,
       // slideSpeed: 500,
-      autoplayTimeout: 10000,
+      autoplayTimeout: 15000,
       margin: 0,
       stagePadding: 30,
       autoplay: true,

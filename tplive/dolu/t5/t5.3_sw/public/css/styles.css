@@ -2822,7 +2822,7 @@ h6 {
 .mobile-content button span {
   font-size: 1.3rem;
   position: relative;
-  top: -5px;
+  top: -1px;
 }
 
 .event-display-card .content .button-div .circle,
@@ -4813,6 +4813,7 @@ input[type=number] {
 }
 
 .category-card {
+  position: relative;
   border-radius: 4px;
   padding: 15px 10px;
   background: #efefef;
@@ -4954,17 +4955,41 @@ input[type=number] {
 }
 
 .category-card-edit {
+  position: absolute;
+  bottom: 5px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   color: #348DCB;
   float: right;
+  width: calc(100% - 20px);
+}
+
+.category-card-edit .errorMessage {
+  position: relative;
+  top: 1px;
+  text-align: center;
+  color: #ff5757;
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+  font-size: 0.9rem;
+  font-weight: bold;
+  width: 40%;
+}
+
+.category-card-edit div {
+  width: 30%;
 }
 
 .category-card-edit span {
   position: relative;
   top: -3px;
   font-size: 1.3rem;
-  padding-right: 5px;
+}
+
+.category-card-edit span.material-symbols-outlined {
+  top: 4px;
 }
 
 .loading-full-div {
