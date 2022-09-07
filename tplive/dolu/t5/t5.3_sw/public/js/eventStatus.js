@@ -28,6 +28,14 @@ async function GetProfileData() {
     var userProfile = JSON.parse(localStorage.getItem("userProfile"));
     if (userProfile != undefined && userProfile != "" && userProfile != null) {
         if (userProfile.id != "0") {
+            document.getElementById("userName").innerHTML = userProfile.UserName;
+            document.getElementById("userContact").innerHTML = userProfile.Phone;
+            var listName = userProfile.UserName.split(" ");
+            var userSName = "";
+            for (i = 0; i < listName.length; i++) {
+                userSName = userSName + listName[i][0];
+            }
+            document.getElementById("userShortName").innerHTML = userSName;
 
             if (userProfile.UserRole.findIndex(e => e.TYPE === "ADMIN") >= 0 || userProfile.UserRole.findIndex(e => e.TYPE === "ORGANIZER") >= 0) {
                 console.log("in admin or organizer");
