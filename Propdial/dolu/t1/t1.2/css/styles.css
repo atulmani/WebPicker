@@ -739,7 +739,7 @@ h6 {
   align-items: center;
 }
 
-.user-name .user-logo {
+.user-logo-parent-div .user-logo {
   width: 80px;
   height: 80px;
   background: rgba(84, 204, 203);
@@ -750,17 +750,17 @@ h6 {
 }
 
 @media (max-width: 850px) {
-  .user-logo-parent-div {
+  /* .user-logo-parent-div {
     display: block;
-  }
+  } */
 
-  .user-name .user-logo {
-    width: 55px;
-    height: 55px;
+  .user-logo-parent-div .user-logo {
+    width: 48px;
+    height: 48px;
   }
 }
 
-.user-name .user-logo h4 {
+.user-logo-parent-div .user-logo h4 {
   position: relative;
   top: 5px;
   font-size: 1.2rem;
@@ -768,17 +768,20 @@ h6 {
   font-weight: 500;
 }
 
-.user-name .details {
+.user-name .details,
+.property-status-property-card .details {
   padding: 10px 15px;
 }
 
-.user-name .details h5 {
+.user-name .details h5,
+.property-status-property-card .details h5 {
   font-size: 1.3rem;
   color: #666;
   font-weight: 600;
 }
 
-.user-name .details p {
+.user-name .details p,
+.property-status-property-card .details p {
   margin: 0;
   color: #aaa;
   font-size: 0.9rem;
@@ -873,9 +876,17 @@ h6 {
 }
 
 .address-div .address-text h5 {
+  position: relative;
+  top: -5px;
   font-size: 1rem;
   color: #444;
   font-weight: 600;
+  margin-bottom: 0;
+}
+
+.address-div .address-text small {
+  font-size: 0.7rem;
+  color: #aaa;
 }
 
 .address-div .address-text div {
@@ -2280,10 +2291,8 @@ h6 {
 }
 
 .section-btn-div {
-  /* position: absolute; */
   width: 100%;
-  /* bottom: 10px; */
-  background: rgba(188, 236, 224, 0.5);
+  background: rgba(76, 215, 208, 0.2);
   padding: 0 10px;
 }
 
@@ -3287,3 +3296,40 @@ input[type=number] {
 }
 
 /* create property page - end */
+
+/* property status page - start */
+
+.property-status-property-card {
+  display: grid;
+  grid-template-columns: 15% 85%;
+}
+
+.property-status-property-card-active-toggle-div {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.property-status-padding-div {
+  padding: 10px;
+}
+
+.property-status-event-id {
+  top: 10px;
+}
+
+@media (max-width: 850px) {
+  .property-status-property-card-active-toggle-div {
+    justify-content: center;
+  }
+
+  .property-status-padding-div {
+    padding: 0;
+  }
+
+  .property-status-event-id {
+    top: 0;
+  }
+}
+
+/* property status page - end */

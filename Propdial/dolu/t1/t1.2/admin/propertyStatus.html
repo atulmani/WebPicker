@@ -45,7 +45,7 @@
 
 </head>
 
-<body>
+<body style="background: #efefef;">
     <!-- sidenav starts -->
 
     <nav class="navbar navbar-expand-lg sticky-top large ">
@@ -170,12 +170,13 @@
     <div id="fullContent" class="row no-gutters">
 
         <div class="col-lg-2">
-            <div class="side-navbar large" style="height: calc(100% - 40px);">
+            <div class="side-navbar large property-list-side-navbar"
+                style="height: calc(100% - 40px);background: #fff;">
                 <ul>
 
                     <li style="background: #EB542E;" class="active">
 
-                        <a href="dashboard.html">
+                        <a href="/login/profile.html">
 
 
                             <div style="display:flex; justify-content: space-between; margin: 0; width:100%;" class="">
@@ -390,196 +391,237 @@
 
             <div class="container-fluid">
 
-                <div class="row no-gutters" style="margin: 10px 0;">
+                <div class="full-profile-div" style="padding: 10px 0;">
 
-                    <div class="col-lg-6 col-md-6 col-sm-12"
-                        style="background: rgb(188, 236, 224, 0.5); padding: 10px 10px 0 10px;">
-                        <div class="switch" style="height: calc(100% - 10px);">
-                            <span class="active" id="ResidentialText" style="color: #59981A">Active</span>
-
-                            <div class="switch-button Residential" id="propertyTypeToggleBtn"
-                                onclick="propertyToggleClick(propertyTypeToggleBtn)">
-                                <div class="switch-button-inner"></div>
-                            </div>
-
-                            <span id="CommercialText" style="color: #EB542E">Inactive</span>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12"
-                        style="background: rgb(188, 236, 224, 0.5); padding: 10px 10px 0 10px;">
-                        <div class="details-radio">
-
+                    <div class="profile-card-div">
+                        <div class="content">
                             <div class="row no-gutters">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="property-status-property-card">
+                                        <div class="user-logo-parent-div">
+                                            <div class="user-logo">
+                                                <h4>AT</h4>
+                                            </div>
+                                        </div>
 
-                                <div class="col-6" style="padding: 0 5px;">
-                                    <input type="checkbox" checked class="checkbox" style="width: 0px;"
-                                        id="businessTypeRent" value="Rent">
-                                    <label class="checkbox-label"
-                                        onclick="openRentSection('businessTypeRent','businessTypeSale','Rent')"
-                                        id="Rent-label" for="businessTypeRent">
-                                        <i class="fas fa-plus"></i>
-                                        <i class="fas fa-check"></i>
-                                        <span>Rent</span>
-                                    </label>
+                                        <div class="details">
+                                            <h5>Atul Tripathi | Vinay Prajapati</h5>
+                                            <p>D2 - 201, Daffodils Society, Pimple Saudagar</p>
+                                            <p style="margin-top: 2px;">PMS Premium - PMS After Rent</p>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="col-6" style="padding: 0 5px;">
-                                    <input type="checkbox" class="checkbox" style="width: 0px;" id="businessTypeSale"
-                                        value="Sale">
-                                    <label class="checkbox-label"
-                                        onclick="openRentSection('businessTypeSale','businessTypeRent','Sale')"
-                                        id="Sale-label" for="businessTypeSale">
-                                        <i class="fas fa-plus"></i>
-                                        <i class="fas fa-check"></i>
-                                        <span>Sale</span>
-                                    </label>
-                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="property-status-property-card-active-toggle-div">
+                                        <div style="padding: 10px 10px 0 10px;">
+                                            <div class="switch" style="height: calc(100% - 10px);">
+                                                <span class="active" id="ResidentialText"
+                                                    style="color: #59981A">Active</span>
 
+                                                <div class="switch-button Residential" id="propertyTypeToggleBtn"
+                                                    onclick="propertyToggleClick(propertyTypeToggleBtn)">
+                                                    <div class="switch-button-inner"></div>
+                                                </div>
+
+                                                <span id="CommercialText" style="color: #EB542E">Inactive</span>
+                                            </div>
+                                        </div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="edit-profile-div">
+                            <small>See & Edit Your Property Details</small>
+                            <div class="">
+                                <div class="">
+
+                                </div>
+                                <a href="propertySetup.html">
+                                    <button type="button" class="mybutton button5"
+                                        style="height: 32px;font-size: 0.7rem;width: 100px;">Edit</button>
+                                </a>
                             </div>
                         </div>
                     </div>
 
-                </div>
 
-                <div class="row no-gutters">
-                    <div class="col-lg-4 col-md-6 col-sm-12">
-                        <div class="property-form-border-div">
-                            <h1 class="owner-heading">Property Name</h1>
-                            <div class="location-search">
-                                <input type="text" disabled required placeholder="Enter Property Name..." name=""
-                                    value="D2-201, Pimple Saudagar, Pune - 411027">
-                                <div class="underline"></div>
-                                <span class="material-symbols-outlined">
-                                    drive_file_rename_outline
-                                </span>
+
+                    <div class="row no-gutters">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="property-status-padding-div">
+                                <div class="profile-card-div">
+                                    <div class="address-div">
+                                        <div style="padding-top: 5px;">
+                                            <div class="icon">
+                                                <span class="material-symbols-outlined">
+                                                    real_estate_agent
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="address-text">
+                                            <div style="text-align: left;">
+                                                <h5>Devansh Govila - 98537 29308</h5>
+                                                <small>Last Occupied Date : 29-Aug-22</small>
+                                            </div>
+                                            <div class="">
+                                                <span class="material-symbols-outlined">
+                                                    chevron_right
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="add-address">
+                                        <small>Residential</small>
+                                    </div>
+
+                                    <div class="event-id residential property-status-event-id">
+                                        <h5>RENT</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="property-status-padding-div">
+                                <div class="profile-card-div">
+                                    <div class="address-div">
+                                        <div style="padding-top: 5px;">
+                                            <div class="icon">
+                                                <span class="material-symbols-outlined">
+                                                    sell
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="address-text">
+                                            <div style="text-align: left;">
+                                                <h5>Ready For Sale</h5>
+                                                <small>Last Occupied Date : 29-Aug-22</small>
+                                            </div>
+                                            <div class="">
+                                                <span class="material-symbols-outlined">
+                                                    chevron_right
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="add-address">
+                                        <small>Commercial</small>
+                                    </div>
+
+                                    <div class="event-id commercial property-status-event-id">
+                                        <h5>SALE</h5>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-            </div><br>
+                    <div class="vehicle-div">
+
+                        <div class="row no-gutters">
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="property-status-padding-div">
+                                    <div class="profile-card-div">
+                                        <div class="address-div">
+                                            <div class="icon" style="background: rgba(84,204,203,);">
+                                                <span class="material-symbols-outlined">
+                                                    security
+                                                </span>
+                                            </div>
+
+                                            <div class="address-text">
+                                                <h5>Security alert list</h5>
+                                                <div class="">
+                                                    <span class="material-symbols-outlined">
+                                                        chevron_right
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr style="margin: 0;border: none; border-bottom: 1px solid #eee;" />
+
+                                        <div class="address-div">
+                                            <div class="icon" style="background: rgba(84,204,203,);">
+                                                <span class="material-symbols-outlined">
+                                                    sms
+                                                </span>
+                                            </div>
+
+                                            <div class="address-text">
+                                                <h5>Support & Feedback</h5>
+                                                <div class="">
+                                                    <span class="material-symbols-outlined">
+                                                        chevron_right
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="property-status-padding-div">
+                                    <div class="profile-card-div">
+                                        <div class="address-div">
+                                            <div class="icon" style="background: rgba(84,204,203,);">
+                                                <span class="material-symbols-outlined">
+                                                    lock_open
+                                                </span>
+                                            </div>
+
+                                            <div class="address-text">
+                                                <h5>Change Password</h5>
+                                                <div class="">
+                                                    <span class="material-symbols-outlined">
+                                                        chevron_right
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr style="margin: 0;border: none; border-bottom: 1px solid #eee;" />
+
+                                        <div class="address-div">
+                                            <div class="icon" style="background: rgba(84,204,203,);">
+                                                <span class="material-symbols-outlined">
+                                                    logout
+                                                </span>
+                                            </div>
+
+                                            <div class="address-text">
+                                                <h5>Logout</h5>
+                                                <div class="">
+                                                    <span style="opacity: 0;" class="material-symbols-outlined">
+                                                        chevron_right
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="last-div">
+                            <img src="../img/logo_manu_transparent.png" width="180px" alt="">
+                            <a href="#">Terms & Conditions | Privacy Policy</a>
+                            <small>Version 2.54.0</small>
+                        </div><br class="small" /><br class="small" />
+
+                    </div>
+                </div>
+            </div>
 
         </div>
 
     </div>
-
-    <!-- footer - start -->
-
-    <div class="footer">
-        <div class="container-fluid"><br><br>
-            <div class="row no-gutters">
-
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="footer-list">
-                        <img src="../img/logo.png" width="100%" alt=""><br><br>
-                        <h1>Corporate Office</h1><br>
-                        <p>#204, 2nd Floor, Vipul Trade Centre, Sector-48 Sohna Road, Gurugram-122018, Haryana, India
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="footer-list">
-                        <h1>Get in Touch</h1><br><br>
-                        <div class="" style="height: 70px;">
-                            <a href="#"
-                                style="display: flex; align-items: center;position: absolute; left: 50%; transform: translateX(-50%);">
-                                <span class="material-symbols-outlined" style="background: #ff4444;">
-                                    call
-                                </span>
-                                <small>+91 95821 95821</small>
-                            </a>
-                        </div>
-
-                        <div class="" style="height: 70px;">
-                            <a href="#"
-                                style="display: flex; align-items: center;position: absolute; left: 50%; transform: translateX(-50%);">
-                                <span class="material-symbols-outlined" style="background: #08aad1;">
-                                    mail
-                                </span>
-                                <small>info@prodial.com</small>
-                            </a>
-                        </div>
-
-                        <div class="" style="height: 70px;">
-                            <a href="#"
-                                style="display: flex; align-items: center;position: absolute; left: 50%; transform: translateX(-50%);">
-                                <span class="material-symbols-outlined" style="background: #199d0e;">
-                                    phone
-                                </span>
-                                <small>+91 95821 95821</small>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="footer-list">
-                        <h1>Important Links</h1><br><br>
-
-                        <div class="">
-                            <a href="#">Our Team</a>
-                        </div>
-                        <div class="">
-                            <a href="#">FAQ's</a>
-                        </div>
-                        <div class="">
-                            <a href="#">Blog</a>
-                        </div>
-                        <div class="">
-                            <a href="#">Refer</a>
-                        </div>
-                        <div class="">
-                            <a href="#">Career with us</a>
-                        </div>
-                        <div class="">
-                            <a href="#">Contact us</a>
-                        </div>
-                        <div class="">
-                            <a href="#">Privacy Policy</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="footer-list">
-                        <h1>Quick Links</h1><br><br>
-
-                        <div class="">
-                            <a href="#">Property Management in Gurgaon</a>
-                        </div>
-                        <div class="">
-                            <a href="#">Property Management in Delhi</a>
-                        </div>
-                        <div class="">
-                            <a href="#">Property Management in Noida</a>
-                        </div>
-                        <div class="">
-                            <a href="#">Property Management in Ghaziabad</a>
-                        </div>
-                        <div class="">
-                            <a href="#">Property Management in Pune</a>
-                        </div>
-                        <div class="">
-                            <a href="#">Property Management in Hyderabad</a>
-                        </div>
-                        <div class="">
-                            <a href="#">Property Management in Banglore</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div><br><br>
-            <hr>
-
-            <div class="copyright">
-                <div class="">
-                    <p>2021 © Copyright - All Rights Reserved.</p>
-                </div>
-            </div><br class="small" /><br class="small" /><br class="small" />
-
-        </div>
-    </div>
-
-    <!-- footer - end -->
-
 
     <!-- Jquery order should be higher from normal javascript  -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

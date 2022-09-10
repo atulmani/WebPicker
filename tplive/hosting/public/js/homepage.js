@@ -49,6 +49,16 @@ async function GetProfileData() {
   return;
 }
 
+function InstallApp() {
+  if (deferredPrompt !== null) {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      deferredPrompt = null;
+    }
+  }
+};
+
 function getInstallationPrompt() {
   // console.log("in getInstallationPrompt");
   if (deferredPrompt) {

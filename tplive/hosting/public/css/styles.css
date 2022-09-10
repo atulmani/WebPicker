@@ -609,29 +609,6 @@ h6 {
   background: #fff;
 }
 
-.owl-item .partners-item img {
-  opacity: 0.5;
-  transition: 3s;
-  transform: scale(0.8);
-  filter: saturate(0);
-}
-
-.owl-item.center .partners-item img {
-  opacity: 1;
-  transform: scale(1.4);
-  transition: 3s;
-  border-radius: 6px;
-  filter: saturate(1);
-}
-
-.owl-item.active.center .partners-item img {
-  opacity: 1;
-  transform: scale(1.4);
-  transition: 3s;
-  border-radius: 6px;
-  filter: saturate(1);
-}
-
 .text-para {
   /* text-align: justify; */
   font-size: 1.3rem;

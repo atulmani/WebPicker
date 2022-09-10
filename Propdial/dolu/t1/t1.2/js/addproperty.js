@@ -67,7 +67,7 @@ function propertyToggleClick(propertyType) {
 
   var ResidentialText = document.getElementById('ResidentialText');
   var CommercialText = document.getElementById('CommercialText');
-  var section2ResidencialSection = document.getElementById('section2ResidencialSection');
+  var section2ResidentialSection = document.getElementById('section2ResidentialSection');
   var section2CommercialSection = document.getElementById('section2CommercialSection');
 
   ResidentialText.classList.remove('active');
@@ -77,13 +77,13 @@ function propertyToggleClick(propertyType) {
     propertyType.classList.remove('Residential');
     propertyType.classList.add('Commercial');
     CommercialText.classList.add('active');
-    section2ResidencialSection.style.display = 'none';
+    section2ResidentialSection.style.display = 'none';
     section2CommercialSection.style.display = 'block';
   } else if (propertyType.classList.contains('Commercial')) {
     propertyType.classList.remove('Commercial');
     propertyType.classList.add('Residential');
     ResidentialText.classList.add('active');
-    section2ResidencialSection.style.display = 'block';
+    section2ResidentialSection.style.display = 'block';
     section2CommercialSection.style.display = 'none';
   }
 
