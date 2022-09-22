@@ -54,3 +54,7 @@ const auth = firebase.auth();
 const storage = firebase.storage();
 // const functions =firebase.functions();
 const functions = fireObj.functions("asia-south1");
+
+
+// Initialize Performance Monitoring and get a reference to the service
+const perf = firebase.performance();

@@ -273,6 +273,53 @@ h6 {
   color: #4CD7D0;
 }
 
+.side-navbar-profile-div {
+  display: grid;
+  grid-template-columns: 25% 65% 10%;
+  width: 100%;
+}
+
+.side-navbar-profile-div .side-navbar-profile-div-circle,
+.side-navbar-profile-div .side-navbar-profile-div-arrow {
+  display: flex;
+  align-items: center;
+}
+
+.side-navbar-profile-div .side-navbar-profile-div-circle div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.side-navbar-profile-div .side-navbar-profile-div-circle span {
+  position: relative;
+  top: 1px;
+  font-size: 0.9rem;
+  font-weight: bolder;
+}
+
+.side-navbar-profile-div .side-navbar-profile-div-name div {
+  position: relative;
+  top: 2px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.side-navbar-profile-div .side-navbar-profile-div-name h6 {
+  font-size: 1rem;
+  margin-bottom: 1px;
+}
+
+.side-navbar-profile-div .side-navbar-profile-div-name small {
+  font-size: 0.8rem;
+}
+
 .side-navbar ul {
   padding-left: 10px;
 }
@@ -484,6 +531,14 @@ h6 {
   .small {
     width: 100%;
     display: block;
+    border-radius: 0 0 0 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .side-navbar-large {
+    width: 0%;
+    display: none;
     border-radius: 0 0 0 0;
   }
 }
@@ -773,6 +828,21 @@ h6 {
   padding: 10px 15px;
 }
 
+.property-status-property-card .details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 10px;
+}
+
+@media (max-width: 850px) {
+  .property-status-property-card .details {
+    text-align: center;
+    padding: 20px 10px 0 10px;
+  }
+}
+
 .user-name .details h5,
 .property-status-property-card .details h5 {
   font-size: 1.3rem;
@@ -781,7 +851,8 @@ h6 {
 }
 
 .user-name .details p,
-.property-status-property-card .details p {
+.property-status-property-card .details p,
+.property-status-property-card .details small {
   margin: 0;
   color: #aaa;
   font-size: 0.9rem;
@@ -885,6 +956,9 @@ h6 {
 }
 
 .address-div .address-text small {
+  position: relative;
+  top: -4px;
+  margin-top: 0;
   font-size: 0.7rem;
   color: #aaa;
 }
@@ -2227,7 +2301,7 @@ h6 {
   align-items: center;
   width: 100%;
   height: 40px;
-  background: #eee;
+  background: #fff;
 }
 
 .add-property-menu .menu-list {
@@ -2280,6 +2354,11 @@ h6 {
   height: 100%;
   width: 400%;
   padding: 10px 0;
+}
+
+.white-div {
+  background: #fff;
+  padding: 10px;
 }
 
 .section {
@@ -2410,6 +2489,10 @@ h6 {
   transition: 0.3s;
 }
 
+/* .checkbox~.checkbox-label.property-setup-checkbox {
+  background: #fff;
+} */
+
 .checkbox:checked~.checkbox-label {
   background: #4CD7D0;
   border: 1px solid #4CD7D0;
@@ -2485,7 +2568,7 @@ input[type=number] {
 }
 
 .location-search select {
-  background: #eee;
+  background: #efefef;
   -webkit-appearance: none;
 }
 
@@ -3293,6 +3376,10 @@ input[type=number] {
     padding: 10px 0;
     border: none;
   }
+
+  .mobile-center {
+    text-align: center;
+  }
 }
 
 /* create property page - end */
@@ -3301,14 +3388,32 @@ input[type=number] {
 
 .property-status-property-card {
   display: grid;
-  grid-template-columns: 15% 85%;
+  grid-template-columns: 20% 80%;
+  height: 100%;
+}
+
+@media (max-width: 850px) {
+  .property-status-property-card {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .property-status-property-card-active-toggle-div {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 100%;
 }
+
+.property-status-property-card .user-logo {
+  width: 80px;
+  height: 80px;
+}
+
+/* .property-status-property-card .user-logo h4 {
+  font-size: 2rem;
+} */
 
 .property-status-padding-div {
   padding: 10px;
@@ -3323,13 +3428,178 @@ input[type=number] {
     justify-content: center;
   }
 
-  .property-status-padding-div {
-    padding: 0;
-  }
-
   .property-status-event-id {
     top: 0;
   }
 }
 
+@media (max-width: 750px) {
+  .property-status-padding-div {
+    padding: 0;
+  }
+}
+
+.property-contact-div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  flex-direction: column;
+  height: 100%;
+  /* width: 350px; */
+}
+
+/* @media (max-width: 850px) {
+  .property-contact-div {
+    width: 100%;
+  }
+} */
+
+.property-contact-div div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.property-contact-div div span {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  color: #EB542E;
+  font-size: 1.2rem;
+  background: #fff;
+}
+
+.property-contact-div div h1 {
+  font-size: 0.7rem;
+  margin: 0;
+  padding-top: 5px;
+}
+
+.property-contact-div div img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+@media (max-width: 850px) {
+  .property-media-icons-horizontal {
+    flex-direction: row;
+  }
+}
+
+.premium-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.premium-card p {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #666;
+}
+
+.all-chart-div {
+  padding: 20px 10px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.pie-chart-div {
+  width: 100%;
+}
+
 /* property status page - end */
+
+
+
+/* property image page - start */
+
+.property-image-div {
+  position: relative;
+  background: #fff;
+  width: 100%;
+  height: 200px;
+  border: 1px solid #333C5D;
+  border-radius: 10px 10px 0 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.property-image-div img.property-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px 10px 0 0;
+}
+
+.property-image-div .more-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ddd;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.property-image-div .more-icon span {
+  font-size: 1.3rem;
+}
+
+.propety-description {
+  position: relative;
+  padding: 10px 0;
+}
+
+.propety-description h1 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.propety-description .indicating-letter {
+  position: absolute;
+  left: 0;
+  bottom: 6px;
+  height: 1px;
+  background: #333C5D;
+  width: 30px;
+}
+
+.propety-description .indicating-letter::before,
+.propety-description .indicating-letter::after {
+  position: absolute;
+  top: -2px;
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: #aaa;
+  border-radius: 50%;
+}
+
+.propety-description .indicating-letter::before {
+  left: 35px;
+}
+
+.propety-description .indicating-letter::after {
+  left: 42px;
+}
+
+/* property image page - end */

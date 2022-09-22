@@ -140,7 +140,8 @@ const EventID = inputData.EventID;
       var docID = "";
       var entryCount = 0;
       //  const entryLogID =
-      console.log(before.EventID);
+      console.log('before ' , snap.before.CategoryName);
+      console.log('after ' , snap.after.CategoryName);
       const EventID = before.EventID;
       if(snap.before.CategoryName != "" && snap.after.CategoryName  === "")
       {

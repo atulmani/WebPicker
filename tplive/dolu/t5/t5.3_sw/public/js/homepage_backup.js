@@ -4,7 +4,7 @@ auth.onAuthStateChanged(firebaseUser => {
   try {
     //    var str = "Java-Script-Object-Notation";
 
-    //    getInstallationPrompt();
+    getInstallationPrompt();
     userLocation = localStorage['userLocation'];
     if (firebaseUser) {
       loggedinUser = firebaseUser;
@@ -49,32 +49,28 @@ async function GetProfileData() {
   return;
 }
 
-
-async function MyInstallApp() {
+async function InstallApp() {
   console.log('InstallApp');
-  console.log(deferredPrompt);
-
-  getInstallationPrompt();
-
-  /*  if (deferredPrompt !== null ) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === 'accepted') {
-        deferredPrompt = null;
-      }
-    }*/
+  if (deferredPrompt !== null) {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      deferredPrompt = null;
+    }
+  }
 };
+
 function getInstallationPrompt() {
-  console.log("in getInstallationPrompt");
+  // console.log("in getInstallationPrompt");
   if (deferredPrompt) {
     deferredPrompt.prompt();
 
     deferredPrompt.userChoice.then(function (choiceResult) {
-      console.log(choiceResult.outcome);
+      // console.log(choiceResult.outcome);
       if (choiceResult.outcome === "dismissed") {
-        console.log("user cancelled installation");
+        // console.log("user cancelled installation");
       } else {
-        console.log("user added to home screen");
+        // console.log("user added to home screen");
       }
     });
 
@@ -481,7 +477,7 @@ function RenderEventDetails(index, doc, entryCount) {
   var h1_1 = document.createElement("h1");
   h1_1.innerHTML = doc.EventName;
   div1_5.appendChild(h1_1);
-
+  console.log(doc.OrganizationName);
   var h1_2 = document.createElement("h2");
   if (doc.OrganizationName != null && doc.OrganizationName != undefined)
     h1_2.innerHTML = doc.OrganizationName;
@@ -1406,8 +1402,8 @@ $(document).ready(function () {
       items: 1,
       // slideSpeed: 2000,
       smartSpeed: 3000,
-      autoplayTimeout: 10000,
-      nav: false,
+      autoplayTimeout: 15000,
+      nav: true,
       autoplay: true,
       dots: false,
       loop: true,
@@ -1438,7 +1434,7 @@ $(document).ready(function () {
       // loop: true,
       // rewind: true,
       // slideSpeed: 500,
-      autoplayTimeout: 10000,
+      autoplayTimeout: 15000,
       margin: 0,
       stagePadding: 30,
       autoplay: true,

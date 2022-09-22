@@ -6,7 +6,7 @@ if (!window.Promise) {
 }
 
 window.addEventListener('beforeinstallpromt', function (event) {
-  // console.log('beforeinstallpromt fierd');
+  console.log('beforeinstallpromt fierd');
   event.preventDefault();
   deferredPrompt = event;
   return false;
@@ -125,7 +125,7 @@ var hamberIcon = document.getElementById('hamberIcon');
 var fullContent = document.getElementById('fullContent');
 var sideNavbar = document.getElementById('sideNavbar');
 
-hamberIcon.addEventListener('click', sideNavbarOpen, false);
+//hamberIcon.addEventListener('click', sideNavbarOpen, false);
 
 function sideNavbarOpen() {
   sideNavbar.classList.add('open');

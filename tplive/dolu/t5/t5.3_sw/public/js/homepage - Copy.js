@@ -4,7 +4,7 @@ auth.onAuthStateChanged(firebaseUser => {
   try {
     //    var str = "Java-Script-Object-Notation";
 
-    getInstallationPrompt();
+    //    getInstallationPrompt();
     userLocation = localStorage['userLocation'];
     if (firebaseUser) {
       loggedinUser = firebaseUser;
@@ -49,17 +49,32 @@ async function GetProfileData() {
   return;
 }
 
+
+async function InstallApp() {
+  console.log('InstallApp');
+  console.log(deferredPrompt);
+
+  getInstallationPrompt();
+
+  /*  if (deferredPrompt !== null ) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        deferredPrompt = null;
+      }
+    }*/
+};
 function getInstallationPrompt() {
-  // console.log("in getInstallationPrompt");
+  console.log("in getInstallationPrompt");
   if (deferredPrompt) {
     deferredPrompt.prompt();
 
     deferredPrompt.userChoice.then(function (choiceResult) {
-      // console.log(choiceResult.outcome);
+      console.log(choiceResult.outcome);
       if (choiceResult.outcome === "dismissed") {
-        // console.log("user cancelled installation");
+        console.log("user cancelled installation");
       } else {
-        // console.log("user added to home screen");
+        console.log("user added to home screen");
       }
     });
 

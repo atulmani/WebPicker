@@ -45,7 +45,7 @@
 
 </head>
 
-<body>
+<body style="background: #efefef;">
   <!-- sidenav starts -->
 
   <nav class="navbar navbar-expand-lg sticky-top large ">
@@ -170,7 +170,8 @@
   <div id="fullContent" class="row no-gutters">
 
     <div class="col-lg-2">
-      <div class="side-navbar large" style="height: calc(100% - 40px);">
+      <div class="side-navbar side-navbar-large property-list-side-navbar"
+        style="height: calc(100% - 40px);background: #fff;">
         <ul>
 
           <li style="background: #EB542E;" class="active">
@@ -178,27 +179,27 @@
             <a href="dashboard.html">
 
 
-              <div style="display:flex; justify-content: space-between; margin: 0; width:100%;" class="">
+              <div class="side-navbar-profile-div">
 
-                <span
-                  style="font-weight: bolder;padding-top: 4px ;background:#fff;color:rgb(235, 84, 46); height: 30px; width: 30px; border-radius:50%; text-align: center; justify-content:center; margin-top: 6px;">
-                  AT
-                </span>
-
-                <div style="position:relative; left:-10px;" class="">
-                  <div style="display:flex; flex-direction:column; " class="">
-                    <h6 style="font-size:1rem; margin-top: 4px; margin-bottom: 2px; ">Khushi Soni</h6>
-                    <h6 style="font-size:0.8rem;">Edit Profile</h6>
+                <div class="side-navbar-profile-div-circle">
+                  <div>
+                    <span style="color: #EB542E;">AT</span>
                   </div>
                 </div>
-                <div style="padding-top:10px;" class="">
+
+                <div class="side-navbar-profile-div-name">
+                  <div class="">
+                    <h6>Khushi Soni
+                    </h6>
+                    <small>Edit Profile</small>
+                  </div>
+                </div>
+                <div class="side-navbar-profile-div-arrow">
                   <span class="material-symbols-outlined">
                     navigate_next
                   </span>
                 </div>
               </div>
-
-
 
             </a>
           </li><br>
@@ -216,9 +217,9 @@
           <li>
             <b></b>
             <b></b>
-            <a href="#">
+            <a href="propertyImages.html">
               <span class="material-symbols-outlined">
-                category
+                image
               </span>
               <small>Property Images</small>
 
@@ -324,7 +325,7 @@
           <li>
             <b></b>
             <b></b>
-            <a href="#">
+            <a href="propertyImages.html">
               <span class="material-symbols-outlined">
                 category
               </span>
@@ -456,243 +457,248 @@
 
           <div class="add-property-inner">
             <div class="section basic-details" id="section1">
+              <div class="white-div">
 
-              <div class="row no-gutters">
+                <div class="row no-gutters">
 
-                <div class="col-lg-8 col-md-6 col-sm-12">
-                  <div class="property-form-border-div unit-number-and-furnished-div"
-                    style="border: none;padding-bottom: 0;">
-                    <div class="unit-number-and-furnished-inner-div">
-                      <h1 class="owner-heading">Unit Number</h1>
+                  <div class="col-lg-8 col-md-6 col-sm-12">
+                    <div class="property-form-border-div unit-number-and-furnished-div"
+                      style="border: none;padding-bottom: 0;">
+                      <div class="unit-number-and-furnished-inner-div">
+                        <h1 class="owner-heading">Unit Number</h1>
+                        <div class="location-search">
+                          <input type="text" required placeholder="Enetr Property Unit Number..." name="" value="">
+                          <div class="underline"></div>
+                          <span class="material-symbols-outlined">
+                            drive_file_rename_outline
+                          </span>
+                        </div>
+                      </div>
+
+                      <div class="unit-number-and-furnished-inner-div">
+                        <h1 class="owner-heading">Furninshed</h1>
+                        <div class="row no-gutters">
+                          <div class="col-4" style="padding: 5px;">
+                            <input type="radio" required class="checkbox" style="width: 0px;" name="Furninshed"
+                              id="FurninshedFully" value="FurninshedFully">
+                            <label class="checkbox-label property-setup-checkbox" id="FurninshedFully-label"
+                              for="FurninshedFully">
+                              <i class="fas fa-plus"></i>
+                              <i class="fas fa-check"></i>
+                              <span>Fully</span>
+                            </label>
+                          </div>
+                          <div class="col-4" style="padding: 5px;">
+                            <input type="radio" required class="checkbox" style="width: 0px;" name="Furninshed"
+                              id="FurninshedSemi" value="FurninshedSemi">
+                            <label class="checkbox-label property-setup-checkbox" id="FurninshedSemi-label"
+                              for="FurninshedSemi">
+                              <i class="fas fa-plus"></i>
+                              <i class="fas fa-check"></i>
+                              <span>Semi</span>
+                            </label>
+                          </div>
+                          <div class="col-4" style="padding: 5px;">
+                            <input type="radio" required checked class="checkbox" style="width: 0px;" name="Furninshed"
+                              id="FurninshedNot" value="FurninshedNot">
+                            <label class="checkbox-label property-setup-checkbox" id="FurninshedNot-label"
+                              for="FurninshedNot">
+                              <i class="fas fa-plus"></i>
+                              <i class="fas fa-check"></i>
+                              <span>None</span>
+                            </label>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6 col-sm-12"></div>
+
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="property-form-border-div">
+
+                      <h1 class="owner-heading">Owner Name</h1>
                       <div class="location-search">
-                        <input type="text" required placeholder="Enetr Property Unit Number..." name="" value="">
+                        <select class="" name="">
+                          <option value="" selected disabled>Select Owner</option>
+                          <option value="">Atul Tripathi</option>
+                          <option value="">Vinay Prajapati</option>
+                        </select>
                         <div class="underline"></div>
                         <span class="material-symbols-outlined">
-                          drive_file_rename_outline
+                          person
+                        </span>
+                      </div><br>
+
+                      <h1 class="owner-heading">Country</h1>
+                      <div class="location-search">
+                        <select class="" name="">
+                          <option value="" selected>India</option>
+                          <option value="">Denmark</option>
+                          <option value="">Malasia</option>
+                          <option value="">China</option>
+                        </select>
+                        <div class="underline"></div>
+                        <span class="material-symbols-outlined">
+                          public
+                        </span>
+                      </div><br>
+
+                      <h1 class="owner-heading">State</h1>
+                      <div class="location-search">
+                        <select class="" name="">
+                          <option value="" selected>Delhi</option>
+                          <option value="">Harayana</option>
+                          <option value="">Uttar Pradesh</option>
+                          <option value="">Maharashtra</option>
+                        </select>
+                        <div class="underline"></div>
+                        <span class="material-symbols-outlined">
+                          emoji_transportation
                         </span>
                       </div>
                     </div>
+                  </div>
 
-                    <div class="unit-number-and-furnished-inner-div">
-                      <h1 class="owner-heading">Furninshed</h1>
-                      <div class="row no-gutters">
-                        <div class="col-4" style="padding: 5px;">
-                          <input type="radio" required class="checkbox" style="width: 0px;" name="Furninshed"
-                            id="FurninshedFully" value="FurninshedFully">
-                          <label class="checkbox-label" id="FurninshedFully-label" for="FurninshedFully">
-                            <i class="fas fa-plus"></i>
-                            <i class="fas fa-check"></i>
-                            <span>Fully</span>
-                          </label>
-                        </div>
-                        <div class="col-4" style="padding: 5px;">
-                          <input type="radio" required class="checkbox" style="width: 0px;" name="Furninshed"
-                            id="FurninshedSemi" value="FurninshedSemi">
-                          <label class="checkbox-label" id="FurninshedSemi-label" for="FurninshedSemi">
-                            <i class="fas fa-plus"></i>
-                            <i class="fas fa-check"></i>
-                            <span>Semi</span>
-                          </label>
-                        </div>
-                        <div class="col-4" style="padding: 5px;">
-                          <input type="radio" required checked class="checkbox" style="width: 0px;" name="Furninshed"
-                            id="FurninshedNot" value="FurninshedNot">
-                          <label class="checkbox-label" id="FurninshedNot-label" for="FurninshedNot">
-                            <i class="fas fa-plus"></i>
-                            <i class="fas fa-check"></i>
-                            <span>None</span>
-                          </label>
-                        </div>
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="property-form-border-div">
+                      <h1 class="owner-heading">City</h1>
+                      <div class="location-search">
+                        <select class="" name="">
+                          <option value="" selected>Delhi</option>
+                          <option value="">Gurugram</option>
+                          <option value="">Noida</option>
+                          <option value="">Pune</option>
+                          <option value="">Hyderabad</option>
+                        </select>
+                        <div class="underline"></div>
+                        <span class="material-symbols-outlined">
+                          apartment
+                        </span>
+                      </div><br>
 
+                      <h1 class="owner-heading">Locality</h1>
+                      <div class="location-search">
+                        <select class="" name="">
+                          <option value="" selected>Malviya Nagar</option>
+                          <option value="">Dwarka</option>
+                          <option value="">Rajori Garden</option>
+                          <option value="">Lajpat Nagar</option>
+                          <option value="">Saraojni Nagar</option>
+                        </select>
+                        <div class="underline"></div>
+                        <span class="material-symbols-outlined">
+                          holiday_village
+                        </span>
+                      </div><br>
+
+                      <h1 class="owner-heading">Society</h1>
+                      <div class="location-search">
+                        <select class="" name="">
+                          <option value="" selected disabled>Choose Society</option>
+                          <option value="">Society 1</option>
+                          <option value="">Society 2</option>
+                          <option value="">Society 3</option>
+                          <option value="">Society 4</option>
+                        </select>
+                        <div class="underline"></div>
+                        <span class="material-symbols-outlined">
+                          home
+                        </span>
                       </div>
+
                     </div>
                   </div>
-                </div>
 
-                <div class="col-lg-4 col-md-6 col-sm-12"></div>
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="property-form-border-div" style="border: none;">
+                      <h1 class="owner-heading">Property Type</h1>
+                      <div class="location-search">
 
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                  <div class="property-form-border-div">
+                        <select class="" name="">
+                          <option value="" selected disabled>Choose Property Type</option>
+                          <option value="">Appartment</option>
+                          <option value="">Builder floor</option>
+                          <option value="">Vila</option>
+                          <option value="">Row house</option>
+                          <option value="">Duplex</option>
+                        </select>
 
-                    <h1 class="owner-heading">Owner Name</h1>
-                    <div class="location-search">
-                      <select class="" name="">
-                        <option value="" selected disabled>Select Owner</option>
-                        <option value="">Atul Tripathi</option>
-                        <option value="">Vinay Prajapati</option>
-                      </select>
-                      <div class="underline"></div>
-                      <span class="material-symbols-outlined">
-                        person
-                      </span>
-                    </div><br>
+                        <div class="underline"></div>
+                        <span class="material-symbols-outlined">
+                          format_list_bulleted
+                        </span>
+                      </div><br>
 
-                    <h1 class="owner-heading">Country</h1>
-                    <div class="location-search">
-                      <select class="" name="">
-                        <option value="" selected>India</option>
-                        <option value="">Denmark</option>
-                        <option value="">Malasia</option>
-                        <option value="">China</option>
-                      </select>
-                      <div class="underline"></div>
-                      <span class="material-symbols-outlined">
-                        public
-                      </span>
-                    </div><br>
+                      <h1 class="owner-heading">Year of Constuction</h1>
+                      <div class="location-search">
+                        <select class="" name="" id="yearOfConstructionSelect" onchange="ageOfPropertyCalc()">
+                          <option value="" disabled>Year of Constuction</option>
+                          <option value="">1990</option>
+                          <option value="">1991</option>
+                          <option value="">1992</option>
+                          <option value="">1993</option>
+                          <option value="">1994</option>
+                          <option value="">1995</option>
+                          <option value="">1996</option>
+                          <option value="">1997</option>
+                          <option value="">1998</option>
+                          <option value="">1999</option>
+                          <option value="">2000</option>
+                          <option value="">2001</option>
+                          <option value="">2002</option>
+                          <option value="">2003</option>
+                          <option value="">2004</option>
+                          <option value="">2005</option>
+                          <option value="">2006</option>
+                          <option value="">2007</option>
+                          <option value="">2008</option>
+                          <option value="">2009</option>
+                          <option value="" selected>2010</option>
+                          <option value="">2011</option>
+                          <option value="">2012</option>
+                          <option value="">2013</option>
+                          <option value="">2014</option>
+                          <option value="">2015</option>
+                          <option value="">2016</option>
+                          <option value="">2017</option>
+                          <option value="">2018</option>
+                          <option value="">2019</option>
+                          <option value="">2020</option>
+                          <option value="">2021</option>
+                          <option value="">2022</option>
+                        </select>
 
-                    <h1 class="owner-heading">State</h1>
-                    <div class="location-search">
-                      <select class="" name="">
-                        <option value="" selected>Delhi</option>
-                        <option value="">Harayana</option>
-                        <option value="">Uttar Pradesh</option>
-                        <option value="">Maharashtra</option>
-                      </select>
-                      <div class="underline"></div>
-                      <span class="material-symbols-outlined">
-                        emoji_transportation
-                      </span>
+                        <span class="material-symbols-outlined">
+                          engineering
+                        </span>
+                        <div class="age-of-property-div">
+                          <h1>Age Of Property is <small id="ageOfPropertyCount">12</small> Years </h1>
+                        </div>
+                      </div><br>
+
+                      <h1 class="owner-heading">BHK</h1>
+                      <div class="location-search">
+                        <select class="" name="">
+                          <option value="" selected disabled>Choose BHK</option>
+                          <option value="">1 BHK</option>
+                          <option value="">2 BHK</option>
+                          <option value="">3 BHK</option>
+                          <option value="">4 BHK</option>
+                          <option value="">5 BHK</option>
+                        </select>
+                        <div class="underline"></div>
+                        <span class="material-symbols-outlined">
+                          bedroom_parent
+                        </span>
+                      </div><br>
+
                     </div>
                   </div>
+
                 </div>
-
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                  <div class="property-form-border-div">
-                    <h1 class="owner-heading">City</h1>
-                    <div class="location-search">
-                      <select class="" name="">
-                        <option value="" selected>Delhi</option>
-                        <option value="">Gurugram</option>
-                        <option value="">Noida</option>
-                        <option value="">Pune</option>
-                        <option value="">Hyderabad</option>
-                      </select>
-                      <div class="underline"></div>
-                      <span class="material-symbols-outlined">
-                        apartment
-                      </span>
-                    </div><br>
-
-                    <h1 class="owner-heading">Locality</h1>
-                    <div class="location-search">
-                      <select class="" name="">
-                        <option value="" selected>Malviya Nagar</option>
-                        <option value="">Dwarka</option>
-                        <option value="">Rajori Garden</option>
-                        <option value="">Lajpat Nagar</option>
-                        <option value="">Saraojni Nagar</option>
-                      </select>
-                      <div class="underline"></div>
-                      <span class="material-symbols-outlined">
-                        holiday_village
-                      </span>
-                    </div><br>
-
-                    <h1 class="owner-heading">Society</h1>
-                    <div class="location-search">
-                      <select class="" name="">
-                        <option value="" selected disabled>Choose Society</option>
-                        <option value="">Society 1</option>
-                        <option value="">Society 2</option>
-                        <option value="">Society 3</option>
-                        <option value="">Society 4</option>
-                      </select>
-                      <div class="underline"></div>
-                      <span class="material-symbols-outlined">
-                        home
-                      </span>
-                    </div>
-
-                  </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                  <div class="property-form-border-div" style="border: none;">
-                    <h1 class="owner-heading">Property Type</h1>
-                    <div class="location-search">
-
-                      <select class="" name="">
-                        <option value="" selected disabled>Choose Property Type</option>
-                        <option value="">Appartment</option>
-                        <option value="">Builder floor</option>
-                        <option value="">Vila</option>
-                        <option value="">Row house</option>
-                        <option value="">Duplex</option>
-                      </select>
-
-                      <div class="underline"></div>
-                      <span class="material-symbols-outlined">
-                        format_list_bulleted
-                      </span>
-                    </div><br>
-
-                    <h1 class="owner-heading">Year of Constuction</h1>
-                    <div class="location-search">
-                      <select class="" name="" id="yearOfConstructionSelect" onchange="ageOfPropertyCalc()">
-                        <option value="" disabled>Year of Constuction</option>
-                        <option value="">1990</option>
-                        <option value="">1991</option>
-                        <option value="">1992</option>
-                        <option value="">1993</option>
-                        <option value="">1994</option>
-                        <option value="">1995</option>
-                        <option value="">1996</option>
-                        <option value="">1997</option>
-                        <option value="">1998</option>
-                        <option value="">1999</option>
-                        <option value="">2000</option>
-                        <option value="">2001</option>
-                        <option value="">2002</option>
-                        <option value="">2003</option>
-                        <option value="">2004</option>
-                        <option value="">2005</option>
-                        <option value="">2006</option>
-                        <option value="">2007</option>
-                        <option value="">2008</option>
-                        <option value="">2009</option>
-                        <option value="" selected>2010</option>
-                        <option value="">2011</option>
-                        <option value="">2012</option>
-                        <option value="">2013</option>
-                        <option value="">2014</option>
-                        <option value="">2015</option>
-                        <option value="">2016</option>
-                        <option value="">2017</option>
-                        <option value="">2018</option>
-                        <option value="">2019</option>
-                        <option value="">2020</option>
-                        <option value="">2021</option>
-                        <option value="">2022</option>
-                      </select>
-
-                      <span class="material-symbols-outlined">
-                        engineering
-                      </span>
-                      <div class="age-of-property-div">
-                        <h1>Age Of Property is <small id="ageOfPropertyCount">12</small> Years </h1>
-                      </div>
-                    </div><br>
-
-                    <h1 class="owner-heading">BHK</h1>
-                    <div class="location-search">
-                      <select class="" name="">
-                        <option value="" selected disabled>Choose BHK</option>
-                        <option value="">1 BHK</option>
-                        <option value="">2 BHK</option>
-                        <option value="">3 BHK</option>
-                        <option value="">4 BHK</option>
-                        <option value="">5 BHK</option>
-                      </select>
-                      <div class="underline"></div>
-                      <span class="material-symbols-outlined">
-                        bedroom_parent
-                      </span>
-                    </div><br>
-
-                  </div>
-                </div>
-
               </div><br>
 
               <div class="row no-gutters section-btn-div">
@@ -715,6 +721,7 @@
             </div>
 
             <div class="section" id="section2">
+              <div class="white-div"></div>
 
               <section id="section2ResidentialSection">
 
@@ -1035,6 +1042,7 @@
                   <h2>SALE</h2><br><br><br>
                   <hr>
                 </div>
+
 
               </section>
 
