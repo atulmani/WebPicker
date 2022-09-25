@@ -45,7 +45,7 @@
 
 </head>
 
-<body>
+<body style="background: #efefef;">
     <!-- sidenav starts -->
 
     <nav class="navbar navbar-expand-lg sticky-top large ">
@@ -75,11 +75,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="search.html">
                         <span class="material-icons-outlined">
-                            category
+                            search
                         </span>
-                        <small>Owners</small>
+                        <small>Search</small>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -141,11 +141,11 @@
             <a href="">
 
             </a>
-            <a href="#" class="navbar-mobile-bottom-menu-a " style="display:flex; flex-direction:column;">
+            <a href="search.html" class="navbar-mobile-bottom-menu-a " style="display:flex; flex-direction:column;">
                 <span class="material-symbols-outlined">
-                    category
+                    search
                 </span>
-                <small>Owners</small>
+                <small>Search</small>
             </a>
             <a href="#" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
                 <span class="material-symbols-outlined">
@@ -170,36 +170,36 @@
     <div id="fullContent" class="row no-gutters">
 
         <div class="col-lg-2">
-            <div class="side-navbar large" style="height: calc(100% - 40px);">
+            <div class="side-navbar side-navbar-large property-list-side-navbar"
+                style="height: calc(100% - 40px); background: #fff;">
                 <ul>
 
                     <li style="background: #EB542E;" class="active">
 
-                        <a href="dashboard.html">
+                        <a href="/login/profile.html">
 
 
-                            <div style="display:flex; justify-content: space-between; margin: 0; width:100%;" class="">
+                            <div class="side-navbar-profile-div">
 
-                                <span
-                                    style="font-weight: bolder;padding-top: 4px ;background:#fff;color:rgb(235, 84, 46); height: 30px; width: 30px; border-radius:50%; text-align: center; justify-content:center; margin-top: 6px;">
-                                    AT
-                                </span>
-
-                                <div style="position:relative; left:-10px;" class="">
-                                    <div style="display:flex; flex-direction:column; " class="">
-                                        <h6 style="font-size:1rem; margin-top: 4px; margin-bottom: 2px; ">Arjun Bhagat
-                                        </h6>
-                                        <h6 style="font-size:0.8rem;">Edit Profile</h6>
+                                <div class="side-navbar-profile-div-circle">
+                                    <div>
+                                        <span style="color: #EB542E;">AT</span>
                                     </div>
                                 </div>
-                                <div style="padding-top:10px;" class="">
+
+                                <div class="side-navbar-profile-div-name">
+                                    <div class="">
+                                        <h6>Khushi Soni
+                                        </h6>
+                                        <small>Edit Profile</small>
+                                    </div>
+                                </div>
+                                <div class="side-navbar-profile-div-arrow">
                                     <span class="material-symbols-outlined">
                                         navigate_next
                                     </span>
                                 </div>
                             </div>
-
-
 
                         </a>
                     </li><br>
@@ -234,6 +234,17 @@
                                 add
                             </span>
                             <small>Add Property</small>
+                        </a>
+                    </li>
+
+                    <li>
+                        <b></b>
+                        <b></b>
+                        <a href="search.html">
+                            <span class="material-symbols-outlined">
+                                search
+                            </span>
+                            <small>Search</small>
                         </a>
                     </li>
 
@@ -439,119 +450,120 @@
                     </div>
 
                     <div class="section basic-details">
+                        <div class="white-div">
 
-                        <div class="row no-gutters">
+                            <div class="row no-gutters">
 
-                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="property-form-border-div" style="border: none;padding-bottom: 0;">
-                                    <h1 class="owner-heading">Unit Number</h1>
-                                    <div class="location-search">
-                                        <input type="text" required placeholder="Enetr Property Unit Number..." name=""
-                                            value="">
-                                        <div class="underline"></div>
-                                        <span class="material-symbols-outlined">
-                                            drive_file_rename_outline
-                                        </span>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="property-form-border-div" style="border: none;padding-bottom: 0;">
+                                        <h1 class="owner-heading">Unit Number</h1>
+                                        <div class="location-search">
+                                            <input type="text" required placeholder="Enetr Property Unit Number..."
+                                                name="" value="">
+                                            <div class="underline"></div>
+                                            <span class="material-symbols-outlined">
+                                                drive_file_rename_outline
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="col-lg-8 col-md-6 col-sm-12"></div>
+                                <div class="col-lg-8 col-md-6 col-sm-12"></div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="property-form-border-div">
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="property-form-border-div">
 
-                                    <h1 class="owner-heading">Owner Name</h1>
-                                    <div class="location-search">
-                                        <select class="" name="">
-                                            <option value="" selected disabled>Select Owner</option>
-                                            <option value="">Atul Tripathi</option>
-                                            <option value="">Vinay Prajapati</option>
-                                        </select>
-                                        <div class="underline"></div>
-                                        <span class="material-symbols-outlined">
-                                            person
-                                        </span>
-                                    </div><br>
+                                        <h1 class="owner-heading">Owner Name</h1>
+                                        <div class="location-search">
+                                            <select class="" name="">
+                                                <option value="" selected disabled>Select Owner</option>
+                                                <option value="">Atul Tripathi</option>
+                                                <option value="">Vinay Prajapati</option>
+                                            </select>
+                                            <div class="underline"></div>
+                                            <span class="material-symbols-outlined">
+                                                person
+                                            </span>
+                                        </div><br>
 
-                                    <h1 class="owner-heading">Country</h1>
-                                    <div class="location-search">
-                                        <select class="" name="">
-                                            <option value="" selected>India</option>
-                                            <option value="">Denmark</option>
-                                            <option value="">Malasia</option>
-                                            <option value="">China</option>
-                                        </select>
-                                        <div class="underline"></div>
-                                        <span class="material-symbols-outlined">
-                                            public
-                                        </span>
-                                    </div><br>
+                                        <h1 class="owner-heading">Country</h1>
+                                        <div class="location-search">
+                                            <select class="" name="">
+                                                <option value="" selected>India</option>
+                                                <option value="">Denmark</option>
+                                                <option value="">Malasia</option>
+                                                <option value="">China</option>
+                                            </select>
+                                            <div class="underline"></div>
+                                            <span class="material-symbols-outlined">
+                                                public
+                                            </span>
+                                        </div><br>
 
-                                    <h1 class="owner-heading">State</h1>
-                                    <div class="location-search">
-                                        <select class="" name="">
-                                            <option value="" selected>Delhi</option>
-                                            <option value="">Harayana</option>
-                                            <option value="">Uttar Pradesh</option>
-                                            <option value="">Maharashtra</option>
-                                        </select>
-                                        <div class="underline"></div>
-                                        <span class="material-symbols-outlined">
-                                            emoji_transportation
-                                        </span>
+                                        <h1 class="owner-heading">State</h1>
+                                        <div class="location-search">
+                                            <select class="" name="">
+                                                <option value="" selected>Delhi</option>
+                                                <option value="">Harayana</option>
+                                                <option value="">Uttar Pradesh</option>
+                                                <option value="">Maharashtra</option>
+                                            </select>
+                                            <div class="underline"></div>
+                                            <span class="material-symbols-outlined">
+                                                emoji_transportation
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="col-lg-4">
-                                <div class="property-form-border-div" style="border: none;">
-                                    <h1 class="owner-heading">City</h1>
-                                    <div class="location-search">
-                                        <select class="" name="">
-                                            <option value="" selected>Delhi</option>
-                                            <option value="">Gurugram</option>
-                                            <option value="">Noida</option>
-                                            <option value="">Pune</option>
-                                            <option value="">Hyderabad</option>
-                                        </select>
-                                        <div class="underline"></div>
-                                        <span class="material-symbols-outlined">
-                                            apartment
-                                        </span>
-                                    </div><br>
+                                <div class="col-lg-4">
+                                    <div class="property-form-border-div" style="border: none;">
+                                        <h1 class="owner-heading">City</h1>
+                                        <div class="location-search">
+                                            <select class="" name="">
+                                                <option value="" selected>Delhi</option>
+                                                <option value="">Gurugram</option>
+                                                <option value="">Noida</option>
+                                                <option value="">Pune</option>
+                                                <option value="">Hyderabad</option>
+                                            </select>
+                                            <div class="underline"></div>
+                                            <span class="material-symbols-outlined">
+                                                apartment
+                                            </span>
+                                        </div><br>
 
-                                    <h1 class="owner-heading">Lacality</h1>
-                                    <div class="location-search">
-                                        <select class="" name="">
-                                            <option value="" selected>Malviya Nagar</option>
-                                            <option value="">Dwarka</option>
-                                            <option value="">Rajori Garden</option>
-                                            <option value="">Lajpat Nagar</option>
-                                            <option value="">Saraojni Nagar</option>
-                                        </select>
-                                        <div class="underline"></div>
-                                        <span class="material-symbols-outlined">
-                                            holiday_village
-                                        </span>
-                                    </div><br>
+                                        <h1 class="owner-heading">Lacality</h1>
+                                        <div class="location-search">
+                                            <select class="" name="">
+                                                <option value="" selected>Malviya Nagar</option>
+                                                <option value="">Dwarka</option>
+                                                <option value="">Rajori Garden</option>
+                                                <option value="">Lajpat Nagar</option>
+                                                <option value="">Saraojni Nagar</option>
+                                            </select>
+                                            <div class="underline"></div>
+                                            <span class="material-symbols-outlined">
+                                                holiday_village
+                                            </span>
+                                        </div><br>
 
-                                    <h1 class="owner-heading">Society</h1>
-                                    <div class="location-search">
-                                        <select class="" name="">
-                                            <option value="" selected disabled>Choose Society</option>
-                                            <option value="">Society 1</option>
-                                            <option value="">Society 2</option>
-                                            <option value="">Society 3</option>
-                                            <option value="">Society 4</option>
-                                        </select>
-                                        <div class="underline"></div>
-                                        <span class="material-symbols-outlined">
-                                            home
-                                        </span>
-                                    </div><br>
+                                        <h1 class="owner-heading">Society</h1>
+                                        <div class="location-search">
+                                            <select class="" name="">
+                                                <option value="" selected disabled>Choose Society</option>
+                                                <option value="">Society 1</option>
+                                                <option value="">Society 2</option>
+                                                <option value="">Society 3</option>
+                                                <option value="">Society 4</option>
+                                            </select>
+                                            <div class="underline"></div>
+                                            <span class="material-symbols-outlined">
+                                                home
+                                            </span>
+                                        </div><br>
 
-                                    <!-- <h1 class="owner-heading">Property Name</h1>
+                                        <!-- <h1 class="owner-heading">Property Name</h1>
                                     <div class="location-search">
                                         <input type="text" disabled required placeholder="Your Property Name Is..."
                                             name="" value="">
@@ -560,10 +572,13 @@
                                             drive_file_rename_outline
                                         </span>
                                     </div> -->
+                                    </div>
                                 </div>
-                            </div>
 
-                        </div><br>
+                            </div><br>
+                        </div>
+
+                        <div style="padding: 5px;"></div>
 
                         <div class="row no-gutters section-btn-div">
                             <div class="col-12">
