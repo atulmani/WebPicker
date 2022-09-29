@@ -1406,6 +1406,7 @@ $(document).ready(function () {
       items: 1,
       // slideSpeed: 2000,
       smartSpeed: 3000,
+
       autoplayTimeout: 20000,
       nav: true,
       autoplay: true,

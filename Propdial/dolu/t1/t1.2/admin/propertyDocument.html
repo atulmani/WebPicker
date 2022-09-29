@@ -171,7 +171,7 @@
 
         <div class="col-lg-2">
             <div class="side-navbar side-navbar-large property-list-side-navbar"
-                style="height: calc(100% - 40px); background: #fff;">
+                style="height: calc(100% - 40px);background: #fff;">
                 <ul>
 
                     <li style="background: #EB542E;" class="active">
@@ -206,22 +206,34 @@
                     <li>
                         <b></b>
                         <b></b>
-                        <a href="dashboard.html">
+                        <a href="propertyStatus.html">
                             <span class="material-symbols-outlined">
                                 home
                             </span>
-                            <small>Dashboard</small>
+                            <small>Property Status</small>
                         </a>
                     </li>
 
                     <li>
                         <b></b>
                         <b></b>
-                        <a href="propertyList.html">
+                        <a href="propertyImages.html">
                             <span class="material-symbols-outlined">
-                                description
+                                image
                             </span>
-                            <small>Property List</small>
+                            <small>Property Images</small>
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <b></b>
+                        <b></b>
+                        <a href="propertySetup.html">
+                            <span class="material-symbols-outlined">
+                                category
+                            </span>
+                            <small>Property Setup</small>
 
                         </a>
                     </li>
@@ -229,35 +241,14 @@
                     <li class="active">
                         <b></b>
                         <b></b>
-                        <a href="createProperty.html">
+                        <a href="propertyDocument.html">
                             <span class="material-symbols-outlined">
-                                add
+                                description
                             </span>
-                            <small>Add Property</small>
+                            <small>Property Documents</small>
                         </a>
                     </li>
 
-                    <li>
-                        <b></b>
-                        <b></b>
-                        <a href="search.html">
-                            <span class="material-symbols-outlined">
-                                search
-                            </span>
-                            <small>Search</small>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <b></b>
-                            <b></b>
-                            <span class="material-symbols-outlined">
-                                handyman
-                            </span>
-                            <small>Enquiries</small>
-                        </a>
-                    </li>
 
                     <li>
                         <a href="#">
@@ -266,7 +257,7 @@
                             <span class="material-symbols-outlined">
                                 volunteer_activism
                             </span>
-                            <small>Refer & Earn</small>
+                            <small>Reports</small>
                         </a>
                     </li>
 
@@ -305,7 +296,8 @@
 
                                 <div style="position:relative; left:-24px;" class="">
                                     <div style="display:flex; flex-direction:column; " class="">
-                                        <h6 style="font-size:1.2rem; margin-top: 4px; margin-bottom: 2px; ">Archith</h6>
+                                        <h6 style="font-size:1.2rem; margin-top: 4px; margin-bottom: 2px; ">Devansh
+                                            Govila</h6>
                                         <h6 style="font-size:0.9rem;">Edit Profile</h6>
                                     </div>
                                 </div>
@@ -323,22 +315,34 @@
                     <li>
                         <b></b>
                         <b></b>
-                        <a href="dashboard.html">
+                        <a href="propertyStatus.html">
                             <span class="material-symbols-outlined">
                                 home
                             </span>
-                            <small>Dashboard</small>
+                            <small>Property Status</small>
                         </a>
                     </li>
 
                     <li>
                         <b></b>
                         <b></b>
-                        <a href="propertyList.html">
+                        <a href="propertyImages.html">
                             <span class="material-symbols-outlined">
-                                description
+                                category
                             </span>
-                            <small>Property List</small>
+                            <small>Property Images</small>
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <b></b>
+                        <b></b>
+                        <a href="propertySetup.html">
+                            <span class="material-symbols-outlined">
+                                category
+                            </span>
+                            <small>Property Setup</small>
 
                         </a>
                     </li>
@@ -346,24 +350,14 @@
                     <li class="active">
                         <b></b>
                         <b></b>
-                        <a href="createProperty.html">
+                        <a href="propertyDocument.html">
                             <span class="material-symbols-outlined">
-                                add
+                                description
                             </span>
-                            <small>Add Property</small>
+                            <small>Property Documents</small>
                         </a>
                     </li>
 
-                    <li>
-                        <a href="#">
-                            <b></b>
-                            <b></b>
-                            <span class="material-symbols-outlined">
-                                handyman
-                            </span>
-                            <small>Enquiries</small>
-                        </a>
-                    </li>
 
                     <li>
                         <a href="#">
@@ -372,7 +366,7 @@
                             <span class="material-symbols-outlined">
                                 volunteer_activism
                             </span>
-                            <small>Refer & Earn</small>
+                            <small>Reports</small>
                         </a>
                     </li>
 
@@ -431,219 +425,197 @@
 
                 </div>
 
-                <div class="add-property-outter">
-
-                    <h1 class="all-heading">ADD PROPERTY</h1>
-                    <hr>
-
-                    <div class="row no-gutters" style="margin: 20px 0 10px 0;">
-
-                        <div class="col-lg-6 col-md-6 col-sm-12"
-                            style="background: rgb(188, 236, 224, 0.5); padding: 10px 10px 0 10px;">
-                            <div class="switch" style="height: calc(100% - 10px);">
-                                <span class="active" id="ResidentialText" style="color: #59981A">Residential</span>
-
-                                <div class="switch-button Residential" id="propertyTypeToggleBtn"
-                                    onclick="propertyToggleClick(propertyTypeToggleBtn)">
-                                    <div class="switch-button-inner"></div>
-                                </div>
-
-                                <span id="CommercialText" style="color: #EB542E">Commercial</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12"
-                            style="background: rgb(188, 236, 224, 0.5); padding: 10px 10px 0 10px;">
-                            <div class="details-radio">
-
-                                <div class="row no-gutters">
-
-                                    <div class="col-6" style="padding: 0 5px;">
-                                        <input type="checkbox" checked class="checkbox" style="width: 0px;"
-                                            name="BusinessType" id="businessTypeRent" value="Rent">
-                                        <label class="checkbox-label" onclick="openRentSection()" id="Rent-label"
-                                            for="businessTypeRent">
-                                            <i class="fas fa-plus"></i>
-                                            <i class="fas fa-check"></i>
-                                            <span>Rent</span>
-                                        </label>
-                                    </div>
-
-                                    <div class="col-6" style="padding: 0 5px;">
-                                        <input type="checkbox" checked class="checkbox" style="width: 0px;"
-                                            name="BusinessType" id="businessTypeSale" value="Sale">
-                                        <label class="checkbox-label" onclick="openSaleSection()" id="Sale-label"
-                                            for="businessTypeSale">
-                                            <i class="fas fa-plus"></i>
-                                            <i class="fas fa-check"></i>
-                                            <span>Sale</span>
-                                        </label>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="section basic-details">
-                        <div class="white-div">
-
-                            <div class="row no-gutters">
-
-                                <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="property-form-border-div" style="border: none;padding-bottom: 0;">
-                                        <h1 class="owner-heading">Unit Number</h1>
-                                        <div class="location-search">
-                                            <input type="text" required placeholder="Enetr Property Unit Number..."
-                                                name="" value="">
-                                            <div class="underline"></div>
-                                            <span class="material-symbols-outlined">
-                                                drive_file_rename_outline
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-8 col-md-6 col-sm-12"></div>
-
-                                <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="property-form-border-div">
-
-                                        <h1 class="owner-heading">Owner Name</h1>
-                                        <div class="location-search">
-                                            <select class="" name="">
-                                                <option value="" selected disabled>Select Owner</option>
-                                                <option value="">Atul Tripathi</option>
-                                                <option value="">Vinay Prajapati</option>
-                                            </select>
-                                            <div class="underline"></div>
-                                            <span class="material-symbols-outlined">
-                                                person
-                                            </span>
-                                        </div><br>
-
-                                        <h1 class="owner-heading">Country</h1>
-                                        <div class="location-search">
-                                            <select class="" name="">
-                                                <option value="" selected>India</option>
-                                                <option value="">Denmark</option>
-                                                <option value="">Malasia</option>
-                                                <option value="">China</option>
-                                            </select>
-                                            <div class="underline"></div>
-                                            <span class="material-symbols-outlined">
-                                                public
-                                            </span>
-                                        </div><br>
-
-                                        <h1 class="owner-heading">State</h1>
-                                        <div class="location-search">
-                                            <select class="" name="">
-                                                <option value="" selected>Delhi</option>
-                                                <option value="">Harayana</option>
-                                                <option value="">Uttar Pradesh</option>
-                                                <option value="">Maharashtra</option>
-                                            </select>
-                                            <div class="underline"></div>
-                                            <span class="material-symbols-outlined">
-                                                emoji_transportation
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="property-form-border-div" style="border: none;">
-                                        <h1 class="owner-heading">City</h1>
-                                        <div class="location-search">
-                                            <select class="" name="">
-                                                <option value="" selected>Delhi</option>
-                                                <option value="">Gurugram</option>
-                                                <option value="">Noida</option>
-                                                <option value="">Pune</option>
-                                                <option value="">Hyderabad</option>
-                                            </select>
-                                            <div class="underline"></div>
-                                            <span class="material-symbols-outlined">
-                                                apartment
-                                            </span>
-                                        </div><br>
-
-                                        <h1 class="owner-heading">Lacality</h1>
-                                        <div class="location-search">
-                                            <select class="" name="">
-                                                <option value="" selected>Malviya Nagar</option>
-                                                <option value="">Dwarka</option>
-                                                <option value="">Rajori Garden</option>
-                                                <option value="">Lajpat Nagar</option>
-                                                <option value="">Saraojni Nagar</option>
-                                            </select>
-                                            <div class="underline"></div>
-                                            <span class="material-symbols-outlined">
-                                                holiday_village
-                                            </span>
-                                        </div><br>
-
-                                        <h1 class="owner-heading">Society</h1>
-                                        <div class="location-search">
-                                            <select class="" name="">
-                                                <option value="" selected disabled>Choose Society</option>
-                                                <option value="">Society 1</option>
-                                                <option value="">Society 2</option>
-                                                <option value="">Society 3</option>
-                                                <option value="">Society 4</option>
-                                            </select>
-                                            <div class="underline"></div>
-                                            <span class="material-symbols-outlined">
-                                                home
-                                            </span>
-                                        </div><br>
-
-                                        <!-- <h1 class="owner-heading">Property Name</h1>
-                                    <div class="location-search">
-                                        <input type="text" disabled required placeholder="Your Property Name Is..."
-                                            name="" value="">
-                                        <div class="underline"></div>
+                <div style="padding: 20px 0;">
+                    <h1 class="all-heading mobile-center" style="padding: 0 10px;">Property Documents</h1>
+                    <div class="row no-gutters">
+                        <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
+                            <div class="property-image-div">
+                                <!-- <img src="" class="property-image" alt=""> -->
+                                <div class="property-contact-div property-media-icons-horizontal"
+                                    style="justify-content: space-evenly;flex-direction: row;">
+                                    <div style="cursor: pointer;">
                                         <span class="material-symbols-outlined">
-                                            drive_file_rename_outline
+                                            add_a_photo
                                         </span>
-                                    </div> -->
+                                        <h1>Camera</h1>
+                                    </div>
+                                    <div style="cursor: pointer;">
+                                        <span class="material-symbols-outlined">
+                                            cloud_upload
+                                        </span>
+                                        <h1>Upload</h1>
                                     </div>
                                 </div>
-
-                            </div><br>
+                            </div>
                         </div>
 
-                        <div style="padding: 5px;"></div>
+                        <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
+                            <img src="/img/document1.png" width="100%" alt="">
+                            <div class="object-more-icon">
+                                <span class="material-symbols-outlined">
+                                    more_vert
+                                </span>
+                            </div>
+                            <div class="propety-description">
+                                <h1>DOCUMENT 1</h1>
+                                <div class="indicating-letter"></div>
+                            </div>
+                        </div>
 
-                        <div class="row no-gutters section-btn-div">
-                            <div class="col-12">
-                                <div class="section-btn">
-                                    <a href="propertyList.html" style="text-decoration: none;width: 100%;">
-                                        <button type="button" name="button" onclick="addPropertyMenu('Details')"
-                                            class="mybutton button5">
-                                            Add
-                                        </button>
-                                    </a>
+                        <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
+                            <img src="/img/document2.png" width="100%" alt="">
+                            <div class="object-more-icon">
+                                <span class="material-symbols-outlined">
+                                    more_vert
+                                </span>
+                            </div>
+                            <div class="propety-description">
+                                <h1>DOCUMENT 2</h1>
+                                <div class="indicating-letter"></div>
+                            </div>
+                        </div>
 
-                                </div>
+                        <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
+                            <img src="/img/document3.png" width="100%" alt="">
+                            <div class="object-more-icon">
+                                <span class="material-symbols-outlined">
+                                    more_vert
+                                </span>
+                            </div>
+                            <div class="propety-description">
+                                <h1>DOCUMENT 3</h1>
+                                <div class="indicating-letter"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
+                            <img src="/img/document4.png" width="100%" alt="">
+                            <div class="object-more-icon">
+                                <span class="material-symbols-outlined">
+                                    more_vert
+                                </span>
+                            </div>
+                            <div class="propety-description">
+                                <h1>DOCUMENT 4</h1>
+                                <div class="indicating-letter"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
+                            <img src="/img/document5.png" width="100%" alt="">
+                            <div class="object-more-icon">
+                                <span class="material-symbols-outlined">
+                                    more_vert
+                                </span>
+                            </div>
+                            <div class="propety-description">
+                                <h1>DOCUMENT 5</h1>
+                                <div class="indicating-letter"></div>
                             </div>
                         </div>
 
                     </div>
                 </div>
-            </div>
 
-            <div class="last-div">
-                <img src="../img/logo_manu_transparent.png" width="180px" alt="">
-                <a href="#">Terms & Conditions | Privacy Policy</a>
-                <small>Version 2.54.0</small>
-            </div><br class="small" /><br class="small" />
+                <div class="vehicle-div">
+
+                    <div class="row no-gutters">
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                            <div class="property-status-padding-div">
+                                <div class="profile-card-div">
+                                    <div class="address-div">
+                                        <div class="icon" style="background: rgba(84,204,203,);">
+                                            <span class="material-symbols-outlined">
+                                                security
+                                            </span>
+                                        </div>
+
+                                        <div class="address-text">
+                                            <h5>Security alert list</h5>
+                                            <div class="">
+                                                <span class="material-symbols-outlined">
+                                                    chevron_right
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="margin: 0;border: none; border-bottom: 1px solid #eee;" />
+
+                                    <div class="address-div">
+                                        <div class="icon" style="background: rgba(84,204,203,);">
+                                            <span class="material-symbols-outlined">
+                                                sms
+                                            </span>
+                                        </div>
+
+                                        <div class="address-text">
+                                            <h5>Support & Feedback</h5>
+                                            <div class="">
+                                                <span class="material-symbols-outlined">
+                                                    chevron_right
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                            <div class="property-status-padding-div">
+                                <div class="profile-card-div">
+                                    <div class="address-div">
+                                        <div class="icon" style="background: rgba(84,204,203,);">
+                                            <span class="material-symbols-outlined">
+                                                lock_open
+                                            </span>
+                                        </div>
+
+                                        <div class="address-text">
+                                            <h5>Change Password</h5>
+                                            <div class="">
+                                                <span class="material-symbols-outlined">
+                                                    chevron_right
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="margin: 0;border: none; border-bottom: 1px solid #eee;" />
+
+                                    <div class="address-div">
+                                        <div class="icon" style="background: rgba(84,204,203,);">
+                                            <span class="material-symbols-outlined">
+                                                logout
+                                            </span>
+                                        </div>
+
+                                        <div class="address-text">
+                                            <h5>Logout</h5>
+                                            <div class="">
+                                                <span style="opacity: 0;" class="material-symbols-outlined">
+                                                    chevron_right
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="last-div">
+                        <img src="../img/logo_manu_transparent.png" width="180px" alt="">
+                        <a href="#">Terms & Conditions | Privacy Policy</a>
+                        <small>Version 2.54.0</small>
+                    </div><br class="small" /><br class="small" />
+
+                </div>
+            </div>
 
         </div>
 
     </div>
-
 
     <!-- Jquery order should be higher from normal javascript  -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -654,8 +626,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
-    <script src="../js/main.js"></script>
-    <script src="../js/addproperty.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/addproperty.js"></script>
 
     <!-- Owl Carousel Javascript  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>

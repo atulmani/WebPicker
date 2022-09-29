@@ -97,9 +97,9 @@ function getTournamentSummary() {
       } else if (results.data[index].City === "Kolkata") {
         document.getElementById("kolkataCnt1").innerHTML = results.data[index].EventCount;
         document.getElementById("kolkataCnt").innerHTML = results.data[index].EventCount;
-      } else if (results.data[index].City === "Mankapur") {
-        document.getElementById("mankapurCnt1").innerHTML = results.data[index].EventCount;
-        document.getElementById("mankapurCnt").innerHTML = results.data[index].EventCount;
+      } else if (results.data[index].City === "Buldhana") {
+        document.getElementById("buldhanaCnt1").innerHTML = results.data[index].EventCount;
+        document.getElementById("buldhanaCnt").innerHTML = results.data[index].EventCount;
       }
 
       document.getElementById("allCnt1").innerHTML = allCnt;

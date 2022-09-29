@@ -241,7 +241,7 @@
                     <li>
                         <b></b>
                         <b></b>
-                        <a href="#">
+                        <a href="propertyDocument.html">
                             <span class="material-symbols-outlined">
                                 description
                             </span>
@@ -350,7 +350,7 @@
                     <li>
                         <b></b>
                         <b></b>
-                        <a href="#">
+                        <a href="propertyDocument.html">
                             <span class="material-symbols-outlined">
                                 description
                             </span>
@@ -390,6 +390,41 @@
 
             <div class="container-fluid">
 
+                <a href="#" onclick="openMoreAddOptions()" class="property-list-add-property small">
+                    <span class="material-symbols-outlined">
+                        apps
+                    </span>
+                </a>
+
+                <div class="more-add-options-div" onclick="closeMoreAddOptions()" id="moreAddOptions">
+
+                    <div>
+
+                        <a href="createProperty.html" class="more-add-options-icons">
+                            <h1>Add Property</h1>
+                            <span class="material-symbols-outlined">
+                                real_estate_agent
+                            </span>
+                        </a>
+
+                        <a href="propertyImages.html" class="more-add-options-icons">
+                            <h1>Add Image</h1>
+                            <span class="material-symbols-outlined">
+                                image
+                            </span>
+                        </a>
+
+                        <a href="propertyDocument.html" class="more-add-options-icons">
+                            <h1>Add Document</h1>
+                            <span class="material-symbols-outlined">
+                                description
+                            </span>
+                        </a>
+
+                    </div>
+
+                </div>
+
                 <div style="padding: 20px 0;">
                     <h1 class="all-heading mobile-center" style="padding: 0 10px;">Property Images</h1>
                     <div class="row no-gutters">
@@ -417,10 +452,27 @@
                         <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
                             <div class="property-image-div">
                                 <img src="/img/room_house.jpg" class="property-image" alt="">
-                                <div class="more-icon">
+                                <div onclick="moreClickOpen(moreBtnDetails1)" class="object-more-icon">
                                     <span class="material-symbols-outlined">
                                         more_vert
                                     </span>
+                                </div>
+                                <div id="moreBtnDetails1" class="object-more-details">
+
+                                    <div>
+                                        <span class="material-symbols-outlined">
+                                            cloud_upload
+                                        </span>
+                                        <h1>UPLOAD</h1>
+                                    </div>
+
+                                    <div>
+                                        <span class="material-symbols-outlined">
+                                            delete
+                                        </span>
+                                        <h1>TRASH</h1>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="propety-description">
@@ -432,10 +484,27 @@
                         <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
                             <div class="property-image-div">
                                 <img src="/img/room_hall.jpg" class="property-image" alt="">
-                                <div class="more-icon">
+                                <div onclick="moreClickOpen(moreBtnDetails2)" class="object-more-icon">
                                     <span class="material-symbols-outlined">
                                         more_vert
                                     </span>
+                                </div>
+                                <div id="moreBtnDetails2" class="object-more-details">
+
+                                    <div>
+                                        <span class="material-symbols-outlined">
+                                            cloud_upload
+                                        </span>
+                                        <h1>UPLOAD</h1>
+                                    </div>
+
+                                    <div>
+                                        <span class="material-symbols-outlined">
+                                            delete
+                                        </span>
+                                        <h1>TRASH</h1>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="propety-description">
@@ -447,10 +516,27 @@
                         <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
                             <div class="property-image-div">
                                 <img src="/img/room_master.jpg" class="property-image" alt="">
-                                <div class="more-icon">
+                                <div onclick="moreClickOpen(moreBtnDetails3)" class="object-more-icon">
                                     <span class="material-symbols-outlined">
                                         more_vert
                                     </span>
+                                </div>
+                                <div id="moreBtnDetails3" class="object-more-details">
+
+                                    <div>
+                                        <span class="material-symbols-outlined">
+                                            cloud_upload
+                                        </span>
+                                        <h1>UPLOAD</h1>
+                                    </div>
+
+                                    <div>
+                                        <span class="material-symbols-outlined">
+                                            delete
+                                        </span>
+                                        <h1>TRASH</h1>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="propety-description">
@@ -462,10 +548,27 @@
                         <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
                             <div class="property-image-div">
                                 <img src="/img/room_1.jpg" class="property-image" alt="">
-                                <div class="more-icon">
+                                <div onclick="moreClickOpen(moreBtnDetails4)" class="object-more-icon">
                                     <span class="material-symbols-outlined">
                                         more_vert
                                     </span>
+                                </div>
+                                <div id="moreBtnDetails4" class="object-more-details">
+
+                                    <div>
+                                        <span class="material-symbols-outlined">
+                                            cloud_upload
+                                        </span>
+                                        <h1>UPLOAD</h1>
+                                    </div>
+
+                                    <div>
+                                        <span class="material-symbols-outlined">
+                                            delete
+                                        </span>
+                                        <h1>TRASH</h1>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="propety-description">
@@ -477,10 +580,27 @@
                         <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
                             <div class="property-image-div">
                                 <img src="/img/room_2.jpg" class="property-image" alt="">
-                                <div class="more-icon">
+                                <div onclick="moreClickOpen(moreBtnDetails5)" class="object-more-icon">
                                     <span class="material-symbols-outlined">
                                         more_vert
                                     </span>
+                                </div>
+                                <div id="moreBtnDetails5" class="object-more-details">
+
+                                    <div>
+                                        <span class="material-symbols-outlined">
+                                            cloud_upload
+                                        </span>
+                                        <h1>UPLOAD</h1>
+                                    </div>
+
+                                    <div>
+                                        <span class="material-symbols-outlined">
+                                            delete
+                                        </span>
+                                        <h1>TRASH</h1>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="propety-description">
@@ -492,10 +612,27 @@
                         <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
                             <div class="property-image-div">
                                 <img src="/img/room_balcony.jpg" class="property-image" alt="">
-                                <div class="more-icon">
+                                <div onclick="moreClickOpen(moreBtnDetails6)" class="object-more-icon">
                                     <span class="material-symbols-outlined">
                                         more_vert
                                     </span>
+                                </div>
+                                <div id="moreBtnDetails6" class="object-more-details">
+
+                                    <div>
+                                        <span class="material-symbols-outlined">
+                                            cloud_upload
+                                        </span>
+                                        <h1>UPLOAD</h1>
+                                    </div>
+
+                                    <div>
+                                        <span class="material-symbols-outlined">
+                                            delete
+                                        </span>
+                                        <h1>TRASH</h1>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="propety-description">
@@ -507,10 +644,27 @@
                         <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
                             <div class="property-image-div">
                                 <img src="/img/room_kitchen.webp" class="property-image" alt="">
-                                <div class="more-icon">
+                                <div onclick="moreClickOpen(moreBtnDetails7)" class="object-more-icon">
                                     <span class="material-symbols-outlined">
                                         more_vert
                                     </span>
+                                </div>
+                                <div id="moreBtnDetails7" class="object-more-details">
+
+                                    <div>
+                                        <span class="material-symbols-outlined">
+                                            cloud_upload
+                                        </span>
+                                        <h1>UPLOAD</h1>
+                                    </div>
+
+                                    <div>
+                                        <span class="material-symbols-outlined">
+                                            delete
+                                        </span>
+                                        <h1>TRASH</h1>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="propety-description">
@@ -522,10 +676,27 @@
                         <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
                             <div class="property-image-div">
                                 <img src="/img/room_bathroom.jpg" class="property-image" alt="">
-                                <div class="more-icon">
+                                <div onclick="moreClickOpen(moreBtnDetails8)" class="object-more-icon">
                                     <span class="material-symbols-outlined">
                                         more_vert
                                     </span>
+                                </div>
+                                <div id="moreBtnDetails8" class="object-more-details">
+
+                                    <div>
+                                        <span class="material-symbols-outlined">
+                                            cloud_upload
+                                        </span>
+                                        <h1>UPLOAD</h1>
+                                    </div>
+
+                                    <div>
+                                        <span class="material-symbols-outlined">
+                                            delete
+                                        </span>
+                                        <h1>TRASH</h1>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="propety-description">
@@ -536,6 +707,105 @@
 
                     </div>
                 </div>
+
+                <hr>
+                <div style="padding: 5px;"></div>
+                <div class="property-status-padding-div">
+                    <div onclick="trashCardsOpen(trashCardDiv, trashCardArrow)" class="trash-heading-div">
+                        <h1 class="all-heading">Trash</h1>
+                        <span id="trashCardArrow" class="material-symbols-outlined">
+                            expand_more
+                        </span>
+                    </div>
+                </div>
+
+                <div id="trashPopUpDiv" class="trash-pop-up">
+                    <div onclick="closeDeletePopUp()" class="trash-pop-up-card">
+                        <span class="material-symbols-outlined close-btn">
+                            close
+                        </span>
+                        <h1>ROOM ADJECENT TO HALL</h1>
+                        <hr>
+                        <h2><span id="trashPopUpParaText"></span> "ROOM ADJECENT TO HALL" Image</h2>
+                        <div class="trash-pop-up-btn-div">
+                            <div>
+                                <span>CANCEL</span>
+                            </div>
+                            <div id="trashPopUpSituationBtn" class="">
+                                <span>mytext</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="trashCardDiv" class="row no-gutters trash-cards">
+
+                    <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
+                        <div class="property-image-div">
+                            <img src="/img/room_1.jpg" class="property-image" alt="">
+                            <div onclick="moreClickOpen(moreBtnTrashDetails1)" class="object-more-icon">
+                                <span class="material-symbols-outlined">
+                                    more_vert
+                                </span>
+                            </div>
+                            <div id="moreBtnTrashDetails1" class="object-more-details">
+
+                                <div onclick="openDeletePopUp('Recover')">
+                                    <span class="material-symbols-outlined">
+                                        refresh
+                                    </span>
+                                    <h1>RECOVER</h1>
+                                </div>
+
+                                <div onclick="openDeletePopUp('Delete')">
+                                    <span class="material-symbols-outlined">
+                                        delete
+                                    </span>
+                                    <h1>DELETE</h1>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="propety-description">
+                            <h1>ROOM ADJECENT TO HALL</h1>
+                            <div class="indicating-letter"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
+                        <div class="property-image-div">
+                            <img src="/img/room_balcony.jpg" class="property-image" alt="">
+                            <div onclick="moreClickOpen(moreBtnTrashDetails2)" class="object-more-icon">
+                                <span class="material-symbols-outlined">
+                                    more_vert
+                                </span>
+                            </div>
+                            <div id="moreBtnTrashDetails2" class="object-more-details">
+
+                                <div onclick="openDeletePopUp('Recover')">
+                                    <span class="material-symbols-outlined">
+                                        refresh
+                                    </span>
+                                    <h1>RECOVER</h1>
+                                </div>
+
+                                <div onclick="openDeletePopUp('Delete')">
+                                    <span class="material-symbols-outlined">
+                                        delete
+                                    </span>
+                                    <h1>DELETE</h1>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="propety-description">
+                            <h1>BALCONY</h1>
+                            <div class="indicating-letter"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <hr>
 
                 <div class="vehicle-div">
 
@@ -647,7 +917,7 @@
 
 
     <script src="/js/main.js"></script>
-    <script src="/js/addproperty.js"></script>
+    <script src="/js/propertyImage.js"></script>
 
     <!-- Owl Carousel Javascript  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
