@@ -467,7 +467,7 @@ btnSave.addEventListener('click', e => {
 
   var approvalStatus = "Approved";//document.getElementById("approvalStatus").options[document.getElementById("approvalStatus").selectedIndex].value;
   var eventStatus = "Open";//document.getElementById("eventStatus").options[document.getElementById("eventStatus").selectedIndex].value;
-  var confirmMessage = "";//document.getElementById('saveMessage');
+  var confirmMessage = document.getElementById('saveMessage');
   console.log("before check");
   // if ((organizerID === "" || organizerID === null) ||
   //   (organizationID === "" || organizationID === null) ||

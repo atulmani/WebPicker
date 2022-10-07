@@ -38,13 +38,11 @@ async function GetProfileData() {
       userLocation = userProfile.City;
       localStorage['userLocation'] = userLocation;
     }
-    document.getElementById('profileName').innerHTML = userProfile.UserName;
-    var matches = userProfile.UserName.match(/\b(\w)/g);
-    var acronym = matches.join('');
-    document.getElementById('profileshortName').innerHTML = acronym;
-    // document.getElementById('ifSignedIn').innerHTML = 'Hi ' + userProfile.UserName;
-    // document.getElementById('ifSignedIn').href = "login/profile.html";
-    // document.getElementById("UserCity").innerHTML = userProfile.City;
+    //document.getElementById('profileName').innerHTML = userProfile.UserName;
+    // var matches = userProfile.UserName.match(/\b(\w)/g);
+    // var acronym = matches.join('');
+    // document.getElementById('profileshortName').innerHTML = acronym;
+
   }
   return;
 }
