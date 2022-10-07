@@ -640,7 +640,7 @@
 
               <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="dropdown-div">
-                  <select class="" name="" style="background: #fff;">
+                  <select class="" name="" onchange="SelectYearChange();" id="selYear" style="background: #fff;">
                     <option value="2022">2022</option>
                     <option value="2021">2021</option>
                     <option value="2019">2019</option>
@@ -663,6 +663,7 @@
                     <option value="PUNE">PUNE</option>
                     <option value="DELHI">DELHI</option>
                     <option value="CHENNAI">CHENNAI</option>
+                    <option value="HYDERABAD">HYDERABAD</option>
                   </select>
 
                   <div class="icon">
@@ -675,7 +676,7 @@
 
               <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="dropdown-div">
-                  <select class="" name="" style="background: #fff;">
+                  <select class="" name="" style="background: #fff;" id="sportSelect" onclick="SelectSportChange()">
                     <option value="ALL">ALL - SPORT</option>
                     <option value="BADMINTON">BADMINTON</option>
                     <option value="TABLE TENNIS">TABLE TENNIS</option>
@@ -698,12 +699,13 @@
             <div class="row no-gutters">
               <div class="col-6">
                 <div class="dropdown-div">
-                  <select class="" name="" id="citySelect2" onclick="SelectCityChange2()" style="background: #fff;">
+                  <select class="" name="" id="citySelect2" onchange="SelectCityChange2()" style="background: #fff;">
                     <option value="All">All</option>
                     <option value="Bangalore">Bangalore</option>
                     <option value="Pune">Pune</option>
                     <option value="Delhi">Delhi</option>
                     <option value="Chennai">Chennai</option>
+                    <option value="Hyderabad">Hyderabad</option>
                   </select>
 
                   <div class="icon">
@@ -716,7 +718,8 @@
 
               <div class="col-6">
                 <div class="dropdown-div">
-                  <select class="" name="" style="background: #fff;">
+                  <select class="" id="selYearMobile" onchange="SelectYearChangeMobile();" name=""
+                    style="background: #fff;">
                     <option value="2022">2022</option>
                     <option value="2021">2021</option>
                     <option value="2019">2019</option>

@@ -2,7 +2,7 @@ var loggedinUser = "";
 var cntActive = 0;
 var cntClosed = 0;
 var cntOthers = 0;
-
+var eventList = [];
 auth.onAuthStateChanged(async firebaseUser => {
   try {
     document.getElementById('loadingFullDiv').style.display = 'block';
@@ -181,18 +181,99 @@ function changestatussmall(status) {
 // }
 
 
+function SelectSportChange() {
+  var objSport = document.getElementById("sportSelect");
+  var sportName = objSport.options[objSport.selectedIndex].value;
+
+  //  poulateEventByCity(cityName)
+
+  console.log(sportName);
+  document.getElementById("eventPlaceholder").innerHTML = "";
+  addCreateEventDiv();
+  var eventForSport = [];
+  if (sportName != "ALL") {
+    eventForSport = eventList.filter(e => e.SportName.toUpperCase() === sportName);
+  } else {
+    eventForSport = eventList;
+  }
+
+  for (index = 0; index < eventForSport.length; index++) {
+    // console.log(results.data[index]);
+    RenderEventDetails(index, eventForSport[index]);
+  }
+  console.log('cntActive : ', cntActive);
+  console.log('cntClosed : ', cntClosed);
+  console.log('cntOthers : ', cntOthers);
+
+  document.getElementById("active1").innerHTML = cntActive;
+  document.getElementById("active2").innerHTML = cntActive;
+  document.getElementById("active3").innerHTML = cntActive;
+  document.getElementById("active4").innerHTML = cntActive;
+
+  document.getElementById("close1").innerHTML = cntClosed;
+  document.getElementById("close2").innerHTML = cntClosed;
+  document.getElementById("close3").innerHTML = cntClosed;
+  document.getElementById("close4").innerHTML = cntClosed;
+
+  document.getElementById("others1").innerHTML = cntOthers;
+  document.getElementById("others2").innerHTML = cntOthers;
+  document.getElementById("others3").innerHTML = cntOthers;
+  document.getElementById("others4").innerHTML = cntOthers;
+
+  document.getElementById('loadingFullDiv').style.display = 'none';
+
+}
+
 function SelectCityChange1() {
   var objCiy = document.getElementById("citySelect1");
   var cityName = objCiy.options[objCiy.selectedIndex].value;
 
-  poulateEventByCity(cityName)
-}
+  poulateEventByCity(cityName.toUpperCase())
 
+
+}
+function poulateEventByCity(cityName) {
+  document.getElementById("eventPlaceholder").innerHTML = "";
+  addCreateEventDiv();
+  var eventForCity = [];
+  console.log(cityName);
+  if (cityName != "ALL") {
+    eventForCity = eventList.filter(e => e.City.toUpperCase() === cityName);
+  } else {
+    eventForCity = eventList;
+  }
+
+  for (index = 0; index < eventForCity.length; index++) {
+    // console.log(results.data[index]);
+    RenderEventDetails(index, eventForCity[index]);
+  }
+  console.log('cntActive : ', cntActive);
+  console.log('cntClosed : ', cntClosed);
+  console.log('cntOthers : ', cntOthers);
+
+  document.getElementById("active1").innerHTML = cntActive;
+  document.getElementById("active2").innerHTML = cntActive;
+  document.getElementById("active3").innerHTML = cntActive;
+  document.getElementById("active4").innerHTML = cntActive;
+
+  document.getElementById("close1").innerHTML = cntClosed;
+  document.getElementById("close2").innerHTML = cntClosed;
+  document.getElementById("close3").innerHTML = cntClosed;
+  document.getElementById("close4").innerHTML = cntClosed;
+
+  document.getElementById("others1").innerHTML = cntOthers;
+  document.getElementById("others2").innerHTML = cntOthers;
+  document.getElementById("others3").innerHTML = cntOthers;
+  document.getElementById("others4").innerHTML = cntOthers;
+
+  document.getElementById('loadingFullDiv').style.display = 'none';
+
+}
 function SelectCityChange2() {
   var objCiy = document.getElementById("citySelect2");
   var cityName = objCiy.options[objCiy.selectedIndex].value;
 
-  poulateEventByCity(cityName)
+  poulateEventByCity(cityName.toUpperCase());
 }
 function addCreateEventDiv() {
   changestatussmall('Active');
@@ -226,53 +307,6 @@ function addCreateEventDiv() {
   document.getElementById("eventPlaceholder").appendChild(div1);
 
 }
-function poulateEventByCity(cityName) {
-  var para = {};
-  console.log(cityName);
-  para = {
-    City: cityName
-  };
-  console.log(para);
-  var ret = "";
-  if (cityName === "All") {
-    // ret = firebase.functions().httpsCallable("getAllEventDetails");
-    ret = functions.httpsCallable("getAllEventDetails");
-
-  } else {
-    // ret = firebase.functions().httpsCallable("getAllEventDetailsForOrganizer");
-    ret = functions.httpsCallable("getAllEventDetailsByCity");
-
-  }
-  ret(para).then(results => {
-    console.log("From Function " + results.data.length);
-    document.getElementById("eventPlaceholder").innerHTML = "";
-    addCreateEventDiv();
-    // console.log("From Function " + results.data[0].resultsid);
-    for (index = 0; index < results.data.length; index++) {
-      // console.log(results.data[index]);
-      RenderEventDetails(index, results.data[index]);
-    }
-    console.log('cntActive : ', cntActive);
-    console.log('cntClosed : ', cntClosed);
-    console.log('cntOthers : ', cntOthers);
-
-    document.getElementById("active1").innerHTML = cntActive;
-    document.getElementById("active2").innerHTML = cntActive;
-    document.getElementById("active3").innerHTML = cntActive;
-    document.getElementById("active4").innerHTML = cntActive;
-
-    document.getElementById("close1").innerHTML = cntClosed;
-    document.getElementById("close2").innerHTML = cntClosed;
-    document.getElementById("close3").innerHTML = cntClosed;
-    document.getElementById("close4").innerHTML = cntClosed;
-
-    document.getElementById("others1").innerHTML = cntOthers;
-    document.getElementById("others2").innerHTML = cntOthers;
-    document.getElementById("others3").innerHTML = cntOthers;
-    document.getElementById("others4").innerHTML = cntOthers;
-
-  });
-}
 
 function populateEventList(userid) {
   var para = {};
@@ -296,7 +330,7 @@ function populateEventList(userid) {
     // console.log("From Function " + results.data[0].resultsid);
     document.getElementById("eventPlaceholder").innerHTML = "";
     addCreateEventDiv();
-
+    eventList = results.data;
     for (index = 0; index < results.data.length; index++) {
       // console.log(results.data[index]);
       RenderEventDetails(index, results.data[index]);
@@ -491,6 +525,51 @@ function RenderEventDetails(index, doc) {
   div1.appendChild(div2);
 
   document.getElementById("eventPlaceholder").appendChild(div1);
+
+}
+
+function SelectYearChangeMobile() {
+  var objYear = document.getElementById("selYearMobile");
+
+  var iYear = objYear.options[objYear.selectedIndex].text;
+  GetEventForYear(iYear);
+}
+function SelectYearChange() {
+  var objYear = document.getElementById("selYear");
+
+  var iYear = objYear.options[objYear.selectedIndex].text;
+  GetEventForYear(iYear);
+}
+function GetEventForYear(iYear) {
+  console.log(iYear);
+  document.getElementById("eventPlaceholder").innerHTML = "";
+  addCreateEventDiv();
+  var eventForYear = eventList.filter(e => new Date(e.EventStartDate._seconds * 1000).getFullYear() === Number(iYear));
+  for (index = 0; index < eventForYear.length; index++) {
+    // console.log(results.data[index]);
+    RenderEventDetails(index, eventForYear[index]);
+  }
+  console.log('cntActive : ', cntActive);
+  console.log('cntClosed : ', cntClosed);
+  console.log('cntOthers : ', cntOthers);
+
+  document.getElementById("active1").innerHTML = cntActive;
+  document.getElementById("active2").innerHTML = cntActive;
+  document.getElementById("active3").innerHTML = cntActive;
+  document.getElementById("active4").innerHTML = cntActive;
+
+  document.getElementById("close1").innerHTML = cntClosed;
+  document.getElementById("close2").innerHTML = cntClosed;
+  document.getElementById("close3").innerHTML = cntClosed;
+  document.getElementById("close4").innerHTML = cntClosed;
+
+  document.getElementById("others1").innerHTML = cntOthers;
+  document.getElementById("others2").innerHTML = cntOthers;
+  document.getElementById("others3").innerHTML = cntOthers;
+  document.getElementById("others4").innerHTML = cntOthers;
+
+  document.getElementById('loadingFullDiv').style.display = 'none';
+
 
 }
 // function RenderEventDetailsOld(index, doc) {
