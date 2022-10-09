@@ -1875,7 +1875,7 @@ exports.updateEventDetails_EventMode =
         );
       }
       const EventID = data.EventID;
-      const Announcement = data.EventMode;
+      const EventMode = data.EventMode;
       console.log("eventID ", EventID);
 
       return admin.firestore().collection("EventList")

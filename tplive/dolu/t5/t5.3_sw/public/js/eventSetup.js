@@ -104,18 +104,18 @@ function getEventDetails() {
 
             if (result.data.NoticeBoard != undefined && result.data.NoticeBoard != null && result.data.NoticeBoard != "") {
                 var onoticeboard = result.data.NoticeBoard;
-                onoticeboard = onoticeboard.replaceAll(";", "\n");
+                //onoticeboard = onoticeboard.replaceAll(";", "\n");
                 document.getElementById("noticeBoard").textContent = onoticeboard;
             }
             if (result.data.Announcement != undefined && result.data.Announcement != null && result.data.Announcement != "") {
                 var valAnnouncement = result.data.Announcement;
-                valAnnouncement = valAnnouncement.replaceAll(";", "\n");
+                //valAnnouncement = valAnnouncement.replaceAll(";", "\n");
                 document.getElementById("accouncement").textContent = valAnnouncement;
             }
 
             if (result.data.RulesAndRegulations != undefined && result.data.RulesAndRegulations != null && result.data.RulesAndRegulations != "") {
                 var valrulesAndRegulation = result.data.RulesAndRegulations;
-                valrulesAndRegulationt = valrulesAndRegulation.replaceAll(";", "\n");
+                //valrulesAndRegulationt = valrulesAndRegulation.replaceAll(";", "\n");
                 document.getElementById("rulesAndRegulation").textContent = valrulesAndRegulation;
             }
 

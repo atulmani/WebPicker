@@ -64,34 +64,34 @@ function GetEventDetails() {
     console.log(result.data);
     var valList;
     document.getElementById("eventLogo").src = result.data.EventLogo;
-    if(result.data.ThumbImage1 != undefined && result.data.ThumbImage1 != null && result.data.ThumbImage1 != ""){
+    if (result.data.ThumbImage1 != undefined && result.data.ThumbImage1 != null && result.data.ThumbImage1 != "") {
       document.getElementById("thumb1").src = result.data.ThumbImage1;
     } else {
       document.getElementById("thumb1").src = result.data.EventLogo;
     }
     document.getElementById("thumb1").src = result.data.EventLogo;
 
-    if(result.data.ThumbImage2 != undefined && result.data.ThumbImage2 != null && result.data.ThumbImage2 != ""){
+    if (result.data.ThumbImage2 != undefined && result.data.ThumbImage2 != null && result.data.ThumbImage2 != "") {
       document.getElementById("thumb2").src = result.data.ThumbImage2;
     } else {
       console.log('thumb2 is null');
       document.getElementById("thumb2").src = "";
-      document.getElementById("thumb2").style.display= "none;" ;
+      document.getElementById("thumb2").style.display = "none;";
     }
 
-    if(result.data.ThumbImage3 != undefined && result.data.ThumbImage3 != null && result.data.ThumbImage3 != ""){
+    if (result.data.ThumbImage3 != undefined && result.data.ThumbImage3 != null && result.data.ThumbImage3 != "") {
       document.getElementById("thumb3").src = result.data.ThumbImage3;
     } else {
       console.log('thumb3 is null');
       document.getElementById("thumb3").src = "";
-      document.getElementById("thumb3").style.display= "none;" ;
+      document.getElementById("thumb3").style.display = "none;";
     }
-    if(result.data.ThumbImage4 != undefined && result.data.ThumbImage4 != null && result.data.ThumbImage4 != ""){
+    if (result.data.ThumbImage4 != undefined && result.data.ThumbImage4 != null && result.data.ThumbImage4 != "") {
       document.getElementById("thumb4").src = result.data.ThumbImage4;
     } else {
       console.log('thumb4 is null');
       document.getElementById("thumb4").src = ""
-      document.getElementById("thumb4").style.display= "none;" ;
+      document.getElementById("thumb4").style.display = "none;";
     }
 
     // document.getElementById("thumb1").src = result.data.EventLogo;
@@ -103,20 +103,42 @@ function GetEventDetails() {
     document.getElementById("eventName").innerHTML = result.data.EventName;
     document.getElementById("organisername").innerHTML = result.data.EventOwnerName;
     document.getElementById("announcement").innerHTML = result.data.Announcement;
+    document.getElementById("orgName").innerHTML = result.data.EventOwnerName;
+    if (result.data.RegistrationOpenFlag === "YES") {
+      document.getElementById("btn1").innerHTML = "Register";
+    }
+    else if (result.data.EventMode.toUpperCase() === "FIXTURE") {
+      document.getElementById("btn1").innerHTML = "View Draw";
+    } else {
+      document.getElementById("btn1").style.display = "none;";
 
-    if (result.data.EventMode != null && result.data.EventMode != undefined && result.data.EventMode != "") {
-      if (result.data.EventMode.toUpperCase() === "BOOK") {
-        document.getElementById("btn1").innerHTML = "Register";
-        document.getElementById("btn2").innerHTML = "Pay Now";
-      } else if (result.data.EventMode.toUpperCase() === "OPEN") {
-        document.getElementById("btn1").style.display = "none;";
-        document.getElementById("btn2").style.display = "none;";
-      } else if (result.data.EventMode.toUpperCase() === "FIXTURE") {
-        document.getElementById("btn1").innerHTML = "View Draw";
-        document.getElementById("btn2").style.display = "none;";
-      }
+    }
+    console.log(result.data.OnlinePaymentModeFlag);
+    if (result.data.OnlinePaymentModeFlag === "YES") {
+      document.getElementById("btn2").innerHTML = "Pay Now";
+    } else if (result.data.DrawPublishedFlag === "YES") {
+      document.getElementById("btn2").innerHTML = "Draw";
+    } else {
+      document.getElementById("btn2").style.display = "none;";
     }
 
+    console.log(document.getElementById("spanbtn2").style.display);
+    /*    if (result.data.EventMode != null && result.data.EventMode != undefined && result.data.EventMode != "") {
+    
+          if (result.data.EventMode.toUpperCase() === "BOOK") {
+    
+            document.getElementById("btn1").innerHTML = "Register";
+    
+            document.getElementById("btn2").innerHTML = "Pay Now";
+          } else if (result.data.EventMode.toUpperCase() === "OPEN") {
+            document.getElementById("btn1").style.display = "none;";
+            document.getElementById("btn2").style.display = "none;";
+          } else if (result.data.EventMode.toUpperCase() === "FIXTURE") {
+            document.getElementById("btn1").innerHTML = "View Draw";
+            document.getElementById("btn2").style.display = "none;";
+          }
+        }
+    */
     if (result.data.EventStartDate != undefined && result.data.EventStartDate != null && result.data.EventStartDate != "") {
       var sDate = new Date(result.data.EventStartDate._seconds * 1000);
       document.getElementById("eventstartdate").innerHTML = sDate.toLocaleDateString("en-IN", options);;
@@ -158,11 +180,23 @@ function GetEventDetails() {
     document.getElementById("organiserEmail").href = "mailto: " + result.data.EventOwnerEmail;
     document.getElementById("organiserPhone").innerHTML = result.data.EventOwnerPhone;
     document.getElementById("organiserPhone").href = "tel: +" + result.data.EventOwnerPhone;
-
+    //    console.log(result.data.RulesAndRegulations);
     // document.getElementById("eventDetails").innerHTML = result.data.EventDetails;
-    if(result.data.RulesAndRegulations != undefined && result.data.RulesAndRegulations != null){
+    if (result.data.RulesAndRegulations != undefined && result.data.RulesAndRegulations != null) {
+      var ruleList = result.data.RulesAndRegulations.split(";");
+      document.getElementById("RulesAndRegulations").innerHTML = "<ul>";
+      for (inti = 0; inti < ruleList.length; inti++) {
+        if (ruleList[inti] === "") {
+          document.getElementById("RulesAndRegulations").innerHTML += "<br>";
+        } else {
+          document.getElementById("RulesAndRegulations").innerHTML += "<li>" + ruleList[inti] + "</li>";
+        }
+      }
+      document.getElementById("EventDetails").innerHTML = result.data.NoticeBoard.replaceAll(";", "<br>");
 
-      document.getElementById("RulesAndRegulations").innerHTML = result.data.RulesAndRegulations.replaceAll(";", "<br>");
+
+      document.getElementById("RulesAndRegulations").innerHTML += "</ul>";
+      //      document.getElementById("RulesAndRegulations").innerHTML = result.data.RulesAndRegulations.replaceAll(";", "<br>");
     }
     // console.log(result.data.RulesAndRegulations.replace(";", "<br>"));
     valList = result.data.CategoryDetails;
@@ -228,16 +262,16 @@ function renderCategory(obj, index) {
 var ProductImg = document.getElementById("eventLogo");
 var SmallImg = document.getElementsByClassName("small-img");
 
-SmallImg[0].onclick = function() {
+SmallImg[0].onclick = function () {
   ProductImg.src = SmallImg[0].src;
 }
-SmallImg[1].onclick = function() {
+SmallImg[1].onclick = function () {
   ProductImg.src = SmallImg[1].src;
 }
-SmallImg[2].onclick = function() {
+SmallImg[2].onclick = function () {
   ProductImg.src = SmallImg[2].src;
 }
-SmallImg[3].onclick = function() {
+SmallImg[3].onclick = function () {
   ProductImg.src = SmallImg[3].src;
 }
 
