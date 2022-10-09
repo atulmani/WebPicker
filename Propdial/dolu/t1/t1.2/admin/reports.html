@@ -39,6 +39,9 @@
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
+    <!-- chart link -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- Your Own Style -->
     <link rel="stylesheet" href="../css/styles.css">
 
@@ -183,7 +186,7 @@
 
                                 <div class="side-navbar-profile-div-circle">
                                     <div>
-                                        <span style="color: #EB542E;">AT</span>
+                                        <span style="color: #EB542E;">KS</span>
                                     </div>
                                 </div>
 
@@ -214,7 +217,7 @@
                         </a>
                     </li>
 
-                    <li class="active">
+                    <li>
                         <b></b>
                         <b></b>
                         <a href="propertyImages.html">
@@ -250,7 +253,7 @@
                     </li>
 
 
-                    <li>
+                    <li class="active">
                         <a href="reports.html">
                             <b></b>
                             <b></b>
@@ -324,7 +327,7 @@
                         </a>
                     </li>
 
-                    <li class="active">
+                    <li>
                         <b></b>
                         <b></b>
                         <a href="propertyImages.html">
@@ -360,7 +363,7 @@
                     </li>
 
 
-                    <li>
+                    <li class="active">
                         <a href="reports.html">
                             <b></b>
                             <b></b>
@@ -426,386 +429,218 @@
 
                 </div>
 
-                <div style="padding: 20px 0;">
-                    <h1 class="all-heading mobile-center" style="padding: 0 10px;">Property Images</h1>
+                <div class="large">
                     <div class="row no-gutters">
-                        <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
-                            <div class="property-image-div">
-                                <!-- <img src="" class="property-image" alt=""> -->
-                                <div class="property-contact-div property-media-icons-horizontal"
-                                    style="justify-content: space-evenly;flex-direction: row;">
-                                    <div style="cursor: pointer;">
-                                        <span class="material-symbols-outlined">
-                                            add_a_photo
-                                        </span>
-                                        <h1>Camera</h1>
-                                    </div>
-                                    <div style="cursor: pointer;">
-                                        <span class="material-symbols-outlined">
-                                            cloud_upload
-                                        </span>
-                                        <h1>Upload</h1>
-                                    </div>
+
+                        <div class="col-lg-3 col-md-3" style="padding: 15px;">
+                            <div class="admin-property-count-card">
+                                <div class="">
+                                    <h1>1,504</h1>
+                                    <h2>Owners</h2>
+                                </div>
+                                <div class="">
+                                    <span class="material-symbols-outlined">
+                                        person
+                                    </span>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
-                            <div class="property-image-div">
-                                <img src="/img/room_house.jpg" class="property-image" alt="">
-                                <div onclick="moreClickOpen(moreBtnDetails1)" class="object-more-icon">
+                        <div class="col-lg-3 col-md-3" style="padding: 15px;">
+                            <a href="addproperty.html" class="admin-property-count-card">
+                                <div class="">
+                                    <h1>80623</h1>
+                                    <h2>Properties</h2>
+                                </div>
+                                <div class="">
                                     <span class="material-symbols-outlined">
-                                        more_vert
+                                        home_work
                                     </span>
                                 </div>
-                                <div id="moreBtnDetails1" class="object-more-details">
-
-                                    <div>
-                                        <span class="material-symbols-outlined">
-                                            cloud_upload
-                                        </span>
-                                        <h1>UPLOAD</h1>
-                                    </div>
-
-                                    <div>
-                                        <span class="material-symbols-outlined">
-                                            delete
-                                        </span>
-                                        <h1>TRASH</h1>
-                                    </div>
-
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-md-3" style="padding: 15px;">
+                            <div class="admin-property-count-card">
+                                <div class="">
+                                    <h1>284</h1>
+                                    <h2>Unpaid</h2>
                                 </div>
-                            </div>
-                            <div class="propety-description">
-                                <h1>HOUSE - FULL VIEW</h1>
-                                <div class="indicating-letter"></div>
+                                <div class="">
+                                    <span class="material-symbols-outlined">
+                                        autorenew
+                                    </span>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
-                            <div class="property-image-div">
-                                <img src="/img/room_hall.jpg" class="property-image" alt="">
-                                <div onclick="moreClickOpen(moreBtnDetails2)" class="object-more-icon">
+                        <div class="col-lg-3 col-md-3" style="padding: 15px;">
+                            <div class="admin-property-count-card">
+                                <div class="">
+                                    <h1>78</h1>
+                                    <h2>Enquiries</h2>
+                                </div>
+                                <div class="">
                                     <span class="material-symbols-outlined">
-                                        more_vert
+                                        support
                                     </span>
                                 </div>
-                                <div id="moreBtnDetails2" class="object-more-details">
-
-                                    <div>
-                                        <span class="material-symbols-outlined">
-                                            cloud_upload
-                                        </span>
-                                        <h1>UPLOAD</h1>
-                                    </div>
-
-                                    <div>
-                                        <span class="material-symbols-outlined">
-                                            delete
-                                        </span>
-                                        <h1>TRASH</h1>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="propety-description">
-                                <h1>DRAWING ROOM</h1>
-                                <div class="indicating-letter"></div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
-                            <div class="property-image-div">
-                                <img src="/img/room_master.jpg" class="property-image" alt="">
-                                <div onclick="moreClickOpen(moreBtnDetails3)" class="object-more-icon">
-                                    <span class="material-symbols-outlined">
-                                        more_vert
-                                    </span>
-                                </div>
-                                <div id="moreBtnDetails3" class="object-more-details">
-
-                                    <div>
-                                        <span class="material-symbols-outlined">
-                                            cloud_upload
-                                        </span>
-                                        <h1>UPLOAD</h1>
-                                    </div>
-
-                                    <div>
-                                        <span class="material-symbols-outlined">
-                                            delete
-                                        </span>
-                                        <h1>TRASH</h1>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="propety-description">
-                                <h1>MASTER BED ROOM</h1>
-                                <div class="indicating-letter"></div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
-                            <div class="property-image-div">
-                                <img src="/img/room_1.jpg" class="property-image" alt="">
-                                <div onclick="moreClickOpen(moreBtnDetails4)" class="object-more-icon">
-                                    <span class="material-symbols-outlined">
-                                        more_vert
-                                    </span>
-                                </div>
-                                <div id="moreBtnDetails4" class="object-more-details">
-
-                                    <div>
-                                        <span class="material-symbols-outlined">
-                                            cloud_upload
-                                        </span>
-                                        <h1>UPLOAD</h1>
-                                    </div>
-
-                                    <div>
-                                        <span class="material-symbols-outlined">
-                                            delete
-                                        </span>
-                                        <h1>TRASH</h1>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="propety-description">
-                                <h1>ROOM ADJECENT TO HALL</h1>
-                                <div class="indicating-letter"></div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
-                            <div class="property-image-div">
-                                <img src="/img/room_2.jpg" class="property-image" alt="">
-                                <div onclick="moreClickOpen(moreBtnDetails5)" class="object-more-icon">
-                                    <span class="material-symbols-outlined">
-                                        more_vert
-                                    </span>
-                                </div>
-                                <div id="moreBtnDetails5" class="object-more-details">
-
-                                    <div>
-                                        <span class="material-symbols-outlined">
-                                            cloud_upload
-                                        </span>
-                                        <h1>UPLOAD</h1>
-                                    </div>
-
-                                    <div>
-                                        <span class="material-symbols-outlined">
-                                            delete
-                                        </span>
-                                        <h1>TRASH</h1>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="propety-description">
-                                <h1>ROOM ADJECENT TO KITCHEN</h1>
-                                <div class="indicating-letter"></div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
-                            <div class="property-image-div">
-                                <img src="/img/room_balcony.jpg" class="property-image" alt="">
-                                <div onclick="moreClickOpen(moreBtnDetails6)" class="object-more-icon">
-                                    <span class="material-symbols-outlined">
-                                        more_vert
-                                    </span>
-                                </div>
-                                <div id="moreBtnDetails6" class="object-more-details">
-
-                                    <div>
-                                        <span class="material-symbols-outlined">
-                                            cloud_upload
-                                        </span>
-                                        <h1>UPLOAD</h1>
-                                    </div>
-
-                                    <div>
-                                        <span class="material-symbols-outlined">
-                                            delete
-                                        </span>
-                                        <h1>TRASH</h1>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="propety-description">
-                                <h1>BALCONY</h1>
-                                <div class="indicating-letter"></div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
-                            <div class="property-image-div">
-                                <img src="/img/room_kitchen.webp" class="property-image" alt="">
-                                <div onclick="moreClickOpen(moreBtnDetails7)" class="object-more-icon">
-                                    <span class="material-symbols-outlined">
-                                        more_vert
-                                    </span>
-                                </div>
-                                <div id="moreBtnDetails7" class="object-more-details">
-
-                                    <div>
-                                        <span class="material-symbols-outlined">
-                                            cloud_upload
-                                        </span>
-                                        <h1>UPLOAD</h1>
-                                    </div>
-
-                                    <div>
-                                        <span class="material-symbols-outlined">
-                                            delete
-                                        </span>
-                                        <h1>TRASH</h1>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="propety-description">
-                                <h1>KITCHEN</h1>
-                                <div class="indicating-letter"></div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
-                            <div class="property-image-div">
-                                <img src="/img/room_bathroom.jpg" class="property-image" alt="">
-                                <div onclick="moreClickOpen(moreBtnDetails8)" class="object-more-icon">
-                                    <span class="material-symbols-outlined">
-                                        more_vert
-                                    </span>
-                                </div>
-                                <div id="moreBtnDetails8" class="object-more-details">
-
-                                    <div>
-                                        <span class="material-symbols-outlined">
-                                            cloud_upload
-                                        </span>
-                                        <h1>UPLOAD</h1>
-                                    </div>
-
-                                    <div>
-                                        <span class="material-symbols-outlined">
-                                            delete
-                                        </span>
-                                        <h1>TRASH</h1>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="propety-description">
-                                <h1>BATHROOM</h1>
-                                <div class="indicating-letter"></div>
                             </div>
                         </div>
 
                     </div>
                 </div>
 
-                <hr>
-                <div style="padding: 5px;"></div>
-                <div class="property-status-padding-div">
-                    <div onclick="trashCardsOpen(trashCardDiv, trashCardArrow)" class="trash-heading-div">
-                        <h1 class="all-heading">Trash</h1>
-                        <span id="trashCardArrow" class="material-symbols-outlined">
-                            expand_more
-                        </span>
+                <div class="small">
+                    <div class="row no-gutters">
+
+                        <div class="col-6" style="padding:10px 10px 10px 0;">
+                            <div class="admin-property-count-card">
+                                <div class="">
+                                    <h1>1,504</h1>
+                                    <h2>Owners</h2>
+                                </div>
+                                <div class="">
+                                    <span class="material-symbols-outlined">
+                                        person
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6" style="padding: 10px 0 10px 10px;">
+                            <a href="addproperty.html" class="admin-property-count-card">
+                                <div class="">
+                                    <h1>80623</h1>
+                                    <h2>Properties</h2>
+                                </div>
+                                <div class="">
+                                    <span class="material-symbols-outlined">
+                                        home_work
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-6" style="padding: 10px 10px 10px 0;">
+                            <div class="admin-property-count-card">
+                                <div class="">
+                                    <h1>284</h1>
+                                    <h2>Unpaid</h2>
+                                </div>
+                                <div class="">
+                                    <span class="material-symbols-outlined">
+                                        autorenew
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6" style="padding: 10px 0 10px 10px;">
+                            <div class="admin-property-count-card">
+                                <div class="">
+                                    <h1>78</h1>
+                                    <h2>Enquiries</h2>
+                                </div>
+                                <div class="">
+                                    <span class="material-symbols-outlined">
+                                        support
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div><br>
+
+                <div class="row no-gutters">
+                    <div class="col-lg-8 col-md-8 col-sm-12">
+                        <div class="property-status-padding-div" style="padding-top: 10px;padding-bottom: 10px;">
+                            <div class="all-chart-div" style="padding-top: 5px;">
+                                <div style="text-align: center;">
+                                    <h1 class="all-heading" style="color: #444;font-size: 1.4rem;">Report 1</h1>
+                                </div>
+                                <canvas id="myChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="property-status-padding-div"
+                            style="padding-top: 10px;padding-bottom: 10px;height: 100%;display: flex;justify-content: center;flex-direction: column;">
+                            <div class="all-chart-div" style="padding-top: 5px;">
+                                <div style="text-align: center;">
+                                    <h1 class="all-heading" style="color: #444;font-size: 1.4rem;">Report 2</h1>
+                                </div>
+                                <canvas id="myChartPolar"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+
+                <div class="row no-gutters">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="property-status-padding-div" style="padding-top: 10px;padding-bottom: 10px;">
+                            <div class="report-bullet-points-div">
+                                <h1 class="all-heading" style="color: #444;font-size: 1.4rem;">Report 3</h1>
+                                <div>
+                                    <ul>
+                                        <li>Hello - Point 1</li>
+                                        <li>----------------</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="property-status-padding-div" style="padding-top: 10px;padding-bottom: 10px;">
+                            <div class="report-bullet-points-div">
+                                <h1 class="all-heading" style="color: #444;font-size: 1.4rem;">Report 4</h1>
+                                <div>
+                                    <ul>
+                                        <li>Hello - Point 1</li>
+                                        <li>----------------</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="property-status-padding-div" style="padding-top: 10px;padding-bottom: 10px;">
+                            <div class="report-bullet-points-div">
+                                <h1 class="all-heading" style="color: #444;font-size: 1.4rem;">Report 5</h1>
+                                <div>
+                                    <ul>
+                                        <li>Hello - Point 1</li>
+                                        <li>----------------</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+
+                <div class="row no-gutters">
+                    <div class="col-lg-8 col-md-8 col-sm-12">
+                        <div class="property-status-padding-div" style="padding-top: 10px;padding-bottom: 10px;">
+                            <div class="all-chart-div" style="padding-top: 5px;">
+                                <div style="text-align: center;">
+                                    <h1 class="all-heading" style="color: #444;font-size: 1.4rem;">Report 6</h1>
+                                </div>
+                                <canvas id="myChartBar"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="property-status-padding-div"
+                            style="padding-top: 10px;padding-bottom: 10px;height: 100%;display: flex;justify-content: center;flex-direction: column;">
+                            <div class="all-chart-div" style="padding-top: 5px;">
+                                <div style="text-align: center;">
+                                    <h1 class="all-heading" style="color: #444;font-size: 1.4rem;">Report 7</h1>
+                                </div>
+                                <canvas id="myChartRadar"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div id="trashPopUpDiv" class="trash-pop-up">
-                    <div onclick="closeDeletePopUp()" class="trash-pop-up-card">
-                        <span class="material-symbols-outlined close-btn">
-                            close
-                        </span>
-                        <h1>ROOM ADJECENT TO HALL</h1>
-                        <hr>
-                        <h2><span id="trashPopUpParaText"></span> "ROOM ADJECENT TO HALL" Image</h2>
-                        <div class="trash-pop-up-btn-div">
-                            <div>
-                                <span>CANCEL</span>
-                            </div>
-                            <div id="trashPopUpSituationBtn" class="">
-                                <span>mytext</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="trashCardDiv" class="row no-gutters trash-cards">
-
-                    <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
-                        <div class="property-image-div">
-                            <img src="/img/room_1.jpg" class="property-image" alt="">
-                            <div onclick="moreClickOpen(moreBtnTrashDetails1)" class="object-more-icon">
-                                <span class="material-symbols-outlined">
-                                    more_vert
-                                </span>
-                            </div>
-                            <div id="moreBtnTrashDetails1" class="object-more-details">
-
-                                <div onclick="openDeletePopUp('Recover')">
-                                    <span class="material-symbols-outlined">
-                                        refresh
-                                    </span>
-                                    <h1>RECOVER</h1>
-                                </div>
-
-                                <div onclick="openDeletePopUp('Delete')">
-                                    <span class="material-symbols-outlined">
-                                        delete
-                                    </span>
-                                    <h1>DELETE</h1>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="propety-description">
-                            <h1>ROOM ADJECENT TO HALL</h1>
-                            <div class="indicating-letter"></div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-sm-6 col-sm-12" style="padding: 10px;">
-                        <div class="property-image-div">
-                            <img src="/img/room_balcony.jpg" class="property-image" alt="">
-                            <div onclick="moreClickOpen(moreBtnTrashDetails2)" class="object-more-icon">
-                                <span class="material-symbols-outlined">
-                                    more_vert
-                                </span>
-                            </div>
-                            <div id="moreBtnTrashDetails2" class="object-more-details">
-
-                                <div onclick="openDeletePopUp('Recover')">
-                                    <span class="material-symbols-outlined">
-                                        refresh
-                                    </span>
-                                    <h1>RECOVER</h1>
-                                </div>
-
-                                <div onclick="openDeletePopUp('Delete')">
-                                    <span class="material-symbols-outlined">
-                                        delete
-                                    </span>
-                                    <h1>DELETE</h1>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="propety-description">
-                            <h1>BALCONY</h1>
-                            <div class="indicating-letter"></div>
-                        </div>
-                    </div>
-
-                </div>
                 <hr>
 
                 <div class="vehicle-div">
@@ -903,8 +738,9 @@
 
                 </div>
             </div>
-
         </div>
+
+    </div>
 
     </div>
 
@@ -918,7 +754,7 @@
 
 
     <script src="/js/main.js"></script>
-    <script src="/js/propertyImage.js"></script>
+    <script src="/js/addproperty.js"></script>
 
     <!-- Owl Carousel Javascript  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
@@ -932,6 +768,108 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+
+    <script>
+        const labels = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
+        ];
+
+        const labelsPolar = [
+            'Blue',
+            'Red',
+            'Orange',
+            'Yellow',
+            'Green',
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Rent',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [17, 10, 5, 2, 20, 30, 45, 29, 61, 39, 12, 43],
+            }]
+        };
+
+        const dataPolar = {
+            labels: labelsPolar,
+            datasets: [{
+                label: 'Rent',
+                backgroundColor: ['rgba(154, 208, 245,0.8)', 'rgba(255, 177, 193,0.8)', 'rgba(255, 207, 159,0.8)', 'rgba(255, 230, 170,0.8)', 'rgba(165, 223, 223,0.8)',],
+                borderColor: '#fff',
+                data: [51.755, 26.628, 74.422, 65.323, 63.529],
+            }]
+        };
+
+        const dataPie = {
+            labels: labels,
+            datasets: [{
+                label: 'Rent',
+                backgroundColor: ['rgba(255, 99, 132, 0.7)', 'rgba(54,162,235,0.7)', 'rgba(255,159,64,0.7)', 'rgba(210,77,255,0.7)', 'rgba(255,205,86,0.7)', 'rgba(101, 219, 130,0.7)', 'rgba(0,153,255,0.7)', 'rgba(230,230,0,0.7)', 'rgba(255,191,128,0.7)', 'rgba(230,153,2550.7)', 'rgba(204,0,102,0.7)', 'rgba(153,153,102,0.7)',],
+                borderColor: ['rgba(255, 99, 132, 0.7)', 'rgba(54,162,235,0.7)', 'rgba(255,159,64,0.7)', 'rgba(210,77,255,0.7)', 'rgba(255,205,86,0.7)', 'rgba(101, 219, 130,0.7)', 'rgba(0,153,255,0.7)', 'rgba(230,230,0,0.7)', 'rgba(255,191,128,0.7)', 'rgba(230,153,2550.7)', 'rgba(204,0,102,0.7)', 'rgba(153,153,102,0.7)',],
+                data: [17, 10, 5, 2, 20, 30, 45, 29, 61, 39, 12, 43],
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {}
+        };
+
+        const configPolar = {
+            type: 'polarArea',
+            data: dataPolar,
+            options: {}
+        };
+
+        const configBar = {
+            type: 'bar',
+            data: dataPie,
+            options: {}
+        };
+
+        const configRadar = {
+            type: 'radar',
+            data: dataPolar,
+            options: {}
+        };
+    </script>
+
+    <script>
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+
+        const myChartBar = new Chart(
+            document.getElementById('myChartPolar'),
+            configPolar
+        );
+
+        const myChartPie = new Chart(
+            document.getElementById('myChartBar'),
+            configBar
+        );
+
+        const myChartRadar = new Chart(
+            document.getElementById('myChartRadar'),
+            configRadar
+        );
+    </script>
+
 
 
 </body>
