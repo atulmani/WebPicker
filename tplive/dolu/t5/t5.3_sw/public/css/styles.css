@@ -5006,3 +5006,141 @@ input[type=number] {
 }
 
 /* update event page - end */
+
+/* event registration page - start */
+
+.event-registration-participant-card {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  height: 90px;
+  cursor: pointer;
+}
+
+.add-paticipant-card {
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1);
+  /* background: rgba(52, 141, 203, 0.3); */
+}
+
+.add-paticipant-card span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #6E5E5E;
+  font-size: 2rem;
+  color: #fff;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.add-paticipant-card h1 {
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 0;
+  padding-top: 5px;
+  color: #6E5E5E;
+}
+
+.event-registration-participant-card .participant-name-div {
+  display: flex;
+  align-items: center;
+}
+
+.event-registration-participant-card .participant-name-div span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.7rem;
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 700,
+    'GRAD' 0,
+    'opsz' 48
+}
+
+.event-registration-participant-card .participant-name-div span.male {
+  background: #5cc4f3;
+}
+
+.event-registration-participant-card .participant-name-div span.female {
+  background: #f576ac;
+}
+
+.event-registration-participant-card .participant-name-div h1 {
+  position: relative;
+  top: 3px;
+  font-size: 1.3rem;
+  padding: 0 10px 0 10px;
+  margin: 0;
+}
+
+.event-registration-participant-card .participant-name-div small {
+  padding-left: 10px;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.event-registration-participant-card .participant-card-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-40%);
+  right: 0;
+}
+
+.event-registration-participant-card .participant-card-arrow span {
+  font-size: 1.8rem;
+  color: #bbb;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 700,
+    'GRAD' 0,
+    'opsz' 48
+}
+
+.event-details-sticky-div {
+  border-top: 1px solid #bbb;
+  transform: translateY(-1px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #333C5D;
+  padding: 10px 30px 5px 30px;
+}
+
+@media (max-width: 500px) {
+  .event-details-sticky-div {
+    padding: 10px 15px 5px 15px;
+  }
+}
+
+.event-details-sticky-div div h1 {
+  color: #fff;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.event-details-sticky-div div h2 {
+  color: #fff;
+  font-size: 0.9rem;
+  margin: 0;
+  font-weight: normal;
+}
+
+.event-details-sticky-div div small {
+  position: relative;
+  top: -2px;
+  color: #bbb;
+  font-size: 0.8rem;
+}
+
+/* event registration page - end */

@@ -17,11 +17,11 @@ auth.onAuthStateChanged(async firebaseUser => {
     } else {
       loggedinUser = null;
       console.log('User has been logged out');
-      window.location.href = "../login/index.html";
+      window.location.href = "/login/index.html";
     }
   } catch (error) {
     console.log(error.message);
-    window.location.href = "../login/index.html";
+    //window.location.href = "index.html";
   }
 });
 
@@ -58,7 +58,6 @@ function GetEventList() {
     ParticipantID: loggedinUser.uid,
   };
   console.log(para1);
-  // const ret1 = firebase.functions().httpsCallable("getApplicableEvent");
   const ret1 = functions.httpsCallable("getApplicableEvent");
   ret1(para1).then((result) => {
     var record1 = result.data;
@@ -78,9 +77,8 @@ function GetEventList() {
   });
 }
 
-function renderEntry()
-{
-  document.getElementById("tdRegistereEvent").innerHTML="";
+function renderEntry() {
+  document.getElementById("tdRegistereEvent").innerHTML = "";
   for (index = 0; index < RegisteredEventList.length; index++) {
     var tr = document.createElement("tr");
     var td1 = document.createElement("td");
@@ -120,8 +118,8 @@ function GetAllRegisteredEventList() {
     ParticipantID: loggedinUser.uid,
   };
   console.log(para2);
-  // const ret2 = firebase.functions().httpsCallable("getAllRegisteredEventList");
   const ret2 = functions.httpsCallable("getAllRegisteredEventList");
+
   ret2(para2).then((result1) => {
     console.log(result1.data);
     RegisteredEventList = result1.data;
@@ -152,28 +150,11 @@ btnSave.addEventListener('click', e => {
   var categoryValue = catList.options[catList.selectedIndex].value;
   var categoryText = catList.options[catList.selectedIndex].innerHTML;
   var split = categoryValue.split(":");
-console.log(document.getElementById("userName").value);
-var iPos = RegisteredEventList.findIndex(e=>e.CategoryName === split[0]);
-if(iPos < 0 )
-{
+  console.log(document.getElementById("userName").value);
+  var iPos = RegisteredEventList.findIndex(e => e.CategoryName === split[0]);
+  if (iPos < 0) {
 
-  para1 = {
-    EventID: eventID,
-    ParticipantID: loggedinUser.uid,
-    ParticipantName: document.getElementById("userName").value,
-    CategoryName: split[0],
-    EventType: split[1],
-    Fees: Number(split[2]),
-    Gender: split[3],
-    MaxTeamSize: split[4]
-  };
-  console.log(para1);
-  // const ret1 = firebase.functions().httpsCallable("registerEvent");
-  const ret1 = functions.httpsCallable("registerEvent");
-  ret1(para1).then((result) => {
-    var record1 = result.data;
-
-    RegisteredEventList.push({
+    para1 = {
       EventID: eventID,
       ParticipantID: loggedinUser.uid,
       ParticipantName: document.getElementById("userName").value,
@@ -181,30 +162,45 @@ if(iPos < 0 )
       EventType: split[1],
       Fees: Number(split[2]),
       Gender: split[3],
-      MaxTeamSize: split[4],
-      PaymentStatus : 'Pending',
-      PartnerList : [],
-    });
+      MaxTeamSize: split[4]
+    };
+    console.log(para1);
+    const ret1 = functions.httpsCallable("registerEvent");
+    ret1(para1).then((result) => {
+      var record1 = result.data;
 
+      RegisteredEventList.push({
+        EventID: eventID,
+        ParticipantID: loggedinUser.uid,
+        ParticipantName: document.getElementById("userName").value,
+        CategoryName: split[0],
+        EventType: split[1],
+        Fees: Number(split[2]),
+        Gender: split[3],
+        MaxTeamSize: split[4],
+        PaymentStatus: 'Pending',
+        PartnerList: [],
+      });
+
+      var confirmMessage = document.getElementById("confirmationMessage");
+      confirmMessage.innerHTML = "Event details saved Successfully !!";
+      var message = document.getElementById("saveMessage");
+      message.style.display = "block";
+
+      renderEntry();
+      setTimeout(function () {
+        message.style.display = 'none';
+      }, 5000);
+    });
+  }
+  else {
     var confirmMessage = document.getElementById("confirmationMessage");
-    confirmMessage.innerHTML = "Event details saved Successfully !!";
+    confirmMessage.innerHTML = "Selected event is already registered";
     var message = document.getElementById("saveMessage");
     message.style.display = "block";
 
-renderEntry();
-    setTimeout(function() {
+    setTimeout(function () {
       message.style.display = 'none';
     }, 5000);
-  });
-}
-else {
-  var confirmMessage = document.getElementById("confirmationMessage");
-  confirmMessage.innerHTML = "Selected event is already registered";
-  var message = document.getElementById("saveMessage");
-  message.style.display = "block";
-
-  setTimeout(function() {
-    message.style.display = 'none';
-  }, 5000);
-}
+  }
 });
