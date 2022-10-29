@@ -267,8 +267,6 @@ h6 {
   padding: 5px 20px;
 }
 
-.button5:hover {}
-
 .buttonTransparent {
   border: 1px solid #fff;
   background: none;
@@ -1591,9 +1589,10 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-top: 0.01rem solid #bbb;
-  border-right: 0.01rem solid #bbb;
+  border-top: 0.01rem solid #ddd;
+  border-right: 0.01rem solid #ddd;
   transform: rotate(-45deg);
+  text-decoration: none;
 }
 
 .new-user span {
@@ -1634,10 +1633,6 @@ h6 {
 
 .content-table tbody tr {
   border-bottom: 1px solid #dddddd;
-}
-
-.content-table tbody tr:nth-of-type(even) {
-  /* background-color: #f3f3f3; */
 }
 
 .content-table tbody tr:last-of-type {
@@ -2078,11 +2073,6 @@ h6 {
 
 .addorgcircle span {
   color: #fff;
-}
-
-.addorgcircle:hover {
-  /* background: linear-gradient(to right,#161d65, #348DCB); */
-  /* border: none; */
 }
 
 .addorgcircle:hover span {
@@ -4190,14 +4180,16 @@ input[type=number] {
   color: #fff;
 }
 
-.checkbox:checked~.checkbox-label#Male-label {
-  background: #74B9E8;
-  border: 1px solid #74B9E8;
+.checkbox:checked~.checkbox-label#Male-label,
+.checkbox:checked~.checkbox-label#regParticipantMaleLabel {
+  background: #5cc4f3;
+  border: 1px solid #5cc4f3;
 }
 
-.checkbox:checked~.checkbox-label#Female-label {
-  background: #E6A6C7;
-  border: 1px solid #E6A6C7;
+.checkbox:checked~.checkbox-label#Female-label,
+.checkbox:checked~.checkbox-label#regParticipantFemaleLabel {
+  background: #f576ac;
+  border: 1px solid #f576ac;
 }
 
 .checkbox:checked~.checkbox-label span {
@@ -5009,6 +5001,58 @@ input[type=number] {
 
 /* event registration page - start */
 
+.event-details-sticky-div {
+  border-top: 1px solid #bbb;
+  transform: translateY(-1px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #333C5D;
+  padding: 10px 30px 5px 30px;
+}
+
+.event-details-sticky-div div small {
+  position: relative;
+  top: -2px;
+  color: #bbb;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 500px) {
+  .event-details-sticky-div {
+    padding: 10px 15px 5px 15px;
+  }
+}
+
+.event-details-sticky-div div h1 {
+  color: #fff;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.event-details-sticky-div div h2 {
+  color: #fff;
+  font-size: 0.9rem;
+  margin: 0;
+  font-weight: normal;
+}
+
+.reg-participant-outter {
+  width: 100%;
+  overflow: hidden;
+}
+
+.reg-participant-outter .reg-participant-inner {
+  width: 300%;
+  display: flex;
+}
+
+.reg-participant-outter .reg-participant-inner .reg-participant-divs {
+  padding: 5px;
+  width: 100%;
+  transition: 2s;
+}
+
 .event-registration-participant-card {
   display: flex;
   align-items: center;
@@ -5016,7 +5060,7 @@ input[type=number] {
   padding: 0 10px;
   border-radius: 10px;
   border: 1px solid #ddd;
-  height: 90px;
+  height: 100px;
   cursor: pointer;
 }
 
@@ -5077,17 +5121,31 @@ input[type=number] {
 }
 
 .event-registration-participant-card .participant-name-div h1 {
+  color: #333C5D;
   position: relative;
   top: 3px;
   font-size: 1.3rem;
-  padding: 0 10px 0 10px;
+  padding: 0 15px 0 10px;
   margin: 0;
+  margin-bottom: 2px;
 }
 
-.event-registration-participant-card .participant-name-div small {
+.event-registration-participant-card .participant-name-div h2 {
+  position: relative;
+  top: 2px;
   padding-left: 10px;
   font-size: 0.9rem;
   color: #aaa;
+  font-weight: normal;
+  margin: 0;
+}
+
+.participant-edit-text {
+  padding: 0 10px;
+  font-size: 0.8rem;
+  margin: 0;
+  position: relative;
+  top: -3px;
 }
 
 .event-registration-participant-card .participant-card-arrow {
@@ -5107,40 +5165,417 @@ input[type=number] {
     'opsz' 48
 }
 
-.event-details-sticky-div {
-  border-top: 1px solid #bbb;
-  transform: translateY(-1px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #333C5D;
-  padding: 10px 30px 5px 30px;
+.reg-form-email {
+  font-size: 1rem;
+  text-align: center;
+  color: #aaa;
+  font-weight: normal;
+  margin: 0;
 }
 
-@media (max-width: 500px) {
-  .event-details-sticky-div {
-    padding: 10px 15px 5px 15px;
+.reg-form-email.male {
+  color: #5cc4f3;
+}
+
+.reg-form-email.female {
+  color: #f576ac;
+}
+
+.reg-participant-form-field {
+  padding: 15px 5px;
+  position: relative;
+}
+
+.reg-participant-form-field input,
+.reg-participant-form-field select {
+  width: 100%;
+  height: 40px;
+  border: none;
+  outline: none;
+  background: none;
+  border: 1px solid #ddd;
+  color: #333C5D;
+  letter-spacing: 1px;
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 0.9rem;
+}
+
+.reg-participant-date-picker {
+  background: none !important;
+  border: 1px solid #ddd !important;
+  height: 40px;
+  border-radius: 8px 0 0 8px !important;
+}
+
+.reg-participant-date-picker-icon {
+  height: 40px;
+  background: none;
+  border: 1px solid #ddd;
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+}
+
+.reg-participant-form-field span {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  color: #aaa;
+  padding: 0 8px;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.reg-participant-form-field input:focus~span,
+.reg-participant-form-field input:valid~span,
+span.already-active {
+  top: 15px;
+  background: #fff;
+  font-size: 0.9rem;
+  color: #348DCB;
+  font-weight: bold;
+  padding: 0 8px;
+}
+
+.ref-participant-save-div {
+  display: flex;
+  justify-content: center;
+}
+
+.ref-participant-save-div button {
+  width: 140px;
+  margin: 0 10px;
+}
+
+@media (max-width: 850px) {
+  .ref-participant-save-div button {
+    width: 100%;
   }
 }
 
-.event-details-sticky-div div h1 {
-  color: #fff;
-  font-size: 0.9rem;
-  margin: 0;
+.reg-first-form-gender-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.event-details-sticky-div div h2 {
-  color: #fff;
-  font-size: 0.9rem;
-  margin: 0;
-  font-weight: normal;
+.gender-section-inside-div {
+  width: 33%;
 }
 
-.event-details-sticky-div div small {
-  position: relative;
-  top: -2px;
-  color: #bbb;
-  font-size: 0.8rem;
+.city-section-inside-div {
+  width: 66%;
+  display: flex;
+}
+
+@media (max-width: 1200px) {
+  .reg-first-form-gender-section .gender-section-inside-div {
+    width: 50%;
+  }
+}
+
+@media (max-width: 500px) {
+  .reg-first-form-gender-section .gender-section-inside-div {
+    width: 100%;
+  }
+
+  .city-section-inside-div {
+    width: 100%;
+  }
+}
+
+.reg-form-dots {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.reg-form-dots div {
+  padding: 0 15px;
+  height: 10px;
+}
+
+.reg-form-dots div::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ddd;
+  border-radius: 50%;
+}
+
+.reg-form-dots div.active::before {
+  background: #348DCB;
 }
 
 /* event registration page - end */
+
+/* event reg category page - start */
+
+.reg-category-card {
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.reg-category-card.payment-pending {
+  border: 1px solid orange;
+}
+
+.reg-category-card.payment-completed {
+  border: 1px solid green;
+}
+
+.reg-category-card.active {
+  /* background: rgba(52, 141, 203, 1); */
+  background: #eee;
+}
+
+.display-flex-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  min-height: 95px;
+}
+
+.reg-category-card .category-details {
+  width: 60%;
+}
+
+.reg-category-card h1 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.reg-category-card .category-icons span.male {
+  color: #5cc4f3;
+}
+
+.reg-category-card .category-icons span.female {
+  color: #f576ac;
+}
+
+.category-icons.team span {
+  font-size: 1.2rem;
+}
+
+.reg-category-card .category-fees {
+  width: 40%;
+  text-align: right;
+}
+
+.reg-category-card .category-fees h2 {
+  font-size: 1.2rem;
+  position: relative;
+  top: 10px;
+  color: #aaa;
+}
+
+.reg-category-card h3 {
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: #348DCB;
+  margin: 0;
+}
+
+.reg-category-card .select-category-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 20px;
+  height: 20px;
+  background: #ddd;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  pointer-events: none;
+}
+
+.reg-category-card.active .select-category-div {
+  background: #348DCB;
+  border: 1px solid #348DCB;
+}
+
+.reg-category-card .select-category-div span {
+  display: none;
+  font-size: 1rem;
+  color: #fff;
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 700,
+    'GRAD' 0,
+    'opsz' 48
+}
+
+.reg-category-card.active .select-category-div span {
+  display: block;
+}
+
+.category-checkout {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  /* background: #333C5D; */
+  background: rgba(52, 141, 203, 1);
+  /* background: #eee; */
+  border-top: 1px solid #ddd;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s;
+  z-index: 99;
+}
+
+@media (max-width: 1080px) {
+  .category-checkout {
+    bottom: 50px;
+  }
+}
+
+.category-checkout h1 {
+  font-size: 1.2rem;
+  margin: 0;
+  color: #fff;
+}
+
+.category-checkout h2 {
+  font-size: 0.9rem;
+  color: #ddd;
+  font-weight: normal;
+  margin: 0;
+}
+
+.category-checkout button {
+  background: #eee;
+  color: #333C5D;
+}
+
+.reg-category-card.active input {
+  background: #fff;
+}
+
+.category-doubles-partner-div {
+  height: 0;
+  pointer-events: none;
+  overflow: hidden;
+  transition: 1s;
+}
+
+.category-doubles-partner-div.show {
+  padding-top: 5px;
+  height: 110px;
+  pointer-events: all;
+}
+
+.partner-intelicence {
+  position: absolute;
+  top: 55px;
+  left: 5px;
+  height: 200px;
+  width: 100%;
+  min-width: 200px;
+  overflow-y: auto;
+  background: #eee;
+  z-index: 99;
+  display: none;
+}
+
+.partner-intelicence a {
+  display: block;
+  padding: 10px 0 10px 10px;
+  color: #333C5D;
+  font-size: 1rem;
+  text-decoration: none;
+  /* text-align: center; */
+  border-bottom: 1px solid #ddd;
+}
+
+.partner-intelicence a:hover {
+  text-decoration: none;
+}
+
+.cancel-partner {
+  text-align: right;
+  padding: 0 5px;
+}
+
+.cancel-partner a {
+  color: #ff5757;
+  text-decoration: none;
+}
+
+.cancel-partner a:hover {
+  color: #ff5757;
+  text-decoration: none;
+}
+
+/* event reg category page - end */
+
+/* event reg checkout page - start */
+
+.payment-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  border-radius: 0 0 10px 10px;
+  height: 40px;
+}
+
+.payment-status.pending {
+  border-top: 1px solid orange;
+  background: #edc091;
+}
+
+.payment-status.completed {
+  border-top: 1px solid green;
+  background: #91eda2;
+}
+
+.convenience-fee-div {
+  text-align: center;
+}
+
+.convenience-fee-div h1 {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.reg-checkout-note {
+  padding: 20px 0 10px 0;
+  border-radius: 10px;
+  /* border: 1px solid #aaa; */
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.reg-checkout-note h1 {
+  font-size: 1.1rem;
+  margin: 0;
+  padding: 0 20px;
+}
+
+.reg-checkout-note hr {
+  margin: 20px 0;
+}
+
+.reg-checkout-note div {
+  padding: 0 20px 0 5px;
+}
+
+.reg-checkout-note div small {
+  color: #666;
+}
+
+/* event reg checkout page - end */

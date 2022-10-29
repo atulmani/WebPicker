@@ -328,451 +328,417 @@
                 <div class="col-lg-8 col-md-8 col-sm-12">
 
                     <div id="regProfileNewParticipantDetails">
-                        <h3 style="font-weight:1000; color:#348DCB;text-align: center;">NEW PARTICIPANT</h3>
-                        <h1 class="reg-form-email">atulmani@gmail.com</h1>
-                        <h2 class="reg-form-email">9822752885</h2>
-                        <h5 class="reg-form-email male">MALE</h5>
-                        <h6 class="reg-form-email">PUNE, MAHARASHTRA</h6>
-
-                        <br><br>
-                        <div class="reg-form-dots">
-                            <div id="firstFormDot" class="active"></div>
-                            <div id="SecondFormDot"></div>
-                        </div><br>
+                        <h3 style="font-weight:1000; color:#348DCB;text-align: center;">CATEGORY</h3>
+                        <h1 class="reg-form-email">Ananya Agarwal</h1>
+                        <h5 class="reg-form-email female">FEMALE</h5>
+                        <br>
                     </div>
 
-                    <div class="reg-participant-outter">
-                        <div class="reg-participant-inner">
-                            <div class="reg-participant-divs" id="regProfileFirstSlide">
+                    <div class="row no-gutters">
 
-                                <h3 style="font-weight:1000; color:#348DCB;text-align: center;">YOUR LIST</h3>
+                        <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
+                            <div style="padding: 10px;">
+                                <div class="reg-category-card" id="regCategoryGS17">
 
-                                <div class="row no-gutters">
-
-                                    <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
-                                        <div style="padding: 10px;">
-                                            <div class="event-registration-participant-card add-paticipant-card"
-                                                onclick="regProfileToSecondSlide()">
-                                                <span class="material-symbols-outlined">
-                                                    add
+                                    <div class="display-flex-div"
+                                        onclick="selectCategory(regCategoryGS17, regCategoryGS17Price)">
+                                        <div class="category-details">
+                                            <h1>GS U17</h1>
+                                            <div class="category-icons">
+                                                <span class="material-symbols-outlined female">
+                                                    woman
                                                 </span>
-                                                <h1>ADD NEW</h1>
                                             </div>
+                                        </div>
+
+                                        <div class="category-fees">
+                                            <h2><span>₹ </span> <span id="regCategoryGS17Price">1000</span>
+                                            </h2>
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
-                                        <div style="padding: 10px;">
-                                            <div class="event-registration-participant-card"
-                                                onclick="moveToRegCategory()">
-                                                <div class="participant-name-div">
-                                                    <div>
-                                                        <span class="material-symbols-outlined male">
-                                                            man
-                                                        </span>
-                                                    </div>
-                                                    <div>
-                                                        <h1>Aditya Tripathi</h1>
-                                                        <h2>12 Jun'22 - 15 Years</h2>
-                                                        <a class="participant-edit-text" href="regCategory.html">Booking
-                                                            Details</a>
-                                                    </div>
-                                                </div>
-                                                <div class="participant-card-arrow">
-                                                    <span class="material-symbols-outlined">
-                                                        chevron_right
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="select-category-div">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span>
                                     </div>
 
-                                    <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
-                                        <div style="padding: 10px;">
-                                            <div class="event-registration-participant-card"
-                                                onclick="moveToRegCategory()">
-                                                <div class="participant-name-div">
-                                                    <div>
-                                                        <span class="material-symbols-outlined male">
-                                                            man
-                                                        </span>
-                                                    </div>
-                                                    <div>
-                                                        <h1>Pravararchith Rudrashala Matam</h1>
-                                                        <h2>12 Jun'22 - 15 Years</h2>
-                                                        <!-- <a class="participant-edit-text" href="">Booking Details</a> -->
-                                                    </div>
-                                                </div>
-                                                <div class="participant-card-arrow">
-                                                    <span class="material-symbols-outlined">
-                                                        chevron_right
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
-                                        <div style="padding: 10px;">
-                                            <div class="event-registration-participant-card"
-                                                onclick="moveToRegCategory()">
-                                                <div class="participant-name-div">
-                                                    <div>
-                                                        <span class="material-symbols-outlined female">
-                                                            woman
-                                                        </span>
-                                                    </div>
-                                                    <div>
-                                                        <h1>Ananya Agarwal</h1>
-                                                        <h2>12 Jun'22 - 15 Years</h2>
-                                                        <a class="participant-edit-text" href="regCheckout.html">Booking
-                                                            Details</a>
-                                                    </div>
-                                                </div>
-                                                <div class="participant-card-arrow">
-                                                    <span class="material-symbols-outlined">
-                                                        chevron_right
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
-                                        <div style="padding: 10px;">
-                                            <div class="event-registration-participant-card"
-                                                onclick="moveToRegCategory()">
-                                                <div class="participant-name-div">
-                                                    <div>
-                                                        <span class="material-symbols-outlined female">
-                                                            woman
-                                                        </span>
-                                                    </div>
-                                                    <div>
-                                                        <h1>Kanika Kanwal</h1>
-                                                        <h2>12 Jun'22 - 15 Years</h2>
-                                                        <!-- <a class="participant-edit-text" href="regCheckout.html">Booking Details</a> -->
-                                                    </div>
-                                                </div>
-                                                <div class="participant-card-arrow">
-                                                    <span class="material-symbols-outlined">
-                                                        chevron_right
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div><br>
-                                <hr style="border: none;border-top: 1px solid #aaa;" />
-
+                                </div>
                             </div>
-
-                            <div class="reg-participant-divs" id="regProfileSecondSlide">
-
-                                <div class="row no-gutters">
-
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-
-                                        <div class="reg-first-form-gender-section">
-                                            <div class="gender-section-inside-div"
-                                                style="position: relative;padding: 15px 5px;">
-                                                <div class="row no-gutters">
-
-                                                    <div class="col-6">
-                                                        <input type="radio" class="checkbox" style="width: 0px;"
-                                                            name="EventStatus" id="regParticipantMale" value="Male">
-                                                        <label style="height: 40px;border: 1px solid #ddd;"
-                                                            class="checkbox-label" id="regParticipantMaleLabel"
-                                                            for="regParticipantMale">
-                                                            <i class="fas fa-plus"
-                                                                style="padding-top: 9px;padding-right: 5px;font-size: 0.6rem;"></i>
-                                                            <i class="fas fa-check"
-                                                                style="padding-top: 9px;padding-right: 5px;font-size: 0.6rem;"></i>
-                                                            <span>Male</span>
-                                                        </label>
-                                                    </div>
-
-                                                    <div class="col-6">
-                                                        <input type="radio" class="checkbox" style="width: 0px;"
-                                                            name="EventStatus" id="regParticipantFemale" value="Male">
-                                                        <label style="height: 40px;border: 1px solid #ddd;"
-                                                            class="checkbox-label" id="regParticipantFemaleLabel"
-                                                            for="regParticipantFemale">
-                                                            <i class="fas fa-plus"
-                                                                style="padding-top: 9px;padding-right: 5px;font-size: 0.6rem;"></i>
-                                                            <i class="fas fa-check"
-                                                                style="padding-top: 9px;padding-right: 5px;font-size: 0.6rem;"></i>
-                                                            <span>Female</span>
-                                                        </label>
-                                                    </div>
-
-                                                    <span class="already-active"
-                                                        style="position: absolute;left: 12px;top: -5px;background: none;">Gender
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <br>
-                                    </div>
-
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-
-                                        <div class="reg-first-form-gender-section">
-                                            <div class="city-section-inside-div">
-                                                <div class="reg-participant-form-field" style="width: 50%;">
-                                                    <select name="" id="">
-                                                        <option value="">Pune</option>
-                                                        <option value="">Hyderabad</option>
-                                                        <option value="">Banglore</option>
-                                                        <option value="">Delhi</option>
-                                                    </select>
-                                                    <span class="already-active">City</span>
-                                                </div>
-
-                                                <div class="reg-participant-form-field" style="width: 50%;">
-                                                    <select name="" id="">
-                                                        <option value="">Maharashtra</option>
-                                                        <option value="">Andra Pradesh</option>
-                                                        <option value="">Karanata</option>
-                                                        <option value="">Delhi</option>
-                                                        <option value="">Kolkata</option>
-                                                    </select>
-                                                    <span class="already-active">State</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="row no-gutters">
-
-                                    <div class="col-lg-12 col-md-12 col-sm-12"><br><br>
-
-                                        <div class="ref-participant-save-div">
-
-                                            <button class="mybutton button5" onclick="regProfileToFirstSlide()">
-                                                <span
-                                                    style="transform: rotate(180deg);position: relative;top: 3px; padding-left: 5px;font-size: 1.1rem;"
-                                                    class="material-symbols-outlined">
-                                                    arrow_right_alt
-                                                </span>
-                                                <span
-                                                    style="position: relative;top: -1px;padding-right: 8px;font-size: 1rem;">BACK</span>
-                                            </button>
-                                            <button class="mybutton button5" onclick="regProfileToThirdSlide()">
-                                                <span
-                                                    style="padding-left: 8px;position: relative;top: -1px;font-size: 1rem;">NEXT</span>
-                                                <span
-                                                    style="position: relative;top: 3px; padding-left: 5px;font-size: 1.1rem;"
-                                                    class="material-symbols-outlined">
-                                                    arrow_right_alt
-                                                </span>
-                                            </button>
-
-                                        </div><br>
-                                        <hr style="border: none;border-top: 1px solid #aaa;" /><br>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="reg-participant-divs" id="regProfileThirdSlide">
-
-                                <div class="row no-gutters">
-
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-
-                                        <div class="reg-participant-form-field">
-                                            <input type="text" required>
-                                            <span>Name</span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-
-                                        <div class="event-detail-input-div"
-                                            style="position: relative;padding: 15px 5px;">
-                                            <div class="input-group date datetimepicker11">
-                                                <input id="RegistrationOpenDate" type="text"
-                                                    placeholder="Registration Open Date"
-                                                    class="form-control reg-participant-date-picker" readonly>
-                                                <div class="input-group-addon input-group-prepend">
-                                                    <span class="input-group-text reg-participant-date-picker-icon"><i
-                                                            class="fas fa-calendar"
-                                                            style="font-size: 0.9em; color: #666;"></i></span>
-                                                </div>
-                                            </div>
-                                            <span class="already-active"
-                                                style="position: absolute; top: 5px;left: 12px;padding: 0 8px;">Date
-                                                Of
-                                                Birth</span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-
-                                        <div class="reg-participant-form-field">
-                                            <input type="text" required>
-                                            <span>Address</span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-
-                                        <div class="reg-participant-form-field">
-                                            <select name="" id="">
-                                                <option value="">XS</option>
-                                                <option value="">S</option>
-                                                <option value="">M</option>
-                                                <option value="">L</option>
-                                                <option value="">XL</option>
-                                                <option value="">XXL</option>
-                                            </select>
-                                            <span class="already-active">T-Shirt / Jersey Size</span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-
-                                        <div class="reg-participant-form-field">
-                                            <input type="text" required>
-                                            <span id="idNumber">Adhar Card Number</span>
-                                            <!-- Change this according to the event dynamically -->
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                                <hr style="border: none;border-top: 1px solid #aaa;" />
-
-                                <div class="row no-gutters" id="corporateForm">
-
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-
-                                        <div class="reg-participant-form-field">
-                                            <input type="text" required>
-                                            <span>Company Name</span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-
-                                        <div class="reg-participant-form-field">
-                                            <input type="number" maxlength="10"
-                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                                required>
-                                            <span>HR Contact</span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-
-                                        <div class="reg-participant-form-field">
-                                            <input type="text" required>
-                                            <span>Location / Address</span>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="row no-gutters" id="studentForm">
-
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-
-                                        <div class="reg-participant-form-field">
-                                            <input type="text" required>
-                                            <span>School / Collage Name</span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-
-                                        <div class="reg-participant-form-field">
-                                            <select name="" id="">
-                                                <option value="">I</option>
-                                                <option value="">II</option>
-                                                <option value="">III</option>
-                                                <option value="">IV</option>
-                                                <option value="">V</option>
-                                                <option value="">VI</option>
-                                                <option value="">VII</option>
-                                                <option value="">VIII</option>
-                                                <option value="">IX</option>
-                                                <option value="">X</option>
-                                                <option value="">XI</option>
-                                                <option value="">XII</option>
-                                                <option value="">FIRST YEAR</option>
-                                                <option value="">SECOND YEAR</option>
-                                                <option value="">THIRD YEAR</option>
-                                                <option value="">FORTH YEAR</option>
-                                                <option value="">FINAL YEAR</option>
-                                            </select>
-                                            <span class="already-active">Grade</span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-
-                                        <div class="reg-participant-form-field">
-                                            <input type="text" required>
-                                            <span>Location / Address</span>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="row no-gutters">
-
-                                    <div class="col-lg-12 col-md-12 col-sm-12"><br>
-
-                                        <div class="ref-participant-save-div">
-
-                                            <button class="mybutton button5" onclick="regProfileToSecondSlide()">
-                                                <span
-                                                    style="transform: rotate(180deg);position: relative;top: 3px; padding-left: 5px;font-size: 1.1rem;"
-                                                    class="material-symbols-outlined">
-                                                    arrow_right_alt
-                                                </span>
-                                                <span
-                                                    style="position: relative;top: -1px;padding-right: 8px;font-size: 1rem;">BACK</span>
-                                            </button>
-
-                                            <button class="mybutton button5" onclick="regProfileToFirstSlide()">
-                                                <span
-                                                    style="padding-left: 8px;position: relative;top: -1px;font-size: 1rem;">SAVE</span>
-                                                <span
-                                                    style="position: relative;top: 3px; padding-left: 5px;font-size: 1.1rem;"
-                                                    class="material-symbols-outlined">
-                                                    arrow_right_alt
-                                                </span>
-                                            </button>
-
-                                        </div><br>
-                                        <hr style="border: none;border-top: 1px solid #aaa;" /><br>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
                         </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
+                            <div style="padding: 10px;">
+                                <div class="reg-category-card" id="regCategoryBS17">
+
+                                    <div class="display-flex-div"
+                                        onclick="selectCategory(regCategoryBS17, regCategoryBS17Price)">
+                                        <div class="category-details">
+                                            <h1>BS U17</h1>
+                                            <div class="category-icons">
+                                                <span class="material-symbols-outlined male">
+                                                    man
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="category-fees">
+                                            <h2><span>₹ </span> <span id="regCategoryBS17Price">1000</span>
+                                            </h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="select-category-div">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
+                            <div style="padding: 10px;">
+                                <div class="reg-category-card" id="regCategoryGD17">
+
+                                    <div class="display-flex-div"
+                                        onclick="openPartnerSelection(gdDoublesDiv); selectCategory(regCategoryGD17, regCategoryGD17Price);">
+                                        <div class="category-details">
+                                            <h1>GD U17</h1>
+                                            <div class="category-icons">
+                                                <span class="material-symbols-outlined female">
+                                                    woman
+                                                </span>
+                                                <span class="material-symbols-outlined female">
+                                                    woman
+                                                </span>
+                                            </div>
+                                            <h3><strong>Partner : </strong>Tamanna Raturi
+                                            </h3>
+                                        </div>
+
+                                        <div class="category-fees">
+                                            <h2><span>₹ </span> <span id="regCategoryGD17Price">2000</span>
+                                            </h2>
+                                            <!-- <h3>Partner : Pusarla</h3> -->
+                                        </div>
+                                    </div>
+
+                                    <div class="category-doubles-partner-div" id="gdDoublesDiv">
+                                        <hr style="margin: 0;" />
+                                        <div style="position: relative;padding: 0 10px;">
+                                            <div class="reg-participant-form-field">
+                                                <input type="text" required>
+                                                <span>Number Or Name</span>
+                                            </div>
+
+                                            <div class="partner-intelicence">
+                                                <a href="">Kanika Kanwal - 6734265901</a>
+                                                <a href="">Ananya Gadgil - 6734265901</a>
+                                                <a href="">Purvi Baavikate - 6734265901</a>
+                                                <a href="">Tamanna Raturi - 6734265901</a>
+                                                <a href="">Akarshi Kashyap - 6734265901</a>
+                                                <a href="">Pusarla Venkata Sindhu - 6734265901</a>
+                                                <a href="">Malvika Bansod - 6734265901</a>
+                                                <a href="">Saad Darmadhikari - 6734265901</a>
+                                            </div>
+                                            <div class="cancel-partner"
+                                                onclick="closePartnerSelection(gdDoublesDiv); selectCategory(regCategoryGD17, regCategoryGD17Price);">
+                                                <a href="#">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="select-category-div active">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
+                            <div style="padding: 10px;">
+                                <div class="reg-category-card" id="regCategoryBD17">
+
+                                    <div class="display-flex-div"
+                                        onclick="selectCategory(regCategoryBD17, regCategoryBD17Price)">
+                                        <div class="category-details">
+                                            <h1>BD U17</h1>
+                                            <div class="category-icons">
+                                                <span class="material-symbols-outlined male">
+                                                    man
+                                                </span>
+                                                <span class="material-symbols-outlined male">
+                                                    man
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="category-fees">
+                                            <h2><span>₹ </span> <span id="regCategoryBD17Price">2000</span>
+                                            </h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="select-category-div">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
+                            <div style="padding: 10px;">
+                                <div class="reg-category-card" id="regCategoryXD17">
+
+                                    <div class="display-flex-div"
+                                        onclick="selectCategory(regCategoryXD17, regCategoryXD17Price)">
+                                        <div class="category-details">
+                                            <h1>XD U17</h1>
+                                            <div class="category-icons">
+                                                <span class="material-symbols-outlined female">
+                                                    woman
+                                                </span>
+                                                <span class="material-symbols-outlined male">
+                                                    man
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="category-fees">
+                                            <h2><span>₹ </span> <span id="regCategoryXD17Price">2000</span>
+                                            </h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="select-category-div">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
+                            <div style="padding: 10px;">
+                                <div class="reg-category-card">
+
+                                    <div class="display-flex-div">
+                                        <div class="category-details">
+                                            <h1>MS</h1>
+                                            <div class="category-icons">
+                                                <span class="material-symbols-outlined male">
+                                                    man
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="category-fees">
+                                            <h2>₹ 2,000</h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="select-category-div">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
+                            <div style="padding: 10px;">
+                                <div class="reg-category-card">
+
+                                    <div class="display-flex-div">
+                                        <div class="category-details">
+                                            <h1>BOY SINGLES UNDER 17</h1>
+                                            <div class="category-icons">
+                                                <span class="material-symbols-outlined male">
+                                                    man
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="category-fees">
+                                            <h2>₹ 2,000</h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="select-category-div">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
+                            <div style="padding: 10px;">
+                                <div class="reg-category-card">
+
+                                    <div class="display-flex-div">
+                                        <div class="category-details">
+                                            <h1>MIXED TEAM</h1>
+                                            <div class="category-icons team">
+                                                <div>
+                                                    <span class="material-symbols-outlined male">
+                                                        man
+                                                    </span>
+                                                    <span class="material-symbols-outlined male">
+                                                        man
+                                                    </span>
+                                                    <span class="material-symbols-outlined male">
+                                                        man
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <span class="material-symbols-outlined female">
+                                                        woman
+                                                    </span>
+                                                    <span class="material-symbols-outlined female">
+                                                        woman
+                                                    </span>
+                                                    <span class="material-symbols-outlined female">
+                                                        woman
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="category-fees">
+                                            <h2>₹ 20,000</h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="select-category-div">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
+                            <div style="padding: 10px;">
+                                <div class="reg-category-card">
+
+                                    <div class="display-flex-div">
+                                        <div class="category-details">
+                                            <h1>WOMENS TEAM</h1>
+                                            <div class="category-icons team">
+                                                <div>
+                                                    <span class="material-symbols-outlined female">
+                                                        woman
+                                                    </span>
+                                                    <span class="material-symbols-outlined female">
+                                                        woman
+                                                    </span>
+                                                    <span class="material-symbols-outlined female">
+                                                        woman
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <span class="material-symbols-outlined female">
+                                                        woman
+                                                    </span>
+                                                    <span class="material-symbols-outlined female">
+                                                        woman
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="category-fees">
+                                            <h2>₹ 20,000</h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="select-category-div">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
+                            <div style="padding: 10px;">
+                                <div class="reg-category-card">
+
+                                    <div class="display-flex-div">
+                                        <div class="category-details">
+                                            <h1>MENS TEAM</h1>
+                                            <div class="category-icons team">
+                                                <div>
+                                                    <span class="material-symbols-outlined male">
+                                                        man
+                                                    </span>
+                                                    <span class="material-symbols-outlined male">
+                                                        man
+                                                    </span>
+                                                    <span class="material-symbols-outlined male">
+                                                        man
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <span class="material-symbols-outlined male">
+                                                        man
+                                                    </span>
+                                                    <span class="material-symbols-outlined male">
+                                                        man
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="category-fees">
+                                            <h2>₹ 20,000</h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="select-category-div">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><br>
+                    <hr style="border: none;border-top: 1px solid #aaa;" />
+                    <br>
+
+                    <div class="category-checkout" id="checkOutDiv">
+
+                        <div>
+                            <h1><span>₹ </span> <span id="totalPrice">0</span></h1>
+                            <h2><span id="noOfCategories">0</span> <span> CATEGORIES</span></h2>
+                        </div>
+                        <div>
+                            <a href="regCheckout.html"><button class="mybutton button5"
+                                    style="font-weight: bold;">CHECKOUT</button></a>
+                        </div>
+
                     </div>
 
                 </div>
@@ -961,7 +927,7 @@
             <img src="./img/TPLiVE_text.png" width="140px" alt="">
             <a href="https://tournamentplanner.in/screens/TPLive_Terms.aspx">Terms & Conditions | Privacy Policy</a>
             <small>Version 2.0</small>
-            <br class="small" /><br class="small" />
+            <br class="small" /><br class="small" /><br class="small" /><br class="small" />
         </div>
     </div>
     <!-- Footer Section - end -->
@@ -1014,7 +980,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-functions.js"></script>
     <script src="js/firebase.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/regProfile.js"></script>
+    <script src="js/regCategory.js"></script>
 
 
     <!-- Owl Carousel Javascript  -->
