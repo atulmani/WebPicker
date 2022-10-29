@@ -16,7 +16,7 @@
     </script>
 
     <meta charset="utf-8">
-    <title>TPLiVE 2.0 - Registration Checkout</title>
+    <title>ONLINE SPORTS MANAGEMENT PLATFORM</title>
     <meta name="description" content="ONLINE SPORTS MANAGEMENT PLATFORM">
     <meta name="keywords" content=" TPLIVE, Tournament Planner, Tournament Software, Event Planner, Event Software,
                                   Live Cricket, Cricket Match, Latest Matches, Lastest Cricket Matches, Lastest Badminton Matches,
@@ -328,7 +328,7 @@
                 <div class="col-lg-8 col-md-8 col-sm-12">
 
                     <div id="regProfileNewParticipantDetails">
-                        <h3 style="font-weight:1000; color:#348DCB;text-align: center;">CHECKOUT</h3>
+                        <h3 style="font-weight:1000; color:#348DCB;text-align: center;">CATEGORY</h3>
                         <h1 class="reg-form-email">Ananya Agarwal</h1>
                         <h5 class="reg-form-email female">FEMALE</h5>
                         <br>
@@ -336,41 +336,74 @@
 
                     <div class="row no-gutters">
 
-                        <div class="col-lg-12 col-md-12 col-sm-12" style="padding: 0;">
+                        <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
                             <div style="padding: 10px;">
-                                <div class="reg-category-card active payment-pending">
+                                <div class="reg-category-card" id="regCategoryGS17">
 
-                                    <div class="display-flex-div">
+                                    <div class="display-flex-div"
+                                        onclick="selectCategory(regCategoryGS17, regCategoryGS17Price)">
                                         <div class="category-details">
                                             <h1>GS U17</h1>
                                             <div class="category-icons">
-                                                <span class="material-symbols-outlined male">
+                                                <span class="material-symbols-outlined female">
                                                     woman
                                                 </span>
                                             </div>
                                         </div>
 
                                         <div class="category-fees">
-                                            <h2 style="position: relative;top: 5px;"><span>₹ </span>
-                                                <span>1000</span>
+                                            <h2><span>₹ </span> <span id="regCategoryGS17Price">1000</span>
                                             </h2>
                                         </div>
-
                                     </div>
 
-                                    <div class="payment-status pending">
-                                        <h1>Payment Pending</h1>
+                                    <div class="select-category-div">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-12 col-md-12 col-sm-12" style="padding: 0;">
+                        <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
                             <div style="padding: 10px;">
-                                <div class="reg-category-card active payment-completed">
+                                <div class="reg-category-card" id="regCategoryBS17">
 
-                                    <div class="display-flex-div">
+                                    <div class="display-flex-div"
+                                        onclick="selectCategory(regCategoryBS17, regCategoryBS17Price)">
+                                        <div class="category-details">
+                                            <h1>BS U17</h1>
+                                            <div class="category-icons">
+                                                <span class="material-symbols-outlined male">
+                                                    man
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="category-fees">
+                                            <h2><span>₹ </span> <span id="regCategoryBS17Price">1000</span>
+                                            </h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="select-category-div">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
+                            <div style="padding: 10px;">
+                                <div class="reg-category-card" id="regCategoryGD17">
+
+                                    <div class="display-flex-div"
+                                        onclick="openPartnerSelection(gdDoublesDiv); selectCategory(regCategoryGD17, regCategoryGD17Price);">
                                         <div class="category-details">
                                             <h1>GD U17</h1>
                                             <div class="category-icons">
@@ -386,64 +419,324 @@
                                         </div>
 
                                         <div class="category-fees">
-                                            <h2 style="position: relative;top: 5px;"><span>₹ </span>
-                                                <span>2000</span>
+                                            <h2><span>₹ </span> <span id="regCategoryGD17Price">2000</span>
                                             </h2>
+                                            <!-- <h3>Partner : Pusarla</h3> -->
                                         </div>
                                     </div>
 
-                                    <div class="payment-status completed">
-                                        <h1>Payment Completed</h1>
+                                    <div class="category-doubles-partner-div" id="gdDoublesDiv">
+                                        <hr style="margin: 0;" />
+                                        <div style="position: relative;padding: 0 10px;">
+                                            <div class="reg-participant-form-field">
+                                                <input type="text" required>
+                                                <span>Number Or Name</span>
+                                            </div>
+
+                                            <div class="partner-intelicence">
+                                                <a href="">Kanika Kanwal - 6734265901</a>
+                                                <a href="">Ananya Gadgil - 6734265901</a>
+                                                <a href="">Purvi Baavikate - 6734265901</a>
+                                                <a href="">Tamanna Raturi - 6734265901</a>
+                                                <a href="">Akarshi Kashyap - 6734265901</a>
+                                                <a href="">Pusarla Venkata Sindhu - 6734265901</a>
+                                                <a href="">Malvika Bansod - 6734265901</a>
+                                                <a href="">Saad Darmadhikari - 6734265901</a>
+                                            </div>
+                                            <div class="cancel-partner"
+                                                onclick="closePartnerSelection(gdDoublesDiv); selectCategory(regCategoryGD17, regCategoryGD17Price);">
+                                                <a href="#">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="select-category-div active">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
 
-                    </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
+                            <div style="padding: 10px;">
+                                <div class="reg-category-card" id="regCategoryBD17">
 
-                    <br>
-                    <div class="convenience-fee-div">
-                        <h1>Convenience & Internet Charges: (5%) : <strong> Rs. 38 /- </strong></h1>
-                    </div>
-                    <br>
+                                    <div class="display-flex-div"
+                                        onclick="selectCategory(regCategoryBD17, regCategoryBD17Price)">
+                                        <div class="category-details">
+                                            <h1>BD U17</h1>
+                                            <div class="category-icons">
+                                                <span class="material-symbols-outlined male">
+                                                    man
+                                                </span>
+                                                <span class="material-symbols-outlined male">
+                                                    man
+                                                </span>
+                                            </div>
+                                        </div>
 
-                    <div class="reg-checkout-note">
-                        <h1>NOTE</h1>
-                        <hr>
-                        <div>
-                            <ul>
-                                <li>
-                                    <small>
-                                        We request you to go through the eligibility criteria and rules & regulations
-                                        before
-                                        participating in the event.
-                                    </small><br><br>
-                                </li>
-                                <li>
-                                    <small>
-                                        For Doubles entry, payment and withdrawal can be done by the participant who has
-                                        done
-                                        the
-                                        registration for the event.
-                                    </small>
-                                </li>
-                            </ul>
+                                        <div class="category-fees">
+                                            <h2><span>₹ </span> <span id="regCategoryBD17Price">2000</span>
+                                            </h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="select-category-div">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <br>
+                        <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
+                            <div style="padding: 10px;">
+                                <div class="reg-category-card" id="regCategoryXD17">
+
+                                    <div class="display-flex-div"
+                                        onclick="selectCategory(regCategoryXD17, regCategoryXD17Price)">
+                                        <div class="category-details">
+                                            <h1>XD U17</h1>
+                                            <div class="category-icons">
+                                                <span class="material-symbols-outlined female">
+                                                    woman
+                                                </span>
+                                                <span class="material-symbols-outlined male">
+                                                    man
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="category-fees">
+                                            <h2><span>₹ </span> <span id="regCategoryXD17Price">2000</span>
+                                            </h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="select-category-div">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
+                            <div style="padding: 10px;">
+                                <div class="reg-category-card">
+
+                                    <div class="display-flex-div">
+                                        <div class="category-details">
+                                            <h1>MS</h1>
+                                            <div class="category-icons">
+                                                <span class="material-symbols-outlined male">
+                                                    man
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="category-fees">
+                                            <h2>₹ 2,000</h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="select-category-div">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
+                            <div style="padding: 10px;">
+                                <div class="reg-category-card">
+
+                                    <div class="display-flex-div">
+                                        <div class="category-details">
+                                            <h1>BOY SINGLES UNDER 17</h1>
+                                            <div class="category-icons">
+                                                <span class="material-symbols-outlined male">
+                                                    man
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="category-fees">
+                                            <h2>₹ 2,000</h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="select-category-div">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
+                            <div style="padding: 10px;">
+                                <div class="reg-category-card">
+
+                                    <div class="display-flex-div">
+                                        <div class="category-details">
+                                            <h1>MIXED TEAM</h1>
+                                            <div class="category-icons team">
+                                                <div>
+                                                    <span class="material-symbols-outlined male">
+                                                        man
+                                                    </span>
+                                                    <span class="material-symbols-outlined male">
+                                                        man
+                                                    </span>
+                                                    <span class="material-symbols-outlined male">
+                                                        man
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <span class="material-symbols-outlined female">
+                                                        woman
+                                                    </span>
+                                                    <span class="material-symbols-outlined female">
+                                                        woman
+                                                    </span>
+                                                    <span class="material-symbols-outlined female">
+                                                        woman
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="category-fees">
+                                            <h2>₹ 20,000</h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="select-category-div">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
+                            <div style="padding: 10px;">
+                                <div class="reg-category-card">
+
+                                    <div class="display-flex-div">
+                                        <div class="category-details">
+                                            <h1>WOMENS TEAM</h1>
+                                            <div class="category-icons team">
+                                                <div>
+                                                    <span class="material-symbols-outlined female">
+                                                        woman
+                                                    </span>
+                                                    <span class="material-symbols-outlined female">
+                                                        woman
+                                                    </span>
+                                                    <span class="material-symbols-outlined female">
+                                                        woman
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <span class="material-symbols-outlined female">
+                                                        woman
+                                                    </span>
+                                                    <span class="material-symbols-outlined female">
+                                                        woman
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="category-fees">
+                                            <h2>₹ 20,000</h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="select-category-div">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
+                            <div style="padding: 10px;">
+                                <div class="reg-category-card">
+
+                                    <div class="display-flex-div">
+                                        <div class="category-details">
+                                            <h1>MENS TEAM</h1>
+                                            <div class="category-icons team">
+                                                <div>
+                                                    <span class="material-symbols-outlined male">
+                                                        man
+                                                    </span>
+                                                    <span class="material-symbols-outlined male">
+                                                        man
+                                                    </span>
+                                                    <span class="material-symbols-outlined male">
+                                                        man
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <span class="material-symbols-outlined male">
+                                                        man
+                                                    </span>
+                                                    <span class="material-symbols-outlined male">
+                                                        man
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="category-fees">
+                                            <h2>₹ 20,000</h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="select-category-div">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><br>
                     <hr style="border: none;border-top: 1px solid #aaa;" />
                     <br>
 
-                    <div class="category-checkout" style="opacity: 1;pointer-events: all;">
+                    <div class="category-checkout" id="checkOutDiv">
 
                         <div>
                             <h1><span>₹ </span> <span id="totalPrice">0</span></h1>
                             <h2><span id="noOfCategories">0</span> <span> CATEGORIES</span></h2>
                         </div>
                         <div>
-                            <button class="mybutton button5" style="font-weight: bold;">PAY NOW</button>
+                            <a href="regCheckout.html"><button class="mybutton button5"
+                                    style="font-weight: bold;">CHECKOUT</button></a>
                         </div>
 
                     </div>
@@ -454,8 +747,7 @@
 
 
                     <div style="border: 3px solid #161d65; " class="firstbox">
-                        <h4 id="eventName" style="font-weight:1000; font-size:1.2rem;color:#348DCB;">
-                            PLAYUPBEAT
+                        <h4 id="eventName" style="font-weight:1000; font-size:1.2rem;color:#348DCB;">PLAYUPBEAT
                             BADMINTON
                             CHAMPS
                         </h4>
@@ -487,15 +779,13 @@
                         <ul>
                             <li><i class="fas fa-play-circle"></i> <span class="textheadleft">Venue : <span
                                         id="eventVenue" class="textheadright"></span> </span> </li>
-                            <li><i class="fab fa-app-store"></i> <span class="textheadleft">Categories :
-                                    <span id="eventCategory" class="textheadright"> MS, MD, MD(65+) </span>
-                                </span>
+                            <li><i class="fab fa-app-store"></i> <span class="textheadleft">Categories : <span
+                                        id="eventCategory" class="textheadright"> MS, MD, MD(65+) </span> </span>
                             </li>
-                            <li><i class="fas fa-language"></i> <span class="textheadleft">Withdrawal Date :
-                                    <span id="withdrawDate" class="textheadright"></span> </span> </li>
-                            <li><i class="fas fa-headset"></i> <span class="textheadleft">Event Status :
-                                    <span id="eventstatus" class="textheadright">Upcomming</span> </span>
-                            </li>
+                            <li><i class="fas fa-language"></i> <span class="textheadleft">Withdrawal Date : <span
+                                        id="withdrawDate" class="textheadright"></span> </span> </li>
+                            <li><i class="fas fa-headset"></i> <span class="textheadleft">Event Status : <span
+                                        id="eventstatus" class="textheadright">Upcomming</span> </span></li>
                         </ul>
                     </div><br><br>
                     <div style="border: 3px solid #161d65;" class="thirdbox">
@@ -505,14 +795,12 @@
                                                 style="background-color:#348DCB;color:#348DCB;  text-align:center; font-size:0.7rem;display:none;"
                                                 type="button" name="button" class="btn"> ASK NOW
                                                 <i class="fas fa-angle-double-right"></i></button></a></span></span><br>
-                                <span style="color:#889; font-size:0.74rem">Ask the organiser
-                                    anything!</span>
+                                <span style="color:#889; font-size:0.74rem">Ask the organiser anything!</span>
                                 <br>
                                 <span style="font-size:0.9rem;color:#348DCB;">Email: </span> <span id="organiser-email"
                                     style="font-size:0.9rem;color:#889;">krishalpal123@gmail.com</span><br>
                                 <span style="font-size:0.9rem;color:#348DCB;">Contact: </span> <span
-                                    id="organiser-phone" style="font-size:0.9rem;color:#889;">+91
-                                    7355534789</span>
+                                    id="organiser-phone" style="font-size:0.9rem;color:#889;">+91 7355534789</span>
 
                             </li>
 
@@ -551,18 +839,14 @@
                             </p><br>
 
                             <h3>FOR EVENT ORGANIZERS</h3>
-                            <p>Organizing any Event manually is always a challenge starting from booking,
-                                payment
+                            <p>Organizing any Event manually is always a challenge starting from booking, payment
                                 collection,
-                                fixture & schedule preparation, score management and publish the result till
-                                prize
+                                fixture & schedule preparation, score management and publish the result till prize
                                 distribution.
                                 Our product aims at eliminating all the challenges faced by the
-                                Organizers and the Participants. This Mobile-Enabled Product is designed in
-                                an
+                                Organizers and the Participants. This Mobile-Enabled Product is designed in an
                                 innovative way to ensure uninterrupted and smooth usage. Through this,
-                                application users can interact and keep themselves updated about upcoming
-                                events,
+                                application users can interact and keep themselves updated about upcoming events,
                                 LiVE scores & updates, results and other Sports related details.
 
                                 We will be happy to provide our services to all the Event Organizers from
@@ -578,12 +862,10 @@
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="footer-links" style="padding-top: 0;">
                             <div class="" style="border: none;">
-                                <a href="https://tournamentplanner.in/screens/TPLive_Aboutus.aspx">About
-                                    Us</a>
+                                <a href="https://tournamentplanner.in/screens/TPLive_Aboutus.aspx">About Us</a>
                             </div>
                             <div class="">
-                                <a href="https://tournamentplanner.in/screens/TPLive_Contactus.aspx">Contact
-                                    Us</a>
+                                <a href="https://tournamentplanner.in/screens/TPLive_Contactus.aspx">Contact Us</a>
                             </div>
                             <div class="">
                                 <a href="https://tournamentplanner.in/screens/TPLive_FAQ.aspx">FAQ's</a>
@@ -643,8 +925,7 @@
         </section>
         <div class="last-div">
             <img src="./img/TPLiVE_text.png" width="140px" alt="">
-            <a href="https://tournamentplanner.in/screens/TPLive_Terms.aspx">Terms & Conditions | Privacy
-                Policy</a>
+            <a href="https://tournamentplanner.in/screens/TPLive_Terms.aspx">Terms & Conditions | Privacy Policy</a>
             <small>Version 2.0</small>
             <br class="small" /><br class="small" /><br class="small" /><br class="small" />
         </div>
