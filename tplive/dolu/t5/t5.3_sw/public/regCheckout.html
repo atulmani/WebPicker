@@ -309,14 +309,68 @@
 
         <!-- Banner Section - Start -->
 
-        <div class="event-details-sticky-div sticky-top">
-            <div style="width: 70%;">
-                <h1>PRAKASH PADUKONE BADMINTON TOURNAMENT 2022</h1>
-                <small>Krishal Shetty</small>
+        <div class="event-details-sticky-div sticky-top" id="regEventDetails"
+            onclick="openMoreEventDetails(regEventDetails)">
+            <div class="event-details-sticky-div-inner-div">
+                <div style="width: 70%;">
+                    <h1>PRAKASH PADUKONE BADMINTON TOURNAMENT 2022</h1>
+                    <small>Krishal Shetty</small>
+                </div>
+                <div style="width: 30%;text-align: right;">
+                    <h2>12-18 Jun'22</h2>
+                    <small>Price : ₹ 1,000</small>
+                </div>
+                <div class="reg-propfile-event-details-expand">
+                    <span class="material-symbols-outlined">
+                        expand_more
+                    </span>
+                </div>
             </div>
-            <div style="width: 30%;text-align: right;">
-                <h2>12-18 Jun'22</h2>
-                <small>Price : ₹ 1,000</small>
+
+            <div class="reg-profile-event-card">
+                <div class="event-display-card">
+                    <div class="row no-gutters">
+                        <div class="col-lg-5 col-md-12 col-sm-12">
+                            <div class="content">
+                                <h1>ECL Puyvast - PSM Open Junior Badminton Tournament.</h1>
+                                <h2>PSM</h2>
+                                <div style="position: relative;">
+                                    <h3 class="rating">
+                                        <div class=""><span class="material-symbols-outlined">star</span><span
+                                                class="material-symbols-outlined">star</span><span
+                                                class="material-symbols-outlined">star</span><span
+                                                class="material-symbols-outlined">star</span><span
+                                                class="material-symbols-outlined">star</span><small>100</small></div>
+                                    </h3>
+                                </div>
+                                <div class="details">
+                                    <div class="">
+                                        <h3>Bangalore</h3>
+                                        <h4>Location</h4>
+                                    </div>
+                                    <div class="">
+                                        <h3>1 Jul 22</h3>
+                                        <h4>Event Date</h4>
+                                    </div>
+                                    <div class="">
+                                        <h3>₹700</h3>
+                                        <h4>Entry Fee</h4>
+                                    </div>
+                                </div>
+                                <div class="button-div"><button type="button"
+                                        onclick="btnClickEvent('Badminton','TP_BD10185')"
+                                        class="mybutton button5 event-card-button" name="button" class="circle blink"
+                                        style="background: linear-gradient(to right,#73e336,#08bf1a);"><span>Draw</span></button><a
+                                        href="https://tournamentplanner.in/screens/TPLive_Draws.aspx?SCode=&amp;TCode=TP_BD10185">
+                                        <div class=""></div>
+                                    </a></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-12 col-sm-12">
+                            <div class="image"><img src="/img/banner_new_1.png" width="100%" alt=""></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -436,14 +490,46 @@
                     <hr style="border: none;border-top: 1px solid #aaa;" />
                     <br>
 
-                    <div class="category-checkout" style="opacity: 1;pointer-events: all;">
+                    <div class="category-checkout" id="paymentDiv" onclick="openMorePaymentDetails(paymentDiv)"
+                        style="opacity: 1;pointer-events: all;">
 
-                        <div>
-                            <h1><span>₹ </span> <span id="totalPrice">0</span></h1>
-                            <h2><span id="noOfCategories">0</span> <span> CATEGORIES</span></h2>
+                        <div class="category-checkout-expand-more">
+                            <span class="material-symbols-outlined">
+                                expand_more
+                            </span>
                         </div>
-                        <div>
-                            <button class="mybutton button5" style="font-weight: bold;">PAY NOW</button>
+
+                        <div class="category-checkout-full-details">
+
+                            <div>
+                                <span>GS U17</span>
+                                <small>₹ 1,000</small>
+                            </div>
+                            <div>
+                                <span>XD U17</span>
+                                <small>₹ 2,000</small>
+                            </div>
+                            <div>
+                                <span>Boys Singles Under 17</span>
+                                <small>₹ 1,000</small>
+                            </div>
+
+                        </div>
+
+                        <div class="category-checkout-first-details">
+                            <div class="first-details-total">
+
+                                <div>
+                                    <h3>TOTAL</h3>
+                                </div>
+                                <div>
+                                    <h1><span>₹ </span> <span id="totalPrice">0</span></h1>
+                                    <h2><span id="noOfCategories">0</span> <span> CATEGORIES</span></h2>
+                                </div>
+                            </div>
+                            <div class="category-checkout-button-div">
+                                <button class="mybutton button5" style="font-weight: bold;">PAY NOW</button>
+                            </div>
                         </div>
 
                     </div>

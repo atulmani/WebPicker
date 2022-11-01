@@ -52,11 +52,3 @@ function selectCategory(category, entryFees) {
     }
 
 }
-
-function openMoreEventDetails(moreDetails) {
-    moreDetails.classList.toggle('active');
-}
-
-function openMorePaymentDetails(paymentDiv) {
-    paymentDiv.classList.toggle('active');
-}
