@@ -36,18 +36,18 @@ function selectCategory(category, entryFees) {
         noOfCategories.innerHTML = totalNoOfCategories - 1;
     }
 
-    var checkOutDiv = document.getElementById('checkOutDiv');
+    var paymentDiv = document.getElementById('paymentDiv');
     console.log(totalPriceInNumber);
 
     totalPriceInNumber = Number(totalPrice.innerHTML);
 
     if (totalPriceInNumber <= 0) {
-        checkOutDiv.style.opacity = '0';
-        checkOutDiv.style.pointerEvents = 'none';
+        paymentDiv.style.opacity = '0';
+        paymentDiv.style.pointerEvents = 'none';
         console.log('Inside else');
     } else {
-        checkOutDiv.style.opacity = '1';
-        checkOutDiv.style.pointerEvents = 'all';
+        paymentDiv.style.opacity = '1';
+        paymentDiv.style.pointerEvents = 'all';
         console.log('Inside <=0');
     }
 

@@ -1,53 +1,55 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
-*{
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 .formabove,
-.formabovepro{
-  width:100%;
+.formabovepro {
+  width: 100%;
   overflow: hidden;
 }
- .form,
- .formpro{
+
+.form,
+.formpro {
   display: flex;
   align-items: center;
 }
 
-.form{
+.form {
   width: 200%;
 }
 
-.formpro{
+.formpro {
   width: 500%;
 }
 
 
 .formslide,
-.formslidepro{
+.formslidepro {
   width: 100%;
   padding: 0 20px;
   transition: 1s;
-  /* border-radius: 10px; */
-  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); */
 }
 
 @media (max-width:850px) {
+
   .formslide,
-  .formslidepro{
+  .formslidepro {
     padding: 5px;
   }
 }
 
 .form .txt_field,
-.formpro .txt_field{
+.formpro .txt_field {
   position: relative;
   border-bottom: 2px solid #adadad;
   margin: 30px 0;
 }
-.txt_field input{
+
+.txt_field input {
   width: 100%;
   padding: 0 5px;
   height: 40px;
@@ -56,7 +58,8 @@
   background: none;
   outline: none;
 }
-.txt_field label{
+
+.txt_field label {
   position: absolute;
   top: 50%;
   left: 5px;
@@ -66,14 +69,17 @@
   pointer-events: none;
   transition: .5s;
 }
-.txt_field label.labelsize{
+
+.txt_field label.labelsize {
   font-size: 1rem;
 }
-.txt_field input:focus ~ label.labelsize,
-.txt_field input:valid ~ label.labelsize{
+
+.txt_field input:focus~label.labelsize,
+.txt_field input:valid~label.labelsize {
   font-size: 16px;
 }
-.txt_field span::before{
+
+.txt_field span::before {
   content: '';
   position: absolute;
   top: 40px;
@@ -83,24 +89,29 @@
   background: #2691d9;
   transition: .5s;
 }
-.txt_field input:focus ~ label,
-.txt_field input:valid ~ label{
+
+.txt_field input:focus~label,
+.txt_field input:valid~label {
   top: -5px;
   color: #2691d9;
 }
-.txt_field input:focus ~ span::before,
-.txt_field input:valid ~ span::before{
+
+.txt_field input:focus~span::before,
+.txt_field input:valid~span::before {
   width: 100%;
 }
-.pass{
+
+.pass {
   margin: -5px 0 20px 5px;
   color: #a6a6a6;
   cursor: pointer;
 }
-.pass:hover{
+
+.pass:hover {
   text-decoration: underline;
 }
-input[type="submit"]{
+
+input[type="submit"] {
   width: 100%;
   height: 50px;
   border: 1px solid;
@@ -112,53 +123,61 @@ input[type="submit"]{
   cursor: pointer;
   outline: none;
 }
-input[type="submit"]:hover{
+
+input[type="submit"]:hover {
   border-color: #2691d9;
   transition: .5s;
 }
-.signup_link{
+
+.signup_link {
   margin: 30px 0;
   text-align: center;
   font-size: 16px;
   color: #666666;
 }
-.signup_link a{
+
+.signup_link a {
   color: #2691d9;
   text-decoration: none;
 }
-.signup_link a:hover{
+
+.signup_link a:hover {
   text-decoration: underline;
 }
-.logdiv{
+
+.logdiv {
   margin: 6% 10% 0 10%;
   padding: 5% 5%;
 }
 
 @media (max-width:850px) {
-  .logdiv{
+  .logdiv {
     margin: 6% 10% 0 10%;
     padding: 0;
   }
 }
 
-.logdivpro{
+.logdivpro {
   margin: auto 10%;
   padding: 5% 5%;
 }
+
 @media (max-width:850px) {
-  .logdivpro{
+  .logdivpro {
     margin: 6% 10% 0 10%;
     padding: 0;
   }
 }
-.alertspan{
+
+.alertspan {
   font-size: 1rem;
   color: #ff5757;
   position: relative;
   padding-left: 15px;
   display: none;
 }
-.alertspan::before{
+
+.alertspan::before {
   content: '';
   position: absolute;
   top: calc(50% - 5px);
@@ -169,11 +188,15 @@ input[type="submit"]:hover{
   background: #ff5757;
   animation: blink 1s infinite;
 }
+
 @keyframes blink {
-  0%,100%{
+
+  0%,
+  100% {
     opacity: 1;
   }
-  50%{
+
+  50% {
     opacity: 0;
   }
 }
@@ -189,18 +212,22 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
-.bigdivpro{
-  background: linear-gradient(to right,#161d65, #348DCB);
+
+.bigdivpro {
+  background: linear-gradient(to right, #161d65, #348DCB);
   padding: 3% 0;
 }
-.whitedivpro{
+
+.whitedivpro {
   /* box-shadow: 0 0 25px 0 rgba(225,225,225,0.5); */
   /* background-color: #ccc; */
 }
-.genderRadio{
+
+.genderRadio {
   position: relative;
 }
-.genderRadio input{
+
+.genderRadio input {
   position: absolute;
   width: 0;
   height: 0;
@@ -208,7 +235,8 @@ input[type=number] {
   outline: none;
   background: none;
 }
-.genderRadio label{
+
+.genderRadio label {
   padding: 5px 10px 5px 40px;
   border: 1px solid #ddd;
   border-radius: 6px;
@@ -217,68 +245,71 @@ input[type=number] {
   color: #fff;
 }
 
-.genderRadio input ~ label span.check{
+.genderRadio input~label span.check {
   display: none;
 }
 
-.genderRadio input ~ label span.close{
+.genderRadio input~label span.close {
   display: block;
 }
 
-.genderRadio input:checked ~ label span.check{
+.genderRadio input:checked~label span.check {
   display: block;
 }
 
-.genderRadio input:checked ~ label span.close{
+.genderRadio input:checked~label span.close {
   display: none;
 }
 
-.genderRadio input:checked ~ label{
+.genderRadio input:checked~label {
   background: green;
 }
 
-.genderRadio input#male:checked ~ label{
+.genderRadio input#male:checked~label {
   /* background: #07dff2; */
   background: green;
   color: #fff;
 }
-.genderRadio input#female:checked ~ label{
+
+.genderRadio input#female:checked~label {
   background: #eb65ba;
   color: #fff;
 }
 
-.genderRadio label span{
+.genderRadio label span {
   position: absolute;
   left: 10px;
   color: #fff;
 }
-.genderRadio input:checked ~ label span{
+
+.genderRadio input:checked~label span {
   color: #fff;
 }
 
-.stepcircleparent{
-  display:flex;
+.stepcircleparent {
+  display: flex;
   /* align-items: center; */
   justify-content: space-between;
 
 }
-.stepcircle{
-  display:flex;
+
+.stepcircle {
+  display: flex;
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  height:20px;
-  width:20px;
+  height: 20px;
+  width: 20px;
   border-radius: 50%;
   background-color: #aaa;
   position: relative;
 }
 
-.stepcircle.active{
+.stepcircle.active {
   background: green;
 }
 
-.stepcircle span{
+.stepcircle span {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -288,11 +319,11 @@ input[type=number] {
   display: none;
 }
 
-.stepcircle.active span{
+.stepcircle.active span {
   display: block;
 }
 
-.stepcircle small{
+.stepcircle small {
   position: absolute;
   text-align: center;
   width: 6px;
@@ -300,11 +331,11 @@ input[type=number] {
   color: #fff;
 }
 
-.stepcircle.active small{
+.stepcircle.active small {
   display: none;
 }
 
-.stepcircle::before{
+.stepcircle::before {
   content: '';
   position: absolute;
   top: calc(50% - 1px);
@@ -315,29 +346,29 @@ input[type=number] {
 }
 
 @media (max-width: 850px) {
-  .stepcircle::before{
+  .stepcircle::before {
     width: 70px;
     left: -80px;
   }
 }
 
-.stepcircle:nth-child(1)::before{
+.stepcircle:nth-child(1)::before {
   display: none;
 }
 
-.stepcircle.active::before{
+.stepcircle.active::before {
   background: green;
 }
 
-.stepline{
-  height:15px;
-  width:60px;
+.stepline {
+  height: 15px;
+  width: 60px;
   border-radius: 6px;
   background-color: red;
 }
 
-.city-selector{
-  background: rgba(0,0,0,0.1);
+.city-selector {
+  background: rgba(0, 0, 0, 0.1);
   outline: none;
   border: #ddd;
   padding: 5px 10px 5px 10px;
@@ -349,7 +380,7 @@ input[type=number] {
   z-index: 10;
 }
 
-.city-selector.multi-select option{
+.city-selector.multi-select option {
   padding: 5px 0;
   font-size: 1rem;
 }
@@ -358,10 +389,10 @@ input[type=number] {
   display: none;
 } */
 
-.city-selector-icon{
+.city-selector-icon {
   position: relative;
   top: -40px;
   float: right;
   /* right: 35px; */
-  pointer-events:none;
+  pointer-events: none;
 }

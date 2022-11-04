@@ -1,9 +1,7 @@
 {
   "name": "TPLiVE",
   "short_name": "TPLiVE",
-
   "icons": [
-
     {
       "src": "/img/TPLiVE-48x48.png",
       "type": "image/png",
@@ -53,7 +51,7 @@
   "orientation": "portrait-primary",
   "background_color": "#fff",
   "theme_color": "#fff",
-  "description": "TPLiVE - YOU PLAY WE MANAGE",
+  "description": "TPLiVE 2.0 - ONLINE SPORTS MANAGEMENT PLATFORM",
   "dir": "ltr",
   "lang": "en-US"
 }

@@ -5240,6 +5240,10 @@ input[type=number] {
   font-size: 0.9rem;
 }
 
+.reg-participant-form-field input:read-only {
+  background: #efefef;
+}
+
 .reg-participant-date-picker {
   background: none !important;
   border: 1px solid #ddd !important;
@@ -5728,3 +5732,36 @@ span.already-active {
 }
 
 /* event reg checkout page - end */
+
+/* profile setup - start */
+
+.profile-setup-outter-div {
+  width: 100%;
+  overflow: hidden;
+}
+
+.profile-setup-inner-div {
+  display: flex;
+  width: 200%;
+}
+
+.profile-setup-inner-div .profile-setup-form {
+  width: 100%;
+  transition: 1s;
+}
+
+.profile-setup-name-email-div .reg-participant-form-field {
+  padding: 10px;
+}
+
+@media (max-width: 850px) {
+  .profile-setup-name-email-div {
+    flex-direction: column;
+  }
+
+  .profile-setup-name-email-div .reg-participant-form-field {
+    padding: 15px 0;
+  }
+}
+
+/* profile setup - end */
