@@ -6,6 +6,10 @@ function moreClickOpen(moreBtnDetails) {
 
 // more options for more button in card - end
 
+function openPropertyDetails(propertyDetails){
+    propertyDetails.classList.toggle('open');
+  }
+
 // trash card div open/close - start
 
 function trashCardsOpen(trashDiv, arrow) {

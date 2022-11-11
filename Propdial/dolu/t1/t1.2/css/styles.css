@@ -239,9 +239,9 @@ h6 {
   height: 100%;
   padding-bottom: 40px;
   box-sizing: initial;
-  border-radius: 10px;
   background: #eee;
   overflow-y: auto;
+  z-index: 99;
   transition: 0.5s;
 }
 
@@ -275,8 +275,9 @@ h6 {
 
 .side-navbar-profile-div {
   display: grid;
-  grid-template-columns: 25% 65% 10%;
+  grid-template-columns: 30% 60% 10%;
   width: 100%;
+  padding: 0 5px;
 }
 
 .side-navbar-profile-div .side-navbar-profile-div-circle,
@@ -285,13 +286,24 @@ h6 {
   align-items: center;
 }
 
+.side-navbar-profile-div .side-navbar-profile-div-arrow span{
+  color: #000 !important;
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 700,
+  'GRAD' 0,
+  'opsz' 48
+}
+
 .side-navbar-profile-div .side-navbar-profile-div-circle div {
+  position: relative;
+  top: -2px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #fff;
-  height: 30px;
-  width: 30px;
+  background: #444;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
   text-align: center;
 }
@@ -301,23 +313,43 @@ h6 {
   top: 1px;
   font-size: 0.9rem;
   font-weight: bolder;
+  color: #fff;
 }
 
 .side-navbar-profile-div .side-navbar-profile-div-name div {
   position: relative;
-  top: 2px;
+  top: 5px;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  padding: 20px 0 30px 0;
 }
 
 .side-navbar-profile-div .side-navbar-profile-div-name h6 {
   font-size: 1rem;
   margin-bottom: 1px;
+  font-weight: bold;
+  color: #000;
 }
 
 .side-navbar-profile-div .side-navbar-profile-div-name small {
   font-size: 0.8rem;
+  color: #444;
+  font-weight: bold;
+}
+
+.side-navbar hr{
+  border: none;
+  border-top: 1px solid #bbb;
+  padding: 10px 0;
+}
+
+.side-navbar ul li:nth-child(1){
+  border-radius: 10px 0 0 10px;
+}
+
+.side-navbar ul li:nth-child(1) a{
+  margin: 0 !important;
 }
 
 .side-navbar ul {
@@ -2310,10 +2342,7 @@ h6 {
   justify-content: center;
   text-align: center;
   cursor: pointer;
-
   width: 100%;
-  border-radius: 0 50px 50px 0;
-  border-right: 1px solid #666;
   height: 100%;
   z-index: 5;
 }
@@ -2329,30 +2358,35 @@ h6 {
   transition: 0.5s;
 }
 
-@media (max-width: 850px) {
-  .add-property-menu .menu-list h1 {
-    font-size: 0.8rem;
-  }
-}
-
 .add-property-menu .menu-list.active h1 {
-  color: #fff;
+  color: #EB542E;
 }
 
 .add-property-menu .menu-indicator {
   position: absolute;
-  height: 100%;
-  width: 25%;
-  border-radius: 0 50px 50px 0;
-  background: linear-gradient(to right, #ffad06, #EB542E);
+  bottom: 0;
+  height: 2px;
+  width: 33.3%;
+  background: #EB542E;
   transition: 0.5s;
+  border-radius: 10px;
   z-index: 1;
+}
+
+@media (max-width: 850px) {
+  .add-property-menu .menu-list h1 {
+    font-size: 0.8rem;
+  }
+
+  .add-property-menu .menu-indicator{
+    height: 3px;
+  }
 }
 
 .add-property-inner {
   display: flex;
   height: 100%;
-  width: 400%;
+  width: 300%;
   padding: 10px 0;
 }
 
@@ -3385,6 +3419,112 @@ input[type=number] {
 /* create property page - end */
 
 /* property status page - start */
+
+.property-details-sticky-div{
+  width: 100%;
+  /* background: #EB542E; */
+  background: #4CD7D0;
+  transform: translateY(-1px);
+  padding: 20px;
+  overflow: hidden;
+  transition: 2s;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.property-details-sticky-div .property-sticky-arrow{
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: 2s;
+}
+
+.property-details-sticky-div.open .property-sticky-arrow{
+  bottom: 0px;
+  transform: translateX(-50%) rotate(180deg);
+}
+
+.property-details-sticky-div .property-sticky-arrow span{
+  color: #000;
+  font-size: 2rem;
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 700,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.property-details-sticky-div .primary-details{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.property-details-sticky-div .primary-details div:nth-child(1){
+  width: 60%;
+}
+
+.property-details-sticky-div .primary-details div:nth-child(2){
+  text-align: right;
+  width: 40%;
+}
+
+.property-details-sticky-div .primary-details div h1{
+  font-size: 1.2rem;
+  color: #000;
+  margin: 0;
+}
+
+.property-details-sticky-div .primary-details div:nth-child(2) h1{
+  font-size: 1.1rem;
+}
+
+.property-details-sticky-div .primary-details h2{
+  font-size: 0.8rem;
+  margin: 0;
+  /* font-weight: lighter; */
+}
+
+.property-details-sticky-div .secondary-details{
+  max-height: 0;
+  overflow: hidden;
+  transition: 2s;
+  padding: 0;
+}
+
+.property-details-sticky-div.open .secondary-details{
+  max-height: 600px;
+}
+
+.secondary-details-display{
+  display: flex;
+  width: 100%;
+}
+
+.secondary-details-display .secondary-details-inside-display{
+  width: 100%;
+  border-right: 1px solid #aaa;
+  border-left: 1px solid #aaa;
+}
+
+.secondary-details-hr{
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .secondary-details-display{
+    flex-direction: column;
+  }
+
+  .secondary-details-display .secondary-details-inside-display{
+    border: none;
+  }
+
+  .secondary-details-hr{
+    display: block;
+  }
+}
 
 .property-status-property-card {
   display: grid;
