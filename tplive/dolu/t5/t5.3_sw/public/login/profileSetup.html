@@ -106,6 +106,7 @@
     <meta name="msapplication-TileImage" content="/img/TPLiVE_Logo.webp">
     <meta name="msapplication-TileColor" content="#fff">
     <meta name="theme-color" content="#333C5D">
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
 
 </head>
 
@@ -331,7 +332,7 @@
 
                     <br>
                     <h3 style="font-weight:1000; color:#348DCB;text-align: center;">SIGN UP</h3>
-                    <h1 class="reg-form-email">9822752885</h1>
+                    <h1 class="reg-form-email" id="userContact">1111111</h1>
                     <br><br>
 
                     <div class="reg-form-dots">
@@ -349,35 +350,13 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12">
 
                                         <div class="reg-first-form-gender-section">
-                                            <div class="city-section-inside-div profile-setup-name-email-div">
-                                                <div class="reg-participant-form-field" style="width: 100%;">
-                                                    <div class="reg-participant-form-field">
-                                                        <input type="text" required>
-                                                        <span>Name</span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="reg-participant-form-field" style="width: 100%;">
-                                                    <div class="reg-participant-form-field">
-                                                        <input type="email" required>
-                                                        <span>Email</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br>
-                                    </div>
-
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-
-                                        <div class="reg-first-form-gender-section">
                                             <div class="gender-section-inside-div"
                                                 style="position: relative;padding: 15px 5px;">
                                                 <div class="row no-gutters">
 
                                                     <div class="col-6">
                                                         <input type="radio" class="checkbox" style="width: 0px;"
-                                                            name="EventStatus" id="regParticipantMale" value="Male">
+                                                            name="Gender" id="regParticipantMale" value="Male">
                                                         <label style="height: 40px;border: 1px solid #ddd;"
                                                             class="checkbox-label" id="regParticipantMaleLabel"
                                                             for="regParticipantMale">
@@ -391,7 +370,7 @@
 
                                                     <div class="col-6">
                                                         <input type="radio" class="checkbox" style="width: 0px;"
-                                                            name="EventStatus" id="regParticipantFemale" value="Male">
+                                                            name="Gender" id="regParticipantFemale" value="Female">
                                                         <label style="height: 40px;border: 1px solid #ddd;"
                                                             class="checkbox-label" id="regParticipantFemaleLabel"
                                                             for="regParticipantFemale">
@@ -406,6 +385,28 @@
                                                     <span class="already-active"
                                                         style="position: absolute;left: 12px;top: -5px;background: none;">Gender
                                                     </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+
+                                        <div class="reg-first-form-gender-section">
+                                            <div class="city-section-inside-div profile-setup-name-email-div">
+                                                <div class="reg-participant-form-field" style="width: 100%;">
+                                                    <div class="reg-participant-form-field">
+                                                        <input type="text" id="userName" required>
+                                                        <span>Name</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="reg-participant-form-field" style="width: 100%;">
+                                                    <div class="reg-participant-form-field">
+                                                        <input type="email" id="userEmail" required>
+                                                        <span>Email</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -442,48 +443,55 @@
 
                                 <div class="row no-gutters">
 
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
 
-                                        <div class="event-detail-input-div"
-                                            style="position: relative;padding: 15px 5px;">
-                                            <div class="input-group date datetimepicker11">
-                                                <input id="RegistrationOpenDate" type="text" placeholder="DOB"
-                                                    class="form-control reg-participant-date-picker" readonly>
-                                                <div class="input-group-addon input-group-prepend">
-                                                    <span class="input-group-text reg-participant-date-picker-icon"><i
-                                                            class="fas fa-calendar"
-                                                            style="font-size: 0.9em; color: #666;"></i></span>
+                                        <div class="reg-first-form-gender-section">
+                                            <div class="city-section-inside-div profile-setup-name-email-div">
+                                                <div class="" style="width: 100%;padding: 5px;">
+                                                    <div class="event-detail-input-div"
+                                                        style="position: relative;padding: 15px 5px;">
+                                                        <div class="input-group date datetimepicker11">
+                                                            <input id="dob" type="text" placeholder="DOB"
+                                                                class="form-control reg-participant-date-picker"
+                                                                readonly>
+                                                            <div class="input-group-addon input-group-prepend">
+                                                                <span
+                                                                    class="input-group-text reg-participant-date-picker-icon"><i
+                                                                        class="fas fa-calendar"
+                                                                        style="font-size: 0.9em; color: #666;"></i></span>
+                                                            </div>
+                                                        </div>
+                                                        <span class="already-active"
+                                                            style="position: absolute; top: 5px;left: 12px;padding: 0 8px;">Date
+                                                            Of
+                                                            Birth</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="reg-participant-form-field" style="width: 100%;">
+                                                    <div class="reg-participant-form-field">
+                                                        <input type="number" id="pinCode" maxlength="6"
+                                                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                            onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                                                            required>
+                                                        <span class="pin-code-span">Pin Code</span>
+                                                        <!-- <h1 class="pin-code-error">Enter a Valid Pin Code</h1> -->
+                                                        <h1 id="userLocation">Pune, Maharashtra</h1>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <span class="already-active"
-                                                style="position: absolute; top: 5px;left: 12px;padding: 0 8px;">Date
-                                                Of
-                                                Birth</span>
                                         </div>
 
                                     </div>
 
                                     <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="reg-participant-form-field">
-                                            <input type="number" maxlength="6"
-                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                                required>
-                                            <span>Pin Code</span>
-                                        </div>
+                                        <span id="errorMessage" style="display:none;">Please enter Valid Pincode</span>
+
+
                                     </div>
 
                                     <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="reg-participant-form-field">
-                                            <input type="text" readonly required>
-                                            <span>City</span>
-                                        </div>
-                                    </div>
 
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="reg-participant-form-field">
-                                            <input type="text" readonly required>
-                                            <span>State</span>
-                                        </div>
                                     </div>
 
                                 </div>
@@ -694,6 +702,41 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="/js/bootstrap-datetimepicker.min.js"></script>
+    <script>
+        $(function () {
+            $.extend(true, $.fn.datetimepicker.defaults, {
+                icons: {
+                    time: 'far fa-clock',
+                    date: 'far fa-calendar',
+                    up: 'fas fa-arrow-up',
+                    down: 'fas fa-arrow-down',
+                    previous: 'fas fa-chevron-left',
+                    next: 'fas fa-chevron-right',
+                    today: 'far fa-calendar-check-o',
+                    clear: 'far fa-trash',
+                    close: 'far fa-times'
+                }
+            });
+
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('.datetimepicker11').datetimepicker({
+                format: 'MM-DD-YYYY',
+                ignoreReadonly: true,
+                useCurrent: true, //,
+                defaultDate: new Date()
+                // maxDate: new Date() //,
+
+            });
+        });
+
+    </script>
 
 </body>
 

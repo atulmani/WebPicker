@@ -134,7 +134,8 @@ function sideNavbarOpen() {
 fullContent.addEventListener('click', sideNavbarClose, false);
 
 function sideNavbarClose() {
-  sideNavbar.classList.remove('open');
+  if (sideNavbar != null && sideNavbar != undefined)
+    sideNavbar.classList.remove('open');
 }
 
 

@@ -313,12 +313,12 @@
             <div class="event-details-sticky-div" id="regEventDetails" onclick="openMoreEventDetails(regEventDetails)">
                 <div class="event-details-sticky-div-inner-div">
                     <div style="width: 70%;">
-                        <h1>PRAKASH PADUKONE BADMINTON TOURNAMENT 2022</h1>
-                        <small>Krishal Shetty</small>
+                        <h1 id="EventName">PRAKASH PADUKONE BADMINTON TOURNAMENT 2022</h1>
+                        <small id="OrganiserName">Krishal Shetty</small>
                     </div>
                     <div style="width: 30%;text-align: right;">
-                        <h2>12-18 Jun'22</h2>
-                        <small>Price : ₹ 1,000</small>
+                        <h2 id="eventDate">12-18 Jun'22</h2>
+                        <small>Price :<span id="eventFees"> ₹ 1,000</span></small>
                     </div>
                     <div class="reg-propfile-event-details-expand">
                         <span class="material-symbols-outlined">
@@ -332,8 +332,8 @@
                         <div class="row no-gutters">
                             <div class="col-lg-5 col-md-12 col-sm-12">
                                 <div class="content">
-                                    <h1>ECL Puyvast - PSM Open Junior Badminton Tournament.</h1>
-                                    <h2>PSM</h2>
+                                    <h1 id="EventName1">ECL Puyvast - PSM Open Junior Badminton Tournament.</h1>
+                                    <h2 id="organizationName">PSM</h2>
                                     <div style="position: relative;">
                                         <h3 class="rating">
                                             <div class=""><span class="material-symbols-outlined">star</span><span
@@ -346,15 +346,15 @@
                                     </div>
                                     <div class="details">
                                         <div class="">
-                                            <h3>Bangalore</h3>
+                                            <h3 id="City">Bangalore</h3>
                                             <h4>Location</h4>
                                         </div>
                                         <div class="">
-                                            <h3>1 Jul 22</h3>
+                                            <h3 id="eventStartDate">1 Jul 22</h3>
                                             <h4>Event Date</h4>
                                         </div>
                                         <div class="">
-                                            <h3>₹700</h3>
+                                            <h3 id="entryFees1">₹700</h3>
                                             <h4>Entry Fee</h4>
                                         </div>
                                     </div>
@@ -386,8 +386,9 @@
 
                     <div id="regProfileNewParticipantDetails">
                         <h3 style="font-weight:1000; color:#348DCB;text-align: center;">CATEGORY</h3>
-                        <h1 class="reg-form-email">Ananya Agarwal</h1>
-                        <h5 class="reg-form-email female">FEMALE</h5>
+                        <h1 class="reg-form-email" id="playerName">Ananya Agarwal</h1>
+                        <h5 class="reg-form-email female" id="playerGender">FEMALE</h5>
+                        <input type="hidden" id="hfPlayerID" />
                         <br>
                     </div>
 
