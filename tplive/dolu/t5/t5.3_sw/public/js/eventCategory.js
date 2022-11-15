@@ -527,6 +527,12 @@ function SaveCategory() {
         obj.CategoryDetails = catDetails;
         responceJSON = JSON.stringify(obj);
         localStorage.setItem("eventDetails", responceJSON);
+        document.getElementById("errorMessage").style.display = "block";
+
+        setTimeout(function () {
+            document.getElementById("errorMessage").style.display = "none";
+
+        }, 5000);
 
     });
 

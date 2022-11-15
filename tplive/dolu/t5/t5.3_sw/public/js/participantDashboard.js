@@ -21,50 +21,40 @@ auth.onAuthStateChanged(async firebaseUser => {
 
 async function GetProfileData() {
   console.log('GetProfileData - Starts');
-  // var para = {};
-  // para = {
-  //   uid: loggedinUser.uid
-  // };
-  // console.log(para);
-  //
-  // const ret = await firebase.functions().httpsCallable("getUserRequest");
-  // ret(para).then(async (result) => {
-  //   var record = result.data._fieldsProto;
-  //   console.log(record.UserName);
-  //   console.log('GetProfileData - End');
-  // });
-  //
+  var userProfile = JSON.parse(localStorage.getItem("userProfile"));
+  if (userProfile != undefined && userProfile != "" && userProfile != null) {
+    populateDetails(userProfile);
+  } else {
+    var para1 = {};
+    para1 = {
+      userID: loggedinUser.uid
+    };
+    // const ret1 = firebase.functions().httpsCallable("getProfileDetails");
+    const ret1 = functions.httpsCallable("getProfileDetails");
+    ret1(para1).then((result) => {
+      var record1 = result.data;
+      userProfile = {
+        id: result.data.id,
+        Address: result.data.Address,
+        AlternatePhone: result.data.AlternatePhone,
+        City: result.data.City,
+        Country: result.data.Country,
+        DateOfBirth: result.data.DateOfBirth,
+        Email: result.data.Email,
+        Pincode: result.data.Pincode,
+        ProfilePicURL: result.data.ProfilePicURL,
+        Gender: result.data.Gender,
+        Phone: result.data.Phone,
+        State: result.data.State,
+        UserName: result.data.UserName,
+        UserRole: result.data.UserRole,
+      }
+      populateDetails(userProfile);
 
-  var para1 = {};
-  para1 = {
-    userID: loggedinUser.uid
-  };
-  // const ret1 = firebase.functions().httpsCallable("getProfileDetails");
-  const ret1 = functions.httpsCallable("getProfileDetails");
-  ret1(para1).then((result) => {
-    var record1 = result.data;
-    var userRole = {
-      id: result.data.id,
-      Address: result.data.Address,
-      AlternatePhone: result.data.AlternatePhone,
-      City: result.data.City,
-      Country: result.data.Country,
-      DateOfBirth: result.data.DateOfBirth,
-      Email: result.data.Email,
-      Gender: result.data.Gender,
-      Pincode: result.data.Pincode,
-      ProfilePicURL: result.data.ProfilePicURL,
-      Phone: result.data.Phone,
-      State: result.data.State,
-      UserName: result.data.UserName,
-      UserRole: result.data.UserRole,
-    }
-    console.log(userRole);
-    localStorage.setItem("userProfile", JSON.stringify(userRole));
+    });
+  }
 
-    console.log("UserName: " + result.data.UserName);
-
-    if (result.data.ProfilePic != undefined)
+  /*  if (result.data.ProfilePic != undefined)
       document.getElementById("profilePic").src = result.data.ProfilePic;
     else {
       document.getElementById("profilePic").src = "";
@@ -75,18 +65,19 @@ async function GetProfileData() {
     document.getElementById("hfName").value = result.data.UserName;
     document.getElementById("userPhone").innerHTML = result.data.Phone;
     document.getElementById("state").innerHTML = result.data.State + ", " + result.data.Country;
-    if (result.data.DateOfBirth != null) {
-      var dob = new Date(result.data.DateOfBirth._seconds * 1000);
-      var options = {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-      };
+    if(result.data.DateOfBirth != null)
+    {
+    var dob = new Date(result.data.DateOfBirth._seconds * 1000);
+    var options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    };
 
-      dob = dob.toLocaleDateString("en-US", options);
+    dob = dob.toLocaleDateString("en-US", options);
 
-      document.getElementById("dob").value = dob;
-    }
+    document.getElementById("dob").value = dob;
+  }
     document.getElementById("city").innerHTML = result.data.City;
     document.getElementById("altPh").value = result.data.AlternatePhone;
     document.getElementById("address").value = result.data.Address;
@@ -97,7 +88,7 @@ async function GetProfileData() {
     var rolereferee = document.getElementById("referee");
     var rolecoach = document.getElementById("coach");
     var roleacademyOwner = document.getElementById("academyOwner");
-    console.log(roles);
+     console.log(roles);
     for (index = 0; index < roles.length; index++) {
       console.log(roles[index].TYPE);
       if (roleparticipant.value === roles[index].TYPE) {
@@ -116,9 +107,24 @@ async function GetProfileData() {
 
 
   });
+*/
+}
+function populateDetails(userProfile) {
+  console.log(userProfile);
+  document.getElementById("userName").innerHTML = userProfile.UserName + " " + '(' + userProfile.Gender + ')'
+  document.getElementById("hfGender").value = userProfile.Gender;
+  document.getElementById("hfName").value = userProfile.UserName;
+  document.getElementById("hfUid").value = userProfile.id;
+
+  document.getElementById("userPhone").innerHTML = userProfile.Phone.replace("+91", "");
+  document.getElementById("city").innerHTML = userProfile.City;
+  document.getElementById("state").innerHTML = userProfile.State;
+  document.getElementById("userEmail").value = userProfile.Email;
+  document.getElementById("userEmail").value = userProfile.Email;
+  document.getElementById("address").value = userProfile.Address;
+  document.getElementById("profilePic").src = userProfile.ProfilePicURL;
 
 }
-
 // function GetProfileDataold() {
 //   //  var e = document.getElementById("cityList");
 //   // var selected_value = e.options[e.selectedIndex].value;
@@ -141,11 +147,6 @@ async function GetProfileData() {
 //       else {
 //         document.getElementById("profilePic").src = "";
 //       }
-//       document.getElementById("userName").innerHTML = doc.data().UserName + " " + '(' + doc.data().Gender + ')'
-//       document.getElementById("userEmail").value = doc.data().Email;
-//       document.getElementById("hfGender").value = doc.data().Gender;
-//       document.getElementById("hfName").value = doc.data().UserName;
-//       document.getElementById("userPhone").innerHTML = doc.data().Phone;
 //       console.log(doc.data().State);
 //       console.log(doc.data().Country);
 //       document.getElementById("state").innerHTML = doc.data().State + ", " + doc.data().Country;
@@ -157,7 +158,6 @@ async function GetProfileData() {
 //       document.getElementById("dob").value = dob;
 //       document.getElementById("city").innerHTML = doc.data().City;
 //       document.getElementById("altPh").value = doc.data().AlternatePhone;
-//       document.getElementById("address").value = doc.data().Address;
 //       var roles = doc.data().UserRole;
 //       console.log(roles);
 //       var roleparticipant = document.getElementById("participant");
@@ -328,3 +328,112 @@ function updateDetails() {
 //
 //
 // }
+
+
+
+//**************************INSERT Image into Storage & get image url on ui *****************************/
+var ImgName, ImgURL;
+var files = [];
+var reader;
+//************ Select File ****************
+
+document.getElementById("select").onclick = function (e) {
+  // alert('camera button click');
+  // document.getElementById("uploadImg").style.display = 'block';
+  var input = document.createElement('input');
+  input.type = 'file';
+
+  input.onchange = e => {
+    files = e.target.files;
+    reader = new FileReader();
+    reader.onload = function () {
+      document.getElementById("profilePic").src = reader.result;
+    }
+    reader.readAsDataURL(files[0]);
+    document.getElementById("upload").disabled = false;
+  }
+  input.click();
+
+}
+//if (productID === null || productID === '')
+var uid = document.getElementById("hfUid").value;
+
+//************ File Upload to Cloud Storage  ****************
+document.getElementById('upload').onclick = function () {
+  // ImgName = document.getElementById('namebox').value;
+  //  productID = document.getElementById('hfproductID').value;
+  if (uid === null || uid === '')
+    uid = document.getElementById('hfUid').value;
+
+  ImgName = uid + '_1.png';
+  console.log(ImgName);
+  // ImgName = document.getElementById('productID').value + '_1.png';
+  //files = document.getElementById("myimg").src;
+
+  var uploadTask = firebase.storage().ref('img/UserProfile/' + ImgName).put(files[0]);
+  console.log(firebase.storage());
+  //Progress of the image upload into storageBucket
+  uploadTask.on('state_changed', function (snapshot) {
+    // var progress = (snapshot.byteTransferred / snapshot.totalBytes) * 100;
+    // document.getElementById('UpProgress').innerHTML = 'Upload'+progress+'%';
+  },
+
+    function (error) {
+      alert('error in saving the image');
+    },
+
+    function () {
+      //console.log(document.getElementById('hfproductID'));
+      //productID = document.getElementById('hfproductID').value;
+      uploadTask.snapshot.ref.getDownloadURL().then(function (url) {
+        ImgUrl = url;
+        //  alert('ImgUrl: ' + ImgUrl);
+        //alert("Image uploaded succsessfully");
+        //Update meta data for firebase storage resources - Start
+        var storageRef = uploadTask.snapshot.ref;
+        // console.log ("storageRef: " + storageRef );
+        // Create file metadata to update to cache for 1 year
+        var newMetadata = {
+          cacheControl: 'public,max-age=31536000',
+          contentType: 'image/png'
+        };
+        // Update metadata properties
+        storageRef.updateMetadata(newMetadata)
+          .then((metadata) => {
+            // Updated metadata for storage resources is returned in the Promise
+            console.log("metadata added on image url: " + url);
+
+            var hfUid = document.getElementById("hfUid").value;
+            console.log(hfUid);
+
+            if (hfUid != "" && hfUid != "0" && hfUid != undefined) {
+              console.log(ImgUrl);
+              var para = {};
+              para = {
+                userID: hfUid,
+                ProfilePicURL: ImgUrl,
+              };
+              console.log(para);
+
+              const ret = functions.httpsCallable("saveProfilePicture");
+              ret(para).then(result => {
+                console.log("From Function " + result.data);
+                alert("profile Picture uploaded Successfully!!");
+                // window.location.href = "/login/participantDashboard.html";
+
+              });
+
+
+            }
+          })
+          .catch((error) => {
+            // Uh-oh, an error occurred!
+          });
+
+
+      });
+    });
+}
+
+
+//************* Create & Update Event Data - End ******************

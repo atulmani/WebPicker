@@ -98,7 +98,7 @@ function getEventDetails() {
             if (result.data.EventStartDate != "" && result.data.EventStartDate != undefined && result.data.EventStartDate != null)
                 document.getElementById("EventStartDate").value = new Date(result.data.EventStartDate._seconds * 1000).toLocaleDateString("en-US", options);
             if (result.data.EventEndDate != "" && result.data.EventEndDate != undefined && result.data.EventEndDate != null)
-                document.getElementById("EventEndDate").value = new Date(result.data.EventStartDate._seconds * 1000).toLocaleDateString("en-US", options);
+                document.getElementById("EventEndDate").value = new Date(result.data.EventEndDate._seconds * 1000).toLocaleDateString("en-US", options);
 
             document.getElementById("maxEntry").value = result.data.MaxEntryForParticipant;
 

@@ -5764,4 +5764,21 @@ span.already-active {
   }
 }
 
+.reg-participant-form-field h1 {
+  position: absolute;
+  bottom: -15px;
+  left: 10px;
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+.reg-participant-form-field h1.pin-code-error {
+  color: #ff5757;
+}
+
+.reg-participant-form-field input:focus~.pin-code-span,
+.reg-participant-form-field input:valid~.pin-code-span {
+  top: 10px;
+}
+
 /* profile setup - end */

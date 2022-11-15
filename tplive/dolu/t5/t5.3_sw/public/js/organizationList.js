@@ -21,7 +21,9 @@ auth.onAuthStateChanged(async firebaseUser => {
 
 async function GetProfileData() {
   console.log('GetProfileData - Starts');
-  var userProfile =JSON.parse( localStorage.getItem("userProfile"));
+  console.log(loggedinUser);
+
+  var userProfile = JSON.parse(localStorage.getItem("userProfile"));
 
   if (userProfile != undefined && userProfile != "" && userProfile != null) {
 
@@ -39,6 +41,7 @@ async function GetProfileData() {
       } else {
         console.log("not admin");
         document.getElementById("containerOrgList").style.display = "none";
+
         document.getElementById("errorMessage").style.display = "block";
       }
     } else {

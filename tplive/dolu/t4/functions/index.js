@@ -31,6 +31,12 @@ exports.saveProfileDetailsStep3 = userProfile.saveProfileDetailsStep3;
 exports.saveProfileDetailsStep4 = userProfile.saveProfileDetailsStep4;
 exports.updateProfileDetails = userProfile.updateProfileDetails;
 exports.getUserWithRole = userProfile.getUserWithRole;
+exports.saveProfilePicture = userProfile.saveProfilePicture;
+exports.getRegisteredParticant = userProfile.getRegisteredParticant;
+exports.createParticipants = userProfile.createParticipants;
+exports.updateParticipants = userProfile.updateParticipants;
+exports.getPlayerDetails = userProfile.getPlayerDetails;
+
 
 exports.getOrganizationDetails = organization.getOrganizationDetails;
 exports.updateOrganizationDetails = organization.updateOrganizationDetails;

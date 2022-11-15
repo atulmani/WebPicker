@@ -7,7 +7,6 @@ auth.onAuthStateChanged(firebaseUser => {
       console.log('Logged-in user phone number: ' + loggedinUser.phoneNumber);
       userID = firebaseUser.uid;
       console.log("in step1");
-      //window.location.href = "/login/profileSetup.html";
 
     } else {
       loggedinUser = null;
@@ -97,7 +96,6 @@ btnSigninUsingOTP.addEventListener('click', e => {
   console.log('Code: ' + code);
   coderesult.confirm(code).then(function (result) {
     console.log('Navigate to the dashboard/profile page');
-    // window.location.assign('../admin/dashboard.html');
 
     var user = result.user;
     console.log(user);
@@ -136,23 +134,7 @@ btnSigninUsingOTP.addEventListener('click', e => {
         // window.location.assign('profile.html');
         console.log(userRole.UserRole);
         if (userRole.UserRole != undefined && userRole.UserRole != null) {
-          if (userRole.UserRole.find(e => e.TYPE === "ADMIN")) {
-            console.log("is admin");
-            window.location.assign('/admin/eventList.html');
-          }
-          else if (userRole.UserRole.find(e => e.TYPE === "PARTICIPANT")) {
-            console.log("is PARTICIPANT");
-            console.log("in step2");
-            window.location.assign('/regProfile.html');
-          } else if (userRole.UserRole.find(e => e.TYPE === "ORGANIZER")) {
-            console.log("is ORGANIZER");
-
-            window.location.assign('/admin/dashboard.html');
-          } else if (userRole.UserRole.find(e => e.TYPE === "REFREE")) {
-            console.log("is REFREE");
-
-            window.location.assign('/admin/dashboard.html');
-          }
+          window.location.assign('/regProfile.html');
         }
         else {
           console.log('FistTimeUserSetup');

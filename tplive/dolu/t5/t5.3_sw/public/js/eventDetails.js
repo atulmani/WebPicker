@@ -192,8 +192,10 @@ function GetEventDetails() {
           document.getElementById("RulesAndRegulations").innerHTML += "<li>" + ruleList[inti] + "</li>";
         }
       }
-      document.getElementById("EventDetails").innerHTML = result.data.NoticeBoard.replaceAll(";", "<br>");
+      if (result.data.NoticeBoard != undefined && result.data.NoticeBoard != null) {
+        document.getElementById("EventDetails").innerHTML = result.data.NoticeBoard.replaceAll(";", "<br>");
 
+      }
 
       document.getElementById("RulesAndRegulations").innerHTML += "</ul>";
       //      document.getElementById("RulesAndRegulations").innerHTML = result.data.RulesAndRegulations.replaceAll(";", "<br>");
@@ -257,6 +259,11 @@ function renderCategory(obj, index) {
   document.getElementById("eventCategoryDetails").appendChild(tr);
 }
 
+function btnBookingClick() {
+  localStorage.setItem("EventID", eventID);
+  window.location.href = "regProfile.html";
+
+}
 // js for product gallery
 
 var ProductImg = document.getElementById("eventLogo");
