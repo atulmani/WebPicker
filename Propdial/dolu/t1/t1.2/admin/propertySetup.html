@@ -163,30 +163,117 @@
 
   <!-- bottom-bardown ends -->
 
+  <!-- top sticky div - start -->
 
+  <div class="property-details-sticky-div sticky-top" id="propertyStickyDetail" onclick="openPropertyDetails(propertyStickyDetail)">
+    <div class="primary-details">
+      <div>
+        <h1>A - 504</h1>
+        <h2 style="color: #444;">High Mont Society, Hinjewadi, Pune</h2>
+      </div>
+      <div>
+        <h1>Atul Tripathi</h1>
+        <h2 style="color: #444;">9822752885</h2>
+      </div>
+    </div>
+
+    <div class="property-sticky-arrow">
+      <span class="material-symbols-outlined">
+        expand_more
+        </span>
+    </div>
+
+    <div class="secondary-details">
+      <div class="" style="height: 100%;">
+        <div class="profile-card-div" style="padding: 20px;height: calc(100% - 20px);background: #fff;">
+            <div class="property-status-property-card">
+                <div class="user-logo-parent-div">
+                    <div class="user-logo">
+                        <h4>AT</h4>
+                    </div>
+                </div>
+
+                <div class="details" style="text-align: center;">
+                  <div class="secondary-details-display">
+                    <div class="secondary-details-inside-display">
+                    <h5>Atul Tripathi</h5>
+                    <div class="property-contact-div property-media-icons-horizontal"
+                        style="flex-direction: row;width: 100%;height: auto;">
+                        <div>
+                            <span class="material-symbols-outlined">
+                                call
+                            </span>
+                            <h1>Call</h1>
+                        </div>
+                        <div>
+                            <img src="/img/whatsapp_square_icon.png" alt="">
+                            <h1>WhatsApp</h1>
+                        </div>
+                        <div>
+                            <span class="material-symbols-outlined">
+                                alternate_email
+                            </span>
+                            <h1>Mail</h1>
+                        </div>
+                    </div>
+                  </div>
+                  <hr class="secondary-details-hr"/>
+                  <div style="width: 100%">
+                    <h5>Vinay Prajapati</h5>
+                    <div class="property-contact-div property-media-icons-horizontal"
+                        style="flex-direction: row;width: 100%;height: auto;">
+                        <div>
+                            <span class="material-symbols-outlined">
+                                call
+                            </span>
+                            <h1>Call</h1>
+                        </div>
+                        <div>
+                            <img src="/img/whatsapp_square_icon.png" alt="">
+                            <h1>WhatsApp</h1>
+                        </div>
+                        <div>
+                            <span class="material-symbols-outlined">
+                                alternate_email
+                            </span>
+                            <h1>Mail</h1>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
+
+<!-- top sticky div - end -->
 
 
 
   <div id="fullContent" class="row no-gutters">
 
-    <div class="col-lg-2">
+    <div class="col-lg-2"><div class="large" style="padding: 12px;"></div>
       <div class="side-navbar side-navbar-large property-list-side-navbar"
-        style="height: calc(100% - 40px);background: #fff;">
+        style="height: calc(100% - 40px);background: #fff;position: relative;top: -5px;">
+
+
         <ul>
 
-          <li style="background: #EB542E;" class="active">
+          <li style="background: #4CD7D0;">
 
             <a href="dashboard.html">
-
-
+  
+  
               <div class="side-navbar-profile-div">
-
+  
                 <div class="side-navbar-profile-div-circle">
                   <div>
-                    <span style="color: #EB542E;">AT</span>
+                    <span>AT</span>
                   </div>
                 </div>
-
+  
                 <div class="side-navbar-profile-div-name">
                   <div class="">
                     <h6>Khushi Soni
@@ -200,9 +287,10 @@
                   </span>
                 </div>
               </div>
-
+  
             </a>
           </li><br>
+
           <li>
             <b></b>
             <b></b>
@@ -274,7 +362,7 @@
         </ul>
       </div>
 
-      <div class="side-navbar mobile small" id="sideNavbar">
+      <div class="side-navbar mobile small" style="z-index: 9999;" id="sideNavbar">
         <div class="closeBtn">
           <span class="material-symbols-outlined" id="closeBtn">
             close
@@ -282,7 +370,7 @@
         </div>
         <ul>
 
-          <li style="background: #EB542E;" class="active">
+          <li style="background: #4CD7D0;">
 
             <a href="dashboard.html">
 
@@ -291,7 +379,7 @@
 
                 <div class="side-navbar-profile-div-circle">
                   <div>
-                    <span style="color: #EB542E;">KS</span>
+                    <span>KS</span>
                   </div>
                 </div>
 
@@ -400,9 +488,6 @@
             </div>
             <div class="menu-list" id="Occupancy" onclick="addPropertyMenu('Occupancy')">
               <h1>Occupancy</h1>
-            </div>
-            <div class="menu-list" id="History" onclick="addPropertyMenu('History')">
-              <h1>History</h1>
             </div>
             <div class="menu-indicator" id="menuIndicator"></div>
           </div>
@@ -723,7 +808,7 @@
             </div>
 
             <div class="section" id="section2">
-              <div class="white-div"></div>
+              <div class="white-div">
 
               <section id="section2ResidentialSection">
 
@@ -1016,7 +1101,7 @@
 
                   <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="row no-gutters" style="padding: 0 10px;">
-                      <div class="col-lg-6 col-md-6 col-sm-12">
+                      <div class="col-lg-6 col-md-12 col-sm-12">
                         <h1 class="owner-heading">Property Description</h1>
 
                         <div class="location-search">
@@ -1037,12 +1122,10 @@
 
                 <div id="rentSection" style="display: block;">
                   <h2>RENT</h2><br><br><br>
-                  <hr>
                 </div>
 
                 <div id="saleSection" style="display: none;">
                   <h2>SALE</h2><br><br><br>
-                  <hr>
                 </div>
 
 
@@ -1051,9 +1134,9 @@
               <section id="section2CommercialSection" style="display: none;">
 
                 <h2>Commercial</h2><br><br><br>
-                <hr>
-
+                
               </section>
+            </div><br>
 
               <div class="row no-gutters section-btn-div">
                 <div class="col-6" style="padding: 5px;">
@@ -1076,10 +1159,6 @@
             </div>
 
             <div class="section" id="section3">
-
-            </div>
-
-            <div class="section" id="section4">
 
             </div>
 
