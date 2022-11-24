@@ -114,6 +114,7 @@ btnSigninUsingOTP.addEventListener('click', e => {
       console.log(result.data.id);
       var userRole = {
         id: result.data.id,
+        PlayerID: result.data.PlayerID,
         Address: result.data.Address,
         AlternatePhone: result.data.AlternatePhone,
         City: result.data.City,

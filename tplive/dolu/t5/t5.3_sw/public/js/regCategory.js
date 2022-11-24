@@ -27,13 +27,18 @@ auth.onAuthStateChanged(firebaseUser => {
     }
 });
 function getPlayerDetails() {
+    console.log('in getPlayerDetails')
     var para1 = {};
     para1 = {
         playerID: playerID
     };
     const ret1 = functions.httpsCallable("getPlayerDetails");
     ret1(para1).then((result) => {
-        document.getElementById("hfPlayerID").value = result.data.id;
+        document.getElementById("hfPlayerDocID").value = result.data.id;
+        document.getElementById("hfPlayerID").value = result.data.PlayerID;
+
+        console.log(document.getElementById("playerName").innerHTML);
+        console.log(result.data.UserName);
         document.getElementById("playerName").innerHTML = result.data.UserName;
         document.getElementById("playerGender").classList.remove("male");
         var playerGender = result.data.Gender.toUpperCase();
@@ -56,35 +61,293 @@ function getPlayerDetails() {
         //dob = dob.toLocaleDateString("en-US", options);
         var flagGender = false;
         var flagDate = false;
-        for (index = 0; index < CategoryDetails.length; index++) {
-            // if (CategoryDetails[index].)
-            flagGender = false;
-            flagDate = false;
-            var catGender = CategoryDetails[index].Gender.toUpperCase();
-            if (catGender === playerGender) {
-                flagGender = true;
-            } else if (catGender === 'MIXED') {
-                flagGender = true;
-            }
-            if (flagGender === true) {
-                var refDate = new Date(CategoryDetails[index].ReferenceDate._seconds * 1000);
-                if (CategoryDetails[index].DateRefType === 'Before' && dob <= refDate) {
-                    flagDate = true;
-                } else if (CategoryDetails[index].DateRefType === 'After' && dob >= refDate) {
-                    flagDate = true;
+        if (CategoryDetails != undefined && CategoryDetails != null) {
+            for (index = 0; index < CategoryDetails.length; index++) {
+                // if (CategoryDetails[index].)
+                flagGender = false;
+                flagDate = false;
+                var catGender = CategoryDetails[index].Gender.toUpperCase();
+                if (catGender === playerGender) {
+                    flagGender = true;
+                } else if (catGender === 'MIXED') {
+                    flagGender = true;
                 }
-                if (flagDate === true) {
-                    console.log("Render Category", CategoryDetails[index].CategoryName);
-                    rederCategory(CategoryDetails[index], index);
+                if (flagGender === true) {
+                    var refDate = new Date(CategoryDetails[index].ReferenceDate._seconds * 1000);
+                    if (CategoryDetails[index].DateRefType === 'Before' && dob <= refDate) {
+                        flagDate = true;
+                    } else if (CategoryDetails[index].DateRefType === 'After' && dob >= refDate) {
+                        flagDate = true;
+                    }
+                    if (flagDate === true) {
+                        console.log("Render Category", CategoryDetails[index].CategoryName);
+                        rederCategory(CategoryDetails[index], index);
+                    }
                 }
             }
         }
+
 
     });
 }
 
 function rederCategory(CategoryDetails, index) {
+    console.log(CategoryDetails);
+    var div1 = document.createElement("div");
+    div1.setAttribute("class", "col-lg-4 col-md-6 col-sm-12");
+    div1.setAttribute("style", "padding: 0;");
 
+    var div2 = document.createElement("div");
+    div2.setAttribute("style", "padding: 10px;");
+
+    var div3 = document.createElement("div");
+    div3.setAttribute("class", "reg-category-card");
+    div3.setAttribute("id", "regCategory" + index);
+
+    var div4 = document.createElement("div");
+    div4.setAttribute("class", "display-flex-div");
+    div4.setAttribute("onclick", "openPartnerSelection(gdDoublesDiv); selectCategory(regCategory" + index + ", regCategoryPrice" + index + ");");
+
+    var div5 = document.createElement("div");
+    div5.setAttribute("class", "category-details");
+
+    var h11 = document.createElement("h1");
+    h11.innerHTML = CategoryDetails.CategoryName;
+
+    div5.appendChild(h11);
+
+    var div6 = document.createElement("div");
+    div6.setAttribute("class", "category-icons");
+
+    if (CategoryDetails.EventType === 'Single') {
+        var span1 = document.createElement("span");
+        if (CategoryDetails.Gender === 'Female') {
+            span1.setAttribute("class", "material-symbols-outlined female");
+            span1.innerHTML = "woman";
+        } else {
+            span1.setAttribute("class", "material-symbols-outlined male");
+            span1.innerHTML = "man";
+        }
+        div6.appendChild(span1);
+
+    } else if (CategoryDetails.EventType === 'Double') {
+        if (CategoryDetails.Gender === 'Female') {
+            var span1 = document.createElement("span");
+            span1.setAttribute("class", "material-symbols-outlined female");
+            span1.innerHTML = "woman";
+            div6.appendChild(span1);
+
+            var span2 = document.createElement("span");
+            span2.setAttribute("class", "material-symbols-outlined female");
+            span2.innerHTML = "woman";
+            div6.appendChild(span2);
+        } else if (CategoryDetails.Gender === 'Male') {
+            var span1 = document.createElement("span");
+            span1.setAttribute("class", "material-symbols-outlined male");
+            span1.innerHTML = "man";
+            div6.appendChild(span1);
+
+            var span2 = document.createElement("span");
+            span2.setAttribute("class", "material-symbols-outlined male");
+            span2.innerHTML = "man";
+            div6.appendChild(span2);
+        } else if (CategoryDetails.Gender === 'Mixed') {
+            var span1 = document.createElement("span");
+            span1.setAttribute("class", "material-symbols-outlined male");
+            span1.innerHTML = "man";
+            div6.appendChild(span1);
+
+            var span2 = document.createElement("span");
+            span2.setAttribute("class", "material-symbols-outlined female");
+            span2.innerHTML = "woman";
+            div6.appendChild(span2);
+        }
+    } else if (CategoryDetails.EventType === 'Team') {
+        if (CategoryDetails.Gender === 'Female') {
+            var span1 = document.createElement("span");
+            span1.setAttribute("class", "material-symbols-outlined female");
+            span1.innerHTML = "woman";
+            div6.appendChild(span1);
+
+            var span2 = document.createElement("span");
+            span2.setAttribute("class", "material-symbols-outlined female");
+            span2.innerHTML = "woman";
+            div6.appendChild(span2);
+
+            var span3 = document.createElement("span");
+            span3.setAttribute("class", "material-symbols-outlined female");
+            span3.innerHTML = "woman";
+            div6.appendChild(span3);
+
+            var span4 = document.createElement("span");
+            span4.setAttribute("class", "material-symbols-outlined female");
+            span4.innerHTML = "woman";
+            div6.appendChild(span4);
+
+            var span5 = document.createElement("span");
+            span5.setAttribute("class", "material-symbols-outlined female");
+            span5.innerHTML = "woman";
+            div6.appendChild(span5);
+
+            var span6 = document.createElement("span");
+            span6.setAttribute("class", "material-symbols-outlined female");
+            span6.innerHTML = "woman";
+            div6.appendChild(span6);
+
+        } else if (CategoryDetails.Gender === 'Male') {
+            var span1 = document.createElement("span");
+            span1.setAttribute("class", "material-symbols-outlined male");
+            span1.innerHTML = "man";
+            div6.appendChild(span1);
+
+            var span2 = document.createElement("span");
+            span2.setAttribute("class", "material-symbols-outlined male");
+            span2.innerHTML = "man";
+            div6.appendChild(span2);
+
+            var span3 = document.createElement("span");
+            span3.setAttribute("class", "material-symbols-outlined male");
+            span3.innerHTML = "man";
+            div6.appendChild(span3);
+
+            var span4 = document.createElement("span");
+            span4.setAttribute("class", "material-symbols-outlined male");
+            span4.innerHTML = "man";
+            div6.appendChild(span4);
+
+            var span5 = document.createElement("span");
+            span5.setAttribute("class", "material-symbols-outlined male");
+            span5.innerHTML = "man";
+            div6.appendChild(span5);
+
+            var span6 = document.createElement("span");
+            span6.setAttribute("class", "material-symbols-outlined male");
+            span6.innerHTML = "man";
+            div6.appendChild(span6);
+
+        } else if (CategoryDetails.Gender === 'Mixed') {
+            var span1 = document.createElement("span");
+            span1.setAttribute("class", "material-symbols-outlined female");
+            span1.innerHTML = "woman";
+            div6.appendChild(span1);
+
+            var span2 = document.createElement("span");
+            span2.setAttribute("class", "material-symbols-outlined male");
+            span2.innerHTML = "man";
+            div6.appendChild(span2);
+
+            var span3 = document.createElement("span");
+            span3.setAttribute("class", "material-symbols-outlined female");
+            span3.innerHTML = "woman";
+            div6.appendChild(span3);
+
+            var span4 = document.createElement("span");
+            span4.setAttribute("class", "material-symbols-outlined male");
+            span4.innerHTML = "man";
+            div6.appendChild(span4);
+
+            var span5 = document.createElement("span");
+            span5.setAttribute("class", "material-symbols-outlined female");
+            span5.innerHTML = "woman";
+            div6.appendChild(span5);
+
+            var span6 = document.createElement("span");
+            span6.setAttribute("class", "material-symbols-outlined male");
+            span6.innerHTML = "man";
+            div6.appendChild(span6);
+        }
+
+    }
+
+    div5.appendChild(div6);
+    var h31 = document.createElement("h3");
+    var str1 = document.createElement("strong");
+    str1.innerHTML = "Partner : ";
+    h31.appendChild(str1);
+    h31.innerHTML = h31.innerHTML + "Partner Name";
+    div5.appendChild(h31);
+    div4.appendChild(div5);
+
+    var div7 = document.createElement("div");
+    div7.setAttribute("class", "category-fees");
+
+    var h2fee = document.createElement("h2");
+    h2fee.setAttribute("id", "regCategoryPrice" + index);
+    var curFormat = {
+        style: 'currency',
+        currency: 'INR',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2
+    };
+    h2fee.innerHTML = CategoryDetails.Fees.toLocaleString('en-IN', curFormat);
+    div7.appendChild(h2fee);
+
+    div4.appendChild(div7);
+    div3.appendChild(div4);
+
+    var div8 = document.createElement("div");
+    div8.setAttribute("class", "category-doubles-partner-div");
+    div8.setAttribute("id", "gdDoublesDiv" + index);
+
+    var hr = document.createElement("hr");
+    hr.setAttribute("style", "margin: 0;");
+
+    div8.appendChild(hr);
+
+    var div9 = document.createElement("div");
+    div9.setAttribute("style", "position: relative;padding: 0 10px;");
+
+    var div10 = document.createElement("div");
+    div10.setAttribute("class", "reg-participant-form-field");
+
+    var input1 = document.createElement("input");
+    input1.setAttribute("type", "text");
+    input1.setAttribute("id", "idpartner" + index);
+    input1.setAttribute("required", "true");
+
+    div10.appendChild(input1);
+
+    var span2 = document.createElement("span");
+    span2.innerHTML = "Number Or Name";
+    div10.appendChild(span2);
+
+    div9.appendChild(div10);
+    div8.appendChild(div9);
+
+    /*
+    <div style="position: relative;padding: 0 10px;">--div9
+                                                
+                                                <div class="partner-intelicence">--div11
+                                                    <a href="">Kanika Kanwal - 6734265901</a>
+                                                    <a href="">Ananya Gadgil - 6734265901</a>
+                                                    <a href="">Purvi Baavikate - 6734265901</a>
+                                                    <a href="">Tamanna Raturi - 6734265901</a>
+                                                    <a href="">Akarshi Kashyap - 6734265901</a>
+                                                    <a href="">Pusarla Venkata Sindhu - 6734265901</a>
+                                                    <a href="">Malvika Bansod - 6734265901</a>
+                                                    <a href="">Saad Darmadhikari - 6734265901</a>
+                                                </div>
+                                                <div class="cancel-partner"
+                                                    onclick="closePartnerSelection(gdDoublesDiv); selectCategory(regCategoryGD17, regCategoryGD17Price);">--div12
+                                                    <a href="#">Cancel</a>
+                                                </div>
+                                            </div>
+    
+    */
+    div3.appendChild(div8);
+
+    var div13 = document.createElement("div");
+    div13.setAttribute("class", "select-category-div active");
+
+    var span13 = document.createElement("span");
+    span13.setAttribute("class", "material-symbols-outlined");
+    span13.innerHTML = "done";
+    div13.appendChild(span13);
+
+    div3.appendChild(div13);
+    div2.appendChild(div3);
+    div1.appendChild(div2);
+    document.getElementById("categoryDiv").appendChild(div1);
 }
 function getProfileDetails() {
     var userRole;
@@ -114,6 +377,7 @@ function getProfileDetails() {
                 Address: result.data.Address,
                 AlternatePhone: result.data.AlternatePhone,
                 City: result.data.City,
+                PlayerID: result.data.PlayerID,
                 Country: result.data.Country,
                 DateOfBirth: result.data.DateOfBirth,
                 Email: result.data.Email,
@@ -165,7 +429,9 @@ function getProfileDetails() {
 
 }
 
+function GetAllParticipants() {
 
+}
 function getEventDetails() {
     var eventID = localStorage.getItem("EventID");
 
@@ -184,7 +450,7 @@ function getEventDetails() {
         CategoryDetails = result.data.CategoryDetails;
 
         document.getElementById("organiserName").innerHTML = result.data.EventOwnerName;
-        //        document.getElementById("organiserName1").innerHTML = result.data.EventOwnerName;
+        document.getElementById("organiserName1").innerHTML = result.data.EventOwnerName;
 
         var startDate;
         var endDate;
@@ -195,9 +461,11 @@ function getEventDetails() {
         };
         startDate = new Date(result.data.EventStartDate._seconds * 1000);
         startDate = startDate.toLocaleDateString("en-US", options);
+        if (result.data.EventEndDate != undefined && result.data.EventEndDate != null) {
+            endDate = new Date(result.data.EventEndDate._seconds * 1000);
+            endDate = endDate.toLocaleDateString("en-US", options);
 
-        endDate = new Date(result.data.EventEndDate._seconds * 1000);
-        endDate = endDate.toLocaleDateString("en-US", options);
+        }
 
         document.getElementById("eventDate").innerHTML = startDate + "-" + endDate;
         document.getElementById("eventstartdate").innerHTML = startDate;
@@ -229,9 +497,12 @@ function getEventDetails() {
             }
         }
         document.getElementById("eventCategory").innerHTML = varCategoryName;
+        var withDate = "";
+        if (result.data.WithdrawalEndDate != undefined && result.data.WithdrawalEndDate != null) {
+            withDate = new Date(result.data.WithdrawalEndDate._seconds * 1000);
+            withDate = withDate.toLocaleDateString("en-US", options);
 
-        var withDate = new Date(result.data.WithdrawalEndDate._seconds * 1000);
-        withDate = withDate.toLocaleDateString("en-US", options);
+        }
         document.getElementById("withdrawDate").innerHTML = withDate;
 
         document.getElementById("eventstatus").innerHTML = result.data.EventStatus;
@@ -267,19 +538,19 @@ function openPartnerSelection(doubleDiv) {
 function selectCategory(category, entryFees) {
     category.classList.toggle('active');
 
-    var feesInNumber = Number(entryFees.innerHTML);
+    var feesInNumber = entryFees.innerHTML;
 
     var totalPrice = document.getElementById('totalPrice');
     var noOfCategories = document.getElementById('noOfCategories');
 
     var totalPriceInNumber = Number(totalPrice.innerHTML);
     var totalNoOfCategories = Number(noOfCategories.innerHTML);
-
+    feesInNumber = feesInNumber.replace("₹", "").replace(" ", "").replaceAll(",", "");
     if (category.classList.contains('active')) {
-        totalPrice.innerHTML = totalPriceInNumber + feesInNumber;
+        totalPrice.innerHTML = totalPriceInNumber + Number(feesInNumber);
         noOfCategories.innerHTML = totalNoOfCategories + 1;
     } else {
-        totalPrice.innerHTML = totalPriceInNumber - feesInNumber;
+        totalPrice.innerHTML = totalPriceInNumber - Number(feesInNumber);
         noOfCategories.innerHTML = totalNoOfCategories - 1;
     }
 

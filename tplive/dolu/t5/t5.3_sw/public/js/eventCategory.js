@@ -9,7 +9,7 @@ auth.onAuthStateChanged(async firebaseUser => {
             //console.log(firebaseUser.uid);
             console.log('Logged-in user phone number: ' + loggedinUser.phoneNumber);
             if (eventID === "" || eventID === null || eventID === undefined) {
-                eventID = localStorage.getItem("eventID");
+                eventID = localStorage.getItem("EventID");
             }
             GetProfileData();
         } else {

@@ -42,12 +42,13 @@ function getProfileDetails() {
                 id: result.data.id,
                 Address: result.data.Address,
                 AlternatePhone: result.data.AlternatePhone,
+                PlayerID: result.data.PlayerID,
                 City: result.data.City,
                 Country: result.data.Country,
                 DateOfBirth: result.data.DateOfBirth,
                 Email: result.data.Email,
                 Gender: result.data.Gender,
-                Phone: result.data.Phone.replace("+91", ""),
+                Phone: result.data.Phone,
                 State: result.data.State,
                 Pincode: result.data.Pincode,
                 ProfilePicURL: result.data.ProfilePicURL,
@@ -72,9 +73,13 @@ function getProfileDetails() {
                     }
                 }
                 console.log(userProfile);
+                if (userProfile.UserName != undefined && userProfile.UserName != null) {
 
-                document.getElementById("userName").value = userProfile.UserName;
-                document.getElementById("userEmail").value = userProfile.Email;
+                    document.getElementById("userName").value = userProfile.UserName;
+                }
+                if (userProfile.Email != undefined && userProfile.Email != null) {
+                    document.getElementById("userEmail").value = userProfile.Email;
+                }
                 if (userProfile.Pincode != undefined) {
                     document.getElementById("pinCode").value = userProfile.Pincode;
                 }

@@ -79,7 +79,7 @@ function getEventDetails() {
 
             const responceJSON = JSON.stringify(result.data);
             localStorage.setItem("eventDetails", responceJSON);
-            localStorage.setItem("eventID", eventID);
+            localStorage.setItem("EventID", eventID);
             document.getElementById("organizationName").value = result.data.OrganizationName;
             document.getElementById("eventNametb").value = result.data.EventName;
             document.getElementById("eventName").innerHTML = result.data.EventName;

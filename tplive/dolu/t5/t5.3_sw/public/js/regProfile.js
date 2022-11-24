@@ -53,6 +53,7 @@ function getProfileDetails() {
                 Address: result.data.Address,
                 AlternatePhone: result.data.AlternatePhone,
                 City: result.data.City,
+                PlayerID: result.data.PlayerID,
                 Country: result.data.Country,
                 DateOfBirth: result.data.DateOfBirth,
                 Email: result.data.Email,
@@ -133,9 +134,11 @@ function getEventDetails() {
         };
         startDate = new Date(result.data.EventStartDate._seconds * 1000);
         startDate = startDate.toLocaleDateString("en-US", options);
+        if (result.data.EventEndDate != undefined && result.data.EventEndDate != null) {
+            endDate = new Date(result.data.EventEndDate._seconds * 1000);
+            endDate = endDate.toLocaleDateString("en-US", options);
 
-        endDate = new Date(result.data.EventEndDate._seconds * 1000);
-        endDate = endDate.toLocaleDateString("en-US", options);
+        }
 
         document.getElementById("eventDate").innerHTML = startDate + "-" + endDate;
         document.getElementById("eventstartdate1").innerHTML = startDate;
@@ -167,9 +170,12 @@ function getEventDetails() {
             }
         }
         document.getElementById("eventCategory").innerHTML = varCategoryName;
+        var withDate = "";
+        if (result.data.WithdrawalEndDate != undefined && result.data.WithdrawalEndDate != null) {
+            withDate = new Date(result.data.WithdrawalEndDate._seconds * 1000);
+            withDate = withDate.toLocaleDateString("en-US", options);
 
-        var withDate = new Date(result.data.WithdrawalEndDate._seconds * 1000);
-        withDate = withDate.toLocaleDateString("en-US", options);
+        }
         document.getElementById("withdrawDate").innerHTML = withDate;
 
         document.getElementById("eventstatus").innerHTML = result.data.EventStatus;
@@ -182,6 +188,8 @@ function populateUserDetails(userRole) {
     document.getElementById("hfUserID").value = userRole.id;
     document.getElementById("hfEmail").value = userRole.Email;
     document.getElementById("hfPhone").value = userRole.Phone;
+    document.getElementById("hfPlayerID").value = userRole.PlayerID;
+
 
     document.getElementById("userEmail").innerHTML = userRole.Email;
     document.getElementById("userContact").innerHTML = userRole.Phone;
@@ -273,6 +281,7 @@ function getAllParticipants() {
                 State: record1[i].State,
                 UserName: record1[i].UserName,
                 UserID: record1[i].UserID,
+                PlayerID: record1[i].PlayerID,
             };
             userParticipant.push(participant);
             RenderPartcipant(participant, i);
@@ -338,10 +347,16 @@ function RenderPartcipant(participant, index) {
 
     var hfid = document.createElement("input");
     hfid.setAttribute("type", "hidden");
-    hfid.setAttribute("id", "hfPlayerID" + index);
+    hfid.setAttribute("id", "hfID" + index);
     hfid.setAttribute("value", participant.id);
     div5.appendChild(hfid);
 
+
+    var hfPid = document.createElement("input");
+    hfPid.setAttribute("type", "hidden");
+    hfPid.setAttribute("id", "hfPlayerID" + index);
+    hfPid.setAttribute("value", participant.PlayerID);
+    div5.appendChild(hfPid);
 
     div5.appendChild(span1);
     div4.appendChild(div5);
@@ -472,6 +487,7 @@ function updateParticipant() {
     var grade = selGrade.options[selGrade.selectedIndex].text
     var SchoolAddress = document.getElementById("tbSchoolAddress").value;
     var CollageName = document.getElementById("tbCollageName").value;
+    var PlayerID = document.getElementById("hfPlayerID").value;
 
     var para = {};
     para = {
@@ -482,7 +498,7 @@ function updateParticipant() {
         District: district,
         Country: country,
         Gender: gender,
-
+        PlayerID: PlayerID,
         Email: Email,
         Phone: Phone,
         UserName: userName,

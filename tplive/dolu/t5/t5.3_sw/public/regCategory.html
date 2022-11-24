@@ -314,7 +314,7 @@
                 <div class="event-details-sticky-div-inner-div">
                     <div style="width: 70%;">
                         <h1 id="EventName">PRAKASH PADUKONE BADMINTON TOURNAMENT 2022</h1>
-                        <small id="OrganiserName">Krishal Shetty</small>
+                        <small id="organiserName">Krishal Shetty</small>
                     </div>
                     <div style="width: 30%;text-align: right;">
                         <h2 id="eventDate">12-18 Jun'22</h2>
@@ -388,11 +388,12 @@
                         <h3 style="font-weight:1000; color:#348DCB;text-align: center;">CATEGORY</h3>
                         <h1 class="reg-form-email" id="playerName">Ananya Agarwal</h1>
                         <h5 class="reg-form-email female" id="playerGender">FEMALE</h5>
+                        <input type="hidden" id="hfPlayerDocID" />
                         <input type="hidden" id="hfPlayerID" />
                         <br>
                     </div>
 
-                    <div class="row no-gutters">
+                    <div class="row no-gutters" id="categoryDiv">
 
                         <div class="col-lg-4 col-md-6 col-sm-12" style="padding: 0;">
                             <div style="padding: 10px;">
@@ -483,14 +484,14 @@
                                         </div>
                                     </div>
 
-                                    <div class="category-doubles-partner-div" id="gdDoublesDiv">
+                                    <div class="category-doubles-partner-div " id="gdDoublesDiv">
                                         <hr style="margin: 0;" />
                                         <div style="position: relative;padding: 0 10px;">
                                             <div class="reg-participant-form-field">
                                                 <input type="text" required>
                                                 <span>Number Or Name</span>
                                             </div>
-
+                                            <!-- 
                                             <div class="partner-intelicence">
                                                 <a href="">Kanika Kanwal - 6734265901</a>
                                                 <a href="">Ananya Gadgil - 6734265901</a>
@@ -500,7 +501,7 @@
                                                 <a href="">Pusarla Venkata Sindhu - 6734265901</a>
                                                 <a href="">Malvika Bansod - 6734265901</a>
                                                 <a href="">Saad Darmadhikari - 6734265901</a>
-                                            </div>
+                                            </div> -->
                                             <div class="cancel-partner"
                                                 onclick="closePartnerSelection(gdDoublesDiv); selectCategory(regCategoryGD17, regCategoryGD17Price);">
                                                 <a href="#">Cancel</a>
@@ -786,7 +787,7 @@
                     <hr style="border: none;border-top: 1px solid #aaa;" />
                     <br>
 
-                    <div class="category-checkout" id="paymentDiv">
+                    <div class="category-checkout" id="checkOutDiv">
 
                         <div class="category-checkout-first-details">
                             <div class="first-details-total">
@@ -821,7 +822,7 @@
                         <ul>
                             <li><i style="color:#348DCB;" class="far fa-bookmark"></i><span
                                     class="textheadleft">Organiser:
-                                </span><span style="color:#889;" id="organiserName" class="textheadleft">Krishal
+                                </span><span style="color:#889;" id="organiserName1" class="textheadleft">Krishal
                                     Shetty</span>
                             </li>
                             <li><i style="color:#348DCB;" class="far fa-calendar"></i> <span

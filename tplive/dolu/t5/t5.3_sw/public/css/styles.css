@@ -5273,6 +5273,7 @@ input[type=number] {
 
 .reg-participant-form-field input:focus~span,
 .reg-participant-form-field input:valid~span,
+.reg-participant-form-field input.email-input-invalid:invalid~span,
 span.already-active {
   top: 15px;
   background: #fff;
@@ -5641,7 +5642,7 @@ span.already-active {
   overflow-y: auto;
   background: #eee;
   z-index: 99;
-  display: none;
+  /* display: none; */
 }
 
 .partner-intelicence a {

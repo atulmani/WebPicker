@@ -46,6 +46,7 @@ exports.getProfileDetails =
             let results = {};
             return {
               id: doc1.id,
+              PlayerID: doc1.data().PlayerID,
               Address: doc1.data().Address,
               AlternatePhone: doc1.data().AlternatePhone,
               City: doc1.data().City,
@@ -87,51 +88,83 @@ exports.addUserDetails =
       const userID = data.userID;
       const Phone = data.Phone;
       var UserRole = [{ 'TYPE': 'PARTICIPANT' }];
-
+      var userCount = 0;
+      var docID = '';
+      //PlayerID: doc1.data().PlayerID,
       console.log("userID ", userID);
-      await admin.firestore().collection("UserList")
-        .doc(userID)
-        .set({
-          UserId: userID,
-          Phone: Phone,
-          UserRole: UserRole,
-          CreatedBy: userID,
-          CreatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
-        })
-        .then(async () => {
-          console.log("Success");
-          ///////////////////////
-          var docID = "";
-          await admin.firestore().collection("Participants").where("UserID", "==", userID).where("ParticipantID", "==", userID)
-            .get().then(async (changes) => {
-              changes.forEach(doc1 => {
-                docID = doc1.id;
-              });
-
-              if (docID != "" & docID != undefined) {
-                await admin.firestore().collection("Participants").doc(docID).set({
-                  UserID: userID,
-                  ParticipantID: userID,
-                  Phone: Phone,
-                });
-              } else {
-
-                await admin.firestore().collection("Participants").add({
-                  UserID: userID,
-                  ParticipantID: userID,
-                  Phone: Phone,
-                });
-              }
-
+      await admin.firestore().collection("UserCountSummary")
+        .get().then(async (changes) => {
+          changes.forEach(doc1 => {
+            docID = doc1.id;
+            userCount = Number(doc1.data().UserCount);
+          });
+          if (docID === '' || docID === undefined || docID === null) {
+            await admin.firestore().collection("UserCount").add({
+              UserCount: 1,
             });
-          ///////////////////////
 
-        })
-        .catch(function (error) {
-          console.log("in error");
-          return "1";
+          } else {
+
+            userCount = userCount + 1;
+            playerID = "TP" + userCount;
+            await admin.firestore().collection("UserList")
+              .doc(userID)
+              .set({
+                UserId: userID,
+                PlayerID: playerID,
+                Phone: Phone,
+                UserRole: UserRole,
+                CreatedBy: userID,
+                CreatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
+              })
+              .then(async () => {
+                console.log("Success");
+                ///////////////////////
+                var docID = "";
+                await admin.firestore().collection("Participants").where("UserID", "==", userID).where("ParticipantID", "==", userID)
+                  .get().then(async (changes) => {
+                    changes.forEach(doc1 => {
+                      docID = doc1.id;
+                    });
+
+                    if (docID != "" & docID != undefined) {
+                      await admin.firestore().collection("Participants").doc(docID).set({
+                        UserID: userID,
+                        ParticipantID: userID,
+                        Phone: Phone,
+                      });
+                    } else {
+
+                      await admin.firestore().collection("Participants").add({
+                        UserID: userID,
+                        ParticipantID: userID,
+                        Phone: Phone,
+                      });
+                    }
+
+                  });
+                ///////////////////////
+                await admin.firestore().collection("UserCountSummary")
+                  .doc(docID)
+                  .set({
+                    UserCount: userID,
+                    PlayerID: playerID,
+                    Phone: Phone,
+                    UserRole: UserRole,
+                    CreatedBy: userID,
+                    CreatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
+                  })
+                  .then(async () => {
+
+                  })
+              })
+              .catch(function (error) {
+                console.log("in error");
+                return "1";
+              });
+          }
         });
-    });
+    })
 
 exports.saveProfileDetailsStep1 =
   functions
@@ -440,6 +473,7 @@ exports.getUserWithRole =
                 console.log(roleList[index]);
                 resultList.push({
                   userid: change.id,
+                  PlayerID: change.data().PlayerID,
                   Address: change.data().Address,
                   AlternatePhone: change.data().AlternatePhone,
                   City: change.data().City,
@@ -518,6 +552,7 @@ exports.getRegisteredParticant =
             resultList.push({
               id: doc1.id,
               City: doc1.data().City,
+              PlayerID: doc1.data().PlayerID,
               Country: doc1.data().Country,
               DateOfBirth: doc1.data().DateOfBirth,
               District: doc1.data().District,
@@ -556,10 +591,13 @@ exports.createParticipants =
       const District = data.District;
       const Pincode = data.Pincode;
       const Phone = data.Phone;
+      const PlayerID = data.PlayerID;
+
 
       return admin.firestore().collection("Participants").add({
         userID: userID,
         Gender: Gender,
+        PlayerID: PlayerID,
         Email: Email,
         Phone: Phone,
         City: City,
@@ -620,6 +658,7 @@ exports.updateParticipants =
       const CollageName = data.CollageName;
       const Grade = data.Grade;
       const SchoolAddress = data.SchoolAddress;
+      const PlayerID = data.PlayerID;
 
       //const ParticipantID = data.ParticipantID;
 
@@ -630,6 +669,7 @@ exports.updateParticipants =
           Gender: Gender,
           Email: Email,
           Phone: Phone,
+          PlayerID: PlayerID,
           City: City,
           State: State,
           Country: Country,
@@ -688,7 +728,8 @@ exports.getPlayerDetails =
           if (doc1.exists) {
             let results = {};
             return {
-              playerID: doc1.id,
+              pID: doc1.id,
+              PlayerID: doc1.data().PlayerID,
               City: doc1.data().City,
               Country: doc1.data().Country,
               DateOfBirth: doc1.data().DateOfBirth,
@@ -706,7 +747,7 @@ exports.getPlayerDetails =
           } else {
             console.log("no data");
             return {
-              playerID: "0",
+              pID: "0",
               msg: "No Record"
             };
           }
