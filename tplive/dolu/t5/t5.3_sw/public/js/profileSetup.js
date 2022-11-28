@@ -37,9 +37,9 @@ function getProfileDetails() {
         // const ret1 = firebase.functions().httpsCallable("getProfileDetails");
         const ret1 = functions.httpsCallable("getProfileDetails");
         ret1(para1).then((result) => {
-            console.log(result.data.id);
+            console.log(result.data.pID);
             userProfile = {
-                id: result.data.id,
+                id: result.data.pID,
                 Address: result.data.Address,
                 AlternatePhone: result.data.AlternatePhone,
                 PlayerID: result.data.PlayerID,

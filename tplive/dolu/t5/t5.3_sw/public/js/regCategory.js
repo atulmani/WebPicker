@@ -16,6 +16,7 @@ auth.onAuthStateChanged(firebaseUser => {
             userID = firebaseUser.uid;
             getEventDetails();
             getProfileDetails();
+
         } else {
             loggedinUser = null;
             console.log('User has been logged out');
@@ -34,13 +35,15 @@ function getPlayerDetails() {
     };
     const ret1 = functions.httpsCallable("getPlayerDetails");
     ret1(para1).then((result) => {
-        document.getElementById("hfPlayerDocID").value = result.data.id;
+        document.getElementById("hfPlayerDocID").value = result.data.pID;
         document.getElementById("hfPlayerID").value = result.data.PlayerID;
 
         console.log(document.getElementById("playerName").innerHTML);
         console.log(result.data.UserName);
         document.getElementById("playerName").innerHTML = result.data.UserName;
-        document.getElementById("playerGender").classList.remove("male");
+        document.getElementById("playerID").innerHTML = result.data.PlayerID;
+        //document.getElementById("playerGender").classList.remove("male");
+        document.getElementById("hfGender").value = result.data.Gender;
         var playerGender = result.data.Gender.toUpperCase();
         if (playerGender === 'MALE') {
             document.getElementById("playerGender").classList.add("male");
@@ -61,6 +64,7 @@ function getPlayerDetails() {
         //dob = dob.toLocaleDateString("en-US", options);
         var flagGender = false;
         var flagDate = false;
+        var catCount = 0;
         if (CategoryDetails != undefined && CategoryDetails != null) {
             for (index = 0; index < CategoryDetails.length; index++) {
                 // if (CategoryDetails[index].)
@@ -81,17 +85,28 @@ function getPlayerDetails() {
                     }
                     if (flagDate === true) {
                         console.log("Render Category", CategoryDetails[index].CategoryName);
-                        rederCategory(CategoryDetails[index], index);
+                        renderCategory(CategoryDetails[index], catCount);
+                        catCount = catCount + 1;
                     }
                 }
             }
+            document.getElementById("hfcatCount").value = catCount;
+
         }
-
-
+        //getRegisteredEvent
+        getRegisteredEvents();
     });
 }
+function getRegisteredEvents() {
+    var playerID = document.getElementById("playerID").innerHTML;
+    var para1 = {};
+    para1 = {
+        playerID: playerID
+    };
+    const ret1 = functions.httpsCallable("getRegisteredEvent");
 
-function rederCategory(CategoryDetails, index) {
+}
+function renderCategory(CategoryDetails, index) {
     console.log(CategoryDetails);
     var div1 = document.createElement("div");
     div1.setAttribute("class", "col-lg-4 col-md-6 col-sm-12");
@@ -106,22 +121,42 @@ function rederCategory(CategoryDetails, index) {
 
     var div4 = document.createElement("div");
     div4.setAttribute("class", "display-flex-div");
-    div4.setAttribute("onclick", "openPartnerSelection(gdDoublesDiv); selectCategory(regCategory" + index + ", regCategoryPrice" + index + ");");
+    if (CategoryDetails.EventType.toUpperCase() === 'SINGLE') {
+        div4.setAttribute("onclick", "selectCategory(regCategory" + index + ", regCategoryPrice" + index + ");");
+
+    } else if (CategoryDetails.EventType.toUpperCase() === 'DOUBLE') {
+        div4.setAttribute("onclick", "openPartnerSelection(gdDoublesDiv" + index + "); selectCategory(regCategory" + index + ", regCategoryPrice" + index + ");");
+
+    }
 
     var div5 = document.createElement("div");
     div5.setAttribute("class", "category-details");
 
     var h11 = document.createElement("h1");
+    h11.setAttribute("id", "categoryName" + index);
     h11.innerHTML = CategoryDetails.CategoryName;
+
+    var hfGender = document.createElement("input");
+    hfGender.setAttribute("type", "hidden");
+    hfGender.setAttribute("id", "catGender" + index);
+    hfGender.value = CategoryDetails.Gender;
+    div5.appendChild(hfGender);
+
+    var hfEventType = document.createElement("input");
+    hfEventType.setAttribute("type", "hidden");
+    hfEventType.setAttribute("id", "catType" + index);
+    hfEventType.value = CategoryDetails.EventType;
+    div5.appendChild(hfEventType);
+
 
     div5.appendChild(h11);
 
     var div6 = document.createElement("div");
     div6.setAttribute("class", "category-icons");
 
-    if (CategoryDetails.EventType === 'Single') {
+    if (CategoryDetails.EventType.toUpperCase() === 'SINGLE') {
         var span1 = document.createElement("span");
-        if (CategoryDetails.Gender === 'Female') {
+        if (CategoryDetails.Gender.toUpperCase() === 'FEMALE') {
             span1.setAttribute("class", "material-symbols-outlined female");
             span1.innerHTML = "woman";
         } else {
@@ -130,8 +165,9 @@ function rederCategory(CategoryDetails, index) {
         }
         div6.appendChild(span1);
 
-    } else if (CategoryDetails.EventType === 'Double') {
-        if (CategoryDetails.Gender === 'Female') {
+    } else if (CategoryDetails.EventType.toUpperCase() === 'DOUBLE') {
+        if (CategoryDetails.Gender.toUpperCase() === 'FEMALE') {
+            console.log("Female double ");
             var span1 = document.createElement("span");
             span1.setAttribute("class", "material-symbols-outlined female");
             span1.innerHTML = "woman";
@@ -141,7 +177,8 @@ function rederCategory(CategoryDetails, index) {
             span2.setAttribute("class", "material-symbols-outlined female");
             span2.innerHTML = "woman";
             div6.appendChild(span2);
-        } else if (CategoryDetails.Gender === 'Male') {
+        } else if (CategoryDetails.Gender.toUpperCase() === 'MALE') {
+            console.log("MAle double ");
             var span1 = document.createElement("span");
             span1.setAttribute("class", "material-symbols-outlined male");
             span1.innerHTML = "man";
@@ -151,7 +188,8 @@ function rederCategory(CategoryDetails, index) {
             span2.setAttribute("class", "material-symbols-outlined male");
             span2.innerHTML = "man";
             div6.appendChild(span2);
-        } else if (CategoryDetails.Gender === 'Mixed') {
+        } else if (CategoryDetails.Gender.toUpperCase() === 'MIXED') {
+            console.log("Mixed double ");
             var span1 = document.createElement("span");
             span1.setAttribute("class", "material-symbols-outlined male");
             span1.innerHTML = "man";
@@ -162,8 +200,8 @@ function rederCategory(CategoryDetails, index) {
             span2.innerHTML = "woman";
             div6.appendChild(span2);
         }
-    } else if (CategoryDetails.EventType === 'Team') {
-        if (CategoryDetails.Gender === 'Female') {
+    } else if (CategoryDetails.EventType.toUpperCase() === 'TEAM') {
+        if (CategoryDetails.Gender.toUpperCase() === 'FEMALE') {
             var span1 = document.createElement("span");
             span1.setAttribute("class", "material-symbols-outlined female");
             span1.innerHTML = "woman";
@@ -194,7 +232,7 @@ function rederCategory(CategoryDetails, index) {
             span6.innerHTML = "woman";
             div6.appendChild(span6);
 
-        } else if (CategoryDetails.Gender === 'Male') {
+        } else if (CategoryDetails.Gender.toUpperCase() === 'MALE') {
             var span1 = document.createElement("span");
             span1.setAttribute("class", "material-symbols-outlined male");
             span1.innerHTML = "man";
@@ -225,7 +263,7 @@ function rederCategory(CategoryDetails, index) {
             span6.innerHTML = "man";
             div6.appendChild(span6);
 
-        } else if (CategoryDetails.Gender === 'Mixed') {
+        } else if (CategoryDetails.Gender.toUpperCase() === 'MIXED') {
             var span1 = document.createElement("span");
             span1.setAttribute("class", "material-symbols-outlined female");
             span1.innerHTML = "woman";
@@ -260,12 +298,21 @@ function rederCategory(CategoryDetails, index) {
     }
 
     div5.appendChild(div6);
-    var h31 = document.createElement("h3");
-    var str1 = document.createElement("strong");
-    str1.innerHTML = "Partner : ";
-    h31.appendChild(str1);
-    h31.innerHTML = h31.innerHTML + "Partner Name";
-    div5.appendChild(h31);
+    if (CategoryDetails.EventType.toUpperCase() === 'DOUBLE') {
+        var h31 = document.createElement("h3");
+        h31.setAttribute("id", "hPartner" + index);
+        h31.setAttribute("style", "display:none;");
+        var str1 = document.createElement("strong");
+        str1.innerHTML = "Partner : ";
+        h31.appendChild(str1);
+
+        var spanPName = document.createElement("span");
+        spanPName.setAttribute("id", "partnerName" + index);
+        h31.appendChild(spanPName);
+
+        div5.appendChild(h31);
+
+    }
     div4.appendChild(div5);
 
     var div7 = document.createElement("div");
@@ -284,7 +331,6 @@ function rederCategory(CategoryDetails, index) {
 
     div4.appendChild(div7);
     div3.appendChild(div4);
-
     var div8 = document.createElement("div");
     div8.setAttribute("class", "category-doubles-partner-div");
     div8.setAttribute("id", "gdDoublesDiv" + index);
@@ -300,40 +346,47 @@ function rederCategory(CategoryDetails, index) {
     var div10 = document.createElement("div");
     div10.setAttribute("class", "reg-participant-form-field");
 
+    var dt = new Date(CategoryDetails.ReferenceDate._seconds * 1000);
+
     var input1 = document.createElement("input");
     input1.setAttribute("type", "text");
     input1.setAttribute("id", "idpartner" + index);
     input1.setAttribute("required", "true");
-
+    input1.setAttribute("onblur", "CheckPartnerCode(" + index + ", idpartner" + index + ", '" + CategoryDetails.eventType + "'" + ", '" + CategoryDetails.Gender + "', '" + CategoryDetails.DateRefType + "', " + CategoryDetails.ReferenceDate._seconds + "); ");
     div10.appendChild(input1);
 
     var span2 = document.createElement("span");
-    span2.innerHTML = "Number Or Name";
+    span2.innerHTML = "TPLiVe Player ID";
+
     div10.appendChild(span2);
 
     div9.appendChild(div10);
+
+    var div11 = document.createElement("div");
+    div11.setAttribute("class", "partner-error-message");
+    div11.setAttribute("style", "display :none;");
+    div11.setAttribute("id", "errorDiv" + index);
+
+    var herror = document.createElement("h1");
+    herror.innerHTML = "Given ID is not valid give another player ID";
+
+    div11.appendChild(herror);
+    div9.appendChild(div11);
+
+    var div12 = document.createElement("div");
+    div12.setAttribute("class", "cancel-partner");
+    div12.setAttribute("onclick", "closePartnerSelection(gdDoublesDiv" + index + "," + index + "); selectCategory(regCategory" + index + ", regCategoryPrice" + index + ");");
+
+    var anchorCancel = document.createElement("a");
+    anchorCancel.setAttribute("href", "#");
+    anchorCancel.setAttribute("class", "mybutton button5");
+    anchorCancel.innerHTML = "Cancel";
+    div12.appendChild(anchorCancel);
+    div9.appendChild(div12);
+
+
     div8.appendChild(div9);
 
-    /*
-    <div style="position: relative;padding: 0 10px;">--div9
-                                                
-                                                <div class="partner-intelicence">--div11
-                                                    <a href="">Kanika Kanwal - 6734265901</a>
-                                                    <a href="">Ananya Gadgil - 6734265901</a>
-                                                    <a href="">Purvi Baavikate - 6734265901</a>
-                                                    <a href="">Tamanna Raturi - 6734265901</a>
-                                                    <a href="">Akarshi Kashyap - 6734265901</a>
-                                                    <a href="">Pusarla Venkata Sindhu - 6734265901</a>
-                                                    <a href="">Malvika Bansod - 6734265901</a>
-                                                    <a href="">Saad Darmadhikari - 6734265901</a>
-                                                </div>
-                                                <div class="cancel-partner"
-                                                    onclick="closePartnerSelection(gdDoublesDiv); selectCategory(regCategoryGD17, regCategoryGD17Price);">--div12
-                                                    <a href="#">Cancel</a>
-                                                </div>
-                                            </div>
-    
-    */
     div3.appendChild(div8);
 
     var div13 = document.createElement("div");
@@ -348,6 +401,92 @@ function rederCategory(CategoryDetails, index) {
     div2.appendChild(div3);
     div1.appendChild(div2);
     document.getElementById("categoryDiv").appendChild(div1);
+}
+function CheckPartnerCode(index, partnerID, eventType, eventGender, DateRefType, ReferenceDate) {
+    console.log(ReferenceDate);
+    var rDate = new Date(ReferenceDate * 1000);
+    console.log(eventType + ":" + eventGender + ":" + DateRefType + ":" + rDate);
+    var gender = document.getElementById("hfGender").value;
+    //get playerDetails for parter ID
+    console.log(partnerID.value);
+    var partnerCode = partnerID.value;
+    var userRole = {};
+    var para1 = {};
+    para1 = {
+        PlayerID: partnerCode
+    };
+    const ret1 = functions.httpsCallable("getPlayerDetailsWithPlayerID");
+    ret1(para1).then((result) => {
+        console.log(result.data[0]);
+        console.log(userRole);
+        var flag = false;
+        if (result.data[0] != undefined) {
+
+            userRole = {
+                userid: result.data[0].userid,
+                PlayerID: result.data[0].PlayerID,
+
+                Address: result.data[0].Address,
+                AlternatePhone: result.data[0].AlternatePhone,
+                City: result.data[0].City,
+                PlayerID: result.data[0].PlayerID,
+                Country: result.data[0].Country,
+                DateOfBirth: result.data[0].DateOfBirth,
+                Email: result.data[0].Email,
+                Gender: result.data[0].Gender,
+                Phone: result.data[0].Phone,
+                State: result.data[0].State,
+                UserName: result.data[0].UserName,
+            }
+
+
+            var dob = new Date(userRole.DateOfBirth._seconds * 1000);
+            console.log(userRole.Gender);
+            console.log(eventGender);
+            console.log(gender);
+            console.log(DateRefType);
+            console.log(rDate);
+            console.log(dob);
+
+
+            if ((eventGender.toUpperCase() === 'MALE' && userRole.Gender.toUpperCase() === 'MALE') ||
+                (eventGender.toUpperCase() === 'FEMALE' && userRole.Gender.toUpperCase() === 'FEMALE') ||
+                (eventGender.toUpperCase() === 'MIXED' && userRole.Gender.toUpperCase() === 'FEMALE' && gender.toUpperCase() === 'MALE') ||
+                (eventGender.toUpperCase() === 'MIXED' && userRole.Gender.toUpperCase() === 'MALE' && gender.toUpperCase() === 'FEMALE')) {
+
+                if (DateRefType === 'Before' && dob <= rDate) {
+                    flag = true;
+
+                } else if (DateRefType === 'After' && dob >= rDate) {
+                    flag = true;
+                } else {
+                    flag = false;
+                }
+
+            } else {
+                flag = false;
+            }
+            if (flag === true) {
+                document.getElementById("hPartner" + index).style.display = "block";
+                document.getElementById("partnerName" + index).innerHTML = userRole.UserName;
+                document.getElementById("errorDiv" + index).style.display = "none";
+            }
+
+        }
+        console.log(flag);
+        if (flag === false) {
+            //console.log(document.getElementById("errorDiv" + index));
+            document.getElementById("errorDiv" + index).style.display = "block";
+            document.getElementById("partnerName" + index).innerHTML = "";
+            document.getElementById("hPartner" + index).style.display = "none";
+
+            //console.log(document.getElementById("errorDiv" + index));
+
+        }
+
+        console.log(userRole);
+
+    });
 }
 function getProfileDetails() {
     var userRole;
@@ -371,9 +510,9 @@ function getProfileDetails() {
         const ret1 = functions.httpsCallable("getProfileDetails");
         ret1(para1).then((result) => {
             var record1 = result.data;
-            console.log(result.data.id);
+            console.log(result.data.pID);
             userRole = {
-                id: result.data.id,
+                id: result.data.pID,
                 Address: result.data.Address,
                 AlternatePhone: result.data.AlternatePhone,
                 City: result.data.City,
@@ -428,12 +567,71 @@ function getProfileDetails() {
     }
 
 }
+function saveCategory() {
+    console.log("in saveCategory", document.getElementById("hfcatCount").value);
+    var selectedCat = [];
+    var catCount = Number(document.getElementById("hfcatCount").value);
+    var maxEntry = 1;
+    for (index = 0; index < catCount; index++) {
+        var catDiv = document.getElementById("regCategory" + index);
+        var catName = document.getElementById("categoryName" + index).innerHTML;
+        var catGender = document.getElementById("catGender" + index).value;
+        var catType = document.getElementById("catType" + index).value;
+        var catFee = document.getElementById("regCategoryPrice" + index).innerHTML;
+        catFee = catFee.replace("₹", "").replace(" ", "").replaceAll(",", "");
+        var PartnerPlayerID = document.getElementById("idpartner" + index).value;
+        var PartnerPlayerName = "";
+        if (document.getElementById("partnerName" + index) != undefined) {
+            PartnerPlayerName = document.getElementById("partnerName" + index).innerHTML;
+        }
 
+        console.log(catDiv, catName, catGender, catType, catFee, PartnerPlayerID, PartnerPlayerName);
+
+        if (catDiv.classList.contains('active')) {
+            if (catType.toUpperCase() === 'SINGLE') {
+                maxEntry = 1;
+            } else if (catType.toUpperCase() === 'DOUBLE') {
+                maxEntry = 2;
+            }
+
+            if (catType.toUpperCase() === 'SINGLE' || (catType.toUpperCase() === 'DOUBLE' && PartnerPlayerName != "")) {
+                selectedCat.push({
+                    "CategoryName": catName,
+                    "EventType": catType,
+                    "Gender": catGender,
+                    "Fees": Number(catFee),
+                    "PartnerPlayerID": PartnerPlayerID,
+                    "PartnerPlayerName": PartnerPlayerName,
+                    "MaxTeamSize": maxEntry,
+                });
+            }
+
+        }
+    }
+    console.log(selectedCat);
+    //Save in DB
+    var para1 = {};
+    para1 = {
+        EventID: document.getElementById("hfEventID").value,
+        ParticipantID: loggedinUser.uid,
+        PlayerID: document.getElementById(playerID).innerHTML,
+        ParticipantName: document.getElementById("playerName").innerHTML,
+        CategoryList: selectedCat,
+    };
+    // const ret1 = firebase.functions().httpsCallable("getProfileDetails");
+    const ret1 = functions.httpsCallable("registerAllEvent");
+    ret1(para1).then((result) => {
+        var record1 = result.data;
+    });
+    //redirect to    regCheckout.html
+
+}
 function GetAllParticipants() {
 
 }
 function getEventDetails() {
     var eventID = localStorage.getItem("EventID");
+    document.getElementById("hfEventID").value = eventID;
 
     var para1 = {};
     para1 = {
@@ -443,10 +641,10 @@ function getEventDetails() {
     const ret1 = functions.httpsCallable("getEventDetails");
     ret1(para1).then((result) => {
         var record1 = result.data;
-        console.log(result.data.id);
+        console.log(result.data);
         document.getElementById("EventName").innerHTML = result.data.EventName;
         document.getElementById("EventName1").innerHTML = result.data.EventName;
-        // document.getElementById("eventName2").innerHTML = result.data.EventName;
+        // 
         CategoryDetails = result.data.CategoryDetails;
 
         document.getElementById("organiserName").innerHTML = result.data.EventOwnerName;
@@ -514,9 +712,15 @@ function getEventDetails() {
 }
 
 
-function closePartnerSelection(doubleDiv) {
+function closePartnerSelection(doubleDiv, index) {
     doubleDiv.classList.remove('show');
     doubleDiv.style.overflow = 'hidden';
+    document.getElementById("errorDiv" + index).style.display = "none";
+    document.getElementById("partnerName" + index).innerHTML = "";
+    document.getElementById("hPartner" + index).style.display = "none";
+    document.getElementById("idpartner" + index).value = "";
+
+
 }
 
 function moveToRegCategory() {
@@ -536,9 +740,13 @@ function openPartnerSelection(doubleDiv) {
     }
 }
 function selectCategory(category, entryFees) {
+    console.log(category);
+    console.log(entryFees);
+
     category.classList.toggle('active');
 
     var feesInNumber = entryFees.innerHTML;
+    console.log(feesInNumber);
 
     var totalPrice = document.getElementById('totalPrice');
     var noOfCategories = document.getElementById('noOfCategories');

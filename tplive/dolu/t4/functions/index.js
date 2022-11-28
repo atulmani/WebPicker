@@ -36,6 +36,7 @@ exports.getRegisteredParticant = userProfile.getRegisteredParticant;
 exports.createParticipants = userProfile.createParticipants;
 exports.updateParticipants = userProfile.updateParticipants;
 exports.getPlayerDetails = userProfile.getPlayerDetails;
+exports.getPlayerDetailsWithPlayerID = userProfile.getPlayerDetailsWithPlayerID;
 
 
 exports.getOrganizationDetails = organization.getOrganizationDetails;
@@ -106,6 +107,6 @@ exports.getApplicableEvent = registration.getApplicableEvent;
 exports.registerEvent = registration.registerEvent;
 exports.getAllRegisteredEventList = registration.getAllRegisteredEventList;
 exports.getParticipants = registration.getParticipants;
-
+exports.registerAllEvent = registration.registerAllEvent;
 
 exports.storePostData = common.storePostData;

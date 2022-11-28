@@ -47,9 +47,9 @@ function getProfileDetails() {
         const ret1 = functions.httpsCallable("getProfileDetails");
         ret1(para1).then((result) => {
             var record1 = result.data;
-            console.log(result.data.id);
+            console.log(result.data.pID);
             userRole = {
-                id: result.data.id,
+                id: result.data.pID,
                 Address: result.data.Address,
                 AlternatePhone: result.data.AlternatePhone,
                 City: result.data.City,
@@ -116,7 +116,7 @@ function getEventDetails() {
     const ret1 = functions.httpsCallable("getEventDetails");
     ret1(para1).then((result) => {
         var record1 = result.data;
-        console.log(result.data.id);
+        console.log(result.data.pID);
         document.getElementById("EventName").innerHTML = result.data.EventName;
         document.getElementById("EventName1").innerHTML = result.data.EventName;
         document.getElementById("eventName2").innerHTML = result.data.EventName;
@@ -360,11 +360,11 @@ function RenderPartcipant(participant, index) {
 
     div5.appendChild(span1);
     div4.appendChild(div5);
-
+    console.log(participant);
     var div6 = document.createElement("div");
     div4.setAttribute("class", "participant-name-div");
     var h11 = document.createElement("h1");
-    h11.innerHTML = participant.UserName;
+    h11.innerHTML = participant.UserName + "(" + participant.PlayerID + ")";
     div6.appendChild(h11);
 
     if (participant.DateOfBirth != null) {
@@ -433,7 +433,8 @@ function regProfileToFirstSlide() {
 }
 
 function moveToRegCategory(index) {
-    var playerid = document.getElementById("hfPlayerID" + index).value;
+    console.log(document.getElementById("hfID" + index));
+    var playerid = document.getElementById("hfID" + index).value;
     window.location.href = "regCategory.html?id=" + playerid;
 }
 

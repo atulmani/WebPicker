@@ -5628,8 +5628,17 @@ span.already-active {
 
 .category-doubles-partner-div.show {
   padding-top: 5px;
-  height: 110px;
+  height: 120px;
   pointer-events: all;
+}
+
+.category-doubles-partner-div .partner-error-message h1 {
+  position: absolute;
+  transform: translateY(-10px);
+  left: 17px;
+  width: calc(100% - 34px);
+  font-size: 0.8rem;
+  color: red;
 }
 
 .partner-intelicence {
@@ -5660,17 +5669,18 @@ span.already-active {
 }
 
 .cancel-partner {
+  position: relative;
+  left: 5px;
   text-align: right;
-  padding: 0 5px;
+  padding-top: 10px;
 }
 
 .cancel-partner a {
-  color: #ff5757;
+  padding: 0 20px;
   text-decoration: none;
 }
 
 .cancel-partner a:hover {
-  color: #ff5757;
   text-decoration: none;
 }
 

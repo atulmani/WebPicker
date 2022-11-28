@@ -109,9 +109,9 @@ btnSigninUsingOTP.addEventListener('click', e => {
     const ret1 = functions.httpsCallable("getProfileDetails");
     ret1(para1).then((result) => {
       var record1 = result.data;
-      console.log(result.data.id);
+      console.log(result.data.pID);
       var userRole = {
-        id: result.data.id,
+        id: result.data.pID,
         Address: result.data.Address,
         PlayerID: result.data.PlayerID,
         AlternatePhone: result.data.AlternatePhone,
@@ -129,7 +129,7 @@ btnSigninUsingOTP.addEventListener('click', e => {
       }
       console.log(userRole);
       localStorage.setItem("userProfile", JSON.stringify(userRole));
-      if (result.data.id != "0") {
+      if (result.data.pID != "0") {
         document.getElementById('btnSigninUsingOTPSpan').style.display = 'block';
         document.getElementById('btnSigninUsingOTPLoad').style.display = 'none';
         // window.location.assign('profile.html');

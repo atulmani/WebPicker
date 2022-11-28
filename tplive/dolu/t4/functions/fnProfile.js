@@ -89,21 +89,19 @@ exports.addUserDetails =
       const Phone = data.Phone;
       var UserRole = [{ 'TYPE': 'PARTICIPANT' }];
       var userCount = 0;
-      var docID = '';
+      var ucdocID = '';
       //PlayerID: doc1.data().PlayerID,
       console.log("userID ", userID);
       await admin.firestore().collection("UserCountSummary")
         .get().then(async (changes) => {
           changes.forEach(doc1 => {
-            docID = doc1.id;
+            ucdocID = doc1.id;
             userCount = Number(doc1.data().UserCount);
           });
-          if (docID === '' || docID === undefined || docID === null) {
-            await admin.firestore().collection("UserCount").add({
-              UserCount: 1,
-            });
 
-          } else {
+          //} 
+          //else 
+          {
 
             userCount = userCount + 1;
             playerID = "TP" + userCount;
@@ -131,6 +129,7 @@ exports.addUserDetails =
                       await admin.firestore().collection("Participants").doc(docID).set({
                         UserID: userID,
                         ParticipantID: userID,
+                        PlayerID: playerID,
                         Phone: Phone,
                       });
                     } else {
@@ -138,33 +137,35 @@ exports.addUserDetails =
                       await admin.firestore().collection("Participants").add({
                         UserID: userID,
                         ParticipantID: userID,
+                        PlayerID: playerID,
                         Phone: Phone,
                       });
                     }
 
                   });
                 ///////////////////////
-                await admin.firestore().collection("UserCountSummary")
-                  .doc(docID)
-                  .set({
-                    UserCount: userID,
-                    PlayerID: playerID,
-                    Phone: Phone,
-                    UserRole: UserRole,
-                    CreatedBy: userID,
-                    CreatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
-                  })
-                  .then(async () => {
+                if (ucdocID === '' || ucdocID === undefined || ucdocID === null) {
+                  await admin.firestore().collection("UserCountSummary").add({
+                    UserCount: 1,
+                  });
+                }
+                else {
 
-                  })
-              })
-              .catch(function (error) {
-                console.log("in error");
-                return "1";
+
+                  await admin.firestore().collection("UserCountSummary")
+                    .doc(ucdocID)
+                    .set({
+                      UserCount: userCount,
+                    })
+                    .then(async () => {
+
+                    })
+                }
+
               });
           }
         });
-    })
+    });
 
 exports.saveProfileDetailsStep1 =
   functions
@@ -658,55 +659,79 @@ exports.updateParticipants =
       const CollageName = data.CollageName;
       const Grade = data.Grade;
       const SchoolAddress = data.SchoolAddress;
-      const PlayerID = data.PlayerID;
+      var PlayerID = data.PlayerID;
+      var ucdocID = "";
+      var userCount = 0;
+      admin.firestore().collection("UserCountSummary")
+        .get().then(async (changes) => {
+          changes.forEach(doc1 => {
+            ucdocID = doc1.id;
+            userCount = Number(doc1.data().UserCount);
+          });
+          userCount = userCount + 1;
+          PlayerID = "TP" + userCount;
+          admin.firestore().collection("Participants")
+            .add({
+              UserName: UserName,
+              UserID: userID,
+              Gender: Gender,
+              Email: Email,
+              Phone: Phone,
+              PlayerID: PlayerID,
+              City: City,
+              State: State,
+              Country: Country,
+              District: District,
+              Pincode: Pincode,
+              ParticipantID: '',
+              DateOfBirth: admin.firestore.Timestamp.fromDate(new Date(DOB)),
+              ParticipantAddress: ParticipantAddress,
+              Size: Size,
+              Identity: Identity,
+              CompanyName: CompanyName,
+              HRContant: HRContant,
+              CompanyAddress: CompanyAddress,
+              CollageName: CollageName,
+              Grade: Grade,
+              SchoolAddress: SchoolAddress,
 
-      //const ParticipantID = data.ParticipantID;
+              UpdatedBy: context.auth.uid,
+              UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
+            })
+            .then(function (docRef) {
 
-      return admin.firestore().collection("Participants")
-        .add({
-          UserName: UserName,
-          UserID: userID,
-          Gender: Gender,
-          Email: Email,
-          Phone: Phone,
-          PlayerID: PlayerID,
-          City: City,
-          State: State,
-          Country: Country,
-          District: District,
-          Pincode: Pincode,
-          ParticipantID: '',
-          DateOfBirth: admin.firestore.Timestamp.fromDate(new Date(DOB)),
-          ParticipantAddress: ParticipantAddress,
-          Size: Size,
-          Identity: Identity,
-          CompanyName: CompanyName,
-          HRContant: HRContant,
-          CompanyAddress: CompanyAddress,
-          CollageName: CollageName,
-          Grade: Grade,
-          SchoolAddress: SchoolAddress,
+              var partID = docRef.id;
+              if (ucdocID === '' || ucdocID === undefined || ucdocID === null) {
+                admin.firestore().collection("UserCountSummary").add({
+                  UserCount: 1,
+                });
+              }
+              else {
 
-          UpdatedBy: context.auth.uid,
-          UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
-        })
-        .then(function (docRef) {
 
-          var partID = docRef.id;
+                admin.firestore().collection("UserCountSummary")
+                  .doc(ucdocID)
+                  .set({
+                    UserCount: userCount,
+                  })
+                  .then(async () => {
 
-          return {
+                  })
+              }
 
-            ParticipantID: partID
-          };
-        })
-        .catch(function (error) {
-          console.log("in error");
-          return {
-            ParticipantID: "0"
-          };
+              return {
+
+                ParticipantID: partID
+              };
+            })
+            .catch(function (error) {
+              console.log("in error");
+              return {
+                ParticipantID: "0"
+              };
+            });
         });
     });
-
 
 exports.getPlayerDetails =
   functions
@@ -752,4 +777,41 @@ exports.getPlayerDetails =
             };
           }
         });
+    });
+
+
+
+exports.getPlayerDetailsWithPlayerID =
+  functions
+    .region('asia-south1')
+    .https.onCall(async (data, context) => {
+      if (!context.auth) {
+        throw new functions.https.HttpError(
+          "unauthenticatied",
+          "only authenticated user can call this"
+        );
+      }
+      let resultList = [];
+
+      const playerID = data.PlayerID;
+      return await admin.firestore().collection("Participants").where("PlayerID", "==", playerID).get().then((changes) => {
+        changes.forEach(change => {
+          resultList.push({
+            userid: change.id,
+            PlayerID: change.data().PlayerID,
+            Address: change.data().Address,
+            AlternatePhone: change.data().AlternatePhone,
+            City: change.data().City,
+            Country: change.data().Country,
+            DateOfBirth: change.data().DateOfBirth,
+            Email: change.data().Email,
+            Gender: change.data().Gender,
+            Phone: change.data().Phone,
+            State: change.data().State,
+            UserName: change.data().UserName,
+          });
+          console.log(resultList);
+        });
+        return resultList;
+      });
     });

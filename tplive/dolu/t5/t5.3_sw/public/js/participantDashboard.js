@@ -34,7 +34,7 @@ async function GetProfileData() {
     ret1(para1).then((result) => {
       var record1 = result.data;
       userProfile = {
-        id: result.data.id,
+        id: result.data.pID,
         Address: result.data.Address,
         PlayerID: result.data.PlayerID,
         AlternatePhone: result.data.AlternatePhone,
