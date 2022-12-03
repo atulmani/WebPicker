@@ -411,7 +411,7 @@ exports.getEventDetails =
           } else {
             console.log("no data");
             return {
-              id: "0",
+              Eventid: "0",
               msg: "No Record"
             };
           }

@@ -19,7 +19,7 @@ auth.onAuthStateChanged(firebaseUser => {
         }
     } catch (error) {
         console.log(error.message);
-        window.location.href = "/login/index.html";
+        //  window.location.href = "/login/index.html";
     }
 });
 
@@ -116,7 +116,7 @@ function getEventDetails() {
     const ret1 = functions.httpsCallable("getEventDetails");
     ret1(para1).then((result) => {
         var record1 = result.data;
-        console.log(result.data.pID);
+        console.log(result.data);
         document.getElementById("EventName").innerHTML = result.data.EventName;
         document.getElementById("EventName1").innerHTML = result.data.EventName;
         document.getElementById("eventName2").innerHTML = result.data.EventName;

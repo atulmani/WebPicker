@@ -7,11 +7,13 @@ let eventDocUrl = new URL(location.href);
 let searchParams = new URLSearchParams(eventDocUrl.search);
 var playerID = searchParams.get('id');
 var CategoryDetails = [];
-
+var RegisteredEvents = [];
+var eventID = "";
 auth.onAuthStateChanged(firebaseUser => {
     try {
         if (firebaseUser) {
             loggedinUser = firebaseUser;
+            localStorage.setItem("TPPlayerID", playerID);
             console.log('Logged-in user phone number: ' + loggedinUser.phoneNumber);
             userID = firebaseUser.uid;
             getEventDetails();
@@ -21,6 +23,7 @@ auth.onAuthStateChanged(firebaseUser => {
             loggedinUser = null;
             console.log('User has been logged out');
             window.location.href = "/login/indexReg.html";
+
         }
     } catch (error) {
         console.log(error.message);
@@ -65,6 +68,7 @@ function getPlayerDetails() {
         var flagGender = false;
         var flagDate = false;
         var catCount = 0;
+
         if (CategoryDetails != undefined && CategoryDetails != null) {
             for (index = 0; index < CategoryDetails.length; index++) {
                 // if (CategoryDetails[index].)
@@ -93,17 +97,23 @@ function getPlayerDetails() {
             document.getElementById("hfcatCount").value = catCount;
 
         }
-        //getRegisteredEvent
-        getRegisteredEvents();
+
     });
 }
 function getRegisteredEvents() {
     var playerID = document.getElementById("playerID").innerHTML;
+    console.log(playerID);
     var para1 = {};
     para1 = {
-        playerID: playerID
+        PlayerID: 'TP7', //playerID,
+        EventID: eventID,
     };
-    const ret1 = functions.httpsCallable("getRegisteredEvent");
+    const ret1 = functions.httpsCallable("getAllRegisteredEventList");
+    ret1(para1).then((result) => {
+        RegisteredEvents = result.data;
+        console.log(RegisteredEvents);
+        getPlayerDetails();
+    });
 
 }
 function renderCategory(CategoryDetails, index) {
@@ -116,19 +126,47 @@ function renderCategory(CategoryDetails, index) {
     div2.setAttribute("style", "padding: 10px;");
 
     var div3 = document.createElement("div");
-    div3.setAttribute("class", "reg-category-card");
+    //    console.log(RegisteredEvents.some(e => e.CategoryName === CategoryDetails.CategoryName));
+    //  console.log(CategoryDetails.CategoryName, RegisteredEvents);
+    var regEvent = -1;
+    if (RegisteredEvents != null) {
+        regEvent = RegisteredEvents.findIndex(e => e.CategoryName === CategoryDetails.CategoryName);
+        // console.log(RegisteredEvents[regEvent]);
+        if (regEvent >= 0) {
+            div3.setAttribute("class", "reg-category-card active");
+            selectCategoryCal(CategoryDetails.Fees);
+
+        } else {
+            div3.setAttribute("class", "reg-category-card ");
+        }
+    } else {
+        div3.setAttribute("class", "reg-category-card ");
+    }
+
+
     div3.setAttribute("id", "regCategory" + index);
 
     var div4 = document.createElement("div");
     div4.setAttribute("class", "display-flex-div");
-    if (CategoryDetails.EventType.toUpperCase() === 'SINGLE') {
-        div4.setAttribute("onclick", "selectCategory(regCategory" + index + ", regCategoryPrice" + index + ");");
+    if (regEvent >= 0) {
+        if (RegisteredEvents[regEvent].PaymentStatus != 'Completed' && RegisteredEvents[regEvent].RegType === 'Self') {
+            if (CategoryDetails.EventType.toUpperCase() === 'SINGLE') {
+                div4.setAttribute("onclick", "selectCategory(regCategory" + index + ", regCategoryPrice" + index + ");");
 
-    } else if (CategoryDetails.EventType.toUpperCase() === 'DOUBLE') {
-        div4.setAttribute("onclick", "openPartnerSelection(gdDoublesDiv" + index + "); selectCategory(regCategory" + index + ", regCategoryPrice" + index + ");");
+            } else if (CategoryDetails.EventType.toUpperCase() === 'DOUBLE') {
+                div4.setAttribute("onclick", "openPartnerSelection(gdDoublesDiv" + index + "); selectCategory(regCategory" + index + ", regCategoryPrice" + index + ");");
 
+            }
+        }
+    } else {
+        if (CategoryDetails.EventType.toUpperCase() === 'SINGLE') {
+            div4.setAttribute("onclick", "selectCategory(regCategory" + index + ", regCategoryPrice" + index + ");");
+
+        } else if (CategoryDetails.EventType.toUpperCase() === 'DOUBLE') {
+            div4.setAttribute("onclick", "openPartnerSelection(gdDoublesDiv" + index + "); selectCategory(regCategory" + index + ", regCategoryPrice" + index + ");");
+
+        }
     }
-
     var div5 = document.createElement("div");
     div5.setAttribute("class", "category-details");
 
@@ -296,18 +334,46 @@ function renderCategory(CategoryDetails, index) {
         }
 
     }
+    console.log(CategoryDetails);
+
+    var hfRegType = document.createElement("input");
+    hfRegType.setAttribute("type", "hidden");
+    hfRegType.setAttribute("id", "hfRegType" + index);
+    if (regEvent >= 0) {
+        hfRegType.value = RegisteredEvents[regEvent].RegType;
+    }
+    div5.appendChild(hfRegType);
 
     div5.appendChild(div6);
     if (CategoryDetails.EventType.toUpperCase() === 'DOUBLE') {
         var h31 = document.createElement("h3");
         h31.setAttribute("id", "hPartner" + index);
-        h31.setAttribute("style", "display:none;");
+        if (regEvent >= 0) {
+            if (!(RegisteredEvents[regEvent].EventType.toUpperCase() === 'DOUBLE')) {
+                h31.setAttribute("style", "display:none;");
+            }
+        } else {
+            h31.setAttribute("style", "display:none;");
+        }
+
+
         var str1 = document.createElement("strong");
         str1.innerHTML = "Partner : ";
         h31.appendChild(str1);
 
         var spanPName = document.createElement("span");
         spanPName.setAttribute("id", "partnerName" + index);
+        console.log(regEvent);
+        if (regEvent >= 0) {
+            if (RegisteredEvents[regEvent].EventType.toUpperCase() === 'DOUBLE') {
+                if (RegisteredEvents[regEvent].RegType.toUpperCase() === 'SELF') {
+                    spanPName.innerHTML = RegisteredEvents[regEvent].PartnerPlayerName;
+                } else {
+                    spanPName.innerHTML = RegisteredEvents[regEvent].ParticipantName;
+                }
+            }
+        }
+
         h31.appendChild(spanPName);
 
         div5.appendChild(h31);
@@ -332,8 +398,16 @@ function renderCategory(CategoryDetails, index) {
     div4.appendChild(div7);
     div3.appendChild(div4);
     var div8 = document.createElement("div");
-    div8.setAttribute("class", "category-doubles-partner-div");
     div8.setAttribute("id", "gdDoublesDiv" + index);
+    if (regEvent >= 0) {
+        if (CategoryDetails.EventType.toUpperCase() === 'DOUBLE') {
+            div8.setAttribute("class", "category-doubles-partner-div show");
+        } else {
+            div8.setAttribute("class", "category-doubles-partner-div");
+        }
+    } else {
+        div8.setAttribute("class", "category-doubles-partner-div");
+    }
 
     var hr = document.createElement("hr");
     hr.setAttribute("style", "margin: 0;");
@@ -353,10 +427,22 @@ function renderCategory(CategoryDetails, index) {
     input1.setAttribute("id", "idpartner" + index);
     input1.setAttribute("required", "true");
     input1.setAttribute("onblur", "CheckPartnerCode(" + index + ", idpartner" + index + ", '" + CategoryDetails.eventType + "'" + ", '" + CategoryDetails.Gender + "', '" + CategoryDetails.DateRefType + "', " + CategoryDetails.ReferenceDate._seconds + "); ");
+    if (regEvent >= 0) {
+        if (RegisteredEvents[regEvent].EventType.toUpperCase() === 'DOUBLE') {
+            if (RegisteredEvents[regEvent].RegType.toUpperCase() === 'SELF') {
+                input1.value = RegisteredEvents[regEvent].PartnerPlayerID;
+            } else {
+                input1.value = RegisteredEvents[regEvent].PlayerID;
+
+            }
+        }
+    }
+
     div10.appendChild(input1);
 
     var span2 = document.createElement("span");
     span2.innerHTML = "TPLiVe Player ID";
+
 
     div10.appendChild(span2);
 
@@ -574,63 +660,91 @@ function saveCategory() {
     var maxEntry = 1;
     for (index = 0; index < catCount; index++) {
         var catDiv = document.getElementById("regCategory" + index);
-        var catName = document.getElementById("categoryName" + index).innerHTML;
-        var catGender = document.getElementById("catGender" + index).value;
-        var catType = document.getElementById("catType" + index).value;
-        var catFee = document.getElementById("regCategoryPrice" + index).innerHTML;
-        catFee = catFee.replace("₹", "").replace(" ", "").replaceAll(",", "");
-        var PartnerPlayerID = document.getElementById("idpartner" + index).value;
-        var PartnerPlayerName = "";
-        if (document.getElementById("partnerName" + index) != undefined) {
-            PartnerPlayerName = document.getElementById("partnerName" + index).innerHTML;
-        }
-
-        console.log(catDiv, catName, catGender, catType, catFee, PartnerPlayerID, PartnerPlayerName);
-
         if (catDiv.classList.contains('active')) {
-            if (catType.toUpperCase() === 'SINGLE') {
-                maxEntry = 1;
-            } else if (catType.toUpperCase() === 'DOUBLE') {
-                maxEntry = 2;
-            }
+            var hfRegType = document.getElementById("hfRegType" + index).value;
+            var catName = document.getElementById("categoryName" + index).innerHTML;
+            console.log(hfRegType, catName);
+            if (hfRegType != 'Partner') {
 
-            if (catType.toUpperCase() === 'SINGLE' || (catType.toUpperCase() === 'DOUBLE' && PartnerPlayerName != "")) {
-                selectedCat.push({
-                    "CategoryName": catName,
-                    "EventType": catType,
-                    "Gender": catGender,
-                    "Fees": Number(catFee),
-                    "PartnerPlayerID": PartnerPlayerID,
-                    "PartnerPlayerName": PartnerPlayerName,
-                    "MaxTeamSize": maxEntry,
-                });
+                var catGender = document.getElementById("catGender" + index).value;
+                var catType = document.getElementById("catType" + index).value;
+                var catFee = document.getElementById("regCategoryPrice" + index).innerHTML;
+                catFee = catFee.replace("₹", "").replace(" ", "").replaceAll(",", "");
+                var PartnerPlayerID = document.getElementById("idpartner" + index).value;
+                var PartnerPlayerName = "";
+
+                if (document.getElementById("partnerName" + index) != undefined) {
+                    PartnerPlayerName = document.getElementById("partnerName" + index).innerHTML;
+                }
+
+                if (catType.toUpperCase() === 'SINGLE') {
+                    maxEntry = 1;
+                } else if (catType.toUpperCase() === 'DOUBLE') {
+                    maxEntry = 2;
+                }
+                console.log(catName, PartnerPlayerName, catType);
+                if (catType.toUpperCase() === 'SINGLE' || (catType.toUpperCase() === 'DOUBLE' && PartnerPlayerName != "")) {
+                    selectedCat.push({
+                        "CategoryName": catName,
+                        "EventType": catType,
+                        "Gender": catGender,
+                        "Fees": Number(catFee),
+                        "PartnerPlayerID": PartnerPlayerID,
+                        "PartnerPlayerName": PartnerPlayerName,
+                        "MaxTeamSize": maxEntry,
+                    });
+                }
+
             }
 
         }
     }
+    var delCategory = [];
+    var AddCat = [];
+    console.log(selectedCat);
+    console.log(RegisteredEvents.length);
+    console.log(RegisteredEvents);
+    if (RegisteredEvents != null) {
+        for (index1 = 0; index1 < RegisteredEvents.length; ++index1) {
+            console.log(RegisteredEvents[index1].CategoryName);
+            var selIndex = selectedCat.findIndex(e => e.CategoryName === RegisteredEvents[index1].CategoryName)
+            console.log(selIndex);
+            console.log(RegisteredEvents[index1].RegType);
+            if (selIndex < 0) {
+                if (RegisteredEvents[index1].RegType.toUpperCase() === "SELF") {
+                    delCategory.push(RegisteredEvents[index1].CategoryName);
+                }
+            }
+            selIndex = -1;
+            console.log(selectedCat);
+            console.log(delCategory);
+        }
+
+    }
+
+
+    console.log(delCategory);
     console.log(selectedCat);
     //Save in DB
+    console.log(document.getElementById("playerID").innerHTML);
     var para1 = {};
     para1 = {
         EventID: document.getElementById("hfEventID").value,
         ParticipantID: loggedinUser.uid,
-        PlayerID: document.getElementById(playerID).innerHTML,
+        PlayerID: document.getElementById("playerID").innerHTML,
         ParticipantName: document.getElementById("playerName").innerHTML,
         CategoryList: selectedCat,
+        DeleteCategoryList: delCategory,
     };
-    // const ret1 = firebase.functions().httpsCallable("getProfileDetails");
-    const ret1 = functions.httpsCallable("registerAllEvent");
-    ret1(para1).then((result) => {
-        var record1 = result.data;
-    });
-    //redirect to    regCheckout.html
+    window.location.href = "/regCheckout.html";
+
 
 }
 function GetAllParticipants() {
 
 }
 function getEventDetails() {
-    var eventID = localStorage.getItem("EventID");
+    eventID = localStorage.getItem("EventID");
     document.getElementById("hfEventID").value = eventID;
 
     var para1 = {};
@@ -706,8 +820,8 @@ function getEventDetails() {
         document.getElementById("eventstatus").innerHTML = result.data.EventStatus;
         document.getElementById("organiser-email").innerHTML = result.data.EventOwnerEmail;
         document.getElementById("organiser-phone").innerHTML = result.data.EventOwnerPhone;
-        getPlayerDetails();
-
+        //getPlayerDetails();
+        getRegisteredEvents();
     });
 }
 
@@ -738,6 +852,22 @@ function openPartnerSelection(doubleDiv) {
             doubleDiv.style.overflow = 'visible';
         }, 1000)
     }
+}
+function selectCategoryCal(feesInNumber) {
+
+    var totalPrice = document.getElementById('totalPrice');
+    var noOfCategories = document.getElementById('noOfCategories');
+
+    var totalPriceInNumber = Number(totalPrice.innerHTML);
+    var totalNoOfCategories = Number(noOfCategories.innerHTML);
+    totalPrice.innerHTML = totalPriceInNumber + Number(feesInNumber);
+    noOfCategories.innerHTML = totalNoOfCategories + 1;
+    var checkOutDiv = document.getElementById('checkOutDiv');
+
+    checkOutDiv.style.opacity = '1';
+    checkOutDiv.style.pointerEvents = 'all';
+    console.log('Inside <=0');
+
 }
 function selectCategory(category, entryFees) {
     console.log(category);

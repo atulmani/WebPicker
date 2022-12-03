@@ -108,5 +108,7 @@ exports.registerEvent = registration.registerEvent;
 exports.getAllRegisteredEventList = registration.getAllRegisteredEventList;
 exports.getParticipants = registration.getParticipants;
 exports.registerAllEvent = registration.registerAllEvent;
+exports.withdrawRegistration = registration.withdrawRegistration;
+
 
 exports.storePostData = common.storePostData;

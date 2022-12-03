@@ -5,7 +5,7 @@ const admin = require("firebase-admin");
 exports.getUserRequest = functions
   .region('asia-south1')
   .runWith({
-    allowInvalidAppCheckToken: true,
+    enforceAppCheck: true,
   }).https.onCall((data, context) => {
     if (!context.auth) {
       throw new functions.https.HttpError(
@@ -632,7 +632,7 @@ exports.createParticipants =
 exports.updateParticipants =
   functions
     .region('asia-south1')
-    .https.onCall((data, context) => {
+    .https.onCall(async (data, context) => {
       if (!context.auth) {
         throw new functions.https.HttpError(
           "unauthenticatied",
@@ -662,7 +662,7 @@ exports.updateParticipants =
       var PlayerID = data.PlayerID;
       var ucdocID = "";
       var userCount = 0;
-      admin.firestore().collection("UserCountSummary")
+      await admin.firestore().collection("UserCountSummary")
         .get().then(async (changes) => {
           changes.forEach(doc1 => {
             ucdocID = doc1.id;
@@ -670,7 +670,7 @@ exports.updateParticipants =
           });
           userCount = userCount + 1;
           PlayerID = "TP" + userCount;
-          admin.firestore().collection("Participants")
+          return admin.firestore().collection("Participants")
             .add({
               UserName: UserName,
               UserID: userID,
@@ -704,7 +704,14 @@ exports.updateParticipants =
               if (ucdocID === '' || ucdocID === undefined || ucdocID === null) {
                 admin.firestore().collection("UserCountSummary").add({
                   UserCount: 1,
-                });
+                })
+                  .then(async () => {
+                    return {
+
+                      ParticipantID: partID
+                    };
+                  });
+
               }
               else {
 
@@ -715,14 +722,13 @@ exports.updateParticipants =
                     UserCount: userCount,
                   })
                   .then(async () => {
+                    return {
 
+                      ParticipantID: partID
+                    };
                   })
               }
 
-              return {
-
-                ParticipantID: partID
-              };
             })
             .catch(function (error) {
               console.log("in error");
