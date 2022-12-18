@@ -1,0 +1,22 @@
+{
+  "name": "paytmnode",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async_hooks": "^1.0.0",
+    "crypto": "^1.0.1",
+    "express": "^4.18.2",
+    "https": "^1.0.0",
+    "nodemon": "^2.0.20",
+    "querystring": "^0.2.1",
+    "require": "^0.4.4",
+    "util": "^0.12.5"
+  },
+  "description": ""
+}
