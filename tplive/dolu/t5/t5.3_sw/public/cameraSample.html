@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <video id="videoLink"></video>
+
+    <script>
+        import { uid } from 'quaser'
+        export default {
+            name: 'cameraSample',
+            data() {
+
+            },
+            method: {
+                initCamera() {
+                    navigator.mediaDevices.getUserMedia({
+                        video: true
+                    }).then(stream => {
+                        document.getElementById("videoLink").srcObject = stream;
+                    })
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

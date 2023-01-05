@@ -411,7 +411,7 @@ exports.getEventDetails =
           } else {
             console.log("no data");
             return {
-              id: "0",
+              Eventid: "0",
               msg: "No Record"
             };
           }
@@ -1875,7 +1875,7 @@ exports.updateEventDetails_EventMode =
         );
       }
       const EventID = data.EventID;
-      const Announcement = data.EventMode;
+      const EventMode = data.EventMode;
       console.log("eventID ", EventID);
 
       return admin.firestore().collection("EventList")

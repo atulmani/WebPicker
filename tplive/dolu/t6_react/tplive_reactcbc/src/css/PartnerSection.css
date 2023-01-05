@@ -1,0 +1,20 @@
+.partners-div {
+    position: relative;
+}
+
+.partners-div::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -10px;
+    width: 80%;
+    height: 170px;
+    background: #fff;
+    border-radius: 0 10px 10px 0;
+}
+
+@media (max-width: 500px) {
+    .partners-div::before {
+        height: 120px;
+    }
+}

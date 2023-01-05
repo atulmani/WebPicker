@@ -1,5 +1,3 @@
-
-
 var loggedinUser = "";
 var district = "";
 var city = "";
@@ -13,7 +11,6 @@ var RegisteredEvents = [];
 var eventID = "";
 var catCnt = 0;
 var totalAmount = 0;
-
 auth.onAuthStateChanged(firebaseUser => {
     try {
         if (firebaseUser) {
@@ -137,10 +134,6 @@ function getPlayerDetails() {
 
         console.log(document.getElementById("playerName").innerHTML);
         console.log(result.data.UserName);
-        document.getElementById("hfName").value = result.data.UserName;
-        document.getElementById("hfPhone").value = result.data.Phone;
-        document.getElementById("hfEmail").value = result.data.Email;
-
         document.getElementById("playerName").innerHTML = result.data.UserName;
         document.getElementById("playerID").innerHTML = result.data.PlayerID;
         //document.getElementById("playerGender").classList.remove("male");
@@ -221,7 +214,7 @@ function getRegisteredEvents() {
         if (document.getElementById("hfConvenienceRate").value != "") {
             var newTotal = Math.round(totalAmount * Number(document.getElementById("hfConvenienceRate").value) / 100);
             document.getElementById("totalPrice").innerHTML = totalAmount + newTotal;
-            document.getElementById("hfAmount").value = totalAmount + newTotal;
+
             var curFormat = {
                 style: 'currency',
                 currency: 'INR',
@@ -233,7 +226,6 @@ function getRegisteredEvents() {
             document.getElementById("ConvinienceCharge").innerHTML = newTotal.toLocaleString('en-IN', curFormat);;
         } else {
             document.getElementById("totalPrice").innerHTML = totalAmount;
-            document.getElementById("hfAmount").value = totalAmount;
 
         }
 
@@ -567,8 +559,4 @@ function getProfileDetails() {
 
 function gotoDemo() {
     window.href.Address = "demoPayment.html"
-}
-
-function paynow() {
-
 }

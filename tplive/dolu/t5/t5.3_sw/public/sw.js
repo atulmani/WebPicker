@@ -1,3 +1,4 @@
+
 importScripts(
   'https://storage.googleapis.com/workbox-cdn/releases/6.1.5/workbox-sw.js',
 );
@@ -182,6 +183,8 @@ self.addEventListener('fetch', (event) => {
   }
   var pattern = /firebasestorage*.googleapis*.*event/
   var pattern1 = /firebasestorage*.googleapis/
+  //paynow
+
 
   if (pattern.test(event.request.url)) {
     const staleWhileRevalidatePopulated = new workbox.strategies.StaleWhileRevalidate();

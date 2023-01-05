@@ -1,0 +1,37 @@
+1. node.js install
+install VScode, 
+node --version
+npm --version
+react developer  tool in chrom extension
+thunder clint extnsion in VSCode - to test get /post API 
+ES7 react/redux/graphQL/React native snippet
+bracket pair colorizer
+auto rename tag
+live server
+pritter code 
+reactjs.org
+2. refer https://reactjs.org/docs/create-a-new-react-app.html
+npx create-react-app my-app
+cd my-app
+npm start
+
+
+npm run build - for build application
+
+npm install react-router-dom
+rce - Class basec component
+rcf - function based component
+
+
+ npm start
+    Starts the development server.
+
+  npm run build
+    Bundles the app into static files for production.
+
+  npm test
+    Starts the test runner.
+
+  npm run eject
+    Removes this tool and copies build dependencies, configuration files
+    and scripts into the app directory. If you do this, you can’t go back!

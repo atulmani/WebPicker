@@ -31,6 +31,13 @@ exports.saveProfileDetailsStep3 = userProfile.saveProfileDetailsStep3;
 exports.saveProfileDetailsStep4 = userProfile.saveProfileDetailsStep4;
 exports.updateProfileDetails = userProfile.updateProfileDetails;
 exports.getUserWithRole = userProfile.getUserWithRole;
+exports.saveProfilePicture = userProfile.saveProfilePicture;
+exports.getRegisteredParticant = userProfile.getRegisteredParticant;
+exports.createParticipants = userProfile.createParticipants;
+exports.updateParticipants = userProfile.updateParticipants;
+exports.getPlayerDetails = userProfile.getPlayerDetails;
+exports.getPlayerDetailsWithPlayerID = userProfile.getPlayerDetailsWithPlayerID;
+
 
 exports.getOrganizationDetails = organization.getOrganizationDetails;
 exports.updateOrganizationDetails = organization.updateOrganizationDetails;
@@ -100,6 +107,8 @@ exports.getApplicableEvent = registration.getApplicableEvent;
 exports.registerEvent = registration.registerEvent;
 exports.getAllRegisteredEventList = registration.getAllRegisteredEventList;
 exports.getParticipants = registration.getParticipants;
+exports.registerAllEvent = registration.registerAllEvent;
+exports.withdrawRegistration = registration.withdrawRegistration;
 
 
 exports.storePostData = common.storePostData;

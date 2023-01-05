@@ -747,8 +747,7 @@ function getEventDetails() {
     eventID = localStorage.getItem("EventID");
     document.getElementById("hfEventID").value = eventID;
 
-    var para1 = {};
-    para1 = {
+    var para1 = {
         EventID: eventID,
     };
     // const ret1 = firebase.functions().httpsCallable("getProfileDetails");
