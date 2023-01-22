@@ -1,0 +1,65 @@
+/* more page - start */
+.more-links {
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    height: 200px;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.more-links:hover {
+    background: rgba(52, 141, 203, 0.2);
+    border: 1px solid #348DCB;
+}
+
+.more-links img {
+    width: 70%;
+    height: 100px;
+    transition: 0.5s;
+}
+
+.more-links:hover img {
+    width: 20%;
+    height: 30px;
+}
+
+.more-links span {
+    font-size: 1.3rem;
+    padding-top: 30px;
+    color: #444;
+    font-weight: 500;
+    transition: 0.5s;
+}
+
+.more-links:hover span {
+    font-size: 2.5rem;
+    padding-top: 0px;
+}
+
+@media (max-width: 850px) {
+    .more-links {
+        height: 150px;
+    }
+
+    .more-links img {
+        width: 50%;
+        height: 90px;
+    }
+
+    .more-links span {
+        padding-top: 0px;
+    }
+
+    .more-links:hover span {
+        font-size: 1.5rem;
+        padding-top: 0px;
+    }
+}
+
+/* more page - end */

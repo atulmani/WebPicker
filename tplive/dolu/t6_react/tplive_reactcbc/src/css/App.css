@@ -16,6 +16,7 @@ body {
 /* a{
   text-decoration: none;
 } */
+
 hr {
     border: none;
     border: 1px solid #ddd;
@@ -156,5 +157,21 @@ h6 {
 @media (max-width: 850px) {
     .heading h4 {
         font-size: 1.5rem;
+    }
+}
+
+.blink {
+    animation: blink 1.4s linear infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    60% {
+        opacity: 1;
+    }
+
+    30% {
+        opacity: 0;
     }
 }

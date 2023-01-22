@@ -37,7 +37,7 @@ export default class BeforeFooter extends Component {
                             <div className="">
 
                                 <img className="" style={{ borderRadius: '60px 0 0 60px', position: 'relative', float: 'right' }}
-                                    src="/img/wight_bg.gif" alt="" />
+                                    src="../img/wight_bg.gif" alt="" />
 
 
                             </div>

@@ -1,27 +1,28 @@
 import '../css/BottomBar.css'
 import React, { Component } from 'react'
+import { Link, NavLink } from 'react-router-dom'
 
 export default class BottomBar extends Component {
     render() {
         return (
             <div className="small navbar-mobile-bottom">
                 <div className="navbar-mobile-bottom-menu" id="divBottomNavBar">
-                    <a href="index.html" className="navbar-mobile-bottom-menu-a active" style={{ display: 'flex', flexDirection: 'column' }}>
+                    <NavLink to="/" className="navbar-mobile-bottom-menu-a " activeClassName="active" style={{ display: 'flex', flexDirection: 'column' }}>
                         <span className="material-symbols-outlined">
                             home
                         </span>
                         <small>Home</small>
-                    </a>
-                    <a href="https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA"
-                        className="navbar-mobile-bottom-menu-a" style={{ display: 'flex', flexDirection: 'column' }}>
+                    </NavLink>
+                    <NavLink to="/Event"
+                        className="navbar-mobile-bottom-menu-a" activeClassName="active" style={{ display: 'flex', flexDirection: 'column' }}>
                         <span className="material-symbols-outlined">
                             redeem
                         </span>
                         <small>Events</small>
-                    </a>
-                    <a href="/" >
+                    </NavLink>
+                    <Link to="/" >
 
-                    </a>
+                    </Link>
                     <a href="https://tournamentplanner.in/screens/TPLive_Orgs.aspx" className="navbar-mobile-bottom-menu-a"
                         style={{ display: 'flex', flexDirection: 'column' }}>
                         <span className="material-symbols-outlined">
@@ -29,12 +30,14 @@ export default class BottomBar extends Component {
                         </span>
                         <small>Clubs</small>
                     </a>
-                    <a href="more.html" className="navbar-mobile-bottom-menu-a" style={{ display: 'flex', flexDirection: 'column' }}>
+                    {/* <Link to="/more" routerlinkactive="active" className="navbar-mobile-bottom-menu-a" style={{ display: 'flex', flexDirection: 'column' }}> */}
+                    <NavLink to="/more" className="navbar-mobile-bottom-menu-a " activeClassName="active" style={{ display: 'flex', flexDirection: 'column' }}>
+
                         <span className="material-symbols-outlined">
                             apps
                         </span>
                         <small id='small4'>More</small>
-                    </a>
+                    </NavLink>
                 </div>
                 <a href="https://tournamentplanner.in/screens/TPLive_ProfileAUTH.aspx" className="new-user">
                     <span className="material-symbols-outlined">

@@ -94,10 +94,10 @@
 .notification-dot {
     position: absolute;
     top: 2px;
+    right: 9px;
     width: 11px;
     height: 11px;
     background: red;
     border-radius: 50%;
-    right: 9px;
     border: 2px solid #333C5D;
 }

@@ -1,0 +1,72 @@
+.genre-locoation-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    text-align: center;
+    color: #161d65;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.genre-locoation-card:hover,
+.genre-locoation-card.active {
+    border: 1px solid #348DCB;
+}
+
+.genre-locoation-card.active {
+    background: rgba(52, 141, 203, 0.1);
+}
+
+@media (max-width: 850px) {
+    .genre-locoation-card {
+        border: none;
+        padding: 0px;
+    }
+
+    .genre-locoation-card:hover,
+    .genre-locoation-card.active {
+        border: none;
+    }
+
+    .genre-locoation-card.active {
+        background: none;
+    }
+}
+
+.genre-locoation-card div img {
+    width: 40px;
+    height: 40px;
+    /* filter: invert(0.5); */
+}
+
+.genre-locoation-card.active div img {
+    /* filter: brightness(0); */
+    width: 40px;
+}
+
+.genre-locoation-card h2 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+    color: #161d65;
+}
+
+.genre-locoation-card.active h2 {
+    color: #000;
+}
+
+.genre-locoation-card h3 {
+    font-size: 0.8rem;
+    color: #aaa;
+    font-weight: 500;
+    margin: 0;
+}
+
+.genre-locoation-card.active h3 {
+    color: #888;
+}

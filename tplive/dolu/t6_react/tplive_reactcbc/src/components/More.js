@@ -1,3 +1,4 @@
+import '../css/More.css'
 import React, { Component } from 'react'
 
 export default class More extends Component {
@@ -74,7 +75,8 @@ export default class More extends Component {
                         </div>
                     </div>
 
-                </div>
+                </div><br />
+                <hr />
             </section >
 
         )

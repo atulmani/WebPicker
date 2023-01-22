@@ -7,14 +7,14 @@
     /* box-shadow: 0 0 10px 0 rgba(0,0,0,0.2); */
 }
 
-.navbar-brand {
-    padding-left: 8px;
+@media (max-width: 1080px) {
+    .navbar {
+        display: none;
+    }
 }
 
-.navbar-items-div {
-    display: flex;
-    padding: 10px 20px;
-    background: red;
+.navbar-brand {
+    padding-left: 8px;
 }
 
 .nav-item {

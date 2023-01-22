@@ -32,30 +32,25 @@
 //   appId: "1:401602717044:web:544d001d2c200e4036f821",
 //   measurementId: "G-4NJJMMSPDT"
 // };
+// import firebase from "firebase";
+import { initializeApp } from 'firebase/app';
+import { getFunctions, httpsCallable } from "firebase/functions";
+import { getAuth } from "firebase/auth";
+// require('firebase/firestore');
 
 
 const firebaseConfig = {
   apiKey: "AIzaSyCdr0rrIhy5OczzdSaHKaOA6tnztelN9SE",
   authDomain: "tplive-prod.firebaseapp.com",
   projectId: "tplive-prod",
-  databaseURL: "https://tplive-prod.firebaseio.com",
   storageBucket: "tplive-prod.appspot.com",
   messagingSenderId: "67897036742",
   appId: "1:67897036742:web:2a551603b441b3c282acc7",
   measurementId: "G-FW6FG7CLNV"
 };
 
+const app = initializeApp(firebaseConfig);
 // Initialize Firebase
 // firebase.initializeApp(firebaseConfig);
-
-// var fireObj = firebase.initializeApp(firebaseConfig);
-
-// const db = firebase.firestore();
-// const auth = firebase.auth();
-// const storage = firebase.storage();
-// // const functions =firebase.functions();
-// const functions = fireObj.functions("asia-south1");
-
-
-// Initialize Performance Monitoring and get a reference to the service
-// const perf = firebase.performance();
+export const functions = getFunctions(app, "asia-south1");
+export const auth = getAuth(app);

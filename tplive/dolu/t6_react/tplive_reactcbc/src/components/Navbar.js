@@ -1,23 +1,23 @@
 import '../css/Navbar.css'
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default class Navbar extends Component {
     render() {
         return (
 
-            <nav className="navbar navbar-expand-lg sticky-top large ">
-                <a className="navbar-brand" href="https://tplive.in">
+            <nav className="navbar navbar-expand-lg sticky-top">
+                <Link className="navbar-brand" to="/">
                     <img className="large" style={{ height: '50px' }} src="/img/TPLiVE_text_white.png" alt="TPLiVE" />
-                </a>
+                </Link>
                 {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                     <span className="navbar-toggler-icon"></span>
                 </button> */}
-                <div className="collapse navbar-collapse large" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div className="collapse navbar-collapse" style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div className="">
 
                     </div>
-                    <ul className="nav navbar-nav large" >
+                    <ul className="nav navbar-nav" >
                         {/* <li className="nav-item active">
                             <b></b>
                             <b></b>
@@ -28,6 +28,17 @@ export default class Navbar extends Component {
                                 <small>Home</small>
                             </a>
                         </li> */}
+                        {this.props.isMore && <li className="nav-item">
+                            <b></b>
+                            <b></b>
+                            <Link className="nav-link " style={{ color: '#fff' }} to="/">
+
+                                <span className="material-symbols-outlined">
+                                    home
+                                </span>
+                                <small>Home</small>
+                            </Link>
+                        </li>}
                         <li className="nav-item">
                             <b></b>
                             <b></b>
@@ -49,21 +60,36 @@ export default class Navbar extends Component {
                                 <small>Contact us</small>
                             </a>
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <b></b>
                             <b></b>
-                            <a className="nav-link" href="more.html">
+                            <Link className="nav-link " style={{ color: '#fff' }} to="/more">
+
                                 <span className="material-symbols-outlined">
                                     apps
                                 </span>
                                 <small>More</small>
-                            </a>
-                        </li>
+                            </Link>
+                        </li> */}
+                        {console.log(this.props.isMore)}
+
+                        {!this.props.isMore && <li className="nav-item">
+                            <b></b>
+                            <b></b>
+                            <Link className="nav-link " style={{ color: '#fff' }} to="/more">
+
+                                <span className="material-symbols-outlined">
+                                    apps
+                                </span>
+                                <small>More</small>
+                            </Link>
+                        </li>}
+
                     </ul>
 
                 </div>
 
-            </nav>
+            </nav >
 
             // <nav className="navbar navbar-expand-lg sticky-top large">
             //     <div className="navbar-brand" href="https://tplive.in">

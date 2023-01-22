@@ -19,6 +19,19 @@ export default class PartnerSection extends Component {
         // $('.popup-gallery').magnificPopup({
         // });
     }
+    state = {
+        responsive: {
+            0: {
+                items: 2,
+            },
+            600: {
+                items: 3,
+            },
+            1000: {
+                items: 5,
+            },
+        },
+    }
     render() {
         return (
 
@@ -82,7 +95,7 @@ export default class PartnerSection extends Component {
                     </div><br />
                     <div className="row no-gutters partners-div">
                         <div className="col-md-12 col-md-offset-1">
-                            <OwlCarousel items={3}
+                            <OwlCarousel
                                 className="owl-theme"
                                 loop
                                 nav={false}
@@ -92,7 +105,8 @@ export default class PartnerSection extends Component {
                                 autoplayHoverPause={false}
                                 dots={false}
                                 center={true}
-                                margin={20} >
+                                margin={20}
+                                responsive={this.state.responsive} >
                                 <div className="partners-item"><img width="100%" alt="" src={'/img/partner/1.png'} /></div>
                                 <div className="partners-item"><img width="100%" alt="" src={'/img/partner/2.png'} /></div>
                                 <div className="partners-item"><img width="100%" alt="" src={'/img/partner/3.png'} /></div>

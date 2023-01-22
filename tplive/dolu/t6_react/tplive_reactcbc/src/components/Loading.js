@@ -1,3 +1,4 @@
+import '../css/Loading.css'
 import React, { Component } from 'react'
 
 export default class Loading extends Component {
