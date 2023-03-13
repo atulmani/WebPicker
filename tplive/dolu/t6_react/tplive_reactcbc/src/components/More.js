@@ -1,5 +1,6 @@
 import '../css/More.css'
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class More extends Component {
     render() {
@@ -18,10 +19,10 @@ export default class More extends Component {
 
                     <div className="row no-gutters large">
                         <div className="col-lg-3 col-md-3 col-sm-6" style={{ padding: '10px' }} >
-                            <a href="https://tournamentplanner.in/screens/TPLive_FAQ.aspx" className="more-links">
+                            <Link to="/FAQ" className="more-links">
                                 <img src="./img/faq.svg" width="100%" alt="" />
                                 <span>FAQ</span>
-                            </a>
+                            </Link>
                         </div>
 
                         <div className="col-lg-3 col-md-3 col-sm-6" style={{ padding: '10px' }}>

@@ -280,6 +280,11 @@ span.already-active {
     padding: 0 8px;
 }
 
+.reg-participant-form-field.profile-name-input input:focus~span,
+.reg-participant-form-field.profile-name-input input:valid~span {
+    top: 10px;
+}
+
 .ref-participant-save-div {
     display: flex;
     justify-content: center;

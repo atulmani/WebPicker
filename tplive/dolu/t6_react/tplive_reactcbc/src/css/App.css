@@ -175,3 +175,8 @@ h6 {
         opacity: 0;
     }
 }
+
+.btn-loading lottie-player {
+    width: 50%;
+    transform: translate(50%, -9px);
+}

@@ -1,8 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useUserAuth } from '../context/UserAuthcontext'
 
 export default function EDTournamentDetails(props) {
     // console.log(props.eventDetails)
+    const { users, logout } = useUserAuth();
+
 
     var curFormat = {
         style: 'currency',
@@ -24,10 +27,12 @@ export default function EDTournamentDetails(props) {
     //element.EventStartDate = refdate.toLocaleDateString("en-IN", options);
     return (
         <div className="col-lg-4 col-md-4 col-sm-12">
-
-            <div className="register-btn-fixed small">
-                <a href="/" className="mybutton button5">Register</a>
-            </div>
+            {props.showRegistration && props.eventDetails.RegistrationOpenFlag === 'YES' && users &&
+                <div className="register-btn-fixed small">
+                    {/* <Link to="/EventRegistration" className="mybutton button5">Register</Link> */}
+                    <Link to="/RegisteredProfile" className="mybutton button5">Register</Link>
+                </div>
+            }
 
             <div className="fixed-white-area">
                 <div className="" style={{ display: 'block' }}>
@@ -68,7 +73,14 @@ export default function EDTournamentDetails(props) {
 
                     <li className="large" style={{ paddingBottom: '20px' }}>
                         <span style={{ float: 'left' }} id="spanbtn1">
-                            {props.showRegistration && props.eventDetails.RegistrationOpenFlag === 'YES' && <Link id="booking" to="/EventRegister">
+                            {props.showRegistration && props.eventDetails.RegistrationOpenFlag === 'YES' && users && <Link id="booking" to="/RegisteredProfile">
+                                <button type="button" id="btn1" name="button" className="mybutton button5" style={{ background: '#348DCB' }}>
+                                    Register
+                                </button>
+                            </Link>}
+
+
+                            {props.showRegistration && props.eventDetails.RegistrationOpenFlag === 'YES' && !users && <Link id="booking" to="/PhoneSignUp">
                                 <button type="button" id="btn1" name="button" className="mybutton button5" style={{ background: '#348DCB' }}>
                                     Register
                                 </button>

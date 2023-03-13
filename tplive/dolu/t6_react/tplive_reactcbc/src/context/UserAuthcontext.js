@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, useRef } from "react";
+import React, { createContext, useContext, useEffect, useState, useRef } from "react";
 import {
     getAuth,
     onAuthStateChanged,
@@ -19,7 +19,11 @@ import { httpsCallable } from "firebase/functions";
 const userAuthContext = createContext();
 
 export function UserAuthContextProvider({ children }) {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({
+        userInfo: null,
+        isLoggedIn: false,
+        loading: true
+    });
     const users = useRef(null);
     const userDetails = useRef(null);
 
@@ -44,9 +48,13 @@ export function UserAuthContextProvider({ children }) {
     }
     useEffect(() => {
         const unsubscrib = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser);
+            setUser({
+                userInfo: currentUser,
+                isLoggedIn: true,
+                loading: false
+            });
             users.current = currentUser
-            console.log('users : ', users);
+            // console.log('users : ', users);
         });
         return () => {
             unsubscrib();

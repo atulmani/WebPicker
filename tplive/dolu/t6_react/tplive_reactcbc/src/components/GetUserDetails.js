@@ -12,7 +12,7 @@ export const GetUserDetails = (props) => {
 
     return ret1(para1).then(async (result) => {
         var record1 = result.data;
-        console.log(result.data.id);
+        // console.log(result.data.id);
         var userRole = {
             id: result.data.id,
             PlayerID: result.data.PlayerID,
@@ -31,7 +31,7 @@ export const GetUserDetails = (props) => {
             UserRole: result.data.UserRole,
         }
 
-        console.log(userRole);
+        // console.log(userRole);
         window.localStorage.setItem("userProfile", JSON.stringify(userRole));
         return true;
     });

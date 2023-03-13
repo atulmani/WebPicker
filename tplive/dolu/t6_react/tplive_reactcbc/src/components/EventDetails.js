@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from 'react'
-
 import EventDetailsMenu from './EventDetailsMenu'
 import EDTournamentDetails from './EDTournamentDetails'
 import EDAboutEvent from './EDAboutEvent'
+import Loading from './Loading'
 import '../css/EventDetails.css'
-import { functions } from '../firebase.js'
-import { httpsCallable } from "firebase/functions";
+// import { functions } from '../firebase.js'
+// import { httpsCallable } from "firebase/functions";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from '../firebase';
+import { useLocation } from 'react-router-dom';
 
-export default function EventDetails(props) {
-    const [eventDetails, setEventDetails] = useState(null);
+// import { useParams } from 'react-router-dom'
+
+export default function EventDetails() {
+    const { state } = useLocation();
+    const { eventID, eventDetails } = state;
+    const [loading, setLoading] = useState(true);
+
+    // const [eventDetails, setEventDetails] = useState(null);
     useEffect(() => {
+        // console.log(eventID);
+        // console.log(eventDetails);
         onAuthStateChanged(auth, (user) => {
             if (user) {
 
@@ -24,29 +33,16 @@ export default function EventDetails(props) {
                 console.log("user is logged out")
             }
         })
-        var para1 = {};
-        // console.log(props.eventID);
-        async function fetchData() {
-            para1 = {
-                EventID: props.eventID
-            };
-            // console.log('in useEffect', props.eventID)
-            const ret1 = await httpsCallable(functions, "getEventDetails");
-            ret1(para1).then((result) => {
-                //var record1 = result.data;
-                setEventDetails(result.data);
-                // console.log(eventDetails);
-
-                window.localStorage.setItem("EventDetails", JSON.stringify(result.data));
-            });
-        }
-        fetchData();
+        //        fetchData();
     }, []);
 
     return (
+
         <div className="container-fluid">
+            {/* {loading && <Loading />} */}
+
             <div className="row no-gutters">
-                {eventDetails && <EventDetailsMenu eventDetails={eventDetails} />}
+                {eventDetails && <EventDetailsMenu eventDetails={eventDetails} calledFrom='Details' />}
                 {eventDetails && <EDTournamentDetails eventDetails={eventDetails} showRegistration={true} />}
                 {eventDetails && <EDAboutEvent eventDetails={eventDetails} />}
             </div>

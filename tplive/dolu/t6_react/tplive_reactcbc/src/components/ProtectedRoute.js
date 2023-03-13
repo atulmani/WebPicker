@@ -10,8 +10,8 @@ const ProtectedRoute = ({ children }) => {
     onAuthStateChanged(auth, (user) => {
         if (user) {
             const uid = user.uid;
-            console.log(uid)
-            console.log(children);
+            // console.log(uid)
+            // console.log(children);
             return children;
         } else {
             return <Navigate to={{

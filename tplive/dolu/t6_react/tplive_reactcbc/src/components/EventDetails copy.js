@@ -22,7 +22,7 @@ const functions = getFunctions(app, "asia-south1");
 
 export default class EventDetails extends Component {
     constructor() {
-        console.log("in constructor");
+        // console.log("in constructor");
 
         //  super(this.props);
         const [eventDetails, setEventDetails] = useState(null);

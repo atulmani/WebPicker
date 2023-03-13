@@ -2,19 +2,21 @@
 import '../css/BeforeNavbar.css'
 import React, { Component, useEffect, useState } from 'react'
 // import PropTypes from 'prop-types'
-// import { useLocation } from 'react-router-dom'
-
+import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
-
 export default function BeforeNavbar() {
+
+    // const { state } = useLocation();
+    // const { city } = state;
+
     const [city, setCity] = useState();
     useEffect(() => {
         setCity(window.localStorage.getItem("userLocation") ? window.localStorage.getItem("userLocation").replaceAll('"', '') : 'All');
     }, [city])
     return (
         <div>
-            {console.log('in BeforeNavBar', city)}
+            {/* {console.log('in BeforeNavBar', city)} */}
 
             <div className="before-nav">
 
@@ -59,11 +61,11 @@ export default function BeforeNavbar() {
                             </span>
                         </a>
 
-                        <a href="https://tournamentplanner.in/screens/TPLive_ProfileAUTH.aspx">
+                        <Link to="/UserProfile">
                             <span className="material-symbols-outlined">
                                 person
                             </span>
-                        </a>
+                        </Link>
 
                         {/* <a href="JavaScript:askforNotification();" className="nav-location"> */}
                         <a href="/" className="nav-location" style={{ position: 'relative' }}>

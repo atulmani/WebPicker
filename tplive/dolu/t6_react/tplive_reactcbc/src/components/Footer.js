@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import '../css/Footer.css'
 export default class Footer extends Component {
     render() {
@@ -42,6 +43,12 @@ export default class Footer extends Component {
                                         Townships, Societies and every enthusiastic Sports lover to encourage Sports
                                         with health and happiness in their locality.
                                     </p>
+                                    <br></br>
+
+                                    <Link to="/ContactUs" style={{ margin: '0 5px' }}>
+                                        <button type="button" className="mybutton button5" name="button">Connect with us</button>
+                                    </Link>
+
                                 </div>
 
 
@@ -50,19 +57,19 @@ export default class Footer extends Component {
                             <div className="col-lg-6 col-md-6 col-sm-12">
                                 <div className="footer-links" style={{ paddingTop: '0' }}>
                                     <div className="" style={{ border: 'none' }}>
-                                        <a href="https://tournamentplanner.in/screens/TPLive_Aboutus.aspx">About Us</a>
+                                        <Link to="/AboutUs">About Us</Link>
                                     </div>
                                     <div className="">
-                                        <a href="https://tournamentplanner.in/screens/TPLive_Contactus.aspx">Contact Us</a>
+                                        <Link to="/ContactUs">Contact Us</Link>
                                     </div>
                                     <div className="">
-                                        <a href="https://tournamentplanner.in/screens/TPLive_FAQ.aspx">FAQ's</a>
+                                        <Link to="/FAQ">FAQ's</Link>
                                     </div>
                                     <div className="">
-                                        <a href="./termsandconditions">Terms & Conditions</a>
+                                        <Link to="/TermsAndConditions">Terms & Conditions</Link>
                                     </div>
                                     <div className="">
-                                        <a href="/privacypolicy">Privacy Policy</a>
+                                        <Link to="/PrivacyPolicy">Privacy Policy</Link>
                                     </div>
                                 </div><br />
 
@@ -101,8 +108,10 @@ export default class Footer extends Component {
                 </section>
                 <div className="last-div">
                     <img src="/img/TPLiVE_text.png" width="140px" alt="" />
-                    <a href="https://tournamentplanner.in/screens/TPLive_Terms.aspx">Terms & Conditions </a>
-                    <a href="https://tournamentplanner.in/screens/TPLive_Terms.aspx"> Privacy Policy</a>
+                    <Link to="/TermsAndConditions">Terms & Conditions </Link>
+                    <Link to="/PrivacyPolicy"> Privacy Policy</Link>
+                    <Link to="/ContactUs"> Contact Us</Link>
+
                     <small>Version 2.0</small>
                     <br className="small" /><br className="small" />
                 </div>

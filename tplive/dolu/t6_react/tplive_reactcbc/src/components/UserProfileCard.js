@@ -6,8 +6,8 @@ export default function UserProfileCard(props) {
     let navigate = useNavigate();
     const [year, setYear] = useState(0);
     useEffect(() => {
-        console.log('in useEffect');
-        console.log(props);
+        // console.log('in useEffect');
+        // console.log(props);
         var dobtemp = new Date(props.participantDetails.DateOfBirth._seconds * 1000);
         var options = {
             year: 'numeric',
@@ -24,7 +24,7 @@ export default function UserProfileCard(props) {
     }, []);
     function moveToRegCategory(e) {
         e.preventDefault();
-        console.log('moveToRegCategory');
+        // console.log('moveToRegCategory');
         navigate("/RegistrationCategory", { state: { id: 1, participantDetails: props.participantDetails } });
         //redirect to regCategory.html?id=" + playerid
     }

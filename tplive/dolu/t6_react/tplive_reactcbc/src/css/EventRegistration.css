@@ -370,7 +370,7 @@ span.already-active {
 .reg-category-card.active {
     /* background: rgba(52, 141, 203, 1); */
     background: #eee;
-
+    /* height: 230px; */
 }
 
 .display-flex-div {
@@ -470,7 +470,7 @@ span.already-active {
     opacity: 0;
     pointer-events: none;
     transition: 0.5s;
-    z-index: 99;
+    z-index: 9999;
     cursor: pointer;
     transition: 1s;
 }
@@ -623,7 +623,7 @@ span.already-active {
 
 .category-doubles-partner-div.show {
     padding-top: 5px;
-    height: 120px;
+    height: 140px;
     pointer-events: all;
 }
 
@@ -678,3 +678,68 @@ span.already-active {
 .cancel-partner a:hover {
     text-decoration: none;
 }
+
+.payment-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+    height: 40px;
+}
+
+.payment-status.pending {
+    border-top: 1px solid orange;
+    background: #edc091;
+}
+
+.payment-status.completed {
+    border-top: 1px solid green;
+    background: #91eda2;
+}
+
+.convenience-fee-div {
+    text-align: center;
+}
+
+.convenience-fee-div h1 {
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.reg-checkout-note {
+    padding: 20px 0 10px 0;
+    border-radius: 10px;
+    /* border: 1px solid #aaa; */
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.reg-checkout-note h1 {
+    font-size: 1.1rem;
+    margin: 0;
+    padding: 0 20px;
+}
+
+.reg-checkout-note hr {
+    margin: 20px 0;
+}
+
+.reg-checkout-note div {
+    padding: 0 20px 0 5px;
+}
+
+.reg-checkout-note div small {
+    color: #666;
+}
+
+/* .date-picker-input {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    z-index: 5;
+    pointer-events: none;
+} */

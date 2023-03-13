@@ -27,7 +27,7 @@ export default function LocationItemLarge(props) {
         <div className="col-lg-2 col-md-3 col-sm-6" style={{ padding: '10px' }}>
 
             <Link to="/" onClick={() => {
-                console.log('in set localStorage from LocationItemLarge ')
+                // console.log('in set localStorage from LocationItemLarge ')
                 window.localStorage['userLocation'] = JSON.stringify(location.City);
 
             }} className="genre-locoation-card">

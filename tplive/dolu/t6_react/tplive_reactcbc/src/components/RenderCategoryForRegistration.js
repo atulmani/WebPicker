@@ -1,27 +1,46 @@
 import { Button } from 'bootstrap';
 import React from 'react'
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 import { functions } from '../firebase.js'
 import { httpsCallable } from "firebase/functions";
 
 
 export default function RenderCategoryForRegistration(props) {
-    console.log(props);
+    //console.log(props);
+
     const [partnerFlag, setPartnerFlag] = useState(false);
     const [categorySelectFlag, setCategorySelectFlag] = useState(props.registeredEventStatus ? true : false);
-    const [partnerDetails, setPartnerDetails] = useState('');
+    const [registeredEvent, setRegisteredEvent] = useState(props.registeredEventStatus);
+    const [partnerDetails, setPartnerDetails] = useState(props.registeredEventStatus ? props.registeredEventStatus.PartnerPlayerID : "");
     const [refDate, setRefDate] = useState(props.events.ReferenceDate);
-    const [gender, setGender] = useState(props.playerGender);
+    const [playerGender, setPlayerGender] = useState(props.playerGender);
     const [dateRefType, setDateRefType] = useState(props.events.DateRefType);
-    const [partnerName, setPartnerName] = useState();
-    const [showError, setShowError] = useState(true);
-    const [registeredStatus, setRegisteredStatus] = useState(props.registeredEventStatus);
+    const [partnerName, setPartnerName] = useState(props.registeredEventStatus ? props.registeredEventStatus.PartnerPlayerName : "");
+    const [showError, setShowError] = useState(props.registeredEventStatus ? false : true);
+    const [isEdit, setIsEdit] = useState(true);
+
+    useEffect(() => {
+
+        setCategorySelectFlag(props.registeredEventStatus ? true : false);
+        setPartnerName(props.registeredEventStatus ? props.registeredEventStatus.PartnerPlayerName : "");
+        setPartnerDetails(props.registeredEventStatus ? props.registeredEventStatus.PartnerPlayerID : "");
+        setShowError(props.registeredEventStatus ? false : true);
+        setRegisteredEvent(props.registeredEventStatus);
+        if (props.registeredEventStatus && props.registeredEventStatus.EventType.toUpperCase() === 'DOUBLE') {
+            setPartnerFlag(true);
+        }
+        if (props.registeredEventStatus && props.registeredEventStatus.PaymentStatus && props.registeredEventStatus.PaymentStatus.toUpperCase() === 'COMPLETED') {
+            setIsEdit(false);
+        } else {
+            setIsEdit(true);
+        }
+
+        // console.log(registeredEvent);
+    }, [props.registeredEventStatus]);
 
     function CheckPartnerCode() {
-        console.log(refDate);
+        // console.log(refDate);
         var rDate = new Date(refDate._seconds * 1000);
-
         var userRole = {};
         var para1 = {};
         para1 = {
@@ -29,7 +48,7 @@ export default function RenderCategoryForRegistration(props) {
         };
         const ret1 = httpsCallable(functions, "getPlayerDetailsWithPlayerID");
         ret1(para1).then((result) => {
-            console.log(result.data[0]);
+            // console.log(result.data[0]);
             var flag = false;
             if (result.data[0] !== undefined) {
 
@@ -48,16 +67,18 @@ export default function RenderCategoryForRegistration(props) {
                     State: result.data[0].State,
                     UserName: result.data[0].UserName,
                 }
-                console.log(gender);
                 var dob = new Date(userRole.DateOfBirth._seconds * 1000);
-                console.log("gender : ", gender, " :: userRole.Gender : " + userRole.Gender);
-                console.log("dateRefType : ", dateRefType);
-                console.log("dob : ", dob, " :: rDate : " + rDate);
+                // console.log("PlayerGender : ", playerGender, " :: userRole.Gender : " + userRole.Gender);
+                // console.log("EventGender : ", props.events.gender);
 
-                if ((gender.toUpperCase() === 'MALE' && userRole.Gender.toUpperCase() === 'MALE') ||
-                    (gender.toUpperCase() === 'FEMALE' && userRole.Gender.toUpperCase() === 'FEMALE') ||
-                    (gender.toUpperCase() === 'MIXED' && userRole.Gender.toUpperCase() === 'FEMALE' && gender.toUpperCase() === 'MALE') ||
-                    (gender.toUpperCase() === 'MIXED' && userRole.Gender.toUpperCase() === 'MALE' && gender.toUpperCase() === 'FEMALE')) {
+                // console.log("dateRefType : ", dateRefType);
+                // console.log("dob : ", dob, " :: rDate : " + rDate);
+                // console.log(props.events);
+
+                if ((playerGender.toUpperCase() === 'MALE' && userRole.Gender.toUpperCase() === 'MALE' && props.events.Gender.toUpperCase() === 'MALE') ||
+                    (playerGender.toUpperCase() === 'FEMALE' && userRole.Gender.toUpperCase() === 'FEMALE' && props.events.Gender.toUpperCase() === 'FEMALE') ||
+                    (playerGender.toUpperCase() === 'MALE' && userRole.Gender.toUpperCase() === 'FEMALE' && props.events.Gender.toUpperCase() === 'MIXED') ||
+                    (playerGender.toUpperCase() === 'FEMALE' && userRole.Gender.toUpperCase() === 'MALE' && props.events.Gender.toUpperCase() === 'MIXED')) {
 
                     if (dateRefType === 'Before' && dob <= rDate) {
                         flag = true;
@@ -71,71 +92,63 @@ export default function RenderCategoryForRegistration(props) {
                 } else {
                     flag = false;
                 }
+                // console.log(flag);
                 if (flag === true) {
                     setPartnerName(userRole.UserName);
+                    props.partnerSetup(props.events.CategoryName, partnerDetails, userRole.UserName, userRole.userid);
                     setShowError(false);
                 }
 
             }
-            console.log(flag);
+            // console.log(flag);
             if (flag === false) {
                 setShowError(false);
             }
 
-            console.log(userRole);
+            // console.log(userRole);
 
         });
     }
 
-    function registerCategory(e) {
-        e.preventDefault();
-        console.log('registerCategory');
-        setCategorySelectFlag(!categorySelectFlag)
-        openPartnerSelection(e);
-        //if double
-        // openPartnerSelection(gdDoublesDiv); 
+    function registerCategory() {
+        // e.preventDefault();
+        // console.log('registerCategory');
+        // console.log(props);
 
-        //if single
-        // selectCategory(regCategoryGD17, regCategoryGD17Price);
+        if (categorySelectFlag === true) {
+            props.calculateFees('REMOVE', Number(props.events.Fees), props.events);
+
+        } else {
+            props.calculateFees('ADD', Number(props.events.Fees), props.events);
+        }
+        // console.log(categorySelectFlag);
+        if (props.events.EventType.toUpperCase() !== 'SINGLE') {
+            openPartnerSelection();
+
+        }
+        setCategorySelectFlag(!categorySelectFlag);
+
 
     }
-    function openPartnerSelection(e) {
-        console.log(e);
+    function openPartnerSelection() {
         setPartnerFlag(!partnerFlag);
-        // console.log(document.getElementById("gdDoublesDiv"));
-
-        // if (doubleDiv.classList.contains('show')) {
-        //     doubleDiv.classList.remove('show');
-        //     doubleDiv.style.overflow = 'hidden';
-        // } else {
-        //     doubleDiv.classList.add('show');
-
-        //     setTimeout(() => {
-        //         doubleDiv.style.overflow = 'visible';
-        //     }, 1000)
-        // }
     }
     function closePartner(e) {
         closePartnerSelection();
-        // selectCategory(regCategoryGD17, regCategoryGD17Price);"
     }
     function closePartnerSelection() {
         setPartnerFlag(false);
-        // doubleDiv.classList.remove('show');
-        // doubleDiv.style.overflow = 'hidden';
-        // document.getElementById("errorDiv" + index).style.display = "none";
-        // document.getElementById("partnerName" + index).innerHTML = "";
-        // document.getElementById("hPartner" + index).style.display = "none";
-        // document.getElementById("idpartner" + index).value = "";
 
     }
     return (
-        <div key={props.events.CategoryName} className="col-lg-4 col-md-6 col-sm-12" style={{ padding: '0' }}>
+        <div key={props.events.CategoryName} id={props.events.CategoryName + props.keyValue} className="col-lg-4 col-md-6 col-sm-12" style={{ padding: '0' }}>
             <div style={{ padding: '10px' }}>
-                <div className={categorySelectFlag ? "reg-category-card active" : "reg-category-card"} id="regCategoryGS17">
+                {/* {console.log('categorySelectFlag : ', categorySelectFlag, 'registeredEvent : ', registeredEvent)} */}
+                <div id={'div' + props.keyValue} style={isEdit ? { pointerEvents: 'all' } : { pointerEvents: 'none' }} className={categorySelectFlag ? "reg-category-card active" : "reg-category-card"}>
 
                     <div className="display-flex-div"
-                        onClick={registerCategory}>
+                        onClick={registerCategory} id={'div2' + props.keyValue}>
+
                         <div className="category-details">
                             <h1>{props.events.CategoryName}</h1>
                             {props.events.Gender.toUpperCase() === 'FEMALE' && props.events.EventType.toUpperCase() === 'SINGLE' ? <div className="category-icons">
@@ -215,20 +228,26 @@ export default function RenderCategoryForRegistration(props) {
                                                             </span>
                                                         </div>
                             }
+
+                            {partnerName !== "" && <h3><strong>Partner : </strong>
+                                <span id={'spanPartnerName' + props.keyValue}>{partnerName}</span>
+                            </h3>}
+
                         </div>
 
                         <div className="category-fees">
-                            <h2><span>₹ </span> <span id="fees">{props.events.Fees}</span>
+                            <h2>
+                                <span>₹ </span>
+                                <span>{props.events.Fees}</span>
                             </h2>
                         </div>
                     </div>
-
                     {props.events.EventType.toUpperCase() === 'DOUBLE' &&
-                        <div className={partnerFlag ? "category-doubles-partner-div show" : "category-doubles-partner-div"} id="gdDoublesDiv11">
+                        <div className={partnerFlag ? "category-doubles-partner-div show" : "category-doubles-partner-div"}>
                             <hr style={{ margin: '0' }} />
                             <div style={{ position: 'relative', padding: '0 10px' }}>
                                 <div className="reg-participant-form-field">
-                                    <input type="text" required onBlur={CheckPartnerCode} onChange={(e) => {
+                                    <input id={'txtPartnerID' + props.keyValue} type="text" required onBlur={CheckPartnerCode} onChange={(e) => {
                                         setPartnerDetails(e.target.value);
                                     }} value={partnerDetails} />
                                     <span>Number Or Name</span>

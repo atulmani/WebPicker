@@ -36,10 +36,12 @@ export default function HomePage() {
 
     useEffect(() => {
         setCity(window.localStorage.getItem("userLocation") ? window.localStorage.getItem("userLocation").replaceAll('"', '') : 'All');
-        console.log(city);
+        // console.log(city);
 
         // setCity(JSON.parse(window.localStorage.getItem("userLocation")));
         async function fetchData() {
+            setLoading(true);
+
             const eventSummaryBySports = httpsCallable(functions, "getAllEventWithEventStatusAndLocation");
             // setLoading(true);
             let para = {
@@ -89,13 +91,14 @@ export default function HomePage() {
                     setEventList(data);
                     //const sanitizedMessage = data.text;
                 });
+            setLoading(false);
 
 
         }
         fetchData();
-        setLoading(false);
         setItemsExists(true);
-    }, [city, loading, itemsExists]);
+
+    }, [city, itemsExists]);
 
     return (
         <div>
@@ -184,37 +187,3 @@ export default function HomePage() {
         </div >
     )
 }
-
-
-    // getEventList(filter) {
-    //     var para = {};
-    //     if (this.state.userLocation === undefined || this.state.userLocation === "" || this.state.userLocation === null) {
-    //         // this.setState(this.state.userLocation = "All");
-    //         // document.getElementById('location').innerHTML = "Location";
-    //     } else {
-    //         // document.getElementById('location').innerHTML = this.state.userLocation;
-    //     }
-    //     para = {
-    //         eventStatus: "Active",
-    //         City: this.state.userLocation,
-    //     };
-    //     // console.log(para);
-    //     var ret = "";
-
-    //     ret = functions.httpsCallable("getAllEventWithEventStatusAndLocation");
-    //     // console.log('getAllEventWithEventStatusAndLocation');
-    //     //}
-    //     let index = 0
-    //     ret(para).then(results => {
-
-    //         for (index = 0; index < results.data.length; index++) {
-    //         }
-    //         // document.getElementById('loading').style.display = 'none';
-    //     })
-    //         .then(function (res) {
-    //             //activate first item of both pard items
-
-    //         });
-    //     // });
-    // }
-

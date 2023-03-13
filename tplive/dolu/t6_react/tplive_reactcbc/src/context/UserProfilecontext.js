@@ -11,7 +11,7 @@ export function UserProfilecontext({ children }) {
     let { users } = useUserAuth();
 
     useEffect(() => {
-        console.log('from UserProfilecontext', users);
+        // console.log('from UserProfilecontext', users);
         if (users) {
             var para1 = {};
 

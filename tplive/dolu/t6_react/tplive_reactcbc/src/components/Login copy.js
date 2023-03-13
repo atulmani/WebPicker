@@ -44,7 +44,7 @@ export default function Login() {
         const handleuserPhoneNoBtnClick = event => {
             event.preventDefault();
 
-            console.log('Button clicked, handleuserPhoneNoBtnClick', userPhoneNo.current.value);
+            // console.log('Button clicked, handleuserPhoneNoBtnClick', userPhoneNo.current.value);
             var phNumber = userPhoneNo.current.value;
             if (phNumber.length < 10) {
                 // setFlagSendOTPDisplaySpan
@@ -73,7 +73,7 @@ export default function Login() {
     function btnSendOTPClicked(event) {
         event.preventDefault();
 
-        console.log('Button clicked, btnSendOTPClicked', userPhoneNo.current.value);
+        // console.log('Button clicked, btnSendOTPClicked', userPhoneNo.current.value);
         var phNumber = userPhoneNo.current.value;
         if (phNumber.length < 10) {
             // setFlagSendOTPDisplaySpan
@@ -91,16 +91,16 @@ export default function Login() {
                         .then(function (confirmationResult) {
                             window.confirmationResult = confirmationResult;
                             coderesult = confirmationResult;
-                            console.log('coderesult: ' + coderesult);
-                            console.log('confirmationResult.verificationId ' + confirmationResult.verificationId);
-                            console.log('Message sent');
+                            // console.log('coderesult: ' + coderesult);
+                            // console.log('confirmationResult.verificationId ' + confirmationResult.verificationId);
+                            // console.log('Message sent');
                             document.getElementById('firstslide').style.transform = 'translateX(-100%)';
                             document.getElementById('secondslide').style.transform = 'translateX(-100%)';
                             document.getElementById('btnSendOTPSpan').style.display = 'block';
                             document.getElementById('btnSendOTPLoad').style.display = 'none';
                         })
                         .catch(function (error) {
-                            console.log('Error Sending OTP: ' + error.message);
+                            // console.log('Error Sending OTP: ' + error.message);
                             document.getElementById('altspan').innerHTML = error.message;
                             document.getElementById('altspan').style.display = 'block';
                             document.getElementById('btnSendOTPSpan').style.display = 'block';

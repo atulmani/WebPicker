@@ -54,3 +54,4 @@ const app = initializeApp(firebaseConfig);
 // firebase.initializeApp(firebaseConfig);
 export const functions = getFunctions(app, "asia-south1");
 export const auth = getAuth(app);
+

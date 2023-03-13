@@ -12,9 +12,9 @@ export default function EventRegistration() {
     }
     return (
         <div>
-            {console.log(users)}
-            in Event Registration : {(users.current.phoneNumber)}
-            {console.log(users.current.phoneNumber)}
+            {/* {console.log(users)} */}
+            in Event Registration : {(users && users.current && users.current.phoneNumber)}
+            {/* {console.log(users && users.current && users.current.phoneNumber)} */}
             <br></br>
             {users && users.email}
             {/* <button type="button" className="mybutton" name="button" onClick={handleLogOut}>Log Out</button> */}

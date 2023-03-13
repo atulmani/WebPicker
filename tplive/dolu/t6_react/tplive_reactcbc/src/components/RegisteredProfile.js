@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { useUserAuth } from '../context/UserAuthcontext';
-import UserProfileCard from '../components/UserProfileCard';
-import EDTournamentDetails from '../components/EDTournamentDetails'
+import UserProfileCard from './UserProfileCard';
+import EDTournamentDetails from './EDTournamentDetails'
 import { functions } from '../firebase.js'
 import { httpsCallable } from "firebase/functions";
 import $ from "jquery";
 import '../css/EventRegistration.css'
 import DatePicker from "react-datepicker";
+import '../css/MydatePicker.css'
 import "react-datepicker/dist/react-datepicker.css";
 import { useLocalStorage } from "../context/useLocalStorage";
+import { useNavigate } from 'react-router-dom';
+
 
 export default function RegisteredProfile() {
-    const { users } = useUserAuth();
-    //const [usrPhone, setUserPhone] = useState();
-    // const [eventID, setEventID] = useState();
+    const { users, user } = useUserAuth();
     const [userID, setUserID] = useState();
-    // const [eventDetails, setEventDetails] = useState();
-    //    const [userDetails, setUserDetails] = useState();
-    const [eventID, setEventID] = useLocalStorage('EventID', null);
+    const [eventID, setEventID] = useState(window.localStorage.getItem("EventID") ? window.localStorage.getItem("EventID") : null);
     const [eventDetails, setEventDetails] = useLocalStorage('EventDetails', null);
     const [userDetails, setUserDetails] = useLocalStorage('userProfile', null);
     const [userName, setUserName] = useState();
-    const [gender, setGender] = useState();
+    const [gender, setGender] = useState('Male');
     const [userEmail, setUserEmail] = useState();
-    const [pincode, setPincode] = useState();
+    const [pincode, setPincode] = useState('');
     const [city, setCity] = useState();
     const [state, setState] = useState();
     const [district, setDistrict] = useState();
@@ -42,71 +41,76 @@ export default function RegisteredProfile() {
     const [flag, setFlag] = useState('first');
     const [grade, setGrade] = useState('I');
     const [schoolAddress, setSchoolAddress] = useState();
+    const [showUserBasicDetails, setShowUserBasicDetails] = useState(false);
+    const [showLoading, setShowLoading] = useState(true);
+    const navigate = useNavigate();
+
+
     useEffect(() => {
-        console.log('in RegisteredProfile ')
-        // setEventID(window.localStorage.getItem("EventID") ? window.localStorage.getItem("EventID") : '');
-        //        setUserDetails(window.localStorage.getItem('userProfile') ? JSON.parse(window.localStorage.getItem('userProfile')) : null)
-        console.log(userDetails);
-        // setEventDetails(window.localStorage.getItem('EventDetails') ? JSON.parse(window.localStorage.getItem('EventDetails')) : null)
-        console.log(userDetails);
-        console.log(eventDetails);
-        setUserEmail(userDetails ? userDetails.Email : '');
-        var para1 = {};
-        async function fetchData() {
-            para1 = {
-                userID: userDetails.id,
-            };
-            let participant = {};
-            let userParticipant = [];
-            // console.log('in useEffect', props.eventID)
-            const ret1 = httpsCallable(functions, "getRegisteredParticant");
-            ret1(para1).then(async (result) => {
-                console.log(result.data);
-                result.data.forEach(async element => {
-                    participant = {
-                        id: element.id,
-                        City: element.City,
-                        Country: element.Country,
-                        DateOfBirth: element.DateOfBirth,
-                        District: element.District,
-                        Email: element.Email,
-                        Gender: element.Gender,
-                        ParticipantID: element.ParticipantID,
-                        Phone: element.Phone,
-                        Pincode: element.Pincode,
-                        State: element.State,
-                        UserName: element.UserName,
-                        UserID: element.UserID,
-                        PlayerID: element.PlayerID,
+        setShowLoading(true);
+        if (user.isLoggedIn) {
+            if (user.userInfo) {
+                setUserEmail(userDetails ? userDetails.Email : '');
+                async function fetchData() {
+                    var para1 = {};
+
+                    para1 = {
+                        userID: userDetails.id,
                     };
-                    userParticipant.push(participant);
-                });
+                    console.log(para1);
+                    let participant = {};
+                    let userParticipant = [];
+                    const ret1 = httpsCallable(functions, "getRegisteredParticant");
+                    ret1(para1).then(async (result) => {
+                        result.data.forEach(async element => {
+                            participant = {
+                                id: element.id,
+                                City: element.City,
+                                Country: element.Country,
+                                DateOfBirth: element.DateOfBirth,
+                                District: element.District,
+                                Email: element.Email,
+                                Gender: element.Gender,
+                                ParticipantID: element.ParticipantID,
+                                Phone: element.Phone,
+                                Pincode: element.Pincode,
+                                State: element.State,
+                                UserName: element.UserName,
+                                UserID: element.UserID,
+                                PlayerID: element.PlayerID,
+                            };
+                            userParticipant.push(participant);
+                        });
+                        setParticipantList(userParticipant);
+                        setShowLoading(false);
+                    });
 
-                // window.localStorage.setItem("EventDetails", JSON.stringify(result.data));
-
-
-                setParticipantList(userParticipant);
-                console.log(userParticipant);
-            });
+                }
+                userDetails && fetchData();
+            }
+            else {
+                navigate("/PhoneSignUp", { state: { url: 'RegisteredProfile' } });
+            }
         }
-        userDetails && fetchData();
-    }, [])
+    }, [user])
     function regProfileToFirstSlide(e) {
         e.preventDefault();
-        console.log('in regProfileToFirstSlide');
+        // console.log('in regProfileToFirstSlide');
         setFlag('first');
-        console.log('flag : ', flag);
-
-        console.log('2 transfer : ', (flag === 'second') ? 'translateX(-100%)' : ((flag === 'third') ? 'translateX(-200 %)' : ''));
+        setShowUserBasicDetails(false);
+        // console.log('flag : ', flag);
+        // console.log('2 transfer : ', (flag === 'second') ? 'translateX(-100%)' : ((flag === 'third') ? 'translateX(-200 %)' : ''));
 
     }
     function regProfileToSecondSlide(e) {
         e.preventDefault();
-        console.log('in regProfileToSecondSlide');
+        // console.log('in regProfileToSecondSlide');
+        setShowUserBasicDetails(true);
         // setThirdFlag(false);
         // setSecondFlag(true);
         // console.log('setThirdFlag', thirdFlag);
         // console.log('setSecondFlag', secondFlag);
+        //setFlag('first');
         setFlag('second');
         // console.log('flag : ', flag);
 
@@ -115,7 +119,7 @@ export default function RegisteredProfile() {
     }
     function regProfileToThirdSlide(e) {
         e.preventDefault();
-        console.log('in regProfileToThirdSlide');
+        // console.log('in regProfileToThirdSlide');
         // setSecondFlag(false);
         // setThirdFlag(true);
         setFlag('third');
@@ -152,20 +156,32 @@ export default function RegisteredProfile() {
             Grade: grade,
             SchoolAddress: schoolAddress,
         };
-        console.log(para);
+        // console.log(para);
 
         const ret = httpsCallable(functions, "updateParticipants");
         ret(para).then(result => {
-            console.log("From Function " + result.data);
+            // console.log("From Function " + result.data);
         });
 
 
 
     }
-    function onChangeValue(e) {
+    function onChangeValueMale(e) {
         e.preventDefault();
+        // console.log(e);
+        // e.target.checked ? setGender('Male') : setGender('Female');
+        e.target.checked && setGender('Male');
+        !e.target.checked && setGender('Female');
+        // console.log('gender : ', gender);
+    }
 
-        e.target.checked && setGender(e.target.value);
+    function onChangeValueFemale(e) {
+        e.preventDefault();
+        // console.log(e);
+        // e.target.checked ? setGender('Female') : setGender('Male');
+        e.target.checked && setGender('Female');
+        !e.target.checked && setGender('Male');
+        console.log('gender : ', gender);
     }
 
     function selectSize(e) {
@@ -183,8 +199,9 @@ export default function RegisteredProfile() {
                 <div className="row no-gutters">
 
                     <div className="col-lg-8 col-md-8 col-sm-12">
+                        <br />
 
-                        <div id="regProfileNewParticipantDetails">
+                        {showUserBasicDetails && <div id="regProfileNewParticipantDetails">
                             <h3 style={{ fontWeight: '1000', color: '#348DCB', textAlign: 'center' }}>NEW PARTICIPANT</h3>
                             <h1 className="reg-form-email" id="userEmail">{userDetails ? userDetails.Email : ''}</h1>
                             <h2 className="reg-form-email" id="userContact">{users && users.current ? users.current.phoneNumber : ''}</h2>
@@ -199,10 +216,10 @@ export default function RegisteredProfile() {
 
                             <br /><br />
                             <div className="reg-form-dots">
-                                <div id="firstFormDot" className={flag === 'first' ? 'active' : ''}></div>
-                                <div id="SecondFormDot" className={flag === 'second' ? 'active' : ''}></div>
+                                <div id="firstFormDot" className={flag === 'second' ? 'active' : ''}></div>
+                                <div id="SecondFormDot" className={flag === 'third' ? 'active' : ''}></div>
                             </div><br />
-                        </div>
+                        </div>}
 
                         <div className="reg-participant-outter">
                             <div className="reg-participant-inner">
@@ -226,9 +243,9 @@ export default function RegisteredProfile() {
                                             </div>
                                         </div>
 
-
-                                        {/* <UserProfileCard></UserProfileCard> */}
-                                        {/* <UserProfileCard></UserProfileCard> */}
+                                        {showLoading && <div className="col-lg-4 col-md-6 col-sm-12">
+                                            <lottie-player src="https://lottie.host/35ed7cc5-900e-420b-95d1-cb90642020e7/UV7Rv7AbhO.json" background="transparent" speed="1" style={{ width: '100%', height: '100%' }} loop autoplay></lottie-player>
+                                        </div>}
 
                                         {participantList && participantList.map((participant) => {
                                             return <UserProfileCard key={participant.id} participantDetails={participant} ></UserProfileCard>
@@ -251,7 +268,9 @@ export default function RegisteredProfile() {
                                                     <div className="row no-gutters">
 
                                                         <div className="col-6" >
-                                                            <input type="radio" onChange={onChangeValue} className="checkbox" style={{ width: '0px' }}
+                                                            <input type="radio" checked={gender === 'Male' ? true : false} onChange={(e) => {
+                                                                e.target.checked && setGender(e.target.value);
+                                                            }} className="checkbox" style={{ width: '0px' }}
                                                                 name="EventStatus" id="regParticipantMale" value="Male" />
                                                             <label style={{ height: '40px', border: '1px solid #ddd' }}
                                                                 className="checkbox-label" id="regParticipantMaleLabel"
@@ -265,7 +284,9 @@ export default function RegisteredProfile() {
                                                         </div>
 
                                                         <div className="col-6">
-                                                            <input type="radio" onChange={onChangeValue} className="checkbox" style={{ width: '0px' }}
+                                                            <input type="radio" checked={gender === 'Female' ? true : false} onChange={(e) => {
+                                                                e.target.checked && setGender(e.target.value);
+                                                            }} className="checkbox" style={{ width: '0px' }}
                                                                 name="EventStatus" id="regParticipantFemale" value="Female" />
                                                             <label style={{ height: '40px', border: '1px solid #ddd' }}
                                                                 className="checkbox-label" id="regParticipantFemaleLabel"
@@ -291,12 +312,12 @@ export default function RegisteredProfile() {
                                         <div className="col-lg-12 col-md-12 col-sm-12">
 
                                             <div className="reg-first-form-gender-section">
-                                                <div className="city-section-inside-div">
+                                                <div className="city-section-inside-div" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                                     <div className="reg-participant-form-field"
-                                                        style={{ width: '20%', alignItems: 'center' }}>
+                                                        style={{ width: '30%' }}>
                                                         <input type="number" id="pinCode" maxLength={6}
                                                             onInput={(e) => {
-                                                                if (e.target.value.lenght > e.target.maxLength)
+                                                                if (e.target.value.length > e.target.maxLength)
                                                                     e.target.value = e.target.value.slice(0, e.target.maxLength)
                                                             }}
 
@@ -305,17 +326,17 @@ export default function RegisteredProfile() {
                                                                 setPincode(e.target.value);
                                                             }}
                                                             onBlur={async (e) => {
-                                                                console.log('onblur', pincode)
+                                                                // console.log('onblur', pincode)
                                                                 if (pincode.length !== 6) {
 
                                                                     setShowError(true);
-                                                                    console.log('error', showError)
+                                                                    // console.log('error', showError)
                                                                 } else {
                                                                     setShowError(false);
                                                                     await $.getJSON("https://api.postalpincode.in/pincode/" + pincode,
                                                                         async function (data) {
-                                                                            console.log(data);
-                                                                            console.log(data[0].Message);
+                                                                            // console.log(data);
+                                                                            // console.log(data[0].Message);
                                                                             if (data[0].Message === "No records found") {
                                                                                 setShowError(true);
                                                                                 setTimeout(function () {
@@ -405,6 +426,7 @@ export default function RegisteredProfile() {
                                             <div className="event-detail-input-div"
                                                 style={{ position: 'relative', padding: '15px 5px' }}>
 
+                                                {/* <div className='date-picker-input'></div> */}
                                                 <DatePicker selected={dob} onChange={(date) => setDob(date)} />
 
                                                 {/* <div className="input-group date datetimepicker11">
@@ -418,9 +440,7 @@ export default function RegisteredProfile() {
                                                     </div>
                                                 </div> */}
                                                 <span className="already-active"
-                                                    style={{ position: 'absolute', top: '5px', left: '12px', padding: '0 8px' }}>Date
-                                                    Of
-                                                    Birth</span>
+                                                    style={{ zIndex: '6', position: 'absolute', top: '5px', left: '12px', padding: '0 8px' }}>Date Of Birth</span>
                                             </div>
 
                                         </div>
@@ -474,7 +494,7 @@ export default function RegisteredProfile() {
                                             <div className="reg-participant-form-field">
                                                 <input type="text" id="tbCompanyName" required onChange={(e) => {
                                                     setCompanyName(e.target.value);
-                                                }} />/>
+                                                }} />
                                                 <span>Company Name</span>
                                             </div>
 
@@ -485,7 +505,7 @@ export default function RegisteredProfile() {
                                             <div className="reg-participant-form-field">
                                                 <input type="number" maxLength={10} id="tbHRContact"
                                                     onInput={(e) => {
-                                                        if (e.target.value.lenght > e.target.maxLength)
+                                                        if (e.target.value.length > e.target.maxLength)
                                                             e.target.value = e.target.value.slice(0, e.target.maxLength)
                                                     }}
                                                     onChange={(e) => {
@@ -569,7 +589,7 @@ export default function RegisteredProfile() {
 
                                             <div className="ref-participant-save-div">
 
-                                                <button className="mybutton button5" onClick={regProfileToFirstSlide}>
+                                                <button className="mybutton button5" onClick={regProfileToSecondSlide}>
                                                     <span
                                                         style={{ transform: 'rotate(180deg)', position: 'relative', top: '3px', paddingLeft: '5px', fontSize: '1.1rem' }}
                                                         className="material-symbols-outlined">

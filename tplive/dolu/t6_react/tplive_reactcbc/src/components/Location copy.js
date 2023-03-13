@@ -36,7 +36,7 @@ export default class Location extends Component {
             });
     }
     constructor() {
-        console.log("in constructor");
+        // console.log("in constructor");
 
         super();
         this.state = {
