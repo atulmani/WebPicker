@@ -1,0 +1,206 @@
+.profile-head-div {
+    position: relative;
+    padding: 10px;
+    display: flex;
+}
+
+/* @media (max-width: 850px) {
+    .profile-head-div {
+        flex-direction: column;
+    }
+} */
+
+.profile-head-div .profile-head-div-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.profile-head-div .profile-head-div-circle div {
+    height: 70px;
+    width: 70px;
+    background: #034687;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-head-div .profile-head-div-circle div h1 {
+    font-size: 1.4rem;
+    color: #fff;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.profile-head-div .profile-head-div-name {
+    max-width: 300px;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile-head-div .profile-head-div-name h2 {
+    font-size: 1.4rem;
+    color: #666;
+    font-weight: 500;
+    margin-bottom: 10px;
+    padding-right: 20px;
+}
+
+.profile-head-div .profile-head-div-name h3,
+.profile-head-div .profile-head-div-name h4,
+.profile-head-div .profile-head-div-name h5 {
+    color: #aaa;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding-right: 20px;
+}
+
+.profile-head-div .profile-head-div-name h4 {
+    padding-bottom: 10px;
+}
+
+.profile-head-div .profile-head-div-edit-btn {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #034687;
+    text-decoration: none;
+}
+
+.below-profile-head-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #DBE8E1;
+    border-radius: 0 0 8px 8px;
+    padding: 0 20px;
+}
+
+.below-profile-head-div h1 {
+    color: #666;
+    font-size: 0.85rem;
+    font-weight: 500;
+    width: 60%;
+}
+
+.below-profile-head-div button {
+    height: 34px;
+    width: 160px;
+}
+
+.profile-wallet {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #151B25;
+}
+
+.profile-wallet h1 {
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: #151B25;
+}
+
+.profile-wallet h1 span {
+    color: #E10032;
+}
+
+.profile-wallet h2 {
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: #151B25;
+    text-decoration: none;
+}
+
+.profile-wallet:hover h1,
+.profile-wallet:hover h2 {
+    text-decoration: none;
+}
+
+.profile-wallet h2 span {
+    font-size: 0.9rem;
+}
+
+.profile-wallet span.material-symbols-outlined {
+    font-size: 3rem;
+    color: #034687;
+}
+
+.profile-wallet .profile-wallet-arrow {
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    transform: translateY(-50%);
+}
+
+.profile-wallet .profile-wallet-arrow span {
+    font-size: 1.4rem;
+    color: #aaa;
+}
+
+.settings-div {
+    display: grid;
+    grid-template-columns: 10% 90%;
+    padding: 15px;
+}
+
+.settings-div .icon {
+    position: relative;
+    top: 3px;
+    width: 33px;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #034687;
+}
+
+.settings-div .icon span {
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.settings-div .address-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0px 0px 20px;
+}
+
+.settings-div .address-text h5 {
+    position: relative;
+    top: -5px;
+    font-size: 1.1rem;
+    color: #444;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.settings-div .address-text small {
+    position: relative;
+    top: -4px;
+    margin-top: 0;
+    font-size: 0.7rem;
+    color: #aaa;
+}
+
+.settings-div .address-text div {
+    text-align: right;
+    position: relative;
+    top: -3px;
+}
+
+.settings-div .address-text div span {
+    color: #ccc;
+}

@@ -1,0 +1,2279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Created by Hyper Cloud Digital Solutions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Hyper Cloud Digital Solutions">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard</title>
+
+    <link rel="shortcut icon" href="">
+    <!-- Google Icons -->
+    <link rel="stylesheet"
+        href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Font Awesome cdn file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Owl Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!-- Your Own Style -->
+    <link rel="stylesheet" href="./css/styles.css">
+
+
+</head>
+
+<body style="background: #efefef;">
+    <!-- sidenav starts -->
+
+    <nav class="navbar navbar-expand-lg sticky-top large ">
+        <a title="navbar-logo" class="navbar-brand" href="#banner">
+            <img style="height:60px;" src="./img/logo.png" alt="">
+            <h1 class="navbar-text">Maharana Pratap Siksha Parishad</h1>
+        </a>
+        <button title="hamberIcon" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" style="position:absolute;right: 20px;" id="collapsibleNavbar">
+
+            <div class="navbar-tabs">
+                <div>
+                    <h1><strong>Branch :</strong> Golghar Gorakhpur</h1>
+                </div>
+                <div>
+                    <h1><strong>Session :</strong> </h1>
+                    <select title="dateRange" name="dateRange">
+                        <option value="2021-22">2021-2022</option>
+                        <option value="2022-23">2022-2023</option>
+                    </select>
+                </div>
+                <div>
+                    <span class="material-symbols-outlined">
+                        notifications
+                    </span>
+                    <span class="material-symbols-outlined">
+                        mail
+                    </span>
+                    <a href="profile.html" class="navbar-profile-icon">
+                        <h2>KS</h2>
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
+
+    </nav>
+
+    <div class="small navbar-mobile" style="padding:0 10px;">
+        <div class="navbar-mobile-menu">
+            <a href="#" id="hamberIcon">
+                <span class="material-symbols-outlined">
+                    menu
+                </span>
+            </a>
+            <a title="navbar-mobile-logo" href="#">
+                <img style="height:40px; position:relative;top:4px;" src="./img/logo.png" alt="">
+            </a>
+
+            <a href="notification/index.html"
+                style="padding-right: 10px;position:relative;display:flex;justify-content: space-between;">
+                <span class="material-symbols-outlined">
+                    notifications
+                </span>
+                <div class="notification-count">
+
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- bottom bardown - ends -->
+
+    <div class="small navbar-mobile-bottom">
+        <div class="navbar-mobile-bottom-menu" id="divBottomNavBar">
+            <a href="#" class="navbar-mobile-bottom-menu-a " style="display:flex; flex-direction:column;">
+                <span class="material-symbols-outlined">
+                    home
+                </span>
+                <small>Home</small>
+            </a>
+            <a href="#" class="navbar-mobile-bottom-menu-a " style="display:flex; flex-direction:column;">
+                <span class="material-symbols-outlined">
+                    receipt_long
+                </span>
+                <small>List</small>
+            </a>
+            <a title="empty-space" href="">
+
+            </a>
+            <a href="#" class="navbar-mobile-bottom-menu-a " style="display:flex; flex-direction:column;">
+                <span class="material-symbols-outlined">
+                    person
+                </span>
+                <small>Owners</small>
+            </a>
+            <a href="#" class="navbar-mobile-bottom-menu-a" style="display:flex; flex-direction:column;">
+                <span class="material-symbols-outlined">
+                    handyman
+                </span>
+                <small>Enquiries</small>
+            </a>
+        </div>
+        <a class="new-user active" href="profile.html">
+            <span class="material-symbols-outlined">
+                person
+            </span>
+        </a>
+    </div>
+
+    <!-- bottom-bardown ends -->
+
+
+    <div id="fullContent" class="row no-gutters">
+
+        <div class="col-lg-2">
+            <div class="side-navbar side-navbar-large property-list-side-navbar"
+                style="height: calc(100% - 40px);background: #fff;position: relative;top: -5px;">
+
+
+                <ul>
+
+                    <li style="background: #DBE8E1;padding: 0 5px;">
+
+                        <a href="profile.html" class="parent-name">
+
+
+                            <div class="side-navbar-profile-div active">
+                                <div class="side-navbar-profile-div-border-left"></div>
+
+                                <div class="side-navbar-profile-div-circle">
+                                    <div>
+                                        <span>KS</span>
+                                    </div>
+                                </div>
+
+                                <div class="side-navbar-profile-div-name">
+                                    <div class="">
+                                        <h6>Khushi Soni
+                                        </h6>
+                                        <h5>Student</h5>
+                                    </div>
+                                </div>
+                                <div class="side-navbar-profile-div-arrow">
+                                    <span class="material-symbols-outlined">
+                                        navigate_next
+                                    </span>
+                                </div>
+                            </div>
+
+                        </a>
+                    </li><br>
+
+                    <div class="side-navbar-social-media-div">
+                        <div>
+                            <span class="material-symbols-outlined">
+                                settings
+                            </span>
+                        </div>
+                        <div>
+                            <span class="material-symbols-outlined">
+                                dashboard_customize
+                            </span>
+                        </div>
+                        <div>
+                            <span class="material-symbols-outlined">
+                                logout
+                            </span>
+                        </div>
+                    </div>
+
+                    <li class="" id="adminDashboardHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(adminDashboardHead,adminDashboardOptions,adminDashboardArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    dashboard_customize
+                                </span>
+                                <small>Admin Dashboard</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="adminDashboardArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="adminDashboardOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="userDashboardHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(userDashboardHead,userDashboardOptions, userDashboardArrow)">
+                            <a class="parent-name" href="#">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    home
+                                </span>
+                                <small>User Dashboard</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="userDashboardArrow">
+                                    arrow_right
+                                </span>
+
+                            </a>
+                        </div>
+
+                        <div class="collapse-side-div" id="userDashboardOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="masterHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(masterHead,masterOptions,masterArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    manage_accounts
+                                </span>
+                                <small>Master</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="masterArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="masterOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="reportsHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(reportsHead,reportsOptions,reportsArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    insert_chart
+                                </span>
+                                <small>Reports</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="reportsArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="reportsOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="staffHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(staffHead,staffOptions,staffArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    groups
+                                </span>
+                                <small>Staff</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="staffArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="staffOptions">
+                            <div>
+                                <a class="" href="staffDocuments.html">
+                                    Document List
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="studentHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(studentHead,studentOptions,studentArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    badge
+                                </span>
+                                <small>Student</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="studentArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="studentOptions">
+                            <div>
+                                <a href="#">
+                                    Add Document
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Document List
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="adminToolsHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(adminToolsHead,adminToolsOptions,adminToolsArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    build
+                                </span>
+                                <small>Admin Tools</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="adminToolsArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="adminToolsOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="schoolHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(schoolHead,schoolOptions,schoolArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    school
+                                </span>
+                                <small>School</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="schoolArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="schoolOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="prospectusHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(prospectusHead,prospectusOptions,prospectusArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    menu_book
+                                </span>
+                                <small>Prospectus</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="prospectusArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="prospectusOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="feesHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(feesHead,feesOptions,feesArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    currency_rupee
+                                </span>
+                                <small>Fees</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="feesArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="feesOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="marksEntryHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(marksEntryHead,marksEntryOptions,marksEntryArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    fact_check
+                                </span>
+                                <small>Marks Entry</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="marksEntryArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="marksEntryOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="expensesHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(expensesHead,expensesOptions,expensesArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    payments
+                                </span>
+                                <small>Expenses</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="expensesArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="expensesOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="vendorHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(vendorHead,vendorOptions,vendorArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    handshake
+                                </span>
+                                <small>Vendor</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="vendorArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="vendorOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="loanHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(loanHead,loanOptions,loanArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    credit_card
+                                </span>
+                                <small>Loan</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="loanArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="loanOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="allowanceHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(allowanceHead,allowanceOptions,allowanceArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    group_work
+                                </span>
+                                <small>Allowance</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="allowanceArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="allowanceOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="webManagementHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(webManagementHead,webManagementOptions,webManagementArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    laptop_mac
+                                </span>
+                                <small>Web Management</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="webManagementArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="webManagementOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="jobsHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(jobsHead,jobsOptions,jobsArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    work
+                                </span>
+                                <small>Jobs</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="jobsArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="jobsOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="salaryHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(salaryHead,salaryOptions,salaryArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    currency_rupee
+                                </span>
+                                <small>Salary</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="salaryArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="salaryOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="studentPanelHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(studentPanelHead,studentPanelOptions,studentPanelArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    dock_to_bottom
+                                </span>
+                                <small>Student Panel</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="studentPanelArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="studentPanelOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="smsHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(smsHead,smsOptions,smsArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    sms
+                                </span>
+                                <small>SMS</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="smsArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="smsOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="evolutionHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(evolutionHead,evolutionOptions,evolutionArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    track_changes
+                                </span>
+                                <small>Evolution</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="evolutionArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="evolutionOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="paymentGatewayHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(paymentGatewayHead,paymentGatewayOptions,paymentGatewayArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    smartphone
+                                </span>
+                                <small>Payment Gateway</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="paymentGatewayArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="paymentGatewayOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="settingsHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(settingsHead,settingsOptions,settingsArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    tune
+                                </span>
+                                <small>Settings</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="settingsArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="settingsOptions">
+                            <div>
+                                <a href="#">
+                                    Genral Settings
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Mobile Configuration
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Wallet Settings
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Email Configuration
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Payment Settings
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="side-navbar mobile small" style="z-index: 9999;" id="sideNavbar">
+                <div class="closeBtn">
+                    <span class="material-symbols-outlined" id="closeBtn">
+                        close
+                    </span>
+                </div>
+                <ul>
+
+                    <li style="background: #DBE8E1;">
+
+                        <a href="profile.html" class="parent-name">
+
+
+                            <div class="side-navbar-profile-div active">
+                                <div class="side-navbar-profile-div-border-left"></div>
+
+                                <div class="side-navbar-profile-div-circle">
+                                    <div>
+                                        <span>KS</span>
+                                    </div>
+                                </div>
+
+                                <div class="side-navbar-profile-div-name">
+                                    <div class="">
+                                        <h6>Khushi Soni
+                                        </h6>
+                                        <h5>Student</h5>
+                                    </div>
+                                </div>
+                                <div class="side-navbar-profile-div-arrow">
+                                    <span class="material-symbols-outlined">
+                                        navigate_next
+                                    </span>
+                                </div>
+                            </div>
+
+                        </a>
+                    </li><br>
+
+                    <div class="side-navbar-social-media-div">
+                        <div>
+                            <span class="material-symbols-outlined">
+                                settings
+                            </span>
+                        </div>
+                        <div>
+                            <span class="material-symbols-outlined">
+                                dashboard_customize
+                            </span>
+                        </div>
+                        <div>
+                            <span class="material-symbols-outlined">
+                                logout
+                            </span>
+                        </div>
+                    </div>
+
+                    <li class="" id="mobileAdminDashboardHead">
+                        <b></b>
+                        <b></b>
+                        <div
+                            onclick="sideNavbarActive(mobileAdminDashboardHead,mobileAdminDashboardOptions,mobileAdminDashboardArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    dashboard_customize
+                                </span>
+                                <small>Admin Dashboard</small>
+                                <span class="material-symbols-outlined collapse-side-arrow"
+                                    id="mobileAdminDashboardArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileAdminDashboardOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileUserDashboardHead">
+                        <b></b>
+                        <b></b>
+                        <div
+                            onclick="sideNavbarActive(mobileUserDashboardHead,mobileUserDashboardOptions, mobileUserDashboardArrow)">
+                            <a class="parent-name" href="#">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    home
+                                </span>
+                                <small>User Dashboard</small>
+                                <span class="material-symbols-outlined collapse-side-arrow"
+                                    id="mobileUserDashboardArrow">
+                                    arrow_right
+                                </span>
+
+                            </a>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileUserDashboardOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileMasterHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(mobileMasterHead,mobileMasterOptions,mobileMasterArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    manage_accounts
+                                </span>
+                                <small>Master</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="mobileMasterArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileMasterOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileReportsHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(mobileReportsHead,mobileReportsOptions,mobileReportsArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    insert_chart
+                                </span>
+                                <small>Reports</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="mobileReportsArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileReportsOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileStaffHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(mobileStaffHead,mobileStaffOptions,mobileStaffArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    groups
+                                </span>
+                                <small>Staff</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="mobileStaffArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileStaffOptions">
+                            <div>
+                                <a class="active" href="staffDocuments.html">
+                                    Document List
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileStudentHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(mobileStudentHead,mobileStudentOptions,mobileStudentArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    badge
+                                </span>
+                                <small>Student</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="mobileStudentArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileStudentOptions">
+                            <div>
+                                <a href="#">
+                                    Add Document
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Document List
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileAdminToolsHead">
+                        <b></b>
+                        <b></b>
+                        <div
+                            onclick="sideNavbarActive(mobileAdminToolsHead,mobileAdminToolsOptions,mobileAdminToolsArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    build
+                                </span>
+                                <small>Admin Tools</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="mobileAdminToolsArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileAdminToolsOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileSchoolHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(mobileSchoolHead,mobileSchoolOptions,mobileSchoolArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    school
+                                </span>
+                                <small>School</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="mobileSchoolArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileSchoolOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileProspectusHead">
+                        <b></b>
+                        <b></b>
+                        <div
+                            onclick="sideNavbarActive(mobileProspectusHead,mobileProspectusOptions,mobileProspectusArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    menu_book
+                                </span>
+                                <small>Prospectus</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="mobileProspectusArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileProspectusOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileFeesHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(mobileFeesHead,mobileFeesOptions,mobileFeesArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    currency_rupee
+                                </span>
+                                <small>Fees</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="mobileFeesArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileFeesOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileMarksEntryHead">
+                        <b></b>
+                        <b></b>
+                        <div
+                            onclick="sideNavbarActive(mobileMarksEntryHead,mobileMarksEntryOptions,mobileMarksEntryArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    fact_check
+                                </span>
+                                <small>Marks Entry</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="mobileMarksEntryArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileMarksEntryOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileExpensesHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(mobileExpensesHead,mobileExpensesOptions,mobileExpensesArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    payments
+                                </span>
+                                <small>Expenses</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="mobileExpensesArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileExpensesOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileVendorHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(mobileVendorHead,mobileVendorOptions,mobileVendorArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    handshake
+                                </span>
+                                <small>Vendor</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="mobileVendorArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileVendorOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileLoanHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(mobileLoanHead,mobileLoanOptions,mobileLoanArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    credit_card
+                                </span>
+                                <small>Loan</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="mobileLoanArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileLoanOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileAllowanceHead">
+                        <b></b>
+                        <b></b>
+                        <div
+                            onclick="sideNavbarActive(mobileAllowanceHead,mobileAllowanceOptions,mobileAllowanceArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    group_work
+                                </span>
+                                <small>Allowance</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="mobileAllowanceArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileAllowanceOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileWebManagementHead">
+                        <b></b>
+                        <b></b>
+                        <div
+                            onclick="sideNavbarActive(mobileWebManagementHead,mobileWebManagementOptions,mobileWebManagementArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    laptop_mac
+                                </span>
+                                <small>Web Management</small>
+                                <span class="material-symbols-outlined collapse-side-arrow"
+                                    id="mobileWebManagementArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileWebManagementOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileJobsHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(mobileJobsHead,mobileJobsOptions,mobileJobsArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    work
+                                </span>
+                                <small>Jobs</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="mobileJobsArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileJobsOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileSalaryHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(mobileSalaryHead,mobileSalaryOptions,mobileSalaryArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    currency_rupee
+                                </span>
+                                <small>Salary</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="mobileSalaryArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileSalaryOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileStudentPanelHead">
+                        <b></b>
+                        <b></b>
+                        <div
+                            onclick="sideNavbarActive(mobileStudentPanelHead,mobileStudentPanelOptions,mobileStudentPanelArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    dock_to_bottom
+                                </span>
+                                <small>Student Panel</small>
+                                <span class="material-symbols-outlined collapse-side-arrow"
+                                    id="mobileStudentPanelArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileStudentPanelOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileSmsHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(mobileSmsHead,mobileSmsOptions,mobileSmsArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    sms
+                                </span>
+                                <small>SMS</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="mobileSmsArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileSmsOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileEvolutionHead">
+                        <b></b>
+                        <b></b>
+                        <div
+                            onclick="sideNavbarActive(mobileEvolutionHead,mobileEvolutionOptions,mobileEvolutionArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    track_changes
+                                </span>
+                                <small>Evolution</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="mobileEvolutionArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileEvolutionOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobilePaymentGatewayHead">
+                        <b></b>
+                        <b></b>
+                        <div
+                            onclick="sideNavbarActive(mobilePaymentGatewayHead,mobilePaymentGatewayOptions,mobilePaymentGatewayArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    smartphone
+                                </span>
+                                <small>Payment Gateway</small>
+                                <span class="material-symbols-outlined collapse-side-arrow"
+                                    id="mobilePaymentGatewayArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobilePaymentGatewayOptions">
+                            <div>
+                                <a href="#">
+                                    First Sub Item
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Second Sub Item
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="" id="mobileSettingsHead">
+                        <b></b>
+                        <b></b>
+                        <div onclick="sideNavbarActive(mobileSettingsHead,mobileSettingsOptions,mobileSettingsArrow)">
+                            <div class="parent-name">
+                                <div class="active-border"></div>
+                                <span class="material-symbols-outlined">
+                                    tune
+                                </span>
+                                <small>Settings</small>
+                                <span class="material-symbols-outlined collapse-side-arrow" id="mobileSettingsArrow">
+                                    arrow_right
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse-side-div" id="mobileSettingsOptions">
+                            <div>
+                                <a href="#">
+                                    Genral Settings
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Mobile Configuration
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Wallet Settings
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Email Configuration
+                                    <div></div>
+                                </a>
+                                <a href="#">
+                                    Payment Settings
+                                    <div></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <br><br>
+
+                </ul>
+            </div>
+
+
+
+        </div>
+        <div class="col-lg-10">
+
+            <!-- <div class="add-multiple-properties open" id="moreOptionsButton"
+                onclick="moreOptionsClick(moreOptionsDiv, moreOptionsButton)">
+                <div>
+                    <span class="material-symbols-outlined">
+                        apps
+                    </span>
+                </div>
+            </div>
+
+            <div class="all-properties" id="moreOptionsDiv">
+                <div class="all-properties-inner">
+                    <div>
+                        <a href="#" id="closeMoreOptionsDiv">
+                            <span class="material-symbols-outlined">
+                                apps
+                            </span>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="addStaffDocument.html">
+                            <span class="material-symbols-outlined">
+                                upload_file
+                            </span>
+                            <small>ADD DOCUMENT</small>
+                        </a>
+                    </div>
+                </div>
+            </div> -->
+
+            <br>
+
+            <div class="container-fluid">
+
+                <div class="white-div" style="border-radius: 8px 8px 0 0;">
+                    <div class="profile-head-div">
+                        <div class="profile-head-div-circle">
+                            <div>
+                                <h1>KS</h1>
+                            </div>
+                        </div>
+                        <div class="profile-head-div-name">
+                            <h2>Khushi Soni</h2>
+                            <h3>+91 85306 42886</h3>
+                            <h4>khushisoni@gmail.com</h4>
+                            <h5>
+                                <span>Flat# 201, ABC Society</span>,<br>
+                                <span>Wakad</span>, <span>Pune</span>,<br>
+                                <span>Maharashtra</span> - <span>411057</span>
+                            </h5>
+                        </div>
+                        <a href="profileEdit.html" class="profile-head-div-edit-btn">
+                            <span class="material-symbols-outlined">
+                                edit
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="below-profile-head-div">
+                    <h1>Go To Your Study Material, Study Books & Assignments</h1>
+                    <button class="mybutton button5">Study Material</button>
+                </div>
+
+                <br>
+
+                <div class="white-div">
+                    <a href="wallet.html" class="profile-wallet">
+
+                        <div>
+                            <h1>Wallet <span>Balance</span></h1>
+                            <h2>₹ 864<span>.90</span></h2>
+                        </div>
+                        <div>
+                            <span class="material-symbols-outlined">
+                                account_balance_wallet
+                            </span>
+                        </div>
+                        <div class="profile-wallet-arrow">
+                            <span class="material-symbols-outlined">
+                                chevron_right
+                            </span>
+                        </div>
+
+                    </a>
+                </div>
+
+                <br>
+
+
+                <div class="all-headings">
+                    <h1>Documents</h1>
+                    <div class="dot one"></div>
+                    <div class="dot two"></div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-md-12 col-md-offset-1">
+                        <div id="profile-document-list" class="owl-carousel owl-theme">
+
+                            <div class="item" style="margin: 20px 0;">
+                                <div style="padding: 10px;">
+                                    <div class="add-staff-document-img-upload">
+                                        <div class="add-staff-document-img-div">
+                                            <img src="./img/aadhar.png"
+                                                onclick="addStaffDocumentMoreOptions(aadharCardMoreOtions)" alt="">
+                                        </div>
+                                        <div class="add-staff-document-img-content">
+                                            <h1>Aadhar Card - 8652 8763 0562</h1>
+                                            <div class="left-border"></div>
+                                            <div class="add-staff-document-img-more-option"
+                                                onclick="addStaffDocumentMoreOptions(aadharCardMoreOtions)">
+                                                <span class="material-symbols-outlined">
+                                                    more_vert
+                                                </span>
+                                            </div>
+
+                                            <div id="aadharCardMoreOtions"
+                                                class="add-staff-document-img-more-option-div">
+                                                <div class="add-staff-document-img-more-option-div-inner">
+                                                    <span class="material-symbols-outlined">
+                                                        photo_camera
+                                                    </span>
+                                                    <small>Camera</small>
+                                                    <div></div>
+                                                </div>
+                                                <div class="add-staff-document-img-more-option-div-inner">
+                                                    <span class="material-symbols-outlined">
+                                                        upload
+                                                    </span>
+                                                    <small>Upload</small>
+                                                    <div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item" style="margin: 20px 0;">
+                                <div style="padding: 10px;">
+                                    <div class="add-staff-document-img-upload">
+                                        <div class="add-staff-document-img-div">
+                                            <img src="./img/pan.png"
+                                                onclick="addStaffDocumentMoreOptions(panCardMoreOtions)" alt="">
+                                        </div>
+                                        <div class="add-staff-document-img-content">
+                                            <h1>PAN Card - AAAAA1234A</h1>
+                                            <div class="left-border"></div>
+                                            <div class="add-staff-document-img-more-option"
+                                                onclick="addStaffDocumentMoreOptions(panCardMoreOtions)">
+                                                <span class="material-symbols-outlined">
+                                                    more_vert
+                                                </span>
+                                            </div>
+
+                                            <div id="panCardMoreOtions" class="add-staff-document-img-more-option-div">
+                                                <div class="add-staff-document-img-more-option-div-inner">
+                                                    <span class="material-symbols-outlined">
+                                                        photo_camera
+                                                    </span>
+                                                    <small>Camera</small>
+                                                    <div></div>
+                                                </div>
+                                                <div class="add-staff-document-img-more-option-div-inner">
+                                                    <span class="material-symbols-outlined">
+                                                        upload
+                                                    </span>
+                                                    <small>Upload</small>
+                                                    <div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item" style="margin: 20px 0;">
+                                <div style="padding: 10px;">
+                                    <div class="add-staff-document-img-upload">
+                                        <div class="add-staff-document-img-div">
+                                            <img src="./img/upload_dl.svg"
+                                                onclick="addStaffDocumentMoreOptions(drivingLicenseCardMoreOtions)"
+                                                alt="">
+                                        </div>
+                                        <div class="add-staff-document-img-content">
+                                            <h1>Driving License</h1>
+                                            <div class="left-border"></div>
+                                            <div class="add-staff-document-img-more-option"
+                                                onclick="addStaffDocumentMoreOptions(drivingLicenseCardMoreOtions)">
+                                                <span class="material-symbols-outlined">
+                                                    more_vert
+                                                </span>
+                                            </div>
+
+                                            <div id="drivingLicenseCardMoreOtions"
+                                                class="add-staff-document-img-more-option-div">
+                                                <div class="add-staff-document-img-more-option-div-inner">
+                                                    <span class="material-symbols-outlined">
+                                                        photo_camera
+                                                    </span>
+                                                    <small>Camera</small>
+                                                    <div></div>
+                                                </div>
+                                                <div class="add-staff-document-img-more-option-div-inner">
+                                                    <span class="material-symbols-outlined">
+                                                        upload
+                                                    </span>
+                                                    <small>Upload</small>
+                                                    <div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item" style="margin: 20px 0;">
+                                <div style="padding: 10px;">
+                                    <div class="add-staff-document-img-upload">
+                                        <div class="add-staff-document-img-div">
+                                            <img src="./img/upload_document.svg"
+                                                onclick="addStaffDocumentMoreOptions(document4MoreOtions)" alt="">
+                                        </div>
+                                        <div class="add-staff-document-img-content">
+                                            <h1>Document 4</h1>
+                                            <div class="left-border"></div>
+                                            <div class="add-staff-document-img-more-option"
+                                                onclick="addStaffDocumentMoreOptions(document4CardMoreOtions)">
+                                                <span class="material-symbols-outlined">
+                                                    more_vert
+                                                </span>
+                                            </div>
+
+                                            <div id="document4CardMoreOtions"
+                                                class="add-staff-document-img-more-option-div">
+                                                <div class="add-staff-document-img-more-option-div-inner">
+                                                    <span class="material-symbols-outlined">
+                                                        photo_camera
+                                                    </span>
+                                                    <small>Camera</small>
+                                                    <div></div>
+                                                </div>
+                                                <div class="add-staff-document-img-more-option-div-inner">
+                                                    <span class="material-symbols-outlined">
+                                                        upload
+                                                    </span>
+                                                    <small>Upload</small>
+                                                    <div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item" style="margin: 20px 0;">
+                                <div style="padding: 10px;">
+                                    <div class="add-staff-document-img-upload">
+                                        <div class="add-staff-document-img-div">
+                                            <img src="./img/upload_document.svg"
+                                                onclick="addStaffDocumentMoreOptions(document5CardMoreOtions)" alt="">
+                                        </div>
+                                        <div class="add-staff-document-img-content">
+                                            <h1>Document 5</h1>
+                                            <div class="left-border"></div>
+                                            <div class="add-staff-document-img-more-option"
+                                                onclick="addStaffDocumentMoreOptions(document5CardMoreOtions)">
+                                                <span class="material-symbols-outlined">
+                                                    more_vert
+                                                </span>
+                                            </div>
+
+                                            <div id="document5CardMoreOtions"
+                                                class="add-staff-document-img-more-option-div">
+                                                <div class="add-staff-document-img-more-option-div-inner">
+                                                    <span class="material-symbols-outlined">
+                                                        photo_camera
+                                                    </span>
+                                                    <small>Camera</small>
+                                                    <div></div>
+                                                </div>
+                                                <div class="add-staff-document-img-more-option-div-inner">
+                                                    <span class="material-symbols-outlined">
+                                                        upload
+                                                    </span>
+                                                    <small>Upload</small>
+                                                    <div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <br><br><br><br>
+
+
+                <div class="all-headings">
+                    <h1>Subject Assignments</h1>
+                    <div class="dot one"></div>
+                    <div class="dot two"></div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-md-12 col-md-offset-1">
+                        <div id="profile-assignment-list" class="owl-carousel owl-theme">
+
+                            <div class="item" style="margin: 20px 0;">
+                                <div class="white-div">
+                                    <div class="profile-assignment-card">
+                                        <div class="profile-assignment-card-img" style="background: #92dae0;">
+                                            <img src="./img/english_icon.png" alt="">
+                                        </div>
+                                        <div>
+                                            <h1>ENGLISH</h1>
+                                            <h2>12 ASSIGNMENTS</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item" style="margin: 20px 0;">
+                                <div class="white-div">
+                                    <div class="profile-assignment-card">
+                                        <div class="profile-assignment-card-img" style="background: #e09292;">
+                                            <img src="./img/maths_icon.png" alt="">
+                                        </div>
+                                        <div>
+                                            <h1>MATHEMATICS</h1>
+                                            <h2>3 ASSIGNMENTS</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item" style="margin: 20px 0;">
+                                <div class="white-div">
+                                    <div class="profile-assignment-card">
+                                        <div class="profile-assignment-card-img" style="background: #dce092;">
+                                            <img src="./img/science_icon.png" alt="">
+                                        </div>
+                                        <div>
+                                            <h1>SCIENCE</h1>
+                                            <h2>127 ASSIGNMENTS</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item" style="margin: 20px 0;">
+                                <div class="white-div">
+                                    <div class="profile-assignment-card">
+                                        <div class="profile-assignment-card-img" style="background: #92e0be;">
+                                            <img style="width: 100%;" src="./img/hindi_icon.png" alt="">
+                                        </div>
+                                        <div>
+                                            <h1>HINDI</h1>
+                                            <h2>1 ASSIGNMENTS</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item" style="margin: 20px 0;">
+                                <div class="white-div">
+                                    <div class="profile-assignment-card">
+                                        <div class="profile-assignment-card-img" style="background: #e3c5fa;">
+                                            <img src="./img/socialScience_icon.png" alt="">
+                                        </div>
+                                        <div>
+                                            <h1>SOCIAL SCIENCE</h1>
+                                            <h2>23 ASSIGNMENTS</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item" style="margin: 20px 0;">
+                                <div class="white-div">
+                                    <div class="profile-assignment-card">
+                                        <div class="profile-assignment-card-img" style="background: #d6e092;">
+                                            <img src="./img/painting_icon.png" alt="">
+                                        </div>
+                                        <div>
+                                            <h1>PAINTING</h1>
+                                            <h2>5 ASSIGNMENTS</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <hr><br>
+
+                <div class="row no-gutters">
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+
+                        <div class="padding-div">
+                            <div class="white-div" style="padding: 0 10px;">
+                                <div class="settings-div">
+                                    <div class="icon">
+                                        <span class="material-symbols-outlined">
+                                            sell
+                                        </span>
+                                    </div>
+
+                                    <div class="address-text">
+                                        <h5>Offers & Cashback</h5>
+                                        <div class="">
+                                            <span class="material-symbols-outlined">
+                                                chevron_right
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="margin: 0;border: none; border-bottom: 1px solid #ddd;" />
+
+                                <div class="settings-div">
+                                    <div class="icon">
+                                        <span class="material-symbols-outlined">
+                                            sms
+                                        </span>
+                                    </div>
+
+                                    <div class="address-text">
+                                        <h5>Help & Support</h5>
+                                        <div class="">
+                                            <span class="material-symbols-outlined">
+                                                chevron_right
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+
+                        <div class="padding-div">
+
+
+                            <div class="white-div" style="padding: 0 10px;">
+                                <div class="settings-div">
+                                    <div class="icon">
+                                        <span class="material-symbols-outlined">
+                                            tune
+                                        </span>
+                                    </div>
+
+                                    <div class="address-text">
+                                        <h5>Settings</h5>
+                                        <div class="">
+                                            <span class="material-symbols-outlined">
+                                                chevron_right
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="margin: 0;border: none; border-bottom: 1px solid #ddd;" />
+
+                                <div class="settings-div">
+                                    <div class="icon">
+                                        <span class="material-symbols-outlined">
+                                            logout
+                                        </span>
+                                    </div>
+
+                                    <div class="address-text">
+                                        <h5>Logout</h5>
+                                        <div class="">
+                                            <span class="material-symbols-outlined">
+                                                chevron_right
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <br><br><br>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
+
+
+    <!-- page content - end -->
+
+
+    <!-- Jquery order should be higher from normal javascript  -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+
+    <!-- Owl Carousel JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Owl Carousel Javascript  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+
+    <script src="./js/main.js"></script>
+    <script src="./js/sideNavbar.js"></script>
+    <script src="./js/addStaffDocuments.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

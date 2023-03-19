@@ -1,0 +1,126 @@
+/* navbar start */
+.navbar {
+    position: relative;
+    background-color: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    padding: 0 20px;
+    height: 80px;
+}
+
+.navbar-brand {
+    padding-left: 12px;
+}
+
+.navbar-text {
+    font-size: 1.1rem;
+    color: #222;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding-left: 20px;
+}
+
+@media (max-width: 1110px) {
+    .navbar-text {
+        display: none;
+    }
+}
+
+.navbar-tabs {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-tabs div {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    border-right: 1px solid #ddd;
+    padding: 0 15px;
+}
+
+.navbar-tabs div h1 {
+    font-size: 1rem;
+    color: #444;
+    font-weight: 400;
+}
+
+.navbar-tabs div .navbar-profile-icon {
+    width: 35px;
+    height: 35px;
+    background: #034687;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.navbar-tabs div .navbar-profile-icon h2 {
+    font-size: 0.8rem;
+    color: #fff;
+}
+
+.navbar-tabs div .navbar-profile-icon span {
+    position: relative;
+    top: -1px;
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+.navbar-tabs div:nth-child(3) {
+    border: none;
+}
+
+.navbar-tabs span {
+    margin: 0 10px;
+    color: #034687;
+    font-variation-settings:
+        'FILL' 1
+}
+
+/* Navbar - End */
+
+/* navbar Mobile - start */
+
+.navbar-mobile {
+    background: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    height: 50px;
+    border-bottom: 1px solid #eee;
+    padding: 0 10px;
+}
+
+.navbar-mobile-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.navbar-mobile-menu a,
+.navbar-mobile-menu div {
+    display: flex;
+    text-decoration: none;
+}
+
+.navbar-mobile-menu a span,
+.navbar-mobile-menu div span {
+    color: #E10032;
+    font-size: 1.3rem;
+    position: relative;
+    top: 1px;
+}
+
+.notification-count {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background: #ff5757;
+}
+
+/* navbar Mobile - end */

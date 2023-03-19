@@ -1,0 +1,253 @@
+/* Color Palette - Details
+
+Palette#: 226650 from Colorhunt
+
+Reference Colors:
+- Red: #E10032 - main header & footer color
+- Blue: #034687 - support colors
+- Light White: #DBE8E1 - support colors
+- Dark Blue / Black: #151B25- support colors
+
+*/
+/********** tag selectors ************/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Quicksand', sans-serif;
+  color: #151B25;
+  background: #eee;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+h4 {
+  font-size: 1.5rem;
+  font-weight: normal;
+  margin: 0;
+}
+
+h5 {
+  font-size: 1.2rem;
+  font-weight: normal;
+  margin: 0;
+}
+
+h6 {
+  font-size: 0.8rem;
+  font-weight: normal;
+  margin: 0;
+}
+
+select {
+  padding: 0 15px;
+  margin-left: 15px;
+  height: 30px;
+  border: none;
+  outline: none;
+  background: #E10032;
+  font-size: 0.8rem;
+  color: #fff;
+  border-radius: 30px;
+  font-weight: 500;
+}
+
+select option:disabled {
+  background: #ccc;
+  color: #fff;
+}
+
+/********** class selectors ************/
+.container-fluid {
+  width: 100%;
+}
+
+.all-headings {
+  position: relative;
+}
+
+.all-headings::after {
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  content: '';
+  width: 100px;
+  height: 3px;
+  background: #E10032;
+  border-radius: 3px;
+}
+
+.all-headings h1 {
+  font-size: 1.5rem;
+  color: #E10032;
+  font-weight: 600;
+}
+
+.all-headings .dot {
+  position: absolute;
+  bottom: -7.5px;
+  left: 0px;
+  background: #E10032;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+}
+
+.all-headings .dot.one {
+  left: 105px;
+}
+
+.all-headings .dot.two {
+  left: 115px;
+}
+
+.owl-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.owl-nav button {
+  outline: none;
+}
+
+.nav-btn {
+  position: relative;
+  top: -10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #034687;
+  pointer-events: all;
+}
+
+.nav-btn span {
+  position: relative;
+  top: 5px;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+/* small & Large class */
+
+.large {
+  width: 100%;
+  border-radius: 0 0 0 0;
+}
+
+.small {
+  width: 0%;
+  display: none;
+  border-radius: 0 0 0 0;
+}
+
+@media (max-width: 990px) {
+  .large {
+    width: 0%;
+    display: none;
+    border-radius: 0 0 0 0;
+  }
+
+  .small {
+    width: 100%;
+    display: block;
+    border-radius: 0 0 0 0;
+  }
+}
+
+/* small & Large class */
+
+/* white div & padding div - start */
+
+.white-div {
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.padding-div {
+  padding: 10px;
+}
+
+@media (max-width: 750px) {
+  .padding-div {
+      padding: 10px 0;
+  }
+}
+
+/* white div & padding div - end */
+
+/* button class */
+
+.mybutton {
+  background: #221B1B;
+  outline: none;
+  border: none;
+  color: white;
+  padding: 7px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.9rem;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  /* border-radius: 8px; */
+}
+
+.button5 {
+  background: linear-gradient(to right, #DC948B, #E4947C);
+  /* background: #85cb0b; */
+  background: #E10032;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 40px;
+  width: 150px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 10px 0;
+  transition: 0.5s;
+}
+
+.button5:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* button class */
