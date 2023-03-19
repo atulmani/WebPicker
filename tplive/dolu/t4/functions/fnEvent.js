@@ -150,6 +150,7 @@ exports.getEventSummaryByCity =
           resultList.push({
             City: doc1.data().City,
             EventCount: Number(doc1.data().EventCount),
+            LocationImage: doc1.data().LocationImage,
           });
           console.log(resultList);
         });
@@ -354,7 +355,7 @@ exports.getEventDetails =
               ThumbImage2: doc1.data().ThumbImage2,
               ThumbImage3: doc1.data().ThumbImage3,
               ThumbImage4: doc1.data().ThumbImage4,
-
+              OrganizationName: doc1.data().OrganizationName,
               EventCode: doc1.data().EventCode,
               EventMode: doc1.data().EventMode,
               SportCode: doc1.data().SportCode,

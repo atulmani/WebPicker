@@ -29,7 +29,7 @@ export default function LocationItemLarge(props) {
             <Link to="/" onClick={() => {
                 // console.log('in set localStorage from LocationItemLarge ')
                 window.localStorage['userLocation'] = JSON.stringify(location.City);
-
+                props.setCity(location.City);
             }} className="genre-locoation-card">
                 <div className="">
                     <img src={location.LocationImage ? "img/" + location.LocationImage : "img/puneicon_blank.png"} alt="" />

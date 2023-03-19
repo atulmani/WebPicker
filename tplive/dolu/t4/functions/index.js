@@ -8,8 +8,11 @@
 
 const admin = require("firebase-admin");
 
+const functions = require('firebase-functions');
+const app = require('express')();
+
 admin.initializeApp();
-const cors = require('cors')({ origin: true });
+// const cors = require('cors')({ origin: true });
 
 const userProfile = require("./fnProfile.js");
 const organization = require("./fnOrganization.js");
@@ -37,7 +40,8 @@ exports.createParticipants = userProfile.createParticipants;
 exports.updateParticipants = userProfile.updateParticipants;
 exports.getPlayerDetails = userProfile.getPlayerDetails;
 exports.getPlayerDetailsWithPlayerID = userProfile.getPlayerDetailsWithPlayerID;
-
+exports.saveUserProfileDetails = userProfile.saveUserProfileDetails;
+exports.getRequestedRoleForUser = userProfile.getRequestedRoleForUser;
 
 exports.getOrganizationDetails = organization.getOrganizationDetails;
 exports.updateOrganizationDetails = organization.updateOrganizationDetails;
@@ -109,6 +113,11 @@ exports.getAllRegisteredEventList = registration.getAllRegisteredEventList;
 exports.getParticipants = registration.getParticipants;
 exports.registerAllEvent = registration.registerAllEvent;
 exports.withdrawRegistration = registration.withdrawRegistration;
+exports.updatePaymentStatus = registration.updatePaymentStatus;
+exports.getAllRegisteredEventListByPlayerCode =
+    registration.getAllRegisteredEventListByPlayerCode;
 
+exports.getParticipantsWithCategoryName =
+    registration.getParticipantsWithCategoryName;
 
 exports.storePostData = common.storePostData;

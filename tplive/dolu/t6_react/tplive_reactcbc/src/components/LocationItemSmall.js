@@ -26,7 +26,7 @@ export default function LocationItemSmall(props) {
         <div className="col-4" style={{ padding: '10px' }}>
             <Link to="/" onClick={() => {
                 window.localStorage['userLocation'] = location.City;
-
+                props.setCity(location.City);
             }} className="genre-locoation-card">
                 <div className="">
                     <img src={location.LocationImage ? "img/" + location.LocationImage : "img/puneicon_blank.png"} alt="" />

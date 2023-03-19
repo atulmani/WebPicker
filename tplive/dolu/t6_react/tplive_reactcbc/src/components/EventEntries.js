@@ -79,5 +79,6 @@ export default function EventEntries() {
             </div>
         </div>
 
+
     )
 }

@@ -12,7 +12,7 @@ import CategoryCartItem from '../components/CategoryCartItem'
 
 export default function PaymentSuccessful() {
     const { state } = useLocation();
-    const { id, participantDetails, paymentObj, paymentStatus, selectedCategory } = state;
+    const { id, participantDetails, paymentObj, paymentStatus, selectedCategory, updatePayment } = state;
     //     const navigate = useNavigate();
     const [eventDetails, setEventDetails] = useState(window.localStorage.getItem('EventDetails') ? JSON.parse(window.localStorage.getItem('EventDetails')) : null);
     const [registeredEvents, setRegisteredEvents] = useState(null);
@@ -22,8 +22,12 @@ export default function PaymentSuccessful() {
         // console.log('eventDetails ', eventDetails);
         // console.log('participantDetails ', participantDetails);
         // console.log('selectedCategory ', selectedCategory);
+        if (updatePayment) {
+            updatePaymentStatus(paymentObj);
+        } else {
+            getRegisteredEvents();
+        }
 
-        updatePaymentStatus(paymentObj);
 
     }, []);
 
@@ -106,7 +110,7 @@ export default function PaymentSuccessful() {
 
                     <div id="regProfileNewParticipantDetails">
                         {/* {console.log(selectedCategory)} */}
-                        <h3 style={{ fontWeight: '1000', color: '#348DCB', textAlign: 'center' }}>Payment is successful</h3>
+                        <h3 style={{ fontWeight: '1000', color: '#348DCB', textAlign: 'center' }}>{updatePayment ? 'Payment is successful' : 'Registered Event'}</h3>
                         <h1 className="reg-form-email" id="playerName">{participantDetails.UserName}</h1>
                         <h5 className="reg-form-email" id="playerID">({participantDetails.PlayerID})</h5>
                         {participantDetails.Gender.toUpperCase() === 'FEMALE' && <h5 className="reg-form-email female" id="playerGender">FEMALE</h5>}
@@ -125,7 +129,7 @@ export default function PaymentSuccessful() {
                             return <CategoryCartItem key={events.CategoryName} eventDetails={events} ></CategoryCartItem>
 
                         })}
-
+                        {/* <span> * marked event is registered by Partner</span> */}
                         {/* <CategoryCartItem></CategoryCartItem> */}
 
                     </div>

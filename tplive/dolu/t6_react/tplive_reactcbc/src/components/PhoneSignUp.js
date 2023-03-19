@@ -1,3 +1,4 @@
+
 import React, { useRef, useEffect, useState, useFocus } from 'react'
 import { Form, Button, Alert } from 'react-bootstrap';
 // import 'react-phone-number-input/style.css';
@@ -41,7 +42,7 @@ export default function PhoneSignUp(props) {
         }
         console.log(users.current);
 
-        if (users.current.phoneNumber === ("+" + phone)) {
+        if (users.current && users.current.phoneNumber === ("+" + phone)) {
             setIsLogged(true);
         }
 
@@ -116,14 +117,18 @@ export default function PhoneSignUp(props) {
                                     >
                                     </PhoneInput> */}
 
-                                    <PhoneInput defaultCountry='IN'
-                                        onlyCountries={['in', 'us']}
+                                    <PhoneInput
+                                        country={'in'}
+
+                                        // onlyCountries={['in', 'us']}
                                         value={phone}
                                         onChange={setPhone}
                                         keyboardType="phone-pad"
+                                        // countryCallingCodeEditable={false}
+                                        countryCodeEditable={false}
+                                        // disableCountryCode={true}
                                         placeholder="Enter Phone Number"
                                         inputProps={{
-                                            maxLenght: '10',
                                             name: 'phone',
                                             required: true,
                                             autoFocus: true

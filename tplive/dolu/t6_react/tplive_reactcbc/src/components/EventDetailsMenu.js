@@ -65,6 +65,7 @@ export default function EventDetailsMenu(props) {
 
                         </tbody>
                     </table>
+                    <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_27H8l4.json" background="transparent" speed="1" loop autoplay></lottie-player>
                 </div>
 
             }

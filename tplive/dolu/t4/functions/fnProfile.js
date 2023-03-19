@@ -339,6 +339,157 @@ exports.saveProfileDetailsStep3 =
         });
     });
 
+
+exports.saveUserProfileDetails =
+  functions
+    .region('asia-south1')
+    .https.onCall(async (data, context) => {
+      if (!context.auth) {
+        throw new functions.https.HttpError(
+          "unauthenticatied",
+          "only authenticated user can call this"
+        );
+      }
+      const userID = data.userID;
+      const DateOfBirth = data.DateOfBirth;
+      const City = data.City;
+      const State = data.State;
+      const Country = data.Country;
+      const District = data.District;
+      const Pincode = data.Pincode;
+      const UserName = data.UserName;
+      const Email = data.Email;
+      const Gender = data.Gender;
+
+      console.log("userID ", userID);
+
+      await admin.firestore().collection("UserList")
+        .doc(userID)
+        .update({
+          DateOfBirth:
+            admin.firestore.Timestamp.fromDate(new Date(DateOfBirth)),
+          City: City,
+          State: State,
+          Country: Country,
+          District: District,
+          Pincode: Pincode,
+          ParticipantID: userID,
+          UserName: UserName,
+          Email: Email,
+          Gender: Gender,
+
+
+          UpdatedBy: userID,
+          UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
+        })
+        .then(async () => {
+          console.log("Success");
+          var docID = "";
+          await admin.firestore().collection("Participants").where("UserID", "==", userID).where("ParticipantID", "==", userID)
+            .get().then(async (changes) => {
+              changes.forEach(doc1 => {
+                docID = doc1.id;
+              });
+
+              if (docID != "" & docID != undefined) {
+                await admin.firestore().collection("Participants").doc(docID).update({
+                  DateOfBirth:
+                    admin.firestore.Timestamp.fromDate(new Date(DateOfBirth)),
+                  City: City,
+                  State: State,
+                  Country: Country,
+                  District: District,
+                  Pincode: Pincode,
+                  UserName: UserName,
+                  Email: Email,
+                  Gender: Gender,
+                });
+              } else {
+                let userCount = 0;
+                let PlayerID = '';
+                let ucdocID = '';
+                await admin.firestore().collection("UserCountSummary")
+                  .get().then(async (changes) => {
+                    changes.forEach(doc1 => {
+                      ucdocID = doc1.id;
+                      userCount = Number(doc1.data().UserCount);
+                    });
+                    userCount = userCount + 1;
+                    PlayerID = "TP" + userCount;
+
+                    await admin.firestore().collection("Participants").add({
+                      UserID: userID,
+                      UserName: UserName,
+                      DateOfBirth:
+                        admin.firestore.Timestamp.fromDate(new Date(DateOfBirth)),
+                      City: City,
+                      State: State,
+                      Country: Country,
+                      District: District,
+                      Pincode: Pincode,
+                      ParticipantID: userID,
+                      Email: Email,
+                      Gender: Gender,
+                      UpdatedBy: userID,
+                      PlayerID: PlayerID,
+                      UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
+
+                    }).then(() => {
+
+                      admin.firestore().collection("UserCountSummary")
+                        .doc(ucdocID)
+                        .set({
+                          UserCount: userCount,
+                        }).then(() => {
+                          return "0";
+                        })
+
+                    }).catch(function (error) {
+                      console.log("in error");
+                      return "1";
+                    });
+                  });
+              }
+              //return "0";
+            });
+          return "0";
+
+
+        })
+        .catch(function (error) {
+          console.log("in error");
+          return "1";
+        });
+    });
+
+exports.getRequestedRoleForUser =
+  functions
+    .region('asia-south1')
+    .https.onCall(async (data, context) => {
+      if (!context.auth) {
+        throw new functions.https.HttpError(
+          "unauthenticatied",
+          "only authenticated user can call this"
+        );
+      }
+      const UserID = data.UserID;
+
+      let resultList = [];
+
+      return await admin.firestore().collection("UserRoleRequest").where("UserID", "==", UserID).get().then((changes) => {
+        changes.forEach(doc1 => {
+          resultList.push({
+            UserID: doc1.data().UserID,
+            RoleName: doc1.data().RoleName,
+            RequestedDate: doc1.data().RequestedDate,
+          });
+          console.log(resultList);
+        });
+        return resultList;
+
+      });
+    });
+
 exports.saveProfileDetailsStep4 =
   functions
     .region('asia-south1')

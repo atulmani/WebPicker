@@ -363,6 +363,76 @@ exports.getAllRegisteredEventList =
         });
     });
 
+exports.getAllRegisteredEventListByPlayerCode =
+  functions
+    .region('asia-south1')
+    .https.onCall(async (data, context) => {
+      if (!context.auth) {
+        throw new functions.https.HttpError(
+          "unauthenticatied",
+          "only authenticated user can call this"
+        );
+      }
+      const EventID = data.EventID;
+      const PlayerID = data.PlayerID;
+
+      let resultList = [];
+      return await admin.firestore().collection("EventRegistrationDetails")
+        .where("EventID", "==", EventID)
+        .where("ParticipantID", "==", PlayerID).get().then(async (changes) => {
+
+          changes.forEach(doc1 => {
+            resultList.push({
+              EventID: doc1.data().EventID,
+              CategoryName: doc1.data().CategoryName,
+              EventType: doc1.data().EventType,
+              Fees: doc1.data().Fees,
+              Gender: doc1.data().Gender,
+              MaxTeamSize: doc1.data().MaxTeamSize,
+              PaymentStatus: doc1.data().PaymentStatus,
+              RegType: 'Self',
+
+              ParticipantID: doc1.data().ParticipantID,
+              PlayerID: doc1.data().PlayerID,
+              ParticipantName: doc1.data().ParticipantName,
+              PartnerPlayerID: doc1.data().PartnerPlayerID,
+              PartnerPlayerName: doc1.data().PartnerPlayerName,
+            });
+
+
+          });
+          return await admin.firestore().collection("EventRegistrationDetails")
+            .where("EventID", "==", EventID)
+            .where("PartnerPlayerID", "==", PlayerID).get().then((changes1) => {
+
+              changes1.forEach(doc2 => {
+                resultList.push({
+                  EventID: doc2.data().EventID,
+                  CategoryName: doc2.data().CategoryName,
+                  EventType: doc2.data().EventType,
+                  Fees: doc2.data().Fees,
+                  Gender: doc2.data().Gender,
+                  MaxTeamSize: doc2.data().MaxTeamSize,
+                  PaymentStatus: doc2.data().PaymentStatus,
+                  RegType: 'Partner',
+
+
+                  PlayerID: '', //doc2.data().PlayerID,
+                  ParticipantID: doc2.data().PartnerPlayerID, //doc2.data().ParticipantID,
+                  ParticipantName: doc2.data().PartnerPlayerName, //doc2.data().ParticipantName,
+                  PartnerPlayerID: doc2.data().ParticipantID, //doc2.data().PartnerPlayerID,
+                  PartnerPlayerName: doc2.data().ParticipantName, //doc2.data().PartnerPlayerName,
+                });
+
+              });
+              return resultList;
+
+            });
+
+
+        });
+    });
+
 
 exports.getParticipants =
   functions
@@ -380,7 +450,7 @@ exports.getParticipants =
 
       // var dbrows = await admin.firestore().collection("PartnerList").get();
       // dbrows.then((changes) => {
-      return await admin.firestore().collection("EventRegistrationDetails").where("EventID", "==", EventID).get().then((changes) => {
+      return await admin.firestore().collection("EventRegistrationDetails").where("EventID", "==", EventID).orderBy("ParticipantName").get().then((changes) => {
         changes.forEach(doc1 => {
 
           resultList.push({
@@ -392,11 +462,151 @@ exports.getParticipants =
             Gender: doc1.data().Gender,
             PaymentStatus: doc1.data().PaymentStatus,
             Fees: Number(doc1.data().Fees),
+            PlayerUserID: doc1.data().PlayerID,
+
+            PartnerPlayerID: doc1.data().PartnerPlayerID,
+            PartnerPlayerName: doc1.data().PartnerPlayerName,
 
           });
           console.log(resultList);
+
         });
         return resultList;
 
       });
     });
+
+
+exports.getParticipantsWithCategoryName =
+  functions
+    .region('asia-south1')
+    .https.onCall(async (data, context) => {
+      // if (!context.auth) {
+      //   throw new functions.https.HttpError(
+      //     "unauthenticatied",
+      //     "only authenticated user can call this"
+      //   );
+      // }
+      const EventID = data.EventID;
+      const CategoryName = data.CategoryName;
+
+      let resultList = [];
+
+      // var dbrows = await admin.firestore().collection("PartnerList").get();
+      // dbrows.then((changes) => {
+      return await admin.firestore().collection("EventRegistrationDetails").
+        where("EventID", "==", EventID).
+        where("CategoryName", "==", CategoryName).
+        orderBy("ParticipantName").get().then((changes) => {
+          changes.forEach(doc1 => {
+            resultList.push({
+              EventID: doc1.data().EventID,
+              CategoryName: doc1.data().CategoryName,
+              ParticipantID: doc1.data().ParticipantID,
+              ParticipantName: doc1.data().ParticipantName,
+              EventType: doc1.data().EventType,
+              Gender: doc1.data().Gender,
+              PaymentStatus: doc1.data().PaymentStatus,
+              Fees: Number(doc1.data().Fees),
+              PlayerUserID: doc1.data().PlayerID,
+              PartnerPlayerID: doc1.data().PartnerPlayerID,
+              PartnerPlayerName: doc1.data().PartnerPlayerName,
+
+            });
+            console.log(resultList);
+
+          });
+          return resultList;
+
+        });
+    });
+
+
+
+
+exports.updatePaymentStatus =
+  functions
+    .region('asia-south1')
+    .https.onCall(async (data, context) => {
+      if (!context.auth) {
+        throw new functions.https.HttpError(
+          "unauthenticatied",
+          "only authenticated user can call this"
+        );
+      }
+      const EventID = data.EventID;
+      const PlayerID = data.PlayerID;
+      const CategoryList = data.CategoryList;
+      const paymentStatus = data.paymentStatus;
+      const paymentAmount = data.paymentAmount;
+      const transactionID = data.transactionID;
+      const orderID = data.orderID;
+
+      var eventRegID = "";
+
+
+      for (index = 0; index < CategoryList.length; index++) {
+        await admin.firestore().collection("EventRegistrationDetails")
+          .where("EventID", "==", EventID)
+          .where("CategoryName", "==", CategoryList[index])
+          .where("PlayerID", "==", PlayerID)
+          .get().then(async (changes) => {
+            changes.forEach(doc1 => {
+              eventRegID = doc1.id;
+              //        paymentStatus = doc1.data().PaymentStatus;
+
+            });
+            // if (paymentStatus === undefined) {
+            //   paymentStatus = 'Pending';
+            // }
+            if (eventRegID != "") {
+              admin.firestore().collection("EventRegistrationDetails")
+                .doc(eventRegID)
+                .update({
+                  TransactionID: transactionID,
+                  OrderID: orderID,
+                  PaymentStatus: paymentStatus,
+                  PaymentAmount: paymentAmount,
+                  TransactionDate: admin.firestore.Timestamp.fromDate(new Date()),
+                  CreatedBy: context.auth.uid,
+                  UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
+                })
+                .then(async function (docRef) {
+
+                })
+                .catch(function (error) {
+
+                });
+            } else {
+              admin.firestore().collection("EventRegistrationDetails")
+                .add({
+                  EventID: EventID,
+                  PlayerID: PlayerID,
+                  CategoryName: CategoryList[index],
+                  TransactionID: transactionID,
+                  OrderID: orderID,
+                  PaymentStatus: paymentStatus,
+                  PaymentAmount: paymentAmount,
+                  TransactionDate: admin.firestore.Timestamp.fromDate(new Date()),
+
+                  CreatedBy: context.auth.uid,
+                  CreatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
+                })
+                .then(function (docRef) {
+
+                })
+                .catch(function (error) {
+
+                });
+            }
+
+
+          });
+        eventRegID = "";
+        // paymentStatus = 'Pending';
+      }
+
+
+
+    });
+

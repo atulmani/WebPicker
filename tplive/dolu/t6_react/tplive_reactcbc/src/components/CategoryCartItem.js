@@ -93,6 +93,7 @@ export default function CategoryCartItem(props) {
 
                             {props && props.eventDetails && props.eventDetails.PartnerPlayerID !== '' && <h3>
                                 <strong>Partner : </strong>{props.eventDetails.PartnerPlayerName}
+                                {props.eventDetails.RegType === 'Partner' ? ' (registered by Partner)' : ''}
                             </h3>}
                         </div>
 

@@ -9,7 +9,7 @@ import { httpsCallable } from "firebase/functions";
 
 
 
-export default function Location() {
+export default function Location(props) {
 
     const [locationSummary, setLocationSummary] = useState([]);
     useEffect(() => {
@@ -53,7 +53,7 @@ export default function Location() {
                     <div className="row no-gutters large">
 
                         {locationSummary.map((location) => {
-                            return <LocationItemLarge key={location.City} City={location.City} EventCount={location.EventCount} LocationImage={location.LocationImage}></LocationItemLarge>
+                            return <LocationItemLarge key={location.City} City={location.City} EventCount={location.EventCount} LocationImage={location.LocationImage} setCity={props.setCity}></LocationItemLarge>
                         })}
 
 
@@ -64,7 +64,7 @@ export default function Location() {
                         <div className="row no-gutters">
 
                             {locationSummary.map((location) => {
-                                return <LocationItemSmall key={location.City} City={location.City} EventCount={location.EventCount} LocationImage={location.LocationImage}></LocationItemSmall>
+                                return <LocationItemSmall key={location.City} City={location.City} EventCount={location.EventCount} LocationImage={location.LocationImage} setCity={props.setCity}></LocationItemSmall>
                             })}
 
 

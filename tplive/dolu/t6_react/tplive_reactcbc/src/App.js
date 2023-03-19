@@ -55,22 +55,12 @@ import ExportEventEntry from './components/ExportEventEntry';
 
 function App() {
 
-  // const [showFlag, setShowFlag] = useState(true);
-
-  // let location = useLocation();
-  // console.log(location.pathname);
-
-
-  // class App extends Component() {
   const [city, setCity] = useState();
+  function setMyCity(selCity) {
+    setCity(selCity);
+  }
   useEffect(() => {
-    // console.log(location.pathname);
     setCity(window.localStorage.getItem('userLocation') ? window.localStorage.getItem('userLocation') : 'All');
-    // if (location.pathname === '/PhoneSignUp' || location.pathname === '/PhoneSignUp') {
-    //   setShowFlag(false);
-    // } else {
-    //   setShowFlag(true);
-    // }
 
   }, [])
 
@@ -86,8 +76,6 @@ function App() {
             <Route exact path='/Event' element={<Navbar isFlag={'event'} />} />
             <Route exact path='/ContactUs' element={<Navbar isFlag={'contactus'} />} />
             <Route exact path='/' element={<Navbar isFlag={'home'} />} />
-
-
             <Route path='*' element={<Navbar isFlag={'all'} />} />
           </Routes>
           <Routes>
@@ -96,21 +84,17 @@ function App() {
           <BottomBar></BottomBar>
           <Routes>
             <Route exact path='/More' element={<More />} />
-            <Route exact path='/Location' element={<Location City="All" />} />
+            <Route exact path='/Location' element={<Location City="All" setCity={setMyCity} />} />
             <Route exact path='/Event' element={<HomePage />} />
-            {/* <Route exact path='/:eventID/EventDetails/' element={<EventDetails />} /> */}
             <Route exact path='/EventDetails' element={<EventDetails />} />
 
             <Route exact path='/Login' element={<Login />} />
-            {/* <Route exact path='/EventRegistration' element={<ProtectedRoute> <EventRegistration /> </ProtectedRoute>} /> */}
 
             <Route exact path='/EventRegistration' element={<EventRegistration />} />
-            {/* <Route exact path='/PhoneSignUp' element={<PhoneSignUp url='EventRegistration' />} /> */}
             <Route exact path='/PhoneSignUp' element={<PhoneSignUp />} />
             <Route exact path='/UserProfile' element={<UserProfile />} />
             {/* <Route exact path='/RegisteredProfile' element={<ProtectedRoute> <RegisteredProfile /> </ProtectedRoute>} /> */}
             <Route exact path='/RegisteredProfile' element={<RegisteredProfile />} />
-            {/* <Route exact path='/RegistrationCategory' element={<ProtectedRoute> <RegistrationCategory /> </ProtectedRoute>} /> */}
             <Route exact path='/RegistrationCategory' element={<RegistrationCategory />} />
             <Route exact path='/RegistrationCheckout' element={<RegistrationCheckout />} />
             <Route exact path='/PaymentGateway' element={<PaymentGateway />} />
@@ -120,9 +104,7 @@ function App() {
             <Route exact path='/EventPartcipants' element={<EventPartcipants />} />
             <Route exact path='/PlayerParticipation' element={<PlayerParticipation></PlayerParticipation>}></Route>
             <Route exact path='/EventCategoryPartcipants' element={<EventCategoryPartcipants></EventCategoryPartcipants>}></Route>
-
             <Route exact path='/TermsAndConditions' element={<TermsAndConditions></TermsAndConditions>}></Route>
-
             <Route exact path='/PrivacyPolicy' element={<PrivacyPolicy></PrivacyPolicy>}></Route>
             <Route exact path='/ContactUs' element={<ContactUs></ContactUs>}></Route>
             <Route exact path='/RefundAndCancellation' element={<RefundAndCancellation></RefundAndCancellation>}></Route>
@@ -131,10 +113,10 @@ function App() {
             <Route exact path='/ExportExcelComp' element={<ExportExcelComp></ExportExcelComp>}></Route>
             <Route exact path="/MyExcelComponant" element={<MyExcelComponant></MyExcelComponant>}></Route>
             <Route exact path='/ExportEventEntry' element={<ExportEventEntry ></ExportEventEntry>}></Route>
+
             <Route path='/' element={<HomePage />} />
           </Routes>
 
-          {/* in user profile, below component should not be displayed */}
           <HPGenere></HPGenere>
           <section>
             <HPGrowWithUs></HPGrowWithUs>
@@ -143,7 +125,6 @@ function App() {
           <PartnerSection></PartnerSection>
           <Footer />
         </UserAuthContextProvider>
-        {/* <HPLastSection></HPLastSection> */}
       </Router>
     </>
   );

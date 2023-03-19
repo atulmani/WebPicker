@@ -1,11 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { PaytmConfig } from "../paytm/config.js"
+// import { PaytmConfig } from "../paytm/config.js"
 import https from 'https'
-import PaytmChecksum from "paytmchecksum";
+// import PaytmChecksum from 'paytmChecksum';
+import PaytmChecksum from '../paytm/PaytmChecksum';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { functions } from '../firebase.js'
-import { connectFunctionsEmulator, httpsCallable } from "firebase/functions";
+// import { functions } from '../firebase.js'
+// import { connectFunctionsEmulator, httpsCallable } from "firebase/functions";
 
 export default function PaymentGateway() {
     const { state } = useLocation();
@@ -38,8 +39,8 @@ export default function PaymentGateway() {
         let orderId = 'O_' + eventDetails.EventCode + +'_' + participantDetails.PlayerID + +'_' + new Date().getTime();
 
         // Sandbox Credentials
-        let mid = "DIY12386817555501617"; // Merchant ID
-        let mkey = "bKMfNxPPf_QdZppa"; // Merhcant Key
+        let mid = "DIY12386817555501617";//"Tourna05657364781618";//"DIY12386817555501617"; // Merchant ID
+        let mkey = "bKMfNxPPf_QdZppa";//"3gkJ!L1XwzDE9&Zh";//"bKMfNxPPf_QdZppa"; // Merhcant Key
         var paytmParams = {};
 
         paytmParams.body = {
@@ -63,8 +64,9 @@ export default function PaymentGateway() {
             paytmParams.head = {
                 "signature": checksum
             };
-
+            console.log('checksum:', checksum);
             var post_data = JSON.stringify(paytmParams);
+            console.log('post_data : ', post_data);
 
             var options = {
                 /* for Staging */
@@ -86,10 +88,11 @@ export default function PaymentGateway() {
             var post_req = https.request(options, function (post_res) {
                 post_res.on('data', function (chunk) {
                     response += chunk;
-                    // console.log('in https.request');
+                    console.log('in https.request', response);
                 });
+                // console.log('response : ', response);
                 post_res.on('end', function () {
-                    // console.log('Response: ', response);
+                    console.log('Response: ', response);
                     // res.json({data: JSON.parse(response), orderId: orderId, mid: mid, amount: amount});
                     setPaymentData({
                         ...paymentData,
@@ -158,11 +161,6 @@ export default function PaymentGateway() {
                 "transactionStatus": function transactionStatus(paymentStatus) {
                     // console.log("paymentStatus => ", paymentStatus);
                     if (paymentStatus.STATUS === 'TXN_SUCCESS') {
-                        // console.log('id :', id,
-                        //     'participantDetails : ', participantDetails,
-                        //     'paymentAmount : ', paymentAmount,
-                        //     'categoryList : ', categoryList,
-                        //     'paymentStatus : ', paymentStatus);
 
 
                         navigate("/PaymentSuccessful", {
@@ -170,7 +168,8 @@ export default function PaymentGateway() {
                                 id: 1, participantDetails: participantDetails,
                                 paymentObj: paymentStatus,
                                 paymentStatus: 'Completed',
-                                selectedCategory: categoryList
+                                selectedCategory: categoryList,
+                                updatePayment: true
                             }
                         });
 
@@ -229,24 +228,25 @@ export default function PaymentGateway() {
                         {/* <form className="" action="/paynow" method="post"> */}
                         <div className="form-group">
                             <label htmlFor="">Name: </label>
-                            <input className="form-control" type="text" name="name" value={name} onChange={(e) =>
+                            <input className="form-control" type="text" name="name" value={name} disabled onChange={(e) =>
                                 setName(e.target.value)} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="">Email: </label>
-                            <input className="form-control" type="text" value={email} name="email" onChange={(e) =>
+                            <input className="form-control" type="text" value={email} name="email" disabled onChange={(e) =>
                                 setEmail(e.target.value)} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="">Phone: </label>
-                            <input className="form-control" type="text" value={phone} name="phone" onChange={(e) =>
+                            <input className="form-control" type="text" value={phone} name="phone" disabled onChange={(e) =>
                                 setPhone(e.target.value)} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="">Amount: </label>
-                            <input className="form-control" type="text" value={amount} name="amount" onChange={(e) =>
+                            <input className="form-control" type="text" value={amount} name="amount" disabled onChange={(e) =>
                                 setAmount(e.target.value)} />
                         </div>
+                        <br></br>
                         <div className="form-group">
                             <button className="btn form-control btn-primary" onClick={makePayment}>Pay Now</button>
                         </div>

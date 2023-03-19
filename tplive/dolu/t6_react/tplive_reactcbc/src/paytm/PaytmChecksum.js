@@ -1,17 +1,18 @@
 "use strict";
 
-var crypto = require('crypto');
+import { createCipheriv, createDecipheriv, randomBytes, createHash } from 'crypto';
+// var crypto  from 'crypto';
 
 class PaytmChecksum {
 
 	static encrypt(input, key) {
-		var cipher = crypto.createCipheriv('AES-128-CBC', key, PaytmChecksum.iv);
+		var cipher = createCipheriv('AES-128-CBC', key, PaytmChecksum.iv);
 		var encrypted = cipher.update(input, 'binary', 'base64');
 		encrypted += cipher.final('base64');
 		return encrypted;
 	}
 	static decrypt(encrypted, key) {
-		var decipher = crypto.createDecipheriv('AES-128-CBC', key, PaytmChecksum.iv);
+		var decipher = createDecipheriv('AES-128-CBC', key, PaytmChecksum.iv);
 		var decrypted = decipher.update(encrypted, 'base64', 'binary');
 		try {
 			decrypted += decipher.final('binary');
@@ -60,7 +61,7 @@ class PaytmChecksum {
 
 	static generateRandomString(length) {
 		return new Promise(function (resolve, reject) {
-			crypto.randomBytes((length * 3.0) / 4.0, function (err, buf) {
+			randomBytes((length * 3.0) / 4.0, function (err, buf) {
 				if (!err) {
 					var salt = buf.toString("base64");
 					resolve(salt);
@@ -83,12 +84,13 @@ class PaytmChecksum {
 
 	static calculateHash(params, salt) {
 		var finalString = params + "|" + salt;
-		return crypto.createHash('sha256').update(finalString).digest('hex') + salt;
+		return createHash('sha256').update(finalString).digest('hex') + salt;
 	}
 	static calculateChecksum(params, key, salt) {
 		var hashString = PaytmChecksum.calculateHash(params, salt);
 		return PaytmChecksum.encrypt(hashString, key);
 	}
 }
+
 PaytmChecksum.iv = '@@@@&&&&####$$$$';
-module.exports = PaytmChecksum;
+export default PaytmChecksum;

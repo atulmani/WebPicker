@@ -20,7 +20,7 @@ export default function RenderCategoryForRegistration(props) {
     const [isEdit, setIsEdit] = useState(true);
 
     useEffect(() => {
-
+        // console.log(props.registeredEventStatus);
         setCategorySelectFlag(props.registeredEventStatus ? true : false);
         setPartnerName(props.registeredEventStatus ? props.registeredEventStatus.PartnerPlayerName : "");
         setPartnerDetails(props.registeredEventStatus ? props.registeredEventStatus.PartnerPlayerID : "");
@@ -29,7 +29,8 @@ export default function RenderCategoryForRegistration(props) {
         if (props.registeredEventStatus && props.registeredEventStatus.EventType.toUpperCase() === 'DOUBLE') {
             setPartnerFlag(true);
         }
-        if (props.registeredEventStatus && props.registeredEventStatus.PaymentStatus && props.registeredEventStatus.PaymentStatus.toUpperCase() === 'COMPLETED') {
+        if (props.registeredEventStatus && props.registeredEventStatus.PaymentStatus
+            && (props.registeredEventStatus.PaymentStatus.toUpperCase() === 'COMPLETED' || props.registeredEventStatus.RegType != 'Self')) {
             setIsEdit(false);
         } else {
             setIsEdit(true);
@@ -94,7 +95,9 @@ export default function RenderCategoryForRegistration(props) {
                 }
                 // console.log(flag);
                 if (flag === true) {
+                    console.log(userRole);
                     setPartnerName(userRole.UserName);
+
                     props.partnerSetup(props.events.CategoryName, partnerDetails, userRole.UserName, userRole.userid);
                     setShowError(false);
                 }
@@ -111,24 +114,22 @@ export default function RenderCategoryForRegistration(props) {
     }
 
     function registerCategory() {
-        // e.preventDefault();
-        // console.log('registerCategory');
-        // console.log(props);
-
+        let flag = false;
         if (categorySelectFlag === true) {
-            props.calculateFees('REMOVE', Number(props.events.Fees), props.events);
+            flag = props.calculateFees('REMOVE', Number(props.events.Fees), props.events);
 
         } else {
-            props.calculateFees('ADD', Number(props.events.Fees), props.events);
+            flag = props.calculateFees('ADD', Number(props.events.Fees), props.events);
+
         }
         // console.log(categorySelectFlag);
-        if (props.events.EventType.toUpperCase() !== 'SINGLE') {
-            openPartnerSelection();
-
+        console.log(flag);
+        if (!flag) {
+            setCategorySelectFlag(!categorySelectFlag);
+            if (props.events.EventType.toUpperCase() !== 'SINGLE') {
+                openPartnerSelection();
+            }
         }
-        setCategorySelectFlag(!categorySelectFlag);
-
-
     }
     function openPartnerSelection() {
         setPartnerFlag(!partnerFlag);
@@ -143,9 +144,17 @@ export default function RenderCategoryForRegistration(props) {
     return (
         <div key={props.events.CategoryName} id={props.events.CategoryName + props.keyValue} className="col-lg-4 col-md-6 col-sm-12" style={{ padding: '0' }}>
             <div style={{ padding: '10px' }}>
+                {/* {console.log(props.registeredEventStatus)} */}
                 {/* {console.log('categorySelectFlag : ', categorySelectFlag, 'registeredEvent : ', registeredEvent)} */}
-                <div id={'div' + props.keyValue} style={isEdit ? { pointerEvents: 'all' } : { pointerEvents: 'none' }} className={categorySelectFlag ? "reg-category-card active" : "reg-category-card"}>
+                <div id={'div' + props.keyValue} style={isEdit ? { pointerEvents: 'all' } : { pointerEvents: 'none' }}
 
+                    className={categorySelectFlag ? "reg-category-card active " + (props && props.registeredEventStatus.PaymentStatus.toUpperCase() === 'PENDING' ? "payment-pending" : "payment-completed") : "reg-category-card"}>
+
+                    {/* className={categorySelectFlag ? "reg-category-card active " + (props.events.PaymentStatus.toUpperCase() === 'PENDING' ? 'payment-pending' : 'payment-completed') : "reg-category-card" + (props.events.PaymentStatus.toUpperCase() === 'PENDING' ? 'payment-pending' : 'payment-completed')}> */}
+                    {/*
+                <div className={props && props.eventDetails && props.eventDetails.PaymentStatus.toUpperCase() === 'PENDING' ?
+                    "reg-category-card active payment-pending" : "reg-category-card active payment-completed"}>
+ */}
                     <div className="display-flex-div"
                         onClick={registerCategory} id={'div2' + props.keyValue}>
 
@@ -230,7 +239,7 @@ export default function RenderCategoryForRegistration(props) {
                             }
 
                             {partnerName !== "" && <h3><strong>Partner : </strong>
-                                <span id={'spanPartnerName' + props.keyValue}>{partnerName}</span>
+                                <span id={'spanPartnerName' + props.keyValue}>{partnerName}{props.registeredEventStatus && props.registeredEventStatus.RegType === 'Partner' ? '*' : ''}</span>
                             </h3>}
 
                         </div>
@@ -271,6 +280,8 @@ export default function RenderCategoryForRegistration(props) {
 
                 </div>
             </div>
+            {props.registeredEventStatus && props.registeredEventStatus.RegType === 'Partner' && <span>Registered by Partner</span>}
+            {/* {props.registeredEventStatus.RegType === 'Partner' && <span>Registered by Partner</span>} */}
         </div >
 
     )

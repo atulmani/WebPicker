@@ -8,20 +8,24 @@ import { useNavigate } from 'react-router-dom';
 export default function RegistrationCheckout() {
     const { state } = useLocation();
     const { id, participantDetails, selectedCategory } = state;
-    const [eventCount, setEventCount] = useState(0);
-    const [totalPayment, setTotalPayment] = useState(0);
-    const [totalPendingPayment, setTotalPendingPayment] = useState(0);
+    // const [eventCount, setEventCount] = useState(0);
+    // const [totalPayment, setTotalPayment] = useState(0);
+    // const [totalPendingPayment, setTotalPendingPayment] = useState(0);
+    // const [convenienceCharge, setConvenienceCharge] = useState(0);
+    const [paymentObject, setPaymentObject] = useState({
+        eventCount: 0,
+        totalPayment: 0,
+        totalPendingPayment: 0,
+        convenienceCharge: 0
+    })
     const [pendingCategory, setPendingCategory] = useState([]);
+    const [openCheckoutDetails, setOpenCheckoutDetails] = useState(false);
 
     const [eventDetails, setEventDetails] = useState(window.localStorage.getItem('EventDetails') ? JSON.parse(window.localStorage.getItem('EventDetails')) : null);
     const navigate = useNavigate();
 
 
     useEffect(() => {
-        // console.log('useEffect');
-        // console.log('id ', id);
-        // console.log('participantDetails ', participantDetails);
-        // console.log('selectedCategory ', selectedCategory);
         setEventDetails(window.localStorage.getItem('EventDetails') ? JSON.parse(window.localStorage.getItem('EventDetails')) : null);
 
         let cntEvent = 0;
@@ -29,26 +33,40 @@ export default function RegistrationCheckout() {
         let tPendingPayment = 0;
         let pCat = [];
         selectedCategory.forEach(element => {
-            cntEvent++;
+
             tPayment = tPayment + Number(element.Fees);
             if (element.PaymentStatus.toUpperCase() === 'PENDING') {
+                cntEvent++;
                 tPendingPayment = tPendingPayment + Number(element.Fees);
                 pCat.push(element.CategoryName);
             }
         });
-        setEventCount(cntEvent);
-        setTotalPayment(tPayment);
-        setTotalPendingPayment(tPendingPayment);
+        // setEventCount(cntEvent);
+        // setTotalPayment(tPayment);
+        // setTotalPendingPayment(tPendingPayment);
+        let conCharge = 0;
+        if (eventDetails.ConvenienceCharge && eventDetails.ConvenienceCharge > 0) {
+            //setConvenienceCharge(conCharge);
+            conCharge = (tPendingPayment * eventDetails.ConvenienceCharge) / 100;
+        }
+
+        setPaymentObject({
+            eventCount: cntEvent,
+            totalPayment: tPayment,
+            totalPendingPayment: tPendingPayment,
+            convenienceCharge: conCharge
+        });
         // console.log(pCat);
         setPendingCategory(pCat);
 
     }, []);
-    function openMorePaymentDetails() {
 
+    function openMorePaymentDetails() {
+        setOpenCheckoutDetails(!openCheckoutDetails);
     }
     function paymentGateway() {
         // console.log('paymentGateway');
-        navigate("/PaymentGateway", { state: { id: 1, participantDetails: participantDetails, paymentAmount: totalPendingPayment, categoryList: pendingCategory } });
+        navigate("/PaymentGateway", { state: { id: 1, participantDetails: participantDetails, paymentAmount: (paymentObject.totalPendingPayment + paymentObject.convenienceCharge), categoryList: pendingCategory } });
 
     }
     return (
@@ -65,17 +83,18 @@ export default function RegistrationCheckout() {
                         {participantDetails.Gender.toUpperCase() === 'FEMALE' && <h5 className="reg-form-email female" id="playerGender">FEMALE</h5>}
                         {participantDetails.Gender.toUpperCase() === 'MALE' && <h5 className="reg-form-email male" id="playerGender">MALE</h5>}
 
-                        {/* <input type="hidden" id="hfPlayerDocID" />
-                        <input type="hidden" id="hfPlayerID" />
-                        <input type="hidden" id="hfGender" />
-                        <input type="hidden" id="hfcatCount" /> */}
                         <br />
                     </div>
 
                     <div className="row no-gutters" id="divRegEvent">
 
                         {selectedCategory && selectedCategory.map((events) => {
-                            return <CategoryCartItem key={events.CategoryName} eventDetails={events} ></CategoryCartItem>
+                            if (events.PaymentStatus === 'Pending') {
+                                return <CategoryCartItem key={events.CategoryName} eventDetails={events} ></CategoryCartItem>
+
+                            } else {
+                                return
+                            }
 
                         })}
 
@@ -84,10 +103,10 @@ export default function RegistrationCheckout() {
                     </div>
 
                     <br />
-                    {eventDetails.MiscellaneousChargeFees && <div className="convenience-fee-div" id="convenience-fee">
-                        <input type="hidden" id="hfConvenienceRate" />
-                        <h1>Convenience & Internet Charges: (<span id="ConvenienceRate">-%</span>) : <strong
-                            id="ConvinienceCharge"> Rs. {eventDetails.MiscellaneousChargeFees} /- </strong>
+                    {eventDetails.ConvenienceCharge && eventDetails.ConvenienceCharge > 0 && <div className="convenience-fee-div" id="convenience-fee">
+
+                        <h1>Convenience & Internet Charges: ( <span id="ConvenienceRate">{eventDetails.ConvenienceCharge} %</span> ) : <strong
+                            id="ConvinienceCharge"> Rs. {paymentObject.convenienceCharge} /- </strong>
                         </h1>
                     </div>}
                     <br />
@@ -117,7 +136,7 @@ export default function RegistrationCheckout() {
                     <hr style={{ border: 'none', borderTop: '1px solid #aaa' }} />
                     <br />
 
-                    <div className="category-checkout" id="paymentDiv" onClick={openMorePaymentDetails} style={{ opacity: '1', pointerEvents: 'all' }}>
+                    <div className={openCheckoutDetails ? "category-checkout active" : "category-checkout"} id="paymentDiv" onClick={openMorePaymentDetails} style={{ opacity: '1', pointerEvents: 'all' }}>
 
                         <div className="category-checkout-expand-more">
                             <span className="material-symbols-outlined">
@@ -127,18 +146,22 @@ export default function RegistrationCheckout() {
 
                         <div className="category-checkout-full-details">
 
-                            <div>
-                                <span>GS U17</span>
-                                <small>₹ 1,000</small>
-                            </div>
-                            <div>
-                                <span>XD U17</span>
-                                <small>₹ 2,000</small>
-                            </div>
-                            <div>
-                                <span>Boys Singles Under 17</span>
-                                <small>₹ 1,000</small>
-                            </div>
+                            {selectedCategory && selectedCategory.map((events) => {
+                                if (events.PaymentStatus === 'Pending') {
+                                    return <div key={events.CategoryName}>
+                                        <span>{events.CategoryName}</span>
+                                        <small>₹ {events.Fees}</small>
+                                    </div>
+                                }
+                                return;
+
+                            })}
+
+
+                            {paymentObject.convenienceCharge > 0 && <div>
+                                <span>Convenience Charge</span>
+                                <small>₹ {paymentObject.convenienceCharge}</small>
+                            </div>}
 
                         </div>
 
@@ -149,20 +172,19 @@ export default function RegistrationCheckout() {
                                     <h3>TOTAL</h3>
                                 </div>
                                 <div>
+                                    <h1><span>Payment : ₹ </span> <span id="totalPrice">{paymentObject.totalPendingPayment + paymentObject.convenienceCharge}</span></h1>
 
-                                    <h1><span>Total Payment : ₹ </span> <span id="totalPrice">{totalPayment}</span></h1>
-                                    {totalPayment != totalPendingPayment && <h1><span>Pending Payment : ₹ </span> <span id="totalPrice">{totalPendingPayment}</span> </h1>
-                                    }
-                                    <h2><span id="noOfCategories">{eventCount}</span> <span> CATEGORIES</span></h2>
+                                    {/* <h1><span>Payment : ₹ </span> <span id="totalPrice">{totalPayment}</span></h1> */}
+                                    {/* {totalPayment != totalPendingPayment && <h1><span>Pending Payment : ₹ </span> <span id="totalPrice">{totalPendingPayment}</span> </h1>
+                                    } */}
+                                    <h2><span id="noOfCategories">{paymentObject.eventCount}</span> <span> CATEGORIES</span></h2>
                                 </div>
                             </div>
-                            {totalPendingPayment > 0 && <div className="category-checkout-button-div">
+                            {paymentObject.totalPendingPayment > 0 && <div className="category-checkout-button-div">
                                 <button onClick={paymentGateway} className="mybutton button5"
                                     style={{ fontWeight: 'bold' }}>PAY NOW</button>
                             </div>}
 
-                            <div>
-                            </div>
                         </div>
 
                     </div>

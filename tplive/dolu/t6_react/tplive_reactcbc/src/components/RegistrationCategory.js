@@ -9,6 +9,7 @@ import { useUserAuth } from '../context/UserAuthcontext';
 import { useNavigate } from 'react-router-dom';
 import EDTournamentDetails from '../components/EDTournamentDetails'
 import { useRef } from 'react';
+import { reauthenticateWithPhoneNumber } from 'firebase/auth';
 
 export default function RegistrationCategory() {
     const { users } = useUserAuth();
@@ -24,6 +25,7 @@ export default function RegistrationCategory() {
     // const [categorySelect, setCategorySelect] = useState();
     const [eventID, setEventID] = useLocalStorage('EventID', null);
     const [registeredEvents, setRegisteredEvents] = useState([]);
+    const [showError, setShowError] = useState(false);
 
     const [showTotal, setShowTotal] = useState(false);
     // const [selectedCategory, setSelectedCategory] = useState([]);
@@ -34,37 +36,45 @@ export default function RegistrationCategory() {
     function saveCategory(e) {
         e.preventDefault();
         var regCategory = [];
+
+        let pendingFlag = false;
         rSelectedCategory.current.forEach(element => {
             var partName = '';
             var partnerUID = '';
             var partnerPlayerID = '';
             var pindex = partnerList.find(e => e.categoryName === element.CategoryName);
-            // console.log('pindex', pindex);
-            // console.log('partnerList[pindex]', pindex);
+            console.log('element ', element);
+            console.log('partnerList[pindex]', pindex);
             if (pindex) {
                 partName = pindex.partnerName;
                 partnerUID = pindex.partnerUserID;
                 partnerPlayerID = pindex.partnerID;
             }
-            var selCat = {
-                CategoryName: element.CategoryName,
-                EventType: element.EventType,
-                Fees: element.Fees,
-                Gender: element.Gender,
-                MaxTeamSize: element.MaxTeamSize,
-                PartnerPlayerID: partnerPlayerID,
-                PartnerPlayerName: partName,
-                PartnerUserID: partnerUID,
-                PaymentStatus: 'Pending'
-            }
-            regCategory.push(selCat);
-            let eventindex = registeredEvents.find(e => e.CategoryName === element.CategoryName);
-            var catArrayDel = deletedEvent;
-            if (eventindex < 0) {
-                catArrayDel.push(element.CategoryName);
-                setDeletedEvent(catArrayDel);
-            }
+            if (element.RegType === 'Self') {
+                var selCat = {
+                    CategoryName: element.CategoryName,
+                    EventType: element.EventType,
+                    Fees: element.Fees,
+                    Gender: element.Gender,
+                    MaxTeamSize: element.MaxTeamSize,
+                    PartnerPlayerID: partnerPlayerID,
+                    PartnerPlayerName: partName,
+                    PartnerUserID: partnerUID,
+                    PaymentStatus: element.PaymentStatus ? element.PaymentStatus : 'Pending'
+                }
+                if (element.PaymentStatus === 'Pending') {
+                    pendingFlag = true;
+                }
+                regCategory.push(selCat);
+                let eventindex = registeredEvents.find(e => e.CategoryName === element.CategoryName);
+                var catArrayDel = deletedEvent;
+                if (eventindex < 0) {
+                    catArrayDel.push(element.CategoryName);
+                    setDeletedEvent(catArrayDel);
+                }
 
+
+            }
 
         });
 
@@ -77,12 +87,47 @@ export default function RegistrationCategory() {
             CategoryList: regCategory,//selectedCategory,
             DeleteCategoryList: deletedEvent,
         };
+        console.log(regCategory);
         const ret1 = httpsCallable(functions, "registerAllEvent");
-        ret1(para1).then((result) => {
-            window.localStorage.setItem('SelectedCategory', JSON.stringify(regCategory));
-            navigate("/RegistrationCheckout", { state: { id: 1, participantDetails: participantDetails, selectedCategory: regCategory } });
-        })
+        if (regCategory.length > 0) {
+            console.log('before save')
 
+            ret1(para1).then((result) => {
+                window.localStorage.setItem('SelectedCategory', JSON.stringify(regCategory));
+                if (pendingFlag) {
+                    navigate("/RegistrationCheckout", {
+                        state: {
+                            id: 1,
+                            participantDetails: participantDetails,
+                            selectedCategory: regCategory
+                        }
+                    });
+
+                } else {
+                    navigate("/PaymentSuccessful", {
+                        state: {
+                            id: 1, participantDetails: participantDetails,
+                            paymentObj: null,
+                            paymentStatus: 'Completed',
+                            selectedCategory: null,
+                            updatePayment: false
+                        }
+                    });
+                }
+            })
+        } else {
+            console.log('in else')
+            navigate("/PaymentSuccessful", {
+                state: {
+                    id: 1, participantDetails: participantDetails,
+                    paymentObj: null,
+                    paymentStatus: 'Completed',
+                    selectedCategory: null,
+                    updatePayment: false
+                }
+            });
+
+        }
 
     }
 
@@ -108,27 +153,36 @@ export default function RegistrationCategory() {
     }
     //const handleClick = useCallback(() => {
     var calculateFees = function (isAdd, amount, eventD) {
+        setShowError(false);
+        let flag = false;
         let catArray = [];
-        console.log('in calculateFees isAdd : ', isAdd, ' amount : ', amount, ' evntid : ', eventD);
+        console.log('in calculateFees isAdd : ', isAdd, ' amount : ', amount, ' evntid : ', eventD, 'rTotalEvent.current : ', rTotalEvent.current);
         if (isAdd === 'ADD') {
-            catArray = rSelectedCategory.current;
-            catArray.push(eventD);
-            rTotalEvent.current = rTotalEvent.current + 1;
-            rTotalPayment.current = rTotalPayment.current + amount;
+            if (Number(eventDetails.MaxEntryForParticipant ? eventDetails.MaxEntryForParticipant : '0') > rTotalEvent.current) {
+                catArray = rSelectedCategory.current;
+                catArray.push(eventD);
+                rTotalEvent.current = rTotalEvent.current + 1;
+                rTotalPayment.current = rTotalPayment.current + amount;
+            } else {
+                flag = true;
+
+            }
 
         } else {
             let eventindex = rSelectedCategory.current.find(e => e.CategoryName === eventD.CategoryName);
             catArray = rSelectedCategory.current;
             catArray = catArray.splice(eventindex, 1)
-
             rTotalEvent.current = rTotalEvent.current - 1;
             rTotalPayment.current = rTotalPayment.current - amount;
         }
-        rSelectedCategory.current = catArray;
-        paymentObj.current.innerHTML = rTotalPayment.current;
-        countObj.current.innerHTML = rTotalEvent.current;
-        rTotalEvent.current === 0 ? setShowTotal(false) : setShowTotal(true);
-
+        if (!showError) {
+            rSelectedCategory.current = catArray;
+            paymentObj.current.innerHTML = rTotalPayment.current;
+            countObj.current.innerHTML = rTotalEvent.current;
+            rTotalEvent.current === 0 ? setShowTotal(false) : setShowTotal(true);
+        }
+        setShowError(flag);
+        return flag;
     }
     async function getRegisteredEvents() {
         var para1 = {};
@@ -153,19 +207,17 @@ export default function RegistrationCategory() {
                 tfees = tfees + Number(res.Fees);
 
                 setShowTotal(true);
-
+                var parnerDet = {};
                 if (res.EventType.toUpperCase() === 'DOUBLE') {
-                    var parnerDet = {
+                    parnerDet = {
                         categoryName: res.CategoryName,
                         partnerID: res.PartnerPlayerID,
                         partnerName: res.PartnerPlayerName,
                         partnerUserID: res.PartnerUserID
                     }
-
-                    catArrayPartner.push(parnerDet);
-
                 }
 
+                catArrayPartner.push(parnerDet);
 
             });
             setPartnerList(catArrayPartner);
@@ -228,12 +280,14 @@ export default function RegistrationCategory() {
                         <h1 className="reg-form-email" id="playerName">{participantDetails.UserName}</h1>
                         <h5 className="reg-form-email" id="playerID">({participantDetails.PlayerID})</h5>
                         {participantDetails.Gender === 'Female' ? <h5 className="reg-form-email female" id="playerGender">FEMALE</h5> : <h5 className="reg-form-email male" id="playerGender">MALE</h5>}
-                        <input type="hidden" id="hfPlayerDocID" />
+                        {/* <input type="hidden" id="hfPlayerDocID" />
                         <input type="hidden" id="hfPlayerID" />
-                        <input type="hidden" id="hfGender" />
+                        <input type="hidden" id="hfGender" /> */}
                         <br />
                     </div>
-
+                    {showError && <div className="row no-gutters" id="categoryDiv" >
+                        Maximum Category Allowed : {eventDetails.MaxEntryForParticipant}
+                    </div>}
                     <div className="row no-gutters" id="categoryDiv">
                         {categoryList && categoryList.map((events) => {
 

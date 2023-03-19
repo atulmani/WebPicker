@@ -6,6 +6,7 @@ import { functions } from '../firebase.js'
 import { httpsCallable } from "firebase/functions";
 import { useNavigate } from 'react-router-dom';
 import UserRole from './UserRole.js'
+import UserRoleRequest from './UserRoleRequest.js';
 import $ from "jquery";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -135,6 +136,7 @@ export default function UserProfile() {
                             <h3 style={{ fontWeight: '1000', color: '#348DCB', textAlign: 'center' }}>PROFILE</h3>
                             <h1 className="reg-form-email" id="userContact">{user ? user.phoneNumber : ''}</h1>
                             <br /><br />
+                            {/* <UserRoleRequest></UserRoleRequest> */}
                             <UserRole></UserRole>
                             <div className="reg-form-dots">
                                 <div id="profileSetupfirstFormDot" className={firstFlag ? 'active' : ''}></div>
