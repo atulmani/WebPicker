@@ -1,0 +1,366 @@
+.side-navbar {
+    position: relative;
+    top: -5px;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 40px;
+    box-sizing: initial;
+    background: #fff;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100% - 40px);
+    z-index: 99;
+    transition: 0.5s;
+}
+
+.side-navbar.mobile-side-navbar .closeBtn{
+    display: none;
+}
+
+@media (max-width: 990px) {
+ 
+    .side-navbar.mobile-side-navbar {
+        height: 0;
+        opacity: 0;
+        pointer-events: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 80%;
+        overflow-y: auto;
+        z-index: 100;
+        padding: 50px 0 ;
+        z-index: 9999;
+        background: #eee;
+        box-shadow: 0 0 200px 0 rgba(0, 0, 0, 0.8);
+        transition: 1s;
+    }
+
+    .side-navbar.mobile-side-navbar.open {
+        height: 100vh;
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .side-navbar.mobile-side-navbar .closeBtn {
+        display: block;
+        position: absolute;
+        top: 14px;
+        left: 10px;
+        color: #E10032;
+    }
+
+}
+
+.side-navbar-profile-div {
+    position: relative;
+    display: grid;
+    grid-template-columns: 30% 60% 10%;
+    width: 100%;
+    padding: 0 5px;
+    transition: 1s;
+}
+
+.side-navbar-profile-div:hover,
+.side-navbar-profile-div.active {
+    padding-left: 10px;
+}
+
+.side-navbar-profile-div .side-navbar-profile-div-border-left {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    height: calc(100% - -5px);
+    width: 5px;
+    background: #034687;
+    border-radius: 5px;
+}
+
+.side-navbar-profile-div .side-navbar-profile-div-circle,
+.side-navbar-profile-div .side-navbar-profile-div-arrow {
+    display: flex;
+    align-items: center;
+}
+
+.side-navbar-profile-div .side-navbar-profile-div-arrow span {
+    color: #151B25 !important;
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 700,
+        'GRAD' 0,
+        'opsz' 48
+}
+
+.side-navbar-profile-div .side-navbar-profile-div-circle div {
+    position: relative;
+    top: -2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #034687;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.side-navbar-profile-div .side-navbar-profile-div-circle span {
+    font-size: 0.8rem;
+    font-weight: bolder;
+    color: #fff;
+}
+
+.side-navbar-profile-div .side-navbar-profile-div-name div {
+    position: relative;
+    top: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px 0 30px 0;
+}
+
+.side-navbar-profile-div .side-navbar-profile-div-name h6 {
+    font-size: 1rem;
+    margin-bottom: 1px;
+    font-weight: bold;
+    color: #151B25;
+}
+
+.side-navbar-profile-div .side-navbar-profile-div-name h5 {
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: bold;
+    transition: 0s;
+}
+
+.side-navbar hr {
+    border: none;
+    border-top: 1px solid #bbb;
+    padding: 10px 0;
+}
+
+.side-navbar ul li:nth-child(1) {
+    border-radius: 10px 0 0 10px;
+}
+
+.side-navbar ul li:nth-child(1) a {
+    margin: 0 !important;
+}
+
+.side-navbar ul {
+    padding-left: 10px;
+}
+
+.side-navbar ul li {
+    position: relative;
+    width: 100%;
+    list-style: none;
+    padding-left: 5px;
+    transition: 0.5s;
+}
+
+.side-navbar ul li.active,
+.side-navbar ul li:hover {
+    background: #DBE8E1;
+    border-radius: 10px 0 0 10px;
+}
+
+.side-navbar ul li b {
+    display: none;
+    position: absolute;
+    height: 10px;
+    width: 100%;
+    background: #DBE8E1;
+}
+
+.side-navbar ul li.active b {
+    display: block;
+}
+
+.side-navbar ul li b:nth-child(1) {
+    top: -10px;
+}
+
+.side-navbar ul li b:nth-child(2) {
+    bottom: -10px;
+}
+
+.side-navbar ul li b::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 100%;
+    height: 120%;
+    background: #eee;
+}
+
+.side-navbar.white-background ul li b::before {
+    background: #fff;
+}
+
+.side-navbar ul li b:nth-child(1)::before {
+    border-radius: 0 0 10px 0;
+}
+
+.side-navbar ul li b:nth-child(2)::before {
+    border-radius: 0 10px 0 0;
+}
+
+.side-navbar ul li .parent-name {
+    padding: 10px 0 10px 5px;
+    margin: 10px 0;
+    display: flex;
+    text-decoration: none;
+    color: #151B25;
+    align-items: center;
+    transform: translateY(5px);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.side-navbar ul li .parent-name div.active-border {
+    position: absolute;
+    left: 0;
+    height: 40px;
+    width: 5px;
+    background: #034687;
+    border-radius: 10px;
+    display: none;
+}
+
+.side-navbar ul li .parent-name.active div.active-border {
+    display: block;
+}
+
+.side-navbar ul li .collapse-side-arrow {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    color: #151B25;
+    font-size: 2rem;
+    transition: 1s;
+}
+
+.side-navbar ul li .collapse-side-arrow.collapse-side {
+    transform: rotate(90deg);
+}
+
+.side-navbar ul li .collapse-side-div {
+    max-height: 0px;
+    pointer-events: none;
+    opacity: 0;
+    overflow: hidden;
+    border-top: 1px solid #aaa;
+    transition: 1s ease-in;
+}
+
+.side-navbar ul li .collapse-side-div.side-active {
+    max-height: 500px;
+    pointer-events: all;
+    opacity: 1;
+    transition: 1s ease-in;
+}
+
+.side-navbar ul li .collapse-side-div div {
+    margin-bottom: 5px;
+}
+
+.side-navbar ul li .collapse-side-div div a {
+    position: relative;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-bottom: 1px solid #ddd;
+    padding: 0 10px 0 20px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    color: #034687;
+    text-decoration: none;
+}
+
+.side-navbar ul li .collapse-side-div div a:hover div,
+.side-navbar ul li .collapse-side-div div a.active div {
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 30px;
+    width: 3px;
+    background: #034687;
+    border-radius: 10px;
+}
+
+.side-navbar ul li .collapse-side-div div a:nth-last-child(1) {
+    border: none;
+}
+
+.side-navbar ul li .collapse-side-div div a span {
+    width: 20px;
+    font-size: 1.3rem;
+}
+
+.side-navbar ul li.active div small,
+.side-navbar ul li:hover div small {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #034687;
+    padding-left: 5px;
+    transition: 1s;
+}
+
+.side-navbar ul li:nth-child(1):hover div small,
+.side-navbar ul li:nth-child(1).active div small {
+    padding-left: 0;
+    font-size: 0.8rem;
+}
+
+.side-navbar.mobile ul li div {
+    /* padding: 10px 0;
+  margin: 10px 0;
+  display: flex;
+  text-decoration: none;
+  color: #151B25;
+  align-items: center;
+  transition: 0.5s; */
+    font-size: 1.2rem;
+}
+
+.side-navbar ul li div span {
+    width: 35px;
+    color: #034687;
+    transition: 1s;
+}
+
+.side-navbar ul li.active div span,
+.side-navbar ul li:hover div span {
+    padding-left: 5px;
+    font-variation-settings:
+        'FILL' 1
+        /* padding: 10px; */
+}
+
+.side-navbar ul li:nth-child(1):hover div span,
+.side-navbar ul li:nth-child(1).active div span {
+    padding-left: 0;
+}
+
+/* @media (max-width: 992px) {
+    .side-navbar-large {
+        width: 0%;
+        display: none;
+        border-radius: 0 0 0 0;
+    }
+} */
+
+.side-navbar-social-media-div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    transform: translateY(-5px);
+    padding: 5px 0;
+}
+
+.side-navbar-social-media-div div span {
+    color: #666;
+}

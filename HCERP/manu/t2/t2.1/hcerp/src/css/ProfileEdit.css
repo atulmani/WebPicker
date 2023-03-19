@@ -1,0 +1,108 @@
+.add-staff-document-form {
+    padding: 10px;
+}
+
+.add-staff-document-form h1 {
+    font-size: 1.7rem;
+    text-align: center;
+    color: #E10032;
+}
+
+.input-box {
+    position: relative;
+    margin: 0 0 50px 0;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.input-box input {
+    width: 100%;
+    outline: none;
+    padding: 5px 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #151B25;
+    letter-spacing: 1px;
+    border: none;
+    border-bottom: 1px solid #aaa;
+}
+
+.input-box input:read-only {
+    background: #eee;
+}
+
+.input-box textarea {
+    width: 100%;
+    min-height: 120px;
+    resize: none;
+    outline: none;
+    padding: 5px 0;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #151B25;
+    border: none;
+    border-bottom: 1px solid #aaa;
+}
+
+.input-box span {
+    font-size: 1rem;
+    position: absolute;
+    left: 0;
+    color: #aaa;
+    transition: all 0.3s linear;
+    pointer-events: none;
+    font-weight: 600px;
+    padding: 0 10px;
+}
+
+.input-box input:focus~span,
+.input-box textarea:focus~span,
+.input-box input.active~span,
+.input-box textarea.active~span,
+.input-box input:valid~span,
+.input-box textarea:valid~span {
+    transform: translateY(-18px);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    color: #034687;
+}
+
+.input-box b {
+    position: absolute;
+    left: 10px;
+    bottom: 0;
+    height: 1px;
+    width: calc(100% - 20px);
+    background: #034687;
+    transform: scale(0);
+    transition: all 0.3s linear;
+    transform: left;
+}
+
+.input-box input:focus~b,
+.input-box textarea:focus~b,
+.input-box input.active~b,
+.input-box textarea.active~b,
+.input-box input:valid~b,
+.input-box textarea:valid~b {
+    transform: scale(1);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.add-staff-document-save-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

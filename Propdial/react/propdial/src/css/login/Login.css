@@ -1,0 +1,193 @@
+/* new login - page */
+.full-login-card {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.login-card-outter {
+    max-width: 380px;
+    width: 100%;
+    overflow: hidden;
+    height: 500px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    background: #fff;
+}
+
+.login-card {
+    display: flex;
+    justify-content: center;
+    background: #fff;
+    position: relative;
+    top: -50px;
+    height: 100%;
+    width: 200%;
+}
+
+.signin-signup-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 10px;
+    transition: 1s;
+    height: 100%;
+}
+
+.signin-signup-form .title {
+    text-align: left;
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #444;
+}
+
+.signin-signup-form small {
+    text-align: left;
+    width: 100%;
+    font-size: 0.9rem;
+    color: #bbb;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.signin-signup-form .input-field {
+    position: relative;
+    margin: 10px 0;
+    width: 100%;
+    height: 51px;
+    border-radius: 51px;
+    /* background: #ededed; */
+    background: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: 15% 85%;
+}
+
+.signin-signup-form .input-field span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #EB542E;
+    font-size: 1.2rem;
+}
+
+.signin-signup-form .input-field input {
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.signin-signup-form .input-field input::placeholder {
+    color: #aaa;
+}
+
+.phone-input-btn {
+    width: 50px;
+}
+
+.phone-input-btn .selected-flag {
+    width: 50px !important;
+    border-radius: 51px !important;
+    border-right: 1px solid #ddd;
+}
+
+.signin-signup-form .social-text {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.signin-signup-form .social-text small {
+    color: #EB542E;
+}
+
+.signin-signup-form .social-text small:hover {
+    text-decoration: underline;
+}
+
+.car-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: right;
+    padding: 0 5%;
+    display: block;
+    width: 47%;
+}
+
+.car-image img {
+    height: 500px;
+}
+
+/* .car-div{
+  position: absolute;
+  width: 100%;
+  height: 7%;
+  background: #EB542E;
+  color: #fff;
+  display: none;
+} */
+.login-above-logo {
+    display: none;
+}
+
+@media (max-width: 1080px) {
+    .car-image {
+        display: none;
+    }
+
+    /* .car-div{
+    bottom: 0;
+    display: block;
+  } */
+    .login-above-logo {
+        display: block;
+    }
+
+    .full-login-card {
+        align-items: center;
+        padding: 0 20px;
+    }
+
+    .login-card-outter {
+        height: 500px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* .car-div a{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+}
+
+.car-div a small{
+  font-size: 1rem;
+  position: relative;
+  top: -5px;
+  font-weight: 600;
+} */
+/* new login - page */

@@ -1,6 +1,4 @@
-function openPropertyDetails(propertyDetails){
-  propertyDetails.classList.toggle('open');
-}
+
 
 
 function addPropertyMenu(menuList) {
@@ -8,7 +6,7 @@ function addPropertyMenu(menuList) {
   var menuIndicator = document.getElementById('menuIndicator');
   var Basic = document.getElementById('Basic');
   var Details = document.getElementById('Details');
-  var Occupancy = document.getElementById('Occupancy');
+  var More = document.getElementById('More');
 
   var section1 = document.getElementById("section1");
   var section2 = document.getElementById("section2");
@@ -16,7 +14,7 @@ function addPropertyMenu(menuList) {
 
   Basic.classList.remove('active');
   Details.classList.remove('active');
-  Occupancy.classList.remove('active');
+  More.classList.remove('active');
 
   if (menuList === 'Basic') {
     menuIndicator.style.transform = 'translateX(0%)';
@@ -32,9 +30,9 @@ function addPropertyMenu(menuList) {
     section2.style.transform = 'translateX(-100%)';
     section3.style.transform = 'translateX(-100%)';
   }
-  else if (menuList === 'Occupancy') {
+  else if (menuList === 'More') {
     menuIndicator.style.transform = 'translateX(200%)';
-    Occupancy.classList.add('active');
+    More.classList.add('active');
     section1.style.transform = 'translateX(-200%)';
     section2.style.transform = 'translateX(-200%)';
     section3.style.transform = 'translateX(-200%)';
@@ -115,16 +113,6 @@ function openSaleSection() {
   }
 }
 
-function closeCarParkingClosedDiv() {
-  var extraCarParkingClosed = document.getElementById('extraCarParkingClosed');
-  extraCarParkingClosed.classList.remove('open');
-}
-
-function openCarParkingClosedDiv() {
-  var extraCarParkingClosed = document.getElementById('extraCarParkingClosed');
-  extraCarParkingClosed.classList.add('open');
-}
-
 function ageOfPropertyCalc() {
   var yearOfConstructionSelect = document.getElementById('yearOfConstructionSelect');
   var ageOfPropertyCount = document.getElementById('ageOfPropertyCount');
@@ -134,4 +122,130 @@ function ageOfPropertyCalc() {
 
   ageOfPropertyCount.innerHTML = dt.getFullYear() - Number(yearValue);
 
+}
+
+function openCarParkingClosedDiv() {
+  var extraCarParkingClosed = document.getElementById('extraCarParkingClosed');
+
+  extraCarParkingClosed.classList.toggle('open');
+
+  var Basment1 = document.getElementById('Basment1');
+  var Basment2 = document.getElementById('Basment2');
+  var Basment3 = document.getElementById('Basment3');
+  var Stilt = document.getElementById('Stilt');
+  var Shade = document.getElementById('Shade');
+  var Basment1Number = document.getElementById('Basment1Number');
+  var Basment2Number = document.getElementById('Basment2Number');
+  var Basment3Number = document.getElementById('Basment3Number');
+  var StiltNumber = document.getElementById('StiltNumber');
+  var ShadeNumber = document.getElementById('ShadeNumber');
+
+  Basment1.checked = false;
+  Basment2.checked = false;
+  Basment3.checked = false;
+  Stilt.checked = false;
+  Shade.checked = false;
+
+  Basment1Number.innerHTML = '0';
+  Basment2Number.innerHTML = '0';
+  Basment3Number.innerHTML = '0';
+  StiltNumber.innerHTML = '0';
+  ShadeNumber.innerHTML = '0';
+
+  closeCarParkingNumberChange();
+}
+
+function changeNumberAccordingInput(checkbox, number) {
+  if (checkbox.checked === true) {
+    number.innerHTML = '1';
+  } else {
+    number.innerHTML = '0';
+  }
+}
+
+function parkingNumberChange(checkbox, number) {
+
+  if (number.innerHTML === '0') {
+    checkbox.checked = true;
+    number.innerHTML = '1';
+  } else if (number.innerHTML === '1') {
+    number.innerHTML = '2';
+    checkbox.checked = true;
+  } else if (number.innerHTML === '2') {
+    number.innerHTML = '3';
+    checkbox.checked = true;
+  } else if (number.innerHTML === '3') {
+    checkbox.checked = false;
+    number.innerHTML = '0';
+  }
+
+}
+
+function closeCarParkingNumberChange() {
+  var carParkingCloseNumber = document.getElementById('carParkingCloseNumber');
+  var carParkingTotal = document.getElementById('carParkingTotal');
+  var carParkingOpenNumber = document.getElementById('carParkingOpenNumber').innerHTML;
+  var Basment1NumberString = document.getElementById('Basment1Number').innerHTML;
+  var Basment2NumberString = document.getElementById('Basment2Number').innerHTML;
+  var Basment3NumberString = document.getElementById('Basment3Number').innerHTML;
+  var StiltNumberString = document.getElementById('StiltNumber').innerHTML;
+  var ShadeNumberString = document.getElementById('ShadeNumber').innerHTML;
+
+  var totalclosedParkingNumber =
+    Number(Basment1NumberString) +
+    Number(Basment2NumberString) +
+    Number(Basment3NumberString) +
+    Number(StiltNumberString) +
+    Number(ShadeNumberString);
+
+  console.log(totalclosedParkingNumber);
+
+  carParkingCloseNumber.innerHTML = totalclosedParkingNumber;
+
+
+  carParkingTotal.innerHTML =
+    totalclosedParkingNumber +
+    Number(carParkingOpenNumber);
+
+}
+
+function additinalRoomsTotal() {
+  var additionalRoomsTotal = document.getElementById('additionalRoomsTotal');
+  var ServentRoomNumber = document.getElementById('ServentRoomNumber').innerHTML;
+  var ServentRoom2Number = document.getElementById('ServentRoom2Number').innerHTML;
+  var StoreRoomNumber = document.getElementById('StoreRoomNumber').innerHTML;
+  var PoojaRoomNumber = document.getElementById('PoojaRoomNumber').innerHTML;
+  var StudyRoomNumber = document.getElementById('StudyRoomNumber').innerHTML;
+  var PowderRoomNumber = document.getElementById('PowderRoomNumber').innerHTML;
+
+  additionalRoomsTotal.innerHTML =
+    Number(ServentRoomNumber) +
+    Number(ServentRoom2Number) +
+    Number(StoreRoomNumber) +
+    Number(PoojaRoomNumber) +
+    Number(StudyRoomNumber) +
+    Number(PowderRoomNumber);
+}
+
+function additinalAreaTotal() {
+  var additinalAreaTotal = document.getElementById('additinalAreaTotal');
+  var FrontYardNumber = document.getElementById('FrontYardNumber').innerHTML;
+  var BackYardNumber = document.getElementById('BackYardNumber').innerHTML;
+  var TerraceNumber = document.getElementById('TerraceNumber').innerHTML;
+
+  additinalAreaTotal.innerHTML =
+    Number(FrontYardNumber) +
+    Number(BackYardNumber) +
+    Number(TerraceNumber);
+}
+
+function proprtyDetailCard(card) {
+  card.classList.toggle('open');
+}
+
+function openBathroomNumberChoose(select) {
+  select.classList.add('open');
+}
+function closeBathroomNumberChoose(select) {
+  select.classList.remove('open');
 }

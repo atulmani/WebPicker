@@ -1,0 +1,89 @@
+.footer {
+    background: #282d32;
+    padding: 0 10px;
+    z-index: 10;
+}
+
+.footer-list {
+    text-align: center;
+    position: relative;
+}
+
+.footer-list img {
+    width: 70%;
+}
+
+.footer-list h1 {
+    position: relative;
+    color: #fff;
+    font-size: 2rem;
+}
+
+.footer-list h1::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    width: 100px;
+    height: 4px;
+    background: #4CD7D0;
+    border-radius: 4px;
+}
+
+.footer-list p {
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.footer-list div {
+    position: relative;
+    height: 45px;
+}
+
+.footer-list div::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    border-bottom: 1px dashed #666;
+    padding: 10px 0;
+    width: 50px;
+}
+
+.footer-list a {
+    position: relative;
+    top: 10px;
+    font-size: 0.9rem;
+    color: #ddd;
+    text-decoration: none;
+}
+
+.footer-list a:hover {
+    color: #fff;
+}
+
+.footer-list a span {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+}
+
+.footer hr {
+    border: none;
+    border-top: 1px solid #aaa;
+}
+
+.copyright {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copyright p {
+    color: #eee;
+    font-size: 0.8rem;
+}
