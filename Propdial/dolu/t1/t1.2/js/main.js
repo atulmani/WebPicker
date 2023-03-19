@@ -52,6 +52,15 @@ function closeMoreAddOptions() {
 //  more add options - end
 
 
+// sticky top property details - start
+
+function openPropertyDetails(propertyDetails) {
+  propertyDetails.classList.toggle('open');
+}
+
+// sticky top property details - end
+
+
 $(document).ready(function () {
   var owl = $('#clients-list');
   owl.owlCarousel({
