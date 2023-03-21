@@ -1,4 +1,3 @@
-import { Button } from 'bootstrap';
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { functions } from '../firebase.js'
@@ -11,42 +10,52 @@ export default function RenderCategoryForRegistration(props) {
     const [partnerFlag, setPartnerFlag] = useState(false);
     const [categorySelectFlag, setCategorySelectFlag] = useState(props.registeredEventStatus ? true : false);
     const [registeredEvent, setRegisteredEvent] = useState(props.registeredEventStatus);
-    const [partnerDetails, setPartnerDetails] = useState(props.registeredEventStatus ? props.registeredEventStatus.PartnerPlayerID : "");
     const [refDate, setRefDate] = useState(props.events.ReferenceDate);
     const [playerGender, setPlayerGender] = useState(props.playerGender);
     const [dateRefType, setDateRefType] = useState(props.events.DateRefType);
-    const [partnerName, setPartnerName] = useState(props.registeredEventStatus ? props.registeredEventStatus.PartnerPlayerName : "");
-    const [showError, setShowError] = useState(props.registeredEventStatus ? false : true);
-    const [isEdit, setIsEdit] = useState(true);
+    const [partnerObject, setPartnerObject] = useState({
+        partnerName: props.registeredEventStatus ? props.registeredEventStatus.PartnerPlayerName : "",
+        partnerID: props.registeredEventStatus ? props.registeredEventStatus.PartnerPlayerID : ""
+    });
+    const [errorObj, setErrorObj] = useState({
+        showError: props.registeredEventStatus ? false : true,
+        alreadyRegistered: false
+    });
 
+    const [isEdit, setIsEdit] = useState(true);
     useEffect(() => {
-        // console.log(props.registeredEventStatus);
         setCategorySelectFlag(props.registeredEventStatus ? true : false);
-        setPartnerName(props.registeredEventStatus ? props.registeredEventStatus.PartnerPlayerName : "");
-        setPartnerDetails(props.registeredEventStatus ? props.registeredEventStatus.PartnerPlayerID : "");
-        setShowError(props.registeredEventStatus ? false : true);
+        setPartnerObject({
+            partnerName: props.registeredEventStatus ? props.registeredEventStatus.PartnerPlayerName : "",
+            partnerID: props.registeredEventStatus ? props.registeredEventStatus.PartnerPlayerID : ""
+        });
+
+        setErrorObj({
+            showError: props.registeredEventStatus ? false : true,
+            alreadyRegistered: false
+        })
         setRegisteredEvent(props.registeredEventStatus);
         if (props.registeredEventStatus && props.registeredEventStatus.EventType.toUpperCase() === 'DOUBLE') {
             setPartnerFlag(true);
         }
         if (props.registeredEventStatus && props.registeredEventStatus.PaymentStatus
-            && (props.registeredEventStatus.PaymentStatus.toUpperCase() === 'COMPLETED' || props.registeredEventStatus.RegType != 'Self')) {
+            && (props.registeredEventStatus.PaymentStatus.toUpperCase() === 'COMPLETED' || props.registeredEventStatus.RegType !== 'Self')) {
             setIsEdit(false);
         } else {
             setIsEdit(true);
         }
-
-        // console.log(registeredEvent);
     }, [props.registeredEventStatus]);
 
     function CheckPartnerCode() {
-        // console.log(refDate);
         var rDate = new Date(refDate._seconds * 1000);
         var userRole = {};
         var para1 = {};
         para1 = {
-            PlayerID: partnerDetails
+            PlayerID: partnerObject.partnerID,
+            EventID: props.eventID,
+            CategoryID: props.events.CategoryName,
         };
+        // console.log(para1);
         const ret1 = httpsCallable(functions, "getPlayerDetailsWithPlayerID");
         ret1(para1).then((result) => {
             // console.log(result.data[0]);
@@ -67,63 +76,71 @@ export default function RenderCategoryForRegistration(props) {
                     Phone: result.data[0].Phone,
                     State: result.data[0].State,
                     UserName: result.data[0].UserName,
+                    AlreadyRegistered: result.data[0].AlreadyRegistered,
                 }
-                var dob = new Date(userRole.DateOfBirth._seconds * 1000);
-                // console.log("PlayerGender : ", playerGender, " :: userRole.Gender : " + userRole.Gender);
-                // console.log("EventGender : ", props.events.gender);
+                // console.log(userRole.AlreadyRegistered ? 'True flag' : 'false flag');
+                if (userRole.AlreadyRegistered) {
+                    // console.log(errorObj);
+                    setErrorObj({
+                        alreadyRegistered: 'false',//true,
+                        showError: 'false'//true,
+                    });
+                    // console.log(errorObj);
+                } else {
+                    var dob = new Date(userRole.DateOfBirth._seconds * 1000);
 
-                // console.log("dateRefType : ", dateRefType);
-                // console.log("dob : ", dob, " :: rDate : " + rDate);
-                // console.log(props.events);
+                    if ((playerGender.toUpperCase() === 'MALE' && userRole.Gender.toUpperCase() === 'MALE' && props.events.Gender.toUpperCase() === 'MALE') ||
+                        (playerGender.toUpperCase() === 'FEMALE' && userRole.Gender.toUpperCase() === 'FEMALE' && props.events.Gender.toUpperCase() === 'FEMALE') ||
+                        (playerGender.toUpperCase() === 'MALE' && userRole.Gender.toUpperCase() === 'FEMALE' && props.events.Gender.toUpperCase() === 'MIXED') ||
+                        (playerGender.toUpperCase() === 'FEMALE' && userRole.Gender.toUpperCase() === 'MALE' && props.events.Gender.toUpperCase() === 'MIXED')) {
 
-                if ((playerGender.toUpperCase() === 'MALE' && userRole.Gender.toUpperCase() === 'MALE' && props.events.Gender.toUpperCase() === 'MALE') ||
-                    (playerGender.toUpperCase() === 'FEMALE' && userRole.Gender.toUpperCase() === 'FEMALE' && props.events.Gender.toUpperCase() === 'FEMALE') ||
-                    (playerGender.toUpperCase() === 'MALE' && userRole.Gender.toUpperCase() === 'FEMALE' && props.events.Gender.toUpperCase() === 'MIXED') ||
-                    (playerGender.toUpperCase() === 'FEMALE' && userRole.Gender.toUpperCase() === 'MALE' && props.events.Gender.toUpperCase() === 'MIXED')) {
+                        if (dateRefType === 'Before' && dob <= rDate) {
+                            flag = true;
 
-                    if (dateRefType === 'Before' && dob <= rDate) {
-                        flag = true;
+                        } else if (dateRefType === 'After' && dob >= rDate) {
+                            flag = true;
+                        } else {
+                            flag = false;
+                        }
 
-                    } else if (dateRefType === 'After' && dob >= rDate) {
-                        flag = true;
                     } else {
                         flag = false;
                     }
+                    if (flag === true) {
+                        setPartnerObject({
+                            partnerName: userRole.UserName,
+                            partnerID: partnerObject.partnerID
+                        });
 
-                } else {
-                    flag = false;
+                        props.partnerSetup(props.events.CategoryName, partnerObject.partnerID, userRole.UserName, userRole.userid);
+                        setErrorObj({
+                            showError: false,
+                            alreadyRegistered: false
+                        });
+                    }
+                    if (flag === false) {
+                        setErrorObj({
+                            showError: false,
+                            alreadyRegistered: false
+                        });
+                    }
+
                 }
-                // console.log(flag);
-                if (flag === true) {
-                    console.log(userRole);
-                    setPartnerName(userRole.UserName);
-
-                    props.partnerSetup(props.events.CategoryName, partnerDetails, userRole.UserName, userRole.userid);
-                    setShowError(false);
-                }
-
             }
-            // console.log(flag);
-            if (flag === false) {
-                setShowError(false);
-            }
-
-            // console.log(userRole);
-
         });
     }
 
     function registerCategory() {
         let flag = false;
         if (categorySelectFlag === true) {
-            flag = props.calculateFees('REMOVE', Number(props.events.Fees), props.events);
+            flag = props.calculateFees('REMOVE', Number(props.events.Fees), props.events, partnerObject.partnerName, partnerObject.partnerID);
 
         } else {
-            flag = props.calculateFees('ADD', Number(props.events.Fees), props.events);
+            flag = props.calculateFees('ADD', Number(props.events.Fees), props.events, partnerObject.partnerName, partnerObject.partnerID);
 
         }
         // console.log(categorySelectFlag);
-        console.log(flag);
+        // console.log(flag);
         if (!flag) {
             setCategorySelectFlag(!categorySelectFlag);
             if (props.events.EventType.toUpperCase() !== 'SINGLE') {
@@ -144,17 +161,9 @@ export default function RenderCategoryForRegistration(props) {
     return (
         <div key={props.events.CategoryName} id={props.events.CategoryName + props.keyValue} className="col-lg-4 col-md-6 col-sm-12" style={{ padding: '0' }}>
             <div style={{ padding: '10px' }}>
-                {/* {console.log(props.registeredEventStatus)} */}
-                {/* {console.log('categorySelectFlag : ', categorySelectFlag, 'registeredEvent : ', registeredEvent)} */}
                 <div id={'div' + props.keyValue} style={isEdit ? { pointerEvents: 'all' } : { pointerEvents: 'none' }}
+                    className={categorySelectFlag ? "reg-category-card active " + (props && props.registeredEventStatus && props.registeredEventStatus.PaymentStatus && props.registeredEventStatus.PaymentStatus.toUpperCase() === 'PENDING' ? "payment-pending" : "payment-completed") : "reg-category-card"}>
 
-                    className={categorySelectFlag ? "reg-category-card active " + (props && props.registeredEventStatus.PaymentStatus.toUpperCase() === 'PENDING' ? "payment-pending" : "payment-completed") : "reg-category-card"}>
-
-                    {/* className={categorySelectFlag ? "reg-category-card active " + (props.events.PaymentStatus.toUpperCase() === 'PENDING' ? 'payment-pending' : 'payment-completed') : "reg-category-card" + (props.events.PaymentStatus.toUpperCase() === 'PENDING' ? 'payment-pending' : 'payment-completed')}> */}
-                    {/*
-                <div className={props && props.eventDetails && props.eventDetails.PaymentStatus.toUpperCase() === 'PENDING' ?
-                    "reg-category-card active payment-pending" : "reg-category-card active payment-completed"}>
- */}
                     <div className="display-flex-div"
                         onClick={registerCategory} id={'div2' + props.keyValue}>
 
@@ -238,8 +247,8 @@ export default function RenderCategoryForRegistration(props) {
                                                         </div>
                             }
 
-                            {partnerName !== "" && <h3><strong>Partner : </strong>
-                                <span id={'spanPartnerName' + props.keyValue}>{partnerName}{props.registeredEventStatus && props.registeredEventStatus.RegType === 'Partner' ? '*' : ''}</span>
+                            {partnerObject.partnerName !== "" && <h3><strong>Partner : </strong>
+                                <span id={'spanPartnerName' + props.keyValue}>{partnerObject.partnerName}{props.registeredEventStatus && props.registeredEventStatus.RegType === 'Partner' ? '*' : ''}</span>
                             </h3>}
 
                         </div>
@@ -257,12 +266,20 @@ export default function RenderCategoryForRegistration(props) {
                             <div style={{ position: 'relative', padding: '0 10px' }}>
                                 <div className="reg-participant-form-field">
                                     <input id={'txtPartnerID' + props.keyValue} type="text" required onBlur={CheckPartnerCode} onChange={(e) => {
-                                        setPartnerDetails(e.target.value);
-                                    }} value={partnerDetails} />
-                                    <span>Number Or Name</span>
+                                        // setPartnerID(e.target.value);
+                                        setPartnerObject({
+                                            partnerID: e.target.value,
+                                            partnerName: e.target.value === partnerObject.partnerID ? partnerObject.partnerName : ''
+                                        })
+                                    }} value={partnerObject.partnerID} />
+                                    <span>Player ID</span>
                                 </div>
-                                {showError && <div className="partner-error-message">
-                                    <h1>Given ID is not valid give another player ID</h1>
+                                {errorObj.showError && <div className="partner-error-message">
+                                    {/* {console.log(errorObj.alreadyRegistered)} */}
+                                    {!errorObj.alreadyRegistered && <h1>Given ID is not valid. Give another player ID</h1>}
+                                    {errorObj.alreadyRegistered && <h1>Given ID is already Registered. Give another player ID</h1>}
+
+
                                 </div>}
                                 <div className="cancel-partner"
                                     onClick={closePartner}>

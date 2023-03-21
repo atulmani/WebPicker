@@ -5,16 +5,16 @@ import { httpsCallable } from "firebase/functions";
 import EventDetailsMenu from './EventDetailsMenu'
 import EDTournamentDetails from './EDTournamentDetails'
 import '../css/EventDetails.css'
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 
 export default function EventPartcipants() {
-    let { state } = useLocation();
+    // let { state } = useLocation();
     //const { entryDetails } = state;
 
     const [eventDetails, setEventDetails] = useState(window.localStorage.getItem('EventDetails') ? JSON.parse(window.localStorage.getItem('EventDetails')) : null);
-    const [eventID, setEventID] = useState(window.localStorage.getItem("EventID") ? window.localStorage.getItem("EventID") : '');
+    // const [eventID, setEventID] = useState(window.localStorage.getItem("EventID") ? window.localStorage.getItem("EventID") : '');
 
-    const [participantCount, setParticipantCount] = useState(0);
+    // const [participantCount, setParticipantCount] = useState(0);
     const [participantDetails, setParticipantDetails] = useState(null);
     const [uniqueParticipantDetails, setUniqueParticipantDetails] = useState(null);
 
@@ -30,7 +30,7 @@ export default function EventPartcipants() {
             const ret1 = httpsCallable(functions, "getParticipants");
             ret1(para1).then(async (result) => {
                 var cnt = 0;
-                var ele = {};
+                // var ele = {};
                 // console.log(result.data);
                 result.data.forEach(element => {
                     cnt = cnt + 1;
@@ -55,7 +55,7 @@ export default function EventPartcipants() {
 
                 setUniqueParticipantDetails(uplayerList);
                 setParticipantDetails(result.data);
-                setParticipantCount(cnt);
+                // setParticipantCount(cnt);
                 // console.log(participantDetails);
                 // console.log(participantCount);
             });

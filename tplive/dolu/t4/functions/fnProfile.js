@@ -951,6 +951,32 @@ exports.getPlayerDetailsWithPlayerID =
       let resultList = [];
 
       const playerID = data.PlayerID;
+      const eventID = data.EventID;
+      const categoryID = data.CategoryID;
+      let alreadyRegistered = false;
+      await admin.firestore().collection("EventRegistrationDetails")
+        .where("EventID", "==", eventID)
+        .where("CategoryName", "==", categoryID)
+        .where("ParticipantID", "==", playerID).get().then((changes) => {
+          changes.forEach(change => {
+            alreadyRegistered = true;
+          });
+
+        });
+      if (alreadyRegistered === false) {
+        await admin.firestore().collection("EventRegistrationDetails")
+          .where("EventID", "==", eventID)
+          .where("CategoryName", "==", categoryID)
+          .where("PartnerPlayerID", "==", playerID).get().then((changes) => {
+            changes.forEach(change => {
+              alreadyRegistered = true;
+            });
+
+          });
+
+      }
+
+
       return await admin.firestore().collection("Participants").where("PlayerID", "==", playerID).get().then((changes) => {
         changes.forEach(change => {
           resultList.push({
@@ -966,6 +992,7 @@ exports.getPlayerDetailsWithPlayerID =
             Phone: change.data().Phone,
             State: change.data().State,
             UserName: change.data().UserName,
+            AlreadyRegistered: alreadyRegistered,
           });
           console.log(resultList);
         });

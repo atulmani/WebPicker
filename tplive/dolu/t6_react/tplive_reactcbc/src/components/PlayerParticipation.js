@@ -33,8 +33,8 @@ export default function PlayerParticipation() {
                 // });
 
                 setParticipantCount(result.data.length);
-                console.log(participantDetails);
-                console.log(participantCount);
+                // console.log(participantDetails);
+                // console.log(participantCount);
             });
         }
         fetchData();

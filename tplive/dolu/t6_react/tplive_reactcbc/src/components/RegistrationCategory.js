@@ -13,17 +13,18 @@ import { reauthenticateWithPhoneNumber } from 'firebase/auth';
 
 export default function RegistrationCategory() {
     const { users } = useUserAuth();
+
+    const { state } = useLocation();
+    const { id, participantDetails } = state;
+
     const rTotalEvent = useRef(0);
     const rTotalPayment = useRef(0);
     const paymentObj = useRef();
     const countObj = useRef();
     const rSelectedCategory = useRef([]);
-    const { state } = useLocation();
-    const { id, participantDetails } = state;
     const [categoryList, setCategoryList] = useState();
     const [eventDetails, setEventDetails] = useLocalStorage('EventDetails', null);
-    // const [categorySelect, setCategorySelect] = useState();
-    const [eventID, setEventID] = useLocalStorage('EventID', null);
+    // const [eventID, setEventID] = useLocalStorage('EventID', null);
     const [registeredEvents, setRegisteredEvents] = useState([]);
     const [showError, setShowError] = useState(false);
 
@@ -43,8 +44,6 @@ export default function RegistrationCategory() {
             var partnerUID = '';
             var partnerPlayerID = '';
             var pindex = partnerList.find(e => e.categoryName === element.CategoryName);
-            console.log('element ', element);
-            console.log('partnerList[pindex]', pindex);
             if (pindex) {
                 partName = pindex.partnerName;
                 partnerUID = pindex.partnerUserID;
@@ -80,17 +79,15 @@ export default function RegistrationCategory() {
 
         var para1 = {};
         para1 = {
-            EventID: eventID,
+            EventID: eventDetails.Eventid,// eventID,
             ParticipantID: participantDetails.PlayerID,
             PlayerID: participantDetails.id,
             ParticipantName: participantDetails.UserName,
             CategoryList: regCategory,//selectedCategory,
             DeleteCategoryList: deletedEvent,
         };
-        console.log(regCategory);
         const ret1 = httpsCallable(functions, "registerAllEvent");
         if (regCategory.length > 0) {
-            console.log('before save')
 
             ret1(para1).then((result) => {
                 window.localStorage.setItem('SelectedCategory', JSON.stringify(regCategory));
@@ -116,7 +113,6 @@ export default function RegistrationCategory() {
                 }
             })
         } else {
-            console.log('in else')
             navigate("/PaymentSuccessful", {
                 state: {
                     id: 1, participantDetails: participantDetails,
@@ -152,17 +148,18 @@ export default function RegistrationCategory() {
         setPartnerList(catArray);
     }
     //const handleClick = useCallback(() => {
-    var calculateFees = function (isAdd, amount, eventD) {
+    var calculateFees = function (isAdd, amount, eventD, partnerName, partnerID) {
         setShowError(false);
         let flag = false;
         let catArray = [];
-        console.log('in calculateFees isAdd : ', isAdd, ' amount : ', amount, ' evntid : ', eventD, 'rTotalEvent.current : ', rTotalEvent.current);
+        // console.log('in calculateFees isAdd : ', isAdd, ' amount : ', amount, ' evntid : ', eventD, 'rTotalEvent.current : ', rTotalEvent.current);
         if (isAdd === 'ADD') {
             if (Number(eventDetails.MaxEntryForParticipant ? eventDetails.MaxEntryForParticipant : '0') > rTotalEvent.current) {
                 catArray = rSelectedCategory.current;
                 catArray.push(eventD);
                 rTotalEvent.current = rTotalEvent.current + 1;
                 rTotalPayment.current = rTotalPayment.current + amount;
+
             } else {
                 flag = true;
 
@@ -188,7 +185,7 @@ export default function RegistrationCategory() {
         var para1 = {};
         para1 = {
             PlayerID: participantDetails.PlayerID,
-            EventID: eventID,
+            EventID: eventDetails.Eventid,
         };
         // console.log('getRegisteredEvents para1', para1)
         const ret1 = httpsCallable(functions, "getAllRegisteredEventListByPlayerCode");
@@ -294,6 +291,7 @@ export default function RegistrationCategory() {
                             let regEvent = registeredEvents && registeredEvents.find(e => e.CategoryName === events.CategoryName);
                             return <RenderCategoryForRegistration key={events.CategoryName}
                                 events={events}
+                                eventID={eventDetails.Eventid}
                                 keyValue={indexCategory++}
                                 calculateFees={calculateFees}
                                 partnerSetup={partnerSetup}

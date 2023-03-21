@@ -28,19 +28,19 @@ export default function PhoneSignUp(props) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log(users);
-        console.log(users.current);
+        // console.log(users);
+        // console.log(users.current);
         setURL(props.url ? "/" + props.url : "/")
     }, []);
     //  this.props && this.props.url !== "" && setURL(this.props.url);
     const getOTP = async (e) => {
         e.preventDefault();
         setError("");
-        console.log(phone);
+        // console.log(phone);
         if (phone === '' || phone === undefined || phone.length < 10) {
             return setError("Please enter valid Phone Number");
         }
-        console.log(users.current);
+        // console.log(users.current);
 
         if (users.current && users.current.phoneNumber === ("+" + phone)) {
             setIsLogged(true);
@@ -69,7 +69,7 @@ export default function PhoneSignUp(props) {
                 //if existing users then navigate to requested URL, otherwise go to profile page
                 //get user profile
                 await GetUserDetails(user.uid).then(() => {
-                    console.log('user.uid : ', user.uid);
+                    // console.log('user.uid : ', user.uid);
                     if (flag) {
                         navigate(url);
                     } else {
