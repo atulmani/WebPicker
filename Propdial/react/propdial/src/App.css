@@ -74,7 +74,7 @@ h6 {
   border-radius: 0 0 0 0;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 990px) {
   .large {
     width: 0%;
     display: none;
@@ -147,4 +147,19 @@ h6 {
   border: 2px solid transparent;
   color: #fff;
   text-decoration: none;
+}
+
+.padding-div {
+  padding: 10px;
+}
+
+@media (max-width: 990px) {
+  .padding-div {
+    padding: 10px 0;
+  }
+}
+
+.all-heading {
+  font-size: 1.8rem;
+  color: #EB542E;
 }

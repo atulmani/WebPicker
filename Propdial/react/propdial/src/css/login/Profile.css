@@ -1,0 +1,464 @@
+/* Profile - start */
+.full-profile-div {
+    padding: 10px;
+}
+
+
+
+.profile-card-div {
+    background: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.profile-card-div .content {
+    padding: 10px;
+}
+
+.user-name {
+    display: grid;
+    grid-template-columns: 15% 80% 5%;
+}
+
+.user-logo-parent-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-logo-parent-div .user-logo {
+    width: 80px;
+    height: 80px;
+    background: rgba(84, 204, 203);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 850px) {
+    /* .user-logo-parent-div {
+    display: block;
+  } */
+
+    .user-logo-parent-div .user-logo {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+.user-logo-parent-div .user-logo h4 {
+    position: relative;
+    top: 5px;
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+.user-logo-parent-div .user-logo img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.user-name .details,
+.property-status-property-card .details {
+    padding: 10px 15px;
+}
+
+.property-status-property-card .details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 10px;
+}
+
+@media (max-width: 850px) {
+    .property-status-property-card .details {
+        text-align: center;
+        padding: 20px 10px 0 10px;
+    }
+}
+
+.user-name .details h5,
+.property-status-property-card .details h5 {
+    font-size: 1.3rem;
+    color: #666;
+    font-weight: 600;
+}
+
+.user-name .details p,
+.property-status-property-card .details p,
+.property-status-property-card .details small {
+    margin: 0;
+    color: #aaa;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.property-status-image-document {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+.property-status-image-document .property-status-image-document-card {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 35%;
+    height: 90px;
+    border-radius: 10px;
+    background: #efefef;
+    padding: 10px;
+    cursor: pointer;
+}
+
+@media (max-width: 500px) {
+    .property-status-image-document {
+        justify-content: space-between;
+    }
+
+    .property-status-image-document .property-status-image-document-card {
+        width: 45%;
+    }
+}
+
+.property-status-image-document .property-status-image-document-card img {
+    position: absolute;
+    top: -25px;
+    width: 100%;
+    height: 80px;
+}
+
+.property-status-image-document .property-status-image-document-card h1 {
+    position: relative;
+    top: 30px;
+    font-size: 0.8rem;
+    margin: 0;
+    color: #444;
+    transition: 0.3s;
+}
+
+.property-status-image-document .property-status-image-document-card:hover h1 {
+    font-size: 0.9rem;
+    text-decoration: underline;
+
+}
+
+.user-name .edit {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.user-name .edit span {
+    color: #666;
+    font-size: 1.3rem;
+}
+
+.edit-profile-div {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    background: #F8EA8C;
+}
+
+.edit-profile-div small {
+    margin: 0;
+    width: 60%;
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.edit-profile-div div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 40%;
+}
+
+.dots {
+    border-radius: 10px;
+    text-align: center;
+    padding: 3%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(to right, #DC948B, #E4947C);
+}
+
+.dots h6 {
+    position: relative;
+    top: 8px;
+    padding-left: 8px;
+}
+
+.dots:hover span {
+    color: #fff;
+}
+
+.dots:hover h6 {
+    color: #fff;
+}
+
+.address-div {
+    display: grid;
+    grid-template-columns: 10% 90%;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.address-div .icon {
+    position: relative;
+    top: 3px;
+    width: 33px;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(84, 204, 203, 0.3);
+    /* color: #555; */
+}
+
+.address-div .icon span {
+    font-size: 1.2rem;
+}
+
+.address-div .address-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0px 0px 20px;
+}
+
+.address-div .address-text h5 {
+    position: relative;
+    top: -5px;
+    font-size: 1rem;
+    color: #444;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.address-div .address-text small {
+    position: relative;
+    top: -4px;
+    margin-top: 0;
+    font-size: 0.7rem;
+    color: #aaa;
+}
+
+.address-div .address-text div {
+    text-align: right;
+    position: relative;
+    top: -3px;
+}
+
+.address-div .address-text div span {
+    color: #ccc;
+}
+
+.add-address {
+    border-top: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.add-address small {
+    font-size: 1rem;
+    color: #888;
+}
+
+.add-address small:nth-child(2) {
+    padding-left: 10px;
+    position: relative;
+    top: -2px;
+}
+
+.vehicle-div .heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.vehicle-div .heading h5 {
+    font-size: 1rem;
+    color: #555;
+    font-weight: 600;
+}
+
+.vehicle-div .heading div span {
+    color: #EB542E;
+    font-size: 1rem;
+}
+
+.vehicle-div .heading div small {
+    color: #EB542E;
+    font-size: 1rem;
+    position: relative;
+    top: -2px;
+    font-weight: 600;
+}
+
+.vehicle-card {
+    position: relative;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.extra-service {
+    position: relative;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    height: 100px;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.extra-service div {
+    position: relative;
+    top: 3px;
+}
+
+.extra-service div .material-symbols-outlined {
+    /* padding: 20px 0 0 0; */
+    font-size: 2rem;
+    color: #4CD7D0;
+}
+
+.extra-service h1 {
+    font-size: 1rem;
+    color: #666;
+    margin: 0;
+}
+
+.extra-service-h5 {
+    /* margin-bottom: 6%; */
+    font-size: 0.7rem;
+    color: #aaa;
+    font-weight: 600;
+    /* padding-top: 5px; */
+}
+
+.addon-service {
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background: #BCECE0;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    height: 180px;
+    /* width:120px; */
+    /* padding-top: 4%; */
+    /* padding-bottom: 6%; */
+}
+
+.addon-service div .material-symbols-outlined {
+    /* padding: 20px 0 0 0; */
+    font-size: 2.5rem;
+    color: #4CD7D0;
+}
+
+.addon-service-h5 {
+    /* margin-bottom: 6%; */
+    font-size: 0.7rem;
+    color: #222;
+    font-weight: 600;
+    /* padding-top: 5px; */
+}
+
+.vehicle-card div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.vehicle-card div .material-symbols-outlined {
+    padding: 0px 0 20px 0;
+    font-size: 2.5rem;
+    color: #4CD7D0;
+}
+
+.vehicle-card div h5 {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #222;
+    font-weight: 600;
+    padding-top: 5px;
+}
+
+.vehicle-card div small {
+    font-size: 0.7rem;
+    color: #888;
+    font-weight: 500;
+    margin: 0;
+}
+
+.add-vehicle-card {
+    position: relative;
+    height: 135px;
+}
+
+.add-vehicle-card span {
+    position: absolute;
+    top: 57%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    font-size: 5rem;
+}
+
+.last-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.last-div a {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #EB542E;
+}
+
+.last-div small {
+    font-size: 0.9rem;
+    color: #444;
+    font-weight: 500;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+}
+
+/* Profile - end */

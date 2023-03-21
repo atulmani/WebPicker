@@ -3314,8 +3314,14 @@ input[type=number] {
   font-size: 2rem;
 } */
 
-.property-status-padding-div {
+.padding-div {
   padding: 10px;
+}
+
+@media (max-width: 990px) {
+  .padding-div {
+    padding: 10px 0;
+  }
 }
 
 .property-status-event-id {
@@ -3329,12 +3335,6 @@ input[type=number] {
 
   .property-status-event-id {
     top: 0;
-  }
-}
-
-@media (max-width: 750px) {
-  .property-status-padding-div {
-    padding: 10px 0;
   }
 }
 

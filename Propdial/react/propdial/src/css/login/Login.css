@@ -91,6 +91,14 @@
     color: #aaa;
 }
 
+.signin-signup-form .input-field input.otp-input {
+    padding-right: 10px;
+    letter-spacing: 20px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
 .phone-input-btn {
     width: 50px;
 }

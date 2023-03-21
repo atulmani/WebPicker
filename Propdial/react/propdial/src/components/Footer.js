@@ -5,7 +5,7 @@ export default function Footer() {
     return (
         <>
 
-            <div className="footer">
+            <div className="footer large">
                 <div className="container-fluid"><br /><br />
                     <div className="row no-gutters">
 

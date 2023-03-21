@@ -3,13 +3,13 @@
   "public": "public",
   "rewrites": [
     {
-      "source": "/hcerp/**",
+      "source": "/propdial/**",
       "destination": "/index.html"
     }
   ],
   "headers": [
     {
-      "source": "/hcerp/**",
+      "source": "/propdial/**",
       "headers": [
         {
           "key": "Cache-Control",
