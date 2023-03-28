@@ -59,7 +59,7 @@ export default function UserRoleRequest() {
 
             selectedRole.current = selectedRole.current.splice(index, 1)
         }
-        console.log(selectedRole.current);
+        // console.log(selectedRole.current);
 
     }
 

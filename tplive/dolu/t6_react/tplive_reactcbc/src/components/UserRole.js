@@ -17,7 +17,7 @@ export default function UserRole() {
             if (user.userInfo !== null) {
                 setUserRole(userDetails.UserRole);
                 let lUserRole = JSON.parse(window.localStorage.getItem('SelectedRole'));
-                console.log(lUserRole);
+                // console.log(lUserRole);
                 if (lUserRole && lUserRole.uid === userDetails.id) {
                     setSelectedRole(lUserRole)
                 } else {

@@ -57,7 +57,6 @@ export default function RegisteredProfile() {
                     para1 = {
                         userID: userDetails.id,
                     };
-                    console.log(para1);
                     let participant = {};
                     let userParticipant = [];
                     const ret1 = httpsCallable(functions, "getRegisteredParticant");
@@ -181,7 +180,6 @@ export default function RegisteredProfile() {
         // e.target.checked ? setGender('Female') : setGender('Male');
         e.target.checked && setGender('Female');
         !e.target.checked && setGender('Male');
-        console.log('gender : ', gender);
     }
 
     function selectSize(e) {

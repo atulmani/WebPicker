@@ -53,11 +53,15 @@ export function UserAuthContextProvider({ children }) {
                 isLoggedIn: true,
                 loading: false
             });
+            // auth().setPersistence(auth.Auth.Persistence.LOCAL);
             users.current = currentUser
             // console.log('users : ', users);
         });
         return () => {
+            // auth().setPersistence(auth.Auth.Persistence.LOCAL)(() => {
             unsubscrib();
+            // })
+
         }
     }, []);
     return <userAuthContext.Provider value={{ login, signUp, logout, googleSignIn, setUpRecapcha, user, users, userDetails }}>{children}</userAuthContext.Provider>

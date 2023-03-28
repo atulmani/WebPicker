@@ -34,8 +34,8 @@ export default function PaymentGateway() {
     // const app = express();
 
     const initialize = () => {
-        console.log('i initialize ');
-        console.log(eventDetails);
+        // console.log('i initialize ');
+        // console.log(eventDetails);
         let orderId = 'O_' + eventDetails.EventCode + +'_' + participantDetails.PlayerID + +'_' + new Date().getTime();
 
         // Sandbox Credentials
@@ -64,9 +64,9 @@ export default function PaymentGateway() {
             paytmParams.head = {
                 "signature": checksum
             };
-            console.log('checksum:', checksum);
+            // console.log('checksum:', checksum);
             var post_data = JSON.stringify(paytmParams);
-            console.log('post_data : ', post_data);
+            // console.log('post_data : ', post_data);
 
             var options = {
                 /* for Staging */
@@ -88,11 +88,11 @@ export default function PaymentGateway() {
             var post_req = https.request(options, function (post_res) {
                 post_res.on('data', function (chunk) {
                     response += chunk;
-                    console.log('in https.request', response);
+                    // console.log('in https.request', response);
                 });
                 // console.log('response : ', response);
                 post_res.on('end', function () {
-                    console.log('Response: ', response);
+                    // console.log('Response: ', response);
                     // res.json({data: JSON.parse(response), orderId: orderId, mid: mid, amount: amount});
                     setPaymentData({
                         ...paymentData,
@@ -112,7 +112,7 @@ export default function PaymentGateway() {
     }
 
     const makePayment = () => {
-        console.log('in makePayment', paymentData);
+        // console.log('in makePayment', paymentData);
         setLoading(true);
         var config = {
             "root": "",
@@ -198,15 +198,15 @@ export default function PaymentGateway() {
                 }
             }
         };
-        console.log(window);
-        console.log(config);
+        // console.log(window);
+        // console.log(config);
 
         if (window.Paytm && window.Paytm.CheckoutJS) {
             // initialze configuration using init method
-            console.log(config);
+            // console.log(config);
 
             window.Paytm.CheckoutJS.onLoad(function excecuteAfterCompleteLoad() {
-                console.log(config);
+                // console.log(config);
 
                 window.Paytm.CheckoutJS.init(config).then(function onSuccess() {
                     // console.log('Before JS Checkout invoke');

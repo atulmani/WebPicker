@@ -6,7 +6,6 @@ import { Button, Tooltip } from 'react-bootstrap';
 import XLSX from 'sheetjs-style'
 
 const ExportExcel = ({ excelData, fileName, buttonName }) => {
-    console.log('in ExportExcel');
     const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
     const fileExtension = '.xlsx';
 

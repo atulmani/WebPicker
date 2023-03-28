@@ -31,7 +31,7 @@ export default function ExportEventEntry() {
                 para1 = {
                     organizerID: user.userInfo.uid
                 };
-                console.log(para1)
+                // console.log(para1)
                 if (isAdminIndex >= 0) {
                     ret1 = httpsCallable(functions, "getAllEventDetails");
 
@@ -85,7 +85,7 @@ export default function ExportEventEntry() {
             para1 = {
                 EventID: eID
             };
-            console.log(para1)
+            // console.log(para1)
             ret1 = httpsCallable(functions, "getParticipants");
 
             ret1(para1).then(async (result) => {
@@ -152,9 +152,6 @@ export default function ExportEventEntry() {
 
     return (
         <div>
-            {console.log(events)}
-
-
             {events && events.map((event) => {
 
                 return <Button key={event.Eventid}

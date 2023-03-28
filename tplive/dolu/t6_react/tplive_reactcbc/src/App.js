@@ -38,6 +38,7 @@ import {
   // useLocation,
   Link
 } from "react-router-dom";
+
 import ProtectedRoute from './components/ProtectedRoute';
 import EventRegistration from './components/EventRegistration';
 import RegisteredProfile from './components/RegisteredProfile';
@@ -54,18 +55,26 @@ import ExportEventEntry from './components/ExportEventEntry';
 
 
 function App() {
+  const [showFlag, setShowFlag] = useState(true);
 
   const [city, setCity] = useState();
+  // let location = useLocation();
+
   function setMyCity(selCity) {
     setCity(selCity);
   }
   useEffect(() => {
+    // console.log(window.location.pathname);
+    if (window.location.pathname === '/PhoneSignUp' || window.location.pathname === '/UserProfile') {
+      setShowFlag(false);
+    }
     setCity(window.localStorage.getItem('userLocation') ? window.localStorage.getItem('userLocation') : 'All');
 
   }, [])
 
   return (
     <>
+
 
       <Router>
         <BeforeNavbar city={city} />
@@ -122,6 +131,7 @@ function App() {
             <HPGrowWithUs></HPGrowWithUs>
           </section>
           <HPGameSection></HPGameSection>
+
           <PartnerSection></PartnerSection>
           <Footer />
         </UserAuthContextProvider>

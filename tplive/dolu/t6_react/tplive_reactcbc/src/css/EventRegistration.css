@@ -470,7 +470,7 @@ span.already-active {
     opacity: 0;
     pointer-events: none;
     transition: 0.5s;
-    z-index: 9999;
+    z-index: 99;
     cursor: pointer;
     transition: 1s;
 }
@@ -569,9 +569,10 @@ span.already-active {
 }
 
 .category-checkout .category-checkout-first-details .first-details-total h1 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin: 0;
     color: #fff;
+    font-weight: 500;
     transition: 1s;
 }
 
