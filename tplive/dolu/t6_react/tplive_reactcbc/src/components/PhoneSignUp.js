@@ -45,12 +45,15 @@ export default function PhoneSignUp(props) {
         if (users.current && users.current.phoneNumber === ("+" + phone)) {
             setIsLogged(true);
         }
-
+        console.log(users.current);
         try {
+            console.log(users.current);
+            console.log(phone);
             const respons = await setUpRecapcha('+' + phone);
             // console.log(respons);
             setConfirmObj(respons);
-            setFlag(true);
+            console.log(respons);
+            // setFlag(true);
         } catch (error) {
             setError(error.message);
         }
@@ -100,7 +103,7 @@ export default function PhoneSignUp(props) {
                         <div className="">
                             {error && <Alert variant='danger'>{error}</Alert>}
                             {/* {!users && <Form onSubmit={getOTP} style={{ display: !flag ? "block" : "none" }}> */}
-                            {true && <Form onSubmit={getOTP} style={{ display: !flag ? "block" : "none" }}>
+                            {<Form onSubmit={getOTP} style={{ display: !flag ? "block" : "none" }}>
 
                                 <div className='mb-b' controlId='formBasicPhoneNumber'>
                                     {/* <PhoneInput defaultCountry='IN'
@@ -152,7 +155,7 @@ export default function PhoneSignUp(props) {
                             </Form>
                             }
                             {/* {!users && <Form onSubmit={verifyOTP} style={{ display: flag ? "block" : "none" }}> */}
-                            {true && <Form onSubmit={verifyOTP} style={{ display: flag ? "block" : "none" }}>
+                            {<Form onSubmit={verifyOTP} style={{ display: flag ? "block" : "none" }}>
 
                                 <div className='txt_field'>
                                     <input type="text" required onChange={(e) => setOtp(e.target.value)}>

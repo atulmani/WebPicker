@@ -13,8 +13,9 @@ import {
     GoogleAuthProvider,
     signInWithPopup
 } from "firebase/auth";
-// import firebase from "firebase/auth"
-import { auth, functions } from '../firebase'
+import { auth, functions } from '../firebase';
+import firebase from "firebase/auth"
+
 import { httpsCallable } from "firebase/functions";
 
 
@@ -58,15 +59,25 @@ export function UserAuthContextProvider({ children }) {
     useEffect(() => {
         const unsubscrib = onAuthStateChanged(auth, (currentUser) => {
 
-            setUser({
-                userInfo: currentUser,
-                isLoggedIn: true,
-                loading: false
-            });
-            // setPersistence(user, inMemoryPersistence);
-            auth().setPersistence(auth.Auth.Persistence.LOCAL);
+            // setUser({
+            //     userInfo: currentUser,
+            //     isLoggedIn: true,
+            //     loading: false
+            // });
 
-            users.current = currentUser
+            // setPersistence(user, browserSessionPersistence);
+            auth().setPersistence(auth.Auth.Persistence.LOCAL).then(() => {
+                setUser({
+                    userInfo: currentUser,
+                    isLoggedIn: true,
+                    loading: false
+                });
+                users.current = currentUser;
+                console.log('Persistence set successfully');
+            }).catch((error) => {
+                console.log(error);
+            })
+            // users.current = currentUser;
             // console.log('users : ', users);
         });
         return () => {

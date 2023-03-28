@@ -1,0 +1,90 @@
+React - APP
+Development:
+
+Step1: Create React js app
+refer https://reactjs.org/docs/create-a-new-react-app.html
+npx create-react-app my-app
+cd my-app
+npm start
+
+Step2: Change Local Port 
+how to change the default port:
+http://192.168.0.109:3000
+
+Step3: Setup VSCode
+Packages on VSCode:
+react developer  tool in chrom extension
+thunder clint extnsion in VSCode - to test get /post API 
+ES7 react/redux/graphQL/React native snippet
+bracket pair colorizer
+auto rename tag
+live server
+pritter code 
+reactjs.org
+
+Step4: Add Firebase config
+- Create a project in Firebase
+- Open project in VSCode
+- Create below files on src level in VSCode
+	- .env: This file contains environment variables that are used across all environments.
+
+	- .env.local: This file contains environment variables that are specific to the local development environment.
+
+	- .env.development: This file contains environment variables that are specific to the development environment.
+
+	- .env.production: This file contains environment variables that are specific to the production environment.
+
+	- .env.test: This file contains environment variables that are specific to the test environment.
+
+- Setup firebase config file as firebase.js 
+
+Step 5: Install below SDKs through VSCode terminal
+	- check package.json, few sdk to be added	 
+	- npm install react - install latest version of react but this automatically install while creating app using npx create-react-app my-app
+	- npm install firebase
+	- npm install react-bootstrap bootstrap
+	- npm install react-router-dom
+	- npm audit fix --force
+	
+Step 6: Add Firebase Authentication services
+	- create below folder under src folder
+	- context
+		AuthContenxt.js
+	- Copy the codebase from Hyper Cloud Basic react application
+
+Step 7: Add Components
+	- create below folder under src folder
+	- components
+		- home.js
+		- login
+			- signUpUsingEmailPwd.js
+			- signInUsingEmailPwd.js
+			- signInUsingPhone.js
+			- userProfile.js
+		- admin
+			- adminDashboard.js
+		- member
+			- memberDashboard.js
+			
+	- Copy the codebase from Hyper Cloud Basic react application
+	
+Step 8: Update App.js & index.html to include created components
+	- update App.js file with the above components created
+	- update index.html to include bootstarp & owl and related links
+	
+Step 9: Create a build
+	- npm run build - to create final optimized production build 
+
+Step 10: Hosting to Firebase
+	Setup hosting environment with the command:
+	- firebase login
+	- firebase init
+	
+	A public folder will be created. Copy all the code from the created build and paste into public folder of firebase 
+		
+	- firebase deploy - primary domain
+	
+	- sub-domain deployment
+	how to deploy the codebase into sub-domain: 
+	firebase deploy --only hosting:admin 
+	where admin is subdomain ex. admin.tplive.in

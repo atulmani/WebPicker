@@ -1,11 +1,10 @@
 /* new login - page */
 .full-login-card {
-    padding: 10px;
+    padding: 50px 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100vh;
     overflow: hidden;
 }
 
@@ -13,7 +12,7 @@
     max-width: 380px;
     width: 100%;
     overflow: hidden;
-    height: 500px;
+    height: 400px;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
@@ -27,7 +26,7 @@
     position: relative;
     top: -50px;
     height: 100%;
-    width: 200%;
+    width: 200% !important;
 }
 
 .signin-signup-form {
@@ -127,13 +126,15 @@
     align-items: center;
     justify-content: center;
     text-align: right;
-    padding: 0 5%;
-    display: block;
-    width: 47%;
+    padding: 0 2%;
+    width: 380px;
 }
 
 .car-image img {
-    height: 500px;
+    width: 100%;
+    height: 400px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 /* .car-div{
@@ -163,7 +164,6 @@
 
     .full-login-card {
         align-items: center;
-        padding: 0 20px;
     }
 
     .login-card-outter {
@@ -180,9 +180,9 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+/* input[type=number] {
     -moz-appearance: textfield;
-}
+} */
 
 /* .car-div a{
   position: absolute;

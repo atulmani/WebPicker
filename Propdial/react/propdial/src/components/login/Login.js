@@ -109,7 +109,7 @@ export default function Login() {
                         <div className="signin-signup-form" style={{ transform: openOtp ? 'translate(0%)' : 'translate(-100%)' }}>
 
                             <h2 className="title">Sign in</h2>
-                            <small>Please Enter Your Phone Number</small><br />
+                            <small>Login using your mobile no</small><br />
 
                             <PhoneInput
                                 country={'in'}
@@ -164,7 +164,7 @@ export default function Login() {
                         <div className="signin-signup-form" style={{ transform: openOtp ? 'translate(0%)' : 'translate(-100%)' }}>
 
                             <h2 className="title">OTP</h2>
-                            <small>Please Enter OTP Sent On Your Given Phone Number</small>
+                            <small>Enter 6 digit OTP received at your mobile</small>
                             {/* <div id='recapcha-container'></div> */}
 
                             <div className="input-field">
@@ -180,7 +180,7 @@ export default function Login() {
                                     }
                                 }
                                     onChange={(e) => setOtp(e.target.value)}
-                                    placeholder="OTP" name="" />
+                                    placeholder="------" name="" />
                             </div>
                             {error && <span style={{ color: 'red', fontSize: '0.8rem' }}>{error}</span>}
                             <br />
