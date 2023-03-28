@@ -1,4 +1,18 @@
+// more options - start
 
+function moreOptionsClick(moreOptionsDiv) {
+    moreOptionsDiv.classList.add('open');
+}
+
+var closeMoreOptionsDiv = document.getElementById('closeMoreOptionsDiv');
+
+closeMoreOptionsDiv.addEventListener('click', closeMoreOptions, false);
+
+function closeMoreOptions() {
+    document.getElementById('moreOptionsDiv').classList.remove('open');
+}
+
+// more options - end
 
 // owl carousel - start
 

@@ -498,22 +498,18 @@ select option:disabled {
 }
 
 .side-navbar-profile-div .side-navbar-profile-div-circle div {
-    position: relative;
-    top: -2px;
     display: flex;
     justify-content: center;
     align-items: center;
     background: #034687;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
     text-align: center;
 }
 
 .side-navbar-profile-div .side-navbar-profile-div-circle span {
-    position: relative;
-    top: 1px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: bolder;
     color: #fff;
 }
@@ -644,7 +640,7 @@ select option:disabled {
 .side-navbar ul li .collapse-side-arrow {
     position: absolute;
     top: 5px;
-    right: 0;
+    right: -5px;
     color: #151B25;
     font-size: 2rem;
     transition: 1s;
@@ -1755,7 +1751,7 @@ input[type=number] {
 
 /* logout - start */
 
-.logout-card{
+.logout-card {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1764,29 +1760,29 @@ input[type=number] {
     padding: 5%;
 }
 
-.logout-card div.white-div{
+.logout-card div.white-div {
     text-align: center;
     padding: 20px;
 }
 
-.logout-card h1{
+.logout-card h1 {
     font-size: 1.7rem;
     text-align: center;
     color: #E10032;
 }
 
-.logout-card h2{
+.logout-card h2 {
     font-size: 1rem;
     color: #aaa;
     font-weight: normal;
 }
 
-.logout-card h2 strong{
+.logout-card h2 strong {
     font-size: 1.1rem;
     color: #666;
 }
 
-.logout-card input{
+.logout-card input {
     width: 100%;
     border: none;
     outline: none;
@@ -1799,8 +1795,268 @@ input[type=number] {
     padding: 5px 20px;
 }
 
-.logout-card img{
+.logout-card img {
     width: 50%;
 }
 
 /* logout - end */
+
+
+/* admin dashboard - start */
+
+.admin-dashboard-card {
+    position: relative;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.admin-dashboard-card h1 {
+    font-size: 1.1rem;
+    color: #fff;
+    padding-left: 20px;
+}
+
+.admin-dashboard-card h2 {
+    font-size: 0.9rem;
+    color: #eee;
+    font-weight: 400;
+    padding-bottom: 30px;
+    padding-left: 20px;
+}
+
+.admin-dashboard-card span {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    font-size: 4.5rem;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.admin-dashboard-card .wave {
+    position: absolute;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2);
+    width: 100%;
+    height: 80px;
+    clip-path: polygon(0% 78%, 3% 73%, 6% 69%, 11% 69%, 15% 72%, 18% 78%, 22% 83%, 26% 85%, 30% 85%, 35% 80%, 37% 75%, 40% 68%, 43% 59%, 47% 53%, 53% 50%, 59% 50%, 63% 52%, 66% 57%, 68% 62%, 70% 68%, 73% 74%, 76% 77%, 81% 78%, 86% 75%, 88% 69%, 90% 62%, 94% 58%, 98% 56%, 100% 59%, 100% 100%, 0 100%);
+}
+
+
+.chartMenu p {
+    padding: 10px;
+    font-size: 20px;
+}
+
+.chartCard {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chartBox {
+    width: 100%;
+}
+
+.all-card-heading {
+    position: relative;
+}
+
+.all-card-heading h1 {
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 3px 0 3px 5px;
+}
+
+.all-card-heading div {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background: #034687;
+    border-radius: 10px;
+}
+
+.progress-circle {
+    padding-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.student-fees-table {
+    width: 100%;
+}
+
+.student-fees-table .student-fees-tr {
+    display: grid;
+    grid-template-columns: 10% 30% 20% 20% 20%;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.student-fees-table .student-fees-tr .student-fees-th,
+.student-fees-table .student-fees-tr .student-fees-td {
+    padding: 0 5px;
+}
+
+.student-fees-table .student-fees-tr .student-fees-th {
+    font-size: 0.7rem;
+    color: #000;
+    font-weight: 600;
+}
+
+.student-fees-table .student-fees-tr .student-fees-td {
+    font-size: 0.7rem;
+    color: #151B25;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.student-fees-table .student-fees-tr .student-fees-td .student-name {
+    display: flex;
+    align-items: center;
+}
+
+.student-fees-table .student-fees-tr .student-fees-td .student-name img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.student-fees-table .student-fees-tr .student-fees-td .student-name h1 {
+    padding-left: 5px;
+    font-size: 0.7rem;
+    color: #151B25;
+    font-weight: 500;
+}
+
+.student-fees-table .student-fees-tr .student-fees-td .fees-due-date {
+    position: relative;
+    padding: 5px;
+    width: 100%;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.student-fees-table .student-fees-tr .student-fees-td .fees-due-date.pending {
+    background: rgba(242, 162, 22, 0.2);
+}
+
+.student-fees-table .student-fees-tr .student-fees-td .fees-due-date.completed {
+    background: rgba(79, 176, 110, 0.2);
+}
+
+.student-fees-table .student-fees-tr .student-fees-td .fees-due-date::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.student-fees-table .student-fees-tr .student-fees-td .fees-due-date.pending::before {
+    background: rgba(242, 162, 22, 1);
+}
+
+.student-fees-table .student-fees-tr .student-fees-td .fees-due-date.completed::before {
+    background: rgba(79, 176, 110, 1);
+}
+
+.student-fees-table .student-fees-tr .student-fees-td .fees-due-date h2 {
+    font-size: 0.6rem;
+    padding-left: 10px;
+    color: #151B25;
+    font-weight: 500;
+}
+
+.updates-card {
+    display: flex;
+    padding: 5px 0;
+}
+
+.updates-card span {
+    padding-right: 5px;
+}
+
+.updates-card span,
+.updates-card small {
+    font-size: 0.7rem;
+    color: #aaa;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.birthday-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.birthday-card div:nth-child(1) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.birthday-card div:nth-child(1) img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.birthday-card div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+.birthday-card div:nth-child(2) h1 {
+    font-size: 0.8rem;
+    color: #151B25;
+    font-weight: 500;
+}
+
+.birthday-card div:nth-child(2) h2 {
+    font-size: 0.6rem;
+    color: #aaa;
+    font-weight: 500;
+}
+
+.birthday-card div:nth-child(2) h3 {
+    font-size: 0.6rem;
+    color: #aaa;
+    font-weight: 500;
+}
+
+.birthday-card div:nth-child(3) {
+    text-align: right;
+}
+
+.birthday-card div:nth-child(3) h4 {
+    font-size: 0.7rem;
+    color: #000;
+    font-weight: 500;
+}
+
+.birthday-card div:nth-child(3) h5 {
+    font-size: 0.7rem;
+    color: #aaa;
+    font-weight: 500;
+}
+
+/* admin dashboard - end */
