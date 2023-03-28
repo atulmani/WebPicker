@@ -11,7 +11,7 @@ Step2: Change Local Port
 how to change the default port:
 http://192.168.0.109:3000
 
-Step3: Setup VS Code
+Step3: Setup VSCode
 Packages on VSCode:
 react developer  tool in chrom extension
 thunder clint extnsion in VSCode - to test get /post API 
@@ -68,8 +68,9 @@ Step 7: Add Components
 			
 	- Copy the codebase from Hyper Cloud Basic react application
 	
-Step 8: Update App.js to include created components
+Step 8: Update App.js & index.html to include created components
 	- update App.js file with the above components created
+	- update index.html to include bootstarp & owl and related links
 	
 Step 9: Create a build
 	- npm run build - to create final optimized production build 
