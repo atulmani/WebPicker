@@ -48,6 +48,8 @@ export default function ContactUs() {
                                     <strong>Email:</strong> connect@tplive.in
                                     <br />
                                     <strong>Address:</strong>
+                                    D2-201, Daffodils Society,<br />
+                                    Pimple Saudagar<br />
                                     Pune - 411027<br />
                                     Maharashtra, India
                                 </div>
@@ -70,6 +72,6 @@ export default function ContactUs() {
                 </div>
 
             </div>
-        </div>
+        </div >
     )
 }

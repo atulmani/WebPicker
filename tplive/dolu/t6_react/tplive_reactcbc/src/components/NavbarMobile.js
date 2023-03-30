@@ -33,7 +33,7 @@ export default class NavbarMobile extends Component {
                             </span>
                         </a>
 
-                        {/* <a href="JavaScript:askforNotification();" style="position:relative;"> */}
+                        {/* <a href="JavaScript:askforNotification();"> */}
                         <a href="/" style={{ position: 'relative' }}>
 
                             <span className="material-symbols-outlined">
@@ -47,7 +47,7 @@ export default class NavbarMobile extends Component {
                                 add_location_alt
                             </span>
 
-                            <small id="location1">{this.props ? this.props.City : 'All'}</small>
+                            <small id="location1">{window.localStorage.getItem("userLocation") ? window.localStorage.getItem("userLocation").replaceAll('"', '') : 'All'}</small>
                         </Link>
                     </div>
 

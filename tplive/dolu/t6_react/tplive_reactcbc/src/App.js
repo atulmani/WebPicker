@@ -22,6 +22,8 @@ import RegistrationCategory from './components/RegistrationCategory';
 import RegistrationCheckout from './components/RegistrationCheckout';
 import { UserAuthContextProvider } from './context/UserAuthcontext';
 import PaymentGateway from './components/PaymentGateway';
+// import PaymentGatewayPayTm from './components/PaymentGatewayPayTm';
+
 import PaymentSuccessful from './components/PaymentSuccessful';
 import PaymentFailed from './components/PaymentFailed';
 import EventEntries from './components/EventEntries';
@@ -107,6 +109,9 @@ function App() {
             <Route exact path='/RegistrationCategory' element={<RegistrationCategory />} />
             <Route exact path='/RegistrationCheckout' element={<RegistrationCheckout />} />
             <Route exact path='/PaymentGateway' element={<PaymentGateway />} />
+
+            {/* <Route exact path='/PaymentGatewayPayTm' element={<PaymentGatewayPayTm />} /> */}
+
             <Route exact path='/PaymentSuccessful' element={<PaymentSuccessful />} />
             <Route exact path='/PaymentFailed' element={<PaymentFailed />} />
             <Route exact path='/EventEntries' element={<EventEntries />} />

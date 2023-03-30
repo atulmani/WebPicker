@@ -65,11 +65,11 @@ export default function EventDetailsMenu(props) {
 
                         </tbody>
                     </table>
-                    <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_27H8l4.json" background="transparent" speed="1" loop autoplay></lottie-player>
+                    {props.isLoading && <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_27H8l4.json" background="transparent" speed="1" loop autoplay></lottie-player>}
                 </div>
 
             }
-            {props.calledFrom === 'Participant' && <div> {console.log(props.participantDetails)}
+            {props.calledFrom === 'Participant' && <div>
 
                 <div className="" style={{ textAlign: 'right', position: 'relative', zIndex: '5' }}>
 
@@ -115,6 +115,7 @@ export default function EventDetailsMenu(props) {
 
                         })}
 
+                        {props.isLoading && <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_27H8l4.json" background="transparent" speed="1" loop autoplay></lottie-player>}
 
                     </div>
                 </div>
@@ -163,6 +164,8 @@ export default function EventDetailsMenu(props) {
                         </tbody>
                     </table>
                     <span> * marked event is registered by Partner</span>
+                    {props.isLoading && <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_27H8l4.json" background="transparent" speed="1" loop autoplay></lottie-player>}
+
                 </div>
 
             }

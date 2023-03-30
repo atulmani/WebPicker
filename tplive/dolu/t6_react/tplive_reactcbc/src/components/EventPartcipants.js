@@ -10,7 +10,7 @@ import '../css/EventDetails.css'
 export default function EventPartcipants() {
     // let { state } = useLocation();
     //const { entryDetails } = state;
-
+    const [loading, setLoading] = useState(false);
     const [eventDetails, setEventDetails] = useState(window.localStorage.getItem('EventDetails') ? JSON.parse(window.localStorage.getItem('EventDetails')) : null);
     // const [eventID, setEventID] = useState(window.localStorage.getItem("EventID") ? window.localStorage.getItem("EventID") : '');
 
@@ -20,8 +20,10 @@ export default function EventPartcipants() {
 
     useEffect(() => {
         // console.log(eventDetails);
+
         var para1 = {};
         async function fetchData() {
+            setLoading(true);
             para1 = {
                 EventID: eventDetails.Eventid
             };
@@ -58,6 +60,7 @@ export default function EventPartcipants() {
                 // setParticipantCount(cnt);
                 // console.log(participantDetails);
                 // console.log(participantCount);
+                setLoading(false);
             });
         }
         fetchData();
@@ -68,7 +71,11 @@ export default function EventPartcipants() {
         <>
             <div className="container-fluid">
                 <div className="row no-gutters">
-                    {eventDetails && <EventDetailsMenu eventDetails={eventDetails} calledFrom='Participant' participantCount={setUniqueParticipantDetails.length} participantDetails={uniqueParticipantDetails} />}
+                    {eventDetails && <EventDetailsMenu eventDetails={eventDetails}
+                        calledFrom='Participant'
+                        participantCount={setUniqueParticipantDetails.length}
+                        participantDetails={uniqueParticipantDetails}
+                        isLoading={loading} />}
                     {eventDetails && <EDTournamentDetails eventDetails={eventDetails} showRegistration={true} />}
                 </div>
             </div>

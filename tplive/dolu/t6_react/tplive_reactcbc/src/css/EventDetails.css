@@ -290,4 +290,13 @@
     color: #fff;
 }
 
+.textheadleft {
+    padding-left: 10px;
+    color: #333C5D;
+}
+
+.textheadright {
+    color: #889;
+}
+
 /* event details page - end */

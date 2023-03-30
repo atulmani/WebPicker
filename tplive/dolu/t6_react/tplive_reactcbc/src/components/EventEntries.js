@@ -72,7 +72,11 @@ export default function EventEntries() {
 
             <div className="row no-gutters">
 
-                {eventDetails && <EventDetailsMenu eventDetails={eventDetails} calledFrom='Entries' entryCount={entryCount} entryCountDetails={entryCountDetails} />}
+                {eventDetails && <EventDetailsMenu eventDetails={eventDetails}
+                    calledFrom='Entries'
+                    entryCount={entryCount}
+                    entryCountDetails={entryCountDetails}
+                    isLoading={loading} />}
 
                 {eventDetails && <EDTournamentDetails eventDetails={eventDetails} showRegistration={true} />}
 

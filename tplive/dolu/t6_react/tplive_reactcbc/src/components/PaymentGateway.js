@@ -24,11 +24,11 @@ export default function PaymentGatewayRP() {
         mid: "",
         amount: ""
     });
-    const [loading, setLoading] = useState(false);
+
     const navigate = useNavigate();
 
     let orderId = 'O_' + eventDetails.EventCode + '_' + participantDetails.PlayerID + '_' + new Date().getTime();
-    console.log(orderId);
+    // console.log(orderId);
     const razorpayOptions = {
         key: 'rzp_test_gaZqhFw4MY2o6v',
         amount: Number(amount) * 100, // amount in paise
@@ -39,9 +39,9 @@ export default function PaymentGatewayRP() {
 
         image: 'https://tplive-prod--tplive-test-dw5grchb.web.app/img/TPLiVE_Logo.webp',
         handler: function (response) {
-            console.log(response);
+            // console.log(response);
 
-            console.log('Payment successful: ' + response.razorpay_payment_id);
+            // console.log('Payment successful: ' + response.razorpay_payment_id);
             navigate("/PaymentSuccessful", {
                 state: {
                     id: 1, participantDetails: participantDetails,
@@ -73,7 +73,7 @@ export default function PaymentGatewayRP() {
     const rzp1 = new window.Razorpay(razorpayOptions);
 
     const handlePayment = () => {
-        console.log(rzp1);
+        // console.log(rzp1);
         rzp1.open();
     };
 

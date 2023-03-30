@@ -76,7 +76,7 @@ export default function UserRole() {
                                                 style={{ paddingTop: '9px', paddingRight: '5px', fontSize: '0.6rem' }}></i>
                                             <i className="fas fa-check"
                                                 style={{ paddingTop: '9px', paddingRight: '5px', fontSize: '0.6rem' }}></i>
-                                            <span>{role.TYPE}</span>
+                                            <span style={{ fontSize: '0.7rem' }}>{role.TYPE}</span>
                                         </label>
                                     </div>
                                 ))}
