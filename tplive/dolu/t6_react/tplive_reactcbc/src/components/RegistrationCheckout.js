@@ -4,6 +4,7 @@ import CategoryCartItem from '../components/CategoryCartItem'
 
 import { useParams, useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
+import useRazorpay from "react-razorpay";
 
 export default function RegistrationCheckout() {
     const { state } = useLocation();
@@ -23,6 +24,12 @@ export default function RegistrationCheckout() {
 
     const [eventDetails, setEventDetails] = useState(window.localStorage.getItem('EventDetails') ? JSON.parse(window.localStorage.getItem('EventDetails')) : null);
     const navigate = useNavigate();
+    const [paymentData, setPaymentData] = useState({
+        token: "",
+        order: "",
+        mid: "",
+        amount: ""
+    });
 
 
     useEffect(() => {
@@ -65,8 +72,56 @@ export default function RegistrationCheckout() {
         setOpenCheckoutDetails(!openCheckoutDetails);
     }
     function paymentGateway() {
+
         // console.log('paymentGateway');
-        navigate("/PaymentGateway", { state: { id: 1, participantDetails: participantDetails, paymentAmount: (paymentObject.totalPendingPayment + paymentObject.convenienceCharge), categoryList: pendingCategory } });
+        // navigate("/PaymentGateway", { state: { id: 1, participantDetails: participantDetails, paymentAmount: (paymentObject.totalPendingPayment + paymentObject.convenienceCharge), categoryList: pendingCategory } });
+        // navigate("/PaymentGatewayPayTm", { state: { id: 1, participantDetails: participantDetails, paymentAmount: (paymentObject.totalPendingPayment + paymentObject.convenienceCharge), categoryList: pendingCategory } });
+
+        let orderId = 'O_' + eventDetails.EventCode + '_' + participantDetails.PlayerID + '_' + new Date().getTime();
+        // console.log(orderId);
+        const razorpayOptions = {
+            key: 'rzp_test_gaZqhFw4MY2o6v',
+            amount: Number(paymentObject.totalPendingPayment + paymentObject.convenienceCharge) * 100, // amount in paise
+            name: 'TPLiVE',
+            description: 'Payment for TP Live',
+            email: participantDetails.Email,
+            contact: participantDetails.Phone,
+
+            image: 'https://tplive-prod--tplive-test-dw5grchb.web.app/img/TPLiVE_Logo.webp',
+            handler: function (response) {
+                // console.log(response);
+
+                // console.log('Payment successful: ' + response.razorpay_payment_id);
+                navigate("/PaymentSuccessful", {
+                    state: {
+                        id: 1, participantDetails: participantDetails,
+                        paymentObj: {
+                            TXNAMOUNT: paymentObject.totalPendingPayment,
+                            TXNID: response.razorpay_payment_id,
+                            ORDERID: orderId
+                        },
+                        paymentStatus: 'Completed',
+                        selectedCategory: pendingCategory,
+                        updatePayment: true
+                    }
+                });
+
+            },
+            prefill: {
+                name: participantDetails.UserName,
+                email: participantDetails.Email,
+                contact: participantDetails.Phone,
+            },
+            notes: {
+                address: '',
+            },
+            theme: {
+                color: '#348DCB',
+            },
+        };
+
+        const rzp1 = new window.Razorpay(razorpayOptions);
+        rzp1.open();
 
     }
     return (
@@ -74,12 +129,13 @@ export default function RegistrationCheckout() {
             <div className="row no-gutters">
 
                 <div className="col-lg-8 col-md-8 col-sm-12">
-
+                    <br />
                     <div id="regProfileNewParticipantDetails">
                         {/* {console.log(selectedCategory)} */}
                         <h3 style={{ fontWeight: '1000', color: '#348DCB', textAlign: 'center' }}>CHECKOUT</h3>
-                        <h1 className="reg-form-email" id="playerName">{participantDetails.UserName}</h1>
-                        <h5 className="reg-form-email" id="playerID">({participantDetails.PlayerID})</h5>
+                        <h1 className="reg-form-email" id="playerName">{participantDetails.UserName} ({participantDetails.PlayerID})</h1>
+                        <h5 className="reg-form-email">{participantDetails.Email}</h5>
+                        <h6 className="reg-form-email">{participantDetails.Phone}</h6>
                         {participantDetails.Gender.toUpperCase() === 'FEMALE' && <h5 className="reg-form-email female" id="playerGender">FEMALE</h5>}
                         {participantDetails.Gender.toUpperCase() === 'MALE' && <h5 className="reg-form-email male" id="playerGender">MALE</h5>}
 

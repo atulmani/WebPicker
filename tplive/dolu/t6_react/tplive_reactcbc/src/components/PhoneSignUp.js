@@ -19,6 +19,7 @@ export default function PhoneSignUp(props) {
 
     const [url, setURL] = useState("/");
     const [isLogged, setIsLogged] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [phone, setPhone] = useState("");
     const [error, setError] = useState("");
     const [otp, setOtp] = useState("");
@@ -45,15 +46,15 @@ export default function PhoneSignUp(props) {
         if (users.current && users.current.phoneNumber === ("+" + phone)) {
             setIsLogged(true);
         }
-        console.log(users.current);
+        // console.log(users.current);
         try {
-            console.log(users.current);
-            console.log(phone);
+            // console.log(users.current);
+            // console.log(phone);
             const respons = await setUpRecapcha('+' + phone);
             // console.log(respons);
             setConfirmObj(respons);
-            console.log(respons);
-            // setFlag(true);
+            // console.log(respons);
+            setFlag(true);
         } catch (error) {
             setError(error.message);
         }
@@ -62,6 +63,7 @@ export default function PhoneSignUp(props) {
     const verifyOTP = async (e) => {
         e.preventDefault();
         setError("");
+        setLoading(true);
         if (otp === "" || otp === undefined || otp === null) return;
         try {
             await confirmObj.confirm(otp).then(async (result) => {
@@ -105,7 +107,7 @@ export default function PhoneSignUp(props) {
                             {/* {!users && <Form onSubmit={getOTP} style={{ display: !flag ? "block" : "none" }}> */}
                             {<Form onSubmit={getOTP} style={{ display: !flag ? "block" : "none" }}>
 
-                                <div className='mb-b' controlId='formBasicPhoneNumber'>
+                                <div className='mb-b' controlid='formBasicPhoneNumber'>
                                     {/* <PhoneInput defaultCountry='IN'
                                         defaultCode="IN"
                                         value={phone}
@@ -167,10 +169,23 @@ export default function PhoneSignUp(props) {
                                 <div className='d-grid gap-2'>
                                     {/* <Link to="/"> */}
 
-                                    <Button className='mybutton button5' style={{ width: '150px', height: '40px' }} type="submit">
-                                        Login
-                                    </Button>
-                                    {/* </Link> */}
+                                    <button className="mybutton button5" style={{ width: '150px', height: '40px' }}>
+                                        <div style={{ display: !loading ? 'block' : 'none' }}>
+                                            <span
+                                                style={{ paddingLeft: '8px', position: 'relative', top: '-1px', fontSize: '1rem' }}>Login</span>
+                                            {/* <span
+                                                style={{ position: 'relative', top: '3px', paddingLeft: '5px', fontSize: '1.1rem' }}
+                                                className="material-symbols-outlined">
+                                                arrow_right_alt
+                                            </span> */}
+                                        </div>
+                                        <div className='btn-loading' style={{ display: loading ? 'block' : 'none' }}>
+                                            <lottie-player id="btnSendOTPLoad"
+                                                src="https://assets8.lottiefiles.com/packages/lf20_fiqoxpcg.json" background="transparent"
+                                                speed="0.7" loop autoplay></lottie-player>
+                                        </div>
+                                    </button>
+
                                     <br></br>
                                     {/* <Button varient='secondory' type="submit">
                                         Cancel

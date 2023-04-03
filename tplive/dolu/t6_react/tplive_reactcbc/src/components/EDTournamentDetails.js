@@ -55,20 +55,20 @@ export default function EDTournamentDetails(props) {
                 <ul>
                     <li>
                         <i className="far fa-bookmark"></i>
-                        <span className="textheadleft">Organiser: </span>
-                        <span style={{ color: '#889' }} id="organisername" className="textheadleft">{props.eventDetails.OrganizationName}</span>
+                        <span className="textheadleft">Organiser : </span>
+                        <span id="organisername" className="textheadright">{props.eventDetails.OrganizationName}</span>
                     </li>
                     <li>
                         <i className="far fa-calendar"></i>
-                        <span className="textheadleft">Date:</span>
-                        <span id="eventstartdate" className="textheadleft">{refSDate.toLocaleDateString("en-IN", options)}</span>
-                        <span style={{ color: '#889' }} id="eventenddate"
-                            className="textheadleft">-{refEDate.toLocaleDateString("en-IN", options)}</span>
+                        <span className="textheadleft">Date : </span>
+                        <span id="eventstartdate" className="textheadright"> {refSDate.toLocaleDateString("en-IN", options)}</span>
+                        <span id="eventenddate"
+                            className="textheadright"> - {refEDate.toLocaleDateString("en-IN", options)}</span>
                     </li>
                     <li>
                         <i className="fas fa-rupee-sign"></i>
-                        <span className="textheadleft">Price:</span>
-                        <span style={{ color: '#889' }} id="eventprice" className="textheadleft">{Number(props.eventDetails.MinimumFee).toLocaleString('en-IN', curFormat)}</span>
+                        <span className="textheadleft">Price : </span>
+                        <span id="eventprice" className="textheadright"> {Number(props.eventDetails.MinimumFee).toLocaleString('en-IN', curFormat)}</span>
                     </li>
 
                     <li className="large" style={{ paddingBottom: '20px' }}>
@@ -116,12 +116,12 @@ export default function EDTournamentDetails(props) {
                 <hr />
                 <ul>
                     <li>
-                        <i className="fas fa-play-circle"></i>
-                        <span className="textheadleft">Venue : <span id="eventVenue" className="textheadright">{props.eventDetails.EventName}</span> </span>
+                        <i className="fas fa-thumb-tack"></i>
+                        <span className="textheadleft">Venue : <span id="eventVenue" style={{ color: '#889' }} className="textheadright"> {props.eventDetails.EventName}</span> </span>
                     </li>
                     <li>
-                        <i className="fas fa-language"></i>
-                        <span className="textheadleft">Withdrawal Date : <span id="withdrawalDate" className="textheadright">{refWDate ? refWDate.toLocaleDateString("en-IN", options) : ''}</span>
+                        <i className="fas fa-undo"></i>
+                        <span className="textheadleft">Withdrawal Date : <span id="withdrawalDate" style={{ color: '#889' }} className="textheadright"> {refWDate ? refWDate.toLocaleDateString("en-IN", options) : ''}</span>
                         </span>
                     </li>
                 </ul>
@@ -132,14 +132,14 @@ export default function EDTournamentDetails(props) {
                 <hr />
                 <ul>
                     <li>
-                        <span style={{ color: '#889', fontSize: '0.9rem' }}>Ask the organizer : <span id="orgName">{props.eventDetails.EventOwnerName} </span> </span>
+                        <span style={{ fontSize: '0.9rem' }}>Ask the organizer : <span className="textheadright" id="orgName">{props.eventDetails.EventOwnerName} </span> </span>
                         <br />
-                        <span style={{ fontSize: '0.9rem', color: '#348DCB' }}>Email: </span>
+                        <span style={{ fontSize: '0.9rem' }}>Email : </span>
 
-                        <span id="organiserEmail" style={{ fontSize: '0.9rem', color: '#889', wordBreak: 'break-all' }}>{props.eventDetails.EventOwnerEmail}</span>
+                        <span id="organiserEmail" className='textheadright' style={{ fontSize: '0.9rem', wordBreak: 'break-all' }}>{props.eventDetails.EventOwnerEmail}</span>
                         <br />
-                        <span style={{ fontSize: '0.9rem', color: '#348DCB' }}>Contact: </span>
-                        <a id="organiserPhone" style={{ textDecoration: 'none' }} href="/">{props.eventDetails.EventOwnerPhone}</a>
+                        <span style={{ fontSize: '0.9rem' }}>Contact : </span>
+                        <a id="organiserPhone" className='textheadright' href="/">{props.eventDetails.EventOwnerPhone}</a>
 
                     </li>
 

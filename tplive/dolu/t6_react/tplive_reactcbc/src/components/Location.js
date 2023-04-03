@@ -10,9 +10,10 @@ import { httpsCallable } from "firebase/functions";
 
 
 export default function Location(props) {
-
+    const [loading, setLoading] = useState(false);
     const [locationSummary, setLocationSummary] = useState([]);
     useEffect(() => {
+        setLoading(true);
         const getEventSummaryByCity = httpsCallable(functions, "getEventSummaryByCity");
 
         getEventSummaryByCity()
@@ -30,7 +31,7 @@ export default function Location(props) {
                     LocationImage: ""
                 }].concat(data);
                 setLocationSummary(data);
-
+                setLoading(false);
                 //const sanitizedMessage = data.text;
             });
     }, [])
@@ -49,6 +50,11 @@ export default function Location(props) {
                             <h4 style={{ fontWeight: '1000' }}>Cities</h4>
                         </div>
                     </div><br />
+                    {loading && <div className='normal-loading'>
+                        <center>
+                            <lottie-player src="https://lottie.host/ac41a0d7-3190-4da5-9b9e-14b6ee5d878b/z3WsDYa3Gv.json" style={{ width: '80%' }} background="transparent" speed="1" loop autoplay></lottie-player>
+                        </center>
+                    </div>}
 
                     <div className="row no-gutters large">
 

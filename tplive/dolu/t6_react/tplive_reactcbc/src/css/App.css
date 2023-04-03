@@ -82,6 +82,11 @@ h6 {
     }
 }
 
+button:disabled {
+    background: #aaa;
+    cursor: auto;
+}
+
 .mybutton {
     background: #221B1B;
     position: relative;
@@ -179,4 +184,12 @@ h6 {
 .btn-loading lottie-player {
     width: 50%;
     transform: translate(50%, -9px);
+}
+
+.normal-loading {
+    max-height: 300px;
+}
+
+.normal-loading lottie-player {
+    transform: translateY(-30%);
 }

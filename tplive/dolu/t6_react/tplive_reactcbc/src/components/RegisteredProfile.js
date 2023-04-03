@@ -22,10 +22,17 @@ export default function RegisteredProfile() {
     const [userName, setUserName] = useState();
     const [gender, setGender] = useState('Male');
     const [userEmail, setUserEmail] = useState();
-    const [pincode, setPincode] = useState('');
-    const [city, setCity] = useState();
-    const [state, setState] = useState();
-    const [district, setDistrict] = useState();
+
+    const [location, setLocation] = useState({
+        pincode: '',
+        city: '',
+        state: '',
+        district: ''
+    });
+    // const [pincode, setPincode] = useState('');
+    // const [city, setCity] = useState();
+    // const [state, setState] = useState();
+    // const [district, setDistrict] = useState();
     const [dob, setDob] = useState();
     const [country, setCountry] = useState();
     const [showError, setShowError] = useState(false);
@@ -134,11 +141,11 @@ export default function RegisteredProfile() {
         var para = {};
         para = {
             userID: userDetails.id,
-            PinCode: pincode,
-            State: state,
-            City: city,
-            District: district,
-            Country: country,
+            PinCode: location.pincode,
+            State: location.state,
+            City: location.city,
+            District: location.district,
+            Country: location.country,
             Gender: gender,
             PlayerID: userDetails.id,
             Email: userEmail,
@@ -319,33 +326,55 @@ export default function RegisteredProfile() {
                                                                     e.target.value = e.target.value.slice(0, e.target.maxLength)
                                                             }}
 
-                                                            value={pincode}
+                                                            value={location.pincode}
                                                             onChange={(e) => {
-                                                                setPincode(e.target.value);
+                                                                // setPincode(e.target.value);
+                                                                setLocation({
+                                                                    pincode: e.target.value,
+                                                                    district: '',
+                                                                    city: '',
+                                                                    state: '',
+                                                                    country: ''
+                                                                });
+
                                                             }}
                                                             onBlur={async (e) => {
                                                                 // console.log('onblur', pincode)
-                                                                if (pincode.length !== 6) {
+                                                                if (location.pincode.length !== 6) {
 
                                                                     setShowError(true);
                                                                     // console.log('error', showError)
                                                                 } else {
                                                                     setShowError(false);
-                                                                    await $.getJSON("https://api.postalpincode.in/pincode/" + pincode,
+                                                                    await $.getJSON("https://api.postalpincode.in/pincode/" + location.pincode,
                                                                         async function (data) {
                                                                             // console.log(data);
                                                                             // console.log(data[0].Message);
                                                                             if (data[0].Message === "No records found") {
                                                                                 setShowError(true);
+                                                                                setLocation({
+                                                                                    pincode: location.pincode,
+                                                                                    district: '',
+                                                                                    city: '',
+                                                                                    state: '',
+                                                                                    country: ''
+                                                                                });
+
+
                                                                                 setTimeout(function () {
                                                                                     setShowError(false);
                                                                                 }, 5000);
 
                                                                             } else {
-                                                                                setDistrict(data[0].PostOffice[0].District);
-                                                                                setCity(data[0].PostOffice[0].Block);
-                                                                                setState(data[0].PostOffice[0].State);
-                                                                                setCountry(data[0].PostOffice[0].Country);
+
+                                                                                setLocation({
+                                                                                    pincode: location.pincode,
+                                                                                    district: data[0].PostOffice[0].District,
+                                                                                    city: data[0].PostOffice[0].Block,
+                                                                                    state: data[0].PostOffice[0].State,
+                                                                                    country: data[0].PostOffice[0].Country
+                                                                                });
+
 
                                                                             }
                                                                         });
@@ -353,7 +382,8 @@ export default function RegisteredProfile() {
                                                             }}
                                                             required />
                                                         <span className="pin-code-span">Pin Code</span>
-                                                        <h1 id="userLocation">{city}, {state}</h1>
+                                                        <h1 id="userLocation" style={{ display: !showError ? 'block' : 'none' }}>{location.city} {location.city !== '' && location.city !== undefined ? ',' : ''} {location.state}</h1>
+                                                        <h1 id="errorMessage" style={{ display: showError ? 'block' : 'none' }}>Please enter Valid Pincode</h1>
 
                                                     </div>
 
@@ -361,11 +391,6 @@ export default function RegisteredProfile() {
                                             </div>
 
                                         </div>
-
-
-                                    </div>
-                                    <div className="col-lg-4 col-md-6 col-sm-12">
-                                        <span id="errorMessage" style={{ display: showError ? 'block' : 'none' }}>Please enter Valid Pincode</span>
 
 
                                     </div>
@@ -385,7 +410,7 @@ export default function RegisteredProfile() {
                                                     <span
                                                         style={{ position: 'relative', top: '-1px', paddingRight: '8px', fontSize: '1rem' }}>BACK</span>
                                                 </button>
-                                                <button className="mybutton button5" onClick={regProfileToThirdSlide}>
+                                                <button className="mybutton button5" disabled={true} onClick={regProfileToThirdSlide}>
                                                     <span
                                                         style={{ paddingLeft: '8px', position: 'relative', top: '-1px', fontSize: '1rem' }}>NEXT</span>
                                                     <span

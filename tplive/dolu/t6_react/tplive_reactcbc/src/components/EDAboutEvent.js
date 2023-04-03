@@ -127,7 +127,7 @@ export default function EDAboutEvent(props) {
 
                 </tbody>
             </table>
-
+            <br />
             <div style={{ border: '2px solid #333C5D' }} className="secbox">
                 <div style={{ display: 'inline-block' }} className="">
                     <h4 style={{ fontWeight: '1000', color: '#348DCB' }}>Rules & Regulations </h4>
@@ -167,6 +167,7 @@ export default function EDAboutEvent(props) {
                     </li>
                 </ul>
             </div>
+            <br /><hr />
 
 
         </div >

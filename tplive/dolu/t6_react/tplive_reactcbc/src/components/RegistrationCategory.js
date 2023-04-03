@@ -39,17 +39,21 @@ export default function RegistrationCategory() {
         var regCategory = [];
 
         let pendingFlag = false;
+        console.log(rSelectedCategory);
         rSelectedCategory.current.forEach(element => {
             var partName = '';
             var partnerUID = '';
             var partnerPlayerID = '';
+            // console.log(element);
             var pindex = partnerList.find(e => e.categoryName === element.CategoryName);
             if (pindex) {
                 partName = pindex.partnerName;
                 partnerUID = pindex.partnerUserID;
                 partnerPlayerID = pindex.partnerID;
             }
-            if (element.RegType === 'Self') {
+            // console.log(element.CategoryName);
+            if (element.RegType === undefined || element.RegType === 'Self') {
+                console.log(element.CategoryName);
                 var selCat = {
                     CategoryName: element.CategoryName,
                     EventType: element.EventType,
@@ -61,7 +65,7 @@ export default function RegistrationCategory() {
                     PartnerUserID: partnerUID,
                     PaymentStatus: element.PaymentStatus ? element.PaymentStatus : 'Pending'
                 }
-                if (element.PaymentStatus === 'Pending') {
+                if (element.PaymentStatus === undefined || element.PaymentStatus === 'Pending') {
                     pendingFlag = true;
                 }
                 regCategory.push(selCat);
@@ -76,7 +80,7 @@ export default function RegistrationCategory() {
             }
 
         });
-
+        console.log(regCategory);
         var para1 = {};
         para1 = {
             EventID: eventDetails.Eventid,// eventID,
@@ -86,6 +90,7 @@ export default function RegistrationCategory() {
             CategoryList: regCategory,//selectedCategory,
             DeleteCategoryList: deletedEvent,
         };
+        console.log(para1);
         const ret1 = httpsCallable(functions, "registerAllEvent");
         if (regCategory.length > 0) {
 
@@ -130,7 +135,7 @@ export default function RegistrationCategory() {
     useEffect(() => {
         setCategoryList(checkCategory());
         getRegisteredEvents();
-        paymentObj.current.innerHTML = 'test';
+        paymentObj.current.innerHTML = '0';
     }, []);
 
     function partnerSetup(categoryName, partnerID, partnerName, partnerUserID) {
@@ -258,10 +263,10 @@ export default function RegistrationCategory() {
                 }
 
             });
+            return selCategory;
 
         }
         // console.log(selCategory)
-        return selCategory;
 
     }
     var indexCategory = 1;
@@ -271,11 +276,10 @@ export default function RegistrationCategory() {
             <div className="row no-gutters">
 
                 <div className="col-lg-8 col-md-8 col-sm-12">
-
+                    <br />
                     <div id="regProfileNewParticipantDetails">
                         <h3 style={{ fontWeight: '1000', color: '#348DCB', textAlign: 'center' }}>CATEGORY</h3>
-                        <h1 className="reg-form-email" id="playerName">{participantDetails.UserName}</h1>
-                        <h5 className="reg-form-email" id="playerID">({participantDetails.PlayerID})</h5>
+                        <h1 className="reg-form-email" id="playerName">{participantDetails.UserName} ({participantDetails.PlayerID})</h1>
                         {participantDetails.Gender === 'Female' ? <h5 className="reg-form-email female" id="playerGender">FEMALE</h5> : <h5 className="reg-form-email male" id="playerGender">MALE</h5>}
                         {/* <input type="hidden" id="hfPlayerDocID" />
                         <input type="hidden" id="hfPlayerID" />

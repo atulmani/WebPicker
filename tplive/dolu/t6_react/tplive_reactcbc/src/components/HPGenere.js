@@ -197,7 +197,7 @@ export default function HPGenere() {
                     </div>
                 </div>
             </div> */}
-
+            <br></br>
         </section>
 
     )
