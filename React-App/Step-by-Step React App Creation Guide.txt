@@ -41,9 +41,11 @@ Step4: Add Firebase config
 Step 5: Install below SDKs through VSCode terminal
 	- check package.json, few sdk to be added	 
 	- npm install react - install latest version of react but this automatically install while creating app using npx create-react-app my-app
+	- node -v
 	- npm install firebase
 	- npm install react-bootstrap bootstrap
 	- npm install react-router-dom
+	- npm install react-icons --save
 	- npm audit fix --force
 	
 Step 6: Add Firebase Authentication services
@@ -55,16 +57,16 @@ Step 6: Add Firebase Authentication services
 Step 7: Add Components
 	- create below folder under src folder
 	- components
-		- home.js
+		- Home.js
 		- login
-			- signUpUsingEmailPwd.js
-			- signInUsingEmailPwd.js
-			- signInUsingPhone.js
-			- userProfile.js
+			- SignUpUsingEmailPwd.js
+			- SignInUsingEmailPwd.js
+			- SignInUsingPhone.js
+			- UserProfile.js
 		- admin
-			- adminDashboard.js
+			- AdminDashboard.js
 		- member
-			- memberDashboard.js
+			- MemberDashboard.js
 			
 	- Copy the codebase from Hyper Cloud Basic react application
 	
