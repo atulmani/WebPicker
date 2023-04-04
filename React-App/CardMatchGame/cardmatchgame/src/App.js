@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import { useEffect, useState } from 'react';
 import SingleCard from './components/SingleCard';
@@ -79,27 +79,30 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Flip & Match</h1>
-      <h3>A Memory Challenge</h3>
-      <button onClick={shuffleCards}>New Game</button>
+      <div className='flip-game-heading'>
+        <h1>Flip & Match</h1>
+        <h3>A Memory Challenge</h3>
+        <button onClick={shuffleCards}>
+          <span>New Game</span>
+        </button>
 
-      <p>Your Turns: {turns}</p>
+        <p>Your Turns: {turns}</p>
 
-      <div className='card-grid'>
-        {
-          cards.map(card => (
-            <SingleCard
-              key={card.id}
-              card={card}
-              handleChoice={handleChoice}
-              flipped={card === choiceOne || card === choiceTwo || card.matched}
-              disabled={disabled}>
-            </SingleCard>
-          ))
-        }
+        <div className='container card-grid'>
+          {
+            cards.map(card => (
+              <SingleCard
+                key={card.id}
+                card={card}
+                handleChoice={handleChoice}
+                flipped={card === choiceOne || card === choiceTwo || card.matched}
+                disabled={disabled}>
+              </SingleCard>
+            ))
+          }
 
+        </div>
       </div>
-
 
 
     </div>

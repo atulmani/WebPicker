@@ -1,15 +1,23 @@
-.card {
+.flip-game-card {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.card img {
-    width: 100%;
+.flip-game-card div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flip-game-card img {
+    width: 90%;
     display: block;
-    boarder: 2px solid #fff;
-    border-radius: 6px;
+    border-radius: 6px !important;
 }
 
-.card .front {
+.flip-game-card .front {
     transform: rotateY(90deg);
     transition: all ease-in 0.2s;
     position: absolute;
@@ -20,7 +28,7 @@
     transition-delay: 0.2s;
 }
 
-.card .back {
+.flip-game-card .back {
     transition: all ease-in 0.2s;
     transition-delay: 0.2s;
 }
