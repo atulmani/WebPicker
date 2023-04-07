@@ -1,0 +1,22 @@
+.comming-soon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comming-soon lottie-player {
+    width: 400px;
+}
+
+@media (max-width: 850px) {
+    .comming-soon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .comming-soon lottie-player {
+        width: 100%;
+    }
+}

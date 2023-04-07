@@ -14,12 +14,13 @@ import { functions } from '../firebase.js'
 import { httpsCallable } from "firebase/functions";
 
 
-export default function HomePage() {
+export default function HomePage(props) {
     const [city, setCity] = useState(window.localStorage.getItem("userLocation") ? window.localStorage.getItem("userLocation").replaceAll('"', '') : 'All');
     const [loading, setLoading] = useState(true);
     const [owlSetting, setOwlSetting] = useState();
     const [itemsExists, setItemsExists] = useState(false);
     const [eventList, setEventList] = useState([]);
+    const [eventCount, setEventCount] = useState([]);
     var curFormat = {
         style: 'currency',
         currency: 'INR',
@@ -33,6 +34,7 @@ export default function HomePage() {
         month: 'short',
         day: 'numeric'
     };
+    let eventCntList = [];
 
     useEffect(() => {
         setCity(window.localStorage.getItem("userLocation") ? window.localStorage.getItem("userLocation").replaceAll('"', '') : 'All');
@@ -42,6 +44,25 @@ export default function HomePage() {
         async function fetchData() {
             setLoading(true);
 
+            const eventEntryCount = httpsCallable(functions, "getAllEventEntryCount");
+            await eventEntryCount()
+                .then((resultCnt) => {
+                    let dataCnt = resultCnt.data;
+                    console.log('dataCnt : ', dataCnt);
+                    dataCnt.forEach(elementCnt => {
+                        let index = eventCntList.findIndex(e => e.EventID === elementCnt.EventID);
+                        if (index >= 0) {
+                            eventCntList[index].EntryCount = Number(eventCntList[index].EntryCount) + Number(elementCnt.EntryCount);
+                        } else {
+                            eventCntList.push({
+                                EventID: elementCnt.EventID,
+                                EntryCount: Number(elementCnt.EntryCount),
+                            })
+                        }
+                    })
+                });
+            setEventCount(eventCntList)
+            console.log('eventCntList :', eventCntList);
             const eventSummaryBySports = httpsCallable(functions, "getAllEventWithEventStatusAndLocation");
             // setLoading(true);
             let para = {
@@ -99,7 +120,8 @@ export default function HomePage() {
         setItemsExists(true);
 
     }, [city, itemsExists]);
-
+    let eventCntForEvent = 0;
+    let index = -1;
     return (
         <div>
             {/* {console.log("in render")} */}
@@ -137,20 +159,20 @@ export default function HomePage() {
                         {itemsExists && <OwlCarousel
                             className="owl-theme"
                             items={1}
-                            nav={false}
+                            nav={true}
                             autoplay
                             smartSpeed={3000}
                             autoplayTimeout={15000}
                             autoplayHoverPause={false}
-                            dots={true}
+                            dots={false}
                             loop={true}
                             responsiveRefreshRate={200}
                             stagePadding={30}
                             margin={10}
 
                             navText={[
-                                '<i class="fa fa-arrow-left" aria-hidden="true"></i>',
-                                '<i class="fa fa-arrow-right" aria-hidden="true"></i>'
+                                '<div class="full-nav-arrow left"><div><span class="material-symbols-outlined">arrow_back</span></div></div>',
+                                '<div class="full-nav-arrow right"><div><span class="material-symbols-outlined">arrow_forward</span></div></div>'
                             ]}
                         >
 
@@ -158,6 +180,10 @@ export default function HomePage() {
                                 return <div className="item" key={events.Eventid}>
                                     {/* <BannerItemSmallHP
                                             eventLogoURL={events.EventLogo} /> */}
+                                    {index = eventCount.findIndex(e => e.EventID === events.Eventid)}
+                                    {/* {console.log('index : ', index)} */}
+                                    {eventCntForEvent = (index === -1) ? 0 : eventCount[index].EntryCount
+                                    }
 
                                     <BannerItemHP eventName={events.EventName} eventType={events.EventType}
                                         eventDate={events.EventStartDate}
@@ -170,10 +196,12 @@ export default function HomePage() {
                                         entryFee={events.MinimumFee}
                                         eventLogoURL={events.EventLogo}
                                         sportName={events.SportName ? events.SportName : ""}
+                                        entryCntForEvent={eventCntForEvent}
                                         rating={events.rating ? events.rating : 5}
                                         ratingCount={events.ratingCount ? events.ratingCount : 100}
                                         isLive={events.isLive}
-                                        eventMode={events.EventMode ? events.EventMode.toUpperCase() : 'OPEN'} />
+                                        eventMode={events.EventMode ? events.EventMode.toUpperCase() : 'OPEN'}
+                                        setMyEvent={props.updateMyEvent} />
 
                                 </div>
 
@@ -182,7 +210,7 @@ export default function HomePage() {
                         }
                     </div><br />
                 </section><br />
-            </div>
+            </div >
 
         </div >
     )

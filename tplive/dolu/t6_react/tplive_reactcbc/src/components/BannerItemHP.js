@@ -130,7 +130,8 @@ export default function BannerItemHP(props) {
         ret1(para1).then((result) => {
             window.localStorage.setItem("EventID", JSON.stringify(props.eventID));
             window.localStorage.setItem("EventDetails", JSON.stringify(result.data));
-            navigate("/EventDetails", { state: { eventID: props.eventID, eventDetails: result.data } });
+
+            navigate("/EventDetails", { state: { eventID: props.eventID, eventDetails: result.data, entryCount: props.entryCntForEvent } });
             //window.location.href = "https://tournamentplanner.in/screens/TPLive_TournamentDetails.aspx?SCode=" + sCode + "&TCode=" + props.eventCode;
 
         });
@@ -140,7 +141,7 @@ export default function BannerItemHP(props) {
     return (
         <>
             {/* let  {eventName, organizerName, eventID, eventType, location, location, entryFee, eventDate} = this.props; */}
-            <div className="event-display-card">
+            <div className="event-display-card" onClick={btnClickEvent}>
                 <div className="row no-gutters">
                     <div className="col-lg-5 col-md-12 col-sm-12">
                         <div className="content">
@@ -171,7 +172,7 @@ export default function BannerItemHP(props) {
                                 </div>
                             </div>
                             <div className="button-div">
-                                <button type="button" onClick={btnClickEvent}
+                                <button type="button"
                                     className="mybutton button5 event-card-button" name="button"
                                     style={{ background: buttonProp.buttonStyle }}><span>{buttonProp.buttonText}</span></button>
                                 {props.isLive &&
@@ -179,6 +180,13 @@ export default function BannerItemHP(props) {
                                         <div className=""></div>
                                         <h1>LiVE</h1>
                                     </a>
+                                }
+                                {
+                                    props.entryCntForEvent >= 0 && <div className="">
+                                        <h3>Total Entry : {props.entryCntForEvent}</h3>
+
+                                    </div>
+
                                 }
                             </div>
                         </div>
@@ -209,7 +217,7 @@ export default function BannerItemHP(props) {
                                 </div>
                                 <div className="button-div">
                                     <button type="button"
-                                        onClick={btnClickEvent}
+
                                         className="mybutton button5 event-card-button" name="button"
                                         style={{ background: buttonProp.buttonStyle }}><span>{buttonProp.buttonText}</span></button>
                                     <div style={{ textAlign: 'right' }}>

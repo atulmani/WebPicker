@@ -1,0 +1,481 @@
+.event-details-sticky-div {
+    position: relative;
+    border-top: 1px solid #bbb;
+    transform: translateY(-1px);
+    background: #333C5D;
+    cursor: pointer;
+    padding: 10px 30px 5px 30px;
+    overflow: hidden;
+}
+
+.event-details-sticky-div-inner-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event-details-sticky-div div small {
+    position: relative;
+    top: -2px;
+    color: #bbb;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 500px) {
+    .event-details-sticky-div {
+        padding: 10px 15px 5px 15px;
+    }
+}
+
+.event-details-sticky-div div h1 {
+    color: #fff;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.event-details-sticky-div div h2 {
+    color: #fff;
+    font-size: 0.9rem;
+    margin: 0;
+    font-weight: normal;
+}
+
+.reg-propfile-event-details-expand {
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    transform: translateX(-50%);
+    z-index: 99;
+}
+
+.event-details-sticky-div .reg-propfile-event-details-expand span {
+    color: #fff;
+    font-size: 2rem;
+    transition: 1s;
+}
+
+.event-details-sticky-div.active .reg-propfile-event-details-expand span {
+    transform: rotate(180deg);
+}
+
+.event-details-sticky-div .reg-profile-event-card {
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: 1.5s ease-out;
+}
+
+.event-details-sticky-div.active .reg-profile-event-card {
+    max-height: 800px;
+    opacity: 1;
+    pointer-events: all;
+    padding-bottom: 20px;
+    transition: 2s ease-in;
+}
+
+.reg-participant-outter {
+    width: 100%;
+    overflow: hidden;
+}
+
+.reg-participant-outter .reg-participant-inner {
+    width: 300%;
+    display: flex;
+}
+
+.reg-participant-outter .reg-participant-inner .reg-participant-divs {
+    padding: 5px;
+    width: 100%;
+    transition: 2s;
+}
+
+.event-registration-participant-card {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    height: 100px;
+    cursor: pointer;
+}
+
+.add-paticipant-card {
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.1);
+    /* background: rgba(52, 141, 203, 0.3); */
+}
+
+.add-paticipant-card span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #6E5E5E;
+    font-size: 2rem;
+    color: #fff;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.add-paticipant-card h1 {
+    font-size: 1rem;
+    font-weight: normal;
+    margin: 0;
+    padding-top: 5px;
+    color: #6E5E5E;
+}
+
+.event-registration-participant-card .participant-name-div {
+    display: flex;
+    align-items: center;
+}
+
+.event-registration-participant-card .participant-name-div span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1.7rem;
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 700,
+        'GRAD' 0,
+        'opsz' 48
+}
+
+.event-registration-participant-card .participant-name-div span.male {
+    background: #5cc4f3;
+}
+
+.event-registration-participant-card .participant-name-div span.female {
+    background: #f576ac;
+}
+
+.event-registration-participant-card .participant-name-div h1 {
+    color: #333C5D;
+    position: relative;
+    top: 3px;
+    font-size: 1.3rem;
+    padding: 0 15px 0 10px;
+    margin: 0;
+    margin-bottom: 2px;
+}
+
+.event-registration-participant-card .participant-name-div h2 {
+    position: relative;
+    top: 2px;
+    padding-left: 10px;
+    font-size: 0.9rem;
+    color: #aaa;
+    font-weight: normal;
+    margin: 0;
+}
+
+.participant-edit-text {
+    padding: 0 10px;
+    font-size: 0.8rem;
+    margin: 0;
+    position: relative;
+    top: -3px;
+}
+
+.event-registration-participant-card .participant-card-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-40%);
+    right: 0;
+}
+
+.event-registration-participant-card .participant-card-arrow span {
+    font-size: 1.8rem;
+    color: #bbb;
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 700,
+        'GRAD' 0,
+        'opsz' 48
+}
+
+.reg-form-email {
+    font-size: 1rem;
+    text-align: center;
+    color: #aaa;
+    font-weight: normal;
+    margin: 0;
+}
+
+.reg-form-email.male {
+    color: #5cc4f3;
+}
+
+.reg-form-email.female {
+    color: #f576ac;
+}
+
+.reg-participant-form-field {
+    padding: 15px 5px;
+    position: relative;
+}
+
+.reg-participant-form-field input,
+.reg-participant-form-field select {
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    background: none;
+    border: 1px solid #ddd;
+    color: #333C5D;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    padding: 0 10px;
+    font-size: 0.9rem;
+}
+
+.reg-participant-form-field input:read-only {
+    background: #efefef;
+}
+
+.reg-participant-date-picker {
+    background: none !important;
+    border: 1px solid #ddd !important;
+    height: 40px;
+    border-radius: 8px 0 0 8px !important;
+}
+
+.reg-participant-date-picker-icon {
+    height: 40px;
+    background: none;
+    border: 1px solid #ddd;
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+}
+
+.reg-participant-form-field span {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.1rem;
+    color: #aaa;
+    padding: 0 8px;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.reg-participant-form-field input:focus~span,
+.reg-participant-form-field input:valid~span,
+.reg-participant-form-field input.email-input-invalid:invalid~span,
+span.already-active {
+    top: 15px;
+    background: #fff;
+    font-size: 0.9rem;
+    color: #348DCB;
+    font-weight: bold;
+    padding: 0 8px;
+}
+
+.reg-participant-form-field.profile-name-input input:focus~span,
+.reg-participant-form-field.profile-name-input input:valid~span {
+    top: 10px;
+}
+
+.ref-participant-save-div {
+    display: flex;
+    justify-content: center;
+}
+
+.ref-participant-save-div button {
+    width: 140px;
+    margin: 0 10px;
+}
+
+@media (max-width: 850px) {
+    .ref-participant-save-div button {
+        width: 100%;
+    }
+}
+
+.reg-first-form-gender-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.gender-section-inside-div {
+    width: 33%;
+}
+
+.city-section-inside-div {
+    width: 66%;
+    display: flex;
+}
+
+@media (max-width: 1200px) {
+    .reg-first-form-gender-section .gender-section-inside-div {
+        width: 50%;
+    }
+}
+
+@media (max-width: 500px) {
+    .reg-first-form-gender-section .gender-section-inside-div {
+        width: 100%;
+    }
+
+    .city-section-inside-div {
+        width: 100%;
+    }
+}
+
+.reg-form-dots {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.reg-form-dots div {
+    padding: 0 15px;
+    height: 10px;
+}
+
+.reg-form-dots div::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ddd;
+    border-radius: 50%;
+}
+
+.reg-form-dots div.active::before {
+    background: #348DCB;
+}
+
+.profile-setup-outter-div {
+    width: 100%;
+    overflow: hidden;
+}
+
+.profile-setup-inner-div {
+    display: flex;
+    width: 200%;
+}
+
+.profile-setup-inner-div .profile-setup-form {
+    width: 100%;
+    transition: 1s;
+}
+
+.profile-setup-name-email-div .reg-participant-form-field {
+    padding: 10px;
+}
+
+@media (max-width: 850px) {
+    .profile-setup-name-email-div {
+        flex-direction: column;
+    }
+
+    .profile-setup-name-email-div .reg-participant-form-field {
+        padding: 15px 0;
+    }
+}
+
+.reg-participant-form-field h1 {
+    position: absolute;
+    bottom: -15px;
+    left: 10px;
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+.reg-participant-form-field h1.pin-code-error {
+    color: #ff5757;
+}
+
+.reg-participant-form-field input:focus~.pin-code-span,
+.reg-participant-form-field input:valid~.pin-code-span {
+    top: 10px;
+}
+
+
+.checkbox-div {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.checkbox-div div {
+    width: 100%;
+    padding: 10px 3px;
+}
+
+.checkbox {
+    position: absolute;
+    opacity: 0;
+}
+
+.checkbox~.checkbox-label {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    height: 35px;
+    border-radius: 20px;
+    padding: 6px 7px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.4);
+    transition: 0.3s;
+}
+
+.checkbox:checked~.checkbox-label {
+    background: #348DCB;
+    border: 1px solid #348DCB;
+    color: #fff;
+}
+
+.checkbox:checked~.checkbox-label#Male-label,
+.checkbox:checked~.checkbox-label#regParticipantMaleLabel {
+    background: #5cc4f3;
+    border: 1px solid #5cc4f3;
+}
+
+.checkbox:checked~.checkbox-label#Female-label,
+.checkbox:checked~.checkbox-label#regParticipantFemaleLabel {
+    background: #f576ac;
+    border: 1px solid #f576ac;
+}
+
+.checkbox:checked~.checkbox-label span {
+    transition: 0.3s;
+}
+
+.checkbox:checked~.checkbox-label span {
+    color: #fff;
+    font-weight: bolder;
+}
+
+.checkbox-label .fa-check,
+.checkbox-label .fa-plus {
+    font-size: 0.9rem;
+    padding-right: 8px;
+    transition: display .3s;
+}
+
+.checkbox~.checkbox-label .fa-check {
+    display: none;
+}
+
+.checkbox~.checkbox-label .fa-plus {
+    display: inline-block;
+}
+
+.checkbox:checked~.checkbox-label .fa-check {
+    display: inline-block;
+}
+
+.checkbox:checked~.checkbox-label .fa-plus {
+    display: none;
+}

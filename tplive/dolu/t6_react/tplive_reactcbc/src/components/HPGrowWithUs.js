@@ -42,7 +42,7 @@ export default function HPGrowWithUs() {
                         </p><br />
 
                         <Link to="/ContactUs" style={{ margin: '0 5px' }}>
-                            <button type="button" className="mybutton button5" name="button">Connect with us</button>
+                            <button type="button" className="mybutton button5" style={{ width: '150px' }} name="button">Connect with us</button>
                         </Link>
 
                         <div style={{ display: 'flex', justifyContent: 'space-around' }} className="">
@@ -90,7 +90,7 @@ export default function HPGrowWithUs() {
 
 
                             <Link to="/ContactUs" style={{ margin: '0 5px' }}>
-                                <button type="button" className="mybutton button5" name="button">Connect with us</button>
+                                <button type="button" className="mybutton button5" style={{ width: '150px' }} name="button">Connect with us</button>
                             </Link>
 
                             <br /><br />

@@ -1,0 +1,195 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Baloo 2', cursive;
+    color: #333C5D;
+    overflow-x: hidden;
+}
+
+/* a{
+  text-decoration: none;
+} */
+
+hr {
+    border: none;
+    border: 1px solid #ddd;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+
+h5 {
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+h6 {
+    font-size: 0.8rem;
+    font-weight: normal;
+}
+
+/********** class selectors ************/
+.container-fluid {
+    width: 100%;
+}
+
+.large {
+    width: 100%;
+    border-radius: 0 0 0 0;
+}
+
+.small {
+    width: 0px;
+    display: none;
+    border-radius: 0 0 0 0;
+}
+
+@media (max-width: 1080px) {
+    .large {
+        width: 0%;
+        display: none;
+        border-radius: 0 0 0 0;
+    }
+
+    .small {
+        width: 100%;
+        display: block;
+        border-radius: 0 0 0 0;
+    }
+}
+
+button:disabled {
+    background: #aaa;
+    cursor: auto;
+}
+
+.mybutton {
+    background: #221B1B;
+    position: relative;
+    border: none;
+    color: white;
+    padding: 7px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.9rem;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    /* border-radius: 8px; */
+}
+
+.mybutton lottie-player {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateY(-10px);
+    width: 100%;
+    height: 150%;
+}
+
+.button5 {
+    background: #348DCB;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    padding: 5px 20px;
+}
+
+.buttonTransparent {
+    border: 1px solid #fff;
+    background: none;
+    border-radius: 20px;
+    padding: 0 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.buttonTransparent:hover {
+    background: #fff;
+    color: #161d65;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+}
+
+.heading {
+    display: flex;
+    align-items: center;
+}
+
+.heading span {
+    font-size: 2.3rem;
+    padding-right: 10px;
+}
+
+.heading h4 {
+    position: relative;
+    top: 5px;
+    font-size: 2.1rem;
+    font-weight: bold;
+}
+
+@media (max-width: 850px) {
+    .heading h4 {
+        font-size: 1.5rem;
+    }
+}
+
+.blink {
+    animation: blink 1.4s linear infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    60% {
+        opacity: 1;
+    }
+
+    30% {
+        opacity: 0;
+    }
+}
+
+.btn-loading lottie-player {
+    width: 50%;
+    transform: translate(50%, -9px);
+}
+
+.normal-loading {
+    max-height: 300px;
+}
+
+.normal-loading lottie-player {
+    transform: translateY(-30%);
+}

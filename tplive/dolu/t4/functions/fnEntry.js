@@ -43,14 +43,15 @@ exports.logEntryAdd = functions
       }).
       then(async (rec) => {
         var allentryCount = 0;
+        var docIDA = "";
         await admin.firestore().collection("EventAllEntryLog").where("EventID", "==", inputData.EventID).get().then(async (changes) => {
           changes.forEach(doc1 => {
-            docID = doc1.id;
+            docIDA = doc1.id;
             allentryCount = Number(doc1.data().EntryCount);
           });
 
-          if (docID != "") {
-            await admin.firestore().collection("EventAllEntryLog").doc(docID).set({
+          if (docIDA != "") {
+            await admin.firestore().collection("EventAllEntryLog").doc(docIDA).set({
               EventID: inputData.EventID,
               EntryCount: allentryCount + 1,
             });
@@ -104,15 +105,16 @@ exports.logEntryDelete = functions
       then(async (rec) => {
         var allentryCount = 0;
         //  const entryLogID =
+        var docIDA = "";
         console.log(inputData.EventID);
         await admin.firestore().collection("EventAllEntryLog").where("EventID", "==", inputData.EventID)
           .get().then(async (changes) => {
             changes.forEach(doc1 => {
-              docID = doc1.id;
+              docIDA = doc1.id;
               allentryCount = Number(doc1.data().EntryCount);
             });
-            if (docID != "" && docID != undefined) {
-              await admin.firestore().collection("EventAllEntryLog").doc(docID).set({
+            if (docIDA != "" && docIDA != undefined) {
+              await admin.firestore().collection("EventAllEntryLog").doc(docIDA).set({
                 EventID: inputData.EventID,
                 EntryCount: allentryCount - 1,
               });
