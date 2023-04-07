@@ -31,7 +31,7 @@ export default function ExportExcelComp(props) {
     return (
         <div>
             {/* <h1 style={{ margin: '20%' }}>Export Excel</h1> */}
-            <ExportExcel excelData={props.data ? props.data : myData} fileName={props.data ? props.fileName : "MyExcelFile"}>Export</ExportExcel>
+            <ExportExcel excelData={props.data ? props.data : myData} fileName={props.data ? props.fileName : "MyExcelFile"} buttonName={props.data ? props.buttonName : "Export"}>Export</ExportExcel>
         </div>
     )
 }

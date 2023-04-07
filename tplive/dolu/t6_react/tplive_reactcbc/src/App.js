@@ -122,6 +122,9 @@ function App() {
           <Route exact path='/EventPartcipants' element={<EventPartcipants />} />
           <Route exact path='/PlayerParticipation' element={<PlayerParticipation></PlayerParticipation>}></Route>
           <Route exact path='/EventCategoryPartcipants' element={<EventCategoryPartcipants></EventCategoryPartcipants>}></Route>
+
+
+
           {/* not used components <Route exact path='/EventRegistration' element={<EventRegistration />} /> */}
           <Route exact path='/RegisteredProfile' element={<RegisteredProfile />} />
           <Route exact path='/RegistrationCategory' element={<RegistrationCategory />} />

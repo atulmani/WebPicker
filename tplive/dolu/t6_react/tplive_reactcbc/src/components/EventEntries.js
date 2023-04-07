@@ -88,11 +88,13 @@ export default function EventEntries() {
                             participantDetails={participantDetails}
                             participantCount={participantCount}
                         />}
-                        {loading && <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_27H8l4.json" background="transparent" speed="1" loop autoplay></lottie-player>}
+                        <div className="" style={{ textAlign: 'right', position: 'relative', zIndex: '5' }}>
 
+                            {loading && <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_27H8l4.json" background="transparent" speed="1" loop autoplay></lottie-player>}
+                        </div>
                         <div className="" style={{ textAlign: 'right', position: 'relative', zIndex: '5' }}>
                             <br />
-                            {eventDetails && false && <ExportExcelComp data={entryCountDetails} fileName={'Entrysummary'} />}
+                            {eventDetails && true && <ExportExcelComp data={entryCountDetails} fileName={'Entrysummary'} buttonName='Export Entry' />}
 
                             <table className="content-table" style={{ width: '100%' }}>
                                 <thead>

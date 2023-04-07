@@ -11,6 +11,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from '../firebase';
 import { useLocation } from 'react-router-dom';
 import { useRef } from 'react'
+import { useMemo } from 'react'
 
 // import { useParams } from 'react-router-dom'
 
@@ -113,6 +114,10 @@ export default function EventDetails() {
 
         }
         fetchData();
+        // const memorizedData = useMemo(() => {
+        //     return fetchData();
+        // }, [reventDetails.current.Eventid])
+
     }, []);
 
     return (
@@ -122,11 +127,9 @@ export default function EventDetails() {
 
                 <div className="row no-gutters">
                     <div className="col-lg-8 col-md-8 col-sm-12">
-
-                        {/* {console.log(partcipantObj)}
-                        {console.log(partcipantObj.participantCount)} */}
-
                         {reventDetails.current && partcipantObj.flagSet && <EventDetailsMenu calledFrom='Details'
+                            // {<EventDetailsMenu calledFrom='Details'
+
                             eventID={reventDetails.current.eventID}
                             eventDetails={reventDetails.current}
                             entryCount={rentryCount.current}
@@ -134,10 +137,10 @@ export default function EventDetails() {
                             participantDetails={partcipantObj.participantDetails}
                             participantCount={partcipantObj.participantCount}
                         />}
-                        {loading && <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_27H8l4.json" background="transparent" speed="1" loop autoplay></lottie-player>}
 
                         {reventDetails.current && partcipantObj.flagSet && <EventDetailsLogo eventDetails={reventDetails.current}></EventDetailsLogo>}
                     </div>
+                    {loading && <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_27H8l4.json" background="transparent" speed="1" loop autoplay></lottie-player>}
 
                     {reventDetails.current && partcipantObj.flagSet && <EDTournamentDetails eventDetails={reventDetails.current} showRegistration={true} />}
                     {reventDetails.current && partcipantObj.flagSet && <EDAboutEvent eventDetails={reventDetails.current} />}
