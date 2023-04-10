@@ -6,7 +6,6 @@ import { functions } from '../firebase.js'
 import { httpsCallable } from "firebase/functions";
 import { useNavigate } from 'react-router-dom';
 import UserRole from './UserRole.js'
-import UserRoleRequest from './UserRoleRequest.js';
 import $ from "jquery";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -69,7 +68,6 @@ export default function UserProfile() {
     useEffect(() => {
         // console.log(user);
         if (user.isLoggedIn) {
-            let eventList = [];
             if (user.userInfo !== null) {
                 // setUserDetails(window.localStorage.getItem('userProfile') ? JSON.parse(window.localStorage.getItem('userProfile')) : {})
                 let tempdob = '';

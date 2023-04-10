@@ -18,7 +18,7 @@ export default function EventDetailsMenu(props) {
 
     // console.log('from EventDetailsMenu : participantCount = ', participantCount, ' :: participantDetails : ', participantDetails,
     //     ':: uniqueParticipantDetails : ', uniqueParticipantDetails);
-    console.log('props : ', props);
+    // console.log('props : ', props);
     let cnt = 1;
     return (
         <div className="event-details-menu-outter">

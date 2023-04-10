@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import '../css/EventRegistration.css'
-import { useLocation, useResolvedPath } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useLocalStorage } from "../context/useLocalStorage";
 import RenderCategoryForRegistration from './RenderCategoryForRegistration';
 import { functions } from '../firebase.js'
-import { connectFunctionsEmulator, httpsCallable } from "firebase/functions";
+import { httpsCallable } from "firebase/functions";
 import { useUserAuth } from '../context/UserAuthcontext';
 import { useNavigate } from 'react-router-dom';
 import EDTournamentDetails from '../components/EDTournamentDetails'
 import { useRef } from 'react';
-import { reauthenticateWithPhoneNumber } from 'firebase/auth';
 
 export default function RegistrationCategory() {
     const { users } = useUserAuth();

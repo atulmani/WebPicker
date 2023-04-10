@@ -47,7 +47,7 @@ export default function Navbar(props) {
                         <b></b>
                         <b></b>
                         <Link className="nav-link"
-                            to="/">
+                            to="/Event">
                             <span className="material-symbols-outlined">
                                 redeem
                             </span>

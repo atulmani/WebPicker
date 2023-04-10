@@ -4,15 +4,17 @@ import { functions } from '../firebase.js'
 import { httpsCallable } from "firebase/functions";
 import EventDetailsMenu from './EventDetailsMenu';
 import EDTournamentDetails from './EDTournamentDetails';
-
+import CategoryCartItem from './CategoryCartItem';
 
 export default function PlayerParticipation() {
-    let { state } = useLocation();
-    const { playerID, eventID, playerUserID } = state;
-    const [eventDetails, setEventDetails] = useState(window.localStorage.getItem('EventDetails') ? JSON.parse(window.localStorage.getItem('EventDetails')) : null);
-    const [participantCount, setParticipantCount] = useState(0);
-    const [participantDetails, setParticipantDetails] = useState(null);
+    const { state } = useLocation();
+    const { eventDetails, entryCount, playerID, uniqueParticipantDetails, participantDetails, participantCount, playerUserID } = state;
     const [loading, setLoading] = useState(false);
+    const [objPlayerParticipant, setObjPlayerParticipant] = useState({
+        playerParticipantDetails: [],
+        playerParticipantCount: 0,
+        showFlag: false
+    });
     useEffect(() => {
         // console.log(eventDetails);
         var para1 = {};
@@ -26,102 +28,64 @@ export default function PlayerParticipation() {
             // console.log(para1);
             const ret1 = httpsCallable(functions, "getAllRegisteredEventListByPlayerCode");
             ret1(para1).then(async (result) => {
-                setParticipantDetails(result.data);
-                // var cnt = 0;
-                // console.log(result.data.length);
-                // result.data.forEach(element => {
-                //     cnt = cnt + 1;
-                // });
+                setObjPlayerParticipant({
+                    playerParticipantDetails: result.data,
+                    playerParticipantCount: result.data.length,
+                    showFlag: true
+                });
 
-                setParticipantCount(result.data.length);
-                // console.log(participantDetails);
-                // console.log(participantCount);
             });
             setLoading(false);
         }
         fetchData();
     }, []);
 
-    // var regCategory = [];
-    // selectedCategory.forEach(element => {
-    //     var partName = '';
-    //     var partnerUID = '';
-    //     var partnerPlayerID = '';
-    //     var pindex = partnerList.find(e => e.categoryName === element.CategoryName);
-    //     // console.log('pindex', pindex);
-    //     // console.log('partnerList[pindex]', pindex);
-    //     if (pindex) {
-    //         partName = pindex.partnerName;
-    //         partnerUID = pindex.partnerUserID;
-    //         partnerPlayerID = pindex.partnerID;
-    //     }
-    //     var selCat = {
-    //         CategoryName: element.CategoryName,
-    //         EventType: element.EventType,
-    //         Fees: element.Fees,
-    //         Gender: element.Gender,
-    //         MaxTeamSize: element.MaxTeamSize,
-    //         PartnerPlayerID: partnerPlayerID,
-    //         PartnerPlayerName: partName,
-    //         PartnerUserID: partnerUID,
-    //         PaymentStatus: 'Pending'
-    //     }
-    //     regCategory.push(selCat);
-    //     // console.log(element.CategoryName);
-    //     // console.log('registeredEvents : ', registeredEvents);
-    //     // console.log('partnerList : ', partnerList);
-    //     let eventindex = registeredEvents.find(e => e.CategoryName === element.CategoryName);
-    //     var catArrayDel = deletedEvent;
-    //     // console.log(eventindex);
-    //     if (eventindex < 0) {
-    //         catArrayDel.push(element.CategoryName);
-    //         setDeletedEvent(catArrayDel);
-    //     }
-
-
-    // });
-
-    // var para1 = {};
-    // para1 = {
-    //     EventID: eventID,
-    //     ParticipantID: participantDetails.PlayerID,
-    //     PlayerID: participantDetails.id,
-    //     ParticipantName: participantDetails.UserName,
-    //     CategoryList: regCategory,//selectedCategory,
-    //     DeleteCategoryList: deletedEvent,
-    // };
-    // // console.log('para1', para1);
-    // const ret1 = httpsCallable(functions, "registerAllEvent");
-    // ret1(para1).then((result) => {
-    //     // console.log('result', result);
-    //     window.localStorage.setItem('SelectedCategory', JSON.stringify(regCategory));
-    //     navigate("/RegistrationCheckout", { state: { id: 1, participantDetails: participantDetails, selectedCategory: regCategory } });
-
-
-    // })
-
-
 
     return (
         <>
             <div className="container-fluid">
+
+                <div className="row no-gutters">
+                    <div className="col-lg-8 col-md-8 col-sm-12">
+
+                        {eventDetails && <EventDetailsMenu calledFrom='Participant'
+                            eventID={eventDetails.Eventid}
+                            eventDetails={eventDetails}
+                            entryCount={entryCount}
+                            uniqueParticipantDetails={uniqueParticipantDetails}
+                            participantDetails={participantDetails}
+                            participantCount={participantCount}
+                        />}
+                        {loading && <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_27H8l4.json" background="transparent" speed="1" loop autoplay></lottie-player>}
+
+
+                        <div className="row no-gutters" id="divRegEvent">
+
+                            {objPlayerParticipant.showFlag && objPlayerParticipant.playerParticipantDetails.map((events) => {
+                                return <CategoryCartItem key={events.CategoryName} eventDetails={events} ></CategoryCartItem>
+                            })}
+                            {/* <span> * marked event is registered by Partner</span> */}
+
+                        </div>
+
+                    </div>
+
+                    {eventDetails && <EDTournamentDetails eventDetails={eventDetails} showRegistration={true} />}
+                    {/* {eventDetails && <EDAboutEvent eventDetails={eventDetails} />} */}
+                </div>
+            </div >
+            {/* <div className="container-fluid">
                 <div className="row no-gutters">
                     {eventDetails && <EventDetailsMenu eventDetails={eventDetails}
-                        calledFrom='ParticipantDetails'
-                        participantDetails={participantDetails}
+                        calledFrom='Participant'
+                        participantCount={setUniqueParticipantDetails.length}
+                        participantDetails={uniqueParticipantDetails}
                         isLoading={loading} />}
                     {eventDetails && <EDTournamentDetails eventDetails={eventDetails} showRegistration={true} />}
                 </div>
-
-
-                <div>
-
-
-                </div>
-
-
-            </div>
+            </div> */}
         </>
+
     )
 
 }

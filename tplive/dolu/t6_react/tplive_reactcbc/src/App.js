@@ -31,7 +31,7 @@ import RegistrationCheckout from './components/RegistrationCheckout';
 import { UserAuthContextProvider } from './context/UserAuthcontext';
 import PaymentGateway from './components/PaymentGateway';
 import EventParticipation from './components/EventParticipation';
-
+import Events from './components/Events';
 // import PaymentGatewayPayTm from './components/PaymentGatewayPayTm';
 import EventDetailsMenu from './components/EventDetailsMenu';
 import PaymentSuccessful from './components/PaymentSuccessful';
@@ -114,9 +114,28 @@ function App() {
         <Routes>
           <Route exact path='/More' element={<More />} />
           <Route exact path='/Location' element={<Location City="All" setCity={setMyCity} />} />
-          <Route exact path='/Event' element={<HomePage />} />
+          <Route exact path='/Event' element={<Events />} />
 
+          {/* if(location.pathname === '/EventDetails'){
+            <div className="container-fluid">
+
+              <div className="row no-gutters">
+                <div className="col-lg-8 col-md-8 col-sm-12">
+                  <EventDetailsMenu calledFrom='Details'
+                    // {<EventDetailsMenu calledFrom='Details'
+
+                    eventID={reventDetails.current.eventID}
+                    eventDetails={reventDetails.current}
+                    entryCount={rentryCount.current}
+                    uniqueParticipantDetails={partcipantObj.uniqueParticipantDetails}
+                    participantDetails={partcipantObj.participantDetails}
+                    participantCount={partcipantObj.participantCount}
+                  />
+                  {reventDetails.current && partcipantObj.flagSet && <EventDetailsLogo eventDetails={reventDetails.current}></EventDetailsLogo>}
+          } */}
           <Route exact path='/EventDetails' element={<EventDetails />} />
+
+
           <Route exact path='/EventParticipation' element={<EventParticipation />} />
           <Route exact path='/EventEntries' element={<EventEntries />} />
           <Route exact path='/EventPartcipants' element={<EventPartcipants />} />
@@ -148,7 +167,7 @@ function App() {
           <Route exact path='/ExportExcelComp' element={<ExportExcelComp></ExportExcelComp>}></Route>
           <Route exact path="/MyExcelComponant" element={<MyExcelComponant></MyExcelComponant>}></Route>
           <Route exact path='/ExportEventEntry' element={<ExportEventEntry ></ExportEventEntry>}></Route>
-          <Route path='/' element={<HomePage />} />
+          <Route path='/' element={<HomePage updateMyEvent={updateMyEvent} />} />
         </Routes>
 
         <HPGenere></HPGenere>

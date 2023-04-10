@@ -201,7 +201,7 @@ export default function HomePage(props) {
                                         ratingCount={events.ratingCount ? events.ratingCount : 100}
                                         isLive={events.isLive}
                                         eventMode={events.EventMode ? events.EventMode.toUpperCase() : 'OPEN'}
-                                        setMyEvent={props.updateMyEvent} />
+                                        updateMyEvent={props.updateMyEvent} />
 
                                 </div>
 

@@ -15,7 +15,7 @@ export default function BottomBar() {
                     </span>
                     <small>Home</small>
                 </NavLink>
-                <NavLink to="/"
+                <NavLink to="/Event"
                     className={"navbar-mobile-bottom-menu-a "} style={{ display: 'flex', flexDirection: 'column' }}>
                     <span className="material-symbols-outlined">
                         redeem
@@ -25,7 +25,7 @@ export default function BottomBar() {
                 <div  >
 
                 </div>
-                <NavLink to="/" className={(location.pathname === '/') ? "navbar-mobile-bottom-menu-a active" : "navbar-mobile-bottom-menu-a"}
+                <NavLink to="/Event" className={(location.pathname === '/') ? "navbar-mobile-bottom-menu-a active" : "navbar-mobile-bottom-menu-a"}
                     style={{ display: 'flex', flexDirection: 'column' }}>
                     <span className="material-symbols-outlined">
                         category

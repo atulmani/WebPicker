@@ -6,14 +6,6 @@ export default function EventParticipation(props) {
     return (
         <>
             <br />
-            <div className="heading">
-
-                <span className="material-symbols-outlined">
-                    groups
-                </span>
-                <h4 style={{ fontWeight: '1000' }}>Total Participant : {10}</h4>
-                {/* <h4 style={{ fontWeight: '1000' }}>Total Participant : {props.participantDetails ? props.participantDetails.length : 0}</h4> */}
-            </div>
             <br></br>
 
             <select name="" className="total-participants-select" id="">

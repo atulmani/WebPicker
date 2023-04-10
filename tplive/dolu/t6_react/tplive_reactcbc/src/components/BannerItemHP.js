@@ -128,9 +128,8 @@ export default function BannerItemHP(props) {
         // console.log('in useEffect', props.eventID)
         const ret1 = httpsCallable(functions, "getEventDetails");
         ret1(para1).then((result) => {
-            window.localStorage.setItem("EventID", JSON.stringify(props.eventID));
-            window.localStorage.setItem("EventDetails", JSON.stringify(result.data));
-
+            // window.localStorage.setItem("EventID", JSON.stringify(props.eventID));
+            // window.localStorage.setItem("EventDetails", JSON.stringify(result.data));
             navigate("/EventDetails", { state: { eventID: props.eventID, eventDetails: result.data, entryCount: props.entryCntForEvent } });
             //window.location.href = "https://tournamentplanner.in/screens/TPLive_TournamentDetails.aspx?SCode=" + sCode + "&TCode=" + props.eventCode;
 

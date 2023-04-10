@@ -23,7 +23,7 @@ export default function EventEntries() {
     //const [entryCount, setEntryCount] = useState(0);
     const [entryCountDetails, setEntryCountDetails] = useState(null);
     const [loading, setLoading] = useState(true);
-    console.log('eventDetails : ', eventDetails, '::eventID:', eventDetails.Eventid);
+    // console.log('eventDetails : ', eventDetails, '::eventID:', eventDetails.Eventid);
     useEffect(() => {
         setLoading(true);
         var para1 = {};
@@ -71,6 +71,7 @@ export default function EventEntries() {
         }
         fetchData();
     }, []);
+    // const entryCountDetails = useMemo(() => {
 
 
     return (
