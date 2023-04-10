@@ -122,6 +122,7 @@ export default function Events() {
 
 
             }
+            {(eventListFilter.length <= 0) ? "No event found for given search key, Please enter tournament name, Orgaizer Name or City to search  " : ""}
         </div>
     )
 }
