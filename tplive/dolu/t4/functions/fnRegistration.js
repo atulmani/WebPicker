@@ -434,6 +434,59 @@ exports.getAllRegisteredEventListByPlayerCode =
     });
 
 
+exports.getAllRegisteredEventForUserID =
+  functions
+    .region('asia-south1')
+    .https.onCall(async (data, context) => {
+      if (!context.auth) {
+        throw new functions.https.HttpError(
+          "unauthenticatied",
+          "only authenticated user can call this"
+        );
+      }
+      const UserID = data.UserID;
+
+      let resultList = [];
+      let userList = [];
+      return await admin.firestore().collection("Participants")
+        .where("UserID", "==", UserID)
+        .get().then(async (changes) => {
+
+          changes.forEach(doc1 => {
+            userList.push(doc1.id,
+            );
+          });
+          return await admin.firestore().collection("EventRegistrationDetails")
+            .where("PlayerID", "in", userList)
+            .get().then((changes1) => {
+
+              changes1.forEach(doc2 => {
+                resultList.push({
+                  EventID: doc2.data().EventID,
+                  CategoryName: doc2.data().CategoryName,
+                  EventType: doc2.data().EventType,
+                  Fees: doc2.data().Fees,
+                  Gender: doc2.data().Gender,
+                  MaxTeamSize: doc2.data().MaxTeamSize,
+                  PaymentStatus: doc2.data().PaymentStatus,
+                  RegType: 'Partner',
+                  PlayerID: '', //doc2.data().PlayerID,
+                  ParticipantID: doc2.data().PartnerPlayerID, //doc2.data().ParticipantID,
+                  ParticipantName: doc2.data().PartnerPlayerName, //doc2.data().ParticipantName,
+                  PartnerPlayerID: doc2.data().ParticipantID, //doc2.data().PartnerPlayerID,
+                  PartnerPlayerName: doc2.data().ParticipantName, //doc2.data().PartnerPlayerName,
+                });
+
+              });
+              return resultList;
+
+            });
+
+
+        });
+    });
+
+
 exports.getParticipants =
   functions
     .region('asia-south1')

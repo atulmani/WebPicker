@@ -93,13 +93,6 @@ exports.updateEventFlag_PublishDraw = events.updateEventFlag_PublishDraw;
 exports.updateEventFlag_PublishResult = events.updateEventFlag_PublishResult;
 
 
-
-
-
-
-
-
-
 exports.logEntryAdd = entry.logEntryAdd;
 exports.logEntryDelete = entry.logEntryDelete;
 exports.logEntryUpdate = entry.logEntryUpdate;
@@ -117,6 +110,8 @@ exports.updatePaymentStatus = registration.updatePaymentStatus;
 exports.getAllRegisteredEventListByPlayerCode =
     registration.getAllRegisteredEventListByPlayerCode;
 
+exports.getAllRegisteredEventForUserID =
+    registration.getAllRegisteredEventForUserID;
 exports.getParticipantsWithCategoryName =
     registration.getParticipantsWithCategoryName;
 
