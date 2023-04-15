@@ -94,6 +94,7 @@ export default function EventDetails() {
                 // ...
                 // console.log("user is logged out")
             }
+            console.log(eventDetails);
         })
         getData(reventDetails.current.Eventid);
         // const memorizedData = useMemo(() => {
@@ -114,7 +115,7 @@ export default function EventDetails() {
             participantCount={partcipantObj.participantCount}
         />
     }, [reventDetails, partcipantObj])
-    console.log(mLink);
+    // console.log(mLink);
     return (
         <>
             {/* {console.log(memoSetPartcipantObj)} */}

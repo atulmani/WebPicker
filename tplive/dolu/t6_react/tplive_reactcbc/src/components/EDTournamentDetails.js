@@ -20,8 +20,8 @@ export default function EDTournamentDetails(props) {
         month: 'short',
         day: 'numeric'
     };
-    const refSDate = new Date(props.eventDetails.EventStartDate._seconds * 1000);
-    const refEDate = new Date(props.eventDetails.EventEndDate._seconds * 1000);
+    // const refSDate = new Date(props.eventDetails.EventStartDate._seconds * 1000);
+    // const refEDate = new Date(props.eventDetails.EventEndDate._seconds * 1000);
     const refWDate = props.eventDetails.WithdrawalEndDate ? new Date(props.eventDetails.WithdrawalEndDate._seconds * 1000) : null;
 
     //element.EventStartDate = refdate.toLocaleDateString("en-IN", options);
@@ -61,14 +61,14 @@ export default function EDTournamentDetails(props) {
                     <li>
                         <i className="far fa-calendar"></i>
                         <span className="textheadleft">Date : </span>
-                        <span id="eventstartdate" className="textheadright"> {refSDate.toLocaleDateString("en-IN", options)}</span>
+                        <span id="eventstartdate" className="textheadright"> {props.eventDetails.EventStartDate}</span>
                         <span id="eventenddate"
-                            className="textheadright"> - {refEDate.toLocaleDateString("en-IN", options)}</span>
+                            className="textheadright"> - {props.eventDetails.EventEndDate}</span>
                     </li>
                     <li>
                         <i className="fas fa-rupee-sign"></i>
                         <span className="textheadleft">Price : </span>
-                        <span id="eventprice" className="textheadright"> {Number(props.eventDetails.MinimumFee).toLocaleString('en-IN', curFormat)}</span>
+                        <span id="eventprice" className="textheadright"> {(props.eventDetails.MinimumFee)}</span>
                     </li>
 
                     <li className="large" style={{ paddingBottom: '20px' }}>

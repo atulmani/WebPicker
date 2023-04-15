@@ -49,6 +49,7 @@ export default function Events() {
                         element.EventStartDate = "";
                     }
                     var eDate = new Date(element.EventEndDate._seconds * 1000 + 60 * 60 * 24 * 1000);
+                    element.EventEndDate = eDate.toLocaleDateString("en-IN", options);
                     if (refdate <= today && eDate >= today && element.EventStatus.toUpperCase() === 'ACTIVE') {
                         element.isLive = true;
                     } else {

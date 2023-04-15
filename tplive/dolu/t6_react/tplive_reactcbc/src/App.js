@@ -32,6 +32,7 @@ import { UserAuthContextProvider } from './context/UserAuthcontext';
 import PaymentGateway from './components/PaymentGateway';
 import EventParticipation from './components/EventParticipation';
 import Events from './components/Events';
+import RegisteredEvent from './components/RegisteredEvent'
 // import PaymentGatewayPayTm from './components/PaymentGatewayPayTm';
 import EventDetailsMenu from './components/EventDetailsMenu';
 import PaymentSuccessful from './components/PaymentSuccessful';
@@ -153,7 +154,7 @@ function App() {
           <Route exact path='/Login' element={<Login />} />
           <Route exact path='/PhoneSignUp' element={<PhoneSignUp />} />
           <Route exact path='/UserProfile' element={<UserProfile />} />
-
+          <Route exact path='/RegisteredEvent' element={<RegisteredEvent></RegisteredEvent>}></Route>
           {/* not used <Route exact path='/PaymentGateway' element={<PaymentGateway />} /> */}
           {/* not used <Route exact path='/PaymentGatewayPayTm' element={<PaymentGatewayPayTm />} /> */}
 

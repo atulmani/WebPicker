@@ -4,11 +4,13 @@ import { useUserAuth } from '../context/UserAuthcontext';
 
 import { functions } from '../firebase.js'
 import { httpsCallable } from "firebase/functions";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import UserRole from './UserRole.js'
+
 import $ from "jquery";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import PartcipantList from './PartcipantList';
 
 export default function UserProfile() {
     const { user } = useUserAuth();
@@ -479,8 +481,18 @@ export default function UserProfile() {
                             </div>
 
                         </div>
+                        <div className="col-lg-4 col-md-4 col-sm-12">
 
+                            <div
+                                style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                                {/* <Link to="/RegisteredEvent"> Registered Event</Link> */}
+                                <PartcipantList></PartcipantList>
+                            </div>
+
+                        </div>
                     </div>
+
+
                 </div>
             </div><br />
 

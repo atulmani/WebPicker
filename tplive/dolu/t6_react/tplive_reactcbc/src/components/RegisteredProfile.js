@@ -101,37 +101,19 @@ export default function RegisteredProfile() {
     }, [user])
     function regProfileToFirstSlide(e) {
         e.preventDefault();
-        // console.log('in regProfileToFirstSlide');
         setFlag('first');
         setShowUserBasicDetails(false);
-        // console.log('flag : ', flag);
-        // console.log('2 transfer : ', (flag === 'second') ? 'translateX(-100%)' : ((flag === 'third') ? 'translateX(-200 %)' : ''));
 
     }
     function regProfileToSecondSlide(e) {
         e.preventDefault();
-        // console.log('in regProfileToSecondSlide');
         setShowUserBasicDetails(true);
-        // setThirdFlag(false);
-        // setSecondFlag(true);
-        // console.log('setThirdFlag', thirdFlag);
-        // console.log('setSecondFlag', secondFlag);
-        //setFlag('first');
         setFlag('second');
-        // console.log('flag : ', flag);
-
-        // console.log('2 transfer : ', (flag === 'second') ? 'translateX(-100%)' : ((flag === 'third') ? 'translateX(-200 %)' : ''));
 
     }
     function regProfileToThirdSlide(e) {
         e.preventDefault();
-        // console.log('in regProfileToThirdSlide');
-        // setSecondFlag(false);
-        // setThirdFlag(true);
         setFlag('third');
-        // console.log('flag : ', flag);
-        // console.log('setSecondFlag', secondFlag);
-        // console.log('3 transfer : ', (flag === 'second') ? 'translateX(-100%)' : ((flag === 'third') ? 'translateX(-200 %)' : ''));
     }
     function regSaveDetails(e) {
         e.preventDefault();
