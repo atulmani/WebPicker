@@ -53,6 +53,7 @@ import ExportExcelComp from './components/ExportExcelComp';
 import MyExcelComponant from './components/MyExcelComponant';
 import FAQ from './components/FAQ';
 import ExportEventEntry from './components/ExportEventEntry';
+import UsersEvents from './components/UsersEvents';
 // import { render } from '@testing-library/react';
 
 // 1.constructor
@@ -155,6 +156,7 @@ function App() {
           <Route exact path='/PhoneSignUp' element={<PhoneSignUp />} />
           <Route exact path='/UserProfile' element={<UserProfile />} />
           <Route exact path='/RegisteredEvent' element={<RegisteredEvent></RegisteredEvent>}></Route>
+          <Route exact path='/UsersEvents' element={<UsersEvents></UsersEvents>}></Route>
           {/* not used <Route exact path='/PaymentGateway' element={<PaymentGateway />} /> */}
           {/* not used <Route exact path='/PaymentGatewayPayTm' element={<PaymentGatewayPayTm />} /> */}
 

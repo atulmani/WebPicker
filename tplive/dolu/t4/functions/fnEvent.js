@@ -734,6 +734,7 @@ exports.getAllEventWithEventStatusAndLocation =
                       EventStatus: doc1.data().EventStatus,
                       OrganizationID: doc1.data().OrganizationID,
                       OrganizerID: doc1.data().OrganizerID,
+                      OrganizationName: doc1.data().OrganizationName,
                       EventOwnerName: doc1.data().EventOwnerName,
                       EventOwnerEmail: doc1.data().EventOwnerEmail,
                       EventOwnerPhone: doc1.data().EventOwnerPhone,
@@ -829,6 +830,7 @@ exports.getAllEventWithEventStatusAndLocation =
                 ThumbImage3: doc1.data().ThumbImage3,
                 ThumbImage4: doc1.data().ThumbImage4,
 
+                OrganizationName: doc1.data().OrganizationName,
                 EventCode: doc1.data().EventCode,
                 EventMode: doc1.data().EventMode,
                 EntryCount: doc1.data().EntryCount,
@@ -912,6 +914,8 @@ exports.getAllEventWithEventStatusAndLocation =
                       EventOwnerEmail: doc1.data().EventOwnerEmail,
                       EventOwnerPhone: doc1.data().EventOwnerPhone,
                       OrganizerLogo: doc1.data().OrganizerLogo,
+
+                      OrganizationName: doc1.data().OrganizationName,
                       EventLogo: doc1.data().EventLogo,
                       ThumbImage1: doc1.data().ThumbImage1,
                       ThumbImage2: doc1.data().ThumbImage2,

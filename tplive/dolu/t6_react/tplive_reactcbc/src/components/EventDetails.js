@@ -17,7 +17,7 @@ import { useMemo } from 'react'
 export default function EventDetails() {
     const { state } = useLocation();
     const { eventID, eventDetails, entryCount, } = state;
-    // console.log(props);
+    // console.log(eventDetails);
     const reventID = useRef(eventID);
     const reventDetails = useRef(eventDetails);
     const rentryCount = useRef(entryCount);
@@ -136,7 +136,7 @@ export default function EventDetails() {
                         {mLink}
                         {reventDetails.current && partcipantObj.flagSet && <EventDetailsLogo eventDetails={reventDetails.current}></EventDetailsLogo>}
                     </div>
-                    {loading && <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_27H8l4.json" background="transparent" speed="1" loop autoplay></lottie-player>}
+                    {loading && <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_9yosyj7r.json" style={{ height: '400px' }} background="transparent" speed="1" loop autoplay></lottie-player>}
 
                     {reventDetails.current && partcipantObj.flagSet && <EDTournamentDetails eventDetails={reventDetails.current} showRegistration={true} />}
                     {reventDetails.current && partcipantObj.flagSet && <EDAboutEvent eventDetails={reventDetails.current} />}

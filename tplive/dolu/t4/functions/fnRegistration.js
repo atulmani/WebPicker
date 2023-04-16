@@ -434,6 +434,115 @@ exports.getAllRegisteredEventListByPlayerCode =
     });
 
 
+exports.getAllRegisteredEventForPlayerCode =
+  functions
+    .region('asia-south1')
+    .https.onCall(async (data, context) => {
+      if (!context.auth) {
+        throw new functions.https.HttpError(
+          "unauthenticatied",
+          "only authenticated user can call this"
+        );
+      }
+      const PlayerID = data.PlayerID;
+      let eventList = [];
+      let resultList = [];
+      let eventDetails = [];
+      return await admin.firestore().collection("EventRegistrationDetails")
+        .where("ParticipantID", "==", PlayerID).get().then(async (changes) => {
+
+          changes.forEach(doc1 => {
+            const found = eventList.includes(doc1.data().EventID);
+            if (!found) eventList.push(doc1.data().EventID);
+
+            resultList.push({
+              EventID: doc1.data().EventID,
+              CategoryName: doc1.data().CategoryName,
+              EventType: doc1.data().EventType,
+              Fees: doc1.data().Fees,
+              Gender: doc1.data().Gender,
+              MaxTeamSize: doc1.data().MaxTeamSize,
+              PaymentStatus: doc1.data().PaymentStatus,
+              RegType: 'Self',
+
+              ParticipantID: doc1.data().ParticipantID,
+              PlayerID: doc1.data().PlayerID,
+              ParticipantName: doc1.data().ParticipantName,
+              PartnerPlayerID: doc1.data().PartnerPlayerID,
+              PartnerPlayerName: doc1.data().PartnerPlayerName,
+            });
+
+
+
+          });
+          return await admin.firestore().collection("EventRegistrationDetails")
+            .where("PartnerPlayerID", "==", PlayerID).get().then(async (changes1) => {
+
+              changes1.forEach(doc2 => {
+
+                const found = eventList.includes(doc2.data().EventID);
+                if (!found) eventList.push(doc2.data().EventID);
+
+
+                resultList.push({
+                  EventID: doc2.data().EventID,
+                  CategoryName: doc2.data().CategoryName,
+                  EventType: doc2.data().EventType,
+                  Fees: doc2.data().Fees,
+                  Gender: doc2.data().Gender,
+                  MaxTeamSize: doc2.data().MaxTeamSize,
+                  PaymentStatus: doc2.data().PaymentStatus,
+                  RegType: 'Partner',
+
+
+                  PlayerID: '', //doc2.data().PlayerID,
+                  ParticipantID: doc2.data().PartnerPlayerID, //doc2.data().ParticipantID,
+                  ParticipantName: doc2.data().PartnerPlayerName, //doc2.data().ParticipantName,
+                  PartnerPlayerID: doc2.data().ParticipantID, //doc2.data().PartnerPlayerID,
+                  PartnerPlayerName: doc2.data().ParticipantName, //doc2.data().PartnerPlayerName,
+                });
+
+              });
+              if (eventList.length > 0) {
+                return await admin.firestore().collection("EventList")
+                  .where(admin.firestore.FieldPath.documentId(), 'in', eventList).get().then(async (changes2) => {
+
+                    changes2.forEach(doc3 => {
+
+                      eventDetails.push({
+                        EventID: doc3.id,
+                        EventCode: doc3.data().EventCode,
+                        CategoryDetails: doc3.data().CategoryDetails,
+                        City: doc3.data().City,
+                        EventEndDate: doc3.data().EventEndDate,
+                        EventStartDate: doc3.data().EventStartDate,
+                        EventMode: doc3.data().EventMode,
+                        EventName: doc3.data().EventName,
+                        EventStatus: doc3.data().EventStatus,
+                        MinimumFee: doc3.data().MinimumFee,
+                        WithdrawalEndDate: doc3.data().WithdrawalEndDate,
+                        OrganizationName: doc3.data().OrganizationName,
+                      });
+
+                    });
+
+                    return {
+                      eventDetails: eventDetails,
+                      entryDetails: resultList
+                    }
+
+                  });
+              } else {
+                return {
+                  eventDetails: eventDetails,
+                  entryDetails: resultList
+                }
+              }
+
+            });
+        });
+    });
+
 exports.getAllRegisteredEventForUserID =
   functions
     .region('asia-south1')

@@ -61,14 +61,14 @@ export default function EDTournamentDetails(props) {
                     <li>
                         <i className="far fa-calendar"></i>
                         <span className="textheadleft">Date : </span>
-                        <span id="eventstartdate" className="textheadright"> {props.eventDetails.EventStartDate}</span>
+                        <span id="eventstartdate" className="textheadright"> {props.eventDetails.EventSDate}</span>
                         <span id="eventenddate"
-                            className="textheadright"> - {props.eventDetails.EventEndDate}</span>
+                            className="textheadright"> - {props.eventDetails.EventEDate}</span>
                     </li>
                     <li>
                         <i className="fas fa-rupee-sign"></i>
                         <span className="textheadleft">Price : </span>
-                        <span id="eventprice" className="textheadright"> {(props.eventDetails.MinimumFee)}</span>
+                        <span id="eventprice" className="textheadright"> {(props.eventDetails.Fees)}</span>
                     </li>
 
                     <li className="large" style={{ paddingBottom: '20px' }}>

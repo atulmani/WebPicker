@@ -245,7 +245,7 @@
 }
 
 .firstDaigonal {
-    transform: scale(0%) translateX(50%) rotate(-46.5deg);
+    transform: scale(100%) translateX(50%) rotate(-46.5deg);
     animation: firstDaigonalEntrance 2s;
 }
 

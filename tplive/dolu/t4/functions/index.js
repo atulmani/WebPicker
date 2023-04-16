@@ -112,6 +112,8 @@ exports.getAllRegisteredEventListByPlayerCode =
 
 exports.getAllRegisteredEventForUserID =
     registration.getAllRegisteredEventForUserID;
+exports.getAllRegisteredEventForPlayerCode =
+    registration.getAllRegisteredEventForPlayerCode;
 exports.getParticipantsWithCategoryName =
     registration.getParticipantsWithCategoryName;
 

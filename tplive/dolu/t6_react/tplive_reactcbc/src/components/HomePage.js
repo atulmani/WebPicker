@@ -48,7 +48,7 @@ export default function HomePage(props) {
             await eventEntryCount()
                 .then((resultCnt) => {
                     let dataCnt = resultCnt.data;
-                    console.log('dataCnt : ', dataCnt);
+                    // console.log('dataCnt : ', dataCnt);
                     dataCnt.forEach(elementCnt => {
                         let index = eventCntList.findIndex(e => e.EventID === elementCnt.EventID);
                         if (index >= 0) {
@@ -62,7 +62,7 @@ export default function HomePage(props) {
                     })
                 });
             setEventCount(eventCntList)
-            console.log('eventCntList :', eventCntList);
+            // console.log('eventCntList :', eventCntList);
             const eventSummaryBySports = httpsCallable(functions, "getAllEventWithEventStatusAndLocation");
             // setLoading(true);
             let para = {
@@ -76,25 +76,32 @@ export default function HomePage(props) {
                     let data = result.data;
                     var refdate = "";
                     var today = new Date();
-
+                    var eventSDate = '';
+                    var eventEDate = '';
                     data.forEach(element => {
                         if (element.EventStartDate) {
                             refdate = new Date(element.EventStartDate._seconds * 1000);
-                            element.EventStartDate = refdate.toLocaleDateString("en-IN", options);
+                            // element.EventStartDate = refdate.toLocaleDateString("en-IN", options);
+                            eventSDate = refdate.toLocaleDateString("en-IN", options);
                         }
                         else {
-                            element.EventStartDate = "";
+                            eventSDate = "";
                         }
                         var eDate = new Date(element.EventEndDate._seconds * 1000 + 60 * 60 * 24 * 1000);
-                        element.EventEndDate = eDate.toLocaleDateString("en-IN", options);
+                        // element.EventEndDate = eDate.toLocaleDateString("en-IN", options);
+                        eventEDate = eDate.toLocaleDateString("en-IN", options);
                         if (refdate <= today && eDate >= today && element.EventStatus.toUpperCase() === 'ACTIVE') {
                             element.isLive = true;
                         } else {
                             element.isLive = false;
                         }
 
-                        element.MinimumFee = element.MinimumFee ? (Number(element.MinimumFee).toLocaleString('en-IN', curFormat)) : "";
+                        // element.MinimumFee = element.MinimumFee ? (Number(element.MinimumFee).toLocaleString('en-IN', curFormat)) : "";
+                        element.Fees = element.MinimumFee ? (Number(element.MinimumFee).toLocaleString('en-IN', curFormat)) : "";
 
+                        element.EventEDate = eventEDate;
+
+                        element.EventSDate = eventSDate;
                     });
                     setOwlSetting(
                         {
@@ -114,7 +121,6 @@ export default function HomePage(props) {
                     //const sanitizedMessage = data.text;
                 });
             setLoading(false);
-
 
         }
         fetchData();
@@ -186,7 +192,12 @@ export default function HomePage(props) {
                                     {eventCntForEvent = (index === -1) ? 0 : eventCount[index].EntryCount
                                     }
 
-                                    <BannerItemHP eventName={events.EventName} eventType={events.EventType}
+                                    <BannerItemHP eventDetails={events}
+                                        entryCntForEvent={eventCntForEvent}
+                                        updateMyEvent={props.updateMyEvent} />
+
+
+                                    {/* <BannerItemHP eventName={events.EventName} eventType={events.EventType}
                                         eventDate={events.EventStartDate}
                                         eventEndDate={events.EventEndDate}
                                         eventID={events.Eventid}
@@ -203,7 +214,7 @@ export default function HomePage(props) {
                                         isLive={events.isLive}
                                         eventMode={events.EventMode ? events.EventMode.toUpperCase() : 'OPEN'}
                                         updateMyEvent={props.updateMyEvent} />
-
+ */}
                                 </div>
 
                             })}

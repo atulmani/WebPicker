@@ -86,13 +86,13 @@ export default function HPGameSection() {
                             </div>
                         </div>
                     </div><br />
-
+                    {/* 
                     <div className="comming-soon">
                         <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_pnqcpdc8.json" background="transparent"
                             speed="1" loop autoplay></lottie-player>
                         <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_bhocdt4s.json" background="transparent"
                             speed="2" loop autoplay></lottie-player>
-                    </div>
+                    </div> */}
 
                 </div><br /><br />
             </div>}

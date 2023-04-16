@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Square from './TicTacToeSquare';
 import { useRef } from 'react'
-import '../css/TicTacToe.css'
+import "../css/TicTacToe.css"
 
 export default function TicTacToe() {
 

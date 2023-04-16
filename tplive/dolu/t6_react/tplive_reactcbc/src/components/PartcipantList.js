@@ -4,6 +4,7 @@ import { useUserAuth } from '../context/UserAuthcontext';
 import { functions } from '../firebase.js'
 import { httpsCallable } from "firebase/functions";
 import { useNavigate } from 'react-router-dom';
+import UserProfileCard from './UserProfileCard';
 
 export default function PartcipantList() {
 
@@ -11,7 +12,7 @@ export default function PartcipantList() {
     const navigate = useNavigate();
     const [userDetails, setUserDetails] = useState(window.localStorage.getItem('userProfile') ? JSON.parse(window.localStorage.getItem('userProfile')) : {});
     const [participantList, setParticipantList] = useState([]);
-    const [showLoading, setShowLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
         // if (user.isLoggedIn) {
         //     if (user.userInfo !== null) {
@@ -33,14 +34,17 @@ export default function PartcipantList() {
         // else {
         // }
         var para1 = {};
+
+        console.log(userDetails.id, '::user::', user);
         if (user.isLoggedIn) {
             if (user.userInfo !== null) {
                 para1 = {
                     userID: userDetails.id,
                 };
+                setLoading(true);
                 let participant = {};
+                console.log(para1);
                 let userParticipant = [];
-                setShowLoading(true);
                 const ret1 = httpsCallable(functions, "getRegisteredParticant");
                 ret1(para1).then(async (result) => {
                     result.data.forEach(async element => {
@@ -62,8 +66,9 @@ export default function PartcipantList() {
                         };
                         userParticipant.push(participant);
                     });
+                    console.log(userParticipant);
                     setParticipantList(userParticipant);
-                    setShowLoading(false);
+                    setLoading(false);
                 });
 
             } else {
@@ -72,33 +77,19 @@ export default function PartcipantList() {
         }
     }, [])
 
-    function showRegisteredEvent() {
-        console.log('in showRegisteredEvent');
-    }
+    // function showRegisteredEvent(obj) {
+    //     console.log('in showRegisteredEvent', obj);
+    //     navigate('/UsersEvents', { state: { playerDetails: obj } });
+    // }
     return (
         <div className="row no-gutters">
+            {loading && <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_9yosyj7r.json" background="transparent" speed="1" loop autoplay></lottie-player>}
 
             {participantList && participantList.map((participant) => {
-                return <div key={participant.id} className="col-lg-4 col-md-6 col-sm-12" style={{ padding: '0px' }} >
-                    <div style={{ padding: '10px' }}>
-                        <div className="event-registration-participant-card"
-                            onClick={showRegisteredEvent}>
-                            <div className="participant-name-div">
+                return <> <UserProfileCard key={participant.id} participantDetails={participant} calledFrom="ParticipantList" ></UserProfileCard>
 
-                                <div>
-                                    <h1>{participant.UserName}</h1>
-                                </div>
-                            </div>
-                            <div className="participant-card-arrow">
-                                <span className="material-symbols-outlined">
-                                    chevron_right
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                </>
             })}
-        </div>
+        </div >
     )
 }

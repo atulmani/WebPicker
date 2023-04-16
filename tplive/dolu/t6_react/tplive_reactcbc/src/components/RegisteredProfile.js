@@ -235,7 +235,7 @@ export default function RegisteredProfile() {
                                         </div>}
 
                                         {participantList && participantList.map((participant) => {
-                                            return <UserProfileCard key={participant.id} participantDetails={participant} ></UserProfileCard>
+                                            return <UserProfileCard key={participant.id} participantDetails={participant} calledFrom="RegisteredProfile"></UserProfileCard>
                                         })}
 
                                     </div><br />

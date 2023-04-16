@@ -28,11 +28,16 @@ export default function UserProfileCard(props) {
         navigate("/RegistrationCategory", { state: { id: 1, participantDetails: props.participantDetails } });
         //redirect to regCategory.html?id=" + playerid
     }
+
+    function showRegisteredEvent() {
+        // console.log('in showRegisteredEvent', obj);
+        navigate('/UsersEvents', { state: { playerDetails: props.participantDetails } });
+    }
     return (
         <div className="col-lg-4 col-md-6 col-sm-12" style={{ padding: '0px' }} >
             <div style={{ padding: '10px' }}>
                 <div className="event-registration-participant-card"
-                    onClick={moveToRegCategory}>
+                    onClick={props.calledFrom === 'ParticipantList' ? showRegisteredEvent : moveToRegCategory}>
                     <div className="participant-name-div">
                         <div>
                             {
