@@ -36,12 +36,8 @@ export default function PaymentGatewayRP() {
         description: 'Payment for TP Live',
         email: email,
         contact: phone,
-
         image: 'https://tplive-prod--tplive-test-dw5grchb.web.app/img/TPLiVE_Logo.webp',
         handler: function (response) {
-            // console.log(response);
-
-            // console.log('Payment successful: ' + response.razorpay_payment_id);
             navigate("/PaymentSuccessful", {
                 state: {
                     id: 1, participantDetails: participantDetails,
@@ -55,7 +51,6 @@ export default function PaymentGatewayRP() {
                     updatePayment: true
                 }
             });
-
         },
         prefill: {
             name: name,

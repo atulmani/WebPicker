@@ -3,6 +3,7 @@ import { functions } from '../firebase.js'
 import { httpsCallable } from "firebase/functions";
 import EventCard from './EventCard';
 import '../css/Events.css';
+import Loading from './Loading.js';
 
 export default function Events() {
     const [minValue, setMinValue] = useState(2018);
@@ -195,7 +196,8 @@ export default function Events() {
                     </div>
 
                     <div className="row no-gutters">
-                        {loading && <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_9yosyj7r.json" style={{ height: '400px' }} background="transparent" speed="1" loop autoplay></lottie-player>}
+                        {/* {loading && <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_9yosyj7r.json" style={{ height: '400px' }} background="transparent" speed="1" loop autoplay></lottie-player>} */}
+                        {loading && <Loading height='400px' weight='100%' ></Loading>}
 
                         {
                             eventListFilter.map((event) => {

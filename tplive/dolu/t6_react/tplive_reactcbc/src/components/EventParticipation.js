@@ -11,7 +11,7 @@ export default function EventParticipation(props) {
             <select name="" className="total-participants-select" id="">
                 <option value="">All</option>
                 {props.eventDetails && props.eventDetails.CategoryDetails && props.eventDetails.CategoryDetails.map((cat) => {
-                    <option value="" key={cat.CategoryName}>cat.CategoryName</option>
+                    return <option value="" key={cat.CategoryName}>cat.CategoryName</option>
 
                 })}
 

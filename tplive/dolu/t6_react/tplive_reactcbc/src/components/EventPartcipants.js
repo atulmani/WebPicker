@@ -180,7 +180,7 @@ export default function EventPartcipants() {
                                     <div className="total-participants-outter-div">
                                         {pList && pList.map((playerList) => {
 
-                                            return <EventPartcipantCard key={playerList.firstCharector} pList={playerList} eventID={eventDetails.Eventid} callParticipantDetails={callParticipantDetails} />
+                                            return <EventPartcipantCard key={playerList.firstCharector + eventDetails.EventidplayerList} pList={playerList} eventID={eventDetails.Eventid} callParticipantDetails={callParticipantDetails} />
                                         })}
 
                                     </div>

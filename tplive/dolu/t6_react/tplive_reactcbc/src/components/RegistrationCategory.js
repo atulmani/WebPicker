@@ -9,6 +9,7 @@ import { useUserAuth } from '../context/UserAuthcontext';
 import { useNavigate } from 'react-router-dom';
 import EDTournamentDetails from '../components/EDTournamentDetails'
 import { useRef } from 'react';
+import Loading from './Loading';
 
 export default function RegistrationCategory() {
     const { users } = useUserAuth();
@@ -294,7 +295,9 @@ export default function RegistrationCategory() {
                     <div className='registration-catergory-loding'>
                         <div className='registration-catergory-loding-inner' style={{ opacity: loading ? '1' : '0', pointerEvents: loading ? 'all' : 'none' }}>
                             {/* <div className='registration-catergory-loding-inner' style={{ opacity: '0', pointerEvents: 'none' }}> */}
-                            <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_9yosyj7r.json" background="transparent" speed="1" loop autoplay></lottie-player>
+                            {/* <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_9yosyj7r.json" background="transparent" speed="1" loop autoplay></lottie-player> */}
+                            <Loading ></Loading>
+
                         </div>
 
                         <div className="row no-gutters" id="categoryDiv">

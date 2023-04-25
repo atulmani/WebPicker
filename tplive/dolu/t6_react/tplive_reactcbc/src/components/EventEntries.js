@@ -90,9 +90,10 @@ export default function EventEntries() {
                             participantCount={participantCount}
                         />}
                         <div className="" style={{ textAlign: 'right', position: 'relative', zIndex: '5' }}>
-                            {loading && <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_9yosyj7r.json" style={{ height: '400px' }} background="transparent" speed="1" loop autoplay></lottie-player>}
+                            {/* {loading && <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_9yosyj7r.json" style={{ height: '400px' }} background="transparent" speed="1" loop autoplay></lottie-player>} */}
 
-                            {/* {loading && <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_27H8l4.json" background="transparent" speed="1" loop autoplay></lottie-player>} */}
+                            {loading && <Loading height='400px' weight='100%' ></Loading>}
+
                         </div>
                         <div className="" style={{ textAlign: 'right', position: 'relative', zIndex: '5' }}>
                             <br />
@@ -121,7 +122,9 @@ export default function EventEntries() {
 
                                 </tbody>
                             </table>
-                            {loading && <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_27H8l4.json" background="transparent" speed="1" loop autoplay></lottie-player>}
+                            {/* {loading && <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_27H8l4.json" background="transparent" speed="1" loop autoplay></lottie-player>} */}
+                            {loading && <Loading ></Loading>}
+
                         </div>
 
 

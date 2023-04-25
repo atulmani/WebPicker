@@ -5,7 +5,7 @@ import { functions } from '../firebase.js'
 import { httpsCallable } from "firebase/functions";
 import { useNavigate } from 'react-router-dom';
 import UserProfileCard from './UserProfileCard';
-
+import Loading from './Loading';
 export default function PartcipantList() {
 
     const { user } = useUserAuth();
@@ -83,7 +83,9 @@ export default function PartcipantList() {
     // }
     return (
         <div className="row no-gutters">
-            {loading && <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_9yosyj7r.json" background="transparent" speed="1" loop autoplay></lottie-player>}
+            {/* {loading && <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_9yosyj7r.json" background="transparent" speed="1" loop autoplay></lottie-player>} */}
+
+            {loading && <Loading ></Loading>}
 
             {participantList && participantList.map((participant) => {
                 return <> <UserProfileCard key={participant.id} participantDetails={participant} calledFrom="ParticipantList" ></UserProfileCard>

@@ -132,7 +132,7 @@
     margin: 0;
 }
 
-.winner-div button {
+.winner-div .tic-tac-toe-button {
     width: 150px;
     height: 40px;
     border: none;
@@ -143,7 +143,7 @@
     text-transform: uppercase;
 }
 
-.winner-div button span {
+.winner-div .tic-tac-toe-button span {
     position: relative;
     top: 1px;
     font-size: 0.8rem;

@@ -252,14 +252,13 @@ exports.withdrawRegistration =
         );
       }
       const EventID = data.EventID;
-      const ParticipantID = data.ParticipantID;
       const PlayerID = data.PlayerID;
       const DeleteCategoryList = data.DeleteCategoryList;
 
       await admin.firestore().collection("EventRegistrationDetails")
         .where("EventID", "==", EventID)
         .where("CategoryName", "in", DeleteCategoryList)
-        .where("PlayerID", "==", PlayerID)
+        .where("ParticipantID", "==", PlayerID)
         .get().then(async (changes) => {
           changes.forEach(async doc3 => {
             await admin.firestore().collection("EventRegistrationDetailsWithdraw")
@@ -280,16 +279,20 @@ exports.withdrawRegistration =
                 CreatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
               })
 
-
               .then(async function (docRef) {
-                doc3.ref.delete();
+                // doc3.ref.delete();
+                // doc3.delete();
 
               })
               .catch(function (error) {
-
+                return false;
               });
+            // console.log(doc3.data())
+            doc3.ref.delete();
+
 
           });
+          return true;
         });
 
     });
@@ -470,6 +473,8 @@ exports.getAllRegisteredEventForPlayerCode =
               ParticipantName: doc1.data().ParticipantName,
               PartnerPlayerID: doc1.data().PartnerPlayerID,
               PartnerPlayerName: doc1.data().PartnerPlayerName,
+              OrderID: doc1.data().OrderID,
+              TransactionID: doc1.data().TransactionID
             });
 
 
@@ -500,6 +505,9 @@ exports.getAllRegisteredEventForPlayerCode =
                   ParticipantName: doc2.data().PartnerPlayerName, //doc2.data().ParticipantName,
                   PartnerPlayerID: doc2.data().ParticipantID, //doc2.data().PartnerPlayerID,
                   PartnerPlayerName: doc2.data().ParticipantName, //doc2.data().PartnerPlayerName,
+                  OrderID: doc1.data().OrderID,
+                  TransactionID: doc1.data().TransactionID
+
                 });
 
               });

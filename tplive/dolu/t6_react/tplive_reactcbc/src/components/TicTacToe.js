@@ -192,7 +192,7 @@ export default function TicTacToe() {
 
                                         <br></br>
                                         <br></br>
-                                        <button onClick={() => handleReset()}>
+                                        <button className='tic-tac-toe-button' onClick={() => handleReset()}>
                                             <span>Play Again</span>
                                         </button>
                                     </div>
