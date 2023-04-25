@@ -54,6 +54,7 @@ import MyExcelComponant from './components/MyExcelComponant';
 import FAQ from './components/FAQ';
 import ExportEventEntry from './components/ExportEventEntry';
 import UsersEvents from './components/UsersEvents';
+import BoardView from './components/Board';
 // import { render } from '@testing-library/react';
 
 // 1.constructor
@@ -108,6 +109,7 @@ function App() {
           <Route exact path='/ContactUs' element={<Navbar isFlag={'contactus'} />} />
           <Route exact path='/' element={<Navbar isFlag={'home'} />} />
           <Route path='*' element={<Navbar isFlag={'all'} />} />
+
         </Routes>
         <Routes>
           <Route path='*' element={<NavbarMobile City={city}></NavbarMobile>} />
@@ -117,6 +119,7 @@ function App() {
           <Route exact path='/More' element={<More />} />
           <Route exact path='/Location' element={<Location City="All" setCity={setMyCity} />} />
           <Route exact path='/Event' element={<Events />} />
+          <Route exact path='/Board' element={<BoardView />} />
 
           {/* if(location.pathname === '/EventDetails'){
             <div className="container-fluid">
