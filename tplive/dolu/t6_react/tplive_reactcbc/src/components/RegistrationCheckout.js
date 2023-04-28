@@ -4,7 +4,7 @@ import CategoryCartItem from '../components/CategoryCartItem'
 
 import { useParams, useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
-import useRazorpay from "react-razorpay";
+// import useRazorpay from "react-razorpay";
 
 export default function RegistrationCheckout() {
     const { state } = useLocation();

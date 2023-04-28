@@ -130,7 +130,8 @@ export default function Events() {
         // console.log(newArray);
         setEventListFilter(newArray);
     }
-    let eDate = ''
+    let eDate = '';
+    let index = 0;
     return (
         <div>
 
@@ -144,7 +145,7 @@ export default function Events() {
                             <div className="" style={{ display: 'flex', justifyContent: 'center', padding: '4px 0' }}>
                                 <div className="year-range">
                                     <div className="slider-value">
-                                        <span id="sliderValue" class="show" style={sliderLeftPer}>{sliderValue}</span>
+                                        <span id="sliderValue" className="show" style={sliderLeftPer}>{sliderValue}</span>
                                     </div>
                                     <div className="draging-field">
                                         <div className="value left">
@@ -200,11 +201,13 @@ export default function Events() {
                         {loading && <Loading height='400px' weight='100%' ></Loading>}
 
                         {
+
                             eventListFilter.map((event) => {
+
                                 var eDate = new Date(event.EventStartDate._seconds * 1000 + 60 * 60 * 24 * 1000);
                                 // console.log(event.EventName, "::", eDate.getFullYear(), "::slider value :: ", sliderValue);
                                 if (eDate.getFullYear() === Number(sliderValue)) {
-                                    return <EventCard key={event.Eventid} event={event} >{event.EventName}</EventCard>
+                                    return <EventCard key={event.Eventid} keyIndex={index++} event={event} >{event.EventName}</EventCard>
                                 }
                                 else {
                                     return null
@@ -277,6 +280,7 @@ export default function Events() {
 
                 </div>
             </section>
+            {(index <= 0) ? "No events found for given search key/Year, Please change year or enter tournament name, Orgaizer Name or City to search  " : ""}
 
             {/* <div className="col-lg-12 col-md-8 col-sm-12" style={{ padding: '0' }}>
 
@@ -294,7 +298,6 @@ export default function Events() {
             </div>
  */}
 
-            {(eventListFilter.length <= 0) ? "No event found for given search key, Please enter tournament name, Orgaizer Name or City to search  " : ""}
         </div>
     )
 }

@@ -32,7 +32,8 @@ const BoardView = () => {
 
     useEvent('keydown', handleKeyDown);
 
-    useEffect(() => {
+    // useEffect(() => {
+    const useEffect1 = () => {
         var gameBox = document.getElementById('gameBox');
 
         var outPut = document.getElementById('outPut');
@@ -149,7 +150,8 @@ const BoardView = () => {
             isSwiped = false;
         }
 
-    });
+        // });
+    };
 
     const cells = board.cells.map((row, rowIndex) => {
         return <div key={indexR++}>
@@ -164,20 +166,30 @@ const BoardView = () => {
         return <Tile key={indexT++} tile={tile}></Tile>
     });
 
-    const resetGame = () => {
+    function resetGame() {
+        console.log('in resetGame');
         setBoard(new Board());
     }
 
     return (
-        <div id='gameBox' style={{
+        <div style={{
             display: 'flex',
-            backgroundColor: '#57407c',
+            backgroundColor: '#FAF8EF',
+            color: '#786E65',
             flexDirection: 'column',
             justifyContent: 'center',
             alignContent: 'center',
             alignItems: 'center',
-            fontSize: '21px'
+            fontSize: '21px',
+            paddingBottom: '20px',
         }}>
+
+            <div className='heading-2048'>
+                <lottie-player src="https://lottie.host/f6a1f1c3-4c89-42ed-b88a-fe76e90f216a/f1qQXFy3Vu.json" background="transparent" speed="0.2" loop autoplay></lottie-player>
+                <h1>2048</h1>
+                <lottie-player src="https://lottie.host/f6a1f1c3-4c89-42ed-b88a-fe76e90f216a/f1qQXFy3Vu.json" background="transparent" speed="0.2" loop autoplay></lottie-player>
+            </div>
+
             <div className='details-box'>
                 <div className='resetButton' onClick={resetGame}>New Game</div>
                 <div className='score-box'>
@@ -185,10 +197,12 @@ const BoardView = () => {
                     <div>{board.score}</div>
                 </div>
             </div>
-            <div className='board'>
+            <div className='board' id='gameBox'>
                 {cells}
                 {tiles}
-                <GameOver onResart={resetGame} board={board}></GameOver>
+                {/* {(board.hasWon() || board.hasLost()) && <GameOver onResart={resetGame} board={board}></GameOver>} */}
+                {(board.hasWon() || board.hasLost()) && <GameOver
+                    resetGame={resetGame} board={board}></GameOver>}
             </div>
         </div >
     )

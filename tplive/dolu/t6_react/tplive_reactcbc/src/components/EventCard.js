@@ -32,7 +32,7 @@ export default function EventCard(props) {
     }
     return (
         <div className="col-lg-3 col-md-6 col-sm-12">
-            {console.log(props.event)}
+            {/* {console.log(props.event)} */}
             <div className="item" style={{ margin: '30px 0 100px 0' }}>
                 <div className="event-card">
                     <div className="event-card-img">

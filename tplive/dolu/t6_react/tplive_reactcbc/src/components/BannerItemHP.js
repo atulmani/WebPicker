@@ -148,13 +148,13 @@ export default function BannerItemHP(props) {
 
                             <h1>{props.eventDetails.EventName}</h1>
                             <h2>{props.eventDetails.OrganizationName}</h2>
-                            {
-                                props.entryCntForEvent > 0 && <div className="total-entry-div">
-                                    <small>Total Entry : {props.entryCntForEvent}</small>
-                                </div>
+
+                            {!(props.eventDetails.ShowParticipantFlag && props.eventDetails.ShowParticipantFlag === 'No') && props.entryCntForEvent > 0 && <div className="total-entry-div">
+                                <small>Total Entry : {props.entryCntForEvent}</small>
+                            </div>
                             }
                             {
-                                props.entryCntForEvent === 0 && <div className="total-entry-div" style={{ background: '#099b23' }}>
+                                !(props.eventDetails.ShowParticipantFlag && props.eventDetails.ShowParticipantFlag === 'No') && props.entryCntForEvent === 0 && <div className="total-entry-div" style={{ background: '#099b23' }}>
                                     <small>Be 1st To Register</small>
                                 </div>
                             }

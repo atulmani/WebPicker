@@ -2,6 +2,9 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { functions } from '../firebase.js'
 import { httpsCallable } from "firebase/functions";
+import { useNavigate } from 'react-router-dom';
+import useRazorpay from "react-razorpay";
+
 // import Razorpay from 'react-razorpay';
 // import useRazorpay from "react-razorpay";
 // import Razorpay from 'react-razorpay';
@@ -12,10 +15,10 @@ import axios from 'axios';
 
 export default function RenderRegisteredCategoryCard(props) {
     const [withdraw, setWithdraw] = useState(true);
-    const [transaction, setTransaction] = useState({});
-    const [refund, setRefund] = useState({});
-
-    // const Razorpay = useRazorpay();
+    // const [transaction, setTransaction] = useState({});
+    // const [refund, setRefund] = useState({});
+    const [payment, setPayment] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (props.EntryDetails.RegType === 'Self') {
@@ -24,16 +27,22 @@ export default function RenderRegisteredCategoryCard(props) {
             if (refdate < new Date()) {
                 setWithdraw(false);
             }
+            if (props.EntryDetails.PaymentStatus === 'Pending'
+                && props.EventDetails.PaymentMode && props.EventDetails.PaymentMode.toUpperCase() === 'ON') {
+                setPayment(true);
+            } else {
+                setPayment(false);
+            }
+
         }
         else {
             setWithdraw(false);
         }
 
-    }, []);
+    }, [props.EntryDetails, props.EventDetails]);
 
 
     async function WithdrawEntry() {
-        // setLoading(true);
         var catDel = [];
         catDel.push(props.EntryDetails.CategoryName);
         var para1 = {};
@@ -42,14 +51,31 @@ export default function RenderRegisteredCategoryCard(props) {
             PlayerID: props.EntryDetails.ParticipantID,
             DeleteCategoryList: catDel,
         };
-        console.log(para1);
 
         const ret1 = await httpsCallable(functions, "withdrawRegistration");
         ret1(para1).then(async (result) => {
-            console.log('result');
-            console.log(result);
 
-            // setLoading(false);
+        })
+
+    }
+
+    async function ConfirmPayment(amount, transactionID, orderID) {
+        var catDel = [];
+        catDel.push(props.EntryDetails.CategoryName);
+        var para1 = {};
+        para1 = {
+            EventID: props.EventDetails.EventID,
+            PlayerID: props.EntryDetails.ParticipantID,
+            CategoryList: catDel,
+            paymentStatus: 'Completed',
+            paymentAmount: amount,
+            transactionID: transactionID,
+            orderID: orderID,
+        };
+
+        const ret1 = await httpsCallable(functions, "updatePaymentStatus");
+        ret1(para1).then(async (result) => {
+            props.refreshParent();
         })
 
     }
@@ -59,12 +85,11 @@ export default function RenderRegisteredCategoryCard(props) {
         WithdrawEntry();
 
         if (props.EntryDetails.PaymentStatus.toUpperCase() === 'COMPLETED') {
-            console.log(`https://api.razorpay.com/v1/payments/pay_LesYEQHTq8bi3w/refund`)
             try {
                 const response = await axios.post(
-                    "https://api.razorpay.com/v1/payments/pay_LesYEQHTq8bi3w/refund",
+                    `https://api.razorpay.com/v1/payments/${props.EntryDetails.TransactionID}/refund`,
                     {
-                        amount: 1000, // replace with the amount to be refunded
+                        amount: Number(props.EntryDetails.Fees) * 100, // replace with the amount to be refunded
                         notes: {
                             reason: 'Incorrect item received', // replace with the reason for the refund
                         },
@@ -76,17 +101,59 @@ export default function RenderRegisteredCategoryCard(props) {
                         },
                     }
                 );
-                setRefund(response.data);
+                // setRefund(response.data);
                 console.log('success ', response.data);
+                props.refreshParent();
+
             } catch (error) {
                 console.log('error', error);
             }
         }
-        props.setLoading(true);
 
     };
 
+    function handlePayment() {
+        let amount = 0;
+        amount = Number(props.EntryDetails.Fees);
+        if (props.EventDetails.ConvenienceCharge) {
+            amount = amount + amount * Number(props.EventDetails.ConvenienceCharge) / 100;
 
+        }
+        console.log('amout : ', amount);
+        let orderId = 'O_' + props.EventDetails.EventCode + '_' + props.EntryDetails.ParticipantID + '_' + new Date().getTime();
+        const razorpayOptions = {
+            key: 'rzp_test_gaZqhFw4MY2o6v',
+            amount: amount * 100, // amount in paise
+            name: 'TPLiVE',
+            description: 'Payment for TP Live',
+            email: props.playerDetails.Email,
+            contact: props.playerDetails.Phone,
+
+            image: 'https://tplive-prod--tplive-test-dw5grchb.web.app/img/TPLiVE_Logo.webp',
+            handler: function (response) {
+                console.log(response);
+                ConfirmPayment(amount, response.razorpay_payment_id, orderId)
+
+
+            },
+            prefill: {
+                name: props.playerDetails.UserName,
+                email: props.playerDetails.Email,
+                contact: props.playerDetails.Phone,
+            },
+            notes: {
+                address: '',
+            },
+            theme: {
+                color: '#348DCB',
+            },
+        };
+
+        const rzp1 = new window.Razorpay(razorpayOptions);
+        rzp1.open();
+
+
+    }
 
     return (
         <div className="col-lg-6 col-md-6 col-sm-12">
@@ -199,6 +266,11 @@ export default function RenderRegisteredCategoryCard(props) {
                                     handleRefund();
                             }
                             }>Withdraw</button>}
+
+                            {payment && <button className='mybutton button5' onClick={(e) => {
+                                handlePayment();
+                            }
+                            }>Pay Now</button>}
 
                             {/* 
                             <Razorpay

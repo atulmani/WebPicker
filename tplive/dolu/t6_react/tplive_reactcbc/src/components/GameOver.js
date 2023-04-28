@@ -1,17 +1,66 @@
-import React from 'react';
-import tryAgain from '../assets/img/try-again.gif';
+import React, { useEffect, useState } from 'react';
 
-const GameOver = ({ onResart, board }) => {
+export default function GameOver(props) {
+    const [iswon, setIswon] = useState(false);
+    const [lost, setLost] = useState(false);
+    useEffect(() => {
+        setIswon(props.board.hasWon() === 0 ? false : true);
+        setLost(props.board.hasLost());
 
-    if (board.hasWon()) {
-        return <div className='tile2048' onClick={onResart}></div>
-    } else if (board.hasLost()) {
-        return <div className='gameOver' onClick={onResart}><img src={tryAgain} alt='Try Again' style={{ width: '100%', height: '100%', cursor: 'pointer' }}></img></div>
+    }, [])
+    const callReset = () => {
+        console.log('in callReset');
+        props.resetGame();
     }
 
     return (
-        null
+        <>
+            {iswon && <div className='gameOver' onClick={callReset}>
+                <h1>YOU WON!</h1>
+                <h2>You have reached <strong>2048</strong></h2>
+                <div className='resetButton'>Play Again</div>
+            </div>
+            }
+            {
+                lost && <div className='gameOver' onClick={callReset}>
+                    <h1>GAME OVER!</h1>
+                    <div className='resetButton' onClick={callReset}>Try Again</div>
+                </div>
+            }
+
+        </>
     )
 }
 
-export default GameOver
+
+// export default function GameOver(props) {
+//     const [iswon, setIswon] = useState(false);
+//     const [lost, setLost] = useState(false);
+
+//     useEffect(() => {
+//         setIswon(props.board.hasWon() === 0 ? false : ture);
+//         setLost(props.board.hasLost());
+
+//     }, [])
+//     function callReset() {
+//         console.log('in callReset');
+//         props.resetGame();
+//     }
+
+//     return (
+//         { iswon && <div className='gameOver' onClick={callReset}>
+//             <h1>YOU WON!</h1>
+//             <h2>You have reached <strong>2048</strong></h2>
+//             <div className='resetButton'>Play Again</div>
+//         </div>
+//             }
+// {
+//     lost && <div className='gameOver' onClick={callReset}>
+//         <h1>GAME OVER!</h1>
+//         <div className='resetButton'>Try Again</div>
+//     </div>
+// }
+//     )
+
+// }
+// // export default GameOver

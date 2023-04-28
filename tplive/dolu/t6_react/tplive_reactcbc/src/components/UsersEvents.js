@@ -19,6 +19,7 @@ export default function UsersEvents() {
     const [eventList, setEventList] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState('');
     const [loading, setLoading] = useState(false);
+    const [refresh, setRefresh] = useState(false);
     var curFormat = {
         style: 'currency',
         currency: 'INR',
@@ -32,47 +33,50 @@ export default function UsersEvents() {
         month: 'short',
         day: 'numeric'
     };
+    function populateData() {
 
-    useEffect(() => {
         var para1 = {};
+        para1 = {
+            PlayerID: playerDetails.PlayerID,
+        };
+        setLoading(true);
+        let participant = {};
+
+        let userParticipant = [];
+        let refdate = '';
+        let eventSDate = '';
+        let fees = '';
+        const ret1 = httpsCallable(functions, "getAllRegisteredEventForPlayerCode");
+        ret1(para1).then(async (result) => {
+            result.data.eventDetails.forEach(event => {
+                refdate = new Date(event.EventStartDate._seconds * 1000);
+                event.EventSDate = refdate.toLocaleDateString("en-IN", options);
+                event.Fees = event.MinimumFee ? (Number(event.MinimumFee).toLocaleString('en-IN', curFormat)) : "";
+
+            });
+            setEventList(result.data.eventDetails);
+
+            setParticipantList(result.data.entryDetails);
+
+            setLoading(false);
+        });
+
+    }
+    useEffect(() => {
 
         if (user.isLoggedIn) {
             if (user.userInfo !== null) {
-                para1 = {
-                    PlayerID: playerDetails.PlayerID,
-                };
-                console.log(para1);
-                setLoading(true);
-                let participant = {};
-
-                let userParticipant = [];
-                let refdate = '';
-                let eventSDate = '';
-                let fees = '';
-                const ret1 = httpsCallable(functions, "getAllRegisteredEventForPlayerCode");
-                ret1(para1).then(async (result) => {
-                    console.log(result);
-                    result.data.eventDetails.forEach(event => {
-                        refdate = new Date(event.EventStartDate._seconds * 1000);
-                        event.EventSDate = refdate.toLocaleDateString("en-IN", options);
-                        event.Fees = event.MinimumFee ? (Number(event.MinimumFee).toLocaleString('en-IN', curFormat)) : "";
-
-                    });
-                    setEventList(result.data.eventDetails);
-
-                    setParticipantList(result.data.entryDetails);
-
-                    setLoading(false);
-                });
-
+                populateData();
             } else {
                 navigate("/PhoneSignUp", { state: { url: 'ExportEventEntry' } });
             }
         }
     }, [])
-
+    function refreshParent() {
+        setRefresh(!refresh);
+        populateData();
+    }
     function showRegisteredEvent(event) {
-        console.log(event)
         setSelectedEvent(event.EventID);
     }
     let obj = {};
@@ -188,7 +192,8 @@ export default function UsersEvents() {
                             return <RenderRegisteredCategoryCard key={participant.EventID + participant.CategoryName}
                                 EventDetails={obj}
                                 EntryDetails={participant}
-                                setLoading={setLoading}></RenderRegisteredCategoryCard>
+                                playerDetails={playerDetails}
+                                refreshParent={refreshParent}></RenderRegisteredCategoryCard>
                         else
                             return null;
                         // return <div key={participant.EventID + participant.CategoryName} className="col-lg-4 col-md-6 col-sm-12" style={{ padding: '0px' }} >

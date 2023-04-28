@@ -34,8 +34,8 @@ export default function RenderRegisteredCategoryCard(props) {
 
     const handleRefund = async () => {
         //uppdate the registration status as withdrawn
-        if ()
-            console.log(`https://api.razorpay.com/v1/payments/pay_LesYEQHTq8bi3w/refund`)
+        // if (true)
+        console.log(`https://api.razorpay.com/v1/payments/pay_LesYEQHTq8bi3w/refund`)
         try {
             const response = await axios.post(
                 "https://api.razorpay.com/v1/payments/pay_LesYEQHTq8bi3w/refund",
@@ -338,6 +338,16 @@ export default function RenderRegisteredCategoryCard(props) {
                                     handleRefund();
                             }
                             }>Withdraw</button>}
+
+                            {withdraw && <button className='mybutton button5' onClick={(e) => {
+                                if (window.confirm('Are you sure you wish to withdraw for "'
+                                    + props.EntryDetails.CategoryName + '" for Event : ' + props.EventDetails.EventName))
+                                    console.log('deleted : ', props.EntryDetails.TransactionID);
+                                if (props.EntryDetails.TransactionID !== null && props.EntryDetails.TransactionID !== undefined && props.EntryDetails.TransactionID !== '')
+                                    handleRefund();
+                            }
+                            }>Pay Now</button>}
+
 
                             {/* 
                             <Razorpay

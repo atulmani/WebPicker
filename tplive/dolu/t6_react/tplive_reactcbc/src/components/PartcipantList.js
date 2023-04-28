@@ -6,12 +6,17 @@ import { httpsCallable } from "firebase/functions";
 import { useNavigate } from 'react-router-dom';
 import UserProfileCard from './UserProfileCard';
 import Loading from './Loading';
+import '../css/Events.css';
+
 export default function PartcipantList() {
 
     const { user } = useUserAuth();
     const navigate = useNavigate();
     const [userDetails, setUserDetails] = useState(window.localStorage.getItem('userProfile') ? JSON.parse(window.localStorage.getItem('userProfile')) : {});
     const [participantList, setParticipantList] = useState([]);
+    const [filterParticipantList, setFilterParticipantList] = useState([]);
+
+    const [searchKey, setSearchKey] = useState('');
     const [loading, setLoading] = useState(false);
     useEffect(() => {
         // if (user.isLoggedIn) {
@@ -68,6 +73,7 @@ export default function PartcipantList() {
                     });
                     console.log(userParticipant);
                     setParticipantList(userParticipant);
+                    setFilterParticipantList(userParticipant);
                     setLoading(false);
                 });
 
@@ -77,17 +83,54 @@ export default function PartcipantList() {
         }
     }, [])
 
+    function searchEvent(key) {
+
+        if (key !== '') {
+            var newArray = participantList.filter(function (el) {
+                return el.UserName.toUpperCase().includes(key.toUpperCase());
+            }
+            );
+            // console.log(newArray);
+            setFilterParticipantList(newArray);
+        } else {
+            setFilterParticipantList(participantList);
+        }
+    }
     // function showRegisteredEvent(obj) {
     //     console.log('in showRegisteredEvent', obj);
     //     navigate('/UsersEvents', { state: { playerDetails: obj } });
     // }
     return (
         <div className="row no-gutters">
-            {/* {loading && <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_9yosyj7r.json" background="transparent" speed="1" loop autoplay></lottie-player>} */}
+            {/* {loading && <lottie-player   ie-player src="https://assets5.lottiefiles.com/packages/lf20_9yosyj7r.json" background="transparent" speed="1" loop autoplay></lottie-player>} */}
 
             {loading && <Loading ></Loading>}
 
-            {participantList && participantList.map((participant) => {
+            {participantList.length > 5 && <div >
+                <br className='small'></br>
+                <br className='small'></br>
+                <div className='event-search-div'>
+                    <div>
+                        <input type="text" id="userName" placeholder='participant to search' onChange={(e) => {
+                            setSearchKey(e.target.value);
+                            searchEvent(e.target.value)
+
+                        }} value={searchKey} />
+                        {/* <button className="mybutton button5" onClick={() => {
+                            searchEvent();
+
+                        }}>
+                            <span class="material-symbols-outlined">
+                                search
+                            </span>
+                        </button> */}
+                    </div>
+                </div>
+
+            </div>
+            }
+
+            {filterParticipantList && filterParticipantList.map((participant) => {
                 return <> <UserProfileCard key={participant.id} participantDetails={participant} calledFrom="ParticipantList" ></UserProfileCard>
 
                 </>

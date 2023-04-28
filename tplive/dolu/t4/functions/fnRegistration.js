@@ -505,8 +505,8 @@ exports.getAllRegisteredEventForPlayerCode =
                   ParticipantName: doc2.data().PartnerPlayerName, //doc2.data().ParticipantName,
                   PartnerPlayerID: doc2.data().ParticipantID, //doc2.data().PartnerPlayerID,
                   PartnerPlayerName: doc2.data().ParticipantName, //doc2.data().PartnerPlayerName,
-                  OrderID: doc1.data().OrderID,
-                  TransactionID: doc1.data().TransactionID
+                  OrderID: doc2.data().OrderID,
+                  TransactionID: doc2.data().TransactionID
 
                 });
 
@@ -524,12 +524,14 @@ exports.getAllRegisteredEventForPlayerCode =
                         City: doc3.data().City,
                         EventEndDate: doc3.data().EventEndDate,
                         EventStartDate: doc3.data().EventStartDate,
+                        ConvenienceCharge: doc3.data().ConvenienceCharge,
                         EventMode: doc3.data().EventMode,
                         EventName: doc3.data().EventName,
                         EventStatus: doc3.data().EventStatus,
                         MinimumFee: doc3.data().MinimumFee,
                         WithdrawalEndDate: doc3.data().WithdrawalEndDate,
                         OrganizationName: doc3.data().OrganizationName,
+                        PaymentMode: doc3.data().PaymentMode,
                       });
 
                     });
@@ -719,7 +721,7 @@ exports.updatePaymentStatus =
         await admin.firestore().collection("EventRegistrationDetails")
           .where("EventID", "==", EventID)
           .where("CategoryName", "==", CategoryList[index])
-          .where("PlayerID", "==", PlayerID)
+          .where("ParticipantID", "==", PlayerID)
           .get().then(async (changes) => {
             changes.forEach(doc1 => {
               eventRegID = doc1.id;
