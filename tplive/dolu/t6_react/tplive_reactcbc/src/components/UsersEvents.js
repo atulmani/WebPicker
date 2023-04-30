@@ -102,7 +102,7 @@ export default function UsersEvents() {
                             <div className="item" style={{ margin: '10px' }}>
                                 <div className="event-card" style={{ cursor: 'pointer' }} onClick={() => showRegisteredEvent(event)}>
 
-                                    <div className="event-card-content" style={{ background: '#eee', height: '150px', paddingTop: '10px', top: '0' }}>
+                                    <div className="event-card-content" style={{ background: '#eee', height: '190px', paddingTop: '10px', top: '0' }}>
                                         <h1 className="event-name">{event.EventName}</h1>
                                         <h2 className="event-organiser">{event.OrganizationName}</h2>
 
@@ -120,6 +120,12 @@ export default function UsersEvents() {
                                                     <h3>{event.Fees}</h3>
                                                     <h4>Entry Fee</h4>
                                                 </div>
+                                            </div>
+
+                                            <div style={{ height: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderTop: '1px solid #ddd' }}>
+                                                <span style={{ position: 'relative', top: '2px', fontSize: '0.9rem' }}>
+                                                    <strong style={{ color: '#348DCB' }}>5%</strong> Commisionn Charges | <strong style={{ color: '#348DCB' }}>30rs.</strong> Registration Charges
+                                                </span>
                                             </div>
 
                                             {/* <div className="row">

@@ -32,8 +32,8 @@ const BoardView = () => {
 
     useEvent('keydown', handleKeyDown);
 
-    // useEffect(() => {
-    const useEffect1 = () => {
+    useEffect(() => {
+        // const useEffect1 = () => {
         var gameBox = document.getElementById('gameBox');
 
         var outPut = document.getElementById('outPut');
@@ -150,8 +150,8 @@ const BoardView = () => {
             isSwiped = false;
         }
 
-        // });
-    };
+    });
+    // };
 
     const cells = board.cells.map((row, rowIndex) => {
         return <div key={indexR++}>
@@ -202,7 +202,7 @@ const BoardView = () => {
                 {tiles}
                 {/* {(board.hasWon() || board.hasLost()) && <GameOver onResart={resetGame} board={board}></GameOver>} */}
                 {(board.hasWon() || board.hasLost()) && <GameOver
-                    resetGame={resetGame} board={board}></GameOver>}
+                    board={board}></GameOver>}
             </div>
         </div >
     )

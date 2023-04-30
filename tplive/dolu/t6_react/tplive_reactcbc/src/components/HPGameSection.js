@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import GameFnM from './GameFnM';
 import TicTacToe from './TicTacToe'
+import Board from './Board'
 
 
 export default function HPGameSection() {
@@ -42,6 +43,14 @@ export default function HPGameSection() {
         setGameFlag({
             closeFlag: false,
             game: 'TTT'
+        });
+        // setCloseFlag(false);
+    }
+
+    function showGame2048() {
+        setGameFlag({
+            closeFlag: false,
+            game: '2048'
         });
         // setCloseFlag(false);
     }
@@ -85,6 +94,19 @@ export default function HPGameSection() {
                                 <br /><br /><br />
                             </div>
                         </div>
+                        <div className='col-lg-4 col-md-6 col-sm-12'>
+                            <div className='padding-div'>
+                                <div className='game-section-card' onClick={showGame2048}>
+                                    <img src='./img/game/gameSection1.png' alt="2048"></img>
+                                    <div className='game-name-tag left'></div>
+                                    <div className='game-name'>
+                                        <h1>2048</h1>
+                                    </div>
+                                    <div className='game-name-tag right'></div>
+                                </div>
+                                <br /><br /><br />
+                            </div>
+                        </div>
                     </div><br />
                     {/* 
                     <div className="comming-soon">
@@ -114,6 +136,28 @@ export default function HPGameSection() {
                         </div>
                     </div>
                     {gameFlag.game === 'FnM' ? <GameFnM></GameFnM> : gameFlag.game === 'TTT' ? <TicTacToe></TicTacToe> : ''}
+
+                </div>
+
+            </div >}
+
+            {showFlag && <div className={gameFlag.closeFlag ? 'open-game-div' : 'open-game-div open'}>
+
+                <div className='open-game-div-close-btn' onClick={closeGame}>
+                    <span className="material-symbols-outlined">
+                        close
+                    </span>
+                </div>
+                <div className='open-game-div-inner' >
+                    <div className='open-game-div-heading'>
+                        <h1>{gameFlag.game === 'FnM' ? 'Flip & Match - Memory Challenge' : gameFlag.game === 'TTT' ? ' Tic Tac Toe - 2 Player' : gameFlag.game === '2048' ? '2048' : ''}</h1>
+                        <div className='large' onClick={closeGame}>
+                            <span className="material-symbols-outlined">
+                                close
+                            </span>
+                        </div>
+                    </div>
+                    {gameFlag.game === 'FnM' ? <GameFnM></GameFnM> : gameFlag.game === 'TTT' ? <TicTacToe></TicTacToe> : gameFlag.game === '2048' ? <Board></Board> : ''}
 
                 </div>
 

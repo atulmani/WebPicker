@@ -81,7 +81,7 @@ export default function PartcipantList() {
                 navigate("/PhoneSignUp", { state: { url: 'ExportEventEntry' } });
             }
         }
-    }, [])
+    }, [user, userDetails])
 
     function searchEvent(key) {
 
@@ -120,7 +120,7 @@ export default function PartcipantList() {
                             searchEvent();
 
                         }}>
-                            <span class="material-symbols-outlined">
+                            <span className="material-symbols-outlined">
                                 search
                             </span>
                         </button> */}

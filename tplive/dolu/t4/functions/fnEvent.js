@@ -661,6 +661,7 @@ exports.getAllEventWithEventStatusAndLocation =
                 EventCode: doc1.data().EventCode,
                 EventMode: doc1.data().EventMode,
                 EntryCount: doc1.data().EntryCount,
+                CompletedCount: doc1.data().CompletedCount,
                 CategoryDetails: doc1.data().CategoryDetails,
 
                 SportCode: doc1.data().SportCode,
@@ -748,6 +749,7 @@ exports.getAllEventWithEventStatusAndLocation =
                       EventCode: doc1.data().EventCode,
                       EventMode: doc1.data().EventMode,
                       EntryCount: doc1.data().EntryCount,
+                      CompletedCount: doc1.data().CompletedCount,
                       CategoryDetails: doc1.data().CategoryDetails,
 
                       SportCode: doc1.data().SportCode,
@@ -834,6 +836,7 @@ exports.getAllEventWithEventStatusAndLocation =
                 EventCode: doc1.data().EventCode,
                 EventMode: doc1.data().EventMode,
                 EntryCount: doc1.data().EntryCount,
+                CompletedCount: doc1.data().CompletedCount,
                 CategoryDetails: doc1.data().CategoryDetails,
 
                 SportCode: doc1.data().SportCode,
@@ -925,6 +928,7 @@ exports.getAllEventWithEventStatusAndLocation =
                       EventCode: doc1.data().EventCode,
                       EventMode: doc1.data().EventMode,
                       EntryCount: doc1.data().EntryCount,
+                      CompletedCount: doc1.data().CompletedCount,
                       CategoryDetails: doc1.data().CategoryDetails,
 
                       SportCode: doc1.data().SportCode,
@@ -1330,14 +1334,23 @@ exports.addEventDetails =
           SportCode: SportCode,
           City: City,
           EntryCount: 0,
+          CompletedCount: 0,
+          ConvenienceCharge: 0,
           EventLogo: '',
           ThumbImage1: '',
           ThumbImage2: '',
           ThumbImage3: '',
           ThumbImage4: '',
+          PaymentMode: '',
+          ShowParticipantFlag: 'YES',
+          ShowParticipantPostPaymentFlag: 'NO',
+          PaymentOpenFlag: 'On',
+          PaymentMode: 'Online',
           EventStartDate: admin.firestore.Timestamp.fromDate(new Date(EventStartDate)),
           EventEndDate: admin.firestore.Timestamp.fromDate(new Date(EventEndDate)),
-
+          WithdrawalEndDate: admin.firestore.Timestamp.fromDate(new Date(EventStartDate)),
+          RegistrationStartDate: admin.firestore.Timestamp.fromDate(new Date()),
+          RegistrationEndDate: admin.firestore.Timestamp.fromDate(new Date(EventStartDate)),
           CreatedBy: context.auth.uid,
           CreatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
         })

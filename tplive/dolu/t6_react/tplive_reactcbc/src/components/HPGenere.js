@@ -22,7 +22,7 @@ export default function HPGenere() {
 
         <section id="genre">
 
-            {showFlag && <div className="container">
+            {showFlag && <div className="container"><br />
 
                 <div className="heading">
                     <span className="material-symbols-outlined">

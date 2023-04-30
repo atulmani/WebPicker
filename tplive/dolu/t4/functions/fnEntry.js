@@ -7,15 +7,23 @@ exports.logEntryAdd = functions
   .onCreate(async (snap, context) => {
     const id = context.params.id;
     const inputData = snap.data();
-    console.log(inputData);
-    // const entryLog = admin.firestore().collection("EventEntryLog");
+    // console.log(inputData);
     var docID = "";
     var entryCount = 0;
-    //  const entryLogID =
-    console.log(inputData.EventID);
+    var completedCount = 0;
+    var completedCountAll = 0;
+
+    // console.log(inputData.EventID);
     const EventID = inputData.EventID;
+    const paymentStatus = inputData.PaymentStatus;
+    var diff = 0;
+    if (inputData.PaymentStatus.toUpperCase() === 'COMPLETED') {
+      diff = 1
+    }
     await admin.firestore().collection("EventList").doc(EventID).update({
-      EntryCount: admin.firestore.FieldValue.increment(1)
+      EntryCount: admin.firestore.FieldValue.increment(1),
+      CompletedCount: admin.firestore.FieldValue.increment(diff),
+
     });
 
     await admin.firestore().collection("EventEntryLog").where("EventID", "==", inputData.EventID)
@@ -23,13 +31,17 @@ exports.logEntryAdd = functions
         changes.forEach(doc1 => {
           docID = doc1.id;
           entryCount = Number(doc1.data().EntryCount);
+          completedCount = Number(doc1.data.CompletedCount);
         });
-
+        if (paymentStatus.toUpperCase() === 'COMPLETED') {
+          completedCount = completedCount + 1;
+        }
         if (docID != "") {
           await admin.firestore().collection("EventEntryLog").doc(docID).set({
             EventID: inputData.EventID,
             CategoryName: inputData.CategoryName,
             EntryCount: entryCount + 1,
+            CompletedCount: completedCount,
           });
         } else {
 
@@ -37,6 +49,7 @@ exports.logEntryAdd = functions
             EventID: inputData.EventID,
             CategoryName: inputData.CategoryName,
             EntryCount: 1,
+            CompletedCount: completedCount,
           });
         }
 
@@ -48,18 +61,24 @@ exports.logEntryAdd = functions
           changes.forEach(doc1 => {
             docIDA = doc1.id;
             allentryCount = Number(doc1.data().EntryCount);
+            completedCountAll = Number(doc1.data().CompletedCount);
           });
 
+          if (paymentStatus.toUpperCase() === 'COMPLETED') {
+            completedCountAll = completedCountAll + 1;
+          }
           if (docIDA != "") {
             await admin.firestore().collection("EventAllEntryLog").doc(docIDA).set({
               EventID: inputData.EventID,
               EntryCount: allentryCount + 1,
+              CompletedCount: completedCountAll,
             });
           } else {
 
             await admin.firestore().collection("EventAllEntryLog").add({
               EventID: inputData.EventID,
               EntryCount: 1,
+              CompletedCount: completedCountAll,
             });
           }
 
@@ -77,15 +96,24 @@ exports.logEntryDelete = functions
   .onDelete(async (snap, context) => {
     const id = context.params.id;
     const inputData = snap.data();
-    console.log(inputData);
-    // const entryLog = admin.firestore().collection("EventEntryLog");
+    // console.log(inputData);
     var docID = "";
     var entryCount = 0;
+    var completedCount = 0;
+    var completedCountAll = 0;
+
     //  const entryLogID =
-    console.log(inputData.EventID);
+    // console.log(inputData.EventID);
     const EventID = inputData.EventID;
+    const paymentStatus = inputData.PaymentStatus;
+    var diff = 0;
+    if (inputData.PaymentStatus.toUpperCase() === 'COMPLETED') {
+      diff = -1
+    }
+
     await admin.firestore().collection("EventList").doc(EventID).update({
-      EntryCount: admin.firestore.FieldValue.increment(-1)
+      EntryCount: admin.firestore.FieldValue.increment(-1),
+      CompletedCount: admin.firestore.FieldValue.increment(diff),
     });
 
     await admin.firestore().collection("EventEntryLog").where("EventID", "==", inputData.EventID)
@@ -93,30 +121,40 @@ exports.logEntryDelete = functions
         changes.forEach(doc1 => {
           docID = doc1.id;
           entryCount = Number(doc1.data().EntryCount);
+          completedCount = Number(doc1.data.CompletedCount);
         });
+
+        if (paymentStatus.toUpperCase() === 'COMPLETED') {
+          completedCount = completedCount - 1;
+        }
         if (docID != "" && docID != undefined) {
           await admin.firestore().collection("EventEntryLog").doc(docID).set({
             EventID: inputData.EventID,
             CategoryName: inputData.CategoryName,
             EntryCount: entryCount - 1,
+            CompletedCount: completedCount,
           });
         }
       }).
       then(async (rec) => {
         var allentryCount = 0;
-        //  const entryLogID =
         var docIDA = "";
-        console.log(inputData.EventID);
         await admin.firestore().collection("EventAllEntryLog").where("EventID", "==", inputData.EventID)
           .get().then(async (changes) => {
             changes.forEach(doc1 => {
               docIDA = doc1.id;
               allentryCount = Number(doc1.data().EntryCount);
+              completedCountAll = Number(doc1.data().CompletedCount);
             });
+
+            if (paymentStatus.toUpperCase() === 'COMPLETED') {
+              completedCountAll = completedCountAll - 1;
+            }
             if (docIDA != "" && docIDA != undefined) {
               await admin.firestore().collection("EventAllEntryLog").doc(docIDA).set({
                 EventID: inputData.EventID,
                 EntryCount: allentryCount - 1,
+                CompletedCount: completedCountAll,
               });
             }
           });
@@ -131,63 +169,85 @@ exports.logEntryUpdate = functions
   .firestore.document('/EventRegistrationDetails/{id}')
   .onUpdate(async (snap, context) => {
     const id = context.params.id;
-    //      const inputData = snap.data();
+    const before = snap.before.data();  // DataSnapshot before the change
+    const after = snap.after.data();
 
-    const before = snap.before;  // DataSnapshot before the change
-    const after = snap.after;
-
-    console.log(before);
-    console.log(after);
-    // const entryLog = admin.firestore().collection("EventEntryLog");
     var docID = "";
     var entryCount = 0;
-    //  const entryLogID =
-    console.log('before ', snap.before.CategoryName);
-    console.log('after ', snap.after.CategoryName);
+
     const EventID = before.EventID;
-    if (snap.before.CategoryName != "" && snap.after.CategoryName === "") {
+    var entryCountAll = 0;
+    var entryCountCategory = 0;
+    var entryCountCategoryCompleted = 0;
+    var entryCountCategoryCompletedAll = 0;
+    var diff = 0;
+    //if category name is set as "" 
+    if (before.CategoryName != "" && after.CategoryName === "") {
+      if (before.PaymentStatus.toUpperCase() === 'COMPLETED') {
+        diff = -1
+      }
+
       await admin.firestore().collection("EventList").doc(EventID).update({
-        EntryCount: admin.firestore.FieldValue.increment(-1)
+        EntryCount: admin.firestore.FieldValue.increment(-1),
+        CompletedCount: admin.firestore.FieldValue.increment(diff),
       });
 
     }
 
-    // await admin.firestore().collection("EventEntryLog").where("EventID", "==", inputData.EventID)
-    //   .where("CategoryName", "==", inputData.CategoryName).get().then(async (changes) => {
-    //     changes.forEach(doc1 => {
-    //       docID = doc1.id;
-    //       entryCount = Number(doc1.data().EntryCount);
-    //     });
-    //     if (docID != "" && docID != undefined) {
-    //       await admin.firestore().collection("EventEntryLog").doc(docID).set({
-    //         EventID: inputData.EventID,
-    //         CategoryName: inputData.CategoryName,
-    //         EntryCount: entryCount - 1,
-    //       });
-    //     }
-    //   }).
-    // then(async (rec) => {
-    //   var allentryCount = 0;
-    //   //  const entryLogID =
-    //   console.log(inputData.EventID);
-    //   await admin.firestore().collection("EventAllEntryLog").where("EventID", "==", inputData.EventID)
-    //     .get().then(async (changes) => {
-    //       changes.forEach(doc1 => {
-    //         docID = doc1.id;
-    //         allentryCount = Number(doc1.data().EntryCount);
-    //       });
-    //       if (docID != "" && docID != undefined) {
-    //         await admin.firestore().collection("EventAllEntryLog").doc(docID).set({
-    //           EventID: inputData.EventID,
-    //           EntryCount: allentryCount - 1,
-    //         });
-    //       }
-    //     });
-    // });
+    if (before.CategoryName === after.CategoryName) {
+      if (before.PaymentStatus.toUpperCase() === 'PENDING' && after.PaymentStatus.toUpperCase() === 'COMPLETED') {
+        diff = 1;
+      }
+      else if (before.PaymentStatus.toUpperCase() === 'COMPLETED' && after.PaymentStatus.toUpperCase() === 'PENDING') {
+        diff = -1;
+      } else {
+        diff = 0;
+      }
+      if (diff != 0) {
+        await admin.firestore().collection("EventEntryLog").where("EventID", "==", after.EventID)
+          .where("CategoryName", "==", after.CategoryName).get().then(async (changes) => {
+            changes.forEach(doc1 => {
+              docID = doc1.id;
+              entryCountCategory = Number(doc1.data().EntryCount);
+              entryCountCategoryCompleted = Number(doc1.data().CompletedCount);
+            });
+            entryCountCategoryCompleted = entryCountCategoryCompleted + diff;
+            if (docID != "") {
+              await admin.firestore().collection("EventEntryLog").doc(docID).set({
+                EventID: after.EventID,
+                CategoryName: after.CategoryName,
+                EntryCount: entryCountCategory,
+                CompletedCount: entryCountCategoryCompleted,
+              });
+            }
+          }).
+          then(async (rec) => {
+            var docIDA = "";
+            await admin.firestore().collection("EventAllEntryLog").where("EventID", "==", after.EventID).get().then(async (changes) => {
+              changes.forEach(doc1 => {
+                docIDA = doc1.id;
+                entryCountAll = Number(doc1.data().EntryCount);
+                entryCountCategoryCompletedAll = Number(doc1.data().CompletedCount);
+              });
+              entryCountCategoryCompletedAll = entryCountCategoryCompletedAll + diff;
+
+              if (docIDA != "") {
+                await admin.firestore().collection("EventAllEntryLog").doc(docIDA).set({
+                  EventID: after.EventID,
+                  EntryCount: entryCountAll,
+                  CompletedCount: entryCountCategoryCompletedAll,
+                });
+              }
+
+            });
+          });
+
+      }
+
+    }
 
 
   });
-
 
 
 exports.getEventsEntryCount =
@@ -212,8 +272,9 @@ exports.getEventsEntryCount =
             EventID: doc1.data().EventID,
             CategoryName: doc1.data().CategoryName,
             EntryCount: Number(doc1.data().EntryCount),
+            CompletedCount: Number(doc1.data().CompletedCount),
           });
-          console.log(resultList);
+
         });
         return resultList;
 
@@ -242,8 +303,9 @@ exports.getAllEventEntryCount =
           resultList.push({
             EventID: doc1.data().EventID,
             EntryCount: Number(doc1.data().EntryCount),
+            CompletedCount: Number(doc1.data().CompletedCount)
           });
-          console.log(resultList);
+
         });
         return resultList;
 
@@ -275,8 +337,9 @@ exports.getEventEntryCountForCategory =
               EventID: doc1.data().EventID,
               CategoryName: doc1.data().CategoryName,
               EntryCount: Number(doc1.data().EventStatus),
+              CompletedCount: Number(doc1.data().CompletedCount),
             });
-            console.log(resultList);
+
           });
           return resultList;
 

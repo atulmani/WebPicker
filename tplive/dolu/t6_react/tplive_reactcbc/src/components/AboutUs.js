@@ -34,10 +34,10 @@ export default function AboutUs() {
                     {/* {console.log(loading)} */}
                     <section id="genre">
 
-                        <div class="container">
+                        <div className="container">
                             <br /><br />
-                            <div class="heading">
-                                <span class="material-symbols-outlined">
+                            <div className="heading">
+                                <span className="material-symbols-outlined">
                                     free_cancellation
                                 </span>
                                 <h4 style={{ fontWeight: '1000' }}>About Us</h4>
@@ -46,10 +46,10 @@ export default function AboutUs() {
                             <div>
 
                                 <br /><br />
-                                <div class="row">
-                                    <div class="col-lg-12 mt-2">
-                                        <div class="card-body event-card">
-                                            <div class="row">
+                                <div className="row">
+                                    <div className="col-lg-12 mt-2">
+                                        <div className="card-body event-card">
+                                            <div className="row">
                                                 <div>
                                                     <p>
                                                         Welcome to <strong>Tournament Planner LiVE, </strong>this is a Product of <strong>TPLiVE.</strong>

@@ -32,17 +32,17 @@ export default function TermsAndConditions() {
                 {/* {console.log(loading)} */}
 
                 <section>
-                    <div class="">
+                    <div className="">
                         <img src="../img/tnc.jpg" width="100%" alt="" />
                     </div>
                 </section>
 
                 <section id="genre">
 
-                    <div class="container">
+                    <div className="container">
                         <br /><br />
-                        <div class="heading">
-                            <span class="material-symbols-outlined">
+                        <div className="heading">
+                            <span className="material-symbols-outlined">
                                 receipt_long
                             </span>
                             <h4 style={{ fontWeight: '1000' }}>Terms and Conditions</h4>
@@ -111,8 +111,8 @@ export default function TermsAndConditions() {
 
                         </div>
                         <br /><br /><br />
-                        <div class="heading">
-                            <span class="material-symbols-outlined">
+                        <div className="heading">
+                            <span className="material-symbols-outlined">
                                 privacy_tip
                             </span>
                             <h4 style={{ fontWeight: '1000' }}>Disclaimer</h4>

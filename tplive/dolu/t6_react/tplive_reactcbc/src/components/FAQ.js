@@ -34,10 +34,10 @@ export default function FAQ() {
                     {/* {console.log(loading)} */}
                     <section id="genre">
 
-                        <div class="container">
+                        <div className="container">
                             <br /><br />
-                            <div class="heading">
-                                <span class="material-symbols-outlined">
+                            <div className="heading">
+                                <span className="material-symbols-outlined">
                                     free_cancellation
                                 </span>
                                 <h4 style={{ fontWeight: '1000' }}>Frequently Asked Questions</h4>
@@ -48,14 +48,14 @@ export default function FAQ() {
 
                                 <br /><br />
 
-                                <div class="row">
-                                    <div class="col-lg-12 mt-2">
-                                        <div class="card-body event-card">
-                                            <button type="button" class="btn col-lg-12 text-left" data-toggle="collapse" data-target="#FAQ1" style={{ backgroundColor: '#378FCF', color: '#fff' }}>
-                                                <i class="fa fa-angle-double-down" style={{ fontSize: 'x-large', fontWeight: 'bolder', color: 'white', paddingTop: '0px', paddingRight: '20px' }}></i>
+                                <div className="row">
+                                    <div className="col-lg-12 mt-2">
+                                        <div className="card-body event-card">
+                                            <button type="button" className="btn col-lg-12 text-left" data-toggle="collapse" data-target="#FAQ1" style={{ backgroundColor: '#378FCF', color: '#fff' }}>
+                                                <i className="fa fa-angle-double-down" style={{ fontSize: 'x-large', fontWeight: 'bolder', color: 'white', paddingTop: '0px', paddingRight: '20px' }}></i>
                                                 What is TPLiVE?
                                             </button>
-                                            <div id="FAQ1" class="collapse" style={{ paddingTop: '8px' }}>
+                                            <div id="FAQ1" className="collapse" style={{ paddingTop: '8px' }}>
                                                 TPLiVE - TournamentPlanner LiVE is a startup whose aspiration is to join hands with
                                                 Digital India and Go-Green. Our mission is to automate any Sports &amp; non-Sports event
                                                 planning &amp; execution digitally, thereby eliminating uses of paper. Organizing any
@@ -68,15 +68,15 @@ export default function FAQ() {
 
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-12 mt-2">
+                                <div className="row">
+                                    <div className="col-lg-12 mt-2">
 
-                                        <div class="card-body event-card">
-                                            <button type="button" class="btn col-lg-12 text-left" data-toggle="collapse" data-target="#FAQ1" style={{ backgroundColor: '#378FCF', color: '#fff' }}>
-                                                <i class="fa fa-angle-double-down" style={{ fontSize: 'x-large', fontWeight: 'bolder', color: 'white', paddingTop: '0px', paddingRight: '20px' }}></i>
+                                        <div className="card-body event-card">
+                                            <button type="button" className="btn col-lg-12 text-left" data-toggle="collapse" data-target="#FAQ1" style={{ backgroundColor: '#378FCF', color: '#fff' }}>
+                                                <i className="fa fa-angle-double-down" style={{ fontSize: 'x-large', fontWeight: 'bolder', color: 'white', paddingTop: '0px', paddingRight: '20px' }}></i>
                                                 # of Sports covering TPLiVE?
                                             </button>
-                                            <div id="FAQ2" class="collapse" style={{ paddingTop: '8px' }}>
+                                            <div id="FAQ2" className="collapse" style={{ paddingTop: '8px' }}>
                                                 This product supports 20+ Sports (most of the indoor &amp; outdoor Sports)
                                             </div>
                                         </div>
@@ -84,15 +84,15 @@ export default function FAQ() {
                                 </div>
 
 
-                                <div class="row">
-                                    <div class="col-lg-12 mt-2">
+                                <div className="row">
+                                    <div className="col-lg-12 mt-2">
 
-                                        <div class="card-body event-card">
-                                            <button type="button" class="btn col-lg-12 text-left" data-toggle="collapse" data-target="#FAQ1" style={{ backgroundColor: '#378FCF', color: '#fff' }}>
-                                                <i class="fa fa-angle-double-down" style={{ fontSize: 'x-large', fontWeight: 'bolder', color: 'white', paddingTop: '0px', paddingRight: '20px' }}></i>
+                                        <div className="card-body event-card">
+                                            <button type="button" className="btn col-lg-12 text-left" data-toggle="collapse" data-target="#FAQ1" style={{ backgroundColor: '#378FCF', color: '#fff' }}>
+                                                <i className="fa fa-angle-double-down" style={{ fontSize: 'x-large', fontWeight: 'bolder', color: 'white', paddingTop: '0px', paddingRight: '20px' }}></i>
                                                 Who can use this product?
                                             </button>
-                                            <div id="FAQ3" class="collapse" style={{ paddingTop: '8px' }}>
+                                            <div id="FAQ3" className="collapse" style={{ paddingTop: '8px' }}>
                                                 All Organizers, Sponsors, Participants, Sports Committees, Sports Academies, Schools, Corporates, Townships, Societies and every enthusiastic Sports lovers.
                                             </div>
                                         </div>
@@ -100,31 +100,31 @@ export default function FAQ() {
                                 </div>
 
 
-                                <div class="row">
-                                    <div class="col-lg-12 mt-2">
+                                <div className="row">
+                                    <div className="col-lg-12 mt-2">
 
 
-                                        <div class="card-body event-card">
-                                            <button type="button" class="btn col-lg-12 text-left" data-toggle="collapse" data-target="#FAQ1" style={{ backgroundColor: '#378FCF', color: '#fff' }}>
-                                                <i class="fa fa-angle-double-down" style={{ fontSize: 'x-large', fontWeight: 'bolder', color: 'white', paddingTop: '0px', paddingRight: '20px' }}></i>
+                                        <div className="card-body event-card">
+                                            <button type="button" className="btn col-lg-12 text-left" data-toggle="collapse" data-target="#FAQ1" style={{ backgroundColor: '#378FCF', color: '#fff' }}>
+                                                <i className="fa fa-angle-double-down" style={{ fontSize: 'x-large', fontWeight: 'bolder', color: 'white', paddingTop: '0px', paddingRight: '20px' }}></i>
                                                 How to create a Event?
                                             </button>
-                                            <div id="FAQ4" class="collapse" style={{ paddingTop: '8px' }}>
+                                            <div id="FAQ4" className="collapse" style={{ paddingTop: '8px' }}>
                                                 Organizers can reach us to create event in the system.
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-lg-12 mt-2">
+                                <div className="row">
+                                    <div className="col-lg-12 mt-2">
 
-                                        <div class="card-body event-card">
-                                            <button type="button" class="btn col-lg-12 text-left" data-toggle="collapse" data-target="#FAQ1" style={{ backgroundColor: '#378FCF', color: '#fff' }}>
-                                                <i class="fa fa-angle-double-down" style={{ fontSize: 'x-large', fontWeight: 'bolder', color: 'white', paddingTop: '0px', paddingRight: '20px' }}></i>
+                                        <div className="card-body event-card">
+                                            <button type="button" className="btn col-lg-12 text-left" data-toggle="collapse" data-target="#FAQ1" style={{ backgroundColor: '#378FCF', color: '#fff' }}>
+                                                <i className="fa fa-angle-double-down" style={{ fontSize: 'x-large', fontWeight: 'bolder', color: 'white', paddingTop: '0px', paddingRight: '20px' }}></i>
                                                 How it works?
                                             </button>
-                                            <div id="FAQ5" class="collapse" style={{ paddingTop: '8px' }}>
+                                            <div id="FAQ5" className="collapse" style={{ paddingTop: '8px' }}>
                                                 Organizers can reach us to create event in the system. Organizers can get autogenerated email with all the event details. Once event is active, it will be populated under Events section on the website. Accordingly the Participants can register for the event. Once Participant registration completed, Fixtures or DRAWS & event schedule will be generated and published accordingly.
                                             </div>
                                         </div>
@@ -132,16 +132,16 @@ export default function FAQ() {
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-lg-12 mt-2">
+                                <div className="row">
+                                    <div className="col-lg-12 mt-2">
 
 
-                                        <div class="card-body event-card">
-                                            <button type="button" class="btn col-lg-12 text-left" data-toggle="collapse" data-target="#FAQ1" style={{ backgroundColor: '#378FCF', color: '#fff' }}>
-                                                <i class="fa fa-angle-double-down" style={{ fontSize: 'x-large', fontWeight: 'bolder', color: 'white', paddingTop: '0px', paddingRight: '20px' }}></i>
+                                        <div className="card-body event-card">
+                                            <button type="button" className="btn col-lg-12 text-left" data-toggle="collapse" data-target="#FAQ1" style={{ backgroundColor: '#378FCF', color: '#fff' }}>
+                                                <i className="fa fa-angle-double-down" style={{ fontSize: 'x-large', fontWeight: 'bolder', color: 'white', paddingTop: '0px', paddingRight: '20px' }}></i>
                                                 Are we promote advertisement?
                                             </button>
-                                            <div id="FAQ6" class="collapse" style={{ paddingTop: '8px' }}>
+                                            <div id="FAQ6" className="collapse" style={{ paddingTop: '8px' }}>
                                                 Ofcourse, we would be more than happy to join hands with all the academies & classes (sports & non-sports) and publish the details on the website under TPLiVE-WALL section.
                                             </div>
                                         </div>
@@ -152,13 +152,13 @@ export default function FAQ() {
 
                         </div>
 
-                        <div class="row">
-                            <div class="col-lg-12 mt-2">
-                                <div class="card-body event-card">
-                                    <h5 class="event-det-head event-duration">
+                        <div className="row">
+                            <div className="col-lg-12 mt-2">
+                                <div className="card-body event-card">
+                                    <h5 className="event-det-head event-duration">
                                         <strong>More Questions?</strong></h5>
-                                    <div class="row">
-                                        <p class="event-data event-duration">
+                                    <div className="row">
+                                        <p className="event-data event-duration">
                                             You can contact us at
                                             <br />
                                             <strong>Whatsapp:</strong> +91 8484 966 096

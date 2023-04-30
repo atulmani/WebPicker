@@ -33,7 +33,7 @@ export default function PrivacyPolicy() {
                     {/* {console.log(loading)} */}
 
                     <section>
-                        <div class="">
+                        <div className="">
                             <img src="../img/privacy.jpg" width="100%" alt="" />
                         </div>
                     </section>
@@ -41,10 +41,10 @@ export default function PrivacyPolicy() {
 
                     <section id="genre">
 
-                        <div class="container">
+                        <div className="container">
                             <br /><br />
-                            <div class="heading">
-                                <span class="material-symbols-outlined">
+                            <div className="heading">
+                                <span className="material-symbols-outlined">
                                     policy
                                 </span>
                                 <h4 style={{ fontWeight: '1000' }}>Privacy Policy</h4>
@@ -77,8 +77,8 @@ export default function PrivacyPolicy() {
                                 directly in case of any discrepancy.
                             </div>
                             <br /><br /><br />
-                            <div class="heading">
-                                <span class="material-symbols-outlined">
+                            <div className="heading">
+                                <span className="material-symbols-outlined">
                                     privacy_tip
                                 </span>
                                 <h4 style={{ fontWeight: '1000' }}>Disclaimer</h4>

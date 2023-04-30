@@ -699,6 +699,7 @@ exports.getRegisteredParticant =
 
       return await admin.firestore().collection("Participants")
         .where("UserID", "==", userID)
+        .orderBy("UpdatedTimestamp")
         .get().then((changes) => {
           changes.forEach(doc1 => {
             resultList.push({
@@ -758,6 +759,8 @@ exports.createParticipants =
         District: District,
         Pincode: Pincode,
         ParticipantID: '',
+        UpdatedBy: context.auth.uid,
+        UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
       })
         .then(function (docRef) {
 

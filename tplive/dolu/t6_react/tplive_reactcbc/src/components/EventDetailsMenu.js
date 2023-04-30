@@ -12,7 +12,7 @@ export default function EventDetailsMenu(props) {
     const participantCount = useRef(props.participantCount);
 
 
-    console.log('flag : ', !(eventDetails.current.ShowParticipantFlag && eventDetails.current.ShowParticipantFlag === 'No'));
+    // console.log('flag : ', !(eventDetails.current.ShowParticipantFlag && eventDetails.current.ShowParticipantFlag === 'No'));
     // const { state } = useLocation();
     // const { calledFrom, eventID, eventDetails, entryCount, uniqueParticipantDetails, participantDetails, participantCount } = state;
 
@@ -68,7 +68,7 @@ export default function EventDetailsMenu(props) {
                     <h1>Participants</h1>
                     <h2 className={calledFrom.current === 'Participant' ? 'active' : ''}>{participantCount.current}</h2>
                 </Link>}
-                <div className={calledFrom.current === 'Details' ? 'event-details-menu-indicator Details' : calledFrom.current === 'Entries' ? 'event-details-menu-indicator Entries' : calledFrom.current === 'Participant' ? 'event-details-menu-indicator Participant' : ''}></div>
+                <div style={{ width: eventDetails.current.ShowParticipantFlag && eventDetails.current.ShowParticipantFlag === 'No' ? "100%" : "33.3%" }} className={calledFrom.current === 'Details' ? 'event-details-menu-indicator Details' : calledFrom.current === 'Entries' ? 'event-details-menu-indicator Entries' : calledFrom.current === 'Participant' ? 'event-details-menu-indicator Participant' : ''}></div>
             </div>
 
         </div>

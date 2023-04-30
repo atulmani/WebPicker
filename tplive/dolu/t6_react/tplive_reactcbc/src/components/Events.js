@@ -185,7 +185,7 @@ export default function Events() {
                                         searchEvent();
 
                                     }}>
-                                        <span class="material-symbols-outlined">
+                                        <span className="material-symbols-outlined">
                                             search
                                         </span>
                                     </button>
@@ -279,8 +279,17 @@ export default function Events() {
                     </div>
 
                 </div>
+
+                {(index <= 0) ? <>
+                    <br /><br />
+                    <div className='event-page-error-message'>
+                        <h1>No events found for given search key/Year, Please change year or enter tournament name, Orgaizer Name or City to search</h1>
+                    </div>
+                    <br />
+                </> : ""}
+
+                <br />
             </section>
-            {(index <= 0) ? "No events found for given search key/Year, Please change year or enter tournament name, Orgaizer Name or City to search  " : ""}
 
             {/* <div className="col-lg-12 col-md-8 col-sm-12" style={{ padding: '0' }}>
 

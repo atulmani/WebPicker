@@ -17,11 +17,19 @@ export default function BannerItemHP(props) {
         sCode: '',
         imageURL: ''
     });
+    const [cnt, setCnt] = useState(0);
     const navigate = useNavigate();
 
 
     useEffect(() => {
+        // console.log('props.eventDetails : ', props.eventDetails);
 
+        if (props.eventDetails.ShowParticipantPostPaymentFlag && props.eventDetails.ShowParticipantPostPaymentFlag.toUpperCase() === 'YES') {
+            setCnt(props.entryCntForEventCompletedPayment);
+        } else {
+            setCnt(props.entryCntForEvent);
+        }
+        // console.log('ctn :: ', cnt);
         if (props.eventDetails.EventMode.toUpperCase() === 'FIXTURE') {
             setButtonProp({
                 buttonStyle: 'linear-gradient(to right,#73e336,#08bf1a)',
@@ -149,12 +157,12 @@ export default function BannerItemHP(props) {
                             <h1>{props.eventDetails.EventName}</h1>
                             <h2>{props.eventDetails.OrganizationName}</h2>
 
-                            {!(props.eventDetails.ShowParticipantFlag && props.eventDetails.ShowParticipantFlag === 'No') && props.entryCntForEvent > 0 && <div className="total-entry-div">
-                                <small>Total Entry : {props.entryCntForEvent}</small>
+                            {!(props.eventDetails.ShowParticipantFlag && props.eventDetails.ShowParticipantFlag === 'No') && cnt > 0 && <div className="total-entry-div">
+                                <small>Total Entry :  {cnt}</small>
                             </div>
                             }
                             {
-                                !(props.eventDetails.ShowParticipantFlag && props.eventDetails.ShowParticipantFlag === 'No') && props.entryCntForEvent === 0 && <div className="total-entry-div" style={{ background: '#099b23' }}>
+                                !(props.eventDetails.ShowParticipantFlag && props.eventDetails.ShowParticipantFlag === 'No') && cnt === 0 && props.eventDetails.EventMode.toUpperCase() === 'BOOK' && <div className="total-entry-div" style={{ background: '#099b23' }}>
                                     <small>Be 1st To Register</small>
                                 </div>
                             }

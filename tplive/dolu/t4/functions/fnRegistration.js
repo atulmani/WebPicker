@@ -460,6 +460,7 @@ exports.getAllRegisteredEventForPlayerCode =
 
             resultList.push({
               EventID: doc1.data().EventID,
+              EventCode: doc1.data().EventCode,
               CategoryName: doc1.data().CategoryName,
               EventType: doc1.data().EventType,
               Fees: doc1.data().Fees,
@@ -525,13 +526,17 @@ exports.getAllRegisteredEventForPlayerCode =
                         EventEndDate: doc3.data().EventEndDate,
                         EventStartDate: doc3.data().EventStartDate,
                         ConvenienceCharge: doc3.data().ConvenienceCharge,
+                        MiscellaneousChargeFees: doc3.data().MiscellaneousChargeFees,
+                        MiscellaneousChargeRemark: doc3.data().MiscellaneousChargeRemark,
                         EventMode: doc3.data().EventMode,
                         EventName: doc3.data().EventName,
                         EventStatus: doc3.data().EventStatus,
                         MinimumFee: doc3.data().MinimumFee,
                         WithdrawalEndDate: doc3.data().WithdrawalEndDate,
+                        RegistrationEndDate: doc3.data().RegistrationEndDate,
                         OrganizationName: doc3.data().OrganizationName,
                         PaymentMode: doc3.data().PaymentMode,
+                        PaymentOpenFlag: doc3.data().PaymentOpenFlag,
                       });
 
                     });

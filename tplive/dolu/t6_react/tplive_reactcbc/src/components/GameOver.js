@@ -8,23 +8,18 @@ export default function GameOver(props) {
         setLost(props.board.hasLost());
 
     }, [])
-    const callReset = () => {
-        console.log('in callReset');
-        props.resetGame();
-    }
 
     return (
         <>
-            {iswon && <div className='gameOver' onClick={callReset}>
+            {iswon && <div className='gameOver'>
                 <h1>YOU WON!</h1>
                 <h2>You have reached <strong>2048</strong></h2>
-                <div className='resetButton'>Play Again</div>
             </div>
             }
             {
-                lost && <div className='gameOver' onClick={callReset}>
+                lost && <div className='gameOver'>
                     <h1>GAME OVER!</h1>
-                    <div className='resetButton' onClick={callReset}>Try Again</div>
+                    <h2>Your score is <strong>{props.board.score}</strong></h2>
                 </div>
             }
 

@@ -24,6 +24,7 @@ import EventDetails from './components/EventDetails';
 import Login from './components/Login'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import HPLastSection from './components/HPLastSection';
+import UserProfiles from './components/UserProfiles';
 import UserProfile from './components/UserProfile';
 import PhoneSignUp from './components/PhoneSignUp';
 import RegistrationCategory from './components/RegistrationCategory';
@@ -73,7 +74,7 @@ function App() {
   })
   // let location = useLocation();
   let location = useLocation();
-  console.log(location.pathname);
+  // console.log(location.pathname);
 
 
   function updateMyEvent(eventDetails, cntEntry, cntPartcipant) {
@@ -157,7 +158,9 @@ function App() {
 
           <Route exact path='/Login' element={<Login />} />
           <Route exact path='/PhoneSignUp' element={<PhoneSignUp />} />
-          <Route exact path='/UserProfile' element={<UserProfile />} />
+          <Route exact path='/UserProfileOld' element={<UserProfile />} />
+
+          <Route exact path='/UserProfile' element={<UserProfiles />} />
           <Route exact path='/RegisteredEvent' element={<RegisteredEvent></RegisteredEvent>}></Route>
           <Route exact path='/UsersEvents' element={<UsersEvents></UsersEvents>}></Route>
           {/* not used <Route exact path='/PaymentGateway' element={<PaymentGateway />} /> */}
