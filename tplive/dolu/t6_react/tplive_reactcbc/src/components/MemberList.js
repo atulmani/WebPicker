@@ -11,11 +11,13 @@ export default function MemberList(props) {
     const { user } = useUserAuth();
     const navigate = useNavigate();
     const [userDetails, setUserDetails] = useState(window.localStorage.getItem('userProfile') ? JSON.parse(window.localStorage.getItem('userProfile')) : {});
-    const [participantList, setParticipantList] = useState([]);
     const [filterParticipantList, setFilterParticipantList] = useState([]);
-
+    const [selectUser, setSelectUser] = useState('');
     const [searchKey, setSearchKey] = useState('');
     const [loading, setLoading] = useState(false);
+    const [allMemberList, setAllMemberList] = useState([]);
+    const [participantList, setParticipantList] = useState([])
+
     var curFormat = {
         style: 'currency',
         currency: 'INR',
@@ -29,90 +31,108 @@ export default function MemberList(props) {
         month: 'short',
         day: 'numeric'
     };
-    let dob = '';
-    useEffect(() => {
-        var para1 = {};
 
-        console.log(userDetails.id, '::user::', user);
-        var selectUser = '';
-        if (user.isLoggedIn) {
-            if (user.userInfo !== null) {
-                para1 = {
-                    userID: userDetails.id,
-                };
-                setLoading(true);
-                let participant = {};
-                // console.log(para1);
-                let userParticipant = [];
-                const ret1 = httpsCallable(functions, "getRegisteredParticant");
-                ret1(para1).then(async (result) => {
-                    result.data.forEach(async element => {
-                        participant = {
-                            id: element.id,
-                            City: element.City,
-                            Country: element.Country,
-                            DateOfBirth: element.DateOfBirth,
-                            District: element.District,
-                            Email: element.Email,
-                            Gender: element.Gender,
-                            ParticipantID: element.ParticipantID,
-                            Phone: element.Phone,
-                            Pincode: element.Pincode,
-                            State: element.State,
-                            UserName: element.UserName,
-                            UserID: element.UserID,
-                            PlayerID: element.PlayerID,
-                        };
-                        if (selectUser === '') {
-                            selectUser = element.PlayerID;
-                        }
-                        dob = (element.DateOfBirth) ? new Date(element.DateOfBirth._seconds * 1000) : '';
-                        dob = dob === '' ? '' : dob.toLocaleDateString("en-IN", options);
-                        userParticipant.push({
-                            ...participant,
-                            dob: dob,
-                            searchKey: element.UserName + element.PlayerID
+    let dob = '';
+
+
+    useEffect(() => {
+        console.log('user', user);
+        async function getPlayerList() {
+            var para1 = {};
+            var setUser = '';
+            if (user.isLoggedIn) {
+                if (user.userInfo !== null) {
+                    para1 = {
+                        userID: userDetails.id,
+                    };
+                    // console.log(para1);
+                    setLoading(true);
+                    let participant = {};
+                    let userParticipant = [];
+                    const ret1 = httpsCallable(functions, "getRegisteredParticant");
+                    ret1(para1).then(async (result) => {
+                        // console.log('result : ', result);
+                        result.data.forEach(async element => {
+                            participant = {
+                                id: element.id,
+                                City: element.City,
+                                Country: element.Country,
+                                DateOfBirth: element.DateOfBirth,
+                                District: element.District,
+                                Email: element.Email,
+                                Gender: element.Gender,
+                                ParticipantID: element.ParticipantID,
+                                Phone: element.Phone,
+                                Pincode: element.Pincode,
+                                State: element.State,
+                                UserName: element.UserName,
+                                UserID: element.UserID,
+                                PlayerID: element.PlayerID,
+                            };
+                            if (setUser === '') {
+                                setUser = element.PlayerID;
+
+                            }
+
+                            dob = (element.DateOfBirth) ? new Date(element.DateOfBirth._seconds * 1000) : '';
+                            dob = dob === '' ? '' : dob.toLocaleDateString("en-IN", options);
+                            userParticipant.push({
+                                ...participant,
+                                dob: dob,
+                                searchKey: element.UserName + element.PlayerID
+                            });
+
                         });
 
+                        // console.log(userParticipant);
+                        setAllMemberList(userParticipant);
+                        setSelectUser(setUser);
+                        setFilterParticipantList(userParticipant);
+                        props.setMemberList(userParticipant, setUser);
+                        props.openSideBar(!props.showSideBar);
+                        setLoading(false);
                     });
-                    // console.log(userParticipant);
-                    setParticipantList(userParticipant);
-                    setFilterParticipantList(userParticipant);
-                    setLoading(false);
-                    props.setMemberList(filterParticipantList, selectUser);
-                });
-            } else {
-                navigate("/PhoneSignUp", { state: { url: 'ExportEventEntry' } });
+                } else {
+                    navigate("/PhoneSignUp", { state: { url: 'ExportEventEntry' } });
+                }
             }
         }
+        getPlayerList();
+
     }, [])
 
     function searchEvent(key) {
 
         if (key !== '') {
-            var newArray = participantList.filter(function (el) {
+            var newArray = allMemberList.filter(function (el) {
                 return el.searchKey.toUpperCase().includes(key.toUpperCase());
             }
             );
             // console.log(newArray);
             setFilterParticipantList(newArray);
         } else {
-            setFilterParticipantList(participantList);
+            setFilterParticipantList(allMemberList);
         }
     }
     function userDetail(player) {
-        console.log('userDetail', player)
+        // console.log('userDetail', player)
         props.setMemberList(filterParticipantList, player);
+        props.openSideBar(!props.showSideBar);
+        setSelectUser(player);
         // props.setMemberList(userParticipant, selectUser);
     }
 
     function userEdit() {
         console.log('userEdit')
     }
+    // console.log('filterParticipantList : ', filterParticipantList)
     return (
-        <div className='user-profile-side'>
+        <div className={props.showSideBar ? 'user-profile-side' : 'user-profile-side close'}>
 
-            <div className='user-profile-side-close-icon'>
+            <div className='user-profile-side-close-icon' onClick={(e) => {
+                props.openSideBar(!props.showSideBar);
+            }
+            } >
                 <span className="material-symbols-outlined">
                     close
                 </span>
@@ -133,7 +153,7 @@ export default function MemberList(props) {
 
             <div style={{ padding: '10px' }}>
                 {filterParticipantList && filterParticipantList.map((participant) => {
-                    return <div className='user-profile-side-card' key={participant.PlayerID}>
+                    return <div className={selectUser === participant.PlayerID ? 'user-profile-side-card active' : 'user-profile-side-card'} key={participant.PlayerID}>
                         {/* {console.log(participant.PlayerID)} */}
 
                         <div className='user-profile-side-card-arrow'>
@@ -169,104 +189,6 @@ export default function MemberList(props) {
                     </div>
                 })}
 
-                <div className='user-profile-side-card'>
-                    <div className='user-profile-side-card-arrow'>
-                        <span className="material-symbols-outlined">
-                            arrow_forward_ios
-                        </span>
-                    </div>
-                    <h1>Pravararchith Rudrakshala Matam</h1>
-                    <div className='user-profile-side-card-details'>
-                        <div className='male'>
-                            <span className="material-symbols-outlined">
-                                man
-                            </span>
-                            <h2>Male</h2>
-                        </div>
-                        <h3><strong>DOB : </strong> 07-Feb-2006 </h3>
-                    </div>
-
-                    <div className='hover-details-div'>
-                        <div>
-                            <span className="material-symbols-outlined">
-                                edit
-                            </span>
-                            <h4>EDIT</h4>
-                        </div>
-                        <div>
-                            <span className="material-symbols-outlined">
-                                page_info
-                            </span>
-                            <h4>DETAILS</h4>
-                        </div>
-                    </div>
-                </div>
-
-                <div className='user-profile-side-card'>
-                    <div className='user-profile-side-card-arrow'>
-                        <span className="material-symbols-outlined">
-                            arrow_forward_ios
-                        </span>
-                    </div>
-                    <h1>Aditya Tripathi</h1>
-                    <div className='user-profile-side-card-details'>
-                        <div className='male'>
-                            <span className="material-symbols-outlined">
-                                man
-                            </span>
-                            <h2>Male</h2>
-                        </div>
-                        <h3><strong>DOB : </strong> 12-Jun-2007 </h3>
-                    </div>
-
-                    <div className='hover-details-div'>
-                        <div>
-                            <span className="material-symbols-outlined">
-                                edit
-                            </span>
-                            <h4>EDIT</h4>
-                        </div>
-                        <div>
-                            <span className="material-symbols-outlined">
-                                page_info
-                            </span>
-                            <h4>DETAILS</h4>
-                        </div>
-                    </div>
-                </div>
-
-                <div className='user-profile-side-card'>
-                    <div className='user-profile-side-card-arrow'>
-                        <span className="material-symbols-outlined">
-                            arrow_forward_ios
-                        </span>
-                    </div>
-                    <h1>Mini</h1>
-                    <div className='user-profile-side-card-details'>
-                        <div className='female'>
-                            <span className="material-symbols-outlined">
-                                woman
-                            </span>
-                            <h2>Female</h2>
-                        </div>
-                        <h3><strong>DOB : </strong> 07-Feb-2006 </h3>
-                    </div>
-
-                    <div className='hover-details-div'>
-                        <div>
-                            <span className="material-symbols-outlined">
-                                edit
-                            </span>
-                            <h4>EDIT</h4>
-                        </div>
-                        <div>
-                            <span className="material-symbols-outlined">
-                                page_info
-                            </span>
-                            <h4>DETAILS</h4>
-                        </div>
-                    </div>
-                </div>
             </div>
 
         </div >
