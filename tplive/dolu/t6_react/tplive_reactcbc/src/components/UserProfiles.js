@@ -524,7 +524,7 @@ export default function UserProfiles() {
                     </div>
                     <hr />
 
-                    <div style={{ display: 'none' }}>
+                    <div style={{ display: 'block' }}>
                         {/* <div style={{ display: 'block' }}> */}
                         <div className='user-profile-search'>
                             <input type="text" placeholder='Search Event Name' />

@@ -40,7 +40,7 @@ export default function RegistrationCategory() {
         var regCategory = [];
 
         let pendingFlag = false;
-        console.log(rSelectedCategory);
+        // console.log(rSelectedCategory);
         rSelectedCategory.current.forEach(element => {
             var partName = '';
             var partnerUID = '';
@@ -54,7 +54,7 @@ export default function RegistrationCategory() {
             }
             // console.log(element.CategoryName);
             if (element.RegType === undefined || element.RegType === 'Self') {
-                console.log(element.CategoryName);
+                // console.log(element.CategoryName);
                 var selCat = {
                     CategoryName: element.CategoryName,
                     EventType: element.EventType,
@@ -81,7 +81,7 @@ export default function RegistrationCategory() {
             }
 
         });
-        console.log(regCategory);
+        // console.log(regCategory);
         var para1 = {};
         para1 = {
             EventID: eventDetails.Eventid,// eventID,
@@ -91,7 +91,7 @@ export default function RegistrationCategory() {
             CategoryList: regCategory,//selectedCategory,
             DeleteCategoryList: deletedEvent,
         };
-        console.log(para1);
+        // console.log(para1);
         const ret1 = httpsCallable(functions, "registerAllEvent");
         if (regCategory.length > 0) {
 

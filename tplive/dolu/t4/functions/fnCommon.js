@@ -1,75 +1,151 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+const nodemailer = require("nodemailer");
+const cors = require("cors")({ origin: true });
+
+const transporter = nodemailer.createTransport({
+  name: 'gmail.com',
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: "anitatripathi@gmail.com",
+    pass: "TPLiVE@d2201",
+  },
+});
+// Here we're using Gmail to send email using http request
+
+
+exports.sendMail =
+  functions
+    .region('asia-south1')
+    .https.onRequest((req, res) => {
+      cors(req, res, () => {
+        // getting dest email by query string
+        const dest = req.query.dest;
+        const mailOptions = {
+          from: "anitatripathi@gmail.com",
+          to: dest,
+          subject: "Connect",
+          html: `<p style="font-size: 16px;">Pickle Riiiiiiiiiiiiiiiick!!</p>
+                <br />
+            <p>Atul Tripathi</p>`,
+        };
+
+        // returning result
+        return transporter.sendMail(mailOptions, (erro, info) => {
+          if (erro) {
+            return res.send(erro.toString());
+          }
+          return res.send("Sended");
+        });
+      });
+    });
+
+// Here we're using Gmail to send email using oncall function
+
+exports.sendMailApi =
+  functions
+    .region('asia-south1')
+    .https.onCall((data, context) => {
+      // cors(data, context, () => {
+      // getting dest email by query string
+      // const dest = req.query.dest;
+
+      // const dest = "atulmani@gmail.com";
+      const dest = data.emails;
+      const sub = data.subject;
+      console.log(dest);
+      console.log(sub);
+      const mailOptions = {
+        from: "anitatripathi@gmail.com",
+        to: dest,
+        subject: sub,
+        html: `<p style="font-size: 16px;">Pickle Riiiiiiiiiiiiiiiick!!</p>
+              <br />
+          <p>Atul Tripathi</p>`,
+      };
+
+      // returning result
+      return transporter.sendMail(mailOptions, (erro, info) => {
+        if (erro) {
+          return erro.toString();
+        }
+        return "Sended";
+      });
+    });
+
+
 
 exports.addMasterSportName =
   functions
-  .region('asia-south1')
-  .https.onCall((data, context) => {
-    if (!context.auth) {
-      throw new functions.https.HttpError(
-        "unauthenticatied",
-        "only authenticated user can call this"
-      );
-    }
+    .region('asia-south1')
+    .https.onCall((data, context) => {
+      if (!context.auth) {
+        throw new functions.https.HttpError(
+          "unauthenticatied",
+          "only authenticated user can call this"
+        );
+      }
 
-    const SportName = data.SportName;
-    const SportCode = data.SportCode;
+      const SportName = data.SportName;
+      const SportCode = data.SportCode;
 
-    return admin.firestore().collection("MasterSportName")
-      .add({
-        SportCode: SportCode,
-        SportName: SportName,
-        CreatedBy: context.auth.uid,
-        CreatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
-      })
-      .then(function(docRef) {
-        return {
-          SportID: docRef.id
-        };
-      })
-      .catch(function(error) {
-        console.log("in error");
-        return {
-          SportID: "0"
-        };
-      });
+      return admin.firestore().collection("MasterSportName")
+        .add({
+          SportCode: SportCode,
+          SportName: SportName,
+          CreatedBy: context.auth.uid,
+          CreatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
+        })
+        .then(function (docRef) {
+          return {
+            SportID: docRef.id
+          };
+        })
+        .catch(function (error) {
+          console.log("in error");
+          return {
+            SportID: "0"
+          };
+        });
 
-    console.log("before return");
-  });
+      console.log("before return");
+    });
 
 
 exports.getSportList =
   functions
-  .region('asia-south1')
-  .https.onCall(async (data, context) => {
-    if (!context.auth) {
-      throw new functions.https.HttpError(
-        "unauthenticatied",
-        "only authenticated user can call this"
-      );
-    }
-    let resultList = [];
+    .region('asia-south1')
+    .https.onCall(async (data, context) => {
+      if (!context.auth) {
+        throw new functions.https.HttpError(
+          "unauthenticatied",
+          "only authenticated user can call this"
+        );
+      }
+      let resultList = [];
 
-    // var dbrows = await admin.firestore().collection("PartnerList").get();
-    // dbrows.then((changes) => {
-    return await admin.firestore().collection("MasterSportName").orderBy("SportName").get().then((changes) => {
-      changes.forEach(doc1 => {
-        resultList.push({
-          Docid: doc1.id,
-          SportName: doc1.data().SportName,
-          SportCode: doc1.data().SportCode,
+      // var dbrows = await admin.firestore().collection("PartnerList").get();
+      // dbrows.then((changes) => {
+      return await admin.firestore().collection("MasterSportName").orderBy("SportName").get().then((changes) => {
+        changes.forEach(doc1 => {
+          resultList.push({
+            Docid: doc1.id,
+            SportName: doc1.data().SportName,
+            SportCode: doc1.data().SportCode,
+          });
+          console.log(resultList);
         });
-        console.log(resultList);
+        return resultList;
       });
-      return resultList;
     });
-  });
 
 
-  exports.storePostData = functions
+exports.storePostData = functions
   .region('asia-south1')
-  .https.onRequest(function(request, response) {
-    cors(request, response, function() {
+  .https.onRequest(function (request, response) {
+    cors(request, response, function () {
       var uuid = UUID();
 
       const busboy = new Busboy({ headers: request.headers });
@@ -89,7 +165,7 @@ exports.getSportList =
       });
 
       // This will invoked on every field detected
-      busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
+      busboy.on('field', function (fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
         fields[fieldname] = val;
       });
       // This callback will be invoked after all uploaded files are saved.
@@ -106,7 +182,7 @@ exports.getSportList =
               }
             }
           },
-          function(err, uploadedFile) {
+          function (err, uploadedFile) {
             if (!err) {
               admin
                 .database()
@@ -126,7 +202,7 @@ exports.getSportList =
                     "?alt=media&token=" +
                     uuid
                 })
-                .then(function() {
+                .then(function () {
                   webpush.setVapidDetails(
                     "mailto:support@tplive.com",
                     "BKapuZ3XLgt9UZhuEkodCrtnfBo9Smo-w1YXCIH8YidjHOFAU6XHpEnXefbuYslZY9vtlEnOAmU7Mc-kWh4gfmE",
@@ -137,8 +213,8 @@ exports.getSportList =
                     .ref("subscriptions")
                     .once("value");
                 })
-                .then(function(subscriptions) {
-                  subscriptions.forEach(function(sub) {
+                .then(function (subscriptions) {
+                  subscriptions.forEach(function (sub) {
                     var pushConfig = {
                       endpoint: sub.val().endpoint,
                       keys: {
@@ -156,7 +232,7 @@ exports.getSportList =
                           openUrl: "/help"
                         })
                       )
-                      .catch(function(err) {
+                      .catch(function (err) {
                         console.log(err);
                       });
                   });
@@ -164,7 +240,7 @@ exports.getSportList =
                     .status(201)
                     .json({ message: "Data stored", id: fields.id });
                 })
-                .catch(function(err) {
+                .catch(function (err) {
                   response.status(500).json({ error: err });
                 });
             } else {

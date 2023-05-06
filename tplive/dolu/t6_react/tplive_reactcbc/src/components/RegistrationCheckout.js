@@ -84,7 +84,7 @@ export default function RegistrationCheckout() {
 
             image: 'https://tplive-prod--tplive-test-dw5grchb.web.app/img/TPLiVE_Logo.webp',
             handler: function (response) {
-                console.log(response);
+                // console.log(response);
                 navigate("/PaymentSuccessful", {
                     state: {
                         id: 1, participantDetails: participantDetails,
@@ -142,7 +142,7 @@ export default function RegistrationCheckout() {
                                 return <CategoryCartItem key={events.CategoryName} eventDetails={events} ></CategoryCartItem>
 
                             } else {
-                                return
+                                return null
                             }
 
                         })}

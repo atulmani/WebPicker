@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import ReactWhatsapp from 'react-whatsapp';
 import '../css/Calculator.css';
 
-export default function FAQ() {
+export default function UserGuide() {
     const [showFlag, setShowFlag] = useState(1);
     const setFlag = (flag) => {
         setShowFlag(flag)
@@ -17,8 +17,6 @@ export default function FAQ() {
 
                     <div className="city-select-div" style={{ display: 'none' }}>
                         <div className="search">
-                            {/* <input type="text" onChange={callOnChange()} placeholder="Enter city" name="" value="" /> */}
-                            {/* <input type="text" onChange={this.callOnChange()} placeholder="Enter city" name="" value="" /> */}
 
                             <span className="material-symbols-outlined">
                                 search
@@ -47,7 +45,7 @@ export default function FAQ() {
                                 <span className="material-symbols-outlined">
                                     free_cancellation
                                 </span>
-                                <h4 style={{ fontWeight: '1000' }}>Frequently Asked Questions</h4>
+                                <h4 style={{ fontWeight: '1000' }}>User Guide</h4>
                             </div><br />
 
                             <div>
@@ -61,20 +59,81 @@ export default function FAQ() {
                                         <div className={showFlag === 1 ? 'calculator-div open' : 'calculator-div '}>
                                             <div className='calculator-heading' onClick={() => setFlag(1)}>
                                                 <h1>
-                                                    What is TPLiVE?
+                                                    Event Registration Process
                                                     <span class="material-symbols-outlined">
                                                         expand_more
                                                     </span>
                                                 </h1>
                                             </div>
-                                            <div className='calculator-content'>
-                                                <p style={{ margin: '0' }}>TPLiVE - TournamentPlanner LiVE is a startup whose aspiration is to join hands with
-                                                    Digital India and Go-Green. Our mission is to automate any Sports &amp; non-Sports event
-                                                    planning &amp; execution digitally, thereby eliminating uses of paper. Organizing any
-                                                    event manually is always a challenge starting from registration forms distribution
-                                                    &amp; collection, payment collection, participant name publish, draws or fixtures &amp;
-                                                    event schedule preparation &amp; publish, score management, publish result till prize
-                                                    distribution &amp; event photo gallery.</p>
+                                            <div >
+                                                <div>
+                                                    <div>
+
+                                                        Participants can be registered under current events as following:
+
+                                                    </div>
+
+
+                                                    <div>
+                                                        <strong>Step 1:</strong>
+
+                                                    </div>
+                                                    <div>
+                                                        Select Event to register
+
+                                                    </div>
+                                                    <div>
+                                                        <span style={{ fontSize: 'x-small', fontStyle: 'italic' }}>
+                                                            (Click on Events or Clubs menu) </span>
+
+                                                    </div>
+                                                    <div>
+                                                        <img src="/img/UG_Reg11.PNG" height="30%" width="30%" alt="" />
+                                                    </div>
+                                                    <hr></hr>
+                                                    <div>
+                                                        <strong>Step 2:</strong>
+                                                    </div>
+                                                    <div>
+                                                        If already registered then it will redirect to user page, else will prompt to register. Please register using phone number
+                                                        and update basic user information
+                                                        <br />
+                                                        <span style={{ fontSize: 'x-small', fontStyle: 'italic' }}>
+                                                            (all communication will be through
+                                                            entered email-id &amp; mobile no) </span>
+                                                    </div>
+                                                    <hr></hr>
+
+                                                    <div>
+                                                        <strong>Step 3:</strong>
+
+                                                    </div>
+                                                    <div>
+                                                        Select Category to register
+
+                                                    </div>
+                                                    <div>
+                                                        <span style={{ fontSize: 'x-small', fontStyle: 'italic' }}>
+                                                            (For Doubles entry, you need to give the TPLIve ID of the partner) </span>
+
+                                                    </div>
+                                                    <div>
+                                                        <img src="/img/categoryList.jpg" height="30%" width="30%" alt="" />
+                                                    </div>
+                                                    <hr></hr>
+                                                    <hr></hr>
+
+                                                    <div>
+                                                        <strong>Step 4:</strong>
+
+                                                    </div>
+                                                    <div>
+                                                        Go to checkout and complete payment for confirmed registration
+
+                                                    </div>
+                                                </div>
+
+
                                             </div>
                                         </div >
 

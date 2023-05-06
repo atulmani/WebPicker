@@ -29,10 +29,16 @@ const BoardView = () => {
         }
     };
 
+    const mobileArrowClick = (direction) => {
+        let boardClone = Object.assign(Object.create(Object.getPrototypeOf(board)), board);
+        let newBoard = boardClone.move(direction);
+        setBoard(newBoard);
+    };
+
 
     useEvent('keydown', handleKeyDown);
 
-    useEffect(() => {
+    const useEffect1 = () => {
         // const useEffect1 = () => {
         var gameBox = document.getElementById('gameBox');
 
@@ -150,8 +156,8 @@ const BoardView = () => {
             isSwiped = false;
         }
 
-    });
-    // };
+        // });
+    };
 
     const cells = board.cells.map((row, rowIndex) => {
         return <div key={indexR++}>
@@ -173,6 +179,7 @@ const BoardView = () => {
 
     return (
         <div style={{
+            position: 'relative',
             display: 'flex',
             backgroundColor: '#FAF8EF',
             color: '#786E65',
@@ -204,6 +211,34 @@ const BoardView = () => {
                 {(board.hasWon() || board.hasLost()) && <GameOver
                     board={board}></GameOver>}
             </div>
+
+            <div className='mobile-btn'>
+                <div className='mobile-btn-inner-div'>
+                    <div onClick={() => mobileArrowClick(1)}>
+                        <span class="material-symbols-outlined">
+                            arrow_upward
+                        </span>
+                    </div>
+                </div>
+                <div className='mobile-btn-inner-div'>
+                    <div onClick={() => mobileArrowClick(0)}>
+                        <span class="material-symbols-outlined">
+                            arrow_back
+                        </span>
+                    </div>
+                    <div onClick={() => mobileArrowClick(3)}>
+                        <span class="material-symbols-outlined">
+                            arrow_downward
+                        </span>
+                    </div>
+                    <div onClick={() => mobileArrowClick(2)}>
+                        <span class="material-symbols-outlined">
+                            arrow_forward
+                        </span>
+                    </div>
+                </div>
+            </div>
+
         </div >
     )
 }

@@ -63,3 +63,13 @@
 }
 
 /* more page - end */
+
+.refund-img {
+    width: 20%;
+}
+
+@media (max-width: 750px) {
+    .refund-img {
+        width: 50%;
+    }
+}

@@ -14,9 +14,9 @@ export default function EventCard(props) {
         // };
         // const ret1 = httpsCallable(functions, "getEventDetails");
         // ret1(para1).then((result) => {
-        console.log(props.event.Eventid);
-        console.log(props.event);
-        console.log(props.event.EntryCount);
+        // console.log(props.event.Eventid);
+        // console.log(props.event);
+        // console.log(props.event.EntryCount);
 
 
         navigate("/EventDetails", {

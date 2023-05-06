@@ -7,7 +7,6 @@ import {
   useLocation,
   Link
 } from "react-router-dom";
-
 import BeforeNavbar from './components/BeforeNavbar';
 import Navbar from './components/Navbar';
 import NavbarMobile from './components/NavbarMobile';
@@ -45,6 +44,9 @@ import TermsAndConditions from './components/TermsAndConditions';
 import ContactUs from './components/ContactUs';
 import RefundAndCancellation from './components/RefundAndCancellation';
 import AboutUs from './components/AboutUs';
+import Calculators from './components/Calculators';
+import UserGuide from './components/UserGuide';
+// import EventCostCalculatorL from './components/EventCostCalculatorL';
 
 import ProtectedRoute from './components/ProtectedRoute';
 import EventRegistration from './components/EventRegistration';
@@ -159,8 +161,11 @@ function App() {
           <Route exact path='/Login' element={<Login />} />
           <Route exact path='/PhoneSignUp' element={<PhoneSignUp />} />
           <Route exact path='/UserProfileOld' element={<UserProfile />} />
-
           <Route exact path='/UserProfile' element={<UserProfiles />} />
+          <Route exact path="/Calculators" element={<Calculators></Calculators>} ></Route>
+          <Route exact path="/UserGuide" element={<UserGuide></UserGuide>} ></Route>
+
+          {/* <Route exact path="/EventCostCalculatorL" element={<EventCostCalculatorL></EventCostCalculatorL>} ></Route> */}
           <Route exact path='/RegisteredEvent' element={<RegisteredEvent></RegisteredEvent>}></Route>
           <Route exact path='/UsersEvents' element={<UsersEvents></UsersEvents>}></Route>
           {/* not used <Route exact path='/PaymentGateway' element={<PaymentGateway />} /> */}

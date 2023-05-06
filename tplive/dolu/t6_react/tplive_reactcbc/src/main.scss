@@ -125,6 +125,49 @@
   background-color: #CDC1B4;
 }
 
+@media (max-width: 700px) {
+  .board {
+    width: 270px;
+    height: 270px;
+  }
+
+  .heading-2048 h1 {
+    font-size: 1.3rem;
+  }
+
+  .details-box {
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 0;
+  }
+
+  .resetButton {
+    font-size: 1.2rem;
+    padding: 0 20px;
+    height: 40px;
+  }
+
+  .score-box {
+    height: 40px;
+  }
+
+  .score-header {
+    position: relative;
+    top: 2px;
+  }
+
+  .score-box div:nth-child(2) {
+    position: relative;
+    top: -3px;
+  }
+
+  .cell,
+  .tile {
+    width: 55px;
+    height: 55px;
+  }
+}
+
 .cell {
   // display: block;
   width: 100%;
@@ -302,4 +345,51 @@
 
 .overlay .message {
   color: #666;
+}
+
+.mobile-btn {
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .mobile-btn {
+    height: 100px;
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.mobile-btn .mobile-btn-inner-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-btn .mobile-btn-inner-div div {
+  background: #BBADA0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  margin: 2px;
+  border-radius: 10px;
+}
+
+.mobile-btn .mobile-btn-inner-div div span {
+  font-size: 1.3rem;
+  // background: #CDC1B4;
+  // width: 33px;
+  // height: 33px;
+  // border-radius: 10px;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
 }

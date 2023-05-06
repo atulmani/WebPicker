@@ -24,6 +24,8 @@ const registration = require("./fnRegistration.js");
 
 exports.addMasterSportName = common.addMasterSportName;
 exports.getSportList = common.getSportList;
+exports.sendMail = common.sendMail;
+exports.sendMailApi = common.sendMailApi;
 
 exports.getProfileDetails = userProfile.getProfileDetails;
 exports.getUserRequest = userProfile.getUserRequest;

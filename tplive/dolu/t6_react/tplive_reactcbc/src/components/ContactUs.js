@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 export default function ContactUs() {
     return (
         <div>
+            <br></br>
             <div>
                 {/* {console.log("in render")} */}
                 <div className="" id="fullContent">

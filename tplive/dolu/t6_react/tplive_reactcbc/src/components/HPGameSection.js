@@ -97,7 +97,7 @@ export default function HPGameSection() {
                         <div className='col-lg-4 col-md-6 col-sm-12'>
                             <div className='padding-div'>
                                 <div className='game-section-card' onClick={showGame2048}>
-                                    <img src='./img/game/gameSection1.png' alt="2048"></img>
+                                    <img src='./img/game/gameSection3.png' alt="2048"></img>
                                     <div className='game-name-tag left'></div>
                                     <div className='game-name'>
                                         <h1>2048</h1>
