@@ -9,6 +9,7 @@ import '../css/MydatePicker.css'
 import "react-datepicker/dist/react-datepicker.css";
 import { useLocalStorage } from "../context/useLocalStorage";
 import { useNavigate } from 'react-router-dom';
+import Loading from './Loading';
 
 export default function NewMember(props) {
     // console.log(props);
@@ -186,10 +187,11 @@ export default function NewMember(props) {
 
         };
         // console.log(para);
-
+        setLoading(true);
         const ret = await httpsCallable(functions, "updateParticipants");
-        ret(para).then(result => {
+        ret(para).then(async (result) => {
             props.addNewMember(false);
+            setLoading(false);
             // console.log("From Function " + result.data);
         });
 
@@ -649,6 +651,8 @@ export default function NewMember(props) {
                                 arrow_right_alt
                             </span>
                         </button>
+                        <br></br>
+                        {loading && <Loading></Loading>}
 
                     </div><br />
                     <hr style={{ border: 'none', borderTop: '1px solid #aaa' }} /><br />
