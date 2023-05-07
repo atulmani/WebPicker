@@ -215,24 +215,24 @@ const BoardView = () => {
             <div className='mobile-btn'>
                 <div className='mobile-btn-inner-div'>
                     <div onClick={() => mobileArrowClick(1)}>
-                        <span class="material-symbols-outlined">
+                        <span className="material-symbols-outlined">
                             arrow_upward
                         </span>
                     </div>
                 </div>
                 <div className='mobile-btn-inner-div'>
                     <div onClick={() => mobileArrowClick(0)}>
-                        <span class="material-symbols-outlined">
+                        <span className="material-symbols-outlined">
                             arrow_back
                         </span>
                     </div>
                     <div onClick={() => mobileArrowClick(3)}>
-                        <span class="material-symbols-outlined">
+                        <span className="material-symbols-outlined">
                             arrow_downward
                         </span>
                     </div>
                     <div onClick={() => mobileArrowClick(2)}>
-                        <span class="material-symbols-outlined">
+                        <span className="material-symbols-outlined">
                             arrow_forward
                         </span>
                     </div>

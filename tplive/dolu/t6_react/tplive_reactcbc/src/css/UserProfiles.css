@@ -90,6 +90,26 @@
     transition: 1s;
 }
 
+.user-profile-side .user-profile-side-card.add-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    cursor: pointer;
+}
+
+.user-profile-side .user-profile-side-card.add-profile span {
+    width: 50px;
+    height: 50px;
+    background: #333C5D;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 2.3rem;
+}
+
 .user-profile-side .user-profile-side-card.active {
     background: #348dcb;
 }

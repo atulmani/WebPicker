@@ -36,7 +36,7 @@ export default function MemberList(props) {
 
 
     useEffect(() => {
-        console.log('user', user);
+        // console.log('user', user);
         async function getPlayerList() {
             var para1 = {};
             var setUser = '';
@@ -122,8 +122,12 @@ export default function MemberList(props) {
         // props.setMemberList(userParticipant, selectUser);
     }
 
-    function userEdit() {
-        console.log('userEdit')
+    function userEdit(playercode) {
+        console.log('userEdit', playercode)
+        setSelectUser(playercode);
+        props.setSelectedMember(playercode);
+        props.addNewMember(true);
+
     }
     // console.log('filterParticipantList : ', filterParticipantList)
     return (
@@ -148,10 +152,23 @@ export default function MemberList(props) {
                     search
                 </span>
             </div>
+
             {loading && <Loading></Loading>}
             <hr style={{ marginBottom: '0' }} />
 
             <div style={{ padding: '10px' }}>
+
+                <div className='user-profile-side-card add-profile' onClick={() => {
+                    setSelectUser('');
+                    props.setSelectedMember('');
+                    props.addNewMember(true);
+                }
+                }>
+                    <span className="material-symbols-outlined">
+                        add
+                    </span>
+                </div>
+
                 {filterParticipantList && filterParticipantList.map((participant) => {
                     return <div className={selectUser === participant.PlayerID ? 'user-profile-side-card active' : 'user-profile-side-card'} key={participant.PlayerID}>
                         {/* {console.log(participant.PlayerID)} */}
@@ -173,7 +190,9 @@ export default function MemberList(props) {
                         </div>
 
                         <div className='hover-details-div'>
-                            <div onClick={userEdit}>
+                            <div onClick={() => {
+                                userEdit(participant.PlayerID)
+                            }}>
                                 <span className="material-symbols-outlined">
                                     edit
                                 </span>

@@ -44,6 +44,8 @@ exports.getPlayerDetails = userProfile.getPlayerDetails;
 exports.getPlayerDetailsWithPlayerID = userProfile.getPlayerDetailsWithPlayerID;
 exports.saveUserProfileDetails = userProfile.saveUserProfileDetails;
 exports.getRequestedRoleForUser = userProfile.getRequestedRoleForUser;
+exports.getPlayerDetailsWithCode = userProfile.getPlayerDetailsWithCode;
+
 
 exports.getOrganizationDetails = organization.getOrganizationDetails;
 exports.updateOrganizationDetails = organization.updateOrganizationDetails;

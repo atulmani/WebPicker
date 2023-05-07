@@ -55,6 +55,7 @@ import EventCategoryPartcipants from './components/EventCategoryPartcipants';
 import ExportExcelComp from './components/ExportExcelComp';
 import MyExcelComponant from './components/MyExcelComponant';
 import FAQ from './components/FAQ';
+import NewMember from './components/NewMember';
 import ExportEventEntry from './components/ExportEventEntry';
 import UsersEvents from './components/UsersEvents';
 import BoardView from './components/Board';
@@ -149,6 +150,7 @@ function App() {
           <Route exact path='/EventPartcipants' element={<EventPartcipants />} />
           <Route exact path='/PlayerParticipation' element={<PlayerParticipation></PlayerParticipation>}></Route>
           <Route exact path='/EventCategoryPartcipants' element={<EventCategoryPartcipants></EventCategoryPartcipants>}></Route>
+          <Route exact path='/NewMember' element={<NewMember></NewMember>}></Route>
 
 
 

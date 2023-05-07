@@ -62,7 +62,7 @@ export default function FAQ() {
                                             <div className='calculator-heading' onClick={() => setFlag(1)}>
                                                 <h1>
                                                     What is TPLiVE?
-                                                    <span class="material-symbols-outlined">
+                                                    <span className="material-symbols-outlined">
                                                         expand_more
                                                     </span>
                                                 </h1>
@@ -86,7 +86,7 @@ export default function FAQ() {
                                             <div className='calculator-heading' onClick={() => setFlag(2)}>
                                                 <h1>
                                                     How many Sports covered in TPLiVE?
-                                                    <span class="material-symbols-outlined">
+                                                    <span className="material-symbols-outlined">
                                                         expand_more
                                                     </span>
                                                 </h1>
@@ -104,7 +104,7 @@ export default function FAQ() {
                                             <div className='calculator-heading' onClick={() => setFlag(3)}>
                                                 <h1>
                                                     Who can use this product?
-                                                    <span class="material-symbols-outlined">
+                                                    <span className="material-symbols-outlined">
                                                         expand_more
                                                     </span>
                                                 </h1>
@@ -124,7 +124,7 @@ export default function FAQ() {
                                             <div className='calculator-heading' onClick={() => setFlag(4)}>
                                                 <h1>
                                                     How to create a Event?
-                                                    <span class="material-symbols-outlined">
+                                                    <span className="material-symbols-outlined">
                                                         expand_more
                                                     </span>
                                                 </h1>
@@ -144,7 +144,7 @@ export default function FAQ() {
                                             <div className='calculator-heading' onClick={() => setFlag(5)}>
                                                 <h1>
                                                     How it works?
-                                                    <span class="material-symbols-outlined">
+                                                    <span className="material-symbols-outlined">
                                                         expand_more
                                                     </span>
                                                 </h1>
@@ -162,7 +162,7 @@ export default function FAQ() {
                                             <div className='calculator-heading' onClick={() => setFlag(6)}>
                                                 <h1>
                                                     Does TPLivE promots advertisement?
-                                                    <span class="material-symbols-outlined">
+                                                    <span className="material-symbols-outlined">
                                                         expand_more
                                                     </span>
                                                 </h1>
@@ -183,7 +183,7 @@ export default function FAQ() {
                                             <div className='calculator-heading' >
                                                 <h1>
                                                     <strong>More Questions?</strong>
-                                                    <span class="material-symbols-outlined">
+                                                    <span className="material-symbols-outlined">
                                                         expand_more
                                                     </span>
                                                 </h1>
