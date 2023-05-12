@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 export default function ContactUs() {
     return (
         <div>
+            <br></br>
             <div>
                 {/* {console.log("in render")} */}
                 <div className="" id="fullContent">
@@ -31,15 +32,15 @@ export default function ContactUs() {
 
                     </div>
                     {/* {console.log(loading)} */}
-                    <div class="tab-content event-tab-content" id="pills-tabContent">
+                    <div className="tab-content event-tab-content" id="pills-tabContent">
 
-                        <h3 class="section-heading text-center">
+                        <h3 className="section-heading text-center">
                             Contact us</h3>
-                        <div class="divider-line">
+                        <div className="divider-line">
                         </div>
-                        <div class="row">
-                            <div class="col-lg-6 mt-2">
-                                <div class="card-body event-card">
+                        <div className="row">
+                            <div className="col-lg-6 mt-2">
+                                <div className="card-body event-card">
                                     <strong>TPLiVE (Tournament Planner LiVE)</strong>
 
                                     <br />
@@ -56,8 +57,8 @@ export default function ContactUs() {
                             </div>
 
 
-                            <div class="col-lg-6 mt-2">
-                                <div class="card-body event-card">
+                            <div className="col-lg-6 mt-2">
+                                <div className="card-body event-card">
 
                                     <Link to="/PrivacyPolicy">Disclaimer</Link>
                                     <br /><br />

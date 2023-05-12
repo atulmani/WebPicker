@@ -17,11 +17,19 @@ export default function BannerItemHP(props) {
         sCode: '',
         imageURL: ''
     });
+    const [cnt, setCnt] = useState(0);
     const navigate = useNavigate();
 
 
     useEffect(() => {
+        // console.log('props.eventDetails : ', props.eventDetails);
 
+        if (props.eventDetails.ShowParticipantPostPaymentFlag && props.eventDetails.ShowParticipantPostPaymentFlag.toUpperCase() === 'YES') {
+            setCnt(props.entryCntForEventCompletedPayment);
+        } else {
+            setCnt(props.entryCntForEvent);
+        }
+        // console.log('ctn :: ', cnt);
         if (props.eventDetails.EventMode.toUpperCase() === 'FIXTURE') {
             setButtonProp({
                 buttonStyle: 'linear-gradient(to right,#73e336,#08bf1a)',
@@ -148,6 +156,16 @@ export default function BannerItemHP(props) {
 
                             <h1>{props.eventDetails.EventName}</h1>
                             <h2>{props.eventDetails.OrganizationName}</h2>
+
+                            {!(props.eventDetails.ShowParticipantFlag && props.eventDetails.ShowParticipantFlag === 'No') && cnt > 0 && <div className="total-entry-div">
+                                <small>Total Entry :  {cnt}</small>
+                            </div>
+                            }
+                            {
+                                !(props.eventDetails.ShowParticipantFlag && props.eventDetails.ShowParticipantFlag === 'No') && cnt === 0 && props.eventDetails.EventMode.toUpperCase() === 'BOOK' && <div className="total-entry-div" style={{ background: '#099b23' }}>
+                                    <small>Be 1st To Register</small>
+                                </div>
+                            }
                             <div style={{ position: 'relative' }}>
                                 <h3 className="rating">
                                     <div className=""><span className="material-symbols-outlined">star</span>
@@ -185,13 +203,6 @@ export default function BannerItemHP(props) {
                                         <h1>LiVE</h1>
                                     </a>
                                 }
-                                {
-                                    props.entryCntForEvent >= 0 && <div className="">
-                                        <h3>Total Entry : {props.entryCntForEvent}</h3>
-
-                                    </div>
-
-                                }
                             </div>
                         </div>
                     </div>
@@ -226,7 +237,7 @@ export default function BannerItemHP(props) {
                                         className="mybutton button5 event-card-button" name="button"
                                         style={{ background: buttonProp.buttonStyle }}><span>{buttonProp.buttonText}</span></button>
                                     <div style={{ textAlign: 'right' }}>
-                                        <h5 style={{ color: '#fff', margin: '0', transform: 'translateY(3px)' }}>{props.eventDetails.City}</h5>
+                                        <h5 style={{ color: '#fff', margin: '0', position: 'relative', top: '10px' }}>{props.eventDetails.City}</h5>
                                         <div className="" style={{ display: 'flex', alignItems: 'center', transform: 'translateY(-3px)' }}>
                                             {!props.eventDetails.isLive && <h5 style={{ color: '#fff', position: 'relative', top: '5px' }}>{props.entryFee}</h5>}
 
@@ -239,7 +250,7 @@ export default function BannerItemHP(props) {
                                             <span
                                                 style={{ color: '#fff', position: 'relative', left: '-0px', paddingLeft: '10px', fontSize: '1.3rem' }}>|</span>
                                             <h5
-                                                style={{ color: '#fff', position: 'relative', top: '5px', left: '-0px', paddingLeft: '10px' }}>
+                                                style={{ color: '#fff', position: 'relative', top: '13px', left: '-0px', paddingLeft: '10px' }}>
                                                 {props.eventDetails.EventSDate}</h5>
                                         </div>
                                     </div>

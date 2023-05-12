@@ -31,11 +31,11 @@ export default function BeforeNavbar() {
                 </div>
 
                 <div className="before-nav-content">
-                    <Link tp="\Event" style={{ margin: '0 5px' }}>
+                    <Link to="/Event" style={{ margin: '0 5px' }}>
                         <button type="button" className="mybutton buttonTransparent" name="button">Corporate Events</button>
                     </Link>
 
-                    <Link to="\Event" style={{ margin: '0 5px' }}>
+                    <Link to="/Event" style={{ margin: '0 5px' }}>
                         <button type="button" className="mybutton buttonTransparent" name="button">List Your Events</button>
                     </Link>
 
@@ -54,12 +54,20 @@ export default function BeforeNavbar() {
                             </span>
                         </a>
 
-                        <a
+                        <Link
+                            to="/Event">
+                            <span className="material-symbols-outlined">
+                                search
+                            </span>
+                        </Link>
+
+
+                        {/* <a
                             href="https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA">
                             <span className="material-symbols-outlined">
                                 search
                             </span>
-                        </a>
+                        </a> */}
 
                         <Link to="/UserProfile">
                             <span className="material-symbols-outlined">

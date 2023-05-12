@@ -28,7 +28,7 @@
 }
 
 /* Custom Style : Card Game */
-button {
+.flip-game-heading button {
     margin-top: 10px;
     margin-bottom: 8px;
     background: none;
@@ -43,13 +43,13 @@ button {
     outline: none;
 }
 
-button:hover {
+.flip-game-heading button:hover {
     background: #c23866;
     color: #fff;
     outline: none;
 }
 
-button span {
+.flip-game-heading button span {
     position: relative;
     top: -1px;
 }

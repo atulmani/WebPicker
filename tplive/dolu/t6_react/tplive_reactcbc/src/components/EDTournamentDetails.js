@@ -34,6 +34,18 @@ export default function EDTournamentDetails(props) {
                 </div>
             }
 
+            {props.eventDetails.RegistrationOpenFlag !== 'YES' && props.eventDetails.EventMode.toUpperCase() === 'FIXTURE' &&
+                <div className="register-btn-fixed small">
+
+                    <a id="booking" href={"https://tournamentplanner.in/screens/TPLive_Draws.aspx?SCode=" + props.eventDetails.SportCode + "&TCode=" + props.eventDetails.EventCode} >
+
+                        <button type="button" name="button" className="mybutton button5" style={{ background: '#348DCB' }}>
+                            Draw
+                        </button>
+
+                    </a>
+                </div>}
+
             <div className="fixed-white-area">
                 <div className="" style={{ display: 'block' }}>
                     <div className="event-detail-notification">
@@ -86,7 +98,7 @@ export default function EDTournamentDetails(props) {
                                 </button>
                             </Link>}
 
-                            {props.eventDetails.RegistrationOpenFlag !== 'YES' && props.eventDetails.EventMode.toUpperCase() !== 'FIXTURE' && <a id="booking" href={"https://tournamentplanner.in/screens/TPLive_Draws.aspx?SCode=" + props.eventDetails.SportCode + "&TCode=" + props.eventDetails.EventCode} >
+                            {props.eventDetails.RegistrationOpenFlag !== 'YES' && props.eventDetails.EventMode.toUpperCase() === 'FIXTURE' && <a id="booking" href={"https://tournamentplanner.in/screens/TPLive_Draws.aspx?SCode=" + props.eventDetails.SportCode + "&TCode=" + props.eventDetails.EventCode} >
                                 <button type="button" id="btn1" name="button" className="mybutton button5" style={{ background: '#348DCB' }}>
                                     View Draw
                                 </button>

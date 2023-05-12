@@ -11,6 +11,7 @@ import { auth } from '../firebase';
 import { useLocation } from 'react-router-dom';
 import { useRef } from 'react'
 import { useMemo } from 'react'
+import Loading from './Loading'
 
 // import { useParams } from 'react-router-dom'
 
@@ -69,9 +70,9 @@ export default function EventDetails() {
 
             });
             setLoading(false);
-            console.log('uplayerList : ', uplayerList);
-            console.log('result.data : ', result.data);
-            console.log('participantCount : ', cnt);
+            // console.log('uplayerList : ', uplayerList);
+            // console.log('result.data : ', result.data);
+            // console.log('participantCount : ', cnt);
             setPartcipantObj({
                 uniqueParticipantDetails: uplayerList,
                 participantDetails: result.data,
@@ -94,7 +95,7 @@ export default function EventDetails() {
                 // ...
                 // console.log("user is logged out")
             }
-            console.log(eventDetails);
+            // console.log(eventDetails);
         })
         getData(reventDetails.current.Eventid);
         // const memorizedData = useMemo(() => {
@@ -136,7 +137,8 @@ export default function EventDetails() {
                         {mLink}
                         {reventDetails.current && partcipantObj.flagSet && <EventDetailsLogo eventDetails={reventDetails.current}></EventDetailsLogo>}
                     </div>
-                    {loading && <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_9yosyj7r.json" style={{ height: '400px' }} background="transparent" speed="1" loop autoplay></lottie-player>}
+                    {/* {loading && <lottie-player style={{ height: '400px' }} background="transparent" speed="1" loop autoplay></lottie-player>} */}
+                    {loading && <Loading height='400px' weight='100%'></Loading>}
 
                     {reventDetails.current && partcipantObj.flagSet && <EDTournamentDetails eventDetails={reventDetails.current} showRegistration={true} />}
                     {reventDetails.current && partcipantObj.flagSet && <EDAboutEvent eventDetails={reventDetails.current} />}

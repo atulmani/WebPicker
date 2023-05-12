@@ -53,10 +53,13 @@ export default function HomePage(props) {
                         let index = eventCntList.findIndex(e => e.EventID === elementCnt.EventID);
                         if (index >= 0) {
                             eventCntList[index].EntryCount = Number(eventCntList[index].EntryCount) + Number(elementCnt.EntryCount);
+                            eventCntList[index].CompletedCount = Number(eventCntList[index].CompletedCount) + Number(elementCnt.CompletedCount);
+
                         } else {
                             eventCntList.push({
                                 EventID: elementCnt.EventID,
                                 EntryCount: Number(elementCnt.EntryCount),
+                                CompletedCount: Number(elementCnt.CompletedCount),
                             })
                         }
                     })
@@ -126,9 +129,13 @@ export default function HomePage(props) {
         fetchData();
         setItemsExists(true);
 
+
     }, [city, itemsExists]);
     let eventCntForEvent = 0;
+    let entryCntForEventCompletedPayment = 0;
+
     let index = -1;
+    // console.log('eventList : ', eventList);
     return (
         <div>
             {/* {console.log("in render")} */}
@@ -178,8 +185,8 @@ export default function HomePage(props) {
                             margin={10}
 
                             navText={[
-                                '<div class="full-nav-arrow left"><div><span class="material-symbols-outlined">arrow_back</span></div></div>',
-                                '<div class="full-nav-arrow right"><div><span class="material-symbols-outlined">arrow_forward</span></div></div>'
+                                '<div className="full-nav-arrow left"><div><span class="material-symbols-outlined">arrow_back</span></div></div>',
+                                '<div className="full-nav-arrow right"><div><span class="material-symbols-outlined">arrow_forward</span></div></div>'
                             ]}
                         >
 
@@ -191,9 +198,12 @@ export default function HomePage(props) {
                                     {/* {console.log('index : ', index)} */}
                                     {eventCntForEvent = (index === -1) ? 0 : eventCount[index].EntryCount
                                     }
+                                    {entryCntForEventCompletedPayment = (index === -1) ? 0 : eventCount[index].CompletedCount
+                                    }
 
                                     <BannerItemHP eventDetails={events}
                                         entryCntForEvent={eventCntForEvent}
+                                        entryCntForEventCompletedPayment={entryCntForEventCompletedPayment}
                                         updateMyEvent={props.updateMyEvent} />
 
 

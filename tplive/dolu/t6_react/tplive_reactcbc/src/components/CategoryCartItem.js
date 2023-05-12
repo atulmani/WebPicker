@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function CategoryCartItem(props) {
+
     return (
         <div className="col-lg-12 col-md-12 col-sm-12" style={{ padding: '0' }}>
             <div style={{ padding: '10px' }}>
@@ -39,7 +40,7 @@ export default function CategoryCartItem(props) {
                                                 man
                                             </span>
                                         </div> :
-                                            props && props.events.eventDetails.toUpperCase() === 'MALE' && props.eventDetails.EventType.toUpperCase() === 'DOUBLE' ? <div className="category-icons">
+                                            props && props.eventDetails.Gender.toUpperCase() === 'MALE' && props.eventDetails.EventType.toUpperCase() === 'DOUBLE' ? <div className="category-icons">
                                                 <span className="material-symbols-outlined male">
                                                     man
                                                 </span>

@@ -1,0 +1,11 @@
+.bird {
+    position: absolute;
+    left: 150px;
+}
+
+.bird lottie-player {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

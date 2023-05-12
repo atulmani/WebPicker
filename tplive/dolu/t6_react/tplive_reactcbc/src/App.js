@@ -7,7 +7,6 @@ import {
   useLocation,
   Link
 } from "react-router-dom";
-
 import BeforeNavbar from './components/BeforeNavbar';
 import Navbar from './components/Navbar';
 import NavbarMobile from './components/NavbarMobile';
@@ -24,6 +23,7 @@ import EventDetails from './components/EventDetails';
 import Login from './components/Login'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import HPLastSection from './components/HPLastSection';
+import UserProfiles from './components/UserProfiles';
 import UserProfile from './components/UserProfile';
 import PhoneSignUp from './components/PhoneSignUp';
 import RegistrationCategory from './components/RegistrationCategory';
@@ -44,6 +44,9 @@ import TermsAndConditions from './components/TermsAndConditions';
 import ContactUs from './components/ContactUs';
 import RefundAndCancellation from './components/RefundAndCancellation';
 import AboutUs from './components/AboutUs';
+import Calculators from './components/Calculators';
+import UserGuide from './components/UserGuide';
+// import EventCostCalculatorL from './components/EventCostCalculatorL';
 
 import ProtectedRoute from './components/ProtectedRoute';
 import EventRegistration from './components/EventRegistration';
@@ -52,8 +55,10 @@ import EventCategoryPartcipants from './components/EventCategoryPartcipants';
 import ExportExcelComp from './components/ExportExcelComp';
 import MyExcelComponant from './components/MyExcelComponant';
 import FAQ from './components/FAQ';
+import NewMember from './components/NewMember';
 import ExportEventEntry from './components/ExportEventEntry';
 import UsersEvents from './components/UsersEvents';
+import BoardView from './components/Board';
 // import { render } from '@testing-library/react';
 
 // 1.constructor
@@ -72,7 +77,7 @@ function App() {
   })
   // let location = useLocation();
   let location = useLocation();
-  console.log(location.pathname);
+  // console.log(location.pathname);
 
 
   function updateMyEvent(eventDetails, cntEntry, cntPartcipant) {
@@ -108,6 +113,7 @@ function App() {
           <Route exact path='/ContactUs' element={<Navbar isFlag={'contactus'} />} />
           <Route exact path='/' element={<Navbar isFlag={'home'} />} />
           <Route path='*' element={<Navbar isFlag={'all'} />} />
+
         </Routes>
         <Routes>
           <Route path='*' element={<NavbarMobile City={city}></NavbarMobile>} />
@@ -117,6 +123,7 @@ function App() {
           <Route exact path='/More' element={<More />} />
           <Route exact path='/Location' element={<Location City="All" setCity={setMyCity} />} />
           <Route exact path='/Event' element={<Events />} />
+          <Route exact path='/Board' element={<BoardView />} />
 
           {/* if(location.pathname === '/EventDetails'){
             <div className="container-fluid">
@@ -143,6 +150,7 @@ function App() {
           <Route exact path='/EventPartcipants' element={<EventPartcipants />} />
           <Route exact path='/PlayerParticipation' element={<PlayerParticipation></PlayerParticipation>}></Route>
           <Route exact path='/EventCategoryPartcipants' element={<EventCategoryPartcipants></EventCategoryPartcipants>}></Route>
+          <Route exact path='/NewMember' element={<NewMember></NewMember>}></Route>
 
 
 
@@ -154,7 +162,12 @@ function App() {
 
           <Route exact path='/Login' element={<Login />} />
           <Route exact path='/PhoneSignUp' element={<PhoneSignUp />} />
-          <Route exact path='/UserProfile' element={<UserProfile />} />
+          <Route exact path='/UserProfileOld' element={<UserProfile />} />
+          <Route exact path='/UserProfile' element={<UserProfiles />} />
+          <Route exact path="/Calculators" element={<Calculators></Calculators>} ></Route>
+          <Route exact path="/UserGuide" element={<UserGuide></UserGuide>} ></Route>
+
+          {/* <Route exact path="/EventCostCalculatorL" element={<EventCostCalculatorL></EventCostCalculatorL>} ></Route> */}
           <Route exact path='/RegisteredEvent' element={<RegisteredEvent></RegisteredEvent>}></Route>
           <Route exact path='/UsersEvents' element={<UsersEvents></UsersEvents>}></Route>
           {/* not used <Route exact path='/PaymentGateway' element={<PaymentGateway />} /> */}

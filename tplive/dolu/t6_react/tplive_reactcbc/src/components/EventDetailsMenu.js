@@ -12,7 +12,7 @@ export default function EventDetailsMenu(props) {
     const participantCount = useRef(props.participantCount);
 
 
-
+    // console.log('flag : ', !(eventDetails.current.ShowParticipantFlag && eventDetails.current.ShowParticipantFlag === 'No'));
     // const { state } = useLocation();
     // const { calledFrom, eventID, eventDetails, entryCount, uniqueParticipantDetails, participantDetails, participantCount } = state;
 
@@ -37,7 +37,7 @@ export default function EventDetailsMenu(props) {
                     </span>
                     <h1>Details</h1>
                 </Link>
-                <Link to="/EventEntries" state={{
+                {!(eventDetails.current.ShowParticipantFlag && eventDetails.current.ShowParticipantFlag === 'No') && <Link to="/EventEntries" state={{
                     calledFrom: 'Entries',
                     eventID: eventID.current,
                     eventDetails: eventDetails.current,
@@ -51,8 +51,8 @@ export default function EventDetailsMenu(props) {
                     </span>
                     <h1>Entries</h1>
                     <h2 className={calledFrom.current === 'Entries' ? 'active' : ''}>{entryCount.current}</h2>
-                </Link>
-                <Link to="/EventPartcipants"
+                </Link>}
+                {!(eventDetails.current.ShowParticipantFlag && eventDetails.current.ShowParticipantFlag === 'No') && <Link to="/EventPartcipants"
                     state={{
                         calledFrom: 'Participant',
                         eventID: eventID.current,
@@ -67,8 +67,8 @@ export default function EventDetailsMenu(props) {
                     </span>
                     <h1>Participants</h1>
                     <h2 className={calledFrom.current === 'Participant' ? 'active' : ''}>{participantCount.current}</h2>
-                </Link>
-                <div className={calledFrom.current === 'Details' ? 'event-details-menu-indicator Details' : calledFrom.current === 'Entries' ? 'event-details-menu-indicator Entries' : calledFrom.current === 'Participant' ? 'event-details-menu-indicator Participant' : ''}></div>
+                </Link>}
+                <div style={{ width: eventDetails.current.ShowParticipantFlag && eventDetails.current.ShowParticipantFlag === 'No' ? "100%" : "33.3%" }} className={calledFrom.current === 'Details' ? 'event-details-menu-indicator Details' : calledFrom.current === 'Entries' ? 'event-details-menu-indicator Entries' : calledFrom.current === 'Participant' ? 'event-details-menu-indicator Participant' : ''}></div>
             </div>
 
         </div>

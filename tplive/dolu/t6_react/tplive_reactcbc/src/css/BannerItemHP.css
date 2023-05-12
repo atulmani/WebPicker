@@ -12,7 +12,7 @@
     color: #fff;
     height: 100%;
     width: 120%;
-    padding: 60px 80px 60px 40px;
+    padding: 90px 80px 60px 40px;
     z-index: 5;
 }
 
@@ -347,4 +347,32 @@
     transition: 3s;
     border-radius: 6px;
     filter: saturate(1);
+}
+
+.event-card-button {
+    width: 100px !important;
+}
+
+.event-card-button span {
+    /* position: relative !important;
+    top: 1px !important; */
+    font-size: 1rem !important;
+}
+
+.total-entry-div {
+    position: absolute;
+    top: 30px;
+    left: -5%;
+    transform: rotate(-40deg);
+    background: #e70b22;
+    width: 200px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 30px;
+}
+
+.total-entry-div small {
+    font-size: 1rem;
 }

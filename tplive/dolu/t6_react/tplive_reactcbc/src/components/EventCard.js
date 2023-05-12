@@ -14,9 +14,9 @@ export default function EventCard(props) {
         // };
         // const ret1 = httpsCallable(functions, "getEventDetails");
         // ret1(para1).then((result) => {
-        console.log(props.event.Eventid);
-        console.log(props.event);
-        console.log(props.event.EntryCount);
+        // console.log(props.event.Eventid);
+        // console.log(props.event);
+        // console.log(props.event.EntryCount);
 
 
         navigate("/EventDetails", {
@@ -32,9 +32,9 @@ export default function EventCard(props) {
     }
     return (
         <div className="col-lg-3 col-md-6 col-sm-12">
-            {console.log(props.event)}
+            {/* {console.log(props.event)} */}
             <div className="item" style={{ margin: '30px 0 100px 0' }}>
-                <div className="event-card">
+                <div className="event-card" onClick={selectEvent}>
                     <div className="event-card-img">
                         <img src={props.event.EventLogo} alt="" />
                     </div>
@@ -71,7 +71,7 @@ export default function EventCard(props) {
 
                             <div className="row">
                                 <div className="col-12">
-                                    <button type="button" className="mybutton button5 event-card-button" onClick={selectEvent} name="button">Details</button>
+                                    <button type="button" className="mybutton button5 event-card-button" name="button">Details</button>
                                 </div>
                                 {/* <div className="col-7">
                                                     <button type="button" className="mybutton button5 event-card-button entries"

@@ -1,0 +1,505 @@
+.user-profile-side {
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
+    overflow-y: auto;
+    z-index: 999;
+}
+
+.user-profile-side .user-profile-side-close-icon {
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+    width: 50px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 992px) {
+    .user-profile-side {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        max-width: 320px;
+        box-shadow: 0 0 500px 0 rgba(0, 0, 0, 0.6);
+        opacity: 1;
+        transition: 1s;
+    }
+
+    .user-profile-side.close {
+        opacity: 0;
+        width: 0;
+        box-shadow: 0 0 0px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .user-profile-side .user-profile-side-close-icon {
+        height: 50px;
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
+.user-profile-side .user-profile-side-close-icon span {
+    font-size: 1.7rem;
+}
+
+.user-profile-side .user-profile-side-search {
+    position: relative;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.user-profile-side .user-profile-side-search input {
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 0 20px;
+    font-size: 1.1rem;
+    color: #666;
+    outline: none;
+    letter-spacing: 1px;
+    padding-right: 40px;
+    background: #eee;
+}
+
+.user-profile-side .user-profile-side-search input::placeholder {
+    color: #aaa;
+}
+
+.user-profile-side .user-profile-side-search span {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.user-profile-side .user-profile-side-card {
+    position: relative;
+    background: #eee;
+    padding: 10px;
+    border-radius: 4px;
+    overflow: hidden;
+    height: 100px;
+    margin: 25px 0;
+    border: 1px solid #ddd;
+    transition: 1s;
+}
+
+.user-profile-side .user-profile-side-card.add-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    cursor: pointer;
+}
+
+.user-profile-side .user-profile-side-card.add-profile span {
+    width: 50px;
+    height: 50px;
+    background: #333C5D;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 2.3rem;
+}
+
+.user-profile-side .user-profile-side-card.active {
+    background: #348dcb;
+}
+
+.user-profile-side .user-profile-side-card .user-profile-side-card-arrow {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.user-profile-side .user-profile-side-card .user-profile-side-card-arrow span {
+    font-size: 0.9rem;
+    color: #aaa;
+    transition: 1s;
+}
+
+.user-profile-side .user-profile-side-card.active .user-profile-side-card-arrow span {
+    color: #ddd;
+}
+
+.user-profile-side .user-profile-side-card h1 {
+    font-size: 1rem;
+    font-weight: normal;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    padding: 0 20px 8px 0;
+    margin-bottom: 10px;
+    transition: 1s;
+}
+
+.user-profile-side .user-profile-side-card.active h1 {
+    color: #fff;
+    border-color: #ddd;
+}
+
+.user-profile-side .user-profile-side-card .user-profile-side-card-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50%;
+}
+
+.user-profile-side .user-profile-side-card .user-profile-side-card-details div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: 1s;
+}
+
+.user-profile-side .user-profile-side-card.active .user-profile-side-card-details div {
+    background: #fff;
+    padding-right: 10px;
+    border-radius: 4px;
+}
+
+.user-profile-side .user-profile-side-card div div.male {
+    color: #5cc4f3;
+}
+
+.user-profile-side .user-profile-side-card div div.female {
+    color: #f576ac;
+}
+
+.user-profile-side .user-profile-side-card div div span {
+    font-size: 1.4rem;
+}
+
+.user-profile-side .user-profile-side-card div div h2,
+.user-profile-side .user-profile-side-card div h3 {
+    position: relative;
+    top: 4px;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.user-profile-side .user-profile-side-card div h3 {
+    color: #aaa;
+    transition: 1s;
+}
+
+.user-profile-side .user-profile-side-card.active div h3 {
+    color: #ddd;
+}
+
+.user-profile-side .user-profile-side-card div h3 strong {
+    color: #666;
+    transition: 1s;
+}
+
+.user-profile-side .user-profile-side-card.active div h3 strong {
+    color: #fff;
+}
+
+.user-profile-side .user-profile-side-card .hover-details-div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.95);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.user-profile-side .user-profile-side-card:hover .hover-details-div {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.user-profile-side .user-profile-side-card .hover-details-div div {
+    position: relative;
+    top: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.user-profile-side .user-profile-side-card .hover-details-div div span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eee;
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+    border: 1px solid #aaa;
+}
+
+.user-profile-side .user-profile-side-card .hover-details-div div h4 {
+    padding-top: 5px;
+    font-size: 1rem;
+}
+
+.event-list-card {
+    position: relative;
+    border-top: 3px solid green;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    padding: 10px 5px 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 120px;
+    text-decoration: none;
+    color: #161d65;
+}
+
+.event-list-card:hover {
+    color: #161d65;
+}
+
+.event-list-card .add-new {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.event-list-card .add-new span {
+    font-size: 2rem;
+    color: #348DCB;
+}
+
+.event-list-card .add-new h1 {
+    font-size: 0.9rem;
+}
+
+.second-div {
+    min-width: 33%;
+    text-align: center;
+}
+
+@media (max-width: 1300px) {
+    .event-list-card {
+        height: 200px;
+    }
+
+    .second-div {
+        min-width: 40%;
+    }
+}
+
+@media (max-width: 991px) {
+    .event-list-card {
+        height: 150px;
+    }
+
+    .second-div {
+        min-width: 33%;
+    }
+}
+
+.event-list-card h1 {
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.event-list-card h2 {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #aaa;
+}
+
+.event-list-card h3 {
+    font-size: 0.8rem;
+    font-weight: normal;
+    color: #888;
+}
+
+.event-list-card h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.event-list-card span {
+    font-size: 0.7rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.event-list-card small {
+    position: relative;
+    top: -10px;
+    margin: 0;
+    font-size: 0.7rem;
+    color: #aaa;
+}
+
+.entries-pipe {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-60%) translateX(-47%);
+    color: rgba(0, 0, 0, 0.1);
+}
+
+.event-id {
+    position: absolute;
+    top: -10px;
+    right: 15%;
+    background: #348DCB;
+    width: 70px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.event-id::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: -12px;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 8px solid #333C5D;
+    transform: rotate(-220deg);
+    z-index: -1;
+}
+
+.event-id h5 {
+    color: #fff;
+    font-size: 0.7rem;
+    margin: 0;
+}
+
+.user-profile-select,
+.user-profile-search input {
+    width: 100%;
+    max-width: 500px;
+    height: 40px;
+    background: #eee;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid #aaa;
+    padding: 0 20px;
+    font-size: 0.9rem;
+    padding-right: 30px;
+}
+
+.user-profile-search {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
+
+.user-profile-search span {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+.user-profile-info-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-weight: bolder;
+    cursor: pointer;
+    color: red;
+}
+
+.user-profile-info-div {
+    display: none;
+    position: absolute;
+    right: -40px;
+    width: 180px;
+    background: #eee;
+    z-index: 999;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.user-profile-info-icon:hover~.user-profile-info-div {
+    display: block;
+}
+
+.user-profile-info-div div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-profile-info-div div:nth-last-child(1) {
+    border-top: 1px solid #aaa;
+    margin-top: 5px;
+    padding-top: 5px;
+}
+
+.user-profile-info-div div::before {
+    content: '';
+    position: absolute;
+    top: -9px;
+    left: 70%;
+    transform: translateX(-30%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #eee;
+}
+
+@media (max-width: 750px) {
+    .user-profile-info-div {
+        right: 0;
+    }
+
+    .user-profile-info-div div::before {
+        left: 99%;
+        transform: translateX(-100%);
+    }
+}
+
+.user-profile-info-div div small {
+    text-align: left;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    width: 70%;
+    color: #888;
+}
+
+.user-profile-info-div div span {
+    text-align: right;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    width: 30%;
+}
+
+.user-profile-expand-more-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    font-size: 2.3rem;
+    transform: 1s;
+}

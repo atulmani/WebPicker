@@ -4,7 +4,7 @@ import CategoryCartItem from '../components/CategoryCartItem'
 
 import { useParams, useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
-import useRazorpay from "react-razorpay";
+// import useRazorpay from "react-razorpay";
 
 export default function RegistrationCheckout() {
     const { state } = useLocation();
@@ -73,12 +73,7 @@ export default function RegistrationCheckout() {
     }
     function paymentGateway() {
 
-        // console.log('paymentGateway');
-        // navigate("/PaymentGateway", { state: { id: 1, participantDetails: participantDetails, paymentAmount: (paymentObject.totalPendingPayment + paymentObject.convenienceCharge), categoryList: pendingCategory } });
-        // navigate("/PaymentGatewayPayTm", { state: { id: 1, participantDetails: participantDetails, paymentAmount: (paymentObject.totalPendingPayment + paymentObject.convenienceCharge), categoryList: pendingCategory } });
-
         let orderId = 'O_' + eventDetails.EventCode + '_' + participantDetails.PlayerID + '_' + new Date().getTime();
-        // console.log(orderId);
         const razorpayOptions = {
             key: 'rzp_test_gaZqhFw4MY2o6v',
             amount: Number(paymentObject.totalPendingPayment + paymentObject.convenienceCharge) * 100, // amount in paise
@@ -90,8 +85,6 @@ export default function RegistrationCheckout() {
             image: 'https://tplive-prod--tplive-test-dw5grchb.web.app/img/TPLiVE_Logo.webp',
             handler: function (response) {
                 // console.log(response);
-
-                // console.log('Payment successful: ' + response.razorpay_payment_id);
                 navigate("/PaymentSuccessful", {
                     state: {
                         id: 1, participantDetails: participantDetails,
@@ -149,7 +142,7 @@ export default function RegistrationCheckout() {
                                 return <CategoryCartItem key={events.CategoryName} eventDetails={events} ></CategoryCartItem>
 
                             } else {
-                                return
+                                return null
                             }
 
                         })}
