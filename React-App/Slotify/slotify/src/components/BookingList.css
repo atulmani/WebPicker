@@ -1,0 +1,18 @@
+.booking-list {
+    width: 480px;
+    margin: 60px auto;
+}
+
+.booking-list ul {
+    padding: 0;
+}
+
+.booking-list li {
+    border: 1px solid #e4e4e4;
+    box-sizing: border-box;
+    padding: 10px;
+    box-shadow: 4pm 4pm 6pm rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    list-style-type: none;
+    margin: 20px 0;
+}

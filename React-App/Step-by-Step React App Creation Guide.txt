@@ -5,7 +5,8 @@ Step1: Create React js app
 refer https://reactjs.org/docs/create-a-new-react-app.html
 npx create-react-app my-app
 cd my-app
-npm start
+npm start //to start the application
+json-server --watch ./database/db.json   //to start the json server to read the json file
 
 Step2: Change Local Port 
 how to change the default port:
@@ -47,6 +48,7 @@ Step 5: Install below SDKs through VSCode terminal
 	- npm install react-router-dom
 	- npm install react-icons --save
 	- npm audit fix --force
+	- npm install -g json-server
 	
 Step 6: Add Firebase Authentication services
 	- create below folder under src folder

@@ -1,0 +1,14 @@
+[
+    {
+        "id": "1",
+        "mobile": "9822752885",
+        "name": "Atul Tripathi",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "2",
+        "mobile": "9922112886",
+        "name": "Anita Tripathi",
+        "status": "ACTIVE"
+    }
+]

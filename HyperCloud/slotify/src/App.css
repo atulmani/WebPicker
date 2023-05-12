@@ -1,0 +1,8 @@
+.full-content {
+    padding: 0 10px;
+    transition: 1s;
+}
+
+.full-content.sidebar-open {
+    padding-left: 220px;
+}
