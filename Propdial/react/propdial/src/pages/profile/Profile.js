@@ -42,19 +42,35 @@ export default function Profile() {
     }
 
     const showDashboard = () => {
+
         if (user && user.roles && user.roles.includes('superadmin')) {
             // console.log('in superadmin', user.roles)
-            navigate('/superadminDashboard')
+            navigate('/superadmindashboard')
         }
 
         if (user && user.roles && user.roles.includes('admin')) {
             // console.log('in admin', user.roles)
-            navigate('/adminDashboard')
+            navigate('/admindashboard')
+        }
+
+        if (user && user.roles && user.roles.includes('owner')) {
+            // console.log('in user', user.roles)
+            navigate('/ownerdashboard')
+        }
+
+        if (user && user.roles && user.roles.includes('tenant')) {
+            // console.log('in user', user.roles)
+            navigate('/tenantdashboard')
+        }
+
+        if (user && user.roles && user.roles.includes('executive')) {
+            // console.log('in user', user.roles)
+            navigate('/executivedashboard')
         }
 
         if (user && user.roles && user.roles.includes('user')) {
             // console.log('in user', user.roles)
-            navigate('/userDashboard')
+            navigate('/userdashboard')
         }
     }
 

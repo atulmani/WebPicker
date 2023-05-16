@@ -10,12 +10,14 @@
   --darkgrey-color: #666;
   --lightgrey-color: #aaa;
   --red-color: #E4021B;
+  --peach-color: #FFBF90;
   --blue-color: #3F5E98;
-  /* --yellow-color: #FFDB15; */
+  --green-color: 188, 236, 224;
   --yellow-color: #FEEBA0;
   --cream-color: #F4F2EB;
-  /* --bg-color: #fff; */
   --bg-color: #F4F2EB;
+  --buttonfg-color: #F4F2EB;
+  --buttonbg-color: #e95733;
 
 }
 
@@ -74,29 +76,34 @@ ul {
 }
 
 .btn {
-  background: var(--white-color);
+  /* background: var(--white-color); */
+  background-color: var(--buttonbg-color);
+  /* color: var(--red-color); */
+  color: var(--buttonfg-color);
   padding: 8px 18px;
   border-radius: 4px;
-  color: var(--red-color);
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: bolder;
   border: 2px solid;
-  border-color: var(--red-color);
+  border-color: var(--buttonbg-color);
 }
 
 .btn.cancel {
+  background: var(--yellow-color);
   border-color: var(--yellow-color);
   color: var(--black-color);
 }
 
 .btn:hover {
-  color: var(--bg-color);
-  background-color: var(--red-color);
+  /* color: var(--bg-color); */
+  color: var(--buttonbg-color);
+  /* background-color: var(--red-color); */
+  background: var(--buttonfg-color);
 }
 
 .btn.cancel:hover {
-  background: var(--yellow-color);
+  background: var(--cream-color);
   color: var(--blue-color);
 }
 

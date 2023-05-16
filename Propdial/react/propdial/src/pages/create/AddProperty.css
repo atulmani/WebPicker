@@ -20,22 +20,23 @@
 }
 
 .toggle-switch.off.residential div {
-    border: 1px solid #59981A;
+    border: 1px solid var(--blue-color);
     background: #efefef;
 }
 
 .toggle-switch.on.commercial div {
-    border: 1px solid #EB542E;
+    border: 1px solid var(--red-color);
     background: #efefef;
 }
 
 .toggle-switch.off.residential div div {
     left: 6%;
-    background: #59981A;
+    /* background: #59981A; */
+    background: var(--blue-color);
 }
 
 .toggle-switch.on.commercial div div {
-    background: #EB542E;
+    background: var(--red-color);
     left: calc(94% - 16px);
 }
 
@@ -243,7 +244,7 @@ input[type=number] {
 
 .section-btn-div {
     width: calc(100% - -20px);
-    background: #F8EA8C;
+    background: var(--yellow-color);
     padding: 0 20px;
 }
 

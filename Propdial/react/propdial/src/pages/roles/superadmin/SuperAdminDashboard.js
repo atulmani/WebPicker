@@ -1,11 +1,11 @@
-import { useCollection } from '../../hooks/useCollection'
+import { useCollection } from '../../../hooks/useCollection'
 import { useEffect, useState } from 'react'
-import { useAuthContext } from '../../hooks/useAuthContext'
-import { useLogout } from '../../hooks/useLogout'
+import { useAuthContext } from '../../../hooks/useAuthContext'
+import { useLogout } from '../../../hooks/useLogout'
 
 // components
-import Filters from '../../components/Filters'
-import UserList from '../../components/UserList'
+import Filters from '../../../components/Filters'
+import UserList from '../../../components/UserList'
 
 // styles
 import './SuperAdminDashboard.css'

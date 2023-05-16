@@ -1,7 +1,7 @@
 import { useCollection } from '../../hooks/useCollection'
 import { useEffect, useState } from 'react'
 import { useAuthContext } from '../../hooks/useAuthContext'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useLogout } from '../../hooks/useLogout'
 
 // components
@@ -9,73 +9,56 @@ import Filters from '../../components/Filters'
 import PropertyList from '../../components/PropertyList'
 
 // styles
-import './UserDashboard.css'
+// import './UserDashboard.css'
 
 export default function UserDashboard() {
-    const { user } = useAuthContext()
-    const { logout, isPending } = useLogout()
-    const { documents, error } = useCollection('properties')
-    const [filter, setFilter] = useState('all')
-    // const navigate = useNavigate();
+    // const { user } = useAuthContext()
+    // const { logout, isPending } = useLogout()
+    // const { documents, error } = useCollection('properties')
+    // const [filter, setFilter] = useState('all')
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        let flag = user && user.roles && user.roles.includes('user');
-        if (!flag) {
-            logout()
-        }
-    }, [user, logout])
-
-    const changeFilter = (newFilter) => {
-        setFilter(newFilter)
+    const showProfile = () => {
+        navigate('/profile')
     }
-
-    const properties = documents ? documents.filter(document => {
-        let filteredProperty = false
-        switch (filter) {
-            case 'all':
-                document.assignedUsersList.forEach(u => {
-                    if (u.id === user.uid) {
-                        filteredProperty = true
-                    }
-                })
-                return filteredProperty
-            case 'residential':
-                document.assignedUsersList.forEach(u => {
-                    if (u.id === user.uid && document.category === 'residential') {
-                        filteredProperty = true
-                    }
-                })
-                return filteredProperty
-            case 'commercial':
-                document.assignedUsersList.forEach(u => {
-                    if (u.id === user.uid && document.category === 'commercial') {
-                        filteredProperty = true
-                    }
-                })
-                return filteredProperty
-            case 'active':
-            case 'inactive':
-                document.assignedUsersList.forEach(u => {
-                    if (u.id === user.uid && document.status === 'inactive') {
-                        filteredProperty = true
-                    }
-                })
-                return filteredProperty
-            // return document.status === filter
-            default:
-                return true
-        }
-    }) : null
 
     return (
         <div>
-            <h2 className="page-title">User Dashboard</h2>
-            <div>
-                {error && <p className="error">{error}</p>}
-                {documents && <Filters changeFilter={changeFilter} />}
-                {properties && <PropertyList properties={properties} />}
-            </div>
+            <div className="row no-gutters">
+                <div className="col-lg-12 col-md-12 col-sm-12" style={{ padding: '10px' }}>
+                    <div className="auth-form">
+                        <div>
+                            <h1>Welcome to PropDial</h1>
+                            <br />
+                            <h6>We would like to inform you that your account
+                                is currently undergoing a routine review
+                                to ensure compliance with our
+                                policies and standards.
+                            </h6>
+                            <br />
+                            <h6>
+                                This process typically takes 3-5 business days.
+                                During this time, no further action is
+                                required from your end.
+                            </h6>
+                            <br />
+                            <h6>
+                                However, if you have any questions or
+                                need assistance, please don't hesitate to
+                                reach out to our support team at
+                                support@propdial.com.
+                            </h6>
+                            <br />
+                            <h6>We appreciate your patience and
+                                cooperation during this review process.</h6>
 
+                            <br />
+                            <button className="btn" onClick={showProfile} >Profile</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     )
 }

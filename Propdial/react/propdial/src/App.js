@@ -11,17 +11,21 @@ import NavbarBottom from './components/NavbarBottom'
 import Login from './pages/login/Login'
 import Signup from './pages/signup/Signup'
 import Profile from './pages/profile/Profile'
-import AdminDashboard from './pages/dashboard/AdminDashboard'
-import SuperAdminDashboard from './pages/dashboard/SuperAdminDashboard'
+import AdminDashboard from './pages/roles/admin/AdminDashboard'
+import SuperAdminDashboard from './pages/roles/superadmin/SuperAdminDashboard'
 import UserDashboard from './pages/dashboard/UserDashboard'
-import AddProperty from './pages/property/AddProperty'
+import OwnerDashboard from './pages/roles/owner/OwnerDashboard'
+import TenantDashboard from './pages/roles/tenant/TenantDashboard'
+import ExecutiveDashboard from './pages/roles/executive/ExecutiveDashboard'
+import AddProperty from './pages/create/AddProperty'
+import AddBill from './pages/create/AddBill'
 import Property from './pages/property/Property'
 // import OnlineUsers from './components/OnlineUsers'
 
 // styles
 import './App.css'
 import UpdatePassword from './pages/login/UpdatePassword'
-import AdminSettings from './pages/settings/AdminSettings'
+import AdminSettings from './pages/roles/admin/AdminSettings'
 
 function App() {
   const { authIsReady, user } = useAuthContext();
@@ -32,10 +36,14 @@ function App() {
     // console.log('opensidenavbar flag in aap.js : ', flag);
     setSideNavbar(flag);
   }
-  console.log('user in App.js', user)
+  // console.log('user in App.js', user)
 
   useEffect(() => {
-    if (user && user.roles && user.roles.includes('user')) {
+    if (user && user.roles && user.roles.includes('owner')) {
+      setSideNavbar(null);
+    } else if (user && user.roles && user.roles.includes('tenant')) {
+      setSideNavbar(null);
+    } else if (user && user.roles && user.roles.includes('executive')) {
       setSideNavbar(null);
     } else if (user && user.roles && user.roles.includes('admin')) {
       setSideNavbar(true);
@@ -74,12 +82,12 @@ function App() {
               <Route path='/' element={user ? < Profile /> : <Login />}>
               </Route>
 
-              <Route exact path="/superadminDashboard" element={
+              <Route exact path="/superadmindashboard" element={
                 user && user.roles && user.roles.includes('superadmin') ? <SuperAdminDashboard /> : <Navigate to="/login" />
               }>
               </Route>
 
-              <Route path="/adminDashboard" element={
+              <Route path="/admindashboard" element={
                 user && user.roles && user.roles.includes('admin') ? < AdminDashboard /> : <Navigate to="/login" />
               }>
               </Route>
@@ -89,13 +97,33 @@ function App() {
               }>
               </Route>
 
+              <Route path="/addbill" element={
+                user && user.roles && user.roles.includes('admin') ? < AddBill /> : <Navigate to="/login" />
+              }>
+              </Route>
+
               <Route path="/properties/:id" element={
                 user && user.roles ? < Property /> : <Navigate to="/login" />
               }>
               </Route>
 
-              <Route path="/userDashboard" element={
+              <Route path="/userdashboard" element={
                 user && user.roles && user.roles.includes('user') ? < UserDashboard /> : <Navigate to="/login" />
+              }>
+              </Route>
+
+              <Route path="/ownerdashboard" element={
+                user && user.roles && user.roles.includes('owner') ? < OwnerDashboard /> : <Navigate to="/login" />
+              }>
+              </Route>
+
+              <Route path="/tenantdashboard" element={
+                user && user.roles && user.roles.includes('tenant') ? < TenantDashboard /> : <Navigate to="/login" />
+              }>
+              </Route>
+
+              <Route path="/executivedashboard" element={
+                user && user.roles && user.roles.includes('executive') ? < ExecutiveDashboard /> : <Navigate to="/login" />
               }>
               </Route>
 
@@ -141,7 +169,7 @@ function App() {
           {/* {user && user.roles && user.roles.includes('admin') && <OnlineUsers setFlag={openOnlineUser} />} */}
 
 
-          {user && <NavbarBottom></NavbarBottom>}
+          {user && user.roles && (!user.roles.includes('user')) && <NavbarBottom></NavbarBottom>}
 
         </BrowserRouter>
       )

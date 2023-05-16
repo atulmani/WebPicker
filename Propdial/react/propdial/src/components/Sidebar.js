@@ -38,7 +38,7 @@ export default function Sidebar(props) {
 
               {user && user.roles && user.roles.includes('superadmin') &&
                 <li>
-                  <NavLink exact to="/superadminDashboard">
+                  <NavLink exact to="/superadmindashboard">
                     <img src={DashboardIcon} alt="dashboard icon" />
                     <span>Super Admin</span>
                   </NavLink>
@@ -47,7 +47,7 @@ export default function Sidebar(props) {
 
               {user && user.roles && user.roles.includes('admin') &&
                 <li>
-                  <NavLink exact to="/adminDashboard">
+                  <NavLink exact to="/admindashboard">
                     <img src={DashboardIcon} alt="dashboard icon" />
                     <span>Admin Dashboard</span>
                   </NavLink>
@@ -63,14 +63,33 @@ export default function Sidebar(props) {
                 </li>
               }
 
-              {user && user.roles && user.roles.includes('user') &&
+              {user && user.roles && user.roles.includes('owner') &&
                 <li>
-                  <NavLink exact to="/userdashboard">
+                  <NavLink exact to="/ownerdashboard">
                     <img src={DashboardIcon} alt="dashboard icon" />
                     <span>Dashboard</span>
                   </NavLink>
                 </li>
               }
+
+              {user && user.roles && user.roles.includes('tenant') &&
+                <li>
+                  <NavLink exact to="/tenantdashboard">
+                    <img src={DashboardIcon} alt="dashboard icon" />
+                    <span>Dashboard</span>
+                  </NavLink>
+                </li>
+              }
+
+              {user && user.roles && user.roles.includes('executive') &&
+                <li>
+                  <NavLink exact to="/executivedashboard">
+                    <img src={DashboardIcon} alt="dashboard icon" />
+                    <span>Dashboard</span>
+                  </NavLink>
+                </li>
+              }
+
               <li>
                 <NavLink to="/profile">
                   <img src={AddIcon} alt="add property icon" />

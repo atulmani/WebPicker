@@ -3,11 +3,13 @@ import { useCollection } from '../../hooks/useCollection'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { timestamp } from '../../firebase/config'
 import { useFirestore } from '../../hooks/useFirestore'
+import { useDocument } from '../../hooks/useDocument'
 import Select from 'react-select'
 import { useNavigate } from 'react-router-dom'
 
 // styles
 import './AddProperty.css'
+import { el } from 'date-fns/locale'
 
 const categories = [
     { value: 'residential', label: 'Residential' },
@@ -19,21 +21,83 @@ export default function AddProperty() {
     const { addDocument, response } = useFirestore('properties')
     const { user } = useAuthContext()
     const { documents } = useCollection('users')
+    const { document, error } = useDocument('countries', 'COUNTRY')
     const [users, setUsers] = useState([])
+    // const [countries, setCountries] = useState([])
     const [toggleFlag, setToggleFlag] = useState(false)
 
     // form field values
-    const [name, setName] = useState('')
-    const [details, setDetails] = useState('')
-    const [onboardingDate, setDueDate] = useState('')
-    const [category, setCategory] = useState('')
+    const [unitNumber, setUnitNumber] = useState('')
+    const [assignedUsers, setAssignedUsers] = useState([]) //Owners, Co-Owners, Executive 
+    const [country, setCountry] = useState('')
+    const [state, setState] = useState('')
+    const [city, setCity] = useState('')
+    const [locality, setLocality] = useState('')
+    const [society, setSociety] = useState('')
+    const [category, setCategory] = useState('residential') //Residential/Commercial
+    const [purpose, setPurpose] = useState('') //Rent/Sale/RentSaleBoth
     const [status, setStatus] = useState('active')
-    const [assignedUsers, setAssignedUsers] = useState([])
+    const [onboardingDate, setDueDate] = useState('')
     const [formError, setFormError] = useState(null)
 
     const toggleBtnClick = () => {
+        // console.log('toggleClick Category:', toggleFlag)
+        if (toggleFlag)
+            setCategory('residential')
+        else
+            setCategory('commercial')
+
         setToggleFlag(!toggleFlag);
     };
+
+    // console.log('documentCountry: ', document);
+    // console.log('purpose value: ', purpose);
+
+
+    const countryOptions = [
+        { value: 'IND', label: 'INDIA' },
+        { value: 'USA', label: 'USA' }
+    ];
+    const countryOptionsSorted = countryOptions.sort((a, b) =>
+        a.label.localeCompare(b.label)
+    );
+    const stateOptions = [
+        { value: 'MH', label: 'MAHARASHTRA' },
+        { value: 'DEL', label: 'DELHI' },
+        { value: 'UP', label: 'UTTAR PRADESH' }
+    ];
+    const stateOptionsSorted = stateOptions.sort((a, b) =>
+        a.label.localeCompare(b.label)
+    );
+    const cityOptions = [
+        { value: '1', label: 'DELHI' },
+        { value: '2', label: 'MUMBAI' },
+        { value: '3', label: 'NOIDA' },
+        { value: '4', label: 'GURGAON' }
+    ];
+    const cityOptionsSorted = cityOptions.sort((a, b) =>
+        a.label.localeCompare(b.label)
+    );
+    const localityOptions = [
+        { value: '1', label: 'MALVIYA NAGAR' },
+        { value: '2', label: 'SECTOR 5' },
+        { value: '3', label: 'SECTOR 105' },
+        { value: '4', label: 'M G ROAD' }
+    ];
+    const localityOptionsSorted = localityOptions.sort((a, b) =>
+        a.label.localeCompare(b.label)
+    );
+    const societyOptions = [
+        { value: '1', label: 'AVON PARADISE' },
+        { value: '2', label: 'DREAM LAND' },
+        { value: '3', label: 'VISON FLORA' },
+        { value: '4', label: 'PLATINUM VISTA' }
+    ];
+    const societyOptionsSorted = societyOptions.sort((a, b) =>
+        a.label.localeCompare(b.label)
+    );
+
+
     // create user values for react-select
     useEffect(() => {
         if (documents) {
@@ -41,7 +105,12 @@ export default function AddProperty() {
                 return { value: { ...user, id: user.id }, label: user.displayName }
             }))
         }
+
     }, [documents])
+
+    const usersSorted = users.sort((a, b) =>
+        a.label.localeCompare(b.label)
+    );
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -63,6 +132,7 @@ export default function AddProperty() {
                 id: u.value.id
             }
         })
+
         const createdBy = {
             displayName: user.displayName,
             photoURL: user.photoURL,
@@ -70,17 +140,23 @@ export default function AddProperty() {
         }
 
         const property = {
-            name,
-            details,
+            unitNumber,
             assignedUsersList,
+            country: country.label,
+            state: state.label,
+            city: city.label,
+            locality: locality.label,
+            society: society.label,
+            category,
+            purpose,
             status,
             createdBy,
-            category: category.value,
             onboardingDate: timestamp.fromDate(new Date(onboardingDate)),
             comments: []
         }
 
         await addDocument(property)
+        console.log('addDocument:', property)
         if (!response.error) {
             navigate('/')
         }
@@ -97,10 +173,12 @@ export default function AddProperty() {
 
             <div className="row no-gutters" style={{ margin: '20px 0 10px 0' }}>
 
+                {/* <div className="col-lg-6 col-md-6 col-sm-12"
+                    style={{ background: 'rgb(188, 236, 224, 0.5)', padding: ' 0 10px' }}> */}
                 <div className="col-lg-6 col-md-6 col-sm-12"
-                    style={{ background: 'rgb(188, 236, 224, 0.5)', padding: ' 0 10px' }}>
+                    style={{ background: 'rgba(var(--green-color), 0.5)', padding: ' 0 10px', borderRadius: '8px 0px 0px 8px' }}>
                     <div className="residential-commercial-switch" style={{ height: 'calc(100% - 10px)' }}>
-                        <span className={toggleFlag ? '' : 'active'} style={{ color: '#59981A' }}>Residential</span>
+                        <span className={toggleFlag ? '' : 'active'} style={{ color: 'var(--blue-color)' }}>Residential</span>
 
                         <div className={toggleFlag ? 'toggle-switch on commercial' : 'toggle-switch off residential'} style={{ padding: '0 10px' }}>
                             {/* <small>{toggleFlag ? 'On' : 'Off'}</small> */}
@@ -108,20 +186,22 @@ export default function AddProperty() {
                                 <div></div>
                             </div>
                         </div>
-
-                        <span className={toggleFlag ? 'active' : ''} style={{ color: '#EB542E' }}>Commercial</span>
+                        <span className={toggleFlag ? 'active' : ''} style={{ color: 'var(--red-color)' }}>Commercial</span>
                     </div>
                 </div>
+                {/* <div className="col-lg-6 col-md-6 col-sm-12"
+                    style={{ background: 'rgb(188, 236, 224, 0.5)', padding: '10px 10px 0 10px' }}> */}
                 <div className="col-lg-6 col-md-6 col-sm-12"
-                    style={{ background: 'rgb(188, 236, 224, 0.5)', padding: '10px 10px 0 10px' }}>
+                    style={{ background: 'rgba(var(--green-color), 0.5)', padding: '10px 10px 0 10px', borderRadius: '0px 8px 8px 0px' }}>
                     <div className="details-radio">
                         <div></div>
                         <div className='details-radio-inner'>
                             <div className="row no-gutters">
-
                                 <div className="col-6" style={{ padding: '0 5px' }}>
                                     <input type="checkbox" className="checkbox" style={{ width: '0px' }}
-                                        name="BusinessType" id="businessTypeRent" value="Rent" />
+                                        name="BusinessType" id="businessTypeRent" value="Rent"
+                                        onClick={() => setPurpose('rent')}
+                                    />
                                     <label className="checkbox-label" for="businessTypeRent">
                                         <span className="material-symbols-outlined add">
                                             add
@@ -135,7 +215,9 @@ export default function AddProperty() {
 
                                 <div className="col-6" style={{ padding: '0 5px' }}>
                                     <input type="checkbox" className="checkbox" style={{ width: '0px' }}
-                                        name="BusinessType" id="businessTypeSale" value="Sale" />
+                                        name="BusinessType" id="businessTypeSale" value="Sale"
+                                        onClick={() => setPurpose('sale')}
+                                    />
                                     <label className="checkbox-label" for="businessTypeSale">
                                         <span className="material-symbols-outlined add">
                                             add
@@ -146,7 +228,6 @@ export default function AddProperty() {
                                         <small>Sale</small>
                                     </label>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -158,21 +239,41 @@ export default function AddProperty() {
                 <form onSubmit={handleSubmit} className="auth-form">
                     <div className="row no-gutters">
                         <div className="col-lg-6 col-md-6 col-sm-12">
-
                             <div className="property-form-border-div" style={{ border: 'none', paddingBottom: '0' }}>
                                 <h1 className="owner-heading">Unit Number</h1>
                                 <div className="location-search">
-                                    <input type="text" required placeholder="Enetr Property Unit Number..."
-                                        name="" />
+                                    {/* <input type="text" required placeholder="Enetr Property Unit Number..."
+                                        name="" /> */}
+                                    <input
+                                        required
+                                        type="text"
+                                        placeholder="e.g. A-504"
+                                        maxLength={70}
+                                        onChange={(e) => setUnitNumber(e.target.value)}
+                                        value={unitNumber}
+                                    />
                                     <div className="underline"></div>
                                     <span className="material-symbols-outlined">
                                         drive_file_rename_outline
                                     </span>
                                 </div>
-                            </div><br />
+
+                            </div>
+                            <br />
+
 
                         </div>
-                        <div className="col-lg-6 col-md-6 col-sm-12"></div>
+                        <div className="col-lg-6 col-md-6 col-sm-12">
+                            <div>
+                                <h1 className="owner-heading">Onboarding Date</h1>
+                                <input
+                                    required
+                                    type="date"
+                                    onChange={(e) => setDueDate(e.target.value)}
+                                    value={onboardingDate}
+                                />
+                            </div>
+                        </div>
 
                         <div className="col-lg-4 col-md-6 col-sm-12">
 
@@ -180,11 +281,24 @@ export default function AddProperty() {
 
                                 <h1 className="owner-heading">Owner Name</h1>
                                 <div className="location-search">
-                                    <select className="" name="">
+                                    {/* <select className="" name="">
                                         <option value="" selected disabled>Select Owner</option>
                                         <option value="">Atul Tripathi</option>
                                         <option value="">Vinay Prajapati</option>
-                                    </select>
+                                    </select> */}
+                                    <Select className=''
+                                        onChange={(option) => setAssignedUsers(option)}
+                                        options={usersSorted}
+                                        styles={{
+                                            control: (baseStyles, state) => ({
+                                                ...baseStyles,
+                                                outline: 'none',
+                                                background: '#eee',
+                                                borderBottom: ' 1px solid var(--blue-color)'
+                                            }),
+                                        }}
+                                        isMulti
+                                    />
                                     <div className="underline"></div>
                                     <span className="material-symbols-outlined">
                                         person
@@ -193,12 +307,25 @@ export default function AddProperty() {
 
                                 <h1 className="owner-heading">Country</h1>
                                 <div className="location-search">
-                                    <select className="" name="">
+                                    {/* <select className="" name="">
                                         <option value="" selected>India</option>
                                         <option value="">Denmark</option>
                                         <option value="">Malasia</option>
                                         <option value="">China</option>
-                                    </select>
+                                    </select> */}
+                                    <Select className=''
+                                        onChange={(option) => setCountry(option)}
+                                        options={countryOptionsSorted}
+                                        value={country}
+                                        styles={{
+                                            control: (baseStyles, state) => ({
+                                                ...baseStyles,
+                                                outline: 'none',
+                                                background: '#eee',
+                                                borderBottom: ' 1px solid var(--blue-color)'
+                                            }),
+                                        }}
+                                    />
                                     <div className="underline"></div>
                                     <span className="material-symbols-outlined">
                                         public
@@ -207,12 +334,19 @@ export default function AddProperty() {
 
                                 <h1 className="owner-heading">State</h1>
                                 <div className="location-search">
-                                    <select className="" name="">
-                                        <option value="" selected>Delhi</option>
-                                        <option value="">Harayana</option>
-                                        <option value="">Uttar Pradesh</option>
-                                        <option value="">Maharashtra</option>
-                                    </select>
+                                    <Select className=''
+                                        onChange={(option) => setState(option)}
+                                        options={stateOptionsSorted}
+                                        value={state}
+                                        styles={{
+                                            control: (baseStyles, state) => ({
+                                                ...baseStyles,
+                                                outline: 'none',
+                                                background: '#eee',
+                                                borderBottom: ' 1px solid var(--blue-color)'
+                                            }),
+                                        }}
+                                    />
                                     <div className="underline"></div>
                                     <span className="material-symbols-outlined">
                                         emoji_transportation
@@ -227,13 +361,19 @@ export default function AddProperty() {
                             <div className="property-form-border-div" style={{ border: 'none', }}>
                                 <h1 className="owner-heading">City</h1>
                                 <div className="location-search">
-                                    <select className="" name="">
-                                        <option value="" selected>Delhi</option>
-                                        <option value="">Gurugram</option>
-                                        <option value="">Noida</option>
-                                        <option value="">Pune</option>
-                                        <option value="">Hyderabad</option>
-                                    </select>
+                                    <Select className=''
+                                        onChange={(option) => setCity(option)}
+                                        options={cityOptionsSorted}
+                                        value={city}
+                                        styles={{
+                                            control: (baseStyles, state) => ({
+                                                ...baseStyles,
+                                                outline: 'none',
+                                                background: '#eee',
+                                                borderBottom: ' 1px solid var(--blue-color)'
+                                            }),
+                                        }}
+                                    />
                                     <div className="underline"></div>
                                     <span className="material-symbols-outlined">
                                         apartment
@@ -242,13 +382,19 @@ export default function AddProperty() {
 
                                 <h1 className="owner-heading">Lacality</h1>
                                 <div className="location-search">
-                                    <select className="" name="">
-                                        <option value="" selected>Malviya Nagar</option>
-                                        <option value="">Dwarka</option>
-                                        <option value="">Rajori Garden</option>
-                                        <option value="">Lajpat Nagar</option>
-                                        <option value="">Saraojni Nagar</option>
-                                    </select>
+                                    <Select className=''
+                                        onChange={(option) => setLocality(option)}
+                                        options={localityOptionsSorted}
+                                        value={locality}
+                                        styles={{
+                                            control: (baseStyles, state) => ({
+                                                ...baseStyles,
+                                                outline: 'none',
+                                                background: '#eee',
+                                                borderBottom: ' 1px solid var(--blue-color)'
+                                            }),
+                                        }}
+                                    />
                                     <div className="underline"></div>
                                     <span className="material-symbols-outlined">
                                         holiday_village
@@ -257,23 +403,31 @@ export default function AddProperty() {
 
                                 <h1 className="owner-heading">Society</h1>
                                 <div className="location-search">
-                                    <select className="" name="">
-                                        <option value="" selected disabled>Choose Society</option>
-                                        <option value="">Society 1</option>
-                                        <option value="">Society 2</option>
-                                        <option value="">Society 3</option>
-                                        <option value="">Society 4</option>
-                                    </select>
+                                    <Select className=''
+                                        onChange={(option) => setSociety(option)}
+                                        options={societyOptionsSorted}
+                                        value={society}
+                                        styles={{
+                                            control: (baseStyles, state) => ({
+                                                ...baseStyles,
+                                                outline: 'none',
+                                                background: '#eee',
+                                                borderBottom: ' 1px solid var(--blue-color)'
+                                            }),
+                                        }}
+                                    />
                                     <div className="underline"></div>
                                     <span className="material-symbols-outlined">
                                         home
                                     </span>
-                                </div><br />
+                                </div>
+
+                                <br />
                             </div>
 
                         </div>
 
-                        <div className="col-lg-4 col-md-6 col-sm-12">
+                        {/* <div className="col-lg-4 col-md-6 col-sm-12">
 
                             <label>
                                 <div className='form-field-title'>
@@ -306,7 +460,7 @@ export default function AddProperty() {
                                     />
                                 </div>
                             </label>
-                        </div>
+                        </div> */}
                         {/* <label>
                             <div className='form-field-title'>
                             <span className="material-symbols-outlined">
@@ -320,9 +474,8 @@ export default function AddProperty() {
                             />
                             </div>
                         </label> */}
-                        <div className="col-lg-6 col-md-6 col-sm-12">
-
-                            {/* <label>
+                        {/* <div className="col-lg-6 col-md-6 col-sm-12">
+                            <label>
                                 <h1>test</h1>
                                 <Select className='select'
                                     onChange={(option) => setAssignedUsers(option)}
@@ -337,7 +490,7 @@ export default function AddProperty() {
                                     }}
                                     isMulti
                                 />
-                            </label> */}
+                            </label>
                             <label>
                                 <div className='form-field-title'>
                                     <span className="material-symbols-outlined">
@@ -350,8 +503,8 @@ export default function AddProperty() {
                                     />
                                 </div>
                             </label>
-                        </div>
-                        <div className="col-lg-6 col-md-6 col-sm-12">
+                        </div> */}
+                        {/* <div className="col-lg-6 col-md-6 col-sm-12">
                             <div style={{ position: 'relative' }}>
                                 <label>
                                     <span style={{
@@ -394,8 +547,8 @@ export default function AddProperty() {
                                     options={categories}
                                 />
                             </label>
-                        </div>
-                        <label>
+                        </div> */}
+                        {/* <label>
                             <span>Set Onboarding Date:</span>
                             <input
                                 required
@@ -403,19 +556,20 @@ export default function AddProperty() {
                                 onChange={(e) => setDueDate(e.target.value)}
                                 value={onboardingDate}
                             />
-                        </label>
+                        </label> */}
 
 
-
-
+                    </div>
+                    <br />
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <button className="btn">Add Property</button>
-
                         {formError && <p className="error">{formError}</p>}
                     </div>
+                    <br />
                 </form>
                 {/* <br /><hr />
                 <br /><br /><br /><br /> */}
-                <div className="row no-gutters section-btn-div">
+                {/* <div className="row no-gutters section-btn-div">
                     <div className="col-12">
                         <div className="section-btn">
                             <a href="propertyList.html" style={{ textDecoration: 'none', width: '100%' }}>
@@ -427,7 +581,7 @@ export default function AddProperty() {
 
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div >
 
         </div >

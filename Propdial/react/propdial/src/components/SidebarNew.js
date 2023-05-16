@@ -99,8 +99,8 @@ export default function SidebarNew(props) {
                     {/* <div style={{ padding: '5px 0' }}></div>
                 <hr style={{ border: 'none', borderTop: '2px solid #fff' }} /> */}
 
-                    <Link to="/adminDashboard" onClick={() => sideNavbarMenuClick('adminDashboard')} style={{ textDecoration: 'none' }} >
-                        <li className={sideNavbarActive == 'adminDashboard' ? 'active' : ''}>
+                    <Link to="/admindashboard" onClick={() => sideNavbarMenuClick('admindashboard')} style={{ textDecoration: 'none' }} >
+                        <li className={sideNavbarActive == 'admindashboard' ? 'active' : ''}>
                             <b></b>
                             <b></b>
                             <div>
@@ -121,6 +121,19 @@ export default function SidebarNew(props) {
                                     add_business
                                 </span>
                                 <h1>Add Property</h1>
+                            </div>
+                        </li>
+                    </Link>
+                    <Link to="/addbill" onClick={() => sideNavbarMenuClick('addbill')} style={{ textDecoration: 'none' }} >
+                        <li className={sideNavbarActive == 'addbill' ? 'active' : ''}>
+                            <b></b>
+                            <b></b>
+
+                            <div>
+                                <span class="material-symbols-outlined">
+                                    receipt_long
+                                </span>
+                                <h1>Add Bill</h1>
                             </div>
                         </li>
                     </Link>

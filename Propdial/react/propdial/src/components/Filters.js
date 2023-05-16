@@ -23,7 +23,13 @@ export default function Filters({ changeFilter }) {
     if (user.roles.includes('admin')) {
         filterList = adminUserFilterList
     }
-    if (user.roles.includes('user')) {
+    if (user.roles.includes('owner')) {
+        filterList = userPropertyFilterList
+    }
+    if (user.roles.includes('tenant')) {
+        filterList = userPropertyFilterList
+    }
+    if (user.roles.includes('executive')) {
         filterList = userPropertyFilterList
     }
 
@@ -39,8 +45,7 @@ export default function Filters({ changeFilter }) {
                 {filterList.map((f) => (
                     <button key={f}
                         onClick={() => handleClick(f)}
-                        className={currentFilter === f ? 'active' : ''}
-                    >
+                        className={currentFilter === f ? 'active' : ''}                    >
                         <span>{f}</span>
                     </button>
                 ))}

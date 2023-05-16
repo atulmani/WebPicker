@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { projectFirestore } from '../../firebase/config'
-import { timestamp } from '../../firebase/config'
-import Popup from '../../components/Popup'
-import { useDocument } from '../../hooks/useDocument'
-import { useAuthContext } from '../../hooks/useAuthContext'
+import { projectFirestore } from '../../../firebase/config'
+import { timestamp } from '../../../firebase/config'
+import Popup from '../../../components/Popup'
+import { useDocument } from '../../../hooks/useDocument'
+import { useAuthContext } from '../../../hooks/useAuthContext'
 
 // styles
 import './Settings.css'

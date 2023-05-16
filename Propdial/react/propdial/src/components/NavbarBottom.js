@@ -16,17 +16,26 @@ export default function NavbarBottom() {
     const showDashboard = () => {
         if (user && user.roles && user.roles.includes('superadmin')) {
             // console.log('in superadmin', user.roles)
-            navigate('/superadminDashboard')
+            navigate('/superadmindashboard')
         }
 
         if (user && user.roles && user.roles.includes('admin')) {
             // console.log('in admin', user.roles)
-            navigate('/adminDashboard')
+            navigate('/admindashboard')
         }
 
-        if (user && user.roles && user.roles.includes('user')) {
+        if (user && user.roles && user.roles.includes('owner')) {
             // console.log('in user', user.roles)
-            navigate('/userDashboard')
+            navigate('/ownerdashboard')
+        }
+
+        if (user && user.roles && user.roles.includes('tenant')) {
+            // console.log('in user', user.roles)
+            navigate('/tenantdashboard')
+        }
+        if (user && user.roles && user.roles.includes('executive')) {
+            // console.log('in user', user.roles)
+            navigate('/executivedashboard')
         }
     }
 
@@ -45,8 +54,18 @@ export default function NavbarBottom() {
         thirdMenu = 'Users'
         fourthMenu = 'More'
     }
-    if (user && user.roles && user.roles.includes('user')) {
-        secondMenu = 'Payment'
+    if (user && user.roles && user.roles.includes('owner')) {
+        secondMenu = 'Bills'
+        thirdMenu = 'Tickets'
+        fourthMenu = 'More'
+    }
+    if (user && user.roles && user.roles.includes('tenant')) {
+        secondMenu = 'Rent'
+        thirdMenu = 'Tickets'
+        fourthMenu = 'More'
+    }
+    if (user && user.roles && user.roles.includes('executive')) {
+        secondMenu = 'Bills'
         thirdMenu = 'Tickets'
         fourthMenu = 'More'
     }
