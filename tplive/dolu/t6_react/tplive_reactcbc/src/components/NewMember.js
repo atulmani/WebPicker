@@ -16,7 +16,6 @@ export default function NewMember(props) {
     const { users, user } = useUserAuth();
     const [userDetails, setUserDetails] = useLocalStorage('userProfile', null);
     const [showError, setShowError] = useState(false);
-    const [playerDetails, setPlayerDetails] = useState({});
     const [playerDetailsCopy, setPlayerDetailsCopy] = useState({
         pID: '',
         City: '',
@@ -45,124 +44,121 @@ export default function NewMember(props) {
         PlayerID: '',
     });
 
-    // const [flag, setFlag] = useState('first');
-
-    // const [showUserBasicDetails, setShowUserBasicDetails] = useState(false);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+
+    async function fetchData() {
+        var para1 = {};
+
+        // console.log('in load event', props.selectedPlayer);
+        setLoading(true);
+        para1 = {
+            playerID: props.selectedPlayer,
+        };
+        let participant = {};
+        // let userParticipant = [];
+        const ret1 = httpsCallable(functions, "getPlayerDetailsWithCode");
+        ret1(para1).then(async (result) => {
+            // console.log('after return from getPlayerDetailsWithCode', result);
+
+            result.data.forEach(async element => {
+
+                var dob = new Date(element.DateOfBirth._seconds * 1000),
+
+                    participant = {
+                        pID: element.pID,
+                        City: element.City,
+                        CollageName: element.CallageName,
+                        CompanyName: element.CompanyName,
+                        CompanyAddress: element.CompanyAddress,
+                        Country: element.Country,
+                        DateOfBirth: dob,
+                        District: element.District,
+                        Email: element.Email,
+                        Gender: element.Gender,
+                        Grade: element.Grade,
+                        HRContact: element.HRContact,
+                        ParticipantID: element.ParticipantID,
+                        ParticipantAddress: element.ParticipantAddress,
+                        Phone: element.Phone,
+                        Pincode: element.Pincode,
+                        SchoolAddress: element.SchoolAddress,
+                        Size: element.Size,
+                        Identity: element.Identity,
+                        State: element.State,
+                        UserName: element.UserName,
+                        UserID: element.UserID,
+                        MemberIDType: element.MemberIDType,
+                        MemberIDNumber: element.MemberIDNumber,
+                        PlayerID: element.PlayerID,
+                    };
+                setPlayerDetailsCopy(participant);
+                setLoading(false);
+            });
+
+        });
+    }
 
 
     useEffect(() => {
         // console.log(user);
-        if (props.selectedPlayer === '') {
-            setPlayerDetailsCopy({
-                pID: '',
-                City: '',
-                CollageName: '',
-                CompanyName: '',
-                CompanyAddress: '',
-                Country: '',
-                DateOfBirth: new Date(),
-                District: '',
-                Email: userDetails.Email,
-                Gender: '',
-                Grade: 'Male',
-                HRContact: '',
-                Identity: '',
-                ParticipantID: '',
-                ParticipantAddress: '',
-                Phone: userDetails.Phone,
-                Pincode: '',
-                SchoolAddress: '',
-                Size: '',
-                State: '',
-                UserName: '',
-                UserID: user && user.userInfo ? user.userInfo.uid : '',
-                MemberIDType: '',
-                MemberIDNumber: '',
-                PlayerID: '',
-            });
-        }
         if (user.isLoggedIn) {
             if (user.userInfo) {
-                // setUserEmail(userDetails ? userDetails.Email : '');
+                if (props.selectedPlayer !== '') {
+                    // console.log('option 1 ', props.selectedPlayer);
+                    userDetails && props.selectedPlayer && props.selectedPlayer !== '' && fetchData();
 
-                async function fetchData() {
-                    var para1 = {};
-
-                    // console.log('in load event', props.selectedPlayer);
-                    setLoading(true);
-                    para1 = {
-                        playerID: props.selectedPlayer,
-                    };
-                    let participant = {};
-                    // let userParticipant = [];
-                    const ret1 = httpsCallable(functions, "getPlayerDetailsWithCode");
-                    ret1(para1).then(async (result) => {
-                        result.data.forEach(async element => {
-
-                            var dob = new Date(element.DateOfBirth._seconds * 1000),
-
-                                participant = {
-                                    pID: element.pID,
-                                    City: element.City,
-                                    CollageName: element.CallageName,
-                                    CompanyName: element.CompanyName,
-                                    CompanyAddress: element.CompanyAddress,
-                                    Country: element.Country,
-                                    DateOfBirth: dob,
-                                    District: element.District,
-                                    Email: element.Email,
-                                    Gender: element.Gender,
-                                    Grade: element.Grade,
-                                    HRContact: element.HRContact,
-                                    ParticipantID: element.ParticipantID,
-                                    ParticipantAddress: element.ParticipantAddress,
-                                    Phone: element.Phone,
-                                    Pincode: element.Pincode,
-                                    SchoolAddress: element.SchoolAddress,
-                                    Size: element.Size,
-                                    Identity: element.Identity,
-                                    State: element.State,
-                                    UserName: element.UserName,
-                                    UserID: element.UserID,
-                                    MemberIDType: element.MemberIDType,
-                                    MemberIDNumber: element.MemberIDNumber,
-                                    PlayerID: element.PlayerID,
-                                };
-                            // userParticipant.push(participant);
-                            setPlayerDetails(participant);
-                            setPlayerDetailsCopy(participant);
-                            setLoading(false);
-                        });
-                        // setPlayerDetails(participant);
-                        // setPlayerDetailsCopy(participant);
-                        // setLoading(false);
+                } else {
+                    // console.log('option 2 ', props.selectedPlayer);
+                    setPlayerDetailsCopy({
+                        pID: '',
+                        City: '',
+                        CollageName: '',
+                        CompanyName: '',
+                        CompanyAddress: '',
+                        Country: '',
+                        DateOfBirth: new Date(),
+                        District: '',
+                        Email: userDetails.Email,
+                        Gender: '',
+                        Grade: 'Male',
+                        HRContact: '',
+                        Identity: '',
+                        ParticipantID: '',
+                        ParticipantAddress: '',
+                        Phone: userDetails.Phone,
+                        Pincode: '',
+                        SchoolAddress: '',
+                        Size: '',
+                        State: '',
+                        UserName: '',
+                        UserID: user && user.userInfo ? user.userInfo.uid : '',
+                        MemberIDType: '',
+                        MemberIDNumber: '',
+                        PlayerID: '',
                     });
-
                 }
-                // console.log('props.selectedPlayer : ', props.selectedPlayer);
-                userDetails && props.selectedPlayer && props.selectedPlayer !== '' && fetchData();
 
-
-            }
-
-            else {
-                navigate("/PhoneSignUp", { state: { url: 'RegisteredProfile' } });
             }
         }
-    }, [user, props.selectedPlayer])
+        else {
+            navigate("/PhoneSignUp", { state: { url: 'RegisteredProfile' } });
+        }
 
+
+    }, [props.selectedPlayer])
+
+    function regGoBack() {
+        props.addNewMember(false, props.selectedPlayer);
+    }
     async function regSaveDetails(e) {
-        // e.preventDefault();
-        //save details in firebase
 
         var para = {};
         para = {
             UserID: userDetails.id,
             pID: playerDetailsCopy.pID,
             City: playerDetailsCopy.City,
-            CollageName: playerDetailsCopy.CallageName,
+            CollageName: playerDetailsCopy.CollageName,
             CompanyName: playerDetailsCopy.CompanyName,
             CompanyAddress: playerDetailsCopy.CompanyAddress,
             Country: playerDetailsCopy.Country,
@@ -184,24 +180,18 @@ export default function NewMember(props) {
             MemberIDType: playerDetailsCopy.MemberIDType,
             MemberIDNumber: playerDetailsCopy.MemberIDNumber,
             PlayerID: playerDetailsCopy.PlayerID,
-
         };
         // console.log(para);
         setLoading(true);
         const ret = await httpsCallable(functions, "updateParticipants");
         ret(para).then(async (result) => {
-            props.addNewMember(false);
+            props.addNewMember(false, playerDetailsCopy.PlayerID);
             setLoading(false);
             // console.log("From Function " + result.data);
         });
 
-
-
     }
     function onChangeValueMale(checked) {
-        // e.preventDefault();
-        // console.log(e);
-        // e.target.checked ? setGender('Male') : setGender('Female');
         checked && setPlayerDetailsCopy({
             ...playerDetailsCopy,
             Gender: 'Male'
@@ -210,8 +200,6 @@ export default function NewMember(props) {
             ...playerDetailsCopy,
             Gender: 'Female'
         });
-
-        // console.log('gender : ', gender);
     }
 
     function onChangeValueFemale(checked) {
@@ -227,7 +215,6 @@ export default function NewMember(props) {
     }
 
     function selectSize(e) {
-        // e.preventDefault();
         setPlayerDetailsCopy({
             ...playerDetailsCopy,
             Size: e.target.value
@@ -235,27 +222,21 @@ export default function NewMember(props) {
 
     }
     function selectID(e) {
-        // e.preventDefault();
         setPlayerDetailsCopy({
             ...playerDetailsCopy,
             IdentityType: e.target.value
         });
     }
     function selectGrade(e) {
-        // e.preventDefault();
         setPlayerDetailsCopy({
             ...playerDetailsCopy,
             Grade: e.target.value
         });
     }
-    // console.log('playerDetailsCopy : ', playerDetailsCopy);
     return (
         <>
             <br />
             <div className="row no-gutters">
-                <div className="col-lg-12 col-md-12 col-sm-12">
-                    Add new Member
-                </div>
                 <br></br>
                 <div className="col-lg-4 col-md-6 col-sm-12">
 
@@ -332,16 +313,6 @@ export default function NewMember(props) {
                             })
                         }} />
 
-                        {/* <div className="input-group date datetimepicker11">
-                                                    <input id="dobParticipant" type="text"
-                                                        placeholder="Registration Open Date"
-                                                        className="form-control reg-participant-date-picker" readOnly />
-                                                    <div className="input-group-addon input-group-prepend">
-                                                        <span className="input-group-text reg-participant-date-picker-icon"><i
-                                                            className="fas fa-calendar"
-                                                            style={{ fontSize: '0.9em', color: '#666' }}></i></span>
-                                                    </div>
-                                                </div> */}
                         <span className="already-active"
                             style={{ zIndex: '6', position: 'absolute', top: '5px', left: '12px', padding: '0 8px' }}>Date Of Birth</span>
                     </div>
@@ -360,7 +331,6 @@ export default function NewMember(props) {
 
                             value={playerDetailsCopy.Pincode}
                             onChange={(e) => {
-                                // setPincode(e.target.value);
 
                                 setPlayerDetailsCopy({
                                     ...playerDetailsCopy,
@@ -374,17 +344,12 @@ export default function NewMember(props) {
                                 if (playerDetailsCopy.Pincode.length !== 6) {
 
                                     setShowError(true);
-                                    // console.log('error', showError)
                                 } else {
                                     setShowError(false);
                                     await $.getJSON("https://api.postalpincode.in/pincode/" + playerDetailsCopy.Pincode,
                                         async function (data) {
-                                            // console.log(data);
-                                            // console.log(data[0].Message);
                                             if (data[0].Message === "No records found") {
                                                 setShowError(true);
-
-
                                                 setTimeout(function () {
                                                     setShowError(false);
                                                 }, 5000);
@@ -448,7 +413,6 @@ export default function NewMember(props) {
 
                 </div>
 
-
                 <div className="col-lg-4 col-md-6 col-sm-12">
 
                     <div className="reg-participant-form-field">
@@ -473,7 +437,7 @@ export default function NewMember(props) {
                             })
 
                         }} value={playerDetailsCopy.MemberIDNumber} />
-                        <span id="idNumber">Player Idendity (State ID/ BAI ID/ BWF ID) </span>
+                        <span id="idNumber">Player ID (State ID/ BAI ID/ BWF ID) </span>
                         {/* <!-- Change this according to the event dynamically --> */}
                     </div>
 
@@ -631,8 +595,8 @@ export default function NewMember(props) {
                 <div className="col-lg-12 col-md-12 col-sm-12"><br />
 
                     <div className="ref-participant-save-div">
-                        {/* 
-                        <button className="mybutton button5" onClick={regProfileToSecondSlide}>
+
+                        <button className="mybutton button5" onClick={regGoBack}>
                             <span
                                 style={{ transform: 'rotate(180deg)', position: 'relative', top: '3px', paddingLeft: '5px', fontSize: '1.1rem' }}
                                 className="material-symbols-outlined">
@@ -640,19 +604,24 @@ export default function NewMember(props) {
                             </span>
                             <span
                                 style={{ position: 'relative', top: '-1px', paddingRight: '8px', fontSize: '1rem' }}>BACK</span>
-                        </button> */}
+                        </button>
 
                         <button className="mybutton button5" onClick={regSaveDetails}>
-                            <span
-                                style={{ paddingLeft: '8px', position: 'relative', top: '-1px', fontSize: '1rem' }}>SAVE</span>
-                            <span
-                                style={{ position: 'relative', top: '3px', paddingLeft: '5px', fontSize: '1.1rem' }}
-                                className="material-symbols-outlined">
-                                arrow_right_alt
-                            </span>
+                            <div style={{ display: !loading ? 'block' : 'none' }}>
+                                <span
+                                    style={{ paddingLeft: '8px', position: 'relative', top: '-1px', fontSize: '1rem' }}>SAVE</span>
+                                <span
+                                    style={{ position: 'relative', top: '3px', paddingLeft: '5px', fontSize: '1.1rem' }}
+                                    className="material-symbols-outlined">
+                                    arrow_right_alt
+                                </span>
+                            </div>
+                            <div className='btn-loading' style={{ display: loading ? 'block' : 'none' }}>
+                                <lottie-player id="btnSendOTPLoad"
+                                    src="https://assets8.lottiefiles.com/packages/lf20_fiqoxpcg.json" background="transparent"
+                                    speed="0.7" loop autoplay></lottie-player>
+                            </div>
                         </button>
-                        <br></br>
-                        {loading && <Loading></Loading>}
 
                     </div><br />
                     <hr style={{ border: 'none', borderTop: '1px solid #aaa' }} /><br />

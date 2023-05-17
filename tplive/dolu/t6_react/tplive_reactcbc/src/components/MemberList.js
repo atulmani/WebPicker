@@ -8,6 +8,7 @@ import UserProfileCard from './UserProfileCard';
 import Loading from './Loading';
 
 export default function MemberList(props) {
+    // console.log('in MemberList props : ', props);
     const { user } = useUserAuth();
     const navigate = useNavigate();
     const [userDetails, setUserDetails] = useState(window.localStorage.getItem('userProfile') ? JSON.parse(window.localStorage.getItem('userProfile')) : {});
@@ -33,7 +34,14 @@ export default function MemberList(props) {
     };
 
     let dob = '';
-
+    // useEffect(() => {
+    //     // console.log(allMemberList[0]);
+    //     if (selectUser === '' && allMemberList.length > 0) {
+    //         // setSelectUser(allMemberList[0].PlayerID);
+    //         // console.log('SelectUser', selectUser);
+    //         getUserDetail(allMemberList[0].PlayerID)
+    //     }
+    // }, [selectUser])
 
     useEffect(() => {
         // console.log('user', user);
@@ -74,7 +82,7 @@ export default function MemberList(props) {
 
                             }
 
-                            dob = (element.DateOfBirth) ? new Date(element.DateOfBirth._seconds * 1000) : '';
+                            dob = (element.DateOfBirth) ? new Date(element.DateOfBirth._seconds * 1000) : new Date();
                             dob = dob === '' ? '' : dob.toLocaleDateString("en-IN", options);
                             userParticipant.push({
                                 ...participant,
@@ -88,8 +96,12 @@ export default function MemberList(props) {
                         setAllMemberList(userParticipant);
                         setSelectUser(setUser);
                         setFilterParticipantList(userParticipant);
-                        props.setMemberList(userParticipant, setUser);
-                        props.openSideBar(!props.showSideBar);
+                        //setValuesFromChild(showSideflag, memberlist, showAddflag, playercode)
+                        props.setValuesFromChild(!props.showSideBar, filterParticipantList, props.addNewFlag, setUser)
+
+
+                        // props.setMemberList(userParticipant, setUser);
+                        // props.openSideBar(!props.showSideBar);
                         setLoading(false);
                     });
                 } else {
@@ -100,6 +112,7 @@ export default function MemberList(props) {
         getPlayerList();
 
     }, [])
+
 
     function searchEvent(key) {
 
@@ -114,19 +127,25 @@ export default function MemberList(props) {
             setFilterParticipantList(allMemberList);
         }
     }
-    function userDetail(player) {
+    function getUserDetail(player) {
         // console.log('userDetail', player)
-        props.setMemberList(filterParticipantList, player);
-        props.openSideBar(!props.showSideBar);
         setSelectUser(player);
+        //setValuesFromChild(showSideflag, memberlist, showAddflag, playercode)
+        props.setValuesFromChild(!props.showSideBar, filterParticipantList, false, player)
+        // props.setMemberList(filterParticipantList, player);
+        // props.openSideBar(!props.showSideBar);
+
+        // props.addNewMember(false, player);
         // props.setMemberList(userParticipant, selectUser);
     }
 
     function userEdit(playercode) {
-        console.log('userEdit', playercode)
+        // console.log('userEdit', playercode)
         setSelectUser(playercode);
-        props.setSelectedMember(playercode);
-        props.addNewMember(true);
+        //setValuesFromChild(showSideflag, memberlist, showAddflag, playercode)
+        props.setValuesFromChild(props.showSideBar, filterParticipantList, true, playercode)
+
+        // props.addNewMember(true, playercode);
 
     }
     // console.log('filterParticipantList : ', filterParticipantList)
@@ -158,10 +177,9 @@ export default function MemberList(props) {
 
             <div style={{ padding: '10px' }}>
 
-                <div className='user-profile-side-card add-profile' onClick={() => {
+                <div className={props.addNewFlag ? 'user-profile-side-card add-profile active' : 'user-profile-side-card add-profile'} onClick={() => {
                     setSelectUser('');
-                    props.setSelectedMember('');
-                    props.addNewMember(true);
+                    props.addNewMember(true, '');
                 }
                 }>
                     <span className="material-symbols-outlined">
@@ -170,7 +188,7 @@ export default function MemberList(props) {
                 </div>
 
                 {filterParticipantList && filterParticipantList.map((participant) => {
-                    return <div className={selectUser === participant.PlayerID ? 'user-profile-side-card active' : 'user-profile-side-card'} key={participant.PlayerID}>
+                    return <div className={selectUser === participant.PlayerID && !props.addNewFlag ? 'user-profile-side-card active' : 'user-profile-side-card'} key={participant.PlayerID}>
                         {/* {console.log(participant.PlayerID)} */}
 
                         <div className='user-profile-side-card-arrow'>
@@ -191,6 +209,7 @@ export default function MemberList(props) {
 
                         <div className='hover-details-div'>
                             <div onClick={() => {
+                                // console.log('participant.PlayerID : ', participant.PlayerID)
                                 userEdit(participant.PlayerID)
                             }}>
                                 <span className="material-symbols-outlined">
@@ -198,7 +217,12 @@ export default function MemberList(props) {
                                 </span>
                                 <h4>EDIT</h4>
                             </div>
-                            <div onClick={() => userDetail(participant.PlayerID)}>
+                            <div onClick={() => {
+                                // console.log('participant.PlayerID : ', participant.PlayerID)
+                                getUserDetail(participant.PlayerID)
+                            }}>
+
+
                                 <span className="material-symbols-outlined">
                                     page_info
                                 </span>

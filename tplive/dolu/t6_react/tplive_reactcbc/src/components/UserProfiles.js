@@ -5,21 +5,32 @@ import { functions } from '../firebase.js'
 import { httpsCallable } from "firebase/functions";
 import { useUserAuth } from '../context/UserAuthcontext';
 import { useNavigate } from 'react-router-dom';
+import { useLocalStorage } from "../context/useLocalStorage";
 
-import Loading from './Loading';
 
-import useRazorpay from "react-razorpay";
+// import { useNavigate } from 'react-router-dom';
+
+// import Loading from './Loading';
+
+// import useRazorpay from "react-razorpay";
 import axios from 'axios';
 import UserProfileRegisteredEvent from './UserProfileRegisteredEvent';
 import NewMember from './NewMember';
 
 
 export default function UserProfiles() {
-    const { user } = useUserAuth();
-    const [userDetails, setUserDetails] = useState(window.localStorage.getItem('userProfile') ? JSON.parse(window.localStorage.getItem('userProfile')) : {});
+    // const { user } = useUserAuth();
+    const { users, user } = useUserAuth();
+    const [userID, setUserID] = useState();
+    const [eventID, setEventID] = useState(window.localStorage.getItem("EventID") ? window.localStorage.getItem("EventID") : null);
+    const [userDetails, setUserDetails] = useLocalStorage('userProfile', null);
+
+    const navigate = useNavigate();
+
+    // const [userDetails, setUserDetails] = useState(window.localStorage.getItem('userProfile') ? JSON.parse(window.localStorage.getItem('userProfile')) : {});
 
     const [members, setMembers] = useState([]);
-    const [allMemberList, setAllMemberList] = useState([]);
+    // const [allMemberList, setAllMemberList] = useState([]);
     const [participantList, setParticipantList] = useState([])
     const [eventList, setEventList] = useState([]);
     const [selectedPlayer, setSelectedPlayer] = useState('');
@@ -27,7 +38,7 @@ export default function UserProfiles() {
     const [selectedEventActive, setSelectedEventActive] = useState('');
     const [showSideBar, setShowSideBar] = useState(false);
     const [addNewFlag, setAddNewFlag] = useState(false);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     let playerDetails1;
     var curFormat = {
@@ -44,13 +55,6 @@ export default function UserProfiles() {
         day: 'numeric'
     };
 
-    function setMemberListFromChild(memberlist, playerCode) {
-        setMembers(memberlist);
-        setSelectedPlayer(playerCode);
-        // console.log('in userProfiles : playercode', playerCode);
-        getRegisteredEvents(playerCode);
-        // console.log('Members : ', members)
-    }
     function getRegisteredEvents(playerID) {
 
         var para1 = {};
@@ -79,67 +83,22 @@ export default function UserProfiles() {
         });
 
     }
-    // let dob = '';
-
-    // async function getPlayerList() {
-    //     var para1 = {};
-    //     var setUser = '';
-    //     if (user.isLoggedIn) {
-    //         if (user.userInfo !== null) {
-    //             para1 = {
-    //                 userID: userDetails.id,
-    //             };
-    //             setLoading(true);
-    //             let participant = {};
-    //             let userParticipant = [];
-    //             const ret1 = httpsCallable(functions, "getRegisteredParticant");
-    //             ret1(para1).then(async (result) => {
-    //                 result.data.forEach(async element => {
-    //                     participant = {
-    //                         id: element.id,
-    //                         City: element.City,
-    //                         Country: element.Country,
-    //                         DateOfBirth: element.DateOfBirth,
-    //                         District: element.District,
-    //                         Email: element.Email,
-    //                         Gender: element.Gender,
-    //                         ParticipantID: element.ParticipantID,
-    //                         Phone: element.Phone,
-    //                         Pincode: element.Pincode,
-    //                         State: element.State,
-    //                         UserName: element.UserName,
-    //                         UserID: element.UserID,
-    //                         PlayerID: element.PlayerID,
-    //                     };
-    //                     if (setUser === '') {
-    //                         setUser = element.PlayerID;
-
-    //                     }
-
-    //                     dob = (element.DateOfBirth) ? new Date(element.DateOfBirth._seconds * 1000) : '';
-    //                     dob = dob === '' ? '' : dob.toLocaleDateString("en-IN", options);
-    //                     userParticipant.push({
-    //                         ...participant,
-    //                         dob: dob,
-    //                         searchKey: element.UserName + element.PlayerID
-    //                     });
-
-    //                 });
-
-    //                 console.log(userParticipant);
-    //                 setAllMemberList(userParticipant);
-    //                 setSelectedPlayer(setUser);
-    //                 setLoading(false);
-    //             });
-    //         } else {
-    //             navigate("/PhoneSignUp", { state: { url: 'ExportEventEntry' } });
-    //         }
-    //     }
-    // }
     useEffect(() => {
         // getPlayerList();
-        getRegisteredEvents(selectedPlayer);
+        if (user.isLoggedIn) {
+            if (user.userInfo) {
+                // console.log('in useEffect selectedPlayer=', selectedPlayer)
+                if (!addNewFlag) {
+                    // console.log('in useEffect before calling getRegisteredEvents selectedPlayer=', selectedPlayer)
 
+                    getRegisteredEvents(selectedPlayer);
+                    userDetails && getRegisteredEvents(selectedPlayer);
+                }
+            }
+        }
+        else {
+            navigate("/PhoneSignUp", { state: { url: 'RegisteredProfile' } });
+        }
     }, [selectedPlayer])
 
     function setSelectedMember(playerid) {
@@ -273,26 +232,77 @@ export default function UserProfiles() {
         setLoading(false);
 
     }
+    //called from child start
+    function setValuesFromChild(showSideflag, memberlist, showAddflag, playercode) {
+        setShowSideBar(showSideflag);
+        // console.log('showSideflag : ', showSideflag, ' memberlist : ', memberlist, 'showAddflag : ', showAddflag, 'playercode : ', playercode);
+        setMembers(memberlist);
+        setSelectedPlayer(playercode);
+        if (showAddflag === true && playercode !== '') {
+            // console.log('in option 1');
+            setAddNewFlag(showAddflag);
+        } else if (showAddflag === true && playercode === '') {
+            // console.log('in option 2');
+            setAddNewFlag(showAddflag);
+            setSelectedPlayer('');
+        } else if (showAddflag === false && playercode === '' && participantList && participantList[0] && participantList[0].PlayerID !== '') {
+            // console.log('in option 3', participantList[0].PlayerID);
+            setSelectedPlayer(participantList[0].PlayerID);
+            setAddNewFlag(showAddflag);
+            getRegisteredEvents(participantList && participantList[0] && participantList[0].PlayerID);
+        } else {
+            // console.log('in option 4');
+            setAddNewFlag(showAddflag);
+            // setSelectedPlayer('');
+        }
+        getRegisteredEvents(playercode);
+    }
     function openSideBar(flag) {
         setShowSideBar(flag);
     }
-    function addNewMember(flag) {
 
-        setAddNewFlag(flag);
-        if (flag === false && participantList && participantList[0] && participantList[0].PlayerID !== '') {
-            setSelectedPlayer(participantList[0].PlayerID);
-            getRegisteredEvents(participantList && participantList[0] && participantList[0].PlayerID);
+    function setMemberListFromChild(memberlist, playerCode) {
+        setMembers(memberlist);
+        setSelectedPlayer(playerCode);
+        // console.log('in userProfiles : playercode', playerCode);
+        getRegisteredEvents(playerCode);
+        // console.log('Members : ', members)
+    }
+    function addNewMember(flag, playercode) {
+        // console.log('in addNewMember flag=', flag, ',playercode=', playercode)
+        if (flag === true && playercode !== '') {
+            // console.log('in option 1');
+            setSelectedPlayer(playercode);
+            setAddNewFlag(flag);
+        } else if (flag === true && playercode === '') {
+            setSelectedPlayer('');
+            setAddNewFlag(flag);
+
+        }
+        // else if (flag === false && participantList && participantList[0] && participantList[0].PlayerID !== '') {
+        //     console.log('in option 2');
+        //     setSelectedPlayer(participantList[0].PlayerID);
+        //     setAddNewFlag(flag);
+
+        //     getRegisteredEvents(participantList && participantList[0] && participantList[0].PlayerID);
+        // }
+        else {
+            // console.log('in option 3');
+            setAddNewFlag(flag);
+            // setSelectedPlayer('');
         }
     }
-    let obj = {};
-    let sDate = '';
-    let fees = '';
-    let convCharges = 0;
-    let misCharges = 0;
-    let totalFees = 0;
-    let regCloseDate;
-    let regWithdrawDate;
-    let index = 0;
+
+    //called from child end
+    // let obj = {};
+    // let sDate = '';
+    // let fees = '';
+    // let convCharges = 0;
+    // let misCharges = 0;
+    // let totalFees = 0;
+    // let regCloseDate;
+    // let regWithdrawDate;
+    // let index = 0;
     // console.log('members : ', members);
     // console.log('selectedPlayer', selectedPlayer);
     playerDetails1 = members.find(e => e.PlayerID === selectedPlayer)
@@ -307,12 +317,20 @@ export default function UserProfiles() {
                         openSideBar={openSideBar}
                         showSideBar={showSideBar}
                         addNewMember={addNewMember}
-                        setSelectedMember={setSelectedMember}></MemberList>
+                        addNewFlag={addNewFlag}
+                        setValuesFromChild={setValuesFromChild}
+                    ></MemberList>
                     {/* <MemberList setMemberList={setMemberListFromChild} openSideBar={openSideBar} selectedPlayer={selectedPlayer} memberList={allMemberList} showSideBar={showSideBar}></MemberList> */}
 
                 </div>
                 <div className='col-lg-9 col-md-9 col-sm-12'>
-                    {addNewFlag && <NewMember selectedPlayer={selectedPlayer} addNewMember={addNewMember}></NewMember>}
+                    {addNewFlag && <>
+
+                        <h3 style={{ fontWeight: '1000', color: '#348DCB', textAlign: 'center' }}>{selectedPlayer === '' ? 'Add Member' : 'Edit Member (' + selectedPlayer + ')'}</h3>
+
+                        <NewMember selectedPlayer={selectedPlayer} addNewMember={addNewMember}></NewMember>
+                    </>}
+                    {/* {console.log('selectedPlayer : ', selectedPlayer)} */}
                     {selectedPlayer !== '' &&
                         <UserProfileRegisteredEvent
                             selectedPlayer={selectedPlayer}
