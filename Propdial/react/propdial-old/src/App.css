@@ -1,0 +1,165 @@
+/* Color Palette - Details
+
+Palette#: 226650 from Colorhunt
+
+Reference Colors:
+- Red: #161d65 - main header & footer color
+- Light Red: #ff8585 - support colors
+- Light Orange: #ffb396 - support colors
+- Yellow: #fff5c0- support colors
+
+*/
+/********** tag selectors ************/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Comfortaa', cursive;
+  background: #eee;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+h5 {
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+
+h6 {
+  font-size: 0.8rem;
+  font-weight: normal;
+}
+
+/********** class selectors ************/
+.container-fluid {
+  width: 100%;
+}
+
+.large {
+  width: 100%;
+  border-radius: 0 0 0 0;
+}
+
+.small {
+  width: 0px;
+  display: none;
+  border-radius: 0 0 0 0;
+}
+
+@media (max-width: 990px) {
+  .large {
+    width: 0%;
+    display: none;
+    border-radius: 0 0 0 0;
+  }
+
+  .small {
+    width: 100%;
+    display: block;
+    border-radius: 0 0 0 0;
+  }
+}
+
+.mybutton {
+  background: #221B1B;
+  outline: none;
+  border: none;
+  color: white;
+  padding: 7px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.9rem;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  /* border-radius: 8px; */
+}
+
+.button5 {
+  background: linear-gradient(to right, #DC948B, #E4947C);
+  /* background: #85cb0b; */
+  background: #EB542E;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 40px;
+  width: 150px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 10px 0;
+  transition: 0.5s;
+}
+
+.button5:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+.transparent {
+  background: none;
+  border: 2px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 55px;
+  width: 130px;
+  height: 41px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  margin: 0;
+  transition: 0.5s;
+}
+
+.transparent:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid transparent;
+  color: #fff;
+  text-decoration: none;
+}
+
+.padding-div {
+  padding: 10px;
+}
+
+@media (max-width: 990px) {
+  .padding-div {
+    padding: 10px 0;
+  }
+}
+
+.all-heading {
+  font-size: 1.8rem;
+  color: #EB542E;
+}

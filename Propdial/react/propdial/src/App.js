@@ -1,101 +1,182 @@
-// import logo from './logo.svg';
-// import './App.css';
-// import Navbar from './components/Navbar';
-// import NavbarSide from './components/NavbarSide';
-// import Footer from './components/Footer';
-// import Login from './components/login/Login';
-// import Profile from './components/login/Profile';
-// import { UserAuthContextProvider } from './context/UserAuthcontext';
-// import {
-//   BrowserRouter as Router,
-//   Routes,
-//   Route,
-//   // useLocation,
-//   Link
-// } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
+import { useAuthContext } from './hooks/useAuthContext'
+import { useEffect, useState } from 'react'
 
-// function App() {
-//   return (
-//     <>
-//       <div className='App'>
-//         <Router>
+// components
+import Navbar from './components/Navbar'
+import SidebarNew from './components/SidebarNew'
+import NavbarBottom from './components/NavbarBottom'
 
-//           <UserAuthContextProvider>
+// pages
+import Login from './pages/login/Login'
+import Signup from './pages/signup/Signup'
+import Profile from './pages/profile/Profile'
+import AdminDashboard from './pages/roles/admin/AdminDashboard'
+import SuperAdminDashboard from './pages/roles/superadmin/SuperAdminDashboard'
+import UserDashboard from './pages/dashboard/UserDashboard'
+import OwnerDashboard from './pages/roles/owner/OwnerDashboard'
+import TenantDashboard from './pages/roles/tenant/TenantDashboard'
+import ExecutiveDashboard from './pages/roles/executive/ExecutiveDashboard'
+import AddProperty from './pages/create/AddProperty'
+import AddBill from './pages/create/AddBill'
+import Property from './pages/property/Property'
+// import OnlineUsers from './components/OnlineUsers'
 
-//             <Navbar></Navbar>
-//             <div className="row no-gutters">
-//               <div className="col-lg-2 col-md-12 col-sm-12">
-//                 <Routes>
-//                   <Route exact path='/Login' element={<> </>} />
-
-//                   <Route exact path='/*' element={<NavbarSide />} />
-
-//                 </Routes>
-//               </div>
-//               <div className="col-lg-10 col-md-12 col-sm-12">
-
-//                 <Routes>
-//                   {/* <Route exact path='/Login' element={<Login />} /> */}
-//                   <Route exact path='/Profile' element={<Profile />} />
-
-//                 </Routes>
-//               </div>
-
-//               <div className="col-lg-12 col-md-12 col-sm-12">
-//                 <Routes>
-
-//                   <Route exact path='*' element={<Login />} />
-
-//                 </Routes>
-
-//               </div>
-//             </div>
-//             {/* <Profile></Profile> */}
-//             <Footer></Footer>
-//           </UserAuthContextProvider>
-//         </Router>
-//       </div>
-//     </>
-//   );
-// }
-
-import React from 'react';
-import Signup from './components/login/Signup';
-import { Container } from 'react-bootstrap';
-import { AuthProvider } from './context/AuthContext';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Dashboard from './components/Dashboard';
-import LoginEmail from './components/login/LoginEmail';
-import PrivateRoute from './components/PrivateRoute';
-import Profile from './components/Profile';
+// styles
+import './App.css'
+import UpdatePassword from './pages/login/UpdatePassword'
+import AdminSettings from './pages/roles/admin/AdminSettings'
 
 function App() {
+  const { authIsReady, user } = useAuthContext();
+  const [sideNavbar, setSideNavbar] = useState(null);
+  // const [onlineUsers, setOnlineUsers] = useState(true);
+
+  function openSideNavbar(flag) {
+    // console.log('opensidenavbar flag in aap.js : ', flag);
+    setSideNavbar(flag);
+  }
+  // console.log('user in App.js', user)
+
+  useEffect(() => {
+    if (user && user.roles && user.roles.includes('owner')) {
+      setSideNavbar(null);
+    } else if (user && user.roles && user.roles.includes('tenant')) {
+      setSideNavbar(null);
+    } else if (user && user.roles && user.roles.includes('executive')) {
+      setSideNavbar(null);
+    } else if (user && user.roles && user.roles.includes('admin')) {
+      setSideNavbar(true);
+    } else if (user && user.roles && user.roles.includes('superadmin')) {
+      setSideNavbar(true);
+    } else {
+      setSideNavbar(null);
+    }
+    // console.log('user in useEffect App.js:', user);
+  }, [user])
+
+  // console.log('user in App:', user);
 
   return (
+    <div className="App">
+      {authIsReady && (
+        <BrowserRouter>
+          {/* {user && <Sidebar setFlag={openSideNavbar} />} */}
+          <Navbar />
+          {/* <Navbar setFlag={openSideNavbar} /> */}
 
-    <Container className='d-flex align-items-center justify-content-center' style={{ minHeight: "100vh" }} >
-      <div className='w-100' style={{ maxWidth: "400px" }}>
-        <Router>
-          <AuthProvider>
+
+          {user && user.roles && (user.roles.includes('admin') || user.roles.includes('superadmin')) && <SidebarNew setFlag={openSideNavbar}></SidebarNew>}
+
+
+          <div className={sideNavbar === true ? 'full-content' : sideNavbar === false ? 'full-content sidebar-open' : sideNavbar === null ? 'full-content no-sidebar' : ''}>
+            {/* <div style={{ padding: '0 10px 0 30px' }}> */}
             <Routes>
-              {/* <PrivateRoute path='/' Component={Dashboard}></PrivateRoute> */}
 
-              <Route path='/' Component={Dashboard}></Route>
-              <Route path='/profile' Component={Profile}></Route>
-              {/* <Route exact path="/" element={<PrivateRoute><Dashboard /></PrivateRoute>} /> */}
+              <Route path='/adminsettings' element={<AdminSettings />}>
+              </Route>
 
-              {/* <Route path='/profile' element={<PrivateRoute Component={Profile} />}></Route> */}
+              <Route path='/updatepwd' element={user ? < UpdatePassword /> : <Login />}>
+              </Route>
 
-              <Route path='/signup' Component={Signup}></Route>
-              <Route path='/login' Component={LoginEmail}></Route>
+              <Route path='/' element={user ? < Profile /> : <Login />}>
+              </Route>
+
+              <Route exact path="/superadmindashboard" element={
+                user && user.roles && user.roles.includes('superadmin') ? <SuperAdminDashboard /> : <Navigate to="/login" />
+              }>
+              </Route>
+
+              <Route path="/admindashboard" element={
+                user && user.roles && user.roles.includes('admin') ? < AdminDashboard /> : <Navigate to="/login" />
+              }>
+              </Route>
+
+              <Route path="/addproperty" element={
+                user && user.roles && user.roles.includes('admin') ? < AddProperty /> : <Navigate to="/login" />
+              }>
+              </Route>
+
+              <Route path="/addbill" element={
+                user && user.roles && user.roles.includes('admin') ? < AddBill /> : <Navigate to="/login" />
+              }>
+              </Route>
+
+              <Route path="/properties/:id" element={
+                user && user.roles ? < Property /> : <Navigate to="/login" />
+              }>
+              </Route>
+
+              <Route path="/userdashboard" element={
+                user && user.roles && user.roles.includes('user') ? < UserDashboard /> : <Navigate to="/login" />
+              }>
+              </Route>
+
+              <Route path="/ownerdashboard" element={
+                user && user.roles && user.roles.includes('owner') ? < OwnerDashboard /> : <Navigate to="/login" />
+              }>
+              </Route>
+
+              <Route path="/tenantdashboard" element={
+                user && user.roles && user.roles.includes('tenant') ? < TenantDashboard /> : <Navigate to="/login" />
+              }>
+              </Route>
+
+              <Route path="/executivedashboard" element={
+                user && user.roles && user.roles.includes('executive') ? < ExecutiveDashboard /> : <Navigate to="/login" />
+              }>
+              </Route>
+
+              {/* <Route path="/properties/:id">
+                  {!user && <Login />}
+                  {user && <Property />}
+                </Route> */}
+
+
+              {/* <Route path="/create">
+                  {!user && <Navigate to="/login" />}
+                  {user && <Create />}
+                </Route>
+                <Route path="/projects/:id">
+                  {!user && <Navigate to="/login" />}
+                  {user && <Project />}
+                </Route> */}
+
+
+              <Route path='/login' element={user ? <Navigate to="/" /> : < Login />}>
+              </Route>
+              <Route path='/signup' element={user ? <Navigate to="/" /> : < Signup />}>
+              </Route>
+              <Route path='/profile' element={user ? < Profile /> : < Login />}>
+              </Route>
+
+
+              {/* <Route path="/login">
+                  {user && <Navigate to="/" />}
+                  {!user && <Login />}
+                </Route>
+                <Route path="/signup">
+                  {user && user.displayName && <Navigate to="/" />}
+                  {!user && <Signup />}
+                </Route>
+                <Route path="/profile">
+                  {!user && <Navigate to="/" />}
+                  {user && <Profile />}
+                </Route> */}
             </Routes>
-          </AuthProvider>
-        </Router>
-      </div>
-    </Container >
+            {/* </div> */}
+          </div>
+          {/* {user && user.roles && user.roles.includes('admin') && <OnlineUsers setFlag={openOnlineUser} />} */}
 
-  )
+
+          {user && user.roles && (!user.roles.includes('user')) && <NavbarBottom></NavbarBottom>}
+
+        </BrowserRouter>
+      )
+      }
+      <br /><br /><br />
+    </div >
+  );
 }
 
-
-export default App;
+export default App

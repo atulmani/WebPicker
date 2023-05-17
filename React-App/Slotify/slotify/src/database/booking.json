@@ -1,0 +1,54 @@
+{
+    "bookings": [
+        {
+            "id": "1",
+            "mobile": "9822752885",
+            "name": "Atul Tripathi",
+            "title": "booking 1",
+            "date": "",
+            "amount": "500",
+            "status": "OPEN"
+        },
+        {
+            "id": "2",
+            "mobile": "9922112886",
+            "name": "Anita Tripathi",
+            "title": "booking 2",
+            "date": "",
+            "amount": "500",
+            "status": "COMPLETED"
+        },
+        {
+            "id": "3",
+            "mobile": "8749001111",
+            "name": "HC Atul Tripathi",
+            "title": "booking 3",
+            "date": "",
+            "amount": "500",
+            "status": "OPEN"
+        },
+        {
+            "id": "4",
+            "mobile": "9822752885",
+            "name": "Atul Tripathi",
+            "title": "booking 4",
+            "date": "",
+            "amount": "500",
+            "status": "OPEN"
+        }
+    ],
+    "users": [
+        {
+            "id": "1",
+            "mobile": "9822752885",
+            "name": "Atul Tripathi",
+            "status": "ACTIVE"
+        },
+        {
+            "id": "2",
+            "mobile": "9922112886",
+            "name": "Anita Tripathi",
+            "status": "ACTIVE"
+        }
+    ]
+}
