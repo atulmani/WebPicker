@@ -1,13 +1,70 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Poppins', sans-serif;
+  --lightgrey: #aaa;
+  --grey: #888;
+  --darkgrey: #666;
+  --green: #116530;
+  --blue: #21B6A8;
+  --neongreen: #A3EBB1;
+  --kellygreen: #18A558;
+  --brown: #AB6B51;
+  --lightbrown: #d0b49f;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.all-headings {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.all-headings h1 {
+  width: 80%;
+}
+
+.all-headings span {
+  width: 20%;
+  color: var(--blue);
+  text-align: right;
+}
+
+.btnTransparent {
+  width: 90px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  outline: none;
+  height: 30px;
+  font-size: 0.8rem;
+  color: #fff;
+  font-weight: 300;
+}
+
+.owl-theme {
+  overflow: hidden;
+}
+
+.owl-stage {
+  display: flex;
+}
+
+.large {
+  display: block;
+}
+
+.small {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .large {
+    display: none;
+  }
+
+  .small {
+    display: block;
+  }
 }
