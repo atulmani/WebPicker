@@ -38,7 +38,7 @@
 }
 
 .calculator-div .calculator-content {
-    max-height: 0;
+    display: none;
     overflow: hidden;
     pointer-events: none;
     border: none;
@@ -50,7 +50,7 @@
 }
 
 .calculator-div.open .calculator-content {
-    max-height: 400px;
+    display: block;
     pointer-events: all;
     opacity: 1;
     padding: 20px 10px;
@@ -63,13 +63,13 @@
 }
 
 .calculator-output-div h1 {
-    font-size: 1.1rem;
+    font-size: 0.8rem;
     font-weight: normal;
     text-transform: uppercase;
 }
 
 .calculator-output-div h2 {
-    font-size: 1.3rem;
+    font-size: 1rem;
     color: #348DCB;
     font-weight: normal;
     margin: 0;
