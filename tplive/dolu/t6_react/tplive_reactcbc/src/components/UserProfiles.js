@@ -278,6 +278,13 @@ export default function UserProfiles() {
             setSelectedPlayer('');
             setAddNewFlag(flag);
 
+        } else if (flag === false && playercode === '') {
+            // setSelectedPlayer('');
+            // console.log(participantList);
+            setAddNewFlag(flag);
+            setSelectedPlayer(participantList[0].ParticipantID);
+            getRegisteredEvents(participantList && participantList[0] && participantList[0].ParticipantID);
+
         }
         // else if (flag === false && participantList && participantList[0] && participantList[0].PlayerID !== '') {
         //     console.log('in option 2');

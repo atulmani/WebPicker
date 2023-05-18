@@ -176,11 +176,12 @@ export default function Events() {
                             <br className='small'></br>
                             <div className='event-search-div'>
                                 <div>
-                                    <input type="text" id="userName" placeholder='e.g. event name or location etc' required onChange={(e) => {
-                                        setSearchKey(e.target.value)
-                                        searchEvent()
+                                    <input type="text" id="userName" placeholder='e.g. event name or location etc' required
+                                        onChange={(e) => {
+                                            setSearchKey(e.target.value)
+                                            searchEvent()
 
-                                    }} value={searchKey} />
+                                        }} value={searchKey} />
                                     <button className="mybutton button5" onClick={() => {
                                         searchEvent();
 
