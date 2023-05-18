@@ -177,7 +177,7 @@ export default function MemberList(props) {
 
             <div style={{ padding: '10px' }}>
 
-                <div className={props.addNewFlag ? 'user-profile-side-card add-profile active' : 'user-profile-side-card add-profile'} onClick={() => {
+                <div className={props.addNewFlag && selectUser === '' ? 'user-profile-side-card add-profile active' : 'user-profile-side-card add-profile'} onClick={() => {
                     setSelectUser('');
                     props.addNewMember(true, '');
                 }
@@ -188,7 +188,8 @@ export default function MemberList(props) {
                 </div>
 
                 {filterParticipantList && filterParticipantList.map((participant) => {
-                    return <div className={selectUser === participant.PlayerID && !props.addNewFlag ? 'user-profile-side-card active' : 'user-profile-side-card'} key={participant.PlayerID}>
+                    // console.log('selectUser : ', selectUser, 'participant.PlayerID : ', participant.PlayerID,)
+                    return <div className={selectUser === participant.PlayerID ? 'user-profile-side-card active' : 'user-profile-side-card'} key={participant.PlayerID}>
                         {/* {console.log(participant.PlayerID)} */}
 
                         <div className='user-profile-side-card-arrow'>

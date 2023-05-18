@@ -160,7 +160,13 @@ export default function PhoneSignUp(props) {
                             {<Form onSubmit={verifyOTP} style={{ display: flag ? "block" : "none" }}>
 
                                 <div className='txt_field'>
-                                    <input type="text" required onChange={(e) => setOtp(e.target.value)}>
+                                    <input type="number" required maxLength={6}
+                                        onInput={(e) => {
+                                            if (e.target.value.length > e.target.maxLength)
+                                                e.target.value = e.target.value.slice(0, e.target.maxLength)
+                                        }}
+                                        value={otp}
+                                        onChange={(e) => setOtp(e.target.value)}>
 
                                     </input>
                                     <label htmlFor="">Enter OTP</label>

@@ -56,8 +56,8 @@ export default function UserGuide() {
                                 <div className='row no-gutters'>
                                     <div className='col-lg-12'>
 
-                                        <div className={showFlag === 1 ? 'calculator-div open' : 'calculator-div '}>
-                                            <div className='calculator-heading' onClick={() => setFlag(1)}>
+                                        <div className={showFlag === 1 ? 'calculator-div open' : 'calculator-div'}>
+                                            <div className='calculator-heading' onClick={() => setFlag(showFlag === 1 ? 0 : 1)}>
                                                 <h1>
                                                     Event Registration Process
                                                     <span className="material-symbols-outlined">
@@ -142,7 +142,7 @@ export default function UserGuide() {
 
 
                                         <div className={showFlag === 2 ? 'calculator-div open' : 'calculator-div '}>
-                                            <div className='calculator-heading' onClick={() => setFlag(2)}>
+                                            <div className='calculator-heading' onClick={() => setFlag(showFlag === 2 ? 0 : 2)}>
                                                 <h1>
                                                     How many Sports covered in TPLiVE?
                                                     <span className="material-symbols-outlined">
@@ -160,7 +160,7 @@ export default function UserGuide() {
 
 
                                         <div className={showFlag === 3 ? 'calculator-div open' : 'calculator-div '}>
-                                            <div className='calculator-heading' onClick={() => setFlag(3)}>
+                                            <div className='calculator-heading' onClick={() => setFlag(showFlag === 3 ? 0 : 3)}>
                                                 <h1>
                                                     Who can use this product?
                                                     <span className="material-symbols-outlined">
@@ -180,7 +180,7 @@ export default function UserGuide() {
 
 
                                         <div className={showFlag === 4 ? 'calculator-div open' : 'calculator-div '}>
-                                            <div className='calculator-heading' onClick={() => setFlag(4)}>
+                                            <div className='calculator-heading' onClick={() => setFlag(showFlag === 4 ? 0 : 4)}>
                                                 <h1>
                                                     How to create a Event?
                                                     <span className="material-symbols-outlined">
@@ -200,7 +200,7 @@ export default function UserGuide() {
 
 
                                         <div className={showFlag === 5 ? 'calculator-div open' : 'calculator-div '}>
-                                            <div className='calculator-heading' onClick={() => setFlag(5)}>
+                                            <div className='calculator-heading' onClick={() => setFlag(showFlag === 5 ? 0 : 5)}>
                                                 <h1>
                                                     How it works?
                                                     <span className="material-symbols-outlined">
@@ -218,7 +218,7 @@ export default function UserGuide() {
                                     <div className='col-lg-12'>
 
                                         <div className={showFlag === 6 ? 'calculator-div open' : 'calculator-div '}>
-                                            <div className='calculator-heading' onClick={() => setFlag(6)}>
+                                            <div className='calculator-heading' onClick={() => setFlag(showFlag === 6 ? 0 : 6)}>
                                                 <h1>
                                                     Does TPLivE promots advertisement?
                                                     <span className="material-symbols-outlined">
