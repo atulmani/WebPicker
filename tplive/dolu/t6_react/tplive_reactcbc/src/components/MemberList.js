@@ -48,7 +48,7 @@ export default function MemberList(props) {
         async function getPlayerList() {
             var para1 = {};
             var setUser = '';
-            if (user.isLoggedIn) {
+            if (user.isLoggedIn && userDetails !== null) {
                 if (user.userInfo !== null) {
                     para1 = {
                         userID: userDetails.id,

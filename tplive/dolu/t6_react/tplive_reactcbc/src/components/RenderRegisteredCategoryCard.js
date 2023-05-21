@@ -129,7 +129,7 @@ export default function RenderRegisteredCategoryCard(props) {
             email: props.playerDetails.Email,
             contact: props.playerDetails.Phone,
 
-            image: 'https://tplive-prod--tplive-test-dw5grchb.web.app/img/TPLiVE_Logo.webp',
+            image: 'https://tplive-prod--tplive-test-h1bjje65.web.app/img/TPLiVE_Logo.webp',
             handler: function (response) {
                 console.log(response);
                 ConfirmPayment(amount, response.razorpay_payment_id, orderId)

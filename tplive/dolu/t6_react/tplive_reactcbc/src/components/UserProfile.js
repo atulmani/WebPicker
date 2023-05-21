@@ -70,7 +70,7 @@ export default function UserProfile() {
 
     useEffect(() => {
         // console.log(user);
-        if (user.isLoggedIn) {
+        if (user.isLoggedIn && userDetails !== null) {
             if (user.userInfo !== null) {
                 // setUserDetails(window.localStorage.getItem('userProfile') ? JSON.parse(window.localStorage.getItem('userProfile')) : {})
                 let tempdob = '';

@@ -6,7 +6,14 @@ import '../css/Calculator.css';
 export default function FAQ() {
     const [showFlag, setShowFlag] = useState(1);
     const setFlag = (flag) => {
-        setShowFlag(flag)
+        // console.log('flag : ', flag, ' showFlag : ', showFlag);
+        if (showFlag === flag) {
+            setShowFlag(0)
+        } else {
+            setShowFlag(flag)
+
+        }
+
     }
 
     return (

@@ -82,7 +82,7 @@ export default function RegistrationCheckout() {
             email: participantDetails.Email,
             contact: participantDetails.Phone,
 
-            image: 'https://tplive-prod--tplive-test-dw5grchb.web.app/img/TPLiVE_Logo.webp',
+            image: 'https://tplive-prod--tplive-test-h1bjje65.web.app/img/TPLiVE_Logo.webp',
             handler: function (response) {
                 // console.log(response);
                 navigate("/PaymentSuccessful", {
@@ -116,6 +116,10 @@ export default function RegistrationCheckout() {
         const rzp1 = new window.Razorpay(razorpayOptions);
         rzp1.open();
 
+    }
+
+    function goBack() {
+        navigate(-1);
     }
     return (
         <div className="container-fluid">
@@ -184,6 +188,10 @@ export default function RegistrationCheckout() {
                     <br />
                     <hr style={{ border: 'none', borderTop: '1px solid #aaa' }} />
                     <br />
+                    <div style={{ textAlign: 'center' }}>
+                        <button onClick={goBack} className="mybutton button5"
+                            style={{ fontWeight: 'bold', textAlign: 'center' }}> &lt;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Back </button>
+                    </div>
 
                     <div className={openCheckoutDetails ? "category-checkout active" : "category-checkout"} id="paymentDiv" onClick={openMorePaymentDetails} style={{ opacity: '1', pointerEvents: 'all' }}>
 

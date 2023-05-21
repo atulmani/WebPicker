@@ -36,7 +36,7 @@ export default function PaymentGatewayRP() {
         description: 'Payment for TP Live',
         email: email,
         contact: phone,
-        image: 'https://tplive-prod--tplive-test-dw5grchb.web.app/img/TPLiVE_Logo.webp',
+        image: 'https://tplive-prod--tplive-test-h1bjje65.web.app/img/TPLiVE_Logo.webp',
         handler: function (response) {
             navigate("/PaymentSuccessful", {
                 state: {

@@ -17,7 +17,7 @@ export default function RegisteredEvent() {
 
 
     useEffect(() => {
-        if (user.isLoggedIn) {
+        if (user.isLoggedIn && userDetails !== null) {
             if (user.userInfo !== null) {
                 var para = {};
                 para = {

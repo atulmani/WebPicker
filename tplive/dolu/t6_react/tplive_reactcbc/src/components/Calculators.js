@@ -7,7 +7,12 @@ export default function Calculators() {
     const [showComponents, setShowComponents] = useState('knockout');
 
     function setFlag(flag) {
-        setShowComponents(flag)
+        if (showComponents === flag) {
+            setShowComponents("");
+        } else {
+            setShowComponents(flag);
+        }
+
     }
     return (
         <div>

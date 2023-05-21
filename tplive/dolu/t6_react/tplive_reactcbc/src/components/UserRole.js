@@ -13,7 +13,7 @@ export default function UserRole() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (user.isLoggedIn) {
+        if (user.isLoggedIn && userDetails !== null) {
             if (user.userInfo !== null) {
                 setUserRole(userDetails.UserRole);
                 let lUserRole = JSON.parse(window.localStorage.getItem('SelectedRole'));

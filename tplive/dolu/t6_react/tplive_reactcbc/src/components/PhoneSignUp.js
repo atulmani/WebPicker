@@ -16,8 +16,11 @@ import { GetUserDetails } from './GetUserDetails.js'
 // import UserProfile from './UserProfile';
 
 export default function PhoneSignUp(props) {
+    //state variable for
+    const { state } = useLocation();
+    const { url } = state;
 
-    const [url, setURL] = useState("/");
+    const [lurl, setLURL] = useState(url);
     const [isLogged, setIsLogged] = useState(false);
     const [loading, setLoading] = useState(false);
     const [phone, setPhone] = useState("");
@@ -31,7 +34,7 @@ export default function PhoneSignUp(props) {
     useEffect(() => {
         // console.log(users);
         // console.log(users.current);
-        setURL(props.url ? "/" + props.url : "/")
+        setLURL(url ? "/" + url : "/")
     }, []);
     //  this.props && this.props.url !== "" && setURL(this.props.url);
     const getOTP = async (e) => {
@@ -76,7 +79,7 @@ export default function PhoneSignUp(props) {
                 await GetUserDetails(user.uid).then(() => {
                     // console.log('user.uid : ', user.uid);
                     if (flag) {
-                        navigate(url);
+                        navigate(lurl);
                     } else {
                         navigate('/UserProfile');
                     }

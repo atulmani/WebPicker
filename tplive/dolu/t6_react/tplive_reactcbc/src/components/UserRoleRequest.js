@@ -16,7 +16,7 @@ export default function UserRoleRequest() {
     const navigate = useNavigate();
     const [requestRole, setRequestRole] = useState([]);
     useEffect(() => {
-        if (user.isLoggedIn) {
+        if (user.isLoggedIn && userDetails !== null) {
             let roleRequest = [];
             if (user.userInfo !== null) {
                 if (user.userInfo.uid === userDetails.id) {

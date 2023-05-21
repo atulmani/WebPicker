@@ -103,7 +103,7 @@ export default function NewMember(props) {
 
     useEffect(() => {
         // console.log(user);
-        if (user.isLoggedIn) {
+        if (user.isLoggedIn && userDetails !== null) {
             if (user.userInfo) {
                 if (props.selectedPlayer !== '') {
                     // console.log('option 1 ', props.selectedPlayer);

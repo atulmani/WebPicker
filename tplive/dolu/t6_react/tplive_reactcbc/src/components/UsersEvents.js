@@ -64,7 +64,7 @@ export default function UsersEvents() {
     }
     useEffect(() => {
 
-        if (user.isLoggedIn) {
+        if (user.isLoggedIn && userDetails !== null) {
             if (user.userInfo !== null) {
                 populateData();
             } else {

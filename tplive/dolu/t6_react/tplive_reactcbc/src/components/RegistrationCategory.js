@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import '../css/EventRegistration.css'
 import { useLocation } from 'react-router-dom';
 import { useLocalStorage } from "../context/useLocalStorage";
@@ -8,7 +8,7 @@ import { httpsCallable } from "firebase/functions";
 import { useUserAuth } from '../context/UserAuthcontext';
 import { useNavigate } from 'react-router-dom';
 import EDTournamentDetails from '../components/EDTournamentDetails'
-import { useRef } from 'react';
+
 import Loading from './Loading';
 
 export default function RegistrationCategory() {
@@ -16,7 +16,7 @@ export default function RegistrationCategory() {
 
     const { state } = useLocation();
     const { id, participantDetails } = state;
-
+    console.log('participantDetails:', participantDetails)
     const rTotalEvent = useRef(0);
     const rTotalPayment = useRef(0);
     const paymentObj = useRef();
@@ -35,10 +35,11 @@ export default function RegistrationCategory() {
     const navigate = useNavigate();
     // const [indexEvent, setIndexEvent] = useState(0);
     const [loading, setLoading] = useState(true);
+    const [savingFlag, setSavingFlag] = useState(false);
     function saveCategory(e) {
         e.preventDefault();
         var regCategory = [];
-
+        setSavingFlag(true);
         let pendingFlag = false;
         // console.log(rSelectedCategory);
         rSelectedCategory.current.forEach(element => {
@@ -97,6 +98,7 @@ export default function RegistrationCategory() {
 
             ret1(para1).then((result) => {
                 window.localStorage.setItem('SelectedCategory', JSON.stringify(regCategory));
+                setSavingFlag(false);
                 if (pendingFlag) {
                     navigate("/RegistrationCheckout", {
                         state: {
@@ -107,6 +109,7 @@ export default function RegistrationCategory() {
                     });
 
                 } else {
+                    setSavingFlag(false);
                     navigate("/PaymentSuccessful", {
                         state: {
                             id: 1, participantDetails: participantDetails,
@@ -119,6 +122,7 @@ export default function RegistrationCategory() {
                 }
             })
         } else {
+            setSavingFlag(false);
             navigate("/PaymentSuccessful", {
                 state: {
                     id: 1, participantDetails: participantDetails,
@@ -272,6 +276,10 @@ export default function RegistrationCategory() {
         // console.log(selCategory)
 
     }
+    function goBack() {
+        navigate(-1);
+    }
+    console.log('rSelectedCategory.current : ', rSelectedCategory.current)
     var indexCategory = 1;
     return (
 
@@ -317,10 +325,15 @@ export default function RegistrationCategory() {
 
 
                         </div><br />
+                        <hr style={{ border: 'none', borderTop: '1px solid #aaa' }} />
+                        <div style={{ textAlign: 'center' }}>
+                            <button onClick={goBack} className="mybutton button5"
+                                style={{ fontWeight: 'bold', textAlign: 'center' }}> &lt;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Back </button>
+                        </div>
                     </div>
                     <hr style={{ border: 'none', borderTop: '1px solid #aaa' }} />
-                    <br />
 
+                    <br />
                     <div className='category-checkout' id="checkOutDiv" style={{ opacity: (!showTotal) ? '0' : '1', pointerEvents: (!showTotal) ? 'none' : 'all' }} >
 
                         <div className="category-checkout-first-details">
@@ -336,10 +349,17 @@ export default function RegistrationCategory() {
 
                                 </div>
                             </div>
-                            <div className="category-checkout-button-div">
+                            {!savingFlag && <div className="category-checkout-button-div">
                                 <button onClick={saveCategory} className="mybutton button5"
                                     style={{ fontWeight: 'bold' }}>CHECKOUT</button>
+                            </div>}
+                            {savingFlag && <div className="category-checkout-button-div">
+                                <lottie-player
+                                    src="https://assets8.lottiefiles.com/packages/lf20_fiqoxpcg.json" background="transparent"
+                                    speed="0.7" loop autoplay></lottie-player>
                             </div>
+
+                            }
                         </div>
 
                     </div>
