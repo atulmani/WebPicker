@@ -207,24 +207,6 @@ export default function HomePage(props) {
                                         updateMyEvent={props.updateMyEvent} />
 
 
-                                    {/* <BannerItemHP eventName={events.EventName} eventType={events.EventType}
-                                        eventDate={events.EventStartDate}
-                                        eventEndDate={events.EventEndDate}
-                                        eventID={events.Eventid}
-                                        eventCode={events.EventCode}
-                                        eventStatus={events.EventStatus ? events.EventStatus.toUpperCase() : 'ACTIVE'}
-                                        organizerName={events.OrganizationName}
-                                        location={events.City}
-                                        entryFee={events.MinimumFee}
-                                        eventLogoURL={events.EventLogo}
-                                        sportName={events.SportName ? events.SportName : ""}
-                                        entryCntForEvent={eventCntForEvent}
-                                        rating={events.rating ? events.rating : 5}
-                                        ratingCount={events.ratingCount ? events.ratingCount : 100}
-                                        isLive={events.isLive}
-                                        eventMode={events.EventMode ? events.EventMode.toUpperCase() : 'OPEN'}
-                                        updateMyEvent={props.updateMyEvent} />
- */}
                                 </div>
 
                             })}

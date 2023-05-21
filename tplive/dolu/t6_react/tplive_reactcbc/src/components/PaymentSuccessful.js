@@ -5,16 +5,19 @@ import { useLocation } from 'react-router-dom';
 // import { useLocalStorage } from "../context/useLocalStorage";
 import { functions } from '../firebase.js'
 import { connectFunctionsEmulator, httpsCallable } from "firebase/functions";
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import CategoryCartItem from '../components/CategoryCartItem'
 
 export default function PaymentSuccessful() {
     const { state } = useLocation();
     const { id, participantDetails, paymentObj, paymentStatus, selectedCategory, updatePayment } = state;
+    console.log('id', id, ' participantDetails : ', participantDetails, ' paymentObj : ', paymentObj, ' paymentStatus : ', paymentStatus, ' selectedCategory : ', selectedCategory, ' updatePayment : ', updatePayment)
     const [eventDetails, setEventDetails] = useState(window.localStorage.getItem('EventDetails') ? JSON.parse(window.localStorage.getItem('EventDetails')) : null);
     const [registeredEvents, setRegisteredEvents] = useState(null);
     const [partnerList, setPartnerList] = useState(null);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+
     useEffect(() => {
 
         if (updatePayment) {
@@ -56,22 +59,28 @@ export default function PaymentSuccessful() {
     }
     function updatePaymentStatus(paymentObj) {
         setLoading(true);
+        console.log('paymentObj : ', paymentObj, 'paymentStatus : ', paymentStatus)
         var para1 = {};
         para1 = {
             EventID: eventDetails.Eventid,
-            PlayerID: participantDetails.id,
+            PlayerID: participantDetails.PlayerID,
             CategoryList: selectedCategory,
             paymentStatus: paymentStatus,
             paymentAmount: paymentObj.TXNAMOUNT,
             transactionID: paymentObj.TXNID,
             orderID: paymentObj.ORDERID
         };
+        console.log('para1 : ', para1);
         const ret1 = httpsCallable(functions, "updatePaymentStatus");
         ret1(para1).then((result) => {
             getRegisteredEvents();
             setLoading(false);
         })
     }
+    function goBack() {
+        navigate(-1);
+    }
+
     return (
         <div className="container-fluid">
             <div className="row no-gutters">
@@ -98,7 +107,11 @@ export default function PaymentSuccessful() {
 
                         })}
                         {/* <span> * marked event is registered by Partner</span> */}
-
+                        <hr style={{ border: 'none', borderTop: '1px solid #aaa' }} />
+                        <div style={{ textAlign: 'center' }}>
+                            <button onClick={goBack} className="mybutton button5"
+                                style={{ fontWeight: 'bold', textAlign: 'center' }}> &lt;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Back </button>
+                        </div>
                     </div>
                 </div>
             </div>

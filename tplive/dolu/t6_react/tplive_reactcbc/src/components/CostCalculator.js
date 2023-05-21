@@ -40,7 +40,7 @@ export default function CostCalculator(props) {
             <div className='calculator-content'>
                 <div className="row no-gutters">
 
-                    <div className="col-6">
+                    <div className="col-lg-6 col-md-6 col-sm-12">
 
                         <div className="reg-first-form-gender-section">
                             <div className="city-section-inside-div profile-setup-name-email-div">
@@ -50,13 +50,13 @@ export default function CostCalculator(props) {
                                         setHours(valuehours)
                                         calculateValue(valuehours, fees, courtCharge, duration);
                                     }} value={hours} />
-                                    <span style={{ top: '-5px' }}>Total Field/Court Booking Hrs</span>
+                                    <span>Total Field/Court Booking Hrs</span>
                                 </div>
 
                             </div>
                         </div>
                     </div>
-                    <div className="col-6">
+                    <div className="col-lg-6 col-md-6 col-sm-12">
 
                         <div className="reg-first-form-gender-section">
                             <div className="city-section-inside-div profile-setup-name-email-div">
@@ -68,13 +68,13 @@ export default function CostCalculator(props) {
                                         calculateValue(hours, valueefee, courtCharge, duration);
 
                                     }} value={fees} />
-                                    <span style={{ top: '-5px' }}>Entry Fee(Average per entry)</span>
+                                    <span>Entry Fee(Average per entry)</span>
                                 </div>
 
                             </div>
                         </div>
                     </div>
-                    <div className="col-6">
+                    <div className="col-lg-6 col-md-6 col-sm-12">
 
                         <div className="reg-first-form-gender-section">
                             <div className="city-section-inside-div profile-setup-name-email-div">
@@ -85,14 +85,14 @@ export default function CostCalculator(props) {
                                         calculateValue(hours, fees, valuecourtCharge, duration);
 
                                     }} value={courtCharge} />
-                                    <span style={{ top: '-5px' }}>Field/Courts charges per hours </span>
+                                    <span>Field/Courts charges per hours </span>
                                 </div>
 
                             </div>
                         </div>
                     </div>
 
-                    <div className="col-6">
+                    <div className="col-lg-6 col-md-6 col-sm-12">
 
                         <div className="reg-first-form-gender-section">
                             <div className="city-section-inside-div profile-setup-name-email-div">
@@ -104,7 +104,7 @@ export default function CostCalculator(props) {
                                         calculateValue(hours, fees, courtCharge, valueduration);
 
                                     }} value={duration} />
-                                    <span style={{ top: '-5px' }}>Duration on one match (in Minutes) </span>
+                                    <span>Duration on one match (in Minutes) </span>
                                 </div>
 
                             </div>
@@ -112,20 +112,20 @@ export default function CostCalculator(props) {
                     </div>
                     <hr></hr>
 
-                    <div className="col-6">
+                    <div className="col-lg-4 col-md-4 col-sm-12">
                         <div className='calculator-output-div'>
                             <h1>Total Feild / Court Charges</h1>
-                            <h2>{totalCharge} </h2>
+                            <h2 style={{ paddingBottom: '10px' }}>{totalCharge} </h2>
                         </div>
                     </div>
-                    <div className="col-6">
+                    <div className="col-lg-4 col-md-4 col-sm-12">
                         <div className='calculator-output-div'>
                             <h1>Max matches can be played</h1>
-                            <h2>{totalMatches} </h2>
+                            <h2 style={{ paddingBottom: '10px' }}>{totalMatches} </h2>
                         </div>
                     </div>
 
-                    <div className="col-6">
+                    <div className="col-lg-4 col-md-4 col-sm-12">
                         <div className='calculator-output-div'>
                             <h1>Min entries to recover field/court charges</h1>
                             <h2>{minentry} </h2>

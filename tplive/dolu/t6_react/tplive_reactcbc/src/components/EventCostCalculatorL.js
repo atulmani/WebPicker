@@ -36,7 +36,7 @@ export default function EventCostCalculatorL(props) {
                 <div className='calculator-content'>
                     <div className="row no-gutters">
 
-                        <div className="col-6">
+                        <div className="col-lg-6 col-md-6 col-sm-12">
 
                             <div className="reg-first-form-gender-section">
                                 <div className="city-section-inside-div profile-setup-name-email-div">
@@ -46,13 +46,13 @@ export default function EventCostCalculatorL(props) {
                                             setDuration(valueDuration)
                                             calculateValue(valueDuration, enteries, court);
                                         }} value={duration} />
-                                        <span style={{ top: '-5px' }}>Duration of one Match (in Minutes)</span>
+                                        <span>Duration of one Match (in Minutes)</span>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
-                        <div className="col-6">
+                        <div className="col-lg-6 col-md-6 col-sm-12">
 
                             <div className="reg-first-form-gender-section">
                                 <div className="city-section-inside-div profile-setup-name-email-div">
@@ -65,13 +65,13 @@ export default function EventCostCalculatorL(props) {
 
 
                                         }} value={enteries} />
-                                        <span style={{ top: '-5px' }}>Total Enteries</span>
+                                        <span >Total Enteries</span>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
-                        <div className="col-6">
+                        <div className="col-lg-6 col-md-6 col-sm-12">
 
                             <div className="reg-first-form-gender-section">
                                 <div className="city-section-inside-div profile-setup-name-email-div">
@@ -82,7 +82,7 @@ export default function EventCostCalculatorL(props) {
 
                                             calculateValue(duration, enteries, valuecourt)
                                         }} value={court} />
-                                        <span style={{ top: '-5px' }}>Number of Fields / Courts </span>
+                                        <span>Number of Fields / Courts </span>
                                     </div>
 
                                 </div>

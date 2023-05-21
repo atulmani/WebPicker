@@ -19,7 +19,7 @@ export default function ExportEventEntry() {
     const [participantList, setParticipantList] = useState([]);
 
     useEffect(() => {
-        if (user.isLoggedIn) {
+        if (user.isLoggedIn && userDetails !== null) {
             let eventList = [];
             let eventDetails = {};
             if (user.userInfo !== null) {

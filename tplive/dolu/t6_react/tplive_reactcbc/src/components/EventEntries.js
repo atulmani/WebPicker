@@ -97,7 +97,7 @@ export default function EventEntries() {
                         </div>
                         <div className="" style={{ textAlign: 'right', position: 'relative', zIndex: '5' }}>
                             <br />
-                            {eventDetails && true && <ExportExcelComp data={entryCountDetails} fileName={'Entrysummary'} buttonName='Export Entry' />}
+                            {/* {eventDetails && true && <ExportExcelComp data={entryCountDetails} fileName={'Entrysummary'} buttonName='Export Entry' />} */}
 
                             <table className="content-table" style={{ width: '100%' }}>
                                 <thead>

@@ -187,19 +187,20 @@ export default function UserProfileRegisteredEvent(props) {
                 <br />
                 <hr />
 
-                <div style={{ position: 'relative', cursor: 'pointer' }}>
+                <div style={{ position: 'relative', cursor: 'pointer' }} onClick={expandHistory}>
+                    {/* {console.log(expandHistory)} */}
                     {/* <div style={{ position: 'relative', cursor: 'pointer' }} onclick> */}
                     <h4>Participation History</h4>
                     {/* <span className="material-symbols-outlined user-profile-expand-more-arrow" onClick={expandHistory}> */}
-                    <span onClick={expandHistory} className="material-symbols-outlined user-profile-expand-more-arrow"
-                        style={{ transform: expandHistory ? 'translateY(-50%) rotate(180deg)' : '' }}>
+                    <span className="material-symbols-outlined user-profile-expand-more-arrow"
+                        style={{ transform: showHistory ? 'translateY(-50%) rotate(180deg)' : '' }}>
                         expand_more
                     </span>
                 </div>
                 <hr />
 
-                <div style={{ display: 'block' }}>
-                    {/* <div style={{ display: 'block' }}> */}
+                <div style={{ display: showHistory ? 'block' : 'none' }}>
+
                     <div className='user-profile-search'>
                         <input type="text" placeholder='Search Event Name' onChange={(e) => {
                             setSearchKey(e.target.value)

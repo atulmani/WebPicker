@@ -92,16 +92,19 @@ export default function RegisteredProfile() {
         });
     }
     useEffect(() => {
-        if (user.isLoggedIn) {
+        console.log("user : ", user);
+        console.log('userDetails : ', userDetails);
+        if (user.isLoggedIn && userDetails !== null) {
             if (user.userInfo) {
                 setUserEmail(userDetails ? userDetails.Email : '');
             }
             userDetails && fetchData();
         }
         else {
+
             navigate("/PhoneSignUp", { state: { url: 'RegisteredProfile' } });
         }
-    }, [user])
+    }, [])
     function regProfileToFirstSlide(e) {
         e.preventDefault();
         setFlag('first');
@@ -222,44 +225,51 @@ export default function RegisteredProfile() {
                             </div><br /> */}
                         </div>}
 
-                        <div className="reg-participant-outter">
-                            <div className="reg-participant-inner">
-                                {/* <div className="reg-participant-divs" id="regProfileFirstSlide" style={{ transform: ((flag === 'first') ? 'translateX(-0%)' : ((flag === 'second') ? 'translateX(-100%)' : ((flag === 'third') ? 'translateX(-200%)' : ''))) }} > */}
-                                {!addNewFlag && <div className="reg-participant-divs" id="regProfileFirstSlide"  >
+                        {/* <div className="reg-participant-outter"> */}
+                        {/* <div className="reg-participant-inner" style={{ width: '200%' }}> */}
 
-                                    <h3 style={{ fontWeight: '1000', color: '#348DCB', textAlign: 'center' }}>YOUR LIST</h3>
+                        {/* <div className="reg-participant-divs" id="regProfileFirstSlide" style={{ transform: ((flag === 'first') ? 'translateX(-0%)' : ((flag === 'second') ? 'translateX(-100%)' : ((flag === 'third') ? 'translateX(-200%)' : ''))) }} > */}
+                        {!addNewFlag && <div className="reg-participant-divs" id="regProfileFirstSlide"  >
 
-                                    <div className="row no-gutters" id="divParticipant">
+                            <h3 style={{ fontWeight: '1000', color: '#348DCB', textAlign: 'center' }}>YOUR LIST</h3>
 
-                                        <div className="col-lg-4 col-md-6 col-sm-12" style={{
-                                            padding: '0'
-                                        }}>
-                                            <div style={{ padding: '10px' }}>
-                                                < div className="event-registration-participant-card add-paticipant-card"
-                                                    onClick={regProfileToSecondSlide}>
-                                                    <span className="material-symbols-outlined">
-                                                        add
-                                                    </span>
-                                                    <h1>ADD NEW</h1>
-                                                </div>
-                                            </div>
+                            <div className="row no-gutters" id="divParticipant">
+
+                                <div className="col-lg-4 col-md-6 col-sm-12" style={{
+                                    padding: '0'
+                                }}>
+                                    <div style={{ padding: '10px' }}>
+                                        < div className="event-registration-participant-card add-paticipant-card"
+                                            onClick={regProfileToSecondSlide}>
+                                            <span className="material-symbols-outlined">
+                                                add
+                                            </span>
+                                            <h1>ADD NEW</h1>
                                         </div>
+                                    </div>
+                                </div>
 
-                                        {showLoading && <div className="col-lg-4 col-md-6 col-sm-12">
-                                            <lottie-player src="https://lottie.host/35ed7cc5-900e-420b-95d1-cb90642020e7/UV7Rv7AbhO.json" background="transparent" speed="1" style={{ width: '100%', height: '100%' }} loop autoplay></lottie-player>
-                                        </div>}
-
-                                        {participantList && participantList.map((participant) => {
-                                            return <UserProfileCard key={participant.id} participantDetails={participant} calledFrom="RegisteredProfile"></UserProfileCard>
-                                        })}
-
-                                    </div><br />
-                                    <hr style={{ border: 'none', borderTop: '1px solid #aaa' }} />
-
+                                {showLoading && <div className="col-lg-4 col-md-6 col-sm-12">
+                                    <lottie-player src="https://lottie.host/35ed7cc5-900e-420b-95d1-cb90642020e7/UV7Rv7AbhO.json" background="transparent" speed="1" style={{ width: '100%', height: '100%' }} loop autoplay></lottie-player>
                                 </div>}
 
-                            </div>
-                        </div>
+                                {participantList && participantList.map((participant) => {
+                                    return <UserProfileCard key={participant.id} participantDetails={participant} calledFrom="RegisteredProfile"></UserProfileCard>
+                                })}
+
+                            </div><br />
+                            <hr style={{ border: 'none', borderTop: '1px solid #aaa' }} />
+
+                        </div>}
+
+                        {/* <div className="reg-participant-divs" id="regProfileSecondSlide">
+
+                                    <NewMember selectedPlayer={selectedPlayer} addNewMember={addNewMember}></NewMember>
+
+                                </div> */}
+
+                        {/* </div> */}
+                        {/* </div> */}
 
                     </div>
                     {eventDetails && <EDTournamentDetails eventDetails={eventDetails} showRegistration={false} />}

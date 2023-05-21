@@ -85,7 +85,7 @@ export default function UserProfiles() {
     }
     useEffect(() => {
         // getPlayerList();
-        if (user.isLoggedIn) {
+        if (user.isLoggedIn && userDetails !== null) {
             if (user.userInfo) {
                 // console.log('in useEffect selectedPlayer=', selectedPlayer)
                 if (!addNewFlag) {
@@ -207,7 +207,7 @@ export default function UserProfiles() {
             email: player.Email,
             contact: player.Phone,
 
-            image: 'https://tplive-prod--tplive-test-dw5grchb.web.app/img/TPLiVE_Logo.webp',
+            image: 'https://tplive-prod--tplive-test-h1bjje65.web.app/img/TPLiVE_Logo.webp',
             handler: function (response) {
                 // console.log(response);
                 ConfirmPayment(amount, response.razorpay_payment_id, orderId, entry)
@@ -282,8 +282,11 @@ export default function UserProfiles() {
             // setSelectedPlayer('');
             // console.log(participantList);
             setAddNewFlag(flag);
-            setSelectedPlayer(participantList[0].ParticipantID);
-            getRegisteredEvents(participantList && participantList[0] && participantList[0].ParticipantID);
+            if (participantList && participantList.length > 0) {
+                setSelectedPlayer(participantList[0].ParticipantID);
+                getRegisteredEvents(participantList && participantList[0] && participantList[0].ParticipantID);
+
+            }
 
         }
         // else if (flag === false && participantList && participantList[0] && participantList[0].PlayerID !== '') {

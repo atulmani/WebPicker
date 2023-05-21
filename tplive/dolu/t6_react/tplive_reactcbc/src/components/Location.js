@@ -6,6 +6,7 @@ import LocationItemSmall from './LocationItemSmall';
 
 import { functions } from '../firebase.js'
 import { httpsCallable } from "firebase/functions";
+import Loading from './Loading';
 
 
 
@@ -40,6 +41,7 @@ export default function Location(props) {
     return (
         <>
             <section id="city_new">
+                {loading && <Loading></Loading>}
                 <div className="container"><br />
 
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -56,13 +58,15 @@ export default function Location(props) {
                         </center>
                     </div>}
 
-                    <div className="row no-gutters large">
+                    <div className='large'>
+                        <div className="row no-gutters">
 
-                        {locationSummary.map((location) => {
-                            return <LocationItemLarge key={location.City} City={location.City} EventCount={location.EventCount} LocationImage={location.LocationImage} setCity={props.setCity}></LocationItemLarge>
-                        })}
+                            {locationSummary.map((location) => {
+                                return <LocationItemLarge key={location.City} City={location.City} EventCount={location.EventCount} LocationImage={location.LocationImage} setCity={props.setCity}></LocationItemLarge>
+                            })}
 
 
+                        </div>
                     </div>
 
 
