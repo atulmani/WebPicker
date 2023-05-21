@@ -23,6 +23,7 @@ body {
 
 .all-headings h1 {
   width: 80%;
+  font-size: 1.8rem;
 }
 
 .all-headings span {
@@ -67,4 +68,9 @@ body {
   .small {
     display: block;
   }
+}
+
+.big-hr {
+  border: none;
+  border-top: 8px solid #ddd;
 }

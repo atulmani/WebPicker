@@ -1,68 +1,120 @@
-.dahsboard-heading .dahsboard-heading-address-div {
-    position: relative;
+.dashboard-banner {
+    background-image: url('../../../../public/img/banner/1.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 450px;
 }
 
-.dahsboard-heading .dahsboard-heading-address-div h1 {
-    font-size: 1.1rem;
-    margin: 0;
-    font-weight: 600;
+.dashboard-banner .container-fluid {
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.9));
 }
 
-.dahsboard-heading .dahsboard-heading-address-div h2 {
-    margin: 0;
-    font-size: 0.9rem;
-    font-weight: 300;
-    color: var(--grey);
-}
-
-.dahsboard-heading .dahsboard-heading-address-div span {
-    position: absolute;
-    bottom: 2px;
-    left: 150px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    color: var(--grey);
-}
-
-.dahsboard-heading .dahsboard-heading-search-div {
-    /* margin-top: 10px; */
-    position: relative;
-    max-width: 500px;
-    width: 100%;
-}
-
-.dahsboard-heading .dahsboard-heading-search-div input {
-    width: 100%;
-    background: #fff;
-    height: 40px;
-    border: none;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    outline: none;
-    font-size: 0.9rem;
-    color: #444;
-    font-weight: 500;
-    padding: 0 10px 0 40px;
-}
-
-.dahsboard-heading .dahsboard-heading-search-div input::placeholder {
-    color: var(--grey);
-    font-weight: 500;
-}
-
-.dahsboard-heading .dahsboard-heading-search-div span {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.4rem;
-    height: 40px;
-    width: 40px;
+.dashboard-banner .container-fluid .dashboard-banner-inner {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 100%;
+    padding: 10px;
+}
+
+.dashboard-banner .container-fluid .dashboard-banner-inner h1 {
+    font-size: 2.4rem;
+    color: #fff;
+    margin: 0;
+    text-align: center;
+}
+
+.dashboard-banner .container-fluid .dashboard-banner-inner h2 {
+    font-size: 1rem;
+    color: #ddd;
+    font-weight: 300;
+    text-align: center;
+}
+
+.dashboard-banner .dashboard-banner-search {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+}
+
+.dashboard-banner .dashboard-banner-search input {
+    background: #fff;
+    outline: none;
+    border: none;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 60px;
+    padding: 0 20px 0 50px;
+    color: var(--darkgrey);
+    font-size: 0.9rem;
+    font-weight: 400;
+    border-radius: 4px;
+}
+
+.dashboard-banner .dashboard-banner-search input::placeholder {
     color: var(--lightgrey);
-    pointer-events: none;
+}
+
+.dashboard-banner .dashboard-banner-search span {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--lightgrey);
+    font-weight: 200;
+}
+
+.dashboard-banner .dashboard-banner-search-options {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    padding-top: 5px;
+}
+
+.dashboard-banner .dashboard-banner-search-options a {
+    color: #ddd;
+    margin: 0 5px;
+    font-size: 0.8rem;
+}
+
+.below-banner-div {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    transform: translateY(-80px);
+    background: #fff;
+}
+
+.below-banner-card {
+    background: none;
+    border-radius: 10px;
+    width: 100%;
+    padding: 20px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.below-banner-card:hover {
+    background: #eee;
+}
+
+.below-banner-card h1 {
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #444;
+    margin: 0;
+}
+
+.below-banner-card img {
+    width: 40px;
 }
 
 .dashboard-services {
@@ -210,28 +262,10 @@
 .break-div {
     position: relative;
     background: var(--brown);
-    padding: 10px 5px 20px 5px;
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.break-div::before,
-.break-div::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 13px;
-    background: var(--brown);
-}
-
-.break-div::before {
-    left: -12px;
-}
-
-.break-div::after {
-    right: -12px;
 }
 
 .break-div .break-div-content {
