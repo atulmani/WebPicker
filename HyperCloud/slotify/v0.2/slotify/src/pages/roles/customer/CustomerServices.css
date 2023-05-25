@@ -1,0 +1,206 @@
+.customer-services-heading {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+}
+
+.customer-services-heading img {
+    width: 100%;
+    position: relative;
+    top: -180px;
+}
+
+@media (max-width: 992px) {
+    .customer-services-heading {
+        height: auto;
+    }
+
+    .customer-services-heading img {
+        top: initial;
+    }
+}
+
+.customer-services-heading .back-search-btn-div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.customer-services-heading .back-search-btn-div span {
+    background: #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.customer-services-below-heading h1 {
+    font-size: 2rem;
+}
+
+.customer-services-below-heading div {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.customer-services-below-heading div span {
+    font-size: 1.3rem;
+    color: var(--darkgrey);
+    font-variation-settings:
+        'FILL' 1;
+}
+
+.customer-services-below-heading div small {
+    color: var(--darkgrey);
+    font-weight: 400;
+    padding-left: 15px;
+}
+
+.customer-services-card {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    padding: 20px 0 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.customer-services-card .customer-services-card-details {
+    padding-right: 10px;
+}
+
+.customer-services-card .customer-services-card-details h1 {
+    font-size: 1.3rem;
+    color: #222;
+    padding-bottom: 5px;
+}
+
+.customer-services-card .customer-services-card-details h1 strong {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--darkgrey);
+}
+
+.customer-services-card .customer-services-card-details div {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.customer-services-card .customer-services-card-details div span {
+    color: var(--darkgrey);
+    font-size: 1.2rem;
+    font-variation-settings:
+        'FILL' 1;
+}
+
+.customer-services-card .customer-services-card-details div small {
+    padding-left: 5px;
+    color: var(--darkgrey);
+}
+
+.customer-services-card .customer-services-card-details .border-bottom-div {
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #ddd;
+}
+
+.customer-services-card .customer-services-card-details .border-bottom-div h2 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #000;
+    margin: 0;
+}
+
+.customer-services-card .customer-services-card-details .border-bottom-div h3 {
+    padding-left: 25px;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: #222;
+    margin: 0;
+    position: relative;
+}
+
+.customer-services-card .customer-services-card-details .border-bottom-div h3::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background: #888;
+    border-radius: 50%;
+}
+
+.customer-services-card .customer-services-card-details h4 {
+    font-size: 0.9rem;
+    color: var(--lightgrey);
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+.customer-services-card .customer-services-card-details h4.details-list {
+    position: relative;
+    padding-left: 15px;
+}
+
+.customer-services-card .customer-services-card-details h4.details-list::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    background: var(--darkgrey);
+    border-radius: 50%;
+}
+
+.customer-services-card .customer-services-card-details h4.details-list strong {
+    color: #222;
+    font-weight: 500;
+}
+
+.customer-services-card .customer-services-card-details h5 {
+    font-size: 1.2rem;
+    color: var(--blue);
+    font-weight: 400;
+}
+
+.customer-services-card .customer-services-card-details button {
+    width: auto;
+    padding: 0 20px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.customer-services-card .customer-services-card-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.customer-services-card .customer-services-card-img img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.customer-services-card .customer-services-card-img button {
+    position: relative;
+    top: -10px;
+    background: var(--blue);
+    /* border: 1px solid var(--brown); */
+    color: #fff;
+    font-weight: 400;
+    font-size: 0.9rem;
+}

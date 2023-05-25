@@ -1,11 +1,15 @@
 import './App.css';
-import CustomerDashboard from './pages/roles/customer/CustomerDashboard';
+// import CustomerDashboard from './pages/roles/customer/CustomerDashboard';
+import CustomerServices from './pages/roles/customer/CustomerServices';
+import CustomerServiceDetails from './pages/roles/customer/CustomerServiceDetails';
 
 function App() {
   return (
-    <div className='container-fluid'>
-      <CustomerDashboard></CustomerDashboard>
-    </div>
+    <>
+      <CustomerServices></CustomerServices>
+      <CustomerServiceDetails></CustomerServiceDetails>
+      {/* <CustomerDashboard></CustomerDashboard> */}
+    </>
   );
 }
 
