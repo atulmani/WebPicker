@@ -95,6 +95,7 @@ exports.updateEventFlag_ShowParticipant = events.updateEventFlag_ShowParticipant
 exports.updateEventFlag_ShowParticipantPostPayment = events.updateEventFlag_ShowParticipantPostPayment;
 exports.updateEventFlag_PublishDraw = events.updateEventFlag_PublishDraw;
 exports.updateEventFlag_PublishResult = events.updateEventFlag_PublishResult;
+exports.getAllEventWithLocation = events.getAllEventWithLocation;
 
 
 exports.logEntryAdd = entry.logEntryAdd;

@@ -167,7 +167,7 @@ export default function HomePage(props) {
                 {/* {console.log(loading)} */}
                 {loading && <Loading />}
                 <section style={{ background: 'linear-Gradient(#333C5D 95%,rgba(0,0,0,0))' }}>
-                    <div style={{ paddingTop: '0px' }}>
+                    <div style={{ position: 'relative', top: '-20px' }}>
                         {/* {console.log(this.state.eventList)}
                             {console.log('itemsExists', this.state.itemsExists)} */}
                         {itemsExists && <OwlCarousel
@@ -191,7 +191,7 @@ export default function HomePage(props) {
                         >
 
                             {eventList.map((events) => {
-                                return <div className="item" key={events.Eventid}>
+                                return <div className="item" style={{ marginTop: '0' }} key={events.Eventid}>
                                     {/* <BannerItemSmallHP
                                             eventLogoURL={events.EventLogo} /> */}
                                     {index = eventCount.findIndex(e => e.EventID === events.Eventid)}
@@ -213,7 +213,7 @@ export default function HomePage(props) {
                         </OwlCarousel>
                         }
                     </div><br />
-                </section><br />
+                </section>
             </div >
 
         </div >

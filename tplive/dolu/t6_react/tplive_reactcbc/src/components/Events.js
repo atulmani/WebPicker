@@ -56,11 +56,11 @@ export default function Events() {
     async function getEventList() {
         // const getEventList = async () => {
         console.log('in getEventList');
-        const eventSummaryBySports = httpsCallable(functions, "getAllEventWithEventStatusAndLocation");
+        const eventSummaryBySports = httpsCallable(functions, "getAllEventWithLocation");
         // OrganizationName
         setLoading(true);
         let para = {
-            eventStatus: "Active",
+
             City: city ? city : 'All',
         };
         return await eventSummaryBySports(para)
@@ -71,7 +71,10 @@ export default function Events() {
                 var newData = [];
                 var eventSDate = '';
                 var eventEDate = '';
+                // console.log(data)
                 data.forEach(element => {
+                    eventEDate = '';
+                    eventSDate = '';
                     if (element.EventStartDate) {
                         refdate = new Date(element.EventStartDate._seconds * 1000);
                         // element.EventStartDate = refdate.toLocaleDateString("en-IN", options);
@@ -80,9 +83,15 @@ export default function Events() {
                     else {
                         eventSDate = "";
                     }
-                    var eDate = new Date(element.EventEndDate._seconds * 1000 + 60 * 60 * 24 * 1000);
-                    //element.EventEndDate = eDate.toLocaleDateString("en-IN", options);
-                    eventEDate = eDate.toLocaleDateString("en-IN", options);
+                    if (element.EventEndDate) {
+                        var eDate = new Date(element.EventEndDate._seconds * 1000 + 60 * 60 * 24 * 1000);
+                        //element.EventEndDate = eDate.toLocaleDateString("en-IN", options);
+                        eventEDate = eDate.toLocaleDateString("en-IN", options);
+
+                    }
+                    else {
+                        eventEDate = '';
+                    }
                     if (refdate <= today && eDate >= today && element.EventStatus.toUpperCase() === 'ACTIVE') {
                         element.isLive = true;
                     } else {

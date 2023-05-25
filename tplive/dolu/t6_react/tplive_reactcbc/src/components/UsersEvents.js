@@ -68,7 +68,7 @@ export default function UsersEvents() {
             if (user.userInfo !== null) {
                 populateData();
             } else {
-                navigate("/PhoneSignUp", { state: { url: 'ExportEventEntry' } });
+                navigate("/PhoneSignUp", { state: { url: 'UserProfile' } });
             }
         }
     }, [])

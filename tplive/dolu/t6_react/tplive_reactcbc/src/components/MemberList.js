@@ -105,7 +105,7 @@ export default function MemberList(props) {
                         setLoading(false);
                     });
                 } else {
-                    navigate("/PhoneSignUp", { state: { url: 'ExportEventEntry' } });
+                    navigate("/PhoneSignUp", { state: { url: 'UserProfile' } });
                 }
             }
         }

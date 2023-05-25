@@ -4,6 +4,8 @@
     border-radius: 4px;
     overflow: hidden;
     cursor: pointer;
+    padding-top: 0;
+    margin-top: 0 !important;
 }
 
 .event-display-card .content {
@@ -280,17 +282,21 @@
     height: 100%;
     outline: none;
     background: none !important;
+    /* background: rgba(0, 0, 0, 0.2) !important; */
 }
 
 .owl-nav button .full-nav-arrow {
     display: flex;
     align-items: center;
     height: calc(100% - 28px);
+    background: red;
+    z-index: 999;
+    pointer-events: all;
 }
 
 .owl-nav button .full-nav-arrow.left {
     transform: translateY(-0px) translateX(-5px);
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)) !important;
 }
 
 .owl-nav button .full-nav-arrow.right {

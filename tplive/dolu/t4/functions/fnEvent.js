@@ -727,81 +727,85 @@ exports.getAllEventWithEventStatusAndLocation =
                 .where("EventStatus", "not-in", ['ACTIVE', 'Active', 'active', 'INACTIVE', 'Inactive', 'inactive'])
                 .orderBy("EventStartDate", "desc").limit(10 - cntResult).get().then((changes) => {
                   changes.forEach(doc1 => {
-                    resultList.push({
-                      Eventid: doc1.id,
-                      EventName: doc1.data().EventName,
-                      EventDetails: doc1.data().EventDetails,
-                      EventType: doc1.data().EventType,
-                      EventStatus: doc1.data().EventStatus,
-                      OrganizationID: doc1.data().OrganizationID,
-                      OrganizerID: doc1.data().OrganizerID,
-                      OrganizationName: doc1.data().OrganizationName,
-                      EventOwnerName: doc1.data().EventOwnerName,
-                      EventOwnerEmail: doc1.data().EventOwnerEmail,
-                      EventOwnerPhone: doc1.data().EventOwnerPhone,
-                      OrganizerLogo: doc1.data().OrganizerLogo,
-                      EventLogo: doc1.data().EventLogo,
-                      ThumbImage1: doc1.data().ThumbImage1,
-                      ThumbImage2: doc1.data().ThumbImage2,
-                      ThumbImage3: doc1.data().ThumbImage3,
-                      ThumbImage4: doc1.data().ThumbImage4,
+                    if (cntResult <= 10) {
+                      cntResult = cntResult + 1;
 
-                      EventCode: doc1.data().EventCode,
-                      EventMode: doc1.data().EventMode,
-                      EntryCount: doc1.data().EntryCount,
-                      CompletedCount: doc1.data().CompletedCount,
-                      CategoryDetails: doc1.data().CategoryDetails,
+                      resultList.push({
+                        Eventid: doc1.id,
+                        EventName: doc1.data().EventName,
+                        EventDetails: doc1.data().EventDetails,
+                        EventType: doc1.data().EventType,
+                        EventStatus: doc1.data().EventStatus,
+                        OrganizationID: doc1.data().OrganizationID,
+                        OrganizerID: doc1.data().OrganizerID,
+                        OrganizationName: doc1.data().OrganizationName,
+                        EventOwnerName: doc1.data().EventOwnerName,
+                        EventOwnerEmail: doc1.data().EventOwnerEmail,
+                        EventOwnerPhone: doc1.data().EventOwnerPhone,
+                        OrganizerLogo: doc1.data().OrganizerLogo,
+                        EventLogo: doc1.data().EventLogo,
+                        ThumbImage1: doc1.data().ThumbImage1,
+                        ThumbImage2: doc1.data().ThumbImage2,
+                        ThumbImage3: doc1.data().ThumbImage3,
+                        ThumbImage4: doc1.data().ThumbImage4,
 
-                      SportCode: doc1.data().SportCode,
+                        EventCode: doc1.data().EventCode,
+                        EventMode: doc1.data().EventMode,
+                        EntryCount: doc1.data().EntryCount,
+                        CompletedCount: doc1.data().CompletedCount,
+                        CategoryDetails: doc1.data().CategoryDetails,
 
-                      MinimumFee: doc1.data().MinimumFee,
-                      MaximumFee: doc1.data().MaximumFee,
+                        SportCode: doc1.data().SportCode,
 
-                      SportName: doc1.data().SportName,
-                      EventStartDate: doc1.data().EventStartDate,
-                      EventEndDate: doc1.data().EventEndDate,
-                      EventVenue: doc1.data().EventVenue,
-                      City: doc1.data().City,
-                      State: doc1.data().State,
-                      RegistrationStartDate: doc1.data().RegistrationStartDate,
-                      RegistrationEndDate: doc1.data().RegistrationEndDate,
-                      WithdrawalEndDate: doc1.data().WithdrawalEndDate,
-                      PaymentMode: doc1.data().PaymentMode,
-                      ApprovalStatus: doc1.data().ApprovalStatus,
-                      EventStatus: doc1.data().EventStatus,
-                      Comments: doc1.data().Comments,
+                        MinimumFee: doc1.data().MinimumFee,
+                        MaximumFee: doc1.data().MaximumFee,
 
-                      RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
-                      PaymentOpenFlag: doc1.data().PaymentOpenFlag,
-                      ShowParticipantFlag: doc1.data().ShowParticipantFlag,
-                      ShowParticipantPostPaymentFlag: doc1.data().ShowParticipantPostPaymentFlag,
-                      DrawPublishedFlag: doc1.data().DrawPublishedFlag,
-                      //to be added
-                      LocationMap: doc1.data().LocationMap,
-                      VenueContact: doc1.data().VenueContact,
-                      MaxEntryForParticipant: doc1.data().MaxEntryForParticipant,
-                      ConvenienceCharge: doc1.data().ConvenienceCharge,
-                      IsMiscellaneousChargeMandatory: doc1.data().IsMiscellaneousChargeMandatory,
-                      MiscellaneousChargeRemark: doc1.data().MiscellaneousChargeRemark,
-                      MiscellaneousChargeFees: doc1.data().MiscellaneousChargeFees,
-                      DiscountRemarks: doc1.data().DiscountRemarks,
-                      DiscountValue: doc1.data().DiscountValue,
-                      OnlinePaymentModeFlag: doc1.data().OnlinePaymentModeFlag,
+                        SportName: doc1.data().SportName,
+                        EventStartDate: doc1.data().EventStartDate,
+                        EventEndDate: doc1.data().EventEndDate,
+                        EventVenue: doc1.data().EventVenue,
+                        City: doc1.data().City,
+                        State: doc1.data().State,
+                        RegistrationStartDate: doc1.data().RegistrationStartDate,
+                        RegistrationEndDate: doc1.data().RegistrationEndDate,
+                        WithdrawalEndDate: doc1.data().WithdrawalEndDate,
+                        PaymentMode: doc1.data().PaymentMode,
+                        ApprovalStatus: doc1.data().ApprovalStatus,
+                        EventStatus: doc1.data().EventStatus,
+                        Comments: doc1.data().Comments,
 
-                      NoticeBoard: doc1.data().NoticeBoard,
-                      Announcement: doc1.data().Announcement,
-                      RulesAndRegulations: doc1.data().RulesAndRegulations,
-                      CloseEventFlag: doc1.data().CloseEventFlag,
-                      //RegistrationStatusOnFlag: doc1.data().RegistrationStatusOnFlag,
-                      RegistrationCompletePostPaymentFlag: doc1.data().RegistrationCompletePostPaymentFlag,
-                      OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
-                      PublishDrawFlag: doc1.data().PublishDrawFlag,
-                      PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
-                      PublishResultFlag: doc1.data().PublishResultFlag,
-                      PublishScheduleFlag: doc1.data().PublishScheduleFlag,
-                      PublishGalleryFlag: doc1.data().PublishGalleryFlag,
+                        RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
+                        PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+                        ShowParticipantFlag: doc1.data().ShowParticipantFlag,
+                        ShowParticipantPostPaymentFlag: doc1.data().ShowParticipantPostPaymentFlag,
+                        DrawPublishedFlag: doc1.data().DrawPublishedFlag,
+                        //to be added
+                        LocationMap: doc1.data().LocationMap,
+                        VenueContact: doc1.data().VenueContact,
+                        MaxEntryForParticipant: doc1.data().MaxEntryForParticipant,
+                        ConvenienceCharge: doc1.data().ConvenienceCharge,
+                        IsMiscellaneousChargeMandatory: doc1.data().IsMiscellaneousChargeMandatory,
+                        MiscellaneousChargeRemark: doc1.data().MiscellaneousChargeRemark,
+                        MiscellaneousChargeFees: doc1.data().MiscellaneousChargeFees,
+                        DiscountRemarks: doc1.data().DiscountRemarks,
+                        DiscountValue: doc1.data().DiscountValue,
+                        OnlinePaymentModeFlag: doc1.data().OnlinePaymentModeFlag,
 
-                    });
+                        NoticeBoard: doc1.data().NoticeBoard,
+                        Announcement: doc1.data().Announcement,
+                        RulesAndRegulations: doc1.data().RulesAndRegulations,
+                        CloseEventFlag: doc1.data().CloseEventFlag,
+                        //RegistrationStatusOnFlag: doc1.data().RegistrationStatusOnFlag,
+                        RegistrationCompletePostPaymentFlag: doc1.data().RegistrationCompletePostPaymentFlag,
+                        OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
+                        PublishDrawFlag: doc1.data().PublishDrawFlag,
+                        PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+                        PublishResultFlag: doc1.data().PublishResultFlag,
+                        PublishScheduleFlag: doc1.data().PublishScheduleFlag,
+                        PublishGalleryFlag: doc1.data().PublishGalleryFlag,
+
+                      });
+                    }
                     //console.log(resultList);
                   });
                   return resultList;
@@ -905,87 +909,285 @@ exports.getAllEventWithEventStatusAndLocation =
                 .where("City", "==", City)
                 .orderBy("EventStartDate", "desc").limit(10 - cntResult).get().then((changes) => {
                   changes.forEach(doc1 => {
-                    resultList.push({
-                      Eventid: doc1.id,
-                      EventName: doc1.data().EventName,
-                      EventDetails: doc1.data().EventDetails,
-                      EventType: doc1.data().EventType,
-                      EventStatus: doc1.data().EventStatus,
-                      OrganizationID: doc1.data().OrganizationID,
-                      OrganizerID: doc1.data().OrganizerID,
-                      EventOwnerName: doc1.data().EventOwnerName,
-                      EventOwnerEmail: doc1.data().EventOwnerEmail,
-                      EventOwnerPhone: doc1.data().EventOwnerPhone,
-                      OrganizerLogo: doc1.data().OrganizerLogo,
+                    if (cntResult <= 10) {
+                      cntResult = cntResult + 1;
+                      resultList.push({
+                        Eventid: doc1.id,
+                        EventName: doc1.data().EventName,
+                        EventDetails: doc1.data().EventDetails,
+                        EventType: doc1.data().EventType,
+                        EventStatus: doc1.data().EventStatus,
+                        OrganizationID: doc1.data().OrganizationID,
+                        OrganizerID: doc1.data().OrganizerID,
+                        EventOwnerName: doc1.data().EventOwnerName,
+                        EventOwnerEmail: doc1.data().EventOwnerEmail,
+                        EventOwnerPhone: doc1.data().EventOwnerPhone,
+                        OrganizerLogo: doc1.data().OrganizerLogo,
 
-                      OrganizationName: doc1.data().OrganizationName,
-                      EventLogo: doc1.data().EventLogo,
-                      ThumbImage1: doc1.data().ThumbImage1,
-                      ThumbImage2: doc1.data().ThumbImage2,
-                      ThumbImage3: doc1.data().ThumbImage3,
-                      ThumbImage4: doc1.data().ThumbImage4,
+                        OrganizationName: doc1.data().OrganizationName,
+                        EventLogo: doc1.data().EventLogo,
+                        ThumbImage1: doc1.data().ThumbImage1,
+                        ThumbImage2: doc1.data().ThumbImage2,
+                        ThumbImage3: doc1.data().ThumbImage3,
+                        ThumbImage4: doc1.data().ThumbImage4,
 
-                      EventCode: doc1.data().EventCode,
-                      EventMode: doc1.data().EventMode,
-                      EntryCount: doc1.data().EntryCount,
-                      CompletedCount: doc1.data().CompletedCount,
-                      CategoryDetails: doc1.data().CategoryDetails,
+                        EventCode: doc1.data().EventCode,
+                        EventMode: doc1.data().EventMode,
+                        EntryCount: doc1.data().EntryCount,
+                        CompletedCount: doc1.data().CompletedCount,
+                        CategoryDetails: doc1.data().CategoryDetails,
 
-                      SportCode: doc1.data().SportCode,
+                        SportCode: doc1.data().SportCode,
 
-                      MinimumFee: doc1.data().MinimumFee,
-                      MaximumFee: doc1.data().MaximumFee,
+                        MinimumFee: doc1.data().MinimumFee,
+                        MaximumFee: doc1.data().MaximumFee,
 
-                      SportName: doc1.data().SportName,
-                      EventStartDate: doc1.data().EventStartDate,
-                      EventEndDate: doc1.data().EventEndDate,
-                      EventVenue: doc1.data().EventVenue,
-                      City: doc1.data().City,
-                      State: doc1.data().State,
-                      RegistrationStartDate: doc1.data().RegistrationStartDate,
-                      RegistrationEndDate: doc1.data().RegistrationEndDate,
-                      WithdrawalEndDate: doc1.data().WithdrawalEndDate,
-                      PaymentMode: doc1.data().PaymentMode,
-                      ApprovalStatus: doc1.data().ApprovalStatus,
-                      EventStatus: doc1.data().EventStatus,
-                      Comments: doc1.data().Comments,
+                        SportName: doc1.data().SportName,
+                        EventStartDate: doc1.data().EventStartDate,
+                        EventEndDate: doc1.data().EventEndDate,
+                        EventVenue: doc1.data().EventVenue,
+                        City: doc1.data().City,
+                        State: doc1.data().State,
+                        RegistrationStartDate: doc1.data().RegistrationStartDate,
+                        RegistrationEndDate: doc1.data().RegistrationEndDate,
+                        WithdrawalEndDate: doc1.data().WithdrawalEndDate,
+                        PaymentMode: doc1.data().PaymentMode,
+                        ApprovalStatus: doc1.data().ApprovalStatus,
+                        EventStatus: doc1.data().EventStatus,
+                        Comments: doc1.data().Comments,
 
-                      RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
-                      PaymentOpenFlag: doc1.data().PaymentOpenFlag,
-                      ShowParticipantFlag: doc1.data().ShowParticipantFlag,
-                      ShowParticipantPostPaymentFlag: doc1.data().ShowParticipantPostPaymentFlag,
-                      DrawPublishedFlag: doc1.data().DrawPublishedFlag,
-                      //to be added
-                      LocationMap: doc1.data().LocationMap,
-                      VenueContact: doc1.data().VenueContact,
-                      MaxEntryForParticipant: doc1.data().MaxEntryForParticipant,
-                      ConvenienceCharge: doc1.data().ConvenienceCharge,
-                      IsMiscellaneousChargeMandatory: doc1.data().IsMiscellaneousChargeMandatory,
-                      MiscellaneousChargeRemark: doc1.data().MiscellaneousChargeRemark,
-                      MiscellaneousChargeFees: doc1.data().MiscellaneousChargeFees,
-                      DiscountRemarks: doc1.data().DiscountRemarks,
-                      DiscountValue: doc1.data().DiscountValue,
-                      OnlinePaymentModeFlag: doc1.data().OnlinePaymentModeFlag,
+                        RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
+                        PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+                        ShowParticipantFlag: doc1.data().ShowParticipantFlag,
+                        ShowParticipantPostPaymentFlag: doc1.data().ShowParticipantPostPaymentFlag,
+                        DrawPublishedFlag: doc1.data().DrawPublishedFlag,
+                        //to be added
+                        LocationMap: doc1.data().LocationMap,
+                        VenueContact: doc1.data().VenueContact,
+                        MaxEntryForParticipant: doc1.data().MaxEntryForParticipant,
+                        ConvenienceCharge: doc1.data().ConvenienceCharge,
+                        IsMiscellaneousChargeMandatory: doc1.data().IsMiscellaneousChargeMandatory,
+                        MiscellaneousChargeRemark: doc1.data().MiscellaneousChargeRemark,
+                        MiscellaneousChargeFees: doc1.data().MiscellaneousChargeFees,
+                        DiscountRemarks: doc1.data().DiscountRemarks,
+                        DiscountValue: doc1.data().DiscountValue,
+                        OnlinePaymentModeFlag: doc1.data().OnlinePaymentModeFlag,
 
-                      NoticeBoard: doc1.data().NoticeBoard,
-                      Announcement: doc1.data().Announcement,
-                      RulesAndRegulations: doc1.data().RulesAndRegulations,
-                      CloseEventFlag: doc1.data().CloseEventFlag,
-                      //RegistrationStatusOnFlag: doc1.data().RegistrationStatusOnFlag,
-                      RegistrationCompletePostPaymentFlag: doc1.data().RegistrationCompletePostPaymentFlag,
-                      OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
-                      PublishDrawFlag: doc1.data().PublishDrawFlag,
-                      PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
-                      PublishResultFlag: doc1.data().PublishResultFlag,
-                      PublishScheduleFlag: doc1.data().PublishScheduleFlag,
-                      PublishGalleryFlag: doc1.data().PublishGalleryFlag,
+                        NoticeBoard: doc1.data().NoticeBoard,
+                        Announcement: doc1.data().Announcement,
+                        RulesAndRegulations: doc1.data().RulesAndRegulations,
+                        CloseEventFlag: doc1.data().CloseEventFlag,
+                        //RegistrationStatusOnFlag: doc1.data().RegistrationStatusOnFlag,
+                        RegistrationCompletePostPaymentFlag: doc1.data().RegistrationCompletePostPaymentFlag,
+                        OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
+                        PublishDrawFlag: doc1.data().PublishDrawFlag,
+                        PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+                        PublishResultFlag: doc1.data().PublishResultFlag,
+                        PublishScheduleFlag: doc1.data().PublishScheduleFlag,
+                        PublishGalleryFlag: doc1.data().PublishGalleryFlag,
 
-                    });
+                      });
+                    }
+
                     //console.log(resultList);
                   });
                   return resultList;
                 });
             }
+          });
+
+      }
+    });
+
+exports.getAllEventWithLocation =
+  functions
+    .region('asia-south1')
+    .https.onCall(async (data, context) => {
+      //   throw new functions.https.HttpError(
+      //     "unauthenticatied",
+      //     "only authenticated user can call this"
+      //   );
+      // }
+      let resultList = [];
+      var cntResult = 0;
+      const City = data.City;
+
+      if (City === "" || City === 'All') {
+        //console.log(resultList);
+        return await admin.firestore().collection("EventList")
+          .orderBy("EventStartDate", "desc").get().then((changes) => {
+            changes.forEach(doc1 => {
+              resultList.push({
+                Eventid: doc1.id,
+                EventName: doc1.data().EventName,
+                EventDetails: doc1.data().EventDetails,
+                EventType: doc1.data().EventType,
+                EventStatus: doc1.data().EventStatus,
+                OrganizationID: doc1.data().OrganizationID,
+                OrganizationName: doc1.data().OrganizationName,
+                OrganizerID: doc1.data().OrganizerID,
+                EventOwnerName: doc1.data().EventOwnerName,
+                EventOwnerEmail: doc1.data().EventOwnerEmail,
+                EventOwnerPhone: doc1.data().EventOwnerPhone,
+                OrganizerLogo: doc1.data().OrganizerLogo,
+                EventLogo: doc1.data().EventLogo,
+                ThumbImage1: doc1.data().ThumbImage1,
+                ThumbImage2: doc1.data().ThumbImage2,
+                ThumbImage3: doc1.data().ThumbImage3,
+                ThumbImage4: doc1.data().ThumbImage4,
+
+                EventCode: doc1.data().EventCode,
+                EventMode: doc1.data().EventMode,
+                EntryCount: doc1.data().EntryCount,
+                CompletedCount: doc1.data().CompletedCount,
+                CategoryDetails: doc1.data().CategoryDetails,
+
+                SportCode: doc1.data().SportCode,
+
+                MinimumFee: doc1.data().MinimumFee,
+                MaximumFee: doc1.data().MaximumFee,
+
+                SportName: doc1.data().SportName,
+                EventStartDate: doc1.data().EventStartDate,
+                EventEndDate: doc1.data().EventEndDate,
+                EventVenue: doc1.data().EventVenue,
+                City: doc1.data().City,
+                State: doc1.data().State,
+                RegistrationStartDate: doc1.data().RegistrationStartDate,
+                RegistrationEndDate: doc1.data().RegistrationEndDate,
+                WithdrawalEndDate: doc1.data().WithdrawalEndDate,
+                PaymentMode: doc1.data().PaymentMode,
+                ApprovalStatus: doc1.data().ApprovalStatus,
+                EventStatus: doc1.data().EventStatus,
+                Comments: doc1.data().Comments,
+
+                RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
+                PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+                ShowParticipantFlag: doc1.data().ShowParticipantFlag,
+                ShowParticipantPostPaymentFlag: doc1.data().ShowParticipantPostPaymentFlag,
+                DrawPublishedFlag: doc1.data().DrawPublishedFlag,
+                //to be added
+                LocationMap: doc1.data().LocationMap,
+                VenueContact: doc1.data().VenueContact,
+                MaxEntryForParticipant: doc1.data().MaxEntryForParticipant,
+                ConvenienceCharge: doc1.data().ConvenienceCharge,
+                IsMiscellaneousChargeMandatory: doc1.data().IsMiscellaneousChargeMandatory,
+                MiscellaneousChargeRemark: doc1.data().MiscellaneousChargeRemark,
+                MiscellaneousChargeFees: doc1.data().MiscellaneousChargeFees,
+                DiscountRemarks: doc1.data().DiscountRemarks,
+                DiscountValue: doc1.data().DiscountValue,
+                OnlinePaymentModeFlag: doc1.data().OnlinePaymentModeFlag,
+
+                NoticeBoard: doc1.data().NoticeBoard,
+                Announcement: doc1.data().Announcement,
+                RulesAndRegulations: doc1.data().RulesAndRegulations,
+                CloseEventFlag: doc1.data().CloseEventFlag,
+                //RegistrationStatusOnFlag: doc1.data().RegistrationStatusOnFlag,
+                RegistrationCompletePostPaymentFlag: doc1.data().RegistrationCompletePostPaymentFlag,
+                OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
+                PublishDrawFlag: doc1.data().PublishDrawFlag,
+                PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+                PublishResultFlag: doc1.data().PublishResultFlag,
+                PublishScheduleFlag: doc1.data().PublishScheduleFlag,
+                PublishGalleryFlag: doc1.data().PublishGalleryFlag,
+
+              });
+              cntResult = cntResult + 1;
+
+            })
+          })
+          .then(async function (rec) {
+            return resultList;
+          });
+      } else {
+        return await admin.firestore().collection("EventList")
+          .where("City", "==", City)
+          .orderBy("EventStartDate", "desc").get().then((changes) => {
+            changes.forEach(doc1 => {
+              resultList.push({
+                Eventid: doc1.id,
+                EventName: doc1.data().EventName,
+                EventDetails: doc1.data().EventDetails,
+                EventType: doc1.data().EventType,
+                EventStatus: doc1.data().EventStatus,
+                OrganizationID: doc1.data().OrganizationID,
+                OrganizerID: doc1.data().OrganizerID,
+                EventOwnerName: doc1.data().EventOwnerName,
+                EventOwnerEmail: doc1.data().EventOwnerEmail,
+                EventOwnerPhone: doc1.data().EventOwnerPhone,
+                OrganizerLogo: doc1.data().OrganizerLogo,
+                EventLogo: doc1.data().EventLogo,
+                ThumbImage1: doc1.data().ThumbImage1,
+                ThumbImage2: doc1.data().ThumbImage2,
+                ThumbImage3: doc1.data().ThumbImage3,
+                ThumbImage4: doc1.data().ThumbImage4,
+
+                OrganizationName: doc1.data().OrganizationName,
+                EventCode: doc1.data().EventCode,
+                EventMode: doc1.data().EventMode,
+                EntryCount: doc1.data().EntryCount,
+                CompletedCount: doc1.data().CompletedCount,
+                CategoryDetails: doc1.data().CategoryDetails,
+
+                SportCode: doc1.data().SportCode,
+
+                MinimumFee: doc1.data().MinimumFee,
+                MaximumFee: doc1.data().MaximumFee,
+
+                SportName: doc1.data().SportName,
+                EventStartDate: doc1.data().EventStartDate,
+                EventEndDate: doc1.data().EventEndDate,
+                EventVenue: doc1.data().EventVenue,
+                City: doc1.data().City,
+                State: doc1.data().State,
+                RegistrationStartDate: doc1.data().RegistrationStartDate,
+                RegistrationEndDate: doc1.data().RegistrationEndDate,
+                WithdrawalEndDate: doc1.data().WithdrawalEndDate,
+                PaymentMode: doc1.data().PaymentMode,
+                ApprovalStatus: doc1.data().ApprovalStatus,
+                EventStatus: doc1.data().EventStatus,
+                Comments: doc1.data().Comments,
+
+                RegistrationOpenFlag: doc1.data().RegistrationOpenFlag,
+                PaymentOpenFlag: doc1.data().PaymentOpenFlag,
+                ShowParticipantFlag: doc1.data().ShowParticipantFlag,
+                ShowParticipantPostPaymentFlag: doc1.data().ShowParticipantPostPaymentFlag,
+                DrawPublishedFlag: doc1.data().DrawPublishedFlag,
+                //to be added
+                LocationMap: doc1.data().LocationMap,
+                VenueContact: doc1.data().VenueContact,
+                MaxEntryForParticipant: doc1.data().MaxEntryForParticipant,
+                ConvenienceCharge: doc1.data().ConvenienceCharge,
+                IsMiscellaneousChargeMandatory: doc1.data().IsMiscellaneousChargeMandatory,
+                MiscellaneousChargeRemark: doc1.data().MiscellaneousChargeRemark,
+                MiscellaneousChargeFees: doc1.data().MiscellaneousChargeFees,
+                DiscountRemarks: doc1.data().DiscountRemarks,
+                DiscountValue: doc1.data().DiscountValue,
+                OnlinePaymentModeFlag: doc1.data().OnlinePaymentModeFlag,
+
+                NoticeBoard: doc1.data().NoticeBoard,
+                Announcement: doc1.data().Announcement,
+                RulesAndRegulations: doc1.data().RulesAndRegulations,
+                CloseEventFlag: doc1.data().CloseEventFlag,
+                //RegistrationStatusOnFlag: doc1.data().RegistrationStatusOnFlag,
+                RegistrationCompletePostPaymentFlag: doc1.data().RegistrationCompletePostPaymentFlag,
+                OnlinePaymentGatewayFlag: doc1.data().OnlinePaymentGatewayFlag,
+                PublishDrawFlag: doc1.data().PublishDrawFlag,
+                PublishSeedEntryFlag: doc1.data().PublishSeedEntryFlag,
+                PublishResultFlag: doc1.data().PublishResultFlag,
+                PublishScheduleFlag: doc1.data().PublishScheduleFlag,
+                PublishGalleryFlag: doc1.data().PublishGalleryFlag,
+
+              });
+              cntResult = cntResult + 1;
+
+              //console.log(resultList);
+            })
+          })
+          .then(async function (rec) {
+
+            return resultList;
+
           });
 
       }

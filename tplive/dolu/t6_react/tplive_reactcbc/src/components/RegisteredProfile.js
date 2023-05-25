@@ -197,6 +197,8 @@ export default function RegisteredProfile() {
         //     getRegisteredEvents(participantList && participantList[0] && participantList[0].PlayerID);
         // }
     }
+    let newArray = users && users.current && users.current.phoneNumber && users.current.phoneNumber.replace('+', '').match(/^(91|)?(\d{3})(\d{3})(\d{4})$/)
+
     return (
         <>
             <div className="container-fluid">
@@ -208,7 +210,9 @@ export default function RegisteredProfile() {
                         {addNewFlag && <div id="regProfileNewParticipantDetails">
                             <h3 style={{ fontWeight: '1000', color: '#348DCB', textAlign: 'center' }}>NEW PARTICIPANT</h3>
                             <h1 className="reg-form-email" id="userEmail">{userDetails ? userDetails.Email : ''}</h1>
-                            <h2 className="reg-form-email" id="userContact">{users && users.current ? users.current.phoneNumber : ''}</h2>
+                            {/* <h2 className="reg-form-email" id="userContact">{users && users.current ? users.current.phoneNumber : ''}</h2> */}
+                            <h2 className="reg-form-email" id="userContact">+{newArray && newArray.length >= 5 ? +newArray[1] + '-' + newArray[2] + '-' + newArray[3] + '-' + newArray[4] : ''}</h2>
+
                             <h5 className="reg-form-email male" id="userGender">{userDetails ? userDetails.Gender : ''}</h5>
                             <h6 className="reg-form-email" id="userLocation">{userDetails ? userDetails.City : ''}, {userDetails ? userDetails.State : ''}</h6>
                             <NewMember selectedPlayer={selectedPlayer} addNewMember={addNewMember}></NewMember>

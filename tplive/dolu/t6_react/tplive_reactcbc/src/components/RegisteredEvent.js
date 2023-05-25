@@ -31,7 +31,7 @@ export default function RegisteredEvent() {
                 });
             }
             else {
-                navigate("/PhoneSignUp", { state: { url: 'ExportEventEntry' } });
+                navigate("/PhoneSignUp", { state: { url: 'RegisteredEvent' } });
             }
         }
         else {

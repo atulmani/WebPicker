@@ -16,11 +16,16 @@ import { GetUserDetails } from './GetUserDetails.js'
 // import UserProfile from './UserProfile';
 
 export default function PhoneSignUp(props) {
-    //state variable for
-    const { state } = useLocation();
-    const { url } = state;
 
-    const [lurl, setLURL] = useState(url);
+    const location = useLocation();
+    const propsData = location.state;
+    // console.log(propsData);
+
+    //state variable for
+    // const { state } = useLocation();
+    // const { url } = state;
+    // console.log('url : ', props);
+    const [lurl, setLURL] = useState("/");
     const [isLogged, setIsLogged] = useState(false);
     const [loading, setLoading] = useState(false);
     const [phone, setPhone] = useState("");
@@ -33,30 +38,22 @@ export default function PhoneSignUp(props) {
 
     useEffect(() => {
         // console.log(users);
-        // console.log(users.current);
-        setLURL(url ? "/" + url : "/")
+        // console.log(url);
+        setLURL(!propsData ? "/" : !propsData.url ? "/" : "/" + propsData.url)
     }, []);
     //  this.props && this.props.url !== "" && setURL(this.props.url);
     const getOTP = async (e) => {
         e.preventDefault();
         setError("");
-        // console.log(phone);
         if (phone === '' || phone === undefined || phone.length < 10) {
             return setError("Please enter valid Phone Number");
         }
-        // console.log(users.current);
-
         if (users.current && users.current.phoneNumber === ("+" + phone)) {
             setIsLogged(true);
         }
-        // console.log(users.current);
         try {
-            // console.log(users.current);
-            // console.log(phone);
             const respons = await setUpRecapcha('+' + phone);
-            // console.log(respons);
             setConfirmObj(respons);
-            // console.log(respons);
             setFlag(true);
         } catch (error) {
             setError(error.message);
@@ -77,12 +74,14 @@ export default function PhoneSignUp(props) {
                 //if existing users then navigate to requested URL, otherwise go to profile page
                 //get user profile
                 await GetUserDetails(user.uid).then(() => {
-                    // console.log('user.uid : ', user.uid);
+                    console.log('user.uid : ', user.uid);
+                    navigate(lurl);
                     if (flag) {
-                        navigate(lurl);
+
                     } else {
-                        navigate('/UserProfile');
+                        // navigate('/UserProfile');
                     }
+                    setLoading(false);
 
                 });
                 // console.log(flag);
@@ -94,7 +93,8 @@ export default function PhoneSignUp(props) {
             setError(error.message);
         }
     }
-
+    let newArray = phone && phone.match(/^(91|)?(\d{3})(\d{3})(\d{4})$/)
+    // console.log('newArray : ', newArray);
     return (
         <div>
             <div className="logdiv" style={{ background: '#eee', borderRadius: '10px', boxShadow: '0 0 15px 0 rgba(0,0,0,0.1)' }}>
@@ -131,6 +131,7 @@ export default function PhoneSignUp(props) {
                                         // onlyCountries={['in', 'us']}
                                         value={phone}
                                         onChange={setPhone}
+                                        international
                                         keyboardType="phone-pad"
                                         // countryCallingCodeEditable={false}
                                         countryCodeEditable={false}
@@ -162,6 +163,13 @@ export default function PhoneSignUp(props) {
                             {/* {!users && <Form onSubmit={verifyOTP} style={{ display: flag ? "block" : "none" }}> */}
                             {<Form onSubmit={verifyOTP} style={{ display: flag ? "block" : "none" }}>
 
+                                <div >
+                                    {
+                                    }
+                                    <span style={{ fontSize: '1.1rem', color: '#ff5757' }} > OTP has been sent to phone # (
+                                        {newArray && newArray.length >= 5 ? +newArray[1] + '-' + newArray[2] + '-' + newArray[3] + '-' + newArray[4] : ''} ) </span>
+
+                                </div>
                                 <div className='txt_field'>
                                     <input type="number" required maxLength={6}
                                         onInput={(e) => {

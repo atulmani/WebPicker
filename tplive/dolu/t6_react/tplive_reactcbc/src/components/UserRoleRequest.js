@@ -31,7 +31,7 @@ export default function UserRoleRequest() {
                 }
             }
             else {
-                navigate("/PhoneSignUp", { state: { url: 'ExportEventEntry' } });
+                navigate("/PhoneSignUp", { state: { url: 'UserProfile' } });
             }
         }
         else {

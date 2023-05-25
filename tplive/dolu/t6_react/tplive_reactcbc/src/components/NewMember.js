@@ -143,7 +143,7 @@ export default function NewMember(props) {
             }
         }
         else {
-            navigate("/PhoneSignUp", { state: { url: 'RegisteredProfile' } });
+            navigate("/PhoneSignUp", { state: { url: 'UserProfile' } });
         }
 
 

@@ -349,17 +349,27 @@ export default function RegistrationCategory() {
 
                                 </div>
                             </div>
-                            {!savingFlag && <div className="category-checkout-button-div">
-                                <button onClick={saveCategory} className="mybutton button5"
-                                    style={{ fontWeight: 'bold' }}>CHECKOUT</button>
-                            </div>}
-                            {savingFlag && <div className="category-checkout-button-div">
+
+                            <div className="category-checkout-button-div">
+                                <button onClick={saveCategory} className="mybutton button5" style={{ width: '120px', height: '35px', background: '#333C5D' }}>
+                                    <div style={{ display: !savingFlag ? 'block' : 'none' }}>
+                                        <span
+                                            style={{ position: 'relative', fontSize: '0.9rem', color: '#fff' }}>CHECKOUT</span>
+                                    </div>
+                                    <div className='btn-loading' style={{ display: savingFlag ? 'block' : 'none' }}>
+                                        <lottie-player
+                                            src="https://assets8.lottiefiles.com/packages/lf20_fiqoxpcg.json" background="transparent"
+                                            speed="0.7" loop autoplay></lottie-player>
+                                    </div>
+                                </button>
+                            </div>
+                            {/* {savingFlag && <div className="category-checkout-button-div">
                                 <lottie-player
                                     src="https://assets8.lottiefiles.com/packages/lf20_fiqoxpcg.json" background="transparent"
                                     speed="0.7" loop autoplay></lottie-player>
                             </div>
 
-                            }
+                            } */}
                         </div>
 
                     </div>
