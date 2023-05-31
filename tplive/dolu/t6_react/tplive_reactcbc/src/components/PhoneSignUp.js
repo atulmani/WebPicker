@@ -166,8 +166,8 @@ export default function PhoneSignUp(props) {
                                 <div >
                                     {
                                     }
-                                    <span style={{ fontSize: '1.1rem', color: '#ff5757' }} > OTP has been sent to phone # (
-                                        {newArray && newArray.length >= 5 ? +newArray[1] + '-' + newArray[2] + '-' + newArray[3] + '-' + newArray[4] : ''} ) </span>
+                                    <span style={{ fontSize: '1.1rem', color: '#ff5757' }} > OTP has been sent to phone #
+                                        {newArray && newArray.length >= 5 ? +newArray[1] + '-' + newArray[2] + '-' + newArray[3] + '-' + newArray[4] : ''} </span>
 
                                 </div>
                                 <div className='txt_field'>

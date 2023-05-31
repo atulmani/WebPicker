@@ -18,7 +18,7 @@ export default function HPGameSection() {
     let location = useLocation();
 
     useEffect(() => {
-        if (location.pathname === '/PhoneSignUp' || location.pathname === '/UserProfile') {
+        if (location.pathname === '/PhoneSignUp' || location.pathname === '/UserProfile' || location.pathname === '/Profile') {
             setShowFlag(false);
         } else {
             setShowFlag(true);

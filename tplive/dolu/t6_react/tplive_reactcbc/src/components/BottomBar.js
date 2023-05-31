@@ -42,7 +42,7 @@ export default function BottomBar() {
                     <small id='small4'>More</small>
                 </NavLink>
             </div>
-            <Link to="/UserProfile" className="new-user">
+            <Link to="/Profile" className="new-user">
                 <span className="material-symbols-outlined">
                     person
                 </span>

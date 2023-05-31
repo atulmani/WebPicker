@@ -8,7 +8,7 @@ import UserProfileCard from './UserProfileCard';
 import Loading from './Loading';
 
 export default function MemberList(props) {
-    // console.log('in MemberList props : ', props);
+    console.log('in MemberList props : ', props);
     const { user } = useUserAuth();
     const navigate = useNavigate();
     const [userDetails, setUserDetails] = useState(window.localStorage.getItem('userProfile') ? JSON.parse(window.localStorage.getItem('userProfile')) : {});
@@ -92,12 +92,14 @@ export default function MemberList(props) {
 
                         });
 
-                        // console.log(userParticipant);
-                        setAllMemberList(userParticipant);
-                        setSelectUser(setUser);
-                        setFilterParticipantList(userParticipant);
+                        console.log('props.addNewFlag : ', props.addNewFlag);
                         //setValuesFromChild(showSideflag, memberlist, showAddflag, playercode)
-                        props.setValuesFromChild(!props.showSideBar, filterParticipantList, props.addNewFlag, setUser)
+                        props.setValuesFromChild(!props.showSideBar, filterParticipantList, props.addNewFlag, props.addNewFlag ? "" : setUser)
+                        props.addNewFlag && props.selectedPlayer === '' ? setSelectUser('') : setSelectUser(props.selectedPlayer);
+                        setAllMemberList(userParticipant);
+
+
+                        setFilterParticipantList(userParticipant);
 
 
                         // props.setMemberList(userParticipant, setUser);
@@ -128,8 +130,10 @@ export default function MemberList(props) {
         }
     }
     function getUserDetail(player) {
-        // console.log('userDetail', player)
+        console.log('userDetail', player)
+        console.log('props.addNewFlag : ', props.addNewFlag);
         setSelectUser(player);
+
         //setValuesFromChild(showSideflag, memberlist, showAddflag, playercode)
         props.setValuesFromChild(!props.showSideBar, filterParticipantList, false, player)
         // props.setMemberList(filterParticipantList, player);
@@ -139,15 +143,23 @@ export default function MemberList(props) {
         // props.setMemberList(userParticipant, selectUser);
     }
 
+    // useEffect(() => {
+    //     navigate(".", { replace: true }); // <-- redirect to current path w/o state
+    // }, [navigate]);
+
+
     function userEdit(playercode) {
         // console.log('userEdit', playercode)
+
         setSelectUser(playercode);
         //setValuesFromChild(showSideflag, memberlist, showAddflag, playercode)
         props.setValuesFromChild(props.showSideBar, filterParticipantList, true, playercode)
-
         // props.addNewMember(true, playercode);
 
+
     }
+    console.log('props.addNewFlag : ', props.addNewFlag);
+
     // console.log('filterParticipantList : ', filterParticipantList)
     return (
         <div className={props.showSideBar ? 'user-profile-side' : 'user-profile-side close'}>

@@ -62,7 +62,7 @@ export default function UserProfileRegisteredEvent(props) {
 
                 <select name="" className='user-profile-select' id="events"
                     onChange={e => props.setSelectedEventActive(e.target.value)} value={props.selectedEventActive}>
-                    <option value="" >All</option>
+                    <option value="" >All Participated Events</option>
                     {props.eventList && props.eventList.map((event) => {
                         if (event.EventStatus === 'Active')
                             return <option value={event.EventID} key={event.EventID}>{event.EventName}</option>

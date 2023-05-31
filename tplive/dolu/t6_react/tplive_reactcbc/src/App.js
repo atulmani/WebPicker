@@ -25,6 +25,7 @@ import PrivacyPolicy from './components/PrivacyPolicy'
 import HPLastSection from './components/HPLastSection';
 import UserProfiles from './components/UserProfiles';
 import UserProfile from './components/UserProfile';
+import Profile from './components/Profile';
 import PhoneSignUp from './components/PhoneSignUp';
 import RegistrationCategory from './components/RegistrationCategory';
 import RegistrationCheckout from './components/RegistrationCheckout';
@@ -164,6 +165,7 @@ function App() {
           <Route exact path='/PhoneSignUp' element={<PhoneSignUp />} />
           <Route exact path='/UserProfileOld' element={<UserProfile />} />
           <Route exact path='/UserProfile' element={<UserProfiles />} />
+          <Route exact path='/Profile' element={<Profile />} />
           <Route exact path="/Calculators" element={<Calculators></Calculators>} ></Route>
           <Route exact path="/UserGuide" element={<UserGuide></UserGuide>} ></Route>
 
