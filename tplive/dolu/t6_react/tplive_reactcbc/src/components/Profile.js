@@ -53,7 +53,7 @@ export default function Profile() {
             <br></br>
             <div className='profile-heading-card'>
                 <div className='profile-heading-card-img'>
-                    <h1>{userDetails && getInitials(userDetails.UserName)}</h1>
+                    <h1>{userDetails && userDetails.UserName && getInitials(userDetails.UserName)}</h1>
                 </div>
                 <div className='profile-heading-card-details'>
                     <h2>Hi {userDetails && userDetails.UserName}</h2>

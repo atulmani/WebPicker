@@ -43,7 +43,13 @@ export default function NewMember(props) {
         MemberIDType: '',
         MemberIDNumber: '',
         PlayerID: '',
+        selectedRole: 'PARTICIPANT',
     });
+    // const [selectedRole, setSelectedRole] = useState(window.localStorage.getItem('SelectedRole') ?
+    //     JSON.parse(window.localStorage.getItem('SelectedRole')) : {
+    //         uid: '',
+    //         selectedRole: 'PARTICIPANT'
+    //     });
 
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -92,6 +98,7 @@ export default function NewMember(props) {
                         MemberIDType: element.MemberIDType,
                         MemberIDNumber: element.MemberIDNumber,
                         PlayerID: element.PlayerID,
+                        SelectedRole: element.SelectedRole ? element.SelectedRole : 'PARTICIPANT',
                     };
                 setPlayerDetailsCopy(participant);
                 setFlagLoad(false);
@@ -234,6 +241,17 @@ export default function NewMember(props) {
             Grade: e.target.value
         });
     }
+    function funSelectedRole(type) {
+
+        setSelectedRole({
+            uid: userDetails.id,
+            selectedRole: type
+        })
+        window.localStorage.setItem("SelectedRole", JSON.stringify({
+            uid: userDetails.id,
+            selectedRole: type
+        }));
+    }
     return (
         <>
             {flagLoad && <Loading></Loading>}
@@ -242,12 +260,39 @@ export default function NewMember(props) {
             {!flagLoad && <>
                 <div className="row no-gutters">
                     <br></br>
+                    {playerDetailsCopy.PlayerID === userDetails.PlayerID && <div className="col-lg-12 col-md-12 col-sm-12">
+
+                        {userDetails.UserRole.map((role) => (
+
+                            <div className="col-lg-3 col-md-6 col-sm-12" style={{ padding: '10px' }} key={role.TYPE}>
+                                <input type="radio" className="checkbox" style={{ width: '0px' }}
+                                    onChange={(e) => {
+                                        e.target.checked && funSelectedRole(role.TYPE)
+                                    }}
+                                    name="userRole" id={"reg" + role.TYPE} value={role.TYPE}
+                                    checked={selectedRole.selectedRole === role.TYPE ? true : false} />
+                                <label style={{ height: '40px', border: '1px solid #ddd' }}
+                                    className="checkbox-label" id={"reg" + role.TYPE + "Label"}
+                                    htmlFor={"reg" + role.TYPE}>
+                                    <i className="fas fa-plus"
+                                        style={{ paddingTop: '9px', paddingRight: '5px', fontSize: '0.6rem' }}></i>
+                                    <i className="fas fa-check"
+                                        style={{ paddingTop: '9px', paddingRight: '5px', fontSize: '0.6rem' }}></i>
+                                    <span style={{ fontSize: '0.7rem' }}>{role.TYPE}</span>
+                                </label>
+                            </div>
+                        ))}
+
+
+
+                    </div>}
                     <div className="col-lg-4 col-md-6 col-sm-12">
 
                         <div style={{ position: 'relative', paddingTop: '15px' }}>
                             <div className="row no-gutters">
 
                                 <div className="col-6" >
+
                                     <input type="radio" checked={playerDetailsCopy.Gender === 'Male' ? true : false} onChange={(e) => {
                                         e.target.checked && onChangeValueMale(e.target.checked);
                                     }} className="checkbox" style={{ width: '0px' }}
@@ -261,6 +306,7 @@ export default function NewMember(props) {
                                             style={{ paddingTop: '9px', paddingRight: '5px', fontSize: '0.6rem' }}></i>
                                         <span>Male</span>
                                     </label>
+
                                 </div>
 
                                 <div className="col-6">
