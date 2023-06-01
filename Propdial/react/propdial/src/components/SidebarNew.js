@@ -124,19 +124,22 @@ export default function SidebarNew(props) {
                             </div>
                         </li>
                     </Link>
-                    <Link to="/addbill" onClick={() => sideNavbarMenuClick('addbill')} style={{ textDecoration: 'none' }} >
-                        <li className={sideNavbarActive == 'addbill' ? 'active' : ''}>
-                            <b></b>
-                            <b></b>
 
+                    {/* Super Admin Links */}
+                    <Link to="/userlist" onClick={() => sideNavbarMenuClick('userlist')} style={{ textDecoration: 'none' }} >
+                        <li className={sideNavbarActive == 'userlist' ? 'active' : ''}>
+                            <b></b>
+                            <b></b>
                             <div>
-                                <span class="material-symbols-outlined">
-                                    receipt_long
+                                <span className="material-symbols-outlined">
+                                    group
                                 </span>
-                                <h1>Add Bill</h1>
+                                <h1>Users</h1>
                             </div>
                         </li>
                     </Link>
+
+                    {/* Common Links */}
                     <Link to="/adminsettings" onClick={() => sideNavbarMenuClick('adminsettings')} style={{ textDecoration: 'none' }} >
                         <li className={sideNavbarActive == 'adminsettings' ? 'active' : ''}>
                             <b></b>

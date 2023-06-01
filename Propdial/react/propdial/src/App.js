@@ -4,28 +4,43 @@ import { useEffect, useState } from 'react'
 
 // components
 import Navbar from './components/Navbar'
+import More from './components/More'
 import SidebarNew from './components/SidebarNew'
 import NavbarBottom from './components/NavbarBottom'
 
 // pages
-import Login from './pages/login/Login'
-import Signup from './pages/signup/Signup'
-import Profile from './pages/profile/Profile'
-import AdminDashboard from './pages/roles/admin/AdminDashboard'
-import SuperAdminDashboard from './pages/roles/superadmin/SuperAdminDashboard'
-import UserDashboard from './pages/dashboard/UserDashboard'
-import OwnerDashboard from './pages/roles/owner/OwnerDashboard'
+// superadmin
+import SuperAdminDashboard from './pages/roles/superadmin/PGSuperAdminDashboard'
+import PGUserList from './pages/roles/superadmin/PGUserList'
+// admin
+import PGAdminDashboard from './pages/roles/admin/PGAdminDashboard'
+import PGAdminProperties from './pages/roles/admin/PGAdminProperties'
+// owner
+import PGOwnerDashboard from './pages/roles/owner/PGOwnerDashboard'
+import PGBills from './pages/roles/owner/PGBills'
+// tenant
 import TenantDashboard from './pages/roles/tenant/TenantDashboard'
+// executive
 import ExecutiveDashboard from './pages/roles/executive/ExecutiveDashboard'
-import AddProperty from './pages/create/AddProperty'
+
+// other pages
+import UserDashboard from './pages/dashboard/UserDashboard'
+import PGLogin from './pages/login/PGLogin'
+import PGSignup from './pages/login/PGSignup'
+import PGProfile from './pages/profile/PGProfile'
+import PGAddProperty from './pages/create/PGAddProperty'
 import AddBill from './pages/create/AddBill'
-import Property from './pages/property/Property'
+import AddPhoto from './pages/create/AddPhoto'
+import AddDocument from './pages/create/AddDocument'
+// import Property from './pages/property/Property'
+import PGPropertyDetails from './pages/property/PGPropertyDetails'
 // import OnlineUsers from './components/OnlineUsers'
 
 // styles
 import './App.css'
-import UpdatePassword from './pages/login/UpdatePassword'
+import UpdatePassword from './pages/login/PGUpdatePassword'
 import AdminSettings from './pages/roles/admin/AdminSettings'
+// import BillList from './components/BillList'
 
 function App() {
   const { authIsReady, user } = useAuthContext();
@@ -76,10 +91,10 @@ function App() {
               <Route path='/adminsettings' element={<AdminSettings />}>
               </Route>
 
-              <Route path='/updatepwd' element={user ? < UpdatePassword /> : <Login />}>
+              <Route path='/updatepwd' element={user ? < UpdatePassword /> : <PGLogin />}>
               </Route>
 
-              <Route path='/' element={user ? < Profile /> : <Login />}>
+              <Route path='/' element={user ? < PGProfile /> : <PGLogin />}>
               </Route>
 
               <Route exact path="/superadmindashboard" element={
@@ -87,13 +102,23 @@ function App() {
               }>
               </Route>
 
+              <Route exact path="/userlist" element={
+                user && user.roles && user.roles.includes('superadmin') ? <PGUserList /> : <Navigate to="/login" />
+              }>
+              </Route>
+
               <Route path="/admindashboard" element={
-                user && user.roles && user.roles.includes('admin') ? < AdminDashboard /> : <Navigate to="/login" />
+                user && user.roles && user.roles.includes('admin') ? < PGAdminDashboard /> : <Navigate to="/login" />
+              }>
+              </Route>
+
+              <Route path="/adminproperties" element={
+                user && user.roles && user.roles.includes('admin') ? < PGAdminProperties /> : <Navigate to="/login" />
               }>
               </Route>
 
               <Route path="/addproperty" element={
-                user && user.roles && user.roles.includes('admin') ? < AddProperty /> : <Navigate to="/login" />
+                user && user.roles && user.roles.includes('admin') ? < PGAddProperty /> : <Navigate to="/login" />
               }>
               </Route>
 
@@ -102,8 +127,27 @@ function App() {
               }>
               </Route>
 
-              <Route path="/properties/:id" element={
-                user && user.roles ? < Property /> : <Navigate to="/login" />
+              <Route path="/addphoto" element={
+                user && user.roles && user.roles.includes('admin') ? < AddPhoto /> : <Navigate to="/login" />
+              }>
+              </Route>
+
+              <Route path="/adddocument" element={
+                user && user.roles && user.roles.includes('admin') ? < AddDocument /> : <Navigate to="/login" />
+              }>
+              </Route>
+
+              {/* <Route path="/properties/:id" element={
+                user && user.roles ? < PGPropertyDetails /> : <Navigate to="/login" />
+              }>
+              </Route> */}
+              <Route path="/propertydetails" element={
+                user && user.roles ? < PGPropertyDetails /> : <Navigate to="/login" />
+              }>
+              </Route>
+
+              <Route path="/bills" element={
+                user && user.roles ? < PGBills /> : <Navigate to="/login" />
               }>
               </Route>
 
@@ -113,7 +157,12 @@ function App() {
               </Route>
 
               <Route path="/ownerdashboard" element={
-                user && user.roles && user.roles.includes('owner') ? < OwnerDashboard /> : <Navigate to="/login" />
+                user && user.roles && user.roles.includes('owner') ? < PGOwnerDashboard /> : <Navigate to="/login" />
+              }>
+              </Route>
+
+              <Route path="/more" element={
+                user && user.roles && user.roles.includes('owner') ? < More /> : <Navigate to="/login" />
               }>
               </Route>
 
@@ -143,11 +192,11 @@ function App() {
                 </Route> */}
 
 
-              <Route path='/login' element={user ? <Navigate to="/" /> : < Login />}>
+              <Route path='/login' element={user ? <Navigate to="/" /> : < PGLogin />}>
               </Route>
-              <Route path='/signup' element={user ? <Navigate to="/" /> : < Signup />}>
+              <Route path='/signup' element={user ? <Navigate to="/" /> : < PGSignup />}>
               </Route>
-              <Route path='/profile' element={user ? < Profile /> : < Login />}>
+              <Route path='/profile' element={user ? < PGProfile /> : < PGLogin />}>
               </Route>
 
 

@@ -13,6 +13,19 @@ export default function NavbarBottom() {
         navigate("/profile")
     }
 
+
+    const showSecondPage = () => {
+        if (user && user.roles && user.roles.includes('admin')) {
+            // console.log('in user', user.roles)
+            navigate('/adminproperties')
+        }
+        if (user && user.roles && user.roles.includes('owner')) {
+            // console.log('in user', user.roles)
+            navigate('/bills')
+        }
+    }
+
+
     const showDashboard = () => {
         if (user && user.roles && user.roles.includes('superadmin')) {
             // console.log('in superadmin', user.roles)
@@ -81,13 +94,13 @@ export default function NavbarBottom() {
                     </span>
                     <small>Dashboard</small>
                 </div>
-                <Link to="/" className="navbar-mobile-bottom-menu-a "
-                    style={{ display: 'flex', flexDirection: 'column' }}>
+                <div className="navbar-mobile-bottom-menu-a "
+                    style={{ display: 'flex', flexDirection: 'column' }} onClick={showSecondPage}>
                     <span className="material-symbols-outlined">
                         analytics
                     </span>
                     <small>{secondMenu}</small>
-                </Link>
+                </div>
                 <a href="/">
                 </a>
                 <Link to="/" className="navbar-mobile-bottom-menu-a " style={{ display: 'flex', flexDirection: 'column' }}>

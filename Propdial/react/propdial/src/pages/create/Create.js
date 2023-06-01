@@ -60,17 +60,11 @@ export default function Create() {
         id: u.value.id
       }
     })
-    const createdBy = {
-      displayName: user.displayName,
-      photoURL: user.photoURL,
-      id: user.uid
-    }
 
     const project = {
       name,
       details,
       assignedUsersList,
-      createdBy,
       category: category.value,
       dueDate: timestamp.fromDate(new Date(dueDate)),
       comments: []

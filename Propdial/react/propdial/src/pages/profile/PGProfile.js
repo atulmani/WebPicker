@@ -8,9 +8,9 @@ import { useLogout } from "../../hooks/useLogout"
 import Popup from '../../components/Popup'
 
 // styles
-import './Profile.css'
+import './PGProfile.css'
 
-export default function Profile() {
+export default function PGProfile() {
     const { user } = useAuthContext()
     // const { document, error } = useDocument('users', user.uid)
     // const [email, setEmail] = useState('')
@@ -128,14 +128,12 @@ export default function Profile() {
                     <div className="user-name">
                         <div className="user-logo-parent-div">
                             <div className="user-logo">
-                                {/* <h4>KS</h4> */}
-                                {/* <img src="/img/girl.png" alt="" /> */}
                                 <Avatar src={user.photoURL} />
                             </div>
                         </div>
 
                         <div className="details">
-                            <h5>{user.displayName}</h5>
+                            <h5>{user.fullName}</h5>
                             <p>{user.email}</p>
                             <p>{user.phoneNumber}</p>
                         </div>

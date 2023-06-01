@@ -6,9 +6,12 @@ import { useFirestore } from '../../hooks/useFirestore'
 import { useDocument } from '../../hooks/useDocument'
 import Select from 'react-select'
 import { useNavigate } from 'react-router-dom'
+import { format } from 'date-fns';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
 // styles
-import './AddProperty.css'
+import './PGAddProperty.css'
 import { el } from 'date-fns/locale'
 
 const categories = [
@@ -16,7 +19,7 @@ const categories = [
     { value: 'commercial', label: 'Commercial' },
 ]
 
-export default function AddProperty() {
+export default function PGAddProperty() {
     const navigate = useNavigate()
     const { addDocument, response } = useFirestore('properties')
     const { user } = useAuthContext()
@@ -28,17 +31,21 @@ export default function AddProperty() {
 
     // form field values
     const [unitNumber, setUnitNumber] = useState('')
-    const [assignedUsers, setAssignedUsers] = useState([]) //Owners, Co-Owners, Executive 
-    const [country, setCountry] = useState('')
-    const [state, setState] = useState('')
-    const [city, setCity] = useState('')
+    const [taggedUsers, setTaggedUsers] = useState([]) //Owners, Co-Owners, Executive 
+    const [country, setCountry] = useState({ value: 'IND', label: 'INDIA' })
+    const [state, setState] = useState({ value: 'DEL', label: 'DELHI' })
+    const [city, setCity] = useState({ value: 'DELHI', label: 'DELHI' })
     const [locality, setLocality] = useState('')
     const [society, setSociety] = useState('')
     const [category, setCategory] = useState('residential') //Residential/Commercial
     const [purpose, setPurpose] = useState('') //Rent/Sale/RentSaleBoth
     const [status, setStatus] = useState('active')
-    const [onboardingDate, setDueDate] = useState('')
+    const today = new Date();
+    // const formattedDate = format(today, 'yyyy-MM-dd');
+    const [onboardingDate, setDueDate] = useState(new Date())
     const [formError, setFormError] = useState(null)
+
+
 
     const toggleBtnClick = () => {
         // console.log('toggleClick Category:', toggleFlag)
@@ -62,18 +69,19 @@ export default function AddProperty() {
         a.label.localeCompare(b.label)
     );
     const stateOptions = [
-        { value: 'MH', label: 'MAHARASHTRA' },
         { value: 'DEL', label: 'DELHI' },
+        { value: 'MH', label: 'MAHARASHTRA' },
         { value: 'UP', label: 'UTTAR PRADESH' }
     ];
     const stateOptionsSorted = stateOptions.sort((a, b) =>
         a.label.localeCompare(b.label)
     );
     const cityOptions = [
-        { value: '1', label: 'DELHI' },
-        { value: '2', label: 'MUMBAI' },
-        { value: '3', label: 'NOIDA' },
-        { value: '4', label: 'GURGAON' }
+        { value: 'DELHI', label: 'DELHI' },
+        { value: 'PUNE', label: 'PUNE' },
+        { value: 'MUMBAI', label: 'MUMBAI' },
+        { value: 'NOIDA', label: 'NOIDA' },
+        { value: 'GURGAON', label: 'GURGAON' }
     ];
     const cityOptionsSorted = cityOptions.sort((a, b) =>
         a.label.localeCompare(b.label)
@@ -82,7 +90,8 @@ export default function AddProperty() {
         { value: '1', label: 'MALVIYA NAGAR' },
         { value: '2', label: 'SECTOR 5' },
         { value: '3', label: 'SECTOR 105' },
-        { value: '4', label: 'M G ROAD' }
+        { value: '4', label: 'M G ROAD' },
+        { value: '5', label: 'HINJEWADI PHASE 2' }
     ];
     const localityOptionsSorted = localityOptions.sort((a, b) =>
         a.label.localeCompare(b.label)
@@ -91,7 +100,8 @@ export default function AddProperty() {
         { value: '1', label: 'AVON PARADISE' },
         { value: '2', label: 'DREAM LAND' },
         { value: '3', label: 'VISON FLORA' },
-        { value: '4', label: 'PLATINUM VISTA' }
+        { value: '4', label: 'PLATINUM VISTA' },
+        { value: '5', label: 'HIGH MONT' }
     ];
     const societyOptionsSorted = societyOptions.sort((a, b) =>
         a.label.localeCompare(b.label)
@@ -102,7 +112,7 @@ export default function AddProperty() {
     useEffect(() => {
         if (documents) {
             setUsers(documents.map(user => {
-                return { value: { ...user, id: user.id }, label: user.displayName }
+                return { value: { ...user, id: user.id }, label: user.displayName + ' ( ' + user.phoneNumber + ' )' }
             }))
         }
 
@@ -120,28 +130,31 @@ export default function AddProperty() {
             setFormError('Please select a property category.')
             return
         }
-        if (assignedUsers.length < 1) {
+        if (taggedUsers.length < 1) {
             setFormError('Please assign the property to at least 1 user')
             return
         }
 
-        const assignedUsersList = assignedUsers.map(u => {
+        const taggedUsersList = taggedUsers.map(u => {
+            // console.log('user attributes:', u)
+            // console.log('user role:', u.value.roles)
             return {
                 displayName: u.value.displayName,
                 photoURL: u.value.photoURL,
-                id: u.value.id
+                id: u.value.id,
+                role: u.value.roles
             }
         })
 
         const createdBy = {
-            displayName: user.displayName,
+            displayName: user.displayName + '(' + user.roles + ')',
             photoURL: user.photoURL,
             id: user.uid
         }
 
         const property = {
             unitNumber,
-            assignedUsersList,
+            taggedUsersList,
             country: country.label,
             state: state.label,
             city: city.label,
@@ -266,11 +279,12 @@ export default function AddProperty() {
                         <div className="col-lg-6 col-md-6 col-sm-12">
                             <div>
                                 <h1 className="owner-heading">Onboarding Date</h1>
-                                <input
+                                <DatePicker
+                                    selected={onboardingDate}
+                                    maxDate={new Date()}
                                     required
-                                    type="date"
-                                    onChange={(e) => setDueDate(e.target.value)}
-                                    value={onboardingDate}
+                                    onChange={(onboardingDate) => setDueDate(onboardingDate)}
+                                // value={onboardingDate}
                                 />
                             </div>
                         </div>
@@ -279,15 +293,10 @@ export default function AddProperty() {
 
                             <div className="property-form-border-div">
 
-                                <h1 className="owner-heading">Owner Name</h1>
+                                <h1 className="owner-heading">Tag Users</h1>
                                 <div className="location-search">
-                                    {/* <select className="" name="">
-                                        <option value="" selected disabled>Select Owner</option>
-                                        <option value="">Atul Tripathi</option>
-                                        <option value="">Vinay Prajapati</option>
-                                    </select> */}
                                     <Select className=''
-                                        onChange={(option) => setAssignedUsers(option)}
+                                        onChange={(option) => setTaggedUsers(option)}
                                         options={usersSorted}
                                         styles={{
                                             control: (baseStyles, state) => ({
@@ -307,12 +316,6 @@ export default function AddProperty() {
 
                                 <h1 className="owner-heading">Country</h1>
                                 <div className="location-search">
-                                    {/* <select className="" name="">
-                                        <option value="" selected>India</option>
-                                        <option value="">Denmark</option>
-                                        <option value="">Malasia</option>
-                                        <option value="">China</option>
-                                    </select> */}
                                     <Select className=''
                                         onChange={(option) => setCountry(option)}
                                         options={countryOptionsSorted}

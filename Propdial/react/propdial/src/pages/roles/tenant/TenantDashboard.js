@@ -23,7 +23,7 @@ export default function TenantDashboard() {
         if (!flag) {
             logout()
         }
-    }, [user, logout])
+    }, [user])
 
     const changeFilter = (newFilter) => {
         setFilter(newFilter)
@@ -82,7 +82,7 @@ export default function TenantDashboard() {
                                 style={{ background: 'var(--blue-color)', color: '#fff', fontWeight: 'bolder' }}>Details</button>
                         </div>
                         {/* <div>
-                            <h6>PropDial Commission</h6>
+                            <h6>Propdial Commission</h6>
                             <h2 style={{fontSize: '1.2rem',color: '#666'}}>₹10,000</h2>
                             <button style={{float: 'right'}} className="mybutton button5">Pay Now</button>
                         </div> */}

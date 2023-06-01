@@ -26,7 +26,7 @@ export const useSignup = () => {
       let imgUrl = ''
       if (thumbnail) {
         // console.log('thumbnail in useSignup 2:', thumbnail)
-        const uploadPath = `thumbnails/${res.user.uid}/${thumbnail.name}`
+        const uploadPath = `userThumbnails/${res.user.uid}/${thumbnail.name}`
         const img = await projectStorage.ref(uploadPath).put(thumbnail)
         imgUrl = await img.ref.getDownloadURL()
       }
@@ -34,20 +34,21 @@ export const useSignup = () => {
         //user1.png
         // imgUrl = 'https://firebasestorage.googleapis.com/v0/b/propdial-dev-aa266.appspot.com/o/thumbnails%2Fthumbnail1.png?alt=media&token=445a89f4-d5c0-495d-8541-496cd8dfd232';
         //user2.png
-        imgUrl = 'https://firebasestorage.googleapis.com/v0/b/propdial-dev-aa266.appspot.com/o/thumbnails%2Fthumbnail2.png?alt=media&token=0f05dd1c-fb50-4448-9522-df27549604c1';
+        imgUrl = 'https://firebasestorage.googleapis.com/v0/b/propdial-dev-aa266.appspot.com/o/userThumbnails%2F1default.png?alt=media&token=38880453-e642-4fb7-950b-36d81d501fe2'
         //user3.png
         // imgUrl = 'https://firebasestorage.googleapis.com/v0/b/propdial-dev-aa266.appspot.com/o/thumbnails%2Fthumbnail3.png?alt=media&token=36ebeeff-a6a3-4180-a269-61a23cbc3632';
       }
 
       // console.log('before updateProfile:', imgUrl)
       // add display AND PHOTO_URL name to user
-      await res.user.updateProfile({ phoneNumber, displayName, photoURL: imgUrl })
-      console.log('after updateProfile:', imgUrl)
-
+      const lastIndex = displayName.lastIndexOf(" ");
+      const firstName = displayName.substring(0, lastIndex);
+      await res.user.updateProfile({ phoneNumber, displayName: firstName, photoURL: imgUrl })
+      // console.log('after updateProfile:', imgUrl)
       // create a user document
       await projectFirestore.collection('users').doc(res.user.uid).set({
         online: true,
-        displayName,
+        displayName: firstName,
         fullName: displayName,
         email,
         phoneNumber,
@@ -58,7 +59,6 @@ export const useSignup = () => {
         status: 'active',
         createdAt: timestamp.fromDate(new Date()),
         lastLoginTimestamp: timestamp.fromDate(new Date())
-
       })
 
       // dispatch login action

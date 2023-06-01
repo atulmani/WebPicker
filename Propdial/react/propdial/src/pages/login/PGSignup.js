@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import Resizer from "react-image-file-resizer";
+// import Resizer from "react-image-file-resizer";
 import { useSignup } from '../../hooks/useSignup'
 import { useImageUpload } from '../../hooks/useImageUpload';
 import { useSendEmail } from '../../hooks/useSendEmail';
@@ -18,7 +18,8 @@ export default function Signup() {
 
 
   //Sign Email Format
-  const emailSubject = 'Welcome to HYPER CLOUD DIGITAL SOLUTIONS!';
+  // const emailSubject = 'Welcome to HYPER CLOUD DIGITAL SOLUTIONS!';
+  const emailSubject = 'Welcome to Propdial!';
   const emailBody = '<strong>Dear User,</strong><br/><br/>' +
     'Thank you for signing up with HYPER CLOUD DIGITAL SOLUTIONS!<br/><br/> We are excited to have you as a member of our community.<br/><br/>' +
     'As a registered member, you now have access to all the features and benefits of our platform.<br/>' +
@@ -73,7 +74,7 @@ export default function Signup() {
     <form onSubmit={handleSubmit} className="auth-form" style={{ maxWidth: '350px' }}>
 
       <div className='page-title'>
-        {/* <span class="material-symbols-outlined">
+        {/* <span className="material-symbols-outlined">
             login
           </span> */}
         <h1>Sign-up</h1>
@@ -81,7 +82,7 @@ export default function Signup() {
       <br />
       <label>
         <div className='form-field-title'>
-          <span class="material-symbols-outlined">
+          <span className="material-symbols-outlined">
             badge
           </span>
           <h1>Name </h1>
@@ -97,7 +98,7 @@ export default function Signup() {
 
       <label>
         <div className='form-field-title'>
-          <span class="material-symbols-outlined">
+          <span className="material-symbols-outlined">
             phone_android
           </span>
           <h1>Phone </h1>
@@ -113,7 +114,7 @@ export default function Signup() {
 
       <label>
         <div className='form-field-title'>
-          <span class="material-symbols-outlined">
+          <span className="material-symbols-outlined">
             person
           </span>
           <h1>Email </h1>
@@ -128,7 +129,7 @@ export default function Signup() {
       </label>
       <label>
         <div className='form-field-title'>
-          <span class="material-symbols-outlined">
+          <span className="material-symbols-outlined">
             lock
           </span>
           <h1>Password </h1>
@@ -145,7 +146,7 @@ export default function Signup() {
 
       <label>
         <div className='form-field-title'>
-          <span class="material-symbols-outlined">
+          <span className="material-symbols-outlined">
             account_circle
           </span>
           <h1>Profile Photo</h1>

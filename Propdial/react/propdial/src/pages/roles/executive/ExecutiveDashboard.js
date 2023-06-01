@@ -23,7 +23,7 @@ export default function ExecutiveDashboard() {
         if (!flag) {
             logout()
         }
-    }, [user, logout])
+    }, [user])
 
     const changeFilter = (newFilter) => {
         setFilter(newFilter)

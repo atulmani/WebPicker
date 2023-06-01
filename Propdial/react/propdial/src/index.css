@@ -18,7 +18,7 @@
   --bg-color: #F4F2EB;
   --buttonfg-color: #F4F2EB;
   --buttonbg-color: #e95733;
-
+  --lightblue-color: #4e5bf8;
 }
 
 /* base styles */
@@ -345,4 +345,53 @@ textarea {
 
 .pop-up-div div p strong {
   color: var(--blue-color);
+}
+
+.addon-service {
+  /* position: relative; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: #BCECE0;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  height: 180px;
+  /* width:120px; */
+  /* padding-top: 4%; */
+  /* padding-bottom: 6%; */
+}
+
+.addon-service div .material-symbols-outlined {
+  /* padding: 20px 0 0 0; */
+  font-size: 2.5rem;
+  color: #4CD7D0;
+}
+
+.addon-service-h5 {
+  /* margin-bottom: 6%; */
+  font-size: 0.7rem;
+  color: #222;
+  font-weight: 600;
+  /* padding-top: 5px; */
+}
+
+.dashboardCardBoxoffer {
+  /* padding: 10px; */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  height: 9rem;
+  width: 100%;
+  transition: 1s;
+  overflow: hidden;
+}
+
+@media (max-width: 850px) {
+  .dashboardCardBoxoffer {
+    height: auto;
+  }
+}
+
+.dashboardCardBox.active {
+  height: 19.5rem;
 }

@@ -3,7 +3,7 @@ import { useDocument } from '../../hooks/useDocument'
 
 // components
 import PropertyComments from "./PropertyComments"
-import PropertyDetails from "./PropertyDetails"
+import PGPropertyDetails from "./PGPropertyDetails"
 
 // styles
 import './Property.css'
@@ -21,7 +21,7 @@ export default function Property() {
 
     return (
         <div className="property-details">
-            <PropertyDetails property={document} />
+            <PGPropertyDetails property={document} />
             <PropertyComments property={document} />
         </div>
     )
