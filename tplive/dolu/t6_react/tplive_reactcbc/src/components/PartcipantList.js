@@ -41,7 +41,7 @@ export default function PartcipantList() {
         var para1 = {};
 
         console.log(userDetails.id, '::user::', user);
-        if (user.isLoggedIn) {
+        if (user.isLoggedIn && userDetails !== null) {
             if (user.userInfo !== null) {
                 para1 = {
                     userID: userDetails.id,
@@ -78,7 +78,7 @@ export default function PartcipantList() {
                 });
 
             } else {
-                navigate("/PhoneSignUp", { state: { url: 'ExportEventEntry' } });
+                navigate("/PhoneSignUp", { state: { url: 'RegisteredEvent' } });
             }
         }
     }, [user, userDetails])

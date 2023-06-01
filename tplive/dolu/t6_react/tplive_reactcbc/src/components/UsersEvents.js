@@ -64,11 +64,11 @@ export default function UsersEvents() {
     }
     useEffect(() => {
 
-        if (user.isLoggedIn) {
+        if (user.isLoggedIn && userDetails !== null) {
             if (user.userInfo !== null) {
                 populateData();
             } else {
-                navigate("/PhoneSignUp", { state: { url: 'ExportEventEntry' } });
+                navigate("/PhoneSignUp", { state: { url: 'UserProfile' } });
             }
         }
     }, [])

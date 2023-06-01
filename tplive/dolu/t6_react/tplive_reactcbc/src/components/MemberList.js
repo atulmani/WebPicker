@@ -8,6 +8,7 @@ import UserProfileCard from './UserProfileCard';
 import Loading from './Loading';
 
 export default function MemberList(props) {
+    console.log('in MemberList props : ', props);
     const { user } = useUserAuth();
     const navigate = useNavigate();
     const [userDetails, setUserDetails] = useState(window.localStorage.getItem('userProfile') ? JSON.parse(window.localStorage.getItem('userProfile')) : {});
@@ -33,14 +34,21 @@ export default function MemberList(props) {
     };
 
     let dob = '';
-
+    // useEffect(() => {
+    //     // console.log(allMemberList[0]);
+    //     if (selectUser === '' && allMemberList.length > 0) {
+    //         // setSelectUser(allMemberList[0].PlayerID);
+    //         // console.log('SelectUser', selectUser);
+    //         getUserDetail(allMemberList[0].PlayerID)
+    //     }
+    // }, [selectUser])
 
     useEffect(() => {
         // console.log('user', user);
         async function getPlayerList() {
             var para1 = {};
             var setUser = '';
-            if (user.isLoggedIn) {
+            if (user.isLoggedIn && userDetails !== null) {
                 if (user.userInfo !== null) {
                     para1 = {
                         userID: userDetails.id,
@@ -74,7 +82,7 @@ export default function MemberList(props) {
 
                             }
 
-                            dob = (element.DateOfBirth) ? new Date(element.DateOfBirth._seconds * 1000) : '';
+                            dob = (element.DateOfBirth) ? new Date(element.DateOfBirth._seconds * 1000) : new Date();
                             dob = dob === '' ? '' : dob.toLocaleDateString("en-IN", options);
                             userParticipant.push({
                                 ...participant,
@@ -84,22 +92,29 @@ export default function MemberList(props) {
 
                         });
 
-                        // console.log(userParticipant);
+                        console.log('props.addNewFlag : ', props.addNewFlag);
+                        //setValuesFromChild(showSideflag, memberlist, showAddflag, playercode)
+                        props.setValuesFromChild(!props.showSideBar, filterParticipantList, props.addNewFlag, props.addNewFlag ? "" : setUser)
+                        props.addNewFlag && props.selectedPlayer === '' ? setSelectUser('') : setSelectUser(props.selectedPlayer);
                         setAllMemberList(userParticipant);
-                        setSelectUser(setUser);
+
+
                         setFilterParticipantList(userParticipant);
-                        props.setMemberList(userParticipant, setUser);
-                        props.openSideBar(!props.showSideBar);
+
+
+                        // props.setMemberList(userParticipant, setUser);
+                        // props.openSideBar(!props.showSideBar);
                         setLoading(false);
                     });
                 } else {
-                    navigate("/PhoneSignUp", { state: { url: 'ExportEventEntry' } });
+                    navigate("/PhoneSignUp", { state: { url: 'UserProfile' } });
                 }
             }
         }
         getPlayerList();
 
     }, [])
+
 
     function searchEvent(key) {
 
@@ -114,21 +129,37 @@ export default function MemberList(props) {
             setFilterParticipantList(allMemberList);
         }
     }
-    function userDetail(player) {
-        // console.log('userDetail', player)
-        props.setMemberList(filterParticipantList, player);
-        props.openSideBar(!props.showSideBar);
+    function getUserDetail(player) {
+        console.log('userDetail', player)
+        console.log('props.addNewFlag : ', props.addNewFlag);
         setSelectUser(player);
+
+        //setValuesFromChild(showSideflag, memberlist, showAddflag, playercode)
+        props.setValuesFromChild(!props.showSideBar, filterParticipantList, false, player)
+        // props.setMemberList(filterParticipantList, player);
+        // props.openSideBar(!props.showSideBar);
+
+        // props.addNewMember(false, player);
         // props.setMemberList(userParticipant, selectUser);
     }
 
+    // useEffect(() => {
+    //     navigate(".", { replace: true }); // <-- redirect to current path w/o state
+    // }, [navigate]);
+
+
     function userEdit(playercode) {
-        console.log('userEdit', playercode)
+        // console.log('userEdit', playercode)
+
         setSelectUser(playercode);
-        props.setSelectedMember(playercode);
-        props.addNewMember(true);
+        //setValuesFromChild(showSideflag, memberlist, showAddflag, playercode)
+        props.setValuesFromChild(props.showSideBar, filterParticipantList, true, playercode)
+        // props.addNewMember(true, playercode);
+
 
     }
+    console.log('props.addNewFlag : ', props.addNewFlag);
+
     // console.log('filterParticipantList : ', filterParticipantList)
     return (
         <div className={props.showSideBar ? 'user-profile-side' : 'user-profile-side close'}>
@@ -158,10 +189,9 @@ export default function MemberList(props) {
 
             <div style={{ padding: '10px' }}>
 
-                <div className='user-profile-side-card add-profile' onClick={() => {
+                <div className={props.addNewFlag && selectUser === '' ? 'user-profile-side-card add-profile active' : 'user-profile-side-card add-profile'} onClick={() => {
                     setSelectUser('');
-                    props.setSelectedMember('');
-                    props.addNewMember(true);
+                    props.addNewMember(true, '');
                 }
                 }>
                     <span className="material-symbols-outlined">
@@ -170,6 +200,7 @@ export default function MemberList(props) {
                 </div>
 
                 {filterParticipantList && filterParticipantList.map((participant) => {
+                    // console.log('selectUser : ', selectUser, 'participant.PlayerID : ', participant.PlayerID,)
                     return <div className={selectUser === participant.PlayerID ? 'user-profile-side-card active' : 'user-profile-side-card'} key={participant.PlayerID}>
                         {/* {console.log(participant.PlayerID)} */}
 
@@ -191,6 +222,7 @@ export default function MemberList(props) {
 
                         <div className='hover-details-div'>
                             <div onClick={() => {
+                                // console.log('participant.PlayerID : ', participant.PlayerID)
                                 userEdit(participant.PlayerID)
                             }}>
                                 <span className="material-symbols-outlined">
@@ -198,7 +230,12 @@ export default function MemberList(props) {
                                 </span>
                                 <h4>EDIT</h4>
                             </div>
-                            <div onClick={() => userDetail(participant.PlayerID)}>
+                            <div onClick={() => {
+                                // console.log('participant.PlayerID : ', participant.PlayerID)
+                                getUserDetail(participant.PlayerID)
+                            }}>
+
+
                                 <span className="material-symbols-outlined">
                                     page_info
                                 </span>

@@ -27,7 +27,7 @@ export default class More extends Component {
                             </div>
 
                             <div className="col-lg-3 col-md-3 col-sm-6" style={{ padding: '10px' }}>
-                                <a href="https://tournamentplanner.in/screens/TPLive_UserGuide.aspx" className="more-links">
+                                <a href="/UserGuide" className="more-links">
                                     <img src="./img/user_guide.svg" width="100%" alt="" />
                                     <span>User Guide</span>
                                 </a>
@@ -58,7 +58,7 @@ export default class More extends Component {
                                 </Link>
                             </div>
                             <div className="col-6" style={{ padding: '10px' }}>
-                                <a href="https://tournamentplanner.in/screens/TPLive_UserGuide.aspx" className="more-links">
+                                <a href="/UserGuide" className="more-links">
                                     <img src="./img/user_guide.svg" width="100%" alt="" />
                                     <span>User Guide</span>
                                 </a>

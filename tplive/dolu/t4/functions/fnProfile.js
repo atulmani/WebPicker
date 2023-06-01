@@ -1034,6 +1034,7 @@ exports.getPlayerDetailsWithCode =
               MemberIDNumber: doc1.data().MemberIDNumber,
               Identity: doc1.data().Identity,
               PlayerID: doc1.data().PlayerID,
+
             });
 
           });
@@ -1099,6 +1100,7 @@ exports.getPlayerDetailsWithPlayerID =
             State: change.data().State,
             UserName: change.data().UserName,
             AlreadyRegistered: alreadyRegistered,
+
           });
           console.log(resultList);
         });

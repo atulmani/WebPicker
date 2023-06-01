@@ -24,16 +24,16 @@ export default function EventParticipation(props) {
                 <br />
                 <div className="total-participants-div-content">
                     <div>
-                        <a href="">Aditya Tripathi</a>
+                        <a href="/">Aditya Tripathi</a>
                     </div>
                     <div>
-                        <a href="">Arjun Bhagat</a>
+                        <a href="/">Arjun Bhagat</a>
                     </div>
                 </div>
 
                 <div className="total-participants-div-content">
                     <div>
-                        <a href="">Arunesh Hari</a>
+                        <a href="/">Arunesh Hari</a>
                     </div>
                     <div>
 
@@ -46,37 +46,37 @@ export default function EventParticipation(props) {
                 <br />
                 <div className="total-participants-div-content">
                     <div>
-                        <a href="">Pravararchith Rudrakshala Matam</a>
+                        <a href="/">Pravararchith Rudrakshala Matam</a>
                     </div>
                     <div>
-                        <a href="">Pranav Krishnamurti</a>
-                    </div>
-                </div>
-
-                <div className="total-participants-div-content">
-                    <div>
-                        <a href="">Vedic Nagaphane</a>
-                    </div>
-                    <div>
-                        <a href="">Prateek Koundilya</a>
+                        <a href="/">Pranav Krishnamurti</a>
                     </div>
                 </div>
 
                 <div className="total-participants-div-content">
                     <div>
-                        <a href="">Shreyansh Jaiswal</a>
+                        <a href="/">Vedic Nagaphane</a>
                     </div>
                     <div>
-                        <a href="">Prabhu Kannan</a>
+                        <a href="/">Prateek Koundilya</a>
                     </div>
                 </div>
 
                 <div className="total-participants-div-content">
                     <div>
-                        <a href="">Kavin Thangam</a>
+                        <a href="/">Shreyansh Jaiswal</a>
                     </div>
                     <div>
-                        <a href="">Manik Shrama</a>
+                        <a href="/">Prabhu Kannan</a>
+                    </div>
+                </div>
+
+                <div className="total-participants-div-content">
+                    <div>
+                        <a href="/">Kavin Thangam</a>
+                    </div>
+                    <div>
+                        <a href="/">Manik Shrama</a>
                     </div>
                 </div>
                 <br />
@@ -87,37 +87,37 @@ export default function EventParticipation(props) {
                 <br />
                 <div className="total-participants-div-content">
                     <div>
-                        <a href="">Pravararchith Rudrakshala Matam</a>
+                        <a href="/">Pravararchith Rudrakshala Matam</a>
                     </div>
                     <div>
-                        <a href="">Pranav Krishnamurti</a>
-                    </div>
-                </div>
-
-                <div className="total-participants-div-content">
-                    <div>
-                        <a href="">Vedic Nagaphane</a>
-                    </div>
-                    <div>
-                        <a href="">Prateek Koundilya</a>
+                        <a href="/">Pranav Krishnamurti</a>
                     </div>
                 </div>
 
                 <div className="total-participants-div-content">
                     <div>
-                        <a href="">Shreyansh Jaiswal</a>
+                        <a href="/">Vedic Nagaphane</a>
                     </div>
                     <div>
-                        <a href="">Prabhu Kannan</a>
+                        <a href="/">Prateek Koundilya</a>
                     </div>
                 </div>
 
                 <div className="total-participants-div-content">
                     <div>
-                        <a href="">Kavin Thangam</a>
+                        <a href="/">Shreyansh Jaiswal</a>
                     </div>
                     <div>
-                        <a href="">Manik Shrama</a>
+                        <a href="/">Prabhu Kannan</a>
+                    </div>
+                </div>
+
+                <div className="total-participants-div-content">
+                    <div>
+                        <a href="/">Kavin Thangam</a>
+                    </div>
+                    <div>
+                        <a href="/">Manik Shrama</a>
                     </div>
                 </div>
                 <br />

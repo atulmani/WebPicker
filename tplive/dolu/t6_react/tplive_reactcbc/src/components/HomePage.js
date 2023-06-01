@@ -167,7 +167,7 @@ export default function HomePage(props) {
                 {/* {console.log(loading)} */}
                 {loading && <Loading />}
                 <section style={{ background: 'linear-Gradient(#333C5D 95%,rgba(0,0,0,0))' }}>
-                    <div style={{ paddingTop: '0px' }}>
+                    <div style={{ position: 'relative', top: '-20px' }}>
                         {/* {console.log(this.state.eventList)}
                             {console.log('itemsExists', this.state.itemsExists)} */}
                         {itemsExists && <OwlCarousel
@@ -191,7 +191,7 @@ export default function HomePage(props) {
                         >
 
                             {eventList.map((events) => {
-                                return <div className="item" key={events.Eventid}>
+                                return <div className="item" style={{ marginTop: '0' }} key={events.Eventid}>
                                     {/* <BannerItemSmallHP
                                             eventLogoURL={events.EventLogo} /> */}
                                     {index = eventCount.findIndex(e => e.EventID === events.Eventid)}
@@ -207,31 +207,13 @@ export default function HomePage(props) {
                                         updateMyEvent={props.updateMyEvent} />
 
 
-                                    {/* <BannerItemHP eventName={events.EventName} eventType={events.EventType}
-                                        eventDate={events.EventStartDate}
-                                        eventEndDate={events.EventEndDate}
-                                        eventID={events.Eventid}
-                                        eventCode={events.EventCode}
-                                        eventStatus={events.EventStatus ? events.EventStatus.toUpperCase() : 'ACTIVE'}
-                                        organizerName={events.OrganizationName}
-                                        location={events.City}
-                                        entryFee={events.MinimumFee}
-                                        eventLogoURL={events.EventLogo}
-                                        sportName={events.SportName ? events.SportName : ""}
-                                        entryCntForEvent={eventCntForEvent}
-                                        rating={events.rating ? events.rating : 5}
-                                        ratingCount={events.ratingCount ? events.ratingCount : 100}
-                                        isLive={events.isLive}
-                                        eventMode={events.EventMode ? events.EventMode.toUpperCase() : 'OPEN'}
-                                        updateMyEvent={props.updateMyEvent} />
- */}
                                 </div>
 
                             })}
                         </OwlCarousel>
                         }
                     </div><br />
-                </section><br />
+                </section>
             </div >
 
         </div >

@@ -13,7 +13,7 @@ export default function UserRole() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (user.isLoggedIn) {
+        if (user.isLoggedIn && userDetails !== null) {
             if (user.userInfo !== null) {
                 setUserRole(userDetails.UserRole);
                 let lUserRole = JSON.parse(window.localStorage.getItem('SelectedRole'));
@@ -28,7 +28,7 @@ export default function UserRole() {
                 }
             }
             else {
-                navigate("/PhoneSignUp", { state: { url: 'ExportEventEntry' } });
+                navigate("/PhoneSignUp", { state: { url: 'UserProfile' } });
             }
         }
         else {

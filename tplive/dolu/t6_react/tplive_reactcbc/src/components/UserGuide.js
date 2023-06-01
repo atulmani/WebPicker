@@ -56,8 +56,8 @@ export default function UserGuide() {
                                 <div className='row no-gutters'>
                                     <div className='col-lg-12'>
 
-                                        <div className={showFlag === 1 ? 'calculator-div open' : 'calculator-div '}>
-                                            <div className='calculator-heading' onClick={() => setFlag(1)}>
+                                        <div className={showFlag === 1 ? 'calculator-div open' : 'calculator-div'}>
+                                            <div className='calculator-heading' onClick={() => setFlag(showFlag === 1 ? 0 : 1)}>
                                                 <h1>
                                                     Event Registration Process
                                                     <span className="material-symbols-outlined">
@@ -65,72 +65,70 @@ export default function UserGuide() {
                                                     </span>
                                                 </h1>
                                             </div>
-                                            <div >
+                                            <div className='calculator-content'>
+
                                                 <div>
-                                                    <div>
 
-                                                        Participants can be registered under current events as following:
+                                                    Participants can be registered under current events as following:
 
-                                                    </div>
+                                                </div>
 
 
-                                                    <div>
-                                                        <strong>Step 1:</strong>
+                                                <div>
+                                                    <strong>Step 1:</strong>
 
-                                                    </div>
-                                                    <div>
-                                                        Select Event to register
+                                                </div>
+                                                <div>
+                                                    Select Event to register
 
-                                                    </div>
-                                                    <div>
-                                                        <span style={{ fontSize: 'x-small', fontStyle: 'italic' }}>
-                                                            (Click on Events or Clubs menu) </span>
+                                                </div>
+                                                <div>
+                                                    <span style={{ fontSize: 'x-small', fontStyle: 'italic' }}>
+                                                        (Click on Events or Clubs menu) </span>
 
-                                                    </div>
-                                                    <div>
-                                                        <img src="/img/UG_Reg11.PNG" height="30%" width="30%" alt="" />
-                                                    </div>
-                                                    <hr></hr>
-                                                    <div>
-                                                        <strong>Step 2:</strong>
-                                                    </div>
-                                                    <div>
-                                                        If already registered then it will redirect to user page, else will prompt to register. Please register using phone number
-                                                        and update basic user information
-                                                        <br />
-                                                        <span style={{ fontSize: 'x-small', fontStyle: 'italic' }}>
-                                                            (all communication will be through
-                                                            entered email-id &amp; mobile no) </span>
-                                                    </div>
-                                                    <hr></hr>
+                                                </div>
+                                                <div>
+                                                    <img src="/img/UG_Reg11.PNG" height="30%" width="30%" alt="" />
+                                                </div>
+                                                <hr></hr>
+                                                <div>
+                                                    <strong>Step 2:</strong>
+                                                </div>
+                                                <div>
+                                                    If already registered then it will redirect to user page, else will prompt to register. Please register using phone number
+                                                    and update basic user information
+                                                    <br />
+                                                    <span style={{ fontSize: 'x-small', fontStyle: 'italic' }}>
+                                                        (all communication will be through
+                                                        entered email-id &amp; mobile no) </span>
+                                                </div>
+                                                <hr></hr>
 
-                                                    <div>
-                                                        <strong>Step 3:</strong>
+                                                <div>
+                                                    <strong>Step 3:</strong>
 
-                                                    </div>
-                                                    <div>
-                                                        Select Category to register
+                                                </div>
+                                                <div>
+                                                    Select Category to register
 
-                                                    </div>
-                                                    <div>
-                                                        <span style={{ fontSize: 'x-small', fontStyle: 'italic' }}>
-                                                            (For Doubles entry, you need to give the TPLIve ID of the partner) </span>
+                                                </div>
+                                                <div>
+                                                    <span style={{ fontSize: 'x-small', fontStyle: 'italic' }}>
+                                                        (For Doubles entry, you need to give the TPLIve ID of the partner) </span>
 
-                                                    </div>
-                                                    <div>
-                                                        <img src="/img/categoryList.jpg" height="30%" width="30%" alt="" />
-                                                    </div>
-                                                    <hr></hr>
-                                                    <hr></hr>
+                                                </div>
+                                                <div>
+                                                    <img src="/img/categoryList.jpg" height="30%" width="30%" alt="" />
+                                                </div>
+                                                <hr></hr>
+                                                <hr></hr>
 
-                                                    <div>
-                                                        <strong>Step 4:</strong>
+                                                <div>
+                                                    <strong>Step 4:</strong>
 
-                                                    </div>
-                                                    <div>
-                                                        Go to checkout and complete payment for confirmed registration
-
-                                                    </div>
+                                                </div>
+                                                <div>
+                                                    Go to checkout and complete payment for confirmed registration
                                                 </div>
 
 
@@ -142,7 +140,7 @@ export default function UserGuide() {
 
 
                                         <div className={showFlag === 2 ? 'calculator-div open' : 'calculator-div '}>
-                                            <div className='calculator-heading' onClick={() => setFlag(2)}>
+                                            <div className='calculator-heading' onClick={() => setFlag(showFlag === 2 ? 0 : 2)}>
                                                 <h1>
                                                     How many Sports covered in TPLiVE?
                                                     <span className="material-symbols-outlined">
@@ -160,7 +158,7 @@ export default function UserGuide() {
 
 
                                         <div className={showFlag === 3 ? 'calculator-div open' : 'calculator-div '}>
-                                            <div className='calculator-heading' onClick={() => setFlag(3)}>
+                                            <div className='calculator-heading' onClick={() => setFlag(showFlag === 3 ? 0 : 3)}>
                                                 <h1>
                                                     Who can use this product?
                                                     <span className="material-symbols-outlined">
@@ -180,7 +178,7 @@ export default function UserGuide() {
 
 
                                         <div className={showFlag === 4 ? 'calculator-div open' : 'calculator-div '}>
-                                            <div className='calculator-heading' onClick={() => setFlag(4)}>
+                                            <div className='calculator-heading' onClick={() => setFlag(showFlag === 4 ? 0 : 4)}>
                                                 <h1>
                                                     How to create a Event?
                                                     <span className="material-symbols-outlined">
@@ -200,7 +198,7 @@ export default function UserGuide() {
 
 
                                         <div className={showFlag === 5 ? 'calculator-div open' : 'calculator-div '}>
-                                            <div className='calculator-heading' onClick={() => setFlag(5)}>
+                                            <div className='calculator-heading' onClick={() => setFlag(showFlag === 5 ? 0 : 5)}>
                                                 <h1>
                                                     How it works?
                                                     <span className="material-symbols-outlined">
@@ -218,7 +216,7 @@ export default function UserGuide() {
                                     <div className='col-lg-12'>
 
                                         <div className={showFlag === 6 ? 'calculator-div open' : 'calculator-div '}>
-                                            <div className='calculator-heading' onClick={() => setFlag(6)}>
+                                            <div className='calculator-heading' onClick={() => setFlag(showFlag === 6 ? 0 : 6)}>
                                                 <h1>
                                                     Does TPLivE promots advertisement?
                                                     <span className="material-symbols-outlined">

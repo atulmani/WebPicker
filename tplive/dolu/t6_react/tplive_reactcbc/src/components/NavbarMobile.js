@@ -1,4 +1,4 @@
-import '../css/NavbarMobile.css'
+import '../css/NavbarMobile.css';
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -24,14 +24,14 @@ export default class NavbarMobile extends Component {
                     </div>
 
                     <div className="" style={{ display: 'flex', alignItems: 'center' }}>
-                        <a href="https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA"
+                        <Link to="/Event"
                             style={{
                                 paddingRight: '10px'
                             }} >
                             <span className="material-symbols-outlined navbar-search-icon">
                                 manage_search
                             </span>
-                        </a>
+                        </Link>
 
                         {/* <a href="JavaScript:askforNotification();"> */}
                         <a href="/" style={{ position: 'relative' }}>

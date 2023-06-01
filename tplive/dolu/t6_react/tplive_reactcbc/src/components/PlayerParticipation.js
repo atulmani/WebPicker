@@ -5,6 +5,7 @@ import { httpsCallable } from "firebase/functions";
 import EventDetailsMenu from './EventDetailsMenu';
 import EDTournamentDetails from './EDTournamentDetails';
 import CategoryCartItem from './CategoryCartItem';
+import Loading from './Loading.js';
 
 export default function PlayerParticipation() {
     const { state } = useLocation();
@@ -33,9 +34,9 @@ export default function PlayerParticipation() {
                     playerParticipantCount: result.data.length,
                     showFlag: true
                 });
-
+                setLoading(false);
             });
-            setLoading(false);
+
         }
         fetchData();
     }, []);
@@ -56,7 +57,7 @@ export default function PlayerParticipation() {
                             participantDetails={participantDetails}
                             participantCount={participantCount}
                         />}
-                        {loading && <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_27H8l4.json" background="transparent" speed="1" loop autoplay></lottie-player>}
+                        {loading && <Loading></Loading>}
 
 
                         <div className="row no-gutters" id="divRegEvent">

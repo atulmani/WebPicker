@@ -35,7 +35,7 @@
 .fixed-white-area {
     position: sticky;
     position: -webkit-sticky;
-    top: 56px;
+    top: 54px;
     background: #fff;
     height: 70px;
     z-index: 10;

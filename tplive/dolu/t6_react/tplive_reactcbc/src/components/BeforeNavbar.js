@@ -69,10 +69,11 @@ export default function BeforeNavbar() {
                             </span>
                         </a> */}
 
-                        <Link to="/UserProfile">
-                            <span className="material-symbols-outlined">
+                        <Link to="/Profile" style={{ flexDirection: 'column' }}>
+                            <span className="material-symbols-outlined" style={{ position: 'relative', top: '3px' }}>
                                 person
                             </span>
+                            <span style={{ fontSize: '0.7rem', fontWeight: '500' }}>Organizer</span>
                         </Link>
 
                         {/* <a href="JavaScript:askforNotification();" className="nav-location"> */}

@@ -1,0 +1,334 @@
+.dashboard-banner {
+    background-image: url('../../../../public/img/banner/1.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 450px;
+}
+
+.dashboard-banner .container-fluid {
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.9));
+}
+
+.dashboard-banner .container-fluid .dashboard-banner-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 100%;
+    padding: 10px;
+}
+
+.dashboard-banner .container-fluid .dashboard-banner-inner h1 {
+    font-size: 2.4rem;
+    color: #fff;
+    margin: 0;
+    text-align: center;
+}
+
+.dashboard-banner .container-fluid .dashboard-banner-inner h2 {
+    font-size: 1rem;
+    color: #ddd;
+    font-weight: 300;
+    text-align: center;
+}
+
+.dashboard-banner .dashboard-banner-search {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+}
+
+.dashboard-banner .dashboard-banner-search input {
+    background: #fff;
+    outline: none;
+    border: none;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 60px;
+    padding: 0 20px 0 50px;
+    color: var(--darkgrey);
+    font-size: 0.9rem;
+    font-weight: 400;
+    border-radius: 4px;
+}
+
+.dashboard-banner .dashboard-banner-search input::placeholder {
+    color: var(--lightgrey);
+}
+
+.dashboard-banner .dashboard-banner-search span {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--lightgrey);
+    font-weight: 200;
+}
+
+.dashboard-banner .dashboard-banner-search-options {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    padding-top: 5px;
+}
+
+.dashboard-banner .dashboard-banner-search-options a {
+    color: #ddd;
+    margin: 0 5px;
+    font-size: 0.8rem;
+}
+
+.below-banner-div {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    transform: translateY(-80px);
+    background: #fff;
+}
+
+.below-banner-card {
+    background: none;
+    border-radius: 10px;
+    width: 100%;
+    padding: 20px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.below-banner-card:hover {
+    background: #eee;
+}
+
+.below-banner-card h1 {
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #444;
+    margin: 0;
+}
+
+.below-banner-card img {
+    width: 40px;
+}
+
+.dashboard-services {
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #eee;
+    margin: 10px 0;
+}
+
+.dashboard-services .dashboard-services-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background: #eee;
+    border-radius: 10px;
+    width: 35% !important;
+}
+
+.dashboard-services .dashboard-services-img img {
+    width: 100%;
+}
+
+.dashboard-services .dashboard-services-name {
+    width: 65% !important;
+}
+
+.dashboard-services .dashboard-services-name h1 {
+    font-size: 1.3rem;
+    padding: 10px;
+}
+
+@media (max-width: 1000px) {
+    .dashboard-services {
+        flex-direction: column;
+        border: none;
+        margin: 2px 0;
+    }
+
+    .dashboard-services .dashboard-services-img {
+        width: 100% !important;
+    }
+
+    .dashboard-services .dashboard-services-name {
+        width: 100% !important;
+    }
+
+    .dashboard-services .dashboard-services-img img {
+        max-width: 80px;
+        max-height: 80px;
+    }
+
+    dashboard-services .dashboard-services-name {
+        width: 100% !important;
+    }
+
+    .dashboard-services .dashboard-services-name h1 {
+        text-align: center;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+}
+
+.add-card {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add-card .add-card-details {
+    padding: 10px;
+}
+
+.add-card .add-card-details h1 {
+    font-size: 1.1rem;
+    color: #fff;
+    margin: 0;
+}
+
+.add-card .add-card-details h2 {
+    margin: 0;
+    padding: 3px 0 15px 0;
+    font-size: 0.8rem;
+    color: #eee;
+    font-weight: 300;
+}
+
+.add-card .add-card-details div {
+    padding: 3px 0;
+}
+
+.owl-nav {
+    display: none;
+}
+
+.book-services-card {
+    padding: 5px;
+}
+
+.book-services-card img {
+    border-radius: 10px;
+    width: 100%;
+}
+
+.book-services-card .book-services-card-details {
+    padding-top: 10px;
+}
+
+.book-services-card .book-services-card-details h1 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #444;
+}
+
+.book-services-card .book-services-card-details div {
+    display: flex;
+    align-items: center;
+}
+
+.book-services-card .book-services-card-details div span {
+    position: relative;
+    top: -5px;
+    font-size: 1.2rem;
+    color: var(--lightgrey);
+    font-variation-settings:
+        'FILL' 1
+}
+
+.book-services-card .book-services-card-details div h2 {
+    padding-left: 5px;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--grey);
+}
+
+.book-services-card .book-services-card-details h3 {
+    font-size: 1.1rem;
+    color: #444;
+}
+
+.break-div {
+    position: relative;
+    background: var(--brown);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.break-div .break-div-content {
+    width: 60%;
+    padding-right: 20px;
+}
+
+.break-div .break-div-content h1 {
+    font-size: 1.8rem;
+    color: #fff;
+}
+
+.break-div .break-div-content h2 {
+    font-size: 0.9rem;
+    color: #eee;
+    font-weight: 300;
+    padding-bottom: 8px;
+}
+
+.break-div .break-div-img {
+    width: 40%;
+}
+
+.break-div .break-div-img img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+@media (max-width: 992px) {
+    .break-div {
+        flex-direction: column;
+    }
+
+    .break-div .break-div-content {
+        width: 100%;
+        padding-bottom: 20px;
+    }
+
+    .break-div .break-div-img {
+        width: 100%;
+    }
+}
+
+.activity-card {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.activity-card h1 {
+    font-size: 1rem;
+    color: #222;
+    padding: 10px 10px 10px 10px;
+    margin: 0;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    background: rgba(208, 180, 159, 0.2);
+}
+
+.activity-card div {
+    padding: 10px 0;
+}
+
+.activity-card img {
+    width: 100%;
+}

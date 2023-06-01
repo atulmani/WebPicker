@@ -44,7 +44,7 @@ export default function PartnerSection() {
         }
         )
 
-        if (location.pathname === '/PhoneSignUp' || location.pathname === '/UserProfile') {
+        if (location.pathname === '/PhoneSignUp' || location.pathname === '/UserProfile' || location.pathname === '/Profile') {
             setShowFlag(false);
         } else {
             setShowFlag(true);

@@ -17,7 +17,7 @@ export default function RegisteredEvent() {
 
 
     useEffect(() => {
-        if (user.isLoggedIn) {
+        if (user.isLoggedIn && userDetails !== null) {
             if (user.userInfo !== null) {
                 var para = {};
                 para = {
@@ -31,7 +31,7 @@ export default function RegisteredEvent() {
                 });
             }
             else {
-                navigate("/PhoneSignUp", { state: { url: 'ExportEventEntry' } });
+                navigate("/PhoneSignUp", { state: { url: 'RegisteredEvent' } });
             }
         }
         else {

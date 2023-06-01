@@ -37,7 +37,7 @@ export default function EDTournamentDetails(props) {
             {props.eventDetails.RegistrationOpenFlag !== 'YES' && props.eventDetails.EventMode.toUpperCase() === 'FIXTURE' &&
                 <div className="register-btn-fixed small">
 
-                    <a id="booking" href={"https://tournamentplanner.in/screens/TPLive_Draws.aspx?SCode=" + props.eventDetails.SportCode + "&TCode=" + props.eventDetails.EventCode} >
+                    <a href={"https://tournamentplanner.in/screens/TPLive_Draws.aspx?SCode=" + props.eventDetails.SportCode + "&TCode=" + props.eventDetails.EventCode} >
 
                         <button type="button" name="button" className="mybutton button5" style={{ background: '#348DCB' }}>
                             Draw
@@ -52,72 +52,77 @@ export default function EDTournamentDetails(props) {
                         <span className="material-symbols-outlined">
                             notifications_active
                         </span>
-                        <h1 id="announcement" className="blink">Online payment Online payment is mandatory to confirm your entry
+                        <h1 className="blink">Online payment Online payment is mandatory to confirm your entry
                         </h1>
                     </div>
                 </div>
             </div>
 
             <div className="firstbox">
-                <input type="hidden" id="hfEventID" value={props.eventDetails.id} />
-                <input type="hidden" id="hfOrganizerID" value={props.eventDetails.OrganizationID} />
-                <h4 id="eventName" style={{ fontWeight: '1000', color: '#348DCB' }}> {props.eventDetails.EventName}
+                {/* <input type="hidden"  value={props.eventDetails.id} />
+                <input type="hidden"  value={props.eventDetails.OrganizationID} /> */}
+                <h4 style={{ fontWeight: '1000', color: '#348DCB' }}> {props.eventDetails.EventName}
                 </h4>
                 <hr />
                 <ul>
                     <li>
                         <i className="far fa-bookmark"></i>
                         <span className="textheadleft">Organiser : </span>
-                        <span id="organisername" className="textheadright">{props.eventDetails.OrganizationName}</span>
+                        <span className="textheadright">{props.eventDetails.OrganizationName}</span>
                     </li>
                     <li>
                         <i className="far fa-calendar"></i>
                         <span className="textheadleft">Date : </span>
-                        <span id="eventstartdate" className="textheadright"> {props.eventDetails.EventSDate}</span>
-                        <span id="eventenddate"
-                            className="textheadright"> - {props.eventDetails.EventEDate}</span>
+                        <span className="textheadright"> {props.eventDetails.EventSDate}</span>
+                        <span className="textheadright"> - {props.eventDetails.EventEDate}</span>
                     </li>
                     <li>
                         <i className="fas fa-rupee-sign"></i>
                         <span className="textheadleft">Price : </span>
-                        <span id="eventprice" className="textheadright"> {(props.eventDetails.Fees)}</span>
+                        <span className="textheadright"> {(props.eventDetails.Fees)}</span>
                     </li>
 
-                    <li className="large" style={{ paddingBottom: '20px' }}>
-                        <span style={{ float: 'left' }} id="spanbtn1">
-                            {props.showRegistration && props.eventDetails.RegistrationOpenFlag === 'YES' && users && <Link id="booking" to="/RegisteredProfile">
-                                <button type="button" id="btn1" name="button" className="mybutton button5" style={{ background: '#348DCB' }}>
-                                    Register
-                                </button>
-                            </Link>}
+                    <li className="large" style={{ paddingBottom: '0' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <span style={{ width: '45%' }} >
+                                {props.showRegistration && props.eventDetails.RegistrationOpenFlag === 'YES' && users && <Link to="/RegisteredProfile">
+                                    <button type="button" name="button" className="mybutton button5" style={{ background: '#348DCB', width: '100%' }}>
+                                        Click To Register
+                                    </button>
+                                </Link>}
 
 
-                            {props.showRegistration && props.eventDetails.RegistrationOpenFlag === 'YES' && !users && <Link id="booking" to="/PhoneSignUp">
-                                <button type="button" id="btn1" name="button" className="mybutton button5" style={{ background: '#348DCB' }}>
-                                    Register
-                                </button>
-                            </Link>}
+                                {props.showRegistration && props.eventDetails.RegistrationOpenFlag === 'YES' && !users && <Link
+                                    to="/PhoneSignUp" state={{
+                                        url: 'EventDetails',
+                                        property: props
+                                    }}>
+                                    <button type="button" name="button" className="mybutton button5" style={{ background: '#348DCB' }}>
+                                        Register
+                                    </button>
+                                </Link>}
 
-                            {props.eventDetails.RegistrationOpenFlag !== 'YES' && props.eventDetails.EventMode.toUpperCase() === 'FIXTURE' && <a id="booking" href={"https://tournamentplanner.in/screens/TPLive_Draws.aspx?SCode=" + props.eventDetails.SportCode + "&TCode=" + props.eventDetails.EventCode} >
-                                <button type="button" id="btn1" name="button" className="mybutton button5" style={{ background: '#348DCB' }}>
-                                    View Draw
-                                </button>
-                            </a>}
-                        </span>
+                                {props.eventDetails.RegistrationOpenFlag !== 'YES' && props.eventDetails.EventMode.toUpperCase() === 'FIXTURE' && <a href={"https://tournamentplanner.in/screens/TPLive_Draws.aspx?SCode=" + props.eventDetails.SportCode + "&TCode=" + props.eventDetails.EventCode} >
+                                    <button type="button" name="button" className="mybutton button5" style={{ background: '#348DCB' }}>
+                                        View Draw
+                                    </button>
+                                </a>}
+                            </span>
 
-                        <span style={{ float: 'right' }} id="spanbtn2">
-                            {props.eventDetails.OnlinePaymentModeFlag === 'YES' && <a id="booking" href="./checkout/step1-auth.html">
-                                <button type="button" id="btn2" name="button" className="mybutton button5" style={{ background: '#348DCB' }}>
-                                    Pay Now
-                                </button>
-                            </a>}
-                            {props.eventDetails.OnlinePaymentModeFlag !== 'YES' && props.eventDetails.DrawPublishedFlag === 'YES' && <a id="booking" href={"https://tournamentplanner.in/screens/TPLive_Draws.aspx?SCode=" + props.eventDetails.SportCode + "&TCode=" + props.eventDetails.EventCode}>
-                                <button type="button" id="btn2" name="button" className="mybutton button5" style={{ background: '#348DCB' }}>
-                                    Draw
-                                </button>
-                            </a>}
-                        </span>
-                    </li><br className="large" />
+                            <span style={{ width: '45%' }} >
+                                {/* {props.eventDetails.OnlinePaymentModeFlag === 'YES' &&
+                                    <button type="button" name="button" className="mybutton button5" style={{ background: '#348DCB', width: '100%' }}>
+                                        Pay Now
+                                    </button>
+                                } */}
+                                {props.eventDetails.OnlinePaymentModeFlag !== 'YES' && props.eventDetails.DrawPublishedFlag === 'YES' && <a href={"https://tournamentplanner.in/screens/TPLive_Draws.aspx?SCode=" + props.eventDetails.SportCode + "&TCode=" + props.eventDetails.EventCode}>
+                                    <button type="button" name="button" className="mybutton button5" style={{ background: '#348DCB' }}>
+                                        Draw
+                                    </button>
+                                </a>}
+                            </span>
+                        </div>
+                    </li>
 
                 </ul>
 
@@ -129,11 +134,11 @@ export default function EDTournamentDetails(props) {
                 <ul>
                     <li>
                         <i className="fas fa-thumb-tack"></i>
-                        <span className="textheadleft">Venue : <span id="eventVenue" style={{ color: '#889' }} className="textheadright"> {props.eventDetails.EventName}</span> </span>
+                        <span className="textheadleft">Venue : <span style={{ color: '#889' }} className="textheadright"> {props.eventDetails.EventName}</span> </span>
                     </li>
                     <li>
                         <i className="fas fa-undo"></i>
-                        <span className="textheadleft">Withdrawal Date : <span id="withdrawalDate" style={{ color: '#889' }} className="textheadright"> {refWDate ? refWDate.toLocaleDateString("en-IN", options) : ''}</span>
+                        <span className="textheadleft">Withdrawal Date : <span style={{ color: '#889' }} className="textheadright"> {refWDate ? refWDate.toLocaleDateString("en-IN", options) : ''}</span>
                         </span>
                     </li>
                 </ul>
@@ -144,14 +149,14 @@ export default function EDTournamentDetails(props) {
                 <hr />
                 <ul>
                     <li>
-                        <span style={{ fontSize: '0.9rem' }}>Ask the organizer : <span className="textheadright" id="orgName">{props.eventDetails.EventOwnerName} </span> </span>
+                        <span style={{ fontSize: '0.9rem' }}>Ask the organizer : <span className="textheadright" >{props.eventDetails.EventOwnerName} </span> </span>
                         <br />
                         <span style={{ fontSize: '0.9rem' }}>Email : </span>
 
-                        <span id="organiserEmail" className='textheadright' style={{ fontSize: '0.9rem', wordBreak: 'break-all' }}>{props.eventDetails.EventOwnerEmail}</span>
+                        <span className='textheadright' style={{ fontSize: '0.9rem', wordBreak: 'break-all' }}>{props.eventDetails.EventOwnerEmail}</span>
                         <br />
                         <span style={{ fontSize: '0.9rem' }}>Contact : </span>
-                        <a id="organiserPhone" className='textheadright' href="/">{props.eventDetails.EventOwnerPhone}</a>
+                        <a className='textheadright' href="/">{props.eventDetails.EventOwnerPhone}</a>
 
                     </li>
 

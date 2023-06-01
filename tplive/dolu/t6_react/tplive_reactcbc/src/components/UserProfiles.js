@@ -1,33 +1,53 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../css/UserProfiles.css';
 import MemberList from './MemberList';
 import { functions } from '../firebase.js'
 import { httpsCallable } from "firebase/functions";
 import { useUserAuth } from '../context/UserAuthcontext';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocalStorage } from "../context/useLocalStorage";
 
-import Loading from './Loading';
 
-import useRazorpay from "react-razorpay";
+// import { useNavigate } from 'react-router-dom';
+
+// import Loading from './Loading';
+
+// import useRazorpay from "react-razorpay";
 import axios from 'axios';
 import UserProfileRegisteredEvent from './UserProfileRegisteredEvent';
 import NewMember from './NewMember';
 
 
 export default function UserProfiles() {
-    const { user } = useUserAuth();
-    const [userDetails, setUserDetails] = useState(window.localStorage.getItem('userProfile') ? JSON.parse(window.localStorage.getItem('userProfile')) : {});
-
-    const [members, setMembers] = useState([]);
-    const [allMemberList, setAllMemberList] = useState([]);
-    const [participantList, setParticipantList] = useState([])
-    const [eventList, setEventList] = useState([]);
-    const [selectedPlayer, setSelectedPlayer] = useState('');
-    const [loading, setLoading] = useState(false)
-    const [selectedEventActive, setSelectedEventActive] = useState('');
-    const [showSideBar, setShowSideBar] = useState(false);
-    const [addNewFlag, setAddNewFlag] = useState(false);
+    const { state } = useLocation();
+    const { id, propsIsNew, propsSelectedPlayer } = state;
+    // const { user } = useUserAuth();
+    const { users, user } = useUserAuth();
+    const [userID, setUserID] = useState();
+    const [eventID, setEventID] = useState(window.localStorage.getItem("EventID") ? window.localStorage.getItem("EventID") : null);
+    const [userDetails, setUserDetails] = useLocalStorage('userProfile', null);
     const navigate = useNavigate();
+
+    // const [stateObj, setStateObj] = useState({
+    const stateObj = useRef({
+
+        members: [],
+        participantList: [],
+        eventList: [],
+        selectedPlayer: propsSelectedPlayer,
+        selectedEventActive: '',
+        showSideBar: false,
+        addNewFlag: propsIsNew
+    })
+
+    const [loading, setLoading] = useState(false)
+    // const [members, setMembers] = useState([]);
+    // const [participantList, setParticipantList] = useState([])
+    // const [eventList, setEventList] = useState([]);
+    // const [selectedPlayer, setSelectedPlayer] = useState('');
+    // const [selectedEventActive, setSelectedEventActive] = useState('');
+    // const [showSideBar, setShowSideBar] = useState(false);
+    // const [addNewFlag, setAddNewFlag] = useState(false);
 
     let playerDetails1;
     var curFormat = {
@@ -43,26 +63,32 @@ export default function UserProfiles() {
         month: 'short',
         day: 'numeric'
     };
+    console.log('stateObj.addNewFlag : ', stateObj.current.addNewFlag)
+    function setSelectedEventActive(flag) {
 
-    function setMemberListFromChild(memberlist, playerCode) {
-        setMembers(memberlist);
-        setSelectedPlayer(playerCode);
-        // console.log('in userProfiles : playercode', playerCode);
-        getRegisteredEvents(playerCode);
-        // console.log('Members : ', members)
+        console.log('stateObj.addNewFlag : ', stateObj)
+        stateObj.current = {
+            ...stateObj.current,
+            selectedEventActive: flag
+        }
+        // setStateObj({
+        //     ...stateObj,
+        //     selectedEventActive: flag
+        // })
+
     }
-    function getRegisteredEvents(playerID) {
-
+    async function getRegisteredEvents(playerID) {
+        console.log('stateObj.addNewFlag : ', stateObj)
         var para1 = {};
         para1 = {
             PlayerID: playerID,
         };
         setLoading(true);
-
+        console.log('in getRegisteredEvents playerID : ', playerID);
         let refdate = '';
-        const ret1 = httpsCallable(functions, "getAllRegisteredEventForPlayerCode");
+        const ret1 = await httpsCallable(functions, "getAllRegisteredEventForPlayerCode");
         ret1(para1).then(async (result) => {
-            result.data.eventDetails.forEach(event => {
+            result.data.eventDetails.forEach(async event => {
                 refdate = new Date(event.EventStartDate._seconds * 1000);
                 event.EventSDate = refdate.toLocaleDateString("en-IN", options);
                 event.Fees = event.MinimumFee ? (Number(event.MinimumFee).toLocaleString('en-IN', curFormat)) : "";
@@ -71,83 +97,192 @@ export default function UserProfiles() {
                 event.EventEDate = refdate.toLocaleDateString("en-IN", options);
 
             });
-            setEventList(result.data.eventDetails);
 
-            setParticipantList(result.data.entryDetails);
+            console.log('stateObj.addNewFlag : ', stateObj.current.addNewFlag)
+            stateObj.current = {
+                ...stateObj.current,
+                participantList: result.data.entryDetails,
+                eventList: result.data.eventDetails,
+                // selectedPlayer: '',
+                // selectedEventActive: '',
+                // showSideBar: false,
+                // addNewFlag: false
+            }
+            // setStateObj({
+            //     ...stateObj,
+            //     participantList: result.data.entryDetails,
+            //     eventList: result.data.eventDetails,
+            //     // selectedPlayer: '',
+            //     // selectedEventActive: '',
+            //     // showSideBar: false,
+            //     // addNewFlag: false
+            // })
+
+            // setEventList(result.data.eventDetails);
+
+            // setParticipantList(result.data.entryDetails);
             // console.log(result.data);
             setLoading(false);
         });
 
     }
-    // let dob = '';
+    // useEffect(() => {
+    //     navigate(".", { replace: true }); // <-- redirect to current path w/o state
+    // }, [navigate]);
 
-    // async function getPlayerList() {
-    //     var para1 = {};
-    //     var setUser = '';
-    //     if (user.isLoggedIn) {
-    //         if (user.userInfo !== null) {
-    //             para1 = {
-    //                 userID: userDetails.id,
-    //             };
-    //             setLoading(true);
-    //             let participant = {};
-    //             let userParticipant = [];
-    //             const ret1 = httpsCallable(functions, "getRegisteredParticant");
-    //             ret1(para1).then(async (result) => {
-    //                 result.data.forEach(async element => {
-    //                     participant = {
-    //                         id: element.id,
-    //                         City: element.City,
-    //                         Country: element.Country,
-    //                         DateOfBirth: element.DateOfBirth,
-    //                         District: element.District,
-    //                         Email: element.Email,
-    //                         Gender: element.Gender,
-    //                         ParticipantID: element.ParticipantID,
-    //                         Phone: element.Phone,
-    //                         Pincode: element.Pincode,
-    //                         State: element.State,
-    //                         UserName: element.UserName,
-    //                         UserID: element.UserID,
-    //                         PlayerID: element.PlayerID,
-    //                     };
-    //                     if (setUser === '') {
-    //                         setUser = element.PlayerID;
-
-    //                     }
-
-    //                     dob = (element.DateOfBirth) ? new Date(element.DateOfBirth._seconds * 1000) : '';
-    //                     dob = dob === '' ? '' : dob.toLocaleDateString("en-IN", options);
-    //                     userParticipant.push({
-    //                         ...participant,
-    //                         dob: dob,
-    //                         searchKey: element.UserName + element.PlayerID
-    //                     });
-
-    //                 });
-
-    //                 console.log(userParticipant);
-    //                 setAllMemberList(userParticipant);
-    //                 setSelectedPlayer(setUser);
-    //                 setLoading(false);
-    //             });
-    //         } else {
-    //             navigate("/PhoneSignUp", { state: { url: 'ExportEventEntry' } });
-    //         }
-    //     }
-    // }
     useEffect(() => {
         // getPlayerList();
-        getRegisteredEvents(selectedPlayer);
 
-    }, [selectedPlayer])
+        console.log('stateObj.addNewFlag : ', stateObj.current.addNewFlag)
+        if (user.isLoggedIn && userDetails !== null) {
+            if (user.userInfo) {
+                console.log('stateObj : ', stateObj)
+
+                if (stateObj.current.selectedPlayer !== '') {
+                    if (stateObj.current.addNewFlag) {
+                        // setAddNewFlag(true);
+                        stateObj.current = {
+                            ...stateObj.current,
+                            // participantList: result.data.entryDetails,
+                            // eventList: result.data.eventDetails,
+                            // selectedPlayer: stateObj.selectedPlayer,
+                            // selectedEventActive: '',
+                            // showSideBar: false,
+                            addNewFlag: true
+                        }
+                        // setStateObj({
+                        //     ...stateObj,
+                        //     // participantList: result.data.entryDetails,
+                        //     // eventList: result.data.eventDetails,
+                        //     selectedPlayer: stateObj.selectedPlayer,
+                        //     // selectedEventActive: '',
+                        //     // showSideBar: false,
+                        //     addNewFlag: true
+                        // })
+                    } else {
+                        // stateObj.current = {
+                        //     ...stateObj.current,
+                        //     // participantList: result.data.entryDetails,
+                        //     // eventList: result.data.eventDetails,
+                        //     selectedPlayer: stateObj.current.selectedPlayer
+                        // }
+                        // setStateObj({
+                        //     ...stateObj,
+                        //     // participantList: result.data.entryDetails,
+                        //     // eventList: result.data.eventDetails,
+                        //     selectedPlayer: stateObj.selectedPlayer
+                        // })
+                    }
+                    // setSelectedPlayer(propsSelectedPlayer);
+                    console.log('stateObj : ', stateObj);
+
+                    userDetails && getRegisteredEvents(stateObj.current.selectedPlayer);
+
+                }
+                else {
+                    // setSelectedPlayer('');
+                    if (stateObj.current.addNewFlag) {
+                        // setAddNewFlag(true);
+                        stateObj.current = {
+                            ...stateObj.current,
+                            // participantList: result.data.entryDetails,
+                            // eventList: result.data.eventDetails,
+                            selectedPlayer: '',
+                            // selectedEventActive: '',
+                            // showSideBar: false,
+                            // addNewFlag: true
+                        }
+                        // setStateObj({
+                        //     ...stateObj,
+                        //     // participantList: result.data.entryDetails,
+                        //     // eventList: result.data.eventDetails,
+                        //     selectedPlayer: '',
+                        //     // selectedEventActive: '',
+                        //     // showSideBar: false,
+                        //     // addNewFlag: true
+                        // })
+                    } else {
+                        stateObj.current = {
+                            ...stateObj.current,
+                            // participantList: result.data.entryDetails,
+                            // eventList: result.data.eventDetails,
+                            selectedPlayer: ''
+                        };
+                        // setStateObj({
+                        //     ...stateObj,
+                        //     // participantList: result.data.entryDetails,
+                        //     // eventList: result.data.eventDetails,
+                        //     selectedPlayer: ''
+                        // })
+
+                    }
+                }
+                console.log('propsIsNew : ', propsIsNew)
+                console.log('addNewFlag : ', stateObj.current.addNewFlag)
+
+
+                // console.log('in useEffect selectedPlayer=', selectedPlayer)
+                // if (!addNewFlag) {
+                // console.log('in useEffect before calling getRegisteredEvents selectedPlayer=', selectedPlayer)
+
+                // getRegisteredEvents(selectedPlayer);
+
+                // }
+            }
+        }
+        else {
+            navigate("/PhoneSignUp", { state: { url: 'UserProfile' } });
+        }
+    }, [user])
+
 
     function setSelectedMember(playerid) {
-        setSelectedPlayer(playerid);
+        // setSelectedPlayer(playerid);
+
+        console.log('stateObj.addNewFlag : ', stateObj)
+        stateObj.current = {
+            ...stateObj.current,
+            // participantList: result.data.entryDetails,
+            // eventList: result.data.eventDetails,
+            selectedPlayer: playerid,
+            // selectedEventActive: '',
+            // showSideBar: false,
+            // addNewFlag: true
+        }
+        // setStateObj({
+        //     ...stateObj,
+        //     // participantList: result.data.entryDetails,
+        //     // eventList: result.data.eventDetails,
+        //     selectedPlayer: playerid,
+        //     // selectedEventActive: '',
+        //     // showSideBar: false,
+        //     // addNewFlag: true
+        // })
     }
     function eventChange(e) {
+
+        console.log('stateObj.addNewFlag : ', stateObj)
         // console.log('in eventChange ', e.target.value);
-        setSelectedEventActive(e.target.value);
+        // setSelectedEventActive(e.target.value);
+        stateObj.current = {
+            ...stateObj.current,
+            // participantList: result.data.entryDetails,
+            // eventList: result.data.eventDetails,
+            // selectedPlayer: playerid,
+            selectedEventActive: e.target.value,
+            // showSideBar: false,
+            // addNewFlag: true
+        };
+        // setStateObj({
+        //     ...stateObj,
+        //     // participantList: result.data.entryDetails,
+        //     // eventList: result.data.eventDetails,
+        //     // selectedPlayer: playerid,
+        //     selectedEventActive: e.target.value,
+        //     // showSideBar: false,
+        //     // addNewFlag: true
+        // })
+
         // console.log('SelectedEventActive :: ', selectedEventActive);
     }
 
@@ -197,6 +332,7 @@ export default function UserProfiles() {
             } catch (error) {
                 console.log('error', error);
             }
+            console.log('stateObj.addNewFlag :: ', stateObj)
             getRegisteredEvents(entry.ParticipantID);
             setLoading(false);
         }
@@ -248,7 +384,7 @@ export default function UserProfiles() {
             email: player.Email,
             contact: player.Phone,
 
-            image: 'https://tplive-prod--tplive-test-dw5grchb.web.app/img/TPLiVE_Logo.webp',
+            image: 'https://tplive-prod--tplive-test-h1bjje65.web.app/img/TPLiVE_Logo.webp',
             handler: function (response) {
                 // console.log(response);
                 ConfirmPayment(amount, response.razorpay_payment_id, orderId, entry)
@@ -273,31 +409,257 @@ export default function UserProfiles() {
         setLoading(false);
 
     }
-    function openSideBar(flag) {
-        setShowSideBar(flag);
-    }
-    function addNewMember(flag) {
+    //called from child start
+    function setValuesFromChild(_showSideflag, _memberlist, _showAddflag, _playercode) {
+        // setSelectedPlayer(playercode);
+        // setShowSideBar(showSideflag);
 
-        setAddNewFlag(flag);
-        if (flag === false && participantList && participantList[0] && participantList[0].PlayerID !== '') {
-            setSelectedPlayer(participantList[0].PlayerID);
-            getRegisteredEvents(participantList && participantList[0] && participantList[0].PlayerID);
+        console.log('stateObj.addNewFlag : ', stateObj)
+        console.log('showSideflag : ', _showSideflag, ' memberlist : ', _memberlist, 'showAddflag : ', _showAddflag, 'playercode : ', _playercode);
+        // setMembers(memberlist);
+        if (_showAddflag === true && _playercode !== '') {
+            console.log('in option 1');
+            // setAddNewFlag(showAddflag);
+            stateObj.current = {
+                ...stateObj.current,
+                members: _memberlist,
+                // participantList: result.data.entryDetails,
+                // eventList: result.data.eventDetails,
+                selectedPlayer: _playercode,
+                // selectedEventActive: e.target.value,
+                showSideBar: _showSideflag,
+                addNewFlag: _showAddflag
+            }
+            // setStateObj({
+            //     ...stateObj,
+            //     members: _memberlist,
+            //     // participantList: result.data.entryDetails,
+            //     // eventList: result.data.eventDetails,
+            //     selectedPlayer: _playercode,
+            //     // selectedEventActive: e.target.value,
+            //     showSideBar: _showSideflag,
+            //     addNewFlag: _showAddflag
+            // })
+
+        } else if (_showAddflag === true && _playercode === '') {
+            console.log('in option 2');
+            // setAddNewFlag(showAddflag);
+            // setSelectedPlayer('');
+            stateObj.current = {
+                ...stateObj.current,
+
+                members: _memberlist,
+                // participantList: result.data.entryDetails,
+                // eventList: result.data.eventDetails,
+                selectedPlayer: '',
+                // selectedEventActive: e.target.value,
+                showSideBar: _showSideflag,
+                addNewFlag: _showAddflag
+            };
+
+            // setStateObj({
+            //     ...stateObj,
+
+            //     members: _memberlist,
+            //     // participantList: result.data.entryDetails,
+            //     // eventList: result.data.eventDetails,
+            //     selectedPlayer: '',
+            //     // selectedEventActive: e.target.value,
+            //     showSideBar: _showSideflag,
+            //     addNewFlag: _showAddflag
+            // })
+
+        } else if (_showAddflag === false && _playercode === '' && stateObj.current.participantList && stateObj.current.participantList[0] && stateObj.current.participantList[0].PlayerID !== '') {
+            console.log('in option 3', stateObj.current.participantList[0].PlayerID);
+            // setSelectedPlayer(participantList[0].PlayerID);
+            // setAddNewFlag(showAddflag);
+
+            stateObj.current = {
+                ...stateObj.current,
+                members: _memberlist,
+                // participantList: result.data.entryDetails,
+                // eventList: result.data.eventDetails,
+                selectedPlayer: stateObj.current.participantList[0].PlayerID,
+                // selectedEventActive: e.target.value,
+                showSideBar: _showSideflag,
+                addNewFlag: _showAddflag
+            };
+            // setStateObj({
+            //     ...stateObj,
+
+            //     members: _memberlist,
+            //     // participantList: result.data.entryDetails,
+            //     // eventList: result.data.eventDetails,
+            //     selectedPlayer: stateObj.participantList[0].PlayerID,
+            //     // selectedEventActive: e.target.value,
+            //     showSideBar: _showSideflag,
+            //     addNewFlag: _showAddflag
+            // })
+            getRegisteredEvents(stateObj.current.participantList && stateObj.current.participantList[0] && stateObj.current.participantList[0].PlayerID);
+        } else {
+            console.log('in option 4, _showAddflag:', _showAddflag, ":: _playercode : ", _playercode, ":: _showSideflag : ", _showSideflag, ":: _memberlist : ", _memberlist);
+            // setAddNewFlag(showAddflag);
+            console.log('in option 555, howAddflag:', stateObj);
+            stateObj.current = {
+                ...stateObj.current,
+                members: _memberlist,
+                selectedPlayer: _playercode,
+                showSideBar: _showSideflag,
+                addNewFlag: false
+            }
+            // setStateObj({
+            //     ...stateObj,
+            //     members: _memberlist,
+            //     selectedPlayer: _playercode,
+            //     showSideBar: _showSideflag,
+            //     addNewFlag: false
+            // })
+            // setSelectedPlayer('');
+        }
+        console.log('in option 444, howAddflag:', stateObj);
+
+        getRegisteredEvents(_playercode);
+    }
+    function openSideBar(flag) {
+        // setShowSideBar(flag);
+
+        console.log('stateObj.addNewFlag : ', stateObj)
+        stateObj.current = {
+            ...stateObj.current,
+
+            showSideBar: flag,
+            // addNewFlag: _showAddflag
+        }
+        // setStateObj({
+        //     ...stateObj,
+
+        //     showSideBar: flag,
+        //     // addNewFlag: _showAddflag
+        // })
+    }
+
+    function setMemberListFromChild(memberlist, playerCode) {
+        // setMembers(memberlist);
+        // setSelectedPlayer(playerCode);
+
+        console.log('stateObj.addNewFlag : ', stateObj)
+        stateObj.current = {
+            ...stateObj.current,
+            members: memberlist,
+            selectedPlayer: playerCode
+        };
+        // setStateObj({
+        //     ...stateObj,
+        //     members: memberlist,
+        //     selectedPlayer: playerCode
+        // })
+        // console.log('in userProfiles : playercode', playerCode);
+        getRegisteredEvents(playerCode);
+        // console.log('Members : ', members)
+    }
+    function addNewMember(flag, playercode) {
+
+        console.log('stateObj.addNewFlag : ', stateObj)
+        console.log('flag :: ', flag);
+        // console.log('in addNewMember flag=', flag, ',playercode=', playercode)
+        if (flag === true && playercode !== '') {
+            // console.log('in option 1');
+            // setSelectedPlayer(playercode);
+            // setAddNewFlag(flag);
+            stateObj.current = {
+                ...stateObj.current,
+                selectedPlayer: playercode,
+                addNewFlag: flag
+            };
+            // setStateObj({
+            //     ...stateObj,
+            //     selectedPlayer: playercode,
+            //     addNewFlag: flag
+            // })
+        } else if (flag === true && playercode === '') {
+            // setSelectedPlayer('');
+            // setAddNewFlag(flag);
+
+            stateObj.current = {
+                ...stateObj.current,
+                selectedPlayer: '',
+                addNewFlag: flag
+            };
+            // setStateObj({
+            //     ...stateObj,
+            //     selectedPlayer: '',
+            //     addNewFlag: flag
+            // })
+        } else if (flag === false && playercode === '') {
+            // setSelectedPlayer('');
+            // console.log(participantList);
+            // setAddNewFlag(flag);
+            if (stateObj.current.participantList && stateObj.current.participantList.length > 0) {
+                // setSelectedPlayer(stateObj.participantList[0].ParticipantID);
+                stateObj.current = {
+                    ...stateObj.current,
+                    selectedPlayer: stateObj.current.participantList[0].ParticipantID,
+                    addNewFlag: flag
+                }
+                // setStateObj({
+                //     ...stateObj,
+                //     selectedPlayer: stateObj.participantList[0].ParticipantID,
+                //     addNewFlag: flag
+                // })
+
+                getRegisteredEvents(stateObj.current.participantList && stateObj.current.participantList[0] && stateObj.current.participantList[0].ParticipantID);
+
+            } else {
+
+                stateObj.current = {
+                    ...stateObj.current,
+                    addNewFlag: flag
+                }
+
+                // setStateObj({
+                //     ...stateObj,
+                //     addNewFlag: flag
+                // })
+            }
+
+        }
+        // else if (flag === false && participantList && participantList[0] && participantList[0].PlayerID !== '') {
+        //     console.log('in option 2');
+        //     setSelectedPlayer(participantList[0].PlayerID);
+        //     setAddNewFlag(flag);
+
+        //     getRegisteredEvents(participantList && participantList[0] && participantList[0].PlayerID);
+        // }
+        else {
+            // console.log('in option 3');
+            // setAddNewFlag(flag);
+            stateObj.current = {
+                ...stateObj.current,
+                addNewFlag: flag
+            };
+            // setStateObj({
+            //     ...stateObj,
+            //     addNewFlag: flag
+            // })
+            // setSelectedPlayer('');
         }
     }
-    let obj = {};
-    let sDate = '';
-    let fees = '';
-    let convCharges = 0;
-    let misCharges = 0;
-    let totalFees = 0;
-    let regCloseDate;
-    let regWithdrawDate;
-    let index = 0;
+
+    //called from child end
+    // let obj = {};
+    // let sDate = '';
+    // let fees = '';
+    // let convCharges = 0;
+    // let misCharges = 0;
+    // let totalFees = 0;
+    // let regCloseDate;
+    // let regWithdrawDate;
+    // let index = 0;
     // console.log('members : ', members);
     // console.log('selectedPlayer', selectedPlayer);
-    playerDetails1 = members.find(e => e.PlayerID === selectedPlayer)
+    playerDetails1 = stateObj.current.members.find(e => e.PlayerID === stateObj.current.selectedPlayer)
     // console.log('playerDetails1', playerDetails1);
-
+    console.log('stateObj : ', stateObj);
     return (
         <div className='container-fluid'>
             <div className='row no-gutters'>
@@ -305,26 +667,35 @@ export default function UserProfiles() {
 
                     <MemberList setMemberList={setMemberListFromChild}
                         openSideBar={openSideBar}
-                        showSideBar={showSideBar}
+                        showSideBar={stateObj.current.showSideBar}
                         addNewMember={addNewMember}
-                        setSelectedMember={setSelectedMember}></MemberList>
+                        addNewFlag={stateObj.current.addNewFlag}
+                        selectedPlayer={stateObj.current.selectedPlayer}
+                        setValuesFromChild={setValuesFromChild}
+                    ></MemberList>
                     {/* <MemberList setMemberList={setMemberListFromChild} openSideBar={openSideBar} selectedPlayer={selectedPlayer} memberList={allMemberList} showSideBar={showSideBar}></MemberList> */}
 
                 </div>
                 <div className='col-lg-9 col-md-9 col-sm-12'>
-                    {addNewFlag && <NewMember selectedPlayer={selectedPlayer} addNewMember={addNewMember}></NewMember>}
-                    {selectedPlayer !== '' &&
+                    {stateObj.current.addNewFlag && <>
+
+                        <h3 style={{ fontWeight: '1000', color: '#348DCB', textAlign: 'center' }}>{stateObj.current.selectedPlayer === '' ? 'Add Member' : 'Edit Member (' + stateObj.current.selectedPlayer + ')'}</h3>
+
+                        <NewMember selectedPlayer={stateObj.current.selectedPlayer} addNewMember={stateObj.current.addNewMember}></NewMember>
+                    </>}
+                    {/* {console.log('selectedPlayer : ', selectedPlayer)} */}
+                    {stateObj.current.selectedPlayer !== '' && !stateObj.current.addNewFlag &&
                         <UserProfileRegisteredEvent
-                            selectedPlayer={selectedPlayer}
+                            selectedPlayer={stateObj.current.selectedPlayer}
                             loading={loading}
                             playerDetails1={playerDetails1}
-                            showSideBar={showSideBar}
+                            showSideBar={stateObj.current.showSideBar}
                             setSelectedEventActive={setSelectedEventActive}
-                            selectedEventActive={selectedEventActive}
-                            eventList={eventList}
+                            selectedEventActive={stateObj.current.selectedEventActive}
+                            eventList={stateObj.current.eventList}
                             handlePayment={handlePayment}
                             handleRefund={handleRefund}
-                            participantList={participantList}></UserProfileRegisteredEvent>
+                            participantList={stateObj.current.participantList}></UserProfileRegisteredEvent>
                     }
 
                 </div>
