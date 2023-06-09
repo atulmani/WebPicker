@@ -1,0 +1,77 @@
+.navbar-mobile {
+    background: #333C5D;
+    padding-top: 0px;
+    /* background: linear-gradient(to right,#161d65, #348DCB); */
+    height: 54px;
+    /* box-shadow: 0 0 10px 0 rgba(0,0,0,0.1); */
+    z-index: 100;
+}
+
+.navbar-mobile-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 3px 10px;
+}
+
+.navbar-mobile-menu .navbar-search-icon {
+    font-size: 2.1rem;
+    font-variation-settings:
+        'wght' 250
+}
+
+.navbar-mobile-menu a {
+    color: #fff;
+    /* color: #fff;
+  font-size: 1.3rem; */
+    display: flex;
+    /* background: red; */
+    text-decoration: none;
+}
+
+.navbar-mobile-menu a span {
+    color: #fff;
+    /* color: #348DCB; */
+    /* color: #fff; */
+    font-size: 1.3rem;
+    position: relative;
+    top: 1px;
+}
+
+.navbar-mobile-menu a h6 {
+    position: relative;
+    top: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    color: #fff;
+    font-size: 0.9rem
+}
+
+.navbar-mobile-menu .hamburger-icon {
+    position: absolute;
+    top: 14px;
+}
+
+.navbar-mobile-menu .user-icon {
+    font-size: 1rem;
+    position: absolute;
+    top: 11px;
+    right: 7px;
+    border: 1px solid #fff;
+    line-height: 20px;
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.notification-dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: red;
+    border-radius: 50%;
+    right: 0;
+    border: 2px solid #333C5D;
+}

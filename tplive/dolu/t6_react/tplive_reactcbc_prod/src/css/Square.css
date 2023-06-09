@@ -1,0 +1,21 @@
+.square {
+    border: 1px solid #348DCB;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.square h5 {
+    font-size: 2.5rem;
+    font-weight: 500;
+}
+
+.square.X-box h5 {
+    color: #07dac5;
+}
+
+.square.O-box h5 {
+    color: #ff5757;
+}

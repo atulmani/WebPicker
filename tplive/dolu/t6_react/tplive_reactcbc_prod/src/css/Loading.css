@@ -1,0 +1,9 @@
+.event-loading {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+    background: #fff;
+}

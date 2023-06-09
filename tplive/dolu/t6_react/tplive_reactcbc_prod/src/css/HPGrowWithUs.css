@@ -1,0 +1,13 @@
+.background-img-div {
+    background: rgba(0, 0, 0, 0.5) url('https://firebasestorage.googleapis.com/v0/b/tpliveapp.appspot.com/o/img%2Fbackground-banner.webp?alt=media&token=77b7ed4f-6fe7-43dc-86f7-3237acd50fe5');
+    background-blend-mode: darken;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.text-para {
+    /* text-align: justify; */
+    font-size: 1.3rem;
+}

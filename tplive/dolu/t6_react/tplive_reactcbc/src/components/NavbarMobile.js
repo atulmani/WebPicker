@@ -33,6 +33,15 @@ export default class NavbarMobile extends Component {
                             </span>
                         </Link>
 
+                        {/* <a href="https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA"
+                            style={{
+                                paddingRight: '10px'
+                            }} >
+                            <span className="material-symbols-outlined navbar-search-icon">
+                                manage_search
+                            </span>
+                        </a> */}
+
                         {/* <a href="JavaScript:askforNotification();"> */}
                         <a href="/" style={{ position: 'relative' }}>
 

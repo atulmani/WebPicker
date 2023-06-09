@@ -1,0 +1,39 @@
+.flip-game-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flip-game-card div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flip-game-card img {
+    width: 90%;
+    display: block;
+    border-radius: 6px !important;
+}
+
+.flip-game-card .front {
+    transform: rotateY(90deg);
+    transition: all ease-in 0.2s;
+    position: absolute;
+}
+
+.flipped .front {
+    transform: rotateY(0deg);
+    transition-delay: 0.2s;
+}
+
+.flip-game-card .back {
+    transition: all ease-in 0.2s;
+    transition-delay: 0.2s;
+}
+
+.flipped .back {
+    transform: rotateY(90deg);
+    transition-delay: 0s;
+}

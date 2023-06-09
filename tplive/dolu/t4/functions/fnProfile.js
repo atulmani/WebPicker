@@ -61,6 +61,7 @@ exports.getProfileDetails =
               UserName: doc1.data().UserName,
               UserRole: doc1.data().UserRole,
               ProfilePicURL: doc1.data().ProfilePicURL,
+              SelectedRole: doc1.data().SelectedRole,
             }
 
           } else {
@@ -637,6 +638,7 @@ exports.getUserWithRole =
                   State: change.data().State,
                   UserName: change.data().UserName,
                   UserRole: change.data().UserRole,
+                  SelectedRole: change.data().SelectedRole,
                 });
                 break;
               }
@@ -818,6 +820,7 @@ exports.updateParticipants =
       const SchoolAddress = data.SchoolAddress;
       const MemberIDType = data.MemberIDType;
       const PlayerID = data.PlayerID;
+      const SelectedRole = data.SelectedRole;
       var lPlayerID = '';
       var ucdocID = "";
       var userCount = 0;
@@ -942,6 +945,150 @@ exports.updateParticipants =
       }
     });
 
+
+
+exports.createNewUser =
+  functions
+    .region('asia-south1')
+    .https.onCall(async (data, context) => {
+      if (!context.auth) {
+        throw new functions.https.HttpError(
+          "unauthenticatied",
+          "only authenticated user can call this"
+        );
+      }
+      const UserID = data.UserID;
+      const ParticipantID = data.ParticipantID;
+      const pID = data.pID;
+      const Pincode = data.Pincode;
+      const State = data.State;
+      const City = data.City;
+      const District = data.District;
+      const Country = data.Country;
+      const Gender = data.Gender;
+      const Email = data.Email;
+      const Phone = data.Phone;
+      const UserName = data.UserName;
+      const DOB = data.DateOfBirth;
+      const ParticipantAddress = data.ParticipantAddress;
+      const Size = data.Size;
+      const Identity = data.Identity;
+      const MemberIDNumber = data.MemberIDNumber;
+      const CompanyName = data.CompanyName;
+      const HRContact = data.HRContact;
+      const CompanyAddress = data.CompanyAddress;
+      const CollageName = data.CollageName;
+      const Grade = data.Grade;
+      const SchoolAddress = data.SchoolAddress;
+      const MemberIDType = data.MemberIDType;
+      const PlayerID = data.PlayerID;
+      const SelectedRole = data.SelectedRole;
+      var lPlayerID = '';
+      var ucdocID = "";
+      var userCount = 0;
+      var role = [{ TYPE: 'PARTICIPANT' }];
+      await admin.firestore().collection("UserCountSummary")
+        .get().then(async (changes) => {
+          changes.forEach(doc1 => {
+            ucdocID = doc1.id;
+            userCount = Number(doc1.data().UserCount);
+          });
+          userCount = userCount + 1;
+          lPlayerID = "TP" + userCount;
+
+          admin.firestore().collection("UserList")
+            .doc(context.auth.uid)
+            .update({
+              UserName: UserName,
+              Email: Email,
+              Gender: Gender,
+              City: City,
+              Country: Country,
+              SelectedRole: SelectedRole,
+              DateOfBirth: admin.firestore.Timestamp.fromDate(new Date(DOB)),
+              District: District,
+              ParticipantID: context.auth.uid,
+              Phone: Phone,
+              PlayerID: lPlayerID,
+              Pincode: Pincode,
+              State: State,
+              UserId: context.auth.uid,
+              UserRole: role,
+              UpdatedBy: context.auth.uid,
+              UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
+            })
+            .then(async () => {
+
+              return admin.firestore().collection("Participants")
+                .add({
+                  UserName: UserName,
+                  UserID: UserID,
+                  Gender: Gender,
+                  Email: Email,
+                  Phone: Phone,
+                  PlayerID: lPlayerID,
+                  City: City,
+                  State: State,
+                  Country: Country,
+                  District: District,
+                  Pincode: Pincode,
+                  ParticipantID: ParticipantID,
+                  DateOfBirth: admin.firestore.Timestamp.fromDate(new Date(DOB)),
+                  ParticipantAddress: ParticipantAddress,
+                  Size: Size,
+                  Identity: Identity,
+                  CompanyName: CompanyName,
+                  HRContact: HRContact,
+                  CompanyAddress: CompanyAddress,
+                  CollageName: CollageName,
+                  Grade: Grade,
+                  SchoolAddress: SchoolAddress,
+                  MemberIDNumber: MemberIDNumber,
+                  MemberIDType: MemberIDType,
+                  UpdatedBy: context.auth.uid,
+                  UpdatedTimestamp: admin.firestore.Timestamp.fromDate(new Date()),
+                })
+                .then(function (docRef) {
+
+                  var partID = docRef.id;
+                  if (ucdocID === '' || ucdocID === undefined || ucdocID === null) {
+                    admin.firestore().collection("UserCountSummary").add({
+                      UserCount: 1,
+                    })
+                      .then(async () => {
+                        return {
+                          ParticipantID: partID
+                        };
+                      });
+
+                  }
+                  else {
+
+
+                    admin.firestore().collection("UserCountSummary")
+                      .doc(ucdocID)
+                      .set({
+                        UserCount: userCount,
+                      })
+                      .then(async () => {
+                        return {
+
+                          ParticipantID: partID
+                        };
+                      })
+                  }
+
+                })
+                .catch(function (error) {
+                  console.log("in error");
+                  return {
+                    ParticipantID: "0"
+                  };
+                });
+
+            });
+        });
+    });
 exports.getPlayerDetails =
   functions
     .region('asia-south1')

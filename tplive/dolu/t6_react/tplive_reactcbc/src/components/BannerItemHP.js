@@ -141,7 +141,7 @@ export default function BannerItemHP(props) {
         window.localStorage.setItem("EventID", JSON.stringify(props.eventDetails.Eventid));
         window.localStorage.setItem("EventDetails", JSON.stringify(props.eventDetails));
         navigate("/EventDetails", { state: { eventID: props.eventDetails.Eventid, eventDetails: props.eventDetails, entryCount: props.entryCntForEvent } });
-
+        // window.location.href = "https://tournamentplanner.in/screens/TPLive_TournamentDetails.aspx?SCode=" + sportProp.sCode + "&TCode=" + props.eventDetails.EventCode;
         // });
         //}
     }
@@ -198,7 +198,7 @@ export default function BannerItemHP(props) {
                                     className="mybutton button5 event-card-button" name="button"
                                     style={{ background: buttonProp.buttonStyle }}><span>{buttonProp.buttonText}</span></button>
                                 {props.isLive &&
-                                    <a className="circle blink" href={"https://tournamentplanner.in/screens/TPLive_Draws.aspx?SCode=" + sportProp.sCode + "&TCode=" + props.eventCode}>
+                                    <a className="circle blink" href={"https://tournamentplanner.in/screens/TPLive_Draws.aspx?SCode=" + sportProp.sCode + "&TCode=" + props.eventDetails.EventCode}>
                                         <div className=""></div>
                                         <h1>LiVE</h1>
                                     </a>
@@ -239,10 +239,10 @@ export default function BannerItemHP(props) {
                                     <div style={{ textAlign: 'right' }}>
                                         <h5 style={{ color: '#fff', margin: '0', position: 'relative', top: '10px' }}>{props.eventDetails.City}</h5>
                                         <div className="" style={{ display: 'flex', alignItems: 'center', transform: 'translateY(-3px)' }}>
-                                            {!props.eventDetails.isLive && <h5 style={{ color: '#fff', position: 'relative', top: '5px' }}>{props.entryFee}</h5>}
+                                            {!props.eventDetails.isLive && <h5 style={{ color: '#fff', position: 'relative', top: '5px' }}>{props.eventDetails.entryFee}</h5>}
 
                                             {props.eventDetails.isLive && <div className="">
-                                                <a href={"https://tournamentplanner.in/screens/TPLive_Draws.aspx?SCode=" + sportProp.sCode + "&TCode=" + props.eventCode} className="circle blink">
+                                                <a href={"https://tournamentplanner.in/screens/TPLive_Draws.aspx?SCode=" + sportProp.sCode + "&TCode=" + props.eventDetails.EventCode} className="circle blink">
                                                     <div className="" style={{ top: '15px' }}></div>
                                                     <h1>LiVE</h1>
                                                 </a>

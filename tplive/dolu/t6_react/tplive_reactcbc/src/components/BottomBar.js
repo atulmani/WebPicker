@@ -22,6 +22,13 @@ export default function BottomBar() {
                     </span>
                     <small>Events</small>
                 </NavLink>
+                {/* <a href="https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA"
+                    className={"navbar-mobile-bottom-menu-a "} style={{ display: 'flex', flexDirection: 'column' }}>
+                    <span className="material-symbols-outlined">
+                        redeem
+                    </span>
+                    <small>Events</small>
+                </a> */}
                 <div  >
 
                 </div>
@@ -32,7 +39,16 @@ export default function BottomBar() {
                     </span>
                     <small>Clubs</small>
                 </NavLink>
-                {/* <Link to="/more" routerlinkactive="active" className="navbar-mobile-bottom-menu-a" style={{ display: 'flex', flexDirection: 'column' }}> */}
+                {/* <a href="https://tournamentplanner.in/screens/TPLive_Orgs.aspx" className={(location.pathname === '/') ? "navbar-mobile-bottom-menu-a active" : "navbar-mobile-bottom-menu-a"}
+                    style={{ display: 'flex', flexDirection: 'column' }}>
+                    <span className="material-symbols-outlined">
+                        category
+                    </span>
+                    <small>Clubs</small>
+                </a> */}
+
+
+
                 <NavLink to="/More" className={(location.pathname === '/More') ? "navbar-mobile-bottom-menu-a active" : "navbar-mobile-bottom-menu-a"}
                     style={{ display: 'flex', flexDirection: 'column' }}>
 

@@ -1,0 +1,72 @@
+.sports-large-div {
+    opacity: 1;
+    overflow: hidden;
+    height: 100%;
+    pointer-events: all;
+}
+
+.sports-small-div {
+    opacity: 0;
+    height: 0px;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+@media (max-width: 600px) {
+    .sports-large-div {
+        opacity: 0;
+        height: 0px;
+        overflow: hidden;
+        pointer-events: all;
+    }
+
+    .sports-small-div {
+        opacity: 1;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+    }
+}
+
+.genre-card {
+    padding: 0 10px;
+    text-align: center;
+}
+
+.genre-card .img-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 20px;
+}
+
+.genre-card:hover .img-div {
+    border: 1px solid #348DCB;
+}
+
+.genre-card .img-div img {
+    width: 60%;
+}
+
+@media (max-width: 1000px) {
+    .genre-card .img-div img {
+        width: 100%;
+    }
+}
+
+.genre-card h2 {
+    padding-top: 10px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.genre-card h3 {
+    font-size: 0.9rem;
+    margin-top: 0;
+    color: #aaa;
+    font-weight: 500;
+}

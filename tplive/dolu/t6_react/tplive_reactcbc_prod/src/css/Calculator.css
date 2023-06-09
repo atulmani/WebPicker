@@ -1,0 +1,76 @@
+.calculator-div {
+    width: 100%;
+    padding: 10px;
+}
+
+.calculator-div .calculator-heading {
+    width: 100%;
+    background: #348DCB;
+    padding: 0 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    height: 50px;
+    transition: 1s;
+}
+
+.calculator-div.open .calculator-heading {
+    border-radius: 8px 8px 0 0;
+}
+
+.calculator-div .calculator-heading h1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.calculator-div .calculator-heading h1 span {
+    font-size: 2rem;
+    transition: 1s;
+}
+
+.calculator-div.open .calculator-heading h1 span {
+    transform: rotate(180deg);
+}
+
+.calculator-div .calculator-content {
+    display: none;
+    overflow: hidden;
+    pointer-events: none;
+    border: none;
+    padding: 0;
+    width: 100%;
+    /* padding: 20px 10px; */
+    border-radius: 0 0 8px 8px;
+    transition: 1s;
+}
+
+.calculator-div.open .calculator-content {
+    display: block;
+    pointer-events: all;
+    opacity: 1;
+    padding: 20px 10px;
+    border: 1px solid #aaa;
+    border-top: none;
+}
+
+.calculator-output-div {
+    text-align: center;
+}
+
+.calculator-output-div h1 {
+    font-size: 0.8rem;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+.calculator-output-div h2 {
+    font-size: 1rem;
+    color: #348DCB;
+    font-weight: normal;
+    margin: 0;
+}

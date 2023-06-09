@@ -62,12 +62,7 @@ export default function BeforeNavbar() {
                         </Link>
 
 
-                        {/* <a
-                            href="https://tournamentplanner.in/screens/TPLive_TournamentList.aspx?tstatus=upcoming&ocode=QQBDAFQASQBWAEUA">
-                            <span className="material-symbols-outlined">
-                                search
-                            </span>
-                        </a> */}
+
 
                         <Link to="/Profile" style={{ flexDirection: 'column' }}>
                             <span className="material-symbols-outlined" style={{ position: 'relative', top: '3px' }}>
@@ -89,8 +84,6 @@ export default function BeforeNavbar() {
                                 add_location_alt
                             </span>
 
-                            {/* <small id="location">{data ? data : 'All'}</small> */}
-                            {/* <small id="location">{this.state ? this.state.City : 'All'}</small> */}
                             <small id="location">{window.localStorage.getItem("userLocation") ? window.localStorage.getItem("userLocation").replaceAll('"', '') : 'All'}</small>
 
                         </Link>
