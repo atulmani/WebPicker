@@ -9,9 +9,9 @@ import Filters from '../../../components/Filters'
 import PropertyList from '../../../components/PropertyList'
 
 // styles
-// import './UserDashboard.css'
-
-export default function OwnerDashboard() {
+import './PGAdminDashboard.css'
+const propertyFilter = ['ALL', 'RESIDENTIAL', 'COMMERCIAL', 'INACTIVE'];
+export default function PGAdminDashboard() {
     const { user } = useAuthContext()
     const { logout, isPending } = useLogout()
     const { documents, error } = useCollection('properties')
@@ -19,49 +19,35 @@ export default function OwnerDashboard() {
     // const navigate = useNavigate();
 
     useEffect(() => {
-        let flag = user && user.roles && user.roles.includes('owner');
+        let flag = user && user.roles && user.roles.includes('admin');
         if (!flag) {
             logout()
         }
-    }, [user, logout])
+    }, [user])
 
     const changeFilter = (newFilter) => {
         setFilter(newFilter)
     }
 
     const properties = documents ? documents.filter(document => {
-        let filteredProperty = false
         switch (filter) {
-            case 'all':
+            case 'ALL':
+                return true
+            case 'mine':
+                let assignedToMe = false
                 document.assignedUsersList.forEach(u => {
                     if (u.id === user.uid) {
-                        filteredProperty = true
+                        assignedToMe = true
                     }
                 })
-                return filteredProperty
-            case 'residential':
-                document.assignedUsersList.forEach(u => {
-                    if (u.id === user.uid && document.category === 'residential') {
-                        filteredProperty = true
-                    }
-                })
-                return filteredProperty
-            case 'commercial':
-                document.assignedUsersList.forEach(u => {
-                    if (u.id === user.uid && document.category === 'commercial') {
-                        filteredProperty = true
-                    }
-                })
-                return filteredProperty
-            case 'active':
-            case 'inactive':
-                document.assignedUsersList.forEach(u => {
-                    if (u.id === user.uid && document.status === 'inactive') {
-                        filteredProperty = true
-                    }
-                })
-                return filteredProperty
-            // return document.status === filter
+                return assignedToMe
+            case 'RESIDENTIAL':
+                return document.category.toUpperCase() === filter
+            case 'COMMERCIAL':
+                return document.category.toUpperCase() === filter
+            case 'INACTIVE':
+                // console.log(document.category, filter)
+                return document.status.toUpperCase() === filter
             default:
                 return true
         }
@@ -69,7 +55,13 @@ export default function OwnerDashboard() {
 
     return (
         <div>
-            <h2 className="page-title">Owner Dashboard</h2>
+            <div className='page-title'>
+                <span className="material-symbols-outlined">
+                    dashboard_customize
+                </span>
+                <h1>Admin Dashboard </h1>
+            </div><br />
+
             <div className="row no-gutters">
                 <div className="col-lg-6 col-md-12 col-sm-12" style={{ padding: '10px' }}>
                     <div className="rent-tenant-card">
@@ -82,7 +74,7 @@ export default function OwnerDashboard() {
                                 style={{ background: 'var(--blue-color)', color: '#fff', fontWeight: 'bolder' }}>Details</button>
                         </div>
                         {/* <div>
-                            <h6>PropDial Commission</h6>
+                            <h6>Propdial Commission</h6>
                             <h2 style={{fontSize: '1.2rem',color: '#666'}}>₹10,000</h2>
                             <button style={{float: 'right'}} className="mybutton button5">Pay Now</button>
                         </div> */}
@@ -111,23 +103,15 @@ export default function OwnerDashboard() {
                             </div>
                         </div>
                     </div>
+
                 </div>
+
             </div>
             <br />
-            <hr />
-            <div>
-                <div className='page-title'>
-                    <span className="material-symbols-outlined">
-                        real_estate_agent
-                    </span>
-                    <h1>Properties </h1>
-                </div>
-                {error && <p className="error">{error}</p>}
-                {documents && <Filters changeFilter={changeFilter} />}
 
-                {properties && <PropertyList properties={properties} />}
-            </div>
-
+            {error && <p className="error">{error}</p>}
+            {documents && <Filters changeFilter={changeFilter} filterList={propertyFilter} filterLength={properties.length} />}
+            {properties && <PropertyList properties={properties} />}
         </div>
     )
 }

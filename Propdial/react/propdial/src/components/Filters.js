@@ -4,34 +4,20 @@ import './Filters.css';
 // import { useNavigate } from 'react-router-dom'
 
 // const filterList = ['all', 'admin', 'active', 'inactive'];
+const defaultFilterList = ['ALL', 'ACTIVE', 'INACTIVE'];
+const defaultFilterLength = 0;
 
-const superAdminUserFilterList = ['all', 'admin', 'active', 'inactive'];
-const adminUserFilterList = ['all', 'active', 'inactive'];
-const userPropertyFilterList = ['all', 'residential', 'commercial', 'inactive'];
+export default function Filters({ changeFilter, filterList, filterLength }) {
+    // const { user } = useAuthContext()
+    let defaultFilterValue = filterList[0];
+    const [currentFilter, setCurrentFilter] = useState(defaultFilterValue)
 
+    // console.log('filterList:', filterList[0])
 
-let filterList;
-
-export default function Filters({ changeFilter }) {
-    const { user } = useAuthContext()
-    const [currentFilter, setCurrentFilter] = useState('all')
-    // const navigate = useNavigate();
-
-    if (user.roles.includes('superadmin')) {
-        filterList = superAdminUserFilterList
-    }
-    if (user.roles.includes('admin')) {
-        filterList = adminUserFilterList
-    }
-    if (user.roles.includes('owner')) {
-        filterList = userPropertyFilterList
-    }
-    if (user.roles.includes('tenant')) {
-        filterList = userPropertyFilterList
-    }
-    if (user.roles.includes('executive')) {
-        filterList = userPropertyFilterList
-    }
+    if (!filterList)
+        filterList = defaultFilterList;
+    if (!filterLength)
+        filterLength = defaultFilterLength;
 
     const handleClick = (newFilter) => {
         setCurrentFilter(newFilter)
@@ -47,6 +33,9 @@ export default function Filters({ changeFilter }) {
                         onClick={() => handleClick(f)}
                         className={currentFilter === f ? 'active' : ''}                    >
                         <span>{f}</span>
+                        {currentFilter === f ? <small>{filterLength}</small> : ''}
+                        {/* {currentFilter === f ? <badge>3</badge> : ''} */}
+                        {/* {console.log('current filter:', currentFilter, ' f:', f, ' filterLength:', filterLength)} */}
                     </button>
                 ))}
             </nav>

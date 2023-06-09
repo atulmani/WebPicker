@@ -23,17 +23,17 @@ export const AuthContextProvider = ({ children }) => {
     authIsReady: false
   })
 
-  let roles = [];
-  let online;
-  let displayName;
-  let fullName;
-  let phoneNumber;
-  let city;
-  let address;
-  let photoURL;
-  let status;
-  let createdAt;
-  let lastLoginTimestamp;
+  // let roles = [];
+  // let online;
+  // let displayName;
+  // let fullName;
+  // let phoneNumber;
+  // let city;
+  // let address;
+  // let photoURL;
+  // let status;
+  // let createdAt;
+  // let lastLoginTimestamp;
 
   // useEffect(() => {
   //   const unsub = projectAuth.onAuthStateChanged(user => {
@@ -41,6 +41,8 @@ export const AuthContextProvider = ({ children }) => {
   //     unsub();
   //   })
   // }, [])
+
+  // let userData = {};
 
   useEffect(() => {
     const unsub = projectAuth.onAuthStateChanged(user => {
@@ -51,18 +53,17 @@ export const AuthContextProvider = ({ children }) => {
         const unsubscribe = documentRef.onSnapshot(snapshot => {
           // need to make sure the doc exists & has data
           if (snapshot.data()) {
-            if (snapshot.data().roles)
-              roles = snapshot.data().roles;
-            online = snapshot.data().online;
-            displayName = snapshot.data().displayName;
-            fullName = snapshot.data().fullName;
-            phoneNumber = snapshot.data().phoneNumber;
-            city = snapshot.data().city;
-            address = snapshot.data().address;
-            photoURL = snapshot.data().photoURL;
-            status = snapshot.data().status;
-            createdAt = snapshot.data().createdAt;
-            lastLoginTimestamp = snapshot.data().lastLoginTimestamp;
+            let roles = snapshot.data().roles;
+            let online = snapshot.data().online;
+            let displayName = snapshot.data().displayName;
+            let fullName = snapshot.data().fullName;
+            let phoneNumber = snapshot.data().phoneNumber;
+            let city = snapshot.data().city;
+            let address = snapshot.data().address;
+            let photoURL = snapshot.data().photoURL;
+            let status = snapshot.data().status;
+            let createdAt = snapshot.data().createdAt;
+            let lastLoginTimestamp = snapshot.data().lastLoginTimestamp;
             // console.log('Roles in App Context: ', roles);        
 
             let userData = {

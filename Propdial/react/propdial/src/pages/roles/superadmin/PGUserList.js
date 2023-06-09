@@ -8,13 +8,14 @@ import Filters from '../../../components/Filters'
 import UserList from '../../../components/UserList'
 
 // styles
-import './SuperAdminDashboard.css'
+import './PGUserList.css'
 
-export default function SuperAdminDashboard() {
+const userFilter = ['ALL', 'ADMIN', 'OWNER', 'TENANT', 'EXECUTIVE', 'INACTIVE'];
+export default function PGUserList() {
     const { logout, isPending } = useLogout()
     const { user } = useAuthContext()
     const { documents, error } = useCollection('users')
-    const [filter, setFilter] = useState('all')
+    const [filter, setFilter] = useState('ALL')
     // const navigate = useNavigate();
 
     useEffect(() => {
@@ -22,7 +23,7 @@ export default function SuperAdminDashboard() {
         if (!flag) {
             logout()
         }
-    }, [user, logout])
+    }, [user])
 
 
     const changeFilter = (newFilter) => {
@@ -31,23 +32,30 @@ export default function SuperAdminDashboard() {
 
     const users = documents ? documents.filter(document => {
         switch (filter) {
-            case 'all':
+            case 'ALL':
                 return true
-            case 'admin':
-                return document.roles.includes(filter)
-            case 'active':
-            case 'inactive':
-                return document.status === filter
+            case 'ADMIN':
+                return document.roles.includes('admin')
+            case 'OWNER':
+                return document.roles.includes('owner')
+            case 'TENANT':
+                return document.roles.includes('tenant')
+            case 'EXECUTIVE':
+                return document.roles.includes('executive')
+            case 'INACTIVE':
+                return document.status === 'inactive'
             default:
                 return true
         }
     }) : null
 
+
+
     return (
         <div>
-            <h2 className="page-title">User List</h2>
+            {/* <h2 className="page-title">User List</h2> */}
             {error && <p className="error">{error}</p>}
-            {documents && <Filters changeFilter={changeFilter} />}
+            {documents && <Filters changeFilter={changeFilter} filterList={userFilter} filterLength={users.length} />}
             {users && <UserList users={users} />}
         </div>
     )

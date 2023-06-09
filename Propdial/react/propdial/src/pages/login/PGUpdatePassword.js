@@ -23,7 +23,7 @@ export default function UpdatePassword() {
                 <br />
                 <label>
                     <div className='form-field-title'>
-                        <span class="material-symbols-outlined">
+                        <span className="material-symbols-outlined">
                             lock
                         </span>
                         <h1>Old Password</h1>
@@ -37,7 +37,7 @@ export default function UpdatePassword() {
                 </label>
                 <label>
                     <div className='form-field-title'>
-                        <span class="material-symbols-outlined">
+                        <span className="material-symbols-outlined">
                             lock
                         </span>
                         <h1>New Password</h1>

@@ -192,3 +192,19 @@
 .address-div .address-text div span {
     color: #ccc;
 }
+
+.dashboardCardBoxoffer {
+    /* padding: 10px; */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    height: 9rem;
+    width: 100%;
+    transition: 1s;
+    overflow: hidden;
+}
+
+@media (max-width: 850px) {
+    .dashboardCardBoxoffer {
+        height: auto;
+    }
+}

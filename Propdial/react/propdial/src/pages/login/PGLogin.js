@@ -25,7 +25,7 @@ export default function Login() {
         <br />
         <label>
           <div className='form-field-title'>
-            <span class="material-symbols-outlined">
+            <span className="material-symbols-outlined">
               person
             </span>
             <h1>Email </h1>
@@ -41,7 +41,7 @@ export default function Login() {
 
         <label>
           <div className='form-field-title'>
-            <span class="material-symbols-outlined">
+            <span className="material-symbols-outlined">
               lock
             </span>
             <h1>Password </h1>

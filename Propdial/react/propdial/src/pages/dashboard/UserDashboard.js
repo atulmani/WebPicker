@@ -28,7 +28,7 @@ export default function UserDashboard() {
                 <div className="col-lg-12 col-md-12 col-sm-12" style={{ padding: '10px' }}>
                     <div className="auth-form">
                         <div>
-                            <h1>Welcome to PropDial</h1>
+                            <h1>Welcome to Propdial</h1>
                             <br />
                             <h6>We would like to inform you that your account
                                 is currently undergoing a routine review
